@@ -1,0 +1,972 @@
+- id: INV-001
+  claim_type: invariant
+  subject: ethics.emergence
+  polarity: denies
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-001
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+    - docs/processed/legacy_tree/README.md
+- id: INV-002
+  claim_type: invariant
+  subject: coherence.definition
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-002
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-003
+  claim_type: invariant
+  subject: language.emergence
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-003
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-004
+  claim_type: invariant
+  subject: ethics.persistence
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-004
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-005
+  claim_type: invariant
+  subject: ethics.mechanism
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-005
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-006
+  claim_type: invariant
+  subject: residue.persistence
+  polarity: denies
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-006
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-007
+  claim_type: invariant
+  subject: language.constraint
+  polarity: denies
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-007
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-008
+  claim_type: invariant
+  subject: precision.routing
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-008
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-009
+  claim_type: invariant
+  subject: attention.mechanism
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-009
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-010
+  claim_type: invariant
+  subject: sleep.necessity
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-010
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-011
+  claim_type: invariant
+  subject: default_mode.safety
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-011
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-012
+  claim_type: invariant
+  subject: commitment.epistemology
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-012
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-013
+  claim_type: invariant
+  subject: cognition.structure
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-013
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-014
+  claim_type: invariant
+  subject: architecture.separation
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-014
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-015
+  claim_type: invariant
+  subject: ethics.emergence_mechanism
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-015
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-016
+  claim_type: invariant
+  subject: design.priority
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-016
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: INV-017
+  claim_type: invariant
+  subject: failure.classification
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-017
+  source:
+    - docs/processed/legacy_tree/docs/invariants.md
+- id: ARC-001
+  claim_type: architectural_commitment
+  subject: E1.persistent_predictive_substrate
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-013
+    - ARC-004
+    - ARC-005
+  location: docs/architecture/e1.md#arc-001
+  source:
+    - docs/processed/legacy_tree/docs/architecture/e1.md
+    - docs/processed/legacy_tree/architecture/E1.md
+- id: ARC-002
+  claim_type: architectural_commitment
+  subject: E2.fast_forward_predictor
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-013
+    - ARC-004
+    - ARC-001
+    - ARC-005
+  location: docs/architecture/e2.md#arc-002
+  source:
+    - docs/processed/legacy_tree/docs/architecture/e2.md
+    - docs/processed/legacy_tree/architecture/E2.md
+- id: ARC-003
+  claim_type: architectural_commitment
+  subject: E3.trajectory_commitment
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-012
+    - ARC-001
+    - ARC-002
+    - ARC-004
+    - ARC-005
+  location: docs/architecture/e3.md#arc-003
+  source:
+    - docs/processed/legacy_tree/docs/architecture/e3.md
+    - docs/processed/legacy_tree/architecture/E3.md
+- id: ARC-004
+  claim_type: architectural_commitment
+  subject: L_space.latent_stack
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-013
+    - INV-002
+  location: docs/architecture/l_space.md#arc-004
+  source:
+    - docs/processed/legacy_tree/docs/architecture/l_space.md
+    - docs/processed/legacy_tree/architecture/latent_stack.md
+- id: ARC-005
+  claim_type: architectural_commitment
+  subject: control_plane.precision_routing
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-008
+    - INV-009
+    - INV-014
+    - ARC-004
+    - ARC-003
+  location: docs/architecture/control_plane.md#arc-005
+  source:
+    - docs/processed/legacy_tree/docs/architecture/control_plane.md
+    - docs/processed/legacy_tree/architecture/control_plane.md
+- id: ARC-006
+  claim_type: architectural_commitment
+  subject: entities.binding
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - ARC-004
+    - INV-002
+  location: docs/architecture/entities_and_binding.md#arc-006
+  source:
+    - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
+    - docs/processed/legacy_tree/DANIEL_README.md
+- id: ARC-007
+  claim_type: architectural_commitment
+  subject: hippocampus.path_memory
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-004
+    - ARC-003
+  location: docs/architecture/hippocampal_systems.md#arc-007
+  source:
+    - docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md
+    - docs/processed/legacy_tree/architecture/Hippocampal_braid.md
+    - docs/processed/legacy_tree/docs/architecture/hippocampal_systems.md
+- id: ARC-008
+  claim_type: architectural_commitment
+  subject: temporal.depth_phase_gating
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - INV-002
+    - ARC-004
+    - ARC-005
+    - ARC-003
+  location: docs/architecture/temporal_dynamics.md#arc-008
+  source:
+    - docs/processed/legacy_tree/architecture/depth_phase_spec.md
+    - docs/processed/legacy_tree/docs/architecture/temporal_dynamics.md
+- id: IMPL-001
+  claim_type: implementation_note
+  subject: repo.glossary
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/glossary.md#impl-001
+  source:
+    - docs/processed/legacy_tree/docs/glossary.md
+- id: Q-001
+  claim_type: open_question
+  subject: entities.emergence_mechanism
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-006
+  location: docs/architecture/entities_and_binding.md#q-001
+  source:
+    - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
+- id: ARC-009
+  claim_type: architectural_commitment
+  subject: language.symbolic_mediation
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-003
+    - INV-007
+    - ARC-010
+    - ARC-005
+    - ARC-004
+  location: docs/architecture/language.md#arc-009
+  source:
+    - docs/processed/legacy_tree/architecture/language/README.md
+    - docs/processed/legacy_tree/architecture/language/language_contract.md
+    - docs/processed/legacy_tree/architecture/language/language_functions.md
+    - docs/processed/legacy_tree/docs/architecture/language.md
+- id: ARC-010
+  claim_type: architectural_commitment
+  subject: social.mirror_modelling
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-005
+    - ARC-004
+    - ARC-006
+  location: docs/architecture/social.md#arc-010
+  source:
+    - docs/processed/legacy_tree/architecture/social/README.md
+    - docs/processed/legacy_tree/architecture/social/mirror_modelling.md
+    - docs/processed/legacy_tree/architecture/social/social_coupling.md
+    - docs/processed/legacy_tree/architecture/social/otherness_inference.md
+    - docs/processed/legacy_tree/docs/architecture/social.md
+- id: ARC-011
+  claim_type: architectural_commitment
+  subject: sleep.offline_integration
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-010
+    - ARC-007
+    - ARC-005
+  location: docs/architecture/sleep.md#arc-011
+  source:
+    - docs/processed/legacy_tree/architecture/sleep/README.md
+    - docs/processed/legacy_tree/architecture/sleep/sleep_contract.md
+    - docs/processed/legacy_tree/docs/architecture/sleep.md
+- id: ARC-012
+  claim_type: architectural_commitment
+  subject: ethics.no_explicit_cost_term
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-001
+    - ARC-003
+    - ARC-005
+    - ARC-007
+  location: docs/architecture/e3.md#arc-012
+  source:
+    - docs/processed/legacy_tree/REE_CORE.md
+- id: MECH-001
+  claim_type: mechanism_hypothesis
+  subject: control_plane.astrocyte_regulatory_stack
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - INV-008
+    - ARC-004
+  location: docs/architecture/astrocyte_regulatory_stack.md#mech-001
+  source:
+    - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/README.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/astrocytes_in_brief.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/implementation_hooks.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/ree_component_mapping.md
+    - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/references.md
+    - docs/processed/legacy_tree/docs/architecture/astrocyte_regulatory_stack.md
+- id: Q-002
+  claim_type: open_question
+  subject: astrocyte.R_field_resolution
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-001
+  location: docs/architecture/astrocyte_regulatory_stack.md#q-002
+  source:
+    - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+- id: Q-003
+  claim_type: open_question
+  subject: astrocyte.R_field_dimensionality
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-001
+  location: docs/architecture/astrocyte_regulatory_stack.md#q-003
+  source:
+    - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+- id: Q-004
+  claim_type: open_question
+  subject: astrocyte.tau_R_calibration
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-001
+  location: docs/architecture/astrocyte_regulatory_stack.md#q-004
+  source:
+    - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+- id: Q-005
+  claim_type: open_question
+  subject: astrocyte.sleep_annealing
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-001
+  location: docs/architecture/astrocyte_regulatory_stack.md#q-005
+  source:
+    - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+- id: ARC-013
+  claim_type: architectural_commitment
+  subject: residue.geometry
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-006
+    - INV-004
+    - ARC-004
+  location: docs/architecture/residue_geometry.md#arc-013
+  source:
+    - docs/processed/legacy_tree/docs/architecture/residue_geometry.md
+    - docs/processed/legacy_tree/architecture/residue_geometry.md
+    - docs/thoughts/2026-02-08_residue_paths_cognitive_map.md
+- id: ARC-014
+  claim_type: architectural_commitment
+  subject: default_mode.internal_generative
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-011
+    - ARC-003
+    - ARC-005
+    - ARC-007
+    - ARC-013
+  location: docs/architecture/default_mode.md#arc-014
+  source:
+    - docs/processed/legacy_tree/docs/architecture/default_mode.md
+    - docs/processed/legacy_tree/architecture/Default_mode.md
+- id: IMPL-002
+  claim_type: implementation_note
+  subject: repo.meta
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/repo_meta.md#impl-002
+  source:
+    - docs/processed/legacy_tree/CITATION.cff
+    - docs/processed/legacy_tree/CONTRIBUTING.md
+    - docs/processed/legacy_tree/.github/ISSUE_TEMPLATE/feature_request.yml
+    - docs/processed/legacy_tree/.github/ISSUE_TEMPLATE/bug_report.yml
+    - docs/processed/legacy_tree/.github/ISSUE_TEMPLATE/discussion.yml
+    - docs/processed/legacy_tree/src/placeholder.md
+- id: IMPL-003
+  claim_type: implementation_note
+  subject: spec.minimum
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-001
+    - ARC-002
+    - ARC-003
+    - ARC-004
+    - ARC-005
+    - ARC-013
+    - ARC-011
+  location: docs/REE_MIN_SPEC.md#impl-003
+  source:
+    - docs/processed/legacy_tree/docs/REE_MIN_SPEC.md
+- id: IMPL-004
+  claim_type: implementation_note
+  subject: overview.legacy
+  polarity: asserts
+  status: legacy
+  depends_on:
+    - INV-001
+    - INV-002
+    - INV-003
+    - ARC-001
+    - ARC-002
+    - ARC-003
+    - ARC-004
+  location: docs/REE_overview.md#impl-004
+  source:
+    - docs/processed/legacy_tree/docs/REE_overview.md
+- id: IMPL-005
+  claim_type: implementation_note
+  subject: failure_modes
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-006
+    - INV-008
+    - ARC-005
+    - ARC-013
+    - ARC-010
+  location: docs/REE_failure_modes.md#impl-005
+  source:
+    - docs/processed/legacy_tree/docs/REE_failure_modes.md
+- id: IMPL-006
+  claim_type: implementation_note
+  subject: migration.legacy
+  polarity: asserts
+  status: legacy
+  depends_on: []
+  location: docs/MIGRATION.md#impl-006
+  source:
+    - docs/processed/legacy_tree/docs/MIGRATION.md
+- id: IMPL-007
+  claim_type: implementation_note
+  subject: refactor.final_output.legacy
+  polarity: asserts
+  status: legacy
+  depends_on: []
+  location: docs/FINAL_OUTPUT.md#impl-007
+  source:
+    - docs/processed/legacy_tree/docs/FINAL_OUTPUT.md
+- id: IMPL-008
+  claim_type: implementation_note
+  subject: roadmap
+  polarity: asserts
+  status: candidate
+  depends_on: []
+  location: docs/roadmap.md#impl-008
+  source:
+    - docs/processed/legacy_tree/roadmap.md
+- id: IMPL-009
+  claim_type: implementation_note
+  subject: wiring.notes.legacy
+  polarity: asserts
+  status: legacy
+  depends_on: []
+  location: docs/notes/wiring_notes.md#impl-009
+  source:
+    - docs/processed/legacy_tree/WIRING_NOTES.md
+- id: IMPL-010
+  claim_type: implementation_note
+  subject: examples.android_world
+  polarity: asserts
+  status: active
+  depends_on:
+    - IMPL-003
+  location: docs/examples/android_world_environment.md#impl-010
+  source:
+    - docs/processed/legacy_tree/examples/android_world/environment.md
+- id: IMPL-011
+  claim_type: implementation_note
+  subject: examples.toy_world
+  polarity: asserts
+  status: active
+  depends_on:
+    - IMPL-003
+  location: docs/examples/toy_world_environment.md#impl-011
+  source:
+    - docs/processed/legacy_tree/examples/toy_world/environment.md
+- id: IMPL-012
+  claim_type: implementation_note
+  subject: examples.toy_world_scoring
+  polarity: asserts
+  status: active
+  depends_on:
+    - IMPL-003
+  location: docs/examples/toy_world_scoring_functions.md#impl-012
+  source:
+    - docs/processed/legacy_tree/examples/toy_world/scoring_functions.md
+- id: IMPL-013
+  claim_type: implementation_note
+  subject: docs.readme
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/README.md#impl-013
+  source:
+    - docs/processed/legacy_tree/docs/README.md
+- id: IMPL-014
+  claim_type: implementation_note
+  subject: docs.changelog
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/changelog.md#impl-014
+  source:
+    - docs/processed/legacy_tree/docs/changelog.md
+- id: IMPL-015
+  claim_type: implementation_note
+  subject: architecture.overview.legacy
+  polarity: asserts
+  status: legacy
+  depends_on: []
+  location: docs/architecture/overview.md#impl-015
+  source:
+    - docs/processed/legacy_tree/architecture/README_architecture.md
+- id: IMPL-016
+  claim_type: implementation_note
+  subject: trajectory.selection.detail
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-003
+    - ARC-004
+    - ARC-013
+  location: docs/architecture/trajectory_selection.md#impl-016
+  source:
+    - docs/processed/legacy_tree/architecture/trajectory_selection.md
+- id: MECH-002
+  claim_type: mechanism_hypothesis
+  subject: precision.control_analogues
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - INV-008
+    - ARC-004
+  location: docs/architecture/precision_control.md#mech-002
+  source:
+    - docs/processed/legacy_tree/architecture/precision_control.md
+- id: MECH-003
+  claim_type: mechanism_hypothesis
+  subject: precision.tau_scoping
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-008
+    - ARC-004
+  location: docs/architecture/precision_scoping.md#mech-003
+  source:
+    - docs/processed/legacy_tree/architecture/precision_scoping.md
+- id: MECH-004
+  claim_type: mechanism_hypothesis
+  subject: control_plane.signal_map
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-003
+  location: docs/architecture/control_plane_signal_map.md#mech-004
+  source:
+    - docs/processed/legacy_tree/architecture/control_plane_signal_map.md
+- id: MECH-005
+  claim_type: mechanism_hypothesis
+  subject: control_plane.path_authority
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-003
+    - ARC-008
+  location: docs/architecture/path_authority_and_interrupts.md#mech-005
+  source:
+    - docs/processed/legacy_tree/architecture/path_authority_and_interrupts.md
+- id: MECH-006
+  claim_type: mechanism_hypothesis
+  subject: control_plane.serotonin_collapse
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-008
+  location: docs/architecture/serotonin.md#mech-006
+  source:
+    - docs/processed/legacy_tree/architecture/serotonin.md
+- id: MECH-007
+  claim_type: mechanism_hypothesis
+  subject: attention.fragmentation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-009
+    - ARC-005
+  location: docs/architecture/why_attention_must_be_fragmented.md#mech-007
+  source:
+    - docs/processed/legacy_tree/architecture/why_attention_must_be_fragmented.md
+- id: MECH-008
+  claim_type: mechanism_hypothesis
+  subject: control_plane.mode_management
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-003
+  location: docs/architecture/mode_manager.md#mech-008
+  source:
+    - docs/processed/legacy_tree/mode_manager.md
+- id: MECH-010
+  claim_type: mechanism_hypothesis
+  subject: language.emergence_bootstrapping
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/emergence_and_bootstrapping.md#mech-010
+  source:
+    - docs/processed/legacy_tree/architecture/language/emergence_and_bootstrapping.md
+- id: MECH-011
+  claim_type: mechanism_hypothesis
+  subject: language.and_learning
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/language_and_learning.md#mech-011
+  source:
+    - docs/processed/legacy_tree/architecture/language/language_and_learning.md
+- id: MECH-012
+  claim_type: mechanism_hypothesis
+  subject: language.and_institutions
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/language_and_institutions.md#mech-012
+  source:
+    - docs/processed/legacy_tree/architecture/language/language_and_institutions.md
+- id: MECH-013
+  claim_type: mechanism_hypothesis
+  subject: language.failure_modes
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/language_failure_modes.md#mech-013
+  source:
+    - docs/processed/legacy_tree/architecture/language/language_failure_modes.md
+- id: MECH-014
+  claim_type: mechanism_hypothesis
+  subject: language.minimal_signalling_channel
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/minimal_signalling_channel.md#mech-014
+  source:
+    - docs/processed/legacy_tree/architecture/language/minimal_signalling_channel.md
+- id: MECH-015
+  claim_type: mechanism_hypothesis
+  subject: language.trust_and_deception
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-010
+  location: docs/architecture/language/trust_and_deception.md#mech-015
+  source:
+    - docs/processed/legacy_tree/architecture/language/trust_and_deception.md
+- id: MECH-016
+  claim_type: mechanism_hypothesis
+  subject: sleep.precision_recalibration
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-011
+    - ARC-007
+  location: docs/architecture/sleep/precision_recalibration.md#mech-016
+  source:
+    - docs/processed/legacy_tree/architecture/sleep/precision_recalibration.md
+- id: MECH-017
+  claim_type: mechanism_hypothesis
+  subject: sleep.reality_consolidation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-011
+    - ARC-007
+  location: docs/architecture/sleep/reality_consolidation.md#mech-017
+  source:
+    - docs/processed/legacy_tree/architecture/sleep/reality_consolidation.md
+- id: MECH-018
+  claim_type: mechanism_hypothesis
+  subject: sleep.residue_integration
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-011
+    - ARC-007
+  location: docs/architecture/sleep/residue_integration.md#mech-018
+  source:
+    - docs/processed/legacy_tree/architecture/sleep/residue_integration.md
+- id: IMPL-017
+  claim_type: implementation_note
+  subject: conflicts.index
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/conflicts/README.md#impl-017
+  source:
+    - docs/processed/legacy_tree/docs/conflicts/ethics_module_vs_cost_term.md
+- id: IMPL-018
+  claim_type: implementation_note
+  subject: claims.index
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/claims/claim_index.md#impl-018
+  source:
+    - docs/processed/legacy_tree/docs/claims/claim_index.md
+- id: INV-018
+  claim_type: invariant
+  subject: agency.requirement
+  polarity: asserts
+  status: stable
+  depends_on: []
+  location: docs/invariants.md#inv-018
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: ARC-015
+  claim_type: architectural_commitment
+  subject: agency.self_impact_attribution
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - INV-018
+    - INV-012
+    - ARC-003
+    - ARC-005
+    - ARC-004
+    - ARC-013
+    - ARC-007
+  location: docs/architecture/agency_responsibility_flow.md#arc-015
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-019
+  claim_type: mechanism_hypothesis
+  subject: control_plane.mode_shaping
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+  location: docs/architecture/control_plane.md#mech-019
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-020
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.emergent
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+  location: docs/architecture/mode_manager.md#mech-020
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-021
+  claim_type: mechanism_hypothesis
+  subject: temporal.now_construction
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-008
+    - ARC-005
+  location: docs/architecture/temporal_dynamics.md#mech-021
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-022
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.hypothesis_injection
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-007
+    - ARC-005
+  location: docs/architecture/hippocampal_systems.md#mech-022
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-023
+  claim_type: mechanism_hypothesis
+  subject: responsibility.geometry
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-013
+    - ARC-015
+  location: docs/architecture/agency_responsibility_flow.md#mech-023
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: MECH-024
+  claim_type: mechanism_hypothesis
+  subject: selfhood_personality_ethics.convergence
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-015
+  location: docs/architecture/agency_responsibility_flow.md#mech-024
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: Q-006
+  claim_type: open_question
+  subject: ethics.developmental
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-015
+  location: docs/architecture/agency_responsibility_flow.md#q-006
+  source:
+    - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: ARC-016
+  claim_type: architectural_commitment
+  subject: cognitive_modes.control_plane_regimes
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - ARC-005
+  location: docs/architecture/modes_of_cognition.md#arc-016
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-025
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.action_doing
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - ARC-005
+    - ARC-015
+    - INV-012
+  location: docs/architecture/modes_of_cognition.md#mech-025
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-026
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.ready_vigilance
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - ARC-005
+  location: docs/architecture/modes_of_cognition.md#mech-026
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-027
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.pathological_regimes
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - ARC-005
+    - ARC-015
+  location: docs/architecture/modes_of_cognition.md#mech-027
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-028
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.ethical_transitions
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - ARC-005
+    - ARC-015
+    - INV-012
+  location: docs/architecture/modes_of_cognition.md#mech-028
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-029
+  claim_type: mechanism_hypothesis
+  subject: default_mode.reflective_ethics
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-014
+    - ARC-005
+    - ARC-007
+  location: docs/architecture/default_mode.md#mech-029
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-030
+  claim_type: mechanism_hypothesis
+  subject: sleep.modes_consolidation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-011
+    - ARC-005
+    - ARC-007
+    - INV-010
+  location: docs/architecture/sleep.md#mech-030
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md

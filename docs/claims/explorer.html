@@ -1,0 +1,2638 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REE Claims Explorer</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --bg-2: #efe6d9;
+      --ink: #1f2328;
+      --muted: #5b5f66;
+      --accent: #2b6f72;
+      --accent-2: #b45a2a;
+      --card: #ffffff;
+      --border: #d8d0c3;
+      --shadow: rgba(31,35,40,0.08);
+      --error: #8c2f2f;
+      --error-bg: #fbecec;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Gill Sans", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 800px at 20% 0%, var(--bg), var(--bg-2));
+    }
+
+    header {
+      padding: 28px 24px 12px 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.5));
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    h1 {
+      margin: 0 0 6px 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      letter-spacing: 0.4px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px var(--shadow);
+      font-size: 13px;
+    }
+
+    main {
+      padding: 18px 24px 32px 24px;
+    }
+
+    .error-banner {
+      display: none;
+      background: var(--error-bg);
+      color: var(--error);
+      border: 1px solid var(--error);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .error-banner pre {
+      margin: 6px 0 10px 0;
+      padding: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: auto;
+      font-size: 12px;
+    }
+    .error-banner code {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .controls {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 2px 8px var(--shadow);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+
+    .controls label {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    button.ghost {
+      background: transparent;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .layout > * {
+      min-width: 0;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 6px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    tr:hover {
+      background: #faf7f1;
+      cursor: pointer;
+    }
+
+    tr.selected {
+      background: #f0f7f6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--border);
+    }
+
+    .type-invariant { background: #f7ecd0; border-color: #dfc17a; }
+    .type-architectural_commitment { background: #e5efff; border-color: #9bb6e8; }
+    .type-mechanism_hypothesis { background: #e3f2ee; border-color: #92c9b7; }
+    .type-implementation_note { background: #efeff2; border-color: #c0c4ce; }
+    .type-open_question { background: #fdebd8; border-color: #e5b37d; }
+
+    .status-stable { border-left: 4px solid #2f6f3e; padding-left: 6px; }
+    .status-provisional { border-left: 4px dashed #b67923; padding-left: 6px; }
+    .status-candidate { border-left: 4px dotted #7a4e2e; padding-left: 6px; }
+    .status-legacy { border-left: 4px solid #8c2f2f; padding-left: 6px; }
+    .status-active { border-left: 4px solid #2f6f3e; padding-left: 6px; }
+
+    .conflict { color: #8c2f2f; font-weight: 600; }
+
+    .detail h2 {
+      margin: 0 0 8px 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      font-size: 20px;
+    }
+
+    .detail .meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .detail ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+
+    .detail li {
+      margin-bottom: 4px;
+    }
+
+    .panel.detail {
+      position: sticky;
+      top: 120px;
+      align-self: start;
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+    }
+
+    .panel.table-panel {
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+    }
+
+    .selected-summary {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+      z-index: 1;
+    }
+
+    .selected-group {
+      margin-bottom: 8px;
+    }
+
+    .selected-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f0f7f6;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .chip.empty {
+      background: #fff;
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .excerpt {
+      background: #fbfaf6;
+      border: 1px solid var(--border);
+      padding: 8px;
+      border-radius: 8px;
+      max-height: 320px;
+      overflow: auto;
+      font-size: 12px;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    #leftWrap {
+      display: block;
+      min-width: 0;
+    }
+
+    #graphWrap {
+      display: none;
+      min-width: 0;
+    }
+
+    .graph-panel-wrap {
+      max-height: calc(100vh - 160px);
+      overflow: hidden;
+      position: relative;
+      min-width: 0;
+    }
+
+    .graph-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      overflow: auto;
+      max-height: 520px;
+      position: relative;
+      min-height: 260px;
+      max-width: 100%;
+    }
+
+    .graph-panel svg {
+      display: block;
+    }
+
+    .graph-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 8px 0 10px 0;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    .control-group.inactive {
+      opacity: 0.6;
+    }
+
+    .control-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .graph-controls label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    .graph-controls input {
+      width: auto;
+    }
+
+    .docs-wrap {
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      display: none;
+      min-width: 0;
+    }
+
+    .docs-toolbar {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) minmax(180px, 240px);
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 8px;
+    }
+
+    .doc-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .doc-content {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      background: #fff;
+      max-height: calc(100vh - 280px);
+      overflow: auto;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .doc-content h1,
+    .doc-content h2,
+    .doc-content h3,
+    .doc-content h4 {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+
+    .doc-content h1 { font-size: 22px; margin: 16px 0 8px; }
+    .doc-content h2 { font-size: 18px; margin: 14px 0 6px; }
+    .doc-content h3 { font-size: 16px; margin: 12px 0 6px; }
+    .doc-content h4 { font-size: 14px; margin: 10px 0 6px; }
+
+    .doc-content p { margin: 8px 0; }
+    .doc-content ul,
+    .doc-content ol { padding-left: 20px; margin: 8px 0; }
+    .doc-content li { margin-bottom: 4px; }
+    .doc-content pre {
+      background: #f7f5f0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      overflow: auto;
+      font-size: 12px;
+    }
+    .doc-content code {
+      background: #f7f5f0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-size: 12px;
+    }
+    .doc-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .doc-content a:hover {
+      text-decoration: underline;
+    }
+    .doc-content blockquote {
+      border-left: 3px solid var(--border);
+      padding-left: 10px;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .doc-open {
+      margin-left: 6px;
+      padding: 2px 6px;
+      font-size: 11px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+    }
+
+    svg text {
+      font-size: 11px;
+    }
+
+    .node {
+      cursor: pointer;
+    }
+
+    .node:hover rect {
+      stroke-width: 2;
+    }
+
+    .node.selected rect {
+      stroke: var(--accent-2);
+      stroke-width: 2;
+    }
+
+    .node.dim {
+      opacity: 0.2;
+    }
+
+    .node.upstream rect {
+      stroke: var(--accent-2);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 3;
+    }
+
+    .node.downstream rect {
+      stroke: var(--accent);
+      stroke-width: 1.8;
+    }
+
+    .edge {
+      stroke: #777;
+      stroke-width: 1.4;
+    }
+
+    .edge.dim {
+      stroke: #cfc6b8;
+      stroke-width: 1;
+      opacity: 0.35;
+    }
+
+    .edge.upstream {
+      stroke: var(--accent-2);
+      stroke-width: 1.4;
+      stroke-dasharray: 4 3;
+    }
+
+    .edge.downstream {
+      stroke: var(--accent);
+      stroke-width: 2;
+    }
+
+    .graph-tooltip {
+      position: absolute;
+      z-index: 2;
+      display: none;
+      max-width: 280px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--ink);
+      pointer-events: none;
+    }
+
+    .graph-tooltip .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .graph-tooltip .meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .claim-toggles {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .claim-toggles input {
+      width: auto;
+      margin-right: 4px;
+    }
+
+    .drafts {
+      margin-top: 20px;
+    }
+
+    .draft-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .draft-tab {
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .draft-tab.active {
+      background: var(--accent-2);
+      color: #fff;
+      border-color: var(--accent-2);
+    }
+
+    .draft-pane {
+      display: none;
+    }
+
+    .draft-pane.active {
+      display: block;
+    }
+
+    .draft-output {
+      min-height: 180px;
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+
+    .picker {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      max-height: 160px;
+      overflow: auto;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .picker-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .picker-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>REE Claims Explorer</h1>
+    <div class="subtitle">Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</div>
+    <div class="subtitle" style="margin-top:6px;">Auto-updates require a local server (not file://). Run: <code>python3 -m http.server</code> from repo root.</div>
+    <div class="subtitle" id="refreshStatus" style="margin-top:6px;">Last refreshed: --</div>
+    <div id="stats" class="stats"></div>
+  </header>
+
+  <main>
+    <div id="errorBanner" class="error-banner"></div>
+
+    <section class="controls">
+      <div>
+        <label for="search">Search</label>
+        <input id="search" type="text" placeholder="ID, subject, type..." />
+      </div>
+      <div>
+        <label for="typeFilter">Type</label>
+        <select id="typeFilter"></select>
+      </div>
+      <div>
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter"></select>
+      </div>
+      <div>
+        <label for="subjectFilter">Subject (contains)</label>
+        <input id="subjectFilter" type="text" list="subjectList" placeholder="ethics.persistence" />
+        <datalist id="subjectList"></datalist>
+      </div>
+      <div>
+        <label for="viewToggle">View</label>
+        <div class="buttons">
+          <button id="listViewBtn" class="primary">List</button>
+          <button id="graphViewBtn">Graph</button>
+          <button id="docsViewBtn">Docs</button>
+        </div>
+      </div>
+      <div>
+        <label for="includeDeps">Graph Options</label>
+        <div class="buttons">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;">
+            <input id="includeDeps" type="checkbox" checked />
+            Include dependencies
+          </label>
+        </div>
+      </div>
+      <div>
+        <label>Actions</label>
+        <div class="buttons">
+          <button id="clearFilters" class="ghost">Clear Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewWrap" class="layout">
+      <div id="leftWrap">
+        <div id="listWrap" class="panel table-panel">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Subject</th>
+                <th>Depends On</th>
+                <th>Conflicts</th>
+                <th>Thought</th>
+                <th>Conflict</th>
+              </tr>
+            </thead>
+            <tbody id="claimsTable"></tbody>
+          </table>
+        </div>
+        <div id="graphWrap" class="panel graph-panel-wrap">
+        <div class="meta" id="graphMeta">Dependency graph (filtered set)</div>
+        <div class="graph-controls">
+          <div class="control-group">
+            <div class="control-label">Graph focus</div>
+            <div class="buttons">
+              <label title="Focus on a single selected claim.">
+                <input type="radio" name="graphFocus" value="anchor" checked />
+                Anchor
+              </label>
+              <label title="Focus on the selected workset claims.">
+                <input type="radio" name="graphFocus" value="workset" />
+                Workset
+              </label>
+            </div>
+          </div>
+          <div class="control-group workset-only">
+            <div class="control-label">Workset scope</div>
+            <div class="buttons">
+              <label title="Show anything connected to any selected claim; broad context.">
+                <input type="radio" name="worksetScope" value="union" checked />
+                Union
+              </label>
+              <label title="Show only nodes connected to all selected claims; shared core.">
+                <input type="radio" name="worksetScope" value="intersection" />
+                Intersection
+              </label>
+              <label title="Show selected claims plus minimal dependency paths between them.">
+                <input type="radio" name="worksetScope" value="connect" />
+                Connect
+              </label>
+            </div>
+          </div>
+          <div class="control-group workset-only">
+            <div class="control-label">Workset source</div>
+            <div class="buttons">
+              <label title="Use Thought selections from the list.">
+                <input type="checkbox" id="worksetThought" checked />
+                Thought
+              </label>
+              <label title="Use Conflict selections from the list.">
+                <input type="checkbox" id="worksetConflict" checked />
+                Conflict
+              </label>
+            </div>
+          </div>
+        </div>
+          <div class="graph-panel" id="graphPanel"></div>
+          <div class="graph-tooltip" id="graphTooltip"></div>
+        </div>
+        <div id="docsWrap" class="panel docs-wrap">
+          <div class="docs-toolbar">
+            <div>
+              <label for="docSelect">Document</label>
+              <select id="docSelect"></select>
+            </div>
+            <div>
+              <label for="docSearch">Filter</label>
+              <input id="docSearch" type="text" placeholder="Filter docs..." />
+            </div>
+          </div>
+          <div id="docMeta" class="doc-meta"></div>
+          <div id="docContent" class="doc-content"></div>
+        </div>
+      </div>
+      <div class="panel detail" id="detailPanel">
+        <div id="selectedSummary" class="selected-summary">
+          <div class="selected-group">
+            <div class="selected-label">Thought claims</div>
+            <div id="selectedThought" class="chips"></div>
+          </div>
+          <div class="selected-group">
+            <div class="selected-label">Conflict claims</div>
+            <div id="selectedConflict" class="chips"></div>
+          </div>
+          <div class="selected-group">
+            <div class="selected-label">Conflict files</div>
+            <div id="selectedConflictFiles" class="chips"></div>
+          </div>
+        </div>
+        <div id="detailContent" class="detail-content">
+          <div class="meta">Select a claim to see details.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="drafts">
+      <div class="panel">
+        <h2 style="margin-top:0; font-family: Iowan Old Style, Palatino, serif;">Draft Generator</h2>
+        <div class="draft-tabs">
+          <div class="draft-tab active" data-tab="thought">Thought Intake</div>
+          <div class="draft-tab" data-tab="conflict">Conflict Resolution</div>
+        </div>
+
+        <div class="draft-pane active" id="thoughtPane">
+          <label for="thoughtInput">Thought (free text)</label>
+          <textarea id="thoughtInput" rows="6" placeholder="Paste your thought here..."></textarea>
+          <div class="meta" style="margin-top:6px;">Uses Thought selections from the claims list above.</div>
+          <div class="buttons" style="margin-top:8px;">
+            <button id="generateThought" class="primary">Generate Draft</button>
+            <button id="copyThought">Copy</button>
+            <button id="downloadThought">Download .md</button>
+          </div>
+          <label for="thoughtOutput" style="margin-top:10px; display:block;">Draft Output</label>
+          <textarea id="thoughtOutput" class="draft-output" rows="10" readonly></textarea>
+        </div>
+
+        <div class="draft-pane" id="conflictPane">
+          <label for="conflictRefs">Conflict reference(s)</label>
+          <input id="conflictRefs" type="text" placeholder="docs/conflicts/foo.md, INV-001" />
+          <label for="conflictFileList" style="margin-top:8px; display:block;">Select conflict files (optional)</label>
+          <div id="conflictFileList" class="picker"></div>
+          <div class="meta" style="margin-top:6px;">Uses Conflict selections from the claims list above.</div>
+          <label for="conflictDecision" style="margin-top:8px; display:block;">Resolution decision</label>
+          <textarea id="conflictDecision" rows="6" placeholder="Describe the resolution..."></textarea>
+          <div class="buttons" style="margin-top:8px;">
+            <button id="generateConflict" class="primary">Generate Draft</button>
+            <button id="copyConflict">Copy</button>
+            <button id="downloadConflict">Download .md</button>
+          </div>
+          <label for="conflictOutput" style="margin-top:10px; display:block;">Draft Output</label>
+          <textarea id="conflictOutput" class="draft-output" rows="12" readonly></textarea>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Data source: docs/claims/claims.yaml and docs/conflicts/*.md</div>
+  </main>
+
+  <script>
+    const CLAIMS_URL = './claims.yaml';
+    const CONFLICT_INDEX_URL = '../conflicts/README.md';
+    const README_URL = '../README.md';
+    const REFRESH_MS = 60000;
+
+    const FALLBACK_THOUGHT_PROMPT = `You are the AI agent maintaining the REE repository (Codex in this session). I am going to describe a thought, concern, or new understanding about REE in free text.
+
+Your job is to:
+1) Infer the scope and affected components.
+2) Determine whether this introduces or modifies:
+   - an invariant,
+   - an architectural commitment,
+   - a mechanism hypothesis,
+   - or an open question.
+3) Update the canonical REE docs incrementally (do NOT refactor the whole repo).
+4) Preserve all prior formulations; do not delete or overwrite history.
+5) If this thought conflicts with existing claims:
+   - represent the conflict explicitly in docs/conflicts/
+   - do NOT resolve it.
+6) Update the claim registry, glossary (if needed), and changelog.
+7) Run an implicit consistency check and surface any new tensions created.
+
+I will now write the thought in natural language.
+
+BEGIN THOUGHT:
+<PASTE YOUR THOUGHT HERE>
+END THOUGHT`;
+
+    const FALLBACK_CONFLICT_PROMPT = `You are the AI agent maintaining the REE repository (Codex in this session). I am resolving an explicitly documented conflict or fork in the REE documentation.
+
+Your job is to:
+1) Locate and read the referenced conflict file(s) in docs/conflicts/.
+2) Identify the conflicting claim IDs, their types, scopes, and dependencies.
+3) Apply my resolution decision carefully and minimally.
+4) Update the canonical documentation, claim registry, and dependency graph to reflect the resolution.
+5) Preserve historical record:
+   - Do NOT delete superseded claims.
+   - Mark them as legacy or deprecated with clear rationale.
+6) Ensure the repo is internally consistent after resolution.
+7) Surface any new tensions created by this change.
+8) Update docs/changelog.md with a clear record of what was resolved and why.
+
+BEGIN CONFLICT RESOLUTION:
+
+Conflict reference(s):
+- <PASTE docs/conflicts/*.md PATHS OR CLAIM IDs>
+
+Resolution decision (free text):
+<DESCRIBE THE RESOLUTION IN YOUR OWN WORDS>
+
+END CONFLICT RESOLUTION`;
+
+    const DOC_GROUPS = [
+      {
+        label: 'Architecture',
+        docs: [
+          { title: 'Overview', path: '../architecture/overview.md' },
+          { title: 'E1', path: '../architecture/e1.md' },
+          { title: 'E2', path: '../architecture/e2.md' },
+          { title: 'E3', path: '../architecture/e3.md' },
+          { title: 'L-space', path: '../architecture/l_space.md' },
+          { title: 'Control Plane', path: '../architecture/control_plane.md' },
+          { title: 'Control Plane Signal Map', path: '../architecture/control_plane_signal_map.md' },
+          { title: 'Default Mode', path: '../architecture/default_mode.md' },
+          { title: 'Hippocampal Systems', path: '../architecture/hippocampal_systems.md' },
+          { title: 'Hippocampal Braid (legacy)', path: '../architecture/hippocampal_braid.md' },
+          { title: 'Residue Geometry', path: '../architecture/residue_geometry.md' },
+          { title: 'Temporal Dynamics', path: '../architecture/temporal_dynamics.md' },
+          { title: 'Mode Manager', path: '../architecture/mode_manager.md' },
+          { title: 'Modes of Cognition', path: '../architecture/modes_of_cognition.md' },
+          { title: 'Agency Responsibility Flow', path: '../architecture/agency_responsibility_flow.md' },
+          { title: 'Trajectory Selection', path: '../architecture/trajectory_selection.md' },
+          { title: 'Entities and Binding', path: '../architecture/entities_and_binding.md' },
+          { title: 'Precision Control', path: '../architecture/precision_control.md' },
+          { title: 'Precision Scoping', path: '../architecture/precision_scoping.md' },
+          { title: 'Path Authority and Interrupts', path: '../architecture/path_authority_and_interrupts.md' },
+          { title: 'Astrocyte Regulatory Stack', path: '../architecture/astrocyte_regulatory_stack.md' },
+          { title: 'Serotonin', path: '../architecture/serotonin.md' },
+          { title: 'Language (overview)', path: '../architecture/language.md' },
+          { title: 'Sleep (overview)', path: '../architecture/sleep.md' },
+          { title: 'Social', path: '../architecture/social.md' },
+          { title: 'Why Attention Must Be Fragmented', path: '../architecture/why_attention_must_be_fragmented.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Language',
+        docs: [
+          { title: 'Emergence and Bootstrapping', path: '../architecture/language/emergence_and_bootstrapping.md' },
+          { title: 'Language and Learning', path: '../architecture/language/language_and_learning.md' },
+          { title: 'Language and Institutions', path: '../architecture/language/language_and_institutions.md' },
+          { title: 'Language Failure Modes', path: '../architecture/language/language_failure_modes.md' },
+          { title: 'Minimal Signalling Channel', path: '../architecture/language/minimal_signalling_channel.md' },
+          { title: 'Trust and Deception', path: '../architecture/language/trust_and_deception.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Sleep',
+        docs: [
+          { title: 'Precision Recalibration', path: '../architecture/sleep/precision_recalibration.md' },
+          { title: 'Reality Consolidation', path: '../architecture/sleep/reality_consolidation.md' },
+          { title: 'Residue Integration', path: '../architecture/sleep/residue_integration.md' },
+        ],
+      },
+      {
+        label: 'Core Docs',
+        docs: [
+          { title: 'Invariants', path: '../invariants.md' },
+          { title: 'Glossary', path: '../glossary.md' },
+          { title: 'REE Minimum Spec', path: '../REE_MIN_SPEC.md' },
+          { title: 'REE Overview', path: '../REE_overview.md' },
+          { title: 'REE Failure Modes', path: '../REE_failure_modes.md' },
+        ],
+      },
+    ];
+
+    const els = {
+      search: document.getElementById('search'),
+      typeFilter: document.getElementById('typeFilter'),
+      statusFilter: document.getElementById('statusFilter'),
+      subjectFilter: document.getElementById('subjectFilter'),
+      subjectList: document.getElementById('subjectList'),
+      claimsTable: document.getElementById('claimsTable'),
+      listWrap: document.getElementById('listWrap'),
+      graphWrap: document.getElementById('graphWrap'),
+      docsWrap: document.getElementById('docsWrap'),
+      graphPanel: document.getElementById('graphPanel'),
+      graphMeta: document.getElementById('graphMeta'),
+      graphTooltip: document.getElementById('graphTooltip'),
+      graphFocusRadios: document.querySelectorAll('input[name="graphFocus"]'),
+      worksetScopeRadios: document.querySelectorAll('input[name="worksetScope"]'),
+      worksetThought: document.getElementById('worksetThought'),
+      worksetConflict: document.getElementById('worksetConflict'),
+      worksetGroups: document.querySelectorAll('.workset-only'),
+      listViewBtn: document.getElementById('listViewBtn'),
+      graphViewBtn: document.getElementById('graphViewBtn'),
+      docsViewBtn: document.getElementById('docsViewBtn'),
+      includeDeps: document.getElementById('includeDeps'),
+      clearFilters: document.getElementById('clearFilters'),
+      stats: document.getElementById('stats'),
+      errorBanner: document.getElementById('errorBanner'),
+      refreshStatus: document.getElementById('refreshStatus'),
+      selectedThought: document.getElementById('selectedThought'),
+      selectedConflict: document.getElementById('selectedConflict'),
+      selectedConflictFiles: document.getElementById('selectedConflictFiles'),
+      detailContent: document.getElementById('detailContent'),
+      thoughtInput: document.getElementById('thoughtInput'),
+      thoughtOutput: document.getElementById('thoughtOutput'),
+      generateThought: document.getElementById('generateThought'),
+      copyThought: document.getElementById('copyThought'),
+      downloadThought: document.getElementById('downloadThought'),
+      conflictRefs: document.getElementById('conflictRefs'),
+      conflictFileList: document.getElementById('conflictFileList'),
+      conflictDecision: document.getElementById('conflictDecision'),
+      conflictOutput: document.getElementById('conflictOutput'),
+      generateConflict: document.getElementById('generateConflict'),
+      copyConflict: document.getElementById('copyConflict'),
+      downloadConflict: document.getElementById('downloadConflict'),
+      docSelect: document.getElementById('docSelect'),
+      docSearch: document.getElementById('docSearch'),
+      docMeta: document.getElementById('docMeta'),
+      docContent: document.getElementById('docContent'),
+    };
+
+    const typeOrder = [
+      'invariant',
+      'architectural_commitment',
+      'mechanism_hypothesis',
+      'open_question',
+      'implementation_note',
+    ];
+
+    let allClaims = [];
+    let claimMap = new Map();
+    let conflictsMap = {};
+    const claimTextCache = new Map();
+    const fileCache = new Map();
+    let initialized = false;
+    let refreshTimer = null;
+    let conflictFiles = [];
+    const thoughtSelected = new Set();
+    const conflictSelectedClaims = new Set();
+    const conflictSelectedFiles = new Set();
+    let hoverId = null;
+    let hoverPoint = null;
+    let docsInitialized = false;
+    let currentDocUrl = null;
+    let docIndex = [];
+    let docIndexMap = new Map();
+
+    function showError(message) {
+      els.errorBanner.textContent = message;
+      els.errorBanner.style.display = 'block';
+    }
+
+    function showErrorHtml(html) {
+      els.errorBanner.innerHTML = html;
+      els.errorBanner.style.display = 'block';
+    }
+
+    function hideError() {
+      els.errorBanner.style.display = 'none';
+    }
+
+    async function fetchText(url) {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) {
+        throw new Error(`Failed to fetch ${url} (${res.status})`);
+      }
+      return res.text();
+    }
+
+    function parseClaimsYaml(text) {
+      const normalized = text
+        .replace(/\uFEFF/g, '')
+        .replace(/\u200B/g, '')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n');
+      const lines = normalized.split('\n');
+      const claims = [];
+      let cur = null;
+      let mode = null;
+      const depPattern = /\b(INV|ARC|MECH|IMPL|Q)-\d{3}\b/;
+
+      function pushCur() {
+        if (!cur) return;
+        if (!cur.depends_on) cur.depends_on = [];
+        claims.push(cur);
+      }
+
+      function normalizeDep(item) {
+        if (!item) return '';
+        const stripped = item.replace(/#.*/, '').replace(/[,\]]+$/, '').trim();
+        const match = stripped.match(depPattern);
+        return match ? match[0] : stripped;
+      }
+
+      for (const rawLine of lines) {
+        const line = rawLine.replace(/\t/g, '  ');
+        const idIndex = line.indexOf('id:');
+        const idMatch = line.match(/id:\s*([A-Z]{1,6}-\d{3})/i);
+        if (idMatch && idIndex > -1 && idIndex <= 10) {
+          pushCur();
+          cur = { id: idMatch[1].trim() };
+          mode = null;
+          continue;
+        }
+        if (!cur) continue;
+
+        const keyMatch = line.match(/^\s{2,}([a-z_]+):\s*(.*)$/);
+        if (keyMatch) {
+          const key = keyMatch[1];
+          const val = keyMatch[2] || '';
+          if (key === 'depends_on') {
+            cur.depends_on = [];
+            mode = 'depends_on';
+            if (val.trim()) {
+              const inline = val.replace(/^\[/, '').replace(/\]$/, '');
+              inline.split(',').map(s => s.trim()).filter(Boolean).forEach(item => {
+                const norm = normalizeDep(item);
+                if (norm) cur.depends_on.push(norm);
+              });
+              mode = null;
+            }
+            continue;
+          }
+          if (key === 'source') {
+            mode = 'source';
+            continue;
+          }
+          mode = null;
+          if (['claim_type', 'subject', 'polarity', 'status', 'location'].includes(key)) {
+            cur[key] = val.trim();
+          }
+          continue;
+        }
+
+        const listMatch = line.match(/^\s*-\s*(.+)$/);
+        if (listMatch && mode === 'depends_on') {
+          const norm = normalizeDep(listMatch[1]);
+          if (norm) cur.depends_on.push(norm);
+        }
+      }
+
+      pushCur();
+      if (claims.length) return claims;
+
+      const blocks = normalized.split(/(?=^\s*.*id:\s*[A-Z]{1,6}-\d{3})/mi);
+      const fallback = [];
+      blocks.forEach(block => {
+        const idMatch = block.match(/id:\s*([A-Z]{1,6}-\d{3})/i);
+        if (!idMatch) return;
+        const c = { id: idMatch[1].trim(), depends_on: [] };
+        ['claim_type', 'subject', 'polarity', 'status', 'location'].forEach(key => {
+          const km = block.match(new RegExp(`^\\s*${key}:\\s*(.+)$`, 'm'));
+          if (km) c[key] = km[1].trim();
+        });
+        const depLine = block.match(/^\s*depends_on:\s*(.*)$/m);
+        if (depLine) {
+          const rest = depLine[1].trim();
+          if (rest && rest !== '[]') {
+            const inline = rest.replace(/^\[/, '').replace(/\]$/, '');
+            inline.split(',').map(s => s.trim()).filter(Boolean).forEach(item => {
+              const norm = normalizeDep(item);
+              if (norm) c.depends_on.push(norm);
+            });
+          } else if (rest === '') {
+            const depItems = block.split('\n');
+            let inDeps = false;
+            for (const line of depItems) {
+              if (/^\s*depends_on:\s*$/.test(line)) { inDeps = true; continue; }
+              if (inDeps) {
+                if (/^\s{2,}[a-z_]+:/.test(line)) break;
+                const m = line.match(/^\s*-\s*(.+)$/);
+                if (m) {
+                  const norm = normalizeDep(m[1]);
+                  if (norm) c.depends_on.push(norm);
+                }
+              }
+            }
+          }
+        }
+        fallback.push(c);
+      });
+      return fallback;
+    }
+
+    function normalizeClaim(c) {
+      return {
+        id: c.id,
+        type: c.claim_type || 'unknown',
+        status: c.status || 'unknown',
+        subject: c.subject || '',
+        polarity: c.polarity || '',
+        depends_on: c.depends_on || [],
+        location: c.location || '',
+      };
+    }
+
+    function renderInlineMarkdown(text) {
+      const parts = text.split(/(`[^`]+`)/g);
+      return parts.map(part => {
+        if (part.startsWith('`') && part.endsWith('`')) {
+          return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
+        }
+        let out = escapeHtml(part);
+        out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
+          const safeUrl = url.replace(/"/g, '%22');
+          return `<a href="${safeUrl}">${label}</a>`;
+        });
+        out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        return out;
+      }).join('');
+    }
+
+    function renderMarkdown(text) {
+      const normalized = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      const lines = normalized.split('\n');
+      const html = [];
+      let inCode = false;
+      let codeLang = '';
+      let codeBuffer = [];
+      let listType = null;
+      let paragraph = [];
+      let inBlockquote = false;
+      let blockLines = [];
+
+      function flushParagraph() {
+        if (!paragraph.length) return;
+        html.push(`<p>${renderInlineMarkdown(paragraph.join(' '))}</p>`);
+        paragraph = [];
+      }
+
+      function closeList() {
+        if (!listType) return;
+        html.push(`</${listType}>`);
+        listType = null;
+      }
+
+      function flushBlockquote() {
+        if (!inBlockquote) return;
+        html.push(`<blockquote>${renderInlineMarkdown(blockLines.join(' '))}</blockquote>`);
+        blockLines = [];
+        inBlockquote = false;
+      }
+
+      for (const rawLine of lines) {
+        const trimmed = rawLine.trim();
+
+        if (trimmed.startsWith('```')) {
+          if (inCode) {
+            const langClass = codeLang ? ` class="lang-${escapeHtml(codeLang)}"` : '';
+            html.push(`<pre><code${langClass}>${escapeHtml(codeBuffer.join('\n'))}</code></pre>`);
+            codeBuffer = [];
+            codeLang = '';
+            inCode = false;
+          } else {
+            flushParagraph();
+            closeList();
+            flushBlockquote();
+            inCode = true;
+            codeLang = trimmed.slice(3).trim();
+          }
+          continue;
+        }
+
+        if (inCode) {
+          codeBuffer.push(rawLine);
+          continue;
+        }
+
+        if (!trimmed) {
+          flushParagraph();
+          closeList();
+          flushBlockquote();
+          continue;
+        }
+
+        if (trimmed.startsWith('<a id=')) {
+          flushParagraph();
+          closeList();
+          flushBlockquote();
+          html.push(trimmed);
+          continue;
+        }
+
+        const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
+        if (headingMatch) {
+          flushParagraph();
+          closeList();
+          flushBlockquote();
+          const level = headingMatch[1].length;
+          const textContent = headingMatch[2];
+          html.push(`<h${level}>${renderInlineMarkdown(textContent)}</h${level}>`);
+          continue;
+        }
+
+        if (/^---+$/.test(trimmed)) {
+          flushParagraph();
+          closeList();
+          flushBlockquote();
+          html.push('<hr />');
+          continue;
+        }
+
+        if (trimmed.startsWith('>')) {
+          flushParagraph();
+          closeList();
+          inBlockquote = true;
+          blockLines.push(trimmed.replace(/^>\s?/, ''));
+          continue;
+        } else if (inBlockquote) {
+          flushBlockquote();
+        }
+
+        const listMatch = trimmed.match(/^(\d+\.|[-*+])\s+(.*)$/);
+        if (listMatch) {
+          flushParagraph();
+          flushBlockquote();
+          const type = /^\d+\./.test(listMatch[1]) ? 'ol' : 'ul';
+          if (listType && listType !== type) {
+            closeList();
+          }
+          if (!listType) {
+            listType = type;
+            html.push(`<${type}>`);
+          }
+          html.push(`<li>${renderInlineMarkdown(listMatch[2])}</li>`);
+          continue;
+        }
+
+        paragraph.push(trimmed);
+      }
+
+      if (inCode) {
+        const langClass = codeLang ? ` class="lang-${escapeHtml(codeLang)}"` : '';
+        html.push(`<pre><code${langClass}>${escapeHtml(codeBuffer.join('\n'))}</code></pre>`);
+      }
+
+      flushParagraph();
+      closeList();
+      flushBlockquote();
+      return html.join('\n');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function updateRefreshStatus() {
+      if (!els.refreshStatus) return;
+      const now = new Date();
+      els.refreshStatus.textContent = `Last refreshed: ${now.toLocaleTimeString()}`;
+    }
+
+    function buildDocIndex() {
+      docIndex = [];
+      docIndexMap = new Map();
+      DOC_GROUPS.forEach(group => {
+        group.docs.forEach(doc => {
+          const url = doc.path.match(/^https?:\/\//)
+            ? doc.path
+            : new URL(doc.path, window.location.href).toString();
+          const entry = {
+            group: group.label,
+            title: doc.title,
+            path: doc.path,
+            url,
+          };
+          docIndex.push(entry);
+          docIndexMap.set(url, entry);
+        });
+      });
+    }
+
+    function populateDocSelect(filterText) {
+      if (!els.docSelect) return;
+      const term = (filterText || '').trim().toLowerCase();
+      const current = els.docSelect.value;
+      els.docSelect.innerHTML = '';
+      DOC_GROUPS.forEach(group => {
+        const opts = group.docs.filter(doc => {
+          if (!term) return true;
+          return doc.title.toLowerCase().includes(term) || doc.path.toLowerCase().includes(term);
+        });
+        if (!opts.length) return;
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.label;
+        opts.forEach(doc => {
+          const url = doc.path.match(/^https?:\/\//)
+            ? doc.path
+            : new URL(doc.path, window.location.href).toString();
+          const opt = document.createElement('option');
+          opt.value = url;
+          opt.textContent = doc.title;
+          optgroup.appendChild(opt);
+        });
+        els.docSelect.appendChild(optgroup);
+      });
+      if (current) {
+        const exists = Array.from(els.docSelect.options).some(o => o.value === current);
+        if (exists) els.docSelect.value = current;
+      }
+    }
+
+    function updateDocMeta(entry) {
+      if (!els.docMeta) return;
+      if (!entry) {
+        els.docMeta.textContent = '';
+        return;
+      }
+      els.docMeta.textContent = `${entry.title} — ${entry.path}`;
+    }
+
+    function wireDocLinks(baseUrl) {
+      if (!els.docContent) return;
+      els.docContent.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('#')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = els.docContent.querySelector(href);
+            if (target) target.scrollIntoView({ block: 'start' });
+          });
+          return;
+        }
+        if (href.includes('.md')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = new URL(href, baseUrl).toString();
+            const [pathOnly, anchor] = url.split('#', 2);
+            openDoc(pathOnly, anchor);
+          });
+          return;
+        }
+        link.setAttribute('target', '_blank');
+      });
+    }
+
+    async function openDoc(path, anchor) {
+      if (!path) return;
+      const url = path.match(/^https?:\/\//)
+        ? path
+        : new URL(path, window.location.href).toString();
+      currentDocUrl = url;
+      const entry = docIndexMap.get(url);
+      if (entry && els.docSelect) {
+        els.docSelect.value = url;
+        updateDocMeta(entry);
+      } else if (els.docMeta) {
+        const displayPath = path.replace(new URL(window.location.href).origin, '');
+        els.docMeta.textContent = displayPath;
+      }
+      try {
+        const text = await fetchText(url);
+        if (els.docContent) {
+          els.docContent.innerHTML = renderMarkdown(text);
+          wireDocLinks(url);
+          if (anchor) {
+            const target = els.docContent.querySelector(`#${anchor}`);
+            if (target) target.scrollIntoView({ block: 'start' });
+          }
+        }
+      } catch (err) {
+        if (els.docContent) {
+          els.docContent.innerHTML = `<div class="meta">Failed to load document: ${escapeHtml(String(err))}</div>`;
+        }
+      }
+    }
+
+    function openDocFromLocation(location) {
+      if (!location) return;
+      const rel = relativeLink(location);
+      const parts = rel.split('#');
+      const path = parts[0];
+      const anchor = parts.length > 1 ? parts[1] : null;
+      setView('docs');
+      openDoc(path, anchor);
+    }
+
+    function initDocs() {
+      if (docsInitialized) return;
+      buildDocIndex();
+      populateDocSelect('');
+      if (els.docSelect && els.docSelect.value) {
+        openDoc(els.docSelect.value);
+      }
+      docsInitialized = true;
+    }
+
+    function readFilterState() {
+      return {
+        search: els.search.value,
+        type: els.typeFilter.value,
+        status: els.statusFilter.value,
+        subject: els.subjectFilter.value,
+      };
+    }
+
+    function restoreFilterState(state) {
+      if (!state) return;
+      if (typeof state.search === 'string') els.search.value = state.search;
+      if (state.type && Array.from(els.typeFilter.options).some(o => o.value === state.type)) {
+        els.typeFilter.value = state.type;
+      }
+      if (state.status && Array.from(els.statusFilter.options).some(o => o.value === state.status)) {
+        els.statusFilter.value = state.status;
+      }
+      if (typeof state.subject === 'string') els.subjectFilter.value = state.subject;
+    }
+
+    function renderConflictFilePicker() {
+      if (!els.conflictFileList) return;
+      els.conflictFileList.innerHTML = '';
+      const files = (conflictFiles || []).slice().sort();
+      if (!files.length) {
+        const empty = document.createElement('div');
+        empty.className = 'meta';
+        empty.textContent = 'No conflicts found.';
+        els.conflictFileList.appendChild(empty);
+        return;
+      }
+      files.forEach(file => {
+        const row = document.createElement('label');
+        row.className = 'picker-item';
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.value = file;
+        box.checked = conflictSelectedFiles.has(file);
+        box.addEventListener('change', () => {
+          if (box.checked) conflictSelectedFiles.add(file);
+          else conflictSelectedFiles.delete(file);
+          renderSelectedSummary();
+        });
+        const text = document.createElement('span');
+        text.textContent = file;
+        row.appendChild(box);
+        row.appendChild(text);
+        els.conflictFileList.appendChild(row);
+      });
+    }
+
+    function renderChips(container, items, clickable) {
+      if (!container) return;
+      container.innerHTML = '';
+      if (!items.length) {
+        const empty = document.createElement('span');
+        empty.className = 'chip empty';
+        empty.textContent = 'None';
+        container.appendChild(empty);
+        return;
+      }
+      items.forEach(item => {
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = item;
+        if (clickable) {
+          chip.addEventListener('click', () => selectClaim(item));
+        }
+        container.appendChild(chip);
+      });
+    }
+
+    function renderSelectedSummary() {
+      renderChips(els.selectedThought, Array.from(thoughtSelected).sort(), true);
+      renderChips(els.selectedConflict, Array.from(conflictSelectedClaims).sort(), true);
+      renderChips(els.selectedConflictFiles, Array.from(conflictSelectedFiles).sort(), false);
+    }
+
+    function getFocusMode() {
+      const checked = document.querySelector('input[name="graphFocus"]:checked');
+      return checked ? checked.value : 'anchor';
+    }
+
+    function getWorksetScope() {
+      const checked = document.querySelector('input[name="worksetScope"]:checked');
+      return checked ? checked.value : 'union';
+    }
+
+    function getWorksetIds() {
+      const ids = new Set();
+      if (els.worksetThought && els.worksetThought.checked) {
+        thoughtSelected.forEach(id => ids.add(id));
+      }
+      if (els.worksetConflict && els.worksetConflict.checked) {
+        conflictSelectedClaims.forEach(id => ids.add(id));
+      }
+      return Array.from(ids);
+    }
+
+    function updateWorksetUI() {
+      const active = getFocusMode() === 'workset';
+      els.worksetGroups.forEach(group => {
+        if (active) group.classList.remove('inactive');
+        else group.classList.add('inactive');
+      });
+    }
+
+    function renderPickers() {
+      renderConflictFilePicker();
+      renderSelectedSummary();
+    }
+
+    function statCard(text) {
+      const div = document.createElement('div');
+      div.className = 'stat-card';
+      div.textContent = text;
+      return div;
+    }
+
+    function buildStats() {
+      const byType = {};
+      const byStatus = {};
+      allClaims.forEach(c => {
+        byType[c.type] = (byType[c.type] || 0) + 1;
+        byStatus[c.status] = (byStatus[c.status] || 0) + 1;
+      });
+      els.stats.innerHTML = '';
+      const total = allClaims.length;
+      els.stats.appendChild(statCard(`Total claims: ${total}`));
+      Object.keys(byType).sort((a,b) => typeOrder.indexOf(a) - typeOrder.indexOf(b)).forEach(t => {
+        els.stats.appendChild(statCard(`${t}: ${byType[t]}`));
+      });
+      Object.keys(byStatus).sort().forEach(s => {
+        els.stats.appendChild(statCard(`status ${s}: ${byStatus[s]}`));
+      });
+    }
+
+    function populateFilters() {
+      const types = Array.from(new Set(allClaims.map(c => c.type))).sort((a,b) => typeOrder.indexOf(a) - typeOrder.indexOf(b));
+      const statuses = Array.from(new Set(allClaims.map(c => c.status))).sort();
+      const subjects = Array.from(new Set(allClaims.map(c => c.subject).filter(Boolean))).sort();
+
+      els.typeFilter.innerHTML = '<option value="">All types</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+      els.statusFilter.innerHTML = '<option value="">All statuses</option>' + statuses.map(s => `<option value="${s}">${s}</option>`).join('');
+      els.subjectList.innerHTML = subjects.map(s => `<option value="${s}"></option>`).join('');
+    }
+
+    function applyFilters() {
+      const term = (els.search.value || '').trim().toLowerCase();
+      const type = els.typeFilter.value;
+      const status = els.statusFilter.value;
+      const subjectTerm = (els.subjectFilter.value || '').trim().toLowerCase();
+
+      return allClaims.filter(c => {
+        if (type && c.type !== type) return false;
+        if (status && c.status !== status) return false;
+        if (subjectTerm && !c.subject.toLowerCase().includes(subjectTerm)) return false;
+        if (term) {
+          const hay = `${c.id} ${c.subject} ${c.type} ${c.status}`.toLowerCase();
+          if (!hay.includes(term)) return false;
+        }
+        return true;
+      });
+    }
+
+    function dependsTitle(depends) {
+      if (!depends || depends.length === 0) return '-';
+      return depends.join(', ');
+    }
+
+    let selectedId = null;
+    let currentView = 'list';
+
+    function renderTable() {
+      const filtered = applyFilters();
+      els.claimsTable.innerHTML = '';
+      filtered.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.dataset.id = c.id;
+        if (selectedId === c.id) tr.classList.add('selected');
+        const conflicts = conflictsMap[c.id] || [];
+        tr.innerHTML = `
+          <td class="status-${c.status}"><span class="badge">${c.id}</span></td>
+          <td><span class="badge type-${c.type}">${c.type}</span></td>
+          <td>${c.status}</td>
+          <td>${c.subject || '-'}</td>
+          <td title="${dependsTitle(c.depends_on)}">${c.depends_on.length || '-'}</td>
+          <td>${conflicts.length ? `<span class="conflict">${conflicts.length} conflict</span>` : '-'}</td>
+          <td><input type="checkbox" data-role="thought" /></td>
+          <td><input type="checkbox" data-role="conflict" /></td>
+        `;
+        tr.addEventListener('click', () => selectClaim(c.id));
+        const thoughtBox = tr.querySelector('input[data-role="thought"]');
+        const conflictBox = tr.querySelector('input[data-role="conflict"]');
+        if (thoughtBox) {
+          thoughtBox.checked = thoughtSelected.has(c.id);
+          thoughtBox.addEventListener('click', (e) => e.stopPropagation());
+          thoughtBox.addEventListener('change', () => {
+            if (thoughtBox.checked) thoughtSelected.add(c.id);
+            else thoughtSelected.delete(c.id);
+            renderSelectedSummary();
+            renderGraph();
+          });
+        }
+        if (conflictBox) {
+          conflictBox.checked = conflictSelectedClaims.has(c.id);
+          conflictBox.addEventListener('click', (e) => e.stopPropagation());
+          conflictBox.addEventListener('change', () => {
+            if (conflictBox.checked) conflictSelectedClaims.add(c.id);
+            else conflictSelectedClaims.delete(c.id);
+            renderSelectedSummary();
+            renderGraph();
+          });
+        }
+        els.claimsTable.appendChild(tr);
+      });
+    }
+
+    function syncRowCheckboxes(id) {
+      const row = els.claimsTable.querySelector(`tr[data-id="${id}"]`);
+      if (!row) return;
+      const thoughtBox = row.querySelector('input[data-role="thought"]');
+      const conflictBox = row.querySelector('input[data-role="conflict"]');
+      if (thoughtBox) thoughtBox.checked = thoughtSelected.has(id);
+      if (conflictBox) conflictBox.checked = conflictSelectedClaims.has(id);
+    }
+
+    function relativeLink(location) {
+      if (!location) return '';
+      if (location.startsWith('docs/')) return '../' + location.slice(5);
+      return location;
+    }
+
+    const metaPrefixes = [
+      '**Subject:**', '**Polarity:**', '**Claim:**', '**Source:**', '**Violation:**',
+      'Source:', 'Sources:', 'Related Claims', 'Open Questions', 'References / Source Fragments'
+    ];
+
+    const idPattern = /\b(INV|ARC|MECH|IMPL|Q)-\d{3}\b/;
+
+    function cleanClaimLine(line, anchorLine) {
+      if (!line) return '';
+      let s = line.replace(anchorLine, '').trim();
+      s = s.replace(/`([^`]+)`/g, '$1');
+      s = s.replace(/\*\*([^*]+)\*\*/g, '$1');
+      s = s.replace(/\[(.*?)\]\([^)]*\)/g, '$1');
+      if (s.toLowerCase().startsWith('claim:')) s = s.split(':', 2)[1].trim();
+      if (s.startsWith('### ')) s = s.slice(4).trim();
+      if (s.startsWith('## ')) s = s.slice(3).trim();
+      return s;
+    }
+
+    function extractSection(text, anchorId) {
+      const lines = text.split(/\r?\n/);
+      const anchorLine = `<a id="${anchorId}"></a>`;
+      let start = -1;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes(anchorLine)) { start = i; break; }
+      }
+      if (start === -1) return { claimLine: '', excerpt: '' };
+
+      let end = lines.length;
+      for (let j = start + 1; j < lines.length; j++) {
+        if (lines[j].includes('<a id="')) { end = j; break; }
+      }
+
+      let section = lines.slice(start, end);
+      while (section.length && section[0].trim() === '') section.shift();
+      while (section.length && section[section.length - 1].trim() === '') section.pop();
+      const excerpt = section.join('\\n');
+
+      let claimLine = '';
+      for (const l of section) {
+        if (l.includes('**Claim:**')) { claimLine = l; break; }
+      }
+      if (!claimLine) {
+        for (const l of section) {
+          const t = l.trim();
+          if (!t.startsWith('#')) continue;
+          if (t.startsWith('### Q-') || idPattern.test(t) || t.includes('(MECH-') || t.includes('(ARC-') || t.includes('(INV-')) {
+            claimLine = l; break;
+          }
+        }
+      }
+      if (!claimLine) {
+        for (const l of section) {
+          const t = l.trim();
+          if (!t) continue;
+          if (t.startsWith('<a id=')) continue;
+          if (t.startsWith('#')) continue;
+          if (t.startsWith('---')) continue;
+          if (t.startsWith('>')) continue;
+          if (metaPrefixes.some(p => t.startsWith(p))) continue;
+          claimLine = l; break;
+        }
+      }
+
+      return { claimLine: cleanClaimLine(claimLine, anchorLine), excerpt };
+    }
+
+    async function loadClaimText(claim) {
+      if (claimTextCache.has(claim.id)) return claimTextCache.get(claim.id);
+      if (!claim.location || !claim.location.includes('#')) {
+        const res = { claimLine: '', excerpt: '' };
+        claimTextCache.set(claim.id, res);
+        return res;
+      }
+
+      const [filePath, anchor] = claim.location.split('#', 2);
+      const relPath = relativeLink(filePath);
+
+      let text = fileCache.get(relPath);
+      if (!text) {
+        text = await fetchText(relPath);
+        fileCache.set(relPath, text);
+      }
+      const extracted = extractSection(text, anchor);
+      claimTextCache.set(claim.id, extracted);
+      return extracted;
+    }
+
+    function wireDetailToggles(id) {
+      const thoughtToggle = els.detailContent.querySelector('#toggleThought');
+      const conflictToggle = els.detailContent.querySelector('#toggleConflict');
+      if (thoughtToggle) {
+        thoughtToggle.addEventListener('change', () => {
+          if (thoughtToggle.checked) thoughtSelected.add(id);
+          else thoughtSelected.delete(id);
+          renderSelectedSummary();
+          syncRowCheckboxes(id);
+          renderGraph();
+        });
+      }
+      if (conflictToggle) {
+        conflictToggle.addEventListener('change', () => {
+          if (conflictToggle.checked) conflictSelectedClaims.add(id);
+          else conflictSelectedClaims.delete(id);
+          renderSelectedSummary();
+          syncRowCheckboxes(id);
+          renderGraph();
+        });
+      }
+    }
+
+    async function selectClaim(id) {
+      selectedId = id;
+      renderTable();
+      const c = claimMap.get(id);
+      if (!c) return;
+
+      const conflicts = conflictsMap[c.id] || [];
+      const dependents = allClaims.filter(x => (x.depends_on || []).includes(c.id)).map(x => x.id);
+      const loc = relativeLink(c.location);
+      const thoughtChecked = thoughtSelected.has(c.id) ? 'checked' : '';
+      const conflictChecked = conflictSelectedClaims.has(c.id) ? 'checked' : '';
+      const toggleBlock = `
+        <div class="claim-toggles">
+          <label><input type="checkbox" id="toggleThought" ${thoughtChecked} /> Use in Thought</label>
+          <label><input type="checkbox" id="toggleConflict" ${conflictChecked} /> Use in Conflict</label>
+        </div>
+      `;
+
+      els.detailContent.innerHTML = `
+        <h2>${c.id}</h2>
+        <div class="meta">${c.type} | ${c.status}</div>
+        <div class="meta">Loading claim text...</div>
+        ${toggleBlock}
+        <ul>
+          <li><strong>Subject:</strong> ${c.subject || '-'}</li>
+          <li><strong>Polarity:</strong> ${c.polarity || '-'}</li>
+          <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
+          <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+          <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+          <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
+            const link = relativeLink(f);
+            return `<a href="${link}" target="_blank">${f}</a>`;
+          }).join(', ') : '-'}</li>
+        </ul>
+      `;
+      els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          selectClaim(a.getAttribute('data-id'));
+        });
+      });
+      els.detailContent.querySelectorAll('button[data-doc]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openDocFromLocation(btn.getAttribute('data-doc'));
+        });
+      });
+      wireDetailToggles(c.id);
+
+      try {
+        const { claimLine, excerpt } = await loadClaimText(c);
+        if (selectedId !== id) return;
+        const claimLineText = claimLine ? escapeHtml(claimLine) : '-';
+        const excerptText = excerpt ? escapeHtml(excerpt) : '';
+        const excerptBlock = excerptText ? `
+          <details>
+            <summary>Show section excerpt</summary>
+            <pre class="excerpt">${excerptText}</pre>
+          </details>
+        ` : '<div class="meta">No excerpt found.</div>';
+
+        els.detailContent.innerHTML = `
+          <h2>${c.id}</h2>
+          <div class="meta">${c.type} | ${c.status}</div>
+          ${toggleBlock}
+          <ul>
+            <li><strong>Claim:</strong> ${claimLineText}</li>
+            <li><strong>Subject:</strong> ${c.subject || '-'}</li>
+            <li><strong>Polarity:</strong> ${c.polarity || '-'}</li>
+          <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
+            <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+            <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+            <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
+              const link = relativeLink(f);
+              return `<a href="${link}" target="_blank">${f}</a>`;
+            }).join(', ') : '-'}</li>
+          </ul>
+          ${excerptBlock}
+        `;
+        els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            selectClaim(a.getAttribute('data-id'));
+          });
+        });
+        els.detailContent.querySelectorAll('button[data-doc]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openDocFromLocation(btn.getAttribute('data-doc'));
+          });
+        });
+        wireDetailToggles(c.id);
+      } catch (err) {
+        if (selectedId !== id) return;
+        els.detailContent.innerHTML += `<div class="meta">Failed to load claim text: ${escapeHtml(String(err))}</div>`;
+      }
+
+      renderGraph();
+    }
+
+    function updateHoverPoint(evt) {
+      hoverPoint = { x: evt.clientX, y: evt.clientY };
+    }
+
+    function positionGraphTooltip() {
+      if (!els.graphTooltip || !els.graphPanel || !hoverPoint) return;
+      const panelRect = els.graphPanel.getBoundingClientRect();
+      const tip = els.graphTooltip;
+      const pad = 12;
+      let x = hoverPoint.x - panelRect.left + pad;
+      let y = hoverPoint.y - panelRect.top + pad;
+      const maxX = panelRect.width - tip.offsetWidth - pad;
+      const maxY = panelRect.height - tip.offsetHeight - pad;
+      if (!Number.isNaN(maxX)) x = Math.min(x, maxX);
+      if (!Number.isNaN(maxY)) y = Math.min(y, maxY);
+      x = Math.max(pad, x);
+      y = Math.max(pad, y);
+      tip.style.left = `${x}px`;
+      tip.style.top = `${y}px`;
+    }
+
+    function showGraphTooltip(evt, id) {
+      const tip = els.graphTooltip;
+      const c = claimMap.get(id);
+      if (!tip || !c) return;
+      hoverId = id;
+      updateHoverPoint(evt);
+      const cached = claimTextCache.get(id);
+      const claimLine = cached && cached.claimLine ? cached.claimLine : '';
+      tip.innerHTML = `
+        <div class="title">${c.id}</div>
+        <div class="meta">${c.type} | ${c.status}</div>
+        <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
+        ${claimLine ? `<div>${escapeHtml(claimLine)}</div>` : '<div class="meta">Loading claim...</div>'}
+      `;
+      tip.style.display = 'block';
+      positionGraphTooltip();
+
+      if (!claimLine) {
+        loadClaimText(c).then(res => {
+          if (hoverId !== id) return;
+          const line = res.claimLine ? escapeHtml(res.claimLine) : '-';
+          tip.innerHTML = `
+            <div class="title">${c.id}</div>
+            <div class="meta">${c.type} | ${c.status}</div>
+            <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
+            <div>${line}</div>
+          `;
+          positionGraphTooltip();
+        }).catch(() => {});
+      }
+    }
+
+    function moveGraphTooltip(evt) {
+      if (!hoverId) return;
+      updateHoverPoint(evt);
+      positionGraphTooltip();
+    }
+
+    function hideGraphTooltip() {
+      hoverId = null;
+      hoverPoint = null;
+      if (els.graphTooltip) els.graphTooltip.style.display = 'none';
+    }
+
+    function renderGraph() {
+      const filtered = applyFilters();
+      const includeDeps = els.includeDeps.checked;
+      const nodes = new Map(filtered.map(c => [c.id, {...c, ghost: false}]));
+      const focusMode = getFocusMode();
+      const worksetScope = getWorksetScope();
+
+      if (includeDeps) {
+        filtered.forEach(c => {
+          c.depends_on.forEach(dep => {
+            if (!nodes.has(dep) && claimMap.has(dep)) {
+              nodes.set(dep, {...claimMap.get(dep), ghost: true});
+            }
+          });
+        });
+      }
+
+      const nodeList = Array.from(nodes.values());
+      const nodeMap = new Map(nodeList.map(n => [n.id, n]));
+      const forward = new Map();
+      nodeList.forEach(n => {
+        (n.depends_on || []).forEach(dep => {
+          if (!nodeMap.has(dep)) return;
+          if (!forward.has(dep)) forward.set(dep, []);
+          forward.get(dep).push(n.id);
+        });
+      });
+      const upstream = new Set();
+      const downstream = new Set();
+      let selected = null;
+      let focusSet = null;
+      let worksetIds = [];
+      const selectedWorkset = new Set();
+
+      function collectUpstream(id) {
+        const stack = [id];
+        const seen = new Set([id]);
+        const out = new Set();
+        while (stack.length) {
+          const cur = stack.pop();
+          const n = nodeMap.get(cur);
+          if (!n) continue;
+          (n.depends_on || []).forEach(dep => {
+            if (!nodeMap.has(dep) || seen.has(dep)) return;
+            seen.add(dep);
+            out.add(dep);
+            stack.push(dep);
+          });
+        }
+        return out;
+      }
+
+      function collectDownstream(id) {
+        const stack = [id];
+        const seen = new Set([id]);
+        const out = new Set();
+        while (stack.length) {
+          const cur = stack.pop();
+          const children = forward.get(cur) || [];
+          children.forEach(child => {
+            if (seen.has(child)) return;
+            seen.add(child);
+            out.add(child);
+            stack.push(child);
+          });
+        }
+        return out;
+      }
+
+      function neighborhood(id) {
+        const up = collectUpstream(id);
+        const down = collectDownstream(id);
+        const set = new Set([id]);
+        up.forEach(x => set.add(x));
+        down.forEach(x => set.add(x));
+        return set;
+      }
+
+      function intersectSets(a, b) {
+        const out = new Set();
+        a.forEach(x => { if (b.has(x)) out.add(x); });
+        return out;
+      }
+
+      function buildAdjacency() {
+        const adj = new Map();
+        nodeList.forEach(n => {
+          if (!adj.has(n.id)) adj.set(n.id, new Set());
+          (n.depends_on || []).forEach(dep => {
+            if (!nodeMap.has(dep)) return;
+            if (!adj.has(dep)) adj.set(dep, new Set());
+            adj.get(n.id).add(dep);
+            adj.get(dep).add(n.id);
+          });
+        });
+        return adj;
+      }
+
+      function shortestPath(adj, start, goal) {
+        if (start === goal) return [start];
+        const queue = [start];
+        const prev = new Map();
+        const seen = new Set([start]);
+        while (queue.length) {
+          const cur = queue.shift();
+          const neighbors = adj.get(cur) || [];
+          for (const next of neighbors) {
+            if (seen.has(next)) continue;
+            seen.add(next);
+            prev.set(next, cur);
+            if (next === goal) {
+              const path = [goal];
+              let p = goal;
+              while (prev.has(p)) {
+                p = prev.get(p);
+                path.push(p);
+              }
+              return path.reverse();
+            }
+            queue.push(next);
+          }
+        }
+        return [];
+      }
+
+      selected = selectedId && nodeMap.has(selectedId) ? selectedId : null;
+      if (focusMode === 'anchor' && selected) {
+        const up = collectUpstream(selected);
+        const down = collectDownstream(selected);
+        up.forEach(x => upstream.add(x));
+        down.forEach(x => downstream.add(x));
+        focusSet = new Set([selected, ...upstream, ...downstream]);
+      }
+
+      if (focusMode === 'workset') {
+        worksetIds = getWorksetIds().filter(id => nodeMap.has(id));
+        worksetIds.forEach(id => selectedWorkset.add(id));
+        if (selectedWorkset.size) {
+          if (worksetScope === 'intersection') {
+            let acc = null;
+            worksetIds.forEach(id => {
+              const set = neighborhood(id);
+              acc = acc ? intersectSets(acc, set) : set;
+            });
+            focusSet = acc || new Set();
+          } else if (worksetScope === 'connect') {
+            if (selectedWorkset.size === 1) {
+              focusSet = neighborhood(worksetIds[0]);
+            } else {
+              const adj = buildAdjacency();
+              focusSet = new Set(worksetIds);
+              for (let i = 0; i < worksetIds.length; i++) {
+                for (let j = i + 1; j < worksetIds.length; j++) {
+                  const path = shortestPath(adj, worksetIds[i], worksetIds[j]);
+                  path.forEach(p => focusSet.add(p));
+                }
+              }
+            }
+          } else {
+            focusSet = new Set();
+            worksetIds.forEach(id => {
+              neighborhood(id).forEach(x => focusSet.add(x));
+            });
+          }
+        }
+      }
+
+      const depthMemo = new Map();
+      const visiting = new Set();
+
+      function depth(id) {
+        if (depthMemo.has(id)) return depthMemo.get(id);
+        if (visiting.has(id)) return 0;
+        visiting.add(id);
+        const n = nodeMap.get(id);
+        if (!n || !n.depends_on || n.depends_on.length === 0) {
+          depthMemo.set(id, 0);
+          visiting.delete(id);
+          return 0;
+        }
+        let d = 0;
+        n.depends_on.forEach(dep => {
+          if (nodeMap.has(dep)) d = Math.max(d, depth(dep) + 1);
+        });
+        depthMemo.set(id, d);
+        visiting.delete(id);
+        return d;
+      }
+
+      nodeList.forEach(n => depth(n.id));
+
+      const groups = {};
+      nodeList.forEach(n => {
+        const d = depthMemo.get(n.id) || 0;
+        groups[d] = groups[d] || [];
+        groups[d].push(n);
+      });
+
+      Object.values(groups).forEach(g => g.sort((a,b) => a.id.localeCompare(b.id)));
+
+      const maxDepth = Math.max(...Object.keys(groups).map(n => parseInt(n,10)), 0);
+      const colWidth = 240;
+      const rowHeight = 64;
+      const margin = 20;
+
+      const width = (maxDepth + 1) * colWidth + margin * 2;
+      const maxRows = Math.max(...Object.values(groups).map(g => g.length), 1);
+      const height = maxRows * rowHeight + margin * 2;
+
+      const positions = {};
+      Object.entries(groups).forEach(([d, arr]) => {
+        arr.forEach((n, idx) => {
+          positions[n.id] = {
+            x: margin + parseInt(d,10) * colWidth,
+            y: margin + idx * rowHeight,
+          };
+        });
+      });
+
+      const edges = [];
+      nodeList.forEach(n => {
+        n.depends_on.forEach(dep => {
+          if (nodeMap.has(dep)) edges.push([dep, n.id]);
+        });
+      });
+      const focus = focusSet;
+
+      if (els.graphMeta) {
+        let focusLabel = 'focus: none';
+        if (focusMode === 'anchor') {
+          focusLabel = selected ? `focus: ${selected}` : 'focus: anchor (none)';
+        } else if (focusMode === 'workset') {
+          focusLabel = selectedWorkset.size ? `focus: workset ${selectedWorkset.size} (${worksetScope})` : 'focus: workset (none)';
+        }
+        els.graphMeta.textContent = `Dependency graph (filtered set) — nodes: ${nodeList.length}, edges: ${edges.length} — ${focusLabel}`;
+      }
+
+      const svgParts = [];
+      svgParts.push(`<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">`);
+      svgParts.push(`
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#777" />
+          </marker>
+        </defs>
+      `);
+
+      edges.forEach(([from, to]) => {
+        const p1 = positions[from];
+        const p2 = positions[to];
+        if (!p1 || !p2) return;
+        const x1 = p1.x + 180;
+        const y1 = p1.y + 16;
+        const x2 = p2.x;
+        const y2 = p2.y + 16;
+        let edgeClass = 'edge';
+        if (focusMode === 'anchor' && selected) {
+          if (!(focus && focus.has(from) && focus.has(to))) {
+            edgeClass = 'edge dim';
+          } else if ((from === selected || downstream.has(from)) && (downstream.has(to) || to === selected)) {
+            edgeClass = 'edge downstream';
+          } else if ((upstream.has(from) || from === selected) && (upstream.has(to) || to === selected)) {
+            edgeClass = 'edge upstream';
+          }
+        } else if (focusMode === 'workset' && focus) {
+          if (!(focus.has(from) && focus.has(to))) edgeClass = 'edge dim';
+        }
+        svgParts.push(`<line class="${edgeClass}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arrow)" />`);
+      });
+
+      nodeList.forEach(n => {
+        const p = positions[n.id];
+        if (!p) return;
+        const fill = getTypeColor(n.type);
+        const stroke = getTypeStroke(n.type);
+        const dash = getStatusDash(n.status);
+        const opacity = n.ghost ? 0.5 : 1;
+        const conflict = (conflictsMap[n.id] || []).length > 0;
+        let nodeClass = '';
+        if (focusMode === 'anchor' && selected) {
+          if (n.id === selected) nodeClass = ' selected';
+          else if (downstream.has(n.id)) nodeClass = ' downstream';
+          else if (upstream.has(n.id)) nodeClass = ' upstream';
+          else nodeClass = ' dim';
+        } else if (focusMode === 'workset' && focus) {
+          if (selectedWorkset.has(n.id)) nodeClass = ' selected';
+          else if (!focus.has(n.id)) nodeClass = ' dim';
+        }
+        svgParts.push(`
+          <g class="node${nodeClass}" data-id="${n.id}" opacity="${opacity}">
+            <rect x="${p.x}" y="${p.y}" rx="8" ry="8" width="180" height="32" fill="${fill}" stroke="${stroke}" stroke-width="1" stroke-dasharray="${dash}"></rect>
+            <text x="${p.x + 8}" y="${p.y + 20}" fill="#1f2328">${n.id}${conflict ? ' *' : ''}</text>
+          </g>
+        `);
+      });
+
+      svgParts.push('</svg>');
+      hideGraphTooltip();
+      const tooltipNode = els.graphTooltip;
+      els.graphPanel.innerHTML = '';
+      if (tooltipNode) {
+        tooltipNode.style.display = 'none';
+        els.graphPanel.appendChild(tooltipNode);
+      }
+      els.graphPanel.insertAdjacentHTML('beforeend', svgParts.join('\\n'));
+
+      els.graphPanel.querySelectorAll('.node').forEach(node => {
+        node.addEventListener('click', () => {
+          const id = node.getAttribute('data-id');
+          if (id) selectClaim(id);
+        });
+        node.addEventListener('mouseenter', (e) => {
+          const id = node.getAttribute('data-id');
+          if (id) showGraphTooltip(e, id);
+        });
+        node.addEventListener('mousemove', (e) => moveGraphTooltip(e));
+        node.addEventListener('mouseleave', () => hideGraphTooltip());
+      });
+    }
+
+    function getTypeColor(type) {
+      switch (type) {
+        case 'invariant': return '#f7ecd0';
+        case 'architectural_commitment': return '#e5efff';
+        case 'mechanism_hypothesis': return '#e3f2ee';
+        case 'open_question': return '#fdebd8';
+        case 'implementation_note': return '#efeff2';
+        default: return '#ffffff';
+      }
+    }
+
+    function getTypeStroke(type) {
+      switch (type) {
+        case 'invariant': return '#dfc17a';
+        case 'architectural_commitment': return '#9bb6e8';
+        case 'mechanism_hypothesis': return '#92c9b7';
+        case 'open_question': return '#e5b37d';
+        case 'implementation_note': return '#c0c4ce';
+        default: return '#c0c4ce';
+      }
+    }
+
+    function getStatusDash(status) {
+      switch (status) {
+        case 'stable': return '0';
+        case 'active': return '0';
+        case 'provisional': return '6 4';
+        case 'candidate': return '2 3';
+        case 'legacy': return '4 2';
+        default: return '0';
+      }
+    }
+
+    function setView(view) {
+      currentView = view;
+      if (view === 'graph') {
+        els.listWrap.style.display = 'none';
+        els.graphWrap.style.display = 'block';
+        els.docsWrap.style.display = 'none';
+        els.graphViewBtn.classList.add('primary');
+        els.listViewBtn.classList.remove('primary');
+        els.docsViewBtn.classList.remove('primary');
+        renderGraph();
+      } else if (view === 'docs') {
+        els.listWrap.style.display = 'none';
+        els.graphWrap.style.display = 'none';
+        els.docsWrap.style.display = 'block';
+        els.docsViewBtn.classList.add('primary');
+        els.listViewBtn.classList.remove('primary');
+        els.graphViewBtn.classList.remove('primary');
+        initDocs();
+      } else {
+        els.listWrap.style.display = 'block';
+        els.graphWrap.style.display = 'none';
+        els.docsWrap.style.display = 'none';
+        els.listViewBtn.classList.add('primary');
+        els.graphViewBtn.classList.remove('primary');
+        els.docsViewBtn.classList.remove('primary');
+      }
+    }
+
+    function initDraftTabs() {
+      const tabs = document.querySelectorAll('.draft-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const id = tab.getAttribute('data-tab');
+          document.querySelectorAll('.draft-pane').forEach(p => p.classList.remove('active'));
+          if (id === 'thought') document.getElementById('thoughtPane').classList.add('active');
+          if (id === 'conflict') document.getElementById('conflictPane').classList.add('active');
+        });
+      });
+    }
+
+    let thoughtPrompt = FALLBACK_THOUGHT_PROMPT;
+    let conflictPrompt = FALLBACK_CONFLICT_PROMPT;
+
+    async function loadPrompts() {
+      try {
+        const readme = await fetchText(README_URL);
+        const thought = extractPrompt(readme, 'THOUGHT INTAKE PROMPT');
+        const conflict = extractPrompt(readme, 'CONFLICT RESOLUTION PROMPT');
+        if (thought) thoughtPrompt = thought;
+        if (conflict) conflictPrompt = conflict;
+      } catch (_) {
+        // fallback to embedded prompts
+      }
+    }
+
+    function extractPrompt(text, heading) {
+      const idx = text.indexOf(`## ${heading}`);
+      if (idx < 0) return null;
+      const slice = text.slice(idx);
+      const match = slice.match(/```text\n([\s\S]*?)```/);
+      return match ? match[1].trim() : null;
+    }
+
+    function buildThoughtDraft(text) {
+      const related = Array.from(thoughtSelected).sort();
+      const prefix = related.length ? `Related claims: ${related.join(', ')}\\n\\n` : '';
+      return thoughtPrompt.replace('<PASTE YOUR THOUGHT HERE>', prefix + (text || ''));
+    }
+
+    function buildConflictDraft(refs, decision) {
+      const refSet = new Set();
+      if (refs) {
+        refs.split(/[\\n,]/).map(r => r.trim()).filter(Boolean).forEach(r => refSet.add(r));
+      }
+      conflictSelectedFiles.forEach(f => refSet.add(f));
+      conflictSelectedClaims.forEach(c => refSet.add(c));
+      const refText = Array.from(refSet).join(', ');
+      return conflictPrompt
+        .replace('- <PASTE docs/conflicts/*.md PATHS OR CLAIM IDs>', `- ${refText}`)
+        .replace('<DESCRIBE THE RESOLUTION IN YOUR OWN WORDS>', decision || '');
+    }
+
+    function setupDraftActions() {
+      els.generateThought.addEventListener('click', () => {
+        els.thoughtOutput.value = buildThoughtDraft(els.thoughtInput.value.trim());
+      });
+      els.copyThought.addEventListener('click', () => {
+        els.thoughtOutput.select();
+        document.execCommand('copy');
+      });
+      els.downloadThought.addEventListener('click', () => {
+        downloadFile('thought_intake.md', els.thoughtOutput.value || buildThoughtDraft(els.thoughtInput.value.trim()));
+      });
+
+      els.generateConflict.addEventListener('click', () => {
+        els.conflictOutput.value = buildConflictDraft(els.conflictRefs.value.trim(), els.conflictDecision.value.trim());
+      });
+      els.copyConflict.addEventListener('click', () => {
+        els.conflictOutput.select();
+        document.execCommand('copy');
+      });
+      els.downloadConflict.addEventListener('click', () => {
+        downloadFile('conflict_resolution.md', els.conflictOutput.value || buildConflictDraft(els.conflictRefs.value.trim(), els.conflictDecision.value.trim()));
+      });
+    }
+
+    function downloadFile(name, content) {
+      const blob = new Blob([content], {type: 'text/markdown'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function wireEvents() {
+      ['input', 'change'].forEach(evt => {
+        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); });
+        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
+        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
+        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
+        els.includeDeps.addEventListener(evt, () => renderGraph());
+      });
+
+
+      els.clearFilters.addEventListener('click', () => {
+        els.search.value = '';
+        els.typeFilter.value = '';
+        els.statusFilter.value = '';
+        els.subjectFilter.value = '';
+        renderTable();
+        renderGraph();
+      });
+
+      els.listViewBtn.addEventListener('click', () => setView('list'));
+      els.graphViewBtn.addEventListener('click', () => setView('graph'));
+      if (els.docsViewBtn) {
+        els.docsViewBtn.addEventListener('click', () => setView('docs'));
+      }
+
+      els.graphFocusRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          updateWorksetUI();
+          renderGraph();
+        });
+      });
+      els.worksetScopeRadios.forEach(radio => {
+        radio.addEventListener('change', () => renderGraph());
+      });
+      if (els.worksetThought) {
+        els.worksetThought.addEventListener('change', () => renderGraph());
+      }
+      if (els.worksetConflict) {
+        els.worksetConflict.addEventListener('change', () => renderGraph());
+      }
+
+      if (els.docSelect) {
+        els.docSelect.addEventListener('change', () => {
+          if (els.docSelect.value) openDoc(els.docSelect.value);
+        });
+      }
+      if (els.docSearch) {
+        els.docSearch.addEventListener('input', () => {
+          populateDocSelect(els.docSearch.value);
+        });
+      }
+    }
+
+    async function loadConflicts() {
+      const conflicts = {};
+      conflictFiles = [];
+      try {
+        const indexText = await fetchText(CONFLICT_INDEX_URL);
+        const fileMatches = Array.from(indexText.matchAll(/docs\/conflicts\/[^\s`]+\.md/g));
+        const files = Array.from(new Set(fileMatches.map(m => m[0])));
+        conflictFiles = files;
+        for (const file of files) {
+          const rel = relativeLink(file);
+          try {
+            const content = await fetchText(rel);
+            const ids = content.match(/\b[A-Z]{2,5}-\d{3}\b/g) || [];
+            ids.forEach(id => {
+              if (!conflicts[id]) conflicts[id] = [];
+              conflicts[id].push(file);
+            });
+          } catch (_) {
+            // skip unreadable conflict file
+          }
+        }
+      } catch (_) {
+        // no conflicts index or fetch failed
+      }
+      return conflicts;
+    }
+
+    async function refreshData() {
+      const filterState = readFilterState();
+      const previousView = currentView;
+      const previousSelection = selectedId;
+
+      const claimsText = await fetchText(CLAIMS_URL);
+      const normalizedClaims = claimsText
+        .replace(/\uFEFF/g, '')
+        .replace(/\u200B/g, '')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n');
+      if (/^\s*</.test(normalizedClaims)) {
+        throw new Error('claims.yaml returned HTML (not YAML). Start the server from repo root and reload.');
+      }
+      if (!/id:\s*(INV|ARC|MECH|IMPL|Q)-\d{3}/i.test(normalizedClaims)) {
+        throw new Error('claims.yaml did not include any "id:" entries. Check the claims.yaml URL in your browser.');
+      }
+      const parsed = parseClaimsYaml(normalizedClaims);
+      if (!parsed.length) {
+        const lines = normalizedClaims.split('\n');
+        const preview = lines.slice(0, 6).join(' | ').slice(0, 300);
+        throw new Error(`Parsed 0 claims from claims.yaml (lines: ${lines.length}). Preview: ${preview}`);
+      }
+      allClaims = parsed.map(normalizeClaim);
+      claimMap = new Map(allClaims.map(c => [c.id, c]));
+      conflictsMap = await loadConflicts();
+      claimTextCache.clear();
+      fileCache.clear();
+      for (const id of Array.from(thoughtSelected)) {
+        if (!claimMap.has(id)) thoughtSelected.delete(id);
+      }
+      for (const id of Array.from(conflictSelectedClaims)) {
+        if (!claimMap.has(id)) conflictSelectedClaims.delete(id);
+      }
+      for (const file of Array.from(conflictSelectedFiles)) {
+        if (!conflictFiles.includes(file)) conflictSelectedFiles.delete(file);
+      }
+
+      buildStats();
+      populateFilters();
+      renderPickers();
+      restoreFilterState(filterState);
+      renderTable();
+      setView(previousView || 'list');
+
+      if (previousSelection && claimMap.has(previousSelection)) {
+        selectClaim(previousSelection);
+      } else if (previousSelection) {
+        selectedId = null;
+        if (els.detailContent) {
+          els.detailContent.innerHTML = '<div class="meta">Select a claim to see details.</div>';
+        }
+      }
+
+      await loadPrompts();
+      updateRefreshStatus();
+    }
+
+    async function init() {
+      const isFile = window.location.protocol === 'file:';
+      if (isFile) {
+        showErrorHtml(
+          'Opened via <code>file://</code>. This page needs a local server to read repo files.<br><br>' +
+          'Steps:<br>' +
+          '<pre>cd /Users/dgolden/Documents/GitHub/REE_assembly\npython3 -m http.server</pre>' +
+          'Then open:<br>' +
+          '<pre>http://localhost:8000/docs/claims/explorer.html</pre>'
+        );
+        return;
+      } else {
+        hideError();
+      }
+
+      if (!initialized) {
+        initDraftTabs();
+        setupDraftActions();
+        wireEvents();
+        updateWorksetUI();
+        initialized = true;
+      }
+
+      try {
+        await refreshData();
+        if (!refreshTimer) {
+          refreshTimer = setInterval(() => {
+            refreshData().catch(err => showError(`Failed to refresh claims: ${String(err)}`));
+          }, REFRESH_MS);
+        }
+      } catch (err) {
+        showError(`Failed to load claims: ${String(err)}`);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

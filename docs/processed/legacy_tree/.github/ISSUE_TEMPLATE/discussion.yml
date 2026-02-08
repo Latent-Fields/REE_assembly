@@ -1,0 +1,17 @@
+name: Discussion
+description: Open a discussion about theory/spec without proposing code yet
+title: "[Discussion] "
+labels: [discussion]
+body:
+  - type: textarea
+    attributes:
+      label: Topic
+      description: What is the question or claim?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Relevance to instantiation
+      description: How does this affect implementability?
+    validations:
+      required: true
