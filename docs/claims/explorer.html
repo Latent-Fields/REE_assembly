@@ -1465,6 +1465,73 @@ END CONFLICT RESOLUTION`;
       });
     }
 
+    function getSubsystemKey(claim) {
+      if (!claim || !claim.location) return 'Unmapped';
+      const path = claim.location.split('#')[0];
+      for (const rule of SUBSYSTEM_RULES) {
+        if (rule.match(path)) return rule.key;
+      }
+      return 'Unmapped';
+    }
+
+    function statusSummary(claims) {
+      const counts = {};
+      claims.forEach(c => {
+        const status = c.status || 'unknown';
+        counts[status] = (counts[status] || 0) + 1;
+      });
+      const order = ['stable', 'active', 'provisional', 'candidate', 'legacy', 'unknown'];
+      return order.filter(k => counts[k]).map(k => `${k} ${counts[k]}`).join(' \u2022 ');
+    }
+
+    function renderMap() {
+      if (!els.mapGrid) return;
+      const filtered = applyFilters();
+      const groups = new Map();
+      const order = SUBSYSTEM_RULES.map(r => r.key);
+      filtered.forEach(c => {
+        const key = getSubsystemKey(c);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(c);
+      });
+      const keys = Array.from(groups.keys()).sort((a, b) => {
+        const ai = order.indexOf(a);
+        const bi = order.indexOf(b);
+        if (ai === -1 && bi === -1) return a.localeCompare(b);
+        if (ai === -1) return 1;
+        if (bi === -1) return -1;
+        return ai - bi;
+      });
+
+      els.mapGrid.innerHTML = '';
+      keys.forEach(key => {
+        const claims = groups.get(key) || [];
+        if (!claims.length) return;
+        claims.sort((a, b) => a.id.localeCompare(b.id));
+        const card = document.createElement('div');
+        card.className = 'map-card';
+        const title = document.createElement('h3');
+        title.textContent = key;
+        const meta = document.createElement('div');
+        meta.className = 'map-meta';
+        meta.textContent = `Total ${claims.length}` + (claims.length ? ` \u2022 ${statusSummary(claims)}` : '');
+        const chips = document.createElement('div');
+        chips.className = 'map-chips';
+        claims.forEach(c => {
+          const chip = document.createElement('span');
+          chip.className = 'map-chip';
+          if (selectedId === c.id) chip.classList.add('selected');
+          chip.textContent = c.id;
+          chip.addEventListener('click', () => selectClaim(c.id));
+          chips.appendChild(chip);
+        });
+        card.appendChild(title);
+        card.appendChild(meta);
+        card.appendChild(chips);
+        els.mapGrid.appendChild(card);
+      });
+    }
+
     function populateDocSelect(filterText) {
       if (!els.docSelect) return;
       const term = (filterText || '').trim().toLowerCase();
@@ -2450,25 +2517,41 @@ END CONFLICT RESOLUTION`;
         els.listWrap.style.display = 'none';
         els.graphWrap.style.display = 'block';
         els.docsWrap.style.display = 'none';
+        els.mapWrap.style.display = 'none';
         els.graphViewBtn.classList.add('primary');
         els.listViewBtn.classList.remove('primary');
         els.docsViewBtn.classList.remove('primary');
+        els.mapViewBtn.classList.remove('primary');
         renderGraph();
       } else if (view === 'docs') {
         els.listWrap.style.display = 'none';
         els.graphWrap.style.display = 'none';
         els.docsWrap.style.display = 'block';
+        els.mapWrap.style.display = 'none';
         els.docsViewBtn.classList.add('primary');
         els.listViewBtn.classList.remove('primary');
         els.graphViewBtn.classList.remove('primary');
+        els.mapViewBtn.classList.remove('primary');
         initDocs();
+      } else if (view === 'map') {
+        els.listWrap.style.display = 'none';
+        els.graphWrap.style.display = 'none';
+        els.docsWrap.style.display = 'none';
+        els.mapWrap.style.display = 'block';
+        els.mapViewBtn.classList.add('primary');
+        els.listViewBtn.classList.remove('primary');
+        els.graphViewBtn.classList.remove('primary');
+        els.docsViewBtn.classList.remove('primary');
+        renderMap();
       } else {
         els.listWrap.style.display = 'block';
         els.graphWrap.style.display = 'none';
         els.docsWrap.style.display = 'none';
+        els.mapWrap.style.display = 'none';
         els.listViewBtn.classList.add('primary');
         els.graphViewBtn.classList.remove('primary');
         els.docsViewBtn.classList.remove('primary');
+        els.mapViewBtn.classList.remove('primary');
       }
     }
 
@@ -2566,10 +2649,10 @@ END CONFLICT RESOLUTION`;
 
     function wireEvents() {
       ['input', 'change'].forEach(evt => {
-        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); });
-        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
-        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
-        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); });
+        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
+        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
+        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
+        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
         els.includeDeps.addEventListener(evt, () => renderGraph());
       });
 
@@ -2581,12 +2664,16 @@ END CONFLICT RESOLUTION`;
         els.subjectFilter.value = '';
         renderTable();
         renderGraph();
+        renderMap();
       });
 
       els.listViewBtn.addEventListener('click', () => setView('list'));
       els.graphViewBtn.addEventListener('click', () => setView('graph'));
       if (els.docsViewBtn) {
         els.docsViewBtn.addEventListener('click', () => setView('docs'));
+      }
+      if (els.mapViewBtn) {
+        els.mapViewBtn.addEventListener('click', () => setView('map'));
       }
 
       els.graphFocusRadios.forEach(radio => {
@@ -2688,6 +2775,7 @@ END CONFLICT RESOLUTION`;
       restoreFilterState(filterState);
       renderTable();
       setView(previousView || 'list');
+      renderMap();
 
       if (previousSelection && claimMap.has(previousSelection)) {
         selectClaim(previousSelection);
