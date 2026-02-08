@@ -391,6 +391,61 @@
       min-width: 0;
     }
 
+    .map-wrap {
+      display: none;
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      min-width: 0;
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .map-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      background: #fff;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .map-card h3 {
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+
+    .map-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .map-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .map-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f7f2e9;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .map-chip.selected {
+      border-color: var(--accent);
+      background: #e7f1f1;
+    }
+
     .docs-toolbar {
       display: grid;
       grid-template-columns: minmax(200px, 1fr) minmax(180px, 240px);
@@ -671,6 +726,7 @@
           <button id="listViewBtn" class="primary">List</button>
           <button id="graphViewBtn">Graph</button>
           <button id="docsViewBtn">Docs</button>
+          <button id="mapViewBtn">Map</button>
         </div>
       </div>
       <div>
@@ -772,6 +828,10 @@
           </div>
           <div id="docMeta" class="doc-meta"></div>
           <div id="docContent" class="doc-content"></div>
+        </div>
+        <div id="mapWrap" class="panel map-wrap">
+          <div class="meta">Subsystem map (filtered set)</div>
+          <div id="mapGrid" class="map-grid"></div>
         </div>
       </div>
       <div class="panel detail" id="detailPanel">
@@ -964,6 +1024,7 @@ END CONFLICT RESOLUTION`;
       listWrap: document.getElementById('listWrap'),
       graphWrap: document.getElementById('graphWrap'),
       docsWrap: document.getElementById('docsWrap'),
+      mapWrap: document.getElementById('mapWrap'),
       graphPanel: document.getElementById('graphPanel'),
       graphMeta: document.getElementById('graphMeta'),
       graphTooltip: document.getElementById('graphTooltip'),
@@ -975,6 +1036,7 @@ END CONFLICT RESOLUTION`;
       listViewBtn: document.getElementById('listViewBtn'),
       graphViewBtn: document.getElementById('graphViewBtn'),
       docsViewBtn: document.getElementById('docsViewBtn'),
+      mapViewBtn: document.getElementById('mapViewBtn'),
       includeDeps: document.getElementById('includeDeps'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
@@ -1000,6 +1062,7 @@ END CONFLICT RESOLUTION`;
       docSearch: document.getElementById('docSearch'),
       docMeta: document.getElementById('docMeta'),
       docContent: document.getElementById('docContent'),
+      mapGrid: document.getElementById('mapGrid'),
     };
 
     const typeOrder = [
