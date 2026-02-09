@@ -19,6 +19,42 @@ This README is executable guidance for AI coding agents. When invoked, agents mu
 6. Append a dated entry to `docs/changelog.md` describing what changed and where preserved content lives.
 7. Place unprocessed thoughts in `docs/thoughts/` and record resolutions in `docs/conflicts/resolutions/`.
 
+## Synthesis Pass (Lightweight)
+
+Use this when a subsystem feels fragmented or the claims list is growing without convergence. This is not a refactor.
+
+1. Pick one subsystem document (e.g., control plane, residue, hippocampal systems).
+2. Identify 3–6 **core claims** that define the subsystem’s identity.
+3. Mark remaining claims as **supporting** in prose (do not delete or rewrite them).
+4. Update the subsystem doc’s opening summary to reflect the core set.
+5. If necessary, adjust claim statuses:
+   - Promote candidates that have solidified (→ provisional).
+   - Reframe shaky mechanisms as open questions.
+6. Record a short synthesis note in `docs/notes/synthesis_passes.md`.
+
+## Conflict Compression (Lightweight)
+
+Use this to keep conflict files readable without resolving them.
+
+1. Ensure each conflict file has a short “canonical summary” paragraph at the top.
+2. Name the core axis of tension (what two formulations cannot both hold).
+3. Link the key claim IDs involved.
+
+## Promote/Demote Rhythm (Lightweight)
+
+Use this periodically to prevent candidate claims from accumulating forever.
+
+1. Review candidate mechanism hypotheses (MECH-*) for maturity.
+2. Promote to provisional if the mechanism now has stable dependencies and clear role.
+3. Demote or reframe as open questions if it remains speculative or under-specified.
+4. Update `docs/claims/claims.yaml`, `docs/claims/claim_index.md`, and `docs/claims/subsystem_map.yaml` as needed.
+5. Note the review in `docs/notes/synthesis_passes.md` or `docs/changelog.md`.
+
+## Subsystem Abstract (Per Doc)
+
+Each subsystem doc should open with a short paragraph summarising its essence and the 3–6 core claims that define it.
+This keeps the subsystem coherent without removing detail or history.
+
 ## Consistency Checklist (Lightweight)
 
 Run this check implicitly after any change:
@@ -29,6 +65,7 @@ Run this check implicitly after any change:
 4. No invariant depends on a mechanism hypothesis; no circular dependencies introduced.
 5. Any contradiction triggers or updates a file in `docs/conflicts/` with linked claim IDs.
 6. Preserved sources are cited; no prior wording is deleted or overwritten.
+7. Subsystem map coverage is updated in `docs/claims/subsystem_map.yaml` for new or moved claim locations.
 
 ## THOUGHT INTAKE PROMPT (verbatim)
 

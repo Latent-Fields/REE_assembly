@@ -966,6 +966,7 @@ END CONFLICT RESOLUTION`;
           { title: 'Hippocampal Systems', path: '../architecture/hippocampal_systems.md' },
           { title: 'Hippocampal Braid (legacy)', path: '../architecture/hippocampal_braid.md' },
           { title: 'Residue Geometry', path: '../architecture/residue_geometry.md' },
+          { title: 'Sensory Stream Tags', path: '../architecture/sensory_stream_tags.md' },
           { title: 'Temporal Dynamics', path: '../architecture/temporal_dynamics.md' },
           { title: 'Mode Manager', path: '../architecture/mode_manager.md' },
           { title: 'Modes of Cognition', path: '../architecture/modes_of_cognition.md' },
@@ -1014,47 +1015,8 @@ END CONFLICT RESOLUTION`;
       },
     ];
 
-    const SUBSYSTEM_RULES = [
-      { key: 'E1', match: (p) => p.endsWith('/architecture/e1.md') },
-      { key: 'E2', match: (p) => p.endsWith('/architecture/e2.md') },
-      { key: 'E3', match: (p) => p.endsWith('/architecture/e3.md') },
-      { key: 'L-space', match: (p) => p.endsWith('/architecture/l_space.md') },
-      { key: 'Control Plane', match: (p) => p.endsWith('/architecture/control_plane.md') },
-      { key: 'Control Plane Signal Map', match: (p) => p.endsWith('/architecture/control_plane_signal_map.md') },
-      { key: 'Default Mode', match: (p) => p.endsWith('/architecture/default_mode.md') },
-      { key: 'Hippocampal Systems', match: (p) => p.endsWith('/architecture/hippocampal_systems.md') || p.endsWith('/architecture/hippocampal_braid.md') },
-      { key: 'Residue Geometry', match: (p) => p.endsWith('/architecture/residue_geometry.md') },
-      { key: 'Temporal Dynamics', match: (p) => p.endsWith('/architecture/temporal_dynamics.md') },
-      { key: 'Mode Manager', match: (p) => p.endsWith('/architecture/mode_manager.md') },
-      { key: 'Modes of Cognition', match: (p) => p.endsWith('/architecture/modes_of_cognition.md') },
-      { key: 'Agency & Responsibility', match: (p) => p.endsWith('/architecture/agency_responsibility_flow.md') },
-      { key: 'Trajectory Selection', match: (p) => p.endsWith('/architecture/trajectory_selection.md') },
-      { key: 'Entities & Binding', match: (p) => p.endsWith('/architecture/entities_and_binding.md') },
-      { key: 'Precision Control', match: (p) => p.endsWith('/architecture/precision_control.md') },
-      { key: 'Precision Scoping', match: (p) => p.endsWith('/architecture/precision_scoping.md') },
-      { key: 'Path Authority', match: (p) => p.endsWith('/architecture/path_authority_and_interrupts.md') },
-      { key: 'Astrocyte Stack', match: (p) => p.endsWith('/architecture/astrocyte_regulatory_stack.md') },
-      { key: 'Serotonin', match: (p) => p.endsWith('/architecture/serotonin.md') },
-      { key: 'Attention Fragmentation', match: (p) => p.endsWith('/architecture/why_attention_must_be_fragmented.md') },
-      { key: 'Language', match: (p) => p.includes('/architecture/language/') || p.endsWith('/architecture/language.md') },
-      { key: 'Sleep', match: (p) => p.includes('/architecture/sleep/') || p.endsWith('/architecture/sleep.md') },
-      { key: 'Social', match: (p) => p.endsWith('/architecture/social.md') },
-      { key: 'Architecture Overview', match: (p) => p.endsWith('/architecture/overview.md') },
-      { key: 'Invariants', match: (p) => p.endsWith('/invariants.md') },
-      { key: 'Glossary', match: (p) => p.endsWith('/glossary.md') },
-      { key: 'Minimum Spec', match: (p) => p.endsWith('/REE_MIN_SPEC.md') },
-      { key: 'REE Overview', match: (p) => p.endsWith('/REE_overview.md') },
-      { key: 'Failure Modes', match: (p) => p.endsWith('/REE_failure_modes.md') },
-      { key: 'Claims Index', match: (p) => p.endsWith('/claims/claim_index.md') },
-      { key: 'Docs README', match: (p) => p.endsWith('/README.md') },
-      { key: 'Changelog', match: (p) => p.endsWith('/changelog.md') },
-      { key: 'Migration', match: (p) => p.endsWith('/MIGRATION.md') },
-      { key: 'Roadmap', match: (p) => p.endsWith('/roadmap.md') },
-      { key: 'Repo Meta', match: (p) => p.endsWith('/repo_meta.md') },
-      { key: 'Examples', match: (p) => p.includes('/examples/') },
-      { key: 'Notes', match: (p) => p.includes('/notes/') },
-      { key: 'Final Output', match: (p) => p.endsWith('/FINAL_OUTPUT.md') },
-    ];
+    const SUBSYSTEM_MAP_URL = './subsystem_map.yaml';
+    let subsystemRules = [];
 
     const els = {
       search: document.getElementById('search'),
@@ -1465,11 +1427,84 @@ END CONFLICT RESOLUTION`;
       });
     }
 
+    function escapeRegex(text) {
+      return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function compileSubsystemRules(entries) {
+      const rules = [];
+      (entries || []).forEach(entry => {
+        if (!entry || !entry.key || !entry.patterns) return;
+        const patterns = entry.patterns.map(p => String(p)).filter(Boolean);
+        const regexes = patterns.map(pattern => {
+          if (pattern.endsWith('/')) {
+            const base = escapeRegex(pattern).replace(/\/$/, '');
+            return new RegExp(`^${base}`);
+          }
+          return new RegExp(`^${escapeRegex(pattern)}$`);
+        });
+        rules.push({ key: entry.key, patterns, regexes });
+      });
+      return rules;
+    }
+
+    function parseSubsystemMap(text) {
+      const normalized = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      const lines = normalized.split('\n');
+      const entries = [];
+      let cur = null;
+      let inPatterns = false;
+      lines.forEach(raw => {
+        const trimmed = raw.trim();
+        if (!trimmed || trimmed.startsWith('#')) return;
+        if (trimmed.startsWith('- key:')) {
+          if (cur) entries.push(cur);
+          cur = { patterns: [] };
+          inPatterns = false;
+          const keyMatch = trimmed.match(/^-\\s+key:\\s*(.+)$/);
+          if (keyMatch) cur.key = keyMatch[1].trim();
+          return;
+        }
+        if (!cur) return;
+        if (trimmed.startsWith('key:')) {
+          cur.key = trimmed.split(':', 2)[1].trim();
+          return;
+        }
+        if (trimmed.startsWith('patterns:')) {
+          cur.patterns = [];
+          inPatterns = true;
+          return;
+        }
+        if (inPatterns) {
+          const patMatch = trimmed.match(/^-\\s+(.+)$/);
+          if (patMatch) {
+            cur.patterns.push(patMatch[1].trim());
+          }
+        }
+      });
+      if (cur) entries.push(cur);
+      return entries;
+    }
+
+    async function loadSubsystemMap() {
+      try {
+        const text = await fetchText(SUBSYSTEM_MAP_URL);
+        const parsed = parseSubsystemMap(text);
+        subsystemRules = compileSubsystemRules(parsed);
+      } catch (_) {
+        subsystemRules = [];
+      }
+    }
+
     function getSubsystemKey(claim) {
       if (!claim || !claim.location) return 'Unmapped';
       const path = claim.location.split('#')[0];
-      for (const rule of SUBSYSTEM_RULES) {
-        if (rule.match(path)) return rule.key;
+      const rules = subsystemRules || [];
+      for (const rule of rules) {
+        const regexes = rule.regexes || [];
+        for (const re of regexes) {
+          if (re.test(path)) return rule.key;
+        }
       }
       return 'Unmapped';
     }
@@ -1488,7 +1523,7 @@ END CONFLICT RESOLUTION`;
       if (!els.mapGrid) return;
       const filtered = applyFilters();
       const groups = new Map();
-      const order = SUBSYSTEM_RULES.map(r => r.key);
+      const order = (subsystemRules || []).map(r => r.key);
       filtered.forEach(c => {
         const key = getSubsystemKey(c);
         if (!groups.has(key)) groups.set(key, []);
@@ -2748,6 +2783,7 @@ END CONFLICT RESOLUTION`;
       if (!/id:\s*(INV|ARC|MECH|IMPL|Q)-\d{3}/i.test(normalizedClaims)) {
         throw new Error('claims.yaml did not include any "id:" entries. Check the claims.yaml URL in your browser.');
       }
+      await loadSubsystemMap();
       const parsed = parseClaimsYaml(normalizedClaims);
       if (!parsed.length) {
         const lines = normalizedClaims.split('\n');

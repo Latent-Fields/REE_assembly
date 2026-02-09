@@ -52,6 +52,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [ARC-014](../architecture/default_mode.md#arc-014) Default Mode enables safe imagination without commitment.
 - [ARC-015](../architecture/agency_responsibility_flow.md#arc-015) Self-impact attribution and responsibility flow are required.
 - [ARC-016](../architecture/modes_of_cognition.md#arc-016) Modes are control-plane regimes applied to shared predictive machinery.
+- [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal sensory stream tags for REE (world, homeostasis, harm, self-sensory, precision, temporal coherence, valence, action, self-impact).
 
 ---
 

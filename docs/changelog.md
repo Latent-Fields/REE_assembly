@@ -7,6 +7,18 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-08: Thought Intake — Minimal Sensory Stream Tags
+
+### Overview
+
+Captured a minimal tagging scheme for sensory, precision, and self-impact streams, framing reward-like signals as emergent rather than primitive.
+
+### What Changed
+
+- Added `docs/architecture/sensory_stream_tags.md` (ARC-017).
+- Added `docs/thoughts/2026-02-08_sensory_stream_tags.md`.
+- Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md`.
+
 ## 2026-02-08: Thought Intake — Residue as Cognitive Map
 
 ### Overview
