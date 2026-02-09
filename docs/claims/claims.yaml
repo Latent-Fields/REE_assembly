@@ -180,6 +180,7 @@
     - docs/processed/legacy_tree/docs/architecture/e2.md
     - docs/processed/legacy_tree/architecture/E2.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
+    - docs/thoughts/2026-02-09_e2_hpc_interface.md
 - id: ARC-003
   claim_type: architectural_commitment
   subject: E3.trajectory_commitment
@@ -302,6 +303,7 @@
     - docs/processed/legacy_tree/architecture/language/language_functions.md
     - docs/processed/legacy_tree/docs/architecture/language.md
     - docs/thoughts/2026-02-09_language.md
+    - docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md
 - id: ARC-010
   claim_type: architectural_commitment
   subject: social.mirror_modelling
@@ -938,6 +940,7 @@
   location: docs/architecture/hippocampal_systems.md#arc-018
   source:
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
+    - docs/thoughts/2026-02-09_e2_hpc_interface.md
 - id: MECH-025
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
@@ -1038,3 +1041,77 @@
   location: docs/architecture/social.md#mech-032
   source:
     - docs/architecture/social.md
+- id: MECH-033
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.kernel_chaining_interface
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-018
+    - ARC-002
+    - ARC-001
+    - ARC-005
+  location: docs/architecture/hippocampal_systems.md#mech-033
+  source:
+    - docs/thoughts/2026-02-09_e2_hpc_interface.md
+- id: MECH-034
+  claim_type: mechanism_hypothesis
+  subject: residue.viability_vs_curvature_updates
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-013
+    - ARC-018
+  location: docs/architecture/residue_geometry.md#mech-034
+  source:
+    - docs/thoughts/2026-02-09_viability_mapping_vs_residue.md
+- id: MECH-035
+  claim_type: mechanism_hypothesis
+  subject: valence.vector_ranking
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-017
+    - ARC-003
+    - ARC-005
+  location: docs/architecture/sensory_stream_tags.md#mech-035
+  source:
+    - docs/thoughts/2026-02-09_valence_vector.md
+- id: MECH-036
+  claim_type: mechanism_hypothesis
+  subject: social.other_harm_veto_threshold
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-031
+    - ARC-005
+    - INV-005
+  location: docs/architecture/social.md#mech-036
+  source:
+    - docs/thoughts/2026-02-09_other_harm_gating.md
+- id: MECH-037
+  claim_type: mechanism_hypothesis
+  subject: provenance.papez_like_reality_filtering
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-007
+    - ARC-018
+    - ARC-003
+    - ARC-005
+  location: docs/architecture/papez_circuit.md#mech-037
+  source:
+    - docs/thoughts/2026-02-09_papez_circuit_reality_filtering.md
+- id: MECH-038
+  claim_type: mechanism_hypothesis
+  subject: language.arcuate_fasciculus_nudges
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-009
+    - ARC-002
+    - ARC-018
+    - ARC-005
+  location: docs/architecture/arcuate_fasciculus.md#mech-038
+  source:
+    - docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md

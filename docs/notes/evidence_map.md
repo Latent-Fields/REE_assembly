@@ -60,6 +60,23 @@ Evidence: Iterated learning experiments show language structure emerges from tra
 REE implication: Language can be modeled as a compression/coordination layer without new cognitive primitives.  
 Sources: [Kirby et al. 2008](https://pubmed.ncbi.nlm.nih.gov/18667697/).
 
+## P12 — Papez-like provenance gating / confabulation
+Evidence: The Papez circuit is a memory-related loop linking hippocampus, fornix, mammillary bodies, anterior thalamus,
+cingulate gyrus, and entorhinal cortex. Confabulation is characterized as a memory disorder involving failure of
+reality filtering (suppression of currently irrelevant memory traces).  
+REE implication: A Papez-like loop can be treated as a provenance gate that withholds high-precision commitment unless
+trace/ordering support exists.  
+Sources: [NCBI Bookshelf: Papez circuit overview](https://www.ncbi.nlm.nih.gov/books/NBK575732/), [Papez circuit MRI anatomy (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10569190/), [Schnider 2003, Nat Rev Neurosci](https://www.nature.com/articles/nrn1179), [Schnider & Ptak 1999, Nat Neurosci](https://www.nature.com/articles/nn0799_677).
+
+## P13 — Arcuate fasciculus and language pathways
+Evidence: Comparative DTI shows a prominent temporal projection of the human arcuate fasciculus that is much smaller or
+absent in nonhuman primates. Language is best described as a dual dorsal–ventral system, with dorsal streams supporting
+sensorimotor mapping and ventral streams supporting comprehension; conduction aphasia data suggest the arcuate is
+important but not sufficient alone.  
+REE implication: a dorsal‑style sequence → motor channel is a useful nudge for language emergence, but the system should
+remain distributed rather than relying on a single tract analog.  
+Sources: [Rilling et al. 2008, Nat Neurosci](https://www.nature.com/articles/nn2072), [Hickok & Poeppel 2007, Nat Rev Neurosci](https://www.nature.com/articles/nrn2113), [Bernal & Ardila 2009, Brain](https://academic.oup.com/brain/article/132/9/2309/359715).
+
 ---
 
 ## Notes

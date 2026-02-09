@@ -176,3 +176,4 @@ None noted in preserved sources.
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/architecture/trajectory_selection.md`
+- `docs/thoughts/2026-02-09_e2_hpc_interface.md`

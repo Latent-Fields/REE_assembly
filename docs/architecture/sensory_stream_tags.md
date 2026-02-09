@@ -34,6 +34,20 @@ These are not raw senses but must be explicit tagged streams to preserve ethical
 
 These tags allow REE to remain robust without collapsing ethics into a reward channel.
 
+<a id="mech-035"></a>
+## VALENCE as Vector Ranking (MECH-035)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Vector-valued valence used for non-scalar trajectory ranking  
+**Depends On:** ARC-017, ARC-003, ARC-005  
+**Status:** candidate  
+**Claim ID:** MECH-035
+
+VALENCE is defined as a vector of predicted deltas across tagged streams (e.g., HOMEOSTASIS, HARM,
+TEMPORAL_COHERENCE, SELF_IMPACT error, option volume, inferred other welfare). Trajectory selection ranks candidates
+using constraint-first and Pareto/lexicographic comparison rather than collapsing the vector to a scalar. This
+preserves non-scalar ethics and avoids reward-style collapse.
+
 ## Motor and self-impact streams
 
 - `ACTION`: all interventions the system can make.
@@ -96,7 +110,9 @@ None noted in preserved sources.
 - ARC-015
 - INV-008
 - INV-012
+- MECH-035
 
 ## References / Source Fragments
 
 - `docs/thoughts/2026-02-08_sensory_stream_tags.md`
+- `docs/thoughts/2026-02-09_valence_vector.md`

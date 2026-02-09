@@ -91,7 +91,7 @@ Where (illustrative, not exhaustive):
 The control plane updates \(\theta_{\text{tune}}\) continuously based on context, urgency, residue curvature, and predicted risk or harm.
 
 Rollout temperature and horizon parameters refer to **hippocampal candidate generation** seeded by E2, not an independent
-E2 rollout module. E2 provides forward prediction kernels; hippocampus chains them into explicit rollouts.
+E2 rollout generator. E2 is a forward-prediction module; hippocampus chains those kernels into explicit rollouts.
 
 Optional social coupling parameters (multi-agent):
 - `lambda_empathy`: other-to-self coupling strength for harm/viability pruning.

@@ -43,6 +43,10 @@ Minimal nudges for bootstrapping:
 - attention coupling to those symbols,
 - commitment tagging for some patterns,
 - fast correction tokens ("no", "wait", "stop").
+
+Dual-stream nudge (functional analog):
+- a **dorsal sequence→motor channel** for fast sensorimotor mapping, paired with a **ventral meaning** channel for
+  semantic grounding (distributed rather than a single tract; see `arcuate_fasciculus.md`).
 ---
 
 ## Open Questions

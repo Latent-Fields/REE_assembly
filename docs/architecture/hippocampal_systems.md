@@ -49,6 +49,22 @@ It is the only place explicit multi-step rollouts exist; E1/E2 supply constraint
 
 ---
 
+<a id="mech-033"></a>
+## E2 Kernel → Hippocampal Rollout Interface (MECH-033)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** How E2 forward-prediction kernels seed hippocampal rollouts  
+**Depends On:** ARC-018, ARC-002, ARC-001, ARC-005  
+**Status:** candidate  
+**Claim ID:** MECH-033
+
+E2 supplies short-horizon forward-prediction kernels (local conditional transitions) rather than multi-step trajectories.
+Hippocampal systems chain these kernels into explicit rollouts, constrained by E1 priors and modulated by control-plane
+parameters (horizon, branching, temperature). This keeps “kernel” and “rollout” distinct while preserving a clean
+handoff from fast prediction to explicit trajectory construction.
+
+---
+
 ## Conceptual distinction: field vs path
 
 REE distinguishes between two mathematical objects:
@@ -175,6 +191,8 @@ Relation to E2 (fast forward predictors): E2 supplies fast predictions and reaff
 constrain which trajectories feel familiar or self-consistent, while hippocampal systems generate explicit trajectories
 and update viability maps.
 
+Provenance gating for E1-generated content may be implemented via a Papez-like loop (see `papez_circuit.md`).
+
 Relation to E3 (trajectory selection): E3 commits to trajectories. Commitments mark decision points along a path, and
 these points anchor episodic segmentation.
 
@@ -215,6 +233,7 @@ None noted in preserved sources.
 - ARC-004
 - INV-006
 - MECH-022
+- MECH-033
 
 ## References / Source Fragments
 
@@ -222,3 +241,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/Hippocampal_braid.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 - `docs/thoughts/2026-02-09_starting_with_sensory_streams.md`
+- `docs/thoughts/2026-02-09_e2_hpc_interface.md`

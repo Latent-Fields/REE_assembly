@@ -90,6 +90,12 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-030](../architecture/sleep.md#mech-030) Sleep modes consolidate learning and ethical residue across regimes.
 - [MECH-031](../architecture/social.md#mech-031) Derived social tags and empathy coupling via control-plane knobs.
 - [MECH-032](../architecture/social.md#mech-032) OTHER_SELFLIKE detection is biased toward high recall to avoid empathy false negatives.
+- [MECH-033](../architecture/hippocampal_systems.md#mech-033) E2 forward-prediction kernels seed hippocampal rollouts.
+- [MECH-034](../architecture/residue_geometry.md#mech-034) Viability mapping updates are distinct from residue curvature updates.
+- [MECH-035](../architecture/sensory_stream_tags.md#mech-035) VALENCE is vector-valued and ranked without scalar collapse.
+- [MECH-036](../architecture/social.md#mech-036) Other-harm triggers veto only under high-certainty catastrophic outcomes.
+- [MECH-037](../architecture/papez_circuit.md#mech-037) Papez-like loop provides provenance gating / reality filtering.
+- [MECH-038](../architecture/arcuate_fasciculus.md#mech-038) Arcuate-like sequence-to-motor channel nudges language emergence.
 
 ---
 

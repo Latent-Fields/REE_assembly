@@ -31,7 +31,7 @@ Defined rollout vs forward prediction to prevent E2/HPC terminology collisions.
 - Added glossary entries to `docs/glossary.md`.
 - Clarified terminology in `docs/architecture/e2.md`, `docs/architecture/trajectory_selection.md`,
   `docs/architecture/e3.md`, `docs/architecture/l_space.md`, `docs/architecture/control_plane.md`,
-  and `docs/architecture/control_plane_signal_map.md`.
+  `docs/architecture/control_plane_signal_map.md`, and `docs/architecture/overview.md`.
 - Updated rollout references in `docs/REE_MIN_SPEC.md`, `docs/REE_overview.md`, `docs/examples/toy_world_scoring_functions.md`,
   and `docs/architecture/language.md`.
 
@@ -45,6 +45,53 @@ Clarified that `OTHER_SELFLIKE` detection should favor high recall (tolerating f
 
 - Added calibration note to `docs/architecture/social.md`.
 - Added MECH-032 to formalize the high-recall bias.
+
+## 2026-02-09: Thought Intake — Kernel, Viability, Valence, and Other-Harm Gating
+
+### Overview
+
+Integrated four refinement thoughts: the E2 kernel → hippocampal rollout interface, viability vs residue updates,
+vector-valued valence ranking, and other-harm gating thresholds.
+
+### What Changed
+
+- Added MECH-033 to `docs/architecture/hippocampal_systems.md` (kernel chaining interface).
+- Added MECH-034 to `docs/architecture/residue_geometry.md` (viability vs residue updates).
+- Added MECH-035 to `docs/architecture/sensory_stream_tags.md` (vector-valued valence ranking).
+- Added MECH-036 to `docs/architecture/social.md` (other-harm veto threshold).
+- Added thought files under `docs/thoughts/2026-02-09_*.md`.
+- Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md`.
+
+## 2026-02-09: Papez-Like Provenance Gating
+
+### Overview
+
+Added a Papez-like provenance-gating mechanism to constrain confabulation and require hippocampal trace support before
+commitment.
+
+### What Changed
+
+- Added `docs/architecture/papez_circuit.md` (MECH-037).
+- Added `docs/thoughts/2026-02-09_papez_circuit_reality_filtering.md`.
+- Updated `docs/architecture/hippocampal_systems.md` with a Papez-loop cross-reference.
+- Updated `docs/claims/claims.yaml`, `docs/claims/claim_index.md`, and `docs/claims/subsystem_map.yaml`.
+- Added evidence-map anchors for Papez circuit and confabulation in `docs/notes/evidence_map.md`.
+- Added an operational checklist to `docs/architecture/papez_circuit.md`.
+
+## 2026-02-09: Arcuate Fasciculus Language Nudges
+
+### Overview
+
+Added an arcuate-fasciculus functional analog to capture dorsal sequence→motor language nudges without anatomy claims.
+
+### What Changed
+
+- Added `docs/architecture/arcuate_fasciculus.md` (MECH-038).
+- Added `docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md`.
+- Updated `docs/architecture/language.md` and `docs/claims/claims.yaml`.
+- Updated `docs/architecture/language/emergence_and_bootstrapping.md` with a dual-stream nudge.
+- Updated `docs/claims/claim_index.md` and `docs/claims/subsystem_map.yaml`.
+- Added evidence-map anchors for arcuate fasciculus and dual-stream language pathways in `docs/notes/evidence_map.md`.
 
 ## 2026-02-09: Evidence Map — Neuroscience Anchors
 

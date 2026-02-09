@@ -151,6 +151,19 @@ empathy coupling and ethical generalisation. Calibration can tighten over develo
 **Status:** candidate  
 **Claim ID:** MECH-032
 
+<a id="mech-036"></a>
+## Other-Harm Veto Threshold (MECH-036)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** When inferred other-harm should veto vs influence ranking  
+**Depends On:** MECH-031, ARC-005, INV-005  
+**Status:** candidate  
+**Claim ID:** MECH-036
+
+Other-harm should trigger a hard veto only under high-certainty, catastrophic, or irreversible outcomes. In most
+ambiguous or tradeoff-heavy contexts, other-harm should influence ranking rather than veto selection. Control-plane
+coupling parameters (`lambda_empathy`, `v_other_veto`) set and adapt this threshold.
+
 ---
 
 ## Fast Empathy via Shadow Bundles
@@ -185,6 +198,7 @@ None noted in preserved sources.
 - INV-005
 - MECH-031
 - MECH-032
+- MECH-036
 
 ## References / Source Fragments
 
@@ -193,3 +207,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/social/social_coupling.md`
 - `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
 - `docs/thoughts/2026-02-09_empathy.md`
+- `docs/thoughts/2026-02-09_other_harm_gating.md`

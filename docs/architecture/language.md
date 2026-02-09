@@ -63,6 +63,10 @@ Minimal nudges:
 - commitment tagging for certain patterns,
 - fast correction signals.
 
+Additional nudge (functional analog):
+- a fast **sequence-to-motor** channel (arcuate-like) that links hippocampal rollouts to articulation affordances
+  without introducing a new language module (see `arcuate_fasciculus.md`).
+
 ---
 
 ## Language Contract (Required Interface)
@@ -149,3 +153,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/language/README.md`
 - `docs/processed/legacy_tree/architecture/language/language_contract.md`
 - `docs/processed/legacy_tree/architecture/language/language_functions.md`
+- `docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md`

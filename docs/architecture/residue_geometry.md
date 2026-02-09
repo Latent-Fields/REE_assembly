@@ -16,6 +16,20 @@ Residue is stored as persistent curvature over latent space.
 - Maintain a function \(\phi(z)\) over latent space (implemented as a small neural network, radial basis functions, or a k-nearest neighbors map).
 - Update \(\phi\) after executing a trajectory to increase the cost around visited latent states proportional to ethical cost.
 
+<a id="mech-034"></a>
+## Residue vs Viability Map Updates (MECH-034)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Distinguish ethical curvature updates from navigability updates  
+**Depends On:** ARC-013, ARC-018  
+**Status:** candidate  
+**Claim ID:** MECH-034
+
+Post-commitment viability mapping updates a navigability surface using predicted–observed self-sensory mismatch and
+resulting WORLD/HOMEOSTASIS/HARM shifts, marking paths as stable, fragile, or path-closing. Residue updates, by
+contrast, adjust ethical curvature \(\phi(z)\) based on harm or violation outcomes. Both are post-action signals,
+but they encode different information: path stability vs ethical cost.
+
 ## Why geometry
 
 If residue were a scalar penalty, it would be easily traded off against reward and optimized away.
@@ -62,8 +76,10 @@ None noted in preserved sources.
 - ARC-004
 - INV-006
 - INV-004
+- MECH-034
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/architecture/residue_geometry.md`
 - `docs/processed/legacy_tree/architecture/residue_geometry.md`
+- `docs/thoughts/2026-02-09_viability_mapping_vs_residue.md`
