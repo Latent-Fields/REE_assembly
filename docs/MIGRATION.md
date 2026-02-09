@@ -64,7 +64,7 @@ These subsystems retain their original structure under `architecture/`:
 
 **Canonical Location:** `REE_CORE.md` §4 "Self (Operational Definition)"
 
-**Definition:** The Self is the **currently committed trajectory prefix**, continuously re-anchored to shared sensory evidence and hippocampal path memory, and extended forward by fast rollouts of possible future selves.
+**Definition:** The Self is the **currently committed trajectory prefix**, continuously re-anchored to shared sensory evidence and hippocampal path memory, and extended forward by hippocampal rollouts seeded by fast predictors.
 
 **Status:** Should be promoted to invariant or architectural commitment
 

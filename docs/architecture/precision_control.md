@@ -48,7 +48,7 @@ Precision control does not merely tune learning rates. It induces **qualitativel
 
 - Serotonin-like (anti-collapse / horizon widening):
 	Reduces premature commitment by limiting precision escalation.
-	Stabilises exploratory rollouts across longer horizons.
+	Stabilises exploratory hippocampal rollouts across longer horizons.
 	Phenomenology: patience, emotional buffering, tolerance of ambiguity.
 	Pathology when excessive: apathy, blunted affect, indecision.
 

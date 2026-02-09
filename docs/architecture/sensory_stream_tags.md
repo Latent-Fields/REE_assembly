@@ -41,6 +41,26 @@ These tags allow REE to remain robust without collapsing ethics into a reward ch
 
 `SELF_IMPACT` is the minimal substrate of internal responsibility: it is where reafference becomes self-attribution.
 
+## Social extension tags (derived, multi-agent)
+
+REE does not require social tags for single-agent viability, but multi-agent settings can add derived tags over WORLD:
+
+- `AGENCY`: detects interveners vs passive dynamics.
+- `OTHER_SELFLIKE`: probability that an agent runs a self/world separation + self-impact loop.
+- `OTHER_HARM`: estimated harm-to-other (computed when `OTHER_SELFLIKE` is high).
+- Optional `AFFILIATION`: stabilises coupling based on history/kinship.
+
+These reuse self/world/impact machinery and are routed by control-plane coupling (see `social.md`).
+They are not primitive senses and do not add a new cognitive subsystem.
+
+## Mapping streams onto engines (E1/E2/E3 + hippocampus)
+
+- **E1** maintains slow structure and long-horizon HOMEOSTASIS/HARM/TEMPORAL_COHERENCE priors.
+- **E2** provides fast prediction and reafference comparison for SELF_SENSORY/SELF_IMPACT.
+- **Hippocampal systems** construct explicit counterfactual trajectories; E1/E2 supply constraints and seeds.
+- **E3** applies vetoes and ranks trajectories via VALENCE, then commits; commitment tags intended action for
+  self-impact learning.
+
 ## Explicit exclusions
 
 REE does not require primitive emotion categories, symbolic goals, language, social cognition, moral rules,
@@ -59,6 +79,7 @@ and ACTION -> SELF_SENSORY -> SELF_IMPACT loops, then it acquires:
 
 Reward-like effects arise from improved HOMEOSTASIS/HARM predictions, increased TEMPORAL_COHERENCE,
 expanded viable trajectory volume, and low self-impact error, without introducing an explicit reward scalar.
+These signals remain **read-only**; they must not become a control channel.
 
 ---
 

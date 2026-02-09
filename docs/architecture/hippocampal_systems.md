@@ -20,6 +20,35 @@ It exists to preserve identity, continuity, and reflectability over time.
 
 ---
 
+<a id="arc-018"></a>
+## Hippocampal Rollouts and Viability Mapping (ARC-018)
+
+**Claim Type:** architectural_commitment  
+**Scope:** Explicit multi-step rollouts and post-commitment viability mapping  
+**Depends On:** ARC-007, ARC-003, ARC-002, ARC-001  
+**Status:** provisional  
+**Claim ID:** ARC-018
+
+The hippocampal system performs **counterfactual trajectory construction** and **post-commitment viability mapping**.
+It is the only place explicit multi-step rollouts exist; E1/E2 supply constraints and short-horizon predictions.
+
+---
+
+## Two hippocampal functions (rollout vs viability mapping)
+
+1. **Counterfactual rollout (imagination)**  
+   - Constructs branching trajectories from the current latent state.  
+   - Uses constraints from E1 and short-horizon predictions from E2.  
+   - Produces candidate futures without ranking or commitment.
+
+2. **Viability path mapping (commitment learning)**  
+   - Triggered after an action is executed.  
+   - Uses predicted vs observed `SELF_SENSORY` mismatch plus resulting WORLD/HOMEOSTASIS/HARM changes.  
+   - Updates a viability map of action-space under commitment: which sequences are stable, fragile, or path-closing.  
+   - This is not reward learning; it is learned affordance geometry under real execution.
+
+---
+
 ## Conceptual distinction: field vs path
 
 REE distinguishes between two mathematical objects:
@@ -101,6 +130,7 @@ Inputs:
 - Affordance / action latent \(z_A(t)\)
 - Implicit curvature information via ease or difficulty of traversal
 - Salience signals (for indexing priority, not value assignment)
+- Predicted vs observed `SELF_SENSORY` mismatch for post-commitment viability mapping
 
 Outputs:
 - Indexed episodic traces \(\Gamma_i\)
@@ -141,8 +171,9 @@ Source: `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 Relation to E1 (deep recurrent predictor): E1 provides temporally coherent latent dynamics. Hippocampal replay can seed
 E1 with alternative initial conditions, and no overwrite of perceptual state occurs.
 
-Relation to E2 (fast forward predictors): E2 generates candidate trajectories. Hippocampal traces constrain which
-trajectories feel familiar or self-consistent, and no trajectory is privileged as optimal.
+Relation to E2 (fast forward predictors): E2 supplies fast predictions and reafference signals. Hippocampal traces
+constrain which trajectories feel familiar or self-consistent, while hippocampal systems generate explicit trajectories
+and update viability maps.
 
 Relation to E3 (trajectory selection): E3 commits to trajectories. Commitments mark decision points along a path, and
 these points anchor episodic segmentation.
@@ -179,6 +210,7 @@ None noted in preserved sources.
 ## Related Claims (IDs)
 
 - ARC-007
+- ARC-018
 - ARC-003
 - ARC-004
 - INV-006
@@ -189,3 +221,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md`
 - `docs/processed/legacy_tree/architecture/Hippocampal_braid.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
+- `docs/thoughts/2026-02-09_starting_with_sensory_streams.md`

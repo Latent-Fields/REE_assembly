@@ -7,6 +7,112 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-09: Subsystem Map and Rollout Wording Alignment
+
+### Overview
+
+Aligned subsystem labels and clarified hippocampal rollout wording in legacy‑adjacent docs and roadmap.
+
+### What Changed
+
+- Renamed subsystem map groups in `docs/claims/subsystem_map.yaml`.
+- Clarified hippocampal rollout wording in `docs/architecture/trajectory_selection.md`,
+  `docs/architecture/precision_control.md`, `docs/MIGRATION.md`, and `docs/roadmap.md`.
+- Added rollout notes to `docs/architecture/overview.md` and `docs/REE_overview.md`.
+
+## 2026-02-09: Rollout Terminology Clarification
+
+### Overview
+
+Defined rollout vs forward prediction to prevent E2/HPC terminology collisions.
+
+### What Changed
+
+- Added glossary entries to `docs/glossary.md`.
+- Clarified terminology in `docs/architecture/e2.md`, `docs/architecture/trajectory_selection.md`,
+  `docs/architecture/e3.md`, `docs/architecture/l_space.md`, `docs/architecture/control_plane.md`,
+  and `docs/architecture/control_plane_signal_map.md`.
+- Updated rollout references in `docs/REE_MIN_SPEC.md`, `docs/REE_overview.md`, `docs/examples/toy_world_scoring_functions.md`,
+  and `docs/architecture/language.md`.
+
+## 2026-02-09: Empathy Calibration Note
+
+### Overview
+
+Clarified that `OTHER_SELFLIKE` detection should favor high recall (tolerating false positives) over false negatives.
+
+### What Changed
+
+- Added calibration note to `docs/architecture/social.md`.
+- Added MECH-032 to formalize the high-recall bias.
+
+## 2026-02-09: Evidence Map — Neuroscience Anchors
+
+### Overview
+
+Added a lightweight evidence map linking REE prompts to primary neuroscience sources.
+
+### What Changed
+
+- Added `docs/notes/evidence_map.md`.
+
+## 2026-02-09: Claim Index — New Claims Added
+
+### Overview
+
+Added explicit claim entries for newly introduced architectural and social mechanism clarifications.
+
+### What Changed
+
+- Added ARC-018 (hippocampal rollouts + viability mapping) to `docs/architecture/hippocampal_systems.md`.
+- Added MECH-031 (derived social tags + empathy coupling) to `docs/architecture/social.md`.
+- Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md`.
+
+## 2026-02-09: Thought Intake — Empathy as Self/Other Coupling
+
+### Overview
+
+Clarified empathy as control-plane coupling over derived social tags (AGENCY, OTHER_SELFLIKE), adding shadow bundles
+and coupling knobs without a new subsystem.
+
+### What Changed
+
+- Updated `docs/architecture/social.md` with derived social tags and fast empathy routing.
+- Added optional social coupling knobs to `docs/architecture/control_plane.md`.
+- Added social extension tags to `docs/architecture/sensory_stream_tags.md`.
+- Added `docs/thoughts/2026-02-09_empathy.md` (processed).
+- Updated `docs/claims/claims.yaml` sources for ARC-010, ARC-005, ARC-017.
+
+## 2026-02-09: Thought Intake — Language as Compression and Coordination
+
+### Overview
+
+Positioned language as a compression layer emerging from joint attention and simulation overhead; no new architecture.
+
+### What Changed
+
+- Updated `docs/architecture/language.md` with joint attention + compression pressure framing.
+- Updated `docs/architecture/language/emergence_and_bootstrapping.md` with joint attention and minimal nudges.
+- Added `docs/thoughts/2026-02-09_language.md` (processed).
+- Updated `docs/claims/claims.yaml` sources for ARC-009 and MECH-010.
+
+## 2026-02-09: Thought Intake — Starting With Sensory Streams (Rollouts + HPC Mapping)
+
+### Overview
+
+Reaffirmed minimal stream tags, mapped to E1/E2/E3, and clarified hippocampus as the sole multi-step rollout engine
+with post-commitment viability mapping.
+
+### What Changed
+
+- Updated `docs/architecture/sensory_stream_tags.md` with engine mapping and reward-readonly note.
+- Clarified hippocampal rollouts in `docs/architecture/e2.md`, `docs/architecture/e3.md`,
+  `docs/architecture/hippocampal_systems.md`, `docs/architecture/trajectory_selection.md`, and
+  `docs/architecture/control_plane_signal_map.md`.
+- Added rollout tuning clarification to `docs/architecture/control_plane.md`.
+- Added `docs/thoughts/2026-02-09_starting_with_sensory_streams.md` (processed).
+- Updated `docs/claims/claims.yaml` sources for ARC-002, ARC-003, ARC-005, ARC-007, ARC-017, MECH-004, IMPL-016.
+
 ## 2026-02-08: Thought Intake — Minimal Sensory Stream Tags
 
 ### Overview

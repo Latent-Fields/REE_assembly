@@ -56,6 +56,7 @@ A unitary present-moment experience is not a property of \(z_\gamma\) alone. It 
 
 - In committed / task-engaged mode, commitment phase-aligns temporally displaced predictions with motor execution timing, enforcing cross-horizon coherence so the unfolding trajectory is experienced as a single present.
 - In Default Mode, displaced rollouts are explored without commitment or phase-locking to action (see `Default_mode.md`), and therefore do not construct a unitary present-moment “now”.
+- Rollout terminology: explicit multi-step rollouts are hippocampal; E2 provides forward prediction kernels that seed them.
 
 This preserves perceptual corrigibility while still allowing deep regime predictors (\(z_\delta\)) to bias selection through precision and scoring rather than semantic overwrite.
 

@@ -53,6 +53,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [ARC-015](../architecture/agency_responsibility_flow.md#arc-015) Self-impact attribution and responsibility flow are required.
 - [ARC-016](../architecture/modes_of_cognition.md#arc-016) Modes are control-plane regimes applied to shared predictive machinery.
 - [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal sensory stream tags for REE (world, homeostasis, harm, self-sensory, precision, temporal coherence, valence, action, self-impact).
+- [ARC-018](../architecture/hippocampal_systems.md#arc-018) Hippocampus generates explicit rollouts and post-commitment viability mapping.
 
 ---
 
@@ -87,6 +88,8 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-028](../architecture/modes_of_cognition.md#mech-028) Ethical behavior depends on mode transitions and learning preservation.
 - [MECH-029](../architecture/default_mode.md#mech-029) Reflective/DMN mode supports moral simulation via gated replay.
 - [MECH-030](../architecture/sleep.md#mech-030) Sleep modes consolidate learning and ethical residue across regimes.
+- [MECH-031](../architecture/social.md#mech-031) Derived social tags and empathy coupling via control-plane knobs.
+- [MECH-032](../architecture/social.md#mech-032) OTHER_SELFLIKE detection is biased toward high recall to avoid empathy false negatives.
 
 ---
 

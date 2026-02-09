@@ -117,6 +117,61 @@ Source: `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
 
 ---
 
+<a id="mech-031"></a>
+## Derived Social Tags and Empathy Coupling (MECH-031)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Derived social tags and control-plane coupling for fast empathy  
+**Depends On:** ARC-010, ARC-005, ARC-017, ARC-015, ARC-006, INV-005  
+**Status:** candidate  
+**Claim ID:** MECH-031
+
+---
+
+## Agency and Other-Selflike Detection (Derived Streams)
+
+REE can extend social cognition without a new subsystem by adding **derived** tags over WORLD:
+
+- `AGENCY`: detects interveners vs passive dynamics (goal-directed intervention, error-correction, boundary maintenance).
+- `OTHER_SELFLIKE`: probability that an agent runs a self/world separation and self-impact loop.
+
+These are inference tags, not perceptual primitives. They reuse the same self/world/impact machinery, rather than
+introducing a separate social-cognition module.
+
+Calibration note: `OTHER_SELFLIKE` should be biased toward **high recall** (tolerating false positives) rather than
+high precision. Early false positives are historically normal and less harmful than false negatives, which block
+empathy coupling and ethical generalisation. Calibration can tighten over development.
+
+<a id="mech-032"></a>
+## OTHER_SELFLIKE High-Recall Bias (MECH-032)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Bias `OTHER_SELFLIKE` toward recall to avoid empathy false negatives  
+**Depends On:** MECH-031, ARC-010  
+**Status:** candidate  
+**Claim ID:** MECH-032
+
+---
+
+## Fast Empathy via Shadow Bundles
+
+When `OTHER_SELFLIKE` is high, REE can instantiate a shadow bundle of inferred streams for an agent `j`:
+
+- `HOMEOSTASIS_j`, `HARM_j`, `SELF_IMPACT_j`, optionally `TEMPORAL_COHERENCE_j`.
+
+These are estimated viability variables, not direct interoception. The control plane can couple them into pruning and
+ranking via a small set of knobs:
+
+- `lambda_empathy`: other-to-self coupling strength.
+- `g_social`: social attention gain for `OTHER_SELFLIKE` agents.
+- `alpha_other`: precision assigned to inferred other-states.
+- `v_other_veto`: whether other-harm can trigger veto/interrupt vs only affect ranking.
+- Optional `AFFILIATION`: stabilises coupling based on history/kinship.
+
+This yields fast empathy as **routing + weighting**, not a new moral module.
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -128,6 +183,8 @@ None noted in preserved sources.
 - ARC-006
 - ARC-004
 - INV-005
+- MECH-031
+- MECH-032
 
 ## References / Source Fragments
 
@@ -135,3 +192,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/social/mirror_modelling.md`
 - `docs/processed/legacy_tree/architecture/social/social_coupling.md`
 - `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
+- `docs/thoughts/2026-02-09_empathy.md`

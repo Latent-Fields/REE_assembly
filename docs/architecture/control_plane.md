@@ -52,7 +52,7 @@ Given REE constraints:
 there must exist a mechanism that:
 1. regulates the **precision** of prediction errors at different depths,
 2. controls **when commitment is possible or suppressed**,
-3. adjusts **exploration horizon and branching** in fast rollouts,
+3. adjusts **exploration horizon and branching** in candidate rollouts (hippocampal, seeded by E2),
 4. schedules **replay and consolidation**, and
 5. switches between operating modes (task-engaged, Default Mode–like, sleep/offline).
 
@@ -80,7 +80,7 @@ Where (illustrative, not exhaustive):
 - \(g_S\): sensory gain (attention-like modulation)
 - \(\alpha_A\): action/policy precision
 - \(\kappa_{\text{commit}}\): commitment threshold (E3)
-- \(\tau_{E2}\): rollout temperature
+- \(\tau_{E2}\): rollout temperature (hippocampal generator, seeded by E2)
 - \(H\): rollout horizon
 - \(N\): number of candidate futures
 - \(\eta_{E1}, \eta_{E2}\): learning-rate rigidity/plasticity
@@ -89,6 +89,15 @@ Where (illustrative, not exhaustive):
 - \(m\): operating mode flag
 
 The control plane updates \(\theta_{\text{tune}}\) continuously based on context, urgency, residue curvature, and predicted risk or harm.
+
+Rollout temperature and horizon parameters refer to **hippocampal candidate generation** seeded by E2, not an independent
+E2 rollout module. E2 provides forward prediction kernels; hippocampus chains them into explicit rollouts.
+
+Optional social coupling parameters (multi-agent):
+- `lambda_empathy`: other-to-self coupling strength for harm/viability pruning.
+- `g_social`: social attention gain for `OTHER_SELFLIKE` agents.
+- `alpha_other`: precision assigned to inferred other-states.
+- `v_other_veto`: whether other-harm can veto vs only affect ranking.
 
 ---
 

@@ -41,6 +41,30 @@ Source: `docs/processed/legacy_tree/architecture/language/README.md`
 
 ---
 
+## Joint Attention and Compression Pressure
+
+Joint attention emerges when agents detect each other as `OTHER_SELFLIKE` and their WORLD predictions improve by
+conditioning on what the other is attending to. Once joint attention exists, **mutual simulation becomes expensive**.
+
+Language arises as a compression layer that externalises predictive state to reduce that overhead. It is a public API
+for internal prediction, not a new reasoning module.
+
+What language exposes (lossy):
+- salience/attention ("this", "that")
+- relations and roles
+- rollouts and temporal structure (hippocampal narrative, tense)
+- commitment and intent
+- prediction error and correction ("no", "wait")
+- mode state (imperative vs story)
+
+Minimal nudges:
+- external symbol production,
+- attention coupling to symbols,
+- commitment tagging for certain patterns,
+- fast correction signals.
+
+---
+
 ## Language Contract (Required Interface)
 
 ### Purpose

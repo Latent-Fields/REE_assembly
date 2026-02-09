@@ -74,6 +74,8 @@ E2 keeps the system responsive and grounded while E1 remains slow and abstract.
 
 E2 proposes options; it does not decide.
 
+Explicit multi-step rollouts are hippocampal; E1/E2 supply constraints and short-horizon predictions.
+
 (see `E2.md`)
 
 ---

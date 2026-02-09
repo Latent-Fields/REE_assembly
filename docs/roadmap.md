@@ -24,7 +24,7 @@ Source: `docs/processed/legacy_tree/roadmap.md`
 Goal: a runnable baseline that demonstrates moral residue as persistent curvature.
 
 - [ ] Implement toy world environment
-- [ ] Implement E1/E2 latent stack and rollout model
+- [ ] Implement E1/E2 latent stack and hippocampal rollout model (seeded by E1/E2)
 - [ ] Implement E3 trajectory selection with scoring
 - [ ] Implement residue field \(\phi(z)\) and update
 - [ ] Provide simple evaluation scripts and plots

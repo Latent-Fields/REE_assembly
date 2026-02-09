@@ -4,7 +4,7 @@
 
 **Claim Type:** implementation_note  
 **Scope:** High-level REE summary and design commitments  
-**Depends On:** INV-001, INV-002, INV-003, ARC-001, ARC-002, ARC-003, ARC-004  
+**Depends On:** INV-001, INV-002, INV-003, ARC-001, ARC-002, ARC-003, ARC-004, ARC-007, ARC-018  
 **Status:** legacy  
 **Claim ID:** IMPL-004
 <a id="impl-004"></a>
@@ -16,12 +16,16 @@ REE’s distinguishing requirement is **moral continuity**:
 - An agent cannot discharge ethical responsibility by optimizing it to zero.
 - Even “correct” choices generate **moral residue**—persistent geometric cost that shapes future policy selection.
 
-REE is organized into four computational components:
+REE is organized into five computational components:
 
 1. **E1 (Deep Predictor):** long-horizon, recurrent context model.
 2. **E2 (Fast Predictor):** short-horizon, reflex model.
 3. **L-space (Fused Manifold):** multi-depth latent state stratified by prediction horizon.
 4. **E3 (Trajectory Selector):** selects a coherent future trajectory \(\zeta\) by minimizing reality cost plus ethical cost plus residue curvature. (Legacy phrasing; current canonical framing does not require an explicit ethical cost term — see `docs/architecture/e3.md`.)
+5. **Hippocampal Systems:** explicit multi-step rollouts and path memory.
+
+Explicit multi-step rollouts are hippocampal; E1/E2 supply constraints and short-horizon predictions.
+Terminology: rollout = explicit hippocampal multi-step sequence; forward prediction = E2 local transition kernel.
 
 ## Design commitments
 

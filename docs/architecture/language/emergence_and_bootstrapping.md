@@ -22,6 +22,12 @@ REE predicts that language-like signalling emerges when:
 - plan over longer horizons,
 - and operate under compute/attention limits.
 
+Joint attention is the immediate precursor: once agents detect each other as `OTHER_SELFLIKE`, WORLD predictions improve
+by conditioning on what the other is attending to. That creates **simulation overhead**, which pressures the system to
+externalise predictive state.
+
+Language therefore emerges as a **compression and coordination layer**, not a new reasoning engine.
+
 ### Bootstrapping sequence (human-analogous but implementation-agnostic)
 1. Affective signalling (low-bandwidth, high-salience): distress, aversion, approach cues
 2. Attentional biases: agent/face-like feature attention; gaze-following analogues
@@ -31,6 +37,12 @@ REE predicts that language-like signalling emerges when:
 
 ### Minimal requirement
 REE does not require pre-defined grammar or symbols—only a channel for exporting internal summaries that can update others' priors.
+
+Minimal nudges for bootstrapping:
+- external symbol production (cheap, repeatable, perceivable outputs),
+- attention coupling to those symbols,
+- commitment tagging for some patterns,
+- fast correction tokens ("no", "wait", "stop").
 ---
 
 ## Open Questions

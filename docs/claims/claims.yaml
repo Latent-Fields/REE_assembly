@@ -179,6 +179,7 @@
   source:
     - docs/processed/legacy_tree/docs/architecture/e2.md
     - docs/processed/legacy_tree/architecture/E2.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: ARC-003
   claim_type: architectural_commitment
   subject: E3.trajectory_commitment
@@ -194,6 +195,7 @@
   source:
     - docs/processed/legacy_tree/docs/architecture/e3.md
     - docs/processed/legacy_tree/architecture/E3.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: ARC-004
   claim_type: architectural_commitment
   subject: L_space.latent_stack
@@ -221,6 +223,8 @@
   source:
     - docs/processed/legacy_tree/docs/architecture/control_plane.md
     - docs/processed/legacy_tree/architecture/control_plane.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
+    - docs/thoughts/2026-02-09_empathy.md
 - id: ARC-006
   claim_type: architectural_commitment
   subject: entities.binding
@@ -246,6 +250,7 @@
     - docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md
     - docs/processed/legacy_tree/architecture/Hippocampal_braid.md
     - docs/processed/legacy_tree/docs/architecture/hippocampal_systems.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: ARC-008
   claim_type: architectural_commitment
   subject: temporal.depth_phase_gating
@@ -296,6 +301,7 @@
     - docs/processed/legacy_tree/architecture/language/language_contract.md
     - docs/processed/legacy_tree/architecture/language/language_functions.md
     - docs/processed/legacy_tree/docs/architecture/language.md
+    - docs/thoughts/2026-02-09_language.md
 - id: ARC-010
   claim_type: architectural_commitment
   subject: social.mirror_modelling
@@ -312,6 +318,7 @@
     - docs/processed/legacy_tree/architecture/social/social_coupling.md
     - docs/processed/legacy_tree/architecture/social/otherness_inference.md
     - docs/processed/legacy_tree/docs/architecture/social.md
+    - docs/thoughts/2026-02-09_empathy.md
 - id: ARC-011
   claim_type: architectural_commitment
   subject: sleep.offline_integration
@@ -470,6 +477,8 @@
     - ARC-002
     - ARC-003
     - ARC-004
+    - ARC-007
+    - ARC-018
   location: docs/REE_overview.md#impl-004
   source:
     - docs/processed/legacy_tree/docs/REE_overview.md
@@ -592,6 +601,7 @@
   location: docs/architecture/trajectory_selection.md#impl-016
   source:
     - docs/processed/legacy_tree/architecture/trajectory_selection.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: MECH-002
   claim_type: mechanism_hypothesis
   subject: precision.control_analogues
@@ -626,6 +636,7 @@
   location: docs/architecture/control_plane_signal_map.md#mech-004
   source:
     - docs/processed/legacy_tree/architecture/control_plane_signal_map.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: MECH-005
   claim_type: mechanism_hypothesis
   subject: control_plane.path_authority
@@ -682,6 +693,7 @@
   location: docs/architecture/language/emergence_and_bootstrapping.md#mech-010
   source:
     - docs/processed/legacy_tree/architecture/language/emergence_and_bootstrapping.md
+    - docs/thoughts/2026-02-09_language.md
 - id: MECH-011
   claim_type: mechanism_hypothesis
   subject: language.and_learning
@@ -911,6 +923,21 @@
   location: docs/architecture/sensory_stream_tags.md#arc-017
   source:
     - docs/thoughts/2026-02-08_sensory_stream_tags.md
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
+    - docs/thoughts/2026-02-09_empathy.md
+- id: ARC-018
+  claim_type: architectural_commitment
+  subject: hippocampus.rollout_viability_mapping
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - ARC-007
+    - ARC-003
+    - ARC-002
+    - ARC-001
+  location: docs/architecture/hippocampal_systems.md#arc-018
+  source:
+    - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: MECH-025
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
@@ -985,3 +1012,29 @@
   location: docs/architecture/sleep.md#mech-030
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+- id: MECH-031
+  claim_type: mechanism_hypothesis
+  subject: social.other_selflike_empathy_coupling
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-010
+    - ARC-005
+    - ARC-017
+    - ARC-015
+    - ARC-006
+    - INV-005
+  location: docs/architecture/social.md#mech-031
+  source:
+    - docs/thoughts/2026-02-09_empathy.md
+- id: MECH-032
+  claim_type: mechanism_hypothesis
+  subject: social.other_selflike_high_recall_bias
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-031
+    - ARC-010
+  location: docs/architecture/social.md#mech-032
+  source:
+    - docs/architecture/social.md

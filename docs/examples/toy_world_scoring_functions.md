@@ -27,8 +27,8 @@ Use a proxy for VFE (Variational Free Energy): prediction errors plus complexity
 
 Compute from predicted degradation:
 
-- `degrade_self` over rollout horizon
-- `degrade_other` over rollout horizon, weighted by coupling \(\kappa\)
+- `degrade_self` over hippocampal rollout horizon
+- `degrade_other` over hippocampal rollout horizon, weighted by coupling \(\kappa\)
 
 Optionally include counterfactual regret:
 

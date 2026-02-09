@@ -19,7 +19,7 @@ Define the environment as a partially observable process with:
   - **Damage / harm sensors** (integrity degradation signals).
   - **Homeostatic sensors** (viability-relevant signals, e.g., energy, temperature, resource levels, error load).
 - Actions \(a_t\): discrete or continuous control signals.
-- A time step \(\Delta t\) that is consistent across rollouts.
+- A time step \(\Delta t\) that is consistent across hippocampal rollouts.
 
 ## 2. Latent stack (L-space)
 
@@ -66,7 +66,7 @@ Where \(h\) denotes homeostatic variables.
 
 Current canonical framing: E3 does not require an explicit ethical cost term. Ethical consequence is encoded via residue, mirror modelling, control-plane gating, hippocampal systems, and commitment-gated learning (see `docs/architecture/e3.md`). The legacy formulation below is preserved for traceability and evaluation only.
 
-Legacy ethical cost is environment-specific but must be computable from rollout predictions.
+Legacy ethical cost is environment-specific but must be computable from hippocampal rollout predictions.
 
 Minimal requirement:
 
@@ -88,7 +88,7 @@ Moral continuity requires persistent residue.
   1) a **latent-space dent field** \(\phi(z)\) over visited latent regions, and
   2) optional **context-keyed** residue \(R(z_\theta)\) or \(R(z_\delta)\) for narrative/regime dependence.
 
-Define residue contribution to a rollout as:
+Define residue contribution to a hippocampal rollout as:
 
 \[
 \Phi_R(\zeta) = \sum_{t'=t}^{t+H} \phi(z(t'))

@@ -1,3 +1,19 @@
+# Thoughts: Starting With Sensory Streams
+
+Status: processed
+
+Processed in:
+- `docs/architecture/sensory_stream_tags.md` (ARC-017)
+- `docs/architecture/e3.md` (ARC-003)
+- `docs/architecture/hippocampal_systems.md` (ARC-007, ARC-018)
+- `docs/architecture/e2.md` (ARC-002)
+- `docs/architecture/control_plane.md` (ARC-005)
+- `docs/architecture/control_plane_signal_map.md` (MECH-004)
+- `docs/architecture/trajectory_selection.md` (IMPL-016)
+
+---
+
+Related claims: ARC-017, ARC-003, ARC-007, ARC-018, ARC-002, ARC-005, INV-012, INV-008
 
 1. Starting constraint: what must exist for any viable agent?
 
@@ -259,6 +275,14 @@ Hippocampus learns where imagination remains trustworthy after commitment.
 
 ⸻
 
+## Possible affected components
+
+- Sensory stream tagging and reward-readonly stance (ARC-017)
+- Trajectory selection and commitment (ARC-003)
+- Hippocampal rollouts and viability mapping (ARC-007)
+- Fast prediction and reafference comparison (ARC-002)
+- Control-plane rollout tuning (ARC-005)
+
 Why this is architecturally crucial
 
 1. It prevents “fantasy planning”
@@ -417,4 +441,3 @@ If you want to pin this as an architectural commitment in REE language, the shor
 
 E3 does not evaluate goodness; it evaluates the reliability of evaluation.
 It sets horizon/commitment and preserves intended-action traces for self-impact learning, while the control plane enforces veto/viability/valence pruning.
-
