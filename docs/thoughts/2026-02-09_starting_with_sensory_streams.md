@@ -170,3 +170,160 @@ When you’re ready, the next natural steps would be:
 	•	mapping cognitive modes (default mode network, vigilance, sleep) onto precision/routing,
 	•	or translating this into a minimal executable spec.
 
+
+⸻
+
+The missing hippocampal role (now explicit)
+
+We already had:
+	•	Hippocampus = constructor of counterfactual trajectories
+(“If I did X, then Y, then Z…”)
+
+You’ve now added:
+
+Hippocampus also maps viable paths through the world by learning from the divergence between committed action and predicted action outcomes.
+
+That is:
+hippocampus learns the topology of action-space under reality, not just imagined futures.
+
+This matters because it distinguishes:
+	•	imagined possibility
+	•	from learned viability under commitment
+
+⸻
+
+Two hippocampal functions (now properly separated)
+
+1. Counterfactual rollout (imagination)
+	•	Input:
+	•	Current latent state
+	•	Candidate ACTIONs
+	•	Constraints from E1
+	•	Precision bounds from E3
+	•	Output:
+	•	Branching trajectories τ₁, τ₂, …
+
+No learning happens here beyond reuse of structure.
+
+⸻
+
+2. Viability path mapping (commitment learning)
+	•	Triggered only after ACTION is actually taken
+	•	Uses:
+	•	Predicted SELF_SENSORY (from E2, pre-action)
+	•	Observed SELF_SENSORY (post-action)
+	•	Resulting WORLD / HOMEOSTASIS / HARM changes
+	•	Learns:
+	•	Which sequences of committed actions remain navigable
+	•	Where the agent becomes trapped, destabilised, or harmed
+	•	Where prediction remains reliable under execution
+
+This is not “reward learning”.
+It is learned affordance geometry under commitment.
+
+⸻
+
+Where this sits in the engine loop
+
+Let’s restate the full loop with this locked in.
+
+Before action
+	1.	E1 supplies deep constraints (what usually holds)
+	2.	E2 supplies fast forward models (what will likely happen immediately)
+	3.	Hippocampus constructs counterfactual trajectories
+	4.	E3 selects an ACTION under:
+	•	HARM veto
+	•	HOMEOSTASIS constraints
+	•	SELF_IMPACT structural cost
+	•	VALENCE ranking
+
+⸻
+
+After action (this is the key addition)
+	5.	ACTION is executed
+	6.	E2 computes prediction error (SELF_SENSORY mismatch)
+	7.	That error is:
+	•	not just used for correction
+	•	but routed to hippocampus
+	8.	Hippocampus updates its viability graph:
+	•	This action-from-this-state is:
+	•	stable
+	•	fragile
+	•	misleading
+	•	irreversible
+	•	or path-closing
+
+In other words:
+
+Hippocampus learns where imagination remains trustworthy after commitment.
+
+⸻
+
+Why this is architecturally crucial
+
+1. It prevents “fantasy planning”
+
+A system that only imagines but never updates path viability will repeatedly plan futures it cannot actually traverse.
+
+This is exactly what breaks in:
+	•	mania
+	•	obsessional planning
+	•	some forms of delusion
+
+Your addition fixes that structurally, not diagnostically.
+
+⸻
+
+2. It grounds ethics in experienced constraint
+
+Because:
+	•	SELF_IMPACT error feeds hippocampal path learning
+	•	actions that externalise harm or destabilise control
+→ become path-closing in the learned topology
+
+So the system doesn’t just “know” something is bad —
+it learns that certain futures are no longer reachable without damage.
+
+That’s moral residue, but implemented as geometry.
+
+⸻
+
+3. It explains why commitment matters
+
+Uncommitted rollouts are cheap and plentiful.
+Committed actions are expensive and shape the map.
+
+This makes:
+	•	hesitation
+	•	caution
+	•	regret
+	•	learning from mistakes
+
+all natural consequences of the architecture.
+
+⸻
+
+Clean updated statement of hippocampus in REE
+
+The hippocampal system in REE serves two roles:
+	1.	Trajectory construction: generating counterfactual futures under constraint.
+	2.	Viability mapping: learning which paths through action-space remain navigable after commitment, using predicted vs observed action outcome divergence.
+
+Neither role selects.
+Neither role optimises.
+Both roles constrain what can sensibly be selected in the future.
+
+⸻
+
+Final integrated insight (one sentence)
+
+Imagination proposes futures; commitment teaches which futures remain reachable — and hippocampus is where that difference is learned.
+
+That’s a very strong, very clean place to be.
+
+If you want, next we can:
+	•	formalise the “viability graph” representation,
+	•	show how regret and caution fall out without being emotions,
+	•	or map specific psychiatric failure modes onto breaks in this post-commitment hippocampal update.
+
+
