@@ -326,4 +326,95 @@ If you want, next we can:
 	•	show how regret and caution fall out without being emotions,
 	•	or map specific psychiatric failure modes onto breaks in this post-commitment hippocampal update.
 
+so if the control plane really has the knobs we’ve implied, then it has enough authority to do: harm veto, viability respect, and vector-valued valence pruning. In that case E3 collapses into something much closer to an arbitrator of horizon + commitment, rather than a “planner.”
+
+Here’s the clean way to state it.
+
+Control plane must have these knobs
+
+To do what you describe, the control plane needs to be able to:
+	1.	Set veto thresholds and interrupt priority
+
+Hard/soft gating over HARM (and some HOMEOSTASIS “slow veto” cases)
+	•	Pre-emption: “stop rollout / stop action / freeze / escape”
+
+	2.	Impose viability constraints as constraints, not preferences
+
+	•	HOMEOSTASIS bounds (drift tolerances, recovery requirements)
+	•	Action feasibility constraints (don’t choose trajectories that require impossible precision)
+
+	3.	Route and weight prediction errors via precision
+
+	•	Per-stream PRECISION gains (learning rate, attention)
+	•	Arbitration between E1 vs E2 trust
+
+	4.	Constrain hippocampal rollout generation
+
+	•	How many branches (breadth)
+	•	How far ahead (depth / horizon)
+	•	Which action-primitives are permitted as seeds
+	•	Whether to allow “fantasy” vs “tight realism” modes
+
+	5.	Apply vector-valued valence filters
+
+	•	Not “maximise a scalar”
+	•	But prune futures that are dominated in the viability-vector sense
+(e.g., higher harm risk + worse homeostasis + worse coherence)
+
+If those knobs exist, then yes: the control plane can implement the ethical pruning before anything becomes an executable commitment.
+
+Then what is E3?
+
+Under your framing, E3 becomes essentially three tightly related functions:
+
+1) Horizon management
+
+E3 asks: “How far ahead is the imagined future trustworthy enough to use?”
+
+That’s a function of:
+	•	current PRECISION
+	•	recent SELF_IMPACT mismatch
+	•	current HARM urgency
+	•	TEMPORAL_COHERENCE stability
+	•	hippocampal viability-map confidence (post-commitment learning)
+
+So E3 is selecting an effective planning horizon, not constructing plans.
+
+2) Commitment selection
+
+Given pruned, admissible candidate trajectories, E3 chooses:
+	•	the next committed ACTION (or macro-action)
+	•	and how long that commitment is held before reconsideration
+
+This is “commitment policy,” not “goal policy.”
+
+3) Efference copy / held-intent for learning
+
+E3 must “hold what it chose” so the rest of the system can learn responsibility:
+	•	store the committed action identity
+	•	store the predicted SELF_SENSORY consequences (from E2)
+	•	store the expected trajectory envelope (from hippocampus, bounded horizon)
+	•	then compare to observed outcomes to generate SELF_IMPACT and update the hippocampal viability map
+
+So yes: E3 becomes the keeper of commitments so that error-stream learning is well-posed.
+
+A compact way to say the architecture now
+	•	Hippocampus: generates candidate futures + updates viability maps after commitment.
+	•	Control plane: sets gains/thresholds/routing + prunes candidates using vetoes, constraints, and vector-valence dominance.
+	•	E3: chooses (i) horizon, (ii) commitment, (iii) maintains “what I meant to do” so self-impact learning can occur.
+
+That’s coherent and minimalist.
+
+The one crucial caveat
+
+For the claim “all that is left for E3…” to be strictly true, the control plane must be allowed to prune before selection (not merely to penalise after). If pruning is only post-hoc, you get classic failure modes (the system still chooses harm-seeking actions and merely “regrets” them).
+
+If pruning is pre-selective, then E3 can indeed be mostly horizon + commitment + efference copy.
+
+⸻
+
+If you want to pin this as an architectural commitment in REE language, the shortest version is:
+
+E3 does not evaluate goodness; it evaluates the reliability of evaluation.
+It sets horizon/commitment and preserves intended-action traces for self-impact learning, while the control plane enforces veto/viability/valence pruning.
 
