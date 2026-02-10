@@ -14,6 +14,11 @@
 The control plane in the Reflective Ethical Engine (REE) governs **how the system operates**, not *what it represents*.
 It modulates precision, gain, exploration, replay, and commitment thresholds across the architecture.
 
+**Subsystem abstract (core claims):** ARC‑005 is the control-plane commitment itself, and MECH‑019/MECH‑039/MECH‑040
+specify how modes emerge from channel space and how safety baseline vs volatility shapes arousal/readiness. MECH‑005
+grounds fast interruptibility, and MECH‑002 anchors precision‑control analogues. Supporting mechanisms include MECH‑001,
+MECH‑003, MECH‑004, MECH‑006, MECH‑007, and MECH‑008.
+
 The control plane does **not**:
 - overwrite representational content,
 - select actions directly, or
@@ -71,7 +76,7 @@ There is no single global arousal or confidence variable; tuning is depth- and m
 
 \[
 \theta_{\text{tune}} = \{
-\alpha_S,\; g_S,\; \alpha_A,\; \kappa_{\text{commit}},\; \tau_{E2},\; H,\; N,\; \eta_{E1},\; \eta_{E2},\; g_{\text{replay}},\; b_{\text{completion}},\; m
+\alpha_S,\; g_S,\; \alpha_A,\; \kappa_{\text{commit}},\; \tau_{E2},\; H,\; N,\; \eta_{E1},\; \eta_{E2},\; g_{\text{replay}},\; b_{\text{completion}},\; m,\; a_{\text{base}},\; a_{\Delta},\; r_{\text{ready}},\; v_{\text{veto}}
 \}
 \]
 
@@ -87,6 +92,10 @@ Where (illustrative, not exhaustive):
 - \(g_{\text{replay}}\): replay rate (hippocampal braid)
 - \(b_{\text{completion}}\): pattern-completion bias
 - \(m\): operating mode flag
+- \(a_{\text{base}}\): arousal baseline (tonic availability)
+- \(a_{\Delta}\): arousal volatility sensitivity (phasic change tracking)
+- \(r_{\text{ready}}\): action readiness / motor gating bias
+- \(v_{\text{veto}}\): hard interrupt threshold
 
 The control plane updates \(\theta_{\text{tune}}\) continuously based on context, urgency, residue curvature, and predicted risk or harm.
 
@@ -98,6 +107,44 @@ Optional social coupling parameters (multi-agent):
 - `g_social`: social attention gain for `OTHER_SELFLIKE` agents.
 - `alpha_other`: precision assigned to inferred other-states.
 - `v_other_veto`: whether other-harm can veto vs only affect ranking.
+
+---
+
+<a id="mech-039"></a>
+## Channels vs Modes (MECH-039)
+
+The control plane exposes **continuous control channels**. Modes are **stable regions in that channel space**, not
+additional modules. Switching is a trajectory through channel space, sometimes forced by a high‑priority interrupt.
+
+Examples of channels:
+- Arousal baseline and volatility sensitivity
+- Action readiness / motor gating bias
+- Precision and gain routing
+- Commitment threshold and interruptibility
+- Replay/learning scheduling
+- Hard veto / interrupt threshold
+
+Examples of modes:
+- Task‑engaged (high readiness, elevated sensory precision)
+- Default‑Mode‑like (low readiness, high replay, low sensory precision)
+- Emergency (high arousal, high readiness, high veto)
+
+Hard veto is a **fast interrupt channel**, not a mode. It can force a transition even when the rest of the control
+state still reflects a prior regime.
+
+---
+
+<a id="mech-040"></a>
+## Safety Baseline vs Volatility (MECH-040)
+
+Safety assessment is split into two control channels:
+- **Baseline safety** (tonic): whether core viability remains within bounds.
+- **Safety volatility** (phasic): how rapidly safety is changing.
+
+Arousal should rise when baseline safety is low **or** volatility is high. Action readiness then depends on arousal
+*and* predicted action value, while veto triggers when harm predictions cross a catastrophic threshold.
+
+This keeps a stable safe state calm, but still reacts to sudden drops in safety or abrupt hazard signals.
 
 ---
 
@@ -115,6 +162,7 @@ E3 therefore acts as the *epistemic liability gate* of the system: it decides wh
 ## Operating modes
 
 The control plane supports distinct operating regimes through coordinated tuning of parameters.
+Modes are labels over stable regions of the control‑channel landscape, not additional control modules.
 
 ### Task-engaged mode
 - High sensory precision and gain
@@ -154,6 +202,33 @@ In REE, these are treated as **functional control channels**, not biological cla
 - Histamine-like: global availability and throughput (arousal)
 
 These channels alter *how cognition runs*, not *what it represents*.
+
+### Emotion as composite control regime (clarification)
+
+“Emotion” in REE is not a primitive signal. It is a **phenomenological label** for a **composite control‑plane regime**
+assembled from multiple channels (arousal baseline/volatility, readiness, veto thresholds, precision/gain, valence
+weighting, and social coupling). Universal‑looking expressions likely reflect **stable, reusable channel configurations**
+rather than single‑axis signals. Specific mappings (e.g., particular expressions ↔ specific neuromodulator levels) should
+be treated as hypotheses and constrained by evidence, not as architectural primitives (see `serotonin.md`).
+
+---
+
+<a id="mech-042"></a>
+## Telemetry Exposure Channels (MECH-042)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Low‑bandwidth exposure of internal control state for diagnostics and early training  
+**Depends On:** ARC-005, MECH-039, MECH-040  
+**Status:** candidate  
+**Claim ID:** MECH-042
+
+REE should expose **diagnostic telemetry channels** that report internal control‑plane state (precision profile,
+arousal baseline/volatility, readiness, veto thresholds, mode regime). These channels are read‑only and do not
+participate in selection. They exist to support early training, calibration, and safety diagnostics without
+introducing new decision pathways or symbolic overrides.
+
+This supports **developmental safety**: problems can be detected, addressed, and later reflected upon without
+requiring severe destabilization or trauma to surface the underlying issue.
 
 ---
 
@@ -201,7 +276,11 @@ It provides the mechanism by which the Self:
 
 ## Open Questions
 
-None noted in preserved sources.
+<a id="q-007"></a>
+**Q-007 — Universal emotion/expression ↔ control‑channel mapping**  
+Do universal‑looking expressions (e.g., victory/pride displays) correspond to **stable multi‑channel control regimes**
+in REE, and if so which combinations of arousal, readiness, precision, valence, and social coupling best align with
+observed universals? This remains an evidence‑constrained hypothesis, not an architectural primitive.
 
 ## Related Claims (IDs)
 
@@ -213,6 +292,10 @@ None noted in preserved sources.
 - INV-014
 - MECH-001
 - MECH-019
+- MECH-039
+- MECH-040
+- MECH-042
+- Q-007
 
 ## References / Source Fragments
 

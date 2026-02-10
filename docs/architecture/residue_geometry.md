@@ -11,6 +11,41 @@
 
 Residue is stored as persistent curvature over latent space.
 
+Clarification: residue is **not** generic reward learning. It is the durable imprint of post‑commitment consequences
+(harm, benefit, viability, coherence) that bends future trajectory selection without collapsing into a scalar objective.
+Viability mapping tracks which paths are stable or fragile; residue encodes what those paths *mean* ethically.
+
+**Subsystem abstract (core claims):** ARC‑013 defines residue as persistent ethical curvature, while MECH‑034 distinguishes
+curvature updates from viability mapping. Supporting context includes ARC‑018 (viability mapping), ARC‑007 (path memory),
+ARC‑004 (L‑space), and INV‑004/INV‑006 (residue persistence constraints).
+
+### Residue integration (neuro‑anchored functional analog)
+
+Residue integration can be treated as a **two‑rate consolidation pipeline**:
+
+1. **Online (awake) imprinting**  
+   - After commitment, consequences update local curvature \(\phi(z)\) cautiously.  
+   - E2 affordances and E1 priors receive small, precision‑weighted shifts.  
+   - Hippocampus logs the path and viability signals.
+
+2. **Offline (sleep) consolidation**  
+   - Hippocampal replay selects and re‑encodes trajectories (P1, P16, P37).  
+   - Slow cortical consolidation reshapes longer‑horizon priors (P38).  
+   - Affective weighting biases which traces consolidate without turning residue into reward (P39).  
+
+This keeps residue **structural** and path‑dependent while allowing slow, system‑level learning that does not override
+sensory corrigibility. These anchors are functional, not anatomical, and are meant to guide implementation choices
+about scheduling, replay bias, and consolidation depth (see `docs/notes/evidence_map.md`).
+
+### Implementation hints (non‑binding)
+
+- Maintain a **replay scheduler** that can bias which trajectories are re‑encoded (e.g., high residue curvature, high
+  uncertainty, or recent commitment).  
+- Maintain a **consolidation queue** with two phases: fast local updates (awake) and slow structural updates (sleep).  
+- Keep **residue updates separate from reward**: store curvature deltas and apply them to selection bias, not as a scalar
+  objective.  
+- Allow **affective weighting** to influence replay priority, not to overwrite curvature directly.
+
 ## Minimal representation
 
 - Maintain a function \(\phi(z)\) over latent space (implemented as a small neural network, radial basis functions, or a k-nearest neighbors map).
@@ -29,6 +64,10 @@ Post-commitment viability mapping updates a navigability surface using predicted
 resulting WORLD/HOMEOSTASIS/HARM shifts, marking paths as stable, fragile, or path-closing. Residue updates, by
 contrast, adjust ethical curvature \(\phi(z)\) based on harm or violation outcomes. Both are post-action signals,
 but they encode different information: path stability vs ethical cost.
+
+Residue also drives **longer‑horizon training pressure** in E1/E2: slow shifts in priors and fast affordance pruning
+should reflect accumulated ethical curvature, while hippocampal viability mapping remains a feasibility filter rather
+than a value signal. Online updates can be conservative; deeper integration occurs during offline/sleep consolidation.
 
 ## Why geometry
 
@@ -62,6 +101,12 @@ These stored paths provide:
 
 Replay samples alternative traversals over a fixed residue field, supporting reflection,
 regret, and character formation while preserving the path‑dependence of ethical cost.
+
+Residue integration is therefore a two‑rate process:
+- **Awake/online:** local, cautious adjustments tied to committed outcomes.
+- **Offline/sleep:** deeper consolidation that reshapes long‑horizon priors without sensory override.
+
+This preserves immediate corrigibility while letting ethical curvature accumulate structurally.
 
 ---
 

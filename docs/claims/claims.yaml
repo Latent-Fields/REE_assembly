@@ -831,7 +831,7 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.mode_shaping
   polarity: asserts
-  status: candidate
+  status: provisional
   depends_on:
     - ARC-005
   location: docs/architecture/control_plane.md#mech-019
@@ -900,6 +900,18 @@
   location: docs/architecture/agency_responsibility_flow.md#q-006
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+- id: Q-007
+  claim_type: open_question
+  subject: emotion.universal_expression_channel_mapping
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-005
+    - MECH-039
+    - MECH-040
+  location: docs/architecture/control_plane.md#q-007
+  source:
+    - docs/architecture/control_plane.md
 - id: ARC-016
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
@@ -1115,3 +1127,52 @@
   location: docs/architecture/arcuate_fasciculus.md#mech-038
   source:
     - docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md
+- id: MECH-039
+  claim_type: mechanism_hypothesis
+  subject: control_plane.channel_mode_landscape
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-016
+    - MECH-019
+  location: docs/architecture/control_plane.md#mech-039
+  source:
+    - docs/architecture/control_plane.md
+- id: MECH-040
+  claim_type: mechanism_hypothesis
+  subject: control_plane.safety_baseline_volatility
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-005
+    - MECH-019
+  location: docs/architecture/control_plane.md#mech-040
+  source:
+    - docs/architecture/control_plane.md
+- id: MECH-041
+  claim_type: mechanism_hypothesis
+  subject: social.affective_expression_mode_broadcast
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-010
+    - ARC-005
+    - ARC-016
+    - MECH-039
+  location: docs/architecture/social.md#mech-041
+  source:
+    - docs/thoughts/2026-02-10_affective_expression_mode_broadcast.md
+- id: MECH-042
+  claim_type: mechanism_hypothesis
+  subject: control_plane.telemetry_exposure_channels
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-039
+    - MECH-040
+  location: docs/architecture/control_plane.md#mech-042
+  source:
+    - docs/thoughts/2026-02-10_control_plane_telemetry.md

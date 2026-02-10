@@ -7,6 +7,45 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-10: Control-Plane Channel Clarification
+
+### Overview
+
+Clarified control-plane channels vs modes, separated safety baseline from volatility, and updated evidence anchors.
+
+### What Changed
+
+- Added control-plane channel vs mode framing and safety baseline/volatility split in `docs/architecture/control_plane.md`.
+- Threaded baseline/volatility channels into `docs/architecture/control_plane_signal_map.md`.
+- Added a functional brainstem‑to‑control‑plane mapping table in `docs/architecture/control_plane_signal_map.md`.
+- Added channel‑space note to `docs/architecture/modes_of_cognition.md`.
+- Added MECH-039 and MECH-040 to the claim registry and index.
+- Expanded PAG evidence to include columnar defensive repertoires and flagged P28 as a safety extension in `docs/notes/evidence_map.md`.
+- Expanded evidence‑map implications for basal ganglia gating, hyperdirect stopping, LC‑NE baseline/volatility, PPN readiness, ARAS distribution, DRN arousal gating, and PAG defensive repertoires in `docs/notes/evidence_map.md`.
+- Added a control‑plane evidence summary to `docs/notes/evidence_map.md`.
+- Added a control‑plane synthesis pass entry in `docs/notes/synthesis_passes.md` and promoted MECH‑019 to provisional.
+- Added a hippocampal systems synthesis pass entry and subsystem abstract in `docs/architecture/hippocampal_systems.md`.
+- Added a modes of cognition synthesis pass entry and subsystem abstract in `docs/architecture/modes_of_cognition.md`.
+- Added an E‑stack synthesis pass entry and subsystem abstracts for `docs/architecture/e1.md`, `docs/architecture/e2.md`, and `docs/architecture/e3.md`.
+- Added an L‑space synthesis pass entry and subsystem abstract in `docs/architecture/l_space.md`.
+- Added oscillation/coupling evidence anchors (P30–P36) to `docs/notes/evidence_map.md` for L‑space depth coordination and EEG caveats.
+- Abstracted oscillatory evidence implications in `docs/architecture/l_space.md` to keep coordination non‑anatomical.
+- Clarified residue vs viability mapping and online vs offline residue integration in `docs/architecture/residue_geometry.md`.
+- Added residue cross‑links in `docs/architecture/sleep.md` and `docs/architecture/hippocampal_systems.md`.
+- Added residue integration anchors (P37–P39) in `docs/notes/evidence_map.md` and a neuro‑anchored consolidation note in `docs/architecture/residue_geometry.md`.
+- Added implementation hint block for residue integration in `docs/architecture/residue_geometry.md`.
+- Added a clarification block in `docs/architecture/control_plane.md` defining emotion as a composite control‑plane regime.
+- Added open question Q‑007 on universal expression ↔ control‑channel mapping in `docs/architecture/control_plane.md` and `docs/claims/claims.yaml`.
+- Added MECH‑041 (affective expression as mode broadcast) in `docs/architecture/social.md` and recorded thought intake in `docs/thoughts/2026-02-10_affective_expression_mode_broadcast.md`.
+- Added cranial‑nerve / brainstem evidence anchors (P40–P43) to `docs/notes/evidence_map.md` and linked them from `docs/architecture/social.md`.
+- Added an evidence summary and safety‑function note for MECH‑041 in `docs/architecture/social.md`.
+- Added MECH‑042 (control‑plane telemetry exposure) in `docs/architecture/control_plane.md` and recorded thought intake in `docs/thoughts/2026-02-10_control_plane_telemetry.md`.
+- Expanded MECH‑042 with a developmental safety rationale (diagnostics without trauma).
+- Expanded telemetry thought intake with preverbal development rationale in `docs/thoughts/2026-02-10_control_plane_telemetry.md`.
+- Added a social subsystem synthesis pass entry and subsystem abstract in `docs/architecture/social.md`.
+- Added an offline integration synthesis pass entry and subsystem abstract in `docs/architecture/sleep.md`.
+- Added subsystem abstracts and synthesis pass entries for residue geometry, default mode, and agency/responsibility flow.
+
 ## 2026-02-09: Subsystem Map and Rollout Wording Alignment
 
 ### Overview
@@ -92,6 +131,20 @@ Added an arcuate-fasciculus functional analog to capture dorsal sequence→motor
 - Updated `docs/architecture/language/emergence_and_bootstrapping.md` with a dual-stream nudge.
 - Updated `docs/claims/claim_index.md` and `docs/claims/subsystem_map.yaml`.
 - Added evidence-map anchors for arcuate fasciculus and dual-stream language pathways in `docs/notes/evidence_map.md`.
+
+## 2026-02-09: Evidence Map Expansion (Deep Search)
+
+### Overview
+
+Expanded the evidence map with additional neuroscience and psychiatry anchors to guide REE refinement.
+
+### What Changed
+
+- Added sections P14–P23 to `docs/notes/evidence_map.md` (hippocampal replay dynamics, basal ganglia gating, stop-signal
+  hyperdirect pathway, LC‑NE adaptive gain, precision‑weighting in psychosis, efference copy for inner speech, and DMN
+  autobiographical memory).
+- Added sections P24–P29 (PPN brainstem hub, STN interrupt, ARAS arousal pathways, dorsal raphe arousal, PAG defensive
+  control, and basal ganglia pathway dynamics).
 
 ## 2026-02-09: Evidence Map — Neuroscience Anchors
 

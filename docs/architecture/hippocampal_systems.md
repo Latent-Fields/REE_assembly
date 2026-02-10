@@ -18,6 +18,11 @@ It does not compute value, select actions, overwrite perception, or flatten or o
 Its function is orthogonal to valuation and control.
 It exists to preserve identity, continuity, and reflectability over time.
 
+**Subsystem abstract (core claims):** ARC‑007 anchors path memory and replay, ARC‑018 makes the hippocampus the sole
+explicit rollout and viability‑mapping engine, MECH‑022 defines hippocampal hypothesis injection and control‑plane
+gating, and MECH‑033 specifies the E2‑kernel → hippocampal rollout interface. Supporting context includes ARC‑003
+(commitment), ARC‑004 (L‑space), INV‑006 (residue persistence), and MECH‑037 (provenance gating).
+
 ---
 
 <a id="arc-018"></a>
@@ -165,6 +170,7 @@ Key properties:
 - Replay does not erase or flatten \(\phi(z)\).
 - Replay does not directly change policy.
 - Replay explores counterfactual paths, not counterfactual values.
+- Residue integration and curvature updates occur separately (see `residue_geometry.md` and `sleep.md`).
 
 This supports reflection, regret, narrative integration, and character formation without collapsing ethical cost into
 optimisation. Replay is exploratory, not corrective.

@@ -21,6 +21,12 @@ Sleep is not optional at the architectural level. It is required to:
 - Integrate and contextualise moral residue
 - Recalibrate precision and reopen option space
 - Improve the fidelity of the world model
+See `residue_geometry.md` for the distinction between residue curvature and viability mapping, and how deeper residue
+integration is expected to occur offline.
+
+**Subsystem abstract (core claims):** ARC‑011 defines offline integration as required; MECH‑030 specifies sleep as a
+family of control regimes for consolidation. Supporting context includes ARC‑007 (hippocampal replay), ARC‑005
+(control plane), ARC‑013 (residue geometry), INV‑010 (offline integration), and INV‑006 (residue persistence).
 
 Implementations MAY differ.
 The interfaces defined here MUST exist.
@@ -93,6 +99,7 @@ None noted in preserved sources.
 - ARC-011
 - ARC-007
 - ARC-005
+- ARC-013
 - INV-010
 - INV-006
 - MECH-030

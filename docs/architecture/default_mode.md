@@ -25,6 +25,11 @@ It is a necessary mode for any system that:
 	•	supports replay and recombination
 	•	distinguishes imagination from action
 
+**Subsystem abstract (core claims):** ARC‑014 defines Default Mode as a non‑commitment operating regime, and MECH‑029
+specifies reflective replay and ethical simulation within that regime. Supporting context includes ARC‑005 (control plane),
+ARC‑003 (commitment gating), ARC‑007 (hippocampal replay), ARC‑013 (residue geometry), ARC‑004 (L‑space), and INV‑011
+(imagination without belief update).
+
 ⸻
 
 Architectural necessity

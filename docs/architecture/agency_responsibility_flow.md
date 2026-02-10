@@ -15,6 +15,11 @@ Source: `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 
 REE must support self-impact attribution: the ability to model which parts of incoming data were caused by the agent’s own outputs (efference copy / reafference), and to route that attribution into control-plane learning.
 
+**Subsystem abstract (core claims):** ARC‑015 anchors agency/responsibility flow, while MECH‑023 and MECH‑024 frame
+responsibility as path‑dependent geometry and the convergence of selfhood/personality/ethics. Supporting context includes
+INV‑018 (agency required), INV‑012 (commitment gates responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004
+(L‑space), ARC‑013 (residue geometry), ARC‑007 (hippocampal systems), and Q‑006 (developmental ethics).
+
 Without it:
 - the system can still predict,
 - it can even act,

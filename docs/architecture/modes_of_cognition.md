@@ -12,6 +12,11 @@
 The system should not be understood as running a single mode of cognition. Instead, different cognitive modes emerge from distinct control-plane regimes applied to the same underlying predictive machinery.
 
 These modes are not modules. They are patterns of tuning: changes in gain, horizon, suppression, learning eligibility, and hippocampal gating.
+Modes are labels over stable regions of control-channel space (arousal baseline/volatility, readiness, veto, precision/gain), not separate control units.
+
+**Subsystem abstract (core claims):** ARC‑016 establishes modes as control‑plane regimes, while MECH‑025 through MECH‑028
+define the action, vigilance, pathological, and ethical implications of those regimes. Supporting context includes ARC‑005
+(control plane), ARC‑015 (responsibility flow), INV‑012 (commitment gates responsibility), and MECH‑019/MECH‑020.
 
 This reframing clarified the architecture significantly.
 

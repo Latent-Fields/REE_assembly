@@ -23,6 +23,10 @@ Social cognition in REE is grounded in:
 It precedes language and enables empathy, coordination,
 and ethical generalisation without symbolic rules.
 
+**Subsystem abstract (core claims):** ARC‑010 anchors mirror modelling and coupling. MECH‑031 and MECH‑036 define
+fast empathy routing and veto thresholds, and MECH‑041 adds affective expression as a mode‑broadcast channel for
+social prediction load reduction. Supporting context includes MECH‑032 (high‑recall OTHER_SELFLIKE) and ARC‑009/ARC‑006.
+
 Source: `docs/processed/legacy_tree/architecture/social/README.md`
 
 ---
@@ -166,6 +170,37 @@ coupling parameters (`lambda_empathy`, `v_other_veto`) set and adapt this thresh
 
 ---
 
+<a id="mech-041"></a>
+## Affective Expression as Mode Broadcast (MECH-041)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Pre‑verbal affective displays as control‑plane regime signals for social prediction load reduction  
+**Depends On:** ARC-010, ARC-005, ARC-016, MECH-039  
+**Status:** candidate  
+**Claim ID:** MECH-041
+
+Affective expression can be treated as a **low‑latency broadcast** of control‑plane regime to other agents.
+Rather than encoding rich propositional content, these displays expose coarse **mode‑level state** (arousal, readiness,
+valence bias, veto sensitivity), allowing social partners to reduce predictive load and coordination cost before language.
+
+Neuroanatomical observations (e.g., cranial‑nerve afferent/efferent loops with brainstem proximity) suggest that
+fast, embodied signaling channels could exist, but REE treats this as a functional design hypothesis rather than an
+anatomical requirement.
+
+Evidence anchors: see P40–P43 in `docs/notes/evidence_map.md`.
+
+**Evidence summary:** Facial motor control (CN VII), facial afferent processing (CN V), and the clinical dissociation
+between emotional vs volitional facial pathways collectively support a **fast, embodied expression channel** that is
+partly separable from deliberative control (P40–P43). This is consistent with a low‑latency broadcast of control‑plane
+regime to social partners without invoking propositional content.
+
+**Safety note (functional):** Affective expression can also be treated as a **safety mechanism**: it exposes deep control
+states that should not be hidden, and extreme expression can modulate behavior by **reducing exploration** (e.g., sensory
+interference) or **triggering assistance** (e.g., distress calls). These are treated as functional hypotheses, not
+anatomical claims.
+
+---
+
 ## Fast Empathy via Shadow Bundles
 
 When `OTHER_SELFLIKE` is high, REE can instantiate a shadow bundle of inferred streams for an agent `j`:
@@ -199,6 +234,7 @@ None noted in preserved sources.
 - MECH-031
 - MECH-032
 - MECH-036
+- MECH-041
 
 ## References / Source Fragments
 

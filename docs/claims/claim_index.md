@@ -96,6 +96,10 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-036](../architecture/social.md#mech-036) Other-harm triggers veto only under high-certainty catastrophic outcomes.
 - [MECH-037](../architecture/papez_circuit.md#mech-037) Papez-like loop provides provenance gating / reality filtering.
 - [MECH-038](../architecture/arcuate_fasciculus.md#mech-038) Arcuate-like sequence-to-motor channel nudges language emergence.
+- [MECH-039](../architecture/control_plane.md#mech-039) Modes are stable regions in control-channel space, not separate modules.
+- [MECH-040](../architecture/control_plane.md#mech-040) Safety baseline and volatility are distinct control channels for arousal/readiness.
+- [MECH-041](../architecture/social.md#mech-041) Affective expression broadcasts control‑plane regime to reduce social prediction load.
+- [MECH-042](../architecture/control_plane.md#mech-042) Telemetry exposure channels report internal control‑plane state for diagnostics.
 
 ---
 
@@ -107,6 +111,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-004](../architecture/astrocyte_regulatory_stack.md#q-004) How to calibrate tau_R relative to E1/E2?
 - [Q-005](../architecture/astrocyte_regulatory_stack.md#q-005) Can sleep anneal or reset R(x,t)?
 - [Q-006](../architecture/agency_responsibility_flow.md#q-006) Is ethics developmental rather than additive?
+- [Q-007](../architecture/control_plane.md#q-007) Do universal expressions map to stable control‑channel regimes?
 
 ---
 
