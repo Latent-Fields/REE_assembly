@@ -20,3 +20,5 @@ This repo is documentation‑only. It is designed to:
 - and surface conflicts explicitly rather than resolving them silently.
 
 For the full workflow and required prompts, see `docs/README.md`.
+
+License: Apache License 2.0
