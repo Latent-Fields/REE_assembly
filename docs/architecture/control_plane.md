@@ -2,7 +2,7 @@
 
 **Claim Type:** architectural_commitment  
 **Scope:** Precision routing, gain modulation, operating modes, and commitment gating  
-**Depends On:** INV-008 (precision is routed and depth-specific), INV-009 (attention via precision modulation), INV-014 (separation of representation and regulation), [L-space](l_space.md), [E3](e3.md)  
+**Depends On:** INV-008 (precision is routed and depth-specific), INV-009 (attention via precision modulation), INV-014 (separation of representation and regulation), [L-space](l_space.md)  
 **Status:** stable  
 **Claim ID:** ARC-005
 <a id="arc-005"></a>
@@ -156,6 +156,9 @@ E3 instantiates the **decision logic** of the control plane.
 - The **control plane** determines whether commitment is permitted, deferred, or suppressed, and how strongly prediction errors should influence learning.
 
 E3 therefore acts as the *epistemic liability gate* of the system: it decides when outcomes become attributable and belief-updating.
+
+Note: E3 depends on control‑plane state, but the control plane does not depend on E3 for its definition. This preserves
+the directional dependency while avoiding architectural cycles.
 
 ---
 

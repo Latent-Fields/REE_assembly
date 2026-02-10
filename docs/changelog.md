@@ -45,6 +45,8 @@ Clarified control-plane channels vs modes, separated safety baseline from volati
 - Added a social subsystem synthesis pass entry and subsystem abstract in `docs/architecture/social.md`.
 - Added an offline integration synthesis pass entry and subsystem abstract in `docs/architecture/sleep.md`.
 - Added subsystem abstracts and synthesis pass entries for residue geometry, default mode, and agency/responsibility flow.
+- Removed ARC‑003 as a dependency of ARC‑005 to break the E‑stack/control‑plane cycle.
+- Clarified the non‑cyclic relationship between control plane and E3 in `docs/architecture/control_plane.md`.
 
 ## 2026-02-09: Subsystem Map and Rollout Wording Alignment
 
