@@ -84,6 +84,39 @@ They alter:
 - How emotion and value predictions bias trajectory selection,
 - And whether experience feels continuous, urgent, fragmented, or unreal.
 
+---
+
+## Signed Harm/Benefit PE Precision (Implementation Sketch)
+
+This section operationalizes **MECH‑054** (see `control_plane.md`) in precision‑control terms.
+It treats harm‑related and benefit‑related prediction errors as **distinct channels** with separate precision weights.
+
+Let:
+- \(e_H\) = harm‑related prediction error (from `HARM` / `HOMEOSTASIS` streams),
+- \(e_B\) = benefit‑related prediction error (from `VALENCE` / reward‑proxy streams),
+- \(\pi_H, \pi_B\) = precision weights for harm vs benefit channels.
+
+Local updates (illustrative):
+
+\[
+\pi_H(t+1) = (1-\alpha_H)\pi_H(t) + \alpha_H f(|e_H(t)|, context)
+\]
+\[
+\pi_B(t+1) = (1-\alpha_B)\pi_B(t) + \alpha_B f(|e_B(t)|, context)
+\]
+
+Where \(f\) is bounded and saturating, and \(\alpha_H, \alpha_B\) may differ by mode.
+
+Usage:
+- **Learning:** \( \Delta z \propto \pi_H e_H + \pi_B e_B \) (applied per channel, not collapsed into a scalar).
+- **Commitment gating:** if \( \pi_H |e_H| \) exceeds a threshold, feed the aversive gate (MECH‑053) to suppress or
+  delay commitment.
+- **Unsigned precision:** dopamine‑like gain (MECH‑043) can scale the *overall* learning rate, while signed precision
+  determines **which** errors dominate.
+
+This keeps **hedonic tone** (μ/κ overlays), **valence vectors** (MECH‑035), and **signed PE precision** conceptually
+distinct. See MECH‑055 in `control_plane.md` for the separation rule.
+
 ## Astrocyte-aware regulatory stack
 
 **Note:** The above framing treats monoamines as direct control knobs. A more neuroscience-informed perspective reinterprets monoamines as **broadcast meta-regulatory signals** that bias a slower astrocytic regulatory substrate, which then modulates precision/gain/plasticity with spatial and temporal lags.
@@ -105,7 +138,11 @@ None noted in preserved sources.
 
 - MECH-002
 - MECH-043
+- MECH-054
+- MECH-035
+- MECH-055
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/architecture/precision_control.md`
+- `docs/thoughts/2026-02-11_habenula_signed_pe.md`

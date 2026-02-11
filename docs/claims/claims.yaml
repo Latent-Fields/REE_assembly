@@ -935,6 +935,18 @@
   location: docs/architecture/social.md#q-009
   source:
     - docs/architecture/social.md
+- id: Q-010
+  claim_type: open_question
+  subject: hedonic_valence_signed_pe_separation
+  polarity: asserts
+  status: legacy
+  depends_on:
+    - MECH-035
+    - MECH-048
+    - MECH-054
+  location: docs/architecture/control_plane.md#q-010
+  source:
+    - docs/architecture/control_plane.md
 - id: ARC-016
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
@@ -1331,3 +1343,41 @@
   location: docs/architecture/social.md#mech-052
   source:
     - docs/thoughts/2026-02-11_prolactin.md
+- id: MECH-053
+  claim_type: mechanism_hypothesis
+  subject: control_plane.habenula_aversive_gate
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-039
+    - MECH-043
+  location: docs/architecture/control_plane.md#mech-053
+  source:
+    - docs/thoughts/2026-02-11_habenula_signed_pe.md
+- id: MECH-054
+  claim_type: mechanism_hypothesis
+  subject: precision.signed_harm_benefit
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-017
+    - MECH-043
+    - INV-008
+  location: docs/architecture/control_plane.md#mech-054
+  source:
+    - docs/thoughts/2026-02-11_habenula_signed_pe.md
+- id: MECH-055
+  claim_type: mechanism_hypothesis
+  subject: affect.channel_separation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-048
+    - MECH-054
+    - MECH-035
+  location: docs/architecture/control_plane.md#mech-055
+  source:
+    - docs/architecture/control_plane.md

@@ -31,6 +31,9 @@ columnar motif vs geometry, and control‑plane math sketches.
 - Promoted MECH‑037 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
 - Promoted MECH‑046, MECH‑047, and MECH‑048 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
 - Promoted MECH‑006 and MECH‑007 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
+- Added MECH‑053 (habenula‑like aversive PE gate) and MECH‑054 (signed harm/benefit PE precision), plus Q‑010 on hedonic/valence/PE separation; updated control‑plane signal map.
+- Added a signed harm/benefit PE precision schema to `docs/architecture/precision_control.md` aligned with MECH‑054.
+- Added MECH‑055 (affective channel separation) and marked Q‑010 as legacy (resolved into MECH‑055).
 
 ## 2026-02-10: Control-Plane Channel Clarification
 

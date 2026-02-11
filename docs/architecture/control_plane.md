@@ -263,6 +263,66 @@ distinct from \(\kappa_{\text{commit}}\), which is a commitment threshold parame
 
 ---
 
+<a id="mech-053"></a>
+## Habenula‑Like Aversive PE Gate (MECH-053)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Fast aversive prediction‑error gating for commitment suppression  
+**Depends On:** ARC-005, MECH-039, MECH-043  
+**Status:** candidate  
+**Claim ID:** MECH-053
+
+REE should include a **fast aversive prediction‑error gate** (habenula analogue) that suppresses or vetoes commitment
+when negative‑valence or harm prediction errors spike. This gate does not compute trajectories. It biases control‑plane
+readiness and veto thresholds so that aversive signals can interrupt or delay commitment before deep evaluation
+consolidates a trajectory.
+
+This keeps aversive salience distinct from reward‑like precision weighting and prevents negative prediction error from
+being absorbed into a single scalar objective.
+
+---
+
+<a id="mech-054"></a>
+## Signed Harm/Benefit Prediction‑Error Precision (MECH-054)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Separate precision channels for harm‑ vs benefit‑related prediction errors  
+**Depends On:** ARC-005, ARC-017, MECH-043, INV-008  
+**Status:** candidate  
+**Claim ID:** MECH-054
+
+REE should maintain **separate precision channels** for harm‑related and benefit‑related prediction errors rather than
+collapsing them into a single valence scalar. This enables:
+
+- distinct weighting of aversive vs appetitive signals,
+- interaction with valence vectors (MECH‑035) without collapsing them into μ/κ stability overlays,
+- and clean mapping to commitment gating (MECH‑053) vs learning pressure (MECH‑043).
+
+---
+
+<a id="mech-055"></a>
+## Affective Channel Separation (MECH-055)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Separation of hedonic stability, valence appraisal, and signed PE precision  
+**Depends On:** ARC-005, MECH-048, MECH-054, MECH-035  
+**Status:** candidate  
+**Claim ID:** MECH-055
+
+REE should keep three affect‑related control axes **distinct**:
+
+1. **Hedonic stability (μ/κ overlays):** modulates mode entropy, switching inertia, and commitment stability.  
+2. **Valence appraisal (vector‑valued):** provides multi‑axis affective appraisal used for ranking, replay priority, and
+   biasing exploration.  
+3. **Signed PE precision:** separates harm‑related vs benefit‑related prediction‑error weighting for learning and
+   commitment gating.
+
+These axes may interact, but **must not collapse** into a single scalar without reintroducing classic failure modes
+(harm‑blind optimization, anhedonia, or over‑commitment). Each axis has a unique operational role and distinct
+pathology when mis‑tuned.
+
+---
+
 <a id="mech-042"></a>
 ## Telemetry Exposure Channels (MECH-042)
 
@@ -338,6 +398,11 @@ Should REE retain a dedicated **valence vector** (as a sensory/affective stream 
 subsume the functional role of valence? If both remain, what is the minimal separation of concerns between affective
 bias (valence) and commitment stability (μ/κ)?
 
+<a id="q-010"></a>
+**Q-010 — Hedonic tone vs valence vs signed PE precision (legacy)**  
+This question has been progressed into **MECH‑055 (Affective Channel Separation)** and is retained for historical
+tracking. The remaining open issue is calibration, not separation.
+
 ## Related Claims (IDs)
 
 - ARC-005
@@ -353,9 +418,13 @@ bias (valence) and commitment stability (μ/κ)?
 - MECH-046
 - MECH-047
 - MECH-048
+- MECH-053
+- MECH-054
+- MECH-055
 - MECH-042
 - Q-007
 - Q-008
+- Q-010
 
 ## References / Source Fragments
 
@@ -364,3 +433,4 @@ bias (valence) and commitment stability (μ/κ)?
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 - `docs/thoughts/2026-02-11_amygdala.md`
 - `docs/thoughts/2026-02-11_opioid_receptors.md`
+- `docs/thoughts/2026-02-11_habenula_signed_pe.md`

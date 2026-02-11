@@ -59,6 +59,20 @@ This note:
 
 ---
 
+### S1b — Signed harm/benefit prediction errors
+**What they encode**
+- separate harm-related vs benefit-related prediction errors,
+- aversive salience distinct from appetitive salience.
+
+**Primary role**
+- gate commitment and interruptibility under aversive spikes (habenula‑like gate),
+- prevent collapse into a single scalar valence channel.
+
+**Typical origin**
+- harm/benefit stream tags plus fast control‑plane classifiers.
+
+---
+
 ### S2 — Trajectory-stability signals
 **What they encode**
 - whether a policy/path is holding together over time,

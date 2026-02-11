@@ -111,6 +111,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-050](../architecture/entities_and_binding.md#mech-050) Functional locality supports attribution without requiring anatomical columns.
 - [MECH-051](../architecture/social.md#mech-051) Oxytocin/vasopressin analogues modulate relational topology and mode priors.
 - [MECH-052](../architecture/social.md#mech-052) Prolactin analogue stabilises care‑investment persistence.
+- [MECH-053](../architecture/control_plane.md#mech-053) Habenula‑like aversive PE gate suppresses commitment under negative spikes.
+- [MECH-054](../architecture/control_plane.md#mech-054) Signed harm/benefit prediction‑error precision channels remain distinct.
+- [MECH-055](../architecture/control_plane.md#mech-055) Affective channel separation keeps hedonic tone, valence, and signed PE distinct.
 
 ---
 
@@ -125,6 +128,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-007](../architecture/control_plane.md#q-007) Do universal expressions map to stable control‑channel regimes?
 - [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors?
 - [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure?
+- [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
 
 ---
 
