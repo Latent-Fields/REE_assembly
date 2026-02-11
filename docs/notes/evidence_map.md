@@ -3,6 +3,14 @@
 Lightweight mapping from REE architecture prompts to empirical anchors. These are not direct anatomical claims; they are
 biological evidence points that inform constraints and plausibility.
 
+## Evidence anchor usage
+
+- Use `P#` references in architecture docs to point to entries in this map.
+- For section‑level support, add a dedicated line: `Evidence anchors: P4, P5, P6.`
+- For statement‑level support, keep the anchor inline at the end of the sentence or bullet: `P47`.
+- Avoid mixing both styles within the same subsection unless necessary.
+- Keep anchor lists short; split by subsection if more than ~5 anchors are needed.
+
 ---
 
 ## Control‑plane evidence summary

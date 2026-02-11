@@ -142,6 +142,9 @@ REE can extend social cognition without a new subsystem by adding **derived** ta
 These are inference tags, not perceptual primitives. They reuse the same self/world/impact machinery, rather than
 introducing a separate social-cognition module.
 
+Prerequisite: reliable **object persistence/binding** is required to mark an entity as `OTHER_SELFLIKE`, otherwise
+agency cues cannot be attributed to a stable target (see `entities_and_binding.md`).
+
 Calibration note: `OTHER_SELFLIKE` should be biased toward **high recall** (tolerating false positives) rather than
 high precision. Early false positives are historically normal and less harmful than false negatives, which block
 empathy coupling and ethical generalisation. Calibration can tighten over development.
@@ -187,12 +190,12 @@ Neuroanatomical observations (e.g., cranial‑nerve afferent/efferent loops with
 fast, embodied signaling channels could exist, but REE treats this as a functional design hypothesis rather than an
 anatomical requirement.
 
-Evidence anchors: see P40–P43 in `docs/notes/evidence_map.md`.
+Evidence anchors: P40–P43.
 
 **Evidence summary:** Facial motor control (CN VII), facial afferent processing (CN V), and the clinical dissociation
 between emotional vs volitional facial pathways collectively support a **fast, embodied expression channel** that is
-partly separable from deliberative control (P40–P43). This is consistent with a low‑latency broadcast of control‑plane
-regime to social partners without invoking propositional content.
+partly separable from deliberative control. This is consistent with a low‑latency broadcast of control‑plane regime to
+social partners without invoking propositional content.
 
 **Safety note (functional):** Affective expression can also be treated as a **safety mechanism**: it exposes deep control
 states that should not be hidden, and extreme expression can modulate behavior by **reducing exploration** (e.g., sensory

@@ -28,16 +28,16 @@ Clarified control-plane channels vs modes, separated safety baseline from volati
 - Added a modes of cognition synthesis pass entry and subsystem abstract in `docs/architecture/modes_of_cognition.md`.
 - Added an E‑stack synthesis pass entry and subsystem abstracts for `docs/architecture/e1.md`, `docs/architecture/e2.md`, and `docs/architecture/e3.md`.
 - Added an L‑space synthesis pass entry and subsystem abstract in `docs/architecture/l_space.md`.
-- Added oscillation/coupling evidence anchors (P30–P36) to `docs/notes/evidence_map.md` for L‑space depth coordination and EEG caveats.
+- Added oscillation/coupling evidence anchors P30–P36 to `docs/notes/evidence_map.md` for L‑space depth coordination and EEG caveats.
 - Abstracted oscillatory evidence implications in `docs/architecture/l_space.md` to keep coordination non‑anatomical.
 - Clarified residue vs viability mapping and online vs offline residue integration in `docs/architecture/residue_geometry.md`.
 - Added residue cross‑links in `docs/architecture/sleep.md` and `docs/architecture/hippocampal_systems.md`.
-- Added residue integration anchors (P37–P39) in `docs/notes/evidence_map.md` and a neuro‑anchored consolidation note in `docs/architecture/residue_geometry.md`.
+- Added residue integration anchors P37–P39 in `docs/notes/evidence_map.md` and a neuro‑anchored consolidation note in `docs/architecture/residue_geometry.md`.
 - Added implementation hint block for residue integration in `docs/architecture/residue_geometry.md`.
 - Added a clarification block in `docs/architecture/control_plane.md` defining emotion as a composite control‑plane regime.
 - Added open question Q‑007 on universal expression ↔ control‑channel mapping in `docs/architecture/control_plane.md` and `docs/claims/claims.yaml`.
 - Added MECH‑041 (affective expression as mode broadcast) in `docs/architecture/social.md` and recorded thought intake in `docs/thoughts/2026-02-10_affective_expression_mode_broadcast.md`.
-- Added cranial‑nerve / brainstem evidence anchors (P40–P43) to `docs/notes/evidence_map.md` and linked them from `docs/architecture/social.md`.
+- Added cranial‑nerve / brainstem evidence anchors P40–P43 to `docs/notes/evidence_map.md` and linked them from `docs/architecture/social.md`.
 - Added an evidence summary and safety‑function note for MECH‑041 in `docs/architecture/social.md`.
 - Added MECH‑042 (control‑plane telemetry exposure) in `docs/architecture/control_plane.md` and recorded thought intake in `docs/thoughts/2026-02-10_control_plane_telemetry.md`.
 - Expanded MECH‑042 with a developmental safety rationale (diagnostics without trauma).
@@ -48,6 +48,12 @@ Clarified control-plane channels vs modes, separated safety baseline from volati
 - Added representation‑consolidation (refactor analog) note in `docs/architecture/sleep.md` and evidence anchors P44–P46 in `docs/notes/evidence_map.md`.
 - Added evidence anchors P47–P55 for entities/binding and precision control/scoping in `docs/notes/evidence_map.md`.
 - Formalized ACh/NE expected vs unexpected uncertainty split in `docs/architecture/control_plane_signal_map.md`, and added MECH‑043 (dopamine precision weighting) plus MECH‑044 (hippocampal relational binding) with supporting notes in `docs/architecture/precision_control.md`, `docs/architecture/precision_scoping.md`, and `docs/architecture/entities_and_binding.md`.
+- Formalized object‑file‑like persistence as MECH‑045 in `docs/architecture/entities_and_binding.md` and recorded thought intake in `docs/thoughts/2026-02-10_object_file_persistence.md`.
+- Clarified that OTHER_SELFLIKE detection depends on object persistence/binding in `docs/architecture/social.md`.
+- Added `docs/architecture/developmental_curriculum.md` as ARC‑019 to formalize staged training and curriculum gates.
+- Added per‑stage evidence anchors (P‑numbers) to `docs/architecture/developmental_curriculum.md`.
+- Documented evidence‑anchor usage style in `docs/notes/evidence_map.md` and aligned section‑level anchor phrasing in `docs/architecture/control_plane_signal_map.md` and `docs/architecture/social.md`.
+- Aligned evidence‑anchor usage in `docs/architecture/entities_and_binding.md`, `docs/architecture/residue_geometry.md`, and `docs/architecture/sleep.md` (section‑level anchors, no inline mixing).
 - Removed ARC‑003 as a dependency of ARC‑005 to break the E‑stack/control‑plane cycle.
 - Clarified the non‑cyclic relationship between control plane and E3 in `docs/architecture/control_plane.md`.
 

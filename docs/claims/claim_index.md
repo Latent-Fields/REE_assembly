@@ -54,6 +54,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [ARC-016](../architecture/modes_of_cognition.md#arc-016) Modes are control-plane regimes applied to shared predictive machinery.
 - [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal sensory stream tags for REE (world, homeostasis, harm, self-sensory, precision, temporal coherence, valence, action, self-impact).
 - [ARC-018](../architecture/hippocampal_systems.md#arc-018) Hippocampus generates explicit rollouts and post-commitment viability mapping.
+- [ARC-019](../architecture/developmental_curriculum.md#arc-019) REE requires staged developmental training with explicit curriculum gates.
 
 ---
 
@@ -102,6 +103,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-042](../architecture/control_plane.md#mech-042) Telemetry exposure channels report internal control‑plane state for diagnostics.
 - [MECH-043](../architecture/precision_control.md#mech-043) Dopamine‑like modulation of precision‑weighting for unsigned prediction errors.
 - [MECH-044](../architecture/entities_and_binding.md#mech-044) Hippocampal systems participate in relational binding and comparison.
+- [MECH-045](../architecture/entities_and_binding.md#mech-045) Object‑file‑like buffers provide minimal entity persistence across time.
 
 ---
 

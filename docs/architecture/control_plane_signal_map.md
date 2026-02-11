@@ -203,8 +203,7 @@ References to E1/E2 rollouts below should be read as **forward prediction kernel
 ## Functional analog map (brainstem nuclei ↔ control-plane channels)
 
 This is a **functional mapping** only. It does not assert anatomical equivalence, but provides a compact
-neuroscience‑informed analog for REE control channels and knobs. Evidence anchors live in
-`docs/notes/evidence_map.md` (P24–P29).
+neuroscience‑informed analog for REE control channels and knobs. Evidence anchors: P24–P29.
 
 | Neuroanatomy analog | Dominant transmitter(s) | Control-plane channel/knob analog | Notes |
 |---|---|---|---|
@@ -213,7 +212,7 @@ neuroscience‑informed analog for REE control channels and knobs. Evidence anch
 | VTA/SN | DA | K2 precision, K3 commitment strength | Precision‑weighted learning/commitment modulation. |
 | PPN/PPT | ACh/Glu/GABA | K7 arousal gating, K9 readiness | State‑dependent readiness and locomotor bias. |
 | ARAS | mixed | K7 global arousal availability | Distributed arousal baseline rather than single node. |
-| PAG (P28) | mixed | K10 hard‑veto / defensive interrupt | Safety extension; defensive repertoire organizer. |
+| PAG | mixed | K10 hard‑veto / defensive interrupt | Safety extension; defensive repertoire organizer. |
 
 Use this map as a design heuristic to keep control‑plane signals **orthogonal** and to prevent overload of any
 single channel (e.g., using precision for arousal).

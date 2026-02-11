@@ -21,6 +21,8 @@ ARC‑004 (L‑space), and INV‑004/INV‑006 (residue persistence constraints)
 
 ### Residue integration (neuro‑anchored functional analog)
 
+Evidence anchors: P1, P16, P37–P39.
+
 Residue integration can be treated as a **two‑rate consolidation pipeline**:
 
 1. **Online (awake) imprinting**  
@@ -29,9 +31,9 @@ Residue integration can be treated as a **two‑rate consolidation pipeline**:
    - Hippocampus logs the path and viability signals.
 
 2. **Offline (sleep) consolidation**  
-   - Hippocampal replay selects and re‑encodes trajectories (P1, P16, P37).  
-   - Slow cortical consolidation reshapes longer‑horizon priors (P38).  
-   - Affective weighting biases which traces consolidate without turning residue into reward (P39).  
+   - Hippocampal replay selects and re‑encodes trajectories.  
+   - Slow cortical consolidation reshapes longer‑horizon priors.  
+   - Affective weighting biases which traces consolidate without turning residue into reward.  
 
 This keeps residue **structural** and path‑dependent while allowing slow, system‑level learning that does not override
 sensory corrigibility. These anchors are functional, not anatomical, and are meant to guide implementation choices

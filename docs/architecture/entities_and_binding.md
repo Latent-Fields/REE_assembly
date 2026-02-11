@@ -43,14 +43,16 @@ Entities emerge within the latent stack as coherent structures that:
 
 ## Design Constraints (Evidence‑Informed)
 
+Evidence anchors: P47–P50.
+
 - **Binding is attention‑gated.** Feature binding should depend on precision/attention state rather than a purely
-  feedforward merge (P47).
-- **Entity persistence requires object‑specific buffers.** “Object‑file‑like” persistence is a candidate minimal
-  mechanism, but remains an open design choice (P48).
+  feedforward merge.
+- **Entity persistence requires object‑specific buffers.** “Object‑file‑like” persistence is a **minimal mechanism**
+  for tracking entities across time.
 - **Relational binding is first‑class.** Binding should support arbitrary relations across space and time, not just
-  feature conjunction (P49–P50).
+  feature conjunction.
 - **Binding is distributed.** Hippocampal systems may participate early in relational binding/comparison rather than
-  only in long‑term storage (P49).
+  only in long‑term storage.
 
 <a id="mech-044"></a>
 ## Hippocampal Relational Binding (MECH-044)
@@ -63,6 +65,21 @@ Entities emerge within the latent stack as coherent structures that:
 
 Hippocampal systems should contribute to **relational binding and comparison**, not only long‑term storage. This
 supports early detection of relations and binding consistency across time and context.
+
+---
+
+<a id="mech-045"></a>
+## Object‑File‑Like Persistence (MECH-045)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Minimal persistence buffer for entity continuity across time  
+**Depends On:** ARC-006, ARC-004, INV-002  
+**Status:** candidate  
+**Claim ID:** MECH-045
+
+Entities should be tracked via **object‑file‑like buffers** that bind features across time and motion, providing a
+minimal persistence mechanism without requiring symbolic labels. These buffers are attention‑gated and update with
+precision‑weighted continuity constraints.
 
 ---
 
@@ -113,6 +130,7 @@ Open items from preserved sources include entity emergence mechanisms; binding c
 - Q-001
 - ARC-007
 - MECH-044
+- MECH-045
 
 ## References / Source Fragments
 

@@ -952,6 +952,20 @@
   source:
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
+- id: ARC-019
+  claim_type: architectural_commitment
+  subject: developmental.curriculum_stages
+  polarity: asserts
+  status: provisional
+  depends_on:
+    - ARC-005
+    - ARC-006
+    - ARC-007
+    - ARC-013
+    - INV-010
+  location: docs/architecture/developmental_curriculum.md#arc-019
+  source:
+    - docs/architecture/developmental_curriculum.md
 - id: MECH-025
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
@@ -1199,3 +1213,15 @@
   location: docs/architecture/entities_and_binding.md#mech-044
   source:
     - docs/thoughts/2026-02-10_hippocampal_relational_binding.md
+- id: MECH-045
+  claim_type: mechanism_hypothesis
+  subject: entities.object_file_persistence
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-006
+    - ARC-004
+    - INV-002
+  location: docs/architecture/entities_and_binding.md#mech-045
+  source:
+    - docs/thoughts/2026-02-10_object_file_persistence.md

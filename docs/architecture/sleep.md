@@ -72,9 +72,12 @@ reweaves structure without overwriting history. This is distributed across **Def
 **sleep (offline consolidation)**, and is informed by replay and residue integration.
 
 Neuro‑anchored functional cues:
-- **Synaptic homeostasis** supports global downscaling/renormalization after wake learning (P44).  
-- **Complementary learning systems** support fast episodic capture with slow cortical integration (P45).  
-- **Reconsolidation** supports safe updating after controlled reactivation (P46).  
+
+Evidence anchors: P44–P46.
+
+- **Synaptic homeostasis** supports global downscaling/renormalization after wake learning.  
+- **Complementary learning systems** support fast episodic capture with slow cortical integration.  
+- **Reconsolidation** supports safe updating after controlled reactivation.  
 
 REE analog:
 - **Awake:** DMN and hippocampal replay reorganize trajectories without commitment.  
