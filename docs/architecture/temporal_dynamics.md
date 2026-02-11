@@ -49,6 +49,24 @@ Source: `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 
 ---
 
+<a id="mech-049"></a>
+## Phase Separation for Ethical Stability (MECH-049)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Explicit temporal compartmentalisation of proposal, evaluation, veto, and update  
+**Depends On:** ARC-008, ARC-003, ARC-005  
+**Status:** candidate  
+**Claim ID:** MECH-049
+
+REE should explicitly **compartmentalise temporal phases** for trajectory proposal, self‑impact prediction, harm
+evaluation, precision update, and policy consolidation. This keeps ethical constraints from being smoothed into
+optimisation gradients and preserves independence between fast proposal and slow evaluation.
+
+Oscillatory phase‑locking is a plausible implementation, but not required. The requirement is **explicit temporal
+separation**, which can be realised via spiking phase windows, clocked schedulers, or discrete event gates.
+
+---
+
 ## Temporal depth (tau-depth)
 
 Temporal depth is the effective time horizon over which a model's predictions are integrated and expected to remain coherent.
@@ -149,8 +167,10 @@ None noted in preserved sources.
 - ARC-005
 - INV-002
 - MECH-021
+- MECH-049
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/architecture/depth_phase_spec.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
+- `docs/thoughts/2026-02-11_phase_separation.md`

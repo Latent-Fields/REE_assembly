@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/control_plane.md` (MECH-048)
+
+---
+
 Thought: The Opioid System as Commitment Stabiliser, Not Pleasure Generator
 
 We’ve been treating μ-opioid signalling as hedonic amplification.
@@ -246,4 +253,3 @@ Because if it is the third,
 this model becomes compelling.
 
 ⸻
-

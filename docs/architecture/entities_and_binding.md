@@ -54,6 +54,20 @@ Evidence anchors: P47–P50.
 - **Binding is distributed.** Hippocampal systems may participate early in relational binding/comparison rather than
   only in long‑term storage.
 
+<a id="mech-050"></a>
+## Functional Locality Without Column Geometry (MECH-050)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Functional locality and bounded update regions support attribution without anatomical columns  
+**Depends On:** ARC-006, ARC-004  
+**Status:** candidate  
+**Claim ID:** MECH-050
+
+REE should implement **functional locality** in its representational microcircuits: modular recurrent substructures,
+limited lateral spillover, sparse routing constraints, and bounded update regions. This supports error attribution and
+corrigibility without requiring anatomical column geometry. Columnar spatial bundling in biology is treated as a
+metabolic or developmental optimisation, not a computational primitive.
+
 <a id="mech-044"></a>
 ## Hippocampal Relational Binding (MECH-044)
 
@@ -131,8 +145,10 @@ Open items from preserved sources include entity emergence mechanisms; binding c
 - ARC-007
 - MECH-044
 - MECH-045
+- MECH-050
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/architecture/entities_and_binding.md`
 - `docs/processed/legacy_tree/DANIEL_README.md`
+- `docs/thoughts/2026-02-11_columns.md`

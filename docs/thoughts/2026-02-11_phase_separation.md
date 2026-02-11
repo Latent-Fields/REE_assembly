@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/temporal_dynamics.md` (MECH-049)
+
+---
+
 Thought: Oscillation, Sampling, and Ethical Stability in REE
 
 1. Starting Intuition

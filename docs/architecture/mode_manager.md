@@ -28,6 +28,19 @@ It specifies **how existing systems (E1, E2, E3, control plane)** are reconfigur
 
 ---
 
+## Update: Fast Priors and Pre‑Commitment
+
+Mode management is decomposed into two control‑plane functions:
+
+- **Amygdala Analogue (AA):** fast salience classification that proposes a distribution over modes (see MECH‑046 in
+  `control_plane.md`).
+- **Pre‑Commitment Mode Manager (PCM):** commits to a mode with hysteresis and switching costs, constraining E3
+  trajectory search before deep evaluation (MECH‑047 below).
+
+AA proposes; PCM commits.
+
+---
+
 <a id="mech-020"></a>
 ## Emergent Cognitive Modes (MECH-020)
 
@@ -51,8 +64,25 @@ See `modes_of_cognition.md` for the control-plane regime taxonomy (ARC-016, MECH
 
 1. Cognition operates in semi-discrete modes, not a single continuous regime.
 2. Modes are persistent, with hysteresis and refractory periods.
-3. Control-plane modulation parameterises modes; it does not encode content.
-4. Transitions are gated, multi-signal decisions.
+3. Fast mode priors bias regime selection before deep trajectory evaluation.
+4. Control-plane modulation parameterises modes; it does not encode content.
+5. Transitions are gated, multi-signal decisions.
+
+---
+
+<a id="mech-047"></a>
+## Pre‑Commitment Mode Manager (MECH-047)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Mode commitment with hysteresis and switching costs  
+**Depends On:** ARC-005, MECH-046  
+**Status:** candidate  
+**Claim ID:** MECH-047
+
+The pre‑commitment mode manager (PCM) stabilises a **committed mode** using hysteresis and switching costs. It consumes
+AA mode priors, energy/viability state, and transition cost signals, then **commits or maintains** a regime that shapes
+E3 trajectory search before deep evaluation. PCM prevents oscillatory thrashing by requiring sustained salience or
+confidence to switch.
 
 ---
 
@@ -121,6 +151,33 @@ Short-lived interrupt state.
 
 ---
 
+## Illustrative math sketch (non‑binding)
+
+This is a minimal formal sketch of the AA → PCM interface. It is optional and can be implemented with discrete clocks,
+spiking phase windows, or conventional schedulers.
+
+Mode priors from AA:
+
+\[
+q^{AA}_t(m) = \mathrm{softmax}\left(\frac{\ell_t(m)}{\tau_t}\right)
+\]
+
+Entropy temperature modulated by μ/κ overlays (MECH‑048):
+
+\[
+\tau_t = \tau_0 \exp(\alpha_\kappa \kappa_t - \alpha_\mu \mu_t)
+\]
+
+Switching inertia (commitment stability):
+
+\[
+I_{t+1} = \lambda I_t + \eta_\mu \mu_t - \eta_\kappa \kappa_t
+\]
+
+PCM commits when a candidate mode exceeds the current mode by a threshold that includes inertia and transition costs.
+
+---
+
 ## Relationship to E-levels
 
 - E1: dominant in M2, M4
@@ -145,8 +202,13 @@ None noted in preserved sources.
 
 - MECH-008
 - MECH-020
+- MECH-046
+- MECH-047
+- MECH-048
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/mode_manager.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
+- `docs/thoughts/2026-02-11_amygdala.md`
+- `docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md`

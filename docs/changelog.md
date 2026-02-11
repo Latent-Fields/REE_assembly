@@ -7,6 +7,22 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-11: Mode Priors, Stability Overlays, and Phase Separation
+
+### Overview
+
+Integrated new thought intakes on amygdala‑style mode priors, μ/κ stability overlays, phase compartmentalisation,
+columnar motif vs geometry, and control‑plane math sketches.
+
+### What Changed
+
+- Added MECH‑046 (amygdala analogue mode priors) and MECH‑048 (μ/κ stability overlays) to `docs/architecture/control_plane.md`.
+- Added MECH‑047 (pre‑commitment mode manager with hysteresis) and a non‑binding math sketch to `docs/architecture/mode_manager.md`.
+- Added MECH‑049 (temporal phase compartmentalisation for ethical stability) to `docs/architecture/temporal_dynamics.md`.
+- Added MECH‑050 (functional locality without column geometry) to `docs/architecture/entities_and_binding.md`.
+- Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md`.
+- Marked new 2026‑02‑11 thought files as processed with canonical links.
+
 ## 2026-02-10: Control-Plane Channel Clarification
 
 ### Overview

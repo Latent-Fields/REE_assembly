@@ -104,6 +104,11 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-043](../architecture/precision_control.md#mech-043) Dopamine‑like modulation of precision‑weighting for unsigned prediction errors.
 - [MECH-044](../architecture/entities_and_binding.md#mech-044) Hippocampal systems participate in relational binding and comparison.
 - [MECH-045](../architecture/entities_and_binding.md#mech-045) Object‑file‑like buffers provide minimal entity persistence across time.
+- [MECH-046](../architecture/control_plane.md#mech-046) Amygdala analogue updates control‑plane mode priors from fast salience classification.
+- [MECH-047](../architecture/mode_manager.md#mech-047) Pre‑commitment mode manager commits with hysteresis and switching costs.
+- [MECH-048](../architecture/control_plane.md#mech-048) μ/κ stability overlays modulate mode entropy and switching pressure.
+- [MECH-049](../architecture/temporal_dynamics.md#mech-049) Temporal phase compartmentalisation preserves ethical constraint independence.
+- [MECH-050](../architecture/entities_and_binding.md#mech-050) Functional locality supports attribution without requiring anatomical columns.
 
 ---
 

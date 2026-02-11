@@ -1225,3 +1225,61 @@
   location: docs/architecture/entities_and_binding.md#mech-045
   source:
     - docs/thoughts/2026-02-10_object_file_persistence.md
+- id: MECH-046
+  claim_type: mechanism_hypothesis
+  subject: control_plane.amygdala_mode_priors
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-039
+  location: docs/architecture/control_plane.md#mech-046
+  source:
+    - docs/thoughts/2026-02-11_amygdala.md
+- id: MECH-047
+  claim_type: mechanism_hypothesis
+  subject: control_plane.precommitment_mode_manager
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-046
+  location: docs/architecture/mode_manager.md#mech-047
+  source:
+    - docs/thoughts/2026-02-11_amygdala.md
+    - docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md
+- id: MECH-048
+  claim_type: mechanism_hypothesis
+  subject: control_plane.mu_kappa_stability_overlays
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-039
+  location: docs/architecture/control_plane.md#mech-048
+  source:
+    - docs/thoughts/2026-02-11_opioid_receptors.md
+    - docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md
+- id: MECH-049
+  claim_type: mechanism_hypothesis
+  subject: temporal.phase_compartmentalisation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-008
+    - ARC-003
+    - ARC-005
+  location: docs/architecture/temporal_dynamics.md#mech-049
+  source:
+    - docs/thoughts/2026-02-11_phase_separation.md
+- id: MECH-050
+  claim_type: mechanism_hypothesis
+  subject: entities.functional_locality_without_columns
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-006
+    - ARC-004
+  location: docs/architecture/entities_and_binding.md#mech-050
+  source:
+    - docs/thoughts/2026-02-11_columns.md

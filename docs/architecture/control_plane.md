@@ -17,7 +17,8 @@ It modulates precision, gain, exploration, replay, and commitment thresholds acr
 **Subsystem abstract (core claims):** ARC‑005 is the control-plane commitment itself, and MECH‑019/MECH‑039/MECH‑040
 specify how modes emerge from channel space and how safety baseline vs volatility shapes arousal/readiness. MECH‑005
 grounds fast interruptibility, and MECH‑002 anchors precision‑control analogues. Supporting mechanisms include MECH‑001,
-MECH‑003, MECH‑004, MECH‑006, MECH‑007, and MECH‑008.
+MECH‑003, MECH‑004, MECH‑006, MECH‑007, MECH‑008, and the fast mode‑prior / commitment‑stability stack in MECH‑046,
+MECH‑047, and MECH‑048.
 
 The control plane does **not**:
 - overwrite representational content,
@@ -108,6 +109,9 @@ Optional social coupling parameters (multi-agent):
 - `alpha_other`: precision assigned to inferred other-states.
 - `v_other_veto`: whether other-harm can veto vs only affect ranking.
 
+Additional control-plane state includes **mode priors** \(q_m\) and **switching inertia** \(I\) used by the
+pre‑commitment mode manager, plus μ/κ stability overlays that modulate mode entropy and switching pressure.
+
 ---
 
 <a id="mech-039"></a>
@@ -131,6 +135,25 @@ Examples of modes:
 
 Hard veto is a **fast interrupt channel**, not a mode. It can force a transition even when the rest of the control
 state still reflects a prior regime.
+
+---
+
+<a id="mech-046"></a>
+## Amygdala Analogue and Mode Priors (MECH-046)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Fast salience classification that updates control‑plane mode priors  
+**Depends On:** ARC-005, MECH-039  
+**Status:** candidate  
+**Claim ID:** MECH-046
+
+REE should include a fast salience classifier (Amygdala Analogue, AA) that **updates a distribution over control‑plane
+modes** before deep trajectory evaluation. AA does not compute trajectories. It answers “what kind of situation is this?”
+and proposes mode priors that bias precision routing, learning rate, and planning horizon.
+
+AA consumes a compressed state vector built from fused latent features, interoceptive state, harm/threat signals,
+uncertainty measures, and social context. It outputs **mode priors** that the pre‑commitment mode manager uses to decide
+whether to hold or switch regimes (see `mode_manager.md`).
 
 ---
 
@@ -201,6 +224,7 @@ In REE, these are treated as **functional control channels**, not biological cla
 - Dopamine-like: commitment strength and policy precision
 - Acetylcholine-like: sensory gain and attentional weighting
 - Serotonin-like: model stability, patience, and resistance to impulsive updating
+- Opioid-like: commitment stability and switching suppression (μ), destabilisation under sustained stress (κ)
 - Noradrenergic-like: urgency, interrupt, and rapid engagement
 - Histamine-like: global availability and throughput (arousal)
 
@@ -213,6 +237,27 @@ assembled from multiple channels (arousal baseline/volatility, readiness, veto t
 weighting, and social coupling). Universal‑looking expressions likely reflect **stable, reusable channel configurations**
 rather than single‑axis signals. Specific mappings (e.g., particular expressions ↔ specific neuromodulator levels) should
 be treated as hypotheses and constrained by evidence, not as architectural primitives (see `serotonin.md`).
+
+---
+
+<a id="mech-048"></a>
+## μ/κ Stability Overlays (MECH-048)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Opponent stability overlays that modulate mode entropy and switching  
+**Depends On:** ARC-005, MECH-039  
+**Status:** candidate  
+**Claim ID:** MECH-048
+
+REE should include **opponent stability overlays** that modulate mode entropy and switching pressure.
+
+- **μ‑analogue** increases commitment stability and reduces switching propensity once a regime is safe and coherent.
+- **κ‑analogue** increases re‑evaluation pressure and destabilises regimes under sustained threat, stress, or persistent
+  prediction error.
+
+These overlays should shape both **mode‑prior sharpness** (entropy) and **switching inertia**. They are not scalar reward
+signals; they act as stability and entropy modulators over control‑plane regimes and commitment thresholds. They are
+distinct from \(\kappa_{\text{commit}}\), which is a commitment threshold parameter rather than a stability overlay.
 
 ---
 
@@ -297,6 +342,9 @@ observed universals? This remains an evidence‑constrained hypothesis, not an a
 - MECH-019
 - MECH-039
 - MECH-040
+- MECH-046
+- MECH-047
+- MECH-048
 - MECH-042
 - Q-007
 
@@ -305,3 +353,5 @@ observed universals? This remains an evidence‑constrained hypothesis, not an a
 - `docs/processed/legacy_tree/docs/architecture/control_plane.md`
 - `docs/processed/legacy_tree/architecture/control_plane.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
+- `docs/thoughts/2026-02-11_amygdala.md`
+- `docs/thoughts/2026-02-11_opioid_receptors.md`

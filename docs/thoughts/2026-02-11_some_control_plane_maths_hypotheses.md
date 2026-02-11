@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/mode_manager.md` (MECH-047)
+- `docs/architecture/control_plane.md` (MECH-048)
+
+---
+
 Control plane maths for REE
 
 Below is a minimal-but-expressive mathematical “control plane” that supports:
