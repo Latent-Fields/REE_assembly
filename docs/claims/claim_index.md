@@ -100,6 +100,8 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-040](../architecture/control_plane.md#mech-040) Safety baseline and volatility are distinct control channels for arousal/readiness.
 - [MECH-041](../architecture/social.md#mech-041) Affective expression broadcasts control‑plane regime to reduce social prediction load.
 - [MECH-042](../architecture/control_plane.md#mech-042) Telemetry exposure channels report internal control‑plane state for diagnostics.
+- [MECH-043](../architecture/precision_control.md#mech-043) Dopamine‑like modulation of precision‑weighting for unsigned prediction errors.
+- [MECH-044](../architecture/entities_and_binding.md#mech-044) Hippocampal systems participate in relational binding and comparison.
 
 ---
 

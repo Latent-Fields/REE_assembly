@@ -41,6 +41,29 @@ Entities emerge within the latent stack as coherent structures that:
 - bind features and predictions
 - support phase-compatible temporal alignment (per INV-002)
 
+## Design Constraints (Evidence‑Informed)
+
+- **Binding is attention‑gated.** Feature binding should depend on precision/attention state rather than a purely
+  feedforward merge (P47).
+- **Entity persistence requires object‑specific buffers.** “Object‑file‑like” persistence is a candidate minimal
+  mechanism, but remains an open design choice (P48).
+- **Relational binding is first‑class.** Binding should support arbitrary relations across space and time, not just
+  feature conjunction (P49–P50).
+- **Binding is distributed.** Hippocampal systems may participate early in relational binding/comparison rather than
+  only in long‑term storage (P49).
+
+<a id="mech-044"></a>
+## Hippocampal Relational Binding (MECH-044)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Hippocampal participation in relational binding and comparison  
+**Depends On:** ARC-006, ARC-007, ARC-004  
+**Status:** candidate  
+**Claim ID:** MECH-044
+
+Hippocampal systems should contribute to **relational binding and comparison**, not only long‑term storage. This
+supports early detection of relations and binding consistency across time and context.
+
 ---
 
 ## Error Ownership
@@ -88,6 +111,8 @@ Open items from preserved sources include entity emergence mechanisms; binding c
 - ARC-004
 - INV-002
 - Q-001
+- ARC-007
+- MECH-044
 
 ## References / Source Fragments
 

@@ -128,6 +128,9 @@ This separation mirrors:
 
 REE encodes this by design, not by accident.
 
+Expected vs unexpected uncertainty should be treated as **separate control inputs** (ACh‑like vs NE‑like), rather than
+collapsed into a single precision signal.
+
 ⸻
 
 Summary (for quick reference)

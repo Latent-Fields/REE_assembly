@@ -65,6 +65,25 @@ Source: `docs/processed/legacy_tree/architecture/sleep/sleep_contract.md`
 
 ---
 
+## Representation Consolidation (Refactor Analog)
+
+REE’s analogue of “refactoring” is **representation consolidation**: a multi‑rate process that compresses, prunes, and
+reweaves structure without overwriting history. This is distributed across **Default Mode (awake reweaving)** and
+**sleep (offline consolidation)**, and is informed by replay and residue integration.
+
+Neuro‑anchored functional cues:
+- **Synaptic homeostasis** supports global downscaling/renormalization after wake learning (P44).  
+- **Complementary learning systems** support fast episodic capture with slow cortical integration (P45).  
+- **Reconsolidation** supports safe updating after controlled reactivation (P46).  
+
+REE analog:
+- **Awake:** DMN and hippocampal replay reorganize trajectories without commitment.  
+- **Offline:** sleep consolidates, prunes, and recalibrates while preserving residue curvature.  
+
+See `default_mode.md`, `hippocampal_systems.md`, and `residue_geometry.md` for the operational pieces.
+
+---
+
 <a id="mech-030"></a>
 ## Sleep Modes and Ethical Consolidation (MECH-030)
 

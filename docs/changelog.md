@@ -45,6 +45,9 @@ Clarified control-plane channels vs modes, separated safety baseline from volati
 - Added a social subsystem synthesis pass entry and subsystem abstract in `docs/architecture/social.md`.
 - Added an offline integration synthesis pass entry and subsystem abstract in `docs/architecture/sleep.md`.
 - Added subsystem abstracts and synthesis pass entries for residue geometry, default mode, and agency/responsibility flow.
+- Added representation‑consolidation (refactor analog) note in `docs/architecture/sleep.md` and evidence anchors P44–P46 in `docs/notes/evidence_map.md`.
+- Added evidence anchors P47–P55 for entities/binding and precision control/scoping in `docs/notes/evidence_map.md`.
+- Formalized ACh/NE expected vs unexpected uncertainty split in `docs/architecture/control_plane_signal_map.md`, and added MECH‑043 (dopamine precision weighting) plus MECH‑044 (hippocampal relational binding) with supporting notes in `docs/architecture/precision_control.md`, `docs/architecture/precision_scoping.md`, and `docs/architecture/entities_and_binding.md`.
 - Removed ARC‑003 as a dependency of ARC‑005 to break the E‑stack/control‑plane cycle.
 - Clarified the non‑cyclic relationship between control plane and E3 in `docs/architecture/control_plane.md`.
 

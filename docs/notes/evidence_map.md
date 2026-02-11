@@ -233,6 +233,21 @@ Evidence: The amygdala modulates consolidation of emotionally arousing experienc
 REE implication: Residue integration can be affect‑weighted without collapsing into reward, by biasing which traces consolidate.  
 Sources: [McGaugh 2004, Annu Rev Neurosci](https://www.annualreviews.org/doi/10.1146/annurev.neuro.27.070203.144157).
 
+## P44 — Synaptic homeostasis (sleep downscaling)
+Evidence: The synaptic homeostasis hypothesis proposes that wake potentiation is renormalized during sleep via synaptic downscaling, improving efficiency and learning stability.  
+REE implication: Offline integration can implement global compression/pruning without overwriting content.  
+Sources: [Tononi & Cirelli 2006, Sleep Med Rev](https://pubmed.ncbi.nlm.nih.gov/16376591/).
+
+## P45 — Complementary learning systems (fast hippocampus, slow cortex)
+Evidence: CLS theory argues rapid hippocampal learning supports gradual neocortical integration via repeated reinstatement.  
+REE implication: Representation refactoring should be multi‑rate, with fast episodic capture and slow structural consolidation.  
+Sources: [McClelland, McNaughton & O'Reilly 1995, Psychol Rev](https://pubmed.ncbi.nlm.nih.gov/7624455/).
+
+## P46 — Reconsolidation after retrieval
+Evidence: Reactivated memories can become labile and require protein synthesis for reconsolidation.  
+REE implication: Controlled reactivation can permit representation updates without deleting history.  
+Sources: [Nader, Schafe & LeDoux 2000, Nature](https://www.nature.com/articles/35021052).
+
 ## P40 — Facial motor nucleus and facial expression (CN VII)
 Evidence: The motor nucleus of the facial nerve is located in the pons and innervates the muscles of facial expression.  
 REE implication: Affective expression can be implemented as a fast motor broadcast channel with brainstem‑proximate control.  
@@ -252,6 +267,51 @@ Sources: [Hopf et al. 1992, Neurology](https://pubmed.ncbi.nlm.nih.gov/1407573/)
 Evidence: Ten of twelve cranial nerves arise from nuclei in the brainstem.  
 REE implication: Fast efferent/afferent loops for expression and sensation can be implemented in brainstem‑proximate control layers.  
 Sources: [StatPearls: Neuroanatomy, Brainstem](https://www.ncbi.nlm.nih.gov/sites/books/NBK544297/).
+
+## P47 — Feature binding and attention
+Evidence: Binding the features of objects relies on attention; failures of binding are observed in neurological cases, implicating parietal involvement.  
+REE implication: Entity binding should be treated as an attention‑gated operation rather than a purely feedforward merge.  
+Sources: [Treisman 1998, Phil Trans R Soc B](https://pubmed.ncbi.nlm.nih.gov/9770223/).
+
+## P48 — Object files (object‑specific integration)
+Evidence: Object‑specific priming supports “object files” that bind features over time and motion.  
+REE implication: Entity persistence can be implemented as object‑file‑like buffers that bind features across time.  
+Sources: [Kahneman, Treisman & Gibbs 1992, Cogn Psychol](https://pubmed.ncbi.nlm.nih.gov/1582172/).
+
+## P49 — Hippocampal relational binding and comparison
+Evidence: The hippocampus is implicated in relational binding and comparison across space and time, including early responses during perceptual processing.  
+REE implication: Relational binding mechanisms may be distributed, with hippocampus contributing beyond long‑term memory.  
+Sources: [Eichenbaum 2012, Trends Cogn Sci](https://pubmed.ncbi.nlm.nih.gov/22661938/).
+
+## P50 — Relational memory theory (hippocampal binding of relations)
+Evidence: Relational memory theory argues the hippocampus encodes arbitrary relations among elements of experience.  
+REE implication: Binding can be modeled as relational structure in latent space rather than fixed symbolic entities.  
+Sources: [Konkel & Cohen 2009, Front Neurosci](https://doaj.org/article/880f0686ecee41f6bace5674d630c3cf).
+
+## P51 — Attention as precision in predictive coding
+Evidence: Attention can be framed as inference over uncertainty/precision in hierarchical predictive coding.  
+REE implication: Precision control can be treated as attentional gating rather than content selection.  
+Sources: [Feldman & Friston 2010, Front Hum Neurosci](https://pmc.ncbi.nlm.nih.gov/articles/PMC3001758/).
+
+## P52 — ACh/NE encode expected vs unexpected uncertainty
+Evidence: ACh signals expected uncertainty; NE signals unexpected uncertainty in a Bayesian attention framework.  
+REE implication: Precision scoping can be decomposed into expected‑uncertainty (ACh‑like) vs surprise/interrupt (NE‑like) channels.  
+Sources: [Yu & Dayan 2005, Neuron](https://pubmed.ncbi.nlm.nih.gov/15944135/).
+
+## P53 — Acetylcholine modulates prediction‑error precision
+Evidence: Pharmacological manipulation of ACh alters prediction‑error precision in cortical hierarchies.  
+REE implication: ACh‑like control signals can implement precision‑gain modulation on error channels.  
+Sources: [Auksztulewicz et al. 2024, eLife](https://elifesciences.org/reviewed-preprints/91475).
+
+## P54 — Dopamine and precision‑weighting (psychosis)
+Evidence: Precision‑weighting of unsigned prediction errors benefits learning, is dopaminergically mediated, and is impaired in psychosis.  
+REE implication: Dopamine‑like precision control is a key lever for stable inference; misallocation yields hallucination‑like failure modes.  
+Sources: [Haarsma et al. 2020, Mol Psychiatry](https://pmc.ncbi.nlm.nih.gov/articles/PMC8589669/).
+
+## P55 — Precision and repetition suppression
+Evidence: Predictive‑coding accounts link repetition suppression to changes in prediction content and precision.  
+REE implication: Precision control can explain reduced response to predictable inputs without overwriting content.  
+Sources: [Auksztulewicz & Friston 2016, Cortex](https://pubmed.ncbi.nlm.nih.gov/26861557/).
 
 ---
 

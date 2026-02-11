@@ -117,8 +117,9 @@ These are assumed to exist in REE’s control machinery, even if not yet formali
 - **K3 — Commitment depth**: how long a selected trajectory/policy is held; resistance to switching.
 - **K4 — Exploration pressure**: breadth of policy sampling; willingness to deviate.
 - **K5 — Control allocation**: which loop dominates (fast habitual vs slower deliberative), escalation policy.
+- **K6 — Expected uncertainty / channel-specific gain (acetylcholine-like)**: attention and cue‑validity weighting.
 - **K7 — Arousal baseline**: tonic availability and throughput.
-- **K8 — Arousal volatility sensitivity**: phasic change tracking (rapid safety shifts).
+- **K8 — Unexpected uncertainty / volatility sensitivity (noradrenaline-like)**: phasic change tracking and interrupt bias.
 - **K9 — Action readiness**: motor gating bias and readiness-to-act.
 - **K10 — Hard veto threshold**: catastrophic interrupt trigger.
 
@@ -221,15 +222,16 @@ single channel (e.g., using precision for arousal).
 
 ## Unfinished / underspecified: acetylcholine-like attention/gain axis
 
-REE currently risks letting **K2 (precision/gain)** do too much work. A distinct axis is likely required for an **acetylcholine-like attention/gain** control dimension.
+REE currently risks letting **K2 (precision/gain)** do too much work. A distinct axis is required for **expected
+uncertainty (acetylcholine-like)**, separate from **unexpected uncertainty (noradrenaline-like)**.
 
 ### Proposed additional control parameter (draft)
-- **K6 — Attention / channel-specific gain (acetylcholine-like)**
+- **K6 — Expected uncertainty / channel-specific gain (acetylcholine-like)**
 
 **What it modulates**
 - selective attention,
 - cue validity weighting,
-- expected vs unexpected uncertainty handling,
+- expected uncertainty handling (separable from NE‑like surprise),
 - sensory vs associative emphasis,
 - “how much to learn from this channel” without necessarily changing global commitment.
 
@@ -259,6 +261,9 @@ and
 3. **Trajectory stability is cross-timescale.**  
    S2 necessarily references multiple horizons; it cannot be computed purely within E2.
 
+4. **Expected vs unexpected uncertainty are distinct.**  
+   ACh‑like expected‑uncertainty (K6) should not be conflated with NE‑like surprise/interrupt (K8).
+
 ---
 
 ## TODOs for the repo
@@ -277,8 +282,8 @@ and
 ## Abstracted language (human-readable formal-ish)
 
 **Types:** E1, E2, E3, CP (control plane)  
-**Signals:** S1 (outcome mismatch), S2 (trajectory coherence), S3 (aversive interrupt)  
-**Knobs:** K1..K5, draft K6 (attention/gain; acetylcholine-like)
+**Signals:** S1 (outcome mismatch), S2 (trajectory coherence), S3 (aversive interrupt), S4 (safety baseline/volatility)  
+**Knobs:** K1..K5, K6 (expected uncertainty), K7–K10 (arousal/readiness/veto)
 
 1. Generation
 - E2 → {S1_fast, S3_fast}  
@@ -286,12 +291,12 @@ and
 - (E1 ⊗ E2 ⊗ E3) → S2
 
 2. Control
-- CP computes {K1..K5,(K6?)} := F(S1,S2,S3,state_CP)  
+- CP computes {K1..K10} := F(S1,S2,S3,S4,state_CP)  
 - CP gates E3: {commit, interrupt, explore}  
-- CP tunes {E1,E2} via {K1,K2,K6?}
+- CP tunes {E1,E2} via {K1,K2,K6}
 
 3. Unfinished
-- (K6?) ∉ SpecComplete
+- (K6) remains underspecified (expected‑uncertainty attention/gain)
 - Constraint: K6 ≠ K2 (channel-attention is not identical to global precision)
 
 ---

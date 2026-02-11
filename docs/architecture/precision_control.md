@@ -34,14 +34,14 @@ Precision control does not merely tune learning rates. It induces **qualitativel
 	Phenomenology: confidence, motivation, goal-directed flow.
 	Pathology when excessive: over-commitment, mania, compulsivity.
 
-- Noradrenaline-like (global uncertainty / interrupt):
-	Transiently increases global gain and resets prior expectations.
+- Noradrenaline-like (unexpected uncertainty / interrupt):
+	Transiently increases gain on surprising inputs and resets prior expectations.
 	Breaks existing phase-locks and suspends temporal collapse.
 	Phenomenology: alarm, vigilance, attentional narrowing.
 	Pathology when excessive: panic, hypervigilance, fragmentation.
 
-- Acetylcholine-like (sensory precision / corrigibility):
-	Increases precision at sensory depths (\(\alpha_\gamma\)).
+- Acetylcholine-like (expected uncertainty / sensory precision):
+	Increases precision at sensory depths (\(\alpha_\gamma\)) under expected noise.
 	Forces perceptual updating against top-down prediction.
 	Phenomenology: clarity, vividness, perceptual anchoring.
 	Pathology when excessive: sensory overload, derealisation.
@@ -51,6 +51,22 @@ Precision control does not merely tune learning rates. It induces **qualitativel
 	Stabilises exploratory hippocampal rollouts across longer horizons.
 	Phenomenology: patience, emotional buffering, tolerance of ambiguity.
 	Pathology when excessive: apathy, blunted affect, indecision.
+
+Design constraint: expected uncertainty (ACh-like) must be separated from unexpected uncertainty (NE-like); they are
+distinct control channels, not a single precision scalar.
+
+<a id="mech-043"></a>
+## Dopamine Precision‑Weighting (MECH-043)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Dopamine-like modulation of precision-weighting for unsigned prediction errors  
+**Depends On:** ARC-005, INV-008, MECH-003  
+**Status:** candidate  
+**Claim ID:** MECH-043
+
+Dopamine‑like signals should modulate the **precision weighting** of unsigned prediction errors, shaping learning and
+commitment without becoming a scalar reward objective. Misallocation of this precision is a plausible mechanism for
+hallucination‑like failures.
 
 ⸻
 
@@ -88,6 +104,7 @@ None noted in preserved sources.
 ## Related Claims (IDs)
 
 - MECH-002
+- MECH-043
 
 ## References / Source Fragments
 
