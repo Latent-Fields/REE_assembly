@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/social.md` (MECH-051)
+
+---
+
 Thought: Oxytocin–Vasopressin as Relational Topology Modulators in REE
 
 0. Premise

@@ -108,6 +108,8 @@ Optional social coupling parameters (multi-agent):
 - `g_social`: social attention gain for `OTHER_SELFLIKE` agents.
 - `alpha_other`: precision assigned to inferred other-states.
 - `v_other_veto`: whether other-harm can veto vs only affect ranking.
+- `r_self`: relational distance between self and agent `j`, used for coupling and harm weighting.
+- `c_care`: care-investment weight per agent, used to sustain caregiving priorities.
 
 Additional control-plane state includes **mode priors** \(q_m\) and **switching inertia** \(I\) used by the
 pre‑commitment mode manager, plus μ/κ stability overlays that modulate mode entropy and switching pressure.
@@ -330,6 +332,12 @@ Do universal‑looking expressions (e.g., victory/pride displays) correspond to 
 in REE, and if so which combinations of arousal, readiness, precision, valence, and social coupling best align with
 observed universals? This remains an evidence‑constrained hypothesis, not an architectural primitive.
 
+<a id="q-008"></a>
+**Q-008 — Valence vectors vs μ/κ stability overlays**  
+Should REE retain a dedicated **valence vector** (as a sensory/affective stream tag), or can μ/κ stability overlays
+subsume the functional role of valence? If both remain, what is the minimal separation of concerns between affective
+bias (valence) and commitment stability (μ/κ)?
+
 ## Related Claims (IDs)
 
 - ARC-005
@@ -347,6 +355,7 @@ observed universals? This remains an evidence‑constrained hypothesis, not an a
 - MECH-048
 - MECH-042
 - Q-007
+- Q-008
 
 ## References / Source Fragments
 

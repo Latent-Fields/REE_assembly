@@ -676,7 +676,7 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.mode_management
   polarity: asserts
-  status: candidate
+  status: legacy
   depends_on:
     - ARC-005
     - ARC-003
@@ -911,6 +911,30 @@
   location: docs/architecture/control_plane.md#q-007
   source:
     - docs/architecture/control_plane.md
+- id: Q-008
+  claim_type: open_question
+  subject: valence_vs_mu_kappa_overlays
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-017
+    - MECH-035
+    - MECH-048
+  location: docs/architecture/control_plane.md#q-008
+  source:
+    - docs/architecture/control_plane.md
+- id: Q-009
+  claim_type: open_question
+  subject: care_weights_override_other_harm_veto
+  polarity: asserts
+  status: active
+  depends_on:
+    - MECH-036
+    - MECH-052
+    - ARC-010
+  location: docs/architecture/social.md#q-009
+  source:
+    - docs/architecture/social.md
 - id: ARC-016
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
@@ -1283,3 +1307,27 @@
   location: docs/architecture/entities_and_binding.md#mech-050
   source:
     - docs/thoughts/2026-02-11_columns.md
+- id: MECH-051
+  claim_type: mechanism_hypothesis
+  subject: social.relational_topology_modulation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-010
+    - ARC-005
+    - ARC-006
+  location: docs/architecture/social.md#mech-051
+  source:
+    - docs/thoughts/2026-02-11_oxytocin_vasopressin.md
+- id: MECH-052
+  claim_type: mechanism_hypothesis
+  subject: social.care_investment_persistence
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-010
+    - MECH-051
+    - MECH-048
+  location: docs/architecture/social.md#mech-052
+  source:
+    - docs/thoughts/2026-02-11_prolactin.md

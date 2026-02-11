@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Mode management and transitions  
 **Depends On:** ARC-005, ARC-003  
-**Status:** candidate  
+**Status:** legacy  
 **Claim ID:** MECH-008
 <a id="mech-008"></a>
 
@@ -25,6 +25,10 @@ The Mode Manager formalises how REE operates in **discrete cognitive modes**, ho
 
 This document does **not** introduce new cognitive content systems.  
 It specifies **how existing systems (E1, E2, E3, control plane)** are reconfigured across modes.
+
+**Status note:** MECH‑008 is now treated as **legacy**. The active control‑plane mechanism for mode commitment is
+captured in MECH‑046/MECH‑047/MECH‑048 (AA → PCM with stability overlays). This draft taxonomy remains as historical
+reference for mode descriptions and transition vocabulary.
 
 ---
 

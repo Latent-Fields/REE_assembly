@@ -25,7 +25,8 @@ and ethical generalisation without symbolic rules.
 
 **Subsystem abstract (core claims):** ARC‑010 anchors mirror modelling and coupling. MECH‑031 and MECH‑036 define
 fast empathy routing and veto thresholds, and MECH‑041 adds affective expression as a mode‑broadcast channel for
-social prediction load reduction. Supporting context includes MECH‑032 (high‑recall OTHER_SELFLIKE) and ARC‑009/ARC‑006.
+social prediction load reduction. Supporting context includes MECH‑032 (high‑recall OTHER_SELFLIKE), MECH‑051
+(relational topology modulation), MECH‑052 (care persistence), and ARC‑009/ARC‑006.
 
 Source: `docs/processed/legacy_tree/architecture/social/README.md`
 
@@ -171,6 +172,9 @@ Other-harm should trigger a hard veto only under high-certainty, catastrophic, o
 ambiguous or tradeoff-heavy contexts, other-harm should influence ranking rather than veto selection. Control-plane
 coupling parameters (`lambda_empathy`, `v_other_veto`) set and adapt this threshold.
 
+Open question Q‑009 addresses whether care‑investment weights should be allowed to override veto thresholds in
+exceptional contexts.
+
 ---
 
 <a id="mech-041"></a>
@@ -204,6 +208,56 @@ anatomical claims.
 
 ---
 
+<a id="mech-051"></a>
+## Oxytocin/Vasopressin as Relational Topology Modulators (MECH-051)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Dynamic self–other boundary geometry and mode‑prior shaping  
+**Depends On:** ARC-010, ARC-005, ARC-006  
+**Status:** candidate  
+**Claim ID:** MECH-051
+
+REE should represent **relational distance** between self and other agents as a continuous control‑plane variable
+\(R_{\text{self},j}\in[0,1]\), where 0 is fully self‑like and 1 is fully external/adversarial. This is a structural
+geometry, not an emotion.
+
+Two opponent analogues modulate this topology:
+
+- **Oxytocin‑analogue:** reduces relational distance for selected agents under safe affiliative signals, increasing
+  bonding‑mode priors and shared‑trajectory weighting.
+- **Vasopressin‑analogue:** increases boundary rigidity under sustained threat or norm violation, sharpening group
+  differentiation and defensive mode priors.
+
+Relational distance directly scales harm weighting and coupling strength in trajectory evaluation. It also conditions
+mode priors (bonding vs defensive) before deep E3 evaluation.
+
+These are **control‑plane weights**, not explicit ethical cost terms. They modulate coupling and harm weighting inside
+the existing commitment and residue architecture rather than introducing a separate moral objective.
+
+---
+
+<a id="mech-052"></a>
+## Prolactin as Care‑Investment Persistence (MECH-052)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Sustained caregiving orientation and care‑weight persistence  
+**Depends On:** ARC-010, MECH-051, MECH-048  
+**Status:** candidate  
+**Claim ID:** MECH-052
+
+REE should include a **care‑investment weight** \(C_j\) for each agent \(j\), representing sustained willingness to
+absorb cost on their behalf. A prolactin‑analogue increases the persistence of \(C_j\), stabilising caregiving modes
+even when immediate reward is low or costs are asymmetric.
+
+Care weight should scale how strongly predicted harm to \(j\) influences trajectory evaluation, separate from
+relational distance. Oxytocin lowers distance; prolactin sustains care; μ‑style stability overlays reduce rapid
+oscillation once care is established.
+
+Care weights are **control‑plane priorities**, not standalone ethical objectives. They bias selection and learning
+within the existing commitment/residue framework.
+
+---
+
 ## Fast Empathy via Shadow Bundles
 
 When `OTHER_SELFLIKE` is high, REE can instantiate a shadow bundle of inferred streams for an agent `j`:
@@ -225,7 +279,10 @@ This yields fast empathy as **routing + weighting**, not a new moral module.
 
 ## Open Questions
 
-None noted in preserved sources.
+<a id="q-009"></a>
+**Q-009 — Care weights vs other‑harm veto**  
+Should high care‑investment weights ever override other‑harm veto thresholds to avoid paralysis in complex
+environments, or must catastrophic other‑harm remain a hard veto regardless of care? This remains ethically open.
 
 ## Related Claims (IDs)
 
@@ -238,6 +295,9 @@ None noted in preserved sources.
 - MECH-032
 - MECH-036
 - MECH-041
+- MECH-051
+- MECH-052
+- Q-009
 
 ## References / Source Fragments
 
@@ -247,3 +307,5 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
 - `docs/thoughts/2026-02-09_empathy.md`
 - `docs/thoughts/2026-02-09_other_harm_gating.md`
+- `docs/thoughts/2026-02-11_oxytocin_vasopressin.md`
+- `docs/thoughts/2026-02-11_prolactin.md`

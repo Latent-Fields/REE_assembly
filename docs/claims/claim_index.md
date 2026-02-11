@@ -109,6 +109,8 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-048](../architecture/control_plane.md#mech-048) μ/κ stability overlays modulate mode entropy and switching pressure.
 - [MECH-049](../architecture/temporal_dynamics.md#mech-049) Temporal phase compartmentalisation preserves ethical constraint independence.
 - [MECH-050](../architecture/entities_and_binding.md#mech-050) Functional locality supports attribution without requiring anatomical columns.
+- [MECH-051](../architecture/social.md#mech-051) Oxytocin/vasopressin analogues modulate relational topology and mode priors.
+- [MECH-052](../architecture/social.md#mech-052) Prolactin analogue stabilises care‑investment persistence.
 
 ---
 
@@ -121,6 +123,8 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-005](../architecture/astrocyte_regulatory_stack.md#q-005) Can sleep anneal or reset R(x,t)?
 - [Q-006](../architecture/agency_responsibility_flow.md#q-006) Is ethics developmental rather than additive?
 - [Q-007](../architecture/control_plane.md#q-007) Do universal expressions map to stable control‑channel regimes?
+- [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors?
+- [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure?
 
 ---
 

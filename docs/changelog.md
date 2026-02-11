@@ -20,8 +20,10 @@ columnar motif vs geometry, and control‑plane math sketches.
 - Added MECH‑047 (pre‑commitment mode manager with hysteresis) and a non‑binding math sketch to `docs/architecture/mode_manager.md`.
 - Added MECH‑049 (temporal phase compartmentalisation for ethical stability) to `docs/architecture/temporal_dynamics.md`.
 - Added MECH‑050 (functional locality without column geometry) to `docs/architecture/entities_and_binding.md`.
+- Added MECH‑051 (oxytocin/vasopressin relational topology modulation) and MECH‑052 (prolactin care persistence) to `docs/architecture/social.md`.
 - Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md`.
 - Marked new 2026‑02‑11 thought files as processed with canonical links.
+- Re‑scoped MECH‑008 as legacy and added open questions Q‑008 (valence vs μ/κ overlays) and Q‑009 (care weights vs other‑harm veto).
 
 ## 2026-02-10: Control-Plane Channel Clarification
 

@@ -1,4 +1,9 @@
+Status: processed
 
+Processed in:
+- `docs/architecture/social.md` (MECH-052)
+
+---
 
 Prolactin as a Social Modulator in REE
 
