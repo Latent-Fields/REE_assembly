@@ -104,3 +104,10 @@ Status shifts: none
 Notes: Added a subsystem abstract to keep responsibility flow grounded in commitment and path‑dependent geometry.
 
 ---
+
+Date: 2026-02-11
+Subsystem: Promotion/Demotion Review (Control Plane + Hippocampal + Residue)
+Core claims: MECH-033, MECH-034, MECH-039, MECH-040
+Supporting claims: ARC-018, ARC-013, ARC-005, MECH-019
+Status shifts: MECH-033 candidate → provisional; MECH-034 candidate → provisional; MECH-039 candidate → provisional; MECH-040 candidate → provisional; MECH-008 candidate → legacy
+Notes: Promoted stable interface and safety-channel mechanisms; retired the legacy mode-manager claim in favor of the AA→PCM stack.

@@ -59,7 +59,7 @@ about scheduling, replay bias, and consolidation depth (see `docs/notes/evidence
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Distinguish ethical curvature updates from navigability updates  
 **Depends On:** ARC-013, ARC-018  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-034
 
 Post-commitment viability mapping updates a navigability surface using predicted–observed self-sensory mismatch and

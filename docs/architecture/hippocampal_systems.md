@@ -60,7 +60,7 @@ It is the only place explicit multi-step rollouts exist; E1/E2 supply constraint
 **Claim Type:** mechanism_hypothesis  
 **Scope:** How E2 forward-prediction kernels seed hippocampal rollouts  
 **Depends On:** ARC-018, ARC-002, ARC-001, ARC-005  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-033
 
 E2 supplies short-horizon forward-prediction kernels (local conditional transitions) rather than multi-step trajectories.
