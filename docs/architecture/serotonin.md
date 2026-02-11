@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Representational collapse and exclusivity control  
 **Depends On:** ARC-005, ARC-008  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-006
 <a id="mech-006"></a>
 

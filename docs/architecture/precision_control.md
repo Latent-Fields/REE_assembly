@@ -61,7 +61,7 @@ distinct control channels, not a single precision scalar.
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Dopamine-like modulation of precision-weighting for unsigned prediction errors  
 **Depends On:** ARC-005, INV-008, MECH-003  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-043
 
 Dopamine‑like signals should modulate the **precision weighting** of unsigned prediction errors, shaping learning and

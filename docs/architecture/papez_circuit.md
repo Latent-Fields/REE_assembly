@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Provenance gating / reality filtering via a Papez-like loop  
 **Depends On:** ARC-007, ARC-018, ARC-003, ARC-005  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-037
 <a id="mech-037"></a>
 

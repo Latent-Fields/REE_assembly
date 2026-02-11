@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Rationale for fragmented attention control axes  
 **Depends On:** INV-009, ARC-005  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-007
 <a id="mech-007"></a>
 

@@ -183,7 +183,7 @@ exceptional contexts.
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Pre‑verbal affective displays as control‑plane regime signals for social prediction load reduction  
 **Depends On:** ARC-010, ARC-005, ARC-016, MECH-039  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-041
 
 Affective expression can be treated as a **low‑latency broadcast** of control‑plane regime to other agents.

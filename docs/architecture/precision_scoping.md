@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Tau-scoped precision separation and update rules  
 **Depends On:** INV-008, ARC-004  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-003
 <a id="mech-003"></a>
 

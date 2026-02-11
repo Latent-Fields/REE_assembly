@@ -146,7 +146,7 @@ state still reflects a prior regime.
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Fast salience classification that updates control‑plane mode priors  
 **Depends On:** ARC-005, MECH-039  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-046
 
 REE should include a fast salience classifier (Amygdala Analogue, AA) that **updates a distribution over control‑plane
@@ -248,7 +248,7 @@ be treated as hypotheses and constrained by evidence, not as architectural primi
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Opponent stability overlays that modulate mode entropy and switching  
 **Depends On:** ARC-005, MECH-039  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-048
 
 REE should include **opponent stability overlays** that modulate mode entropy and switching pressure.

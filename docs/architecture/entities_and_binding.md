@@ -74,7 +74,7 @@ metabolic or developmental optimisation, not a computational primitive.
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Hippocampal participation in relational binding and comparison  
 **Depends On:** ARC-006, ARC-007, ARC-004  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-044
 
 Hippocampal systems should contribute to **relational binding and comparison**, not only long‑term storage. This
@@ -88,7 +88,7 @@ supports early detection of relations and binding consistency across time and co
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Minimal persistence buffer for entity continuity across time  
 **Depends On:** ARC-006, ARC-004, INV-002  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-045
 
 Entities should be tracked via **object‑file‑like buffers** that bind features across time and motion, providing a

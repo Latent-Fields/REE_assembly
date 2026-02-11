@@ -48,6 +48,8 @@ AA proposes; PCM commits.
 <a id="mech-020"></a>
 ## Emergent Cognitive Modes (MECH-020)
 
+**Status:** legacy (superseded by MECH‑019 / MECH‑039 in `control_plane.md`)  
+
 Different cognitive modes (reactive, deliberative, habitual, reflective) emerge from how the control plane biases:
 - which prediction horizons dominate,
 - which errors are allowed to matter,
@@ -80,7 +82,7 @@ See `modes_of_cognition.md` for the control-plane regime taxonomy (ARC-016, MECH
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Mode commitment with hysteresis and switching costs  
 **Depends On:** ARC-005, MECH-046  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-047
 
 The pre‑commitment mode manager (PCM) stabilises a **committed mode** using hysteresis and switching costs. It consumes

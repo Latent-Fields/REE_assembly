@@ -26,6 +26,11 @@ columnar motif vs geometry, and control‑plane math sketches.
 - Re‑scoped MECH‑008 as legacy and added open questions Q‑008 (valence vs μ/κ overlays) and Q‑009 (care weights vs other‑harm veto).
 - Promoted MECH‑033, MECH‑034, MECH‑039, and MECH‑040 from candidate to provisional and logged the review in `docs/notes/synthesis_passes.md`.
 - Promoted core control‑plane, modes, social, and agency mechanisms (MECH‑002, MECH‑005, MECH‑022 through MECH‑031, MECH‑036, MECH‑041) to provisional and logged the review in `docs/notes/synthesis_passes.md`.
+- Promoted MECH‑021, MECH‑043, MECH‑044, and MECH‑045 to provisional and demoted MECH‑020 to legacy, logged in `docs/notes/synthesis_passes.md`.
+- Promoted MECH‑003 and MECH‑032 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
+- Promoted MECH‑037 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
+- Promoted MECH‑046, MECH‑047, and MECH‑048 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
+- Promoted MECH‑006 and MECH‑007 to provisional and logged the review in `docs/notes/synthesis_passes.md`.
 
 ## 2026-02-10: Control-Plane Channel Clarification
 
