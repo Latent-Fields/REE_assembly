@@ -34,6 +34,8 @@ columnar motif vs geometry, and control‑plane math sketches.
 - Added MECH‑053 (habenula‑like aversive PE gate) and MECH‑054 (signed harm/benefit PE precision), plus Q‑010 on hedonic/valence/PE separation; updated control‑plane signal map.
 - Added a signed harm/benefit PE precision schema to `docs/architecture/precision_control.md` aligned with MECH‑054.
 - Added MECH‑055 (affective channel separation) and marked Q‑010 as legacy (resolved into MECH‑055).
+- Added a calibration note to `docs/architecture/precision_control.md` deferring tuning rules until the signal map and astrocyte stack are clarified.
+- Expanded signed harm/benefit PE routing details in `docs/architecture/control_plane_signal_map.md` (K2_H/K2_B plus aversive‑gate elevation of S3/K10).
 
 ## 2026-02-10: Control-Plane Channel Clarification
 
