@@ -117,6 +117,10 @@ Usage:
 This keeps **hedonic tone** (μ/κ overlays), **valence vectors** (MECH‑035), and **signed PE precision** conceptually
 distinct. See MECH‑055 in `control_plane.md` for the separation rule.
 
+**Calibration note:** Quantitative tuning rules are intentionally deferred until the signal‑map wiring (MECH‑004) and
+regulatory‑stack framing (MECH‑001) are clarified. The current separation rules are **invariant‑compatible scaffolding**,
+not a final calibration protocol.
+
 ## Astrocyte-aware regulatory stack
 
 **Note:** The above framing treats monoamines as direct control knobs. A more neuroscience-informed perspective reinterprets monoamines as **broadcast meta-regulatory signals** that bias a slower astrocytic regulatory substrate, which then modulates precision/gain/plasticity with spatial and temporal lags.
