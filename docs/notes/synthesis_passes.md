@@ -111,3 +111,12 @@ Core claims: MECH-033, MECH-034, MECH-039, MECH-040
 Supporting claims: ARC-018, ARC-013, ARC-005, MECH-019
 Status shifts: MECH-033 candidate → provisional; MECH-034 candidate → provisional; MECH-039 candidate → provisional; MECH-040 candidate → provisional; MECH-008 candidate → legacy
 Notes: Promoted stable interface and safety-channel mechanisms; retired the legacy mode-manager claim in favor of the AA→PCM stack.
+
+---
+
+Date: 2026-02-11
+Subsystem: Promotion/Demotion Review (Modes + Social + Responsibility + Sleep)
+Core claims: MECH-025, MECH-026, MECH-027, MECH-028, MECH-029, MECH-030, MECH-031, MECH-036, MECH-041
+Supporting claims: MECH-002, MECH-005, MECH-022, MECH-023, MECH-024, ARC-016, ARC-014, ARC-011, ARC-010, ARC-005, ARC-015
+Status shifts: MECH-002 candidate → provisional; MECH-005 candidate → provisional; MECH-022 candidate → provisional; MECH-023 candidate → provisional; MECH-024 candidate → provisional; MECH-025 candidate → provisional; MECH-026 candidate → provisional; MECH-027 candidate → provisional; MECH-028 candidate → provisional; MECH-029 candidate → provisional; MECH-030 candidate → provisional; MECH-031 candidate → provisional; MECH-036 candidate → provisional; MECH-041 candidate → provisional
+Notes: Promoted core mode, social, responsibility, sleep, and control‑plane mechanisms to provisional; kept speculative or open‑question items in candidate status.

@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Path authority, interruptibility, and commitment pressure  
 **Depends On:** ARC-005, ARC-003, ARC-008  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-005
 <a id="mech-005"></a>
 

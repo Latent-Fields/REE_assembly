@@ -128,7 +128,7 @@ Source: `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Derived social tags and control-plane coupling for fast empathy  
 **Depends On:** ARC-010, ARC-005, ARC-017, ARC-015, ARC-006, INV-005  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-031
 
 ---
@@ -156,7 +156,7 @@ empathy coupling and ethical generalisation. Calibration can tighten over develo
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Bias `OTHER_SELFLIKE` toward recall to avoid empathy false negatives  
 **Depends On:** MECH-031, ARC-010  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-032
 
 <a id="mech-036"></a>
@@ -165,7 +165,7 @@ empathy coupling and ethical generalisation. Calibration can tighten over develo
 **Claim Type:** mechanism_hypothesis  
 **Scope:** When inferred other-harm should veto vs influence ranking  
 **Depends On:** MECH-031, ARC-005, INV-005  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-036
 
 Other-harm should trigger a hard veto only under high-certainty, catastrophic, or irreversible outcomes. In most

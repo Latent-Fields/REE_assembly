@@ -3,7 +3,7 @@
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Precision control analogues and cognitive regimes  
 **Depends On:** ARC-005, INV-008, ARC-004  
-**Status:** candidate  
+**Status:** provisional  
 **Claim ID:** MECH-002
 <a id="mech-002"></a>
 
