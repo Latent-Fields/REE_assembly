@@ -174,3 +174,12 @@ Core claims: MECH-004, MECH-053, MECH-054, MECH-055
 Supporting claims: MECH-001, MECH-036, MECH-051, MECH-052, Q-008, Q-009
 Status shifts: none
 Notes: Set promotion criteria for the next pass: (1) explicit interface variables, (2) update equations or decision inequalities, (3) at least two resolved conflict scenarios, and (4) telemetry/test hooks for interrupts, veto, and post-commit accountability.
+
+---
+
+Date: 2026-02-12
+Subsystem: Thought Sweep (Failure Geometry + Residue Placement)
+Core claims: MECH-056, Q-011, IMPL-005
+Supporting claims: ARC-013, ARC-018, ARC-003, ARC-005, ARC-011
+Status shifts: MECH-056 added as candidate; Q-011 added as active open question
+Notes: Processed 2026-02-12 thought intake by formalizing trajectory-first residue placement, adding rollout-diversity floor question, and extending failure taxonomy with trajectory collapse and failure-vector coordinates.

@@ -229,7 +229,11 @@ The hippocampal braid enables the REE agent to say:
 
 ## Open Questions
 
-None noted in preserved sources.
+<a id="q-011"></a>
+**Q-011 — Minimum rollout entropy floor under repeated harm**  
+Under repeated unavoidable harm, should REE enforce a non-zero rollout-diversity floor to prevent pathological
+trajectory collapse? If yes, where should it be enforced: control-plane exploration pressure, hippocampal sampling,
+offline/sleep recovery, or a combination?
 
 ## Related Claims (IDs)
 
@@ -240,6 +244,7 @@ None noted in preserved sources.
 - INV-006
 - MECH-022
 - MECH-033
+- Q-011
 
 ## References / Source Fragments
 
@@ -248,3 +253,4 @@ None noted in preserved sources.
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 - `docs/thoughts/2026-02-09_starting_with_sensory_streams.md`
 - `docs/thoughts/2026-02-09_e2_hpc_interface.md`
+- `docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md`

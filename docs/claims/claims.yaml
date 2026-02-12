@@ -494,9 +494,13 @@
     - ARC-005
     - ARC-013
     - ARC-010
+    - ARC-007
+    - ARC-018
   location: docs/REE_failure_modes.md#impl-005
   source:
     - docs/processed/legacy_tree/docs/REE_failure_modes.md
+    - docs/thoughts/FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md
+    - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
 - id: IMPL-006
   claim_type: implementation_note
   subject: migration.legacy
@@ -947,6 +951,19 @@
   location: docs/architecture/control_plane.md#q-010
   source:
     - docs/architecture/control_plane.md
+- id: Q-011
+  claim_type: open_question
+  subject: hippocampus.minimum_rollout_entropy_floor
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-018
+    - ARC-005
+    - ARC-011
+  location: docs/architecture/hippocampal_systems.md#q-011
+  source:
+    - docs/architecture/hippocampal_systems.md
+    - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
 - id: ARC-016
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
@@ -1381,3 +1398,18 @@
   location: docs/architecture/control_plane.md#mech-055
   source:
     - docs/architecture/control_plane.md
+- id: MECH-056
+  claim_type: mechanism_hypothesis
+  subject: residue.trajectory_first_placement
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-013
+    - ARC-018
+    - ARC-003
+    - ARC-004
+    - MECH-034
+  location: docs/architecture/residue_geometry.md#mech-056
+  source:
+    - docs/architecture/residue_geometry.md
+    - docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md

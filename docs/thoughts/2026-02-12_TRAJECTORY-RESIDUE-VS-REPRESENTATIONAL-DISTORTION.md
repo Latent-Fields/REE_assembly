@@ -1,6 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/residue_geometry.md` (MECH-056)
+
+---
+
 TRAJECTORY-LEVEL RESIDUE VS REPRESENTATIONAL DISTORTION
 
-Status: Thought Intake (Not Promoted)
 Layer: Architectural Mechanism Placement / Safety Geometry
 
 Related: ARC-013 (Residue Geometry), ARC-018 (Hippocampal Rollouts), ARC-003 (E3 Commitment), ARC-004 (L-Space)
@@ -219,7 +225,4 @@ DangerDetailed ∧ PathInaccessible
 
 ⟦Preference⟧
 Residue(TrajectorySpace) > Residue(RepresentationDistortion)
-
-Status: ThoughtIntake (NotPromoted)
-
 

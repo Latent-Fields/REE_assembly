@@ -21,6 +21,24 @@ control-state equations, and focused promotion criteria for the next claim-statu
 - Added telemetry requirements in `docs/architecture/precision_control.md` to log tonic/phasic control dynamics and interrupt triggers.
 - Added a focused promotion-gate entry in `docs/notes/synthesis_passes.md` for `MECH-004`, `MECH-053`, `MECH-054`, and `MECH-055` with explicit promotion criteria.
 
+## 2026-02-12: Thought Sweep - Failure Geometry and Residue Placement
+
+### Overview
+
+Processed new 2026-02-12 thought files by promoting trajectory-vs-representation residue placement into a candidate
+mechanism, adding a rollout-collapse open question, and extending the implementation failure taxonomy.
+
+### What Changed
+
+- Added MECH-056 (trajectory-first residue placement) to `docs/architecture/residue_geometry.md`.
+- Added Q-011 (minimum rollout-diversity floor under repeated harm) to `docs/architecture/hippocampal_systems.md`.
+- Extended `docs/REE_failure_modes.md` with trajectory-space collapse and a failure-vector coordinate framing.
+- Updated `docs/claims/claims.yaml` and `docs/claims/claim_index.md` for MECH-056, Q-011, and IMPL-005 source/dependency updates.
+- Marked 2026-02-12 thought files as processed with canonical links:
+  - `docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md`
+  - `docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md`
+  - `docs/thoughts/FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md`
+
 ## 2026-02-11: Mode Priors, Stability Overlays, and Phase Separation
 
 ### Overview

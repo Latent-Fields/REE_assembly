@@ -114,6 +114,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-053](../architecture/control_plane.md#mech-053) Habenula‑like aversive PE gate suppresses commitment under negative spikes.
 - [MECH-054](../architecture/control_plane.md#mech-054) Signed harm/benefit prediction‑error precision channels remain distinct.
 - [MECH-055](../architecture/control_plane.md#mech-055) Affective channel separation keeps hedonic tone, valence, and signed PE distinct.
+- [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
 
 ---
 
@@ -129,6 +130,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors?
 - [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure?
 - [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
+- [Q-011](../architecture/hippocampal_systems.md#q-011) Should REE enforce a minimum rollout-diversity floor under repeated unavoidable harm?
 
 ---
 

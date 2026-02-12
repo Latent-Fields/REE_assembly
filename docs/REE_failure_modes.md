@@ -2,7 +2,7 @@
 
 **Claim Type:** implementation_note  
 **Scope:** Failure mode taxonomy for REE implementations  
-**Depends On:** INV-006, INV-008, ARC-005, ARC-013, ARC-010  
+**Depends On:** INV-006, INV-008, ARC-005, ARC-013, ARC-010, ARC-007, ARC-018  
 **Status:** stable  
 **Claim ID:** IMPL-005
 <a id="impl-005"></a>
@@ -62,6 +62,36 @@ This document does not reclassify them clinically; it links them as implementati
 
 See: `docs/architecture/modes_of_cognition.md#mech-027`
 
+## 8. Trajectory-space collapse (depressive-pruning analogue)
+
+**Mechanism:** repeated unavoidable harm plus high threat precision can progressively prune hippocampal rollout
+diversity until only harm-terminated trajectories are sampled.
+
+**Expected behavior:** behavioral narrowing, withdrawal/inaction, low exploration, and persistent "no viable future"
+selection even after environment improvement.
+
+**Implementation smell:** rollout entropy and unique viable-trajectory count decline monotonically while representational
+error remains comparatively stable.
+
+**Mitigations:** staged recovery controls (temporary exploration lift, reduced threat over-weighting, sleep/offline
+re-expansion, and replay diversification) with strict commitment gating during recovery.
+
+## 9. Failure-vector coordinate framing (descriptive layer)
+
+In addition to named failure modes, implementations can track a descriptive vector:
+\[
+F = (H_{\tau}, H_{z}, S_{\pi}, L_{R}, S_{m})
+\]
+Where:
+- \(H_{\tau}\): trajectory entropy / rollout diversity.
+- \(H_{z}\): representational entropy / latent coherence.
+- \(S_{\pi}\): precision-allocation stability.
+- \(L_{R}\): residue load / path-dependence density.
+- \(S_{m}\): regime stability across control-plane modes.
+
+This vector is an engineering taxonomy, not a clinical diagnostic system. It is intended to improve cross-failure
+comparison and intervention targeting.
+
 ---
 
 ## Open Questions
@@ -76,6 +106,8 @@ None noted in preserved sources.
 - ARC-005
 - ARC-013
 - ARC-010
+- ARC-007
+- ARC-018
 - ARC-016
 - MECH-027
 
@@ -83,3 +115,5 @@ None noted in preserved sources.
 
 - `docs/processed/legacy_tree/docs/REE_failure_modes.md`
 - `docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md`
+- `docs/thoughts/FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md`
+- `docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md`

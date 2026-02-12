@@ -71,6 +71,30 @@ Residue also drives **longer‑horizon training pressure** in E1/E2: slow shifts
 should reflect accumulated ethical curvature, while hippocampal viability mapping remains a feasibility filter rather
 than a value signal. Online updates can be conservative; deeper integration occurs during offline/sleep consolidation.
 
+<a id="mech-056"></a>
+## Trajectory-First Residue Placement (MECH-056)
+
+**Claim Type:** mechanism_hypothesis
+**Scope:** Prefer trajectory-space gating before representational distortion
+**Depends On:** ARC-013, ARC-018, ARC-003, ARC-004, MECH-034
+**Status:** candidate
+**Claim ID:** MECH-056
+
+REE should preferentially place residue pressure in **trajectory feasibility and commitment gating** (hippocampal
+rollout costs, E3 thresholds, and control-plane vetoes) rather than distorting core E1/E2 representational geometry.
+
+Design preference:
+- Preserve detailed world modelling in E1/E2.
+- Suppress harmful enactment by increasing trajectory cost and commitment resistance.
+- Allow only bounded, slow representational bias when trajectory-level constraints are insufficient.
+
+This keeps epistemic richness and corrigibility while still enforcing behavioral constraints:
+**know broadly, enact selectively**.
+
+Operational implication:
+- Apply residue first to rollout sampling weights and E3 gating.
+- Treat latent distortion as a secondary, capped channel with explicit safeguards against blind spots.
+
 ## Why geometry
 
 If residue were a scalar penalty, it would be easily traded off against reward and optimized away.
@@ -124,9 +148,11 @@ None noted in preserved sources.
 - INV-006
 - INV-004
 - MECH-034
+- MECH-056
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/architecture/residue_geometry.md`
 - `docs/processed/legacy_tree/architecture/residue_geometry.md`
 - `docs/thoughts/2026-02-09_viability_mapping_vs_residue.md`
+- `docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md`

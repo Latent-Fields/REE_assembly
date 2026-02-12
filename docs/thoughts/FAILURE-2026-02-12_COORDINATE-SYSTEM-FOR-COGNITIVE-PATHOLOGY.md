@@ -1,6 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/REE_failure_modes.md` (IMPL-005)
+
+---
+
 FAILURE COORDINATE SYSTEM FOR COGNITIVE PATHOLOGY
 
-Status: Thought Intake (Not Promoted)
 Layer: Descriptive Taxonomy (Pre-Mechanistic Physics Layer)
 
 Related:
@@ -277,6 +283,3 @@ Abstracted Layer (Optional Appendix)
 
 Diagnosis → Projection(FailureVector)
 Treatment → MovementTowardBalancedRegion
-
-Status: ThoughtIntake (NotPromoted)
-

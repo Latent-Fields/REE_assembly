@@ -1,6 +1,13 @@
+Status: processed
+
+Processed in:
+- `docs/REE_failure_modes.md` (IMPL-005)
+- `docs/architecture/hippocampal_systems.md` (Q-011)
+
+---
+
 DEPRESSIVE PATH PRUNING: HIPPOCAMPAL ROLLOUT COLLAPSE HYPOTHESIS
 
-Status: Thought Intake (Not Promoted)
 Layer: Cross-Domain Mechanism Analogy (Biological ↔ REE Architecture)
 
 Related: ARC-018 (Hippocampal Rollouts), ARC-013 (Residue Geometry), ARC-005 (Control Plane Precision), DEV-ROADMAP (Self-First Ordering)
@@ -182,6 +189,3 @@ Abstracted Layer (Optional Appendix)
 PlasticityBoost ∧ StressToneReduction
 → Increase(RolloutEntropy)
 → Restore(ViableFutures)
-
-Status: ThoughtIntake (NotPromoted)
-
