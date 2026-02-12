@@ -2,6 +2,9 @@
 
 This folder contains resolution notes for conflicts documented in `docs/conflicts/`.
 
+Current resolution notes:
+- `docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md`
+
 ## Rules
 
 - Do not delete or overwrite conflict files.

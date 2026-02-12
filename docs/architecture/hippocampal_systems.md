@@ -234,6 +234,7 @@ The hippocampal braid enables the REE agent to say:
 Under repeated unavoidable harm, should REE enforce a non-zero rollout-diversity floor to prevent pathological
 trajectory collapse? If yes, where should it be enforced: control-plane exploration pressure, hippocampal sampling,
 offline/sleep recovery, or a combination?
+Tracked conflict: `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`
 
 ## Related Claims (IDs)
 

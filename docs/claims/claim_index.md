@@ -67,7 +67,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-005](../architecture/path_authority_and_interrupts.md#mech-005) Path authority and interruptibility via norepinephrine-like control.
 - [MECH-006](../architecture/serotonin.md#mech-006) Serotonin-like modulation governs representational collapse.
 - [MECH-007](../architecture/why_attention_must_be_fragmented.md#mech-007) Attention must be fragmented across control axes.
-- [MECH-008](../architecture/mode_manager.md#mech-008) Mode management and transitions across control regimes.
+- [MECH-008](../architecture/mode_manager.md#mech-008) Legacy: superseded by AA/PCM + control-channel mode framing (MECH-046/047/048, MECH-039).
 - [MECH-010](../architecture/language/emergence_and_bootstrapping.md#mech-010) Language emergence and bootstrapping dynamics.
 - [MECH-011](../architecture/language/language_and_learning.md#mech-011) Language and learning dynamics.
 - [MECH-012](../architecture/language/language_and_institutions.md#mech-012) Language and institutions interplay.
@@ -78,7 +78,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-017](../architecture/sleep/reality_consolidation.md#mech-017) Reality consolidation during sleep.
 - [MECH-018](../architecture/sleep/residue_integration.md#mech-018) Residue integration during sleep.
 - [MECH-019](../architecture/control_plane.md#mech-019) Control plane shapes modes of cognition, not discrete choices.
-- [MECH-020](../architecture/mode_manager.md#mech-020) Cognitive modes emerge from control-plane biasing.
+- [MECH-020](../architecture/mode_manager.md#mech-020) Legacy: superseded by control-plane mode framing (MECH-019, MECH-039).
 - [MECH-021](../architecture/temporal_dynamics.md#mech-021) Subjective “now” is a control surface across horizons.
 - [MECH-022](../architecture/hippocampal_systems.md#mech-022) Hippocampal systems inject hypotheses gated by control plane.
 - [MECH-023](../architecture/agency_responsibility_flow.md#mech-023) Responsibility is geometric and path-dependent.
@@ -127,10 +127,10 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-005](../architecture/astrocyte_regulatory_stack.md#q-005) Can sleep anneal or reset R(x,t)?
 - [Q-006](../architecture/agency_responsibility_flow.md#q-006) Is ethics developmental rather than additive?
 - [Q-007](../architecture/control_plane.md#q-007) Do universal expressions map to stable control‑channel regimes?
-- [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors?
-- [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure?
+- [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors? Tracked in `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`.
+- [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure? Tracked in `docs/conflicts/care_override_vs_other_harm_veto.md`.
 - [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
-- [Q-011](../architecture/hippocampal_systems.md#q-011) Should REE enforce a minimum rollout-diversity floor under repeated unavoidable harm?
+- [Q-011](../architecture/hippocampal_systems.md#q-011) Should REE enforce a minimum rollout-diversity floor under repeated unavoidable harm? Tracked in `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`.
 
 ---
 

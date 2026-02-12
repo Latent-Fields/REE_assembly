@@ -792,10 +792,17 @@
   subject: conflicts.index
   polarity: asserts
   status: active
-  depends_on: []
+  depends_on:
+    - Q-008
+    - Q-009
+    - Q-011
   location: docs/conflicts/README.md#impl-017
   source:
     - docs/processed/legacy_tree/docs/conflicts/ethics_module_vs_cost_term.md
+    - docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md
+    - docs/conflicts/care_override_vs_other_harm_veto.md
+    - docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md
+    - docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md
 - id: IMPL-018
   claim_type: implementation_note
   subject: claims.index

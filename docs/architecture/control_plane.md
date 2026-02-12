@@ -429,6 +429,7 @@ observed universals? This remains an evidence‑constrained hypothesis, not an a
 Should REE retain a dedicated **valence vector** (as a sensory/affective stream tag), or can μ/κ stability overlays
 subsume the functional role of valence? If both remain, what is the minimal separation of concerns between affective
 bias (valence) and commitment stability (μ/κ)?
+Tracked conflict: `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
 
 <a id="q-010"></a>
 **Q-010 — Hedonic tone vs valence vs signed PE precision (legacy)**  

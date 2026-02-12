@@ -26,6 +26,7 @@ Is M a descriptive prediction of harm within the shared generative model (and th
 ## Resolution (2026-02-08)
 
 Decision: E3 does not require any explicit ethics module or ethical cost term. Ethical consequence is handled via residue, mirror modelling, control-plane gating, hippocampal systems, and commitment-gated learning.
+Resolution note: `docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md`
 
 Resulting updates:
 - Canonical E3 documentation now states that explicit ethical cost terms are legacy formulations.

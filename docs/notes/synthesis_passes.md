@@ -183,3 +183,21 @@ Core claims: MECH-056, Q-011, IMPL-005
 Supporting claims: ARC-013, ARC-018, ARC-003, ARC-005, ARC-011
 Status shifts: MECH-056 added as candidate; Q-011 added as active open question
 Notes: Processed 2026-02-12 thought intake by formalizing trajectory-first residue placement, adding rollout-diversity floor question, and extending failure taxonomy with trajectory collapse and failure-vector coordinates.
+
+---
+
+Date: 2026-02-12
+Subsystem: Consistency Sweep (Dependencies + Conflicts + Open Questions)
+Core claims: IMPL-017, Q-008, Q-009, Q-011
+Supporting claims: MECH-008, MECH-020
+Status shifts: none
+Notes: Added three missing active conflict records, linked each to its open question, marked legacy mechanism summaries explicitly in claim index, and aligned IMPL-017 dependencies/sources with current conflict coverage.
+
+---
+
+Date: 2026-02-12
+Subsystem: Open Question Sweep (Registry Hygiene)
+Core claims: Q-001, Q-002, Q-003, Q-004, Q-005, Q-006, Q-007, Q-008, Q-009, Q-010, Q-011
+Supporting claims: MECH-001, MECH-055, ARC-015, ARC-018, IMPL-017
+Status shifts: none
+Notes: Verified claim-registry coverage and anchor links for all Q IDs. Q-008/Q-009/Q-011 now have explicit conflict trackers; Q-010 remains legacy. Remaining open questions stay active pending mechanism formalization/evidence.

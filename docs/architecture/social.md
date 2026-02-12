@@ -283,6 +283,7 @@ This yields fast empathy as **routing + weighting**, not a new moral module.
 **Q-009 — Care weights vs other‑harm veto**  
 Should high care‑investment weights ever override other‑harm veto thresholds to avoid paralysis in complex
 environments, or must catastrophic other‑harm remain a hard veto regardless of care? This remains ethically open.
+Tracked conflict: `docs/conflicts/care_override_vs_other_harm_veto.md`
 
 ## Related Claims (IDs)
 

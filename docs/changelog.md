@@ -7,6 +7,33 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-12: Consistency Sweep (Dependencies, Conflicts, Open Questions)
+
+### Overview
+
+Ran a repo-wide documentation consistency pass to tighten dependency symmetry, conflict tracking coverage, and
+open-question navigation.
+
+### What Changed
+
+- Added missing conflict records:
+  - `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
+  - `docs/conflicts/care_override_vs_other_harm_veto.md`
+  - `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`
+- Added missing resolution note and backlink for the previously resolved ethics conflict:
+  - `docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md`
+  - `docs/conflicts/ethics_module_vs_cost_term.md`
+- Updated `docs/conflicts/README.md` to index all active conflicts and map Q-008/Q-009/Q-011 to their trackers.
+- Added tracked-conflict links in open-question sections of:
+  - `docs/architecture/control_plane.md` (Q-008)
+  - `docs/architecture/social.md` (Q-009)
+  - `docs/architecture/hippocampal_systems.md` (Q-011)
+- Updated `docs/claims/claim_index.md` for status symmetry:
+  - Marked MECH-008 and MECH-020 as legacy in summaries.
+  - Added conflict-tracker references to Q-008/Q-009/Q-011 index entries.
+- Updated `docs/claims/claims.yaml` so IMPL-017 depends on Q-008/Q-009/Q-011 and cites new conflict sources.
+- Logged an explicit open-question registry sweep in `docs/notes/synthesis_passes.md` (Q-001 through Q-011 coverage/triage).
+
 ## 2026-02-12: Justification Invariants and Operational Control-State Hooks
 
 ### Overview
