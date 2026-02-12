@@ -7,6 +7,20 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-12: Justification Invariants and Operational Control-State Hooks
+
+### Overview
+
+Converted prior discussion points into explicit architecture contracts: justification-gate invariants, operational
+control-state equations, and focused promotion criteria for the next claim-status pass.
+
+### What Changed
+
+- Added a formal **Justification gate invariants** section to `docs/architecture/control_plane.md` (necessity, imminence, proportionality, explainability, accountability) with decision inequalities over rollout sets.
+- Added **operational control-state variables** and illustrative equations to `docs/architecture/precision_control.md` (`A_t`, `N_t`, `R_t`, `C_t`; plus `K1`, `K2`, `K2_H`, `K2_B`, `K10` update hooks).
+- Added telemetry requirements in `docs/architecture/precision_control.md` to log tonic/phasic control dynamics and interrupt triggers.
+- Added a focused promotion-gate entry in `docs/notes/synthesis_passes.md` for `MECH-004`, `MECH-053`, `MECH-054`, and `MECH-055` with explicit promotion criteria.
+
 ## 2026-02-11: Mode Priors, Stability Overlays, and Phase Separation
 
 ### Overview
@@ -35,7 +49,7 @@ columnar motif vs geometry, and control‑plane math sketches.
 - Added a signed harm/benefit PE precision schema to `docs/architecture/precision_control.md` aligned with MECH‑054.
 - Added MECH‑055 (affective channel separation) and marked Q‑010 as legacy (resolved into MECH‑055).
 - Added a calibration note to `docs/architecture/precision_control.md` deferring tuning rules until the signal map and astrocyte stack are clarified.
-- Expanded signed harm/benefit PE routing details in `docs/architecture/control_plane_signal_map.md` (K2_H/K2_B plus aversive‑gate elevation of S3/K10).
+- Expanded signed harm/benefit PE routing details in `docs/architecture/control_plane_signal_map.md` (K2_H/K2_B plus aversive-gate elevation of S3/K10).
 
 ## 2026-02-10: Control-Plane Channel Clarification
 

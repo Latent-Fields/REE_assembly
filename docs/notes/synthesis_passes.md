@@ -165,3 +165,12 @@ Core claims: MECH-006, MECH-007
 Supporting claims: ARC-005, INV-009
 Status shifts: MECH-006 candidate → provisional; MECH-007 candidate → provisional
 Notes: Promoted the serotonin‑like collapse channel and attention‑fragmentation rationale as stable control‑plane constraints.
+
+---
+
+Date: 2026-02-12
+Subsystem: Focused Promotion Gate (Justification + Signed PE + Regulatory Wiring)
+Core claims: MECH-004, MECH-053, MECH-054, MECH-055
+Supporting claims: MECH-001, MECH-036, MECH-051, MECH-052, Q-008, Q-009
+Status shifts: none
+Notes: Set promotion criteria for the next pass: (1) explicit interface variables, (2) update equations or decision inequalities, (3) at least two resolved conflict scenarios, and (4) telemetry/test hooks for interrupts, veto, and post-commit accountability.

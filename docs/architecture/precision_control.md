@@ -117,6 +117,39 @@ Usage:
 This keeps **hedonic tone** (μ/κ overlays), **valence vectors** (MECH‑035), and **signed PE precision** conceptually
 distinct. See MECH‑055 in `control_plane.md` for the separation rule.
 
+### Operational control state (LC/astrocyte aware)
+
+To make control effects observable and calibratable, REE should expose explicit state variables:
+
+- \(A_t\): tonic arousal baseline (maps to control-plane baseline channel, K7-like).
+- \(N_t\): phasic volatility/imminence signal (maps to interrupt pressure, K8-like).
+- \(R_t\): action readiness bias (maps to motor gating readiness, K9-like).
+- \(C_t\): slow regulatory context integrator (astrocyte-like modulation field, tied to MECH-001).
+
+Illustrative updates:
+\[
+K2_t = k2_0 + w_A A_t + w_N N_t + w_C C_t
+\]
+\[
+K2_{H,t} = K2_t + \Delta_H,\qquad K2_{B,t} = K2_t + \Delta_B
+\]
+\[
+K1_t = k1_0 + u_C C_t - u_O overload_t
+\]
+\[
+K10_t = k10_0 - v_N N_t + v_S safety\_margin_t
+\]
+
+Interpretation:
+- \(N_t\uparrow\) lowers the effective veto threshold (\(K10_t\downarrow\)) and increases interrupt propensity.
+- \(C_t\) modulates slower plasticity/precision drift, capturing regulatory inertia rather than instant switching.
+- \(K2_H\) and \(K2_B\) are channel-specific precision weights; they should not collapse back to a single valence scalar.
+
+Telemetry requirement (MECH-042-aligned):
+- Log \(A_t,N_t,R_t,C_t,K1_t,K2_t,K2_{H,t},K2_{B,t},K10_t\) per episode window.
+- Log commitment breaks/interrupts with triggering channels and thresholds.
+- Distinguish tonic drift from phasic spikes in diagnostics.
+
 **Calibration note:** Quantitative tuning rules are intentionally deferred until the signal‑map wiring (MECH‑004) and
 regulatory‑stack framing (MECH‑001) are clarified. The current separation rules are **invariant‑compatible scaffolding**,
 not a final calibration protocol.

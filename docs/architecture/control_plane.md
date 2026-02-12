@@ -360,6 +360,38 @@ The control plane must satisfy:
 
 These constraints prevent imagination from becoming delusion and urgency from becoming compulsion.
 
+## Justification gate invariants (care vs other-harm)
+
+The architecture already contains the required machinery (HPC rollouts, control-plane veto, E3 commitment, and
+post-commit updates). The requirement here is an explicit **invariant contract**, not a new module.
+
+For a candidate committed trajectory \(\tau^\*\) evaluated over rollout set \(\mathcal{V}_t\):
+
+- **I1 Necessity:** No viable lower-harm alternative is available.
+  \[
+  \neg \exists \tau \in \mathcal{V}_t:\; viable(\tau)\land other\_harm(\tau) \le other\_harm(\tau^\*)-\delta_h \land goal\_loss(\tau)\le \epsilon_g
+  \]
+- **I2 Imminence:** Override requires near-horizon hazard imminence above threshold.
+  \[
+  imminence(\tau^\*) \ge \theta_{imm}
+  \]
+- **I3 Proportionality:** Harm prevented must exceed harm caused by a margin ratio.
+  \[
+  prevented\_harm(\tau^\*) \ge \lambda_{prop}\cdot caused\_harm(\tau^\*),\;\lambda_{prop}>1
+  \]
+- **I4 Explainability:** E3 commitment requires a reason trace that records selected trajectory, top rejected
+  alternatives, and crossed thresholds.
+- **I5 Accountability:** After commitment, outcome deltas must update both map memory and engine model, with residual
+  liability recorded for later replay/audit.
+
+Operationally:
+- I1 and I3 are computed from HPC rollout comparisons.
+- I2 is driven by aversive/imminence channels (S3-like) and veto controls (\(v_{veto}\), MECH-053).
+- I4 is a commitment precondition.
+- I5 is a post-commit invariant aligned with responsibility flow and residue preservation.
+
+A care-driven override is allowed only when I1-I4 hold. I5 is mandatory after action.
+
 ---
 
 ## Interpretation
@@ -421,9 +453,13 @@ tracking. The remaining open issue is calibration, not separation.
 - MECH-053
 - MECH-054
 - MECH-055
+- MECH-036
+- MECH-051
+- MECH-052
 - MECH-042
 - Q-007
 - Q-008
+- Q-009
 - Q-010
 
 ## References / Source Fragments
