@@ -63,6 +63,23 @@
       "items": { "type": "string" },
       "uniqueItems": true
     },
+    "producer_capabilities": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "env_id": { "type": "string" },
+        "env_version": { "type": "string" },
+        "dynamics_hash": { "type": "string" },
+        "reward_hash": { "type": "string" },
+        "observation_hash": { "type": "string" },
+        "config_hash": { "type": "string" },
+        "tier": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
     "artifacts": {
       "type": "object",
       "required": ["metrics_path", "summary_path"],

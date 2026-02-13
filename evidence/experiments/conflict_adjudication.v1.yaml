@@ -1,0 +1,72 @@
+{
+  "schema_version": "conflict_adjudication/v1",
+  "default": {
+    "resolution_actions": [
+      "Run one targeted adjudication experiment with narrower stop criteria.",
+      "Add one replication run with seed sweep to reduce variance ambiguity.",
+      "If disagreement persists, split claim scope into separable subclaims."
+    ],
+    "adjudication_criteria": [],
+    "evidence_targets": [],
+    "dispatch_requirements": {
+      "manifest_fields": [],
+      "metrics_required_keys": [],
+      "required_capabilities": [],
+      "summary_must_include": [],
+      "extra_acceptance_checks": []
+    }
+  },
+  "claims": {
+    "MECH-056": {
+      "summary": "Trajectory/commit pressure is primary; perceptual sampling bias is secondary; structural representational bias is tertiary and bounded.",
+      "resolution_actions": [
+        "Run ablation comparison across channel placements: trajectory-only vs trajectory+perceptual vs trajectory+structural.",
+        "Run seed sweeps focused on high-uncertainty boundary cases where trajectory constraints alone may be insufficient.",
+        "If evidence remains split, split MECH-056 into separable subclaims (placement order vs bounded structural channel)."
+      ],
+      "adjudication_criteria": [
+        "Primary-channel integrity: successful safety behavior should be explainable mainly by rollout weighting, E3 thresholds, and veto channels.",
+        "Perceptual-channel constraint: pre-commit sampling bias may alter what is sampled, but must not semantically overwrite sensory latent content.",
+        "Structural-channel cap: representational drift must be slower and smaller than trajectory/commit effects and reserved for repeated post-commit mismatch.",
+        "Escalation-order validity: trajectory/commit constraints are attempted first; secondary channels activate only under explicit uncertainty triggers."
+      ],
+      "evidence_targets": [
+        "Emit per-run channel usage counts for trajectory_commit, perceptual_sampling, and structural_consolidation.",
+        "Emit precommit_semantic_overwrite_events and require zero for adjudication PASS.",
+        "Emit structural_bias_magnitude and structural_bias_rate with explicit cap checks.",
+        "Include summary rationale describing which escalation trigger activated each non-primary channel."
+      ],
+      "dispatch_requirements": {
+        "manifest_fields": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "producer_capabilities"
+        ],
+        "metrics_required_keys": [
+          "trajectory_commit_channel_usage_count",
+          "perceptual_sampling_channel_usage_count",
+          "structural_consolidation_channel_usage_count",
+          "precommit_semantic_overwrite_events",
+          "structural_bias_magnitude",
+          "structural_bias_rate"
+        ],
+        "required_capabilities": [
+          "trajectory_integrity_channelized_bias",
+          "mech056_dispatch_metric_set",
+          "mech056_summary_escalation_trace"
+        ],
+        "summary_must_include": [
+          "channel escalation order observed (trajectory_commit -> perceptual_sampling -> structural_consolidation when triggered)",
+          "explicit trigger rationale for each non-primary channel activation"
+        ],
+        "extra_acceptance_checks": [
+          "MECH-056 runs include required channel metrics for all seeds.",
+          "precommit_semantic_overwrite_events remains zero on PASS runs.",
+          "Summary explicitly states whether non-primary channels were activated and why.",
+          "manifest.json includes producer_capabilities with required capability flags set true."
+        ]
+      }
+    }
+  }
+}

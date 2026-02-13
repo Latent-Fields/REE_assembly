@@ -1,0 +1,301 @@
+{
+  "coverage": {
+    "environment_declared_runs": 0,
+    "missing_metadata_runs": 10,
+    "missing_metric_runs": 0,
+    "qualified_runs": 0,
+    "status_counts": {
+      "missing_environment_metadata": 10
+    },
+    "total_runs": 10,
+    "unqualified_runs": 0
+  },
+  "drift": {
+    "alert_count": 2,
+    "alerts": [
+      {
+        "alerts": [
+          "direction_flip:supports->weakens"
+        ],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "trajectory_integrity",
+        "first_run_id": "exp_0003_20260213T090639857099Z",
+        "first_timestamp_utc": "2026-02-13T09:06:39.857099Z",
+        "latest_run_id": "exp_0003_20260213T090639905363Z",
+        "latest_timestamp_utc": "2026-02-13T09:06:39.905363Z",
+        "metric_deltas": [],
+        "repo_commits": [
+          "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323"
+        ],
+        "run_count": 2,
+        "scenario_name": "proposal_exp_0003",
+        "series_id": "trajectory_integrity|proposal_exp_0003|unknown|unknown|unknown|unknown|unknown|unknown"
+      },
+      {
+        "alerts": [
+          "direction_flip:supports->weakens"
+        ],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "trajectory_integrity",
+        "first_run_id": "exp_0005_20260213T090639951474Z",
+        "first_timestamp_utc": "2026-02-13T09:06:39.951474Z",
+        "latest_run_id": "exp_0005_20260213T090639999186Z",
+        "latest_timestamp_utc": "2026-02-13T09:06:39.999186Z",
+        "metric_deltas": [],
+        "repo_commits": [
+          "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323"
+        ],
+        "run_count": 2,
+        "scenario_name": "proposal_exp_0005",
+        "series_id": "trajectory_integrity|proposal_exp_0005|unknown|unknown|unknown|unknown|unknown|unknown"
+      }
+    ],
+    "series": [
+      {
+        "alerts": [],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "claim_probe_mech_053",
+        "first_run_id": "2026-02-13T080000Z_claim-probe-mech-053_seed11",
+        "first_timestamp_utc": "2026-02-13T08:00:00Z",
+        "latest_run_id": "2026-02-13T080000Z_claim-probe-mech-053_seed29",
+        "latest_timestamp_utc": "2026-02-13T08:00:00Z",
+        "metric_deltas": [
+          {
+            "baseline": 94.0,
+            "delta": -3.0,
+            "latest": 91.0,
+            "metric": "spike_trial_count",
+            "relative_change": 0.031915
+          },
+          {
+            "baseline": 146.0,
+            "delta": 3.0,
+            "latest": 149.0,
+            "metric": "non_spike_trial_count",
+            "relative_change": 0.020548
+          },
+          {
+            "baseline": 0.340426,
+            "delta": 0.033201,
+            "latest": 0.373626,
+            "metric": "spike_commit_rate",
+            "relative_change": 0.097527
+          },
+          {
+            "baseline": 0.726027,
+            "delta": -0.034752,
+            "latest": 0.691275,
+            "metric": "non_spike_commit_rate",
+            "relative_change": 0.047866
+          },
+          {
+            "baseline": 0.385602,
+            "delta": -0.067953,
+            "latest": 0.317649,
+            "metric": "suppression_gap",
+            "relative_change": 0.176226
+          },
+          {
+            "baseline": 0.328473,
+            "delta": -0.010453,
+            "latest": 0.31802,
+            "metric": "suppression_mean",
+            "relative_change": 0.031823
+          }
+        ],
+        "repo_commits": [
+          "88cea3e429e6d0583c842e58c3eb4cb3a692098d"
+        ],
+        "run_count": 2,
+        "scenario_name": "claim_probe_mech_053",
+        "series_id": "claim_probe_mech_053|claim_probe_mech_053|unknown|unknown|unknown|unknown|unknown|534b6efca7b0"
+      },
+      {
+        "alerts": [],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "claim_probe_mech_054",
+        "first_run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed11",
+        "first_timestamp_utc": "2026-02-13T08:00:00Z",
+        "latest_run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed29",
+        "latest_timestamp_utc": "2026-02-13T08:00:00Z",
+        "metric_deltas": [
+          {
+            "baseline": 128.0,
+            "delta": 24.0,
+            "latest": 152.0,
+            "metric": "harm_event_count",
+            "relative_change": 0.1875
+          },
+          {
+            "baseline": 192.0,
+            "delta": -24.0,
+            "latest": 168.0,
+            "metric": "benefit_event_count",
+            "relative_change": 0.125
+          },
+          {
+            "baseline": 0.797277,
+            "delta": -0.011891,
+            "latest": 0.785386,
+            "metric": "negative_precision_mean",
+            "relative_change": 0.014914
+          },
+          {
+            "baseline": 0.53613,
+            "delta": -0.00094,
+            "latest": 0.535189,
+            "metric": "positive_precision_mean",
+            "relative_change": 0.001754
+          },
+          {
+            "baseline": 0.261147,
+            "delta": -0.01095,
+            "latest": 0.250197,
+            "metric": "precision_gap_negative_minus_positive",
+            "relative_change": 0.041931
+          },
+          {
+            "baseline": 0.473205,
+            "delta": -0.048924,
+            "latest": 0.42428,
+            "metric": "harm_update_mean",
+            "relative_change": 0.10339
+          }
+        ],
+        "repo_commits": [
+          "88cea3e429e6d0583c842e58c3eb4cb3a692098d"
+        ],
+        "run_count": 2,
+        "scenario_name": "claim_probe_mech_054",
+        "series_id": "claim_probe_mech_054|claim_probe_mech_054|unknown|unknown|unknown|unknown|unknown|71fb32781db0"
+      },
+      {
+        "alerts": [
+          "direction_flip:supports->weakens"
+        ],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "trajectory_integrity",
+        "first_run_id": "exp_0003_20260213T090639857099Z",
+        "first_timestamp_utc": "2026-02-13T09:06:39.857099Z",
+        "latest_run_id": "exp_0003_20260213T090639905363Z",
+        "latest_timestamp_utc": "2026-02-13T09:06:39.905363Z",
+        "metric_deltas": [],
+        "repo_commits": [
+          "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323"
+        ],
+        "run_count": 2,
+        "scenario_name": "proposal_exp_0003",
+        "series_id": "trajectory_integrity|proposal_exp_0003|unknown|unknown|unknown|unknown|unknown|unknown"
+      },
+      {
+        "alerts": [
+          "direction_flip:supports->weakens"
+        ],
+        "commit_changed": false,
+        "env": {
+          "config_hash": "",
+          "dynamics_hash": "",
+          "env_id": "",
+          "env_version": "",
+          "observation_hash": "",
+          "reward_hash": "",
+          "tier": ""
+        },
+        "experiment_type": "trajectory_integrity",
+        "first_run_id": "exp_0005_20260213T090639951474Z",
+        "first_timestamp_utc": "2026-02-13T09:06:39.951474Z",
+        "latest_run_id": "exp_0005_20260213T090639999186Z",
+        "latest_timestamp_utc": "2026-02-13T09:06:39.999186Z",
+        "metric_deltas": [],
+        "repo_commits": [
+          "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323"
+        ],
+        "run_count": 2,
+        "scenario_name": "proposal_exp_0005",
+        "series_id": "trajectory_integrity|proposal_exp_0005|unknown|unknown|unknown|unknown|unknown|unknown"
+      }
+    ],
+    "series_count": 4,
+    "warn_if_direction_flip": true,
+    "warn_if_relative_change_gt": 0.25
+  },
+  "experiments": {
+    "claim_probe_mech_053": {
+      "environment_declared": 0,
+      "runs_total": 2,
+      "status_counts": {
+        "missing_environment_metadata": 2
+      }
+    },
+    "claim_probe_mech_054": {
+      "environment_declared": 0,
+      "runs_total": 2,
+      "status_counts": {
+        "missing_environment_metadata": 2
+      }
+    },
+    "trajectory_integrity": {
+      "environment_declared": 0,
+      "runs_total": 6,
+      "status_counts": {
+        "missing_environment_metadata": 6
+      }
+    }
+  },
+  "generated_at_utc": "2026-02-13T14:45:02.477288Z",
+  "required_manifest_environment_fields": [
+    "env_id",
+    "env_version",
+    "dynamics_hash",
+    "reward_hash",
+    "observation_hash",
+    "config_hash",
+    "tier"
+  ],
+  "schema_version": "environment_status/v1"
+}

@@ -95,6 +95,32 @@ Operational implication:
 - Apply residue first to rollout sampling weights and E3 gating.
 - Treat latent distortion as a secondary, capped channel with explicit safeguards against blind spots.
 
+### Channelized Bias Placement (formalization)
+
+To avoid ambiguity, MECH-056 distinguishes three bias channels and their precedence:
+
+1. **Trajectory/Commit Channel (primary)**  
+   Apply residue pressure to hippocampal rollout sampling, E3 admissibility thresholds, and control-plane veto
+   readiness. This is the default and dominant enforcement channel.
+
+2. **Perceptual Sampling Channel (secondary, pre-commit)**  
+   Apply attention/precision routing to sensory streams to gather disambiguating evidence. This channel may bias
+   *what is sampled next* but must not inject semantic content or overwrite representational state.
+
+3. **Structural Consolidation Channel (tertiary, post-commit/offline)**  
+   Apply slow E1/E2 prior-shaping updates during consolidation. This channel is bounded, delayed, and cannot be used
+   as first-line safety enforcement.
+
+Placement order:
+- First use trajectory/commit constraints.
+- Escalate to perceptual sampling bias only when trajectory constraints are insufficient under uncertainty.
+- Escalate to structural consolidation only when repeated post-commit evidence indicates persistent mismatch.
+
+Safety interpretation:
+- `INV-014` is preserved because regulation changes weighting/scheduling rather than semantic overwrite.
+- `INV-009` is preserved because perceptual bias acts through precision routing.
+- `MECH-056` remains trajectory-first while allowing controlled, explicit secondary channels.
+
 ## Why geometry
 
 If residue were a scalar penalty, it would be easily traded off against reward and optimized away.

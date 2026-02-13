@@ -1,0 +1,21 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_011",
+  "entry_id": "2026-02-13_lit_0006_q_011_targeted_review",
+  "timestamp_utc": "2026-02-13T10:05:00Z",
+  "claim_ids_tested": ["Q-011"],
+  "source": {
+    "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+    "authors": ["Tuomas Haarnoja", "Aurick Zhou", "Pieter Abbeel", "Sergey Levine"],
+    "year": 2018,
+    "venue": "ICML",
+    "url": "https://arxiv.org/abs/1801.01290"
+  },
+  "evidence_class": "max_entropy_rl_exploration",
+  "evidence_direction": "supports",
+  "confidence": 0.61,
+  "confidence_rationale": "Primary method paper directly motivates maintaining non-zero policy entropy to avoid collapse; transfer to repeated-harm governance in REE is indirect and requires architectural caveats.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["Q-011", "entropy_floor", "exploration", "policy_diversity"]
+}
