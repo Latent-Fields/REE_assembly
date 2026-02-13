@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-02-13_mech060_vjepa2_dual_loss_channels",
+  "timestamp_utc": "2026-02-13T22:20:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+    "authors": [
+      "Mido Assran",
+      "Adrien Bardes",
+      "David Fan",
+      "Quentin Garrido",
+      "Yann LeCun",
+      "Nicolas Ballas"
+    ],
+    "year": 2025,
+    "venue": "arXiv",
+    "doi": "10.48550/arXiv.2506.09985",
+    "url": "https://arxiv.org/abs/2506.09985"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "V-JEPA2 action-conditioned training includes distinct immediate and rollout loss channels, which supports dual-stream error handling, but these are not explicitly mapped to REE pre-commit versus post-commit accountability semantics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "lit_gap:commitment_semantics_not_explicit"
+  ],
+  "tags": [
+    "v-jepa2",
+    "action_conditioned",
+    "rollout_loss",
+    "error_channels"
+  ]
+}

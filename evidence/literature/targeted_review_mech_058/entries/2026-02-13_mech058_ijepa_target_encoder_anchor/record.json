@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_058",
+  "entry_id": "2026-02-13_mech058_ijepa_target_encoder_anchor",
+  "timestamp_utc": "2026-02-13T22:10:00Z",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "source": {
+    "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+    "authors": [
+      "Jean-Baptiste Assran",
+      "Quentin Duval",
+      "Ishan Misra",
+      "Piotr Bojanowski",
+      "Pascal Vincent",
+      "Michael Rabbat",
+      "Yann LeCun"
+    ],
+    "year": 2023,
+    "venue": "CVPR 2023",
+    "doi": "10.48550/arXiv.2301.08243",
+    "url": "https://arxiv.org/abs/2301.08243"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "I-JEPA explicitly uses a slowly updated target encoder and fast predictor updates, directly supporting target-anchor stabilization; mapping this to REE E1/E2 timescale separation is strong but still indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "ijepa",
+    "ema",
+    "target_encoder",
+    "timescale_separation"
+  ]
+}

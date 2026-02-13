@@ -232,6 +232,128 @@
         "literature": 5
       }
     },
+    "MECH-058": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:machine_learning_experiment": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech058_ijepa_target_encoder_anchor",
+      "latest_timestamp_utc": "2026-02-13T22:10:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.74,
+          "confidence_rationale": "I-JEPA explicitly uses a slowly updated target encoder and fast predictor updates, directly supporting target-anchor stabilization; mapping this to REE E1/E2 timescale separation is strong but still indirect.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_058",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech058_ijepa_target_encoder_anchor",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T22:10:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-059": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:machine_learning_experiment": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech059_vjvcr_uncertainty_channeling",
+      "latest_timestamp_utc": "2026-02-13T22:15:00Z",
+      "literature_confidence": 0.71,
+      "overall_confidence": 0.71,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.72,
+          "confidence_rationale": "The work introduces uncertainty-aware latent modeling and uncertainty-related regularization beyond plain residual minimization, supporting explicit separation of mismatch and uncertainty channels.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_059",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech059_vjvcr_uncertainty_channeling",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T22:15:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-060": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.565",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:machine_learning_experiment": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech060_vjepa2_dual_loss_channels",
+      "latest_timestamp_utc": "2026-02-13T22:20:00Z",
+      "literature_confidence": 0.565,
+      "overall_confidence": 0.565,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.63,
+          "confidence_rationale": "V-JEPA2 action-conditioned training includes distinct immediate and rollout loss channels, which supports dual-stream error handling, but these are not explicitly mapped to REE pre-commit versus post-commit accountability semantics.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_060",
+          "failure_signatures": [
+            "lit_gap:commitment_semantics_not_explicit"
+          ],
+          "run_id": "2026-02-13_mech060_vjepa2_dual_loss_channels",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T22:20:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "Q-011": {
       "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.374, lit_conf=0",
       "direction_counts": {
@@ -553,9 +675,50 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-02-13T20:50:00Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.74,
+      "confidence_rationale": "I-JEPA explicitly uses a slowly updated target encoder and fast predictor updates, directly supporting target-anchor stabilization; mapping this to REE E1/E2 timescale separation is strong but still indirect.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_058",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech058_ijepa_target_encoder_anchor",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T22:10:00Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.72,
+      "confidence_rationale": "The work introduces uncertainty-aware latent modeling and uncertainty-related regularization beyond plain residual minimization, supporting explicit separation of mismatch and uncertainty channels.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_059",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech059_vjvcr_uncertainty_channeling",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T22:15:00Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.63,
+      "confidence_rationale": "V-JEPA2 action-conditioned training includes distinct immediate and rollout loss channels, which supports dual-stream error handling, but these are not explicitly mapped to REE pre-commit versus post-commit accountability semantics.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_060",
+      "failure_signatures": [
+        "lit_gap:commitment_semantics_not_explicit"
+      ],
+      "run_id": "2026-02-13_mech060_vjepa2_dual_loss_channels",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T22:20:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-13T21:31:40.602912Z",
+  "generated_at_utc": "2026-02-13T21:39:52.349343Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

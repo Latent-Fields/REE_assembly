@@ -7,6 +7,24 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Targeted Literature Entries for MECH-058/059/060
+
+### Overview
+
+Added first-pass literature triangulation entries for new JEPA follow-on claims and refreshed evidence indexes.
+
+### What Changed
+
+- Added literature evidence entries:
+  - `evidence/literature/targeted_review_mech_058/entries/2026-02-13_mech058_ijepa_target_encoder_anchor/record.json`
+  - `evidence/literature/targeted_review_mech_058/entries/2026-02-13_mech058_ijepa_target_encoder_anchor/summary.md`
+  - `evidence/literature/targeted_review_mech_059/entries/2026-02-13_mech059_vjvcr_uncertainty_channeling/record.json`
+  - `evidence/literature/targeted_review_mech_059/entries/2026-02-13_mech059_vjvcr_uncertainty_channeling/summary.md`
+  - `evidence/literature/targeted_review_mech_060/entries/2026-02-13_mech060_vjepa2_dual_loss_channels/record.json`
+  - `evidence/literature/targeted_review_mech_060/entries/2026-02-13_mech060_vjepa2_dual_loss_channels/summary.md`
+- Regenerated evidence outputs via:
+  - `python3 evidence/experiments/scripts/build_experiment_indexes.py`
+
 ## 2026-02-13: Dispatch Bundle for MECH-058/059/060
 
 ### Overview
