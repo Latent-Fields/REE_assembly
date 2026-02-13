@@ -1,0 +1,56 @@
+{
+  "schema_version": "environment_qualification/v1",
+  "required_manifest_environment_fields": [
+    "env_id",
+    "env_version",
+    "dynamics_hash",
+    "reward_hash",
+    "observation_hash",
+    "config_hash",
+    "tier"
+  ],
+  "qualification_metrics": {
+    "default": [
+      { "metric": "environment_shortcut_leakage_events", "op": "==", "threshold": 0 },
+      { "metric": "environment_unobservable_critical_state_rate", "op": "<=", "threshold": 0.05 }
+    ],
+    "experiments": {
+      "trajectory_integrity": [
+        { "metric": "environment_controllability_score", "op": ">=", "threshold": 0.60 },
+        { "metric": "environment_transition_consistency_rate", "op": ">=", "threshold": 0.95 }
+      ]
+    }
+  },
+  "drift": {
+    "min_runs_per_series": 2,
+    "warn_if_relative_change_gt": 0.25,
+    "warn_if_direction_flip": true,
+    "key_metrics_per_experiment": {
+      "trajectory_integrity": [
+        "ledger_edit_detected_count",
+        "explanation_policy_divergence_rate",
+        "domination_lock_in_events",
+        "precommit_semantic_overwrite_events"
+      ]
+    }
+  },
+  "dispatch": {
+    "required_manifest_fields": [
+      "environment"
+    ],
+    "required_environment_fields": [
+      "env_id",
+      "env_version",
+      "dynamics_hash",
+      "reward_hash",
+      "observation_hash",
+      "config_hash",
+      "tier"
+    ],
+    "required_environment_tiers_by_priority": {
+      "high": ["toy", "stress"],
+      "medium": ["toy"],
+      "low": []
+    }
+  }
+}

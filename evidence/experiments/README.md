@@ -15,10 +15,14 @@ This folder is the ingestion boundary between implementation experiments (e.g., 
 - `INTERFACE_CONTRACT.md`: strict format contract for producers.
 - `stop_criteria.v1.yaml`: versioned stop/fail criteria used by ingestion.
 - `decision_criteria.v1.yaml`: versioned decision thresholds for promotion/demotion recommendations.
+- `conflict_adjudication.v1.yaml`: claim-specific conflict adjudication criteria and evidence targets.
+- `environment_qualification.v1.yaml`: environment metadata requirements, qualification checks, and drift settings.
 - `schemas/v1/`: JSON schema references for pack files.
 - `claim_evidence.v1.json`: generated claim-to-evidence matrix (do not hand edit).
 - `conflicts.md`: generated conflict report across evidence sources (do not hand edit).
 - `promotion_demotion_recommendations.md`: generated human decision queue (do not hand edit).
+- `environment_status.v1.json`: generated environment qualification coverage and drift metadata (do not hand edit).
+- `environment_drift.md`: generated human-readable drift summary (do not hand edit).
 - `../decisions/decision_log.v1.jsonl`: persistent append-only human decisions.
 - `../decisions/decision_state.v1.json`: generated latest decision state by claim.
 - `../planning/evidence_backlog.v1.json`: generated evidence gaps and priorities.
@@ -42,6 +46,8 @@ Each run directory must include:
 See `INTERFACE_CONTRACT.md` for field-level requirements.
 For claim-level evidence mapping, include `claim_ids_tested`, `evidence_class`, and `evidence_direction` in
 `manifest.json`.
+When capability-gated routing is used, include `producer_capabilities` in `manifest.json`.
+When environment-qualified routing is used, include `environment` in `manifest.json` with stable hashes.
 
 `evidence_class` values from experiment packs are treated as experimental classes (`exp:*`) in the
 claim-evidence matrix.
@@ -73,6 +79,8 @@ Outputs regenerated on each run:
 - `evidence/experiments/claim_evidence.v1.json`
 - `evidence/experiments/conflicts.md`
 - `evidence/experiments/promotion_demotion_recommendations.md`
+- `evidence/experiments/environment_status.v1.json`
+- `evidence/experiments/environment_drift.md`
 - `evidence/experiments/<experiment_type>/INDEX.md`
 - `evidence/experiments/<experiment_type>/experiment.md` (auto section only)
 - `evidence/experiments/TODOs.md`
@@ -80,6 +88,12 @@ Outputs regenerated on each run:
 - `evidence/decisions/decision_state.v1.json`
 - `evidence/planning/evidence_backlog.v1.json`
 - `evidence/planning/experiment_proposals.v1.json`
+
+`conflicts.md` includes generic resolution guidance plus optional claim-specific adjudication criteria pulled from
+`conflict_adjudication.v1.yaml`.
+Claim-specific `dispatch_requirements` in that file are also propagated into generated
+`evidence/planning/experiment_proposals.v1.json`.
+Environment qualification and drift outputs are generated from `environment_qualification.v1.yaml`.
 
 To persist decision outcomes across regenerations, append to:
 

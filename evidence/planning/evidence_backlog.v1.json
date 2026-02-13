@@ -1,67 +1,9 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-13T08:45:42.439454Z",
+  "generated_at_utc": "2026-02-13T19:12:52.846560Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
-      "claim_id": "MECH-053",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "high",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
-      ],
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "overall_confidence": 0.72,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 1
-        }
-      },
-      "status": "open"
-    },
-    {
-      "backlog_id": "EVB-0002",
-      "claim_id": "MECH-054",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "high",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
-      ],
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "overall_confidence": 0.72,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 1
-        }
-      },
-      "status": "open"
-    },
-    {
-      "backlog_id": "EVB-0003",
       "claim_id": "MECH-056",
       "evidence_needed": [
         "experimental",
@@ -76,24 +18,51 @@
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert",
-        "low_overall_confidence",
-        "missing_literature_evidence"
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 1.0,
+        "conflict_ratio": 0.5,
         "current_status": "candidate",
-        "overall_confidence": 0.375,
+        "overall_confidence": 0.649,
         "source_counts": {
-          "experimental": 2,
-          "literature": 0
+          "experimental": 4,
+          "literature": 4
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0004",
+      "backlog_id": "EVB-0002",
+      "claim_id": "MECH-057",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "insufficient_experimental_replication",
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "conflict_ratio": 0.0,
+        "current_status": "candidate",
+        "overall_confidence": 0.73,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0003",
       "claim_id": "Q-011",
       "evidence_needed": [
         "experimental",
@@ -101,31 +70,113 @@
       ],
       "latest_decision": {
         "decision_status": "approved",
-        "recommendation": "hold_open_question_resolve_conflict",
-        "timestamp_utc": "2026-02-13T08:45:40.164281Z"
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-13T12:15:33.457161Z"
       },
       "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert",
-        "low_overall_confidence",
-        "missing_literature_evidence"
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "open_question",
-        "conflict_ratio": 1.0,
-        "current_status": "active",
-        "overall_confidence": 0.375,
+        "conflict_ratio": 0.8,
+        "current_status": "candidate",
+        "overall_confidence": 0.563,
         "source_counts": {
-          "experimental": 2,
-          "literature": 0
+          "experimental": 4,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0004",
+      "claim_id": "Q-012",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "open_question",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.797,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 3
         }
       },
       "status": "open"
     },
     {
       "backlog_id": "EVB-0005",
+      "claim_id": "MECH-053",
+      "evidence_needed": [
+        "literature"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "promote_to_provisional",
+        "timestamp_utc": "2026-02-13T12:49:55.325931Z"
+      },
+      "next_action": "Run targeted literature extraction and claim linkage.",
+      "priority": "medium",
+      "reasons": [
+        "insufficient_literature_grounding"
+      ],
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "conflict_ratio": 0.0,
+        "current_status": "provisional",
+        "overall_confidence": 0.873,
+        "source_counts": {
+          "experimental": 4,
+          "literature": 1
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0006",
+      "claim_id": "MECH-054",
+      "evidence_needed": [
+        "literature"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "promote_to_provisional",
+        "timestamp_utc": "2026-02-13T12:50:00.546663Z"
+      },
+      "next_action": "Run targeted literature extraction and claim linkage.",
+      "priority": "medium",
+      "reasons": [
+        "insufficient_literature_grounding"
+      ],
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "conflict_ratio": 0.0,
+        "current_status": "provisional",
+        "overall_confidence": 0.873,
+        "source_counts": {
+          "experimental": 4,
+          "literature": 1
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0007",
       "claim_id": "Q-001",
       "evidence_needed": [
         "experimental",
@@ -154,7 +205,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0008",
       "claim_id": "Q-002",
       "evidence_needed": [
         "experimental",
@@ -183,7 +234,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0009",
       "claim_id": "Q-003",
       "evidence_needed": [
         "experimental",
@@ -212,7 +263,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0010",
       "claim_id": "Q-004",
       "evidence_needed": [
         "experimental",
@@ -241,7 +292,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0009",
+      "backlog_id": "EVB-0011",
       "claim_id": "Q-005",
       "evidence_needed": [
         "experimental",
@@ -270,7 +321,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0010",
+      "backlog_id": "EVB-0012",
       "claim_id": "Q-006",
       "evidence_needed": [
         "experimental",
@@ -299,7 +350,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0013",
       "claim_id": "Q-007",
       "evidence_needed": [
         "experimental",
@@ -328,7 +379,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0014",
       "claim_id": "Q-008",
       "evidence_needed": [
         "experimental",
@@ -357,7 +408,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0013",
+      "backlog_id": "EVB-0015",
       "claim_id": "Q-009",
       "evidence_needed": [
         "experimental",
@@ -386,7 +437,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0014",
+      "backlog_id": "EVB-0016",
       "claim_id": "Q-010",
       "evidence_needed": [
         "experimental",

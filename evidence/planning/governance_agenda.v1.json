@@ -1,45 +1,190 @@
 {
   "checkpoints": {
+    "architecture_trace": {
+      "audit_path": "evidence/planning/architecture_trace_audit.v1.json",
+      "coverage": {
+        "edge_coverage_ratio": 0.87,
+        "missing_roots": [],
+        "node_coverage_ratio": 0.929,
+        "reachable_node_count": 13,
+        "reachable_nodes": [
+          "ACTION.actuator",
+          "CONTROL.precision_router",
+          "E1.persistent_predictive_substrate",
+          "E2.fast_forward_predictor",
+          "E3.trajectory_commitment_engine",
+          "EXPLANATION.justification_gate",
+          "HIPPO.rollout_viability_mapper",
+          "LEARNING.post_commit_updater",
+          "SENSORY.harm_tag",
+          "SENSORY.homeostasis_tag",
+          "SENSORY.self_sensory_tag",
+          "SENSORY.world_tag",
+          "SOCIAL.other_model"
+        ],
+        "roots": [
+          "SENSORY.world_tag",
+          "SENSORY.homeostasis_tag",
+          "SENSORY.harm_tag",
+          "SENSORY.self_sensory_tag"
+        ],
+        "terminal_nodes": [
+          "ACTION.actuator"
+        ],
+        "total_edges": 23,
+        "total_nodes": 14,
+        "traversed_edge_count": 20,
+        "traversed_edges": [
+          "IFACE-EDGE-001",
+          "IFACE-EDGE-002",
+          "IFACE-EDGE-003",
+          "IFACE-EDGE-004",
+          "IFACE-EDGE-005",
+          "IFACE-EDGE-006",
+          "IFACE-EDGE-007",
+          "IFACE-EDGE-008",
+          "IFACE-EDGE-010",
+          "IFACE-EDGE-012",
+          "IFACE-EDGE-013",
+          "IFACE-EDGE-014",
+          "IFACE-EDGE-015",
+          "IFACE-EDGE-016",
+          "IFACE-EDGE-017",
+          "IFACE-EDGE-018",
+          "IFACE-EDGE-019",
+          "IFACE-EDGE-021",
+          "IFACE-EDGE-022",
+          "IFACE-EDGE-023"
+        ],
+        "unreachable_nodes": [
+          "RESIDUE.ethical_curvature_field"
+        ],
+        "untraversed_edges": [
+          "IFACE-EDGE-009",
+          "IFACE-EDGE-011",
+          "IFACE-EDGE-020"
+        ]
+      },
+      "priority_items": [
+        {
+          "category": "dependency_link_gaps",
+          "edge_id": "IFACE-EDGE-001",
+          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-001",
+          "source_claim_ids": [
+            "ARC-017"
+          ],
+          "target_claim_ids": [
+            "ARC-002"
+          ]
+        },
+        {
+          "category": "dependency_link_gaps",
+          "edge_id": "IFACE-EDGE-002",
+          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-002",
+          "source_claim_ids": [
+            "ARC-017"
+          ],
+          "target_claim_ids": [
+            "ARC-002"
+          ]
+        },
+        {
+          "category": "dependency_link_gaps",
+          "edge_id": "IFACE-EDGE-003",
+          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-003",
+          "source_claim_ids": [
+            "ARC-017"
+          ],
+          "target_claim_ids": [
+            "ARC-002"
+          ]
+        },
+        {
+          "category": "dependency_link_gaps",
+          "edge_id": "IFACE-EDGE-004",
+          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-004",
+          "source_claim_ids": [
+            "ARC-017",
+            "ARC-015"
+          ],
+          "target_claim_ids": [
+            "ARC-002"
+          ]
+        }
+      ],
+      "prompt": "Review sensory-to-commit traces for missing dependencies, unowned interfaces, and claim stub suggestions.",
+      "report_path": "evidence/planning/ARCHITECTURE_TRACE_AUDIT.md",
+      "stub_suggestions_path": "evidence/planning/claim_stub_suggestions.v1.json",
+      "summary": {
+        "ambiguous_edges": 2,
+        "dependency_link_gaps": 4,
+        "issue_count": 21,
+        "missing_claim_dependency_targets": 0,
+        "open_sections_unowned": 0,
+        "owned_edges_without_evidence": 15,
+        "suggested_claim_stubs": 2,
+        "trace_breaks": 0,
+        "unowned_edges": 0,
+        "unowned_nodes": 0
+      }
+    },
     "conflict_resolution": {
       "items": [
         {
           "claim_id": "`MECH-056`",
-          "conflict_ratio": "1",
+          "conflict_ratio": "0.5",
           "conflict_types": "directional",
-          "latest": "`2026-02-13T070000Z_dummy-fail`",
-          "supports": "1",
-          "weakens": "1"
+          "latest": "`2026-02-13_mech056_active_sampling_reorientation`",
+          "supports": "6",
+          "weakens": "2"
         },
         {
           "claim_id": "`Q-011`",
-          "conflict_ratio": "1",
-          "conflict_types": "directional",
-          "latest": "`2026-02-13T070000Z_dummy-fail`",
-          "supports": "1",
-          "weakens": "1"
+          "conflict_ratio": "0.8",
+          "conflict_types": "directional, mixed_evidence",
+          "latest": "`2026-02-13_q011_controllability_passivity`",
+          "supports": "3",
+          "weakens": "2"
         }
       ],
       "prompt": "Resolve directional/source conflicts before status promotions."
+    },
+    "environment_qualification": {
+      "coverage": {
+        "environment_declared_runs": 14,
+        "missing_metadata_runs": 0,
+        "missing_metric_runs": 14,
+        "qualified_runs": 0,
+        "status_counts": {
+          "missing_environment_metrics": 14
+        },
+        "total_runs": 14,
+        "unqualified_runs": 0
+      },
+      "drift_alerts": [],
+      "drift_report_path": "evidence/experiments/environment_drift.md",
+      "prompt": "Review environment qualification coverage and drift alerts before accepting dispatch conclusions.",
+      "status_path": "evidence/experiments/environment_status.v1.json"
     },
     "evidence_dispatch": {
       "by_target_repo": [
         {
           "experimental": 0,
-          "literature_review": 12,
+          "literature_review": 14,
           "target_repo": "REE_assembly",
-          "total": 12
+          "total": 14
         },
         {
-          "experimental": 2,
+          "experimental": 1,
           "literature_review": 0,
           "target_repo": "ree-experiments-lab",
-          "total": 2
+          "total": 1
         },
         {
-          "experimental": 12,
+          "experimental": 13,
           "literature_review": 0,
           "target_repo": "ree-v1-minimal",
-          "total": 12
+          "total": 13
         }
       ],
       "high_priority_proposals": [
@@ -47,89 +192,112 @@
           "acceptance_checks": [
             "At least 2 additional runs with distinct seeds.",
             "Experiment Pack validates against v1 schema.",
-            "Result links to claim_ids_tested and updates matrix direction counts."
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `trajectory_commit_channel_usage_count`, `perceptual_sampling_channel_usage_count`, `structural_consolidation_channel_usage_count`, `precommit_semantic_overwrite_events`, `structural_bias_magnitude`, `structural_bias_rate`, `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`.",
+            "MECH-056 runs include required channel metrics for all seeds.",
+            "precommit_semantic_overwrite_events remains zero on PASS runs.",
+            "Summary explicitly states whether non-primary channels were activated and why.",
+            "manifest.json includes producer_capabilities with required capability flags set true."
           ],
           "backlog_id": "EVB-0001",
-          "claim_id": "MECH-053",
-          "objective": "Reduce uncertainty for MECH-053 via targeted experiment runs.",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": [
+              "trajectory_integrity_channelized_bias",
+              "mech056_dispatch_metric_set",
+              "mech056_summary_escalation_trace"
+            ]
+          },
+          "claim_id": "MECH-056",
+          "experiment_brief": {
+            "failure_modes": [
+              "ledger editing",
+              "domination/lock-in dynamics",
+              "explanation-policy divergence"
+            ],
+            "latest_run": {
+              "run_id": "exp_0005_20260213T090639999186Z",
+              "source_repo": "ree-experiments-lab",
+              "status": "FAIL",
+              "timestamp_utc": "2026-02-13T09:06:39.999186Z"
+            },
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md",
+            "what_it_tests": [
+              "Whether policy execution preserves trajectory ledger integrity under replay, intervention, and post-commit updates.",
+              "Whether explanation traces remain aligned with selected policy outcomes."
+            ]
+          },
+          "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
           "priority": "high",
           "proposal_id": "EXP-0001",
           "proposal_type": "experimental",
           "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
             "manifest": [
               "claim_ids_tested",
               "evidence_class",
-              "evidence_direction"
+              "evidence_direction",
+              "producer_capabilities",
+              "environment"
             ],
             "metrics": "stable numeric keys only",
-            "summary": "include scenario and interpretation"
-          },
-          "status": "proposed",
-          "suggested_experiment_type": "claim_probe_mech_053",
-          "target_repo": "ree-v1-minimal",
-          "why_now": [
-            "insufficient_experimental_replication",
-            "missing_experimental_evidence"
-          ]
-        },
-        {
-          "acceptance_checks": [
-            "At least 2 additional runs with distinct seeds.",
-            "Experiment Pack validates against v1 schema.",
-            "Result links to claim_ids_tested and updates matrix direction counts."
-          ],
-          "backlog_id": "EVB-0002",
-          "claim_id": "MECH-054",
-          "objective": "Reduce uncertainty for MECH-054 via targeted experiment runs.",
-          "priority": "high",
-          "proposal_id": "EXP-0002",
-          "proposal_type": "experimental",
-          "required_pack_contract": {
-            "manifest": [
-              "claim_ids_tested",
-              "evidence_class",
-              "evidence_direction"
+            "required_capabilities": [
+              "trajectory_integrity_channelized_bias",
+              "mech056_dispatch_metric_set",
+              "mech056_summary_escalation_trace"
             ],
-            "metrics": "stable numeric keys only",
-            "summary": "include scenario and interpretation"
-          },
-          "status": "proposed",
-          "suggested_experiment_type": "claim_probe_mech_054",
-          "target_repo": "ree-v1-minimal",
-          "why_now": [
-            "insufficient_experimental_replication",
-            "missing_experimental_evidence"
-          ]
-        },
-        {
-          "acceptance_checks": [
-            "At least 2 additional runs with distinct seeds.",
-            "Experiment Pack validates against v1 schema.",
-            "Result links to claim_ids_tested and updates matrix direction counts."
-          ],
-          "backlog_id": "EVB-0003",
-          "claim_id": "MECH-056",
-          "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
-          "priority": "high",
-          "proposal_id": "EXP-0003",
-          "proposal_type": "experimental",
-          "required_pack_contract": {
-            "manifest": [
-              "claim_ids_tested",
-              "evidence_class",
-              "evidence_direction"
+            "required_metric_keys": [
+              "trajectory_commit_channel_usage_count",
+              "perceptual_sampling_channel_usage_count",
+              "structural_consolidation_channel_usage_count",
+              "precommit_semantic_overwrite_events",
+              "structural_bias_magnitude",
+              "structural_bias_rate",
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate",
+              "environment_controllability_score",
+              "environment_transition_consistency_rate"
             ],
-            "metrics": "stable numeric keys only",
-            "summary": "include scenario and interpretation"
+            "summary": "include scenario and interpretation",
+            "summary_must_include": [
+              "channel escalation order observed (trajectory_commit -> perceptual_sampling -> structural_consolidation when triggered)",
+              "explicit trigger rationale for each non-primary channel activation"
+            ]
           },
+          "routing_rationale": [],
           "status": "proposed",
           "suggested_experiment_type": "trajectory_integrity",
-          "target_repo": "ree-experiments-lab",
+          "target_repo": "ree-v1-minimal",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence",
-            "missing_literature_evidence"
+            "directional_conflict_alert"
           ]
         },
         {
@@ -138,11 +306,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0003",
+          "backlog_id": "EVB-0001",
           "claim_id": "MECH-056",
           "objective": "Improve literature grounding and confidence for MECH-056.",
           "priority": "high",
-          "proposal_id": "LIT-0004",
+          "proposal_id": "LIT-0002",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -159,40 +327,171 @@
           "target_repo": "REE_assembly",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence",
-            "missing_literature_evidence"
+            "directional_conflict_alert"
           ]
         },
         {
           "acceptance_checks": [
             "At least 2 additional runs with distinct seeds.",
             "Experiment Pack validates against v1 schema.",
-            "Result links to claim_ids_tested and updates matrix direction counts."
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
           ],
-          "backlog_id": "EVB-0004",
-          "claim_id": "Q-011",
-          "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
+          "backlog_id": "EVB-0002",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "MECH-057",
+          "experiment_brief": {
+            "failure_modes": [],
+            "latest_run": {},
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_mech_057/experiment.md",
+            "what_it_tests": []
+          },
+          "objective": "Reduce uncertainty for MECH-057 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0005",
+          "proposal_id": "EXP-0003",
           "proposal_type": "experimental",
           "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
             "manifest": [
               "claim_ids_tested",
               "evidence_class",
-              "evidence_direction"
+              "evidence_direction",
+              "environment"
             ],
             "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate"
+            ],
             "summary": "include scenario and interpretation"
           },
+          "routing_rationale": [],
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_057",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`."
+          ],
+          "backlog_id": "EVB-0003",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "Q-011",
+          "experiment_brief": {
+            "failure_modes": [
+              "ledger editing",
+              "domination/lock-in dynamics",
+              "explanation-policy divergence"
+            ],
+            "latest_run": {
+              "run_id": "exp_0005_20260213T090639999186Z",
+              "source_repo": "ree-experiments-lab",
+              "status": "FAIL",
+              "timestamp_utc": "2026-02-13T09:06:39.999186Z"
+            },
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md",
+            "what_it_tests": [
+              "Whether policy execution preserves trajectory ledger integrity under replay, intervention, and post-commit updates.",
+              "Whether explanation traces remain aligned with selected policy outcomes."
+            ]
+          },
+          "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0004",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate",
+              "environment_controllability_score",
+              "environment_transition_consistency_rate"
+            ],
+            "summary": "include scenario and interpretation"
+          },
+          "routing_rationale": [
+            "conflict_ratio=0.8 >= 0.7, using exploratory repo"
+          ],
           "status": "proposed",
           "suggested_experiment_type": "trajectory_integrity",
           "target_repo": "ree-experiments-lab",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence",
-            "missing_literature_evidence"
+            "directional_conflict_alert"
           ]
         },
         {
@@ -201,11 +500,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0004",
+          "backlog_id": "EVB-0003",
           "claim_id": "Q-011",
           "objective": "Improve literature grounding and confidence for Q-011.",
           "priority": "high",
-          "proposal_id": "LIT-0006",
+          "proposal_id": "LIT-0005",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -222,18 +521,451 @@
           "target_repo": "REE_assembly",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence",
-            "missing_literature_evidence"
+            "directional_conflict_alert"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
+          ],
+          "backlog_id": "EVB-0004",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "Q-012",
+          "experiment_brief": {
+            "failure_modes": [],
+            "latest_run": {},
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md",
+            "what_it_tests": []
+          },
+          "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0006",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate"
+            ],
+            "summary": "include scenario and interpretation"
+          },
+          "routing_rationale": [],
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_q_012",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "missing_experimental_evidence"
           ]
         }
       ],
       "prompt": "Approve export of high-priority proposals to execution repos."
     },
+    "experiment_understanding": {
+      "brief_path": "evidence/planning/EXPERIMENT_BRIEFS.md",
+      "high_priority_experimental_proposals": [
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `trajectory_commit_channel_usage_count`, `perceptual_sampling_channel_usage_count`, `structural_consolidation_channel_usage_count`, `precommit_semantic_overwrite_events`, `structural_bias_magnitude`, `structural_bias_rate`, `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`.",
+            "MECH-056 runs include required channel metrics for all seeds.",
+            "precommit_semantic_overwrite_events remains zero on PASS runs.",
+            "Summary explicitly states whether non-primary channels were activated and why.",
+            "manifest.json includes producer_capabilities with required capability flags set true."
+          ],
+          "backlog_id": "EVB-0001",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": [
+              "trajectory_integrity_channelized_bias",
+              "mech056_dispatch_metric_set",
+              "mech056_summary_escalation_trace"
+            ]
+          },
+          "claim_id": "MECH-056",
+          "experiment_brief": {
+            "failure_modes": [
+              "ledger editing",
+              "domination/lock-in dynamics",
+              "explanation-policy divergence"
+            ],
+            "latest_run": {
+              "run_id": "exp_0005_20260213T090639999186Z",
+              "source_repo": "ree-experiments-lab",
+              "status": "FAIL",
+              "timestamp_utc": "2026-02-13T09:06:39.999186Z"
+            },
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md",
+            "what_it_tests": [
+              "Whether policy execution preserves trajectory ledger integrity under replay, intervention, and post-commit updates.",
+              "Whether explanation traces remain aligned with selected policy outcomes."
+            ]
+          },
+          "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0001",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "producer_capabilities",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_capabilities": [
+              "trajectory_integrity_channelized_bias",
+              "mech056_dispatch_metric_set",
+              "mech056_summary_escalation_trace"
+            ],
+            "required_metric_keys": [
+              "trajectory_commit_channel_usage_count",
+              "perceptual_sampling_channel_usage_count",
+              "structural_consolidation_channel_usage_count",
+              "precommit_semantic_overwrite_events",
+              "structural_bias_magnitude",
+              "structural_bias_rate",
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate",
+              "environment_controllability_score",
+              "environment_transition_consistency_rate"
+            ],
+            "summary": "include scenario and interpretation",
+            "summary_must_include": [
+              "channel escalation order observed (trajectory_commit -> perceptual_sampling -> structural_consolidation when triggered)",
+              "explicit trigger rationale for each non-primary channel activation"
+            ]
+          },
+          "routing_rationale": [],
+          "status": "proposed",
+          "suggested_experiment_type": "trajectory_integrity",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
+          ],
+          "backlog_id": "EVB-0002",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "MECH-057",
+          "experiment_brief": {
+            "failure_modes": [],
+            "latest_run": {},
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_mech_057/experiment.md",
+            "what_it_tests": []
+          },
+          "objective": "Reduce uncertainty for MECH-057 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0003",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate"
+            ],
+            "summary": "include scenario and interpretation"
+          },
+          "routing_rationale": [],
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_057",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`."
+          ],
+          "backlog_id": "EVB-0003",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "Q-011",
+          "experiment_brief": {
+            "failure_modes": [
+              "ledger editing",
+              "domination/lock-in dynamics",
+              "explanation-policy divergence"
+            ],
+            "latest_run": {
+              "run_id": "exp_0005_20260213T090639999186Z",
+              "source_repo": "ree-experiments-lab",
+              "status": "FAIL",
+              "timestamp_utc": "2026-02-13T09:06:39.999186Z"
+            },
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md",
+            "what_it_tests": [
+              "Whether policy execution preserves trajectory ledger integrity under replay, intervention, and post-commit updates.",
+              "Whether explanation traces remain aligned with selected policy outcomes."
+            ]
+          },
+          "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0004",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate",
+              "environment_controllability_score",
+              "environment_transition_consistency_rate"
+            ],
+            "summary": "include scenario and interpretation"
+          },
+          "routing_rationale": [
+            "conflict_ratio=0.8 >= 0.7, using exploratory repo"
+          ],
+          "status": "proposed",
+          "suggested_experiment_type": "trajectory_integrity",
+          "target_repo": "ree-experiments-lab",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts.",
+            "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+            "Run set covers required environment tiers: `toy`, `stress`.",
+            "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
+          ],
+          "backlog_id": "EVB-0004",
+          "capability_gate": {
+            "default_repo": "ree-v1-minimal",
+            "default_repo_snapshot": {
+              "capabilities": {
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
+              },
+              "experiment_type": "claim_probe_mech_054",
+              "repo": "ree-v1-minimal",
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
+            },
+            "fail_closed": true,
+            "missing_capabilities": [],
+            "required_capabilities": []
+          },
+          "claim_id": "Q-012",
+          "experiment_brief": {
+            "failure_modes": [],
+            "latest_run": {},
+            "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md",
+            "what_it_tests": []
+          },
+          "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0006",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "environment_required_fields": [
+              "env_id",
+              "env_version",
+              "dynamics_hash",
+              "reward_hash",
+              "observation_hash",
+              "config_hash",
+              "tier"
+            ],
+            "environment_required_tiers": [
+              "toy",
+              "stress"
+            ],
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "environment"
+            ],
+            "metrics": "stable numeric keys only",
+            "required_metric_keys": [
+              "environment_shortcut_leakage_events",
+              "environment_unobservable_critical_state_rate"
+            ],
+            "summary": "include scenario and interpretation"
+          },
+          "routing_rationale": [],
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_q_012",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "missing_experimental_evidence"
+          ]
+        }
+      ],
+      "prompt": "Review experiment briefs to confirm what is being tested, why, and how results should be interpreted."
+    },
     "governance_decisions": {
       "items": [
         {
           "claim_id": "`MECH-056`",
+          "current_status": "`candidate`",
+          "decision_needed": "Conflict resolution before promotion",
+          "decision_status": "`approved`",
+          "recommendation": "`hold_candidate_resolve_conflict`"
+        },
+        {
+          "claim_id": "`Q-011`",
           "current_status": "`candidate`",
           "decision_needed": "Conflict resolution before promotion",
           "decision_status": "`approved`",
@@ -260,40 +992,60 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-13T08:45:42.384025Z",
+        "finished_at_utc": "2026-02-13T19:12:52.756375Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T08:45:42.322948Z",
+        "started_at_utc": "2026-02-13T19:12:52.676386Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Thought sweep: total=30, processed=30, unprocessed=0, processed_missing_links=0"
+        "stdout": "Thought sweep: total=32, processed=32, unprocessed=0, processed_missing_links=0"
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-13T08:45:42.467678Z",
+        "finished_at_utc": "2026-02-13T19:12:52.861524Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T08:45:42.384071Z",
+        "started_at_utc": "2026-02-13T19:12:52.756435Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Indexed 2 run(s) across 1 experiment type(s); FAIL=1; literature entries=1; backlog items=14; proposals=26."
+        "stdout": "Indexed 14 run(s) across 3 experiment type(s); FAIL=3; literature entries=10; backlog items=16; proposals=28."
+      },
+      {
+        "command": [
+          "/opt/local/bin/python3",
+          "evidence/planning/scripts/architecture_trace_audit.py"
+        ],
+        "finished_at_utc": "2026-02-13T19:12:52.930178Z",
+        "name": "architecture_trace_audit",
+        "returncode": 0,
+        "started_at_utc": "2026-02-13T19:12:52.861561Z",
+        "status": "ok",
+        "stderr": "",
+        "stdout": "Architecture trace audit complete: nodes=13/14, edges=20/23, issues=21, stubs=2.\nAudit JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/architecture_trace_audit.v1.json\nAudit MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ARCHITECTURE_TRACE_AUDIT.md\nStub suggestions: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/claim_stub_suggestions.v1.json"
       }
     ]
   },
-  "generated_at_utc": "2026-02-13T08:45:42.467721Z",
+  "generated_at_utc": "2026-02-13T19:12:52.930227Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "backlog_high_priority": 4,
-    "backlog_items": 14,
+    "backlog_items": 16,
     "conflicts": 2,
-    "decision_queue_items": 1,
+    "decision_queue_items": 2,
+    "environment_declared_runs": 14,
+    "environment_drift_alerts": 0,
+    "environment_qualified_runs": 0,
     "proposal_high_priority": 6,
-    "proposal_items": 26,
+    "proposal_items": 28,
     "step_failures": 0,
     "thought_unprocessed": 0,
+    "trace_breaks": 0,
+    "trace_issue_count": 21,
+    "trace_suggested_stubs": 2,
+    "trace_unowned_edges": 0,
     "unlinked_evidence_runs": 0,
     "warnings": 0
   },

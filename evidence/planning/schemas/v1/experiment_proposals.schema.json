@@ -37,6 +37,12 @@
           },
           "suggested_experiment_type": { "type": "string" },
           "suggested_literature_type": { "type": "string" },
+          "routing_rationale": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "capability_gate": { "type": "object" },
+          "experiment_brief": { "type": "object" },
           "required_pack_contract": { "type": "object" },
           "required_record_contract": { "type": "object" },
           "acceptance_checks": {

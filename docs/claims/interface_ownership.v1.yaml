@@ -1,0 +1,151 @@
+{
+  "schema_version": "interface_ownership/v1",
+  "nodes": {
+    "SENSORY.world_tag": {
+      "owner_claim_ids": [
+        "ARC-017"
+      ]
+    },
+    "SENSORY.homeostasis_tag": {
+      "owner_claim_ids": [
+        "ARC-017"
+      ]
+    },
+    "SENSORY.harm_tag": {
+      "owner_claim_ids": [
+        "ARC-017"
+      ]
+    },
+    "SENSORY.self_sensory_tag": {
+      "owner_claim_ids": [
+        "ARC-017",
+        "ARC-015"
+      ]
+    },
+    "E1.persistent_predictive_substrate": {
+      "owner_claim_ids": [
+        "ARC-001"
+      ]
+    },
+    "E2.fast_forward_predictor": {
+      "owner_claim_ids": [
+        "ARC-002"
+      ]
+    },
+    "CONTROL.precision_router": {
+      "owner_claim_ids": [
+        "ARC-005",
+        "MECH-054"
+      ]
+    },
+    "HIPPO.rollout_viability_mapper": {
+      "owner_claim_ids": [
+        "ARC-018"
+      ]
+    },
+    "RESIDUE.ethical_curvature_field": {
+      "owner_claim_ids": [
+        "ARC-013",
+        "MECH-056"
+      ]
+    },
+    "E3.trajectory_commitment_engine": {
+      "owner_claim_ids": [
+        "ARC-003"
+      ]
+    },
+    "ACTION.actuator": {
+      "owner_claim_ids": [
+        "ARC-003",
+        "ARC-015"
+      ]
+    },
+    "EXPLANATION.justification_gate": {
+      "owner_claim_ids": [
+        "ARC-015"
+      ]
+    },
+    "LEARNING.post_commit_updater": {
+      "owner_claim_ids": [
+        "ARC-015",
+        "ARC-018"
+      ]
+    },
+    "SOCIAL.other_model": {
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-031",
+        "MECH-032",
+        "MECH-036",
+        "MECH-051",
+        "MECH-052"
+      ]
+    }
+  },
+  "edges": {
+    "IFACE-EDGE-020": {
+      "owner_claim_ids": [
+        "MECH-056",
+        "MECH-057",
+        "MECH-054",
+        "Q-012"
+      ],
+      "notes": "Trajectory-first residue precision modulation with bounded sensory anti-overwrite constraints."
+    },
+    "IFACE-EDGE-021": {
+      "owner_claim_ids": [
+        "MECH-056",
+        "MECH-057",
+        "Q-011",
+        "Q-012"
+      ],
+      "notes": "Secondary reflexive sampling channel only; no semantic overwrite allowed."
+    },
+    "IFACE-EDGE-022": {
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-031",
+        "MECH-032",
+        "Q-009"
+      ],
+      "notes": "World-to-social projection uses derived selflike/agency inference before policy coupling."
+    },
+    "IFACE-EDGE-023": {
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-031",
+        "MECH-036",
+        "ARC-005"
+      ],
+      "notes": "Continuation edge: social inferences feed control-plane other-harm and coupling pathways."
+    }
+  },
+  "open_sections": {
+    "OPEN-001": {
+      "owner_claim_ids": [
+        "MECH-056",
+        "Q-011"
+      ]
+    },
+    "OPEN-002": {
+      "owner_claim_ids": [
+        "MECH-054",
+        "Q-011"
+      ]
+    },
+    "OPEN-003": {
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-036",
+        "MECH-052",
+        "Q-009"
+      ]
+    },
+    "OPEN-004": {
+      "owner_claim_ids": [
+        "ARC-004",
+        "Q-012"
+      ]
+    }
+  }
+}

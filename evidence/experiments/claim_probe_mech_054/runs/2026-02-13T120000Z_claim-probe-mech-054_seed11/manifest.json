@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_054",
+  "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed11",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-13T12:00:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "df08966b2019c0be8c7d0d9e751959b361727248",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-claim-probe-dispatch",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-054"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": true,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true
+  },
+  "environment": {
+    "env_id": "ree.claim_probe_dispatch",
+    "env_version": "dispatch.v1",
+    "dynamics_hash": "eb03e084265d",
+    "reward_hash": "f98f744a2763",
+    "observation_hash": "b17b0be60e98",
+    "config_hash": "71fb32781db0",
+    "tier": "stress"
+  },
+  "scenario": {
+    "name": "claim_probe_mech_054",
+    "seed": 11,
+    "config_hash": "71fb32781db0",
+    "dispatch_item": "EXP-0002"
+  },
+  "failure_signatures": []
+}

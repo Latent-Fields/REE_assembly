@@ -7,6 +7,30 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Residue Precision Depth Policy + z_delta Open Question
+
+### Overview
+
+Formalized the trajectory-first residue precision routing policy across L-space depths and added an explicit open
+question for `z_delta` functional definition/evidence boundaries.
+
+### What Changed
+
+- Updated MECH-056 dependencies and depth-policy text:
+  - `docs/architecture/residue_geometry.md#mech-056`
+- Added candidate mechanism:
+  - `docs/architecture/precision_control.md#mech-057`
+- Added open question:
+  - `docs/architecture/l_space.md#q-012`
+- Updated claim registry and claim index:
+  - `docs/claims/claims.yaml` (`MECH-057`, `Q-012`, updated `MECH-056`)
+  - `docs/claims/claim_index.md`
+- Updated interface graph and ownership mapping for residue/control edges:
+  - `docs/architecture/interfaces.v1.yaml` (`IFACE-EDGE-020`, `IFACE-EDGE-021`, `OPEN-004`)
+  - `docs/claims/interface_ownership.v1.yaml`
+- Captured processed thought:
+  - `docs/thoughts/2026-02-13_residue_precision_depth_policy.md`
+
 ## 2026-02-13: Thought Processing - Self-First, Social-Later Roadmap Heuristic
 
 ### Overview

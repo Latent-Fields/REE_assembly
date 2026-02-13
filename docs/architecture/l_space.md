@@ -77,13 +77,22 @@ misweighted precision or suppressed error, not from semantic overwrite of sensor
 
 ## Open Questions
 
-None noted in preserved sources.
+<a id="q-012"></a>
+**Q-012 — What is the operational function of `z_delta`?**  
+`z_delta` is currently described as regime/motivational long-horizon context, but the functional boundary remains
+under-specified: which control and consolidation pathways it may influence directly, what timescale constants are
+required, and what evidence best distinguishes `z_delta` effects from `z_theta` sequence effects.
+
+Priority evidence needs:
+- literature triangulation on long-horizon regime/context representation and default-mode attractor dynamics,
+- experimental separation of `z_delta`-like slow context drift from `z_theta` rollout sequencing effects.
 
 ## Related Claims (IDs)
 
 - ARC-004
 - INV-013
 - INV-002
+- Q-012
 
 ## References / Source Fragments
 

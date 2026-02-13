@@ -1,0 +1,46 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "Q-011"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "trajectory_integrity",
+  "run_id": "exp_0005_20260213T090639999186Z",
+  "runner": {
+    "name": "scripts/run_proposal.py",
+    "version": "0.2.0"
+  },
+  "scenario": {
+    "backlog_id": "EVB-0004",
+    "dispatch_id": "EXP-0005",
+    "name": "proposal_exp_0005",
+    "proposal_id": "EXP-0005",
+    "seed": 110502
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/conflict-adjudication-runs",
+    "commit": "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-13T09:06:39.999186Z",
+  "environment": {
+    "env_id": "legacy-trajectory-integrity-proposal-exp-0005",
+    "env_version": "legacy-d39241ebcad5",
+    "dynamics_hash": "legacy-e15b29c1c976",
+    "reward_hash": "legacy-67a4a690b87f",
+    "observation_hash": "legacy-ec0ad087adbc",
+    "config_hash": "legacy-afb520116d84",
+    "tier": "legacy"
+  },
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": false,
+    "mech056_summary_escalation_trace": false
+  }
+}
