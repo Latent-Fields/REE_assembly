@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-13T15:36:32.913046Z",
+  "generated_at_utc": "2026-02-13T16:34:49.645885Z",
   "items": [
     {
       "acceptance_checks": [
@@ -1286,6 +1286,103 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_q_010",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts.",
+        "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
+      ],
+      "backlog_id": "EVB-0015",
+      "capability_gate": {
+        "default_repo": "ree-v1-minimal",
+        "default_repo_snapshot": {
+          "capabilities": {
+            "mech056_dispatch_metric_set": true,
+            "mech056_summary_escalation_trace": true,
+            "trajectory_integrity_channelized_bias": true
+          },
+          "experiment_type": "claim_probe_mech_054",
+          "repo": "ree-v1-minimal",
+          "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+          "timestamp_utc": "2026-02-13T12:00:00Z"
+        },
+        "fail_closed": true,
+        "missing_capabilities": [],
+        "required_capabilities": []
+      },
+      "claim_id": "Q-012",
+      "experiment_brief": {
+        "failure_modes": [],
+        "latest_run": {},
+        "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md",
+        "what_it_tests": []
+      },
+      "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
+      "priority": "low",
+      "proposal_id": "EXP-0027",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "environment_required_fields": [
+          "env_id",
+          "env_version",
+          "dynamics_hash",
+          "reward_hash",
+          "observation_hash",
+          "config_hash",
+          "tier"
+        ],
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "environment"
+        ],
+        "metrics": "stable numeric keys only",
+        "required_metric_keys": [
+          "environment_shortcut_leakage_events",
+          "environment_unobservable_critical_state_rate"
+        ],
+        "summary": "include scenario and interpretation"
+      },
+      "routing_rationale": [],
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_012",
+      "target_repo": "ree-v1-minimal",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0015",
+      "claim_id": "Q-012",
+      "objective": "Improve literature grounding and confidence for Q-012.",
+      "priority": "low",
+      "proposal_id": "LIT-0028",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_q_012",
       "target_repo": "REE_assembly",
       "why_now": [
         "no_evidence_for_open_question"

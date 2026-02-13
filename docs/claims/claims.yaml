@@ -1429,8 +1429,40 @@
     - ARC-018
     - ARC-003
     - ARC-004
+    - ARC-005
     - MECH-034
+    - MECH-054
   location: docs/architecture/residue_geometry.md#mech-056
   source:
     - docs/architecture/residue_geometry.md
     - docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md
+- id: MECH-057
+  claim_type: mechanism_hypothesis
+  subject: precision.residue_depth_escalation_policy
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-004
+    - ARC-005
+    - MECH-054
+    - MECH-056
+    - INV-009
+    - INV-014
+  location: docs/architecture/precision_control.md#mech-057
+  source:
+    - docs/architecture/precision_control.md
+    - docs/thoughts/2026-02-13_residue_precision_depth_policy.md
+- id: Q-012
+  claim_type: open_question
+  subject: l_space.z_delta_functional_boundary
+  polarity: asserts
+  status: active
+  depends_on:
+    - ARC-004
+    - ARC-001
+    - ARC-011
+    - MECH-057
+  location: docs/architecture/l_space.md#q-012
+  source:
+    - docs/architecture/l_space.md
+    - docs/thoughts/2026-02-13_residue_precision_depth_policy.md

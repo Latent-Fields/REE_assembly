@@ -103,7 +103,8 @@
       "ports": {
         "inputs": [
           "pe.in",
-          "residue.modulation"
+          "residue.modulation",
+          "social_projection.in"
         ],
         "outputs": [
           "precision.to_e2",
@@ -595,28 +596,48 @@
         "node": "CONTROL.precision_router",
         "port": "residue.modulation"
       },
-      "signal": "residue_control_modulation",
+      "signal": "trajectory_first_residue_precision_modulation",
       "operation": "gate",
       "stage": "precommit",
-      "status": "ambiguous",
+      "status": "defined",
       "owner_claim_ids": [
         "MECH-056",
-        "Q-011"
+        "MECH-057",
+        "MECH-054"
       ],
       "ambiguity": {
         "unknown_fields": [
-          "signed_pe_precision_mix_rule",
-          "noradrenaline_imminence_interaction",
-          "stage_separation_constraints"
+          "signed_pe_mix_curve",
+          "noradrenaline_imminence_weight",
+          "trajectory_channel_saturation_threshold"
         ],
         "hypotheses": [
-          "Residue modulates precision gain only within trajectory_commit channel.",
-          "Residue can modulate perceptual sampling only after trajectory channel saturation."
+          "Residue-weighted harm precision dominates under high imminence while preserving trajectory-first ordering.",
+          "Signed precision weights remain bounded by anti-overwrite constraints on sensory depth."
         ],
         "linked_open_questions": [
-          "Q-011"
+          "Q-011",
+          "Q-012"
         ],
-        "resolution_needed": "Adjudication experiment separating trajectory-first and perceptual-spillover pathways under fixed environment tiers."
+        "resolution_needed": "Calibrate mix parameters and saturation thresholds with channelized perturbation experiments and z_delta-specific evidence."
+      },
+      "policy": {
+        "target_depths_primary": [
+          "z_beta",
+          "z_theta"
+        ],
+        "target_depths_secondary": [
+          "z_gamma"
+        ],
+        "target_depths_tertiary": [
+          "z_delta"
+        ],
+        "escalation_order": [
+          "trajectory_commit",
+          "perceptual_sampling",
+          "structural_consolidation"
+        ],
+        "semantic_overwrite_allowed": false
       }
     },
     {
@@ -629,26 +650,43 @@
         "node": "SENSORY.world_tag",
         "port": "world.sampled"
       },
-      "signal": "representational_sampling_bias",
+      "signal": "bounded_reflexive_sampling_bias",
       "operation": "gate",
       "stage": "precommit",
-      "status": "ambiguous",
+      "status": "candidate",
       "owner_claim_ids": [
-        "MECH-056"
+        "MECH-056",
+        "MECH-057",
+        "Q-011"
       ],
       "ambiguity": {
         "unknown_fields": [
           "bias_amplitude_bounds",
-          "channel_escalation_trigger"
+          "reorientation_dwell_time",
+          "saturation_detection_rule"
         ],
         "hypotheses": [
-          "Perceptual sampling bias is secondary and bounded by trajectory-channel failure.",
-          "Perceptual sampling bias is always-on but low-gain."
+          "Perceptual sampling bias is a bounded reflexive channel for disambiguation under uncertainty.",
+          "Bias channel should automatically decay once trajectory-channel uncertainty drops below threshold."
         ],
         "linked_open_questions": [
-          "Q-011"
+          "Q-011",
+          "Q-012"
         ],
-        "resolution_needed": "Channelized perturbation experiments with independent sensory and trajectory precision logging."
+        "resolution_needed": "Define amplitude/time bounds and termination rule so sensory correction does not become representational distortion."
+      },
+      "policy": {
+        "channel_role": "secondary",
+        "semantic_overwrite_allowed": false,
+        "allowed_effects": [
+          "sampling_reorientation",
+          "sensor_gain_reweighting"
+        ],
+        "forbidden_effects": [
+          "semantic_latent_overwrite",
+          "direct_policy_commit"
+        ],
+        "escalates_only_after": "trajectory_commit_channel_saturation"
       }
     },
     {
@@ -664,22 +702,49 @@
       "signal": "social_feature_projection",
       "operation": "transform",
       "stage": "precommit",
-      "status": "candidate",
-      "owner_claim_ids": [],
+      "status": "ambiguous",
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-031",
+        "MECH-032",
+        "Q-009"
+      ],
       "ambiguity": {
         "unknown_fields": [
           "agency_detection_schema",
-          "other_harm_projection_gate"
+          "other_harm_projection_gate",
+          "selflike_threshold_calibration"
         ],
         "hypotheses": [
-          "Social projection is derived post-commit using replay traces.",
-          "Social projection is online and continuous under high other-salience."
+          "Other-model projection should route through derived OTHER_SELFLIKE and agency tags before policy influence.",
+          "Projection may stay advisory unless confidence crosses other-harm relevance threshold."
         ],
         "linked_open_questions": [
           "Q-009"
         ],
-        "resolution_needed": "Specify whether social projection is precommit or postcommit and assign claim ownership."
+        "resolution_needed": "Define gating criteria from OTHER_SELFLIKE inference to control-plane impact and document calibration policy."
       }
+    },
+    {
+      "id": "IFACE-EDGE-023",
+      "from": {
+        "node": "SOCIAL.other_model",
+        "port": "other_model.inferences"
+      },
+      "to": {
+        "node": "CONTROL.precision_router",
+        "port": "social_projection.in"
+      },
+      "signal": "other_model_projection_signal",
+      "operation": "transform",
+      "stage": "precommit",
+      "status": "defined",
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-031",
+        "MECH-036",
+        "ARC-005"
+      ]
     }
   ],
   "open_sections": [
@@ -711,7 +776,23 @@
       "section": "Care Override Boundary Conditions",
       "status": "open",
       "description": "Boundary conditions for care-weight override versus third-party harm veto are unresolved.",
-      "owner_claim_ids": []
+      "owner_claim_ids": [
+        "ARC-010",
+        "MECH-036",
+        "MECH-052",
+        "Q-009"
+      ]
+    },
+    {
+      "id": "OPEN-004",
+      "doc": "docs/architecture/l_space.md",
+      "section": "z_delta functional boundary",
+      "status": "open",
+      "description": "Operational function and evidence-backed boundary of z_delta vs z_theta remain under-specified.",
+      "owner_claim_ids": [
+        "ARC-004",
+        "Q-012"
+      ]
     }
   ]
 }

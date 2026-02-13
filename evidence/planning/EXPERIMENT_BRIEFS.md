@@ -1,6 +1,6 @@
 # Experiment Dispatch Briefs
 
-Generated: `2026-02-13T15:36:32.913046Z`
+Generated: `2026-02-13T16:34:49.645885Z`
 
 Human-readable briefs for high-priority experimental proposals, including routing and capability-gate context.
 

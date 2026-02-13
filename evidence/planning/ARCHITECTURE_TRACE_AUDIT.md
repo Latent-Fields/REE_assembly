@@ -1,16 +1,16 @@
 # Architecture Trace Audit
 
-Generated: `2026-02-13T15:32:39.697392Z`
+Generated: `2026-02-13T16:34:49.726149Z`
 
 ## Summary
 
 - Nodes traced from sensory roots: 13/14
-- Edges traversed: 19/22
-- Unowned edges: 1
-- Ambiguous edges: 3
-- Trace breaks: 1
-- Open sections without owner claims: 1
-- Suggested claim stubs: 6
+- Edges traversed: 20/23
+- Unowned edges: 0
+- Ambiguous edges: 2
+- Trace breaks: 0
+- Open sections without owner claims: 0
+- Suggested claim stubs: 2
 
 ## Missing Dependency Targets
 
@@ -22,26 +22,23 @@ Generated: `2026-02-13T15:32:39.697392Z`
 - `ISS-DEP-LINK-GAP-IFACE-EDGE-002` edge_id=IFACE-EDGE-002; source_claim_ids=ARC-017; target_claim_ids=ARC-002
 - `ISS-DEP-LINK-GAP-IFACE-EDGE-003` edge_id=IFACE-EDGE-003; source_claim_ids=ARC-017; target_claim_ids=ARC-002
 - `ISS-DEP-LINK-GAP-IFACE-EDGE-004` edge_id=IFACE-EDGE-004; source_claim_ids=ARC-017, ARC-015; target_claim_ids=ARC-002
-- `ISS-DEP-LINK-GAP-IFACE-EDGE-020` edge_id=IFACE-EDGE-020; source_claim_ids=ARC-013, MECH-056; target_claim_ids=ARC-005, MECH-054
-- `ISS-DEP-LINK-GAP-IFACE-EDGE-022` edge_id=IFACE-EDGE-022; source_claim_ids=ARC-017; target_claim_ids=ARC-010, MECH-051, MECH-052
 
 ## Unowned Edges
 
-- `ISS-UNOWNED-EDGE-IFACE-EDGE-022` edge_id=IFACE-EDGE-022; from_node=SENSORY.world_tag; to_node=SOCIAL.other_model
+- _none_
 
 ## Ambiguous Edges
 
-- `ISS-AMBIGUOUS-EDGE-IFACE-EDGE-020` edge_id=IFACE-EDGE-020; unknown_fields=signed_pe_precision_mix_rule, noradrenaline_imminence_interaction, stage_separation_constraints; linked_open_questions=Q-011
-- `ISS-AMBIGUOUS-EDGE-IFACE-EDGE-021` edge_id=IFACE-EDGE-021; unknown_fields=bias_amplitude_bounds, channel_escalation_trigger; linked_open_questions=Q-011
-- `ISS-AMBIGUOUS-EDGE-IFACE-EDGE-022` edge_id=IFACE-EDGE-022; unknown_fields=agency_detection_schema, other_harm_projection_gate; linked_open_questions=Q-009
+- `ISS-AMBIGUOUS-EDGE-IFACE-EDGE-021` edge_id=IFACE-EDGE-021; unknown_fields=bias_amplitude_bounds, reorientation_dwell_time, saturation_detection_rule; linked_open_questions=Q-011, Q-012
+- `ISS-AMBIGUOUS-EDGE-IFACE-EDGE-022` edge_id=IFACE-EDGE-022; unknown_fields=agency_detection_schema, other_harm_projection_gate, selflike_threshold_calibration; linked_open_questions=Q-009
 
 ## Trace Breaks
 
-- `ISS-TRACE-BREAK-SOCIAL-OTHER_MODEL` node_id=SOCIAL.other_model; owner_claim_ids=ARC-010, MECH-051, MECH-052
+- _none_
 
 ## Open Sections Without Ownership
 
-- `ISS-OPEN-UNOWNED-OPEN-003` open_section_id=OPEN-003; doc=docs/architecture/social.md
+- _none_
 
 ## Owned Edges Without Evidence
 
@@ -58,12 +55,10 @@ Generated: `2026-02-13T15:32:39.697392Z`
 - `ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-017` edge_id=IFACE-EDGE-017; owner_claim_ids=ARC-015, ARC-003
 - `ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-018` edge_id=IFACE-EDGE-018; owner_claim_ids=ARC-001, ARC-015
 - `ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-019` edge_id=IFACE-EDGE-019; owner_claim_ids=ARC-018, ARC-015
+- `ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-022` edge_id=IFACE-EDGE-022; owner_claim_ids=ARC-010, MECH-031, MECH-032, Q-009
+- `ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-023` edge_id=IFACE-EDGE-023; owner_claim_ids=ARC-010, MECH-031, MECH-036, ARC-005
 
 ## Stub Suggestions
 
-- `STUB-0001` type=`architectural_commitment` subject=`interface.sensory.world_tag_to_social.other_model` location=`docs/architecture/overview.md`
-- `STUB-0002` type=`open_question` subject=`interface.iface-edge-020.ambiguity` location=`docs/architecture/residue_geometry.md`
-- `STUB-0003` type=`open_question` subject=`interface.iface-edge-021.ambiguity` location=`docs/architecture/residue_geometry.md`
-- `STUB-0004` type=`open_question` subject=`interface.iface-edge-022.ambiguity` location=`docs/architecture/overview.md`
-- `STUB-0005` type=`open_question` subject=`open_section.open-003.ownership` location=`docs/architecture/social.md`
-- `STUB-0006` type=`mechanism_hypothesis` subject=`trace.continuation.social.other_model` location=`docs/architecture/social.md`
+- `STUB-0001` type=`open_question` subject=`interface.iface-edge-021.ambiguity` location=`docs/architecture/residue_geometry.md`
+- `STUB-0002` type=`open_question` subject=`interface.iface-edge-022.ambiguity` location=`docs/architecture/social.md`

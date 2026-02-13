@@ -76,7 +76,7 @@ than a value signal. Online updates can be conservative; deeper integration occu
 
 **Claim Type:** mechanism_hypothesis
 **Scope:** Prefer trajectory-space gating before representational distortion
-**Depends On:** ARC-013, ARC-018, ARC-003, ARC-004, MECH-034
+**Depends On:** ARC-013, ARC-018, ARC-003, ARC-004, ARC-005, MECH-034, MECH-054
 **Status:** candidate
 **Claim ID:** MECH-056
 
@@ -120,6 +120,27 @@ Safety interpretation:
 - `INV-014` is preserved because regulation changes weighting/scheduling rather than semantic overwrite.
 - `INV-009` is preserved because perceptual bias acts through precision routing.
 - `MECH-056` remains trajectory-first while allowing controlled, explicit secondary channels.
+
+### L-space depth policy for channel escalation
+
+To remove ambiguity around where residue pressure is allowed:
+
+- **Primary depth targets (`z_beta`, `z_theta`)**  
+  Residue pressure is first applied to affordance/action and rollout depths via trajectory pruning, admissibility
+  thresholds, and commitment veto readiness.
+
+- **Secondary depth target (`z_gamma`)**  
+  Any perceptual channel influence is restricted to **reflexive sampling/reorientation** (e.g., look/listen again)
+  under uncertainty. It cannot inject semantic content or rewrite the sensory latent.
+
+- **Tertiary depth target (`z_delta`)**  
+  Regime-level bias updates are delayed and consolidation-oriented (post-commit/offline), not first-line online
+  enforcement.
+
+Escalation rule:
+1. Apply trajectory/commit constraints at `z_beta`/`z_theta`.
+2. Permit bounded `z_gamma` sampling bias only when trajectory constraints are insufficient.
+3. Permit `z_delta` structural shifts only after repeated post-commit evidence.
 
 ## Why geometry
 

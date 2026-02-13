@@ -3,7 +3,7 @@
     "architecture_trace": {
       "audit_path": "evidence/planning/architecture_trace_audit.v1.json",
       "coverage": {
-        "edge_coverage_ratio": 0.864,
+        "edge_coverage_ratio": 0.87,
         "missing_roots": [],
         "node_coverage_ratio": 0.929,
         "reachable_node_count": 13,
@@ -31,9 +31,9 @@
         "terminal_nodes": [
           "ACTION.actuator"
         ],
-        "total_edges": 22,
+        "total_edges": 23,
         "total_nodes": 14,
-        "traversed_edge_count": 19,
+        "traversed_edge_count": 20,
         "traversed_edges": [
           "IFACE-EDGE-001",
           "IFACE-EDGE-002",
@@ -53,7 +53,8 @@
           "IFACE-EDGE-018",
           "IFACE-EDGE-019",
           "IFACE-EDGE-021",
-          "IFACE-EDGE-022"
+          "IFACE-EDGE-022",
+          "IFACE-EDGE-023"
         ],
         "unreachable_nodes": [
           "RESIDUE.ethical_curvature_field"
@@ -65,30 +66,6 @@
         ]
       },
       "priority_items": [
-        {
-          "category": "unowned_edges",
-          "edge_id": "IFACE-EDGE-022",
-          "from_node": "SENSORY.world_tag",
-          "issue_id": "ISS-UNOWNED-EDGE-IFACE-EDGE-022",
-          "to_node": "SOCIAL.other_model"
-        },
-        {
-          "category": "trace_breaks",
-          "issue_id": "ISS-TRACE-BREAK-SOCIAL-OTHER_MODEL",
-          "node_id": "SOCIAL.other_model",
-          "owner_claim_ids": [
-            "ARC-010",
-            "MECH-051",
-            "MECH-052"
-          ]
-        },
-        {
-          "category": "open_sections_unowned",
-          "doc": "docs/architecture/social.md",
-          "issue_id": "ISS-OPEN-UNOWNED-OPEN-003",
-          "open_section_id": "OPEN-003",
-          "section": "Care Override Boundary Conditions"
-        },
         {
           "category": "dependency_link_gaps",
           "edge_id": "IFACE-EDGE-001",
@@ -133,47 +110,21 @@
           "target_claim_ids": [
             "ARC-002"
           ]
-        },
-        {
-          "category": "dependency_link_gaps",
-          "edge_id": "IFACE-EDGE-020",
-          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-020",
-          "source_claim_ids": [
-            "ARC-013",
-            "MECH-056"
-          ],
-          "target_claim_ids": [
-            "ARC-005",
-            "MECH-054"
-          ]
-        },
-        {
-          "category": "dependency_link_gaps",
-          "edge_id": "IFACE-EDGE-022",
-          "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-022",
-          "source_claim_ids": [
-            "ARC-017"
-          ],
-          "target_claim_ids": [
-            "ARC-010",
-            "MECH-051",
-            "MECH-052"
-          ]
         }
       ],
       "prompt": "Review sensory-to-commit traces for missing dependencies, unowned interfaces, and claim stub suggestions.",
       "report_path": "evidence/planning/ARCHITECTURE_TRACE_AUDIT.md",
       "stub_suggestions_path": "evidence/planning/claim_stub_suggestions.v1.json",
       "summary": {
-        "ambiguous_edges": 3,
-        "dependency_link_gaps": 6,
-        "issue_count": 25,
+        "ambiguous_edges": 2,
+        "dependency_link_gaps": 4,
+        "issue_count": 21,
         "missing_claim_dependency_targets": 0,
-        "open_sections_unowned": 1,
-        "owned_edges_without_evidence": 13,
-        "suggested_claim_stubs": 6,
-        "trace_breaks": 1,
-        "unowned_edges": 1,
+        "open_sections_unowned": 0,
+        "owned_edges_without_evidence": 15,
+        "suggested_claim_stubs": 2,
+        "trace_breaks": 0,
+        "unowned_edges": 0,
         "unowned_nodes": 0
       }
     },
@@ -200,14 +151,14 @@
     },
     "environment_qualification": {
       "coverage": {
-        "environment_declared_runs": 10,
+        "environment_declared_runs": 14,
         "missing_metadata_runs": 0,
-        "missing_metric_runs": 10,
+        "missing_metric_runs": 14,
         "qualified_runs": 0,
         "status_counts": {
-          "missing_environment_metrics": 10
+          "missing_environment_metrics": 14
         },
-        "total_runs": 10,
+        "total_runs": 14,
         "unqualified_runs": 0
       },
       "drift_alerts": [],
@@ -219,21 +170,21 @@
       "by_target_repo": [
         {
           "experimental": 0,
-          "literature_review": 14,
+          "literature_review": 15,
           "target_repo": "REE_assembly",
-          "total": 14
+          "total": 15
         },
         {
-          "experimental": 2,
+          "experimental": 1,
           "literature_review": 0,
           "target_repo": "ree-experiments-lab",
-          "total": 2
+          "total": 1
         },
         {
-          "experimental": 10,
+          "experimental": 12,
           "literature_review": 0,
           "target_repo": "ree-v1-minimal",
-          "total": 10
+          "total": 12
         }
       ],
       "high_priority_proposals": [
@@ -255,21 +206,17 @@
             "default_repo": "ree-v1-minimal",
             "default_repo_snapshot": {
               "capabilities": {
-                "mech056_dispatch_metric_set": false,
-                "mech056_summary_escalation_trace": false,
-                "trajectory_integrity_channelized_bias": false
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
               },
               "experiment_type": "claim_probe_mech_054",
               "repo": "ree-v1-minimal",
-              "run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed29",
-              "timestamp_utc": "2026-02-13T08:00:00Z"
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
             },
             "fail_closed": true,
-            "missing_capabilities": [
-              "trajectory_integrity_channelized_bias",
-              "mech056_dispatch_metric_set",
-              "mech056_summary_escalation_trace"
-            ],
+            "missing_capabilities": [],
             "required_capabilities": [
               "trajectory_integrity_channelized_bias",
               "mech056_dispatch_metric_set",
@@ -344,14 +291,10 @@
               "explicit trigger rationale for each non-primary channel activation"
             ]
           },
-          "routing_rationale": [
-            "missing required capabilities on default repo: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`",
-            "capability gate fallback to `ree-experiments-lab`",
-            "selected target repo still missing declared capabilities: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`"
-          ],
+          "routing_rationale": [],
           "status": "proposed",
           "suggested_experiment_type": "trajectory_integrity",
-          "target_repo": "ree-experiments-lab",
+          "target_repo": "ree-v1-minimal",
           "why_now": [
             "active_conflict",
             "directional_conflict_alert"
@@ -401,14 +344,14 @@
             "default_repo": "ree-v1-minimal",
             "default_repo_snapshot": {
               "capabilities": {
-                "mech056_dispatch_metric_set": false,
-                "mech056_summary_escalation_trace": false,
-                "trajectory_integrity_channelized_bias": false
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
               },
               "experiment_type": "claim_probe_mech_054",
               "repo": "ree-v1-minimal",
-              "run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed29",
-              "timestamp_utc": "2026-02-13T08:00:00Z"
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
             },
             "fail_closed": true,
             "missing_capabilities": [],
@@ -531,21 +474,17 @@
             "default_repo": "ree-v1-minimal",
             "default_repo_snapshot": {
               "capabilities": {
-                "mech056_dispatch_metric_set": false,
-                "mech056_summary_escalation_trace": false,
-                "trajectory_integrity_channelized_bias": false
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
               },
               "experiment_type": "claim_probe_mech_054",
               "repo": "ree-v1-minimal",
-              "run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed29",
-              "timestamp_utc": "2026-02-13T08:00:00Z"
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
             },
             "fail_closed": true,
-            "missing_capabilities": [
-              "trajectory_integrity_channelized_bias",
-              "mech056_dispatch_metric_set",
-              "mech056_summary_escalation_trace"
-            ],
+            "missing_capabilities": [],
             "required_capabilities": [
               "trajectory_integrity_channelized_bias",
               "mech056_dispatch_metric_set",
@@ -620,14 +559,10 @@
               "explicit trigger rationale for each non-primary channel activation"
             ]
           },
-          "routing_rationale": [
-            "missing required capabilities on default repo: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`",
-            "capability gate fallback to `ree-experiments-lab`",
-            "selected target repo still missing declared capabilities: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`"
-          ],
+          "routing_rationale": [],
           "status": "proposed",
           "suggested_experiment_type": "trajectory_integrity",
-          "target_repo": "ree-experiments-lab",
+          "target_repo": "ree-v1-minimal",
           "why_now": [
             "active_conflict",
             "directional_conflict_alert"
@@ -647,14 +582,14 @@
             "default_repo": "ree-v1-minimal",
             "default_repo_snapshot": {
               "capabilities": {
-                "mech056_dispatch_metric_set": false,
-                "mech056_summary_escalation_trace": false,
-                "trajectory_integrity_channelized_bias": false
+                "mech056_dispatch_metric_set": true,
+                "mech056_summary_escalation_trace": true,
+                "trajectory_integrity_channelized_bias": true
               },
               "experiment_type": "claim_probe_mech_054",
               "repo": "ree-v1-minimal",
-              "run_id": "2026-02-13T080000Z_claim-probe-mech-054_seed29",
-              "timestamp_utc": "2026-02-13T08:00:00Z"
+              "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+              "timestamp_utc": "2026-02-13T12:00:00Z"
             },
             "fail_closed": true,
             "missing_capabilities": [],
@@ -761,49 +696,62 @@
       {
         "command": [
           "/opt/local/bin/python3",
-          "evidence/experiments/scripts/build_experiment_indexes.py"
+          "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-13T15:32:39.648723Z",
-        "name": "evidence_build",
+        "finished_at_utc": "2026-02-13T16:34:49.556954Z",
+        "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T15:32:39.574307Z",
+        "started_at_utc": "2026-02-13T16:34:49.492306Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Indexed 10 run(s) across 3 experiment type(s); FAIL=3; literature entries=5; backlog items=14; proposals=26."
+        "stdout": "Thought sweep: total=32, processed=32, unprocessed=0, processed_missing_links=0"
+      },
+      {
+        "command": [
+          "/opt/local/bin/python3",
+          "evidence/experiments/scripts/build_experiment_indexes.py"
+        ],
+        "finished_at_utc": "2026-02-13T16:34:49.661289Z",
+        "name": "evidence_build",
+        "returncode": 0,
+        "started_at_utc": "2026-02-13T16:34:49.557003Z",
+        "status": "ok",
+        "stderr": "",
+        "stdout": "Indexed 14 run(s) across 3 experiment type(s); FAIL=3; literature entries=5; backlog items=15; proposals=28."
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/planning/scripts/architecture_trace_audit.py"
         ],
-        "finished_at_utc": "2026-02-13T15:32:39.703210Z",
+        "finished_at_utc": "2026-02-13T16:34:49.736042Z",
         "name": "architecture_trace_audit",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T15:32:39.648774Z",
+        "started_at_utc": "2026-02-13T16:34:49.661359Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Architecture trace audit complete: nodes=13/14, edges=19/22, issues=25, stubs=6.\nAudit JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/architecture_trace_audit.v1.json\nAudit MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ARCHITECTURE_TRACE_AUDIT.md\nStub suggestions: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/claim_stub_suggestions.v1.json"
+        "stdout": "Architecture trace audit complete: nodes=13/14, edges=20/23, issues=21, stubs=2.\nAudit JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/architecture_trace_audit.v1.json\nAudit MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ARCHITECTURE_TRACE_AUDIT.md\nStub suggestions: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/claim_stub_suggestions.v1.json"
       }
     ]
   },
-  "generated_at_utc": "2026-02-13T15:32:39.703236Z",
+  "generated_at_utc": "2026-02-13T16:34:49.736081Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "backlog_high_priority": 2,
-    "backlog_items": 14,
+    "backlog_items": 15,
     "conflicts": 2,
     "decision_queue_items": 2,
-    "environment_declared_runs": 10,
+    "environment_declared_runs": 14,
     "environment_drift_alerts": 0,
     "environment_qualified_runs": 0,
     "proposal_high_priority": 4,
-    "proposal_items": 26,
+    "proposal_items": 28,
     "step_failures": 0,
     "thought_unprocessed": 0,
-    "trace_breaks": 1,
-    "trace_issue_count": 25,
-    "trace_suggested_stubs": 6,
-    "trace_unowned_edges": 1,
+    "trace_breaks": 0,
+    "trace_issue_count": 21,
+    "trace_suggested_stubs": 2,
+    "trace_unowned_edges": 0,
     "unlinked_evidence_runs": 0,
     "warnings": 0
   },
