@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://experiment-pack/v1/jepa_adapter_signals.v1.json",
+  "title": "REE JEPA Adapter Signals v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "experiment_type",
+    "run_id",
+    "adapter",
+    "stream_presence",
+    "pe_latent_fields",
+    "uncertainty_estimator",
+    "signal_metrics"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "jepa_adapter_signals/v1"
+    },
+    "experiment_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adapter": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "stream_presence": {
+      "type": "object",
+      "required": [
+        "z_t",
+        "z_hat",
+        "pe_latent",
+        "uncertainty_latent",
+        "trace_context_mask_ids",
+        "trace_action_token"
+      ],
+      "properties": {
+        "z_t": {
+          "const": true
+        },
+        "z_hat": {
+          "const": true
+        },
+        "pe_latent": {
+          "const": true
+        },
+        "uncertainty_latent": {
+          "type": "boolean"
+        },
+        "trace_context_mask_ids": {
+          "const": true
+        },
+        "trace_action_token": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pe_latent_fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "mean",
+          "p95",
+          "by_mask"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 2
+    },
+    "uncertainty_estimator": {
+      "type": "string",
+      "enum": [
+        "none",
+        "dispersion",
+        "ensemble",
+        "head"
+      ]
+    },
+    "signal_metrics": {
+      "type": "object",
+      "required": [
+        "latent_prediction_error_mean",
+        "latent_prediction_error_p95",
+        "latent_residual_coverage_rate",
+        "precision_input_completeness_rate"
+      ],
+      "properties": {
+        "latent_prediction_error_mean": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latent_prediction_error_p95": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latent_uncertainty_calibration_error": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latent_residual_coverage_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "precision_input_completeness_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "stream_presence": {
+            "properties": {
+              "uncertainty_latent": {
+                "const": true
+              }
+            },
+            "required": [
+              "uncertainty_latent"
+            ]
+          }
+        },
+        "required": [
+          "stream_presence"
+        ]
+      },
+      "then": {
+        "properties": {
+          "uncertainty_estimator": {
+            "not": {
+              "const": "none"
+            }
+          },
+          "signal_metrics": {
+            "required": [
+              "latent_uncertainty_calibration_error"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

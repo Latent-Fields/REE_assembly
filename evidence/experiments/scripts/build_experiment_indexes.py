@@ -34,6 +34,16 @@ from typing import Any
 START_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:END -->"
 
+ADAPTER_SCHEMA_VERSION = "jepa_adapter_signals/v1"
+ADAPTER_REQUIRED_PE_FIELDS = {"mean", "p95"}
+ADAPTER_REQUIRED_SIGNAL_METRICS = {
+    "latent_prediction_error_mean",
+    "latent_prediction_error_p95",
+    "latent_residual_coverage_rate",
+    "precision_input_completeness_rate",
+}
+ADAPTER_ALLOWED_UNCERTAINTY = {"none", "dispersion", "ensemble", "head"}
+
 
 @dataclass
 class StopHit:
@@ -64,6 +74,9 @@ class RunRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "simulation"
     evidence_direction: str = "unknown"
+    adapter_signals_path: Path | None = None
+    adapter_contract_status: str = "n/a"
+    adapter_contract_errors: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -223,9 +236,13 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
         artifacts = manifest.get("artifacts", {}) if isinstance(manifest, dict) else {}
         metrics_rel = artifacts.get("metrics_path", "metrics.json")
         summary_rel = artifacts.get("summary_path", "summary.md")
+        adapter_signals_rel = artifacts.get("adapter_signals_path")
 
         metrics_path = run_dir / metrics_rel
         summary_path = run_dir / summary_rel
+        adapter_signals_path: Path | None = None
+        if isinstance(adapter_signals_rel, str) and adapter_signals_rel.strip():
+            adapter_signals_path = run_dir / adapter_signals_rel.strip()
 
         metrics_doc = _load_json(metrics_path)
         values = metrics_doc.get("values", {}) if isinstance(metrics_doc, dict) else {}
@@ -261,6 +278,7 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                adapter_signals_path=adapter_signals_path,
             )
         )
 
@@ -339,6 +357,116 @@ def _criteria_for_experiment(stop_criteria: dict[str, Any], experiment_type: str
     return merged
 
 
+def _adapter_signature_for_errors(errors: list[str]) -> str:
+    detail = " ".join(errors).lower()
+    if "missing file" in detail:
+        return "contract:jepa_adapter_signals_missing"
+    if "schema_version" in detail:
+        return "contract:jepa_adapter_signals_version"
+    return "contract:jepa_adapter_signals_invalid"
+
+
+def _validate_jepa_adapter_signals(run: RunRecord) -> tuple[str, list[str]]:
+    if run.adapter_signals_path is None:
+        return "n/a", []
+
+    path = run.adapter_signals_path
+    if not path.exists():
+        return "FAIL", [f"missing file: {path.name}"]
+
+    try:
+        doc = _load_json(path)
+    except RuntimeError as exc:
+        return "FAIL", [str(exc)]
+
+    errors: list[str] = []
+
+    if not isinstance(doc, dict):
+        return "FAIL", ["root must be an object"]
+
+    if doc.get("schema_version") != ADAPTER_SCHEMA_VERSION:
+        errors.append(f"schema_version must be `{ADAPTER_SCHEMA_VERSION}`")
+
+    run_id = str(doc.get("run_id", "")).strip()
+    if run_id != run.run_id:
+        errors.append(f"run_id mismatch (`{run_id}` != `{run.run_id}`)")
+
+    experiment_type = str(doc.get("experiment_type", "")).strip()
+    if experiment_type != run.experiment_type:
+        errors.append(
+            f"experiment_type mismatch (`{experiment_type}` != `{run.experiment_type}`)"
+        )
+
+    adapter = doc.get("adapter")
+    if not isinstance(adapter, dict):
+        errors.append("adapter object missing")
+    else:
+        if not str(adapter.get("name", "")).strip():
+            errors.append("adapter.name missing")
+        if not str(adapter.get("version", "")).strip():
+            errors.append("adapter.version missing")
+
+    stream_presence = doc.get("stream_presence")
+    if not isinstance(stream_presence, dict):
+        errors.append("stream_presence object missing")
+        stream_presence = {}
+
+    for key in ("z_t", "z_hat", "pe_latent", "trace_context_mask_ids"):
+        if stream_presence.get(key) is not True:
+            errors.append(f"stream_presence.{key} must be true")
+
+    uncertainty_present = bool(stream_presence.get("uncertainty_latent"))
+    trace_action_token = stream_presence.get("trace_action_token")
+    if not isinstance(trace_action_token, bool):
+        errors.append("stream_presence.trace_action_token must be boolean")
+
+    pe_latent_fields = doc.get("pe_latent_fields")
+    if not isinstance(pe_latent_fields, list):
+        errors.append("pe_latent_fields must be an array")
+        pe_latent_fields = []
+    pe_fields = {str(x) for x in pe_latent_fields}
+    missing_pe = sorted(ADAPTER_REQUIRED_PE_FIELDS - pe_fields)
+    if missing_pe:
+        errors.append(f"pe_latent_fields missing: {', '.join(missing_pe)}")
+
+    uncertainty_estimator = str(doc.get("uncertainty_estimator", "")).strip()
+    if uncertainty_estimator not in ADAPTER_ALLOWED_UNCERTAINTY:
+        errors.append(
+            "uncertainty_estimator must be one of: "
+            + ", ".join(sorted(ADAPTER_ALLOWED_UNCERTAINTY))
+        )
+    if uncertainty_present and uncertainty_estimator == "none":
+        errors.append("uncertainty_latent=true requires uncertainty_estimator != none")
+
+    signal_metrics = doc.get("signal_metrics")
+    if not isinstance(signal_metrics, dict):
+        errors.append("signal_metrics object missing")
+        signal_metrics = {}
+
+    missing_metrics = sorted(ADAPTER_REQUIRED_SIGNAL_METRICS - set(signal_metrics.keys()))
+    if missing_metrics:
+        errors.append(f"signal_metrics missing: {', '.join(missing_metrics)}")
+
+    for metric in ADAPTER_REQUIRED_SIGNAL_METRICS:
+        value = signal_metrics.get(metric)
+        if not isinstance(value, (int, float)):
+            errors.append(f"signal_metrics.{metric} must be numeric")
+
+    for bounded in ("latent_residual_coverage_rate", "precision_input_completeness_rate"):
+        value = signal_metrics.get(bounded)
+        if isinstance(value, (int, float)) and not (0.0 <= float(value) <= 1.0):
+            errors.append(f"signal_metrics.{bounded} must be in [0,1]")
+
+    if uncertainty_present:
+        value = signal_metrics.get("latent_uncertainty_calibration_error")
+        if not isinstance(value, (int, float)):
+            errors.append(
+                "signal_metrics.latent_uncertainty_calibration_error required when uncertainty_latent=true"
+            )
+
+    return ("FAIL", errors) if errors else ("PASS", [])
+
+
 def _evaluate_runs(runs: list[RunRecord], criteria: dict[str, Any]) -> None:
     prev_metrics: dict[str, float] | None = None
     for run in runs:
@@ -383,6 +511,15 @@ def _evaluate_runs(runs: list[RunRecord], criteria: dict[str, Any]) -> None:
                 sig = f"stop:{hit.metric}{hit.op}{_fmt_number(hit.threshold)}"
                 if sig not in run.failure_signatures:
                     run.failure_signatures.append(sig)
+
+        adapter_status, adapter_errors = _validate_jepa_adapter_signals(run)
+        run.adapter_contract_status = adapter_status
+        run.adapter_contract_errors = adapter_errors
+        if adapter_status == "FAIL":
+            run.final_status = "FAIL"
+            sig = _adapter_signature_for_errors(adapter_errors)
+            if sig not in run.failure_signatures:
+                run.failure_signatures.append(sig)
 
 
 def _select_key_metrics(runs: list[RunRecord], criteria: dict[str, Any], limit: int = 6) -> list[str]:
@@ -498,10 +635,10 @@ def _write_experiment_index(
         lines.append("## Runs")
         lines.append("")
         lines.append(
-            "| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | summary |"
+            "| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |"
         )
         lines.append(
-            "|---|---|---|---|---|---|---|"
+            "|---|---|---|---|---|---|---|---|"
         )
 
         for run in reversed(runs):
@@ -515,12 +652,28 @@ def _write_experiment_index(
                     delta_values.append(f"{metric}:{_fmt_delta(run.deltas[metric])}")
 
             stop_hits = "; ".join(hit.render() for hit in run.fail_hits) if run.fail_hits else "-"
+            adapter_status = run.adapter_contract_status
+            if adapter_status == "FAIL":
+                adapter_status = "**FAIL**"
+                if run.adapter_contract_errors:
+                    adapter_status += "<br>" + "<br>".join(run.adapter_contract_errors[:2])
+            elif adapter_status == "PASS":
+                adapter_status = "PASS"
+            else:
+                adapter_status = "-"
             summary_rel = run.summary_path.relative_to(experiment_dir).as_posix()
             metrics_rel = run.metrics_path.relative_to(experiment_dir).as_posix()
             manifest_rel = run.manifest_path.relative_to(experiment_dir).as_posix()
+            adapter_rel = (
+                run.adapter_signals_path.relative_to(experiment_dir).as_posix()
+                if run.adapter_signals_path
+                else None
+            )
 
             summary_link = f"[`summary`]({summary_rel})"
             summary_link += f" / [`manifest`]({manifest_rel}) / [`metrics`]({metrics_rel})"
+            if adapter_rel:
+                summary_link += f" / [`adapter`]({adapter_rel})"
 
             lines.append(
                 "| "
@@ -532,6 +685,7 @@ def _write_experiment_index(
                         "<br>".join(key_values) if key_values else "-",
                         "<br>".join(delta_values) if delta_values else "-",
                         stop_hits,
+                        adapter_status,
                         summary_link,
                     ]
                 )
@@ -585,6 +739,7 @@ def _write_top_level_index(
     lines.append("- TODO queue: `TODOs.md`")
     lines.append("- Stop criteria config: `stop_criteria.v1.yaml`")
     lines.append("- Decision criteria config: `decision_criteria.v1.yaml`")
+    lines.append("- JEPA adapter signal schema: `schemas/v1/jepa_adapter_signals.v1.json`")
     lines.append("- Claim-evidence matrix: `claim_evidence.v1.json`")
     lines.append("- Conflicts report: `conflicts.md`")
     lines.append("- Promotion/demotion recommendations: `promotion_demotion_recommendations.md`")

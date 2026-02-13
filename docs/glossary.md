@@ -27,16 +27,88 @@
 
 ## External Vocabulary Alignment (JEPA to REE)
 
-This section is a translation aid for cross-literature interoperability.
+<a id="impl-020"></a>
+### Formal Alignment Glossary (IMPL-020)
 
-| JEPA-facing term | REE canonical term |
-|---|---|
-| latent embedding manifold | L-space |
-| context-to-target latent prediction | E2 short-horizon forward prediction |
-| representation learning | E1 persistent predictive substrate |
-| world model | E1/E2 coupled predictive model |
-| agentic extension | E3 commitment + control-plane gating + responsibility flow |
-| invariance pressure | coherence and viability constraints |
+Purpose: align terminology between latent predictive world-model research (JEPA framing) and REE so claims are
+structurally interoperable without forcing conceptual merger.
+
+#### 1. Representation layer
+
+| JEPA term | REE term | Alignment note |
+|---|---|---|
+| Embedding / latent representation | L-space | Both refer to abstract latent manifolds where prediction happens without raw sensory reconstruction. |
+| Encoder | E1 deep integrative predictor | Both construct representational geometry; REE E1 adds slow cross-modal and cross-temporal synthesis. |
+| Target embedding | Projected future L-state | JEPA predicts latent targets; REE predicts future state trajectories in latent space. |
+
+#### 2. Predictive dynamics
+
+| JEPA term | REE term | Alignment note |
+|---|---|---|
+| Latent predictor | E2 fast predictive generator | Both implement rapid transition modeling in latent space. |
+| Joint embedding alignment loss | L-state prediction error signal | REE does not require a single scalar objective but still uses prediction deviation for adaptation. |
+| Invariant structure learning | Coherence preservation across time | JEPA invariance pressure maps to REE long-horizon structural coherence pressure. |
+
+#### 3. Temporal structure
+
+| JEPA term | REE term | Alignment note |
+|---|---|---|
+| Temporal/video JEPA | Multi-timescale predictive integration (E1+E2 coupling) | Both move from static inference toward trajectory prediction. |
+| Context window | Current L-state with memory integration | REE extends context with deeper temporal and replay-linked integration. |
+
+#### 4. Agency extension layer
+
+| JEPA (agentic extension) | REE term | Alignment note |
+|---|---|---|
+| Action-conditioned prediction | Efference/reafference loop | Required for embodied intervention-stable prediction. |
+| Self-model in latent manifold | Self L-state modeling | REE treats this as viability-critical, not optional. |
+| Control mechanism (implicit gap) | E3 trajectory selector + control plane | REE explicitly defines trajectory arbitration and gating under uncertainty. |
+
+#### 5. Stability and constraint
+
+| JEPA term | REE term | Alignment note |
+|---|---|---|
+| Representation collapse avoidance | Viability constraint | REE generalizes collapse risk from embeddings to behavior and multi-agent dynamics. |
+| Predictable invariants | Shared modelability | REE extends invariance to mutual predictability between agents. |
+| Training objective | Long-horizon coherence bias | REE frames this as destabilization constraints rather than reward optimization. |
+
+#### 6. Multi-agent extension
+
+| JEPA extension need | REE term | Alignment note |
+|---|---|---|
+| Modeling other agents | Other L-state modeling | Mutual modeling is foundational for REE social/ethical dynamics. |
+| Multi-agent stability (unspecified) | Ethical stability constraint | REE treats preservation of shared predictability as a viability requirement. |
+
+#### 7. Meta-architecture summary
+
+| Layer | JEPA | REE |
+|---|---|---|
+| Representation | latent embedding | L-space |
+| Fast prediction | latent predictor | E2 |
+| Deep integration | encoder hierarchy | E1 |
+| Error correction | alignment loss | prediction-error routing |
+| Action integration | optional extension | core requirement |
+| Trajectory control | not defined | E3 |
+| Stability principle | invariant learning | long-horizon coherence |
+
+#### 8. Divergence points
+
+- JEPA is typically objective-centric; REE is constraint-centric.
+- JEPA does not require ethical modeling; REE treats ethical stability as structural viability.
+- JEPA does not define control-plane arbitration; REE treats control arbitration as irreducible.
+
+#### 9. Minimal interoperability principle
+
+A JEPA-derived world model can serve as REE E1/E2 representational substrate.  
+REE contributes control-plane architecture, self-impact attribution, trajectory constraints, and multi-agent stability
+modeling.
+
+#### 10. Terminology harmonization proposal
+
+- latent embedding <-> L-space
+- prediction error <-> L-state deviation
+- action-conditioned prediction <-> efference/reafference loop
+- invariant representation <-> coherence-preserving state
 
 ---
 
@@ -47,7 +119,9 @@ None noted in preserved sources.
 ## Related Claims (IDs)
 
 - IMPL-001
+- IMPL-020
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/glossary.md`
+- `docs/thoughts/2026-02-13_jepa_ree_formal_alignment_glossary.md`

@@ -157,6 +157,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-017](../conflicts/README.md#impl-017) Conflict index and resolution entry point.
 - [IMPL-018](../claims/claim_index.md#impl-018) Claim index and navigation.
 - [IMPL-019](../architecture/developmental_curriculum.md#impl-019) Self-first, social-later developmental testing order heuristic.
+- [IMPL-020](../glossary.md#impl-020) Formal JEPA↔REE terminology alignment glossary for interoperability.
+- [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Hybrid JEPA↔REE architecture diagram contract and rendering checklist.
+- [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-as-E1/E2 integration contract (inputs, outputs, knobs, and failure gates).
 
 ---
 

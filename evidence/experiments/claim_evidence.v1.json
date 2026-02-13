@@ -81,7 +81,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.375, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.374, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -92,12 +92,12 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.375,
+      "experimental_confidence": 0.374,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.375,
+      "overall_confidence": 0.374,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -139,8 +139,101 @@
         "literature": 0
       }
     },
+    "MECH-057": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.844",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:architectural_position_paper": 1,
+        "lit:machine_learning_experiment": 4
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech057_vljepa_multimodal_world_model",
+      "latest_timestamp_utc": "2026-02-13T20:50:00Z",
+      "literature_confidence": 0.844,
+      "overall_confidence": 0.844,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.72,
+          "confidence_rationale": "Primary empirical support for latent predictive representation learning without token reconstruction, aligning with the REE E1/E2 substrate side of convergence.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_ijepa_latent_prediction",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:30:00Z"
+        },
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.69,
+          "confidence_rationale": "Architectural framing explicitly places H-JEPA inside a larger autonomy stack with planning and actor modules, consistent with REE control-completion pressure.",
+          "evidence_class": "lit:architectural_position_paper",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_path_to_ami_hjepa",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:35:00Z"
+        },
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.6,
+          "confidence_rationale": "Supports JEPA video latent reasoning and uncertainty handling, but remains mostly representational and does not directly test control-gating necessity in embodied agency.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_vjvcr_uncertainty_latent_world",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:40:00Z"
+        },
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct evidence that JEPA-style models are extended with latent action-conditioned world modeling and planning for robotics, matching the proposed route from representational substrate to control-complete agency.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_vjepa2_action_world_model",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:45:00Z"
+        },
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.65,
+          "confidence_rationale": "Supports JEPA extension into vision-language world modeling and selective decoding; strong for substrate breadth, indirect for control-plane necessity.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_vljepa_multimodal_world_model",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:50:00Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.375, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.374, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -151,12 +244,12 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.375,
+      "experimental_confidence": 0.374,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.375,
+      "overall_confidence": 0.374,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -196,6 +289,73 @@
       "source_counts": {
         "experimental": 2,
         "literature": 0
+      }
+    },
+    "Q-012": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.795",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:architectural_position_paper": 1,
+        "lit:machine_learning_experiment": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech057_vjepa2_action_world_model",
+      "latest_timestamp_utc": "2026-02-13T20:45:00Z",
+      "literature_confidence": 0.795,
+      "overall_confidence": 0.795,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.69,
+          "confidence_rationale": "Architectural framing explicitly places H-JEPA inside a larger autonomy stack with planning and actor modules, consistent with REE control-completion pressure.",
+          "evidence_class": "lit:architectural_position_paper",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_path_to_ami_hjepa",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:35:00Z"
+        },
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.6,
+          "confidence_rationale": "Supports JEPA video latent reasoning and uncertainty handling, but remains mostly representational and does not directly test control-gating necessity in embodied agency.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_vjvcr_uncertainty_latent_world",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:40:00Z"
+        },
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct evidence that JEPA-style models are extended with latent action-conditioned world modeling and planning for robotics, matching the proposed route from representational substrate to control-complete agency.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_057",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech057_vjepa2_action_world_model",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T20:45:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     }
   },
@@ -289,9 +449,113 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-02-13T12:30:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.72,
+      "confidence_rationale": "Primary empirical support for latent predictive representation learning without token reconstruction, aligning with the REE E1/E2 substrate side of convergence.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_ijepa_latent_prediction",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:30:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.69,
+      "confidence_rationale": "Architectural framing explicitly places H-JEPA inside a larger autonomy stack with planning and actor modules, consistent with REE control-completion pressure.",
+      "evidence_class": "lit:architectural_position_paper",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_path_to_ami_hjepa",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:35:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.69,
+      "confidence_rationale": "Architectural framing explicitly places H-JEPA inside a larger autonomy stack with planning and actor modules, consistent with REE control-completion pressure.",
+      "evidence_class": "lit:architectural_position_paper",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_path_to_ami_hjepa",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:35:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.6,
+      "confidence_rationale": "Supports JEPA video latent reasoning and uncertainty handling, but remains mostly representational and does not directly test control-gating necessity in embodied agency.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_vjvcr_uncertainty_latent_world",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:40:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.6,
+      "confidence_rationale": "Supports JEPA video latent reasoning and uncertainty handling, but remains mostly representational and does not directly test control-gating necessity in embodied agency.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_vjvcr_uncertainty_latent_world",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:40:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct evidence that JEPA-style models are extended with latent action-conditioned world modeling and planning for robotics, matching the proposed route from representational substrate to control-complete agency.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_vjepa2_action_world_model",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:45:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct evidence that JEPA-style models are extended with latent action-conditioned world modeling and planning for robotics, matching the proposed route from representational substrate to control-complete agency.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_vjepa2_action_world_model",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:45:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.65,
+      "confidence_rationale": "Supports JEPA extension into vision-language world modeling and selective decoding; strong for substrate breadth, indirect for control-plane necessity.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_057",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech057_vljepa_multimodal_world_model",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T20:50:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-13T08:45:42.439454Z",
+  "generated_at_utc": "2026-02-13T21:00:36.735839Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

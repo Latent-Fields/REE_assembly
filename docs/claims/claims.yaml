@@ -1461,3 +1461,43 @@
   location: docs/architecture/agency_responsibility_flow.md#q-012
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
+- id: IMPL-020
+  claim_type: implementation_note
+  subject: terminology.jepa_ree_alignment_glossary
+  polarity: records
+  status: stable
+  depends_on:
+    - IMPL-001
+    - MECH-057
+  location: docs/glossary.md#impl-020
+  source:
+    - docs/glossary.md
+    - docs/thoughts/2026-02-13_jepa_ree_formal_alignment_glossary.md
+- id: IMPL-021
+  claim_type: implementation_note
+  subject: diagrams.jepa_ree_hybrid_architecture_contract
+  polarity: records
+  status: stable
+  depends_on:
+    - IMPL-020
+    - MECH-057
+    - ARC-005
+    - ARC-015
+  location: docs/architecture/jepa_ree_hybrid_diagram_spec.md#impl-021
+  source:
+    - docs/architecture/jepa_ree_hybrid_diagram_spec.md
+- id: IMPL-022
+  claim_type: implementation_note
+  subject: integration.jepa_as_e1e2_substrate_contract
+  polarity: records
+  status: stable
+  depends_on:
+    - IMPL-021
+    - MECH-057
+    - ARC-001
+    - ARC-002
+    - ARC-005
+    - ARC-015
+  location: docs/architecture/jepa_e1e2_integration_contract.md#impl-022
+  source:
+    - docs/architecture/jepa_e1e2_integration_contract.md

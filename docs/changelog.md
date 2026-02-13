@@ -7,6 +7,86 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: JEPA Adapter Signals Schema + Ingestion Validation
+
+### Overview
+
+Added a machine-readable JEPA adapter signal contract and wired ingestion to validate declared adapter artifacts so
+contract drift is surfaced automatically as FAIL evidence.
+
+### What Changed
+
+- Added schema:
+  - `evidence/experiments/schemas/v1/jepa_adapter_signals.v1.json`
+- Extended manifest artifact schema:
+  - `evidence/experiments/schemas/v1/manifest.schema.json` (`artifacts.adapter_signals_path`)
+- Extended ingestion:
+  - `evidence/experiments/scripts/build_experiment_indexes.py`
+  - validates adapter signal files when declared in manifest
+  - marks invalid/missing adapter artifacts as FAIL with `contract:jepa_adapter_signals_*`
+  - shows adapter contract status in per-experiment indexes
+- Updated experiment contract docs:
+  - `evidence/experiments/INTERFACE_CONTRACT.md`
+  - `evidence/experiments/README.md`
+- Added example adapter artifacts in dummy run packs:
+  - `evidence/experiments/trajectory_integrity/runs/*/jepa_adapter_signals.v1.json`
+
+## 2026-02-13: Hybrid JEPA to REE Diagram Spec + JEPA Literature Pull
+
+### Overview
+
+Added a canonical hybrid-diagram contract so JEPA↔REE alignment can be discussed with consistent structure, then
+ingested targeted JEPA-paper evidence into the literature pipeline for MECH-057/Q-012.
+
+### What Changed
+
+- Added hybrid diagram contract:
+  - `docs/architecture/jepa_ree_hybrid_diagram_spec.md#impl-021`
+- Added JEPA-as-E1/E2 integration contract:
+  - `docs/architecture/jepa_e1e2_integration_contract.md#impl-022`
+- Added claim registry/index entries:
+  - `docs/claims/claims.yaml` (`IMPL-021`, `IMPL-022`)
+  - `docs/claims/claim_index.md` (`IMPL-021`, `IMPL-022`)
+  - `docs/claims/subsystem_map.yaml` (new `JEPA-REE Hybrid Alignment` mapping)
+- Added targeted JEPA literature entries:
+  - `evidence/literature/targeted_review_mech_057/entries/*`
+- Refreshed evidence indexes/matrices using:
+  - `evidence/experiments/scripts/build_experiment_indexes.py`
+
+## 2026-02-13: IMPL-022 Signal-Contract Tightening (JEPA Native Streams)
+
+### Overview
+
+Tightened the JEPA integration contract so adapter outputs are explicit about what is native to JEPA versus what must
+be derived for REE precision-control usage.
+
+### What Changed
+
+- Updated `docs/architecture/jepa_e1e2_integration_contract.md#impl-022` with:
+  - JEPA-native signal map table (`z`, `z_hat`, residuals, uncertainty, trace fields),
+  - signed-PE boundary rule (adapter emits unsigned substrate streams only),
+  - additional required knobs for residual/uncertainty export mode,
+  - extra metrics/checks for uncertainty provenance and precision-input completeness.
+
+## 2026-02-13: Thought Processing - Formal JEPA to REE Alignment Glossary
+
+### Overview
+
+Processed a dedicated JEPA↔REE terminology alignment thought into a formal interoperability glossary section.
+This pass is documentation-level alignment: it does not claim equivalence of objectives, only consistent mapping between
+representation/prediction/control terms across both frames.
+
+### What Changed
+
+- Expanded and formalized JEPA↔REE mapping in:
+  - `docs/glossary.md#impl-020`
+- Added claim registry entry:
+  - `docs/claims/claims.yaml` (`IMPL-020`)
+- Added claim index entry:
+  - `docs/claims/claim_index.md` (`IMPL-020`)
+- Marked thought as processed with canonical links:
+  - `docs/thoughts/2026-02-13_jepa_ree_formal_alignment_glossary.md`
+
 ## 2026-02-13: Thought Processing - JEPA to REE Convergence
 
 ### Overview

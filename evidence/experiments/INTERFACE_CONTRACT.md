@@ -9,6 +9,7 @@ evidence/experiments/<experiment_type>/runs/<run_id>/
   manifest.json
   metrics.json
   summary.md
+  jepa_adapter_signals.v1.json   # optional; required when adapter_signals_path is declared
   traces/               # optional
   media/                # optional
 ```
@@ -27,6 +28,7 @@ Required fields:
 - `artifacts`: object with required:
   - `metrics_path` (usually `"metrics.json"`)
   - `summary_path` (usually `"summary.md"`)
+  - optional `adapter_signals_path` (usually `"jepa_adapter_signals.v1.json"`)
   - optional `traces_dir`, `media_dir`
 
 Optional but recommended:
@@ -62,6 +64,36 @@ Human-readable run summary. Should include:
 - interpretation notes
 
 No strict schema, but file must exist.
+
+## File: `jepa_adapter_signals.v1.json` (optional, JEPA-backed runs)
+
+If `manifest.artifacts.adapter_signals_path` is set, this file is required and ingestion validates it.
+
+Schema:
+
+- `evidence/experiments/schemas/v1/jepa_adapter_signals.v1.json`
+
+Required core fields:
+
+- `schema_version`: `"jepa_adapter_signals/v1"`
+- `experiment_type`, `run_id` (must match manifest)
+- `adapter.name`, `adapter.version`
+- `stream_presence`
+  - must include `z_t=true`, `z_hat=true`, `pe_latent=true`, `trace_context_mask_ids=true`
+  - includes booleans for `uncertainty_latent`, `trace_action_token`
+- `pe_latent_fields`: must contain at least `mean` and `p95`
+- `uncertainty_estimator`: one of `none|dispersion|ensemble|head`
+- `signal_metrics` with at minimum:
+  - `latent_prediction_error_mean`
+  - `latent_prediction_error_p95`
+  - `latent_residual_coverage_rate` (0..1)
+  - `precision_input_completeness_rate` (0..1)
+  - plus `latent_uncertainty_calibration_error` if `uncertainty_latent=true`
+
+Validation behavior:
+
+- Missing/invalid adapter file is marked as run failure in generated indexes.
+- Failure signature is added as `contract:jepa_adapter_signals_*`.
 
 ## Stop Criteria Interaction
 

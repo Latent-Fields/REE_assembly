@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-13T08:45:42.439454Z`
+Generated: `2026-02-13T21:00:36.735839Z`
 
 ## Conflict Queue
 
@@ -13,7 +13,7 @@ Generated: `2026-02-13T08:45:42.439454Z`
 
 ### MECH-056
 - Conflict types: directional
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.375
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.374
 - Recent entries:
   - `2026-02-13T06:00:00Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
   - `2026-02-13T07:00:00Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
@@ -30,7 +30,7 @@ Generated: `2026-02-13T08:45:42.439454Z`
 
 ### Q-011
 - Conflict types: directional
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.375
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.374
 - Recent entries:
   - `2026-02-13T06:00:00Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
   - `2026-02-13T07:00:00Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75

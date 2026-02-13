@@ -36,12 +36,16 @@ Each run directory must include:
 - `manifest.json`
 - `metrics.json`
 - `summary.md`
+- optional `jepa_adapter_signals.v1.json` (required if `manifest.artifacts.adapter_signals_path` is declared)
 - optional `traces/`
 - optional `media/`
 
 See `INTERFACE_CONTRACT.md` for field-level requirements.
 For claim-level evidence mapping, include `claim_ids_tested`, `evidence_class`, and `evidence_direction` in
 `manifest.json`.
+
+For JEPA-backed runs, attach adapter signal coverage via `jepa_adapter_signals.v1.json` and
+`manifest.artifacts.adapter_signals_path`. Ingestion validates this contract and marks invalid files as FAIL.
 
 `evidence_class` values from experiment packs are treated as experimental classes (`exp:*`) in the
 claim-evidence matrix.
