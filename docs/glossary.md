@@ -25,6 +25,21 @@
 
 ---
 
+## External Vocabulary Alignment (JEPA to REE)
+
+This section is a translation aid for cross-literature interoperability.
+
+| JEPA-facing term | REE canonical term |
+|---|---|
+| latent embedding manifold | L-space |
+| context-to-target latent prediction | E2 short-horizon forward prediction |
+| representation learning | E1 persistent predictive substrate |
+| world model | E1/E2 coupled predictive model |
+| agentic extension | E3 commitment + control-plane gating + responsibility flow |
+| invariance pressure | coherence and viability constraints |
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.

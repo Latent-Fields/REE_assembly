@@ -16,9 +16,11 @@ Source: `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 REE must support self-impact attribution: the ability to model which parts of incoming data were caused by the agent’s own outputs (efference copy / reafference), and to route that attribution into control-plane learning.
 
 **Subsystem abstract (core claims):** ARC‑015 anchors agency/responsibility flow, while MECH‑023 and MECH‑024 frame
-responsibility as path‑dependent geometry and the convergence of selfhood/personality/ethics. Supporting context includes
-INV‑018 (agency required), INV‑012 (commitment gates responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004
-(L‑space), ARC‑013 (residue geometry), ARC‑007 (hippocampal systems), and Q‑006 (developmental ethics).
+responsibility as path‑dependent geometry and the convergence of selfhood/personality/ethics. MECH‑057 adds the
+agentic-extension claim: latent predictive world models require explicit self-attribution and control-plane completion
+to remain stable under intervention. Supporting context includes INV‑018 (agency required), INV‑012 (commitment gates
+responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004 (L‑space), ARC‑013 (residue geometry), ARC‑007
+(hippocampal systems), and Q‑006/Q‑012 (developmental and convergence falsifiability questions).
 
 Without it:
 - the system can still predict,
@@ -76,6 +78,25 @@ Responsibility is a global property of this evolved control geometry, not a loca
 
 ---
 
+<a id="mech-057"></a>
+## Agentic extension requires control completion (MECH-057)
+
+Latent predictive representation learning (for example, JEPA-like world-model framing) is likely necessary but
+insufficient for stable agency.
+
+Once an architecture moves from representation to intervention, it must support:
+
+- action emission and consequence prediction,
+- predicted-vs-observed reafference comparison,
+- self-attribution of intervention effects,
+- trajectory gating that preserves long-horizon coherence under uncertainty.
+
+Without these loops, intervention can destabilize the model that is trying to predict intervention outcomes.
+In REE terms, this means E1/E2 representational geometry must be completed by E3 commitment gating and control-plane
+constraint routing, rather than replaced by them.
+
+---
+
 ## Open Questions
 
 <a id="q-006"></a>
@@ -83,11 +104,24 @@ Responsibility is a global property of this evolved control geometry, not a loca
 
 If REE can be refined using human-style cognition — with fast and slow predictors, hippocampal hypothesis injection, and a control plane that governs committed learning — and if systems “brought up well” under these constraints reliably tend toward ethical behaviour, then this would suggest that ethics is developmental rather than additive.
 
+<a id="q-012"></a>
+### Q-012: Can latent predictive world models remain agentically stable without REE-like control constraints?
+
+Convergence weakens if large latent predictive agents remain stable without explicit self-attribution loops, trajectory
+coherence pressure, or commitment-level gating.
+
+It strengthens if scaling to embodied and multi-agent settings repeatedly requires:
+
+- explicit efference/reafference ownership loops,
+- control-plane arbitration across timescales,
+- trajectory constraints that prevent destabilizing branches.
+
 ## Related Claims (IDs)
 
 - ARC-015
 - MECH-023
 - MECH-024
+- MECH-057
 - INV-018
 - INV-012
 - ARC-003
@@ -95,6 +129,7 @@ If REE can be refined using human-style cognition — with fast and slow predict
 - ARC-013
 - ARC-007
 - Q-006
+- Q-012
 
 ## References / Source Fragments
 

@@ -1434,3 +1434,30 @@
   source:
     - docs/architecture/residue_geometry.md
     - docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md
+- id: MECH-057
+  claim_type: mechanism_hypothesis
+  subject: agentic_extension.control_completion_requirement
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-015
+    - ARC-005
+    - ARC-003
+    - ARC-004
+    - INV-012
+  location: docs/architecture/agency_responsibility_flow.md#mech-057
+  source:
+    - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
+- id: Q-012
+  claim_type: open_question
+  subject: latent_predictive_models.control_completion_falsifiability
+  polarity: asks
+  status: active
+  depends_on:
+    - MECH-057
+    - ARC-015
+    - ARC-005
+    - ARC-004
+  location: docs/architecture/agency_responsibility_flow.md#q-012
+  source:
+    - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md

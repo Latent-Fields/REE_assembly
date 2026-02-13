@@ -1,6 +1,6 @@
 # JEPA to REE Convergence Thought
 
-Status: unprocessed
+Status: processed
 
 Latent Predictive Geometry and Viability-Constrained Control
 
@@ -201,3 +201,10 @@ This is testable through embodied implementation.
 	•	Producing a hybrid architecture diagram spec for the repo.
 	•	Writing this as a short paper for external publication.
 	•	Or stress-testing this hypothesis with adversarial counterarguments.
+
+Processed in:
+- docs/architecture/agency_responsibility_flow.md
+- docs/glossary.md
+- docs/claims/claims.yaml
+- docs/claims/claim_index.md
+- docs/changelog.md
