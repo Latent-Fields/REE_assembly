@@ -16,9 +16,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [INV-001](../invariants.md#inv-001) No explicit ethics module or moral scoring layer.
 - [INV-002](../invariants.md#inv-002) Coherence includes temporal/phase binding, not just static metrics.
 - [INV-003](../invariants.md#inv-003) Language emerges as functional self-representation, not a bolt-on.
-- [INV-004](../invariants.md#inv-004) Ethical cost is persistent, not resettable.
+- [INV-004](../invariants.md#inv-004) Post-commit consequence traces are persistent, not resettable.
 - [INV-005](../invariants.md#inv-005) Harm to others contributes via mirror modelling, not symbolic rules.
-- [INV-006](../invariants.md#inv-006) Moral residue cannot be erased, only integrated.
+- [INV-006](../invariants.md#inv-006) Post-commit consequence traces cannot be erased, only integrated.
 - [INV-007](../invariants.md#inv-007) Language cannot override embodied harm sensing.
 - [INV-008](../invariants.md#inv-008) Precision is routed and depth-specific, not global.
 - [INV-009](../invariants.md#inv-009) Attention is precision modulation, not symbolic control.

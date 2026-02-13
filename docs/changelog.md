@@ -7,6 +7,25 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Invariant Rewording for Consequence Persistence (INV-004/INV-006)
+
+### Overview
+
+Reworded persistence invariants to be mechanism-agnostic now that consequence retention is distributed across more
+specific architecture claims (including but not limited to residue geometry).
+
+### What Changed
+
+- Updated invariant language in:
+  - `docs/invariants.md`
+  - `INV-004` now: post-commit consequence traces are persistent
+  - `INV-006` now: post-commit consequence traces cannot be erased
+- Updated claim registry/index wording:
+  - `docs/claims/claims.yaml` (subjects for `INV-004`, `INV-006`)
+  - `docs/claims/claim_index.md`
+- Updated dependency wording in:
+  - `docs/architecture/residue_geometry.md`
+
 ## 2026-02-13: Targeted Literature Entries for MECH-058/059/060
 
 ### Overview

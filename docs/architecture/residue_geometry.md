@@ -2,7 +2,7 @@
 
 **Claim Type:** architectural_commitment  
 **Scope:** Persistent moral curvature over latent space; path-dependent ethical cost  
-**Depends On:** INV-006 (residue cannot be erased), INV-004 (ethical cost is persistent), [L-space](l_space.md)  
+**Depends On:** INV-006 (post-commit consequence traces cannot be erased), INV-004 (post-commit consequence traces are persistent), [L-space](l_space.md)  
 **Status:** stable  
 **Claim ID:** ARC-013
 <a id="arc-013"></a>

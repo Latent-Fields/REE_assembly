@@ -67,11 +67,15 @@ The architecture already contains most ingredients of language-like systems: mul
 ## Architectural Invariants
 
 <a id="inv-004"></a>
-### INV-004: Ethical Cost Is Persistent
+### INV-004: Post-Commit Consequence Traces Are Persistent
 
-**Subject:** ethics.persistence  
+**Subject:** consequence.persistence  
 **Polarity:** asserts  
-**Claim:** Ethical cost is **persistent**, not resettable.
+**Claim:** Post-commit consequence traces are **persistent**, not resettable.
+
+Interpretation note:
+- This invariant is mechanism-agnostic. It does not require residue geometry specifically.
+- Implementations may realize persistence through residue fields, hippocampal/path memory, model updates, or a hybrid.
 
 **Source:** [REE_CORE.md](../REE_CORE.md) §3
 
@@ -89,11 +93,15 @@ The architecture already contains most ingredients of language-like systems: mul
 ---
 
 <a id="inv-006"></a>
-### INV-006: Residue Cannot Be Erased
+### INV-006: Post-Commit Consequence Traces Cannot Be Erased
 
-**Subject:** residue.persistence  
+**Subject:** consequence.non_erasability  
 **Polarity:** denies  
-**Claim:** Moral residue **cannot be erased**, only integrated and contextualised.
+**Claim:** Post-commit consequence traces **cannot be erased**, only integrated and contextualised.
+
+Interpretation note:
+- This is an invariant about irreversible accountability memory, not about any single storage mechanism.
+- Residue geometry remains one candidate architectural realization at ARC/MECH level.
 
 **Source:** [REE_CORE.md](../REE_CORE.md) §3
 
