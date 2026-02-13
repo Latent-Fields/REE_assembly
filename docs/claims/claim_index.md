@@ -154,6 +154,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-016](../architecture/trajectory_selection.md#impl-016) Trajectory selection detail for E3.
 - [IMPL-017](../conflicts/README.md#impl-017) Conflict index and resolution entry point.
 - [IMPL-018](../claims/claim_index.md#impl-018) Claim index and navigation.
+- [IMPL-019](../architecture/developmental_curriculum.md#impl-019) Self-first, social-later developmental testing order heuristic.
 
 ---
 

@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-13T08:33:01.278780Z`
+Generated: `2026-02-13T08:45:42.467721Z`
 
 ## Cycle Status
 
@@ -11,8 +11,7 @@ Generated: `2026-02-13T08:33:01.278780Z`
 
 ## Discussion Checkpoints
 
-1. Thought Intake: 1 unprocessed thought(s).
-- `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md`
+1. Thought Intake: 0 unprocessed thought(s).
 2. Conflict Resolution: 2 conflict item(s).
 - `MECH-056` conflict_types=directional
 - `Q-011` conflict_types=directional

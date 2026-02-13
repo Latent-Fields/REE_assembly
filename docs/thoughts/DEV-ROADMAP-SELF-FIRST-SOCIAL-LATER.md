@@ -1,6 +1,14 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/developmental_curriculum.md` (IMPL-019, ARC-019)
+- `docs/claims/claims.yaml` (IMPL-019)
+- `docs/claims/claim_index.md` (IMPL-019)
+
+---
+
 DEV-ROADMAP: Self-First, Social-Later Developmental Ordering Hypothesis
 
-Status: Thought Intake (Not Promoted)
 Layer: Architectural Governance / Developmental Heuristic
 
 ⸻
@@ -206,4 +214,3 @@ Promotion to formal architectural commitment requires:
 	•	Empirical validation in experiment harness
 	•	Conflict review against existing claims
 	•	Clear invariant formulation
-

@@ -7,6 +7,24 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Thought Processing - Self-First, Social-Later Roadmap Heuristic
+
+### Overview
+
+Processed the developmental-roadmap thought and promoted it as a governance/testing heuristic without converting it
+into a new architectural commitment.
+
+### What Changed
+
+- Added implementation note `IMPL-019` in:
+  - `docs/architecture/developmental_curriculum.md#impl-019`
+- Added claim registry entry:
+  - `docs/claims/claims.yaml` (`IMPL-019`)
+- Added claim index entry:
+  - `docs/claims/claim_index.md` (`IMPL-019`)
+- Marked thought as processed with canonical links:
+  - `docs/thoughts/DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md`
+
 ## 2026-02-13: Claims Explorer Governance Dashboard Tab
 
 ### Overview

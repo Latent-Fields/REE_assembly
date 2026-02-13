@@ -236,7 +236,7 @@
           "claim_id": "`MECH-056`",
           "current_status": "`candidate`",
           "decision_needed": "Conflict resolution before promotion",
-          "decision_status": "`pending_user`",
+          "decision_status": "`approved`",
           "recommendation": "`hold_candidate_resolve_conflict`"
         }
       ],
@@ -247,15 +247,7 @@
       "unlinked_runs": []
     },
     "thought_intake": {
-      "items": [
-        {
-          "file": "DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md",
-          "filename_date": "",
-          "is_processed": false,
-          "processed_in_links": [],
-          "status": "unprocessed"
-        }
-      ],
+      "items": [],
       "prompt": "Decide promote/defer/split for unprocessed thoughts."
     }
   },
@@ -268,30 +260,30 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-13T08:33:01.204573Z",
+        "finished_at_utc": "2026-02-13T08:45:42.384025Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T08:33:01.150744Z",
+        "started_at_utc": "2026-02-13T08:45:42.322948Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Thought sweep: total=30, processed=29, unprocessed=1, processed_missing_links=0"
+        "stdout": "Thought sweep: total=30, processed=30, unprocessed=0, processed_missing_links=0"
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-13T08:33:01.278735Z",
+        "finished_at_utc": "2026-02-13T08:45:42.467678Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-13T08:33:01.204631Z",
+        "started_at_utc": "2026-02-13T08:45:42.384071Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 2 run(s) across 1 experiment type(s); FAIL=1; literature entries=1; backlog items=14; proposals=26."
       }
     ]
   },
-  "generated_at_utc": "2026-02-13T08:33:01.278780Z",
+  "generated_at_utc": "2026-02-13T08:45:42.467721Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "backlog_high_priority": 4,
@@ -301,7 +293,7 @@
     "proposal_high_priority": 6,
     "proposal_items": 26,
     "step_failures": 0,
-    "thought_unprocessed": 1,
+    "thought_unprocessed": 0,
     "unlinked_evidence_runs": 0,
     "warnings": 0
   },

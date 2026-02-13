@@ -100,9 +100,50 @@ Stage transitions should be separated by offline integration passes:
 
 ---
 
+## Self-First, Social-Later Testing Order
+
+**Claim Type:** implementation_note  
+**Scope:** Developmental testing order and governance sequencing  
+**Depends On:** ARC-019, Q-006, ARC-005, ARC-007, ARC-010  
+**Status:** candidate  
+**Claim ID:** IMPL-019
+<a id="impl-019"></a>
+
+This note refines stage execution order for experiments. It is a governance heuristic, not a new architectural
+commitment.
+
+Operational order:
+
+0. Harness and observability readiness (deterministic seeds, mechanism flags, invariant checks, structured metrics).
+1. Self-viability learning loop (self-harm reduction, residue stability, commitment reliability).
+2. Control-plane stabilisation (reduced mode thrash, bounded volatility, calibration alignment).
+3. Predictive rollout maturity (feasible counterfactuals, reduced confabulation, preserved rollout diversity).
+4. Social extension and coupling (other-modelling introduced only after earlier gates hold).
+
+Why this ordering is enforced:
+
+- Social losses and coupling can mask unresolved self/control instabilities.
+- Earlier-stage failures are easier to interpret in isolation.
+- Later-stage social behaviour is more attributable when base loops are stable.
+
+Gating checks before entering social extension:
+
+- Self-harm and recovery metrics are stable across seeds.
+- Control-plane mode-switch dynamics stay within thresholds.
+- Rollout feasibility and prediction-error alignment are within bounds.
+
+Expected violation signature when order is ignored:
+
+- Elevated mode thrash and veto instability.
+- Ambiguous causal attribution (social terms masking control faults).
+- Increased conflict rate in claim-evidence directionality.
+
+---
+
 ## Related Claims (IDs)
 
 - ARC-019
+- IMPL-019
 - ARC-005
 - ARC-006
 - ARC-007
