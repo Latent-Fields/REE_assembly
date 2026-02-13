@@ -16,4 +16,23 @@ When a thought is processed:
 - Add a short note at the top: `Status: processed` and a link to the canonical doc(s) and claim IDs it affected.
 - Update the claim registry and changelog.
 
+## Sweep Helper
+
+Use the deterministic sweep helper to identify unprocessed thought files and formatting gaps:
+
+```bash
+python3 docs/thoughts/scripts/thought_sweep.py
+```
+
+Generated outputs:
+
+- `docs/thoughts/thought_sweep.v1.json`
+- `docs/thoughts/SWEEP_REPORT.md`
+
+Optional strict mode (fails if any unprocessed thought exists):
+
+```bash
+python3 docs/thoughts/scripts/thought_sweep.py --check-unprocessed
+```
+
 This folder is intentionally separate from canonical documentation.

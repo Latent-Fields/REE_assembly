@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://planning/v1/experiment_proposals.schema.json",
+  "title": "REE Experiment Proposals v1",
+  "type": "object",
+  "required": ["schema_version", "generated_at_utc", "source_backlog", "items"],
+  "properties": {
+    "schema_version": { "const": "experiment_proposals/v1" },
+    "generated_at_utc": { "type": "string", "format": "date-time" },
+    "source_backlog": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "proposal_id",
+          "backlog_id",
+          "claim_id",
+          "proposal_type",
+          "priority",
+          "target_repo",
+          "objective",
+          "why_now",
+          "status"
+        ],
+        "properties": {
+          "proposal_id": { "type": "string" },
+          "backlog_id": { "type": "string" },
+          "claim_id": { "type": "string" },
+          "proposal_type": { "type": "string", "enum": ["experimental", "literature_review"] },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "target_repo": { "type": "string" },
+          "objective": { "type": "string" },
+          "why_now": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "suggested_experiment_type": { "type": "string" },
+          "suggested_literature_type": { "type": "string" },
+          "required_pack_contract": { "type": "object" },
+          "required_record_contract": { "type": "object" },
+          "acceptance_checks": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

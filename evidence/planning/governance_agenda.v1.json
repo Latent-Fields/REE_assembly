@@ -1,0 +1,309 @@
+{
+  "checkpoints": {
+    "conflict_resolution": {
+      "items": [
+        {
+          "claim_id": "`MECH-056`",
+          "conflict_ratio": "1",
+          "conflict_types": "directional",
+          "latest": "`2026-02-13T070000Z_dummy-fail`",
+          "supports": "1",
+          "weakens": "1"
+        },
+        {
+          "claim_id": "`Q-011`",
+          "conflict_ratio": "1",
+          "conflict_types": "directional",
+          "latest": "`2026-02-13T070000Z_dummy-fail`",
+          "supports": "1",
+          "weakens": "1"
+        }
+      ],
+      "prompt": "Resolve directional/source conflicts before status promotions."
+    },
+    "evidence_dispatch": {
+      "by_target_repo": [
+        {
+          "experimental": 0,
+          "literature_review": 12,
+          "target_repo": "REE_assembly",
+          "total": 12
+        },
+        {
+          "experimental": 2,
+          "literature_review": 0,
+          "target_repo": "ree-experiments-lab",
+          "total": 2
+        },
+        {
+          "experimental": 12,
+          "literature_review": 0,
+          "target_repo": "ree-v1-minimal",
+          "total": 12
+        }
+      ],
+      "high_priority_proposals": [
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0001",
+          "claim_id": "MECH-053",
+          "objective": "Reduce uncertainty for MECH-053 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0001",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_053",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0002",
+          "claim_id": "MECH-054",
+          "objective": "Reduce uncertainty for MECH-054 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0002",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_054",
+          "target_repo": "ree-v1-minimal",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0003",
+          "claim_id": "MECH-056",
+          "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0003",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "trajectory_integrity",
+          "target_repo": "ree-experiments-lab",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert",
+            "low_overall_confidence",
+            "missing_literature_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 1 structured literature entry linked to claim_ids_tested.",
+            "Confidence explicitly justified in confidence_rationale.",
+            "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+          ],
+          "backlog_id": "EVB-0003",
+          "claim_id": "MECH-056",
+          "objective": "Improve literature grounding and confidence for MECH-056.",
+          "priority": "high",
+          "proposal_id": "LIT-0004",
+          "proposal_type": "literature_review",
+          "required_record_contract": {
+            "record": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "confidence",
+              "confidence_rationale"
+            ],
+            "summary": "include caveats and mapping limits"
+          },
+          "status": "proposed",
+          "suggested_literature_type": "targeted_review_mech_056",
+          "target_repo": "REE_assembly",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert",
+            "low_overall_confidence",
+            "missing_literature_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0004",
+          "claim_id": "Q-011",
+          "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0005",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "trajectory_integrity",
+          "target_repo": "ree-experiments-lab",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert",
+            "low_overall_confidence",
+            "missing_literature_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 1 structured literature entry linked to claim_ids_tested.",
+            "Confidence explicitly justified in confidence_rationale.",
+            "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+          ],
+          "backlog_id": "EVB-0004",
+          "claim_id": "Q-011",
+          "objective": "Improve literature grounding and confidence for Q-011.",
+          "priority": "high",
+          "proposal_id": "LIT-0006",
+          "proposal_type": "literature_review",
+          "required_record_contract": {
+            "record": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "confidence",
+              "confidence_rationale"
+            ],
+            "summary": "include caveats and mapping limits"
+          },
+          "status": "proposed",
+          "suggested_literature_type": "targeted_review_q_011",
+          "target_repo": "REE_assembly",
+          "why_now": [
+            "active_conflict",
+            "directional_conflict_alert",
+            "low_overall_confidence",
+            "missing_literature_evidence"
+          ]
+        }
+      ],
+      "prompt": "Approve export of high-priority proposals to execution repos."
+    },
+    "governance_decisions": {
+      "items": [
+        {
+          "claim_id": "`MECH-056`",
+          "current_status": "`candidate`",
+          "decision_needed": "Conflict resolution before promotion",
+          "decision_status": "`pending_user`",
+          "recommendation": "`hold_candidate_resolve_conflict`"
+        }
+      ],
+      "prompt": "Review promotion/demotion queue and record decisions."
+    },
+    "maintenance": {
+      "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
+      "unlinked_runs": []
+    },
+    "thought_intake": {
+      "items": [
+        {
+          "file": "DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md",
+          "filename_date": "",
+          "is_processed": false,
+          "processed_in_links": [],
+          "status": "unprocessed"
+        }
+      ],
+      "prompt": "Decide promote/defer/split for unprocessed thoughts."
+    }
+  },
+  "cycle": {
+    "name": "REE Governance Cycle",
+    "repo_root": "/Users/dgolden/Documents/GitHub/REE_assembly",
+    "steps": [
+      {
+        "command": [
+          "/opt/local/bin/python3",
+          "docs/thoughts/scripts/thought_sweep.py"
+        ],
+        "finished_at_utc": "2026-02-13T08:02:01.477658Z",
+        "name": "thought_sweep",
+        "returncode": 0,
+        "started_at_utc": "2026-02-13T08:02:01.419442Z",
+        "status": "ok",
+        "stderr": "",
+        "stdout": "Thought sweep: total=30, processed=29, unprocessed=1, processed_missing_links=0"
+      },
+      {
+        "command": [
+          "/opt/local/bin/python3",
+          "evidence/experiments/scripts/build_experiment_indexes.py"
+        ],
+        "finished_at_utc": "2026-02-13T08:02:01.554406Z",
+        "name": "evidence_build",
+        "returncode": 0,
+        "started_at_utc": "2026-02-13T08:02:01.477705Z",
+        "status": "ok",
+        "stderr": "",
+        "stdout": "Indexed 2 run(s) across 1 experiment type(s); FAIL=1; literature entries=1; backlog items=14; proposals=26."
+      }
+    ]
+  },
+  "generated_at_utc": "2026-02-13T08:02:01.554445Z",
+  "schema_version": "governance_agenda/v1",
+  "summary": {
+    "backlog_high_priority": 4,
+    "backlog_items": 14,
+    "conflicts": 2,
+    "decision_queue_items": 1,
+    "proposal_high_priority": 6,
+    "proposal_items": 26,
+    "step_failures": 0,
+    "thought_unprocessed": 1,
+    "unlinked_evidence_runs": 0,
+    "warnings": 0
+  },
+  "warnings": []
+}

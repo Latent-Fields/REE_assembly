@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://planning/v1/evidence_backlog.schema.json",
+  "title": "REE Evidence Backlog v1",
+  "type": "object",
+  "required": ["schema_version", "generated_at_utc", "source", "criteria_version", "items"],
+  "properties": {
+    "schema_version": { "const": "evidence_backlog/v1" },
+    "generated_at_utc": { "type": "string", "format": "date-time" },
+    "source": { "type": "object" },
+    "criteria_version": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "backlog_id",
+          "claim_id",
+          "priority",
+          "reasons",
+          "signals",
+          "evidence_needed",
+          "next_action",
+          "latest_decision",
+          "status"
+        ],
+        "properties": {
+          "backlog_id": { "type": "string" },
+          "claim_id": { "type": "string" },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "reasons": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "signals": { "type": "object" },
+          "evidence_needed": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["experimental", "literature"] }
+          },
+          "next_action": { "type": "string" },
+          "latest_decision": { "type": "object" },
+          "status": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

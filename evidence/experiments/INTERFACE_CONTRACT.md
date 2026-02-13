@@ -74,11 +74,19 @@ If either indicates failure, run is indexed as FAIL.
 
 ## Claim-Evidence Matrix Population
 
-Ingestion generates `claim_evidence.v1.json` by reading run-level linkage fields:
+Ingestion generates `claim_evidence.v1.json` by reading run-level linkage fields and merging with literature records:
 
 - `claim_ids_tested` (required for claim linkage)
 - `evidence_class`
 - `evidence_direction` (if omitted, ingestion infers direction from PASS/FAIL)
+
+Experimental classes are represented as `exp:*` in the matrix.
+Literature records are represented as `lit:*` classes from `evidence/literature`.
+The matrix includes confidence channels:
+
+- `experimental_confidence`
+- `literature_confidence`
+- `overall_confidence`
 
 Runs without `claim_ids_tested` are still indexed but tracked under `unlinked_runs` in the matrix.
 

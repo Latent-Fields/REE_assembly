@@ -1,33 +1,123 @@
 {
   "claims": {
+    "MECH-053": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:neuroscience_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_habenula_da_signed_pe_review",
+      "latest_timestamp_utc": "2026-02-13T12:30:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-053",
+          "confidence": 0.74,
+          "confidence_rationale": "Multi-study synthesis with convergent mechanistic mapping to signed PE gating.",
+          "evidence_class": "lit:neuroscience_review",
+          "evidence_direction": "supports",
+          "experiment_type": "neuro_pe_habenula_da",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_habenula_da_signed_pe_review",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T12:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-054": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:neuroscience_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_habenula_da_signed_pe_review",
+      "latest_timestamp_utc": "2026-02-13T12:30:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-054",
+          "confidence": 0.74,
+          "confidence_rationale": "Multi-study synthesis with convergent mechanistic mapping to signed PE gating.",
+          "evidence_class": "lit:neuroscience_review",
+          "evidence_direction": "supports",
+          "experiment_type": "neuro_pe_habenula_da",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_habenula_da_signed_pe_review",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T12:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "MECH-056": {
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.375, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
+      "entries_total": 2,
       "evidence_class_counts": {
-        "simulation": 2
+        "exp:simulation": 2
       },
+      "experimental_confidence": 0.375,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.375,
       "pass_runs": 1,
       "recent_entries": [
         {
           "claim_id": "MECH-056",
-          "evidence_class": "simulation",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
           "evidence_direction": "supports",
           "experiment_type": "trajectory_integrity",
           "failure_signatures": [],
           "run_id": "2026-02-13T060000Z_dummy-pass",
+          "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T06:00:00Z"
         },
         {
           "claim_id": "MECH-056",
-          "evidence_class": "simulation",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
           "experiment_type": "trajectory_integrity",
           "failure_signatures": [
@@ -38,40 +128,55 @@
             "stop:domination_lock_in_events>0"
           ],
           "run_id": "2026-02-13T070000Z_dummy-fail",
+          "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-02-13T07:00:00Z"
         }
       ],
-      "runs_total": 2
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 2,
+        "literature": 0
+      }
     },
     "Q-011": {
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.375, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
+      "entries_total": 2,
       "evidence_class_counts": {
-        "simulation": 2
+        "exp:simulation": 2
       },
+      "experimental_confidence": 0.375,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.375,
       "pass_runs": 1,
       "recent_entries": [
         {
           "claim_id": "Q-011",
-          "evidence_class": "simulation",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
           "evidence_direction": "supports",
           "experiment_type": "trajectory_integrity",
           "failure_signatures": [],
           "run_id": "2026-02-13T060000Z_dummy-pass",
+          "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T06:00:00Z"
         },
         {
           "claim_id": "Q-011",
-          "evidence_class": "simulation",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
           "experiment_type": "trajectory_integrity",
           "failure_signatures": [
@@ -82,37 +187,50 @@
             "stop:domination_lock_in_events>0"
           ],
           "run_id": "2026-02-13T070000Z_dummy-fail",
+          "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-02-13T07:00:00Z"
         }
       ],
-      "runs_total": 2
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 2,
+        "literature": 0
+      }
     }
   },
   "entries": [
     {
       "claim_id": "MECH-056",
-      "evidence_class": "simulation",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
       "evidence_direction": "supports",
       "experiment_type": "trajectory_integrity",
       "failure_signatures": [],
       "run_id": "2026-02-13T060000Z_dummy-pass",
+      "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-02-13T06:00:00Z"
     },
     {
       "claim_id": "Q-011",
-      "evidence_class": "simulation",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
       "evidence_direction": "supports",
       "experiment_type": "trajectory_integrity",
       "failure_signatures": [],
       "run_id": "2026-02-13T060000Z_dummy-pass",
+      "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-02-13T06:00:00Z"
     },
     {
       "claim_id": "MECH-056",
-      "evidence_class": "simulation",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
       "experiment_type": "trajectory_integrity",
       "failure_signatures": [
@@ -123,12 +241,15 @@
         "stop:domination_lock_in_events>0"
       ],
       "run_id": "2026-02-13T070000Z_dummy-fail",
+      "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-02-13T07:00:00Z"
     },
     {
       "claim_id": "Q-011",
-      "evidence_class": "simulation",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
       "experiment_type": "trajectory_integrity",
       "failure_signatures": [
@@ -139,12 +260,39 @@
         "stop:domination_lock_in_events>0"
       ],
       "run_id": "2026-02-13T070000Z_dummy-fail",
+      "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-02-13T07:00:00Z"
+    },
+    {
+      "claim_id": "MECH-053",
+      "confidence": 0.74,
+      "confidence_rationale": "Multi-study synthesis with convergent mechanistic mapping to signed PE gating.",
+      "evidence_class": "lit:neuroscience_review",
+      "evidence_direction": "supports",
+      "experiment_type": "neuro_pe_habenula_da",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_habenula_da_signed_pe_review",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T12:30:00Z"
+    },
+    {
+      "claim_id": "MECH-054",
+      "confidence": 0.74,
+      "confidence_rationale": "Multi-study synthesis with convergent mechanistic mapping to signed PE gating.",
+      "evidence_class": "lit:neuroscience_review",
+      "evidence_direction": "supports",
+      "experiment_type": "neuro_pe_habenula_da",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_habenula_da_signed_pe_review",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T12:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-13T06:59:02.494876Z",
+  "generated_at_utc": "2026-02-13T08:02:01.530164Z",
   "schema_version": "claim_evidence_matrix/v1",
-  "source_root": "evidence/experiments",
+  "source_root": "evidence",
   "unlinked_runs": []
 }

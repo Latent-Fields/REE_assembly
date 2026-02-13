@@ -7,6 +7,85 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Governance Cycle Orchestrator
+
+### Overview
+
+Added a single helper that runs non-decision upkeep steps and emits a structured conversation agenda.
+
+### What Changed
+
+- Added script:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+- Script executes:
+  - `docs/thoughts/scripts/thought_sweep.py`
+  - `evidence/experiments/scripts/build_experiment_indexes.py`
+- Added generated agenda outputs:
+  - `evidence/planning/governance_agenda.v1.json`
+  - `evidence/planning/GOVERNANCE_AGENDA.md`
+- Updated planning docs:
+  - `evidence/planning/README.md`
+
+## 2026-02-13: Deterministic Thought Sweep Helper
+
+### Overview
+
+Added a small utility to make thought-intake sweeps deterministic and repeatable.
+
+### What Changed
+
+- Added script:
+  - `docs/thoughts/scripts/thought_sweep.py`
+- Added generated sweep outputs:
+  - `docs/thoughts/thought_sweep.v1.json`
+  - `docs/thoughts/SWEEP_REPORT.md`
+- Updated usage guidance in:
+  - `docs/thoughts/README.md`
+
+## 2026-02-13: Human-in-the-Loop Decision Queue, Confidence Channels, and Literature Merge
+
+### Overview
+
+Extended the evidence subsystem so promotion/demotion decisions are surfaced as explicit review items, claim confidence
+is channelized by source, and literature evidence can be ingested alongside experiments.
+
+### What Changed
+
+- Added decision thresholds file `evidence/experiments/decision_criteria.v1.yaml`.
+- Added persistent decision governance files:
+  - `evidence/decisions/decision_log.v1.jsonl` (append-only)
+  - `evidence/decisions/decision_state.v1.json` (generated snapshot)
+  - `evidence/decisions/schemas/v1/decision_log_entry.schema.json`
+- Extended ingestion script `evidence/experiments/scripts/build_experiment_indexes.py` to:
+  - merge `evidence/literature/**/entries/**/record.json` with experiment evidence,
+  - compute `experimental_confidence`, `literature_confidence`, and `overall_confidence`,
+  - generate `evidence/experiments/conflicts.md`,
+  - generate `evidence/experiments/promotion_demotion_recommendations.md` with human decision status,
+  - read decision history from `evidence/decisions/decision_log.v1.jsonl`,
+  - and generate decision state snapshot `evidence/decisions/decision_state.v1.json`,
+  - and refresh `evidence/literature/INDEX.md`.
+- Added decision logging helper script:
+  - `evidence/experiments/scripts/record_decision.py`
+- Added planning subsystem and generated loop outputs:
+  - `evidence/planning/planning_criteria.v1.yaml`
+  - `evidence/planning/evidence_backlog.v1.json`
+  - `evidence/planning/experiment_proposals.v1.json`
+  - `evidence/planning/INDEX.md`
+  - `evidence/planning/schemas/v1/evidence_backlog.schema.json`
+  - `evidence/planning/schemas/v1/experiment_proposals.schema.json`
+- Extended ingestion script to generate planning backlog/proposals directly from matrix + conflicts + decision log.
+- Extended claim-evidence schema `evidence/experiments/schemas/v1/claim_evidence.schema.json` with:
+  - `source_type` split (`experimental` vs `literature`),
+  - entry-level confidence fields,
+  - claim-level confidence channels and source counts.
+- Added literature subsystem docs and schema:
+  - `evidence/literature/README.md`
+  - `evidence/literature/INTERFACE_CONTRACT.md`
+  - `evidence/literature/schemas/v1/literature_evidence.schema.json`
+- Added example literature evidence record:
+  - `evidence/literature/neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json`
+  - `evidence/literature/neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md`
+
 ## 2026-02-13: Experimental Evidence Ingestion Pipeline
 
 ### Overview

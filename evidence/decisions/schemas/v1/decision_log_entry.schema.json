@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://decisions/v1/decision_log_entry.schema.json",
+  "title": "REE Decision Log Entry v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "timestamp_utc",
+    "claim_id",
+    "decision_status",
+    "recommendation",
+    "decision_needed",
+    "actor"
+  ],
+  "properties": {
+    "schema_version": { "const": "decision_log_entry/v1" },
+    "timestamp_utc": { "type": "string", "format": "date-time" },
+    "claim_id": { "type": "string", "minLength": 1 },
+    "decision_status": {
+      "type": "string",
+      "enum": ["pending_user", "discussing", "approved", "rejected", "applied"]
+    },
+    "recommendation": { "type": "string", "minLength": 1 },
+    "decision_needed": { "type": "string", "minLength": 1 },
+    "selected_option": { "type": "string" },
+    "rationale": { "type": "string" },
+    "actor": { "type": "string", "minLength": 1 },
+    "context": {
+      "type": "object",
+      "properties": {
+        "source_file": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://literature-evidence/v1/literature_evidence.schema.json",
+  "title": "REE Literature Evidence v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "literature_type",
+    "entry_id",
+    "timestamp_utc",
+    "claim_ids_tested",
+    "source",
+    "evidence_class",
+    "evidence_direction",
+    "confidence",
+    "confidence_rationale",
+    "summary_path"
+  ],
+  "properties": {
+    "schema_version": { "const": "literature_evidence/v1" },
+    "literature_type": { "type": "string", "minLength": 1 },
+    "entry_id": { "type": "string", "minLength": 1 },
+    "timestamp_utc": { "type": "string", "format": "date-time" },
+    "claim_ids_tested": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "required": ["title", "authors", "year"],
+      "properties": {
+        "title": { "type": "string" },
+        "authors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "year": { "type": "integer", "minimum": 1800, "maximum": 2200 },
+        "venue": { "type": "string" },
+        "doi": { "type": "string" },
+        "url": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "evidence_class": { "type": "string" },
+    "evidence_direction": {
+      "type": "string",
+      "enum": ["supports", "weakens", "mixed", "unknown"]
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "confidence_rationale": { "type": "string" },
+    "summary_path": { "type": "string" },
+    "failure_signatures": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

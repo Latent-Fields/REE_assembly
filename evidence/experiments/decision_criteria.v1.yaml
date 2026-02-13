@@ -1,0 +1,22 @@
+{
+  "schema_version": "decision_criteria/v1",
+  "decision_status_default": "pending_user",
+  "thresholds": {
+    "candidate_to_provisional": {
+      "min_overall_confidence": 0.62,
+      "min_experimental_entries": 2,
+      "max_conflict_ratio": 0.35
+    },
+    "provisional_to_stable": {
+      "min_overall_confidence": 0.80,
+      "min_experimental_entries": 4,
+      "min_literature_entries": 2,
+      "max_conflict_ratio": 0.20
+    },
+    "demote_on_conflict": {
+      "min_total_entries": 3,
+      "min_conflict_ratio": 0.55,
+      "max_overall_confidence": 0.55
+    }
+  }
+}
