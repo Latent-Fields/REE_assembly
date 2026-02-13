@@ -1,0 +1,335 @@
+{
+  "generated_at_utc": "2026-02-13T15:32:39.697392Z",
+  "inputs": {
+    "claim_evidence": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",
+    "claim_registry": "/Users/dgolden/Documents/GitHub/REE_assembly/docs/claims/claims.yaml",
+    "interfaces": "/Users/dgolden/Documents/GitHub/REE_assembly/docs/architecture/interfaces.v1.yaml",
+    "ownership": "/Users/dgolden/Documents/GitHub/REE_assembly/docs/claims/interface_ownership.v1.yaml"
+  },
+  "issues": {
+    "ambiguous_edges": [
+      {
+        "edge_id": "IFACE-EDGE-020",
+        "issue_id": "ISS-AMBIGUOUS-EDGE-IFACE-EDGE-020",
+        "linked_open_questions": [
+          "Q-011"
+        ],
+        "owner_claim_ids": [
+          "MECH-056",
+          "Q-011",
+          "MECH-054"
+        ],
+        "status": "ambiguous",
+        "unknown_fields": [
+          "signed_pe_precision_mix_rule",
+          "noradrenaline_imminence_interaction",
+          "stage_separation_constraints"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-021",
+        "issue_id": "ISS-AMBIGUOUS-EDGE-IFACE-EDGE-021",
+        "linked_open_questions": [
+          "Q-011"
+        ],
+        "owner_claim_ids": [
+          "MECH-056",
+          "Q-011"
+        ],
+        "status": "ambiguous",
+        "unknown_fields": [
+          "bias_amplitude_bounds",
+          "channel_escalation_trigger"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-022",
+        "issue_id": "ISS-AMBIGUOUS-EDGE-IFACE-EDGE-022",
+        "linked_open_questions": [
+          "Q-009"
+        ],
+        "owner_claim_ids": [],
+        "status": "candidate",
+        "unknown_fields": [
+          "agency_detection_schema",
+          "other_harm_projection_gate"
+        ]
+      }
+    ],
+    "dependency_link_gaps": [
+      {
+        "edge_id": "IFACE-EDGE-001",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-001",
+        "source_claim_ids": [
+          "ARC-017"
+        ],
+        "target_claim_ids": [
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-002",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-002",
+        "source_claim_ids": [
+          "ARC-017"
+        ],
+        "target_claim_ids": [
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-003",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-003",
+        "source_claim_ids": [
+          "ARC-017"
+        ],
+        "target_claim_ids": [
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-004",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-004",
+        "source_claim_ids": [
+          "ARC-017",
+          "ARC-015"
+        ],
+        "target_claim_ids": [
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-020",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-020",
+        "source_claim_ids": [
+          "ARC-013",
+          "MECH-056"
+        ],
+        "target_claim_ids": [
+          "ARC-005",
+          "MECH-054"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-022",
+        "issue_id": "ISS-DEP-LINK-GAP-IFACE-EDGE-022",
+        "source_claim_ids": [
+          "ARC-017"
+        ],
+        "target_claim_ids": [
+          "ARC-010",
+          "MECH-051",
+          "MECH-052"
+        ]
+      }
+    ],
+    "open_sections_unowned": [
+      {
+        "doc": "docs/architecture/social.md",
+        "issue_id": "ISS-OPEN-UNOWNED-OPEN-003",
+        "open_section_id": "OPEN-003",
+        "section": "Care Override Boundary Conditions"
+      }
+    ],
+    "owned_edges_without_evidence": [
+      {
+        "edge_id": "IFACE-EDGE-001",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-001",
+        "owner_claim_ids": [
+          "ARC-017",
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-002",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-002",
+        "owner_claim_ids": [
+          "ARC-017",
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-003",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-003",
+        "owner_claim_ids": [
+          "ARC-017",
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-004",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-004",
+        "owner_claim_ids": [
+          "ARC-017",
+          "ARC-002",
+          "ARC-015"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-005",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-005",
+        "owner_claim_ids": [
+          "ARC-001",
+          "ARC-002"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-008",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-008",
+        "owner_claim_ids": [
+          "ARC-002",
+          "ARC-018"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-010",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-010",
+        "owner_claim_ids": [
+          "ARC-018",
+          "ARC-003"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-013",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-013",
+        "owner_claim_ids": [
+          "ARC-003",
+          "ARC-015"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-014",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-014",
+        "owner_claim_ids": [
+          "ARC-017",
+          "ARC-015"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-015",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-015",
+        "owner_claim_ids": [
+          "ARC-015"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-017",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-017",
+        "owner_claim_ids": [
+          "ARC-015",
+          "ARC-003"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-018",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-018",
+        "owner_claim_ids": [
+          "ARC-001",
+          "ARC-015"
+        ]
+      },
+      {
+        "edge_id": "IFACE-EDGE-019",
+        "issue_id": "ISS-NO-EVIDENCE-EDGE-IFACE-EDGE-019",
+        "owner_claim_ids": [
+          "ARC-018",
+          "ARC-015"
+        ]
+      }
+    ],
+    "trace_breaks": [
+      {
+        "issue_id": "ISS-TRACE-BREAK-SOCIAL-OTHER_MODEL",
+        "node_id": "SOCIAL.other_model",
+        "owner_claim_ids": [
+          "ARC-010",
+          "MECH-051",
+          "MECH-052"
+        ]
+      }
+    ],
+    "unowned_edges": [
+      {
+        "edge_id": "IFACE-EDGE-022",
+        "from_node": "SENSORY.world_tag",
+        "issue_id": "ISS-UNOWNED-EDGE-IFACE-EDGE-022",
+        "to_node": "SOCIAL.other_model"
+      }
+    ]
+  },
+  "schema_version": "architecture_trace_audit/v1",
+  "summary": {
+    "ambiguous_edges": 3,
+    "dependency_link_gaps": 6,
+    "issue_count": 25,
+    "missing_claim_dependency_targets": 0,
+    "open_sections_unowned": 1,
+    "owned_edges_without_evidence": 13,
+    "suggested_claim_stubs": 6,
+    "trace_breaks": 1,
+    "unowned_edges": 1,
+    "unowned_nodes": 0
+  },
+  "trace": {
+    "edge_coverage_ratio": 0.864,
+    "missing_roots": [],
+    "node_coverage_ratio": 0.929,
+    "reachable_node_count": 13,
+    "reachable_nodes": [
+      "ACTION.actuator",
+      "CONTROL.precision_router",
+      "E1.persistent_predictive_substrate",
+      "E2.fast_forward_predictor",
+      "E3.trajectory_commitment_engine",
+      "EXPLANATION.justification_gate",
+      "HIPPO.rollout_viability_mapper",
+      "LEARNING.post_commit_updater",
+      "SENSORY.harm_tag",
+      "SENSORY.homeostasis_tag",
+      "SENSORY.self_sensory_tag",
+      "SENSORY.world_tag",
+      "SOCIAL.other_model"
+    ],
+    "roots": [
+      "SENSORY.world_tag",
+      "SENSORY.homeostasis_tag",
+      "SENSORY.harm_tag",
+      "SENSORY.self_sensory_tag"
+    ],
+    "terminal_nodes": [
+      "ACTION.actuator"
+    ],
+    "total_edges": 22,
+    "total_nodes": 14,
+    "traversed_edge_count": 19,
+    "traversed_edges": [
+      "IFACE-EDGE-001",
+      "IFACE-EDGE-002",
+      "IFACE-EDGE-003",
+      "IFACE-EDGE-004",
+      "IFACE-EDGE-005",
+      "IFACE-EDGE-006",
+      "IFACE-EDGE-007",
+      "IFACE-EDGE-008",
+      "IFACE-EDGE-010",
+      "IFACE-EDGE-012",
+      "IFACE-EDGE-013",
+      "IFACE-EDGE-014",
+      "IFACE-EDGE-015",
+      "IFACE-EDGE-016",
+      "IFACE-EDGE-017",
+      "IFACE-EDGE-018",
+      "IFACE-EDGE-019",
+      "IFACE-EDGE-021",
+      "IFACE-EDGE-022"
+    ],
+    "unreachable_nodes": [
+      "RESIDUE.ethical_curvature_field"
+    ],
+    "untraversed_edges": [
+      "IFACE-EDGE-009",
+      "IFACE-EDGE-011",
+      "IFACE-EDGE-020"
+    ]
+  }
+}

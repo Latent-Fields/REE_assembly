@@ -2758,6 +2758,9 @@ def _write_planning_outputs(
         f"- Experiment proposals: `experiment_proposals.v1.json` ({len(proposals)} item(s))"
     )
     index_lines.append("- Experiment dispatch briefs: `EXPERIMENT_BRIEFS.md`")
+    index_lines.append("- Architecture trace audit: `architecture_trace_audit.v1.json`")
+    index_lines.append("- Architecture trace report: `ARCHITECTURE_TRACE_AUDIT.md`")
+    index_lines.append("- Claim stub suggestions: `claim_stub_suggestions.v1.json`")
     index_lines.append("- Planning criteria: `planning_criteria.v1.yaml`")
     (planning_root / "INDEX.md").write_text(
         "\n".join(index_lines).rstrip() + "\n",
