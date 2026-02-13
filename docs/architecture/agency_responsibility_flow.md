@@ -97,6 +97,49 @@ constraint routing, rather than replaced by them.
 
 ---
 
+<a id="mech-058"></a>
+## EMA target anchoring preserves E1/E2 substrate separation (MECH-058)
+
+When JEPA-like substrate training is used for REE E1/E2, a slow target-anchor pathway (for example, EMA-updated target
+encoder) should be treated as a stability requirement rather than an optimization trick.
+
+Proposed role in REE terms:
+
+- fast predictor updates support E2-like short-horizon adaptation,
+- slow anchor updates preserve E1-like representational continuity,
+- their separation reduces collapse/drift that would otherwise corrupt commitment-level attribution.
+
+This mechanism is currently a candidate and needs direct ablation evidence in REE-shaped tasks.
+
+---
+
+<a id="mech-059"></a>
+## Uncertainty must remain a distinct latent stream (MECH-059)
+
+Latent prediction residual and latent uncertainty/dispersion should remain distinct streams.
+
+- residual answers: *how wrong was the prediction*,
+- uncertainty answers: *how many futures were plausible / how calibrated was that confidence*.
+
+Precision routing should consume both; uncertainty should not be collapsed into a single scalar error term.
+Signed control semantics (harm/benefit channeling) remain a downstream REE control-plane function.
+
+---
+
+<a id="mech-060"></a>
+## Dual error channels map to pre-commit and post-commit learning (MECH-060)
+
+REE should maintain two explicit error channels around E3 commitment:
+
+- pre-commit simulation error: from uncommitted rollouts/counterfactuals, used for gating/search,
+- post-commit realized error: from executed committed trajectories, used for responsibility attribution and durable
+  model update.
+
+In JEPA-integrated systems this implies at least one exploratory/simulation-side error stream and one
+execution-outcome stream; both are required and should not be merged.
+
+---
+
 ## Open Questions
 
 <a id="q-006"></a>
@@ -116,12 +159,28 @@ It strengthens if scaling to embodied and multi-agent settings repeatedly requir
 - control-plane arbitration across timescales,
 - trajectory constraints that prevent destabilizing branches.
 
+<a id="q-013"></a>
+### Q-013: Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
+
+If deterministic predictors with derived dispersion estimates are sufficient, REE can keep substrate complexity lower.
+If explicit stochastic/latent-variable heads produce materially better calibration under intervention, they may be
+required for stable precision routing.
+
+<a id="q-014"></a>
+### Q-014: Do JEPA invariances hide ethically relevant distinctions in REE contexts?
+
+Invariant representations can improve robustness, but may also suppress distinctions that matter for harm attribution,
+responsibility boundaries, or social modelability. This remains an open empirical risk question.
+
 ## Related Claims (IDs)
 
 - ARC-015
 - MECH-023
 - MECH-024
 - MECH-057
+- MECH-058
+- MECH-059
+- MECH-060
 - INV-018
 - INV-012
 - ARC-003
@@ -130,6 +189,8 @@ It strengthens if scaling to embodied and multi-agent settings repeatedly requir
 - ARC-007
 - Q-006
 - Q-012
+- Q-013
+- Q-014
 
 ## References / Source Fragments
 

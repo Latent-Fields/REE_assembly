@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-13T21:00:36.735839Z",
+  "generated_at_utc": "2026-02-13T21:31:40.602912Z",
   "items": [
     {
       "acceptance_checks": [
@@ -807,6 +807,120 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_q_010",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0017",
+      "claim_id": "Q-013",
+      "objective": "Reduce uncertainty for Q-013 via targeted experiment runs.",
+      "priority": "low",
+      "proposal_id": "EXP-0029",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "summary": "include scenario and interpretation"
+      },
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_013",
+      "target_repo": "ree-v1-minimal",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0017",
+      "claim_id": "Q-013",
+      "objective": "Improve literature grounding and confidence for Q-013.",
+      "priority": "low",
+      "proposal_id": "LIT-0030",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_q_013",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0018",
+      "claim_id": "Q-014",
+      "objective": "Reduce uncertainty for Q-014 via targeted experiment runs.",
+      "priority": "low",
+      "proposal_id": "EXP-0031",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "summary": "include scenario and interpretation"
+      },
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_014",
+      "target_repo": "ree-v1-minimal",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0018",
+      "claim_id": "Q-014",
+      "objective": "Improve literature grounding and confidence for Q-014.",
+      "priority": "low",
+      "proposal_id": "LIT-0032",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_q_014",
       "target_repo": "REE_assembly",
       "why_now": [
         "no_evidence_for_open_question"

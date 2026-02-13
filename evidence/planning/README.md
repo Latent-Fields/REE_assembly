@@ -7,6 +7,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `evidence_backlog.v1.json`: claims requiring new evidence and why.
 - `experiment_proposals.v1.json`: concrete proposed work items for experimental/literature producers.
 - `INDEX.md`: generated summary.
+- `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
 
 ## Inputs
 

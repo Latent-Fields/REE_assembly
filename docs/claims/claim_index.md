@@ -116,6 +116,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-055](../architecture/control_plane.md#mech-055) Affective channel separation keeps hedonic tone, valence, and signed PE distinct.
 - [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
 - [MECH-057](../architecture/agency_responsibility_flow.md#mech-057) Agentic latent-predictive models require control-plane completion and self-attribution loops.
+- [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics preserve E1/E2 substrate separation under JEPA-style training.
+- [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Latent uncertainty must remain a distinct stream from residual error for precision routing.
+- [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Dual error channels should be separated across pre-commit simulation and post-commit realized outcomes.
 
 ---
 
@@ -133,6 +136,8 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
 - [Q-011](../architecture/hippocampal_systems.md#q-011) Should REE enforce a minimum rollout-diversity floor under repeated unavoidable harm? Tracked in `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`.
 - [Q-012](../architecture/agency_responsibility_flow.md#q-012) Can latent predictive world models stay agentically stable without explicit REE-like control constraints?
+- [Q-013](../architecture/agency_responsibility_flow.md#q-013) Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
+- [Q-014](../architecture/agency_responsibility_flow.md#q-014) Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?
 
 ---
 

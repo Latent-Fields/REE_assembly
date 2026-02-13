@@ -7,6 +7,41 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Dispatch Bundle for MECH-058/059/060
+
+### Overview
+
+Added a focused cross-repo dispatch bundle for first-pass evidence generation on the new JEPA follow-on mechanism
+claims.
+
+### What Changed
+
+- Added dispatch bundle with copy/paste prompts:
+  - `evidence/planning/DISPATCH_JEPA_MECH_058_060.md`
+- Updated planning README to document curated dispatch files:
+  - `evidence/planning/README.md`
+
+## 2026-02-13: JEPA Follow-On Claim Stubs (MECH-058/059/060, Q-013/014)
+
+### Overview
+
+Added draft claim stubs capturing JEPA-driven follow-on mechanisms and open questions for governance/evidence routing.
+
+### What Changed
+
+- Added mechanism stubs in:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - `MECH-058` slow target-anchor timescale separation
+  - `MECH-059` latent uncertainty stream separation
+  - `MECH-060` pre-commit vs post-commit dual error channels
+- Added open questions in:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - `Q-013` deterministic vs stochastic uncertainty calibration
+  - `Q-014` invariance blind-spot risk for ethical attribution
+- Added claim registry and index entries:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+
 ## 2026-02-13: Cross-Repo Contract Sync Policy
 
 ### Overview
