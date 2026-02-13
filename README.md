@@ -7,6 +7,7 @@ This repository is the canonical, typed-claims documentation system for the Refl
 ## Structure
 
 - `docs/` — Canonical REE documentation and operating procedure
+- `evidence/experiments/` — Experiment Pack ingestion boundary, generated indexes, and failure-driven TODO queue
 - `docs/claims/` — Claim registry (`claims.yaml`) and human index (`claim_index.md`)
 - `docs/processed/legacy_tree/` — Verbatim preserved legacy sources (immutable)
 - `docs/conflicts/` — Documented conflicts and forks (no silent resolution)

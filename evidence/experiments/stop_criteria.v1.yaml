@@ -1,0 +1,17 @@
+{
+  "schema_version": "stop_criteria/v1",
+  "default": {
+    "fail_if": [
+      { "metric": "fatal_error_count", "op": ">", "threshold": 0 }
+    ]
+  },
+  "experiments": {
+    "trajectory_integrity": {
+      "fail_if": [
+        { "metric": "ledger_edit_detected_count", "op": ">", "threshold": 0 },
+        { "metric": "explanation_policy_divergence_rate", "op": ">", "threshold": 0.05 },
+        { "metric": "domination_lock_in_events", "op": ">", "threshold": 0 }
+      ]
+    }
+  }
+}

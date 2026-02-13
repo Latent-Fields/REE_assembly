@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://experiment-pack/v1/metrics.schema.json",
+  "title": "REE Experiment Pack Metrics v1",
+  "type": "object",
+  "required": ["schema_version", "values"],
+  "properties": {
+    "schema_version": { "const": "experiment_pack_metrics/v1" },
+    "values": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "additionalProperties": false
+}

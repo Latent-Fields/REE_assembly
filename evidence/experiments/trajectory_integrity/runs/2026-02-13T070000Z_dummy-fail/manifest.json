@@ -1,0 +1,32 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "trajectory_integrity",
+  "run_id": "2026-02-13T070000Z_dummy-fail",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-13T07:00:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "2222222222222222222222222222222222222222",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v1-minimal-harness",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "name": "trajectory_integrity_stress",
+    "seed": 99,
+    "config_hash": "cfg_b2"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "failure_signatures": [
+    "ledger_editing",
+    "explanation_policy_divergence"
+  ],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "traces_dir": "traces",
+    "media_dir": "media"
+  }
+}

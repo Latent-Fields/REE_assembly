@@ -7,6 +7,30 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Experimental Evidence Ingestion Pipeline
+
+### Overview
+
+Added a repository-level experiment ingestion subsystem so external implementation runs can be indexed in REE_assembly
+and translated into design-facing implications and TODOs.
+
+### What Changed
+
+- Added `evidence/experiments/` with a versioned Experiment Pack contract:
+  - `manifest.json`, `metrics.json`, `summary.md`, optional `traces/` and `media/`.
+- Added schemas in `evidence/experiments/schemas/v1/` for manifest and metrics files.
+- Added versioned stop criteria in `evidence/experiments/stop_criteria.v1.yaml`.
+- Added ingestion/index script `evidence/experiments/scripts/build_experiment_indexes.py` (standard library only) that:
+  - scans `evidence/experiments/**/runs/**/manifest.json`,
+  - flags FAIL runs using manifest status plus stop-criteria checks,
+  - generates per-experiment and top-level indexes,
+  - computes key metric deltas across runs,
+  - auto-updates design implications in experiment templates,
+  - and refreshes a failure-driven TODO queue.
+- Added strict producer-facing interface contract in `evidence/experiments/INTERFACE_CONTRACT.md`.
+- Added usage/readme documentation in `evidence/experiments/README.md`.
+- Added example experiment type `trajectory_integrity` with dummy PASS/FAIL runs demonstrating criteria-triggered failure indexing.
+
 ## 2026-02-12: Consistency Sweep (Dependencies, Conflicts, Open Questions)
 
 ### Overview
