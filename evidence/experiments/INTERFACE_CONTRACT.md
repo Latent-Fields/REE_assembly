@@ -33,6 +33,9 @@ Optional but recommended:
 
 - `scenario`: object (`name`, `seed`, `config_hash`, etc.)
 - `stop_criteria_version`: string, e.g. `"stop_criteria/v1"`
+- `claim_ids_tested`: string array of REE claim IDs, e.g. `["MECH-056", "Q-011"]`
+- `evidence_class`: string, e.g. `"simulation"`, `"behavioral"`, `"control_theory"`
+- `evidence_direction`: one of `"supports"`, `"weakens"`, `"mixed"`, `"unknown"`
 - `failure_signatures`: string array, stable signature IDs
 
 ## File: `metrics.json`
@@ -68,6 +71,16 @@ Ingestion computes FAIL from both:
 - threshold checks in `stop_criteria.v1.yaml`
 
 If either indicates failure, run is indexed as FAIL.
+
+## Claim-Evidence Matrix Population
+
+Ingestion generates `claim_evidence.v1.json` by reading run-level linkage fields:
+
+- `claim_ids_tested` (required for claim linkage)
+- `evidence_class`
+- `evidence_direction` (if omitted, ingestion infers direction from PASS/FAIL)
+
+Runs without `claim_ids_tested` are still indexed but tracked under `unlinked_runs` in the matrix.
 
 ## Stability Guarantees for Producers
 

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://experiment-pack/v1/claim_evidence.schema.json",
+  "title": "REE Claim Evidence Matrix v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "source_root",
+    "claims",
+    "entries",
+    "unlinked_runs"
+  ],
+  "properties": {
+    "schema_version": { "const": "claim_evidence_matrix/v1" },
+    "generated_at_utc": { "type": "string", "format": "date-time" },
+    "source_root": { "type": "string" },
+    "claims": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "runs_total",
+          "pass_runs",
+          "fail_runs",
+          "latest_run_id",
+          "latest_timestamp_utc",
+          "direction_counts",
+          "evidence_class_counts",
+          "recent_entries"
+        ],
+        "properties": {
+          "runs_total": { "type": "integer", "minimum": 0 },
+          "pass_runs": { "type": "integer", "minimum": 0 },
+          "fail_runs": { "type": "integer", "minimum": 0 },
+          "latest_run_id": { "type": "string" },
+          "latest_timestamp_utc": { "type": "string" },
+          "direction_counts": {
+            "type": "object",
+            "required": ["supports", "weakens", "mixed", "unknown"],
+            "properties": {
+              "supports": { "type": "integer", "minimum": 0 },
+              "weakens": { "type": "integer", "minimum": 0 },
+              "mixed": { "type": "integer", "minimum": 0 },
+              "unknown": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": false
+          },
+          "evidence_class_counts": {
+            "type": "object",
+            "additionalProperties": { "type": "integer", "minimum": 0 }
+          },
+          "recent_entries": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/entry" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "unlinked_runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["experiment_type", "run_id", "timestamp_utc", "status"],
+        "properties": {
+          "experiment_type": { "type": "string" },
+          "run_id": { "type": "string" },
+          "timestamp_utc": { "type": "string" },
+          "status": { "type": "string", "enum": ["PASS", "FAIL"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": [
+        "claim_id",
+        "experiment_type",
+        "run_id",
+        "timestamp_utc",
+        "status",
+        "evidence_class",
+        "evidence_direction",
+        "failure_signatures"
+      ],
+      "properties": {
+        "claim_id": { "type": "string" },
+        "experiment_type": { "type": "string" },
+        "run_id": { "type": "string" },
+        "timestamp_utc": { "type": "string" },
+        "status": { "type": "string", "enum": ["PASS", "FAIL"] },
+        "evidence_class": { "type": "string" },
+        "evidence_direction": {
+          "type": "string",
+          "enum": ["supports", "weakens", "mixed", "unknown"]
+        },
+        "failure_signatures": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

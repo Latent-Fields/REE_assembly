@@ -13,6 +13,7 @@ This folder is the ingestion boundary between implementation experiments (e.g., 
 - `INTERFACE_CONTRACT.md`: strict format contract for producers.
 - `stop_criteria.v1.yaml`: versioned stop/fail criteria used by ingestion.
 - `schemas/v1/`: JSON schema references for pack files.
+- `claim_evidence.v1.json`: generated claim-to-evidence matrix (do not hand edit).
 - `<experiment_type>/experiment.md`: experiment template with required sections.
 - `<experiment_type>/runs/<run_id>/`: immutable run packs.
 - `scripts/build_experiment_indexes.py`: ingestion + index generator.
@@ -30,6 +31,8 @@ Each run directory must include:
 - optional `media/`
 
 See `INTERFACE_CONTRACT.md` for field-level requirements.
+For claim-level evidence mapping, include `claim_ids_tested`, `evidence_class`, and `evidence_direction` in
+`manifest.json`.
 
 ## Experiment Template (required per type)
 
@@ -55,6 +58,7 @@ python3 evidence/experiments/scripts/build_experiment_indexes.py
 Outputs regenerated on each run:
 
 - `evidence/experiments/INDEX.md`
+- `evidence/experiments/claim_evidence.v1.json`
 - `evidence/experiments/<experiment_type>/INDEX.md`
 - `evidence/experiments/<experiment_type>/experiment.md` (auto section only)
 - `evidence/experiments/TODOs.md`

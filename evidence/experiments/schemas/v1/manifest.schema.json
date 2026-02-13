@@ -48,6 +48,16 @@
       "additionalProperties": true
     },
     "stop_criteria_version": { "type": "string" },
+    "claim_ids_tested": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "evidence_class": { "type": "string" },
+    "evidence_direction": {
+      "type": "string",
+      "enum": ["supports", "weakens", "mixed", "unknown"]
+    },
     "failure_signatures": {
       "type": "array",
       "items": { "type": "string" },

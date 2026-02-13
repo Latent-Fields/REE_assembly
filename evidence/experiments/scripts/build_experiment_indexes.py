@@ -6,6 +6,7 @@ This script scans:
 
 It regenerates:
   evidence/experiments/INDEX.md
+  evidence/experiments/claim_evidence.v1.json
   evidence/experiments/<experiment_type>/INDEX.md
   evidence/experiments/<experiment_type>/experiment.md (auto Design implications block)
   evidence/experiments/TODOs.md
@@ -53,6 +54,9 @@ class RunRecord:
     failure_signatures: list[str] = field(default_factory=list)
     metrics: dict[str, float] = field(default_factory=dict)
     deltas: dict[str, float] = field(default_factory=dict)
+    claim_ids_tested: list[str] = field(default_factory=list)
+    evidence_class: str = "simulation"
+    evidence_direction: str = "unknown"
 
 
 def _fmt_number(value: float | int | None) -> str:
@@ -86,6 +90,12 @@ def _parse_timestamp(raw: str | None, fallback_path: Path) -> tuple[str, datetim
             pass
     mtime = datetime.fromtimestamp(fallback_path.stat().st_mtime, tz=timezone.utc)
     return mtime.isoformat().replace("+00:00", "Z"), mtime
+
+
+def _normalize_direction(raw: str | None) -> str:
+    allowed = {"supports", "weakens", "mixed", "unknown"}
+    value = (raw or "unknown").strip().lower()
+    return value if value in allowed else "unknown"
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -169,6 +179,12 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
         signatures = manifest.get("failure_signatures", [])
         if not isinstance(signatures, list):
             signatures = []
+        claim_ids_raw = manifest.get("claim_ids_tested", [])
+        if not isinstance(claim_ids_raw, list):
+            claim_ids_raw = []
+        claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
+        evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
+        evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -182,6 +198,9 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
                 manifest_status=status,
                 failure_signatures=[str(x) for x in signatures],
                 metrics=metrics,
+                claim_ids_tested=claim_ids_tested,
+                evidence_class=evidence_class,
+                evidence_direction=evidence_direction,
             )
         )
 
@@ -445,8 +464,105 @@ def _write_top_level_index(
     lines.append("")
     lines.append("- TODO queue: `TODOs.md`")
     lines.append("- Stop criteria config: `stop_criteria.v1.yaml`")
+    lines.append("- Claim-evidence matrix: `claim_evidence.v1.json`")
 
     (base_dir / "INDEX.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
+
+
+def _write_claim_evidence_matrix(
+    base_dir: Path,
+    by_experiment: dict[str, list[RunRecord]],
+    generated_at: str,
+) -> None:
+    runs = [run for exp_runs in by_experiment.values() for run in exp_runs]
+    runs.sort(key=lambda r: (r.timestamp, r.experiment_type, r.run_id))
+
+    matrix: dict[str, Any] = {
+        "schema_version": "claim_evidence_matrix/v1",
+        "generated_at_utc": generated_at,
+        "source_root": "evidence/experiments",
+        "claims": {},
+        "entries": [],
+        "unlinked_runs": [],
+    }
+
+    for run in runs:
+        inferred_direction = run.evidence_direction
+        if inferred_direction == "unknown":
+            inferred_direction = "supports" if run.final_status == "PASS" else "weakens"
+
+        if not run.claim_ids_tested:
+            matrix["unlinked_runs"].append(
+                {
+                    "experiment_type": run.experiment_type,
+                    "run_id": run.run_id,
+                    "timestamp_utc": run.timestamp_raw,
+                    "status": run.final_status,
+                }
+            )
+            continue
+
+        for claim_id in run.claim_ids_tested:
+            entry = {
+                "claim_id": claim_id,
+                "experiment_type": run.experiment_type,
+                "run_id": run.run_id,
+                "timestamp_utc": run.timestamp_raw,
+                "status": run.final_status,
+                "evidence_class": run.evidence_class,
+                "evidence_direction": inferred_direction,
+                "failure_signatures": run.failure_signatures,
+            }
+            matrix["entries"].append(entry)
+
+            claim = matrix["claims"].setdefault(
+                claim_id,
+                {
+                    "runs_total": 0,
+                    "pass_runs": 0,
+                    "fail_runs": 0,
+                    "latest_run_id": "",
+                    "latest_timestamp_utc": "",
+                    "direction_counts": {
+                        "supports": 0,
+                        "weakens": 0,
+                        "mixed": 0,
+                        "unknown": 0,
+                    },
+                    "evidence_class_counts": {},
+                    "recent_entries": [],
+                },
+            )
+            claim["runs_total"] += 1
+            if run.final_status == "PASS":
+                claim["pass_runs"] += 1
+            else:
+                claim["fail_runs"] += 1
+            claim["latest_run_id"] = run.run_id
+            claim["latest_timestamp_utc"] = run.timestamp_raw
+            claim["direction_counts"][inferred_direction] = (
+                claim["direction_counts"].get(inferred_direction, 0) + 1
+            )
+            class_counts = claim["evidence_class_counts"]
+            class_counts[run.evidence_class] = class_counts.get(run.evidence_class, 0) + 1
+            claim["recent_entries"].append(entry)
+
+    for claim_id in sorted(matrix["claims"].keys()):
+        recent = matrix["claims"][claim_id]["recent_entries"]
+        recent.sort(key=lambda e: (e["timestamp_utc"], e["run_id"]))
+        matrix["claims"][claim_id]["recent_entries"] = recent[-5:]
+
+    matrix["entries"].sort(
+        key=lambda e: (e["timestamp_utc"], e["claim_id"], e["experiment_type"], e["run_id"])
+    )
+    matrix["unlinked_runs"].sort(
+        key=lambda e: (e["timestamp_utc"], e["experiment_type"], e["run_id"])
+    )
+
+    (base_dir / "claim_evidence.v1.json").write_text(
+        json.dumps(matrix, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def _write_todos(base_dir: Path, todos_by_experiment: dict[str, list[str]], generated_at: str) -> None:
@@ -514,6 +630,7 @@ def main() -> None:
 
     _write_top_level_index(base_dir, by_experiment, generated_at)
     _write_todos(base_dir, todos_by_experiment, generated_at)
+    _write_claim_evidence_matrix(base_dir, by_experiment, generated_at)
 
     total_runs = sum(len(runs) for runs in by_experiment.values())
     total_fail = sum(1 for runs in by_experiment.values() for r in runs if r.final_status == "FAIL")

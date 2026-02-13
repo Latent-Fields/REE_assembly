@@ -19,12 +19,14 @@ and translated into design-facing implications and TODOs.
 - Added `evidence/experiments/` with a versioned Experiment Pack contract:
   - `manifest.json`, `metrics.json`, `summary.md`, optional `traces/` and `media/`.
 - Added schemas in `evidence/experiments/schemas/v1/` for manifest and metrics files.
+- Added claim-evidence matrix schema in `evidence/experiments/schemas/v1/claim_evidence.schema.json`.
 - Added versioned stop criteria in `evidence/experiments/stop_criteria.v1.yaml`.
 - Added ingestion/index script `evidence/experiments/scripts/build_experiment_indexes.py` (standard library only) that:
   - scans `evidence/experiments/**/runs/**/manifest.json`,
   - flags FAIL runs using manifest status plus stop-criteria checks,
   - generates per-experiment and top-level indexes,
   - computes key metric deltas across runs,
+  - populates `evidence/experiments/claim_evidence.v1.json` from `claim_ids_tested`,
   - auto-updates design implications in experiment templates,
   - and refreshes a failure-driven TODO queue.
 - Added strict producer-facing interface contract in `evidence/experiments/INTERFACE_CONTRACT.md`.
