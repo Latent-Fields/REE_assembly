@@ -7,6 +7,29 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Claims Explorer Governance Dashboard Tab
+
+### Overview
+
+Extended the HTML claims explorer so it can act as a governance dashboard for the new evidence loop.
+
+### What Changed
+
+- Updated `docs/claims/explorer.html` with a new **Governance** view tab.
+- Added dashboard rendering for:
+  - governance cycle summary cards,
+  - thought-intake queue,
+  - conflict queue,
+  - decision queue,
+  - high-priority backlog and proposal snapshots,
+  - dispatch-by-target-repo,
+  - and maintenance flags/warnings.
+- Added staleness indicator based on `evidence/planning/governance_agenda.v1.json`.
+- Added copy-command helpers (manual CLI flow):
+  - run governance cycle,
+  - strict thought-gate cycle,
+  - record-decision template command.
+
 ## 2026-02-13: Governance Cycle Orchestrator
 
 ### Overview

@@ -391,6 +391,131 @@
       min-width: 0;
     }
 
+    .governance-wrap {
+      display: none;
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      min-width: 0;
+    }
+
+    .governance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .gov-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .gov-card .label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .gov-card .value {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .gov-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .gov-staleness {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 11px;
+      vertical-align: middle;
+    }
+
+    .gov-staleness.fresh { background: #e7f5eb; border-color: #8fc4a0; color: #24583a; }
+    .gov-staleness.stale { background: #fff5de; border-color: #d8b36d; color: #7c5a1f; }
+    .gov-staleness.old { background: #fbecec; border-color: #c98f8f; color: #8c2f2f; }
+
+    .gov-toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .gov-sections {
+      display: grid;
+      gap: 12px;
+    }
+
+    .gov-section {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .gov-section h3 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+
+    .gov-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .gov-table th,
+    .gov-table td {
+      border-bottom: 1px solid #eee;
+      padding: 6px 5px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .gov-table th {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .gov-empty {
+      color: var(--muted);
+      font-size: 12px;
+      padding: 6px 0;
+    }
+
+    .command-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .command-row {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8f5ef;
+    }
+
+    .command-row code {
+      display: block;
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-size: 12px;
+      margin: 4px 0 8px 0;
+    }
+
     .map-wrap {
       display: none;
       max-height: calc(100vh - 160px);
@@ -727,6 +852,7 @@
           <button id="graphViewBtn">Graph</button>
           <button id="docsViewBtn">Docs</button>
           <button id="mapViewBtn">Map</button>
+          <button id="governanceViewBtn">Governance</button>
         </div>
       </div>
       <div>
@@ -833,6 +959,10 @@
           <div class="meta">Subsystem map (filtered set)</div>
           <div id="mapGrid" class="map-grid"></div>
         </div>
+        <div id="governanceWrap" class="panel governance-wrap">
+          <div class="meta" id="governanceMeta">Governance cycle dashboard</div>
+          <div id="governanceContent" class="gov-empty">Loading governance agenda...</div>
+        </div>
       </div>
       <div class="panel detail" id="detailPanel">
         <div id="selectedSummary" class="selected-summary">
@@ -902,7 +1032,14 @@
     const CLAIMS_URL = './claims.yaml';
     const CONFLICT_INDEX_URL = '../conflicts/README.md';
     const README_URL = '../README.md';
+    const GOVERNANCE_AGENDA_URL = '../../evidence/planning/governance_agenda.v1.json';
+    const GOVERNANCE_BACKLOG_URL = '../../evidence/planning/evidence_backlog.v1.json';
+    const GOVERNANCE_PROPOSALS_URL = '../../evidence/planning/experiment_proposals.v1.json';
     const REFRESH_MS = 60000;
+
+    const CMD_RUN_GOVERNANCE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py';
+    const CMD_RUN_GOVERNANCE_STRICT = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
+    const CMD_RECORD_DECISION_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/record_decision.py --claim-id <CLAIM_ID> --recommendation <RECOMMENDATION> --decision-needed \"<DECISION_NEEDED>\" --decision-status approved --selected-option \"<OPTION>\" --rationale \"<RATIONALE>\" --actor dgolden';
 
     const FALLBACK_THOUGHT_PROMPT = `You are the AI agent maintaining the REE repository (Codex in this session). I am going to describe a thought, concern, or new understanding about REE in free text.
 
@@ -1041,6 +1178,7 @@ END CONFLICT RESOLUTION`;
       graphViewBtn: document.getElementById('graphViewBtn'),
       docsViewBtn: document.getElementById('docsViewBtn'),
       mapViewBtn: document.getElementById('mapViewBtn'),
+      governanceViewBtn: document.getElementById('governanceViewBtn'),
       includeDeps: document.getElementById('includeDeps'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
@@ -1067,6 +1205,9 @@ END CONFLICT RESOLUTION`;
       docMeta: document.getElementById('docMeta'),
       docContent: document.getElementById('docContent'),
       mapGrid: document.getElementById('mapGrid'),
+      governanceWrap: document.getElementById('governanceWrap'),
+      governanceMeta: document.getElementById('governanceMeta'),
+      governanceContent: document.getElementById('governanceContent'),
     };
 
     const typeOrder = [
@@ -1094,6 +1235,12 @@ END CONFLICT RESOLUTION`;
     let currentDocUrl = null;
     let docIndex = [];
     let docIndexMap = new Map();
+    let governanceAgenda = null;
+    let governanceBacklog = null;
+    let governanceProposals = null;
+    let governanceError = '';
+    let governanceLoadedAt = '';
+    let governanceLoading = false;
 
     function showError(message) {
       els.errorBanner.textContent = message;
@@ -1565,6 +1712,293 @@ END CONFLICT RESOLUTION`;
         card.appendChild(chips);
         els.mapGrid.appendChild(card);
       });
+    }
+
+    async function fetchJson(url) {
+      const text = await fetchText(url);
+      return JSON.parse(text);
+    }
+
+    function stripTicks(value) {
+      if (value === null || value === undefined) return '';
+      return String(value).replace(/`/g, '');
+    }
+
+    function toCellText(value) {
+      if (Array.isArray(value)) return value.map(v => stripTicks(v)).join(', ');
+      if (value === null || value === undefined) return '';
+      if (typeof value === 'object') return JSON.stringify(value);
+      return stripTicks(value);
+    }
+
+    function stalenessBadge(generatedAtUtc) {
+      if (!generatedAtUtc) return { label: 'unknown', cls: 'old' };
+      const then = new Date(generatedAtUtc);
+      if (Number.isNaN(then.getTime())) return { label: 'unknown', cls: 'old' };
+      const ageMin = (Date.now() - then.getTime()) / 60000;
+      if (ageMin <= 120) return { label: `fresh (${Math.round(ageMin)}m)`, cls: 'fresh' };
+      if (ageMin <= 1440) return { label: `stale (${Math.round(ageMin / 60)}h)`, cls: 'stale' };
+      return { label: `old (${Math.round(ageMin / 1440)}d)`, cls: 'old' };
+    }
+
+    function renderGovTable(rows, columns, emptyText) {
+      if (!rows || !rows.length) {
+        return `<div class="gov-empty">${escapeHtml(emptyText || 'No items')}</div>`;
+      }
+      const head = columns.map(col => `<th>${escapeHtml(col.label)}</th>`).join('');
+      const body = rows.map(row => {
+        const cells = columns.map(col => {
+          const raw = col.format ? col.format(row[col.key], row) : row[col.key];
+          return `<td>${escapeHtml(toCellText(raw)) || '-'}</td>`;
+        }).join('');
+        return `<tr>${cells}</tr>`;
+      }).join('');
+      return `<table class="gov-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    function commandRowsHtml() {
+      const rows = [
+        { label: 'Run governance cycle', cmd: CMD_RUN_GOVERNANCE },
+        { label: 'Run strict governance cycle', cmd: CMD_RUN_GOVERNANCE_STRICT },
+        { label: 'Record decision (template)', cmd: CMD_RECORD_DECISION_TEMPLATE },
+      ];
+      return rows.map((row, idx) => `
+        <div class="command-row">
+          <div class="meta">${escapeHtml(row.label)}</div>
+          <code>${escapeHtml(row.cmd)}</code>
+          <button class="ghost" data-copy-cmd="${escapeHtml(row.cmd)}" data-copy-id="cmd-${idx}">Copy Command</button>
+        </div>
+      `).join('');
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+
+    function wireGovernanceCommandButtons() {
+      if (!els.governanceContent) return;
+      els.governanceContent.querySelectorAll('button[data-copy-cmd]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const cmd = btn.getAttribute('data-copy-cmd') || '';
+          if (!cmd) return;
+          const status = els.governanceContent.querySelector('#governanceCopyStatus');
+          try {
+            await copyText(cmd);
+            if (status) status.textContent = 'Command copied to clipboard.';
+          } catch (_) {
+            if (status) status.textContent = 'Copy failed. Select command text manually.';
+          }
+        });
+      });
+    }
+
+    async function refreshGovernanceData() {
+      governanceLoading = true;
+      governanceError = '';
+      try {
+        governanceAgenda = await fetchJson(GOVERNANCE_AGENDA_URL);
+      } catch (err) {
+        governanceAgenda = null;
+        governanceError = String(err);
+      }
+
+      try {
+        governanceBacklog = await fetchJson(GOVERNANCE_BACKLOG_URL);
+      } catch (_) {
+        governanceBacklog = null;
+      }
+      try {
+        governanceProposals = await fetchJson(GOVERNANCE_PROPOSALS_URL);
+      } catch (_) {
+        governanceProposals = null;
+      }
+      governanceLoadedAt = new Date().toISOString();
+      governanceLoading = false;
+      if (currentView === 'governance') renderGovernance();
+    }
+
+    function renderGovernance() {
+      if (!els.governanceContent) return;
+      if (governanceLoading && !governanceAgenda) {
+        els.governanceContent.innerHTML = '<div class="gov-empty">Loading governance agenda...</div>';
+        return;
+      }
+
+      if (!governanceAgenda) {
+        const errorText = governanceError
+          ? `Agenda unavailable: ${governanceError}`
+          : 'Agenda unavailable. Run the governance cycle and refresh.';
+        els.governanceContent.innerHTML = `
+          <div class="gov-empty">${escapeHtml(errorText)}</div>
+          <div class="gov-section">
+            <h3>Manual Commands</h3>
+            <div class="command-list">${commandRowsHtml()}</div>
+            <div id="governanceCopyStatus" class="gov-meta"></div>
+          </div>
+        `;
+        wireGovernanceCommandButtons();
+        return;
+      }
+
+      const summary = governanceAgenda.summary || {};
+      const checkpoints = governanceAgenda.checkpoints || {};
+      const thoughtItems = (checkpoints.thought_intake && checkpoints.thought_intake.items) || [];
+      const conflictItems = (checkpoints.conflict_resolution && checkpoints.conflict_resolution.items) || [];
+      const decisionItems = (checkpoints.governance_decisions && checkpoints.governance_decisions.items) || [];
+      const dispatch = checkpoints.evidence_dispatch || {};
+      const highPriority = dispatch.high_priority_proposals || [];
+      const dispatchByRepo = dispatch.by_target_repo || [];
+      const maintenance = checkpoints.maintenance || {};
+      const maintenanceRuns = maintenance.unlinked_runs || [];
+      const warnings = governanceAgenda.warnings || [];
+      const generatedAt = governanceAgenda.generated_at_utc || '';
+      const stale = stalenessBadge(generatedAt);
+
+      const backlogItems = governanceBacklog && governanceBacklog.items ? governanceBacklog.items : [];
+      const highBacklogRows = backlogItems
+        .filter(item => item.priority === 'high')
+        .slice(0, 15);
+
+      const allProposals = governanceProposals && governanceProposals.items ? governanceProposals.items : [];
+
+      const generatedLabel = generatedAt ? new Date(generatedAt).toLocaleString() : 'unknown';
+      const loadedLabel = governanceLoadedAt ? new Date(governanceLoadedAt).toLocaleTimeString() : 'unknown';
+      if (els.governanceMeta) {
+        els.governanceMeta.innerHTML =
+          `Agenda generated: <strong>${escapeHtml(generatedLabel)}</strong>` +
+          `<span class="gov-staleness ${escapeHtml(stale.cls)}">${escapeHtml(stale.label)}</span>` +
+          ` &nbsp;|&nbsp; dashboard refreshed: ${escapeHtml(loadedLabel)}`;
+      }
+
+      const cards = `
+        <div class="governance-grid">
+          <div class="gov-card"><div class="label">Unprocessed Thoughts</div><div class="value">${Number(summary.thought_unprocessed || 0)}</div></div>
+          <div class="gov-card"><div class="label">Conflicts</div><div class="value">${Number(summary.conflicts || 0)}</div></div>
+          <div class="gov-card"><div class="label">Decision Queue</div><div class="value">${Number(summary.decision_queue_items || 0)}</div></div>
+          <div class="gov-card"><div class="label">High Priority Backlog</div><div class="value">${Number(summary.backlog_high_priority || 0)}</div></div>
+          <div class="gov-card"><div class="label">High Priority Proposals</div><div class="value">${Number(summary.proposal_high_priority || 0)}</div></div>
+          <div class="gov-card"><div class="label">Warnings</div><div class="value">${Number(summary.warnings || 0)}</div></div>
+        </div>
+      `;
+
+      const checkpointSections = `
+        <div class="gov-sections">
+          <div class="gov-section">
+            <h3>Thought Intake</h3>
+            ${renderGovTable(
+              thoughtItems,
+              [
+                { key: 'file', label: 'file' },
+                { key: 'status', label: 'status' },
+              ],
+              'No unprocessed thoughts.'
+            )}
+          </div>
+          <div class="gov-section">
+            <h3>Conflict Resolution</h3>
+            ${renderGovTable(
+              conflictItems,
+              [
+                { key: 'claim_id', label: 'claim_id' },
+                { key: 'conflict_types', label: 'conflict_types' },
+                { key: 'conflict_ratio', label: 'conflict_ratio' },
+                { key: 'latest', label: 'latest' },
+              ],
+              'No active conflicts.'
+            )}
+          </div>
+          <div class="gov-section">
+            <h3>Governance Decisions</h3>
+            ${renderGovTable(
+              decisionItems,
+              [
+                { key: 'claim_id', label: 'claim_id' },
+                { key: 'decision_needed', label: 'decision_needed' },
+                { key: 'recommendation', label: 'recommendation' },
+                { key: 'decision_status', label: 'decision_status' },
+              ],
+              'No decision items.'
+            )}
+          </div>
+          <div class="gov-section">
+            <h3>Backlog (High Priority)</h3>
+            ${renderGovTable(
+              highBacklogRows,
+              [
+                { key: 'backlog_id', label: 'backlog_id' },
+                { key: 'claim_id', label: 'claim_id' },
+                { key: 'evidence_needed', label: 'evidence_needed' },
+                { key: 'reasons', label: 'reasons' },
+              ],
+              'No high-priority backlog items.'
+            )}
+          </div>
+          <div class="gov-section">
+            <h3>Evidence Dispatch by Repo</h3>
+            ${renderGovTable(
+              dispatchByRepo,
+              [
+                { key: 'target_repo', label: 'target_repo' },
+                { key: 'total', label: 'total' },
+                { key: 'experimental', label: 'experimental' },
+                { key: 'literature_review', label: 'literature_review' },
+              ],
+              'No dispatch items.'
+            )}
+          </div>
+          <div class="gov-section">
+            <h3>High Priority Proposals</h3>
+            ${renderGovTable(
+              highPriority,
+              [
+                { key: 'proposal_id', label: 'proposal_id' },
+                { key: 'claim_id', label: 'claim_id' },
+                { key: 'proposal_type', label: 'type' },
+                { key: 'target_repo', label: 'target_repo' },
+                { key: 'status', label: 'status' },
+              ],
+              'No high-priority proposals.'
+            )}
+            <div class="gov-meta" style="margin-top:8px;">
+              Total proposals in file: ${allProposals.length}
+            </div>
+          </div>
+          <div class="gov-section">
+            <h3>Maintenance Flags</h3>
+            ${renderGovTable(
+              maintenanceRuns,
+              [
+                { key: 'source_type', label: 'source_type' },
+                { key: 'experiment_type', label: 'experiment_type' },
+                { key: 'run_id', label: 'run_id' },
+                { key: 'status', label: 'status' },
+              ],
+              'No unlinked evidence runs.'
+            )}
+            ${warnings.length ? `<div class="gov-meta" style="margin-top:8px;">Warnings: ${escapeHtml(warnings.join(' | '))}</div>` : '<div class="gov-meta" style="margin-top:8px;">Warnings: none</div>'}
+          </div>
+        </div>
+      `;
+
+      els.governanceContent.innerHTML = `
+        ${cards}
+        <div class="gov-section">
+          <h3>Manual Commands</h3>
+          <div class="command-list">${commandRowsHtml()}</div>
+          <div id="governanceCopyStatus" class="gov-meta"></div>
+        </div>
+        ${checkpointSections}
+      `;
+      wireGovernanceCommandButtons();
     }
 
     function populateDocSelect(filterText) {
@@ -2553,40 +2987,61 @@ END CONFLICT RESOLUTION`;
         els.graphWrap.style.display = 'block';
         els.docsWrap.style.display = 'none';
         els.mapWrap.style.display = 'none';
+        els.governanceWrap.style.display = 'none';
         els.graphViewBtn.classList.add('primary');
         els.listViewBtn.classList.remove('primary');
         els.docsViewBtn.classList.remove('primary');
         els.mapViewBtn.classList.remove('primary');
+        els.governanceViewBtn.classList.remove('primary');
         renderGraph();
       } else if (view === 'docs') {
         els.listWrap.style.display = 'none';
         els.graphWrap.style.display = 'none';
         els.docsWrap.style.display = 'block';
         els.mapWrap.style.display = 'none';
+        els.governanceWrap.style.display = 'none';
         els.docsViewBtn.classList.add('primary');
         els.listViewBtn.classList.remove('primary');
         els.graphViewBtn.classList.remove('primary');
         els.mapViewBtn.classList.remove('primary');
+        els.governanceViewBtn.classList.remove('primary');
         initDocs();
       } else if (view === 'map') {
         els.listWrap.style.display = 'none';
         els.graphWrap.style.display = 'none';
         els.docsWrap.style.display = 'none';
         els.mapWrap.style.display = 'block';
+        els.governanceWrap.style.display = 'none';
         els.mapViewBtn.classList.add('primary');
         els.listViewBtn.classList.remove('primary');
         els.graphViewBtn.classList.remove('primary');
         els.docsViewBtn.classList.remove('primary');
+        els.governanceViewBtn.classList.remove('primary');
         renderMap();
+      } else if (view === 'governance') {
+        els.listWrap.style.display = 'none';
+        els.graphWrap.style.display = 'none';
+        els.docsWrap.style.display = 'none';
+        els.mapWrap.style.display = 'none';
+        els.governanceWrap.style.display = 'block';
+        els.governanceViewBtn.classList.add('primary');
+        els.listViewBtn.classList.remove('primary');
+        els.graphViewBtn.classList.remove('primary');
+        els.docsViewBtn.classList.remove('primary');
+        els.mapViewBtn.classList.remove('primary');
+        renderGovernance();
+        refreshGovernanceData();
       } else {
         els.listWrap.style.display = 'block';
         els.graphWrap.style.display = 'none';
         els.docsWrap.style.display = 'none';
         els.mapWrap.style.display = 'none';
+        els.governanceWrap.style.display = 'none';
         els.listViewBtn.classList.add('primary');
         els.graphViewBtn.classList.remove('primary');
         els.docsViewBtn.classList.remove('primary');
         els.mapViewBtn.classList.remove('primary');
+        els.governanceViewBtn.classList.remove('primary');
       }
     }
 
@@ -2710,6 +3165,9 @@ END CONFLICT RESOLUTION`;
       if (els.mapViewBtn) {
         els.mapViewBtn.addEventListener('click', () => setView('map'));
       }
+      if (els.governanceViewBtn) {
+        els.governanceViewBtn.addEventListener('click', () => setView('governance'));
+      }
 
       els.graphFocusRadios.forEach(radio => {
         radio.addEventListener('change', () => {
@@ -2823,6 +3281,7 @@ END CONFLICT RESOLUTION`;
       }
 
       await loadPrompts();
+      await refreshGovernanceData();
       updateRefreshStatus();
     }
 
