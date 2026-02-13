@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "commit_dual_error_channels",
+  "run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-13T22:40:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "ee31c1a5a6e5ccfebe088438fd6d7a253688482d",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-jepa-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "ablation",
+  "evidence_direction": "supports",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": false,
+    "mech056_summary_escalation_trace": false,
+    "jepa_adapter_signal_emission": true
+  },
+  "environment": {
+    "env_id": "ree.jepa.qualification",
+    "env_version": "qualification/v1",
+    "dynamics_hash": "8dfce2426146",
+    "reward_hash": "c9ac28d385bc",
+    "observation_hash": "96aba3533b61",
+    "config_hash": "2d1b301a23d5",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "commit_dual_error_channels",
+    "condition": "pre_post_split_streams",
+    "seed": 11,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "540019c5c951"
+  },
+  "failure_signatures": []
+}

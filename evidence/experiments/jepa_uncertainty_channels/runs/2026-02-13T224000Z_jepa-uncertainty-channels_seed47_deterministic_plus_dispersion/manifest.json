@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "jepa_uncertainty_channels",
+  "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-13T22:40:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "ee31c1a5a6e5ccfebe088438fd6d7a253688482d",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-jepa-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": false,
+    "mech056_summary_escalation_trace": false,
+    "jepa_adapter_signal_emission": true
+  },
+  "environment": {
+    "env_id": "ree.jepa.qualification",
+    "env_version": "qualification/v1",
+    "dynamics_hash": "82d5f3fba33e",
+    "reward_hash": "f5e1f57cacd7",
+    "observation_hash": "bdc153a8ec94",
+    "config_hash": "c688eb347a91",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "jepa_uncertainty_channels",
+    "condition": "deterministic_plus_dispersion",
+    "seed": 47,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "47e1bcb0c78f"
+  },
+  "failure_signatures": []
+}

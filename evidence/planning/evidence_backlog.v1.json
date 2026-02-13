@@ -1,6 +1,6 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-13T21:39:52.349343Z",
+  "generated_at_utc": "2026-02-13T22:02:12.974027Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -125,26 +125,27 @@
       "backlog_id": "EVB-0005",
       "claim_id": "MECH-058",
       "evidence_needed": [
-        "experimental"
+        "experimental",
+        "literature"
       ],
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Run targeted experimental probe.",
+      "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
       "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
+        "active_conflict",
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.0,
+        "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "overall_confidence": 0.72,
+        "overall_confidence": 0.566,
         "source_counts": {
-          "experimental": 0,
+          "experimental": 6,
           "literature": 1
         }
       },
@@ -154,26 +155,27 @@
       "backlog_id": "EVB-0006",
       "claim_id": "MECH-059",
       "evidence_needed": [
-        "experimental"
+        "experimental",
+        "literature"
       ],
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Run targeted experimental probe.",
+      "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
       "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
+        "active_conflict",
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.0,
+        "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "overall_confidence": 0.71,
+        "overall_confidence": 0.564,
         "source_counts": {
-          "experimental": 0,
+          "experimental": 6,
           "literature": 1
         }
       },
@@ -183,26 +185,28 @@
       "backlog_id": "EVB-0007",
       "claim_id": "MECH-060",
       "evidence_needed": [
-        "experimental"
+        "experimental",
+        "literature"
       ],
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Run targeted experimental probe.",
+      "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
       "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_overall_confidence"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.0,
+        "conflict_ratio": 1.0,
         "current_status": "candidate",
-        "overall_confidence": 0.565,
+        "overall_confidence": 0.527,
         "source_counts": {
-          "experimental": 0,
+          "experimental": 6,
           "literature": 1
         }
       },

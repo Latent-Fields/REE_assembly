@@ -1,0 +1,30 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "jepa_uncertainty_channels",
+  "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+  "adapter": {
+    "name": "ree_jepa_adapter",
+    "version": "v1+dispatch.v1"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": true,
+    "trace_context_mask_ids": true,
+    "trace_action_token": false
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95"
+  ],
+  "uncertainty_estimator": "head",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.12595360483569243,
+    "latent_prediction_error_p95": 0.1863350467699694,
+    "latent_residual_coverage_rate": 0.8545900120031423,
+    "precision_input_completeness_rate": 0.9362013590031385,
+    "latent_uncertainty_calibration_error": 0.08100673622687327
+  },
+  "notes": "latent_prediction_error_p95 unavailable from this condition; deterministic proxy derived from latent_prediction_error_mean."
+}

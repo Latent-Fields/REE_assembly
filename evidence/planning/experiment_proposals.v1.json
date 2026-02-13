@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-13T21:39:52.349343Z",
+  "generated_at_utc": "2026-02-13T22:02:12.974027Z",
   "items": [
     {
       "acceptance_checks": [
@@ -173,11 +173,41 @@
         "summary": "include scenario and interpretation"
       },
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_058",
-      "target_repo": "ree-v1-minimal",
+      "suggested_experiment_type": "jepa_anchor_ablation",
+      "target_repo": "ree-experiments-lab",
       "why_now": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0005",
+      "claim_id": "MECH-058",
+      "objective": "Improve literature grounding and confidence for MECH-058.",
+      "priority": "high",
+      "proposal_id": "LIT-0007",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_058",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
       ]
     },
     {
@@ -189,35 +219,6 @@
       "backlog_id": "EVB-0006",
       "claim_id": "MECH-059",
       "objective": "Reduce uncertainty for MECH-059 via targeted experiment runs.",
-      "priority": "high",
-      "proposal_id": "EXP-0007",
-      "proposal_type": "experimental",
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "summary": "include scenario and interpretation"
-      },
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_059",
-      "target_repo": "ree-v1-minimal",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0007",
-      "claim_id": "MECH-060",
-      "objective": "Reduce uncertainty for MECH-060 via targeted experiment runs.",
       "priority": "high",
       "proposal_id": "EXP-0008",
       "proposal_type": "experimental",
@@ -231,11 +232,102 @@
         "summary": "include scenario and interpretation"
       },
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_060",
-      "target_repo": "ree-v1-minimal",
+      "suggested_experiment_type": "jepa_uncertainty_channels",
+      "target_repo": "ree-experiments-lab",
       "why_now": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence"
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0006",
+      "claim_id": "MECH-059",
+      "objective": "Improve literature grounding and confidence for MECH-059.",
+      "priority": "high",
+      "proposal_id": "LIT-0009",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_059",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0007",
+      "claim_id": "MECH-060",
+      "objective": "Reduce uncertainty for MECH-060 via targeted experiment runs.",
+      "priority": "high",
+      "proposal_id": "EXP-0010",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "summary": "include scenario and interpretation"
+      },
+      "status": "proposed",
+      "suggested_experiment_type": "commit_dual_error_channels",
+      "target_repo": "ree-experiments-lab",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_overall_confidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Confidence explicitly justified in confidence_rationale.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+      ],
+      "backlog_id": "EVB-0007",
+      "claim_id": "MECH-060",
+      "objective": "Improve literature grounding and confidence for MECH-060.",
+      "priority": "high",
+      "proposal_id": "LIT-0011",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale"
+        ],
+        "summary": "include caveats and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_060",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_overall_confidence"
       ]
     },
     {
@@ -248,7 +340,7 @@
       "claim_id": "Q-011",
       "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0009",
+      "proposal_id": "EXP-0012",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -279,7 +371,7 @@
       "claim_id": "Q-011",
       "objective": "Improve literature grounding and confidence for Q-011.",
       "priority": "high",
-      "proposal_id": "LIT-0010",
+      "proposal_id": "LIT-0013",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -311,7 +403,7 @@
       "claim_id": "Q-012",
       "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0011",
+      "proposal_id": "EXP-0014",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -339,7 +431,7 @@
       "claim_id": "Q-001",
       "objective": "Reduce uncertainty for Q-001 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0012",
+      "proposal_id": "EXP-0015",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -367,7 +459,7 @@
       "claim_id": "Q-001",
       "objective": "Improve literature grounding and confidence for Q-001.",
       "priority": "low",
-      "proposal_id": "LIT-0013",
+      "proposal_id": "LIT-0016",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -396,7 +488,7 @@
       "claim_id": "Q-002",
       "objective": "Reduce uncertainty for Q-002 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0014",
+      "proposal_id": "EXP-0017",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -424,7 +516,7 @@
       "claim_id": "Q-002",
       "objective": "Improve literature grounding and confidence for Q-002.",
       "priority": "low",
-      "proposal_id": "LIT-0015",
+      "proposal_id": "LIT-0018",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -453,7 +545,7 @@
       "claim_id": "Q-003",
       "objective": "Reduce uncertainty for Q-003 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0016",
+      "proposal_id": "EXP-0019",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -481,7 +573,7 @@
       "claim_id": "Q-003",
       "objective": "Improve literature grounding and confidence for Q-003.",
       "priority": "low",
-      "proposal_id": "LIT-0017",
+      "proposal_id": "LIT-0020",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -510,7 +602,7 @@
       "claim_id": "Q-004",
       "objective": "Reduce uncertainty for Q-004 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0018",
+      "proposal_id": "EXP-0021",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -538,7 +630,7 @@
       "claim_id": "Q-004",
       "objective": "Improve literature grounding and confidence for Q-004.",
       "priority": "low",
-      "proposal_id": "LIT-0019",
+      "proposal_id": "LIT-0022",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -567,7 +659,7 @@
       "claim_id": "Q-005",
       "objective": "Reduce uncertainty for Q-005 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0020",
+      "proposal_id": "EXP-0023",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -595,7 +687,7 @@
       "claim_id": "Q-005",
       "objective": "Improve literature grounding and confidence for Q-005.",
       "priority": "low",
-      "proposal_id": "LIT-0021",
+      "proposal_id": "LIT-0024",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -624,7 +716,7 @@
       "claim_id": "Q-006",
       "objective": "Reduce uncertainty for Q-006 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0022",
+      "proposal_id": "EXP-0025",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -652,7 +744,7 @@
       "claim_id": "Q-006",
       "objective": "Improve literature grounding and confidence for Q-006.",
       "priority": "low",
-      "proposal_id": "LIT-0023",
+      "proposal_id": "LIT-0026",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -681,7 +773,7 @@
       "claim_id": "Q-007",
       "objective": "Reduce uncertainty for Q-007 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0024",
+      "proposal_id": "EXP-0027",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -709,7 +801,7 @@
       "claim_id": "Q-007",
       "objective": "Improve literature grounding and confidence for Q-007.",
       "priority": "low",
-      "proposal_id": "LIT-0025",
+      "proposal_id": "LIT-0028",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -738,7 +830,7 @@
       "claim_id": "Q-008",
       "objective": "Reduce uncertainty for Q-008 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0026",
+      "proposal_id": "EXP-0029",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -766,7 +858,7 @@
       "claim_id": "Q-008",
       "objective": "Improve literature grounding and confidence for Q-008.",
       "priority": "low",
-      "proposal_id": "LIT-0027",
+      "proposal_id": "LIT-0030",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -795,7 +887,7 @@
       "claim_id": "Q-009",
       "objective": "Reduce uncertainty for Q-009 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0028",
+      "proposal_id": "EXP-0031",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -823,7 +915,7 @@
       "claim_id": "Q-009",
       "objective": "Improve literature grounding and confidence for Q-009.",
       "priority": "low",
-      "proposal_id": "LIT-0029",
+      "proposal_id": "LIT-0032",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -852,7 +944,7 @@
       "claim_id": "Q-010",
       "objective": "Reduce uncertainty for Q-010 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0030",
+      "proposal_id": "EXP-0033",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -880,7 +972,7 @@
       "claim_id": "Q-010",
       "objective": "Improve literature grounding and confidence for Q-010.",
       "priority": "low",
-      "proposal_id": "LIT-0031",
+      "proposal_id": "LIT-0034",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -909,7 +1001,7 @@
       "claim_id": "Q-013",
       "objective": "Reduce uncertainty for Q-013 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0032",
+      "proposal_id": "EXP-0035",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -937,7 +1029,7 @@
       "claim_id": "Q-013",
       "objective": "Improve literature grounding and confidence for Q-013.",
       "priority": "low",
-      "proposal_id": "LIT-0033",
+      "proposal_id": "LIT-0036",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -966,7 +1058,7 @@
       "claim_id": "Q-014",
       "objective": "Reduce uncertainty for Q-014 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0034",
+      "proposal_id": "EXP-0037",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -994,7 +1086,7 @@
       "claim_id": "Q-014",
       "objective": "Improve literature grounding and confidence for Q-014.",
       "priority": "low",
-      "proposal_id": "LIT-0035",
+      "proposal_id": "LIT-0038",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
