@@ -1,6 +1,6 @@
 # Experiment Dispatch Briefs
 
-Generated: `2026-02-13T14:45:02.477288Z`
+Generated: `2026-02-13T15:04:06.549584Z`
 
 Human-readable briefs for high-priority experimental proposals, including routing and capability-gate context.
 
@@ -10,9 +10,9 @@ Human-readable briefs for high-priority experimental proposals, including routin
 - Experiment type: `trajectory_integrity`
 - Objective: Reduce uncertainty for MECH-056 via targeted experiment runs.
 - Routing rationale:
-  - no capability declaration found for `ree-v1-minimal` (fail_closed=true)
+  - missing required capabilities on default repo: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`
   - capability gate fallback to `ree-experiments-lab`
-  - no capability declaration found yet for selected target repo `ree-experiments-lab`
+  - selected target repo still missing declared capabilities: `trajectory_integrity_channelized_bias`, `mech056_dispatch_metric_set`, `mech056_summary_escalation_trace`
 - What it tests:
   - Whether policy execution preserves trajectory ledger integrity under replay, intervention, and post-commit updates.
   - Whether explanation traces remain aligned with selected policy outcomes.
