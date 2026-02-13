@@ -13,6 +13,7 @@ This folder is the ingestion boundary between implementation experiments (e.g., 
 ## Folder Layout
 
 - `INTERFACE_CONTRACT.md`: strict format contract for producers.
+- `CROSS_REPO_SYNC_POLICY.md`: lockstep policy across producer repos.
 - `stop_criteria.v1.yaml`: versioned stop/fail criteria used by ingestion.
 - `decision_criteria.v1.yaml`: versioned decision thresholds for promotion/demotion recommendations.
 - `schemas/v1/`: JSON schema references for pack files.

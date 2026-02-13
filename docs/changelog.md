@@ -7,6 +7,20 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-13: Cross-Repo Contract Sync Policy
+
+### Overview
+
+Added a minimal lockstep policy so producer repos can stay aligned with REE_assembly experiment contract schemas and
+fail fast on drift.
+
+### What Changed
+
+- Added policy file:
+  - `evidence/experiments/CROSS_REPO_SYNC_POLICY.md`
+- Updated evidence README index:
+  - `evidence/experiments/README.md`
+
 ## 2026-02-13: JEPA Adapter Signals Schema + Ingestion Validation
 
 ### Overview
