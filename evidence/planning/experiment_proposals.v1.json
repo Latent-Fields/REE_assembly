@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-13T16:34:49.645885Z",
+  "generated_at_utc": "2026-02-13T19:12:52.846560Z",
   "items": [
     {
       "acceptance_checks": [
@@ -150,9 +150,83 @@
         "Result links to claim_ids_tested and updates matrix direction counts.",
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Run set covers required environment tiers: `toy`, `stress`.",
-        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`."
+        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
       "backlog_id": "EVB-0002",
+      "capability_gate": {
+        "default_repo": "ree-v1-minimal",
+        "default_repo_snapshot": {
+          "capabilities": {
+            "mech056_dispatch_metric_set": true,
+            "mech056_summary_escalation_trace": true,
+            "trajectory_integrity_channelized_bias": true
+          },
+          "experiment_type": "claim_probe_mech_054",
+          "repo": "ree-v1-minimal",
+          "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+          "timestamp_utc": "2026-02-13T12:00:00Z"
+        },
+        "fail_closed": true,
+        "missing_capabilities": [],
+        "required_capabilities": []
+      },
+      "claim_id": "MECH-057",
+      "experiment_brief": {
+        "failure_modes": [],
+        "latest_run": {},
+        "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_mech_057/experiment.md",
+        "what_it_tests": []
+      },
+      "objective": "Reduce uncertainty for MECH-057 via targeted experiment runs.",
+      "priority": "high",
+      "proposal_id": "EXP-0003",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "environment_required_fields": [
+          "env_id",
+          "env_version",
+          "dynamics_hash",
+          "reward_hash",
+          "observation_hash",
+          "config_hash",
+          "tier"
+        ],
+        "environment_required_tiers": [
+          "toy",
+          "stress"
+        ],
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "environment"
+        ],
+        "metrics": "stable numeric keys only",
+        "required_metric_keys": [
+          "environment_shortcut_leakage_events",
+          "environment_unobservable_critical_state_rate"
+        ],
+        "summary": "include scenario and interpretation"
+      },
+      "routing_rationale": [],
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_057",
+      "target_repo": "ree-v1-minimal",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_experimental_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts.",
+        "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+        "Run set covers required environment tiers: `toy`, `stress`.",
+        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`, `environment_controllability_score`, `environment_transition_consistency_rate`."
+      ],
+      "backlog_id": "EVB-0003",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -191,7 +265,7 @@
       },
       "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0003",
+      "proposal_id": "EXP-0004",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -239,11 +313,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0002",
+      "backlog_id": "EVB-0003",
       "claim_id": "Q-011",
       "objective": "Improve literature grounding and confidence for Q-011.",
       "priority": "high",
-      "proposal_id": "LIT-0004",
+      "proposal_id": "LIT-0005",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -265,15 +339,88 @@
     },
     {
       "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts.",
+        "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
+        "Run set covers required environment tiers: `toy`, `stress`.",
+        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
+      ],
+      "backlog_id": "EVB-0004",
+      "capability_gate": {
+        "default_repo": "ree-v1-minimal",
+        "default_repo_snapshot": {
+          "capabilities": {
+            "mech056_dispatch_metric_set": true,
+            "mech056_summary_escalation_trace": true,
+            "trajectory_integrity_channelized_bias": true
+          },
+          "experiment_type": "claim_probe_mech_054",
+          "repo": "ree-v1-minimal",
+          "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
+          "timestamp_utc": "2026-02-13T12:00:00Z"
+        },
+        "fail_closed": true,
+        "missing_capabilities": [],
+        "required_capabilities": []
+      },
+      "claim_id": "Q-012",
+      "experiment_brief": {
+        "failure_modes": [],
+        "latest_run": {},
+        "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md",
+        "what_it_tests": []
+      },
+      "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
+      "priority": "high",
+      "proposal_id": "EXP-0006",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "environment_required_fields": [
+          "env_id",
+          "env_version",
+          "dynamics_hash",
+          "reward_hash",
+          "observation_hash",
+          "config_hash",
+          "tier"
+        ],
+        "environment_required_tiers": [
+          "toy",
+          "stress"
+        ],
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "environment"
+        ],
+        "metrics": "stable numeric keys only",
+        "required_metric_keys": [
+          "environment_shortcut_leakage_events",
+          "environment_unobservable_critical_state_rate"
+        ],
+        "summary": "include scenario and interpretation"
+      },
+      "routing_rationale": [],
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_012",
+      "target_repo": "ree-v1-minimal",
+      "why_now": [
+        "missing_experimental_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0003",
+      "backlog_id": "EVB-0005",
       "claim_id": "MECH-053",
       "objective": "Improve literature grounding and confidence for MECH-053.",
       "priority": "medium",
-      "proposal_id": "LIT-0005",
+      "proposal_id": "LIT-0007",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -298,11 +445,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0004",
+      "backlog_id": "EVB-0006",
       "claim_id": "MECH-054",
       "objective": "Improve literature grounding and confidence for MECH-054.",
       "priority": "medium",
-      "proposal_id": "LIT-0006",
+      "proposal_id": "LIT-0008",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -329,7 +476,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0007",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -356,7 +503,7 @@
       },
       "objective": "Reduce uncertainty for Q-001 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0007",
+      "proposal_id": "EXP-0009",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -395,11 +542,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0007",
       "claim_id": "Q-001",
       "objective": "Improve literature grounding and confidence for Q-001.",
       "priority": "low",
-      "proposal_id": "LIT-0008",
+      "proposal_id": "LIT-0010",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -426,7 +573,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0008",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -453,7 +600,7 @@
       },
       "objective": "Reduce uncertainty for Q-002 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0009",
+      "proposal_id": "EXP-0011",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -492,11 +639,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0008",
       "claim_id": "Q-002",
       "objective": "Improve literature grounding and confidence for Q-002.",
       "priority": "low",
-      "proposal_id": "LIT-0010",
+      "proposal_id": "LIT-0012",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -523,7 +670,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0009",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -550,7 +697,7 @@
       },
       "objective": "Reduce uncertainty for Q-003 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0011",
+      "proposal_id": "EXP-0013",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -589,11 +736,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0009",
       "claim_id": "Q-003",
       "objective": "Improve literature grounding and confidence for Q-003.",
       "priority": "low",
-      "proposal_id": "LIT-0012",
+      "proposal_id": "LIT-0014",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -620,7 +767,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0010",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -647,7 +794,7 @@
       },
       "objective": "Reduce uncertainty for Q-004 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0013",
+      "proposal_id": "EXP-0015",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -686,11 +833,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0010",
       "claim_id": "Q-004",
       "objective": "Improve literature grounding and confidence for Q-004.",
       "priority": "low",
-      "proposal_id": "LIT-0014",
+      "proposal_id": "LIT-0016",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -717,7 +864,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0009",
+      "backlog_id": "EVB-0011",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -744,7 +891,7 @@
       },
       "objective": "Reduce uncertainty for Q-005 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0015",
+      "proposal_id": "EXP-0017",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -783,11 +930,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0009",
+      "backlog_id": "EVB-0011",
       "claim_id": "Q-005",
       "objective": "Improve literature grounding and confidence for Q-005.",
       "priority": "low",
-      "proposal_id": "LIT-0016",
+      "proposal_id": "LIT-0018",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -814,7 +961,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0010",
+      "backlog_id": "EVB-0012",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -841,7 +988,7 @@
       },
       "objective": "Reduce uncertainty for Q-006 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0017",
+      "proposal_id": "EXP-0019",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -880,11 +1027,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0010",
+      "backlog_id": "EVB-0012",
       "claim_id": "Q-006",
       "objective": "Improve literature grounding and confidence for Q-006.",
       "priority": "low",
-      "proposal_id": "LIT-0018",
+      "proposal_id": "LIT-0020",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -911,7 +1058,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0013",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -938,7 +1085,7 @@
       },
       "objective": "Reduce uncertainty for Q-007 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0019",
+      "proposal_id": "EXP-0021",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -977,11 +1124,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0013",
       "claim_id": "Q-007",
       "objective": "Improve literature grounding and confidence for Q-007.",
       "priority": "low",
-      "proposal_id": "LIT-0020",
+      "proposal_id": "LIT-0022",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1008,7 +1155,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0014",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -1035,7 +1182,7 @@
       },
       "objective": "Reduce uncertainty for Q-008 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0021",
+      "proposal_id": "EXP-0023",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -1074,11 +1221,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0014",
       "claim_id": "Q-008",
       "objective": "Improve literature grounding and confidence for Q-008.",
       "priority": "low",
-      "proposal_id": "LIT-0022",
+      "proposal_id": "LIT-0024",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1105,7 +1252,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0013",
+      "backlog_id": "EVB-0015",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -1132,7 +1279,7 @@
       },
       "objective": "Reduce uncertainty for Q-009 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0023",
+      "proposal_id": "EXP-0025",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -1171,11 +1318,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0013",
+      "backlog_id": "EVB-0015",
       "claim_id": "Q-009",
       "objective": "Improve literature grounding and confidence for Q-009.",
       "priority": "low",
-      "proposal_id": "LIT-0024",
+      "proposal_id": "LIT-0026",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1202,7 +1349,7 @@
         "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
         "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
       ],
-      "backlog_id": "EVB-0014",
+      "backlog_id": "EVB-0016",
       "capability_gate": {
         "default_repo": "ree-v1-minimal",
         "default_repo_snapshot": {
@@ -1229,7 +1376,7 @@
       },
       "objective": "Reduce uncertainty for Q-010 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0025",
+      "proposal_id": "EXP-0027",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "environment_required_fields": [
@@ -1268,106 +1415,9 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0014",
+      "backlog_id": "EVB-0016",
       "claim_id": "Q-010",
       "objective": "Improve literature grounding and confidence for Q-010.",
-      "priority": "low",
-      "proposal_id": "LIT-0026",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale"
-        ],
-        "summary": "include caveats and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_q_010",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "no_evidence_for_open_question"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts.",
-        "manifest `environment` block includes required fields: `env_id`, `env_version`, `dynamics_hash`, `reward_hash`, `observation_hash`, `config_hash`, `tier`.",
-        "Required metric keys are present in metrics.json for each run: `environment_shortcut_leakage_events`, `environment_unobservable_critical_state_rate`."
-      ],
-      "backlog_id": "EVB-0015",
-      "capability_gate": {
-        "default_repo": "ree-v1-minimal",
-        "default_repo_snapshot": {
-          "capabilities": {
-            "mech056_dispatch_metric_set": true,
-            "mech056_summary_escalation_trace": true,
-            "trajectory_integrity_channelized_bias": true
-          },
-          "experiment_type": "claim_probe_mech_054",
-          "repo": "ree-v1-minimal",
-          "run_id": "2026-02-13T120000Z_claim-probe-mech-054_seed29",
-          "timestamp_utc": "2026-02-13T12:00:00Z"
-        },
-        "fail_closed": true,
-        "missing_capabilities": [],
-        "required_capabilities": []
-      },
-      "claim_id": "Q-012",
-      "experiment_brief": {
-        "failure_modes": [],
-        "latest_run": {},
-        "profile_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md",
-        "what_it_tests": []
-      },
-      "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
-      "priority": "low",
-      "proposal_id": "EXP-0027",
-      "proposal_type": "experimental",
-      "required_pack_contract": {
-        "environment_required_fields": [
-          "env_id",
-          "env_version",
-          "dynamics_hash",
-          "reward_hash",
-          "observation_hash",
-          "config_hash",
-          "tier"
-        ],
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "environment"
-        ],
-        "metrics": "stable numeric keys only",
-        "required_metric_keys": [
-          "environment_shortcut_leakage_events",
-          "environment_unobservable_critical_state_rate"
-        ],
-        "summary": "include scenario and interpretation"
-      },
-      "routing_rationale": [],
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_q_012",
-      "target_repo": "ree-v1-minimal",
-      "why_now": [
-        "no_evidence_for_open_question"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Confidence explicitly justified in confidence_rationale.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
-      ],
-      "backlog_id": "EVB-0015",
-      "claim_id": "Q-012",
-      "objective": "Improve literature grounding and confidence for Q-012.",
       "priority": "low",
       "proposal_id": "LIT-0028",
       "proposal_type": "literature_review",
@@ -1382,7 +1432,7 @@
         "summary": "include caveats and mapping limits"
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_q_012",
+      "suggested_literature_type": "targeted_review_q_010",
       "target_repo": "REE_assembly",
       "why_now": [
         "no_evidence_for_open_question"

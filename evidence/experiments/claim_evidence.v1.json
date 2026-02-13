@@ -1,7 +1,7 @@
 {
   "claims": {
     "MECH-053": {
-      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.925, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.924, lit_conf=0.72",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -13,12 +13,12 @@
         "exp:simulation": 4,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.925,
+      "experimental_confidence": 0.924,
       "fail_runs": 0,
       "latest_run_id": "2026-02-13_habenula_da_signed_pe_review",
       "latest_timestamp_utc": "2026-02-13T12:30:00Z",
       "literature_confidence": 0.72,
-      "overall_confidence": 0.874,
+      "overall_confidence": 0.873,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -138,7 +138,7 @@
       }
     },
     "MECH-054": {
-      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.925, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.924, lit_conf=0.72",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -150,12 +150,12 @@
         "exp:simulation": 4,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.925,
+      "experimental_confidence": 0.924,
       "fail_runs": 0,
       "latest_run_id": "2026-02-13_habenula_da_signed_pe_review",
       "latest_timestamp_utc": "2026-02-13T12:30:00Z",
       "literature_confidence": 0.72,
-      "overall_confidence": 0.874,
+      "overall_confidence": 0.873,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -275,82 +275,29 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.474, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.474, lit_conf=0.825",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 6,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 6,
+      "entries_total": 8,
       "evidence_class_counts": {
         "exp:exploratory_simulation": 2,
         "exp:simulation": 2,
-        "lit:neuroscience_review": 1,
+        "lit:computational_neuroscience_theory": 1,
+        "lit:neuroscience_review": 2,
         "lit:rl_safety_constraint_optimization": 1
       },
       "experimental_confidence": 0.474,
       "fail_runs": 2,
-      "latest_run_id": "2026-02-13_mech056_extinction_gating",
-      "latest_timestamp_utc": "2026-02-13T12:20:00Z",
-      "literature_confidence": 0.72,
-      "overall_confidence": 0.572,
+      "latest_run_id": "2026-02-13_mech056_active_sampling_reorientation",
+      "latest_timestamp_utc": "2026-02-13T18:45:00Z",
+      "literature_confidence": 0.825,
+      "overall_confidence": 0.649,
       "pass_runs": 2,
       "recent_entries": [
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "environment": {
-            "env_id": "legacy-trajectory-integrity-trajectory-integrity-stress",
-            "env_version": "legacy-222222222222",
-            "status": "missing_environment_metrics",
-            "tier": "stress"
-          },
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [
-            "ledger_editing",
-            "explanation_policy_divergence",
-            "stop:ledger_edit_detected_count>0",
-            "stop:explanation_policy_divergence_rate>0.05",
-            "stop:domination_lock_in_events>0"
-          ],
-          "run_id": "2026-02-13T070000Z_dummy-fail",
-          "source_repo": {
-            "branch": "main",
-            "commit": "2222222222222222222222222222222222222222",
-            "name": "ree-v1-minimal"
-          },
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-13T07:00:00Z"
-        },
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "environment": {
-            "env_id": "legacy-trajectory-integrity-proposal-exp-0003",
-            "env_version": "legacy-d39241ebcad5",
-            "status": "missing_environment_metrics",
-            "tier": "legacy"
-          },
-          "evidence_class": "exp:exploratory_simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [],
-          "run_id": "exp_0003_20260213T090639857099Z",
-          "source_repo": {
-            "branch": "codex/conflict-adjudication-runs",
-            "commit": "d39241ebcad5b4906f2ff1b3f8caf5ce3605e323",
-            "name": "ree-experiments-lab"
-          },
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T09:06:39.857099Z"
-        },
         {
           "claim_id": "MECH-056",
           "confidence": 0.75,
@@ -400,16 +347,96 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-13T12:20:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.68,
+          "confidence_rationale": "Provides a formal account of uncertainty-driven neuromodulatory precision control consistent with channelized precision routing; mapping to residue-specific routing remains indirect.",
+          "evidence_class": "lit:computational_neuroscience_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech056_precision_uncertainty_neuromodulation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:40:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.64,
+          "confidence_rationale": "Review-level synthesis supports action-level information gathering and reorientation as a distinct control channel; does not directly define residue channels.",
+          "evidence_class": "lit:neuroscience_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech056_active_sampling_reorientation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:45:00Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 4,
+        "literature": 4
+      }
+    },
+    "MECH-057": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.73",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:computational_neuroscience_theory": 1,
+        "lit:neuroscience_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_mech056_active_sampling_reorientation",
+      "latest_timestamp_utc": "2026-02-13T18:45:00Z",
+      "literature_confidence": 0.73,
+      "overall_confidence": 0.73,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.68,
+          "confidence_rationale": "Provides a formal account of uncertainty-driven neuromodulatory precision control consistent with channelized precision routing; mapping to residue-specific routing remains indirect.",
+          "evidence_class": "lit:computational_neuroscience_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech056_precision_uncertainty_neuromodulation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:40:00Z"
+        },
+        {
+          "claim_id": "MECH-057",
+          "confidence": 0.64,
+          "confidence_rationale": "Review-level synthesis supports action-level information gathering and reorientation as a distinct control channel; does not directly define residue channels.",
+          "evidence_class": "lit:neuroscience_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_mech056_active_sampling_reorientation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:45:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
         "literature": 2
       }
     },
     "Q-011": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.474, lit_conf=0.698",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.474, lit_conf=0.697",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -427,8 +454,8 @@
       "fail_runs": 2,
       "latest_run_id": "2026-02-13_q011_controllability_passivity",
       "latest_timestamp_utc": "2026-02-13T12:21:00Z",
-      "literature_confidence": 0.698,
-      "overall_confidence": 0.564,
+      "literature_confidence": 0.697,
+      "overall_confidence": 0.563,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -540,6 +567,73 @@
       "source_counts": {
         "experimental": 4,
         "literature": 2
+      }
+    },
+    "Q-012": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.797",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:network_neuroscience_experiment": 1,
+        "lit:systems_neuroscience_experiment": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-13_q012_dmn_principal_gradient",
+      "latest_timestamp_utc": "2026-02-13T19:00:00Z",
+      "literature_confidence": 0.797,
+      "overall_confidence": 0.797,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct electrophysiological evidence for cortical temporal hierarchy supports a slower control context layer distinct from fast sensorimotor layers.",
+          "evidence_class": "lit:systems_neuroscience_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_012",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_lit_0028_q012_intrinsic_timescale_hierarchy",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:50:00Z"
+        },
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.69,
+          "confidence_rationale": "Shows higher-order cortex accumulates information over longer windows than sensory cortex, consistent with a slow context state layer in REE.",
+          "evidence_class": "lit:systems_neuroscience_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_012",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_q012_long_timescale_accumulation",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T18:55:00Z"
+        },
+        {
+          "claim_id": "Q-012",
+          "confidence": 0.67,
+          "confidence_rationale": "Macro-scale gradient from unimodal sensory to transmodal DMN supports a representational-depth boundary compatible with z_theta to z_delta separation.",
+          "evidence_class": "lit:network_neuroscience_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_012",
+          "failure_signatures": [],
+          "run_id": "2026-02-13_q012_dmn_principal_gradient",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-13T19:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     }
   },
@@ -1017,9 +1111,100 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-02-13T12:30:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.68,
+      "confidence_rationale": "Provides a formal account of uncertainty-driven neuromodulatory precision control consistent with channelized precision routing; mapping to residue-specific routing remains indirect.",
+      "evidence_class": "lit:computational_neuroscience_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech056_precision_uncertainty_neuromodulation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:40:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.68,
+      "confidence_rationale": "Provides a formal account of uncertainty-driven neuromodulatory precision control consistent with channelized precision routing; mapping to residue-specific routing remains indirect.",
+      "evidence_class": "lit:computational_neuroscience_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech056_precision_uncertainty_neuromodulation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:40:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.64,
+      "confidence_rationale": "Review-level synthesis supports action-level information gathering and reorientation as a distinct control channel; does not directly define residue channels.",
+      "evidence_class": "lit:neuroscience_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech056_active_sampling_reorientation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:45:00Z"
+    },
+    {
+      "claim_id": "MECH-057",
+      "confidence": 0.64,
+      "confidence_rationale": "Review-level synthesis supports action-level information gathering and reorientation as a distinct control channel; does not directly define residue channels.",
+      "evidence_class": "lit:neuroscience_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_mech056_active_sampling_reorientation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:45:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct electrophysiological evidence for cortical temporal hierarchy supports a slower control context layer distinct from fast sensorimotor layers.",
+      "evidence_class": "lit:systems_neuroscience_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_012",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_lit_0028_q012_intrinsic_timescale_hierarchy",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:50:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.69,
+      "confidence_rationale": "Shows higher-order cortex accumulates information over longer windows than sensory cortex, consistent with a slow context state layer in REE.",
+      "evidence_class": "lit:systems_neuroscience_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_012",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_q012_long_timescale_accumulation",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T18:55:00Z"
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence": 0.67,
+      "confidence_rationale": "Macro-scale gradient from unimodal sensory to transmodal DMN supports a representational-depth boundary compatible with z_theta to z_delta separation.",
+      "evidence_class": "lit:network_neuroscience_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_012",
+      "failure_signatures": [],
+      "run_id": "2026-02-13_q012_dmn_principal_gradient",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-13T19:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-13T16:34:49.645885Z",
+  "generated_at_utc": "2026-02-13T19:12:52.846560Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

@@ -1,25 +1,25 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-13T16:34:49.645885Z`
+Generated: `2026-02-13T19:12:52.846560Z`
 
 ## Conflict Queue
 
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest |
 |---|---|---|---|---|---|
-| `MECH-056` | directional | 4 | 2 | 0.667 | `2026-02-13_mech056_extinction_gating` |
+| `MECH-056` | directional | 6 | 2 | 0.5 | `2026-02-13_mech056_active_sampling_reorientation` |
 | `Q-011` | directional, mixed_evidence | 3 | 2 | 0.8 | `2026-02-13_q011_controllability_passivity` |
 
 ## Conflict Details
 
 ### MECH-056
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=2, conflict_ratio=0.667, overall_confidence=0.572
+- Evidence breakdown: supports=6, weakens=2, conflict_ratio=0.5, overall_confidence=0.649
 - Recent entries:
-  - `2026-02-13T07:00:00Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-13T09:06:39.857099Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
   - `2026-02-13T09:06:39.905363Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
   - `2026-02-13T10:00:00Z` `literature` `targeted_review_mech_056` direction=`supports` confidence=0.62
   - `2026-02-13T12:20:00Z` `literature` `targeted_review_mech_056` direction=`supports` confidence=0.66
+  - `2026-02-13T18:40:00Z` `literature` `targeted_review_mech_056` direction=`supports` confidence=0.68
+  - `2026-02-13T18:45:00Z` `literature` `targeted_review_mech_056` direction=`supports` confidence=0.64
 - Recurring failure signatures:
   - `ledger_editing` (1)
   - `explanation_policy_divergence` (1)
@@ -44,7 +44,7 @@ Generated: `2026-02-13T16:34:49.645885Z`
 
 ### Q-011
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.564
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.563
 - Recent entries:
   - `2026-02-13T07:00:00Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
   - `2026-02-13T09:06:39.951474Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75

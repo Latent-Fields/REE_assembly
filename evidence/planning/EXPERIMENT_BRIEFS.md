@@ -1,6 +1,6 @@
 # Experiment Dispatch Briefs
 
-Generated: `2026-02-13T16:34:49.645885Z`
+Generated: `2026-02-13T19:12:52.846560Z`
 
 Human-readable briefs for high-priority experimental proposals, including routing and capability-gate context.
 
@@ -48,7 +48,28 @@ Human-readable briefs for high-priority experimental proposals, including routin
 - Latest observed run context: `exp_0005_20260213T090639999186Z` status=`FAIL` timestamp=`2026-02-13T09:06:39.999186Z` source_repo=`ree-experiments-lab`
 - Experiment profile: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md`
 
-## EXP-0003 — Q-011
+## EXP-0003 — MECH-057
+
+- Target repo: `ree-v1-minimal`
+- Experiment type: `claim_probe_mech_057`
+- Objective: Reduce uncertainty for MECH-057 via targeted experiment runs.
+- Required metric keys:
+  - `environment_shortcut_leakage_events`
+  - `environment_unobservable_critical_state_rate`
+- Required environment fields:
+  - `env_id`
+  - `env_version`
+  - `dynamics_hash`
+  - `reward_hash`
+  - `observation_hash`
+  - `config_hash`
+  - `tier`
+- Required environment tiers across run set:
+  - `toy`
+  - `stress`
+- Experiment profile: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_mech_057/experiment.md`
+
+## EXP-0004 — Q-011
 
 - Target repo: `ree-experiments-lab`
 - Experiment type: `trajectory_integrity`
@@ -80,3 +101,24 @@ Human-readable briefs for high-priority experimental proposals, including routin
   - `stress`
 - Latest observed run context: `exp_0005_20260213T090639999186Z` status=`FAIL` timestamp=`2026-02-13T09:06:39.999186Z` source_repo=`ree-experiments-lab`
 - Experiment profile: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/experiment.md`
+
+## EXP-0006 — Q-012
+
+- Target repo: `ree-v1-minimal`
+- Experiment type: `claim_probe_q_012`
+- Objective: Reduce uncertainty for Q-012 via targeted experiment runs.
+- Required metric keys:
+  - `environment_shortcut_leakage_events`
+  - `environment_unobservable_critical_state_rate`
+- Required environment fields:
+  - `env_id`
+  - `env_version`
+  - `dynamics_hash`
+  - `reward_hash`
+  - `observation_hash`
+  - `config_hash`
+  - `tier`
+- Required environment tiers across run set:
+  - `toy`
+  - `stress`
+- Experiment profile: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_probe_q_012/experiment.md`
