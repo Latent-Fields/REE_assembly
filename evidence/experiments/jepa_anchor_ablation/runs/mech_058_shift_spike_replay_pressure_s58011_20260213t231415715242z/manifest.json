@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "adapter_signals_path": "jepa_adapter_signals.v1.json",
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "jepa_anchor_ablation",
+  "failure_signatures": [
+    "mech058:anchor_separation_collapse",
+    "mech058:ema_drift_under_shift",
+    "mech058:latent_cluster_collapse"
+  ],
+  "run_id": "mech_058_shift_spike_replay_pressure_s58011_20260213t231415715242z",
+  "runner": {
+    "name": "ad-hoc-stress-generator",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "abrupt non-stationary regime shift with replay skew pressure",
+    "config_hash": "a5a1f15640544c80352a5574e26b2dbcc00a21414bb98c7465458d29de0d3389",
+    "env_id": "mech_058_stress_dispatch_env",
+    "env_tier": "stress",
+    "env_version": "2026.02.13",
+    "name": "shift_spike_replay_pressure",
+    "seed": 58011
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "uncommitted",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-13T23:14:15.716219Z"
+}

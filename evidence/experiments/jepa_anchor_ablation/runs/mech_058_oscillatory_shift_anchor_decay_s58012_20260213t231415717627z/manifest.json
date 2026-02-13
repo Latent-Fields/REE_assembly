@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "adapter_signals_path": "jepa_adapter_signals.v1.json",
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "jepa_anchor_ablation",
+  "failure_signatures": [
+    "mech058:anchor_separation_collapse",
+    "mech058:ema_drift_under_shift",
+    "mech058:latent_cluster_collapse"
+  ],
+  "run_id": "mech_058_oscillatory_shift_anchor_decay_s58012_20260213t231415717627z",
+  "runner": {
+    "name": "ad-hoc-stress-generator",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "oscillatory drift with stale replay windows stressing EMA anchor",
+    "config_hash": "e7d87297f8a08f60f26caa3a9f13987ae7a46dac88b9629925fc670c80adf707",
+    "env_id": "mech_058_stress_dispatch_env",
+    "env_tier": "stress",
+    "env_version": "2026.02.13",
+    "name": "oscillatory_shift_anchor_decay",
+    "seed": 58012
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "uncommitted",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-13T23:14:15.717818Z"
+}

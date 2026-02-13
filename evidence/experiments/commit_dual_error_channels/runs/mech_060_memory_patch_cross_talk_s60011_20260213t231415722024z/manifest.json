@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "commit_dual_error_channels",
+  "failure_signatures": [
+    "mech060:precommit_channel_contamination",
+    "mech060:postcommit_channel_contamination",
+    "mech060:attribution_reliability_break"
+  ],
+  "run_id": "mech_060_memory_patch_cross_talk_s60011_20260213t231415722024z",
+  "runner": {
+    "name": "ad-hoc-stress-generator",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "delayed memory patch leakage inducing cross-channel attribution drift",
+    "config_hash": "540bd869cda8c69f937980c1018e61ccddb59c3b77872a48274096e246c0d491",
+    "env_id": "mech_060_stress_dispatch_env",
+    "env_tier": "stress",
+    "env_version": "2026.02.13",
+    "name": "memory_patch_cross_talk",
+    "replication_harness_variant": "independent_harness_a",
+    "seed": 60011
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "uncommitted",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-13T23:14:15.722141Z"
+}

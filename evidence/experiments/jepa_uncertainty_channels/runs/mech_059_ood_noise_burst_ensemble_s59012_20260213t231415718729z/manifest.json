@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "adapter_signals_path": "jepa_adapter_signals.v1.json",
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "jepa_uncertainty_channels",
+  "failure_signatures": [
+    "mech059:calibration_slope_break",
+    "mech059:uncertainty_metric_gaming_detected",
+    "mech059:abstention_reliability_collapse"
+  ],
+  "run_id": "mech_059_ood_noise_burst_ensemble_s59012_20260213t231415718729z",
+  "runner": {
+    "name": "ad-hoc-stress-generator",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "OOD perturbation bursts with high ambiguity under ensemble uncertainty",
+    "config_hash": "e471069338c7760d66d2df5da9e1bc326994be327d0713a5634ddecae83b9695",
+    "env_id": "mech_059_stress_dispatch_env",
+    "env_tier": "stress",
+    "env_version": "2026.02.13",
+    "name": "ood_noise_burst_ensemble",
+    "seed": 59012
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "uncommitted",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-13T23:14:15.718916Z"
+}

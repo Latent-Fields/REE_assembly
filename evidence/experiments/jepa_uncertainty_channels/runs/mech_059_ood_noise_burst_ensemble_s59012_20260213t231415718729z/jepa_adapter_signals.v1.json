@@ -1,0 +1,31 @@
+{
+  "adapter": {
+    "name": "jepa_signal_adapter",
+    "version": "0.1.0"
+  },
+  "experiment_type": "jepa_uncertainty_channels",
+  "notes": "Stress-suite adapter signals for MECH-059",
+  "pe_latent_fields": [
+    "mean",
+    "p95",
+    "by_mask"
+  ],
+  "run_id": "mech_059_ood_noise_burst_ensemble_s59012_20260213t231415718729z",
+  "schema_version": "jepa_adapter_signals/v1",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.031761,
+    "latent_prediction_error_p95": 0.108372,
+    "latent_residual_coverage_rate": 0.825726,
+    "latent_uncertainty_calibration_error": 0.025916,
+    "precision_input_completeness_rate": 0.908058
+  },
+  "stream_presence": {
+    "pe_latent": true,
+    "trace_action_token": true,
+    "trace_context_mask_ids": true,
+    "uncertainty_latent": true,
+    "z_hat": true,
+    "z_t": true
+  },
+  "uncertainty_estimator": "dispersion"
+}
