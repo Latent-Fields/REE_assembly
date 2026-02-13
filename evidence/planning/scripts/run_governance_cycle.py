@@ -162,8 +162,6 @@ def _build_agenda(
     backlog = _load_json_file(repo_root / "evidence/planning/evidence_backlog.v1.json", warnings)
     proposals = _load_json_file(repo_root / "evidence/planning/experiment_proposals.v1.json", warnings)
     claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
-    env_status = _load_json_file(repo_root / "evidence/experiments/environment_status.v1.json", warnings)
-    trace_audit = _load_json_file(repo_root / "evidence/planning/architecture_trace_audit.v1.json", warnings)
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
     recommendations = _read_recommendations(
@@ -180,33 +178,8 @@ def _build_agenda(
 
     proposal_items = proposals.get("items", []) if isinstance(proposals, dict) else []
     high_proposals = [item for item in proposal_items if item.get("priority") == "high"]
-    high_experimental_proposals = [
-        item for item in high_proposals if item.get("proposal_type") == "experimental"
-    ]
 
     unlinked_runs = claim_matrix.get("unlinked_runs", []) if isinstance(claim_matrix, dict) else []
-    env_coverage = env_status.get("coverage", {}) if isinstance(env_status, dict) else {}
-    env_drift = env_status.get("drift", {}) if isinstance(env_status, dict) else {}
-    env_drift_alerts = env_drift.get("alerts", []) if isinstance(env_drift, dict) else []
-    trace_summary = trace_audit.get("summary", {}) if isinstance(trace_audit, dict) else {}
-    trace_issues = trace_audit.get("issues", {}) if isinstance(trace_audit, dict) else {}
-    trace_coverage = trace_audit.get("trace", {}) if isinstance(trace_audit, dict) else {}
-
-    trace_priority_items: list[dict[str, Any]] = []
-    for key in (
-        "unowned_edges",
-        "trace_breaks",
-        "open_sections_unowned",
-        "dependency_link_gaps",
-    ):
-        bucket = trace_issues.get(key, []) if isinstance(trace_issues, dict) else []
-        if not isinstance(bucket, list):
-            continue
-        for item in bucket[:10]:
-            if isinstance(item, dict):
-                trace_priority_items.append({"category": key, **item})
-        if len(trace_priority_items) >= 20:
-            break
 
     agenda = {
         "schema_version": "governance_agenda/v1",
@@ -227,25 +200,6 @@ def _build_agenda(
             "proposal_items": len(proposal_items),
             "proposal_high_priority": len(high_proposals),
             "unlinked_evidence_runs": len(unlinked_runs),
-            "environment_declared_runs": int(env_coverage.get("environment_declared_runs", 0))
-            if isinstance(env_coverage, dict)
-            else 0,
-            "environment_qualified_runs": int(env_coverage.get("qualified_runs", 0))
-            if isinstance(env_coverage, dict)
-            else 0,
-            "environment_drift_alerts": len(env_drift_alerts),
-            "trace_issue_count": int(trace_summary.get("issue_count", 0))
-            if isinstance(trace_summary, dict)
-            else 0,
-            "trace_unowned_edges": int(trace_summary.get("unowned_edges", 0))
-            if isinstance(trace_summary, dict)
-            else 0,
-            "trace_breaks": int(trace_summary.get("trace_breaks", 0))
-            if isinstance(trace_summary, dict)
-            else 0,
-            "trace_suggested_stubs": int(trace_summary.get("suggested_claim_stubs", 0))
-            if isinstance(trace_summary, dict)
-            else 0,
         },
         "warnings": warnings,
         "checkpoints": {
@@ -265,27 +219,6 @@ def _build_agenda(
                 "prompt": "Approve export of high-priority proposals to execution repos.",
                 "high_priority_proposals": high_proposals,
                 "by_target_repo": _proposal_repo_summary(proposal_items),
-            },
-            "experiment_understanding": {
-                "prompt": "Review experiment briefs to confirm what is being tested, why, and how results should be interpreted.",
-                "brief_path": "evidence/planning/EXPERIMENT_BRIEFS.md",
-                "high_priority_experimental_proposals": high_experimental_proposals,
-            },
-            "environment_qualification": {
-                "prompt": "Review environment qualification coverage and drift alerts before accepting dispatch conclusions.",
-                "status_path": "evidence/experiments/environment_status.v1.json",
-                "drift_report_path": "evidence/experiments/environment_drift.md",
-                "coverage": env_coverage,
-                "drift_alerts": env_drift_alerts[:20],
-            },
-            "architecture_trace": {
-                "prompt": "Review sensory-to-commit traces for missing dependencies, unowned interfaces, and claim stub suggestions.",
-                "audit_path": "evidence/planning/architecture_trace_audit.v1.json",
-                "report_path": "evidence/planning/ARCHITECTURE_TRACE_AUDIT.md",
-                "stub_suggestions_path": "evidence/planning/claim_stub_suggestions.v1.json",
-                "summary": trace_summary,
-                "coverage": trace_coverage,
-                "priority_items": trace_priority_items,
             },
             "maintenance": {
                 "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
@@ -341,31 +274,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"5. Experiment Understanding: {len(high_experimental_proposals)} high-priority experimental brief(s) "
-        + "in `evidence/planning/EXPERIMENT_BRIEFS.md`."
-    )
-    lines.append(
-        "6. Environment Qualification: "
-        + f"declared_runs={env_coverage.get('environment_declared_runs', 0)}, "
-        + f"qualified_runs={env_coverage.get('qualified_runs', 0)}, "
-        + f"drift_alerts={len(env_drift_alerts)} "
-        + "(`evidence/experiments/environment_drift.md`)."
-    )
-    lines.append(
-        "7. Architecture Trace: "
-        + f"issues={trace_summary.get('issue_count', 0)}, "
-        + f"unowned_edges={trace_summary.get('unowned_edges', 0)}, "
-        + f"trace_breaks={trace_summary.get('trace_breaks', 0)}, "
-        + f"suggested_stubs={trace_summary.get('suggested_claim_stubs', 0)} "
-        + "(`evidence/planning/ARCHITECTURE_TRACE_AUDIT.md`)."
-    )
-    if trace_priority_items:
-        for item in trace_priority_items[:10]:
-            issue_id = str(item.get("issue_id", ""))
-            category = str(item.get("category", ""))
-            lines.append(f"- `{issue_id}` [{category}]")
-    lines.append(
-        f"8. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"5. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     if warnings:
         for warning in warnings:
@@ -394,11 +303,6 @@ def main() -> None:
         "--skip-evidence-build",
         action="store_true",
         help="Skip evidence ingestion/index build step.",
-    )
-    parser.add_argument(
-        "--skip-trace-audit",
-        action="store_true",
-        help="Skip architecture trace audit step.",
     )
     parser.add_argument(
         "--strict-thoughts",
@@ -454,16 +358,6 @@ def main() -> None:
                 [
                     str(sys.executable),
                     "evidence/experiments/scripts/build_experiment_indexes.py",
-                ],
-            )
-        )
-    if not args.skip_trace_audit:
-        plan.append(
-            (
-                "architecture_trace_audit",
-                [
-                    str(sys.executable),
-                    "evidence/planning/scripts/architecture_trace_audit.py",
                 ],
             )
         )

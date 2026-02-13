@@ -154,30 +154,6 @@ Telemetry requirement (MECH-042-aligned):
 regulatory‑stack framing (MECH‑001) are clarified. The current separation rules are **invariant‑compatible scaffolding**,
 not a final calibration protocol.
 
-<a id="mech-057"></a>
-## Residue-Gated Precision Escalation by L-space Depth (MECH-057)
-
-**Claim Type:** mechanism_hypothesis  
-**Scope:** Depth-specific escalation rules linking residue pressure to precision routing  
-**Depends On:** ARC-004, ARC-005, MECH-054, MECH-056, INV-009, INV-014  
-**Status:** candidate  
-**Claim ID:** MECH-057
-
-Residue-aware precision control should follow a strict depth policy:
-
-- `z_beta` / `z_theta` (affordance + rollout): **primary** residue pressure via trajectory weighting, rollout pruning,
-  and commitment gating.
-- `z_gamma` (sensory latent): **secondary**, bounded bias limited to reflexive sampling/reorientation under uncertainty.
-- `z_delta` (regime context): **tertiary**, slow and consolidation-oriented adjustments only.
-
-The `z_gamma` channel is explicitly non-semantic: it can change *what to sample next* but cannot overwrite sensory
-content. This preserves perceptual corrigibility while allowing attention-like response to harm/surprise signals.
-
-Operational guardrails:
-- block direct semantic-write paths into `z_gamma` from residue channels,
-- require trajectory-channel insufficiency before `z_gamma` escalation,
-- record escalation order in telemetry for auditability.
-
 ## Astrocyte-aware regulatory stack
 
 **Note:** The above framing treats monoamines as direct control knobs. A more neuroscience-informed perspective reinterprets monoamines as **broadcast meta-regulatory signals** that bias a slower astrocytic regulatory substrate, which then modulates precision/gain/plasticity with spatial and temporal lags.
@@ -202,7 +178,6 @@ None noted in preserved sources.
 - MECH-054
 - MECH-035
 - MECH-055
-- MECH-057
 
 ## References / Source Fragments
 

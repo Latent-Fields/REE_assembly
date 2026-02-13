@@ -15,8 +15,6 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `exp_0005_20260213T090639999186Z` at `2026-02-13T09:06:39.999186Z` signatures: none
-- `exp_0003_20260213T090639905363Z` at `2026-02-13T09:06:39.905363Z` signatures: none
 - `2026-02-13T070000Z_dummy-fail` at `2026-02-13T07:00:00Z` signatures: ledger_editing, explanation_policy_divergence, stop:ledger_edit_detected_count>0, stop:explanation_policy_divergence_rate>0.05, stop:domination_lock_in_events>0
 
 Recurring signatures:

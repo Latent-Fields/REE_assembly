@@ -66,7 +66,6 @@ Run this check implicitly after any change:
 5. Any contradiction triggers or updates a file in `docs/conflicts/` with linked claim IDs.
 6. Preserved sources are cited; no prior wording is deleted or overwritten.
 7. Subsystem map coverage is updated in `docs/claims/subsystem_map.yaml` for new or moved claim locations.
-8. Interface wiring updates are reflected in `docs/architecture/interfaces.v1.yaml` and claim ownership in `docs/claims/interface_ownership.v1.yaml`.
 
 ## THOUGHT INTAKE PROMPT (verbatim)
 

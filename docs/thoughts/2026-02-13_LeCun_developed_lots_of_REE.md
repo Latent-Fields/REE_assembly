@@ -1,4 +1,6 @@
-JEPA ↔ REE Convergence Thought
+# JEPA to REE Convergence Thought
+
+Status: unprocessed
 
 Latent Predictive Geometry and Viability-Constrained Control
 
@@ -194,7 +196,7 @@ This is testable through embodied implementation.
 
 ⸻
 
-possible next steps
+## Possible next steps
 	•	Drafting a formal alignment glossary (JEPA ↔ REE mapping).
 	•	Producing a hybrid architecture diagram spec for the repo.
 	•	Writing this as a short paper for external publication.

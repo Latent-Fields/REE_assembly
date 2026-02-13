@@ -1,17 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-02-13T19:12:52.748751Z`
+Generated: `2026-02-13T19:52:17.475193Z`
 
 | metric | count |
 |---|---|
-| total thought files | 32 |
-| processed | 32 |
-| unprocessed | 0 |
+| total thought files | 31 |
+| processed | 30 |
+| unprocessed | 1 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-13` `2026-02-13_LeCun_developed_lots_of_REE.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
@@ -47,7 +47,5 @@ Generated: `2026-02-13T19:12:52.748751Z`
 - `2026-02-11_some_control_plane_maths_hypotheses.md` (2 link(s) in `Processed in`)
 - `2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md` (2 link(s) in `Processed in`)
 - `2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md` (1 link(s) in `Processed in`)
-- `2026-02-13_residue_precision_depth_policy.md` (6 link(s) in `Processed in`)
-- `2026-02-13_social_projection_selflike_rollout.md` (4 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

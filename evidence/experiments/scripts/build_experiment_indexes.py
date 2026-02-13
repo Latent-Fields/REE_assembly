@@ -10,8 +10,6 @@ It regenerates:
   evidence/experiments/claim_evidence.v1.json
   evidence/experiments/conflicts.md
   evidence/experiments/promotion_demotion_recommendations.md
-  evidence/experiments/environment_status.v1.json
-  evidence/experiments/environment_drift.md
   evidence/decisions/decision_state.v1.json
   evidence/planning/evidence_backlog.v1.json
   evidence/planning/experiment_proposals.v1.json
@@ -66,20 +64,6 @@ class RunRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "simulation"
     evidence_direction: str = "unknown"
-    source_repo_name: str = "unknown"
-    source_repo_commit: str = ""
-    source_repo_branch: str = ""
-    scenario_name: str = ""
-    scenario_seed: str = ""
-    scenario_config_hash: str = ""
-    environment: dict[str, str] = field(default_factory=dict)
-    environment_declared: bool = False
-    environment_status: str = "unknown"
-    environment_missing_fields: list[str] = field(default_factory=list)
-    environment_missing_metrics: list[str] = field(default_factory=list)
-    environment_fail_hits: list[StopHit] = field(default_factory=list)
-    producer_capabilities: dict[str, bool] = field(default_factory=dict)
-    producer_capabilities_declared: bool = False
 
 
 @dataclass
@@ -261,56 +245,6 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
         claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
         evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
         evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
-        source_repo = manifest.get("source_repo", {})
-        source_repo_name = "unknown"
-        source_repo_commit = ""
-        source_repo_branch = ""
-        if isinstance(source_repo, dict):
-            source_repo_name = str(source_repo.get("name", "unknown")).strip() or "unknown"
-            source_repo_commit = str(source_repo.get("commit", "")).strip()
-            source_repo_branch = str(source_repo.get("branch", "")).strip()
-
-        scenario = manifest.get("scenario", {})
-        scenario_name = ""
-        scenario_seed = ""
-        scenario_config_hash = ""
-        if isinstance(scenario, dict):
-            scenario_name = str(scenario.get("name", "")).strip()
-            seed_raw = scenario.get("seed", "")
-            scenario_seed = str(seed_raw).strip()
-            scenario_config_hash = str(scenario.get("config_hash", "")).strip()
-
-        has_environment_field = isinstance(manifest, dict) and "environment" in manifest
-        environment_raw = manifest.get("environment") if isinstance(manifest, dict) else None
-        environment_declared = bool(has_environment_field and isinstance(environment_raw, dict))
-        environment: dict[str, str] = {}
-        if environment_declared and isinstance(environment_raw, dict):
-            for key, value in environment_raw.items():
-                env_key = str(key).strip()
-                if not env_key:
-                    continue
-                environment[env_key] = str(value).strip()
-
-        has_capability_field = isinstance(manifest, dict) and "producer_capabilities" in manifest
-        capabilities_raw = manifest.get("producer_capabilities") if isinstance(manifest, dict) else None
-        producer_capabilities: dict[str, bool] = {}
-        producer_capabilities_declared = False
-        if has_capability_field and isinstance(capabilities_raw, dict):
-            producer_capabilities_declared = True
-            for key, value in capabilities_raw.items():
-                cap_key = str(key).strip()
-                if not cap_key:
-                    continue
-                if isinstance(value, bool):
-                    producer_capabilities[cap_key] = value
-                elif isinstance(value, (int, float)):
-                    producer_capabilities[cap_key] = bool(value)
-        elif has_capability_field and isinstance(capabilities_raw, list):
-            producer_capabilities_declared = True
-            for value in capabilities_raw:
-                cap_key = str(value).strip()
-                if cap_key:
-                    producer_capabilities[cap_key] = True
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -327,16 +261,6 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
-                source_repo_name=source_repo_name,
-                source_repo_commit=source_repo_commit,
-                source_repo_branch=source_repo_branch,
-                scenario_name=scenario_name,
-                scenario_seed=scenario_seed,
-                scenario_config_hash=scenario_config_hash,
-                environment=environment,
-                environment_declared=environment_declared,
-                producer_capabilities=producer_capabilities,
-                producer_capabilities_declared=producer_capabilities_declared,
             )
         )
 
@@ -552,31 +476,6 @@ def _build_design_implications(runs: list[RunRecord], lookback_failures: int) ->
     return "\n".join(lines), todo_items
 
 
-def _environment_label(run: RunRecord) -> str:
-    env_id = run.environment.get("env_id", "").strip()
-    env_version = run.environment.get("env_version", "").strip()
-    tier = run.environment.get("tier", "").strip()
-
-    parts: list[str] = []
-    if env_id:
-        parts.append(env_id)
-    if env_version:
-        parts.append(f"v={env_version}")
-    if tier:
-        parts.append(f"tier={tier}")
-    if not parts:
-        parts.append("unknown")
-
-    status = run.environment_status
-    status_token = {
-        "environment_qualified": "qualified",
-        "missing_environment_metadata": "missing-metadata",
-        "missing_environment_metrics": "missing-metrics",
-        "environment_unqualified": "unqualified",
-    }.get(status, status)
-    return f"{' '.join(parts)} ({status_token})"
-
-
 def _write_experiment_index(
     experiment_dir: Path,
     experiment_type: str,
@@ -591,7 +490,6 @@ def _write_experiment_index(
     lines.append("")
     lines.append("- Experiment profile: `experiment.md`")
     lines.append("- Stop criteria: `../../stop_criteria.v1.yaml`")
-    lines.append("- Environment qualification: `../../environment_qualification.v1.yaml`")
     lines.append("")
 
     if not runs:
@@ -600,10 +498,10 @@ def _write_experiment_index(
         lines.append("## Runs")
         lines.append("")
         lines.append(
-            "| run_id | timestamp_utc | status | environment | key metrics | deltas vs previous | stop-criteria hits | summary |"
+            "| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | summary |"
         )
         lines.append(
-            "|---|---|---|---|---|---|---|---|"
+            "|---|---|---|---|---|---|---|"
         )
 
         for run in reversed(runs):
@@ -631,7 +529,6 @@ def _write_experiment_index(
                         f"`{run.run_id}`",
                         f"`{run.timestamp_raw}`",
                         status,
-                        _environment_label(run),
                         "<br>".join(key_values) if key_values else "-",
                         "<br>".join(delta_values) if delta_values else "-",
                         stop_hits,
@@ -685,21 +582,12 @@ def _write_top_level_index(
     lines.append("")
     lines.append("## Cross-Evidence Outputs")
     lines.append("")
-    all_runs = [run for runs in by_experiment.values() for run in runs]
-    qualified_runs = sum(1 for run in all_runs if run.environment_status == "environment_qualified")
-    declared_env_runs = sum(1 for run in all_runs if run.environment_declared)
     lines.append("- TODO queue: `TODOs.md`")
     lines.append("- Stop criteria config: `stop_criteria.v1.yaml`")
     lines.append("- Decision criteria config: `decision_criteria.v1.yaml`")
-    lines.append("- Environment qualification config: `environment_qualification.v1.yaml`")
     lines.append("- Claim-evidence matrix: `claim_evidence.v1.json`")
     lines.append("- Conflicts report: `conflicts.md`")
     lines.append("- Promotion/demotion recommendations: `promotion_demotion_recommendations.md`")
-    lines.append("- Environment status: `environment_status.v1.json`")
-    lines.append("- Environment drift report: `environment_drift.md`")
-    lines.append(
-        f"- Environment-qualified runs: {qualified_runs}/{len(all_runs)} (metadata declared in {declared_env_runs}/{len(all_runs)} runs)"
-    )
     lines.append(f"- Literature index: `../literature/INDEX.md` ({sum(len(v) for v in by_literature.values())} entries)")
     lines.append(f"- Persistent decision log: `../decisions/decision_log.v1.jsonl` ({decision_log_count} entries)")
     lines.append("- Decision state snapshot: `../decisions/decision_state.v1.json`")
@@ -747,221 +635,6 @@ def _write_literature_index(
     lines.append("This index is generated by `evidence/experiments/scripts/build_experiment_indexes.py`.")
     literature_root.mkdir(parents=True, exist_ok=True)
     (literature_root / "INDEX.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
-
-
-def _environment_series_id(run: RunRecord) -> str:
-    env = run.environment
-    env_id = env.get("env_id", "unknown") or "unknown"
-    env_version = env.get("env_version", "unknown") or "unknown"
-    dynamics_hash = env.get("dynamics_hash", "unknown") or "unknown"
-    reward_hash = env.get("reward_hash", "unknown") or "unknown"
-    observation_hash = env.get("observation_hash", "unknown") or "unknown"
-    config_hash = env.get("config_hash", run.scenario_config_hash or "unknown") or "unknown"
-    scenario_name = run.scenario_name or "unknown_scenario"
-    return (
-        f"{run.experiment_type}|{scenario_name}|{env_id}|{env_version}|"
-        f"{dynamics_hash}|{reward_hash}|{observation_hash}|{config_hash}"
-    )
-
-
-def _pick_drift_metrics(
-    experiment_type: str,
-    runs: list[RunRecord],
-    environment_qualification: dict[str, Any],
-) -> list[str]:
-    drift_cfg = environment_qualification.get("drift", {})
-    metric_cfg = {}
-    if isinstance(drift_cfg, dict):
-        metric_cfg = drift_cfg.get("key_metrics_per_experiment", {})
-    if isinstance(metric_cfg, dict) and isinstance(metric_cfg.get(experiment_type), list):
-        metrics = _string_list(metric_cfg.get(experiment_type, []))
-        if metrics:
-            return metrics
-
-    counter: Counter[str] = Counter()
-    for run in runs:
-        counter.update(run.metrics.keys())
-    return [metric for metric, _ in counter.most_common(6)]
-
-
-def _write_environment_outputs(
-    base_dir: Path,
-    by_experiment: dict[str, list[RunRecord]],
-    environment_qualification: dict[str, Any],
-    generated_at: str,
-) -> dict[str, Any]:
-    all_runs = [run for runs in by_experiment.values() for run in runs]
-    all_runs.sort(key=lambda run: (run.timestamp, run.experiment_type, run.run_id))
-
-    status_counts: Counter[str] = Counter(run.environment_status for run in all_runs)
-    declared_env_runs = sum(1 for run in all_runs if run.environment_declared)
-    required_fields = _string_list(
-        environment_qualification.get("required_manifest_environment_fields", [])
-    )
-    drift_cfg = environment_qualification.get("drift", {})
-    min_runs = int(drift_cfg.get("min_runs_per_series", 2)) if isinstance(drift_cfg, dict) else 2
-    rel_threshold = (
-        float(drift_cfg.get("warn_if_relative_change_gt", 0.25))
-        if isinstance(drift_cfg, dict)
-        else 0.25
-    )
-    warn_if_direction_flip = bool(
-        drift_cfg.get("warn_if_direction_flip", True) if isinstance(drift_cfg, dict) else True
-    )
-
-    per_experiment: dict[str, dict[str, Any]] = {}
-    series_map: dict[str, list[RunRecord]] = defaultdict(list)
-    for experiment_type, runs in by_experiment.items():
-        counts: Counter[str] = Counter(run.environment_status for run in runs)
-        per_experiment[experiment_type] = {
-            "runs_total": len(runs),
-            "environment_declared": sum(1 for run in runs if run.environment_declared),
-            "status_counts": dict(counts),
-        }
-        for run in runs:
-            series_map[_environment_series_id(run)].append(run)
-
-    series_items: list[dict[str, Any]] = []
-    drift_alerts: list[dict[str, Any]] = []
-    for series_id in sorted(series_map.keys()):
-        series_runs = sorted(series_map[series_id], key=lambda run: (run.timestamp, run.run_id))
-        if len(series_runs) < max(2, min_runs):
-            continue
-
-        baseline = series_runs[0]
-        latest = series_runs[-1]
-        experiment_type = latest.experiment_type
-        metrics = _pick_drift_metrics(experiment_type, series_runs, environment_qualification)
-
-        metric_deltas: list[dict[str, Any]] = []
-        alerts: list[str] = []
-        for metric in metrics:
-            base = baseline.metrics.get(metric)
-            current = latest.metrics.get(metric)
-            if base is None or current is None:
-                continue
-            delta = current - base
-            denom = max(abs(base), 1e-9)
-            relative_change = abs(delta) / denom
-            metric_deltas.append(
-                {
-                    "metric": metric,
-                    "baseline": round(float(base), 6),
-                    "latest": round(float(current), 6),
-                    "delta": round(float(delta), 6),
-                    "relative_change": round(float(relative_change), 6),
-                }
-            )
-            if relative_change > rel_threshold:
-                alerts.append(
-                    f"metric_drift:{metric} relative_change={_fmt_number(relative_change)}>{_fmt_number(rel_threshold)}"
-                )
-
-        baseline_dir = baseline.evidence_direction
-        latest_dir = latest.evidence_direction
-        if (
-            warn_if_direction_flip
-            and baseline_dir in {"supports", "weakens"}
-            and latest_dir in {"supports", "weakens"}
-            and baseline_dir != latest_dir
-        ):
-            alerts.append(f"direction_flip:{baseline_dir}->{latest_dir}")
-
-        repo_commits = sorted(
-            {
-                run.source_repo_commit
-                for run in series_runs
-                if run.source_repo_commit
-            }
-        )
-        commit_changed = len(repo_commits) >= 2
-
-        item = {
-            "series_id": series_id,
-            "experiment_type": experiment_type,
-            "run_count": len(series_runs),
-            "first_run_id": baseline.run_id,
-            "first_timestamp_utc": baseline.timestamp_raw,
-            "latest_run_id": latest.run_id,
-            "latest_timestamp_utc": latest.timestamp_raw,
-            "scenario_name": latest.scenario_name,
-            "env": {
-                "env_id": latest.environment.get("env_id", ""),
-                "env_version": latest.environment.get("env_version", ""),
-                "tier": latest.environment.get("tier", ""),
-                "dynamics_hash": latest.environment.get("dynamics_hash", ""),
-                "reward_hash": latest.environment.get("reward_hash", ""),
-                "observation_hash": latest.environment.get("observation_hash", ""),
-                "config_hash": latest.environment.get("config_hash", ""),
-            },
-            "repo_commits": repo_commits,
-            "commit_changed": commit_changed,
-            "metric_deltas": metric_deltas,
-            "alerts": alerts,
-        }
-        series_items.append(item)
-        if alerts:
-            drift_alerts.append(item)
-
-    status_doc = {
-        "schema_version": "environment_status/v1",
-        "generated_at_utc": generated_at,
-        "required_manifest_environment_fields": required_fields,
-        "coverage": {
-            "total_runs": len(all_runs),
-            "environment_declared_runs": declared_env_runs,
-            "status_counts": dict(status_counts),
-            "qualified_runs": int(status_counts.get("environment_qualified", 0)),
-            "missing_metadata_runs": int(status_counts.get("missing_environment_metadata", 0)),
-            "missing_metric_runs": int(status_counts.get("missing_environment_metrics", 0)),
-            "unqualified_runs": int(status_counts.get("environment_unqualified", 0)),
-        },
-        "experiments": per_experiment,
-        "drift": {
-            "series_count": len(series_items),
-            "alert_count": len(drift_alerts),
-            "warn_if_relative_change_gt": rel_threshold,
-            "warn_if_direction_flip": warn_if_direction_flip,
-            "alerts": drift_alerts,
-            "series": series_items,
-        },
-    }
-    (base_dir / "environment_status.v1.json").write_text(
-        json.dumps(status_doc, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
-
-    lines: list[str] = []
-    lines.append("# Environment Drift Report")
-    lines.append("")
-    lines.append(f"Generated: `{generated_at}`")
-    lines.append("")
-    lines.append("## Coverage")
-    lines.append("")
-    lines.append(f"- Total runs: {len(all_runs)}")
-    lines.append(f"- Runs with `environment` metadata: {declared_env_runs}")
-    lines.append(f"- Environment-qualified runs: {status_counts.get('environment_qualified', 0)}")
-    lines.append(f"- Missing environment metadata: {status_counts.get('missing_environment_metadata', 0)}")
-    lines.append(f"- Missing environment metrics: {status_counts.get('missing_environment_metrics', 0)}")
-    lines.append(f"- Environment-unqualified (metric violations): {status_counts.get('environment_unqualified', 0)}")
-    lines.append("")
-    lines.append("## Drift Alerts")
-    lines.append("")
-
-    if not drift_alerts:
-        lines.append("No environment drift alerts detected for current series thresholds.")
-    else:
-        for alert in drift_alerts[:30]:
-            lines.append(
-                f"- `{alert['experiment_type']}` series `{alert['series_id']}` "
-                + f"runs={alert['run_count']} alerts={', '.join(alert['alerts'])}"
-            )
-
-    (base_dir / "environment_drift.md").write_text(
-        "\n".join(lines).rstrip() + "\n",
-        encoding="utf-8",
-    )
-    return status_doc
 
 
 def _experimental_entry_confidence(run: RunRecord, inferred_direction: str) -> tuple[float, str]:
@@ -1124,17 +797,6 @@ def _write_claim_evidence_matrix(
                 "confidence": entry_confidence,
                 "confidence_rationale": entry_confidence_rationale,
                 "failure_signatures": run.failure_signatures,
-                "source_repo": {
-                    "name": run.source_repo_name,
-                    "commit": run.source_repo_commit,
-                    "branch": run.source_repo_branch,
-                },
-                "environment": {
-                    "env_id": run.environment.get("env_id", ""),
-                    "env_version": run.environment.get("env_version", ""),
-                    "tier": run.environment.get("tier", ""),
-                    "status": run.environment_status,
-                },
             }
             matrix["entries"].append(entry)
             claim_to_entries[claim_id].append(entry)
@@ -1336,275 +998,6 @@ def _load_decision_criteria(path: Path) -> dict[str, Any]:
     return data
 
 
-def _default_environment_qualification() -> dict[str, Any]:
-    return {
-        "schema_version": "environment_qualification/v1",
-        "required_manifest_environment_fields": [
-            "env_id",
-            "env_version",
-            "dynamics_hash",
-            "reward_hash",
-            "observation_hash",
-            "config_hash",
-            "tier",
-        ],
-        "qualification_metrics": {
-            "default": [
-                {
-                    "metric": "environment_shortcut_leakage_events",
-                    "op": "==",
-                    "threshold": 0,
-                },
-                {
-                    "metric": "environment_unobservable_critical_state_rate",
-                    "op": "<=",
-                    "threshold": 0.05,
-                },
-            ],
-            "experiments": {},
-        },
-        "drift": {
-            "min_runs_per_series": 2,
-            "warn_if_relative_change_gt": 0.25,
-            "warn_if_direction_flip": True,
-            "key_metrics_per_experiment": {},
-        },
-        "dispatch": {
-            "required_manifest_fields": [
-                "environment",
-            ],
-            "required_environment_fields": [
-                "env_id",
-                "env_version",
-                "dynamics_hash",
-                "reward_hash",
-                "observation_hash",
-                "config_hash",
-                "tier",
-            ],
-            "required_environment_tiers_by_priority": {
-                "high": ["toy", "stress"],
-                "medium": ["toy"],
-                "low": [],
-            },
-        },
-    }
-
-
-def _load_environment_qualification(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return _default_environment_qualification()
-    data = _load_json_compatible_yaml(path, "environment qualification")
-    defaults = _default_environment_qualification()
-
-    for key in ("required_manifest_environment_fields", "qualification_metrics", "drift", "dispatch"):
-        if key not in data:
-            data[key] = defaults[key]
-    return data
-
-
-def _environment_metric_rules_for_experiment(
-    environment_qualification: dict[str, Any], experiment_type: str
-) -> list[dict[str, Any]]:
-    metrics_cfg = environment_qualification.get("qualification_metrics", {})
-    default_rules = []
-    experiment_rules = []
-    if isinstance(metrics_cfg, dict):
-        if isinstance(metrics_cfg.get("default"), list):
-            default_rules = metrics_cfg.get("default", [])
-        experiments = metrics_cfg.get("experiments", {})
-        if isinstance(experiments, dict) and isinstance(experiments.get(experiment_type), list):
-            experiment_rules = experiments.get(experiment_type, [])
-    merged: list[dict[str, Any]] = []
-    for rule in [*default_rules, *experiment_rules]:
-        if isinstance(rule, dict):
-            merged.append(rule)
-    return merged
-
-
-def _evaluate_environment_quality(
-    runs: list[RunRecord], environment_qualification: dict[str, Any], experiment_type: str
-) -> None:
-    required_fields = _string_list(
-        environment_qualification.get("required_manifest_environment_fields", [])
-    )
-    rules = _environment_metric_rules_for_experiment(environment_qualification, experiment_type)
-
-    for run in runs:
-        missing_fields: list[str] = []
-        if not run.environment_declared:
-            missing_fields = list(required_fields)
-        else:
-            for field_name in required_fields:
-                value = run.environment.get(field_name, "")
-                if not str(value).strip():
-                    missing_fields.append(field_name)
-
-        missing_metrics: list[str] = []
-        metric_fail_hits: list[StopHit] = []
-        for rule in rules:
-            metric = rule.get("metric")
-            op = rule.get("op")
-            threshold = rule.get("threshold")
-            if not isinstance(metric, str) or not isinstance(op, str):
-                continue
-            if not isinstance(threshold, (int, float)):
-                continue
-
-            value = run.metrics.get(metric)
-            if value is None:
-                missing_metrics.append(metric)
-                continue
-            if _compare(value, op, float(threshold)):
-                metric_fail_hits.append(
-                    StopHit(
-                        metric=metric,
-                        op=op,
-                        threshold=float(threshold),
-                        value=float(value),
-                    )
-                )
-
-        run.environment_missing_fields = missing_fields
-        run.environment_missing_metrics = sorted(set(missing_metrics))
-        run.environment_fail_hits = metric_fail_hits
-
-        if missing_fields:
-            run.environment_status = "missing_environment_metadata"
-        elif metric_fail_hits:
-            run.environment_status = "environment_unqualified"
-        elif missing_metrics:
-            run.environment_status = "missing_environment_metrics"
-        else:
-            run.environment_status = "environment_qualified"
-
-def _default_conflict_adjudication() -> dict[str, Any]:
-    return {
-        "schema_version": "conflict_adjudication/v1",
-        "default": {
-            "resolution_actions": [
-                "Run one targeted adjudication experiment with narrower stop criteria.",
-                "Add one replication run with seed sweep to reduce variance ambiguity.",
-                "If disagreement persists, split claim scope into separable subclaims.",
-            ],
-            "adjudication_criteria": [],
-            "evidence_targets": [],
-            "dispatch_requirements": {
-                "manifest_fields": [],
-                "metrics_required_keys": [],
-                "required_capabilities": [],
-                "summary_must_include": [],
-                "extra_acceptance_checks": [],
-            },
-        },
-        "claims": {},
-    }
-
-
-def _string_list(values: Any) -> list[str]:
-    if not isinstance(values, list):
-        return []
-    cleaned: list[str] = []
-    for value in values:
-        text = str(value).strip()
-        if text:
-            cleaned.append(text)
-    return cleaned
-
-
-def _merge_unique(base: list[str], extra: list[str]) -> list[str]:
-    merged: list[str] = []
-    for token in [*base, *extra]:
-        text = str(token).strip()
-        if text and text not in merged:
-            merged.append(text)
-    return merged
-
-
-def _load_conflict_adjudication(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return _default_conflict_adjudication()
-
-    data = _load_json_compatible_yaml(path, "conflict adjudication")
-    defaults = _default_conflict_adjudication()
-    if "default" not in data:
-        data["default"] = defaults["default"]
-    if "claims" not in data:
-        data["claims"] = {}
-    if "schema_version" not in data:
-        data["schema_version"] = defaults["schema_version"]
-    return data
-
-
-def _conflict_policy_for_claim(conflict_adjudication: dict[str, Any], claim_id: str) -> dict[str, Any]:
-    default_policy = (
-        conflict_adjudication.get("default", {})
-        if isinstance(conflict_adjudication.get("default"), dict)
-        else {}
-    )
-    claims = conflict_adjudication.get("claims", {})
-    claim_policy = {}
-    if isinstance(claims, dict) and isinstance(claims.get(claim_id), dict):
-        claim_policy = claims.get(claim_id, {})
-
-    resolution_actions = _string_list(
-        claim_policy.get("resolution_actions", default_policy.get("resolution_actions", []))
-    )
-    if not resolution_actions:
-        resolution_actions = _string_list(
-            _default_conflict_adjudication()["default"]["resolution_actions"]
-        )
-
-    adjudication_criteria = _string_list(
-        claim_policy.get("adjudication_criteria", default_policy.get("adjudication_criteria", []))
-    )
-    evidence_targets = _string_list(
-        claim_policy.get("evidence_targets", default_policy.get("evidence_targets", []))
-    )
-    summary = str(claim_policy.get("summary", "")).strip()
-
-    default_dispatch = (
-        default_policy.get("dispatch_requirements", {})
-        if isinstance(default_policy.get("dispatch_requirements"), dict)
-        else {}
-    )
-    claim_dispatch = (
-        claim_policy.get("dispatch_requirements", {})
-        if isinstance(claim_policy.get("dispatch_requirements"), dict)
-        else {}
-    )
-    dispatch_requirements = {
-        "manifest_fields": _merge_unique(
-            _string_list(default_dispatch.get("manifest_fields", [])),
-            _string_list(claim_dispatch.get("manifest_fields", [])),
-        ),
-        "metrics_required_keys": _merge_unique(
-            _string_list(default_dispatch.get("metrics_required_keys", [])),
-            _string_list(claim_dispatch.get("metrics_required_keys", [])),
-        ),
-        "required_capabilities": _merge_unique(
-            _string_list(default_dispatch.get("required_capabilities", [])),
-            _string_list(claim_dispatch.get("required_capabilities", [])),
-        ),
-        "summary_must_include": _merge_unique(
-            _string_list(default_dispatch.get("summary_must_include", [])),
-            _string_list(claim_dispatch.get("summary_must_include", [])),
-        ),
-        "extra_acceptance_checks": _merge_unique(
-            _string_list(default_dispatch.get("extra_acceptance_checks", [])),
-            _string_list(claim_dispatch.get("extra_acceptance_checks", [])),
-        ),
-    }
-
-    return {
-        "summary": summary,
-        "resolution_actions": resolution_actions,
-        "adjudication_criteria": adjudication_criteria,
-        "evidence_targets": evidence_targets,
-        "dispatch_requirements": dispatch_requirements,
-    }
-
-
 def _default_planning_criteria() -> dict[str, Any]:
     return {
         "schema_version": "planning_criteria/v1",
@@ -1619,9 +1012,6 @@ def _default_planning_criteria() -> dict[str, Any]:
             "exploratory_repo": "ree-experiments-lab",
             "literature_owner": "REE_assembly",
         },
-        "capability_gating": {
-            "fail_closed": True,
-        },
     }
 
 
@@ -1634,8 +1024,6 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
         data["thresholds"] = defaults["thresholds"]
     if "repo_routing" not in data:
         data["repo_routing"] = defaults["repo_routing"]
-    if "capability_gating" not in data:
-        data["capability_gating"] = defaults["capability_gating"]
     return data
 
 
@@ -2043,7 +1431,6 @@ def _write_conflicts_report(
     matrix: dict[str, Any],
     conflicts: list[dict[str, Any]],
     generated_at: str,
-    conflict_adjudication: dict[str, Any],
 ) -> None:
     lines: list[str] = []
     lines.append("# Evidence Conflict Report")
@@ -2092,7 +1479,6 @@ def _write_conflicts_report(
             claim_entries = entries_by_claim.get(claim_id, [])
             claim_entries.sort(key=lambda e: (e["timestamp_utc"], e["run_id"]))
             recent = claim_entries[-5:]
-            policy = _conflict_policy_for_claim(conflict_adjudication, claim_id)
 
             signature_counts: Counter[str] = Counter()
             for entry in claim_entries:
@@ -2118,22 +1504,10 @@ def _write_conflicts_report(
                 for sig, count in signature_counts.most_common(5):
                     lines.append(f"  - `{sig}` ({count})")
 
-            if policy["summary"]:
-                lines.append(f"- Claim-specific framing: {policy['summary']}")
-
             lines.append("- Suggested resolution actions:")
-            for action in policy["resolution_actions"]:
-                lines.append(f"  - {action}")
-
-            if policy["adjudication_criteria"]:
-                lines.append("- Adjudication criteria:")
-                for criterion in policy["adjudication_criteria"]:
-                    lines.append(f"  - {criterion}")
-
-            if policy["evidence_targets"]:
-                lines.append("- Evidence targets:")
-                for target in policy["evidence_targets"]:
-                    lines.append(f"  - {target}")
+            lines.append("  - Run one targeted adjudication experiment with narrower stop criteria.")
+            lines.append("  - Add one replication run with seed sweep to reduce variance ambiguity.")
+            lines.append("  - If disagreement persists, split claim scope into separable subclaims.")
             lines.append("")
 
     (base_dir / "conflicts.md").write_text(
@@ -2185,102 +1559,13 @@ def _suggest_literature_type(claim_id: str, matrix: dict[str, Any]) -> str:
     return f"targeted_review_{claim_id.lower().replace('-', '_')}"
 
 
-def _extract_markdown_section_items(path: Path, heading: str) -> list[str]:
-    if not path.exists():
-        return []
-    lines = path.read_text(encoding="utf-8").splitlines()
-    start = None
-    for idx, line in enumerate(lines):
-        if line.strip() == heading:
-            start = idx + 1
-            break
-    if start is None:
-        return []
-
-    items: list[str] = []
-    for line in lines[start:]:
-        if line.startswith("## "):
-            break
-        stripped = line.strip()
-        if stripped.startswith("- "):
-            token = stripped[2:].strip()
-            if token:
-                items.append(token)
-    return items
-
-
-def _experiment_profile(experiments_root: Path, experiment_type: str) -> dict[str, Any]:
-    profile_path = experiments_root / experiment_type / "experiment.md"
-    what_it_tests = _extract_markdown_section_items(profile_path, "## What it tests")
-    failure_modes = _extract_markdown_section_items(profile_path, "## Failure modes it detects")
-    return {
-        "profile_path": profile_path,
-        "what_it_tests": what_it_tests,
-        "failure_modes": failure_modes,
-    }
-
-
-def _repo_capability_snapshots(by_experiment: dict[str, list[RunRecord]]) -> dict[str, dict[str, Any]]:
-    runs = [run for exp_runs in by_experiment.values() for run in exp_runs]
-    runs.sort(key=lambda r: (r.timestamp, r.experiment_type, r.run_id))
-    snapshots: dict[str, dict[str, Any]] = {}
-
-    for run in runs:
-        repo = run.source_repo_name.strip() or "unknown"
-        if repo == "unknown":
-            continue
-        if not run.producer_capabilities_declared:
-            continue
-        snapshots[repo] = {
-            "repo": repo,
-            "timestamp_utc": run.timestamp_raw,
-            "run_id": run.run_id,
-            "experiment_type": run.experiment_type,
-            "capabilities": dict(run.producer_capabilities),
-        }
-    return snapshots
-
-
-def _environment_dispatch_requirements(
-    environment_qualification: dict[str, Any], experiment_type: str, priority: str
-) -> dict[str, list[str]]:
-    dispatch_cfg = (
-        environment_qualification.get("dispatch", {})
-        if isinstance(environment_qualification.get("dispatch"), dict)
-        else {}
-    )
-    required_manifest_fields = _string_list(dispatch_cfg.get("required_manifest_fields", []))
-    required_environment_fields = _string_list(dispatch_cfg.get("required_environment_fields", []))
-
-    tiers_cfg = dispatch_cfg.get("required_environment_tiers_by_priority", {})
-    required_tiers: list[str] = []
-    if isinstance(tiers_cfg, dict):
-        required_tiers = _string_list(tiers_cfg.get(priority, []))
-
-    required_metric_keys: list[str] = []
-    for rule in _environment_metric_rules_for_experiment(environment_qualification, experiment_type):
-        metric = rule.get("metric")
-        if isinstance(metric, str) and metric not in required_metric_keys:
-            required_metric_keys.append(metric)
-
-    return {
-        "required_manifest_fields": required_manifest_fields,
-        "required_environment_fields": required_environment_fields,
-        "required_environment_tiers": required_tiers,
-        "required_environment_metrics": required_metric_keys,
-    }
-
-
 def _write_planning_outputs(
     planning_root: Path,
-    by_experiment: dict[str, list[RunRecord]],
     matrix: dict[str, Any],
     claim_registry: dict[str, dict[str, str]],
     conflicts: list[dict[str, Any]],
     latest_decisions: dict[str, DecisionLogEntry],
     planning_criteria: dict[str, Any],
-    conflict_adjudication: dict[str, Any],
-    environment_qualification: dict[str, Any],
     generated_at: str,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     thresholds = planning_criteria.get("thresholds", {})
@@ -2294,11 +1579,6 @@ def _write_planning_outputs(
     default_exp_repo = str(routing.get("experimental_default_repo", "ree-v1-minimal"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
     literature_owner = str(routing.get("literature_owner", "REE_assembly"))
-    capability_cfg = planning_criteria.get("capability_gating", {})
-    fail_closed = bool(capability_cfg.get("fail_closed", True))
-
-    repo_caps = _repo_capability_snapshots(by_experiment)
-    experiments_root = planning_root.parent / "experiments"
 
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
     matrix_claims = matrix.get("claims", {})
@@ -2424,144 +1704,8 @@ def _write_planning_outputs(
         needed = set(item.get("evidence_needed", []))
 
         if "experimental" in needed:
-            exp_type = _suggest_experiment_type(claim_id, matrix)
-            policy = _conflict_policy_for_claim(conflict_adjudication, claim_id)
-            dispatch_req = policy.get("dispatch_requirements", {})
-            env_req = _environment_dispatch_requirements(
-                environment_qualification=environment_qualification,
-                experiment_type=exp_type,
-                priority=str(item.get("priority", "low")),
-            )
-            required_capabilities = _string_list(dispatch_req.get("required_capabilities", []))
-            manifest_fields = _merge_unique(
-                ["claim_ids_tested", "evidence_class", "evidence_direction"],
-                _string_list(dispatch_req.get("manifest_fields", [])),
-            )
-            manifest_fields = _merge_unique(manifest_fields, env_req.get("required_manifest_fields", []))
-            metric_keys = _string_list(dispatch_req.get("metrics_required_keys", []))
-            metric_keys = _merge_unique(metric_keys, env_req.get("required_environment_metrics", []))
-            summary_requirements = _string_list(dispatch_req.get("summary_must_include", []))
-            required_environment_fields = env_req.get("required_environment_fields", [])
-            required_environment_tiers = env_req.get("required_environment_tiers", [])
             target_repo = exploratory_repo if conflict_ratio >= 0.7 else default_exp_repo
-            routing_reasons: list[str] = []
-            if conflict_ratio >= 0.7:
-                routing_reasons.append(
-                    f"conflict_ratio={_fmt_number(conflict_ratio)} >= 0.7, using exploratory repo"
-                )
-
-            default_snapshot = repo_caps.get(default_exp_repo)
-            default_capabilities = (
-                default_snapshot.get("capabilities", {}) if isinstance(default_snapshot, dict) else {}
-            )
-            missing_capabilities: list[str] = []
-            if required_capabilities:
-                if default_snapshot is None and fail_closed:
-                    missing_capabilities = list(required_capabilities)
-                    routing_reasons.append(
-                        f"no capability declaration found for `{default_exp_repo}` (fail_closed=true)"
-                    )
-                else:
-                    for capability in required_capabilities:
-                        if not bool(default_capabilities.get(capability, False)):
-                            missing_capabilities.append(capability)
-                    if missing_capabilities:
-                        routing_reasons.append(
-                            "missing required capabilities on default repo: "
-                            + ", ".join(f"`{cap}`" for cap in missing_capabilities)
-                        )
-                if missing_capabilities:
-                    target_repo = exploratory_repo
-                    routing_reasons.append(f"capability gate fallback to `{exploratory_repo}`")
-
-                target_snapshot = repo_caps.get(target_repo)
-                if target_snapshot is None:
-                    routing_reasons.append(
-                        f"no capability declaration found yet for selected target repo `{target_repo}`"
-                    )
-                else:
-                    unresolved_target_caps = [
-                        capability
-                        for capability in required_capabilities
-                        if not bool(target_snapshot.get("capabilities", {}).get(capability, False))
-                    ]
-                    if unresolved_target_caps:
-                        routing_reasons.append(
-                            "selected target repo still missing declared capabilities: "
-                            + ", ".join(f"`{cap}`" for cap in unresolved_target_caps)
-                        )
-
-            capability_gate = {
-                "default_repo": default_exp_repo,
-                "required_capabilities": required_capabilities,
-                "missing_capabilities": missing_capabilities,
-                "fail_closed": fail_closed,
-                "default_repo_snapshot": default_snapshot or {},
-            }
-
-            required_pack_contract: dict[str, Any] = {
-                "manifest": manifest_fields,
-                "metrics": "stable numeric keys only",
-                "summary": "include scenario and interpretation",
-            }
-            if metric_keys:
-                required_pack_contract["required_metric_keys"] = metric_keys
-            if summary_requirements:
-                required_pack_contract["summary_must_include"] = summary_requirements
-            if required_capabilities:
-                required_pack_contract["required_capabilities"] = required_capabilities
-            if required_environment_fields:
-                required_pack_contract["environment_required_fields"] = required_environment_fields
-            if required_environment_tiers:
-                required_pack_contract["environment_required_tiers"] = required_environment_tiers
-
-            acceptance_checks = [
-                "At least 2 additional runs with distinct seeds.",
-                "Experiment Pack validates against v1 schema.",
-                "Result links to claim_ids_tested and updates matrix direction counts.",
-            ]
-            if required_environment_fields:
-                acceptance_checks.append(
-                    "manifest `environment` block includes required fields: "
-                    + ", ".join(f"`{field}`" for field in required_environment_fields)
-                    + "."
-                )
-            if required_environment_tiers:
-                acceptance_checks.append(
-                    "Run set covers required environment tiers: "
-                    + ", ".join(f"`{tier}`" for tier in required_environment_tiers)
-                    + "."
-                )
-            if metric_keys:
-                acceptance_checks.append(
-                    "Required metric keys are present in metrics.json for each run: "
-                    + ", ".join(f"`{key}`" for key in metric_keys)
-                    + "."
-                )
-            acceptance_checks = _merge_unique(
-                acceptance_checks,
-                _string_list(dispatch_req.get("extra_acceptance_checks", [])),
-            )
-
-            profile = _experiment_profile(experiments_root, exp_type)
-            exp_runs = by_experiment.get(exp_type, [])
-            latest_run = exp_runs[-1] if exp_runs else None
-            brief = {
-                "profile_path": profile["profile_path"].as_posix(),
-                "what_it_tests": profile["what_it_tests"],
-                "failure_modes": profile["failure_modes"],
-                "latest_run": (
-                    {
-                        "run_id": latest_run.run_id,
-                        "timestamp_utc": latest_run.timestamp_raw,
-                        "status": latest_run.final_status,
-                        "source_repo": latest_run.source_repo_name,
-                    }
-                    if latest_run
-                    else {}
-                ),
-            }
-
+            exp_type = _suggest_experiment_type(claim_id, matrix)
             proposal_id = f"EXP-{proposal_counter:04d}"
             proposal_counter += 1
             proposals.append(
@@ -2575,11 +1719,16 @@ def _write_planning_outputs(
                     "objective": f"Reduce uncertainty for {claim_id} via targeted experiment runs.",
                     "suggested_experiment_type": exp_type,
                     "why_now": reasons,
-                    "routing_rationale": routing_reasons,
-                    "capability_gate": capability_gate,
-                    "required_pack_contract": required_pack_contract,
-                    "acceptance_checks": acceptance_checks,
-                    "experiment_brief": brief,
+                    "required_pack_contract": {
+                        "manifest": ["claim_ids_tested", "evidence_class", "evidence_direction"],
+                        "metrics": "stable numeric keys only",
+                        "summary": "include scenario and interpretation",
+                    },
+                    "acceptance_checks": [
+                        "At least 2 additional runs with distinct seeds.",
+                        "Experiment Pack validates against v1 schema.",
+                        "Result links to claim_ids_tested and updates matrix direction counts.",
+                    ],
                     "status": "proposed",
                 }
             )
@@ -2647,105 +1796,6 @@ def _write_planning_outputs(
         encoding="utf-8",
     )
 
-    brief_lines: list[str] = []
-    brief_lines.append("# Experiment Dispatch Briefs")
-    brief_lines.append("")
-    brief_lines.append(f"Generated: `{generated_at}`")
-    brief_lines.append("")
-    brief_lines.append("Human-readable briefs for high-priority experimental proposals, including routing and capability-gate context.")
-    brief_lines.append("")
-
-    experimental_proposals = [
-        p
-        for p in proposals
-        if p.get("proposal_type") == "experimental" and p.get("priority") == "high"
-    ]
-    if not experimental_proposals:
-        brief_lines.append("No experimental proposals in current planning output.")
-    else:
-        for proposal in experimental_proposals:
-            proposal_id = str(proposal.get("proposal_id", ""))
-            claim_id = str(proposal.get("claim_id", ""))
-            target_repo = str(proposal.get("target_repo", ""))
-            exp_type = str(proposal.get("suggested_experiment_type", ""))
-            brief = proposal.get("experiment_brief", {}) if isinstance(proposal.get("experiment_brief"), dict) else {}
-            what_it_tests = brief.get("what_it_tests", []) if isinstance(brief.get("what_it_tests"), list) else []
-            failure_modes = brief.get("failure_modes", []) if isinstance(brief.get("failure_modes"), list) else []
-            latest_run = brief.get("latest_run", {}) if isinstance(brief.get("latest_run"), dict) else {}
-            required_pack = (
-                proposal.get("required_pack_contract", {})
-                if isinstance(proposal.get("required_pack_contract"), dict)
-                else {}
-            )
-
-            brief_lines.append(f"## {proposal_id} — {claim_id}")
-            brief_lines.append("")
-            brief_lines.append(f"- Target repo: `{target_repo}`")
-            brief_lines.append(f"- Experiment type: `{exp_type}`")
-            brief_lines.append(f"- Objective: {proposal.get('objective', '')}")
-            routing_rationale = proposal.get("routing_rationale", [])
-            if isinstance(routing_rationale, list) and routing_rationale:
-                brief_lines.append("- Routing rationale:")
-                for token in routing_rationale:
-                    brief_lines.append(f"  - {token}")
-
-            if what_it_tests:
-                brief_lines.append("- What it tests:")
-                for token in what_it_tests:
-                    brief_lines.append(f"  - {token}")
-            if failure_modes:
-                brief_lines.append("- Failure modes:")
-                for token in failure_modes:
-                    brief_lines.append(f"  - {token}")
-
-            required_metric_keys = required_pack.get("required_metric_keys", [])
-            if isinstance(required_metric_keys, list) and required_metric_keys:
-                brief_lines.append("- Required metric keys:")
-                for key in required_metric_keys:
-                    brief_lines.append(f"  - `{key}`")
-
-            environment_required_fields = required_pack.get("environment_required_fields", [])
-            if isinstance(environment_required_fields, list) and environment_required_fields:
-                brief_lines.append("- Required environment fields:")
-                for field_name in environment_required_fields:
-                    brief_lines.append(f"  - `{field_name}`")
-
-            environment_required_tiers = required_pack.get("environment_required_tiers", [])
-            if isinstance(environment_required_tiers, list) and environment_required_tiers:
-                brief_lines.append("- Required environment tiers across run set:")
-                for tier in environment_required_tiers:
-                    brief_lines.append(f"  - `{tier}`")
-
-            summary_must_include = required_pack.get("summary_must_include", [])
-            if isinstance(summary_must_include, list) and summary_must_include:
-                brief_lines.append("- Summary must include:")
-                for token in summary_must_include:
-                    brief_lines.append(f"  - {token}")
-
-            required_capabilities = required_pack.get("required_capabilities", [])
-            if isinstance(required_capabilities, list) and required_capabilities:
-                brief_lines.append("- Required producer capabilities:")
-                for capability in required_capabilities:
-                    brief_lines.append(f"  - `{capability}`")
-
-            if latest_run:
-                brief_lines.append(
-                    "- Latest observed run context: "
-                    + f"`{latest_run.get('run_id', '')}` status=`{latest_run.get('status', '')}` "
-                    + f"timestamp=`{latest_run.get('timestamp_utc', '')}` source_repo=`{latest_run.get('source_repo', '')}`"
-                )
-
-            profile_path = str(brief.get("profile_path", "")).strip()
-            if profile_path:
-                brief_lines.append(f"- Experiment profile: `{profile_path}`")
-
-            brief_lines.append("")
-
-    (planning_root / "EXPERIMENT_BRIEFS.md").write_text(
-        "\n".join(brief_lines).rstrip() + "\n",
-        encoding="utf-8",
-    )
-
     index_lines: list[str] = []
     index_lines.append("# Planning Index")
     index_lines.append("")
@@ -2757,10 +1807,6 @@ def _write_planning_outputs(
     index_lines.append(
         f"- Experiment proposals: `experiment_proposals.v1.json` ({len(proposals)} item(s))"
     )
-    index_lines.append("- Experiment dispatch briefs: `EXPERIMENT_BRIEFS.md`")
-    index_lines.append("- Architecture trace audit: `architecture_trace_audit.v1.json`")
-    index_lines.append("- Architecture trace report: `ARCHITECTURE_TRACE_AUDIT.md`")
-    index_lines.append("- Claim stub suggestions: `claim_stub_suggestions.v1.json`")
     index_lines.append("- Planning criteria: `planning_criteria.v1.yaml`")
     (planning_root / "INDEX.md").write_text(
         "\n".join(index_lines).rstrip() + "\n",
@@ -2796,10 +1842,6 @@ def main() -> None:
 
     stop_criteria = _load_json_compatible_yaml(base_dir / "stop_criteria.v1.yaml", "stop criteria")
     decision_criteria = _load_decision_criteria(base_dir / "decision_criteria.v1.yaml")
-    conflict_adjudication = _load_conflict_adjudication(base_dir / "conflict_adjudication.v1.yaml")
-    environment_qualification = _load_environment_qualification(
-        base_dir / "environment_qualification.v1.yaml"
-    )
     planning_criteria = _load_planning_criteria(planning_root / "planning_criteria.v1.yaml")
     claim_registry = _load_claim_registry(repo_root / "docs/claims/claims.yaml")
     decision_log_entries = _load_decision_log(decision_log_path)
@@ -2814,7 +1856,6 @@ def main() -> None:
     for experiment_type, runs in by_experiment.items():
         criteria = _criteria_for_experiment(stop_criteria, experiment_type)
         _evaluate_runs(runs, criteria)
-        _evaluate_environment_quality(runs, environment_qualification, experiment_type)
 
         key_metrics = _select_key_metrics(runs, criteria)
         experiment_dir = base_dir / experiment_type
@@ -2833,23 +1874,19 @@ def main() -> None:
     _write_todos(base_dir, todos_by_experiment, generated_at)
     _write_literature_index(literature_root, by_literature, generated_at)
     _write_decision_state(decisions_dir, latest_decisions, generated_at)
-    _write_environment_outputs(base_dir, by_experiment, environment_qualification, generated_at)
 
     matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
     conflicts = _collect_conflicts(matrix)
     backlog_items, proposals = _write_planning_outputs(
         planning_root,
-        by_experiment,
         matrix,
         claim_registry,
         conflicts,
         latest_decisions,
         planning_criteria,
-        conflict_adjudication,
-        environment_qualification,
         generated_at,
     )
-    _write_conflicts_report(base_dir, matrix, conflicts, generated_at, conflict_adjudication)
+    _write_conflicts_report(base_dir, matrix, conflicts, generated_at)
     _write_promotion_demotion_recommendations(
         base_dir,
         matrix,

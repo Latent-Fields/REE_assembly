@@ -37,16 +37,6 @@ Optional but recommended:
 - `evidence_class`: string, e.g. `"simulation"`, `"behavioral"`, `"control_theory"`
 - `evidence_direction`: one of `"supports"`, `"weakens"`, `"mixed"`, `"unknown"`
 - `failure_signatures`: string array, stable signature IDs
-- `producer_capabilities`: object map of capability flag -> boolean, used for capability-gated dispatch routing.
-- `environment`: object for environment qualification and drift tracking.
-  Recommended keys:
-  - `env_id`: stable environment identifier
-  - `env_version`: semantic/commit environment version
-  - `dynamics_hash`: hash of transition/dynamics definition
-  - `reward_hash`: hash of reward/harm shaping definition
-  - `observation_hash`: hash of observation/sensor interface definition
-  - `config_hash`: hash of environment config bundle
-  - `tier`: e.g. `"toy"`, `"stress"`, `"ablation"`
 
 ## File: `metrics.json`
 
@@ -62,34 +52,6 @@ Rules:
 - No strings/booleans/null in `values`.
 - Keep metric keys stable across runs for delta computation.
 - Add new metrics additively; avoid renaming existing keys.
-
-## Claim-Specific Dispatch Extension: `MECH-056`
-
-When a dispatched run includes `MECH-056` in `claim_ids_tested`, producers (including `ree-v1-minimal`) should emit these
-additional metrics by default:
-
-- `trajectory_commit_channel_usage_count`
-- `perceptual_sampling_channel_usage_count`
-- `structural_consolidation_channel_usage_count`
-- `precommit_semantic_overwrite_events`
-- `structural_bias_magnitude`
-- `structural_bias_rate`
-
-Expected summary additions for `MECH-056` runs:
-
-- Channel escalation order observed (`trajectory_commit -> perceptual_sampling -> structural_consolidation` when triggered).
-- Trigger rationale for each non-primary channel activation.
-
-Expected capability flags for `MECH-056` producer qualification:
-
-- `trajectory_integrity_channelized_bias`
-- `mech056_dispatch_metric_set`
-- `mech056_summary_escalation_trace`
-
-Environment dispatch expectation for `MECH-056` (high-priority adjudication):
-
-- Include at least `toy` and `stress` tiers across the run set.
-- Keep environment hashes stable within a series so drift analysis compares like-for-like runs.
 
 ## File: `summary.md`
 
