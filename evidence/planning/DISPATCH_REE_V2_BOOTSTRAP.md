@@ -108,11 +108,16 @@ with required files:
   - mid-cost workstation tier
   - high-cost local acceleration tier
 - For each tier include:
-  - estimated one-time USD cost band
+  - estimated one-time EUR cost band
   - expected impact on qualification workloads
   - setup complexity
   - recommendation status (`now|later|not_recommended`)
 - Include explicit triggers for when buying local hardware is recommended vs cloud offload.
+- Include hobby-mode default thresholds:
+  - default `hold_cloud_only`
+  - `upgrade_low` when local friction increases and rolling 3-month cloud spend stays below `EUR 80/month`
+  - `upgrade_mid` when rolling 3-month cloud spend is `>= EUR 100/month` or blocked sessions are `>2/week` for 3 consecutive weeks
+  - `upgrade_high` only when rolling 3-month cloud spend is `>= EUR 250/month` for 3 months and workload is `>10 hours/week`
 
 ## Required acceptance checks (must run and report)
 
@@ -177,10 +182,15 @@ Return:
    - `offload_reason`
 5. A local compute options table:
    - `tier`
-   - `estimated_usd_cost_band`
+   - `estimated_eur_cost_band`
    - `expected_runtime_impact`
    - `recommendation_status`
-6. A short migration note describing parity status vs `ree-v1-minimal`.
+6. A hobby decision snapshot:
+   - `rolling_3mo_cloud_spend_eur`
+   - `local_blocked_sessions_this_week`
+   - `recommended_local_action`
+   - `next_review_date`
+7. A short migration note describing parity status vs `ree-v1-minimal`.
 
 Constraints:
 - Keep scope focused on bootstrap surfaces only.

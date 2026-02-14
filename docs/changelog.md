@@ -41,6 +41,7 @@ policy suitable for laptop-constrained development environments.
   - JEPA source acquisition/provenance contract (`third_party/jepa_sources.lock.v1.json`)
   - local-vs-cloud offload gate and remote export/import gate
   - local hardware options/cost visibility gate (`docs/ops/local_compute_options.md`)
+  - explicit hobby-mode buy/hold thresholds in EUR for structured decisions
   - migration stage updates and cutover acceptance updates
   - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
 - Updated REE-v2 bootstrap dispatch prompt to include:
@@ -56,6 +57,8 @@ policy suitable for laptop-constrained development environments.
   - `evidence/planning/WEEKLY_HANDOFF_TEMPLATE.md`
   - `evidence/experiments/CROSS_REPO_SYNC_POLICY.md`
   - `evidence/planning/DISPATCH_WEEKLY_HANDOFF_FORMAT_UPDATE_2026-02-14.md`
+- Added structured operator checklist for spare-time workflow:
+  - `evidence/planning/HOBBY_OPERATOR_PLAYBOOK.md`
 
 ## 2026-02-14: Weekly Cross-Repo Handoff Standardization
 

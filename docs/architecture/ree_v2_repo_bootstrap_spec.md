@@ -383,13 +383,23 @@ Required content:
    - mid-cost workstation tier
    - high-cost local acceleration tier
 3. each option entry must include:
-   - estimated one-time cost (USD band)
+   - estimated one-time cost (EUR band)
    - expected impact on qualification workloads
    - expected setup complexity and maintenance burden
    - recommendation status (`now`, `later`, `not_recommended`)
 4. clear decision trigger thresholds:
    - when to keep using cloud offload only,
    - when local purchase is justified by runtime/cost/time tradeoff.
+5. hobby-operator default policy (required baseline unless explicitly overridden):
+   - default state: `hold_cloud_only`
+   - promote to `upgrade_low` when local friction is increasing but rolling 3-month cloud spend remains below `EUR 80/month`
+   - promote to `upgrade_mid` when either:
+     - rolling 3-month cloud spend is `>= EUR 100/month`, or
+     - local blocked sessions exceed `2 per week` for `3 consecutive weeks`
+   - promote to `upgrade_high` only when both are true:
+     - rolling 3-month cloud spend is `>= EUR 250/month` for `3 consecutive months`
+     - active qualification workload regularly exceeds `10 hours/week`
+   - if uncertain, remain in `hold_cloud_only` and reassess next weekly cycle
 
 This gate is documentation-and-decision quality, not benchmark perfection.
 

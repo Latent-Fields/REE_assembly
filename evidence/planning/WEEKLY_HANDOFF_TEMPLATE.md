@@ -57,6 +57,8 @@ Use this template for weekly producer handoffs from:
 
 7. Local compute options watch (required for `ree-v2`, optional for other producers)
 - `local_options_last_updated_utc`
+- `rolling_3mo_cloud_spend_eur`
+- `local_blocked_sessions_this_week`
 - `recommended_local_action` (`hold_cloud_only|upgrade_low|upgrade_mid|upgrade_high`)
 - short rationale tied to observed runtime/cost pressure
 
@@ -104,6 +106,8 @@ Use this template for weekly producer handoffs from:
 
 ## Local Compute Options Watch
 - local_options_last_updated_utc: `<RFC3339 UTC or N/A>`
+- rolling_3mo_cloud_spend_eur: `<number or N/A>`
+- local_blocked_sessions_this_week: `<integer or N/A>`
 - recommended_local_action: `<hold_cloud_only|upgrade_low|upgrade_mid|upgrade_high|N/A>`
 - rationale: `<short decision rationale>`
 ```
@@ -117,3 +121,4 @@ Use this template for weekly producer handoffs from:
 - Keep `evidence_direction` in `supports|weakens|mixed|unknown`.
 - If a gate fails, explicitly mark it `FAIL` and include next action.
 - For `ree-v2`, `Local Compute Options Watch` section is mandatory.
+- For `ree-v2`, `recommended_local_action` should follow the hobby-mode thresholds in `docs/ops/local_compute_options.md` unless explicitly overridden with rationale.
