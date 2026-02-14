@@ -1425,6 +1425,19 @@
   subject: residue.trajectory_first_placement
   polarity: asserts
   status: candidate
+  lifecycle_stage: adjudication
+  adjudication_mode: external_precedence_allowed
+  allowed_conflict_outcomes:
+    - retain_ree
+    - hybridize
+    - adopt_jepa_structure
+    - retire_ree_claim
+  cascade_on_outcomes:
+    - adopt_jepa_structure
+    - retire_ree_claim
+  dependency_reopen_status: candidate
+  temporary_override_mode: jepa_internal_proxy_override
+  anti_lock_in_gate: required
   depends_on:
     - ARC-013
     - ARC-018
@@ -1454,6 +1467,19 @@
   subject: jepa_substrate.ema_target_anchor_timescale_separation
   polarity: asserts
   status: candidate
+  lifecycle_stage: adjudication
+  adjudication_mode: external_precedence_allowed
+  allowed_conflict_outcomes:
+    - retain_ree
+    - hybridize
+    - adopt_jepa_structure
+    - retire_ree_claim
+  cascade_on_outcomes:
+    - adopt_jepa_structure
+    - retire_ree_claim
+  dependency_reopen_status: candidate
+  temporary_override_mode: jepa_internal_proxy_override
+  anti_lock_in_gate: required
   depends_on:
     - ARC-001
     - ARC-002
@@ -1466,9 +1492,22 @@
     - docs/architecture/jepa_e1e2_integration_contract.md
 - id: MECH-059
   claim_type: mechanism_hypothesis
-  subject: precision.latent_uncertainty_stream_separation
+  subject: precision.confidence_channel_separate_from_prediction_error
   polarity: asserts
   status: candidate
+  lifecycle_stage: adjudication
+  adjudication_mode: external_precedence_allowed
+  allowed_conflict_outcomes:
+    - retain_ree
+    - hybridize
+    - adopt_jepa_structure
+    - retire_ree_claim
+  cascade_on_outcomes:
+    - adopt_jepa_structure
+    - retire_ree_claim
+  dependency_reopen_status: candidate
+  temporary_override_mode: jepa_internal_proxy_override
+  anti_lock_in_gate: required
   depends_on:
     - ARC-005
     - ARC-004
@@ -1484,6 +1523,19 @@
   subject: commitment.dual_error_channels_pre_post_commit
   polarity: asserts
   status: candidate
+  lifecycle_stage: adjudication
+  adjudication_mode: external_precedence_allowed
+  allowed_conflict_outcomes:
+    - retain_ree
+    - hybridize
+    - adopt_jepa_structure
+    - retire_ree_claim
+  cascade_on_outcomes:
+    - adopt_jepa_structure
+    - retire_ree_claim
+  dependency_reopen_status: candidate
+  temporary_override_mode: jepa_internal_proxy_override
+  anti_lock_in_gate: required
   depends_on:
     - ARC-003
     - ARC-005
@@ -1561,6 +1613,15 @@
   subject: integration.jepa_as_e1e2_substrate_contract
   polarity: records
   status: stable
+  lifecycle_stage: adjudication_enabled
+  adjudication_mode: external_precedence_allowed
+  allowed_conflict_outcomes:
+    - retain_ree
+    - hybridize
+    - adopt_jepa_structure
+    - retire_ree_claim
+  temporary_override_mode: jepa_internal_proxy_override
+  anti_lock_in_gate: required
   depends_on:
     - IMPL-021
     - MECH-057

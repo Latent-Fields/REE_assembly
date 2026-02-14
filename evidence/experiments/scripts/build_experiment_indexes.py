@@ -1172,9 +1172,44 @@ def _default_planning_criteria() -> dict[str, Any]:
             "consider_new_structure_min_distinct_signatures": 2,
             "consider_new_structure_min_literature_entries": 2,
             "consider_new_structure_literature_non_support_ratio": 0.50,
+            "external_precedence_conflict_ratio": 0.55,
+            "external_precedence_min_confidence_delta": 0.05,
+            "external_precedence_min_total_entries": 6,
+        },
+        "model_adjudication": {
+            "external_precedence_enabled": True,
+            "allowed_conflict_outcomes": [
+                "retain_ree",
+                "hybridize",
+                "adopt_jepa_structure",
+                "retire_ree_claim",
+            ],
+            "default_conflict_outcome": "retain_ree",
+            "cascade_policy": {
+                "enabled": True,
+                "trigger_outcomes": ["adopt_jepa_structure", "retire_ree_claim"],
+                "dependency_reopen_status": "candidate",
+                "require_followup_proposals": True,
+            },
+            "temporary_override_mode": {
+                "enabled": True,
+                "mode_id": "jepa_internal_proxy_override",
+                "requirements": [
+                    "explicit_proxy_provenance",
+                    "calibration_metrics_present",
+                    "rollback_trigger_documented",
+                ],
+            },
+            "anti_lock_in_gate": {
+                "enabled": True,
+                "description": (
+                    "If matched JEPA evidence repeatedly outperforms REE assumptions, force adjudication "
+                    "rather than schema-preserving tuning."
+                ),
+            },
         },
         "repo_routing": {
-            "experimental_default_repo": "ree-v1-minimal",
+            "experimental_default_repo": "ree-v2",
             "exploratory_repo": "ree-experiments-lab",
             "literature_owner": "REE_assembly",
         },
@@ -1200,6 +1235,32 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
     else:
         for key, value in defaults["repo_routing"].items():
             routing.setdefault(key, value)
+    adjudication = data.get("model_adjudication")
+    if not isinstance(adjudication, dict):
+        data["model_adjudication"] = dict(defaults["model_adjudication"])
+    else:
+        for key, value in defaults["model_adjudication"].items():
+            adjudication.setdefault(key, value)
+        cascade_policy = adjudication.get("cascade_policy")
+        if not isinstance(cascade_policy, dict):
+            adjudication["cascade_policy"] = dict(defaults["model_adjudication"]["cascade_policy"])
+        else:
+            for key, value in defaults["model_adjudication"]["cascade_policy"].items():
+                cascade_policy.setdefault(key, value)
+        override_mode = adjudication.get("temporary_override_mode")
+        if not isinstance(override_mode, dict):
+            adjudication["temporary_override_mode"] = dict(
+                defaults["model_adjudication"]["temporary_override_mode"]
+            )
+        else:
+            for key, value in defaults["model_adjudication"]["temporary_override_mode"].items():
+                override_mode.setdefault(key, value)
+        anti_lock_in = adjudication.get("anti_lock_in_gate")
+        if not isinstance(anti_lock_in, dict):
+            adjudication["anti_lock_in_gate"] = dict(defaults["model_adjudication"]["anti_lock_in_gate"])
+        else:
+            for key, value in defaults["model_adjudication"]["anti_lock_in_gate"].items():
+                anti_lock_in.setdefault(key, value)
     return data
 
 
@@ -1702,6 +1763,8 @@ def _priority_from_reasons(reasons: list[str]) -> str:
         "active_conflict",
         "missing_experimental_evidence",
         "consider_new_structure",
+        "external_precedence_pressure",
+        "anti_lock_in_review_required",
     }
     medium_markers = {
         "low_overall_confidence",
@@ -1747,6 +1810,7 @@ def _write_planning_outputs(
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     thresholds = planning_criteria.get("thresholds", {})
     routing = planning_criteria.get("repo_routing", {})
+    adjudication = planning_criteria.get("model_adjudication", {})
 
     low_conf_threshold = float(thresholds.get("low_overall_confidence", 0.55))
     conflict_alert_threshold = float(thresholds.get("conflict_ratio_alert", 0.40))
@@ -1765,10 +1829,58 @@ def _write_planning_outputs(
     consider_lit_non_support_ratio = float(
         thresholds.get("consider_new_structure_literature_non_support_ratio", 0.50)
     )
+    external_precedence_conflict_ratio = float(
+        thresholds.get("external_precedence_conflict_ratio", 0.55)
+    )
+    external_precedence_min_conf_delta = float(
+        thresholds.get("external_precedence_min_confidence_delta", 0.05)
+    )
+    external_precedence_min_total_entries = max(
+        1, int(thresholds.get("external_precedence_min_total_entries", 6))
+    )
 
-    default_exp_repo = str(routing.get("experimental_default_repo", "ree-v1-minimal"))
+    default_exp_repo = str(routing.get("experimental_default_repo", "ree-v2"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
     literature_owner = str(routing.get("literature_owner", "REE_assembly"))
+
+    external_precedence_enabled = bool(adjudication.get("external_precedence_enabled", True))
+    allowed_conflict_outcomes_raw = adjudication.get("allowed_conflict_outcomes", [])
+    allowed_conflict_outcomes = [
+        str(x).strip()
+        for x in allowed_conflict_outcomes_raw
+        if str(x).strip()
+    ]
+    if not allowed_conflict_outcomes:
+        allowed_conflict_outcomes = [
+            "retain_ree",
+            "hybridize",
+            "adopt_jepa_structure",
+            "retire_ree_claim",
+        ]
+    default_conflict_outcome = str(adjudication.get("default_conflict_outcome", "retain_ree"))
+    cascade_policy = adjudication.get("cascade_policy", {})
+    cascade_enabled = bool(cascade_policy.get("enabled", True))
+    cascade_trigger_outcomes_raw = cascade_policy.get(
+        "trigger_outcomes", ["adopt_jepa_structure", "retire_ree_claim"]
+    )
+    cascade_trigger_outcomes = [
+        str(x).strip()
+        for x in cascade_trigger_outcomes_raw
+        if str(x).strip()
+    ]
+    dependency_reopen_status = str(cascade_policy.get("dependency_reopen_status", "candidate"))
+    cascade_followup_required = bool(cascade_policy.get("require_followup_proposals", True))
+    override_mode = adjudication.get("temporary_override_mode", {})
+    override_mode_enabled = bool(override_mode.get("enabled", True))
+    override_mode_id = str(override_mode.get("mode_id", "jepa_internal_proxy_override"))
+    override_requirements_raw = override_mode.get("requirements", [])
+    override_requirements = [
+        str(x).strip()
+        for x in override_requirements_raw
+        if str(x).strip()
+    ]
+    anti_lock_in_gate = adjudication.get("anti_lock_in_gate", {})
+    anti_lock_in_enabled = bool(anti_lock_in_gate.get("enabled", True))
 
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
     matrix_claims = matrix.get("claims", {})
@@ -1798,6 +1910,12 @@ def _write_planning_outputs(
         exp_count = 0
         lit_count = 0
         conflict_ratio = 0.0
+        entries_total = 0
+        experimental_confidence = 0.0
+        literature_confidence = 0.0
+        confidence_delta_lit_minus_exp = 0.0
+        external_precedence_candidate = False
+        anti_lock_in_review_required = False
 
         signature_counts: Counter[str] = Counter()
         for entry in claim_entries:
@@ -1847,6 +1965,10 @@ def _write_planning_outputs(
             source_counts = claim_meta.get("source_counts", {})
             exp_count = int(source_counts.get("experimental", 0))
             lit_count = int(source_counts.get("literature", 0))
+            entries_total = int(claim_meta.get("entries_total", 0))
+            experimental_confidence = float(claim_meta.get("experimental_confidence", 0.0))
+            literature_confidence = float(claim_meta.get("literature_confidence", 0.0))
+            confidence_delta_lit_minus_exp = literature_confidence - experimental_confidence
             conflict_ratio = _direction_conflict_ratio(claim_meta.get("direction_counts", {}))
 
             signals.update(
@@ -1856,6 +1978,12 @@ def _write_planning_outputs(
                         "experimental": exp_count,
                         "literature": lit_count,
                     },
+                    "confidence_split": {
+                        "experimental_confidence": round(experimental_confidence, 3),
+                        "literature_confidence": round(literature_confidence, 3),
+                        "delta_lit_minus_exp": round(confidence_delta_lit_minus_exp, 3),
+                    },
+                    "entries_total": entries_total,
                     "conflict_ratio": conflict_ratio,
                 }
             )
@@ -1893,6 +2021,23 @@ def _write_planning_outputs(
         ):
             structure_signals.append("literature_non_support_pressure")
 
+        if (
+            external_precedence_enabled
+            and conflict_ratio >= external_precedence_conflict_ratio
+            and entries_total >= external_precedence_min_total_entries
+            and lit_count > 0
+            and exp_count > 0
+            and confidence_delta_lit_minus_exp >= external_precedence_min_conf_delta
+        ):
+            structure_signals.append("external_precedence_pressure")
+            external_precedence_candidate = True
+            reasons.append("external_precedence_pressure")
+            evidence_needed.update({"experimental", "literature"})
+
+            if anti_lock_in_enabled and current_status in {"candidate", "provisional", "active", "stable"}:
+                anti_lock_in_review_required = True
+                reasons.append("anti_lock_in_review_required")
+
         consider_new_structure = len(structure_signals) >= 3
         if consider_new_structure:
             reasons.append("consider_new_structure")
@@ -1918,6 +2063,13 @@ def _write_planning_outputs(
                         "unknown": int(lit_direction_counts.get("unknown", 0)),
                     },
                     "literature_non_support_ratio": lit_non_support_ratio,
+                    "confidence_split": {
+                        "experimental_confidence": round(experimental_confidence, 3),
+                        "literature_confidence": round(literature_confidence, 3),
+                        "delta_lit_minus_exp": round(confidence_delta_lit_minus_exp, 3),
+                    },
+                    "external_precedence_candidate": external_precedence_candidate,
+                    "anti_lock_in_review_required": anti_lock_in_review_required,
                     "recurring_failure_signatures": recurring_signatures[:5],
                     "trigger_signals": sorted(set(structure_signals)),
                     "consider_new_structure": consider_new_structure,
@@ -1926,6 +2078,22 @@ def _write_planning_outputs(
                         if consider_new_structure
                         else "monitor_and_collect_targeted_evidence"
                     ),
+                    "adjudication_policy": {
+                        "default_conflict_outcome": default_conflict_outcome,
+                        "allowed_conflict_outcomes": allowed_conflict_outcomes,
+                        "cascade_policy": {
+                            "enabled": cascade_enabled,
+                            "trigger_outcomes": cascade_trigger_outcomes,
+                            "dependency_reopen_status": dependency_reopen_status,
+                            "require_followup_proposals": cascade_followup_required,
+                        },
+                        "temporary_override_mode": {
+                            "enabled": override_mode_enabled,
+                            "mode_id": override_mode_id,
+                            "requirements": override_requirements,
+                        },
+                        "anti_lock_in_gate_enabled": anti_lock_in_enabled,
+                    },
                     "latest_decision": decision_state,
                 }
             )
@@ -1947,6 +2115,16 @@ def _write_planning_outputs(
                 "Draft architecture options for this claim, then run one adjudication experiment "
                 "and one targeted literature extraction."
             )
+        if "external_precedence_pressure" in reasons:
+            next_action = (
+                "Run matched-protocol adjudication and choose conflict outcome: "
+                "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim."
+            )
+        if "anti_lock_in_review_required" in reasons:
+            next_action = (
+                "Run anti-lock-in review and forbid schema-preserving tuning without selecting a "
+                "recorded conflict outcome."
+            )
 
         backlog_items.append(
             {
@@ -1957,6 +2135,23 @@ def _write_planning_outputs(
                 "signals": signals,
                 "evidence_needed": sorted(evidence_needed),
                 "next_action": next_action,
+                "adjudication_context": {
+                    "default_conflict_outcome": default_conflict_outcome,
+                    "allowed_conflict_outcomes": allowed_conflict_outcomes,
+                    "external_precedence_candidate": external_precedence_candidate,
+                    "anti_lock_in_review_required": anti_lock_in_review_required,
+                    "cascade_policy": {
+                        "enabled": cascade_enabled,
+                        "trigger_outcomes": cascade_trigger_outcomes,
+                        "dependency_reopen_status": dependency_reopen_status,
+                        "require_followup_proposals": cascade_followup_required,
+                    },
+                    "temporary_override_mode": {
+                        "enabled": override_mode_enabled,
+                        "mode_id": override_mode_id,
+                        "requirements": override_requirements,
+                    },
+                },
                 "latest_decision": decision_state,
                 "status": "open",
             }
@@ -2088,6 +2283,26 @@ def _write_planning_outputs(
             "consider_new_structure_min_distinct_signatures": consider_min_distinct_sigs,
             "consider_new_structure_min_literature_entries": consider_min_lit_entries,
             "consider_new_structure_literature_non_support_ratio": consider_lit_non_support_ratio,
+            "external_precedence_conflict_ratio": external_precedence_conflict_ratio,
+            "external_precedence_min_confidence_delta": external_precedence_min_conf_delta,
+            "external_precedence_min_total_entries": external_precedence_min_total_entries,
+        },
+        "model_adjudication": {
+            "external_precedence_enabled": external_precedence_enabled,
+            "allowed_conflict_outcomes": allowed_conflict_outcomes,
+            "default_conflict_outcome": default_conflict_outcome,
+            "cascade_policy": {
+                "enabled": cascade_enabled,
+                "trigger_outcomes": cascade_trigger_outcomes,
+                "dependency_reopen_status": dependency_reopen_status,
+                "require_followup_proposals": cascade_followup_required,
+            },
+            "temporary_override_mode": {
+                "enabled": override_mode_enabled,
+                "mode_id": override_mode_id,
+                "requirements": override_requirements,
+            },
+            "anti_lock_in_gate_enabled": anti_lock_in_enabled,
         },
         "items": architecture_items,
     }
@@ -2116,13 +2331,14 @@ def _write_planning_outputs(
     )
     arch_lines.append("")
     arch_lines.append(
-        "| gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | recurring_signatures | consider_new_structure | recommendation |"
+        "| gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |"
     )
-    arch_lines.append("|---|---|---|---|---|---|---|---|")
+    arch_lines.append("|---|---|---|---|---|---|---|---|---|---|")
     if not architecture_items:
-        arch_lines.append("| _none_ | - | - | - | - | - | - | - |")
+        arch_lines.append("| _none_ | - | - | - | - | - | - | - | - | - |")
     else:
         for item in architecture_items:
+            confidence_split = item.get("confidence_split", {})
             arch_lines.append(
                 "| "
                 + " | ".join(
@@ -2132,8 +2348,10 @@ def _write_planning_outputs(
                         f"`{item['current_status']}`",
                         _fmt_number(float(item.get("conflict_ratio", 0.0))),
                         _fmt_number(float(item.get("literature_non_support_ratio", 0.0))),
+                        _fmt_number(float(confidence_split.get("delta_lit_minus_exp", 0.0))),
                         str(len(item.get("recurring_failure_signatures", []))),
                         "yes" if bool(item.get("consider_new_structure", False)) else "no",
+                        "yes" if bool(item.get("external_precedence_candidate", False)) else "no",
                         f"`{item['recommendation']}`",
                     ]
                 )
@@ -2161,6 +2379,12 @@ def _write_planning_outputs(
                     for sig in rec_sigs
                 )
                 arch_lines.append(f"  - recurring_signatures: {formatted}")
+            if bool(item.get("external_precedence_candidate", False)):
+                confidence_split = item.get("confidence_split", {})
+                arch_lines.append(
+                    "  - external_precedence_candidate: yes; "
+                    + f"delta_lit_minus_exp={_fmt_number(float(confidence_split.get('delta_lit_minus_exp', 0.0)))}"
+                )
 
     (planning_root / "ARCHITECTURE_GAP_REGISTER.md").write_text(
         "\n".join(arch_lines).rstrip() + "\n",

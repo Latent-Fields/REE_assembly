@@ -84,8 +84,8 @@ In plain terms: stable slow target dynamics (anchor) plus faster predictor adapt
 
 ### What this claim means
 
-`MECH-059` = **latent uncertainty stream separation**.
-In plain terms: REE should keep uncertainty/precision signals as a separable stream (not collapsed into generic prediction error), so control policy can be calibrated explicitly.
+`MECH-059` = **confidence-channel separation from residual prediction error**.
+In plain terms: REE should keep a confidence channel (uncertainty-derived precision) separate from generic prediction error, so control policy can be calibrated explicitly.
 
 ### Current evidence state
 

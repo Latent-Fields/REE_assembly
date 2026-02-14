@@ -8,8 +8,43 @@
     "consider_new_structure_min_distinct_signatures": 2,
     "consider_new_structure_min_failure_signature_repeats": 3,
     "consider_new_structure_min_literature_entries": 2,
+    "external_precedence_conflict_ratio": 0.55,
+    "external_precedence_min_confidence_delta": 0.05,
+    "external_precedence_min_total_entries": 6,
     "low_overall_confidence": 0.55,
     "provisional_min_literature_entries": 2
+  },
+  "model_adjudication": {
+    "external_precedence_enabled": true,
+    "allowed_conflict_outcomes": [
+      "retain_ree",
+      "hybridize",
+      "adopt_jepa_structure",
+      "retire_ree_claim"
+    ],
+    "default_conflict_outcome": "retain_ree",
+    "cascade_policy": {
+      "enabled": true,
+      "trigger_outcomes": [
+        "adopt_jepa_structure",
+        "retire_ree_claim"
+      ],
+      "dependency_reopen_status": "candidate",
+      "require_followup_proposals": true
+    },
+    "temporary_override_mode": {
+      "enabled": true,
+      "mode_id": "jepa_internal_proxy_override",
+      "requirements": [
+        "explicit_proxy_provenance",
+        "calibration_metrics_present",
+        "rollback_trigger_documented"
+      ]
+    },
+    "anti_lock_in_gate": {
+      "enabled": true,
+      "description": "If matched JEPA evidence repeatedly outperforms REE assumptions, force adjudication rather than schema-preserving tuning."
+    }
   },
   "repo_routing": {
     "experimental_default_repo": "ree-v2",

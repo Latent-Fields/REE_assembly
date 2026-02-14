@@ -114,14 +114,15 @@ This mechanism is currently a candidate and needs direct ablation evidence in RE
 ---
 
 <a id="mech-059"></a>
-## Uncertainty must remain a distinct latent stream (MECH-059)
+## Confidence channel must remain distinct from residual error (MECH-059)
 
-Latent prediction residual and latent uncertainty/dispersion should remain distinct streams.
+Latent prediction residual and the confidence channel (uncertainty-derived precision) should remain distinct streams.
 
 - residual answers: *how wrong was the prediction*,
-- uncertainty answers: *how many futures were plausible / how calibrated was that confidence*.
+- confidence channel answers: *how strongly should this error be trusted for control and learning*.
+- uncertainty/dispersion remains an explicit input to confidence-channel computation.
 
-Precision routing should consume both; uncertainty should not be collapsed into a single scalar error term.
+Precision routing should consume both; confidence signals must not be collapsed into a single scalar error term.
 Signed control semantics (harm/benefit channeling) remain a downstream REE control-plane function.
 
 ---

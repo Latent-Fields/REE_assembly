@@ -97,6 +97,65 @@
         "head"
       ]
     },
+    "proxy_bank": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "proxy_id",
+          "source_stream",
+          "extraction_method",
+          "normalization",
+          "window",
+          "calibration_target",
+          "provenance"
+        ],
+        "properties": {
+          "proxy_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_stream": {
+            "type": "string",
+            "enum": [
+              "uncertainty_dispersion",
+              "ensemble_disagreement",
+              "attention_entropy",
+              "rollout_inconsistency",
+              "action_sensitivity",
+              "other"
+            ]
+          },
+          "extraction_method": {
+            "type": "string",
+            "minLength": 1
+          },
+          "normalization": {
+            "type": "string",
+            "minLength": 1
+          },
+          "window": {
+            "type": "string",
+            "minLength": 1
+          },
+          "calibration_target": {
+            "type": "string",
+            "enum": [
+              "latent_residual",
+              "commitment_reversal",
+              "attribution_gain",
+              "other"
+            ]
+          },
+          "provenance": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": false
+    },
     "signal_metrics": {
       "type": "object",
       "required": [
@@ -127,6 +186,23 @@
           "type": "number",
           "minimum": 0,
           "maximum": 1
+        },
+        "proxy_bank_coverage_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "proxy_confidence_calibration_ece": {
+          "type": "number",
+          "minimum": 0
+        },
+        "proxy_residual_correlation_abs": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "proxy_ablation_control_delta": {
+          "type": "number"
         }
       },
       "additionalProperties": false
@@ -164,6 +240,30 @@
           "signal_metrics": {
             "required": [
               "latent_uncertainty_calibration_error"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "proxy_bank": {
+            "type": "array",
+            "minItems": 1
+          }
+        },
+        "required": [
+          "proxy_bank"
+        ]
+      },
+      "then": {
+        "properties": {
+          "signal_metrics": {
+            "required": [
+              "proxy_bank_coverage_rate",
+              "proxy_confidence_calibration_ece",
+              "proxy_residual_correlation_abs"
             ]
           }
         }

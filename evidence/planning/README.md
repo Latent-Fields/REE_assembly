@@ -9,6 +9,9 @@ This folder closes the architecture loop by converting current evidence into a m
 - `INDEX.md`: generated summary.
 - `structure_review/latest/INDEX.md`: latest human-readable structure review dossier index.
 - `structure_review/latest/structure_review_report.v1.json`: latest dossier generation report.
+- `connectome_literature_pull.v1.json`: connectome-oriented literature pull queue for structure-pressure claims.
+- `CONNECTOME_LITERATURE_PULL.md`: human-readable connectome pull brief + copy/paste execution prompt.
+- `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
 - `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, and `ree-v1-minimal`.
 - `HOBBY_OPERATOR_PLAYBOOK.md`: weekly structured workflow and buy/hold compute decision policy for spare-time operation.
@@ -24,6 +27,7 @@ This folder closes the architecture loop by converting current evidence into a m
 ## Configuration
 
 - `planning_criteria.v1.yaml`: thresholds and repo-routing hints.
+- `planning_criteria.v1.yaml#model_adjudication`: JEPA-vs-REE conflict outcomes, cascade policy, temporary override mode, and anti-lock-in gate.
 
 ## Generation
 
@@ -46,16 +50,39 @@ Generated agenda outputs:
 - `governance_agenda.v1.json`
 - `GOVERNANCE_AGENDA.md`
 
+This also runs adjudication-cascade application by default for `decision_status=applied`:
+
+- `evidence/planning/scripts/apply_adjudication_cascade.py`
+- output state: `evidence/decisions/adjudication_cascade_state.v1.json`
+- output queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
+
 This also generates structure review dossiers from the architecture gap register:
 
 - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/DOSSIER.md`
 - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/dossier.v1.json`
 - `evidence/planning/structure_review/latest/INDEX.md`
 
+It also generates connectome literature pull planning outputs:
+
+- `evidence/planning/connectome_literature_pull.v1.json`
+- `evidence/planning/CONNECTOME_LITERATURE_PULL.md`
+
 Run dossier generation directly:
 
 ```bash
 python3 evidence/planning/scripts/build_structure_review_dossiers.py
+```
+
+Run connectome pull queue generation directly:
+
+```bash
+python3 evidence/planning/scripts/build_connectome_literature_pull.py
+```
+
+Run adjudication-cascade directly:
+
+```bash
+python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied
 ```
 
 Strict thought gate mode:
@@ -70,6 +97,8 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
   - `python3 evidence/planning/scripts/sync_weekly_handoffs.py --day MONDAY`
 - Emit weekly dispatch bundles:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
+- Apply adjudication cascade from applied decisions:
+  - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 - Run ree-v2 cutover readiness (adjudicated divergence mode):
   - `python3 evidence/planning/scripts/check_ree_v2_cutover_readiness.py`
   - add `--apply-cutover` to flip `experimental_default_repo` to `ree-v2` only when all gates pass

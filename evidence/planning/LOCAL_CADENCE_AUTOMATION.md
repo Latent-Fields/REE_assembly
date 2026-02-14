@@ -20,6 +20,10 @@ and cadence config:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
 - Structure review dossiers:
   - `python3 evidence/planning/scripts/build_structure_review_dossiers.py`
+- Connectome pull queue:
+  - `python3 evidence/planning/scripts/build_connectome_literature_pull.py`
+- Adjudication cascade application:
+  - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 
 ---
 
@@ -58,6 +62,20 @@ Then generate structure dossiers (human decision packet):
 ```bash
 python3 evidence/planning/scripts/build_structure_review_dossiers.py
 ```
+
+Then generate connectome literature pull queue:
+
+```bash
+python3 evidence/planning/scripts/build_connectome_literature_pull.py
+```
+
+Then apply adjudication cascade (if any `applied` model-adjudication decisions exist):
+
+```bash
+python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied
+```
+
+Note: `run_governance_cycle.py` now executes this step automatically unless `--skip-adjudication-cascade` is used.
 
 ### Friday (dispatch bundle generation for next week)
 
@@ -127,3 +145,6 @@ Example (Europe/Dublin local machine clock):
 - Weekly dispatch bundles:
   - `evidence/planning/outbound_dispatches/<YYYY-MM-DD>/*.md`
   - `evidence/planning/outbound_dispatches/<YYYY-MM-DD>/dispatch_report.json`
+- Adjudication cascade outputs:
+  - `evidence/decisions/adjudication_cascade_state.v1.json`
+  - `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`

@@ -1,11 +1,11 @@
 # Structure Review Dossier: MECH-059
 
-Generated: `2026-02-14T19:58:26.717483Z`
+Generated: `2026-02-14T20:53:08.942075Z`
 Cycle: `2026-02-14`
 
 ## Claim Description
 
-MECH-059 is a mechanism hypothesis about precision / latent uncertainty stream separation.
+MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.
 
 ## Where This Fits in REE as a Whole
 
@@ -14,7 +14,7 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 ## Structural Pressure Signals
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
-- Trigger signals: high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
+- Trigger signals: external_precedence_pressure, high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
 - Conflict ratio: 0.833
 - Overall confidence: 0.715
 
@@ -30,22 +30,22 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| precision / latent uncertainty stream separation is broadly correct, but failures are boundary-condition failures. | 0.535 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| precision / latent uncertainty stream separation is over-scoped and should be narrowed or split. | 0.364 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of precision / latent uncertainty stream separation but add explicit gating or interface separation. | 0.364 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| precision / confidence channel separate from prediction error is broadly correct, but failures are boundary-condition failures. | 0.535 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| precision / confidence channel separate from prediction error is over-scoped and should be narrowed or split. | 0.364 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of precision / confidence channel separate from prediction error but add explicit gating or interface separation. | 0.364 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
-| `2026-02-14T22:50:00Z` | What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS) | `supports` | 0.67 | Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. | In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-14T21:25:00Z` | Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv) | `mixed` | 0.69 | VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling. | In REE terms, this implies `precision / latent uncertainty stream separation` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
-| `2026-02-14T21:10:00Z` | Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023) | `mixed` | 0.76 | I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping. | In REE terms, this implies `precision / latent uncertainty stream separation` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
-| `2026-02-14T18:53:25.225836Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-14T18:53:25.224836Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-14T18:53:25.223384Z` | Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-14T18:53:25.222121Z` | Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-14T18:48:53.459861Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-14T22:50:00Z` | What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS) | `supports` | 0.67 | Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-14T21:25:00Z` | Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv) | `mixed` | 0.69 | VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling. | In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
+| `2026-02-14T21:10:00Z` | Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023) | `mixed` | 0.76 | I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping. | In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
+| `2026-02-14T18:53:25.225836Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-14T18:53:25.224836Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-14T18:53:25.223384Z` | Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-14T18:53:25.222121Z` | Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-14T18:48:53.459861Z` | Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
 
 ## Left-Field Suggestions
 

@@ -1,11 +1,12 @@
 # Structure Review Dossier Index
 
-Generated: `2026-02-14T19:58:26.717483Z`
+Generated: `2026-02-14T20:53:08.942075Z`
 Cycle: `2026-02-14`
 
 These dossiers are designed to support human judgment when claims show structural pressure in the evidence stream.
 
 | claim_id | status | recommendation | consider_new_structure | dossier |
 |---|---|---|---|---|
+| `MECH-058` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-14/MECH-058/DOSSIER.md` |
 | `MECH-060` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-14/MECH-060/DOSSIER.md` |
 | `MECH-059` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-14/MECH-059/DOSSIER.md` |

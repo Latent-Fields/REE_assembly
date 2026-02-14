@@ -4,7 +4,7 @@
       "alternative_id": "ALT-01",
       "confidence_estimate": 0.535,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
-      "hypothesis": "precision / latent uncertainty stream separation is broadly correct, but failures are boundary-condition failures.",
+      "hypothesis": "precision / confidence channel separate from prediction error is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
         "Target stress regimes where failures cluster and test whether boundary constraints recover stability.",
         "Pull replication papers that test similar mechanisms under distribution shift."
@@ -14,7 +14,7 @@
       "alternative_id": "ALT-02",
       "confidence_estimate": 0.364,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
-      "hypothesis": "precision / latent uncertainty stream separation is over-scoped and should be narrowed or split.",
+      "hypothesis": "precision / confidence channel separate from prediction error is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
         "Extract disconfirming sources and isolate the exact violated assumption.",
         "Run claim-splitting experiments with explicit sub-claim tags in manifests."
@@ -24,7 +24,7 @@
       "alternative_id": "ALT-03",
       "confidence_estimate": 0.364,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
-      "hypothesis": "A hybrid architecture is needed: keep the core of precision / latent uncertainty stream separation but add explicit gating or interface separation.",
+      "hypothesis": "A hybrid architecture is needed: keep the core of precision / confidence channel separate from prediction error but add explicit gating or interface separation.",
       "next_evidence_pull": [
         "Evaluate an ablation that isolates the proposed guardrail/interface addition.",
         "Collect one adjacent-domain source that uses a similar split architecture."
@@ -47,10 +47,10 @@
       "MECH-057"
     ],
     "location": "docs/architecture/agency_responsibility_flow.md#mech-059",
-    "plain_english_claim_description": "MECH-059 is a mechanism hypothesis about precision / latent uncertainty stream separation.",
+    "plain_english_claim_description": "MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.",
     "plain_english_ree_fit_description": "This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-005`, `ARC-004`, `ARC-015`, `MECH-054`, `MECH-057`. It currently feeds 3 downstream claim(s): `IMPL-023`, `Q-013`, `Q-014`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-059`.",
     "status": "candidate",
-    "subject": "precision.latent_uncertainty_stream_separation"
+    "subject": "precision.confidence_channel_separate_from_prediction_error"
   },
   "cycle_date": "2026-02-14",
   "decision_prompts": [
@@ -64,7 +64,7 @@
       "confidence": 0.67,
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-      "ree_translation": "In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
       "run_id": "2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017",
       "source_background": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS)",
       "source_type": "literature",
@@ -75,7 +75,7 @@
       "confidence": 0.69,
       "evidence_direction": "mixed",
       "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-      "ree_translation": "In REE terms, this implies `precision / latent uncertainty stream separation` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
       "run_id": "2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits",
       "source_background": "Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv)",
       "source_type": "literature",
@@ -86,7 +86,7 @@
       "confidence": 0.76,
       "evidence_direction": "mixed",
       "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-      "ree_translation": "In REE terms, this implies `precision / latent uncertainty stream separation` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
       "run_id": "2026-02-14_v3jepa_ijepa_control_plane_gap",
       "source_background": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023)",
       "source_type": "literature",
@@ -97,7 +97,7 @@
       "confidence": 0.75,
       "evidence_direction": "weakens",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
       "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z",
       "source_background": "Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -108,7 +108,7 @@
       "confidence": 0.75,
       "evidence_direction": "weakens",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
       "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z",
       "source_background": "Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -119,7 +119,7 @@
       "confidence": 0.75,
       "evidence_direction": "supports",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
       "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z",
       "source_background": "Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -130,7 +130,7 @@
       "confidence": 0.75,
       "evidence_direction": "supports",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
       "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z",
       "source_background": "Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -141,7 +141,7 @@
       "confidence": 0.75,
       "evidence_direction": "weakens",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
       "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z",
       "source_background": "Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -152,7 +152,7 @@
       "confidence": 0.75,
       "evidence_direction": "weakens",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / latent uncertainty stream separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
       "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z",
       "source_background": "Run-pack `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -163,7 +163,7 @@
       "confidence": 0.75,
       "evidence_direction": "supports",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `precision / latent uncertainty stream separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
       "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z",
       "source_background": "Run-pack `bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
@@ -195,7 +195,7 @@
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-14T19:58:26.717483Z",
+  "generated_at_utc": "2026-02-14T20:53:08.942075Z",
   "left_field_suggestions": [
     {
       "first_test": "Add a toy arbitration layer and compare calibration drift against current single-head setup.",
@@ -217,7 +217,7 @@
   "structure_pressure": {
     "conflict_ratio": 0.833,
     "consider_new_structure": true,
-    "gap_id": "AGR-0002",
+    "gap_id": "AGR-0003",
     "latest_decision": {
       "decision_status": "approved",
       "recommendation": "hold_candidate_resolve_conflict",
@@ -244,6 +244,7 @@
       "literature": 4
     },
     "trigger_signals": [
+      "external_precedence_pressure",
       "high_conflict_ratio",
       "literature_non_support_pressure",
       "recurring_failure_signatures"

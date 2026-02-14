@@ -164,9 +164,18 @@ def _build_agenda(
     architecture_gaps = _load_json_file(
         repo_root / "evidence/planning/architecture_gap_register.v1.json", warnings
     )
+    connectome_pull = _load_json_file(
+        repo_root / "evidence/planning/connectome_literature_pull.v1.json", warnings
+    )
     structure_review_report = _load_json_file(
         repo_root / "evidence/planning/structure_review/latest/structure_review_report.v1.json",
         warnings,
+    )
+    planning_criteria = _load_json_file(
+        repo_root / "evidence/planning/planning_criteria.v1.yaml", warnings
+    )
+    adjudication_cascade_state = _load_json_file(
+        repo_root / "evidence/decisions/adjudication_cascade_state.v1.json", warnings
     )
     claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
 
@@ -207,6 +216,47 @@ def _build_agenda(
         if isinstance(structure_review_report, dict)
         else 0
     )
+    connectome_pull_items = (
+        connectome_pull.get("items", []) if isinstance(connectome_pull, dict) else []
+    )
+    connectome_pull_high_priority = [
+        item for item in connectome_pull_items if str(item.get("priority", "")) == "high"
+    ]
+    external_precedence_candidates = [
+        item for item in architecture_items if bool(item.get("external_precedence_candidate", False))
+    ]
+    anti_lock_in_reviews = [
+        item for item in architecture_items if bool(item.get("anti_lock_in_review_required", False))
+    ]
+    model_adjudication = (
+        planning_criteria.get("model_adjudication", {}) if isinstance(planning_criteria, dict) else {}
+    )
+    allowed_conflict_outcomes_raw = model_adjudication.get("allowed_conflict_outcomes", [])
+    allowed_conflict_outcomes = [
+        str(x).strip() for x in allowed_conflict_outcomes_raw if str(x).strip()
+    ]
+    cascade_policy = model_adjudication.get("cascade_policy", {})
+    temporary_override_mode = model_adjudication.get("temporary_override_mode", {})
+    cascade_last_run = (
+        adjudication_cascade_state.get("last_run", {})
+        if isinstance(adjudication_cascade_state, dict)
+        else {}
+    )
+    cascade_actions = (
+        cascade_last_run.get("actions", [])
+        if isinstance(cascade_last_run, dict)
+        else []
+    )
+    cascade_claims_updated = (
+        cascade_last_run.get("claims_updated", [])
+        if isinstance(cascade_last_run, dict)
+        else []
+    )
+    cascade_dependents_reopened = (
+        cascade_last_run.get("dependents_reopened", [])
+        if isinstance(cascade_last_run, dict)
+        else []
+    )
 
     unlinked_runs = claim_matrix.get("unlinked_runs", []) if isinstance(claim_matrix, dict) else []
 
@@ -232,6 +282,13 @@ def _build_agenda(
             "structure_considerations": len(structure_considerations),
             "structure_review_dossiers": structure_review_total,
             "structure_review_considerations": structure_review_consider,
+            "connectome_pull_items": len(connectome_pull_items),
+            "connectome_pull_high_priority": len(connectome_pull_high_priority),
+            "external_precedence_candidates": len(external_precedence_candidates),
+            "anti_lock_in_reviews": len(anti_lock_in_reviews),
+            "adjudication_cascade_actions": len(cascade_actions),
+            "adjudication_cascade_claims_updated": len(cascade_claims_updated),
+            "adjudication_cascade_dependents_reopened": len(cascade_dependents_reopened),
             "unlinked_evidence_runs": len(unlinked_runs),
         },
         "warnings": warnings,
@@ -259,6 +316,70 @@ def _build_agenda(
                 "consider_new_structure_total": structure_review_consider,
                 "items": structure_review_items,
                 "index_path": "evidence/planning/structure_review/latest/INDEX.md",
+            },
+            "connectome_literature_pull": {
+                "prompt": "Review connectome-oriented literature pull queue for architecture-pressure claims.",
+                "items_total": len(connectome_pull_items),
+                "high_priority_total": len(connectome_pull_high_priority),
+                "items": connectome_pull_items,
+                "queue_path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md",
+            },
+            "model_adjudication": {
+                "prompt": (
+                    "Resolve JEPA-vs-REE conflicts using explicit outcomes and apply cascade rules when REE claims are replaced."
+                ),
+                "external_precedence_enabled": bool(
+                    model_adjudication.get("external_precedence_enabled", False)
+                ),
+                "default_conflict_outcome": str(
+                    model_adjudication.get("default_conflict_outcome", "retain_ree")
+                ),
+                "allowed_conflict_outcomes": allowed_conflict_outcomes,
+                "cascade_policy": {
+                    "enabled": bool(cascade_policy.get("enabled", False)),
+                    "trigger_outcomes": [
+                        str(x).strip()
+                        for x in cascade_policy.get("trigger_outcomes", [])
+                        if str(x).strip()
+                    ],
+                    "dependency_reopen_status": str(
+                        cascade_policy.get("dependency_reopen_status", "candidate")
+                    ),
+                    "require_followup_proposals": bool(
+                        cascade_policy.get("require_followup_proposals", False)
+                    ),
+                },
+                "temporary_override_mode": {
+                    "enabled": bool(temporary_override_mode.get("enabled", False)),
+                    "mode_id": str(temporary_override_mode.get("mode_id", "")),
+                    "requirements": [
+                        str(x).strip()
+                        for x in temporary_override_mode.get("requirements", [])
+                        if str(x).strip()
+                    ],
+                },
+                "anti_lock_in_gate_enabled": bool(
+                    model_adjudication.get("anti_lock_in_gate", {}).get("enabled", False)
+                ),
+                "external_precedence_candidates": external_precedence_candidates,
+                "anti_lock_in_reviews": anti_lock_in_reviews,
+            },
+            "adjudication_cascade": {
+                "prompt": (
+                    "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
+                ),
+                "last_run_generated_at_utc": str(cascade_last_run.get("generated_at_utc", "")),
+                "decision_status_filters": [
+                    str(x).strip()
+                    for x in cascade_last_run.get("decision_status_filters", [])
+                    if str(x).strip()
+                ],
+                "dry_run": bool(cascade_last_run.get("dry_run", False)),
+                "actions_total": len(cascade_actions),
+                "claims_updated_total": len(cascade_claims_updated),
+                "dependents_reopened_total": len(cascade_dependents_reopened),
+                "actions": cascade_actions,
+                "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
             },
             "evidence_dispatch": {
                 "prompt": "Approve export of high-priority proposals to execution repos.",
@@ -329,7 +450,58 @@ def _build_agenda(
     )
     lines.append("- dossier index: `evidence/planning/structure_review/latest/INDEX.md`")
     lines.append(
-        f"6. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        "6. Connectome Literature Pull: "
+        + f"{len(connectome_pull_items)} queued claim(s), "
+        + f"{len(connectome_pull_high_priority)} high-priority."
+    )
+    lines.append("- connectome queue: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`")
+    if connectome_pull_high_priority:
+        for item in connectome_pull_high_priority[:10]:
+            claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            pull_id = _strip_ticks(str(item.get("pull_id", "")))
+            lines.append(f"- `{claim_id}` pull_id=`{pull_id}`")
+    lines.append(
+        "7. Model Adjudication: "
+        + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
+        + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
+    )
+    lines.append(
+        "- allowed outcomes: "
+        + ",".join(allowed_conflict_outcomes)
+        if allowed_conflict_outcomes
+        else "- allowed outcomes: (none configured)"
+    )
+    if bool(temporary_override_mode.get("enabled", False)):
+        lines.append(
+            "- temporary override mode: "
+            + f"`{temporary_override_mode.get('mode_id', '')}`"
+        )
+    if external_precedence_candidates:
+        for item in external_precedence_candidates[:10]:
+            claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            confidence_split = item.get("confidence_split", {})
+            delta = float(confidence_split.get("delta_lit_minus_exp", 0.0))
+            lines.append(
+                f"- `{claim_id}` external_precedence_candidate=yes; "
+                + f"delta_lit_minus_exp={delta:.3f}"
+            )
+    lines.append(
+        "8. Adjudication Cascade: "
+        + f"{len(cascade_actions)} action(s), "
+        + f"{len(cascade_claims_updated)} claim update(s), "
+        + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
+    )
+    lines.append("- patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`")
+    if cascade_actions:
+        for action in cascade_actions[:10]:
+            claim_id = _strip_ticks(str(action.get("claim_id", "")))
+            outcome = _strip_ticks(str(action.get("outcome", "")))
+            reopened = action.get("dependents_reopened", [])
+            lines.append(
+                f"- `{claim_id}` outcome=`{outcome}`; reopened_dependents={len(reopened)}"
+            )
+    lines.append(
+        f"9. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
@@ -338,7 +510,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"7. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"10. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     if warnings:
         for warning in warnings:
@@ -372,6 +544,26 @@ def main() -> None:
         "--skip-structure-review",
         action="store_true",
         help="Skip structure review dossier generation step.",
+    )
+    parser.add_argument(
+        "--skip-connectome-pull",
+        action="store_true",
+        help="Skip connectome literature pull queue generation step.",
+    )
+    parser.add_argument(
+        "--skip-adjudication-cascade",
+        action="store_true",
+        help="Skip adjudication-cascade application step.",
+    )
+    parser.add_argument(
+        "--adjudication-cascade-statuses",
+        default="applied",
+        help="Comma-separated decision statuses eligible for adjudication cascade application.",
+    )
+    parser.add_argument(
+        "--adjudication-cascade-dry-run",
+        action="store_true",
+        help="Run adjudication-cascade step in dry-run mode.",
     )
     parser.add_argument(
         "--strict-thoughts",
@@ -420,6 +612,16 @@ def main() -> None:
             thought_cmd.append("--check-unprocessed")
         plan.append(("thought_sweep", thought_cmd))
 
+    if not args.skip_adjudication_cascade:
+        cascade_cmd = [
+            str(sys.executable),
+            "evidence/planning/scripts/apply_adjudication_cascade.py",
+            "--decision-statuses",
+            str(args.adjudication_cascade_statuses),
+        ]
+        if args.adjudication_cascade_dry_run:
+            cascade_cmd.append("--dry-run")
+        plan.append(("adjudication_cascade", cascade_cmd))
     if not args.skip_evidence_build:
         plan.append(
             (
@@ -437,6 +639,16 @@ def main() -> None:
                 [
                     str(sys.executable),
                     "evidence/planning/scripts/build_structure_review_dossiers.py",
+                ],
+            )
+        )
+    if not args.skip_connectome_pull:
+        plan.append(
+            (
+                "connectome_pull",
+                [
+                    str(sys.executable),
+                    "evidence/planning/scripts/build_connectome_literature_pull.py",
                 ],
             )
         )
@@ -467,6 +679,9 @@ def main() -> None:
         + f"decision_queue={agenda['summary']['decision_queue_items']}, "
         + f"structure_considerations={agenda['summary']['structure_considerations']}, "
         + f"structure_dossiers={agenda['summary']['structure_review_dossiers']}, "
+        + f"connectome_pull={agenda['summary']['connectome_pull_items']}, "
+        + f"external_precedence={agenda['summary']['external_precedence_candidates']}, "
+        + f"cascade_actions={agenda['summary']['adjudication_cascade_actions']}, "
         + f"backlog_high={agenda['summary']['backlog_high_priority']}."
     )
     print(f"Agenda JSON: {agenda_json_path.as_posix()}")

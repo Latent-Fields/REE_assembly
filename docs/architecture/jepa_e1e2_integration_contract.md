@@ -73,14 +73,41 @@ Notes:
 
 - `pe_latent` is already explicit in canonical JEPA implementations.
 - `uncertainty_latent` is partially implicit in canonical JEPA and must be adapter-derived unless the producer exposes a dedicated uncertainty head.
-- `precision_latent` is not a native JEPA output. It should be computed by REE control-plane logic from uncertainty/error streams (for example, `clip(1/(eps + uncertainty_latent.dispersion), p_min, p_max)`).
+- `precision_latent` is not guaranteed as an explicit calibrated JEPA output channel. The adapter may export internal precision proxies (for example, dispersion, ensemble disagreement, attention entropy, or action sensitivity) with provenance metadata; REE control-plane logic must compose the final confidence channel (uncertainty-derived precision).
 - Machine-readable adapter declaration for experiment packs: `evidence/experiments/schemas/v1/jepa_adapter_signals.v1.json`.
+
+### JEPA↔REE control signal mapping matrix (execution contract)
+
+This table defines ownership and gating for control-plane-relevant channels when JEPA backs E1/E2.
+
+| REE control function | REE-facing channel | JEPA source class | JEPA extraction examples | Final transform owner | Required checks | Canonical failure signatures |
+| --- | --- | --- | --- | --- | --- | --- |
+| Substrate mismatch feed (`MECH-058`) | `pe_latent` | explicit/derived | `smooth_l1` residual, `p95`, `by_mask` | REE consumes; adapter exports only | `latent_residual_coverage_rate >= 0.95` | `contract:jepa_residual_stream_missing`, `mech058:timescale_separation_collapse` |
+| Confidence-channel synthesis (`MECH-059`) | `confidence_channel` | derived proxy bank | `uncertainty_latent.dispersion`, ensemble disagreement, attention entropy, rollout inconsistency, action sensitivity | REE control plane only | calibration, separability, and completeness checks | `mech059:calibration_slope_break`, `mech059:uncertainty_metric_gaming_detected`, `mech059:abstention_reliability_collapse` |
+| Pre-commit planning signal (`MECH-060`) | `pre_commit_error` | hybrid | `pe_latent` + hypothetical action-conditioned rollout deltas | REE control plane only | `pre_commit_error_signal_to_noise` and leakage checks | `mech060:precommit_channel_contamination` |
+| Post-commit attribution signal (`MECH-060`) | `post_commit_error` | hybrid | realized residuals + reafference delta + action trace | REE attribution path | `post_commit_error_attribution_gain` and attribution reliability checks | `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break` |
+| Trajectory-first control support (`MECH-056`) | `trajectory_candidate_risk` | derived | rollout consistency + commitment reversal diagnostics | REE commitment layer | trajectory-first checks under ablation | `mech056:trajectory_order_violation` |
+| Channel-isolation guard (`MECH-060`) | `cross_channel_leakage_rate` | REE diagnostic | control-plane leakage estimator across pre/post channels | REE control plane only | `cross_channel_leakage_rate <= threshold` | `mech060:cross_channel_leakage_spike` |
+
+### Proxy bank declaration (adapter to control handoff)
+
+When JEPA-backed control routing is enabled, the adapter should export `proxy_bank` declarations for each active
+internal proxy used by REE confidence/channel logic. Each proxy entry should include:
+
+- `proxy_id`: stable key (`uncertainty_dispersion`, `ensemble_disagreement`, `attention_entropy`, `rollout_inconsistency`, `action_sensitivity`, `other`)
+- `source_stream`: source family (`uncertainty_dispersion`/`ensemble_disagreement`/`attention_entropy`/`rollout_inconsistency`/`action_sensitivity`/`other`)
+- `extraction_method`: short deterministic description of how the proxy is computed
+- `normalization`: scaling/bounding transform
+- `window`: temporal/statistical window used
+- `calibration_target`: what the proxy is calibrated against (`latent_residual`, `commitment_reversal`, `attribution_gain`, `other`)
+- `provenance`: adapter-internal source pointer (module name, tensor path, or equivalent)
 
 ### Contract invariants
 
 - Output latents must remain numerically stable under repeated rollout calls.
 - Prediction deviation keys must be fixed-name numeric fields across runs.
 - JEPA outputs must not directly commit actions; they are advisory inputs to REE control.
+- JEPA adapters may emit proxy signals, but must not emit final control-plane decisions or commitment actions.
 
 ---
 
@@ -90,6 +117,7 @@ Notes:
 2. Multi-step `z_hat` feeds `E2` short-horizon prediction interfaces and hippocampal rollout seeding.
 3. `pe_latent` feeds REE prediction-error routing (precision/eligibility inputs), not direct policy rewrite.
 4. Any action-conditioned JEPA output is treated as hypothetical until E3 commitment.
+5. Internal JEPA proxies are valid control inputs only after explicit REE-side calibration and attribution-safe routing.
 
 ### Signed PE and precision routing bridge
 
@@ -97,12 +125,12 @@ To keep substrate/control separation explicit:
 
 - JEPA adapter emits unsigned latent deviation and uncertainty streams only.
 - REE computes signed decomposition downstream (for example, harm/benefit directional channels) using claim-owned control-plane rules.
-- Precision routing consumes `pe_latent` + `uncertainty_latent` + context tags; it is not learned implicitly inside the JEPA adapter.
+- Precision routing consumes `pe_latent` + the confidence channel (derived from calibrated proxy bank inputs such as `uncertainty_latent`) + context tags; it is not learned implicitly inside the JEPA adapter.
 
 Practical interpretation:
 
 - JEPA gives the mismatch stream (`what was wrong`) and can expose dispersion (`how many futures looked plausible`).
-- REE converts that into precision (`how strongly to trust this error for control`) with explicit, auditable transforms.
+- REE converts that into a confidence channel (uncertainty-derived precision: `how strongly to trust this error for control`) with explicit, auditable transforms.
 
 ---
 
@@ -136,6 +164,13 @@ REE-side control knobs remain out-of-scope for JEPA substrate and must be separa
 - `latent_residual_coverage_rate` (fraction of predictions with exported residual trace)
 - `precision_input_completeness_rate` (fraction of steps with all required PE/uncertainty fields)
 
+### Additional required metrics (JEPA control-proxy routing profiles)
+
+- `proxy_bank_coverage_rate` (fraction of steps with declared proxy provenance)
+- `proxy_confidence_calibration_ece` (confidence-channel calibration error from proxy-driven confidence)
+- `proxy_residual_correlation_abs` (absolute correlation between confidence channel and raw residual magnitude)
+- `proxy_ablation_control_delta` (control quality delta when proxy bank is disabled vs enabled)
+
 ### Required checks
 
 - separation check: E1-proxy updates are slower than E2-proxy updates;
@@ -143,6 +178,9 @@ REE-side control knobs remain out-of-scope for JEPA substrate and must be separa
 - attribution readiness check: outputs contain enough trace context for reafference comparison.
 - uncertainty provenance check: every uncertainty value must declare estimator type (`dispersion`/`ensemble`/`head`);
 - signed-PE boundary check: adapter does not emit control-plane valence labels as if they were substrate-native.
+- proxy provenance check: every active control proxy has `proxy_bank` declaration fields.
+- confidence/residual separability check: confidence channel is not a direct alias of residual magnitude.
+- ablation utility check: at least one declared proxy improves control/attribution behavior under matched seeds.
 
 ---
 

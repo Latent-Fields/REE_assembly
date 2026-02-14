@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://planning/v1/connectome_literature_pull.schema.json",
+  "title": "REE Connectome Literature Pull v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "cycle_date",
+    "source",
+    "selection",
+    "items"
+  ],
+  "properties": {
+    "schema_version": { "const": "connectome_literature_pull/v1" },
+    "generated_at_utc": { "type": "string", "format": "date-time" },
+    "cycle_date": { "type": "string" },
+    "source": { "type": "object" },
+    "selection": { "type": "object" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "pull_id",
+          "claim_id",
+          "priority",
+          "status",
+          "target_repo",
+          "objective",
+          "suggested_literature_type",
+          "selection_signals",
+          "connectome_focus",
+          "research_questions",
+          "search_tracks",
+          "required_record_contract",
+          "acceptance_checks"
+        ],
+        "properties": {
+          "pull_id": { "type": "string" },
+          "claim_id": { "type": "string" },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "status": { "type": "string" },
+          "target_repo": { "type": "string" },
+          "objective": { "type": "string" },
+          "suggested_literature_type": { "type": "string" },
+          "plain_english_claim_description": { "type": "string" },
+          "plain_english_ree_fit_description": { "type": "string" },
+          "selection_signals": { "type": "object" },
+          "connectome_focus": { "type": "string" },
+          "research_questions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "search_tracks": {
+            "type": "array",
+            "items": { "type": "object" }
+          },
+          "required_record_contract": { "type": "object" },
+          "acceptance_checks": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

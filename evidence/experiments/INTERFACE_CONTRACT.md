@@ -90,6 +90,29 @@ Required core fields:
   - `precision_input_completeness_rate` (0..1)
   - plus `latent_uncertainty_calibration_error` if `uncertainty_latent=true`
 
+Optional JEPA control-proxy extension fields (recommended for `MECH-059` / `MECH-060` work):
+
+- `proxy_bank`: array of proxy declarations used by REE control routing. Each item should include:
+  - `proxy_id`
+  - `source_stream` (`uncertainty_dispersion|ensemble_disagreement|attention_entropy|rollout_inconsistency|action_sensitivity|other`)
+  - `extraction_method`
+  - `normalization`
+  - `window`
+  - `calibration_target` (`latent_residual|commitment_reversal|attribution_gain|other`)
+  - `provenance`
+- `signal_metrics` optional additions:
+  - `proxy_bank_coverage_rate` (0..1)
+  - `proxy_confidence_calibration_ece` (>=0)
+  - `proxy_residual_correlation_abs` (0..1)
+  - `proxy_ablation_control_delta` (signed delta; positive indicates control utility gain)
+
+Conditional validation:
+
+- if `proxy_bank` is present and non-empty, `signal_metrics` must include:
+  - `proxy_bank_coverage_rate`
+  - `proxy_confidence_calibration_ece`
+  - `proxy_residual_correlation_abs`
+
 Validation behavior:
 
 - Missing/invalid adapter file is marked as run failure in generated indexes.

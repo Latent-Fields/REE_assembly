@@ -177,13 +177,20 @@ Minimum stable metrics across runs:
 - `latent_rollout_consistency_rate`
 - `latent_residual_coverage_rate`
 - `precision_input_completeness_rate`
-- `latent_uncertainty_calibration_error` (if uncertainty stream present)
+- `latent_uncertainty_calibration_error` (if confidence-channel inputs are present)
 
 Mechanism-targeted metrics:
 
 - `e1_e2_timescale_separation_ratio` (`MECH-058`)
 - `uncertainty_coverage_rate` (`MECH-059`)
 - `cross_channel_leakage_rate` (`MECH-060`, provisional hook for v3)
+
+JEPA control-proxy metrics (required for JEPA-backed control routing profiles):
+
+- `proxy_bank_coverage_rate`
+- `proxy_confidence_calibration_ece`
+- `proxy_residual_correlation_abs`
+- `proxy_ablation_control_delta`
 
 ---
 
@@ -197,11 +204,15 @@ v2 must maintain explicit experiment profiles for:
 
 2. `jepa_uncertainty_channels` (`MECH-059`)
 - compare deterministic+dispersion vs explicit uncertainty head,
-- verify calibration and precision-input completeness.
+- verify confidence-channel calibration and precision-input completeness.
 
 3. `commit_dual_error_channels` (`MECH-060`, hook-level in v2)
 - compare single-stream vs pre/post split-stream instrumentation,
 - verify leakage and attribution-readiness signals.
+
+4. `jepa_control_proxy_ablation` (`MECH-059`, `MECH-060`, `MECH-056`)
+- compare baseline uncertainty-only routing vs proxy-bank routing,
+- verify proxy provenance coverage, calibration, separability, and ablation utility.
 
 Each profile must run in:
 - qualification lane (`ree-v2`; transitional fallback `ree-v1-minimal` until `ree-v2` is online),
@@ -217,12 +228,19 @@ The following are hard-fail conditions for v2 readiness:
 - Timescale-collapse signatures (E1/E2 separation fails repeatedly).
 - Uncertainty stream unavailable or uncalibrated where required by experiment profile.
 - Residual/precision input completeness below configured threshold.
+- Missing proxy provenance declarations for enabled JEPA control-proxy routing.
+- Confidence/residual separability collapse (confidence channel becomes residual alias).
+- No measurable control utility from enabled proxy bank under matched-seed ablation.
 
 Initial readiness thresholds (tunable, but explicit):
 
 - `latent_residual_coverage_rate >= 0.95`
 - `precision_input_completeness_rate >= 0.95`
 - `e1_e2_timescale_separation_ratio >= 1.5` in qualification lane
+- `proxy_bank_coverage_rate >= 0.90` when proxy routing is enabled
+- `proxy_confidence_calibration_ece <= 0.15` when proxy routing is enabled
+- `proxy_residual_correlation_abs <= 0.85` when proxy routing is enabled
+- `proxy_ablation_control_delta > 0` in at least one control profile when proxy routing is enabled
 - no unresolved adapter-contract failures across two consecutive governance cycles
 - stress-lane conflict ratio for core v2 claims trending downward across two consecutive cycles
 

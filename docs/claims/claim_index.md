@@ -117,7 +117,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
 - [MECH-057](../architecture/agency_responsibility_flow.md#mech-057) Agentic latent-predictive models require control-plane completion and self-attribution loops.
 - [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics preserve E1/E2 substrate separation under JEPA-style training.
-- [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Latent uncertainty must remain a distinct stream from residual error for precision routing.
+- [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
 - [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Dual error channels should be separated across pre-commit simulation and post-commit realized outcomes.
 
 ---

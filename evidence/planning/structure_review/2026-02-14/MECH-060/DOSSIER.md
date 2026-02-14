@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-060
 
-Generated: `2026-02-14T19:58:26.717483Z`
+Generated: `2026-02-14T20:53:08.942075Z`
 Cycle: `2026-02-14`
 
 ## Claim Description
@@ -14,7 +14,7 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 ## Structural Pressure Signals
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
-- Trigger signals: high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
+- Trigger signals: external_precedence_pressure, high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
 - Conflict ratio: 0.9
 - Overall confidence: 0.693
 

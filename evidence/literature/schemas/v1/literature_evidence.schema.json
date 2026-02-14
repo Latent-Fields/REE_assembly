@@ -58,6 +58,28 @@
     "tags": {
       "type": "array",
       "items": { "type": "string" }
+    },
+    "mapping": {
+      "type": "object",
+      "required": ["source_claim_statement", "ree_translation", "mapping_caveat"],
+      "properties": {
+        "source_claim_statement": { "type": "string" },
+        "ree_translation": { "type": "string" },
+        "mapping_caveat": { "type": "string" },
+        "source_context": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "confidence_components": {
+      "type": "object",
+      "required": ["source_quality", "mapping_fidelity", "transfer_risk"],
+      "properties": {
+        "source_quality": { "type": "number", "minimum": 0, "maximum": 1 },
+        "mapping_fidelity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "transfer_risk": { "type": "number", "minimum": 0, "maximum": 1 },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

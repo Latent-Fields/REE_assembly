@@ -248,6 +248,11 @@ Global v2 readiness thresholds (from current v2 spec):
 - `precision_input_completeness_rate >= 0.95`
 - `e1_e2_timescale_separation_ratio >= 1.5` in qualification lane
 
+Terminology standardization note (`MECH-059`):
+
+- Use **confidence channel (uncertainty-derived precision)** for control-plane weighting semantics.
+- Keep metric keys unchanged (`latent_uncertainty_calibration_error`, `uncertainty_coverage_rate`) for contract compatibility.
+
 ## 5.3 Required failure signatures (emit when triggered)
 
 | Claim | Required signature IDs |

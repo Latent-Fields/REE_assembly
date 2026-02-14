@@ -7,6 +7,135 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: Automated Adjudication Cascade Application
+
+### Overview
+
+Added post-decision automation that applies adjudication outcomes to the claim registry and reopens dependent claims
+when structural outcomes (`adopt_jepa_structure` / `retire_ree_claim`) are selected.
+
+### What Changed
+
+- Added adjudication cascade script:
+  - `evidence/planning/scripts/apply_adjudication_cascade.py`
+  - reads latest decision-log entries by claim
+  - applies configured outcome tokens for `decision_status=applied`
+  - updates `docs/claims/claims.yaml` adjudication/cascade fields
+  - emits:
+    - `evidence/decisions/adjudication_cascade_state.v1.json`
+    - `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
+- Integrated cascade step into governance cycle:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - new step: `adjudication_cascade` (enabled by default)
+  - new flags:
+    - `--skip-adjudication-cascade`
+    - `--adjudication-cascade-statuses`
+    - `--adjudication-cascade-dry-run`
+  - agenda now includes `Adjudication Cascade` checkpoint and action counts.
+- Updated runbooks:
+  - `evidence/planning/README.md`
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+  - `evidence/decisions/README.md`
+
+## 2026-02-14: External-Precedence Governance Policy (JEPA vs REE)
+
+### Overview
+
+Added an explicit governance policy that allows REE claim replacement when matched JEPA evidence is stronger, with
+cascade handling and anti-lock-in safeguards.
+
+### What Changed
+
+- Extended planning criteria with executable adjudication policy:
+  - `evidence/planning/planning_criteria.v1.yaml`
+  - added `model_adjudication` section:
+    - allowed outcomes: `retain_ree`, `hybridize`, `adopt_jepa_structure`, `retire_ree_claim`
+    - cascade policy for dependency reopen on structural replacement
+    - temporary override mode for JEPA-internal proxy routing with provenance/calibration/rollback requirements
+    - anti-lock-in gate
+  - added thresholds for external-precedence detection.
+- Updated planning generation to propagate adjudication/cascade context into backlog and architecture gap outputs:
+  - `evidence/experiments/scripts/build_experiment_indexes.py`
+  - external-precedence and anti-lock-in signals are now computed and surfaced in generated planning artifacts.
+- Updated governance agenda builder to report model adjudication checkpoint:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - includes candidate claims, allowed outcomes, cascade policy, and override mode in agenda outputs.
+- Added claim-level lifecycle/adjudication metadata for core JEPA-sensitive claims:
+  - `docs/claims/claims.yaml`
+  - updated `MECH-056`, `MECH-058`, `MECH-059`, `MECH-060`, and `IMPL-022`.
+
+## 2026-02-14: JEPA Control-Signal Mapping Matrix and Proxy Contract
+
+### Overview
+
+Hardened JEPA integration wording and interfaces so REE control-plane routing can use internal JEPA proxies without
+collapsing control ownership into the substrate layer.
+
+### What Changed
+
+- Updated JEPA integration contract with explicit JEPA↔REE control signal mapping matrix:
+  - `docs/architecture/jepa_e1e2_integration_contract.md`
+  - clarified that precision is not guaranteed as an explicit calibrated JEPA output channel
+  - added execution table for `MECH-056`, `MECH-058`, `MECH-059`, `MECH-060`
+  - added proxy-bank declaration contract and explicit provenance/calibration/separability/ablation checks
+- Updated v2 substrate spec with JEPA control-proxy profile and hard-fail thresholds:
+  - `docs/architecture/ree_v2_spec.md`
+  - added `jepa_control_proxy_ablation` profile
+  - added proxy metrics and readiness thresholds (`proxy_bank_coverage_rate`, calibration ECE, residual separability, ablation utility)
+- Extended adapter signal schema and producer contract for proxy-bank metadata:
+  - `evidence/experiments/schemas/v1/jepa_adapter_signals.v1.json`
+  - `evidence/experiments/INTERFACE_CONTRACT.md`
+  - proxy declarations are optional in base v1, but conditional metrics are required when `proxy_bank` is present
+
+## 2026-02-14: Connectome Literature Pull Implementation
+
+### Overview
+
+Added a generated connectome-oriented literature pull queue to turn architecture pressure signals into
+concrete, claim-scoped evidence pulls with source-preserving translation and confidence decomposition requirements.
+
+### What Changed
+
+- Added connectome pull generator:
+  - `evidence/planning/scripts/build_connectome_literature_pull.py`
+  - outputs:
+    - `evidence/planning/connectome_literature_pull.v1.json`
+    - `evidence/planning/CONNECTOME_LITERATURE_PULL.md`
+- Integrated connectome pull generation into governance cycle:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - new step: `connectome_pull`
+  - new agenda checkpoint: `Connectome Literature Pull`
+- Extended literature contract and schema for source-preserving translation and confidence decomposition:
+  - `evidence/literature/INTERFACE_CONTRACT.md`
+  - `evidence/literature/schemas/v1/literature_evidence.schema.json`
+  - new optional record fields:
+    - `mapping` (`source_claim_statement`, `ree_translation`, `mapping_caveat`, optional `source_context`)
+    - `confidence_components` (`source_quality`, `mapping_fidelity`, `transfer_risk`, optional `notes`)
+- Added planning schema for connectome pull artifact:
+  - `evidence/planning/schemas/v1/connectome_literature_pull.schema.json`
+
+## 2026-02-14: MECH-059 Terminology Standardization
+
+### Overview
+
+Standardized `MECH-059` language to avoid ambiguity between uncertainty and precision by using:
+**confidence channel (uncertainty-derived precision)**, explicitly separate from residual prediction error.
+
+### What Changed
+
+- Updated canonical mechanism wording:
+  - `docs/architecture/agency_responsibility_flow.md#mech-059`
+- Updated JEPA contract wording:
+  - `docs/architecture/jepa_e1e2_integration_contract.md`
+- Updated claim metadata and index label:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+- Updated v2 planning/spec references:
+  - `docs/architecture/ree_v2_spec.md`
+  - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
+- Updated governance decision packet phrasing:
+  - `evidence/decisions/decision_packet_v3_conflicts_2026-02-14.md`
+
 ## 2026-02-14: Structure Review Dossier Protocol
 
 ### Overview
