@@ -1,0 +1,46 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "jepa_anchor_ablation",
+  "run_id": "2026-02-14T164820Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-14T16:48:20Z",
+  "source_repo": {
+    "name": "ree-v2",
+    "commit": "7cf3b09feb088aa29d39e31ef98502236487c764",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v2-qualification-harness",
+    "version": "toy_env_runner.v1"
+  },
+  "scenario": {
+    "name": "jepa_anchor_ablation",
+    "condition": "ema_anchor_on",
+    "seed": 11,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "8812d3449a57",
+    "trajectory_steps": 120,
+    "execution_driver": "deterministic_toy_env_v1",
+    "jepa_source_mode": "internal_minimal_impl",
+    "jepa_source_commit": "internal_snapshot_sha256:0241895c20456d097606d9329fef27f50427cf42c208ac87eb983a52a545bdd5",
+    "jepa_patch_set_hash": "664e1467b722c3ca"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "ablation",
+  "evidence_direction": "supports",
+  "failure_signatures": [
+    "mech058:ema_drift_under_shift"
+  ],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  }
+}

@@ -18,6 +18,8 @@ and cadence config:
   - `python3 evidence/planning/scripts/sync_weekly_handoffs.py`
 - Dispatch generation:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
+- Structure review dossiers:
+  - `python3 evidence/planning/scripts/build_structure_review_dossiers.py`
 
 ---
 
@@ -49,6 +51,12 @@ python3 evidence/planning/scripts/sync_weekly_handoffs.py --day WEDNESDAY
 python3 evidence/planning/scripts/sync_weekly_handoffs.py \
   --repos ree-v2 ree-experiments-lab ree-v1-minimal \
   --run-ingestion
+```
+
+Then generate structure dossiers (human decision packet):
+
+```bash
+python3 evidence/planning/scripts/build_structure_review_dossiers.py
 ```
 
 ### Friday (dispatch bundle generation for next week)

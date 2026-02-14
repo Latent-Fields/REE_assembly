@@ -1,0 +1,30 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "jepa_uncertainty_channels",
+  "run_id": "2026-02-14T164820Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv",
+  "adapter": {
+    "name": "ree_v2_toy_jepa_adapter",
+    "version": "toy_env_runner.v1"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": true,
+    "trace_context_mask_ids": true,
+    "trace_action_token": false
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95",
+    "by_mask"
+  ],
+  "uncertainty_estimator": "head",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.15591028423,
+    "latent_prediction_error_p95": 0.220504832,
+    "latent_residual_coverage_rate": 1.0,
+    "precision_input_completeness_rate": 0.983333333333,
+    "latent_uncertainty_calibration_error": 0.076908540452
+  }
+}

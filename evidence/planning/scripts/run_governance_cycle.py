@@ -161,6 +161,13 @@ def _build_agenda(
     thought_sweep = _load_json_file(repo_root / "docs/thoughts/thought_sweep.v1.json", warnings)
     backlog = _load_json_file(repo_root / "evidence/planning/evidence_backlog.v1.json", warnings)
     proposals = _load_json_file(repo_root / "evidence/planning/experiment_proposals.v1.json", warnings)
+    architecture_gaps = _load_json_file(
+        repo_root / "evidence/planning/architecture_gap_register.v1.json", warnings
+    )
+    structure_review_report = _load_json_file(
+        repo_root / "evidence/planning/structure_review/latest/structure_review_report.v1.json",
+        warnings,
+    )
     claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
@@ -178,6 +185,28 @@ def _build_agenda(
 
     proposal_items = proposals.get("items", []) if isinstance(proposals, dict) else []
     high_proposals = [item for item in proposal_items if item.get("priority") == "high"]
+    architecture_items = (
+        architecture_gaps.get("items", []) if isinstance(architecture_gaps, dict) else []
+    )
+    structure_considerations = [
+        item for item in architecture_items if bool(item.get("consider_new_structure", False))
+    ]
+    structure_review_items = (
+        structure_review_report.get("items", []) if isinstance(structure_review_report, dict) else []
+    )
+    structure_review_total = int(
+        structure_review_report.get("items_total", len(structure_review_items))
+        if isinstance(structure_review_report, dict)
+        else 0
+    )
+    structure_review_consider = int(
+        structure_review_report.get(
+            "consider_new_structure_total",
+            sum(1 for item in structure_review_items if bool(item.get("consider_new_structure", False))),
+        )
+        if isinstance(structure_review_report, dict)
+        else 0
+    )
 
     unlinked_runs = claim_matrix.get("unlinked_runs", []) if isinstance(claim_matrix, dict) else []
 
@@ -199,6 +228,10 @@ def _build_agenda(
             "backlog_high_priority": len(high_backlog),
             "proposal_items": len(proposal_items),
             "proposal_high_priority": len(high_proposals),
+            "architecture_gap_items": len(architecture_items),
+            "structure_considerations": len(structure_considerations),
+            "structure_review_dossiers": structure_review_total,
+            "structure_review_considerations": structure_review_consider,
             "unlinked_evidence_runs": len(unlinked_runs),
         },
         "warnings": warnings,
@@ -214,6 +247,18 @@ def _build_agenda(
             "governance_decisions": {
                 "prompt": "Review promotion/demotion queue and record decisions.",
                 "items": recommendations,
+            },
+            "architecture_structure": {
+                "prompt": "Review structure-pressure signals and decide whether to draft architecture changes.",
+                "consider_new_structure": structure_considerations,
+                "register_total_items": len(architecture_items),
+            },
+            "structure_review_dossiers": {
+                "prompt": "Review claim dossiers before deciding architecture changes.",
+                "items_total": structure_review_total,
+                "consider_new_structure_total": structure_review_consider,
+                "items": structure_review_items,
+                "index_path": "evidence/planning/structure_review/latest/INDEX.md",
             },
             "evidence_dispatch": {
                 "prompt": "Approve export of high-priority proposals to execution repos.",
@@ -265,7 +310,26 @@ def _build_agenda(
                 f"- `{claim_id}` decision={decision_needed}; recommendation=`{recommendation}`"
             )
     lines.append(
-        f"4. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        "4. Architecture Structure: "
+        + f"{len(structure_considerations)} consider-new-structure item(s), "
+        + f"{len(architecture_items)} total register item(s)."
+    )
+    if structure_considerations:
+        for item in structure_considerations[:10]:
+            claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            conflict_ratio = str(item.get("conflict_ratio", "n/a"))
+            trigger_signals = ",".join(str(x) for x in item.get("trigger_signals", []))
+            lines.append(
+                f"- `{claim_id}` conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
+            )
+    lines.append(
+        "5. Structure Dossiers: "
+        + f"{structure_review_total} dossier(s), "
+        + f"{structure_review_consider} marked consider-new-structure."
+    )
+    lines.append("- dossier index: `evidence/planning/structure_review/latest/INDEX.md`")
+    lines.append(
+        f"6. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
@@ -274,7 +338,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"5. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"7. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     if warnings:
         for warning in warnings:
@@ -303,6 +367,11 @@ def main() -> None:
         "--skip-evidence-build",
         action="store_true",
         help="Skip evidence ingestion/index build step.",
+    )
+    parser.add_argument(
+        "--skip-structure-review",
+        action="store_true",
+        help="Skip structure review dossier generation step.",
     )
     parser.add_argument(
         "--strict-thoughts",
@@ -361,6 +430,16 @@ def main() -> None:
                 ],
             )
         )
+    if not args.skip_structure_review:
+        plan.append(
+            (
+                "structure_review",
+                [
+                    str(sys.executable),
+                    "evidence/planning/scripts/build_structure_review_dossiers.py",
+                ],
+            )
+        )
 
     for name, command in plan:
         result = _run_step(name=name, command=command, cwd=repo_root)
@@ -386,6 +465,8 @@ def main() -> None:
         + f"warnings={agenda['summary']['warnings']}, "
         + f"thought_unprocessed={agenda['summary']['thought_unprocessed']}, "
         + f"decision_queue={agenda['summary']['decision_queue_items']}, "
+        + f"structure_considerations={agenda['summary']['structure_considerations']}, "
+        + f"structure_dossiers={agenda['summary']['structure_review_dossiers']}, "
         + f"backlog_high={agenda['summary']['backlog_high_priority']}."
     )
     print(f"Agenda JSON: {agenda_json_path.as_posix()}")

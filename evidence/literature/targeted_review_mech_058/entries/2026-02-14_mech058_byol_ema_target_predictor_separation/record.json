@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_058",
+  "entry_id": "2026-02-14_mech058_byol_ema_target_predictor_separation",
+  "timestamp_utc": "2026-02-14T22:45:00Z",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "source": {
+    "title": "Bootstrap your own latent: A new approach to self-supervised Learning",
+    "authors": [
+      "Jean-Bastien Grill",
+      "Florian Strub",
+      "Corentin Tallec"
+    ],
+    "year": 2020,
+    "venue": "arXiv preprint",
+    "doi": "10.48550/arXiv.2006.07733",
+    "url": "https://doi.org/10.48550/arXiv.2006.07733"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "BYOL directly uses a slow EMA target with a fast online predictor and shows stable learning without collapse, closely matching target-anchor/predictor timescale separation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "self_supervised_learning",
+    "ema_target",
+    "predictor",
+    "timescale_separation"
+  ]
+}

@@ -1,62 +1,158 @@
 {
   "checkpoints": {
+    "architecture_structure": {
+      "consider_new_structure": [
+        {
+          "claim_id": "MECH-060",
+          "claim_type": "mechanism_hypothesis",
+          "conflict_ratio": 0.9,
+          "consider_new_structure": true,
+          "current_status": "candidate",
+          "gap_id": "AGR-0001",
+          "latest_decision": {
+            "decision_status": "approved",
+            "recommendation": "hold_candidate_resolve_conflict",
+            "timestamp_utc": "2026-02-14T13:22:46.902458Z"
+          },
+          "literature_direction_counts": {
+            "mixed": 3,
+            "supports": 3,
+            "unknown": 0,
+            "weakens": 0
+          },
+          "literature_non_support_ratio": 0.5,
+          "overall_confidence": 0.693,
+          "recommendation": "consider_new_structure",
+          "recurring_failure_signatures": [
+            {
+              "count": 14,
+              "signature": "mech060:postcommit_channel_contamination"
+            },
+            {
+              "count": 12,
+              "signature": "mech060:attribution_reliability_break"
+            },
+            {
+              "count": 10,
+              "signature": "mech060:precommit_channel_contamination"
+            }
+          ],
+          "source_counts": {
+            "experimental": 37,
+            "literature": 6
+          },
+          "trigger_signals": [
+            "high_conflict_ratio",
+            "literature_non_support_pressure",
+            "recurring_failure_signatures"
+          ]
+        },
+        {
+          "claim_id": "MECH-059",
+          "claim_type": "mechanism_hypothesis",
+          "conflict_ratio": 0.833,
+          "consider_new_structure": true,
+          "current_status": "candidate",
+          "gap_id": "AGR-0002",
+          "latest_decision": {
+            "decision_status": "approved",
+            "recommendation": "hold_candidate_resolve_conflict",
+            "timestamp_utc": "2026-02-14T13:22:46.865603Z"
+          },
+          "literature_direction_counts": {
+            "mixed": 2,
+            "supports": 2,
+            "unknown": 0,
+            "weakens": 0
+          },
+          "literature_non_support_ratio": 0.5,
+          "overall_confidence": 0.715,
+          "recommendation": "consider_new_structure",
+          "recurring_failure_signatures": [
+            {
+              "count": 14,
+              "signature": "mech059:uncertainty_metric_gaming_detected"
+            },
+            {
+              "count": 10,
+              "signature": "mech059:calibration_slope_break"
+            },
+            {
+              "count": 6,
+              "signature": "mech059:abstention_reliability_collapse"
+            }
+          ],
+          "source_counts": {
+            "experimental": 37,
+            "literature": 4
+          },
+          "trigger_signals": [
+            "high_conflict_ratio",
+            "literature_non_support_pressure",
+            "recurring_failure_signatures"
+          ]
+        }
+      ],
+      "prompt": "Review structure-pressure signals and decide whether to draft architecture changes.",
+      "register_total_items": 8
+    },
     "conflict_resolution": {
       "items": [
         {
           "claim_id": "`ARC-018`",
-          "conflict_ratio": "0.667",
+          "conflict_ratio": "0.5",
           "conflict_types": "directional",
-          "latest": "`2026-02-14_v3hippo_prioritized_replay_planning_natneuro2018`",
-          "supports": "2",
+          "latest": "`2026-02-14_v3hippo_bidirectional_replay_sequences_natneuro2007`",
+          "supports": "3",
           "weakens": "1"
         },
         {
           "claim_id": "`MECH-033`",
-          "conflict_ratio": "0.667",
+          "conflict_ratio": "0.5",
           "conflict_types": "directional",
-          "latest": "`2026-02-14_v3hippo_prioritized_replay_planning_natneuro2018`",
-          "supports": "2",
+          "latest": "`2026-02-14_v3hippo_preplay_future_sequences_nature2011`",
+          "supports": "3",
           "weakens": "1"
         },
         {
           "claim_id": "`MECH-056`",
-          "conflict_ratio": "0.667",
+          "conflict_ratio": "0.545",
           "conflict_types": "directional",
-          "latest": "`2026-02-14_v3hippo_prioritized_replay_planning_natneuro2018`",
-          "supports": "6",
-          "weakens": "3"
+          "latest": "`2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015`",
+          "supports": "16",
+          "weakens": "6"
         },
         {
           "claim_id": "`MECH-058`",
-          "conflict_ratio": "0.9",
-          "conflict_types": "directional, source_disagreement, mixed_evidence",
-          "latest": "`2026-02-14_v3jepa_ijepa_control_plane_gap`",
-          "supports": "9",
-          "weakens": "11"
+          "conflict_ratio": "0.923",
+          "conflict_types": "directional, mixed_evidence",
+          "latest": "`2026-02-14_mech058_byol_ema_target_predictor_separation`",
+          "supports": "21",
+          "weakens": "18"
         },
         {
           "claim_id": "`MECH-059`",
-          "conflict_ratio": "0.9",
-          "conflict_types": "directional, source_disagreement, mixed_evidence",
-          "latest": "`2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits`",
-          "supports": "9",
-          "weakens": "11"
+          "conflict_ratio": "0.833",
+          "conflict_types": "directional, mixed_evidence",
+          "latest": "`2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017`",
+          "supports": "21",
+          "weakens": "15"
         },
         {
           "claim_id": "`MECH-060`",
-          "conflict_ratio": "1",
-          "conflict_types": "directional, source_disagreement, mixed_evidence",
-          "latest": "`2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits`",
-          "supports": "11",
-          "weakens": "11"
+          "conflict_ratio": "0.9",
+          "conflict_types": "directional, mixed_evidence",
+          "latest": "`2026-02-14_v3pfc_modelbased_prediction_error_integration_neuron2011`",
+          "supports": "22",
+          "weakens": "18"
         },
         {
           "claim_id": "`Q-011`",
-          "conflict_ratio": "0.667",
+          "conflict_ratio": "0.5",
           "conflict_types": "directional",
-          "latest": "`2026-02-14_q011_prioritized_replay_vs_entropy_floor_natneuro2018`",
+          "latest": "`2026-02-14_q011_reverse_replay_reward_modulation_neuron2016`",
           "supports": "1",
-          "weakens": "2"
+          "weakens": "3"
         }
       ],
       "prompt": "Resolve directional/source conflicts before status promotions."
@@ -576,6 +672,7 @@
           "target_repo": "ree-experiments-lab",
           "why_now": [
             "active_conflict",
+            "consider_new_structure",
             "directional_conflict_alert"
           ]
         },
@@ -606,6 +703,7 @@
           "target_repo": "REE_assembly",
           "why_now": [
             "active_conflict",
+            "consider_new_structure",
             "directional_conflict_alert"
           ]
         },
@@ -635,6 +733,7 @@
           "target_repo": "ree-experiments-lab",
           "why_now": [
             "active_conflict",
+            "consider_new_structure",
             "directional_conflict_alert"
           ]
         },
@@ -665,6 +764,7 @@
           "target_repo": "REE_assembly",
           "why_now": [
             "active_conflict",
+            "consider_new_structure",
             "directional_conflict_alert"
           ]
         },
@@ -694,8 +794,7 @@
           "target_repo": "ree-v2",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence"
+            "directional_conflict_alert"
           ]
         },
         {
@@ -725,8 +824,7 @@
           "target_repo": "REE_assembly",
           "why_now": [
             "active_conflict",
-            "directional_conflict_alert",
-            "low_overall_confidence"
+            "directional_conflict_alert"
           ]
         },
         {
@@ -848,10 +946,10 @@
         },
         {
           "claim_id": "`Q-011`",
-          "current_status": "`active`",
-          "decision_needed": "Demotion review: active -> candidate",
-          "decision_status": "`pending_user`",
-          "recommendation": "`demote_to_candidate`"
+          "current_status": "`candidate`",
+          "decision_needed": "Conflict resolution before promotion",
+          "decision_status": "`approved`",
+          "recommendation": "`hold_candidate_resolve_conflict`"
         }
       ],
       "prompt": "Review promotion/demotion queue and record decisions."
@@ -859,6 +957,28 @@
     "maintenance": {
       "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
       "unlinked_runs": []
+    },
+    "structure_review_dossiers": {
+      "consider_new_structure_total": 2,
+      "index_path": "evidence/planning/structure_review/latest/INDEX.md",
+      "items": [
+        {
+          "claim_id": "MECH-060",
+          "consider_new_structure": true,
+          "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/MECH-060/dossier.v1.json",
+          "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/MECH-060/DOSSIER.md",
+          "recommendation": "consider_new_structure"
+        },
+        {
+          "claim_id": "MECH-059",
+          "consider_new_structure": true,
+          "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/MECH-059/dossier.v1.json",
+          "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/MECH-059/DOSSIER.md",
+          "recommendation": "consider_new_structure"
+        }
+      ],
+      "items_total": 2,
+      "prompt": "Review claim dossiers before deciding architecture changes."
     },
     "thought_intake": {
       "items": [],
@@ -874,10 +994,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-14T18:40:06.247902Z",
+        "finished_at_utc": "2026-02-14T19:58:26.469390Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T18:40:06.186564Z",
+        "started_at_utc": "2026-02-14T19:58:26.402997Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=32, processed=32, unprocessed=0, processed_missing_links=0"
@@ -887,19 +1007,33 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-14T18:40:06.326513Z",
+        "finished_at_utc": "2026-02-14T19:58:26.669101Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T18:40:06.247945Z",
+        "started_at_utc": "2026-02-14T19:58:26.469434Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Indexed 66 run(s) across 4 experiment type(s); FAIL=27; literature entries=16; backlog items=29; proposals=46."
+        "stdout": "Indexed 132 run(s) across 4 experiment type(s); FAIL=44; literature entries=23; backlog items=29; proposals=46."
+      },
+      {
+        "command": [
+          "/opt/local/bin/python3",
+          "evidence/planning/scripts/build_structure_review_dossiers.py"
+        ],
+        "finished_at_utc": "2026-02-14T19:58:26.724696Z",
+        "name": "structure_review",
+        "returncode": 0,
+        "started_at_utc": "2026-02-14T19:58:26.669150Z",
+        "status": "ok",
+        "stderr": "",
+        "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/structure_review_report.v1.json"
       }
     ]
   },
-  "generated_at_utc": "2026-02-14T18:40:06.326552Z",
+  "generated_at_utc": "2026-02-14T19:58:26.724750Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
+    "architecture_gap_items": 8,
     "backlog_high_priority": 18,
     "backlog_items": 29,
     "conflicts": 7,
@@ -907,6 +1041,9 @@
     "proposal_high_priority": 25,
     "proposal_items": 46,
     "step_failures": 0,
+    "structure_considerations": 2,
+    "structure_review_considerations": 2,
+    "structure_review_dossiers": 2,
     "thought_unprocessed": 0,
     "unlinked_evidence_runs": 0,
     "warnings": 0

@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "supports",
+  "experiment_type": "commit_dual_error_channels",
+  "failure_signatures": [],
+  "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t185325219106z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "adversarial leakage probe against pre/post commit separation",
+    "name": "planning_leakage_probe",
+    "seed": 60022,
+    "severity": 0.48
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "4d6410b91f34f1f2e8ec7cfa33b10fd8386e072e",
+    "name": "ree-experiments-lab"
+  },
+  "status": "PASS",
+  "timestamp_utc": "2026-02-14T18:53:25.219464Z"
+}

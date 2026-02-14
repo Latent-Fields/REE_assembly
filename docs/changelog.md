@@ -7,6 +7,48 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: Structure Review Dossier Protocol
+
+### Overview
+
+Added a generated human-decision packet for architecture pressure claims so governance can review
+claim context, REE fit, evidence mix, alternatives, and inspiration options before deciding structural changes.
+
+### What Changed
+
+- Added structure review dossier generator:
+  - `evidence/planning/scripts/build_structure_review_dossiers.py`
+  - generates per-claim dossiers from `architecture_gap_register.v1.json` and `claim_evidence.v1.json`
+  - includes plain-English claim description followed by plain-English REE whole-system fit description
+  - includes evidence-mix interpretation, alternative hypotheses with confidence estimates, source wording vs REE translation, and left-field suggestions
+- Added generated dossier outputs:
+  - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/DOSSIER.md`
+  - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/dossier.v1.json`
+  - `evidence/planning/structure_review/latest/INDEX.md`
+  - `evidence/planning/structure_review/latest/structure_review_report.v1.json`
+- Integrated dossier generation into governance cycle:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - new step: `structure_review`
+  - new agenda checkpoint: `Structure Dossiers`
+- Extended planning thresholds to support soft structural trigger logic:
+  - `evidence/planning/planning_criteria.v1.yaml`
+  - trigger outcome is `consider_new_structure` (advisory), not automatic refactor.
+
+## 2026-02-14: High-Priority Literature Dispatch Pack
+
+### Overview
+
+Added an explicit dispatch bundle for the current high-priority literature backlog so governance-critical claims can be
+worked in a single focused evidence cycle.
+
+### What Changed
+
+- Added literature dispatch pack:
+  - `evidence/planning/DISPATCH_LITERATURE_HIGH_PRIORITY_2026-02-14.md`
+- Includes:
+  - proposal queue for `LIT-0005`, `LIT-0008`, `LIT-0013`, `LIT-0016`, `LIT-0018`, `LIT-0020`, `LIT-0022`
+  - acceptance checks and a copy/paste execution prompt for `REE_assembly`
+
 ## 2026-02-14: REE-v2 Cutover Adjudication Gate
 
 ### Overview

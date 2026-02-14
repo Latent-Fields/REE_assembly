@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "jepa_uncertainty_channels",
+  "failure_signatures": [
+    "mech059:calibration_slope_break",
+    "mech059:uncertainty_metric_gaming_detected"
+  ],
+  "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "adversarial confidence shaping under high ambiguity",
+    "name": "adversarial_uncertainty_gaming",
+    "seed": 59021,
+    "severity": 0.88
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "451bb65d54d22b31519a7b4e9206376331f3e948",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-14T18:48:53.459262Z"
+}

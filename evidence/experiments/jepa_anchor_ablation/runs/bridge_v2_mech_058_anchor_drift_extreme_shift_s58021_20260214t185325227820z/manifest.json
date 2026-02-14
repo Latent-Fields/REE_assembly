@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "jepa_anchor_ablation",
+  "failure_signatures": [
+    "mech058:ema_drift_under_shift",
+    "mech058:latent_cluster_collapse",
+    "mech058:anchor_separation_collapse"
+  ],
+  "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "extreme regime shift targeting EMA anchor stability",
+    "name": "anchor_drift_extreme_shift",
+    "seed": 58021,
+    "severity": 0.9
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "4d6410b91f34f1f2e8ec7cfa33b10fd8386e072e",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-14T18:53:25.228121Z"
+}

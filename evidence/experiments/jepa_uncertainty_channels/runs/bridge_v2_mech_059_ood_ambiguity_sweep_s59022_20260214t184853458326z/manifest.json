@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "supports",
+  "experiment_type": "jepa_uncertainty_channels",
+  "failure_signatures": [],
+  "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "OOD perturbation with moderate ambiguity pressure",
+    "name": "ood_ambiguity_sweep",
+    "seed": 59022,
+    "severity": 0.52
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "451bb65d54d22b31519a7b4e9206376331f3e948",
+    "name": "ree-experiments-lab"
+  },
+  "status": "PASS",
+  "timestamp_utc": "2026-02-14T18:48:53.458543Z"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "commit_dual_error_channels",
+  "run_id": "2026-02-14T164941Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv",
+  "adapter": {
+    "name": "ree_v2_toy_jepa_adapter",
+    "version": "toy_env_runner.v1"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": false,
+    "trace_context_mask_ids": true,
+    "trace_action_token": true
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95",
+    "by_mask"
+  ],
+  "uncertainty_estimator": "none",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.163610279679,
+    "latent_prediction_error_p95": 0.417566863758,
+    "latent_residual_coverage_rate": 1.0,
+    "precision_input_completeness_rate": 1.0
+  }
+}

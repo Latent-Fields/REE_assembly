@@ -1,6 +1,6 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-14T18:40:06.310940Z",
+  "generated_at_utc": "2026-02-14T19:58:26.615968Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -107,12 +107,12 @@
       ],
       "signals": {
         "claim_type": "architectural_commitment",
-        "conflict_ratio": 0.667,
+        "conflict_ratio": 0.5,
         "current_status": "provisional",
-        "overall_confidence": 0.68,
+        "overall_confidence": 0.766,
         "source_counts": {
           "experimental": 0,
-          "literature": 3
+          "literature": 4
         }
       },
       "status": "open"
@@ -166,12 +166,12 @@
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.667,
+        "conflict_ratio": 0.5,
         "current_status": "provisional",
-        "overall_confidence": 0.68,
+        "overall_confidence": 0.765,
         "source_counts": {
           "experimental": 0,
-          "literature": 3
+          "literature": 4
         }
       },
       "status": "open"
@@ -282,12 +282,12 @@
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.667,
+        "conflict_ratio": 0.545,
         "current_status": "candidate",
-        "overall_confidence": 0.665,
+        "overall_confidence": 0.752,
         "source_counts": {
-          "experimental": 7,
-          "literature": 2
+          "experimental": 19,
+          "literature": 3
         }
       },
       "status": "open"
@@ -341,12 +341,12 @@
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.9,
+        "conflict_ratio": 0.923,
         "current_status": "candidate",
-        "overall_confidence": 0.665,
+        "overall_confidence": 0.682,
         "source_counts": {
-          "experimental": 19,
-          "literature": 2
+          "experimental": 37,
+          "literature": 3
         }
       },
       "status": "open"
@@ -363,20 +363,21 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-02-14T13:22:46.865603Z"
       },
-      "next_action": "Run paired experiment + literature cycle before status change.",
+      "next_action": "Draft architecture options for this claim, then run one adjudication experiment and one targeted literature extraction.",
       "priority": "high",
       "reasons": [
         "active_conflict",
+        "consider_new_structure",
         "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.9,
+        "conflict_ratio": 0.833,
         "current_status": "candidate",
-        "overall_confidence": 0.702,
+        "overall_confidence": 0.715,
         "source_counts": {
-          "experimental": 19,
-          "literature": 3
+          "experimental": 37,
+          "literature": 4
         }
       },
       "status": "open"
@@ -393,20 +394,21 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-02-14T13:22:46.902458Z"
       },
-      "next_action": "Run paired experiment + literature cycle before status change.",
+      "next_action": "Draft architecture options for this claim, then run one adjudication experiment and one targeted literature extraction.",
       "priority": "high",
       "reasons": [
         "active_conflict",
+        "consider_new_structure",
         "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 1.0,
+        "conflict_ratio": 0.9,
         "current_status": "candidate",
-        "overall_confidence": 0.724,
+        "overall_confidence": 0.693,
         "source_counts": {
-          "experimental": 19,
-          "literature": 5
+          "experimental": 37,
+          "literature": 6
         }
       },
       "status": "open"
@@ -420,24 +422,23 @@
       ],
       "latest_decision": {
         "decision_status": "approved",
-        "recommendation": "hold_open_question_resolve_conflict",
-        "timestamp_utc": "2026-02-13T08:45:40.164281Z"
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-14T19:09:36.006388Z"
       },
       "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert",
-        "low_overall_confidence"
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "open_question",
-        "conflict_ratio": 0.667,
-        "current_status": "active",
-        "overall_confidence": 0.475,
+        "conflict_ratio": 0.5,
+        "current_status": "candidate",
+        "overall_confidence": 0.558,
         "source_counts": {
           "experimental": 2,
-          "literature": 1
+          "literature": 2
         }
       },
       "status": "open"

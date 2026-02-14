@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "commit_dual_error_channels",
+  "failure_signatures": [
+    "mech060:precommit_channel_contamination",
+    "mech060:postcommit_channel_contamination",
+    "mech060:attribution_reliability_break"
+  ],
+  "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t184853457259z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "high cross-talk pressure to contaminate post-commit attribution",
+    "name": "cross_channel_contamination_stress",
+    "seed": 60022,
+    "severity": 0.86
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "451bb65d54d22b31519a7b4e9206376331f3e948",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-14T18:48:53.457429Z"
+}

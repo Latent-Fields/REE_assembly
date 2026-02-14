@@ -1,9 +1,14 @@
 {
   "schema_version": "planning_criteria/v1",
   "thresholds": {
-    "low_overall_confidence": 0.55,
-    "conflict_ratio_alert": 0.4,
     "candidate_min_experimental_entries": 2,
+    "conflict_ratio_alert": 0.4,
+    "consider_new_structure_conflict_ratio": 0.7,
+    "consider_new_structure_literature_non_support_ratio": 0.5,
+    "consider_new_structure_min_distinct_signatures": 2,
+    "consider_new_structure_min_failure_signature_repeats": 3,
+    "consider_new_structure_min_literature_entries": 2,
+    "low_overall_confidence": 0.55,
     "provisional_min_literature_entries": 2
   },
   "repo_routing": {

@@ -13,6 +13,8 @@ It regenerates:
   evidence/decisions/decision_state.v1.json
   evidence/planning/evidence_backlog.v1.json
   evidence/planning/experiment_proposals.v1.json
+  evidence/planning/architecture_gap_register.v1.json
+  evidence/planning/ARCHITECTURE_GAP_REGISTER.md
   evidence/experiments/<experiment_type>/INDEX.md
   evidence/experiments/<experiment_type>/experiment.md (auto Design implications block)
   evidence/experiments/TODOs.md
@@ -703,6 +705,7 @@ def _write_top_level_index(
     decision_log_count: int,
     backlog_count: int,
     proposal_count: int,
+    architecture_gap_count: int,
     generated_at: str,
 ) -> None:
     lines: list[str] = []
@@ -748,6 +751,9 @@ def _write_top_level_index(
     lines.append("- Decision state snapshot: `../decisions/decision_state.v1.json`")
     lines.append(f"- Evidence backlog: `../planning/evidence_backlog.v1.json` ({backlog_count} item(s))")
     lines.append(f"- Experiment proposals: `../planning/experiment_proposals.v1.json` ({proposal_count} item(s))")
+    lines.append(
+        f"- Architecture gap register: `../planning/architecture_gap_register.v1.json` ({architecture_gap_count} item(s))"
+    )
 
     (base_dir / "INDEX.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
@@ -1161,6 +1167,11 @@ def _default_planning_criteria() -> dict[str, Any]:
             "conflict_ratio_alert": 0.40,
             "candidate_min_experimental_entries": 2,
             "provisional_min_literature_entries": 2,
+            "consider_new_structure_conflict_ratio": 0.70,
+            "consider_new_structure_min_failure_signature_repeats": 3,
+            "consider_new_structure_min_distinct_signatures": 2,
+            "consider_new_structure_min_literature_entries": 2,
+            "consider_new_structure_literature_non_support_ratio": 0.50,
         },
         "repo_routing": {
             "experimental_default_repo": "ree-v1-minimal",
@@ -1175,10 +1186,20 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
         return _default_planning_criteria()
     data = _load_json_compatible_yaml(path, "planning criteria")
     defaults = _default_planning_criteria()
-    if "thresholds" not in data:
-        data["thresholds"] = defaults["thresholds"]
-    if "repo_routing" not in data:
-        data["repo_routing"] = defaults["repo_routing"]
+    for key, value in defaults.items():
+        data.setdefault(key, value)
+    thresholds = data.get("thresholds")
+    if not isinstance(thresholds, dict):
+        data["thresholds"] = dict(defaults["thresholds"])
+    else:
+        for key, value in defaults["thresholds"].items():
+            thresholds.setdefault(key, value)
+    routing = data.get("repo_routing")
+    if not isinstance(routing, dict):
+        data["repo_routing"] = dict(defaults["repo_routing"])
+    else:
+        for key, value in defaults["repo_routing"].items():
+            routing.setdefault(key, value)
     return data
 
 
@@ -1680,6 +1701,7 @@ def _priority_from_reasons(reasons: list[str]) -> str:
         "directional_conflict_alert",
         "active_conflict",
         "missing_experimental_evidence",
+        "consider_new_structure",
     }
     medium_markers = {
         "low_overall_confidence",
@@ -1722,7 +1744,7 @@ def _write_planning_outputs(
     latest_decisions: dict[str, DecisionLogEntry],
     planning_criteria: dict[str, Any],
     generated_at: str,
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     thresholds = planning_criteria.get("thresholds", {})
     routing = planning_criteria.get("repo_routing", {})
 
@@ -1730,6 +1752,19 @@ def _write_planning_outputs(
     conflict_alert_threshold = float(thresholds.get("conflict_ratio_alert", 0.40))
     candidate_min_exp = int(thresholds.get("candidate_min_experimental_entries", 2))
     provisional_min_lit = int(thresholds.get("provisional_min_literature_entries", 2))
+    consider_conflict_ratio = float(thresholds.get("consider_new_structure_conflict_ratio", 0.70))
+    consider_min_sig_repeats = max(
+        1, int(thresholds.get("consider_new_structure_min_failure_signature_repeats", 3))
+    )
+    consider_min_distinct_sigs = max(
+        1, int(thresholds.get("consider_new_structure_min_distinct_signatures", 2))
+    )
+    consider_min_lit_entries = max(
+        1, int(thresholds.get("consider_new_structure_min_literature_entries", 2))
+    )
+    consider_lit_non_support_ratio = float(
+        thresholds.get("consider_new_structure_literature_non_support_ratio", 0.50)
+    )
 
     default_exp_repo = str(routing.get("experimental_default_repo", "ree-v1-minimal"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
@@ -1738,19 +1773,60 @@ def _write_planning_outputs(
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
     matrix_claims = matrix.get("claims", {})
     claim_ids = sorted(set(claim_registry.keys()) | set(matrix_claims.keys()))
+    entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for entry in matrix.get("entries", []):
+        claim_key = str(entry.get("claim_id", "")).strip()
+        if claim_key:
+            entries_by_claim[claim_key].append(entry)
 
     backlog_items: list[dict[str, Any]] = []
+    architecture_items: list[dict[str, Any]] = []
     for claim_id in claim_ids:
         registry_meta = claim_registry.get(claim_id, {})
         current_status = str(registry_meta.get("status", "unknown"))
         claim_type = str(registry_meta.get("claim_type", "unknown"))
         claim_meta = matrix_claims.get(claim_id)
+        claim_entries = entries_by_claim.get(claim_id, [])
 
         reasons: list[str] = []
         evidence_needed: set[str] = set()
         signals: dict[str, Any] = {
             "current_status": current_status,
             "claim_type": claim_type,
+        }
+        overall_conf = 0.0
+        exp_count = 0
+        lit_count = 0
+        conflict_ratio = 0.0
+
+        signature_counts: Counter[str] = Counter()
+        for entry in claim_entries:
+            for sig in entry.get("failure_signatures", []):
+                token = str(sig).strip()
+                if token:
+                    signature_counts[token] += 1
+        recurring_signatures = [
+            {"signature": sig, "count": count}
+            for sig, count in signature_counts.most_common()
+            if count >= consider_min_sig_repeats
+        ]
+
+        lit_direction_counts: Counter[str] = Counter()
+        for entry in claim_entries:
+            if str(entry.get("source_type", "")) != "literature":
+                continue
+            lit_direction_counts.update([str(entry.get("evidence_direction", "unknown"))])
+        lit_total = int(sum(lit_direction_counts.values()))
+        lit_non_support = int(
+            lit_direction_counts.get("weakens", 0) + lit_direction_counts.get("mixed", 0)
+        )
+        lit_non_support_ratio = round((lit_non_support / lit_total), 3) if lit_total else 0.0
+
+        decision_entry = latest_decisions.get(claim_id)
+        decision_state = {
+            "decision_status": decision_entry.decision_status if decision_entry else "none",
+            "timestamp_utc": decision_entry.timestamp_utc if decision_entry else "",
+            "recommendation": decision_entry.recommendation if decision_entry else "",
         }
 
         if claim_meta is None:
@@ -1806,6 +1882,54 @@ def _write_planning_outputs(
                 reasons.append("active_conflict")
                 evidence_needed.update({"experimental", "literature"})
 
+        structure_signals: list[str] = []
+        if conflict_ratio >= consider_conflict_ratio:
+            structure_signals.append("high_conflict_ratio")
+        if len(recurring_signatures) >= consider_min_distinct_sigs:
+            structure_signals.append("recurring_failure_signatures")
+        if (
+            lit_total >= consider_min_lit_entries
+            and lit_non_support_ratio >= consider_lit_non_support_ratio
+        ):
+            structure_signals.append("literature_non_support_pressure")
+
+        consider_new_structure = len(structure_signals) >= 3
+        if consider_new_structure:
+            reasons.append("consider_new_structure")
+            evidence_needed.update({"experimental", "literature"})
+
+        if claim_meta is not None and (structure_signals or recurring_signatures):
+            architecture_items.append(
+                {
+                    "gap_id": "",
+                    "claim_id": claim_id,
+                    "claim_type": claim_type,
+                    "current_status": current_status,
+                    "overall_confidence": round(overall_conf, 3),
+                    "conflict_ratio": round(conflict_ratio, 3),
+                    "source_counts": {
+                        "experimental": exp_count,
+                        "literature": lit_count,
+                    },
+                    "literature_direction_counts": {
+                        "supports": int(lit_direction_counts.get("supports", 0)),
+                        "weakens": int(lit_direction_counts.get("weakens", 0)),
+                        "mixed": int(lit_direction_counts.get("mixed", 0)),
+                        "unknown": int(lit_direction_counts.get("unknown", 0)),
+                    },
+                    "literature_non_support_ratio": lit_non_support_ratio,
+                    "recurring_failure_signatures": recurring_signatures[:5],
+                    "trigger_signals": sorted(set(structure_signals)),
+                    "consider_new_structure": consider_new_structure,
+                    "recommendation": (
+                        "consider_new_structure"
+                        if consider_new_structure
+                        else "monitor_and_collect_targeted_evidence"
+                    ),
+                    "latest_decision": decision_state,
+                }
+            )
+
         if not reasons:
             continue
 
@@ -1813,18 +1937,16 @@ def _write_planning_outputs(
         if not evidence_needed:
             evidence_needed.add("experimental")
 
-        decision_entry = latest_decisions.get(claim_id)
-        decision_state = {
-            "decision_status": decision_entry.decision_status if decision_entry else "none",
-            "timestamp_utc": decision_entry.timestamp_utc if decision_entry else "",
-            "recommendation": decision_entry.recommendation if decision_entry else "",
-        }
-
         next_action = "Run targeted experimental probe."
         if evidence_needed == {"literature"}:
             next_action = "Run targeted literature extraction and claim linkage."
         elif evidence_needed == {"experimental", "literature"}:
             next_action = "Run paired experiment + literature cycle before status change."
+        if "consider_new_structure" in reasons:
+            next_action = (
+                "Draft architecture options for this claim, then run one adjudication experiment "
+                "and one targeted literature extraction."
+            )
 
         backlog_items.append(
             {
@@ -1848,6 +1970,16 @@ def _write_planning_outputs(
     )
     for idx, item in enumerate(backlog_items, start=1):
         item["backlog_id"] = f"EVB-{idx:04d}"
+
+    architecture_items.sort(
+        key=lambda item: (
+            0 if bool(item.get("consider_new_structure", False)) else 1,
+            -float(item.get("conflict_ratio", 0.0)),
+            str(item.get("claim_id", "")),
+        )
+    )
+    for idx, item in enumerate(architecture_items, start=1):
+        item["gap_id"] = f"AGR-{idx:04d}"
 
     proposals: list[dict[str, Any]] = []
     proposal_counter = 1
@@ -1941,6 +2073,24 @@ def _write_planning_outputs(
         "source_backlog": "evidence/planning/evidence_backlog.v1.json",
         "items": proposals,
     }
+    architecture_gap_doc = {
+        "schema_version": "architecture_gap_register/v1",
+        "generated_at_utc": generated_at,
+        "criteria_version": str(planning_criteria.get("schema_version", "planning_criteria/v1")),
+        "source": {
+            "claim_matrix": "evidence/experiments/claim_evidence.v1.json",
+            "conflicts": "evidence/experiments/conflicts.md",
+            "backlog": "evidence/planning/evidence_backlog.v1.json",
+        },
+        "thresholds": {
+            "consider_new_structure_conflict_ratio": consider_conflict_ratio,
+            "consider_new_structure_min_failure_signature_repeats": consider_min_sig_repeats,
+            "consider_new_structure_min_distinct_signatures": consider_min_distinct_sigs,
+            "consider_new_structure_min_literature_entries": consider_min_lit_entries,
+            "consider_new_structure_literature_non_support_ratio": consider_lit_non_support_ratio,
+        },
+        "items": architecture_items,
+    }
 
     (planning_root / "evidence_backlog.v1.json").write_text(
         json.dumps(backlog_doc, indent=2, sort_keys=True) + "\n",
@@ -1948,6 +2098,72 @@ def _write_planning_outputs(
     )
     (planning_root / "experiment_proposals.v1.json").write_text(
         json.dumps(proposals_doc, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (planning_root / "architecture_gap_register.v1.json").write_text(
+        json.dumps(architecture_gap_doc, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    arch_lines: list[str] = []
+    arch_lines.append("# Architecture Gap Register")
+    arch_lines.append("")
+    arch_lines.append(f"Generated: `{generated_at}`")
+    arch_lines.append("")
+    arch_lines.append(
+        "This register highlights claims under structural pressure and flags where the evidence pattern "
+        "suggests a **consider new structure** decision."
+    )
+    arch_lines.append("")
+    arch_lines.append(
+        "| gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | recurring_signatures | consider_new_structure | recommendation |"
+    )
+    arch_lines.append("|---|---|---|---|---|---|---|---|")
+    if not architecture_items:
+        arch_lines.append("| _none_ | - | - | - | - | - | - | - |")
+    else:
+        for item in architecture_items:
+            arch_lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{item['gap_id']}`",
+                        f"`{item['claim_id']}`",
+                        f"`{item['current_status']}`",
+                        _fmt_number(float(item.get("conflict_ratio", 0.0))),
+                        _fmt_number(float(item.get("literature_non_support_ratio", 0.0))),
+                        str(len(item.get("recurring_failure_signatures", []))),
+                        "yes" if bool(item.get("consider_new_structure", False)) else "no",
+                        f"`{item['recommendation']}`",
+                    ]
+                )
+                + " |"
+            )
+
+    consider_items = [item for item in architecture_items if item.get("consider_new_structure")]
+    arch_lines.append("")
+    arch_lines.append("## Consider New Structure Queue")
+    arch_lines.append("")
+    if not consider_items:
+        arch_lines.append("No claims currently trigger a consider-new-structure recommendation.")
+    else:
+        for item in consider_items:
+            trigger_signals = ", ".join(item.get("trigger_signals", []))
+            arch_lines.append(
+                f"- `{item['claim_id']}` triggers={trigger_signals}; "
+                + f"conflict_ratio={_fmt_number(float(item.get('conflict_ratio', 0.0)))}; "
+                + f"lit_non_support_ratio={_fmt_number(float(item.get('literature_non_support_ratio', 0.0)))}."
+            )
+            rec_sigs = item.get("recurring_failure_signatures", [])
+            if rec_sigs:
+                formatted = ", ".join(
+                    f"`{sig.get('signature', '')}`({int(sig.get('count', 0))})"
+                    for sig in rec_sigs
+                )
+                arch_lines.append(f"  - recurring_signatures: {formatted}")
+
+    (planning_root / "ARCHITECTURE_GAP_REGISTER.md").write_text(
+        "\n".join(arch_lines).rstrip() + "\n",
         encoding="utf-8",
     )
 
@@ -1962,13 +2178,18 @@ def _write_planning_outputs(
     index_lines.append(
         f"- Experiment proposals: `experiment_proposals.v1.json` ({len(proposals)} item(s))"
     )
+    index_lines.append(
+        "- Architecture gap register: "
+        + f"`architecture_gap_register.v1.json` ({len(architecture_items)} item(s), "
+        + f"consider_new_structure={len(consider_items)})"
+    )
     index_lines.append("- Planning criteria: `planning_criteria.v1.yaml`")
     (planning_root / "INDEX.md").write_text(
         "\n".join(index_lines).rstrip() + "\n",
         encoding="utf-8",
     )
 
-    return backlog_items, proposals
+    return backlog_items, proposals, architecture_items
 
 
 def main() -> None:
@@ -2032,7 +2253,7 @@ def main() -> None:
 
     matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
     conflicts = _collect_conflicts(matrix)
-    backlog_items, proposals = _write_planning_outputs(
+    backlog_items, proposals, architecture_items = _write_planning_outputs(
         planning_root,
         matrix,
         claim_registry,
@@ -2057,6 +2278,7 @@ def main() -> None:
         decision_log_count=len(decision_log_entries),
         backlog_count=len(backlog_items),
         proposal_count=len(proposals),
+        architecture_gap_count=len(architecture_items),
         generated_at=generated_at,
     )
 
