@@ -7,6 +7,47 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: REE-v2 Spec Expansion (Implementation Detail Pass)
+
+### Overview
+
+Expanded the v2 spec from framing-level draft into an implementation-ready contract with explicit module layout,
+configuration requirements, qualification profiles, milestones, and go/no-go criteria.
+
+### What Changed
+
+- Expanded:
+  - `docs/architecture/ree_v2_spec.md#impl-023`
+- Added concrete sections for:
+  - implementation objectives,
+  - reference module layout,
+  - interface detail and configuration contract,
+  - qualification profiles (`MECH-058/059/060`),
+  - failure thresholds and milestone gates (`M0`-`M4`),
+  - acceptance checklist for v2 completion.
+
+## 2026-02-14: v2 JEPA-First Wording Policy
+
+### Overview
+
+Added explicit v2 terminology policy so docs and user-facing interactions use JEPA-first language with inline REE
+translation, while keeping machine contracts stable.
+
+### What Changed
+
+- Added policy doc:
+  - `docs/notes/jepa_language_policy.md#impl-024`
+- Wired v2 spec to policy:
+  - `docs/architecture/ree_v2_spec.md#impl-023`
+- Added operating-procedure rule:
+  - `docs/README.md#impl-013`
+- Added glossary policy note:
+  - `docs/glossary.md#impl-020`
+- Added claim/index/mapping entries:
+  - `docs/claims/claims.yaml` (`IMPL-024`)
+  - `docs/claims/claim_index.md` (`IMPL-024`)
+  - `docs/claims/subsystem_map.yaml`
+
 ## 2026-02-14: Roadmap Refresh and REE-v2 Spec Draft
 
 ### Overview

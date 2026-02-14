@@ -18,6 +18,7 @@ This README is executable guidance for AI coding agents. When invoked, agents mu
 5. If a conflict is detected, create or update a file in `docs/conflicts/` and link conflicting claim IDs.
 6. Append a dated entry to `docs/changelog.md` describing what changed and where preserved content lives.
 7. Place unprocessed thoughts in `docs/thoughts/` and record resolutions in `docs/conflicts/resolutions/`.
+8. For REE-v2 docs and user-facing text, use JEPA-first wording with inline REE translation (`JEPA term (REE term)`) per `docs/notes/jepa_language_policy.md`.
 
 ## Synthesis Pass (Lightweight)
 

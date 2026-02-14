@@ -110,6 +110,17 @@ modeling.
 - action-conditioned prediction <-> efference/reafference loop
 - invariant representation <-> coherence-preserving state
 
+#### 11. v2 wording policy
+
+For v2-facing docs and user-facing interactions:
+
+- use JEPA-first wording at first mention with inline REE translation:
+  - `JEPA term (REE term)`
+- keep REE schema keys stable in machine contracts.
+
+Reference:
+- `docs/notes/jepa_language_policy.md#impl-024`
+
 ---
 
 ## Open Questions
@@ -120,6 +131,7 @@ None noted in preserved sources.
 
 - IMPL-001
 - IMPL-020
+- IMPL-024
 
 ## References / Source Fragments
 
