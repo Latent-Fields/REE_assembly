@@ -1,9 +1,211 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-14T11:26:03.413442Z",
+  "generated_at_utc": "2026-02-14T13:28:15.471144Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
+      "claim_id": "ARC-003",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "architectural_commitment",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.78,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0002",
+      "claim_id": "ARC-005",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "architectural_commitment",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.78,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0003",
+      "claim_id": "ARC-007",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "architectural_commitment",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.745,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 1
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0004",
+      "claim_id": "ARC-018",
+      "evidence_needed": [
+        "experimental",
+        "literature"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run paired experiment + literature cycle before status change.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "architectural_commitment",
+        "conflict_ratio": 0.667,
+        "current_status": "provisional",
+        "overall_confidence": 0.68,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 3
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0005",
+      "claim_id": "IMPL-022",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "implementation_note",
+        "conflict_ratio": 0.0,
+        "current_status": "stable",
+        "overall_confidence": 0.662,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0006",
+      "claim_id": "MECH-033",
+      "evidence_needed": [
+        "experimental",
+        "literature"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run paired experiment + literature cycle before status change.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "conflict_ratio": 0.667,
+        "current_status": "provisional",
+        "overall_confidence": 0.68,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 3
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0007",
+      "claim_id": "MECH-046",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "conflict_ratio": 0.0,
+        "current_status": "provisional",
+        "overall_confidence": 0.78,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0008",
       "claim_id": "MECH-053",
       "evidence_needed": [
         "experimental"
@@ -23,16 +225,16 @@
         "claim_type": "mechanism_hypothesis",
         "conflict_ratio": 0.0,
         "current_status": "candidate",
-        "overall_confidence": 0.72,
+        "overall_confidence": 0.78,
         "source_counts": {
           "experimental": 0,
-          "literature": 1
+          "literature": 2
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0002",
+      "backlog_id": "EVB-0009",
       "claim_id": "MECH-054",
       "evidence_needed": [
         "experimental"
@@ -61,7 +263,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0003",
+      "backlog_id": "EVB-0010",
       "claim_id": "MECH-056",
       "evidence_needed": [
         "experimental",
@@ -76,24 +278,22 @@
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert",
-        "low_overall_confidence",
-        "missing_literature_evidence"
+        "directional_conflict_alert"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 1.0,
+        "conflict_ratio": 0.5,
         "current_status": "candidate",
-        "overall_confidence": 0.372,
+        "overall_confidence": 0.576,
         "source_counts": {
           "experimental": 2,
-          "literature": 0
+          "literature": 2
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0004",
+      "backlog_id": "EVB-0011",
       "claim_id": "MECH-057",
       "evidence_needed": [
         "experimental"
@@ -113,25 +313,25 @@
         "claim_type": "mechanism_hypothesis",
         "conflict_ratio": 0.0,
         "current_status": "candidate",
-        "overall_confidence": 0.844,
+        "overall_confidence": 0.849,
         "source_counts": {
           "experimental": 0,
-          "literature": 5
+          "literature": 7
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0012",
       "claim_id": "MECH-058",
       "evidence_needed": [
         "experimental",
         "literature"
       ],
       "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
+        "decision_status": "approved",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-14T13:22:46.827172Z"
       },
       "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
@@ -143,25 +343,25 @@
         "claim_type": "mechanism_hypothesis",
         "conflict_ratio": 0.727,
         "current_status": "candidate",
-        "overall_confidence": 0.704,
+        "overall_confidence": 0.729,
         "source_counts": {
           "experimental": 10,
-          "literature": 1
+          "literature": 2
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0013",
       "claim_id": "MECH-059",
       "evidence_needed": [
         "experimental",
         "literature"
       ],
       "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
+        "decision_status": "approved",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-14T13:22:46.865603Z"
       },
       "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
@@ -173,25 +373,25 @@
         "claim_type": "mechanism_hypothesis",
         "conflict_ratio": 0.727,
         "current_status": "candidate",
-        "overall_confidence": 0.701,
+        "overall_confidence": 0.755,
         "source_counts": {
           "experimental": 10,
-          "literature": 1
+          "literature": 3
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0014",
       "claim_id": "MECH-060",
       "evidence_needed": [
         "experimental",
         "literature"
       ],
       "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
+        "decision_status": "approved",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-14T13:22:46.902458Z"
       },
       "next_action": "Run paired experiment + literature cycle before status change.",
       "priority": "high",
@@ -201,18 +401,18 @@
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
-        "conflict_ratio": 0.6,
+        "conflict_ratio": 0.923,
         "current_status": "candidate",
-        "overall_confidence": 0.665,
+        "overall_confidence": 0.777,
         "source_counts": {
           "experimental": 10,
-          "literature": 1
+          "literature": 5
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0015",
       "claim_id": "Q-011",
       "evidence_needed": [
         "experimental",
@@ -228,23 +428,22 @@
       "reasons": [
         "active_conflict",
         "directional_conflict_alert",
-        "low_overall_confidence",
-        "missing_literature_evidence"
+        "low_overall_confidence"
       ],
       "signals": {
         "claim_type": "open_question",
-        "conflict_ratio": 1.0,
+        "conflict_ratio": 0.667,
         "current_status": "active",
-        "overall_confidence": 0.372,
+        "overall_confidence": 0.475,
         "source_counts": {
           "experimental": 2,
-          "literature": 0
+          "literature": 1
         }
       },
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0009",
+      "backlog_id": "EVB-0016",
       "claim_id": "Q-012",
       "evidence_needed": [
         "experimental"
@@ -272,7 +471,63 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0010",
+      "backlog_id": "EVB-0017",
+      "claim_id": "Q-013",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "open_question",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.662,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0018",
+      "claim_id": "Q-014",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "missing_experimental_evidence"
+      ],
+      "signals": {
+        "claim_type": "open_question",
+        "conflict_ratio": 0.0,
+        "current_status": "active",
+        "overall_confidence": 0.662,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0019",
       "claim_id": "MECH-900",
       "evidence_needed": [
         "literature"
@@ -300,7 +555,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0020",
       "claim_id": "Q-001",
       "evidence_needed": [
         "experimental",
@@ -329,7 +584,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0021",
       "claim_id": "Q-002",
       "evidence_needed": [
         "experimental",
@@ -358,7 +613,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0013",
+      "backlog_id": "EVB-0022",
       "claim_id": "Q-003",
       "evidence_needed": [
         "experimental",
@@ -387,7 +642,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0014",
+      "backlog_id": "EVB-0023",
       "claim_id": "Q-004",
       "evidence_needed": [
         "experimental",
@@ -416,7 +671,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0015",
+      "backlog_id": "EVB-0024",
       "claim_id": "Q-005",
       "evidence_needed": [
         "experimental",
@@ -445,7 +700,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0016",
+      "backlog_id": "EVB-0025",
       "claim_id": "Q-006",
       "evidence_needed": [
         "experimental",
@@ -474,7 +729,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0017",
+      "backlog_id": "EVB-0026",
       "claim_id": "Q-007",
       "evidence_needed": [
         "experimental",
@@ -503,7 +758,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0018",
+      "backlog_id": "EVB-0027",
       "claim_id": "Q-008",
       "evidence_needed": [
         "experimental",
@@ -532,7 +787,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0019",
+      "backlog_id": "EVB-0028",
       "claim_id": "Q-009",
       "evidence_needed": [
         "experimental",
@@ -561,7 +816,7 @@
       "status": "open"
     },
     {
-      "backlog_id": "EVB-0020",
+      "backlog_id": "EVB-0029",
       "claim_id": "Q-010",
       "evidence_needed": [
         "experimental",
@@ -581,64 +836,6 @@
         "claim_type": "open_question",
         "conflict_ratio": 0.0,
         "current_status": "legacy",
-        "overall_confidence": 0.0,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        }
-      },
-      "status": "open"
-    },
-    {
-      "backlog_id": "EVB-0021",
-      "claim_id": "Q-013",
-      "evidence_needed": [
-        "experimental",
-        "literature"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run paired experiment + literature cycle before status change.",
-      "priority": "low",
-      "reasons": [
-        "no_evidence_for_open_question"
-      ],
-      "signals": {
-        "claim_type": "open_question",
-        "conflict_ratio": 0.0,
-        "current_status": "active",
-        "overall_confidence": 0.0,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        }
-      },
-      "status": "open"
-    },
-    {
-      "backlog_id": "EVB-0022",
-      "claim_id": "Q-014",
-      "evidence_needed": [
-        "experimental",
-        "literature"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run paired experiment + literature cycle before status change.",
-      "priority": "low",
-      "reasons": [
-        "no_evidence_for_open_question"
-      ],
-      "signals": {
-        "claim_type": "open_question",
-        "conflict_ratio": 0.0,
-        "current_status": "active",
         "overall_confidence": 0.0,
         "source_counts": {
           "experimental": 0,
