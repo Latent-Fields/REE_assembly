@@ -1,0 +1,69 @@
+{
+  "config_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/cadence_automation.v1.json",
+  "dry_run": false,
+  "generated_at_utc": "2026-02-14T15:59:25.089640Z",
+  "ingestion_steps": [
+    {
+      "command": [
+        "python3",
+        "evidence/experiments/scripts/build_experiment_indexes.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Indexed 34 run(s) across 4 experiment type(s); FAIL=13; literature entries=16; backlog items=29; proposals=46."
+    },
+    {
+      "command": [
+        "python3",
+        "evidence/planning/scripts/run_governance_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Governance cycle complete: steps=2, failures=0, warnings=0, thought_unprocessed=0, decision_queue=5, backlog_high=18.\nAgenda JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/governance_agenda.v1.json\nAgenda MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/GOVERNANCE_AGENDA.md"
+    }
+  ],
+  "repo_root": "/Users/dgolden/Documents/GitHub/REE_assembly",
+  "results": [
+    {
+      "error": "git pull failed",
+      "git_pull": {
+        "returncode": 1,
+        "stderr": "error: cannot open '.git/FETCH_HEAD': Operation not permitted",
+        "stdout": ""
+      },
+      "repo_name": "ree-v2",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v2",
+      "status": "error"
+    },
+    {
+      "error": "git pull failed",
+      "git_pull": {
+        "returncode": 1,
+        "stderr": "error: cannot open '.git/FETCH_HEAD': Operation not permitted",
+        "stdout": ""
+      },
+      "repo_name": "ree-experiments-lab",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab",
+      "status": "error"
+    },
+    {
+      "error": "git pull failed",
+      "git_pull": {
+        "returncode": 1,
+        "stderr": "error: cannot open '.git/FETCH_HEAD': Operation not permitted",
+        "stdout": ""
+      },
+      "repo_name": "ree-v1-minimal",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal",
+      "status": "error"
+    }
+  ],
+  "schema_version": "handoff_sync_report/v1",
+  "targets": [
+    "ree-v2",
+    "ree-experiments-lab",
+    "ree-v1-minimal"
+  ]
+}

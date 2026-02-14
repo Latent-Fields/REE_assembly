@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "exploratory_simulation",
+  "evidence_direction": "supports",
+  "experiment_type": "jepa_anchor_ablation",
+  "failure_signatures": [],
+  "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t134314580169z",
+  "runner": {
+    "name": "scripts/run_bridging_stress_lane.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "condition": "non-stationary shift with replay mismatch stress",
+    "name": "nonstationary_shift_replay",
+    "seed": 58022,
+    "severity": 0.56
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "codex/bridging-stress-lane-v2",
+    "commit": "319b86003973650285eaf3541c58addedae57eb0",
+    "name": "ree-experiments-lab"
+  },
+  "status": "PASS",
+  "timestamp_utc": "2026-02-14T13:43:14.580567Z"
+}

@@ -6,6 +6,10 @@ Use this template for weekly producer handoffs from:
 - `ree-experiments-lab` (stress lane)
 - `ree-v1-minimal` (parity/backstop lane)
 
+Recommended producer output path:
+
+- `evidence/planning/weekly_handoff/latest.md`
+
 ---
 
 ## Required Fields and Sections

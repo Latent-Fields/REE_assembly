@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-14T13:28:15.471144Z`
+Generated: `2026-02-14T16:17:14.812568Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -20,7 +20,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-056
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.576, conflict_ratio=0.5, exp_entries=2, lit_entries=2; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.665, conflict_ratio=0.667, exp_entries=7, lit_entries=2; directions supports=6, weakens=3, mixed=0, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -38,7 +38,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-058
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.729, conflict_ratio=0.727, exp_entries=10, lit_entries=2; directions supports=4, weakens=7, mixed=1, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: overall_conf=0.666, conflict_ratio=0.9, exp_entries=19, lit_entries=2; directions supports=9, weakens=11, mixed=1, unknown=0, conflict_ratio=0.9
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -56,7 +56,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-059
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.755, conflict_ratio=0.727, exp_entries=10, lit_entries=3; directions supports=4, weakens=7, mixed=2, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: overall_conf=0.703, conflict_ratio=0.9, exp_entries=19, lit_entries=3; directions supports=9, weakens=11, mixed=2, unknown=0, conflict_ratio=0.9
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -74,7 +74,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-060
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.777, conflict_ratio=0.923, exp_entries=10, lit_entries=5; directions supports=6, weakens=7, mixed=2, unknown=0, conflict_ratio=0.923
+- Why this decision is needed: overall_conf=0.725, conflict_ratio=1, exp_entries=19, lit_entries=5; directions supports=11, weakens=11, mixed=2, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)

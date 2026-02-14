@@ -58,6 +58,10 @@ Required handoff packet fields:
 - blockers/open issues for next cycle
 - `ree-v2` only: local compute options watch (`last_updated`, recommended local action, rationale)
 
+Recommended producer handoff location:
+
+- `evidence/planning/weekly_handoff/latest.md`
+
 ## CI Requirement
 
 Each producer CI must fail if either is true:

@@ -1,0 +1,255 @@
+{
+  "config_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/cadence_automation.v1.json",
+  "dry_run": false,
+  "generated_at_utc": "2026-02-14T16:17:14.516411Z",
+  "ingestion_steps": [
+    {
+      "command": [
+        "python3",
+        "evidence/experiments/scripts/build_experiment_indexes.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Indexed 66 run(s) across 4 experiment type(s); FAIL=27; literature entries=16; backlog items=29; proposals=46."
+    },
+    {
+      "command": [
+        "python3",
+        "evidence/planning/scripts/run_governance_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Governance cycle complete: steps=2, failures=0, warnings=0, thought_unprocessed=0, decision_queue=5, backlog_high=18.\nAgenda JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/governance_agenda.v1.json\nAgenda MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/GOVERNANCE_AGENDA.md"
+    }
+  ],
+  "repo_root": "/Users/dgolden/Documents/GitHub/REE_assembly",
+  "results": [
+    {
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T030000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_commit-dual-error-channels_seed11_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T030000Z_commit-dual-error-channels_seed11_single_error_stream",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_commit-dual-error-channels_seed11_single_error_stream"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T030000Z_commit-dual-error-channels_seed29_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_commit-dual-error-channels_seed29_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T030000Z_commit-dual-error-channels_seed29_single_error_stream",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_commit-dual-error-channels_seed29_single_error_stream"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T030000Z_jepa-anchor-ablation_seed11_ema_anchor_off",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-anchor-ablation_seed11_ema_anchor_off"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T030000Z_jepa-anchor-ablation_seed11_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-anchor-ablation_seed11_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T030000Z_jepa-anchor-ablation_seed29_ema_anchor_off",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-anchor-ablation_seed29_ema_anchor_off"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T030000Z_jepa-anchor-ablation_seed29_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-anchor-ablation_seed29_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T030000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T030000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T030000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T030000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T030000Z_trajectory-integrity_seed11_trajectory_first_ablated",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_trajectory-integrity_seed11_trajectory_first_ablated"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T030000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_trajectory-integrity_seed11_trajectory_first_enabled"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T030000Z_trajectory-integrity_seed29_trajectory_first_ablated",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_trajectory-integrity_seed29_trajectory_first_ablated"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T030000Z_trajectory-integrity_seed29_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T030000Z_trajectory-integrity_seed29_trajectory_first_enabled"
+        }
+      ],
+      "repo_name": "ree-v1-minimal",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal",
+      "status": "ok"
+    },
+    {
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T150300Z_commit-dual-error-channels_seed11_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T150300Z_commit-dual-error-channels_seed11_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T150100Z_jepa-anchor-ablation_seed11_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T150100Z_jepa-anchor-ablation_seed11_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T150200Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T150200Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T150000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T150000Z_trajectory-integrity_seed11_trajectory_first_enabled"
+        }
+      ],
+      "repo_name": "ree-v2",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v2",
+      "status": "ok"
+    },
+    {
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t134314571427z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t134314571427z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t134314572080z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t134314572080z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t134314569471z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t134314569471z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t134314570712z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t134314570712z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t134314582557z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t134314582557z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t134314583283z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t134314583283z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t134314579195z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t134314579195z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t134314580169z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t134314580169z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t134314577803z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t134314577803z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t134314578426z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t134314578426z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t134314572627z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t134314572627z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t134314574193z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t134314574193z"
+        }
+      ],
+      "repo_name": "ree-experiments-lab",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab",
+      "status": "ok"
+    }
+  ],
+  "schema_version": "handoff_sync_report/v1",
+  "targets": [
+    "ree-v1-minimal",
+    "ree-v2",
+    "ree-experiments-lab"
+  ]
+}

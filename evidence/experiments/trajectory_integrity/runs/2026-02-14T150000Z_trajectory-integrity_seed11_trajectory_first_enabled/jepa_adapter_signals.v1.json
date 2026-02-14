@@ -1,0 +1,30 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "trajectory_integrity",
+  "run_id": "2026-02-14T150000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+  "adapter": {
+    "name": "ree_v2_jepa_adapter",
+    "version": "bootstrap.v1"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": true,
+    "trace_context_mask_ids": true,
+    "trace_action_token": false
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95",
+    "by_mask"
+  ],
+  "uncertainty_estimator": "dispersion",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.043599333795,
+    "latent_prediction_error_p95": 0.081772567022,
+    "latent_residual_coverage_rate": 0.982035063878,
+    "precision_input_completeness_rate": 0.97784605386,
+    "latent_uncertainty_calibration_error": 0.108721841725
+  }
+}

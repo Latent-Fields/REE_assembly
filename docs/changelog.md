@@ -61,6 +61,29 @@ policy suitable for laptop-constrained development environments.
 - Added structured operator checklist for spare-time workflow:
   - `evidence/planning/HOBBY_OPERATOR_PLAYBOOK.md`
 
+## 2026-02-14: Local Cadence Automation Scripts
+
+### Overview
+
+Added local-scheduler automation for weekly producer handoff sync/import and outbound dispatch generation.
+
+### What Changed
+
+- Added cadence automation config:
+  - `evidence/planning/cadence_automation.v1.json`
+- Added handoff sync/import script:
+  - `evidence/planning/scripts/sync_weekly_handoffs.py`
+  - supports day-based repo selection, handoff validation, run-pack import, and optional ingestion/governance steps
+- Added weekly dispatch emission script:
+  - `evidence/planning/scripts/emit_weekly_dispatches.py`
+  - builds per-repo dispatch markdown bundles from `experiment_proposals.v1.json`
+- Added local scheduling runbook:
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+- Updated planning docs for discoverability and handoff-path guidance:
+  - `evidence/planning/README.md`
+  - `evidence/planning/WEEKLY_HANDOFF_TEMPLATE.md`
+  - `evidence/experiments/CROSS_REPO_SYNC_POLICY.md`
+
 ## 2026-02-14: Weekly Cross-Repo Handoff Standardization
 
 ### Overview
