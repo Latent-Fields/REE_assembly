@@ -28,6 +28,7 @@ Required deliverables:
    - schema validation status
    - deterministic seed status
    - hook coverage status (or `N/A` if not applicable)
+   - remote export/import status (or `N/A` if not applicable)
    - run-pack inventory table
    - claim summary table
    - open blockers
@@ -35,6 +36,7 @@ Required deliverables:
 Acceptance checks:
 1. Weekly handoff file is present and matches template section names.
 2. Every listed run row includes `evidence_direction` and `pack_path`.
+   - and includes `execution_mode`, `compute_backend`, `runtime_minutes`.
 3. CI fails if required handoff fields are removed.
 4. Output a concise summary with:
    - file path for weekly handoff report
@@ -68,6 +70,7 @@ Required deliverables:
    - schema validation status
    - deterministic seed status
    - hook coverage status (or `N/A` if not applicable)
+   - remote export/import status (or `N/A` if not applicable)
    - run-pack inventory table
    - claim summary table
    - open blockers
@@ -79,6 +82,7 @@ Parity-specific requirement:
 Acceptance checks:
 1. Weekly handoff file is present and matches template section names.
 2. Every listed run row includes `evidence_direction` and `pack_path`.
+   - and includes `execution_mode`, `compute_backend`, `runtime_minutes`.
 3. CI fails if required handoff fields are removed.
 4. Output a concise summary with:
    - file path for weekly handoff report

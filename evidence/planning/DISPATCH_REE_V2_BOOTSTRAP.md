@@ -10,6 +10,10 @@ You are Codex operating in `ree-v2`.
 
 Goal: bootstrap `ree-v2` as the REE qualification harness for substrate claims, with contract-compatible outputs for REE_assembly ingestion.
 
+Machine context:
+- Primary local development machine is `Apple MacBook Air (M2, 2022)`.
+- Treat local execution as smoke/debug only; qualification sweeps should offload when runtime/resource thresholds are exceeded.
+
 Lane policy:
 - `ree-v2` = qualification lane (primary)
 - `ree-experiments-lab` = stress/falsification lane (unchanged)
@@ -40,6 +44,9 @@ Contract sources in REE_assembly (treat as normative):
 - `contracts/schemas/v1/jepa_adapter_signals.v1.json`
 - `contracts/hook_registry.v1.json`
 - `contracts/ree_assembly_contract_lock.v1.json`
+- `third_party/jepa_sources.lock.v1.json`
+- `docs/ops/compute_execution_policy.md`
+- `docs/ops/cloud_backend_setup.md`
 - `src/ree_v2/sensor_adapter/adapter.py`
 - `src/ree_v2/latent_substrate/{encoder.py,target_anchor.py,predictor.py}`
 - `src/ree_v2/signal_export/{adapter_signals.py,metrics_export.py}`
@@ -50,6 +57,10 @@ Contract sources in REE_assembly (treat as normative):
 - `scripts/validate_experiment_pack.py`
 - `scripts/validate_hook_surfaces.py`
 - `scripts/check_seed_determinism.py`
+- `scripts/estimate_run_resources.py`
+- `scripts/build_remote_job_spec.py`
+- `scripts/submit_remote_job.py`
+- `scripts/pull_remote_results.py`
 
 3. CI workflow:
 - `.github/workflows/qualification-ci.yml` with required jobs:
@@ -71,6 +82,25 @@ with required files:
 - `summary.md`
 - `jepa_adapter_signals.v1.json` for JEPA-backed runs
 
+6. JEPA source/provenance lock:
+- `third_party/jepa_sources.lock.v1.json` must include:
+  - `source_mode`
+  - `upstream_repo_url` (if external)
+  - `upstream_commit`
+  - `license_id`
+  - `patch_set`
+  - `compatibility_target` (`IMPL-022`)
+  - `last_verified_utc`
+
+7. Compute offload policy:
+- Define explicit local-vs-remote triggers in `docs/ops/compute_execution_policy.md`.
+- Minimum trigger set:
+  - per-run estimate >45m
+  - batch estimate >180m
+  - >2 seeds per condition
+  - projected memory over safe local budget
+  - local thermal throttling/OOM detection
+
 ## Required acceptance checks (must run and report)
 
 1. Schema gate:
@@ -91,10 +121,25 @@ python3 scripts/validate_hook_surfaces.py --registry contracts/hook_registry.v1.
 ```
 Must verify `HK-001..HK-006` presence and `HK-101..HK-104` stubs.
 
-4. Pack acceptance:
+4. Resource placement gate:
+```bash
+python3 scripts/estimate_run_resources.py --profile all --machine macbook_air_m2_2022
+```
+Must emit `execution_mode=local|remote` decisions and route qualifying heavy profiles to `remote`.
+
+5. Remote job export/import gate:
+```bash
+python3 scripts/build_remote_job_spec.py --profile all
+python3 scripts/submit_remote_job.py --job-spec-dir jobs/outgoing --dry-run
+python3 scripts/pull_remote_results.py --job-run-dir jobs/completed --runs-root evidence/experiments --dry-run
+```
+Must validate job-spec format and result-import path at least in dry-run mode.
+
+6. Pack acceptance:
 - Every smoke run pack includes `claim_ids_tested`, `evidence_class`, `evidence_direction`.
 - Required metrics for each claim appear with stable snake_case keys.
 - Failure signatures are emitted with the canonical IDs in the bootstrap spec when triggered.
+- `manifest.scenario` includes JEPA provenance fields (`jepa_source_mode`, `jepa_source_commit`, `jepa_patch_set_hash`).
 
 ## Output report (required)
 
@@ -108,7 +153,13 @@ Return:
    - `status`
    - key metrics
    - evidence direction
-4. A short migration note describing parity status vs `ree-v1-minimal`.
+4. A compute placement table:
+   - `experiment_type`
+   - `condition`
+   - `estimated_runtime_minutes`
+   - `execution_mode` (`local|remote`)
+   - `offload_reason`
+5. A short migration note describing parity status vs `ree-v1-minimal`.
 
 Constraints:
 - Keep scope focused on bootstrap surfaces only.

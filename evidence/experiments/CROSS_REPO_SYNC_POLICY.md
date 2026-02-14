@@ -52,8 +52,8 @@ Required handoff packet fields:
 
 - producer metadata (`producer_repo`, `producer_commit`, `week_of_utc`, `generated_utc`)
 - contract sync section (`ree_assembly_commit`, contract lock path/hash)
-- CI gate status section (schema validation, deterministic seed replay, hook coverage where applicable)
-- run-pack inventory table (`experiment_type`, `run_id`, `seed`, `status`, key metrics, `evidence_direction`, pack path)
+- CI gate status section (schema validation, deterministic seed replay, hook coverage where applicable, remote export/import where applicable)
+- run-pack inventory table (`experiment_type`, `run_id`, `seed`, `status`, key metrics, `evidence_direction`, `execution_mode`, `compute_backend`, `runtime_minutes`, pack path)
 - claim coverage summary and recurring failure signatures
 - blockers/open issues for next cycle
 

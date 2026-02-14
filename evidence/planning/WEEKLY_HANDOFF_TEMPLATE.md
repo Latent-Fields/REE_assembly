@@ -27,6 +27,7 @@ Use this template for weekly producer handoffs from:
 - `schema_validation` (`PASS|FAIL`)
 - `seed_determinism` (`PASS|FAIL`)
 - `hook_surface_coverage` (`PASS|FAIL|N/A`)
+- `remote_export_import` (`PASS|FAIL|N/A`)
 
 4. Run-pack inventory table (required columns)
 - `experiment_type`
@@ -37,6 +38,9 @@ Use this template for weekly producer handoffs from:
 - `evidence_direction`
 - `claim_ids_tested`
 - `failure_signatures`
+- `execution_mode` (`local|remote`)
+- `compute_backend` (for example `local_cpu`, `cloud_gpu_a10g`)
+- `runtime_minutes`
 - `pack_path`
 
 5. Claim summary table (required columns)
@@ -77,11 +81,12 @@ Use this template for weekly producer handoffs from:
 | schema_validation | PASS | `<command or workflow run id>` |
 | seed_determinism | PASS | `<command or workflow run id>` |
 | hook_surface_coverage | PASS/N/A | `<command or workflow run id>` |
+| remote_export_import | PASS/N/A | `<command or workflow run id>` |
 
 ## Run-Pack Inventory
-| experiment_type | run_id | seed | condition_or_scenario | status | evidence_direction | claim_ids_tested | failure_signatures | pack_path |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| experiment_type | run_id | seed | condition_or_scenario | status | evidence_direction | claim_ids_tested | failure_signatures | execution_mode | compute_backend | runtime_minutes | pack_path |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
 ## Claim Summary
 | claim_id | runs_added | supports | weakens | mixed | unknown | recurring_failure_signatures |

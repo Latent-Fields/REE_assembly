@@ -49,6 +49,8 @@ This section is the direct audit output for:
    - `latent_residual_coverage_rate`
    - `precision_input_completeness_rate`
 7. v2 must preserve stable schema keys and version constants (`v1` contracts).
+8. v2 must define a JEPA source/provenance lock so substrate code origin is auditable and reproducible.
+9. v2 must define explicit local-vs-cloud execution policy; qualification sweeps must not assume local laptop compute.
 
 ---
 
@@ -57,6 +59,9 @@ This section is the direct audit output for:
 ```text
 ree-v2/
   README.md
+  docs/ops/
+    compute_execution_policy.md
+    cloud_backend_setup.md
   contracts/
     hook_registry.v1.json
     schemas/v1/
@@ -64,6 +69,9 @@ ree-v2/
       metrics.schema.json
       jepa_adapter_signals.v1.json
     ree_assembly_contract_lock.v1.json
+  third_party/
+    jepa_sources.lock.v1.json
+    patches/
   src/ree_v2/
     sensor_adapter/
       __init__.py
@@ -89,6 +97,10 @@ ree-v2/
     validate_experiment_pack.py
     validate_hook_surfaces.py
     check_seed_determinism.py
+    estimate_run_resources.py
+    build_remote_job_spec.py
+    submit_remote_job.py
+    pull_remote_results.py
   evidence/experiments/
     INTERFACE_CONTRACT.md
     stop_criteria.v1.yaml
@@ -100,6 +112,7 @@ Notes:
 
 - File names are normative for bootstrap consistency; internal module decomposition can expand later.
 - `contracts/schemas/v1/*` must be pinned to `REE_assembly` hashes through `contracts/ree_assembly_contract_lock.v1.json`.
+- `third_party/jepa_sources.lock.v1.json` is required before non-smoke qualification runs begin.
 
 ---
 
@@ -166,6 +179,39 @@ Required manifest linkage fields:
 - `HK-104` (`rollout_candidate_metadata_export`)
 
 For v2, stub hooks are allowed to be marked `planned_stub=true` with non-empty ID-bearing payload shells.
+
+## 4.4 JEPA source acquisition and provenance contract
+
+`ree-v2` must choose and document one JEPA source mode:
+
+- `vendored_snapshot` (copied snapshot pinned to upstream commit)
+- `submodule_pin` (git submodule pinned to commit)
+- `internal_minimal_impl` (local implementation with explicit compatibility statement)
+
+Required lock file:
+
+- `third_party/jepa_sources.lock.v1.json`
+
+Required lock file fields:
+
+- `source_mode`
+- `upstream_repo_url` (if external source is used)
+- `upstream_commit`
+- `license_id`
+- `patch_set` (list of local patch IDs/files)
+- `compatibility_target` (must reference `IMPL-022`)
+- `last_verified_utc`
+
+Run-level provenance requirement:
+
+- `manifest.scenario` must include:
+  - `jepa_source_mode`
+  - `jepa_source_commit`
+  - `jepa_patch_set_hash`
+
+Schema note:
+
+- these provenance fields are recorded under `manifest.scenario` to preserve `manifest.schema.json` compatibility.
 
 ---
 
@@ -269,22 +315,74 @@ Minimum command contract:
 python3 scripts/validate_hook_surfaces.py --registry contracts/hook_registry.v1.json
 ```
 
+## 6.4 Gate D: local-vs-cloud execution policy
+
+Baseline local machine profile for bootstrap planning:
+
+- `Apple MacBook Air (M2, 2022)`
+
+Local execution is allowed for:
+
+- schema/hook validation,
+- deterministic seed checks on smoke workloads,
+- single-seed debug runs expected to complete quickly.
+
+Qualification runs must be offloaded to cloud/remote compute when any trigger is true:
+
+- estimated runtime per run `> 45` minutes;
+- estimated batch runtime `> 180` minutes;
+- seed count per condition `> 2`;
+- projected memory footprint exceeds safe local budget;
+- local thermal throttling or repeated OOM/fatal runtime instability is detected.
+
+Minimum command contract:
+
+```bash
+python3 scripts/estimate_run_resources.py --profile all --machine macbook_air_m2_2022
+```
+
+The estimator must output `execution_mode=local|remote` per profile/condition.
+
+## 6.5 Gate E: remote execution export/import contract
+
+When `execution_mode=remote`, `ree-v2` must:
+
+1. build provider-agnostic job specs containing:
+   - `experiment_type`, `condition`, `seeds`, `config_hash`,
+   - source commit + contract lock hash + JEPA source lock hash;
+2. submit jobs to configured cloud backend;
+3. retrieve result packs unchanged into `evidence/experiments/**/runs/**`;
+4. run local pack validation before handoff to `REE_assembly`.
+
+Minimum command contract:
+
+```bash
+python3 scripts/build_remote_job_spec.py --profile all
+python3 scripts/submit_remote_job.py --job-spec-dir jobs/outgoing
+python3 scripts/pull_remote_results.py --job-run-dir jobs/completed --runs-root evidence/experiments
+```
+
+If remote credentials are unavailable, CI must support `--dry-run` validation of job-spec generation.
+
 ---
 
 ## 7. Migration Bridge from `ree-v1-minimal`
 
 ## 7.1 Migration stages
 
-1. **Stage M0: Contract mirror**
+1. **Stage M-1: JEPA source + compute policy bootstrap**
+   - create `third_party/jepa_sources.lock.v1.json` and remote execution policy docs.
+   - validate local-vs-remote estimator behavior on all required profiles.
+2. **Stage M0: Contract mirror**
    - copy/pin `v1` schemas and create lock file in `ree-v2`.
    - verify pack validation parity against known `ree-v1-minimal` sample packs.
-2. **Stage M1: Profile parity**
+3. **Stage M1: Profile parity**
    - implement `trajectory_integrity`, `jepa_anchor_ablation`, `jepa_uncertainty_channels`, `commit_dual_error_channels` runners in `ree-v2`.
    - preserve experiment_type names and metric keys to avoid ingestion churn.
-3. **Stage M2: Dual-lane overlap**
+4. **Stage M2: Dual-lane overlap**
    - run at least one governance cycle with both `ree-v1-minimal` and `ree-v2` qualification packs.
    - compare pass/fail, signatures, and direction deltas by claim.
-4. **Stage M3: Qualification cutover**
+5. **Stage M3: Qualification cutover**
    - switch default qualification dispatch target from `ree-v1-minimal` to `ree-v2`.
    - keep `ree-v1-minimal` as parity backstop until two consecutive clean cycles.
 
@@ -293,6 +391,7 @@ python3 scripts/validate_hook_surfaces.py --registry contracts/hook_registry.v1.
 - no unresolved contract drift signatures for `ree-v2` across two consecutive governance cycles
 - required hooks and schema checks green in CI
 - deterministic seed replay gate green for all required profiles
+- local-vs-cloud gate decisions logged and remote export/import path validated
 - no missing claim coverage for `MECH-056/058/059/060`
 
 ---
@@ -316,6 +415,9 @@ Priority order is highest risk first.
 5. **P2: hook stub payload expectations for `HK-101..HK-104` are not yet schema-pinned**
    - blocker: planned hooks are defined in registry but payload schemas are still informal.
    - impact: future v3 integration churn risk if stub shape drifts now.
+6. **P2: cloud backend operational risk (credentials, quotas, cost control)**
+   - blocker: remote execution path can fail if credentials/quotas are not prepared before qualification sweeps.
+   - impact: qualification schedule stalls or silently falls back to underpowered local runs.
 
 ---
 
