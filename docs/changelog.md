@@ -7,6 +7,29 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: Roadmap Refresh and REE-v2 Spec Draft
+
+### Overview
+
+Refreshed the roadmap to reflect current repository roles and moved program framing to a substrate-first v2 followed by
+control-completion v3. Added a dedicated v2 implementation spec document.
+
+### What Changed
+
+- Rewrote roadmap:
+  - `docs/roadmap.md#impl-008`
+  - reframed v1 as qualification harness outcome
+  - defined v2 as JEPA-aligned substrate phase
+  - defined v3 as control-plane/hippocampal/E3 completion phase
+- Added v2 spec:
+  - `docs/architecture/ree_v2_spec.md#impl-023`
+- Added claims/index mapping for v2 spec:
+  - `docs/claims/claims.yaml` (`IMPL-023`)
+  - `docs/claims/claim_index.md` (`IMPL-023`)
+  - `docs/claims/subsystem_map.yaml` (JEPA-REE alignment mapping includes v2 spec)
+- Added literature dispatch pack for v3-critical evidence:
+  - `evidence/planning/DISPATCH_LIT_V3_HIPPO_PFC_JEPA.md`
+
 ## 2026-02-13: Invariant Rewording for Consequence Persistence (INV-004/INV-006)
 
 ### Overview

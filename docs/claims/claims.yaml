@@ -521,12 +521,13 @@
     - docs/processed/legacy_tree/docs/FINAL_OUTPUT.md
 - id: IMPL-008
   claim_type: implementation_note
-  subject: roadmap
-  polarity: asserts
+  subject: roadmap.program_phases
+  polarity: records
   status: candidate
   depends_on: []
   location: docs/roadmap.md#impl-008
   source:
+    - docs/roadmap.md
     - docs/processed/legacy_tree/roadmap.md
 - id: IMPL-009
   claim_type: implementation_note
@@ -1570,3 +1571,20 @@
   location: docs/architecture/jepa_e1e2_integration_contract.md#impl-022
   source:
     - docs/architecture/jepa_e1e2_integration_contract.md
+- id: IMPL-023
+  claim_type: implementation_note
+  subject: roadmap.ree_v2_substrate_spec
+  polarity: records
+  status: candidate
+  depends_on:
+    - IMPL-008
+    - IMPL-021
+    - IMPL-022
+    - MECH-057
+    - MECH-058
+    - MECH-059
+    - MECH-060
+  location: docs/architecture/ree_v2_spec.md#impl-023
+  source:
+    - docs/architecture/ree_v2_spec.md
+    - docs/roadmap.md

@@ -150,7 +150,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-005](../REE_failure_modes.md#impl-005) Failure mode taxonomy.
 - [IMPL-006](../MIGRATION.md#impl-006) Legacy migration mapping.
 - [IMPL-007](../FINAL_OUTPUT.md#impl-007) Legacy refactor final output summary.
-- [IMPL-008](../roadmap.md#impl-008) Roadmap and milestones.
+- [IMPL-008](../roadmap.md#impl-008) Program phases, repository roles, and phase-gate criteria.
 - [IMPL-009](../notes/wiring_notes.md#impl-009) Wiring notes and cross-reference summary.
 - [IMPL-010](../examples/android_world_environment.md#impl-010) Android world environment contract.
 - [IMPL-011](../examples/toy_world_environment.md#impl-011) Toy world environment contract.
@@ -165,6 +165,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-020](../glossary.md#impl-020) Formal JEPA↔REE terminology alignment glossary for interoperability.
 - [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Hybrid JEPA↔REE architecture diagram contract and rendering checklist.
 - [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-as-E1/E2 integration contract (inputs, outputs, knobs, and failure gates).
+- [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 substrate-first spec and phase gate for later control completion.
 
 ---
 
