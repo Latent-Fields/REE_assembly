@@ -1,0 +1,541 @@
+{
+  "schema_version": "ree_v2_cutover_readiness/v1",
+  "generated_at_utc": "2026-02-14T18:26:37.999925Z",
+  "decision": "NO_CUTOVER",
+  "required_claims": [
+    "MECH-056",
+    "MECH-058",
+    "MECH-059",
+    "MECH-060"
+  ],
+  "inputs": {
+    "ree_v2_handoff_snapshots": [
+      {
+        "repo_name": "ree-v2",
+        "file_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
+        "revision": "65d51ffa9c66de58b5cf5c3bd403f0e2dd6c636c",
+        "week_of_utc": "2026-02-09",
+        "generated_utc": "2026-02-14T18:16:43Z",
+        "ci_gates": {
+          "schema_validation": "PASS",
+          "seed_determinism": "PASS",
+          "hook_surface_coverage": "PASS",
+          "remote_export_import": "PASS"
+        },
+        "run_pack_claim_ids": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "claim_summary": {
+          "MECH-056": {
+            "claim_id": "MECH-056",
+            "runs_added": "7",
+            "supports": "7",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          },
+          "MECH-058": {
+            "claim_id": "MECH-058",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          },
+          "MECH-059": {
+            "claim_id": "MECH-059",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "mech059:uncertainty_metric_gaming_detected"
+          },
+          "MECH-060": {
+            "claim_id": "MECH-060",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          }
+        },
+        "open_blockers": [
+          "- Real JEPA backend evidence remains blocked: no verified real-checkpoint runs; current JEPA fallback-only runs=6."
+        ]
+      },
+      {
+        "repo_name": "ree-v2",
+        "file_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
+        "revision": "9162187427baf49c1066885c66ca0dc545652c45",
+        "week_of_utc": "2026-02-09",
+        "generated_utc": "2026-02-14T17:37:56Z",
+        "ci_gates": {
+          "schema_validation": "PASS",
+          "seed_determinism": "PASS",
+          "hook_surface_coverage": "PASS",
+          "remote_export_import": "PASS"
+        },
+        "run_pack_claim_ids": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "claim_summary": {
+          "MECH-056": {
+            "claim_id": "MECH-056",
+            "runs_added": "7",
+            "supports": "7",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          },
+          "MECH-058": {
+            "claim_id": "MECH-058",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          },
+          "MECH-059": {
+            "claim_id": "MECH-059",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "mech059:uncertainty_metric_gaming_detected"
+          },
+          "MECH-060": {
+            "claim_id": "MECH-060",
+            "runs_added": "5",
+            "supports": "5",
+            "weakens": "0",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "none"
+          }
+        },
+        "open_blockers": [
+          "- none"
+        ]
+      }
+    ],
+    "ree_v1_handoff_snapshots": [
+      {
+        "repo_name": "ree-v1-minimal",
+        "file_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
+        "revision": "6bcb466b273ca646a744d66f05e199d1c394c0dd",
+        "week_of_utc": "2026-02-09",
+        "generated_utc": "2026-02-14T03:00:00Z",
+        "ci_gates": {
+          "schema_validation": "PASS",
+          "seed_determinism": "PASS",
+          "hook_surface_coverage": "N/A",
+          "remote_export_import": "N/A"
+        },
+        "run_pack_claim_ids": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "claim_summary": {
+          "MECH-056": {
+            "claim_id": "MECH-056",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:domination_lock_in_events, threshold:explanation_policy_divergence_rate, threshold:ledger_edit_detected_count"
+          },
+          "MECH-058": {
+            "claim_id": "MECH-058",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:e1_e2_timescale_separation_ratio, threshold:latent_prediction_error_mean, threshold:latent_prediction_error_p95, threshold:latent_rollout_consistency_rate, threshold:representation_drift_rate"
+          },
+          "MECH-059": {
+            "claim_id": "MECH-059",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:latent_prediction_error_mean, threshold:latent_uncertainty_calibration_error, threshold:precision_input_completeness_rate, threshold:uncertainty_coverage_rate"
+          },
+          "MECH-060": {
+            "claim_id": "MECH-060",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:commitment_reversal_rate, threshold:cross_channel_leakage_rate, threshold:post_commit_error_attribution_gain, threshold:pre_commit_error_signal_to_noise"
+          }
+        },
+        "open_blockers": [
+          "None."
+        ]
+      },
+      {
+        "repo_name": "ree-v1-minimal",
+        "file_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
+        "revision": "a1cb5fee15a9fc8845b0ae09fe8b76aee9de860e",
+        "week_of_utc": "2026-02-09",
+        "generated_utc": "2026-02-14T03:00:00Z",
+        "ci_gates": {
+          "schema_validation": "PASS",
+          "seed_determinism": "PASS",
+          "hook_surface_coverage": "N/A",
+          "remote_export_import": "N/A"
+        },
+        "run_pack_claim_ids": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "claim_summary": {
+          "MECH-056": {
+            "claim_id": "MECH-056",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:domination_lock_in_events, threshold:explanation_policy_divergence_rate, threshold:ledger_edit_detected_count"
+          },
+          "MECH-058": {
+            "claim_id": "MECH-058",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:e1_e2_timescale_separation_ratio, threshold:latent_prediction_error_mean, threshold:latent_prediction_error_p95, threshold:latent_rollout_consistency_rate, threshold:representation_drift_rate"
+          },
+          "MECH-059": {
+            "claim_id": "MECH-059",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:latent_prediction_error_mean, threshold:latent_uncertainty_calibration_error, threshold:precision_input_completeness_rate, threshold:uncertainty_coverage_rate"
+          },
+          "MECH-060": {
+            "claim_id": "MECH-060",
+            "runs_added": "4",
+            "supports": "2",
+            "weakens": "2",
+            "mixed": "0",
+            "unknown": "0",
+            "recurring_failure_signatures": "threshold:commitment_reversal_rate, threshold:cross_channel_leakage_rate, threshold:post_commit_error_attribution_gain, threshold:pre_commit_error_signal_to_noise"
+          }
+        },
+        "open_blockers": [
+          "- Parity note vs latest ree-v2: disagreement on overlapping claims (MECH-056(ree-v1-minimal=mixed, ree-v2=supports), MECH-058(ree-v1-minimal=mixed, ree-v2=supports), MECH-059(ree-v1-minimal=mixed, ree-v2=supports), MECH-060(ree-v1-minimal=mixed, ree-v2=supports)); source=/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md.",
+          "- No additional blockers reported this cycle."
+        ]
+      }
+    ],
+    "latest_thursday_ingestion_reports": [
+      {
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T161714Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-14T16:17:14.516411Z",
+        "targets": [
+          "ree-v1-minimal",
+          "ree-v2",
+          "ree-experiments-lab"
+        ],
+        "repo_statuses": {
+          "ree-v1-minimal": "ok",
+          "ree-v2": "ok",
+          "ree-experiments-lab": "ok"
+        },
+        "ingestion_step_statuses": [
+          {
+            "command": "python3 evidence/experiments/scripts/build_experiment_indexes.py",
+            "status": "ok",
+            "returncode": 0
+          },
+          {
+            "command": "python3 evidence/planning/scripts/run_governance_cycle.py",
+            "status": "ok",
+            "returncode": 0
+          }
+        ]
+      },
+      {
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T160012Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-14T16:00:12.050783Z",
+        "targets": [
+          "ree-v2",
+          "ree-experiments-lab",
+          "ree-v1-minimal"
+        ],
+        "repo_statuses": {
+          "ree-v2": "error",
+          "ree-experiments-lab": "error",
+          "ree-v1-minimal": "error"
+        },
+        "ingestion_step_statuses": [
+          {
+            "command": "python3 evidence/experiments/scripts/build_experiment_indexes.py",
+            "status": "ok",
+            "returncode": 0
+          },
+          {
+            "command": "python3 evidence/planning/scripts/run_governance_cycle.py",
+            "status": "ok",
+            "returncode": 0
+          }
+        ]
+      }
+    ]
+  },
+  "gates": [
+    {
+      "gate_id": "v2_ci_gates_all_pass",
+      "status": "PASS",
+      "evidence": {
+        "required_gates": [
+          "schema_validation",
+          "seed_determinism",
+          "hook_surface_coverage",
+          "remote_export_import"
+        ],
+        "snapshots_checked": [
+          "65d51ffa9c66",
+          "9162187427ba"
+        ],
+        "failures": []
+      }
+    },
+    {
+      "gate_id": "v2_required_claim_coverage",
+      "status": "PASS",
+      "evidence": {
+        "required_claims": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "v2_latest_claims": [
+          "MECH-056",
+          "MECH-058",
+          "MECH-059",
+          "MECH-060"
+        ],
+        "missing_claims": []
+      }
+    },
+    {
+      "gate_id": "no_unresolved_contract_drift_signatures",
+      "status": "PASS",
+      "evidence": {
+        "contract_signature_hit_count": 0,
+        "hits": [],
+        "ingestion_reports_checked": [
+          "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T161714Z_handoff_sync_report.json",
+          "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T160012Z_handoff_sync_report.json"
+        ]
+      }
+    },
+    {
+      "gate_id": "no_p0_blocker_text_in_latest_v2_handoff",
+      "status": "PASS",
+      "evidence": {
+        "open_blockers": [
+          "- Real JEPA backend evidence remains blocked: no verified real-checkpoint runs; current JEPA fallback-only runs=6."
+        ],
+        "p0_lines": []
+      }
+    },
+    {
+      "gate_id": "overlap_sanity_direction_conflicts_resolved",
+      "status": "FAIL",
+      "evidence": {
+        "direction_deltas": [
+          {
+            "claim_id": "MECH-056",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-058",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-059",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-060",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          }
+        ],
+        "unresolved_conflicts": [
+          {
+            "claim_id": "MECH-056",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-058",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-059",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          },
+          {
+            "claim_id": "MECH-060",
+            "ree_v2_direction": "supports",
+            "ree_v1_direction": "mixed",
+            "delta": "different",
+            "unresolved_conflict": true
+          }
+        ]
+      }
+    }
+  ],
+  "direction_deltas": [
+    {
+      "claim_id": "MECH-056",
+      "ree_v2_direction": "supports",
+      "ree_v1_direction": "mixed",
+      "delta": "different",
+      "unresolved_conflict": true
+    },
+    {
+      "claim_id": "MECH-058",
+      "ree_v2_direction": "supports",
+      "ree_v1_direction": "mixed",
+      "delta": "different",
+      "unresolved_conflict": true
+    },
+    {
+      "claim_id": "MECH-059",
+      "ree_v2_direction": "supports",
+      "ree_v1_direction": "mixed",
+      "delta": "different",
+      "unresolved_conflict": true
+    },
+    {
+      "claim_id": "MECH-060",
+      "ree_v2_direction": "supports",
+      "ree_v1_direction": "mixed",
+      "delta": "different",
+      "unresolved_conflict": true
+    }
+  ],
+  "blockers": [
+    {
+      "priority": "P0",
+      "blocker": "Unresolved overlap direction conflicts between ree-v2 and ree-v1-minimal for MECH-056/058/059/060.",
+      "evidence": [
+        {
+          "claim_id": "MECH-056",
+          "ree_v2_direction": "supports",
+          "ree_v1_direction": "mixed",
+          "delta": "different",
+          "unresolved_conflict": true
+        },
+        {
+          "claim_id": "MECH-058",
+          "ree_v2_direction": "supports",
+          "ree_v1_direction": "mixed",
+          "delta": "different",
+          "unresolved_conflict": true
+        },
+        {
+          "claim_id": "MECH-059",
+          "ree_v2_direction": "supports",
+          "ree_v1_direction": "mixed",
+          "delta": "different",
+          "unresolved_conflict": true
+        },
+        {
+          "claim_id": "MECH-060",
+          "ree_v2_direction": "supports",
+          "ree_v1_direction": "mixed",
+          "delta": "different",
+          "unresolved_conflict": true
+        }
+      ],
+      "remediation": [
+        "Run a matched-seed, matched-condition parity cycle in both repos for MECH-056/058/059/060 (minimum 3 seeds per condition) and publish side-by-side delta table in weekly handoffs.",
+        "Require two consecutive Thursday governance cycles where overlap deltas are resolved (or explicitly adjudicated) before cutover.",
+        "If conflicts remain, dispatch targeted falsification to ree-experiments-lab and withhold routing flip."
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "priority": "P1",
+      "risk": "Latest ree-v2 handoff still lists operational blocker text.",
+      "evidence": [
+        "- Real JEPA backend evidence remains blocked: no verified real-checkpoint runs; current JEPA fallback-only runs=6."
+      ],
+      "note": "Not all blocker text is tagged P0, but unresolved operational blockers increase cutover risk."
+    },
+    {
+      "priority": "P1",
+      "risk": "At least one of the two latest ingestion-cycle reports contains repo-level sync errors.",
+      "evidence": [
+        {
+          "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T161714Z_handoff_sync_report.json",
+          "repo_failures_present": false,
+          "ingestion_failures_present": false
+        },
+        {
+          "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T160012Z_handoff_sync_report.json",
+          "repo_failures_present": true,
+          "ingestion_failures_present": false
+        }
+      ],
+      "note": "Most recent report is healthy, but prior cycle instability should be monitored."
+    }
+  ],
+  "routing_change_applied": false,
+  "rollback_instructions": [
+    "No routing change was applied in this decision path.",
+    "If routing is flipped later and rollback is needed: set repo_routing.experimental_default_repo back to ree-v1-minimal in evidence/planning/planning_criteria.v1.yaml and regenerate planning outputs."
+  ]
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-14T16:17:14.812568Z`
+Generated: `2026-02-14T18:26:44.290701Z`
 
 ## Conflict Queue
 
@@ -62,7 +62,7 @@ Generated: `2026-02-14T16:17:14.812568Z`
 
 ### MECH-058
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=9, weakens=11, conflict_ratio=0.9, overall_confidence=0.666
+- Evidence breakdown: supports=9, weakens=11, conflict_ratio=0.9, overall_confidence=0.665
 - Recent entries:
   - `2026-02-14T13:43:14.580567Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
   - `2026-02-14T13:43:14.582817Z` `experimental` `jepa_anchor_ablation` direction=`weakens` confidence=0.75
@@ -82,7 +82,7 @@ Generated: `2026-02-14T16:17:14.812568Z`
 
 ### MECH-059
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=9, weakens=11, conflict_ratio=0.9, overall_confidence=0.703
+- Evidence breakdown: supports=9, weakens=11, conflict_ratio=0.9, overall_confidence=0.702
 - Recent entries:
   - `2026-02-14T13:43:14.578065Z` `experimental` `jepa_uncertainty_channels` direction=`weakens` confidence=0.75
   - `2026-02-14T13:43:14.578626Z` `experimental` `jepa_uncertainty_channels` direction=`weakens` confidence=0.75
@@ -102,7 +102,7 @@ Generated: `2026-02-14T16:17:14.812568Z`
 
 ### MECH-060
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=11, weakens=11, conflict_ratio=1, overall_confidence=0.725
+- Evidence breakdown: supports=11, weakens=11, conflict_ratio=1, overall_confidence=0.724
 - Recent entries:
   - `2026-02-14T15:03:00Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
   - `2026-02-14T20:25:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.73
