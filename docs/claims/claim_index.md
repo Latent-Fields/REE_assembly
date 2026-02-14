@@ -167,6 +167,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-as-E1/E2 integration contract (inputs, outputs, knobs, and failure gates).
 - [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 substrate-first spec and phase gate for later control completion.
 - [IMPL-024](../notes/jepa_language_policy.md#impl-024) v2 JEPA-first wording policy with inline REE translation for docs and user-facing interactions.
+- [IMPL-025](../architecture/hook_surface_contract.md#impl-025) Cross-version hook surface contract and registry for v2/v3/v4 extension points.
 
 ---
 

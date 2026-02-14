@@ -77,16 +77,17 @@ Primary role:
 
 - `REE_assembly`:
   - canonical claims, architecture docs, evidence matrix, governance outputs.
-- `ree-v1-minimal`:
-  - controlled qualification experiments for named claims.
+- `ree-v2`:
+  - primary qualification lane for v2 substrate profiles and acceptance gates.
 - `ree-experiments-lab`:
   - stress/adversarial/replication experiments and falsification pressure.
-- `ree-v2` repository (optional, not immediate):
-  - create only after the v2 spec and interfaces stabilize enough to avoid premature drift.
+- `ree-v1-minimal`:
+  - legacy baseline/reference harness and parity backstop during v2 migration.
 
 Current recommendation:
-- keep `v2` spec and contract refinement in `REE_assembly` first,
-- spin a dedicated `ree-v2` implementation repo after interface gates pass.
+- keep `v2` spec and contract refinement in `REE_assembly`,
+- bootstrap `ree-v2` now and use it as the qualification lane,
+- keep `ree-v1-minimal` for transitional parity checks until `ree-v2` coverage is complete.
 
 ---
 

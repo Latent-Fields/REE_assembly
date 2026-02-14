@@ -1,0 +1,273 @@
+{
+  "schema_version": "hook_registry/v1",
+  "registry_scope": "ree_cross_version_hook_surface",
+  "hooks": [
+    {
+      "hook_id": "HK-001",
+      "hook_name": "latent_state_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "latent_substrate",
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:z_t",
+      "key_fields": [
+        "z_t"
+      ],
+      "availability": "always",
+      "stability": "stable",
+      "notes": "Core latent state stream for downstream composition."
+    },
+    {
+      "hook_id": "HK-002",
+      "hook_name": "latent_future_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "latent_substrate",
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:z_hat",
+      "key_fields": [
+        "z_hat"
+      ],
+      "availability": "always",
+      "stability": "stable",
+      "notes": "Predicted latent future bundle."
+    },
+    {
+      "hook_id": "HK-003",
+      "hook_name": "latent_prediction_error_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:pe_latent",
+      "key_fields": [
+        "pe_latent.mean",
+        "pe_latent.p95"
+      ],
+      "availability": "always",
+      "stability": "stable",
+      "notes": "Primary mismatch stream used by routing/control consumers."
+    },
+    {
+      "hook_id": "HK-004",
+      "hook_name": "latent_uncertainty_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:uncertainty_latent",
+      "key_fields": [
+        "uncertainty_latent.dispersion"
+      ],
+      "availability": "conditional",
+      "stability": "stable",
+      "notes": "Required when uncertainty estimator is enabled."
+    },
+    {
+      "hook_id": "HK-005",
+      "hook_name": "context_mask_trace_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "sensor_adapter",
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:trace.context_mask_ids",
+      "key_fields": [
+        "trace.context_mask_ids"
+      ],
+      "availability": "always",
+      "stability": "stable",
+      "notes": "Traceability anchor for prediction residual provenance."
+    },
+    {
+      "hook_id": "HK-006",
+      "hook_name": "action_token_trace_export",
+      "tier": "v2_required",
+      "status": "active",
+      "producer_modules": [
+        "sensor_adapter",
+        "latent_signal_exporter"
+      ],
+      "consumer_modules": [
+        "pack_emitter",
+        "v3_hook_adapter"
+      ],
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "IMPL-022:trace.action_token",
+      "key_fields": [
+        "trace.action_token"
+      ],
+      "availability": "conditional",
+      "stability": "stable",
+      "notes": "Required for action-conditioned runs."
+    },
+    {
+      "hook_id": "HK-101",
+      "hook_name": "pre_commit_simulation_error_stream",
+      "tier": "v3_planned",
+      "status": "planned",
+      "producer_modules": [
+        "v3_hook_adapter"
+      ],
+      "consumer_modules": [
+        "control_plane",
+        "e3"
+      ],
+      "lifecycle_phase": "pre_commit",
+      "payload_contract": "v3:pre_commit_error_stream",
+      "key_fields": [
+        "pre_commit_error",
+        "candidate_trajectory_id"
+      ],
+      "availability": "always",
+      "stability": "experimental",
+      "notes": "Exploratory/simulation-side error for gating/search."
+    },
+    {
+      "hook_id": "HK-102",
+      "hook_name": "post_commit_realized_error_stream",
+      "tier": "v3_planned",
+      "status": "planned",
+      "producer_modules": [
+        "v3_hook_adapter"
+      ],
+      "consumer_modules": [
+        "control_plane",
+        "hippocampal_systems",
+        "model_update_engine"
+      ],
+      "lifecycle_phase": "post_commit",
+      "payload_contract": "v3:post_commit_error_stream",
+      "key_fields": [
+        "post_commit_error",
+        "committed_trajectory_id"
+      ],
+      "availability": "always",
+      "stability": "experimental",
+      "notes": "Realized outcome delta stream for accountability updates."
+    },
+    {
+      "hook_id": "HK-103",
+      "hook_name": "commitment_trace_id_export",
+      "tier": "v3_planned",
+      "status": "planned",
+      "producer_modules": [
+        "v3_hook_adapter"
+      ],
+      "consumer_modules": [
+        "e3",
+        "model_update_engine",
+        "audit_logger"
+      ],
+      "lifecycle_phase": "post_commit",
+      "payload_contract": "v3:commitment_trace",
+      "key_fields": [
+        "commitment_trace_id",
+        "committed_trajectory_id"
+      ],
+      "availability": "always",
+      "stability": "experimental",
+      "notes": "Joins commitment decisions to later model/map updates."
+    },
+    {
+      "hook_id": "HK-104",
+      "hook_name": "rollout_candidate_metadata_export",
+      "tier": "v3_planned",
+      "status": "planned",
+      "producer_modules": [
+        "v3_hook_adapter"
+      ],
+      "consumer_modules": [
+        "hippocampal_systems",
+        "e3",
+        "control_plane"
+      ],
+      "lifecycle_phase": "pre_commit",
+      "payload_contract": "v3:rollout_candidate_metadata",
+      "key_fields": [
+        "candidate_trajectory_id",
+        "candidate_source",
+        "candidate_horizon"
+      ],
+      "availability": "always",
+      "stability": "experimental",
+      "notes": "Metadata for rollout arbitration and replay routing."
+    },
+    {
+      "hook_id": "HK-201",
+      "hook_name": "social_model_update_signal",
+      "tier": "v4_plus_reserved",
+      "status": "reserved",
+      "producer_modules": [
+        "social_modeling_layer"
+      ],
+      "consumer_modules": [
+        "control_plane",
+        "policy_layer"
+      ],
+      "lifecycle_phase": "post_commit",
+      "payload_contract": "v4:social_model_update",
+      "key_fields": [
+        "other_model_delta",
+        "social_context_id"
+      ],
+      "availability": "conditional",
+      "stability": "reserved",
+      "notes": "Reserved for richer multi-agent update pathways."
+    },
+    {
+      "hook_id": "HK-202",
+      "hook_name": "institutional_constraint_context",
+      "tier": "v4_plus_reserved",
+      "status": "reserved",
+      "producer_modules": [
+        "institutional_context_layer"
+      ],
+      "consumer_modules": [
+        "control_plane",
+        "trajectory_selector"
+      ],
+      "lifecycle_phase": "pre_commit",
+      "payload_contract": "v4:institutional_context",
+      "key_fields": [
+        "constraint_profile_id",
+        "normative_scope"
+      ],
+      "availability": "conditional",
+      "stability": "reserved",
+      "notes": "Reserved hook for institution-level coordination constraints."
+    }
+  ]
+}

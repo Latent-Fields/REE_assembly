@@ -2,7 +2,7 @@
 
 **Claim Type:** implementation_note  
 **Scope:** v2 substrate-first architecture and implementation contract  
-**Depends On:** IMPL-008, IMPL-021, IMPL-022, MECH-057, MECH-058, MECH-059, MECH-060  
+**Depends On:** IMPL-008, IMPL-021, IMPL-022, IMPL-025, MECH-057, MECH-058, MECH-059, MECH-060  
 **Status:** candidate  
 **Claim ID:** IMPL-023
 <a id="impl-023"></a>
@@ -90,7 +90,7 @@ v2 should be implemented as the following modules (names are descriptive, not ma
 - write `manifest.json`, `metrics.json`, `summary.md`,
 - write `jepa_adapter_signals.v1.json` when adapter path is declared.
 
-5. `v3_hook_adapter` (forward-compatibility interface)
+5. `hook_surface_adapter` (forward-compatibility interface)
 - emit placeholders for pre-commit and post-commit channels,
 - emit trajectory candidate IDs and attribution trace IDs.
 
@@ -115,6 +115,10 @@ Adapter-signal declaration:
 
 Experiment pack declaration:
 - `evidence/experiments/INTERFACE_CONTRACT.md`
+
+Hook contract declaration:
+- `docs/architecture/hook_surface_contract.md#impl-025`
+- `docs/architecture/hook_registry.v1.json`
 
 ---
 
@@ -200,7 +204,7 @@ v2 must maintain explicit experiment profiles for:
 - verify leakage and attribution-readiness signals.
 
 Each profile must run in:
-- qualification lane (`ree-v1-minimal`),
+- qualification lane (`ree-v2`; transitional fallback `ree-v1-minimal` until `ree-v2` is online),
 - stress lane (`ree-experiments-lab`).
 
 ---
@@ -246,16 +250,20 @@ Initial readiness thresholds (tunable, but explicit):
 
 ---
 
-## v3 Hooks Required in v2
+## Cross-Version Hooks Required in v2
 
-v2 must expose explicit hooks for later v3 modules:
+v2 must adopt the cross-version hook framework (`IMPL-025`) and expose all `v2_required` hooks listed in:
+
+- `docs/architecture/hook_registry.v1.json`
+
+v2 should also emit stubs for `v3_planned` hooks where feasible:
 
 - pre-commit simulation error stream placeholder,
 - post-commit realized error stream placeholder,
 - commitment-context trace IDs for attribution,
 - rollout-candidate metadata for hippocampal/controller attachment.
 
-These hooks are interface commitments, not full v2 behavior commitments.
+These hooks are interface commitments, not full behavior commitments for the future layers.
 
 ---
 
@@ -273,15 +281,17 @@ These hooks are interface commitments, not full v2 behavior commitments.
 
 Current recommendation:
 - keep v2 spec and contract evolution in `REE_assembly`,
-- use `ree-v1-minimal` for qualification and `ree-experiments-lab` for stress falsification,
-- create dedicated `ree-v2` implementation repo only after interface stabilization.
+- use `ree-v2` as the primary qualification lane for v2 profiles,
+- use `ree-experiments-lab` for stress falsification,
+- keep `ree-v1-minimal` as a legacy baseline/reference harness, not the primary v2 qualification lane.
 
 Stabilization gate:
 - two consecutive governance cycles with no major contract churn in adapter signals and pack schema.
 
 Suggested `ree-v2` bootstrap timing:
-- only after `M4` passes,
-- bootstrap from this spec + current contracts, not from ad hoc experiment code.
+- bootstrap now from this spec + current contracts,
+- promote `ree-v2` to required qualification lane once core profiles are runnable,
+- retire `ree-v1-minimal` from primary qualification status after parity checks pass.
 
 ---
 
@@ -297,6 +307,7 @@ Suggested `ree-v2` bootstrap timing:
 - IMPL-008
 - IMPL-021
 - IMPL-022
+- IMPL-025
 - MECH-057
 - MECH-058
 - MECH-059

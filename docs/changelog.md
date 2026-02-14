@@ -7,6 +7,41 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: Cross-Version Hook Surface Framework
+
+### Overview
+
+Added a versioned hook framework so v2 can expose forward-compatible extension points for v3/v4 without repeated
+interface churn.
+
+### What Changed
+
+- Added hook contract document:
+  - `docs/architecture/hook_surface_contract.md#impl-025`
+- Added initial hook registry:
+  - `docs/architecture/hook_registry.v1.json`
+  - includes `v2_required`, `v3_planned`, and `v4_plus_reserved` tiers
+- Updated v2 spec to consume hook framework:
+  - `docs/architecture/ree_v2_spec.md#impl-023`
+- Added claim/index/mapping entries:
+  - `docs/claims/claims.yaml` (`IMPL-025`)
+  - `docs/claims/claim_index.md` (`IMPL-025`)
+  - `docs/claims/subsystem_map.yaml`
+
+## 2026-02-14: Qualification Lane Ownership Update (`ree-v2`)
+
+### Overview
+
+Updated v2 planning docs so `ree-v2` (not `ree-v1-minimal`) is the intended qualification lane, with `ree-v1-minimal`
+retained as a transitional baseline during migration.
+
+### What Changed
+
+- Updated qualification-lane wording in:
+  - `docs/architecture/ree_v2_spec.md#impl-023`
+- Updated repository-role framing in:
+  - `docs/roadmap.md#impl-008`
+
 ## 2026-02-14: REE-v2 Spec Expansion (Implementation Detail Pass)
 
 ### Overview

@@ -1600,3 +1600,15 @@
   location: docs/notes/jepa_language_policy.md#impl-024
   source:
     - docs/notes/jepa_language_policy.md
+- id: IMPL-025
+  claim_type: implementation_note
+  subject: interfaces.cross_version_hook_surface_contract
+  polarity: records
+  status: candidate
+  depends_on:
+    - IMPL-022
+    - IMPL-023
+  location: docs/architecture/hook_surface_contract.md#impl-025
+  source:
+    - docs/architecture/hook_surface_contract.md
+    - docs/architecture/hook_registry.v1.json
