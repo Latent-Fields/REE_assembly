@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-14T20:53:08.993778Z`
+Generated: `2026-02-14T20:58:02.963788Z`
 
 ## Cycle Status
 
@@ -13,6 +13,18 @@ Generated: `2026-02-14T20:53:08.993778Z`
 | `connectome_pull` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_connectome_literature_pull.py` |
 
 ## Discussion Checkpoints
+
+### Autonomy Triage
+
+| work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |
+|---|---|---|---|---|---|
+| `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
+| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
+| `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
+| `architecture_structure_adjudication` | `HUMAN_ONLY` | `FAIL` | `review_structure_dossiers_and_model_adjudication` | `n/a` | `yes` |
+
+Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
 1. Thought Intake: 0 unprocessed thought(s).
 2. Conflict Resolution: 7 conflict item(s).

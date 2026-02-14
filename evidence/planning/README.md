@@ -49,6 +49,7 @@ Generated agenda outputs:
 
 - `governance_agenda.v1.json`
 - `GOVERNANCE_AGENDA.md`
+- `GOVERNANCE_AGENDA.md` now begins Discussion Checkpoints with an `Autonomy Triage` table (`AUTO`, `AUTO_WITH_APPROVAL`, `HUMAN_ONLY`).
 
 This also runs adjudication-cascade application by default for `decision_status=applied`:
 

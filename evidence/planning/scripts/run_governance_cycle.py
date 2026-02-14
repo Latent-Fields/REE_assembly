@@ -152,6 +152,111 @@ def _proposal_repo_summary(proposals: list[dict[str, Any]]) -> list[dict[str, An
     return sorted(summary.values(), key=lambda x: x["target_repo"])
 
 
+def _step_status_map(steps: list[StepResult]) -> dict[str, str]:
+    return {step.name: step.status for step in steps}
+
+
+def _build_autonomy_triage_items(
+    *,
+    step_failures: int,
+    warning_count: int,
+    recommendations_count: int,
+    conflicts_count: int,
+    structure_considerations_count: int,
+    external_precedence_count: int,
+    anti_lock_in_reviews_count: int,
+    high_proposals_count: int,
+    cascade_actions_count: int,
+    step_status: dict[str, str],
+) -> list[dict[str, Any]]:
+    maintenance_ok = step_failures == 0 and warning_count == 0
+    queue_clear = recommendations_count == 0 and conflicts_count == 0
+    architecture_clear = (
+        structure_considerations_count == 0
+        and external_precedence_count == 0
+        and anti_lock_in_reviews_count == 0
+    )
+
+    items = [
+        {
+            "work_item": "governance_maintenance_pipeline",
+            "tier": "AUTO",
+            "gate_status": "PASS" if maintenance_ok else "FAIL",
+            "recommendation": "execute" if maintenance_ok else "investigate_and_rerun",
+            "rollback_ready": "yes",
+            "decision_needed": "no",
+            "rationale": (
+                "All deterministic maintenance steps passed with no warnings."
+                if maintenance_ok
+                else "At least one deterministic step failed or emitted warnings."
+            ),
+        },
+        {
+            "work_item": "adjudication_cascade_application",
+            "tier": "AUTO",
+            "gate_status": "PASS"
+            if step_status.get("adjudication_cascade", "skipped") != "failed"
+            else "FAIL",
+            "recommendation": (
+                "execute"
+                if cascade_actions_count > 0
+                else "execute_no_pending_actions"
+            ),
+            "rollback_ready": "yes",
+            "decision_needed": "no",
+            "rationale": f"adjudication_cascade_step={step_status.get('adjudication_cascade', 'skipped')}; actions={cascade_actions_count}.",
+        },
+        {
+            "work_item": "weekly_dispatch_export",
+            "tier": "AUTO_WITH_APPROVAL",
+            "gate_status": "PASS",
+            "recommendation": (
+                "approve_dispatch"
+                if high_proposals_count > 0
+                else "no_dispatch_this_cycle"
+            ),
+            "rollback_ready": "yes",
+            "decision_needed": "yes" if high_proposals_count > 0 else "no",
+            "rationale": f"high_priority_proposals={high_proposals_count}.",
+        },
+        {
+            "work_item": "promotion_demotion_and_conflict_resolution",
+            "tier": "HUMAN_ONLY",
+            "gate_status": "PASS" if queue_clear else "FAIL",
+            "recommendation": (
+                "no_action_required"
+                if queue_clear
+                else "review_decision_queue_and_conflicts"
+            ),
+            "rollback_ready": "n/a",
+            "decision_needed": "no" if queue_clear else "yes",
+            "rationale": (
+                "Decision queue and conflict queue are both empty."
+                if queue_clear
+                else f"decision_queue_items={recommendations_count}; conflicts={conflicts_count}."
+            ),
+        },
+        {
+            "work_item": "architecture_structure_adjudication",
+            "tier": "HUMAN_ONLY",
+            "gate_status": "PASS" if architecture_clear else "FAIL",
+            "recommendation": (
+                "no_action_required"
+                if architecture_clear
+                else "review_structure_dossiers_and_model_adjudication"
+            ),
+            "rollback_ready": "n/a",
+            "decision_needed": "no" if architecture_clear else "yes",
+            "rationale": (
+                "No structure-pressure or external-precedence triggers present."
+                if architecture_clear
+                else "structure/external-precedence/anti-lock-in signals require explicit adjudication."
+            ),
+        },
+    ]
+    return items
+
+
 def _build_agenda(
     repo_root: Path,
     steps: list[StepResult],
@@ -257,6 +362,32 @@ def _build_agenda(
         if isinstance(cascade_last_run, dict)
         else []
     )
+    step_status = _step_status_map(steps)
+    autonomy_triage_items = _build_autonomy_triage_items(
+        step_failures=sum(1 for step in steps if step.status != "ok"),
+        warning_count=len(warnings),
+        recommendations_count=len(recommendations),
+        conflicts_count=len(conflicts),
+        structure_considerations_count=len(structure_considerations),
+        external_precedence_count=len(external_precedence_candidates),
+        anti_lock_in_reviews_count=len(anti_lock_in_reviews),
+        high_proposals_count=len(high_proposals),
+        cascade_actions_count=len(cascade_actions),
+        step_status=step_status,
+    )
+    autonomy_tier_counts = {
+        "AUTO": sum(1 for item in autonomy_triage_items if item["tier"] == "AUTO"),
+        "AUTO_WITH_APPROVAL": sum(
+            1 for item in autonomy_triage_items if item["tier"] == "AUTO_WITH_APPROVAL"
+        ),
+        "HUMAN_ONLY": sum(1 for item in autonomy_triage_items if item["tier"] == "HUMAN_ONLY"),
+    }
+    autonomy_open_decisions = [
+        item for item in autonomy_triage_items if item.get("decision_needed") == "yes"
+    ]
+    autonomy_failed_gates = [
+        item for item in autonomy_triage_items if item.get("gate_status") != "PASS"
+    ]
 
     unlinked_runs = claim_matrix.get("unlinked_runs", []) if isinstance(claim_matrix, dict) else []
 
@@ -290,6 +421,9 @@ def _build_agenda(
             "adjudication_cascade_claims_updated": len(cascade_claims_updated),
             "adjudication_cascade_dependents_reopened": len(cascade_dependents_reopened),
             "unlinked_evidence_runs": len(unlinked_runs),
+            "autonomy_triage_items": len(autonomy_triage_items),
+            "autonomy_open_decisions": len(autonomy_open_decisions),
+            "autonomy_failed_gates": len(autonomy_failed_gates),
         },
         "warnings": warnings,
         "checkpoints": {
@@ -381,6 +515,15 @@ def _build_agenda(
                 "actions": cascade_actions,
                 "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
             },
+            "autonomy_triage": {
+                "prompt": (
+                    "Use this table to keep automation high while preserving explicit human ownership of architecture commitments."
+                ),
+                "tier_counts": autonomy_tier_counts,
+                "open_decisions_total": len(autonomy_open_decisions),
+                "failed_gates_total": len(autonomy_failed_gates),
+                "items": autonomy_triage_items,
+            },
             "evidence_dispatch": {
                 "prompt": "Approve export of high-priority proposals to execution repos.",
                 "high_priority_proposals": high_proposals,
@@ -409,6 +552,36 @@ def _build_agenda(
 
     lines.append("## Discussion Checkpoints")
     lines.append("")
+    lines.append("### Autonomy Triage")
+    lines.append("")
+    lines.append("| work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |")
+    lines.append("|---|---|---|---|---|---|")
+    for item in autonomy_triage_items:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{item['work_item']}`",
+                    f"`{item['tier']}`",
+                    f"`{item['gate_status']}`",
+                    f"`{item['recommendation']}`",
+                    f"`{item['rollback_ready']}`",
+                    f"`{item['decision_needed']}`",
+                ]
+            )
+            + " |"
+        )
+    lines.append("")
+    if autonomy_open_decisions:
+        lines.append(
+            "Open decision items: "
+            + ", ".join(f"`{item['work_item']}`" for item in autonomy_open_decisions)
+            + "."
+        )
+    else:
+        lines.append("Open decision items: none.")
+    lines.append("")
+
     lines.append(f"1. Thought Intake: {len(thought_unprocessed)} unprocessed thought(s).")
     if thought_unprocessed:
         for rec in thought_unprocessed:

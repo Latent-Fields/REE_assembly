@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-14T20:53:08.702244Z",
+      "last_run_generated_at_utc": "2026-02-14T20:58:02.650922Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -260,6 +260,63 @@
       ],
       "prompt": "Review structure-pressure signals and decide whether to draft architecture changes.",
       "register_total_items": 8
+    },
+    "autonomy_triage": {
+      "failed_gates_total": 2,
+      "items": [
+        {
+          "decision_needed": "no",
+          "gate_status": "PASS",
+          "rationale": "All deterministic maintenance steps passed with no warnings.",
+          "recommendation": "execute",
+          "rollback_ready": "yes",
+          "tier": "AUTO",
+          "work_item": "governance_maintenance_pipeline"
+        },
+        {
+          "decision_needed": "no",
+          "gate_status": "PASS",
+          "rationale": "adjudication_cascade_step=ok; actions=0.",
+          "recommendation": "execute_no_pending_actions",
+          "rollback_ready": "yes",
+          "tier": "AUTO",
+          "work_item": "adjudication_cascade_application"
+        },
+        {
+          "decision_needed": "yes",
+          "gate_status": "PASS",
+          "rationale": "high_priority_proposals=25.",
+          "recommendation": "approve_dispatch",
+          "rollback_ready": "yes",
+          "tier": "AUTO_WITH_APPROVAL",
+          "work_item": "weekly_dispatch_export"
+        },
+        {
+          "decision_needed": "yes",
+          "gate_status": "FAIL",
+          "rationale": "decision_queue_items=5; conflicts=7.",
+          "recommendation": "review_decision_queue_and_conflicts",
+          "rollback_ready": "n/a",
+          "tier": "HUMAN_ONLY",
+          "work_item": "promotion_demotion_and_conflict_resolution"
+        },
+        {
+          "decision_needed": "yes",
+          "gate_status": "FAIL",
+          "rationale": "structure/external-precedence/anti-lock-in signals require explicit adjudication.",
+          "recommendation": "review_structure_dossiers_and_model_adjudication",
+          "rollback_ready": "n/a",
+          "tier": "HUMAN_ONLY",
+          "work_item": "architecture_structure_adjudication"
+        }
+      ],
+      "open_decisions_total": 3,
+      "prompt": "Use this table to keep automation high while preserving explicit human ownership of architecture commitments.",
+      "tier_counts": {
+        "AUTO": 2,
+        "AUTO_WITH_APPROVAL": 1,
+        "HUMAN_ONLY": 2
+      }
     },
     "conflict_resolution": {
       "items": [
@@ -2008,10 +2065,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-14T20:53:08.659742Z",
+        "finished_at_utc": "2026-02-14T20:58:02.594386Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T20:53:08.604968Z",
+        "started_at_utc": "2026-02-14T20:58:02.526371Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=32, processed=32, unprocessed=0, processed_missing_links=0"
@@ -2023,10 +2080,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-14T20:53:08.708648Z",
+        "finished_at_utc": "2026-02-14T20:58:02.661255Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T20:53:08.659776Z",
+        "started_at_utc": "2026-02-14T20:58:02.594449Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=0, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -2036,10 +2093,10 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-14T20:53:08.899365Z",
+        "finished_at_utc": "2026-02-14T20:58:02.860018Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T20:53:08.708673Z",
+        "started_at_utc": "2026-02-14T20:58:02.661303Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 132 run(s) across 4 experiment type(s); FAIL=44; literature entries=23; backlog items=29; proposals=46."
@@ -2049,10 +2106,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-14T20:53:08.951165Z",
+        "finished_at_utc": "2026-02-14T20:58:02.918386Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T20:53:08.899416Z",
+        "started_at_utc": "2026-02-14T20:58:02.860059Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-14/structure_review_report.v1.json"
@@ -2062,17 +2119,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-14T20:53:08.993744Z",
+        "finished_at_utc": "2026-02-14T20:58:02.963763Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-14T20:53:08.951210Z",
+        "started_at_utc": "2026-02-14T20:58:02.918414Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-14T20:53:08.993778Z",
+  "generated_at_utc": "2026-02-14T20:58:02.963788Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,
@@ -2080,6 +2137,9 @@
     "adjudication_cascade_dependents_reopened": 0,
     "anti_lock_in_reviews": 3,
     "architecture_gap_items": 8,
+    "autonomy_failed_gates": 2,
+    "autonomy_open_decisions": 3,
+    "autonomy_triage_items": 5,
     "backlog_high_priority": 18,
     "backlog_items": 29,
     "conflicts": 7,
