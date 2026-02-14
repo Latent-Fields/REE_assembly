@@ -1,0 +1,103 @@
+# Weekly Producer Handoff Template (v1)
+
+Use this template for weekly producer handoffs from:
+
+- `ree-v2` (qualification lane)
+- `ree-experiments-lab` (stress lane)
+- `ree-v1-minimal` (parity/backstop lane)
+
+---
+
+## Required Fields and Sections
+
+1. Metadata
+- `week_of_utc` (date for cycle week start)
+- `producer_repo`
+- `producer_commit`
+- `generated_utc`
+
+2. Contract sync
+- `ree_assembly_repo`
+- `ree_assembly_commit`
+- `contract_lock_path`
+- `contract_lock_hash`
+- `schema_version_set` (for example `experiment_pack/v1`, `jepa_adapter_signals/v1`)
+
+3. CI gates
+- `schema_validation` (`PASS|FAIL`)
+- `seed_determinism` (`PASS|FAIL`)
+- `hook_surface_coverage` (`PASS|FAIL|N/A`)
+
+4. Run-pack inventory table (required columns)
+- `experiment_type`
+- `run_id`
+- `seed`
+- `condition_or_scenario`
+- `status`
+- `evidence_direction`
+- `claim_ids_tested`
+- `failure_signatures`
+- `pack_path`
+
+5. Claim summary table (required columns)
+- `claim_id`
+- `runs_added`
+- `supports`
+- `weakens`
+- `mixed`
+- `unknown`
+- `recurring_failure_signatures`
+
+6. Open blockers
+- short list of blockers/risks affecting next cycle handoff
+
+---
+
+## Markdown Skeleton
+
+```md
+# Weekly Handoff - <producer_repo> - <week_of_utc>
+
+## Metadata
+- week_of_utc: `<YYYY-MM-DD>`
+- producer_repo: `<repo-name>`
+- producer_commit: `<git-sha>`
+- generated_utc: `<RFC3339 UTC>`
+
+## Contract Sync
+- ree_assembly_repo: `REE_assembly`
+- ree_assembly_commit: `<git-sha>`
+- contract_lock_path: `<path>`
+- contract_lock_hash: `<sha256>`
+- schema_version_set: `<comma-separated versions>`
+
+## CI Gates
+| gate | status | evidence |
+| --- | --- | --- |
+| schema_validation | PASS | `<command or workflow run id>` |
+| seed_determinism | PASS | `<command or workflow run id>` |
+| hook_surface_coverage | PASS/N/A | `<command or workflow run id>` |
+
+## Run-Pack Inventory
+| experiment_type | run_id | seed | condition_or_scenario | status | evidence_direction | claim_ids_tested | failure_signatures | pack_path |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ... | ... | ... | ... | ... | ... | ... | ... | ... |
+
+## Claim Summary
+| claim_id | runs_added | supports | weakens | mixed | unknown | recurring_failure_signatures |
+| --- | --- | --- | --- | --- | --- | --- |
+| ... | ... | ... | ... | ... | ... | ... |
+
+## Open Blockers
+- `<blocker 1>`
+- `<blocker 2>`
+```
+
+---
+
+## Validation Rules
+
+- Do not omit required columns.
+- Use stable claim IDs and failure signature IDs.
+- Keep `evidence_direction` in `supports|weakens|mixed|unknown`.
+- If a gate fails, explicitly mark it `FAIL` and include next action.

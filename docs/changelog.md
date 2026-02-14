@@ -28,6 +28,24 @@ interface churn.
   - `docs/claims/claim_index.md` (`IMPL-025`)
   - `docs/claims/subsystem_map.yaml`
 
+## 2026-02-14: Weekly Cross-Repo Handoff Standardization
+
+### Overview
+
+Standardized weekly producer handoff format across qualification, stress, and parity lanes and added dispatch prompts
+to upgrade producer repos to the shared format.
+
+### What Changed
+
+- Updated cross-repo sync policy to include all producer repos and staggered weekly cadence:
+  - `evidence/experiments/CROSS_REPO_SYNC_POLICY.md`
+- Added shared weekly handoff template:
+  - `evidence/planning/WEEKLY_HANDOFF_TEMPLATE.md`
+- Added copy/paste dispatch bundle for producer format upgrades:
+  - `evidence/planning/DISPATCH_WEEKLY_HANDOFF_FORMAT_UPDATE_2026-02-14.md`
+- Updated planning README:
+  - `evidence/planning/README.md`
+
 ## 2026-02-14: Qualification Lane Ownership Update (`ree-v2`)
 
 ### Overview

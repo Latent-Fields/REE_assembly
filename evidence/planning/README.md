@@ -8,6 +8,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `experiment_proposals.v1.json`: concrete proposed work items for experimental/literature producers.
 - `INDEX.md`: generated summary.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
+- `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, and `ree-v1-minimal`.
 
 ## Inputs
 
