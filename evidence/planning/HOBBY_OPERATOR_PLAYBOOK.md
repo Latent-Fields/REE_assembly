@@ -36,6 +36,12 @@ Default state:
 
 - `hold_cloud_only`
 
+Runtime placement baseline for this hobby setup:
+
+- offload to remote if estimated per-run runtime `> 360 minutes (6 hours)`
+- offload to remote if estimated batch runtime `> 360 minutes (6 hours)`
+- offload to remote for multi-seed qualification sweeps (`>2 seeds/condition`)
+
 Upgrade triggers:
 
 1. `upgrade_low`

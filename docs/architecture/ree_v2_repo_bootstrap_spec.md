@@ -331,8 +331,8 @@ Local execution is allowed for:
 
 Qualification runs must be offloaded to cloud/remote compute when any trigger is true:
 
-- estimated runtime per run `> 45` minutes;
-- estimated batch runtime `> 180` minutes;
+- estimated runtime per run `> 360` minutes (6 hours);
+- estimated batch runtime `> 360` minutes (6 hours);
 - seed count per condition `> 2`;
 - projected memory footprint exceeds safe local budget;
 - local thermal throttling or repeated OOM/fatal runtime instability is detected.

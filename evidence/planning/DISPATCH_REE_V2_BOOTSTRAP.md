@@ -96,8 +96,8 @@ with required files:
 7. Compute offload policy:
 - Define explicit local-vs-remote triggers in `docs/ops/compute_execution_policy.md`.
 - Minimum trigger set:
-  - per-run estimate >45m
-  - batch estimate >180m
+  - per-run estimate >360m (6h)
+  - batch estimate >360m (6h)
   - >2 seeds per condition
   - projected memory over safe local budget
   - local thermal throttling/OOM detection

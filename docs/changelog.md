@@ -40,6 +40,7 @@ policy suitable for laptop-constrained development environments.
 - Expanded REE-v2 bootstrap spec with:
   - JEPA source acquisition/provenance contract (`third_party/jepa_sources.lock.v1.json`)
   - local-vs-cloud offload gate and remote export/import gate
+  - hobby-mode runtime placement baseline updated to `360m/360m` for `macbook_air_m2_2022`
   - local hardware options/cost visibility gate (`docs/ops/local_compute_options.md`)
   - explicit hobby-mode buy/hold thresholds in EUR for structured decisions
   - migration stage updates and cutover acceptance updates
