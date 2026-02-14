@@ -47,6 +47,7 @@ Contract sources in REE_assembly (treat as normative):
 - `third_party/jepa_sources.lock.v1.json`
 - `docs/ops/compute_execution_policy.md`
 - `docs/ops/cloud_backend_setup.md`
+- `docs/ops/local_compute_options.md`
 - `src/ree_v2/sensor_adapter/adapter.py`
 - `src/ree_v2/latent_substrate/{encoder.py,target_anchor.py,predictor.py}`
 - `src/ree_v2/signal_export/{adapter_signals.py,metrics_export.py}`
@@ -101,6 +102,18 @@ with required files:
   - projected memory over safe local budget
   - local thermal throttling/OOM detection
 
+8. Local compute options and cost sheet:
+- Add `docs/ops/local_compute_options.md` with at least 3 purchase tiers:
+  - low-cost improvement tier
+  - mid-cost workstation tier
+  - high-cost local acceleration tier
+- For each tier include:
+  - estimated one-time USD cost band
+  - expected impact on qualification workloads
+  - setup complexity
+  - recommendation status (`now|later|not_recommended`)
+- Include explicit triggers for when buying local hardware is recommended vs cloud offload.
+
 ## Required acceptance checks (must run and report)
 
 1. Schema gate:
@@ -141,6 +154,9 @@ Must validate job-spec format and result-import path at least in dry-run mode.
 - Failure signatures are emitted with the canonical IDs in the bootstrap spec when triggered.
 - `manifest.scenario` includes JEPA provenance fields (`jepa_source_mode`, `jepa_source_commit`, `jepa_patch_set_hash`).
 
+7. Local compute options gate:
+- `docs/ops/local_compute_options.md` exists and contains all 3 tiers with decision triggers.
+
 ## Output report (required)
 
 Return:
@@ -159,7 +175,12 @@ Return:
    - `estimated_runtime_minutes`
    - `execution_mode` (`local|remote`)
    - `offload_reason`
-5. A short migration note describing parity status vs `ree-v1-minimal`.
+5. A local compute options table:
+   - `tier`
+   - `estimated_usd_cost_band`
+   - `expected_runtime_impact`
+   - `recommendation_status`
+6. A short migration note describing parity status vs `ree-v1-minimal`.
 
 Constraints:
 - Keep scope focused on bootstrap surfaces only.

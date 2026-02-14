@@ -56,6 +56,7 @@ Required handoff packet fields:
 - run-pack inventory table (`experiment_type`, `run_id`, `seed`, `status`, key metrics, `evidence_direction`, `execution_mode`, `compute_backend`, `runtime_minutes`, pack path)
 - claim coverage summary and recurring failure signatures
 - blockers/open issues for next cycle
+- `ree-v2` only: local compute options watch (`last_updated`, recommended local action, rationale)
 
 ## CI Requirement
 

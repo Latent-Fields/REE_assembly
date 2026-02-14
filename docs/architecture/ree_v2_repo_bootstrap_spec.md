@@ -62,6 +62,7 @@ ree-v2/
   docs/ops/
     compute_execution_policy.md
     cloud_backend_setup.md
+    local_compute_options.md
   contracts/
     hook_registry.v1.json
     schemas/v1/
@@ -113,6 +114,7 @@ Notes:
 - File names are normative for bootstrap consistency; internal module decomposition can expand later.
 - `contracts/schemas/v1/*` must be pinned to `REE_assembly` hashes through `contracts/ree_assembly_contract_lock.v1.json`.
 - `third_party/jepa_sources.lock.v1.json` is required before non-smoke qualification runs begin.
+- `docs/ops/local_compute_options.md` must track upgrade choices for constrained local hardware users.
 
 ---
 
@@ -364,6 +366,33 @@ python3 scripts/pull_remote_results.py --job-run-dir jobs/completed --runs-root 
 
 If remote credentials are unavailable, CI must support `--dry-run` validation of job-spec generation.
 
+## 6.6 Gate F: local compute options and cost visibility
+
+`ree-v2` must keep an operator-facing local hardware options sheet:
+
+- path: `docs/ops/local_compute_options.md`
+- update cadence: at least once every 4 weeks, or immediately when blocked by repeated local capacity limits.
+
+Required content:
+
+1. current local baseline:
+   - machine profile (`MacBook Air M2 2022`)
+   - observed bottlenecks (`runtime`, `memory`, `thermal`, `disk`)
+2. purchase/upgrade options in at least three tiers:
+   - low-cost improvement tier
+   - mid-cost workstation tier
+   - high-cost local acceleration tier
+3. each option entry must include:
+   - estimated one-time cost (USD band)
+   - expected impact on qualification workloads
+   - expected setup complexity and maintenance burden
+   - recommendation status (`now`, `later`, `not_recommended`)
+4. clear decision trigger thresholds:
+   - when to keep using cloud offload only,
+   - when local purchase is justified by runtime/cost/time tradeoff.
+
+This gate is documentation-and-decision quality, not benchmark perfection.
+
 ---
 
 ## 7. Migration Bridge from `ree-v1-minimal`
@@ -372,6 +401,7 @@ If remote credentials are unavailable, CI must support `--dry-run` validation of
 
 1. **Stage M-1: JEPA source + compute policy bootstrap**
    - create `third_party/jepa_sources.lock.v1.json` and remote execution policy docs.
+   - create initial `docs/ops/local_compute_options.md` with tiered purchase options and trigger thresholds.
    - validate local-vs-remote estimator behavior on all required profiles.
 2. **Stage M0: Contract mirror**
    - copy/pin `v1` schemas and create lock file in `ree-v2`.
@@ -392,6 +422,7 @@ If remote credentials are unavailable, CI must support `--dry-run` validation of
 - required hooks and schema checks green in CI
 - deterministic seed replay gate green for all required profiles
 - local-vs-cloud gate decisions logged and remote export/import path validated
+- local compute options sheet present and updated within 4 weeks
 - no missing claim coverage for `MECH-056/058/059/060`
 
 ---

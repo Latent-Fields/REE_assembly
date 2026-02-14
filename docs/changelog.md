@@ -40,16 +40,19 @@ policy suitable for laptop-constrained development environments.
 - Expanded REE-v2 bootstrap spec with:
   - JEPA source acquisition/provenance contract (`third_party/jepa_sources.lock.v1.json`)
   - local-vs-cloud offload gate and remote export/import gate
+  - local hardware options/cost visibility gate (`docs/ops/local_compute_options.md`)
   - migration stage updates and cutover acceptance updates
   - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
 - Updated REE-v2 bootstrap dispatch prompt to include:
   - MacBook Air M2 local constraints
   - required remote execution scripts and dry-run acceptance checks
   - JEPA provenance fields required in `manifest.scenario`
+  - required local compute options/cost sheet deliverable and output table
   - `evidence/planning/DISPATCH_REE_V2_BOOTSTRAP.md`
 - Extended weekly handoff template and policy to report compute placement:
   - `execution_mode`, `compute_backend`, `runtime_minutes`
   - remote export/import CI gate status
+  - ree-v2 local compute options watch section for buy/hold decisions
   - `evidence/planning/WEEKLY_HANDOFF_TEMPLATE.md`
   - `evidence/experiments/CROSS_REPO_SYNC_POLICY.md`
   - `evidence/planning/DISPATCH_WEEKLY_HANDOFF_FORMAT_UPDATE_2026-02-14.md`

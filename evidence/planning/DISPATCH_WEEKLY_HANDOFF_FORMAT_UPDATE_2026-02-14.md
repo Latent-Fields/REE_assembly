@@ -32,6 +32,7 @@ Required deliverables:
    - run-pack inventory table
    - claim summary table
    - open blockers
+   - local compute options watch section (set to `N/A` for this repo unless local hardware purchasing decisions are in scope)
 
 Acceptance checks:
 1. Weekly handoff file is present and matches template section names.
@@ -74,6 +75,7 @@ Required deliverables:
    - run-pack inventory table
    - claim summary table
    - open blockers
+   - local compute options watch section (set to `N/A` unless local hardware purchasing decisions are in scope)
 
 Parity-specific requirement:
 - Include a short parity note in blockers or summary:

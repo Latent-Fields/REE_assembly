@@ -55,6 +55,11 @@ Use this template for weekly producer handoffs from:
 6. Open blockers
 - short list of blockers/risks affecting next cycle handoff
 
+7. Local compute options watch (required for `ree-v2`, optional for other producers)
+- `local_options_last_updated_utc`
+- `recommended_local_action` (`hold_cloud_only|upgrade_low|upgrade_mid|upgrade_high`)
+- short rationale tied to observed runtime/cost pressure
+
 ---
 
 ## Markdown Skeleton
@@ -96,6 +101,11 @@ Use this template for weekly producer handoffs from:
 ## Open Blockers
 - `<blocker 1>`
 - `<blocker 2>`
+
+## Local Compute Options Watch
+- local_options_last_updated_utc: `<RFC3339 UTC or N/A>`
+- recommended_local_action: `<hold_cloud_only|upgrade_low|upgrade_mid|upgrade_high|N/A>`
+- rationale: `<short decision rationale>`
 ```
 
 ---
@@ -106,3 +116,4 @@ Use this template for weekly producer handoffs from:
 - Use stable claim IDs and failure signature IDs.
 - Keep `evidence_direction` in `supports|weakens|mixed|unknown`.
 - If a gate fails, explicitly mark it `FAIL` and include next action.
+- For `ree-v2`, `Local Compute Options Watch` section is mandatory.
