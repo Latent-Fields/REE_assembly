@@ -1,0 +1,80 @@
+{
+  "schema_version": "cadence_automation/v1",
+  "timezone": "Europe/Dublin",
+  "staggered_cadence": {
+    "MONDAY": [
+      "ree-v2"
+    ],
+    "TUESDAY": [
+      "ree-experiments-lab"
+    ],
+    "WEDNESDAY": [
+      "ree-v1-minimal"
+    ],
+    "THURSDAY": [],
+    "FRIDAY": []
+  },
+  "producer_repos": [
+    {
+      "name": "ree-v2",
+      "path": "/Users/dgolden/Documents/GitHub/ree-v2",
+      "handoff_globs": [
+        "evidence/planning/weekly_handoff/latest.md",
+        "evidence/planning/weekly_handoffs/*.md",
+        "evidence/planning/handoffs/*.md"
+      ]
+    },
+    {
+      "name": "ree-experiments-lab",
+      "path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab",
+      "handoff_globs": [
+        "evidence/planning/weekly_handoff/latest.md",
+        "evidence/planning/weekly_handoffs/*.md",
+        "evidence/planning/handoffs/*.md"
+      ]
+    },
+    {
+      "name": "ree-v1-minimal",
+      "path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal",
+      "handoff_globs": [
+        "evidence/planning/weekly_handoff/latest.md",
+        "evidence/planning/weekly_handoffs/*.md",
+        "evidence/planning/handoffs/*.md"
+      ]
+    }
+  ],
+  "required_handoff_columns": [
+    "experiment_type",
+    "run_id",
+    "seed",
+    "condition_or_scenario",
+    "status",
+    "evidence_direction",
+    "claim_ids_tested",
+    "failure_signatures",
+    "execution_mode",
+    "compute_backend",
+    "runtime_minutes",
+    "pack_path"
+  ],
+  "required_ci_gates": [
+    "schema_validation",
+    "seed_determinism",
+    "hook_surface_coverage",
+    "remote_export_import"
+  ],
+  "dispatch": {
+    "default_output_root": "evidence/planning/outbound_dispatches",
+    "max_items_per_repo": 8,
+    "priority_order": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "producer_repo_order": [
+      "ree-v2",
+      "ree-experiments-lab",
+      "ree-v1-minimal"
+    ]
+  }
+}
