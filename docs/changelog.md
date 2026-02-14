@@ -7,6 +7,29 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-14: REE-v2 Cutover Adjudication Gate
+
+### Overview
+
+Added a reusable cutover readiness checker that allows justified `ree-v2` vs `ree-v1-minimal` direction divergence
+when explicit adjudication criteria pass, instead of treating all mismatches as automatic failures.
+
+### What Changed
+
+- Added cutover checker script:
+  - `evidence/planning/scripts/check_ree_v2_cutover_readiness.py`
+  - evaluates latest producer handoff snapshots and latest ingestion-cycle reports
+  - replaces strict overlap gate with `overlap_sanity_adjudicated_or_resolved`
+  - enforces per-claim adjudication checks:
+    - matched protocol evidence (seeds/conditions/schema version set)
+    - ree-v2 CI pass status
+    - metric improvement rule (`>=3` claim-critical metrics improved on `>=2/3` seeds)
+    - no `contract:*` drift signatures
+    - no unaddressed `P0` falsification for claim in latest lab handoff
+    - governance note presence with rationale and rollback trigger
+- Updated planning readme with cutover command:
+  - `evidence/planning/README.md`
+
 ## 2026-02-14: Cross-Version Hook Surface Framework
 
 ### Overview
@@ -1348,3 +1371,18 @@ The documentation is now ready for:
 - Safe refinement following DANIEL_README.md process
 - Falsifiable architectural testing
 - Multi-contributor collaboration with clear change boundaries
+
+## 2026-02-14: REE-v2 Qualification Routing Cutover
+
+### Overview
+
+Adopted adjudicated-divergence cutover policy and switched default experimental routing to `ree-v2` after
+all readiness gates passed.
+
+### What Changed
+
+- Updated planning routing default:
+  - `evidence/planning/planning_criteria.v1.yaml` (`experimental_default_repo=ree-v2`)
+- Generated cutover readiness artifacts:
+  - `evidence/planning/CUTOVER_REE_V2_READINESS.md`
+  - `evidence/planning/CUTOVER_REE_V2_READINESS.v1.json`

@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-14T18:26:44.310098Z`
+Generated: `2026-02-14T18:40:06.326552Z`
 
 ## Cycle Status
 
@@ -29,5 +29,5 @@ Generated: `2026-02-14T18:26:44.310098Z`
 4. Evidence Dispatch: 25 high-priority proposal(s), 46 total.
 - REE_assembly: total=18, experimental=0, literature_review=18
 - ree-experiments-lab: total=3, experimental=3, literature_review=0
-- ree-v1-minimal: total=25, experimental=25, literature_review=0
+- ree-v2: total=25, experimental=25, literature_review=0
 5. Maintenance: 0 unlinked evidence run(s), 0 warning(s).

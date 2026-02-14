@@ -56,6 +56,9 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
   - `python3 evidence/planning/scripts/sync_weekly_handoffs.py --day MONDAY`
 - Emit weekly dispatch bundles:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
+- Run ree-v2 cutover readiness (adjudicated divergence mode):
+  - `python3 evidence/planning/scripts/check_ree_v2_cutover_readiness.py`
+  - add `--apply-cutover` to flip `experimental_default_repo` to `ree-v2` only when all gates pass
 
 See:
 
