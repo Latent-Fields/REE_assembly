@@ -81,7 +81,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.374, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.372, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -92,12 +92,12 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.374,
+      "experimental_confidence": 0.372,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.374,
+      "overall_confidence": 0.372,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -233,78 +233,27 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=6 entry(s), lit=1 entry(s), exp_conf=0.515, lit_conf=0.72",
+      "confidence_rationale": "exp=10 entry(s), lit=1 entry(s), exp_conf=0.698, lit_conf=0.72",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
         "unknown": 0,
-        "weakens": 3
+        "weakens": 7
       },
-      "entries_total": 7,
+      "entries_total": 11,
       "evidence_class_counts": {
         "exp:ablation": 6,
+        "exp:exploratory_simulation": 4,
         "lit:machine_learning_experiment": 1
       },
-      "experimental_confidence": 0.515,
-      "fail_runs": 0,
-      "latest_run_id": "2026-02-13T224000Z_jepa-anchor-ablation_seed47_ema_anchor_on",
-      "latest_timestamp_utc": "2026-02-13T22:40:00Z",
+      "experimental_confidence": 0.698,
+      "fail_runs": 4,
+      "latest_run_id": "mech_058_oscillatory_shift_anchor_decay_s58012_20260213t231415717627z",
+      "latest_timestamp_utc": "2026-02-13T23:14:15.717818Z",
       "literature_confidence": 0.72,
-      "overall_confidence": 0.566,
+      "overall_confidence": 0.704,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-anchor-ablation_seed11_ema_anchor_on",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-anchor-ablation_seed29_ema_anchor_off",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-anchor-ablation_seed29_ema_anchor_on",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-anchor-ablation_seed47_ema_anchor_off",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
         {
           "claim_id": "MECH-058",
           "confidence": 0.75,
@@ -317,87 +266,103 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T22:40:00Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [
+            "mech058:anchor_separation_collapse",
+            "mech058:ema_drift_under_shift",
+            "mech058:latent_cluster_collapse"
+          ],
+          "run_id": "mech_058_shift_spike_replay_pressure_s58011_20260213t231415715242z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.716219Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [
+            "mech058:ema_drift_under_shift",
+            "mech058:latent_cluster_collapse"
+          ],
+          "run_id": "mech_058_shift_spike_replay_pressure_s58012_20260213t231415716577z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.716794Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [
+            "mech058:anchor_separation_collapse",
+            "mech058:ema_drift_under_shift",
+            "mech058:latent_cluster_collapse"
+          ],
+          "run_id": "mech_058_oscillatory_shift_anchor_decay_s58011_20260213t231415717121z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.717321Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [
+            "mech058:anchor_separation_collapse",
+            "mech058:ema_drift_under_shift",
+            "mech058:latent_cluster_collapse"
+          ],
+          "run_id": "mech_058_oscillatory_shift_anchor_decay_s58012_20260213t231415717627z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.717818Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 11,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 10,
         "literature": 1
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=6 entry(s), lit=1 entry(s), exp_conf=0.515, lit_conf=0.71",
+      "confidence_rationale": "exp=10 entry(s), lit=1 entry(s), exp_conf=0.698, lit_conf=0.71",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
         "unknown": 0,
-        "weakens": 3
+        "weakens": 7
       },
-      "entries_total": 7,
+      "entries_total": 11,
       "evidence_class_counts": {
+        "exp:exploratory_simulation": 4,
         "exp:simulation": 6,
         "lit:machine_learning_experiment": 1
       },
-      "experimental_confidence": 0.515,
-      "fail_runs": 0,
-      "latest_run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head",
-      "latest_timestamp_utc": "2026-02-13T22:40:00Z",
+      "experimental_confidence": 0.698,
+      "fail_runs": 4,
+      "latest_run_id": "mech_059_ambiguity_fog_dispersion_s59012_20260213t231415719741z",
+      "latest_timestamp_utc": "2026-02-13T23:14:15.719958Z",
       "literature_confidence": 0.71,
-      "overall_confidence": 0.564,
+      "overall_confidence": 0.701,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "jepa_uncertainty_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "jepa_uncertainty_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "jepa_uncertainty_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "jepa_uncertainty_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
         {
           "claim_id": "MECH-059",
           "confidence": 0.75,
@@ -410,87 +375,104 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T22:40:00Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:calibration_slope_break",
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "mech_059_ood_noise_burst_ensemble_s59011_20260213t231415718135z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.718436Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:calibration_slope_break",
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "mech_059_ood_noise_burst_ensemble_s59012_20260213t231415718729z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.718916Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:calibration_slope_break",
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "mech_059_ambiguity_fog_dispersion_s59011_20260213t231415719237z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.719429Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:calibration_slope_break",
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "mech_059_ambiguity_fog_dispersion_s59012_20260213t231415719741z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.719958Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 11,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 10,
         "literature": 1
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=6 entry(s), lit=1 entry(s), exp_conf=0.515, lit_conf=0.565",
+      "confidence_rationale": "exp=10 entry(s), lit=1 entry(s), exp_conf=0.698, lit_conf=0.565",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
         "unknown": 0,
-        "weakens": 3
+        "weakens": 7
       },
-      "entries_total": 7,
+      "entries_total": 11,
       "evidence_class_counts": {
         "exp:ablation": 6,
+        "exp:exploratory_simulation": 4,
         "lit:machine_learning_experiment": 1
       },
-      "experimental_confidence": 0.515,
-      "fail_runs": 0,
-      "latest_run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed47_single_error_stream",
-      "latest_timestamp_utc": "2026-02-13T22:40:00Z",
+      "experimental_confidence": 0.698,
+      "fail_runs": 4,
+      "latest_run_id": "mech_060_memory_patch_cross_talk_s60012_20260213t231415722542z",
+      "latest_timestamp_utc": "2026-02-13T23:14:15.722633Z",
       "literature_confidence": 0.565,
-      "overall_confidence": 0.527,
+      "overall_confidence": 0.665,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed11_single_error_stream",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed29_pre_post_split_streams",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed29_single_error_stream",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T224000Z_commit-dual-error-channels_seed47_pre_post_split_streams",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T22:40:00Z"
-        },
         {
           "claim_id": "MECH-060",
           "confidence": 0.55,
@@ -503,16 +485,135 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T22:40:00Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "commit_dual_error_channels",
+          "failure_signatures": [
+            "mech060:precommit_channel_contamination",
+            "mech060:postcommit_channel_contamination"
+          ],
+          "run_id": "mech_060_leakage_prompt_injection_s60011_20260213t231415720295z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.720486Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "commit_dual_error_channels",
+          "failure_signatures": [
+            "mech060:precommit_channel_contamination",
+            "mech060:postcommit_channel_contamination"
+          ],
+          "run_id": "mech_060_leakage_prompt_injection_s60012_20260213t231415721523z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.721605Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "commit_dual_error_channels",
+          "failure_signatures": [
+            "mech060:precommit_channel_contamination",
+            "mech060:postcommit_channel_contamination",
+            "mech060:attribution_reliability_break"
+          ],
+          "run_id": "mech_060_memory_patch_cross_talk_s60011_20260213t231415722024z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.722141Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "commit_dual_error_channels",
+          "failure_signatures": [
+            "mech060:precommit_channel_contamination",
+            "mech060:postcommit_channel_contamination",
+            "mech060:attribution_reliability_break"
+          ],
+          "run_id": "mech_060_memory_patch_cross_talk_s60012_20260213t231415722542z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-13T23:14:15.722633Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 11,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 10,
         "literature": 1
       }
     },
+    "MECH-900": {
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.822, lit_conf=0",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "exp:exploratory_simulation": 2
+      },
+      "experimental_confidence": 0.822,
+      "fail_runs": 0,
+      "latest_run_id": "exp_fix_0001_20260213T082457170481Z",
+      "latest_timestamp_utc": "2026-02-13T08:24:57.170481Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.822,
+      "pass_runs": 2,
+      "recent_entries": [
+        {
+          "claim_id": "MECH-900",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "trajectory_integrity",
+          "failure_signatures": [],
+          "run_id": "exp_fix_0001_20260213T080932460954Z",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-13T08:09:32.460954Z"
+        },
+        {
+          "claim_id": "MECH-900",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "trajectory_integrity",
+          "failure_signatures": [],
+          "run_id": "exp_fix_0001_20260213T082457170481Z",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-13T08:24:57.170481Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 2,
+        "literature": 0
+      }
+    },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.374, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.372, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -523,12 +624,12 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.374,
+      "experimental_confidence": 0.372,
       "fail_runs": 1,
       "latest_run_id": "2026-02-13T070000Z_dummy-fail",
       "latest_timestamp_utc": "2026-02-13T07:00:00Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.374,
+      "overall_confidence": 0.372,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -702,6 +803,32 @@
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-02-13T07:00:00Z"
+    },
+    {
+      "claim_id": "MECH-900",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [],
+      "run_id": "exp_fix_0001_20260213T080932460954Z",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-13T08:09:32.460954Z"
+    },
+    {
+      "claim_id": "MECH-900",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [],
+      "run_id": "exp_fix_0001_20260213T082457170481Z",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-13T08:24:57.170481Z"
     },
     {
       "claim_id": "MECH-053",
@@ -1107,9 +1234,210 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-02-13T22:40:00Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:anchor_separation_collapse",
+        "mech058:ema_drift_under_shift",
+        "mech058:latent_cluster_collapse"
+      ],
+      "run_id": "mech_058_shift_spike_replay_pressure_s58011_20260213t231415715242z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.716219Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:ema_drift_under_shift",
+        "mech058:latent_cluster_collapse"
+      ],
+      "run_id": "mech_058_shift_spike_replay_pressure_s58012_20260213t231415716577z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.716794Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:anchor_separation_collapse",
+        "mech058:ema_drift_under_shift",
+        "mech058:latent_cluster_collapse"
+      ],
+      "run_id": "mech_058_oscillatory_shift_anchor_decay_s58011_20260213t231415717121z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.717321Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:anchor_separation_collapse",
+        "mech058:ema_drift_under_shift",
+        "mech058:latent_cluster_collapse"
+      ],
+      "run_id": "mech_058_oscillatory_shift_anchor_decay_s58012_20260213t231415717627z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.717818Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:calibration_slope_break",
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "mech_059_ood_noise_burst_ensemble_s59011_20260213t231415718135z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.718436Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:calibration_slope_break",
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "mech_059_ood_noise_burst_ensemble_s59012_20260213t231415718729z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.718916Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:calibration_slope_break",
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "mech_059_ambiguity_fog_dispersion_s59011_20260213t231415719237z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.719429Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:calibration_slope_break",
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "mech_059_ambiguity_fog_dispersion_s59012_20260213t231415719741z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.719958Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:precommit_channel_contamination",
+        "mech060:postcommit_channel_contamination"
+      ],
+      "run_id": "mech_060_leakage_prompt_injection_s60011_20260213t231415720295z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.720486Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:precommit_channel_contamination",
+        "mech060:postcommit_channel_contamination"
+      ],
+      "run_id": "mech_060_leakage_prompt_injection_s60012_20260213t231415721523z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.721605Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:precommit_channel_contamination",
+        "mech060:postcommit_channel_contamination",
+        "mech060:attribution_reliability_break"
+      ],
+      "run_id": "mech_060_memory_patch_cross_talk_s60011_20260213t231415722024z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.722141Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:precommit_channel_contamination",
+        "mech060:postcommit_channel_contamination",
+        "mech060:attribution_reliability_break"
+      ],
+      "run_id": "mech_060_memory_patch_cross_talk_s60012_20260213t231415722542z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-13T23:14:15.722633Z"
     }
   ],
-  "generated_at_utc": "2026-02-13T22:02:12.974027Z",
+  "generated_at_utc": "2026-02-14T11:26:03.413442Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []
