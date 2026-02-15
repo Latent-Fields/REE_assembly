@@ -54,6 +54,59 @@ It is the only place explicit multi-step rollouts exist; E1/E2 supply constraint
 
 ---
 
+## Backward Shift as Commitment-Boundary Migration (ARC-018 context)
+
+Recent hippocampal reward-timing evidence suggests activity can shift from reward delivery toward earlier predictive
+states as learning stabilizes. In REE terms, this can be interpreted as migration of the effective commitment-evaluation
+boundary toward the earliest node where trajectory outcomes become causally constrained.
+
+This interpretation is distinct from pure predictive coding:
+
+- predictive-coding reading: reward representation propagates backward through predictive states regardless of agency,
+- commitment-migration reading: backward shift should depend on action selection and policy consolidation.
+
+Practical discriminator for REE alignment:
+
+- preserve predictive cues while removing meaningful choice,
+- if backward migration is unchanged, prediction-only explanation remains sufficient,
+- if migration weakens, commitment-boundary migration gains support.
+
+This slot is currently treated as interpretation pressure on ARC-018 and as input to Q-011 (rollout-diversity floor
+under repeated harm), not as a standalone promoted claim.
+
+Source thought: `docs/thoughts/2026-02-15_hippocampal_backward_shift.md`
+
+---
+
+## Commit-Indexed Trajectory Module (CITM) interpretation
+
+A second interpretation pressure on ARC-018 is to treat hippocampal mapping as an emergent commit-indexed transition
+system rather than a separately introduced map ontology.
+
+Minimal transition primitive per step:
+
+- S_pre(t): pre-commit predicted state
+- A(t): committed intervention
+- S_post(t): post-commit observed state
+- Delta(t) = S_post(t) - S_pre(t)
+- tau(t) = (S_pre(t), A(t), Delta(t))
+
+Under this reading, hippocampal-like path memory and replay emerge from chaining compatible tau(t) tuples and replaying
+them for compression, counterfactual evaluation, and long-horizon simulation.
+
+The framing is consistent with ARC-018 (rollout + post-commit viability mapping) and MECH-033 (E2 kernel to rollout
+handoff), and contributes a concrete mechanism hypothesis for Q-011 entropy-floor analysis:
+
+- if replay depth and transition compositionality stabilize, trajectory diversity can be preserved without explicit
+  coordinate maps,
+- if replay collapses under repeated harm, entropy-floor interventions become better justified.
+
+This remains interpretation pressure and test design guidance, not a promoted standalone claim.
+
+Source thought: `docs/thoughts/2026-02-15_commit_indexed_trajectory_module.md`
+
+---
+
 <a id="mech-033"></a>
 ## E2 Kernel → Hippocampal Rollout Interface (MECH-033)
 

@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T08:42:36.434797Z`
+Generated: `2026-02-15T09:18:04.301592Z`
 
 ## Cycle Status
 
@@ -26,8 +26,7 @@ Generated: `2026-02-15T08:42:36.434797Z`
 
 Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
-1. Thought Intake: 1 unprocessed thought(s).
-- `2026-02-15_hippocampal_backward_shift.md`
+1. Thought Intake: 0 unprocessed thought(s).
 2. Conflict Resolution: 7 conflict item(s).
 - `ARC-018` conflict_types=directional
 - `MECH-033` conflict_types=directional

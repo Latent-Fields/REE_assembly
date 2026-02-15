@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/hippocampal_systems.md` (ARC-018, Q-011)
+
+---
+
 Thought: Hippocampal Backward Shift as Commitment-Gate Migration
 
 Reference

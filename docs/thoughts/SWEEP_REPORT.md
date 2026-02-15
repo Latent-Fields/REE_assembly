@@ -1,17 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-02-15T08:42:36.145116Z`
+Generated: `2026-02-15T09:18:03.911172Z`
 
 | metric | count |
 |---|---|
-| total thought files | 33 |
-| processed | 32 |
-| unprocessed | 1 |
+| total thought files | 34 |
+| processed | 34 |
+| unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- `2026-02-15` `2026-02-15_hippocampal_backward_shift.md` (status=`unprocessed`)
+- _none_
 
 ## Processed Missing Links
 
@@ -49,5 +49,7 @@ Generated: `2026-02-15T08:42:36.145116Z`
 - `2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md` (1 link(s) in `Processed in`)
 - `2026-02-13_LeCun_developed_lots_of_REE.md` (5 link(s) in `Processed in`)
 - `2026-02-13_jepa_ree_formal_alignment_glossary.md` (4 link(s) in `Processed in`)
+- `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
+- `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
