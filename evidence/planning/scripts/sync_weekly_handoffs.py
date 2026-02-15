@@ -192,6 +192,13 @@ def _repos_for_day(config: dict[str, Any], day_name: str) -> list[str]:
     return []
 
 
+def _full_run_repos(config: dict[str, Any]) -> list[str]:
+    repos = config.get("full_run_repos", [])
+    if isinstance(repos, list):
+        return [str(x) for x in repos if str(x).strip()]
+    return []
+
+
 def _write_report(report_path: Path, data: dict[str, Any]) -> None:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -214,6 +221,11 @@ def main() -> int:
         nargs="*",
         default=[],
         help="Explicit repo names to sync; overrides day mapping.",
+    )
+    parser.add_argument(
+        "--full-run",
+        action="store_true",
+        help="Sync all repositories listed in full_run_repos from cadence config.",
     )
     parser.add_argument(
         "--skip-git-pull",
@@ -247,6 +259,8 @@ def main() -> int:
 
     if args.repos:
         target_repo_names = list(args.repos)
+    elif args.full_run:
+        target_repo_names = _full_run_repos(config)
     else:
         if args.day.lower() == "auto":
             day_name = WEEKDAYS[date.today().weekday()]

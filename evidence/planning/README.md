@@ -96,6 +96,7 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
 
 - Pull/import handoffs:
   - `python3 evidence/planning/scripts/sync_weekly_handoffs.py --day MONDAY`
+  - full cross-repo sync on demand: `python3 evidence/planning/scripts/sync_weekly_handoffs.py --full-run --run-ingestion`
 - Emit weekly dispatch bundles:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
 - Apply adjudication cascade from applied decisions:

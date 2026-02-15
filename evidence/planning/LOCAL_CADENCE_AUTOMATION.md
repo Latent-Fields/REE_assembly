@@ -53,7 +53,7 @@ python3 evidence/planning/scripts/sync_weekly_handoffs.py --day WEDNESDAY
 
 ```bash
 python3 evidence/planning/scripts/sync_weekly_handoffs.py \
-  --repos ree-v2 ree-experiments-lab ree-v1-minimal \
+  --full-run \
   --run-ingestion
 ```
 
@@ -107,7 +107,7 @@ Create one plist per weekday trigger. Example command payloads:
 - Wednesday:
   - `python3 .../sync_weekly_handoffs.py --day WEDNESDAY`
 - Thursday:
-  - `python3 .../sync_weekly_handoffs.py --repos ree-v2 ree-experiments-lab ree-v1-minimal --run-ingestion`
+  - `python3 .../sync_weekly_handoffs.py --full-run --run-ingestion`
 - Friday:
   - `python3 .../emit_weekly_dispatches.py`
 
@@ -131,7 +131,7 @@ Example (Europe/Dublin local machine clock):
 # Wednesday 09:00
 0 9 * * 3 cd /Users/dgolden/Documents/GitHub/REE_assembly && python3 evidence/planning/scripts/sync_weekly_handoffs.py --day WEDNESDAY
 # Thursday 10:00
-0 10 * * 4 cd /Users/dgolden/Documents/GitHub/REE_assembly && python3 evidence/planning/scripts/sync_weekly_handoffs.py --repos ree-v2 ree-experiments-lab ree-v1-minimal --run-ingestion
+0 10 * * 4 cd /Users/dgolden/Documents/GitHub/REE_assembly && python3 evidence/planning/scripts/sync_weekly_handoffs.py --full-run --run-ingestion
 # Friday 10:00
 0 10 * * 5 cd /Users/dgolden/Documents/GitHub/REE_assembly && python3 evidence/planning/scripts/emit_weekly_dispatches.py
 ```

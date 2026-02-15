@@ -1617,3 +1617,23 @@ families already required by the hook-surface contract.
 - No dedicated payload schema doc yet for `HK-007/008/009` envelopes.
 - Adapter-signal schema does not yet enforce sensory-tag provenance/quality fields for `ARC-017`.
 - No direct readiness metric yet for commit-boundary join completeness across post-commit attribution updates.
+
+## 2026-02-15: Weekly Cadence and Full-Run Sync Hardening
+
+### Overview
+
+Hardened handoff-sync automation so cross-repo syncing of `ree-v2`, `ree-v1-minimal`, and `ree-experiments-lab`
+is guaranteed both in weekly cadence and via explicit full-run invocation.
+
+### What Changed
+
+- Updated cadence config:
+  - `evidence/planning/cadence_automation.v1.json`
+  - `THURSDAY` now includes all three producer repos.
+  - Added `full_run_repos` list for explicit full-run target set.
+- Extended sync script:
+  - `evidence/planning/scripts/sync_weekly_handoffs.py`
+  - Added `--full-run` flag to select `full_run_repos` from config.
+- Updated operator docs:
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md` now uses `--full-run --run-ingestion` for Thursday/full sync.
+  - `evidence/planning/README.md` now documents on-demand full-run command.
