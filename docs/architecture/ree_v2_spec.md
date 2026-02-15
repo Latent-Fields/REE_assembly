@@ -288,6 +288,12 @@ v2 should also emit stubs for `v3_planned` hooks where feasible:
 - commitment-context trace IDs for attribution,
 - rollout-candidate metadata for hippocampal/controller attachment.
 
+Bridge coverage expectation in `v2_required` hook tier:
+
+- commit-boundary token envelope export (`HK-007`, `MECH-061`),
+- tri-loop gate arbitration trace export (`HK-008`, `MECH-062`),
+- orthogonal control-axis telemetry export (`HK-009`, `MECH-063`).
+
 These hooks are interface commitments, not full behavior commitments for the future layers.
 
 ---

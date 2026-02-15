@@ -1589,3 +1589,31 @@ aligned hook-surface dependencies with the new bridge commitments.
   - missing dependencies: 0
   - missing location/anchor: 0
   - cycles: 0
+
+## 2026-02-15: Sensory-to-Learning Loop Conformance Retune
+
+### Overview
+
+Ran a strict sensory-origin information-flow conformance pass and aligned v2 hook registry obligations with the bridge
+families already required by the hook-surface contract.
+
+### What Changed
+
+- Hook registry updates:
+  - `docs/architecture/hook_registry.v1.json`
+  - Added `v2_required` bridge hooks:
+    - `HK-007` `commit_boundary_token_export` (MECH-061 bridge)
+    - `HK-008` `tri_loop_gate_trace_export` (MECH-062 bridge)
+    - `HK-009` `control_axis_telemetry_export` (MECH-063 bridge)
+- v2 spec alignment:
+  - `docs/architecture/ree_v2_spec.md`
+  - Added explicit `v2_required` bridge-hook expectations in the cross-version hook section.
+- Audit note:
+  - `docs/notes/2026-02-15_sensory_loop_conformance_audit.md`
+  - Captures resolved mismatch and residual interface gaps for next pass.
+
+### Residual Gaps Logged
+
+- No dedicated payload schema doc yet for `HK-007/008/009` envelopes.
+- Adapter-signal schema does not yet enforce sensory-tag provenance/quality fields for `ARC-017`.
+- No direct readiness metric yet for commit-boundary join completeness across post-commit attribution updates.
