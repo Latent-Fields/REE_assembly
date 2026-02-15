@@ -2,7 +2,7 @@
 
 **Claim Type:** implementation_note  
 **Scope:** v2 substrate-first architecture and implementation contract  
-**Depends On:** IMPL-008, IMPL-021, IMPL-022, IMPL-025, MECH-057, MECH-058, MECH-059, MECH-060  
+**Depends On:** IMPL-008, IMPL-021, IMPL-022, IMPL-025, MECH-057, MECH-058, MECH-059, MECH-060, MECH-061, MECH-062, MECH-063  
 **Status:** candidate  
 **Claim ID:** IMPL-023
 <a id="impl-023"></a>
@@ -55,6 +55,11 @@ Reference policy:
 - Final hippocampal replay/planning controller.
 - Final E3 commitment policy and full responsibility accounting.
 
+v2 should still expose interface hooks aligned to:
+- commit-boundary token contracts (`MECH-061`),
+- tri-loop gate arbitration traces (`MECH-062`),
+- orthogonal control-axis telemetry surfaces (`MECH-063`).
+
 These become v3 primary implementation scope.
 
 ---
@@ -93,6 +98,7 @@ v2 should be implemented as the following modules (names are descriptive, not ma
 5. `hook_surface_adapter` (forward-compatibility interface)
 - emit placeholders for pre-commit and post-commit channels,
 - emit trajectory candidate IDs and attribution trace IDs.
+- emit commit-boundary token placeholders (`MECH-061`) and tri-loop gate traces (`MECH-062`).
 
 ---
 
@@ -209,6 +215,7 @@ v2 must maintain explicit experiment profiles for:
 3. `commit_dual_error_channels` (`MECH-060`, hook-level in v2)
 - compare single-stream vs pre/post split-stream instrumentation,
 - verify leakage and attribution-readiness signals.
+  - include commit-boundary token and gate-trace field checks (bridge to `MECH-061/062`).
 
 4. `jepa_control_proxy_ablation` (`MECH-059`, `MECH-060`, `MECH-056`)
 - compare baseline uncertainty-only routing vs proxy-bank routing,
@@ -291,6 +298,7 @@ These hooks are interface commitments, not full behavior commitments for the fut
 - All required metrics emitted in contract-compliant packs.
 - No unresolved contract-drift failures.
 - Core v2 mechanism claims (`MECH-058/059/060`) have active evidence with documented conflict handling.
+- Bridge mechanisms (`MECH-061/062/063`) have hook-level evidence surfaces and trace exports ready for v3 control completion.
 - Governance output recommends moving implementation focus to v3 control completion.
 
 ---
@@ -330,3 +338,6 @@ Suggested `ree-v2` bootstrap timing:
 - MECH-058
 - MECH-059
 - MECH-060
+- MECH-061
+- MECH-062
+- MECH-063

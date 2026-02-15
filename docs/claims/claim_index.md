@@ -1,6 +1,7 @@
 # REE Claim Index
 
 This index lists all claim IDs with one-line summaries and links. For full metadata, see `claims.yaml`.
+Dependency edges are conceptual prerequisites and must stay acyclic; runtime feedback loops are documented in architecture flow specs rather than `depends_on`.
 
 **Claim Type:** implementation_note  
 **Scope:** Claim index and navigation  
@@ -171,7 +172,7 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [IMPL-020](../glossary.md#impl-020) Formal JEPA↔REE terminology alignment glossary for interoperability.
 - [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Hybrid JEPA↔REE architecture diagram contract and rendering checklist.
 - [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-as-E1/E2 integration contract (inputs, outputs, knobs, and failure gates).
-- [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 substrate-first spec and phase gate for later control completion.
+- [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 substrate-first spec and phase gate with hook bridges to commit-boundary, tri-loop gating, and orthogonal control-axis completion.
 - [IMPL-024](../notes/jepa_language_policy.md#impl-024) v2 JEPA-first wording policy with inline REE translation for docs and user-facing interactions.
 - [IMPL-025](../architecture/hook_surface_contract.md#impl-025) Cross-version hook surface contract and registry for v2/v3/v4 extension points.
 

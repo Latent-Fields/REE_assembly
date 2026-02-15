@@ -20,6 +20,11 @@ This README is executable guidance for AI coding agents. When invoked, agents mu
 7. Place unprocessed thoughts in `docs/thoughts/` and record resolutions in `docs/conflicts/resolutions/`.
 8. For REE-v2 docs and user-facing text, use JEPA-first wording with inline REE translation (`JEPA term (REE term)`) per `docs/notes/jepa_language_policy.md`.
 
+## Dependency Semantics
+
+`depends_on` edges in `docs/claims/claims.yaml` represent conceptual prerequisites only and must remain acyclic.
+Runtime information flow may be cyclic (feedback, replay, recurrent loops), but those loops belong in architecture/interface/flow docs, not as cyclic claim dependencies.
+
 ## Synthesis Pass (Lightweight)
 
 Use this when a subsystem feels fragmented or the claims list is growing without convergence. This is not a refactor.

@@ -18,9 +18,11 @@ REE must support self-impact attribution: the ability to model which parts of in
 **Subsystem abstract (core claims):** ARC‑015 anchors agency/responsibility flow, while MECH‑023 and MECH‑024 frame
 responsibility as path‑dependent geometry and the convergence of selfhood/personality/ethics. MECH‑057 adds the
 agentic-extension claim: latent predictive world models require explicit self-attribution and control-plane completion
-to remain stable under intervention. Supporting context includes INV‑018 (agency required), INV‑012 (commitment gates
-responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004 (L‑space), ARC‑013 (residue geometry), ARC‑007
-(hippocampal systems), and Q‑006/Q‑012 (developmental and convergence falsifiability questions).
+to remain stable under intervention. MECH‑060/061/062 extend this with explicit pre/post-commit error separation,
+commit-boundary tokenization, and tri-loop commitment gating for attributable routing. Supporting context includes
+INV‑018 (agency required), INV‑012 (commitment gates responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004
+(L‑space), ARC‑013 (residue geometry), ARC‑007 (hippocampal systems), and Q‑006/Q‑012 (developmental and convergence
+falsifiability questions).
 
 Without it:
 - the system can still predict,
@@ -139,6 +141,11 @@ REE should maintain two explicit error channels around E3 commitment:
 In JEPA-integrated systems this implies at least one exploratory/simulation-side error stream and one
 execution-outcome stream; both are required and should not be merged.
 
+MECH‑061 and MECH‑062 provide a concrete realization path for this split:
+
+- MECH‑061: explicit commit-boundary token as error reclassification boundary,
+- MECH‑062: tri-loop gate family whose arbitration determines which commitment becomes attributable.
+
 ---
 
 ## Open Questions
@@ -182,6 +189,8 @@ responsibility boundaries, or social modelability. This remains an open empirica
 - MECH-058
 - MECH-059
 - MECH-060
+- MECH-061
+- MECH-062
 - INV-018
 - INV-012
 - ARC-003
@@ -192,6 +201,8 @@ responsibility boundaries, or social modelability. This remains an open empirica
 - Q-012
 - Q-013
 - Q-014
+- Q-015
+- Q-016
 
 ## References / Source Fragments
 
