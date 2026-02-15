@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T18:46:46.093789Z`
+Generated: `2026-02-15T19:47:53.393559Z`
 
 ## Cycle Status
 
@@ -20,7 +20,7 @@ Generated: `2026-02-15T18:46:46.093789Z`
 | work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
-| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
+| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
 | `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
 | `architecture_structure_adjudication` | `HUMAN_ONLY` | `FAIL` | `review_structure_dossiers_and_model_adjudication` | `n/a` | `yes` |
@@ -83,7 +83,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
 - `Q-017` external_precedence_candidate=yes; delta_lit_minus_exp=0.357
-- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.355
+- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.356
 - `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.336
 - `ARC-007` external_precedence_candidate=yes; delta_lit_minus_exp=0.220
 - `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.224
@@ -92,18 +92,8 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-046` external_precedence_candidate=yes; delta_lit_minus_exp=0.305
 - `MECH-061` external_precedence_candidate=yes; delta_lit_minus_exp=0.277
 - `Q-012` external_precedence_candidate=yes; delta_lit_minus_exp=0.319
-10. Adjudication Cascade: 14 action(s), 14 claim update(s), 0 dependent reopen(s).
+10. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
-- `ARC-003` outcome=`retain_ree`; reopened_dependents=0
-- `ARC-007` outcome=`hybridize`; reopened_dependents=0
-- `ARC-018` outcome=`retain_ree`; reopened_dependents=0
-- `MECH-033` outcome=`retain_ree`; reopened_dependents=0
-- `MECH-040` outcome=`retain_ree`; reopened_dependents=0
-- `MECH-046` outcome=`retain_ree`; reopened_dependents=0
-- `MECH-056` outcome=`hybridize`; reopened_dependents=0
-- `MECH-058` outcome=`hybridize`; reopened_dependents=0
-- `MECH-059` outcome=`retain_ree`; reopened_dependents=0
-- `MECH-060` outcome=`hybridize`; reopened_dependents=0
 11. Evidence Dispatch: 27 high-priority proposal(s), 27 total.
 - ree-experiments-lab: total=5, experimental=5, literature_review=0
 - ree-v2: total=22, experimental=22, literature_review=0

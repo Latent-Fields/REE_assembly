@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-058
 
-Generated: `2026-02-15T18:46:46.032085Z`
+Generated: `2026-02-15T19:47:53.325229Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -16,7 +16,7 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Conflict ratio: 0.947
-- Overall confidence: 0.707
+- Overall confidence: 0.706
 
 ## Evidence Mix and Why It Looks This Way
 

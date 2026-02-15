@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T18:46:46.088280Z`
+Generated: `2026-02-15T19:47:53.387731Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -37,7 +37,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-058.
 - Claim description: MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.
-- Evidence pressure: conflict_ratio=0.947, overall_confidence=0.707, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.947, overall_confidence=0.706, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech058:anchor_separation_collapse`, `mech058:ema_drift_under_shift`, `mech058:latent_cluster_collapse`, `threshold:latent_prediction_error_mean`, `threshold:latent_prediction_error_p95`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.
 - Research questions:

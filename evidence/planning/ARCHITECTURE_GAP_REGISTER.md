@@ -1,13 +1,13 @@
 # Architecture Gap Register
 
-Generated: `2026-02-15T18:46:45.789785Z`
+Generated: `2026-02-15T19:47:52.735849Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
 | `AGR-0001` | `Q-017` | `active` | 0.967 | 0 | 0.357 | 3 | yes | yes | `consider_new_structure` |
-| `AGR-0002` | `MECH-058` | `candidate` | 0.947 | 0.2 | 0.355 | 5 | yes | yes | `consider_new_structure` |
+| `AGR-0002` | `MECH-058` | `candidate` | 0.947 | 0.2 | 0.356 | 5 | yes | yes | `consider_new_structure` |
 | `AGR-0003` | `MECH-060` | `candidate` | 0.944 | 0.333 | 0.336 | 5 | yes | yes | `consider_new_structure` |
 | `AGR-0004` | `ARC-007` | `active` | 0.857 | 0 | 0.22 | 2 | yes | yes | `consider_new_structure` |
 | `AGR-0005` | `MECH-056` | `candidate` | 0.85 | 0.111 | 0.224 | 5 | yes | yes | `consider_new_structure` |
@@ -33,7 +33,7 @@ This register highlights claims under structural pressure and flags where the ev
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.357
 - `MECH-058` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.947; lit_non_support_ratio=0.2.
   - recurring_signatures: `mech058:anchor_separation_collapse`(33), `mech058:ema_drift_under_shift`(19), `mech058:latent_cluster_collapse`(10), `threshold:latent_prediction_error_mean`(5), `threshold:latent_prediction_error_p95`(5)
-  - external_precedence_candidate: yes; delta_lit_minus_exp=0.355
+  - external_precedence_candidate: yes; delta_lit_minus_exp=0.356
 - `MECH-060` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.944; lit_non_support_ratio=0.333.
   - recurring_signatures: `mech060:postcommit_channel_contamination`(40), `mech060:attribution_reliability_break`(38), `mech060:commitment_reversal_spike`(26), `mech060:precommit_channel_contamination`(10), `threshold:pre_commit_error_signal_to_noise`(5)
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.336

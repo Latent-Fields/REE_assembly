@@ -264,6 +264,23 @@ Each axis should carry:
 This decomposition allows regimes like "focused but initiation-suppressed" (stable representation, high commitment
 threshold, low energy budget) without forcing contradictory updates into a single scalar channel.
 
+### Phenomenology-Aligned Diagnostic Profile
+
+A useful control-plane validation profile is the observed sequence:
+
+- stable attention with elevated initiation friction,
+- low-effort reward substitution under reduced drive,
+- delayed rebound where vigor returns but attention can fragment under overshoot.
+
+REE interpretation:
+
+- representational quality may remain stable while `kappa_commit` and motor-gate thresholds rise,
+- low energy-budget channels can suppress initiation without forcing global perceptual degradation,
+- rebound can restore vigor while increasing interrupt pressure/volatility.
+
+This profile is expected under orthogonal axis control and should be considered a positive architecture-level behavior,
+not an automatic defect, when safety constraints are preserved.
+
 ### Emotion as composite control regime (clarification)
 
 “Emotion” in REE is not a primitive signal. It is a **phenomenological label** for a **composite control‑plane regime**
@@ -512,4 +529,4 @@ control into a single scalar?
 - `docs/thoughts/2026-02-11_opioid_receptors.md`
 - `docs/thoughts/2026-02-11_habenula_signed_pe.md`
 - `docs/thoughts/2026-02-15_basal_ganglia.md`
-- `docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md`
+- `docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md`

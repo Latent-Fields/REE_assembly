@@ -1,11 +1,11 @@
 # Thought Sweep Report
 
-Generated: `2026-02-15T18:46:45.410582Z`
+Generated: `2026-02-15T19:51:16.850311Z`
 
 | metric | count |
 |---|---|
-| total thought files | 36 |
-| processed | 36 |
+| total thought files | 37 |
+| processed | 37 |
 | unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
@@ -50,7 +50,8 @@ Generated: `2026-02-15T18:46:45.410582Z`
 - `2026-02-13_LeCun_developed_lots_of_REE.md` (5 link(s) in `Processed in`)
 - `2026-02-13_jepa_ree_formal_alignment_glossary.md` (4 link(s) in `Processed in`)
 - `2026-02-15_basal_ganglia.md` (2 link(s) in `Processed in`)
-- `2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md` (2 link(s) in `Processed in`)
+- `2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md` (2 link(s) in `Processed in`)
+- `2026-02-15_basal_ganglia_commit_gating_control_plane_axes_refresh.md` (3 link(s) in `Processed in`)
 - `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
 - `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)

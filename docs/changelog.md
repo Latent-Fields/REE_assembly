@@ -7,6 +7,30 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-15: Processed Commit-Gating Refresh Thought
+
+### Overview
+
+Processed the refreshed thought on commit gating, pre/post-commit error separation, and expanded control-plane axes,
+and promoted its unresolved parts into explicit implementation-gap contracts.
+
+### What Changed
+
+- Updated E3 canonical spec:
+  - `docs/architecture/e3.md`
+  - added explicit open implementation-gap contract for MECH-061/MECH-062:
+    - commit-token wire format/scope
+    - cross-gate arbitration policy
+    - post-commit credit-assignment interface
+    - responsibility-locus storage contract
+- Updated control-plane canonical spec:
+  - `docs/architecture/control_plane.md`
+  - added phenomenology-aligned diagnostic profile for "focused but initiation-suppressed" regimes
+- Marked thought as processed:
+  - `docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes_refresh.md`
+
+---
+
 ## 2026-02-15: Frictionless Task Inbox Sync for Governance Carryover
 
 ### Overview

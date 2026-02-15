@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-15T18:46:45.789785Z`
+Generated: `2026-02-15T19:47:52.735849Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -175,7 +175,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-058
 - Conflict types: directional
-- Evidence breakdown: supports=16, weakens=14, conflict_ratio=0.933, overall_confidence=0.707
+- Evidence breakdown: supports=16, weakens=14, conflict_ratio=0.933, overall_confidence=0.706
 - Recent entries:
   - `2026-02-15T17:39:00Z` `experimental` `jepa_anchor_ablation` direction=`weakens` confidence=0.75
   - `2026-02-15T17:39:00Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
