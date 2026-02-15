@@ -1557,3 +1557,35 @@ all readiness gates passed.
 - Generated cutover readiness artifacts:
   - `evidence/planning/CUTOVER_REE_V2_READINESS.md`
   - `evidence/planning/CUTOVER_REE_V2_READINESS.v1.json`
+
+## 2026-02-15: Focused Dependency Retune (Commit Boundary + Tri-Loop + Control Axes)
+
+### Overview
+
+Performed a focused dependency and claim-consistency retune for the commit-boundary/gating/control-axis bundle and
+aligned hook-surface dependencies with the new bridge commitments.
+
+### What Changed
+
+- Status alignment:
+  - `docs/architecture/e3.md`: `MECH-061` and `MECH-062` status headers set to `candidate` to match registry.
+  - `docs/architecture/control_plane.md`: `MECH-063` status header set to `candidate` to match registry.
+- Hook-surface dependency tightening:
+  - `docs/architecture/hook_surface_contract.md` now explicitly depends on `MECH-061`, `MECH-062`, `MECH-063`.
+  - Added explicit `v2_required` bridge hook families for:
+    - commit-boundary token envelope fields,
+    - tri-loop arbitration traces,
+    - orthogonal tonic/phasic control-axis telemetry.
+- Claim registry/index updates:
+  - `docs/claims/claims.yaml`: `IMPL-025.depends_on` extended with `MECH-061`, `MECH-062`, `MECH-063`.
+  - `docs/claims/claim_index.md`: `IMPL-025` summary updated to mention bridge families explicitly.
+- Audit note added:
+  - `docs/notes/2026-02-15_dependency_retune_audit.md`
+
+### Validation
+
+- Claim graph check passed:
+  - total claims: 141
+  - missing dependencies: 0
+  - missing location/anchor: 0
+  - cycles: 0

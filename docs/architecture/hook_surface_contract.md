@@ -2,7 +2,7 @@
 
 **Claim Type:** implementation_note  
 **Scope:** Versioned hook interfaces for REE-v2 and later phases  
-**Depends On:** IMPL-022, IMPL-023  
+**Depends On:** IMPL-022, IMPL-023, MECH-061, MECH-062, MECH-063  
 **Status:** candidate  
 **Claim ID:** IMPL-025
 <a id="impl-025"></a>
@@ -68,6 +68,16 @@ Registry path:
   - reserved interface budget for later social/institutional complexity,
   - not required for v2 readiness.
 
+## Bridge Hook Families (v2 Required)
+
+To preserve v3-control completion viability, the v2 hook surface must include bridge families aligned to:
+
+- `MECH-061`: commit-boundary token envelope fields (`commit_id`, `trajectory_id`, timing, TTL, mode snapshot).
+- `MECH-062`: tri-loop arbitration traces (`gate_motor`, `gate_cognitive_set`, `gate_motivational`) and conflict resolution records.
+- `MECH-063`: orthogonal control-axis telemetry with tonic/phasic decomposition and module readout tags.
+
+These are interface commitments for evidence and routing continuity, not full v3 behavior commitments.
+
 ---
 
 ## Governance Expectations
@@ -85,3 +95,6 @@ Registry path:
 - IMPL-025
 - IMPL-023
 - IMPL-022
+- MECH-061
+- MECH-062
+- MECH-063

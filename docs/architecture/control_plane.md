@@ -240,7 +240,7 @@ These channels alter *how cognition runs*, not *what it represents*.
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Minimal orthogonal control-plane axis set with tonic/phasic decomposition  
 **Depends On:** ARC-005, MECH-039, MECH-040, MECH-055  
-**Status:** provisional  
+**Status:** candidate  
 **Claim ID:** MECH-063
 
 REE control should use an explicit orthogonal axis set rather than collapsing regulation into one arousal/precision
