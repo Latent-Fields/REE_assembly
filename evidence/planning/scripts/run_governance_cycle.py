@@ -740,6 +740,16 @@ def main() -> None:
         help="Path to REE_assembly repository root.",
     )
     parser.add_argument(
+        "--skip-task-inbox-sync",
+        action="store_true",
+        help="Skip markdown checklist inbox sync into manual carryover items.",
+    )
+    parser.add_argument(
+        "--task-inbox-dry-run",
+        action="store_true",
+        help="Run task inbox sync in dry-run mode.",
+    )
+    parser.add_argument(
         "--skip-thought-sweep",
         action="store_true",
         help="Skip docs/thoughts sweep step.",
@@ -815,6 +825,15 @@ def main() -> None:
     warnings: list[str] = []
 
     plan: list[tuple[str, list[str]]] = []
+    if not args.skip_task_inbox_sync:
+        inbox_cmd = [
+            str(sys.executable),
+            "evidence/planning/scripts/sync_task_inbox.py",
+        ]
+        if args.task_inbox_dry_run:
+            inbox_cmd.append("--dry-run")
+        plan.append(("task_inbox_sync", inbox_cmd))
+
     if not args.skip_thought_sweep:
         thought_cmd = [str(sys.executable), "docs/thoughts/scripts/thought_sweep.py"]
         if args.strict_thoughts:

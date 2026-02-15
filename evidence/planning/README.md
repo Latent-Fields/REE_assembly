@@ -45,6 +45,12 @@ Run non-decision maintenance steps and generate a discussion agenda:
 python3 evidence/planning/scripts/run_governance_cycle.py
 ```
 
+This now includes markdown task-inbox sync by default:
+
+- `evidence/planning/task_inbox.md` (`- [ ]` open, `- [x]` done)
+- synced into `evidence/planning/manual_carryover_items.v1.json` before agenda generation
+- completed `- [x]` lines are pruned from inbox on sync (override with `--no-prune-completed`)
+
 Generated agenda outputs:
 
 - `governance_agenda.v1.json`
@@ -126,3 +132,10 @@ Quick capture commands:
   - `python3 evidence/planning/scripts/capture_carryover_item.py list --open-only`
 - mark done:
   - `python3 evidence/planning/scripts/capture_carryover_item.py done --item-id MCI-0002`
+
+Checklist inbox sync command:
+
+- dry-run:
+  - `python3 evidence/planning/scripts/sync_task_inbox.py --dry-run`
+- write mode:
+  - `python3 evidence/planning/scripts/sync_task_inbox.py`

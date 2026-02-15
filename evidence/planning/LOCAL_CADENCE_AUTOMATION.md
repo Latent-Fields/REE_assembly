@@ -24,6 +24,8 @@ and cadence config:
   - `python3 evidence/planning/scripts/build_connectome_literature_pull.py`
 - Adjudication cascade application:
   - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
+- Task inbox sync:
+  - `python3 evidence/planning/scripts/sync_task_inbox.py`
 
 ---
 
@@ -76,6 +78,8 @@ python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statu
 ```
 
 Note: `run_governance_cycle.py` now executes this step automatically unless `--skip-adjudication-cascade` is used.
+It also runs task inbox sync automatically unless `--skip-task-inbox-sync` is used.
+Checked (`- [x]`) task lines are removed from inbox automatically during sync.
 
 ### Friday (dispatch bundle generation for next week)
 
@@ -164,4 +168,11 @@ Fast capture helper:
 python3 evidence/planning/scripts/capture_carryover_item.py add --summary "Follow up X" --priority high
 python3 evidence/planning/scripts/capture_carryover_item.py list --open-only
 python3 evidence/planning/scripts/capture_carryover_item.py done --item-id MCI-0002
+```
+
+Checklist inbox helper:
+
+```bash
+python3 evidence/planning/scripts/sync_task_inbox.py --dry-run
+python3 evidence/planning/scripts/sync_task_inbox.py
 ```

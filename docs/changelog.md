@@ -7,6 +7,33 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-15: Frictionless Task Inbox Sync for Governance Carryover
+
+### Overview
+
+Added a markdown checklist inbox that automatically syncs into manual carryover tracking so tasks are captured quickly
+and disappear from agenda carryover as soon as they are checked done.
+
+### What Changed
+
+- Added task inbox sync script:
+  - `evidence/planning/scripts/sync_task_inbox.py`
+  - parses `evidence/planning/task_inbox.md` checklist items
+  - open (`- [ ]`) items are created/reopened in `manual_carryover_items.v1.json`
+  - done (`- [x]`) items are marked `status=done` in carryover
+  - done checkbox lines are pruned from inbox by default after sync (`--no-prune-completed` opt-out)
+  - stable matching uses source refs (`task_inbox:<sha1>`) derived from normalized task text
+- Added default inbox file:
+  - `evidence/planning/task_inbox.md`
+- Integrated task inbox sync into governance cycle:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - new flags:
+    - `--skip-task-inbox-sync`
+    - `--task-inbox-dry-run`
+- Updated planning docs:
+  - `evidence/planning/README.md`
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+
 ## 2026-02-14: Automated Adjudication Cascade Application
 
 ### Overview
