@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-059
 
-Generated: `2026-02-15T10:00:08.178253Z`
+Generated: `2026-02-15T11:20:45.691375Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -15,13 +15,13 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
-- Conflict ratio: 0.857
-- Overall confidence: 0.711
+- Conflict ratio: 0.884
+- Overall confidence: 0.705
 
 ## Evidence Mix and Why It Looks This Way
 
-- Direction counts: supports=24, weakens=18, mixed=5, unknown=0.
-- Experimental mix: supports=22, weakens=18, mixed=3, unknown=0.
+- Direction counts: supports=24, weakens=19, mixed=5, unknown=0.
+- Experimental mix: supports=22, weakens=19, mixed=3, unknown=0.
 - Literature mix: supports=2, weakens=0, mixed=2, unknown=0.
 - Direction narrative: Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.
 - Source narrative: Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions.
@@ -30,14 +30,15 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| precision / confidence channel separate from prediction error is broadly correct, but failures are boundary-condition failures. | 0.53 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| precision / confidence channel separate from prediction error is over-scoped and should be narrowed or split. | 0.382 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of precision / confidence channel separate from prediction error but add explicit gating or interface separation. | 0.382 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| precision / confidence channel separate from prediction error is broadly correct, but failures are boundary-condition failures. | 0.519 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| precision / confidence channel separate from prediction error is over-scoped and should be narrowed or split. | 0.396 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of precision / confidence channel separate from prediction error but add explicit gating or interface separation. | 0.396 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
+| `2026-02-15T09:51:23.788473Z` | Run-pack `exp_0017_20260215T095123788473Z` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
 | `2026-02-14T22:50:00Z` | What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS) | `supports` | 0.67 | Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-14T21:25:00Z` | Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv) | `mixed` | 0.69 | VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling. | In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
 | `2026-02-14T21:10:00Z` | Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023) | `mixed` | 0.76 | I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping. | In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
@@ -45,7 +46,6 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 | `2026-02-14T20:00:00Z` | Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
 | `2026-02-14T20:00:00Z` | Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-14T20:00:00Z` | Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion` in `jepa_uncertainty_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-14T20:00:00Z` | Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head` in `jepa_uncertainty_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 
 ## Left-Field Suggestions
 

@@ -1,15 +1,15 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T10:00:08.223141Z`
+Generated: `2026-02-15T11:20:45.740598Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `MECH-058` | `high` | yes | 0.933 | `targeted_review_connectome_mech_058` |
-| `CPULL-0002` | `MECH-060` | `high` | yes | 0.913 | `targeted_review_connectome_mech_060` |
-| `CPULL-0003` | `MECH-059` | `high` | yes | 0.857 | `targeted_review_connectome_mech_059` |
+| `CPULL-0001` | `MECH-058` | `high` | yes | 0.957 | `targeted_review_connectome_mech_058` |
+| `CPULL-0002` | `MECH-060` | `high` | yes | 0.936 | `targeted_review_connectome_mech_060` |
+| `CPULL-0003` | `MECH-059` | `high` | yes | 0.884 | `targeted_review_connectome_mech_059` |
 
 ## MECH-058
 
@@ -17,7 +17,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-058.
 - Claim description: MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.
-- Evidence pressure: conflict_ratio=0.933, overall_confidence=0.68, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.957, overall_confidence=0.676, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech058:anchor_separation_collapse`, `mech058:ema_drift_under_shift`, `mech058:latent_cluster_collapse`, `threshold:latent_prediction_error_mean`, `threshold:latent_prediction_error_p95`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.
 - Research questions:
@@ -35,7 +35,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-060.
 - Claim description: MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
-- Evidence pressure: conflict_ratio=0.913, overall_confidence=0.692, trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.936, overall_confidence=0.687, trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break`, `mech060:precommit_channel_contamination`, `threshold:pre_commit_error_signal_to_noise`, `threshold:post_commit_error_attribution_gain`
 - Connectome focus: Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.
 - Research questions:
@@ -53,7 +53,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-059.
 - Claim description: MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-005`, `ARC-004`, `ARC-015`, `MECH-054`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `Q-013`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-059`.
-- Evidence pressure: conflict_ratio=0.857, overall_confidence=0.711, trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.884, overall_confidence=0.705, trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `mech059:uncertainty_metric_gaming_detected`, `mech059:calibration_slope_break`, `mech059:abstention_reliability_collapse`, `threshold:latent_prediction_error_mean`, `threshold:latent_uncertainty_calibration_error`
 - Connectome focus: Identify circuit motifs that separate mismatch coding from confidence-weighting pathways.
 - Research questions:

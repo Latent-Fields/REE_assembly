@@ -1,6 +1,6 @@
 # Structure Review Dossier Index
 
-Generated: `2026-02-15T10:00:08.178253Z`
+Generated: `2026-02-15T11:20:45.691375Z`
 Cycle: `2026-02-15`
 
 These dossiers are designed to support human judgment when claims show structural pressure in the evidence stream.

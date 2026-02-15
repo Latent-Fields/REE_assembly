@@ -12,9 +12,9 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `exp_0017_20260215T095123788473Z` at `2026-02-15T09:51:23.788473Z` signatures: none
 - `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion` at `2026-02-14T20:00:00Z` signatures: threshold:latent_prediction_error_mean, threshold:latent_uncertainty_calibration_error, threshold:precision_input_completeness_rate, threshold:uncertainty_coverage_rate
 - `2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion` at `2026-02-14T20:00:00Z` signatures: threshold:latent_prediction_error_mean, threshold:latent_uncertainty_calibration_error, threshold:precision_input_completeness_rate, threshold:uncertainty_coverage_rate
-- `2026-02-14T200000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion` at `2026-02-14T20:00:00Z` signatures: threshold:latent_prediction_error_mean, threshold:latent_uncertainty_calibration_error, threshold:precision_input_completeness_rate, threshold:uncertainty_coverage_rate
 
 Recurring signatures:
 - `mech059:calibration_slope_break` occurred in 10 FAIL run(s); latest `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z`

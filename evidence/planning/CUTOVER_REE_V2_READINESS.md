@@ -1,11 +1,11 @@
 # REE-v2 Cutover Readiness Report
 
-Generated: `2026-02-14T18:40:02.908150Z`
+Generated: `2026-02-15T11:20:50.536340Z`
 
 ## Decision
 
-- decision: `CUTOVER_DONE`
-- routing_change_applied: `true`
+- decision: `NO_CUTOVER`
+- routing_change_applied: `false`
 
 ## Gate Results
 
@@ -31,17 +31,14 @@ Generated: `2026-02-14T18:40:02.908150Z`
 - none
 ## Input Snapshots Used
 
+- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `03c825ddeb98` generated `2026-02-15T08:36:04Z`
 - ree-v2 handoff: `/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `4ab69172f0c2` generated `2026-02-14T18:32:05Z`
-- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `65d51ffa9c66` generated `2026-02-14T18:16:43Z`
-- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `6bcb466b273c` generated `2026-02-14T03:00:00Z`
-- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `a1cb5fee15a9` generated `2026-02-14T03:00:00Z`
-- ree-experiments-lab handoff: `/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md` @ `451bb65d54d2` generated `2026-02-14T16:15:10.582563Z`
-- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T161714Z_handoff_sync_report.json`
-- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T160012Z_handoff_sync_report.json`
+- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `4c16ed05f596` generated `2026-02-14T20:00:00Z`
+- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `0a964c6b3484` generated `2026-02-14T03:00:00Z`
+- ree-experiments-lab handoff: `/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md` @ `b3478d565a35` generated `2026-02-15T09:56:11.530965Z`
+- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T112045Z_handoff_sync_report.json`
+- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T111152Z_handoff_sync_report.json`
 
 ## Rollback Instructions
 
-- Set `repo_routing.experimental_default_repo` to `ree-v1-minimal` in `evidence/planning/planning_criteria.v1.yaml`.
-- Run `python3 evidence/experiments/scripts/build_experiment_indexes.py`.
-- Run `python3 evidence/planning/scripts/run_governance_cycle.py`.
-- Run `python3 evidence/planning/scripts/emit_weekly_dispatches.py`.
+- If routing is flipped and rollback is needed: set `repo_routing.experimental_default_repo` back to `ree-v1-minimal` in `evidence/planning/planning_criteria.v1.yaml`, then regenerate planning outputs.

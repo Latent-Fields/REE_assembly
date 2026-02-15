@@ -1,8 +1,8 @@
 {
   "schema_version": "ree_v2_cutover_readiness/v2",
-  "generated_at_utc": "2026-02-14T18:40:02.908150Z",
-  "decision": "CUTOVER_DONE",
-  "routing_change_applied": true,
+  "generated_at_utc": "2026-02-15T11:20:50.536340Z",
+  "decision": "NO_CUTOVER",
+  "routing_change_applied": false,
   "required_claims": [
     "MECH-056",
     "MECH-058",
@@ -13,50 +13,50 @@
     "ree_v2_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "4ab69172f0c282ea0b98c6103b65ab70fb021fbe",
-        "generated_utc": "2026-02-14T18:32:05Z",
+        "revision": "03c825ddeb9882c17feadc17ed58a099f20313cd",
+        "generated_utc": "2026-02-15T08:36:04Z",
         "week_of_utc": "2026-02-09"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "65d51ffa9c66de58b5cf5c3bd403f0e2dd6c636c",
-        "generated_utc": "2026-02-14T18:16:43Z",
+        "revision": "4ab69172f0c282ea0b98c6103b65ab70fb021fbe",
+        "generated_utc": "2026-02-14T18:32:05Z",
         "week_of_utc": "2026-02-09"
       }
     ],
     "ree_v1_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "6bcb466b273ca646a744d66f05e199d1c394c0dd",
-        "generated_utc": "2026-02-14T03:00:00Z",
+        "revision": "4c16ed05f5967916cabfbc896c71b604cd42a92c",
+        "generated_utc": "2026-02-14T20:00:00Z",
         "week_of_utc": "2026-02-09"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "a1cb5fee15a9fc8845b0ae09fe8b76aee9de860e",
+        "revision": "0a964c6b348463c841a173752a99db6aaaf97be3",
         "generated_utc": "2026-02-14T03:00:00Z",
         "week_of_utc": "2026-02-09"
       }
     ],
     "ree_lab_handoff_snapshot": {
       "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
-      "revision": "451bb65d54d22b31519a7b4e9206376331f3e948",
-      "generated_utc": "2026-02-14T16:15:10.582563Z",
+      "revision": "b3478d565a359c803179c49c5d31ae51d143f753",
+      "generated_utc": "2026-02-15T09:56:11.530965Z",
       "week_of_utc": "2026-02-09"
     },
     "latest_thursday_ingestion_reports": [
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T161714Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-14T16:17:14.516411Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T112045Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-15T11:20:45.157656Z",
         "targets": [
-          "ree-v1-minimal",
           "ree-v2",
-          "ree-experiments-lab"
+          "ree-experiments-lab",
+          "ree-v1-minimal"
         ],
         "repo_statuses": {
-          "ree-v1-minimal": "ok",
           "ree-v2": "ok",
-          "ree-experiments-lab": "ok"
+          "ree-experiments-lab": "ok",
+          "ree-v1-minimal": "ok"
         },
         "ingestion_step_statuses": [
           {
@@ -72,17 +72,17 @@
         ]
       },
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260214T160012Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-14T16:00:12.050783Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T111152Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-15T11:11:51.496555Z",
         "targets": [
           "ree-v2",
           "ree-experiments-lab",
           "ree-v1-minimal"
         ],
         "repo_statuses": {
-          "ree-v2": "error",
-          "ree-experiments-lab": "error",
-          "ree-v1-minimal": "error"
+          "ree-v2": "skipped",
+          "ree-experiments-lab": "ok",
+          "ree-v1-minimal": "ok"
         },
         "ingestion_step_statuses": [
           {
@@ -111,8 +111,8 @@
           "remote_export_import"
         ],
         "snapshots_checked": [
-          "4ab69172f0c2",
-          "65d51ffa9c66"
+          "03c825ddeb98",
+          "4ab69172f0c2"
         ],
         "failures": []
       }
@@ -181,13 +181,14 @@
               ],
               "common_seeds": [
                 11,
-                29
+                29,
+                47
               ],
-              "metrics_passing": 0,
+              "metrics_passing": 1,
               "metric_outcomes": {
                 "ledger_edit_detected_count": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -202,14 +203,20 @@
                       "v2": 3.5,
                       "v1": 1.0,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 3.5,
+                      "v1": 0.5,
+                      "improved": false
                     }
                   }
                 },
                 "explanation_policy_divergence_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 1,
-                  "passes_two_of_three_seed_rule": false,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 2,
+                  "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
                       "compared": true,
@@ -222,12 +229,18 @@
                       "v2": 0.061096543865,
                       "v1": 0.0599375463650096,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.0602944656775,
+                      "v1": 0.06232965415012026,
+                      "improved": true
                     }
                   }
                 },
                 "domination_lock_in_events": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 1,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -240,6 +253,12 @@
                     "29": {
                       "compared": true,
                       "v2": 4.0,
+                      "v1": 0.5,
+                      "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 1.0,
                       "v1": 0.5,
                       "improved": false
                     }
@@ -255,6 +274,9 @@
                       "compared": false
                     },
                     "29": {
+                      "compared": false
+                    },
+                    "47": {
                       "compared": false
                     }
                   }
@@ -285,7 +307,8 @@
               ],
               "v1_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -322,14 +345,15 @@
               ],
               "common_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "metrics_passing": 4,
               "metric_outcomes": {
                 "latent_prediction_error_mean": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 2,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 3,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
@@ -343,13 +367,19 @@
                       "v2": 0.0575196728315,
                       "v1": 0.17451588770232826,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.052265957078,
+                      "v1": 0.1705859091157576,
+                      "improved": true
                     }
                   }
                 },
                 "latent_prediction_error_p95": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 2,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 3,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
@@ -363,13 +393,19 @@
                       "v2": 0.127642518004,
                       "v1": 0.2951901144191353,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.1199911474825,
+                      "v1": 0.3138915209468386,
+                      "improved": true
                     }
                   }
                 },
                 "latent_rollout_consistency_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 2,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 3,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
@@ -383,12 +419,18 @@
                       "v2": 1.0,
                       "v1": 0.8291763890885284,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 1.0,
+                      "v1": 0.8271172888995262,
+                      "improved": true
                     }
                   }
                 },
                 "e1_e2_timescale_separation_ratio": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 2,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
@@ -403,12 +445,18 @@
                       "v2": 1.8724704033189998,
                       "v1": 1.8428912173826544,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 1.8570125337924999,
+                      "v1": 1.8575702936900753,
+                      "improved": false
                     }
                   }
                 },
                 "representation_drift_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -422,6 +470,12 @@
                       "compared": true,
                       "v2": 0.1125,
                       "v1": 0.03284183373412503,
+                      "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.0583333333335,
+                      "v1": 0.038613702657828514,
                       "improved": false
                     }
                   }
@@ -452,7 +506,8 @@
               ],
               "v1_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -489,13 +544,14 @@
               ],
               "common_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "metrics_passing": 1,
               "metric_outcomes": {
                 "latent_prediction_error_mean": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -510,12 +566,18 @@
                       "v2": 0.1635563169165,
                       "v1": 0.15591023229845624,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.15941722002199998,
+                      "v1": 0.14596679987780067,
+                      "improved": false
                     }
                   }
                 },
                 "latent_uncertainty_calibration_error": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 1,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -530,13 +592,19 @@
                       "v2": 0.1183292757295,
                       "v1": 0.09980651254652953,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.1270423142065,
+                      "v1": 0.11035386856085118,
+                      "improved": false
                     }
                   }
                 },
                 "precision_input_completeness_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 2,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 3,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
@@ -550,12 +618,18 @@
                       "v2": 0.954166666667,
                       "v1": 0.8784685583446998,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.95,
+                      "v1": 0.88694631925666,
+                      "improved": true
                     }
                   }
                 },
                 "uncertainty_coverage_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 1,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -569,6 +643,12 @@
                       "compared": true,
                       "v2": 0.708333333333,
                       "v1": 0.7958452439308761,
+                      "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.708333333333,
+                      "v1": 0.7754694197692142,
                       "improved": false
                     }
                   }
@@ -599,7 +679,8 @@
               ],
               "v1_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -636,14 +717,15 @@
               ],
               "common_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "metrics_passing": 1,
               "metric_outcomes": {
                 "pre_commit_error_signal_to_noise": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
-                  "improved_seed_count": 2,
+                  "compared_seed_count": 3,
+                  "improved_seed_count": 3,
                   "passes_two_of_three_seed_rule": true,
                   "per_seed": {
                     "11": {
@@ -657,12 +739,18 @@
                       "v2": 6.8958217686209995,
                       "v1": 1.7562294725481906,
                       "improved": true
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 6.510145105223001,
+                      "v1": 1.8700028874885959,
+                      "improved": true
                     }
                   }
                 },
                 "post_commit_error_attribution_gain": {
                   "direction": "higher",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 1,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -677,12 +765,18 @@
                       "v2": 0.246494933567,
                       "v1": 0.2867889056143319,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.235508024888,
+                      "v1": 0.27996737033635777,
+                      "improved": false
                     }
                   }
                 },
                 "cross_channel_leakage_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -697,12 +791,18 @@
                       "v2": 0.477187487478,
                       "v1": 0.16381519404583966,
                       "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.47968020505450004,
+                      "v1": 0.15470014145372074,
+                      "improved": false
                     }
                   }
                 },
                 "commitment_reversal_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 2,
+                  "compared_seed_count": 3,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
@@ -716,6 +816,12 @@
                       "compared": true,
                       "v2": 0.17500000000000002,
                       "v1": 0.11494151502313366,
+                      "improved": false
+                    },
+                    "47": {
+                      "compared": true,
+                      "v2": 0.266666666667,
+                      "v1": 0.10448757892747257,
                       "improved": false
                     }
                   }
@@ -746,7 +852,8 @@
               ],
               "v1_seeds": [
                 11,
-                29
+                29,
+                47
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -788,13 +895,14 @@
         ],
         "common_seeds": [
           11,
-          29
+          29,
+          47
         ],
-        "metrics_passing": 0,
+        "metrics_passing": 1,
         "metric_outcomes": {
           "ledger_edit_detected_count": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -809,14 +917,20 @@
                 "v2": 3.5,
                 "v1": 1.0,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 3.5,
+                "v1": 0.5,
+                "improved": false
               }
             }
           },
           "explanation_policy_divergence_rate": {
             "direction": "lower",
-            "compared_seed_count": 2,
-            "improved_seed_count": 1,
-            "passes_two_of_three_seed_rule": false,
+            "compared_seed_count": 3,
+            "improved_seed_count": 2,
+            "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
                 "compared": true,
@@ -829,12 +943,18 @@
                 "v2": 0.061096543865,
                 "v1": 0.0599375463650096,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.0602944656775,
+                "v1": 0.06232965415012026,
+                "improved": true
               }
             }
           },
           "domination_lock_in_events": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 1,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -847,6 +967,12 @@
               "29": {
                 "compared": true,
                 "v2": 4.0,
+                "v1": 0.5,
+                "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 1.0,
                 "v1": 0.5,
                 "improved": false
               }
@@ -862,6 +988,9 @@
                 "compared": false
               },
               "29": {
+                "compared": false
+              },
+              "47": {
                 "compared": false
               }
             }
@@ -892,7 +1021,8 @@
         ],
         "v1_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -929,14 +1059,15 @@
         ],
         "common_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "metrics_passing": 4,
         "metric_outcomes": {
           "latent_prediction_error_mean": {
             "direction": "lower",
-            "compared_seed_count": 2,
-            "improved_seed_count": 2,
+            "compared_seed_count": 3,
+            "improved_seed_count": 3,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
@@ -950,13 +1081,19 @@
                 "v2": 0.0575196728315,
                 "v1": 0.17451588770232826,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.052265957078,
+                "v1": 0.1705859091157576,
+                "improved": true
               }
             }
           },
           "latent_prediction_error_p95": {
             "direction": "lower",
-            "compared_seed_count": 2,
-            "improved_seed_count": 2,
+            "compared_seed_count": 3,
+            "improved_seed_count": 3,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
@@ -970,13 +1107,19 @@
                 "v2": 0.127642518004,
                 "v1": 0.2951901144191353,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.1199911474825,
+                "v1": 0.3138915209468386,
+                "improved": true
               }
             }
           },
           "latent_rollout_consistency_rate": {
             "direction": "higher",
-            "compared_seed_count": 2,
-            "improved_seed_count": 2,
+            "compared_seed_count": 3,
+            "improved_seed_count": 3,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
@@ -990,12 +1133,18 @@
                 "v2": 1.0,
                 "v1": 0.8291763890885284,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 1.0,
+                "v1": 0.8271172888995262,
+                "improved": true
               }
             }
           },
           "e1_e2_timescale_separation_ratio": {
             "direction": "higher",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 2,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
@@ -1010,12 +1159,18 @@
                 "v2": 1.8724704033189998,
                 "v1": 1.8428912173826544,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 1.8570125337924999,
+                "v1": 1.8575702936900753,
+                "improved": false
               }
             }
           },
           "representation_drift_rate": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1029,6 +1184,12 @@
                 "compared": true,
                 "v2": 0.1125,
                 "v1": 0.03284183373412503,
+                "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.0583333333335,
+                "v1": 0.038613702657828514,
                 "improved": false
               }
             }
@@ -1059,7 +1220,8 @@
         ],
         "v1_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1096,13 +1258,14 @@
         ],
         "common_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "metrics_passing": 1,
         "metric_outcomes": {
           "latent_prediction_error_mean": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1117,12 +1280,18 @@
                 "v2": 0.1635563169165,
                 "v1": 0.15591023229845624,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.15941722002199998,
+                "v1": 0.14596679987780067,
+                "improved": false
               }
             }
           },
           "latent_uncertainty_calibration_error": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 1,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1137,13 +1306,19 @@
                 "v2": 0.1183292757295,
                 "v1": 0.09980651254652953,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.1270423142065,
+                "v1": 0.11035386856085118,
+                "improved": false
               }
             }
           },
           "precision_input_completeness_rate": {
             "direction": "higher",
-            "compared_seed_count": 2,
-            "improved_seed_count": 2,
+            "compared_seed_count": 3,
+            "improved_seed_count": 3,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
@@ -1157,12 +1332,18 @@
                 "v2": 0.954166666667,
                 "v1": 0.8784685583446998,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.95,
+                "v1": 0.88694631925666,
+                "improved": true
               }
             }
           },
           "uncertainty_coverage_rate": {
             "direction": "higher",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 1,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1176,6 +1357,12 @@
                 "compared": true,
                 "v2": 0.708333333333,
                 "v1": 0.7958452439308761,
+                "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.708333333333,
+                "v1": 0.7754694197692142,
                 "improved": false
               }
             }
@@ -1206,7 +1393,8 @@
         ],
         "v1_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1243,14 +1431,15 @@
         ],
         "common_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "metrics_passing": 1,
         "metric_outcomes": {
           "pre_commit_error_signal_to_noise": {
             "direction": "higher",
-            "compared_seed_count": 2,
-            "improved_seed_count": 2,
+            "compared_seed_count": 3,
+            "improved_seed_count": 3,
             "passes_two_of_three_seed_rule": true,
             "per_seed": {
               "11": {
@@ -1264,12 +1453,18 @@
                 "v2": 6.8958217686209995,
                 "v1": 1.7562294725481906,
                 "improved": true
+              },
+              "47": {
+                "compared": true,
+                "v2": 6.510145105223001,
+                "v1": 1.8700028874885959,
+                "improved": true
               }
             }
           },
           "post_commit_error_attribution_gain": {
             "direction": "higher",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 1,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1284,12 +1479,18 @@
                 "v2": 0.246494933567,
                 "v1": 0.2867889056143319,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.235508024888,
+                "v1": 0.27996737033635777,
+                "improved": false
               }
             }
           },
           "cross_channel_leakage_rate": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1304,12 +1505,18 @@
                 "v2": 0.477187487478,
                 "v1": 0.16381519404583966,
                 "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.47968020505450004,
+                "v1": 0.15470014145372074,
+                "improved": false
               }
             }
           },
           "commitment_reversal_rate": {
             "direction": "lower",
-            "compared_seed_count": 2,
+            "compared_seed_count": 3,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
@@ -1323,6 +1530,12 @@
                 "compared": true,
                 "v2": 0.17500000000000002,
                 "v1": 0.11494151502313366,
+                "improved": false
+              },
+              "47": {
+                "compared": true,
+                "v2": 0.266666666667,
+                "v1": 0.10448757892747257,
                 "improved": false
               }
             }
@@ -1353,7 +1566,8 @@
         ],
         "v1_seeds": [
           11,
-          29
+          29,
+          47
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1371,9 +1585,6 @@
   ],
   "blockers": [],
   "rollback_instructions": [
-    "Set `repo_routing.experimental_default_repo` to `ree-v1-minimal` in `evidence/planning/planning_criteria.v1.yaml`.",
-    "Run `python3 evidence/experiments/scripts/build_experiment_indexes.py`.",
-    "Run `python3 evidence/planning/scripts/run_governance_cycle.py`.",
-    "Run `python3 evidence/planning/scripts/emit_weekly_dispatches.py`."
+    "If routing is flipped and rollback is needed: set `repo_routing.experimental_default_repo` back to `ree-v1-minimal` in `evidence/planning/planning_criteria.v1.yaml`, then regenerate planning outputs."
   ]
 }
