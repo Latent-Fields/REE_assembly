@@ -186,6 +186,11 @@
   subject: E3.trajectory_commitment
   polarity: asserts
   status: active
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - INV-012
     - ARC-001
@@ -242,6 +247,11 @@
   subject: hippocampus.path_memory
   polarity: asserts
   status: active
+  lifecycle_stage: adjudicated
+  adjudication_outcome: hybridize
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: hybridize
   depends_on:
     - ARC-004
     - ARC-003
@@ -1018,6 +1028,11 @@
   subject: hippocampus.rollout_viability_mapping
   polarity: asserts
   status: provisional
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - ARC-007
     - ARC-003
@@ -1146,6 +1161,11 @@
   subject: hippocampus.kernel_chaining_interface
   polarity: asserts
   status: provisional
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - ARC-018
     - ARC-002
@@ -1232,6 +1252,11 @@
   subject: control_plane.safety_baseline_volatility
   polarity: asserts
   status: provisional
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - ARC-005
     - MECH-005
@@ -1305,6 +1330,11 @@
   subject: control_plane.amygdala_mode_priors
   polarity: asserts
   status: provisional
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - ARC-005
     - MECH-039
@@ -1427,7 +1457,7 @@
   status: candidate
   lifecycle_stage: adjudicated
   adjudication_outcome: hybridize
-  adjudicated_at_utc: 2026-02-15T15:31:31.190642Z
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
   adjudication_mode: external_precedence_allowed
@@ -1476,7 +1506,7 @@
   status: candidate
   lifecycle_stage: adjudicated
   adjudication_outcome: hybridize
-  adjudicated_at_utc: 2026-02-15T17:31:18.251450Z
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
   adjudication_mode: external_precedence_allowed
@@ -1506,7 +1536,11 @@
   subject: precision.confidence_channel_separate_from_prediction_error
   polarity: asserts
   status: candidate
-  lifecycle_stage: adjudication
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   adjudication_mode: external_precedence_allowed
   allowed_conflict_outcomes:
     - retain_ree
@@ -1534,7 +1568,11 @@
   subject: commitment.dual_error_channels_pre_post_commit
   polarity: asserts
   status: candidate
-  lifecycle_stage: adjudication
+  lifecycle_stage: adjudicated
+  adjudication_outcome: hybridize
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: hybridize
   adjudication_mode: external_precedence_allowed
   allowed_conflict_outcomes:
     - retain_ree
@@ -1561,6 +1599,11 @@
   subject: commitment.boundary_token_error_reclassification
   polarity: asserts
   status: candidate
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - ARC-003
     - ARC-015
@@ -1605,6 +1648,11 @@
   subject: latent_predictive_models.control_completion_falsifiability
   polarity: asks
   status: active
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - MECH-057
     - ARC-015
@@ -1643,6 +1691,11 @@
   subject: commitment.boundary_token_minimal_contract
   polarity: asks
   status: active
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
   depends_on:
     - MECH-061
     - ARC-003
@@ -1669,6 +1722,11 @@
   subject: control_plane.minimal_orthogonal_axis_set
   polarity: asks
   status: active
+  lifecycle_stage: adjudicated
+  adjudication_outcome: hybridize
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: hybridize
   depends_on:
     - MECH-063
     - ARC-005

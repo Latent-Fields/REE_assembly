@@ -1,0 +1,322 @@
+{
+  "generated_at_utc": "2026-02-15T18:43:48Z",
+  "items": [
+    {
+      "claim_id": "Q-017",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.967,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.72,
+      "reasons": [],
+      "recommendation": "hybridize",
+      "recommendation_basis": "high_conflict",
+      "recurring_failure_signatures": [
+        {
+          "count": 24,
+          "signature": "q017:control_axis_stability_drop"
+        },
+        {
+          "count": 24,
+          "signature": "q017:control_axis_entropy_collapse"
+        },
+        {
+          "count": 16,
+          "signature": "q017:control_axis_policy_loss_spike"
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.947,
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hybridize",
+        "timestamp_utc": "2026-02-15T17:31:18.251450Z"
+      },
+      "overall_confidence": 0.707,
+      "reasons": [],
+      "recommendation": "hybridize",
+      "recommendation_basis": "already_applied",
+      "recurring_failure_signatures": [
+        {
+          "count": 33,
+          "signature": "mech058:anchor_separation_collapse"
+        },
+        {
+          "count": 19,
+          "signature": "mech058:ema_drift_under_shift"
+        },
+        {
+          "count": 10,
+          "signature": "mech058:latent_cluster_collapse"
+        },
+        {
+          "count": 5,
+          "signature": "threshold:latent_prediction_error_mean"
+        },
+        {
+          "count": 5,
+          "signature": "threshold:latent_prediction_error_p95"
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.944,
+      "latest_decision": {
+        "decision_status": "approved",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-15T15:10:33.830375Z"
+      },
+      "overall_confidence": 0.692,
+      "reasons": [],
+      "recommendation": "hybridize",
+      "recommendation_basis": "high_conflict",
+      "recurring_failure_signatures": [
+        {
+          "count": 40,
+          "signature": "mech060:postcommit_channel_contamination"
+        },
+        {
+          "count": 38,
+          "signature": "mech060:attribution_reliability_break"
+        },
+        {
+          "count": 26,
+          "signature": "mech060:commitment_reversal_spike"
+        },
+        {
+          "count": 10,
+          "signature": "mech060:precommit_channel_contamination"
+        },
+        {
+          "count": 5,
+          "signature": "threshold:pre_commit_error_signal_to_noise"
+        }
+      ]
+    },
+    {
+      "claim_id": "ARC-007",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.857,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.58,
+      "reasons": [],
+      "recommendation": "hybridize",
+      "recommendation_basis": "high_conflict",
+      "recurring_failure_signatures": [
+        {
+          "count": 3,
+          "signature": "ledger_editing"
+        },
+        {
+          "count": 3,
+          "signature": "domination_lock_in"
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.85,
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hybridize",
+        "timestamp_utc": "2026-02-15T15:31:31.190642Z"
+      },
+      "overall_confidence": 0.761,
+      "reasons": [],
+      "recommendation": "hybridize",
+      "recommendation_basis": "already_applied",
+      "recurring_failure_signatures": [
+        {
+          "count": 46,
+          "signature": "stop:ledger_edit_detected_count>0"
+        },
+        {
+          "count": 41,
+          "signature": "ledger_editing"
+        },
+        {
+          "count": 38,
+          "signature": "stop:domination_lock_in_events>0"
+        },
+        {
+          "count": 32,
+          "signature": "domination_lock_in"
+        },
+        {
+          "count": 30,
+          "signature": "stop:explanation_policy_divergence_rate>0.05"
+        }
+      ]
+    },
+    {
+      "claim_id": "ARC-003",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.597,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "MECH-040",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.607,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "MECH-046",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.597,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "MECH-061",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.586,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "Q-012",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.634,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "Q-015",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.667,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.586,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "ARC-018",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.6,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.639,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "MECH-033",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.6,
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "overall_confidence": 0.637,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": []
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence_delta_lit_minus_exp": null,
+      "conflict_ratio": 0.588,
+      "latest_decision": {
+        "decision_status": "approved",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-02-15T15:10:33.793159Z"
+      },
+      "overall_confidence": 0.767,
+      "reasons": [],
+      "recommendation": "retain_ree",
+      "recommendation_basis": "conflict_below_hybrid_threshold",
+      "recurring_failure_signatures": [
+        {
+          "count": 30,
+          "signature": "mech059:uncertainty_metric_gaming_detected"
+        },
+        {
+          "count": 22,
+          "signature": "mech059:abstention_reliability_collapse"
+        },
+        {
+          "count": 10,
+          "signature": "mech059:calibration_slope_break"
+        },
+        {
+          "count": 5,
+          "signature": "threshold:latent_prediction_error_mean"
+        },
+        {
+          "count": 5,
+          "signature": "threshold:latent_uncertainty_calibration_error"
+        }
+      ]
+    }
+  ],
+  "schema_version": "anti_lock_in_dispatch/v1"
+}

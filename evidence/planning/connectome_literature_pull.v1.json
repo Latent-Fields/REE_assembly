@@ -1,6 +1,6 @@
 {
   "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T17:50:04.214870Z",
+  "generated_at_utc": "2026-02-15T18:46:46.088280Z",
   "items": [
     {
       "acceptance_checks": [
@@ -74,22 +74,22 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.982,
+        "conflict_ratio": 0.967,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 0,
-          "supports": 29,
+          "supports": 31,
           "unknown": 0,
-          "weakens": 28
+          "weakens": 29
         },
-        "overall_confidence": 0.724,
+        "overall_confidence": 0.72,
         "recurring_failure_signatures": [
           "q017:control_axis_stability_drop",
           "q017:control_axis_entropy_collapse",
           "q017:control_axis_policy_loss_spike"
         ],
         "source_counts": {
-          "experimental": 53,
+          "experimental": 56,
           "literature": 4
         },
         "trigger_signals": [
@@ -174,11 +174,11 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.968,
+        "conflict_ratio": 0.947,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 48,
+          "supports": 50,
           "unknown": 0,
           "weakens": 45
         },
@@ -191,7 +191,7 @@
           "threshold:latent_prediction_error_p95"
         ],
         "source_counts": {
-          "experimental": 89,
+          "experimental": 91,
           "literature": 5
         },
         "trigger_signals": [
@@ -276,15 +276,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.962,
+        "conflict_ratio": 0.944,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 3,
-          "supports": 55,
+          "supports": 57,
           "unknown": 0,
           "weakens": 51
         },
-        "overall_confidence": 0.697,
+        "overall_confidence": 0.692,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
@@ -293,7 +293,7 @@
           "threshold:pre_commit_error_signal_to_noise"
         ],
         "source_counts": {
-          "experimental": 100,
+          "experimental": 102,
           "literature": 9
         },
         "trigger_signals": [
@@ -314,13 +314,112 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
+      "claim_id": "ARC-007",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / path memory`.",
+      "objective": "Run targeted connectome literature pull for ARC-007.",
+      "plain_english_claim_description": "ARC-007 is an architecture commitment about hippocampus / path memory.",
+      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 2 upstream claim(s): `ARC-004`, `ARC-003`. It currently influences 17 downstream claim(s): `ARC-011`, `ARC-012`, `ARC-014`, `ARC-015`, `ARC-018`, `ARC-019`, `IMPL-004`, `IMPL-005`, `IMPL-019`, `MECH-016`, `MECH-017`, `MECH-018`, `MECH-022`, `MECH-029`, `MECH-030`, `MECH-037`, `MECH-044`. Primary anchor: `docs/architecture/hippocampal_systems.md#arc-007`.",
+      "priority": "high",
+      "pull_id": "CPULL-0004",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
+        "What results directly contradict a literal REE mapping of this claim?",
+        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Structural and effective-connectivity constraints",
+          "query_stems": [
+            "ARC-007 connectome effective connectivity",
+            "hippocampus / path memory neural pathway dissociation"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Computational-neuroscience bridge papers",
+          "query_stems": [
+            "hippocampus / path memory computational neuroscience circuit model",
+            "ARC-007 predictive coding pathway evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Disconfirming/alternative pathway evidence",
+          "query_stems": [
+            "hippocampus / path memory conflicting neural evidence",
+            "ARC-007 alternative mechanism neural circuits"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.857,
+        "consider_new_structure": true,
+        "direction_counts": {
+          "mixed": 0,
+          "supports": 4,
+          "unknown": 0,
+          "weakens": 3
+        },
+        "overall_confidence": 0.58,
+        "recurring_failure_signatures": [
+          "ledger_editing",
+          "domination_lock_in"
+        ],
+        "source_counts": {
+          "experimental": 6,
+          "literature": 1
+        },
+        "trigger_signals": [
+          "external_precedence_pressure",
+          "high_conflict_ratio",
+          "recurring_failure_signatures"
+        ]
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_connectome_arc_007",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
       "claim_id": "MECH-056",
       "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
       "objective": "Run targeted connectome literature pull for MECH-056.",
       "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
       "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
       "priority": "high",
-      "pull_id": "CPULL-0004",
+      "pull_id": "CPULL-0005",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -378,15 +477,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.821,
+        "conflict_ratio": 0.85,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 32,
+          "supports": 34,
           "unknown": 0,
           "weakens": 46
         },
-        "overall_confidence": 0.769,
+        "overall_confidence": 0.761,
         "recurring_failure_signatures": [
           "stop:ledger_edit_detected_count>0",
           "ledger_editing",
@@ -395,7 +494,7 @@
           "stop:explanation_policy_divergence_rate>0.05"
         ],
         "source_counts": {
-          "experimental": 70,
+          "experimental": 72,
           "literature": 9
         },
         "trigger_signals": [
@@ -411,9 +510,9 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "consider_new_structure_items": 4,
+    "consider_new_structure_items": 5,
     "mode": "consider_new_structure_only",
-    "total_selected_items": 4
+    "total_selected_items": 5
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",

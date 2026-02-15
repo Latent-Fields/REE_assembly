@@ -1,16 +1,17 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T17:50:04.214870Z`
+Generated: `2026-02-15T18:46:46.088280Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `Q-017` | `high` | yes | 0.982 | `targeted_review_connectome_q_017` |
-| `CPULL-0002` | `MECH-058` | `high` | yes | 0.968 | `targeted_review_connectome_mech_058` |
-| `CPULL-0003` | `MECH-060` | `high` | yes | 0.962 | `targeted_review_connectome_mech_060` |
-| `CPULL-0004` | `MECH-056` | `high` | yes | 0.821 | `targeted_review_connectome_mech_056` |
+| `CPULL-0001` | `Q-017` | `high` | yes | 0.967 | `targeted_review_connectome_q_017` |
+| `CPULL-0002` | `MECH-058` | `high` | yes | 0.947 | `targeted_review_connectome_mech_058` |
+| `CPULL-0003` | `MECH-060` | `high` | yes | 0.944 | `targeted_review_connectome_mech_060` |
+| `CPULL-0004` | `ARC-007` | `high` | yes | 0.857 | `targeted_review_connectome_arc_007` |
+| `CPULL-0005` | `MECH-056` | `high` | yes | 0.85 | `targeted_review_connectome_mech_056` |
 
 ## Q-017
 
@@ -18,7 +19,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for Q-017.
 - Claim description: Q-017 is an open question about control plane / minimal orthogonal axis set.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.
-- Evidence pressure: conflict_ratio=0.982, overall_confidence=0.724, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.967, overall_confidence=0.72, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `q017:control_axis_stability_drop`, `q017:control_axis_entropy_collapse`, `q017:control_axis_policy_loss_spike`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.
 - Research questions:
@@ -36,7 +37,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-058.
 - Claim description: MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.
-- Evidence pressure: conflict_ratio=0.968, overall_confidence=0.707, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.947, overall_confidence=0.707, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech058:anchor_separation_collapse`, `mech058:ema_drift_under_shift`, `mech058:latent_cluster_collapse`, `threshold:latent_prediction_error_mean`, `threshold:latent_prediction_error_p95`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.
 - Research questions:
@@ -54,7 +55,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-060.
 - Claim description: MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
-- Evidence pressure: conflict_ratio=0.962, overall_confidence=0.697, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.944, overall_confidence=0.692, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break`, `mech060:commitment_reversal_spike`, `mech060:precommit_channel_contamination`, `threshold:pre_commit_error_signal_to_noise`
 - Connectome focus: Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.
 - Research questions:
@@ -66,13 +67,31 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
   - `TRK-02` Commitment and action-monitoring circuit separation; query stems: `anterior cingulate commitment monitoring prediction error channel`, `efference copy outcome evaluation circuit dissociation`
   - `TRK-03` Cross-species connectome findings for dual-channel control; query stems: `cross-species connectome decision learning pathway separation`, `rodent primate planning attribution neural pathway comparison`
 
-## MECH-056
+## ARC-007
 
 - Pull ID: `CPULL-0004`
+- Objective: Run targeted connectome literature pull for ARC-007.
+- Claim description: ARC-007 is an architecture commitment about hippocampus / path memory.
+- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 2 upstream claim(s): `ARC-004`, `ARC-003`. It currently influences 17 downstream claim(s): `ARC-011`, `ARC-012`, `ARC-014`, `ARC-015`, `ARC-018`, `ARC-019`, `IMPL-004`, `IMPL-005`, `IMPL-019`, `MECH-016`, `MECH-017`, `MECH-018`, `MECH-022`, `MECH-029`, `MECH-030`, `MECH-037`, `MECH-044`. Primary anchor: `docs/architecture/hippocampal_systems.md#arc-007`.
+- Evidence pressure: conflict_ratio=0.857, overall_confidence=0.58, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Recurring failure signatures: `ledger_editing`, `domination_lock_in`
+- Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / path memory`.
+- Research questions:
+  - Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?
+  - What results directly contradict a literal REE mapping of this claim?
+  - Which circuit motifs inspire a cleaner architecture split or guardrail in REE?
+- Search tracks:
+  - `TRK-01` Structural and effective-connectivity constraints; query stems: `ARC-007 connectome effective connectivity`, `hippocampus / path memory neural pathway dissociation`
+  - `TRK-02` Computational-neuroscience bridge papers; query stems: `hippocampus / path memory computational neuroscience circuit model`, `ARC-007 predictive coding pathway evidence`
+  - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `hippocampus / path memory conflicting neural evidence`, `ARC-007 alternative mechanism neural circuits`
+
+## MECH-056
+
+- Pull ID: `CPULL-0005`
 - Objective: Run targeted connectome literature pull for MECH-056.
 - Claim description: MECH-056 is a mechanism hypothesis about residue / trajectory first placement.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.
-- Evidence pressure: conflict_ratio=0.821, overall_confidence=0.769, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.85, overall_confidence=0.761, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `stop:ledger_edit_detected_count>0`, `ledger_editing`, `stop:domination_lock_in_events>0`, `domination_lock_in`, `stop:explanation_policy_divergence_rate>0.05`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.
 - Research questions:
@@ -99,7 +118,8 @@ Queue items:
 - `CPULL-0001` / `Q-017` / `targeted_review_connectome_q_017`
 - `CPULL-0002` / `MECH-058` / `targeted_review_connectome_mech_058`
 - `CPULL-0003` / `MECH-060` / `targeted_review_connectome_mech_060`
-- `CPULL-0004` / `MECH-056` / `targeted_review_connectome_mech_056`
+- `CPULL-0004` / `ARC-007` / `targeted_review_connectome_arc_007`
+- `CPULL-0005` / `MECH-056` / `targeted_review_connectome_mech_056`
 
 Per-entry requirements (mandatory):
 - preserve source wording in summary and add explicit REE translation

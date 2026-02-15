@@ -1,0 +1,15 @@
+# Experiment Index: claim_probe_arc_003
+
+Generated: `2026-02-15T18:46:45.789785Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `exp_0006_20260215T180924496279Z` | `2026-02-15T18:09:24.496279Z` | PASS | - | - | - | - | [`summary`](runs/exp_0006_20260215T180924496279Z/summary.md) / [`manifest`](runs/exp_0006_20260215T180924496279Z/manifest.json) / [`metrics`](runs/exp_0006_20260215T180924496279Z/metrics.json) |
+| `exp_0006_20260215T180924416725Z` | `2026-02-15T18:09:24.416725Z` | PASS | - | - | - | - | [`summary`](runs/exp_0006_20260215T180924416725Z/summary.md) / [`manifest`](runs/exp_0006_20260215T180924416725Z/manifest.json) / [`metrics`](runs/exp_0006_20260215T180924416725Z/metrics.json) |
+| `2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal` | `2026-02-15T17:52:25Z` | **FAIL** | fatal_error_count=0<br>latent_prediction_error_mean=0.194607<br>latent_prediction_error_p95=0.452242<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:-0.039269<br>latent_prediction_error_p95:-0.088748<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |
+| `2026-02-15T175224Z_claim-probe-arc-003_seed11_single_error_stream_toyenv_internal_minimal` | `2026-02-15T17:52:24Z` | **FAIL** | fatal_error_count=0<br>latent_prediction_error_mean=0.233876<br>latent_prediction_error_p95=0.54099<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | - | - | PASS | [`summary`](runs/2026-02-15T175224Z_claim-probe-arc-003_seed11_single_error_stream_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T175224Z_claim-probe-arc-003_seed11_single_error_stream_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T175224Z_claim-probe-arc-003_seed11_single_error_stream_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T175224Z_claim-probe-arc-003_seed11_single_error_stream_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |
