@@ -1,17 +1,23 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-15T14:08:37.363952Z`
+Generated: `2026-02-15T14:34:09.308357Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## commit_dual_error_channels
 
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (12 FAIL run(s), latest `2026-02-15T140029Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (15 FAIL run(s), latest `2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (13 FAIL run(s), latest `2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:precommit_channel_contamination` (10 FAIL run(s), latest `bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (10 FAIL run(s), latest `2026-02-15T140029Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `threshold:pre_commit_error_signal_to_noise` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
 - [ ] Investigate signature `threshold:post_commit_error_attribution_gain` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
 - [ ] Investigate signature `threshold:cross_channel_leakage_rate` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
+
+## control_axis_ablation
+
+- [ ] Investigate signature `q017:control_axis_stability_drop` (3 FAIL run(s), latest `2026-02-15T141820Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_entropy_collapse` (3 FAIL run(s), latest `2026-02-15T141820Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (2 FAIL run(s), latest `2026-02-15T141820Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal`).
 
 ## jepa_anchor_ablation
 
@@ -39,3 +45,8 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 - [ ] Investigate signature `ledger_editing` (6 FAIL run(s), latest `2026-02-14T183154Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `threshold:ledger_edit_detected_count` (5 FAIL run(s), latest `2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_ablated`).
 - [ ] Investigate signature `threshold:explanation_policy_divergence_rate` (5 FAIL run(s), latest `2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_ablated`).
+
+## tri_loop_arbitration_policy
+
+- [ ] Investigate signature `q016:tri_loop_alignment_break` (3 FAIL run(s), latest `2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_override_spike` (1 FAIL run(s), latest `2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal`).

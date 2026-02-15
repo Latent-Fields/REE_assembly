@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-15T14:08:37.363952Z`
+Generated: `2026-02-15T14:34:09.308357Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -74,7 +74,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-060
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.686, conflict_ratio=0.923, exp_entries=48, lit_entries=7; directions supports=28, weakens=24, mixed=3, unknown=0, conflict_ratio=0.923
+- Why this decision is needed: overall_conf=0.687, conflict_ratio=0.931, exp_entries=54, lit_entries=7; directions supports=31, weakens=27, mixed=3, unknown=0, conflict_ratio=0.931
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)

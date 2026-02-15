@@ -1,6 +1,6 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-15T14:08:37.363952Z",
+  "generated_at_utc": "2026-02-15T14:34:09.308357Z",
   "items": [
     {
       "adjudication_context": {
@@ -962,16 +962,16 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.329,
-          "experimental_confidence": 0.522,
+          "delta_lit_minus_exp": 0.328,
+          "experimental_confidence": 0.523,
           "literature_confidence": 0.851
         },
-        "conflict_ratio": 0.923,
+        "conflict_ratio": 0.931,
         "current_status": "candidate",
-        "entries_total": 55,
-        "overall_confidence": 0.686,
+        "entries_total": 61,
+        "overall_confidence": 0.687,
         "source_counts": {
-          "experimental": 48,
+          "experimental": 54,
           "literature": 7
         }
       },
@@ -1494,7 +1494,7 @@
           "adopt_jepa_structure",
           "retire_ree_claim"
         ],
-        "anti_lock_in_review_required": false,
+        "anti_lock_in_review_required": true,
         "cascade_policy": {
           "dependency_reopen_status": "candidate",
           "enabled": true,
@@ -1505,7 +1505,7 @@
           ]
         },
         "default_conflict_outcome": "retain_ree",
-        "external_precedence_candidate": false,
+        "external_precedence_candidate": true,
         "temporary_override_mode": {
           "enabled": true,
           "mode_id": "jepa_internal_proxy_override",
@@ -1517,33 +1517,38 @@
         }
       },
       "backlog_id": "EVB-0024",
-      "claim_id": "Q-016",
+      "claim_id": "Q-017",
       "evidence_needed": [
-        "experimental"
+        "experimental",
+        "literature"
       ],
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Run targeted experimental probe.",
+      "next_action": "Run anti-lock-in review and forbid schema-preserving tuning without selecting a recorded conflict outcome.",
       "priority": "high",
       "reasons": [
-        "missing_experimental_evidence"
+        "active_conflict",
+        "anti_lock_in_review_required",
+        "consider_new_structure",
+        "directional_conflict_alert",
+        "external_precedence_pressure"
       ],
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.8,
-          "experimental_confidence": 0.0,
+          "delta_lit_minus_exp": 0.275,
+          "experimental_confidence": 0.525,
           "literature_confidence": 0.8
         },
-        "conflict_ratio": 0.0,
+        "conflict_ratio": 0.75,
         "current_status": "active",
-        "entries_total": 2,
-        "overall_confidence": 0.8,
+        "entries_total": 8,
+        "overall_confidence": 0.635,
         "source_counts": {
-          "experimental": 0,
+          "experimental": 6,
           "literature": 2
         }
       },
@@ -1580,69 +1585,6 @@
         }
       },
       "backlog_id": "EVB-0025",
-      "claim_id": "Q-017",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "high",
-      "reasons": [
-        "missing_experimental_evidence"
-      ],
-      "signals": {
-        "claim_type": "open_question",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.8,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.8
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "active",
-        "entries_total": 2,
-        "overall_confidence": 0.8,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 2
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "adopt_jepa_structure",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "adopt_jepa_structure",
-            "retire_ree_claim"
-          ]
-        },
-        "default_conflict_outcome": "retain_ree",
-        "external_precedence_candidate": false,
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0026",
       "claim_id": "MECH-900",
       "evidence_needed": [
         "literature"
@@ -1705,7 +1647,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0027",
+      "backlog_id": "EVB-0026",
       "claim_id": "Q-001",
       "evidence_needed": [
         "experimental",
@@ -1763,7 +1705,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0028",
+      "backlog_id": "EVB-0027",
       "claim_id": "Q-002",
       "evidence_needed": [
         "experimental",
@@ -1821,7 +1763,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0029",
+      "backlog_id": "EVB-0028",
       "claim_id": "Q-003",
       "evidence_needed": [
         "experimental",
@@ -1879,7 +1821,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0030",
+      "backlog_id": "EVB-0029",
       "claim_id": "Q-004",
       "evidence_needed": [
         "experimental",
@@ -1937,7 +1879,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0031",
+      "backlog_id": "EVB-0030",
       "claim_id": "Q-005",
       "evidence_needed": [
         "experimental",
@@ -1995,7 +1937,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0032",
+      "backlog_id": "EVB-0031",
       "claim_id": "Q-006",
       "evidence_needed": [
         "experimental",
@@ -2053,7 +1995,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0033",
+      "backlog_id": "EVB-0032",
       "claim_id": "Q-007",
       "evidence_needed": [
         "experimental",
@@ -2111,7 +2053,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0034",
+      "backlog_id": "EVB-0033",
       "claim_id": "Q-008",
       "evidence_needed": [
         "experimental",
@@ -2169,7 +2111,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0035",
+      "backlog_id": "EVB-0034",
       "claim_id": "Q-009",
       "evidence_needed": [
         "experimental",
@@ -2227,7 +2169,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0036",
+      "backlog_id": "EVB-0035",
       "claim_id": "Q-010",
       "evidence_needed": [
         "experimental",

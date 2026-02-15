@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-15T14:08:37.363952Z`
+Generated: `2026-02-15T14:34:09.308357Z`
 
 ## Conflict Queue
 
@@ -11,8 +11,9 @@ Generated: `2026-02-15T14:08:37.363952Z`
 | `MECH-056` | directional | 19 | 9 | 0.643 | `2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015` |
 | `MECH-058` | directional, mixed_evidence | 24 | 22 | 0.957 | `exp_0015_20260215T095120253293Z` |
 | `MECH-059` | directional, mixed_evidence | 24 | 19 | 0.884 | `exp_0017_20260215T095123788473Z` |
-| `MECH-060` | directional, mixed_evidence | 28 | 24 | 0.923 | `2026-02-15_mech061_agency_comparator_review_nrn2017` |
+| `MECH-060` | directional, mixed_evidence | 31 | 27 | 0.931 | `2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` |
 | `Q-011` | directional | 1 | 3 | 0.5 | `2026-02-14_q011_reverse_replay_reward_modulation_neuron2016` |
+| `Q-017` | directional | 5 | 3 | 0.75 | `2026-02-15_mech063_lcne_adaptive_gain_annurev2005` |
 
 ## Conflict Details
 
@@ -104,16 +105,16 @@ Generated: `2026-02-15T14:08:37.363952Z`
 
 ### MECH-060
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=28, weakens=24, conflict_ratio=0.923, overall_confidence=0.686
+- Evidence breakdown: supports=31, weakens=27, conflict_ratio=0.931, overall_confidence=0.687
 - Recent entries:
-  - `2026-02-15T13:58:35Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
-  - `2026-02-15T13:58:35Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
-  - `2026-02-15T14:00:29Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
-  - `2026-02-15T14:00:29Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
-  - `2026-02-15T14:16:00Z` `literature` `targeted_review_mech_061` direction=`supports` confidence=0.69
+  - `2026-02-15T14:17:52Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:17:52Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T14:17:52Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:17:52Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T14:17:52Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (16)
-  - `mech060:attribution_reliability_break` (14)
+  - `mech060:postcommit_channel_contamination` (19)
+  - `mech060:attribution_reliability_break` (17)
   - `mech060:precommit_channel_contamination` (10)
   - `threshold:pre_commit_error_signal_to_noise` (5)
   - `threshold:post_commit_error_attribution_gain` (5)
@@ -136,6 +137,24 @@ Generated: `2026-02-15T14:08:37.363952Z`
   - `stop:ledger_edit_detected_count>0` (1)
   - `stop:explanation_policy_divergence_rate>0.05` (1)
   - `stop:domination_lock_in_events>0` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### Q-017
+- Conflict types: directional
+- Evidence breakdown: supports=5, weakens=3, conflict_ratio=0.75, overall_confidence=0.635
+- Recent entries:
+  - `2026-02-15T14:18:20Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:18:20Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T14:18:20Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:21:00Z` `literature` `targeted_review_mech_063` direction=`supports` confidence=0.79
+  - `2026-02-15T14:22:00Z` `literature` `targeted_review_mech_063` direction=`supports` confidence=0.81
+- Recurring failure signatures:
+  - `q017:control_axis_stability_drop` (3)
+  - `q017:control_axis_entropy_collapse` (3)
+  - `q017:control_axis_policy_loss_spike` (2)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
