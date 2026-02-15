@@ -139,17 +139,14 @@
       "tier": "v2_required",
       "status": "active",
       "producer_modules": [
-        "hook_surface_adapter",
-        "e3"
+        "pack_emitter"
       ],
       "consumer_modules": [
         "pack_emitter",
-        "v3_hook_adapter",
-        "model_update_engine",
-        "audit_logger"
+        "v3_hook_adapter"
       ],
-      "lifecycle_phase": "pre_commit",
-      "payload_contract": "IMPL-025:commit_boundary_token",
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "bridge:commit_boundary_token",
       "key_fields": [
         "commit_boundary.commit_id",
         "commit_boundary.trajectory_id",
@@ -158,8 +155,8 @@
         "commit_boundary.mode_snapshot"
       ],
       "availability": "always",
-      "stability": "experimental",
-      "notes": "v2 bridge hook for MECH-061 commit-boundary token envelope."
+      "stability": "stable",
+      "notes": "Commit-boundary token for pre/post stream joins."
     },
     {
       "hook_id": "HK-008",
@@ -167,16 +164,14 @@
       "tier": "v2_required",
       "status": "active",
       "producer_modules": [
-        "hook_surface_adapter",
-        "e3"
+        "pack_emitter"
       ],
       "consumer_modules": [
         "pack_emitter",
-        "v3_hook_adapter",
-        "audit_logger"
+        "v3_hook_adapter"
       ],
-      "lifecycle_phase": "pre_commit",
-      "payload_contract": "IMPL-025:tri_loop_gate_trace",
+      "lifecycle_phase": "post_predict",
+      "payload_contract": "bridge:tri_loop_gate_trace",
       "key_fields": [
         "trace.gate_motor",
         "trace.gate_cognitive_set",
@@ -185,8 +180,8 @@
         "trace.gate_conflict_flag"
       ],
       "availability": "always",
-      "stability": "experimental",
-      "notes": "v2 bridge hook for MECH-062 tri-loop arbitration and conflict traces."
+      "stability": "stable",
+      "notes": "Tri-loop gate trace for arbitration provenance."
     },
     {
       "hook_id": "HK-009",
@@ -194,24 +189,22 @@
       "tier": "v2_required",
       "status": "active",
       "producer_modules": [
-        "hook_surface_adapter",
-        "control_plane"
+        "pack_emitter"
       ],
       "consumer_modules": [
         "pack_emitter",
-        "v3_hook_adapter",
-        "audit_logger"
+        "v3_hook_adapter"
       ],
       "lifecycle_phase": "post_predict",
-      "payload_contract": "IMPL-025:control_axis_telemetry",
+      "payload_contract": "bridge:control_axis_telemetry",
       "key_fields": [
         "control_axes.tonic",
         "control_axes.phasic",
         "control_axes.readout_weights"
       ],
       "availability": "always",
-      "stability": "experimental",
-      "notes": "v2 bridge hook for MECH-063 orthogonal tonic/phasic axis telemetry."
+      "stability": "stable",
+      "notes": "Control-axis telemetry for downstream control adapters."
     },
     {
       "hook_id": "HK-101",
