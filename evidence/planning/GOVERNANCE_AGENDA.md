@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T15:52:13.098824Z`
+Generated: `2026-02-15T17:50:04.220215Z`
 
 ## Cycle Status
 
@@ -34,14 +34,14 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-059` conflict_types=directional, mixed_evidence
 - `MECH-060` conflict_types=directional, source_disagreement
 - `Q-017` conflict_types=directional, source_disagreement
-3. Architecture-Epoch Applicability: enabled=True; considered=447; applicable=62; stale=385; claims_with_stale=26.
+3. Architecture-Epoch Applicability: enabled=True; considered=575; applicable=190; stale=385; claims_with_stale=26.
 - report: `evidence/planning/architecture_epoch_applicability.v1.json`
-- `MECH-060` stale_entries=81; stale_ratio=0.91
-- `MECH-059` stale_entries=67; stale_ratio=0.893
-- `MECH-058` stale_entries=66; stale_ratio=0.892
-- `MECH-056` stale_entries=51; stale_ratio=0.864
-- `Q-016` stale_entries=38; stale_ratio=0.809
-- `Q-017` stale_entries=28; stale_ratio=0.778
+- `MECH-060` stale_entries=81; stale_ratio=0.743
+- `MECH-059` stale_entries=67; stale_ratio=0.713
+- `MECH-058` stale_entries=66; stale_ratio=0.702
+- `MECH-056` stale_entries=51; stale_ratio=0.646
+- `Q-016` stale_entries=38; stale_ratio=0.514
+- `Q-017` stale_entries=28; stale_ratio=0.491
 - `MECH-057` stale_entries=7; stale_ratio=1.0
 - `ARC-018` stale_entries=5; stale_ratio=0.833
 - `MECH-033` stale_entries=5; stale_ratio=0.833
@@ -55,29 +55,29 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 5. Manual Carryover: 0 open item(s), 1 total.
 - source: `evidence/planning/manual_carryover_items.v1.json`
 6. Architecture Structure: 4 consider-new-structure item(s), 10 total register item(s).
-- `MECH-056` conflict_ratio=0.966; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-058` conflict_ratio=0.959; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-060` conflict_ratio=0.953; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `Q-017` conflict_ratio=0.944; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `Q-017` conflict_ratio=0.982; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-058` conflict_ratio=0.968; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-060` conflict_ratio=0.962; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-056` conflict_ratio=0.821; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 7. Structure Dossiers: 4 dossier(s), 4 marked consider-new-structure.
 - dossier index: `evidence/planning/structure_review/latest/INDEX.md`
 8. Connectome Literature Pull: 4 queued claim(s), 4 high-priority.
 - connectome queue: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`
-- `MECH-056` pull_id=`CPULL-0001`
+- `Q-017` pull_id=`CPULL-0001`
 - `MECH-058` pull_id=`CPULL-0002`
 - `MECH-060` pull_id=`CPULL-0003`
-- `Q-017` pull_id=`CPULL-0004`
+- `MECH-056` pull_id=`CPULL-0004`
 9. Model Adjudication: 5 external-precedence candidate(s), 5 anti-lock-in review item(s).
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.259
-- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.354
-- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.325
-- `Q-017` external_precedence_candidate=yes; delta_lit_minus_exp=0.345
-- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.213
+- `Q-017` external_precedence_candidate=yes; delta_lit_minus_exp=0.348
+- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.355
+- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.327
+- `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.207
+- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.162
 10. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
-11. Evidence Dispatch: 33 high-priority proposal(s), 33 total.
+11. Evidence Dispatch: 32 high-priority proposal(s), 33 total.
 - ree-experiments-lab: total=4, experimental=4, literature_review=0
 - ree-v2: total=29, experimental=29, literature_review=0
 12. Maintenance: 0 unlinked evidence run(s), 0 warning(s).

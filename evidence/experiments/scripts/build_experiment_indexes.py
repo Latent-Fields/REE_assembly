@@ -1847,6 +1847,28 @@ def _priority_rank(priority: str) -> int:
     return {"high": 0, "medium": 1, "low": 2}.get(priority, 3)
 
 
+def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
+    reasons = {str(r) for r in item.get("reasons", [])}
+    signals = item.get("signals", {})
+    conflict_ratio = float(signals.get("conflict_ratio", 0.0))
+    entries_total = int(signals.get("entries_total", 0))
+    # Lower rank is more urgent.
+    # 0: architecture-pressure conflict triage, 1: active conflicts, 2+: evidence-coverage gaps.
+    if "anti_lock_in_review_required" in reasons or "external_precedence_pressure" in reasons:
+        tier = 0
+    elif "consider_new_structure" in reasons:
+        tier = 1
+    elif "active_conflict" in reasons or "directional_conflict_alert" in reasons:
+        tier = 2
+    elif "missing_experimental_evidence" in reasons:
+        tier = 3
+    elif "missing_literature_evidence" in reasons:
+        tier = 4
+    else:
+        tier = 5
+    return (tier, -conflict_ratio, -entries_total, str(item.get("claim_id", "")))
+
+
 def _priority_from_reasons(reasons: list[str]) -> str:
     high_markers = {
         "directional_conflict_alert",
@@ -2263,7 +2285,7 @@ def _write_planning_outputs(
     backlog_items.sort(
         key=lambda item: (
             _priority_rank(str(item.get("priority", "low"))),
-            str(item.get("claim_id", "")),
+            _backlog_urgency_rank(item),
         )
     )
     for idx, item in enumerate(backlog_items, start=1):

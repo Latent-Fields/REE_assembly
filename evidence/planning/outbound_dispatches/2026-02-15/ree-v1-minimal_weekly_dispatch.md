@@ -1,6 +1,6 @@
 # Weekly Dispatch - ree-v1-minimal
 
-Generated: `2026-02-15T14:56:46.678173Z`
+Generated: `2026-02-15T17:33:12.125815Z`
 
 ## Context
 

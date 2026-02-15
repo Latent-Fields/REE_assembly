@@ -1,6 +1,6 @@
 {
   "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T15:52:13.092109Z",
+  "generated_at_utc": "2026-02-15T17:50:04.214870Z",
   "items": [
     {
       "acceptance_checks": [
@@ -10,11 +10,11 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "MECH-056",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
-      "objective": "Run targeted connectome literature pull for MECH-056.",
-      "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
+      "claim_id": "Q-017",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.",
+      "objective": "Run targeted connectome literature pull for Q-017.",
+      "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
+      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.",
       "priority": "high",
       "pull_id": "CPULL-0001",
       "required_record_contract": {
@@ -48,8 +48,8 @@
         {
           "focus": "Structural and effective-connectivity constraints",
           "query_stems": [
-            "MECH-056 connectome effective connectivity",
-            "residue / trajectory first placement neural pathway dissociation"
+            "Q-017 connectome effective connectivity",
+            "control plane / minimal orthogonal axis set neural pathway dissociation"
           ],
           "source_preference": "primary",
           "track_id": "TRK-01"
@@ -57,8 +57,8 @@
         {
           "focus": "Computational-neuroscience bridge papers",
           "query_stems": [
-            "residue / trajectory first placement computational neuroscience circuit model",
-            "MECH-056 predictive coding pathway evidence"
+            "control plane / minimal orthogonal axis set computational neuroscience circuit model",
+            "Q-017 predictive coding pathway evidence"
           ],
           "source_preference": "primary",
           "track_id": "TRK-02"
@@ -66,33 +66,31 @@
         {
           "focus": "Disconfirming/alternative pathway evidence",
           "query_stems": [
-            "residue / trajectory first placement conflicting neural evidence",
-            "MECH-056 alternative mechanism neural circuits"
+            "control plane / minimal orthogonal axis set conflicting neural evidence",
+            "Q-017 alternative mechanism neural circuits"
           ],
           "source_preference": "primary",
           "track_id": "TRK-03"
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.966,
+        "conflict_ratio": 0.982,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 1,
-          "supports": 28,
+          "mixed": 0,
+          "supports": 29,
           "unknown": 0,
-          "weakens": 30
+          "weakens": 28
         },
-        "overall_confidence": 0.744,
+        "overall_confidence": 0.724,
         "recurring_failure_signatures": [
-          "stop:ledger_edit_detected_count>0",
-          "ledger_editing",
-          "stop:domination_lock_in_events>0",
-          "stop:explanation_policy_divergence_rate>0.05",
-          "domination_lock_in"
+          "q017:control_axis_stability_drop",
+          "q017:control_axis_entropy_collapse",
+          "q017:control_axis_policy_loss_spike"
         ],
         "source_counts": {
-          "experimental": 50,
-          "literature": 9
+          "experimental": 53,
+          "literature": 4
         },
         "trigger_signals": [
           "external_precedence_pressure",
@@ -101,7 +99,7 @@
         ]
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_056",
+      "suggested_literature_type": "targeted_review_connectome_q_017",
       "target_repo": "REE_assembly"
     },
     {
@@ -176,13 +174,13 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.959,
+        "conflict_ratio": 0.968,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 38,
+          "supports": 48,
           "unknown": 0,
-          "weakens": 35
+          "weakens": 45
         },
         "overall_confidence": 0.707,
         "recurring_failure_signatures": [
@@ -193,7 +191,7 @@
           "threshold:latent_prediction_error_p95"
         ],
         "source_counts": {
-          "experimental": 69,
+          "experimental": 89,
           "literature": 5
         },
         "trigger_signals": [
@@ -278,15 +276,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.953,
+        "conflict_ratio": 0.962,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 3,
-          "supports": 45,
+          "supports": 55,
           "unknown": 0,
-          "weakens": 41
+          "weakens": 51
         },
-        "overall_confidence": 0.698,
+        "overall_confidence": 0.697,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
@@ -295,7 +293,7 @@
           "threshold:pre_commit_error_signal_to_noise"
         ],
         "source_counts": {
-          "experimental": 80,
+          "experimental": 100,
           "literature": 9
         },
         "trigger_signals": [
@@ -316,11 +314,11 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "Q-017",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.",
-      "objective": "Run targeted connectome literature pull for Q-017.",
-      "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.",
+      "claim_id": "MECH-056",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
+      "objective": "Run targeted connectome literature pull for MECH-056.",
+      "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
       "priority": "high",
       "pull_id": "CPULL-0004",
       "required_record_contract": {
@@ -354,8 +352,8 @@
         {
           "focus": "Structural and effective-connectivity constraints",
           "query_stems": [
-            "Q-017 connectome effective connectivity",
-            "control plane / minimal orthogonal axis set neural pathway dissociation"
+            "MECH-056 connectome effective connectivity",
+            "residue / trajectory first placement neural pathway dissociation"
           ],
           "source_preference": "primary",
           "track_id": "TRK-01"
@@ -363,8 +361,8 @@
         {
           "focus": "Computational-neuroscience bridge papers",
           "query_stems": [
-            "control plane / minimal orthogonal axis set computational neuroscience circuit model",
-            "Q-017 predictive coding pathway evidence"
+            "residue / trajectory first placement computational neuroscience circuit model",
+            "MECH-056 predictive coding pathway evidence"
           ],
           "source_preference": "primary",
           "track_id": "TRK-02"
@@ -372,31 +370,33 @@
         {
           "focus": "Disconfirming/alternative pathway evidence",
           "query_stems": [
-            "control plane / minimal orthogonal axis set conflicting neural evidence",
-            "Q-017 alternative mechanism neural circuits"
+            "residue / trajectory first placement conflicting neural evidence",
+            "MECH-056 alternative mechanism neural circuits"
           ],
           "source_preference": "primary",
           "track_id": "TRK-03"
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.944,
+        "conflict_ratio": 0.821,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 19,
+          "mixed": 1,
+          "supports": 32,
           "unknown": 0,
-          "weakens": 17
+          "weakens": 46
         },
-        "overall_confidence": 0.725,
+        "overall_confidence": 0.769,
         "recurring_failure_signatures": [
-          "q017:control_axis_stability_drop",
-          "q017:control_axis_entropy_collapse",
-          "q017:control_axis_policy_loss_spike"
+          "stop:ledger_edit_detected_count>0",
+          "ledger_editing",
+          "stop:domination_lock_in_events>0",
+          "domination_lock_in",
+          "stop:explanation_policy_divergence_rate>0.05"
         ],
         "source_counts": {
-          "experimental": 32,
-          "literature": 4
+          "experimental": 70,
+          "literature": 9
         },
         "trigger_signals": [
           "external_precedence_pressure",
@@ -405,7 +405,7 @@
         ]
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_017",
+      "suggested_literature_type": "targeted_review_connectome_mech_056",
       "target_repo": "REE_assembly"
     }
   ],
