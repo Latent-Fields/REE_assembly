@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-056
 
-Generated: `2026-02-15T15:32:10.296348Z`
+Generated: `2026-02-15T15:37:22.325548Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -15,13 +15,13 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
-- Conflict ratio: 0.941
-- Overall confidence: 0.724
+- Conflict ratio: 0.966
+- Overall confidence: 0.744
 
 ## Evidence Mix and Why It Looks This Way
 
-- Direction counts: supports=27, weakens=24, mixed=1, unknown=0.
-- Experimental mix: supports=19, weakens=24, mixed=0, unknown=0.
+- Direction counts: supports=28, weakens=30, mixed=1, unknown=0.
+- Experimental mix: supports=20, weakens=30, mixed=0, unknown=0.
 - Literature mix: supports=8, weakens=0, mixed=1, unknown=0.
 - Direction narrative: Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.
 - Source narrative: Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions.
@@ -30,22 +30,22 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| residue / trajectory first placement is broadly correct, but failures are boundary-condition failures. | 0.512 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| residue / trajectory first placement is over-scoped and should be narrowed or split. | 0.469 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of residue / trajectory first placement but add explicit gating or interface separation. | 0.469 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| residue / trajectory first placement is broadly correct, but failures are boundary-condition failures. | 0.468 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| residue / trajectory first placement is over-scoped and should be narrowed or split. | 0.516 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of residue / trajectory first placement but add explicit gating or interface separation. | 0.468 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
 | `2026-02-15T16:02:00Z` | Prioritized memory access explains planning and hippocampal replay (2018, Nature Neuroscience) | `supports` | 0.73 | The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0014 scoped to MECH-056. | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T15:28:00Z` | Hippocampal replay reflects specific past experiences rather than a plan for subsequent choice (2021, Neuron) | `mixed` | 0.71 | Findings challenge a strict immediate-planning interpretation of replay and indicate memory-maintenance roles, supporting a hybridized MECH-056 with tighter scope and explicit boundary conditions. | In REE terms, this implies `residue / trajectory first placement` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
-| `2026-02-15T15:27:00Z` | Cholinergic suppression of hippocampal sharp-wave ripples impairs working memory (2021, Proceedings of the National Academy of Sciences) | `supports` | 0.75 | Task-phase-dependent septo-hippocampal cholinergic modulation impacting SWRs and performance supports a control-gated trajectory mechanism rather than a monolithic always-on trajectory policy. | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T15:26:00Z` | A recurrent network model of planning explains hippocampal replay and human behavior (2024, Nature Neuroscience) | `supports` | 0.77 | The model explicitly couples prefrontal control with hippocampal replay rollouts, supporting a trajectory-first decision-control pathway with downstream behavioral benefit. | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T15:25:00Z` | Awake hippocampal sharp-wave ripples support spatial memory (2012, Science) | `supports` | 0.82 | Causal SWR disruption in awake task performance supports trajectory-level replay as functionally relevant for memory-guided decisions, consistent with trajectory-first pressure before representational updates. | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T15:13:00Z` | Prioritized memory access explains planning and hippocampal replay (2018, Nature Neuroscience) | `supports` | 0.73 | The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T14:56:38Z` | Run-pack `2026-02-15T145638Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-15T14:56:38Z` | Run-pack `2026-02-15T145638Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `trajectory_integrity` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `residue / trajectory first placement` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-15T15:36:22Z` | Run-pack `2026-02-15T153622Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-15T15:35:19.572504Z` | Run-pack `exp_0011_20260215T153519572504Z` in `trajectory_integrity` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `residue / trajectory first placement` and suggests the claim is likely too strong or missing a key gating variable. |
 
 ## Left-Field Suggestions
 

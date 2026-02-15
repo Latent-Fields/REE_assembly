@@ -12,14 +12,14 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` at `2026-02-15T14:56:37Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
-- `2026-02-15T145637Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` at `2026-02-15T14:56:37Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
-- `2026-02-15T145637Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal` at `2026-02-15T14:56:37Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
+- `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` at `2026-02-15T15:36:21Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
+- `2026-02-15T153621Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` at `2026-02-15T15:36:21Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
+- `2026-02-15T153621Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal` at `2026-02-15T15:36:21Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
 
 Recurring signatures:
-- `mech060:postcommit_channel_contamination` occurred in 24 FAIL run(s); latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
-- `mech060:attribution_reliability_break` occurred in 22 FAIL run(s); latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
-- `mech060:commitment_reversal_spike` occurred in 14 FAIL run(s); latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
+- `mech060:postcommit_channel_contamination` occurred in 27 FAIL run(s); latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
+- `mech060:attribution_reliability_break` occurred in 25 FAIL run(s); latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
+- `mech060:commitment_reversal_spike` occurred in 17 FAIL run(s); latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`
 - `mech060:precommit_channel_contamination` occurred in 10 FAIL run(s); latest `bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z`
 - `threshold:pre_commit_error_signal_to_noise` occurred in 5 FAIL run(s); latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`
 - `threshold:post_commit_error_attribution_gain` occurred in 5 FAIL run(s); latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`
@@ -27,9 +27,9 @@ Recurring signatures:
 - `threshold:commitment_reversal_rate` occurred in 5 FAIL run(s); latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`
 
 Suggested design TODOs:
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (24 FAIL run(s), latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (22 FAIL run(s), latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:commitment_reversal_spike` (14 FAIL run(s), latest `2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (27 FAIL run(s), latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (25 FAIL run(s), latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:commitment_reversal_spike` (17 FAIL run(s), latest `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:precommit_channel_contamination` (10 FAIL run(s), latest `bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z`).
 - [ ] Investigate signature `threshold:pre_commit_error_signal_to_noise` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
 - [ ] Investigate signature `threshold:post_commit_error_attribution_gain` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).

@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-15T15:32:10.092748Z",
+      "last_run_generated_at_utc": "2026-02-15T15:37:22.106645Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -48,11 +48,11 @@
           "claim_id": "MECH-056",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.297,
-            "experimental_confidence": 0.576,
+            "delta_lit_minus_exp": 0.259,
+            "experimental_confidence": 0.614,
             "literature_confidence": 0.873
           },
-          "conflict_ratio": 0.941,
+          "conflict_ratio": 0.966,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -69,32 +69,32 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.111,
-          "overall_confidence": 0.724,
+          "overall_confidence": 0.744,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 26,
+              "count": 31,
               "signature": "stop:ledger_edit_detected_count>0"
             },
             {
-              "count": 22,
+              "count": 26,
+              "signature": "ledger_editing"
+            },
+            {
+              "count": 26,
               "signature": "stop:domination_lock_in_events>0"
             },
             {
               "count": 21,
-              "signature": "ledger_editing"
-            },
-            {
-              "count": 18,
               "signature": "stop:explanation_policy_divergence_rate>0.05"
             },
             {
-              "count": 16,
+              "count": 20,
               "signature": "domination_lock_in"
             }
           ],
           "source_counts": {
-            "experimental": 43,
+            "experimental": 50,
             "literature": 9
           },
           "trigger_signals": [
@@ -136,11 +136,11 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.361,
-            "experimental_confidence": 0.523,
+            "delta_lit_minus_exp": 0.354,
+            "experimental_confidence": 0.53,
             "literature_confidence": 0.884
           },
-          "conflict_ratio": 0.939,
+          "conflict_ratio": 0.959,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -157,15 +157,15 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.2,
-          "overall_confidence": 0.704,
+          "overall_confidence": 0.707,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 21,
+              "count": 24,
               "signature": "mech058:anchor_separation_collapse"
             },
             {
-              "count": 15,
+              "count": 16,
               "signature": "mech058:ema_drift_under_shift"
             },
             {
@@ -182,7 +182,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 62,
+            "experimental": 69,
             "literature": 5
           },
           "trigger_signals": [
@@ -224,11 +224,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
-            "experimental_confidence": 0.53,
+            "delta_lit_minus_exp": 0.325,
+            "experimental_confidence": 0.535,
             "literature_confidence": 0.86
           },
-          "conflict_ratio": 0.937,
+          "conflict_ratio": 0.953,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -245,19 +245,19 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.695,
+          "overall_confidence": 0.698,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 28,
+              "count": 31,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 26,
+              "count": 29,
               "signature": "mech060:attribution_reliability_break"
             },
             {
-              "count": 14,
+              "count": 17,
               "signature": "mech060:commitment_reversal_spike"
             },
             {
@@ -270,7 +270,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 73,
+            "experimental": 80,
             "literature": 9
           },
           "trigger_signals": [
@@ -312,11 +312,11 @@
           "claim_id": "Q-017",
           "claim_type": "open_question",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.355,
-            "experimental_confidence": 0.543,
+            "delta_lit_minus_exp": 0.345,
+            "experimental_confidence": 0.553,
             "literature_confidence": 0.898
           },
-          "conflict_ratio": 0.897,
+          "conflict_ratio": 0.944,
           "consider_new_structure": true,
           "current_status": "active",
           "external_precedence_candidate": true,
@@ -333,113 +333,25 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.0,
-          "overall_confidence": 0.721,
+          "overall_confidence": 0.725,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_stability_drop"
             },
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_entropy_collapse"
             },
             {
-              "count": 8,
+              "count": 10,
               "signature": "q017:control_axis_policy_loss_spike"
             }
           ],
           "source_counts": {
-            "experimental": 25,
+            "experimental": 32,
             "literature": 4
-          },
-          "trigger_signals": [
-            "external_precedence_pressure",
-            "high_conflict_ratio",
-            "recurring_failure_signatures"
-          ]
-        },
-        {
-          "adjudication_policy": {
-            "allowed_conflict_outcomes": [
-              "retain_ree",
-              "hybridize",
-              "adopt_jepa_structure",
-              "retire_ree_claim"
-            ],
-            "anti_lock_in_gate_enabled": true,
-            "cascade_policy": {
-              "dependency_reopen_status": "candidate",
-              "enabled": true,
-              "require_followup_proposals": true,
-              "trigger_outcomes": [
-                "adopt_jepa_structure",
-                "retire_ree_claim"
-              ]
-            },
-            "default_conflict_outcome": "retain_ree",
-            "temporary_override_mode": {
-              "enabled": true,
-              "mode_id": "jepa_internal_proxy_override",
-              "requirements": [
-                "explicit_proxy_provenance",
-                "calibration_metrics_present",
-                "rollback_trigger_documented"
-              ]
-            }
-          },
-          "anti_lock_in_review_required": true,
-          "claim_id": "MECH-059",
-          "claim_type": "mechanism_hypothesis",
-          "confidence_split": {
-            "delta_lit_minus_exp": 0.221,
-            "experimental_confidence": 0.627,
-            "literature_confidence": 0.848
-          },
-          "conflict_ratio": 0.704,
-          "consider_new_structure": true,
-          "current_status": "candidate",
-          "external_precedence_candidate": true,
-          "gap_id": "AGR-0005",
-          "latest_decision": {
-            "decision_status": "approved",
-            "recommendation": "hold_candidate_resolve_conflict",
-            "timestamp_utc": "2026-02-15T15:10:33.793159Z"
-          },
-          "literature_direction_counts": {
-            "mixed": 2,
-            "supports": 4,
-            "unknown": 0,
-            "weakens": 0
-          },
-          "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.737,
-          "recommendation": "consider_new_structure",
-          "recurring_failure_signatures": [
-            {
-              "count": 20,
-              "signature": "mech059:uncertainty_metric_gaming_detected"
-            },
-            {
-              "count": 12,
-              "signature": "mech059:abstention_reliability_collapse"
-            },
-            {
-              "count": 10,
-              "signature": "mech059:calibration_slope_break"
-            },
-            {
-              "count": 5,
-              "signature": "threshold:latent_prediction_error_mean"
-            },
-            {
-              "count": 5,
-              "signature": "threshold:latent_uncertainty_calibration_error"
-            }
-          ],
-          "source_counts": {
-            "experimental": 62,
-            "literature": 6
           },
           "trigger_signals": [
             "external_precedence_pressure",
@@ -528,35 +440,35 @@
         },
         {
           "claim_id": "`MECH-056`",
-          "conflict_ratio": "0.941",
+          "conflict_ratio": "0.966",
           "conflict_types": "directional, source_disagreement, mixed_evidence",
           "latest": "`2026-02-15_mech056_lit-0014_completion`",
-          "supports": "27",
-          "weakens": "24"
+          "supports": "28",
+          "weakens": "30"
         },
         {
           "claim_id": "`MECH-058`",
-          "conflict_ratio": "0.939",
-          "conflict_types": "directional, mixed_evidence",
+          "conflict_ratio": "0.959",
+          "conflict_types": "directional, source_disagreement, mixed_evidence",
           "latest": "`2026-02-15_mech058_lit-0017_completion`",
-          "supports": "35",
-          "weakens": "31"
+          "supports": "38",
+          "weakens": "35"
         },
         {
           "claim_id": "`MECH-059`",
-          "conflict_ratio": "0.704",
+          "conflict_ratio": "0.69",
           "conflict_types": "directional, mixed_evidence",
           "latest": "`2026-02-15_mech059_lit-0019_completion`",
-          "supports": "35",
-          "weakens": "19"
+          "supports": "38",
+          "weakens": "20"
         },
         {
           "claim_id": "`MECH-060`",
-          "conflict_ratio": "0.937",
+          "conflict_ratio": "0.953",
           "conflict_types": "directional, source_disagreement, mixed_evidence",
           "latest": "`2026-02-15_mech060_lit-0021_completion`",
-          "supports": "42",
-          "weakens": "37"
+          "supports": "45",
+          "weakens": "41"
         },
         {
           "claim_id": "`Q-011`",
@@ -568,17 +480,17 @@
         },
         {
           "claim_id": "`Q-017`",
-          "conflict_ratio": "0.897",
+          "conflict_ratio": "0.944",
           "conflict_types": "directional, source_disagreement",
           "latest": "`2026-02-15_q017_lit-0032_completion`",
-          "supports": "16",
-          "weakens": "13"
+          "supports": "19",
+          "weakens": "17"
         }
       ],
       "prompt": "Resolve directional/source conflicts before status promotions."
     },
     "connectome_literature_pull": {
-      "high_priority_total": 5,
+      "high_priority_total": 4,
       "items": [
         {
           "acceptance_checks": [
@@ -652,24 +564,24 @@
             }
           ],
           "selection_signals": {
-            "conflict_ratio": 0.941,
+            "conflict_ratio": 0.966,
             "consider_new_structure": true,
             "direction_counts": {
               "mixed": 1,
-              "supports": 27,
+              "supports": 28,
               "unknown": 0,
-              "weakens": 24
+              "weakens": 30
             },
-            "overall_confidence": 0.724,
+            "overall_confidence": 0.744,
             "recurring_failure_signatures": [
               "stop:ledger_edit_detected_count>0",
-              "stop:domination_lock_in_events>0",
               "ledger_editing",
+              "stop:domination_lock_in_events>0",
               "stop:explanation_policy_divergence_rate>0.05",
               "domination_lock_in"
             ],
             "source_counts": {
-              "experimental": 43,
+              "experimental": 50,
               "literature": 9
             },
             "trigger_signals": [
@@ -754,15 +666,15 @@
             }
           ],
           "selection_signals": {
-            "conflict_ratio": 0.939,
+            "conflict_ratio": 0.959,
             "consider_new_structure": true,
             "direction_counts": {
               "mixed": 1,
-              "supports": 35,
+              "supports": 38,
               "unknown": 0,
-              "weakens": 31
+              "weakens": 35
             },
-            "overall_confidence": 0.704,
+            "overall_confidence": 0.707,
             "recurring_failure_signatures": [
               "mech058:anchor_separation_collapse",
               "mech058:ema_drift_under_shift",
@@ -771,7 +683,7 @@
               "threshold:latent_prediction_error_p95"
             ],
             "source_counts": {
-              "experimental": 62,
+              "experimental": 69,
               "literature": 5
             },
             "trigger_signals": [
@@ -856,15 +768,15 @@
             }
           ],
           "selection_signals": {
-            "conflict_ratio": 0.937,
+            "conflict_ratio": 0.953,
             "consider_new_structure": true,
             "direction_counts": {
               "mixed": 3,
-              "supports": 42,
+              "supports": 45,
               "unknown": 0,
-              "weakens": 37
+              "weakens": 41
             },
-            "overall_confidence": 0.695,
+            "overall_confidence": 0.698,
             "recurring_failure_signatures": [
               "mech060:postcommit_channel_contamination",
               "mech060:attribution_reliability_break",
@@ -873,7 +785,7 @@
               "threshold:pre_commit_error_signal_to_noise"
             ],
             "source_counts": {
-              "experimental": 73,
+              "experimental": 80,
               "literature": 9
             },
             "trigger_signals": [
@@ -958,22 +870,22 @@
             }
           ],
           "selection_signals": {
-            "conflict_ratio": 0.897,
+            "conflict_ratio": 0.944,
             "consider_new_structure": true,
             "direction_counts": {
               "mixed": 0,
-              "supports": 16,
+              "supports": 19,
               "unknown": 0,
-              "weakens": 13
+              "weakens": 17
             },
-            "overall_confidence": 0.721,
+            "overall_confidence": 0.725,
             "recurring_failure_signatures": [
               "q017:control_axis_stability_drop",
               "q017:control_axis_entropy_collapse",
               "q017:control_axis_policy_loss_spike"
             ],
             "source_counts": {
-              "experimental": 25,
+              "experimental": 32,
               "literature": 4
             },
             "trigger_signals": [
@@ -985,127 +897,25 @@
           "status": "proposed",
           "suggested_literature_type": "targeted_review_connectome_q_017",
           "target_repo": "REE_assembly"
-        },
-        {
-          "acceptance_checks": [
-            "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-            "At least 1 disconfirming or mixed-direction source is included.",
-            "Each record includes mapping + confidence_components fields.",
-            "Summary includes source wording, REE translation, and explicit mapping caveat.",
-            "No duplicate DOI+claim linkage unless rationale is materially different."
-          ],
-          "claim_id": "MECH-059",
-          "connectome_focus": "Identify circuit motifs that separate mismatch coding from confidence-weighting pathways.",
-          "objective": "Run targeted connectome literature pull for MECH-059.",
-          "plain_english_claim_description": "MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.",
-          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-005`, `ARC-004`, `ARC-015`, `MECH-054`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `Q-013`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-059`.",
-          "priority": "high",
-          "pull_id": "CPULL-0005",
-          "required_record_contract": {
-            "confidence_component_fields": [
-              "confidence_components.source_quality",
-              "confidence_components.mapping_fidelity",
-              "confidence_components.transfer_risk"
-            ],
-            "mapping_fields": [
-              "mapping.source_claim_statement",
-              "mapping.ree_translation",
-              "mapping.mapping_caveat"
-            ],
-            "record": [
-              "claim_ids_tested",
-              "evidence_class",
-              "evidence_direction",
-              "confidence",
-              "confidence_rationale",
-              "mapping",
-              "confidence_components"
-            ],
-            "summary": "preserve source wording and add REE translation with caveat boundaries"
-          },
-          "research_questions": [
-            "Where do connectome-informed studies suggest dissociable pathways for error coding versus confidence modulation?",
-            "Which neuromodulatory/cortical loops look most consistent with confidence gating rather than pure error emission?",
-            "What evidence shows confidence weighting is context-sensitive rather than a direct transform of one residual stream?"
-          ],
-          "search_tracks": [
-            {
-              "focus": "Structural and effective connectivity for confidence gating",
-              "query_stems": [
-                "connectome confidence weighting prediction error dissociation",
-                "effective connectivity uncertainty confidence coding cortex"
-              ],
-              "source_preference": "primary",
-              "track_id": "TRK-01"
-            },
-            {
-              "focus": "Neuromodulatory precision/confidence pathways",
-              "query_stems": [
-                "dopamine noradrenaline acetylcholine precision uncertainty circuit",
-                "hierarchical predictive coding confidence pathway connectomics"
-              ],
-              "source_preference": "primary",
-              "track_id": "TRK-02"
-            },
-            {
-              "focus": "Computational analogues constrained by biological circuitry",
-              "query_stems": [
-                "biologically constrained uncertainty calibration neural circuits",
-                "circuit-inspired confidence channel machine learning"
-              ],
-              "source_preference": "primary",
-              "track_id": "TRK-03"
-            }
-          ],
-          "selection_signals": {
-            "conflict_ratio": 0.704,
-            "consider_new_structure": true,
-            "direction_counts": {
-              "mixed": 14,
-              "supports": 35,
-              "unknown": 0,
-              "weakens": 19
-            },
-            "overall_confidence": 0.737,
-            "recurring_failure_signatures": [
-              "mech059:uncertainty_metric_gaming_detected",
-              "mech059:abstention_reliability_collapse",
-              "mech059:calibration_slope_break",
-              "threshold:latent_prediction_error_mean",
-              "threshold:latent_uncertainty_calibration_error"
-            ],
-            "source_counts": {
-              "experimental": 62,
-              "literature": 6
-            },
-            "trigger_signals": [
-              "external_precedence_pressure",
-              "high_conflict_ratio",
-              "recurring_failure_signatures"
-            ]
-          },
-          "status": "proposed",
-          "suggested_literature_type": "targeted_review_connectome_mech_059",
-          "target_repo": "REE_assembly"
         }
       ],
-      "items_total": 5,
+      "items_total": 4,
       "prompt": "Review connectome-oriented literature pull queue for architecture-pressure claims.",
       "queue_path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md"
     },
     "evidence_dispatch": {
       "by_target_repo": [
         {
-          "experimental": 5,
+          "experimental": 4,
           "literature_review": 0,
           "target_repo": "ree-experiments-lab",
-          "total": 5
+          "total": 4
         },
         {
-          "experimental": 29,
+          "experimental": 30,
           "literature_review": 0,
           "target_repo": "ree-v2",
-          "total": 29
+          "total": 30
         }
       ],
       "high_priority_proposals": [
@@ -1509,11 +1319,10 @@
           },
           "status": "proposed",
           "suggested_experiment_type": "jepa_uncertainty_channels",
-          "target_repo": "ree-experiments-lab",
+          "target_repo": "ree-v2",
           "why_now": [
             "active_conflict",
             "anti_lock_in_review_required",
-            "consider_new_structure",
             "directional_conflict_alert",
             "external_precedence_pressure"
           ]
@@ -2195,11 +2004,11 @@
           "claim_id": "MECH-056",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.297,
-            "experimental_confidence": 0.576,
+            "delta_lit_minus_exp": 0.259,
+            "experimental_confidence": 0.614,
             "literature_confidence": 0.873
           },
-          "conflict_ratio": 0.941,
+          "conflict_ratio": 0.966,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2216,32 +2025,32 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.111,
-          "overall_confidence": 0.724,
+          "overall_confidence": 0.744,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 26,
+              "count": 31,
               "signature": "stop:ledger_edit_detected_count>0"
             },
             {
-              "count": 22,
+              "count": 26,
+              "signature": "ledger_editing"
+            },
+            {
+              "count": 26,
               "signature": "stop:domination_lock_in_events>0"
             },
             {
               "count": 21,
-              "signature": "ledger_editing"
-            },
-            {
-              "count": 18,
               "signature": "stop:explanation_policy_divergence_rate>0.05"
             },
             {
-              "count": 16,
+              "count": 20,
               "signature": "domination_lock_in"
             }
           ],
           "source_counts": {
-            "experimental": 43,
+            "experimental": 50,
             "literature": 9
           },
           "trigger_signals": [
@@ -2283,11 +2092,11 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.361,
-            "experimental_confidence": 0.523,
+            "delta_lit_minus_exp": 0.354,
+            "experimental_confidence": 0.53,
             "literature_confidence": 0.884
           },
-          "conflict_ratio": 0.939,
+          "conflict_ratio": 0.959,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2304,15 +2113,15 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.2,
-          "overall_confidence": 0.704,
+          "overall_confidence": 0.707,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 21,
+              "count": 24,
               "signature": "mech058:anchor_separation_collapse"
             },
             {
-              "count": 15,
+              "count": 16,
               "signature": "mech058:ema_drift_under_shift"
             },
             {
@@ -2329,7 +2138,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 62,
+            "experimental": 69,
             "literature": 5
           },
           "trigger_signals": [
@@ -2371,11 +2180,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
-            "experimental_confidence": 0.53,
+            "delta_lit_minus_exp": 0.325,
+            "experimental_confidence": 0.535,
             "literature_confidence": 0.86
           },
-          "conflict_ratio": 0.937,
+          "conflict_ratio": 0.953,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2392,19 +2201,19 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.695,
+          "overall_confidence": 0.698,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 28,
+              "count": 31,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 26,
+              "count": 29,
               "signature": "mech060:attribution_reliability_break"
             },
             {
-              "count": 14,
+              "count": 17,
               "signature": "mech060:commitment_reversal_spike"
             },
             {
@@ -2417,7 +2226,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 73,
+            "experimental": 80,
             "literature": 9
           },
           "trigger_signals": [
@@ -2459,11 +2268,11 @@
           "claim_id": "Q-017",
           "claim_type": "open_question",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.355,
-            "experimental_confidence": 0.543,
+            "delta_lit_minus_exp": 0.345,
+            "experimental_confidence": 0.553,
             "literature_confidence": 0.898
           },
-          "conflict_ratio": 0.897,
+          "conflict_ratio": 0.944,
           "consider_new_structure": true,
           "current_status": "active",
           "external_precedence_candidate": true,
@@ -2480,24 +2289,24 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.0,
-          "overall_confidence": 0.721,
+          "overall_confidence": 0.725,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_stability_drop"
             },
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_entropy_collapse"
             },
             {
-              "count": 8,
+              "count": 10,
               "signature": "q017:control_axis_policy_loss_spike"
             }
           ],
           "source_counts": {
-            "experimental": 25,
+            "experimental": 32,
             "literature": 4
           },
           "trigger_signals": [
@@ -2539,12 +2348,12 @@
           "claim_id": "MECH-059",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.221,
-            "experimental_confidence": 0.627,
+            "delta_lit_minus_exp": 0.213,
+            "experimental_confidence": 0.635,
             "literature_confidence": 0.848
           },
-          "conflict_ratio": 0.704,
-          "consider_new_structure": true,
+          "conflict_ratio": 0.69,
+          "consider_new_structure": false,
           "current_status": "candidate",
           "external_precedence_candidate": true,
           "gap_id": "AGR-0005",
@@ -2560,15 +2369,15 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.737,
-          "recommendation": "consider_new_structure",
+          "overall_confidence": 0.741,
+          "recommendation": "monitor_and_collect_targeted_evidence",
           "recurring_failure_signatures": [
             {
-              "count": 20,
+              "count": 22,
               "signature": "mech059:uncertainty_metric_gaming_detected"
             },
             {
-              "count": 12,
+              "count": 14,
               "signature": "mech059:abstention_reliability_collapse"
             },
             {
@@ -2585,12 +2394,11 @@
             }
           ],
           "source_counts": {
-            "experimental": 62,
+            "experimental": 69,
             "literature": 6
           },
           "trigger_signals": [
             "external_precedence_pressure",
-            "high_conflict_ratio",
             "recurring_failure_signatures"
           ]
         }
@@ -2639,11 +2447,11 @@
           "claim_id": "MECH-056",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.297,
-            "experimental_confidence": 0.576,
+            "delta_lit_minus_exp": 0.259,
+            "experimental_confidence": 0.614,
             "literature_confidence": 0.873
           },
-          "conflict_ratio": 0.941,
+          "conflict_ratio": 0.966,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2660,32 +2468,32 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.111,
-          "overall_confidence": 0.724,
+          "overall_confidence": 0.744,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 26,
+              "count": 31,
               "signature": "stop:ledger_edit_detected_count>0"
             },
             {
-              "count": 22,
+              "count": 26,
+              "signature": "ledger_editing"
+            },
+            {
+              "count": 26,
               "signature": "stop:domination_lock_in_events>0"
             },
             {
               "count": 21,
-              "signature": "ledger_editing"
-            },
-            {
-              "count": 18,
               "signature": "stop:explanation_policy_divergence_rate>0.05"
             },
             {
-              "count": 16,
+              "count": 20,
               "signature": "domination_lock_in"
             }
           ],
           "source_counts": {
-            "experimental": 43,
+            "experimental": 50,
             "literature": 9
           },
           "trigger_signals": [
@@ -2727,11 +2535,11 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.361,
-            "experimental_confidence": 0.523,
+            "delta_lit_minus_exp": 0.354,
+            "experimental_confidence": 0.53,
             "literature_confidence": 0.884
           },
-          "conflict_ratio": 0.939,
+          "conflict_ratio": 0.959,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2748,15 +2556,15 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.2,
-          "overall_confidence": 0.704,
+          "overall_confidence": 0.707,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 21,
+              "count": 24,
               "signature": "mech058:anchor_separation_collapse"
             },
             {
-              "count": 15,
+              "count": 16,
               "signature": "mech058:ema_drift_under_shift"
             },
             {
@@ -2773,7 +2581,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 62,
+            "experimental": 69,
             "literature": 5
           },
           "trigger_signals": [
@@ -2815,11 +2623,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
-            "experimental_confidence": 0.53,
+            "delta_lit_minus_exp": 0.325,
+            "experimental_confidence": 0.535,
             "literature_confidence": 0.86
           },
-          "conflict_ratio": 0.937,
+          "conflict_ratio": 0.953,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2836,19 +2644,19 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.695,
+          "overall_confidence": 0.698,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 28,
+              "count": 31,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 26,
+              "count": 29,
               "signature": "mech060:attribution_reliability_break"
             },
             {
-              "count": 14,
+              "count": 17,
               "signature": "mech060:commitment_reversal_spike"
             },
             {
@@ -2861,7 +2669,7 @@
             }
           ],
           "source_counts": {
-            "experimental": 73,
+            "experimental": 80,
             "literature": 9
           },
           "trigger_signals": [
@@ -2903,11 +2711,11 @@
           "claim_id": "Q-017",
           "claim_type": "open_question",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.355,
-            "experimental_confidence": 0.543,
+            "delta_lit_minus_exp": 0.345,
+            "experimental_confidence": 0.553,
             "literature_confidence": 0.898
           },
-          "conflict_ratio": 0.897,
+          "conflict_ratio": 0.944,
           "consider_new_structure": true,
           "current_status": "active",
           "external_precedence_candidate": true,
@@ -2924,24 +2732,24 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.0,
-          "overall_confidence": 0.721,
+          "overall_confidence": 0.725,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_stability_drop"
             },
             {
-              "count": 12,
+              "count": 15,
               "signature": "q017:control_axis_entropy_collapse"
             },
             {
-              "count": 8,
+              "count": 10,
               "signature": "q017:control_axis_policy_loss_spike"
             }
           ],
           "source_counts": {
-            "experimental": 25,
+            "experimental": 32,
             "literature": 4
           },
           "trigger_signals": [
@@ -2983,12 +2791,12 @@
           "claim_id": "MECH-059",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.221,
-            "experimental_confidence": 0.627,
+            "delta_lit_minus_exp": 0.213,
+            "experimental_confidence": 0.635,
             "literature_confidence": 0.848
           },
-          "conflict_ratio": 0.704,
-          "consider_new_structure": true,
+          "conflict_ratio": 0.69,
+          "consider_new_structure": false,
           "current_status": "candidate",
           "external_precedence_candidate": true,
           "gap_id": "AGR-0005",
@@ -3004,15 +2812,15 @@
             "weakens": 0
           },
           "literature_non_support_ratio": 0.333,
-          "overall_confidence": 0.737,
-          "recommendation": "consider_new_structure",
+          "overall_confidence": 0.741,
+          "recommendation": "monitor_and_collect_targeted_evidence",
           "recurring_failure_signatures": [
             {
-              "count": 20,
+              "count": 22,
               "signature": "mech059:uncertainty_metric_gaming_detected"
             },
             {
-              "count": 12,
+              "count": 14,
               "signature": "mech059:abstention_reliability_collapse"
             },
             {
@@ -3029,12 +2837,11 @@
             }
           ],
           "source_counts": {
-            "experimental": 62,
+            "experimental": 69,
             "literature": 6
           },
           "trigger_signals": [
             "external_precedence_pressure",
-            "high_conflict_ratio",
             "recurring_failure_signatures"
           ]
         }
@@ -3052,7 +2859,7 @@
       }
     },
     "structure_review_dossiers": {
-      "consider_new_structure_total": 5,
+      "consider_new_structure_total": 4,
       "index_path": "evidence/planning/structure_review/latest/INDEX.md",
       "items": [
         {
@@ -3082,16 +2889,9 @@
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/Q-017/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/Q-017/DOSSIER.md",
           "recommendation": "consider_new_structure"
-        },
-        {
-          "claim_id": "MECH-059",
-          "consider_new_structure": true,
-          "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/MECH-059/dossier.v1.json",
-          "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/MECH-059/DOSSIER.md",
-          "recommendation": "consider_new_structure"
         }
       ],
-      "items_total": 5,
+      "items_total": 4,
       "prompt": "Review claim dossiers before deciding architecture changes."
     },
     "thought_intake": {
@@ -3108,10 +2908,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/sync_task_inbox.py"
         ],
-        "finished_at_utc": "2026-02-15T15:32:09.980717Z",
+        "finished_at_utc": "2026-02-15T15:37:22.006805Z",
         "name": "task_inbox_sync",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:09.938609Z",
+        "started_at_utc": "2026-02-15T15:37:21.960531Z",
         "status": "ok",
         "stderr": "",
         "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
@@ -3121,10 +2921,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-15T15:32:10.030685Z",
+        "finished_at_utc": "2026-02-15T15:37:22.057744Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:09.980756Z",
+        "started_at_utc": "2026-02-15T15:37:22.006843Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=36, processed=36, unprocessed=0, processed_missing_links=0"
@@ -3136,10 +2936,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-15T15:32:10.098735Z",
+        "finished_at_utc": "2026-02-15T15:37:22.111711Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:10.030729Z",
+        "started_at_utc": "2026-02-15T15:37:22.057791Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=1, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -3149,23 +2949,23 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-15T15:32:10.249181Z",
+        "finished_at_utc": "2026-02-15T15:37:22.272603Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:10.098800Z",
+        "started_at_utc": "2026-02-15T15:37:22.111760Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Indexed 303 run(s) across 6 experiment type(s); FAIL=129; literature entries=61; backlog items=34; proposals=34."
+        "stdout": "Indexed 347 run(s) across 6 experiment type(s); FAIL=153; literature entries=61; backlog items=34; proposals=34."
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-15T15:32:10.304895Z",
+        "finished_at_utc": "2026-02-15T15:37:22.332760Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:10.249231Z",
+        "started_at_utc": "2026-02-15T15:37:22.272647Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/structure_review_report.v1.json"
@@ -3175,17 +2975,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-15T15:32:10.348295Z",
+        "finished_at_utc": "2026-02-15T15:37:22.376867Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:32:10.304949Z",
+        "started_at_utc": "2026-02-15T15:37:22.332822Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-15T15:32:10.348345Z",
+  "generated_at_utc": "2026-02-15T15:37:22.376908Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,
@@ -3199,8 +2999,8 @@
     "backlog_high_priority": 34,
     "backlog_items": 34,
     "conflicts": 8,
-    "connectome_pull_high_priority": 5,
-    "connectome_pull_items": 5,
+    "connectome_pull_high_priority": 4,
+    "connectome_pull_items": 4,
     "decision_queue_items": 5,
     "external_precedence_candidates": 5,
     "manual_carryover_items": 1,
@@ -3208,9 +3008,9 @@
     "proposal_high_priority": 34,
     "proposal_items": 34,
     "step_failures": 0,
-    "structure_considerations": 5,
-    "structure_review_considerations": 5,
-    "structure_review_dossiers": 5,
+    "structure_considerations": 4,
+    "structure_review_considerations": 4,
+    "structure_review_dossiers": 4,
     "thought_unprocessed": 0,
     "unlinked_evidence_runs": 0,
     "warnings": 0

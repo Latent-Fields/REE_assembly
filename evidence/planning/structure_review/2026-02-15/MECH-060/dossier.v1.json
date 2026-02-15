@@ -2,7 +2,7 @@
   "alternative_interpretations": [
     {
       "alternative_id": "ALT-01",
-      "confidence_estimate": 0.525,
+      "confidence_estimate": 0.517,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
       "hypothesis": "commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
@@ -12,7 +12,7 @@
     },
     {
       "alternative_id": "ALT-02",
-      "confidence_estimate": 0.442,
+      "confidence_estimate": 0.453,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
       "hypothesis": "commitment / dual error channels pre post commit is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
@@ -22,7 +22,7 @@
     },
     {
       "alternative_id": "ALT-03",
-      "confidence_estimate": 0.442,
+      "confidence_estimate": 0.453,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
       "hypothesis": "A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation.",
       "next_evidence_pull": [
@@ -71,6 +71,83 @@
       "timestamp_utc": "2026-02-15T16:05:00Z"
     },
     {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T153621Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T153621Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T15:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "exp_0015_20260215T153519739036Z",
+      "source_background": "Run-pack `exp_0015_20260215T153519739036Z` in `commit_dual_error_channels`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T15:35:19.739036Z"
+    },
+    {
       "confidence": 0.78,
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_v3_prefrontal_control",
@@ -91,99 +168,22 @@
       "source_type": "experimental",
       "source_wording": "FAIL with weakening direction",
       "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145637Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145637Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145637Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145637Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145637Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T14:56:37Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145611Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T14:56:11Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T145611Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T14:56:11Z"
     }
   ],
   "evidence_overview": {
     "direction_counts": {
       "mixed": 3,
-      "supports": 42,
+      "supports": 45,
       "unknown": 0,
-      "weakens": 37
+      "weakens": 41
     },
     "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
     "source_direction_counts": {
       "experimental": {
         "mixed": 0,
-        "supports": 36,
+        "supports": 39,
         "unknown": 0,
-        "weakens": 37
+        "weakens": 41
       },
       "literature": {
         "mixed": 3,
@@ -194,7 +194,7 @@
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T15:32:10.296348Z",
+  "generated_at_utc": "2026-02-15T15:37:22.325548Z",
   "left_field_suggestions": [
     {
       "first_test": "Ablate commit barrier windows and measure post-commit attribution gain.",
@@ -214,7 +214,7 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.937,
+    "conflict_ratio": 0.953,
     "consider_new_structure": true,
     "gap_id": "AGR-0003",
     "latest_decision": {
@@ -222,19 +222,19 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "timestamp_utc": "2026-02-15T15:10:33.830375Z"
     },
-    "overall_confidence": 0.695,
+    "overall_confidence": 0.698,
     "recommendation": "consider_new_structure",
     "recurring_failure_signatures": [
       {
-        "count": 28,
+        "count": 31,
         "signature": "mech060:postcommit_channel_contamination"
       },
       {
-        "count": 26,
+        "count": 29,
         "signature": "mech060:attribution_reliability_break"
       },
       {
-        "count": 14,
+        "count": 17,
         "signature": "mech060:commitment_reversal_spike"
       },
       {
@@ -247,7 +247,7 @@
       }
     ],
     "source_counts": {
-      "experimental": 73,
+      "experimental": 80,
       "literature": 9
     },
     "trigger_signals": [
