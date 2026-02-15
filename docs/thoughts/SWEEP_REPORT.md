@@ -1,17 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-02-15T11:20:45.481910Z`
+Generated: `2026-02-15T13:34:42.829904Z`
 
 | metric | count |
 |---|---|
-| total thought files | 34 |
+| total thought files | 36 |
 | processed | 34 |
-| unprocessed | 0 |
+| unprocessed | 2 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-15` `2026-02-15_basal_ganglia.md` (status=`unprocessed`)
+- `2026-02-15` `2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
