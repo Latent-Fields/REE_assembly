@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T11:20:45.740598Z`
+Generated: `2026-02-15T14:08:37.488197Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -8,7 +8,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
 | `CPULL-0001` | `MECH-058` | `high` | yes | 0.957 | `targeted_review_connectome_mech_058` |
-| `CPULL-0002` | `MECH-060` | `high` | yes | 0.936 | `targeted_review_connectome_mech_060` |
+| `CPULL-0002` | `MECH-060` | `high` | yes | 0.923 | `targeted_review_connectome_mech_060` |
 | `CPULL-0003` | `MECH-059` | `high` | yes | 0.884 | `targeted_review_connectome_mech_059` |
 
 ## MECH-058
@@ -34,8 +34,8 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Pull ID: `CPULL-0002`
 - Objective: Run targeted connectome literature pull for MECH-060.
 - Claim description: MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
-- Evidence pressure: conflict_ratio=0.936, overall_confidence=0.687, trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
+- Evidence pressure: conflict_ratio=0.923, overall_confidence=0.686, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break`, `mech060:precommit_channel_contamination`, `threshold:pre_commit_error_signal_to_noise`, `threshold:post_commit_error_attribution_gain`
 - Connectome focus: Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.
 - Research questions:

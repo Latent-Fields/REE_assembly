@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-15T11:20:45.533123Z",
+      "last_run_generated_at_utc": "2026-02-15T14:08:37.275010Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -136,11 +136,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
+            "delta_lit_minus_exp": 0.329,
             "experimental_confidence": 0.522,
-            "literature_confidence": 0.852
+            "literature_confidence": 0.851
           },
-          "conflict_ratio": 0.936,
+          "conflict_ratio": 0.923,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -152,20 +152,20 @@
           },
           "literature_direction_counts": {
             "mixed": 3,
-            "supports": 3,
+            "supports": 4,
             "unknown": 0,
             "weakens": 0
           },
-          "literature_non_support_ratio": 0.5,
-          "overall_confidence": 0.687,
+          "literature_non_support_ratio": 0.429,
+          "overall_confidence": 0.686,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 14,
+              "count": 16,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 12,
+              "count": 14,
               "signature": "mech060:attribution_reliability_break"
             },
             {
@@ -182,13 +182,12 @@
             }
           ],
           "source_counts": {
-            "experimental": 44,
-            "literature": 6
+            "experimental": 48,
+            "literature": 7
           },
           "trigger_signals": [
             "external_precedence_pressure",
             "high_conflict_ratio",
-            "literature_non_support_pressure",
             "recurring_failure_signatures"
           ]
         },
@@ -225,8 +224,8 @@
           "claim_id": "MECH-059",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.3,
-            "experimental_confidence": 0.555,
+            "delta_lit_minus_exp": 0.301,
+            "experimental_confidence": 0.554,
             "literature_confidence": 0.855
           },
           "conflict_ratio": 0.884,
@@ -309,7 +308,7 @@
         {
           "decision_needed": "yes",
           "gate_status": "PASS",
-          "rationale": "high_priority_proposals=25.",
+          "rationale": "high_priority_proposals=33.",
           "recommendation": "approve_dispatch",
           "rollback_ready": "yes",
           "tier": "AUTO_WITH_APPROVAL",
@@ -386,11 +385,11 @@
         },
         {
           "claim_id": "`MECH-060`",
-          "conflict_ratio": "0.936",
+          "conflict_ratio": "0.923",
           "conflict_types": "directional, mixed_evidence",
-          "latest": "`exp_0019_20260215T095129231597Z`",
-          "supports": "25",
-          "weakens": "22"
+          "latest": "`2026-02-15_mech061_agency_comparator_review_nrn2017`",
+          "supports": "28",
+          "weakens": "24"
         },
         {
           "claim_id": "`Q-011`",
@@ -520,7 +519,7 @@
           "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
           "objective": "Run targeted connectome literature pull for MECH-060.",
           "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
-          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
+          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
           "priority": "high",
           "pull_id": "CPULL-0002",
           "required_record_contract": {
@@ -580,15 +579,15 @@
             }
           ],
           "selection_signals": {
-            "conflict_ratio": 0.936,
+            "conflict_ratio": 0.923,
             "consider_new_structure": true,
             "direction_counts": {
               "mixed": 3,
-              "supports": 25,
+              "supports": 28,
               "unknown": 0,
-              "weakens": 22
+              "weakens": 24
             },
-            "overall_confidence": 0.687,
+            "overall_confidence": 0.686,
             "recurring_failure_signatures": [
               "mech060:postcommit_channel_contamination",
               "mech060:attribution_reliability_break",
@@ -597,13 +596,12 @@
               "threshold:post_commit_error_attribution_gain"
             ],
             "source_counts": {
-              "experimental": 44,
-              "literature": 6
+              "experimental": 48,
+              "literature": 7
             },
             "trigger_signals": [
               "external_precedence_pressure",
               "high_conflict_ratio",
-              "literature_non_support_pressure",
               "recurring_failure_signatures"
             ]
           },
@@ -723,9 +721,9 @@
       "by_target_repo": [
         {
           "experimental": 0,
-          "literature_review": 18,
+          "literature_review": 19,
           "target_repo": "REE_assembly",
-          "total": 18
+          "total": 19
         },
         {
           "experimental": 3,
@@ -734,10 +732,10 @@
           "total": 3
         },
         {
-          "experimental": 25,
+          "experimental": 32,
           "literature_review": 0,
           "target_repo": "ree-v2",
-          "total": 25
+          "total": 32
         }
       ],
       "high_priority_proposals": [
@@ -982,10 +980,69 @@
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
           "backlog_id": "EVB-0007",
+          "claim_id": "MECH-040",
+          "objective": "Reduce uncertainty for MECH-040 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0009",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_040",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "insufficient_literature_grounding",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 1 structured literature entry linked to claim_ids_tested.",
+            "Confidence explicitly justified in confidence_rationale.",
+            "Direction is supports/weakens/mixed/unknown and reflected in matrix."
+          ],
+          "backlog_id": "EVB-0007",
+          "claim_id": "MECH-040",
+          "objective": "Improve literature grounding and confidence for MECH-040.",
+          "priority": "high",
+          "proposal_id": "LIT-0010",
+          "proposal_type": "literature_review",
+          "required_record_contract": {
+            "record": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction",
+              "confidence",
+              "confidence_rationale"
+            ],
+            "summary": "include caveats and mapping limits"
+          },
+          "status": "proposed",
+          "suggested_literature_type": "targeted_review_mech_063",
+          "target_repo": "REE_assembly",
+          "why_now": [
+            "insufficient_literature_grounding",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0008",
           "claim_id": "MECH-046",
           "objective": "Reduce uncertainty for MECH-046 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0009",
+          "proposal_id": "EXP-0011",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1009,11 +1066,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0008",
+          "backlog_id": "EVB-0009",
           "claim_id": "MECH-053",
           "objective": "Reduce uncertainty for MECH-053 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0010",
+          "proposal_id": "EXP-0012",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1038,11 +1095,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0009",
+          "backlog_id": "EVB-0010",
           "claim_id": "MECH-054",
           "objective": "Reduce uncertainty for MECH-054 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0011",
+          "proposal_id": "EXP-0013",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1067,11 +1124,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0010",
+          "backlog_id": "EVB-0011",
           "claim_id": "MECH-056",
           "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0012",
+          "proposal_id": "EXP-0014",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1098,11 +1155,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0010",
+          "backlog_id": "EVB-0011",
           "claim_id": "MECH-056",
           "objective": "Improve literature grounding and confidence for MECH-056.",
           "priority": "high",
-          "proposal_id": "LIT-0013",
+          "proposal_id": "LIT-0015",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -1130,11 +1187,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0011",
+          "backlog_id": "EVB-0012",
           "claim_id": "MECH-057",
           "objective": "Reduce uncertainty for MECH-057 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0014",
+          "proposal_id": "EXP-0016",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1159,11 +1216,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0012",
+          "backlog_id": "EVB-0013",
           "claim_id": "MECH-058",
           "objective": "Reduce uncertainty for MECH-058 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0015",
+          "proposal_id": "EXP-0017",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1191,11 +1248,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0012",
+          "backlog_id": "EVB-0013",
           "claim_id": "MECH-058",
           "objective": "Improve literature grounding and confidence for MECH-058.",
           "priority": "high",
-          "proposal_id": "LIT-0016",
+          "proposal_id": "LIT-0018",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -1224,11 +1281,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0013",
+          "backlog_id": "EVB-0014",
           "claim_id": "MECH-059",
           "objective": "Reduce uncertainty for MECH-059 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0017",
+          "proposal_id": "EXP-0019",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1256,11 +1313,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0013",
+          "backlog_id": "EVB-0014",
           "claim_id": "MECH-059",
           "objective": "Improve literature grounding and confidence for MECH-059.",
           "priority": "high",
-          "proposal_id": "LIT-0018",
+          "proposal_id": "LIT-0020",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -1289,11 +1346,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0014",
+          "backlog_id": "EVB-0015",
           "claim_id": "MECH-060",
           "objective": "Reduce uncertainty for MECH-060 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0019",
+          "proposal_id": "EXP-0021",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1321,11 +1378,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0014",
+          "backlog_id": "EVB-0015",
           "claim_id": "MECH-060",
           "objective": "Improve literature grounding and confidence for MECH-060.",
           "priority": "high",
-          "proposal_id": "LIT-0020",
+          "proposal_id": "LIT-0022",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -1354,11 +1411,98 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0015",
+          "backlog_id": "EVB-0016",
+          "claim_id": "MECH-061",
+          "objective": "Reduce uncertainty for MECH-061 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0023",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_061",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0017",
+          "claim_id": "MECH-062",
+          "objective": "Reduce uncertainty for MECH-062 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0024",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_062",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0018",
+          "claim_id": "MECH-063",
+          "objective": "Reduce uncertainty for MECH-063 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0025",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_mech_063",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "insufficient_experimental_replication",
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0019",
           "claim_id": "Q-011",
           "objective": "Reduce uncertainty for Q-011 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0021",
+          "proposal_id": "EXP-0026",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1383,11 +1527,11 @@
             "Confidence explicitly justified in confidence_rationale.",
             "Direction is supports/weakens/mixed/unknown and reflected in matrix."
           ],
-          "backlog_id": "EVB-0015",
+          "backlog_id": "EVB-0019",
           "claim_id": "Q-011",
           "objective": "Improve literature grounding and confidence for Q-011.",
           "priority": "high",
-          "proposal_id": "LIT-0022",
+          "proposal_id": "LIT-0027",
           "proposal_type": "literature_review",
           "required_record_contract": {
             "record": [
@@ -1413,11 +1557,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0016",
+          "backlog_id": "EVB-0020",
           "claim_id": "Q-012",
           "objective": "Reduce uncertainty for Q-012 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0023",
+          "proposal_id": "EXP-0028",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1441,11 +1585,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0017",
+          "backlog_id": "EVB-0021",
           "claim_id": "Q-013",
           "objective": "Reduce uncertainty for Q-013 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0024",
+          "proposal_id": "EXP-0029",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1469,11 +1613,11 @@
             "Experiment Pack validates against v1 schema.",
             "Result links to claim_ids_tested and updates matrix direction counts."
           ],
-          "backlog_id": "EVB-0018",
+          "backlog_id": "EVB-0022",
           "claim_id": "Q-014",
           "objective": "Reduce uncertainty for Q-014 via targeted experiment runs.",
           "priority": "high",
-          "proposal_id": "EXP-0025",
+          "proposal_id": "EXP-0030",
           "proposal_type": "experimental",
           "required_pack_contract": {
             "manifest": [
@@ -1486,6 +1630,90 @@
           },
           "status": "proposed",
           "suggested_experiment_type": "claim_probe_q_014",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0023",
+          "claim_id": "Q-015",
+          "objective": "Reduce uncertainty for Q-015 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0031",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_q_015",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0024",
+          "claim_id": "Q-016",
+          "objective": "Reduce uncertainty for Q-016 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0032",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_q_016",
+          "target_repo": "ree-v2",
+          "why_now": [
+            "missing_experimental_evidence"
+          ]
+        },
+        {
+          "acceptance_checks": [
+            "At least 2 additional runs with distinct seeds.",
+            "Experiment Pack validates against v1 schema.",
+            "Result links to claim_ids_tested and updates matrix direction counts."
+          ],
+          "backlog_id": "EVB-0025",
+          "claim_id": "Q-017",
+          "objective": "Reduce uncertainty for Q-017 via targeted experiment runs.",
+          "priority": "high",
+          "proposal_id": "EXP-0033",
+          "proposal_type": "experimental",
+          "required_pack_contract": {
+            "manifest": [
+              "claim_ids_tested",
+              "evidence_class",
+              "evidence_direction"
+            ],
+            "metrics": "stable numeric keys only",
+            "summary": "include scenario and interpretation"
+          },
+          "status": "proposed",
+          "suggested_experiment_type": "claim_probe_q_017",
           "target_repo": "ree-v2",
           "why_now": [
             "missing_experimental_evidence"
@@ -1668,11 +1896,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
+            "delta_lit_minus_exp": 0.329,
             "experimental_confidence": 0.522,
-            "literature_confidence": 0.852
+            "literature_confidence": 0.851
           },
-          "conflict_ratio": 0.936,
+          "conflict_ratio": 0.923,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -1684,20 +1912,20 @@
           },
           "literature_direction_counts": {
             "mixed": 3,
-            "supports": 3,
+            "supports": 4,
             "unknown": 0,
             "weakens": 0
           },
-          "literature_non_support_ratio": 0.5,
-          "overall_confidence": 0.687,
+          "literature_non_support_ratio": 0.429,
+          "overall_confidence": 0.686,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 14,
+              "count": 16,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 12,
+              "count": 14,
               "signature": "mech060:attribution_reliability_break"
             },
             {
@@ -1714,13 +1942,12 @@
             }
           ],
           "source_counts": {
-            "experimental": 44,
-            "literature": 6
+            "experimental": 48,
+            "literature": 7
           },
           "trigger_signals": [
             "external_precedence_pressure",
             "high_conflict_ratio",
-            "literature_non_support_pressure",
             "recurring_failure_signatures"
           ]
         },
@@ -1757,8 +1984,8 @@
           "claim_id": "MECH-059",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.3,
-            "experimental_confidence": 0.555,
+            "delta_lit_minus_exp": 0.301,
+            "experimental_confidence": 0.554,
             "literature_confidence": 0.855
           },
           "conflict_ratio": 0.884,
@@ -2033,11 +2260,11 @@
           "claim_id": "MECH-060",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.33,
+            "delta_lit_minus_exp": 0.329,
             "experimental_confidence": 0.522,
-            "literature_confidence": 0.852
+            "literature_confidence": 0.851
           },
-          "conflict_ratio": 0.936,
+          "conflict_ratio": 0.923,
           "consider_new_structure": true,
           "current_status": "candidate",
           "external_precedence_candidate": true,
@@ -2049,20 +2276,20 @@
           },
           "literature_direction_counts": {
             "mixed": 3,
-            "supports": 3,
+            "supports": 4,
             "unknown": 0,
             "weakens": 0
           },
-          "literature_non_support_ratio": 0.5,
-          "overall_confidence": 0.687,
+          "literature_non_support_ratio": 0.429,
+          "overall_confidence": 0.686,
           "recommendation": "consider_new_structure",
           "recurring_failure_signatures": [
             {
-              "count": 14,
+              "count": 16,
               "signature": "mech060:postcommit_channel_contamination"
             },
             {
-              "count": 12,
+              "count": 14,
               "signature": "mech060:attribution_reliability_break"
             },
             {
@@ -2079,13 +2306,12 @@
             }
           ],
           "source_counts": {
-            "experimental": 44,
-            "literature": 6
+            "experimental": 48,
+            "literature": 7
           },
           "trigger_signals": [
             "external_precedence_pressure",
             "high_conflict_ratio",
-            "literature_non_support_pressure",
             "recurring_failure_signatures"
           ]
         },
@@ -2122,8 +2348,8 @@
           "claim_id": "MECH-059",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.3,
-            "experimental_confidence": 0.555,
+            "delta_lit_minus_exp": 0.301,
+            "experimental_confidence": 0.554,
             "literature_confidence": 0.855
           },
           "conflict_ratio": 0.884,
@@ -2321,13 +2547,13 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-15T11:20:45.488108Z",
+        "finished_at_utc": "2026-02-15T14:08:37.230224Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T11:20:45.428924Z",
+        "started_at_utc": "2026-02-15T14:08:37.173051Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Thought sweep: total=34, processed=34, unprocessed=0, processed_missing_links=0"
+        "stdout": "Thought sweep: total=36, processed=36, unprocessed=0, processed_missing_links=0"
       },
       {
         "command": [
@@ -2336,10 +2562,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-15T11:20:45.538897Z",
+        "finished_at_utc": "2026-02-15T14:08:37.280191Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T11:20:45.488141Z",
+        "started_at_utc": "2026-02-15T14:08:37.230261Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=0, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -2349,23 +2575,23 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-15T11:20:45.646999Z",
+        "finished_at_utc": "2026-02-15T14:08:37.392979Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T11:20:45.538928Z",
+        "started_at_utc": "2026-02-15T14:08:37.280218Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Indexed 159 run(s) across 4 experiment type(s); FAIL=59; literature entries=23; backlog items=29; proposals=46."
+        "stdout": "Indexed 163 run(s) across 4 experiment type(s); FAIL=61; literature entries=29; backlog items=36; proposals=54."
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-15T11:20:45.700356Z",
+        "finished_at_utc": "2026-02-15T14:08:37.449780Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T11:20:45.647044Z",
+        "started_at_utc": "2026-02-15T14:08:37.393027Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/structure_review_report.v1.json"
@@ -2375,17 +2601,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-15T11:20:45.747228Z",
+        "finished_at_utc": "2026-02-15T14:08:37.492945Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T11:20:45.700385Z",
+        "started_at_utc": "2026-02-15T14:08:37.449850Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-15T11:20:45.747256Z",
+  "generated_at_utc": "2026-02-15T14:08:37.492985Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,
@@ -2396,15 +2622,15 @@
     "autonomy_failed_gates": 2,
     "autonomy_open_decisions": 3,
     "autonomy_triage_items": 5,
-    "backlog_high_priority": 18,
-    "backlog_items": 29,
+    "backlog_high_priority": 25,
+    "backlog_items": 36,
     "conflicts": 7,
     "connectome_pull_high_priority": 3,
     "connectome_pull_items": 3,
     "decision_queue_items": 5,
     "external_precedence_candidates": 4,
-    "proposal_high_priority": 25,
-    "proposal_items": 46,
+    "proposal_high_priority": 33,
+    "proposal_items": 54,
     "step_failures": 0,
     "structure_considerations": 3,
     "structure_review_considerations": 3,

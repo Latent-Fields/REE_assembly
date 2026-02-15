@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-02-15T11:20:45.619956Z`
+Generated: `2026-02-15T14:08:37.363952Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -9,6 +9,9 @@ Generated: `2026-02-15T11:20:45.619956Z`
 | `targeted_review_mech_058` | [`2026-02-14_mech058_byol_ema_target_predictor_separation`](targeted_review_mech_058/entries/2026-02-14_mech058_byol_ema_target_predictor_separation/record.json) | 2 | [`summary`](targeted_review_mech_058/entries/2026-02-14_mech058_byol_ema_target_predictor_separation/summary.md) |
 | `targeted_review_mech_059` | [`2026-02-13_mech059_vjvcr_uncertainty_channeling`](targeted_review_mech_059/entries/2026-02-13_mech059_vjvcr_uncertainty_channeling/record.json) | 1 | [`summary`](targeted_review_mech_059/entries/2026-02-13_mech059_vjvcr_uncertainty_channeling/summary.md) |
 | `targeted_review_mech_060` | [`2026-02-13_mech060_vjepa2_dual_loss_channels`](targeted_review_mech_060/entries/2026-02-13_mech060_vjepa2_dual_loss_channels/record.json) | 1 | [`summary`](targeted_review_mech_060/entries/2026-02-13_mech060_vjepa2_dual_loss_channels/summary.md) |
+| `targeted_review_mech_061` | [`2026-02-15_mech061_agency_comparator_review_nrn2017`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/record.json) | 2 | [`summary`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/summary.md) |
+| `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
+| `targeted_review_mech_063` | [`2026-02-15_mech063_lcne_adaptive_gain_annurev2005`](targeted_review_mech_063/entries/2026-02-15_mech063_lcne_adaptive_gain_annurev2005/record.json) | 2 | [`summary`](targeted_review_mech_063/entries/2026-02-15_mech063_lcne_adaptive_gain_annurev2005/summary.md) |
 | `targeted_review_q_011` | [`2026-02-14_q011_reverse_replay_reward_modulation_neuron2016`](targeted_review_q_011/entries/2026-02-14_q011_reverse_replay_reward_modulation_neuron2016/record.json) | 2 | [`summary`](targeted_review_q_011/entries/2026-02-14_q011_reverse_replay_reward_modulation_neuron2016/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015`](targeted_review_v3_hippocampal_rollout/entries/2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015/record.json) | 5 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017/record.json) | 3 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017/summary.md) |

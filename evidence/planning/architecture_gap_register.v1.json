@@ -1,6 +1,6 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-15T11:20:45.619956Z",
+  "generated_at_utc": "2026-02-15T14:08:37.363952Z",
   "items": [
     {
       "adjudication_policy": {
@@ -123,11 +123,11 @@
       "claim_id": "MECH-060",
       "claim_type": "mechanism_hypothesis",
       "confidence_split": {
-        "delta_lit_minus_exp": 0.33,
+        "delta_lit_minus_exp": 0.329,
         "experimental_confidence": 0.522,
-        "literature_confidence": 0.852
+        "literature_confidence": 0.851
       },
-      "conflict_ratio": 0.936,
+      "conflict_ratio": 0.923,
       "consider_new_structure": true,
       "current_status": "candidate",
       "external_precedence_candidate": true,
@@ -139,20 +139,20 @@
       },
       "literature_direction_counts": {
         "mixed": 3,
-        "supports": 3,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "literature_non_support_ratio": 0.5,
-      "overall_confidence": 0.687,
+      "literature_non_support_ratio": 0.429,
+      "overall_confidence": 0.686,
       "recommendation": "consider_new_structure",
       "recurring_failure_signatures": [
         {
-          "count": 14,
+          "count": 16,
           "signature": "mech060:postcommit_channel_contamination"
         },
         {
-          "count": 12,
+          "count": 14,
           "signature": "mech060:attribution_reliability_break"
         },
         {
@@ -169,13 +169,12 @@
         }
       ],
       "source_counts": {
-        "experimental": 44,
-        "literature": 6
+        "experimental": 48,
+        "literature": 7
       },
       "trigger_signals": [
         "external_precedence_pressure",
         "high_conflict_ratio",
-        "literature_non_support_pressure",
         "recurring_failure_signatures"
       ]
     },
@@ -212,8 +211,8 @@
       "claim_id": "MECH-059",
       "claim_type": "mechanism_hypothesis",
       "confidence_split": {
-        "delta_lit_minus_exp": 0.3,
-        "experimental_confidence": 0.555,
+        "delta_lit_minus_exp": 0.301,
+        "experimental_confidence": 0.554,
         "literature_confidence": 0.855
       },
       "conflict_ratio": 0.884,

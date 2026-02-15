@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-15T11:20:45.619956Z`
+Generated: `2026-02-15T14:08:37.363952Z`
 
 ## Conflict Queue
 
@@ -11,7 +11,7 @@ Generated: `2026-02-15T11:20:45.619956Z`
 | `MECH-056` | directional | 19 | 9 | 0.643 | `2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015` |
 | `MECH-058` | directional, mixed_evidence | 24 | 22 | 0.957 | `exp_0015_20260215T095120253293Z` |
 | `MECH-059` | directional, mixed_evidence | 24 | 19 | 0.884 | `exp_0017_20260215T095123788473Z` |
-| `MECH-060` | directional, mixed_evidence | 25 | 22 | 0.936 | `exp_0019_20260215T095129231597Z` |
+| `MECH-060` | directional, mixed_evidence | 28 | 24 | 0.923 | `2026-02-15_mech061_agency_comparator_review_nrn2017` |
 | `Q-011` | directional | 1 | 3 | 0.5 | `2026-02-14_q011_reverse_replay_reward_modulation_neuron2016` |
 
 ## Conflict Details
@@ -104,16 +104,16 @@ Generated: `2026-02-15T11:20:45.619956Z`
 
 ### MECH-060
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=25, weakens=22, conflict_ratio=0.936, overall_confidence=0.687
+- Evidence breakdown: supports=28, weakens=24, conflict_ratio=0.923, overall_confidence=0.686
 - Recent entries:
-  - `2026-02-14T20:40:00Z` `literature` `targeted_review_v3_prefrontal_control` direction=`supports` confidence=0.78
-  - `2026-02-14T20:55:00Z` `literature` `targeted_review_v3_prefrontal_control` direction=`supports` confidence=0.74
-  - `2026-02-14T21:25:00Z` `literature` `targeted_review_v3_jepa_mapping_limits` direction=`mixed` confidence=0.69
-  - `2026-02-14T22:55:00Z` `literature` `targeted_review_v3_prefrontal_control` direction=`mixed` confidence=0.66
-  - `2026-02-15T09:51:29.231597Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-15T13:58:35Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T13:58:35Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:00:29Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T14:00:29Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-15T14:16:00Z` `literature` `targeted_review_mech_061` direction=`supports` confidence=0.69
 - Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (14)
-  - `mech060:attribution_reliability_break` (12)
+  - `mech060:postcommit_channel_contamination` (16)
+  - `mech060:attribution_reliability_break` (14)
   - `mech060:precommit_channel_contamination` (10)
   - `threshold:pre_commit_error_signal_to_noise` (5)
   - `threshold:post_commit_error_attribution_gain` (5)

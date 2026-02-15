@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-02-15_mech061_internal_model_reafference_science1995",
+  "timestamp_utc": "2026-02-15T14:15:00Z",
+  "claim_ids_tested": [
+    "MECH-061",
+    "Q-015"
+  ],
+  "source": {
+    "title": "An internal model for sensorimotor integration",
+    "authors": [
+      "Daniel M. Wolpert",
+      "Zoubin Ghahramani",
+      "Michael I. Jordan"
+    ],
+    "year": 1995,
+    "venue": "Science",
+    "doi": "10.1126/science.7569931",
+    "url": "https://doi.org/10.1126/science.7569931"
+  },
+  "evidence_class": "neuroscience_theory",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong support for explicit predicted-vs-observed consequence comparison after action, which matches REE post-commit attribution routing; the paper does not define a discrete commit token, so support is mechanistic but indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "internal_model",
+    "reafference",
+    "sensorimotor",
+    "attribution"
+  ],
+  "mapping": {
+    "source_claim_statement": "Action control relies on internal forward models that predict sensory consequences and compare them to actual feedback.",
+    "ree_translation": "Supports REE commit-boundary semantics where post-commit errors are classified via predicted-vs-observed consequence joins.",
+    "mapping_caveat": "No explicit boundary token or multi-module TTL contract is proposed in the source.",
+    "source_context": "Human/animal motor-control computational neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.31,
+    "notes": "High canonical quality; transfer risk comes from mapping motor comparator math to generalized REE commitment events."
+  }
+}

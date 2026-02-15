@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_062",
+  "entry_id": "2026-02-15_mech062_pbwm_gating_neuralcomputation2006",
+  "timestamp_utc": "2026-02-15T14:19:00Z",
+  "claim_ids_tested": [
+    "MECH-062",
+    "Q-016"
+  ],
+  "source": {
+    "title": "Making Working Memory Work: A Computational Model of Learning in the Prefrontal Cortex and Basal Ganglia",
+    "authors": [
+      "Randall C. O'Reilly",
+      "Michael J. Frank"
+    ],
+    "year": 2006,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco.2006.18.2.283",
+    "url": "https://doi.org/10.1162/neco.2006.18.2.283"
+  },
+  "evidence_class": "computational_neuroscience_model",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Computational evidence supports separable gating channels for cognitive state updates via basal ganglia-prefrontal interaction, consistent with multi-loop gate decomposition in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "pbwm",
+    "prefrontal_cortex",
+    "basal_ganglia",
+    "working_memory_gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "Basal ganglia gating policies can selectively update prefrontal representations rather than globally opening all channels.",
+    "ree_translation": "Supports REE tri-loop/stream-selective commitment gating and the need for explicit arbitration policy over separate gate manifolds.",
+    "mapping_caveat": "Primary focus is cognitive working-memory gating; motor/motivational channels are not fully symmetric in this model.",
+    "source_context": "Biologically grounded computational model of prefrontal-basal ganglia interaction."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Strong mechanistic model relevance with moderate transfer abstraction for full tri-loop extension."
+  }
+}

@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T11:20:45.747256Z`
+Generated: `2026-02-15T14:08:37.492985Z`
 
 ## Cycle Status
 
@@ -43,7 +43,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `Q-011` decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 4. Architecture Structure: 3 consider-new-structure item(s), 8 total register item(s).
 - `MECH-058` conflict_ratio=0.957; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-060` conflict_ratio=0.936; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
+- `MECH-060` conflict_ratio=0.923; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `MECH-059` conflict_ratio=0.884; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
 5. Structure Dossiers: 3 dossier(s), 3 marked consider-new-structure.
 - dossier index: `evidence/planning/structure_review/latest/INDEX.md`
@@ -56,13 +56,13 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
 - `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.308
-- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.330
-- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.300
+- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.329
+- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.301
 - `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.171
 8. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
-9. Evidence Dispatch: 25 high-priority proposal(s), 46 total.
-- REE_assembly: total=18, experimental=0, literature_review=18
+9. Evidence Dispatch: 33 high-priority proposal(s), 54 total.
+- REE_assembly: total=19, experimental=0, literature_review=19
 - ree-experiments-lab: total=3, experimental=3, literature_review=0
-- ree-v2: total=25, experimental=25, literature_review=0
+- ree-v2: total=32, experimental=32, literature_review=0
 10. Maintenance: 0 unlinked evidence run(s), 0 warning(s).

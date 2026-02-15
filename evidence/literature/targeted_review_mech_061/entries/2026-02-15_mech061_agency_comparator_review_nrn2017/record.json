@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-02-15_mech061_agency_comparator_review_nrn2017",
+  "timestamp_utc": "2026-02-15T14:16:00Z",
+  "claim_ids_tested": [
+    "MECH-061",
+    "MECH-060",
+    "Q-015"
+  ],
+  "source": {
+    "title": "Sense of agency in the human brain",
+    "authors": [
+      "Patrick Haggard"
+    ],
+    "year": 2017,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2017.14",
+    "url": "https://doi.org/10.1038/nrn.2017.14"
+  },
+  "evidence_class": "neuroscience_review",
+  "evidence_direction": "supports",
+  "confidence": 0.69,
+  "confidence_rationale": "Review-level synthesis supports comparator-based self-attribution after action outcomes, consistent with a pre/post boundary in error interpretation; support is indirect for explicit tokenized routing primitives.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "sense_of_agency",
+    "comparator_model",
+    "self_attribution",
+    "post_action"
+  ],
+  "mapping": {
+    "source_claim_statement": "Agency depends on matching intended actions and predicted consequences to observed outcomes.",
+    "ree_translation": "Supports REE commit-boundary reclassification from counterfactual evaluation to attributable post-commit feedback.",
+    "mapping_caveat": "The source does not prescribe data-structure fields or TTL broadcast semantics for commitment events.",
+    "source_context": "Human cognitive neuroscience and action-awareness literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.79,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.34,
+    "notes": "Strong conceptual alignment; moderate transfer risk from phenomenology/review evidence to architecture-level implementation contracts."
+  }
+}
