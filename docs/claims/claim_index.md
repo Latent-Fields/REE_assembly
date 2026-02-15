@@ -119,6 +119,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics preserve E1/E2 substrate separation under JEPA-style training.
 - [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
 - [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Dual error channels should be separated across pre-commit simulation and post-commit realized outcomes.
+- [MECH-061](../architecture/e3.md#mech-061) Commit-boundary token reclassifies pre-commit vs post-commit error routing.
+- [MECH-062](../architecture/e3.md#mech-062) E3 should use coordinated tri-loop gating (motor, cognitive-set, motivational) instead of one global gate.
+- [MECH-063](../architecture/control_plane.md#mech-063) Control plane should retain orthogonal tonic/phasic axes rather than collapsing into one scalar regulation signal.
 
 ---
 
@@ -138,6 +141,9 @@ This index lists all claim IDs with one-line summaries and links. For full metad
 - [Q-012](../architecture/agency_responsibility_flow.md#q-012) Can latent predictive world models stay agentically stable without explicit REE-like control constraints?
 - [Q-013](../architecture/agency_responsibility_flow.md#q-013) Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
 - [Q-014](../architecture/agency_responsibility_flow.md#q-014) Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?
+- [Q-015](../architecture/e3.md#q-015) What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?
+- [Q-016](../architecture/e3.md#q-016) What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?
+- [Q-017](../architecture/control_plane.md#q-017) What is the minimal orthogonal control-axis subset that preserves observed regime separations?
 
 ---
 

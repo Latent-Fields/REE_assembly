@@ -1545,6 +1545,50 @@
   location: docs/architecture/agency_responsibility_flow.md#mech-060
   source:
     - docs/architecture/agency_responsibility_flow.md
+- id: MECH-061
+  claim_type: mechanism_hypothesis
+  subject: commitment.boundary_token_error_reclassification
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-003
+    - ARC-015
+    - INV-012
+    - MECH-060
+  location: docs/architecture/e3.md#mech-061
+  source:
+    - docs/architecture/e3.md
+    - docs/thoughts/2026-02-15_basal_ganglia.md
+    - docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md
+- id: MECH-062
+  claim_type: mechanism_hypothesis
+  subject: commitment.tri_loop_gate_coordination
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-003
+    - ARC-005
+    - MECH-061
+  location: docs/architecture/e3.md#mech-062
+  source:
+    - docs/architecture/e3.md
+    - docs/thoughts/2026-02-15_basal_ganglia.md
+    - docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md
+- id: MECH-063
+  claim_type: mechanism_hypothesis
+  subject: control_plane.orthogonal_axes_tonic_phasic
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - MECH-039
+    - MECH-040
+    - MECH-055
+  location: docs/architecture/control_plane.md#mech-063
+  source:
+    - docs/architecture/control_plane.md
+    - docs/thoughts/2026-02-15_basal_ganglia.md
+    - docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md
 - id: Q-012
   claim_type: open_question
   subject: latent_predictive_models.control_completion_falsifiability
@@ -1583,6 +1627,45 @@
   location: docs/architecture/agency_responsibility_flow.md#q-014
   source:
     - docs/architecture/agency_responsibility_flow.md
+- id: Q-015
+  claim_type: open_question
+  subject: commitment.boundary_token_minimal_contract
+  polarity: asks
+  status: active
+  depends_on:
+    - MECH-061
+    - ARC-003
+    - ARC-015
+  location: docs/architecture/e3.md#q-015
+  source:
+    - docs/architecture/e3.md
+    - docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md
+- id: Q-016
+  claim_type: open_question
+  subject: commitment.tri_loop_conflict_arbitration_policy
+  polarity: asks
+  status: active
+  depends_on:
+    - MECH-062
+    - ARC-003
+    - ARC-005
+  location: docs/architecture/e3.md#q-016
+  source:
+    - docs/architecture/e3.md
+    - docs/thoughts/2026-02-15_basal_ganglia.md
+- id: Q-017
+  claim_type: open_question
+  subject: control_plane.minimal_orthogonal_axis_set
+  polarity: asks
+  status: active
+  depends_on:
+    - MECH-063
+    - ARC-005
+    - MECH-055
+  location: docs/architecture/control_plane.md#q-017
+  source:
+    - docs/architecture/control_plane.md
+    - docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md
 - id: IMPL-020
   claim_type: implementation_note
   subject: terminology.jepa_ree_alignment_glossary

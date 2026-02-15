@@ -17,8 +17,8 @@ It modulates precision, gain, exploration, replay, and commitment thresholds acr
 **Subsystem abstract (core claims):** ARC‑005 is the control-plane commitment itself, and MECH‑019/MECH‑039/MECH‑040
 specify how modes emerge from channel space and how safety baseline vs volatility shapes arousal/readiness. MECH‑005
 grounds fast interruptibility, and MECH‑002 anchors precision‑control analogues. Supporting mechanisms include MECH‑001,
-MECH‑003, MECH‑004, MECH‑006, MECH‑007, MECH‑008, and the fast mode‑prior / commitment‑stability stack in MECH‑046,
-MECH‑047, and MECH‑048.
+MECH‑003, MECH‑004, MECH‑006, MECH‑007, MECH‑008, MECH‑063, and the fast mode‑prior / commitment‑stability stack in
+MECH‑046, MECH‑047, and MECH‑048.
 
 The control plane does **not**:
 - overwrite representational content,
@@ -232,6 +232,38 @@ In REE, these are treated as **functional control channels**, not biological cla
 
 These channels alter *how cognition runs*, not *what it represents*.
 
+---
+
+<a id="mech-063"></a>
+## Orthogonal Control-Plane Axes and Tonic/Phasic Splits (MECH-063)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Minimal orthogonal control-plane axis set with tonic/phasic decomposition  
+**Depends On:** ARC-005, MECH-039, MECH-040, MECH-055  
+**Status:** provisional  
+**Claim ID:** MECH-063
+
+REE control should use an explicit orthogonal axis set rather than collapsing regulation into one arousal/precision
+channel. A compact working set is:
+
+1. Precision/vigor (dopamine-like)
+2. Delay tolerance/commitment persistence (serotonin-like)
+3. Interrupt priority/volatility response (noradrenaline-like)
+4. Sustained threat mode (stress-axis-like)
+5. Social openness/trust (oxytocin-like)
+6. Boundary defense/vigilance (vasopressin-like)
+7. Curiosity/information-gain drive (acetylcholine-like)
+8. Energy budget/fatigue throttling (metabolic/adenosine-like)
+
+Each axis should carry:
+
+- a **tonic** component (slow baseline),
+- a **phasic** component (event burst),
+- module-specific readout weights (E1/E2/hippocampal systems/E3 gate family).
+
+This decomposition allows regimes like "focused but initiation-suppressed" (stable representation, high commitment
+threshold, low energy budget) without forcing contradictory updates into a single scalar channel.
+
 ### Emotion as composite control regime (clarification)
 
 “Emotion” in REE is not a primitive signal. It is a **phenomenological label** for a **composite control‑plane regime**
@@ -436,6 +468,12 @@ Tracked conflict: `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
 This question has been progressed into **MECH‑055 (Affective Channel Separation)** and is retained for historical
 tracking. The remaining open issue is calibration, not separation.
 
+<a id="q-017"></a>
+**Q-017 — Minimal orthogonal axis set for control-plane completeness**  
+What is the smallest axis subset that still preserves empirically relevant regime separations (for example
+"focused-but-stuck", "high-alert without commitment", and "trust-open vs boundary-defensive") without re-collapsing
+control into a single scalar?
+
 ## Related Claims (IDs)
 
 - ARC-005
@@ -454,6 +492,7 @@ tracking. The remaining open issue is calibration, not separation.
 - MECH-053
 - MECH-054
 - MECH-055
+- MECH-063
 - MECH-036
 - MECH-051
 - MECH-052
@@ -462,6 +501,7 @@ tracking. The remaining open issue is calibration, not separation.
 - Q-008
 - Q-009
 - Q-010
+- Q-017
 
 ## References / Source Fragments
 
@@ -471,3 +511,5 @@ tracking. The remaining open issue is calibration, not separation.
 - `docs/thoughts/2026-02-11_amygdala.md`
 - `docs/thoughts/2026-02-11_opioid_receptors.md`
 - `docs/thoughts/2026-02-11_habenula_signed_pe.md`
+- `docs/thoughts/2026-02-15_basal_ganglia.md`
+- `docs/thoughts/2026-02-15_commit_gating_pre_post_commit_boundary_control_plane_axes.md`

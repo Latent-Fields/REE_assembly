@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-061, MECH-062, Q-015, Q-016)
+- `docs/architecture/control_plane.md` (MECH-063, Q-017)
+
+---
+
 ## Thought intake draft for `REE_assembly`: **Commit gating, pre/post-commit error separation, and control-plane axes (anchored by missed-dose phenomenology)**
 
 ### 0) Anchor phenomenology (user-observed pattern)

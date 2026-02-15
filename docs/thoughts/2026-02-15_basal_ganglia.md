@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-061, MECH-062, Q-015, Q-016)
+- `docs/architecture/control_plane.md` (MECH-063, Q-017)
+
+---
+
 basal ganglia systems
 
 If
@@ -234,4 +242,3 @@ This is a functional systems-level model.
 
 
 ⸻
-
