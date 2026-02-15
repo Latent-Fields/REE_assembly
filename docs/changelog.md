@@ -1637,3 +1637,23 @@ is guaranteed both in weekly cadence and via explicit full-run invocation.
 - Updated operator docs:
   - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md` now uses `--full-run --run-ingestion` for Thursday/full sync.
   - `evidence/planning/README.md` now documents on-demand full-run command.
+
+## 2026-02-15: Governance Agenda Carryover Persistence
+
+### Overview
+
+Added a persistent manual carryover queue so unfinished governance items survive agenda regeneration across full-run
+and weekly cadence cycles.
+
+### What Changed
+
+- Added carryover source file:
+  - `evidence/planning/manual_carryover_items.v1.json`
+- Updated governance cycle script:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - loads `manual_carryover_items.v1.json` when present,
+  - includes all items with `status != done` in agenda checkpoint `manual_carryover`,
+  - adds summary counts for total/open carryover items.
+- Updated planning docs:
+  - `evidence/planning/README.md`
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`

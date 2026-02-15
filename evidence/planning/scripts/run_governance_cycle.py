@@ -74,6 +74,12 @@ def _load_json_file(path: Path, warnings: list[str]) -> dict[str, Any]:
         return {}
 
 
+def _load_optional_json_file(path: Path, warnings: list[str]) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    return _load_json_file(path, warnings)
+
+
 def _strip_ticks(text: str) -> str:
     return text.strip().strip("`")
 
@@ -279,6 +285,10 @@ def _build_agenda(
     planning_criteria = _load_json_file(
         repo_root / "evidence/planning/planning_criteria.v1.yaml", warnings
     )
+    carryover = _load_optional_json_file(
+        repo_root / "evidence/planning/manual_carryover_items.v1.json",
+        warnings,
+    )
     adjudication_cascade_state = _load_json_file(
         repo_root / "evidence/decisions/adjudication_cascade_state.v1.json", warnings
     )
@@ -390,6 +400,10 @@ def _build_agenda(
     ]
 
     unlinked_runs = claim_matrix.get("unlinked_runs", []) if isinstance(claim_matrix, dict) else []
+    carryover_items = carryover.get("items", []) if isinstance(carryover, dict) else []
+    open_carryover_items = [
+        item for item in carryover_items if str(item.get("status", "open")).strip().lower() != "done"
+    ]
 
     agenda = {
         "schema_version": "governance_agenda/v1",
@@ -421,6 +435,8 @@ def _build_agenda(
             "adjudication_cascade_claims_updated": len(cascade_claims_updated),
             "adjudication_cascade_dependents_reopened": len(cascade_dependents_reopened),
             "unlinked_evidence_runs": len(unlinked_runs),
+            "manual_carryover_items": len(carryover_items),
+            "manual_carryover_open": len(open_carryover_items),
             "autonomy_triage_items": len(autonomy_triage_items),
             "autonomy_open_decisions": len(autonomy_open_decisions),
             "autonomy_failed_gates": len(autonomy_failed_gates),
@@ -533,6 +549,13 @@ def _build_agenda(
                 "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
                 "unlinked_runs": unlinked_runs,
             },
+            "manual_carryover": {
+                "prompt": "Carry forward unfinished manually-tracked governance items.",
+                "items_total": len(carryover_items),
+                "open_items_total": len(open_carryover_items),
+                "items": open_carryover_items,
+                "source_path": "evidence/planning/manual_carryover_items.v1.json",
+            },
         },
     }
 
@@ -604,7 +627,20 @@ def _build_agenda(
                 f"- `{claim_id}` decision={decision_needed}; recommendation=`{recommendation}`"
             )
     lines.append(
-        "4. Architecture Structure: "
+        "4. Manual Carryover: "
+        + f"{len(open_carryover_items)} open item(s), {len(carryover_items)} total."
+    )
+    lines.append("- source: `evidence/planning/manual_carryover_items.v1.json`")
+    if open_carryover_items:
+        for item in open_carryover_items[:10]:
+            item_id = _strip_ticks(str(item.get("item_id", "")))
+            owner = _strip_ticks(str(item.get("owner", "")))
+            note = str(item.get("summary", ""))
+            lines.append(
+                f"- `{item_id}` owner=`{owner}` summary={note}"
+            )
+    lines.append(
+        "5. Architecture Structure: "
         + f"{len(structure_considerations)} consider-new-structure item(s), "
         + f"{len(architecture_items)} total register item(s)."
     )
@@ -617,13 +653,13 @@ def _build_agenda(
                 f"- `{claim_id}` conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
             )
     lines.append(
-        "5. Structure Dossiers: "
+        "6. Structure Dossiers: "
         + f"{structure_review_total} dossier(s), "
         + f"{structure_review_consider} marked consider-new-structure."
     )
     lines.append("- dossier index: `evidence/planning/structure_review/latest/INDEX.md`")
     lines.append(
-        "6. Connectome Literature Pull: "
+        "7. Connectome Literature Pull: "
         + f"{len(connectome_pull_items)} queued claim(s), "
         + f"{len(connectome_pull_high_priority)} high-priority."
     )
@@ -634,7 +670,7 @@ def _build_agenda(
             pull_id = _strip_ticks(str(item.get("pull_id", "")))
             lines.append(f"- `{claim_id}` pull_id=`{pull_id}`")
     lines.append(
-        "7. Model Adjudication: "
+        "8. Model Adjudication: "
         + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
         + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
     )
@@ -659,7 +695,7 @@ def _build_agenda(
                 + f"delta_lit_minus_exp={delta:.3f}"
             )
     lines.append(
-        "8. Adjudication Cascade: "
+        "9. Adjudication Cascade: "
         + f"{len(cascade_actions)} action(s), "
         + f"{len(cascade_claims_updated)} claim update(s), "
         + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
@@ -674,7 +710,7 @@ def _build_agenda(
                 f"- `{claim_id}` outcome=`{outcome}`; reopened_dependents={len(reopened)}"
             )
     lines.append(
-        f"9. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        f"10. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
@@ -683,7 +719,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"10. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"11. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     if warnings:
         for warning in warnings:

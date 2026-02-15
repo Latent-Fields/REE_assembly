@@ -148,3 +148,12 @@ Example (Europe/Dublin local machine clock):
 - Adjudication cascade outputs:
   - `evidence/decisions/adjudication_cascade_state.v1.json`
   - `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
+
+## Persistent Unfinished Items
+
+Use:
+
+- `evidence/planning/manual_carryover_items.v1.json`
+
+Any item with `status != done` is automatically merged into each newly generated governance agenda so unfinished
+manual items persist across weekly and full-run cycles.

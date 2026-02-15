@@ -108,3 +108,12 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
 See:
 
 - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+
+## Manual Carryover Queue
+
+To ensure unfinished governance items persist across weekly/full-run agenda regeneration, track them in:
+
+- `evidence/planning/manual_carryover_items.v1.json`
+
+`run_governance_cycle.py` automatically merges all items with `status != done` into the generated agenda under
+`manual_carryover`.
