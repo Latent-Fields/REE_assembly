@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "trajectory_integrity",
+  "run_id": "2026-02-14T200000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-14T20:00:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "6bcb466b273ca646a744d66f05e199d1c394c0dd",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-bridging-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": true,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true,
+    "jepa_adapter_signal_emission": false
+  },
+  "environment": {
+    "env_id": "ree.bridging.qualification",
+    "env_version": "bridging/v1",
+    "dynamics_hash": "a8ae887e30d6",
+    "reward_hash": "bfaef776e478",
+    "observation_hash": "72ee4ef1c4af",
+    "config_hash": "0f163e6442e9",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "trajectory_integrity",
+    "condition": "trajectory_first_enabled",
+    "seed": 11,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "c18eb5e2feb1"
+  },
+  "failure_signatures": []
+}

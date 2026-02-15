@@ -1,6 +1,6 @@
 {
-  "cycle_date": "2026-02-14",
-  "generated_at_utc": "2026-02-14T20:59:13.367511Z",
+  "cycle_date": "2026-02-15",
+  "generated_at_utc": "2026-02-15T08:42:36.429723Z",
   "items": [
     {
       "acceptance_checks": [
@@ -74,22 +74,24 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.923,
+        "conflict_ratio": 0.933,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 21,
+          "supports": 24,
           "unknown": 0,
-          "weakens": 18
+          "weakens": 21
         },
-        "overall_confidence": 0.682,
+        "overall_confidence": 0.68,
         "recurring_failure_signatures": [
           "mech058:anchor_separation_collapse",
           "mech058:ema_drift_under_shift",
-          "mech058:latent_cluster_collapse"
+          "mech058:latent_cluster_collapse",
+          "threshold:latent_prediction_error_mean",
+          "threshold:latent_prediction_error_p95"
         ],
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 3
         },
         "trigger_signals": [
@@ -174,22 +176,24 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.9,
+        "conflict_ratio": 0.913,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 3,
-          "supports": 22,
+          "supports": 25,
           "unknown": 0,
-          "weakens": 18
+          "weakens": 21
         },
-        "overall_confidence": 0.693,
+        "overall_confidence": 0.692,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
-          "mech060:precommit_channel_contamination"
+          "mech060:precommit_channel_contamination",
+          "threshold:pre_commit_error_signal_to_noise",
+          "threshold:post_commit_error_attribution_gain"
         ],
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 6
         },
         "trigger_signals": [
@@ -275,22 +279,24 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.833,
+        "conflict_ratio": 0.857,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 5,
-          "supports": 21,
+          "supports": 24,
           "unknown": 0,
-          "weakens": 15
+          "weakens": 18
         },
-        "overall_confidence": 0.715,
+        "overall_confidence": 0.711,
         "recurring_failure_signatures": [
           "mech059:uncertainty_metric_gaming_detected",
           "mech059:calibration_slope_break",
-          "mech059:abstention_reliability_collapse"
+          "mech059:abstention_reliability_collapse",
+          "threshold:latent_prediction_error_mean",
+          "threshold:latent_uncertainty_calibration_error"
         ],
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 4
         },
         "trigger_signals": [

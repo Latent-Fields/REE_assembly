@@ -1,0 +1,59 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "commit_dual_error_channels",
+  "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed29_single_error_stream",
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-14T20:00:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "6bcb466b273ca646a744d66f05e199d1c394c0dd",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-bridging-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "ablation",
+  "evidence_direction": "weakens",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true,
+    "jepa_adapter_signal_emission": true
+  },
+  "environment": {
+    "env_id": "ree.bridging.qualification",
+    "env_version": "bridging/v1",
+    "dynamics_hash": "7f005d23c916",
+    "reward_hash": "88be3f708cd9",
+    "observation_hash": "b1474f5b4783",
+    "config_hash": "431f825618d0",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "commit_dual_error_channels",
+    "condition": "single_error_stream",
+    "seed": 29,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "e7bd77d61725"
+  },
+  "failure_signatures": [
+    "threshold:pre_commit_error_signal_to_noise",
+    "threshold:post_commit_error_attribution_gain",
+    "threshold:cross_channel_leakage_rate",
+    "threshold:commitment_reversal_rate"
+  ]
+}

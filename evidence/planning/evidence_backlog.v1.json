@@ -1,6 +1,6 @@
 {
   "criteria_version": "planning_criteria/v1",
-  "generated_at_utc": "2026-02-14T20:59:13.206518Z",
+  "generated_at_utc": "2026-02-15T08:42:36.287414Z",
   "items": [
     {
       "adjudication_context": {
@@ -585,7 +585,7 @@
           "adopt_jepa_structure",
           "retire_ree_claim"
         ],
-        "anti_lock_in_review_required": false,
+        "anti_lock_in_review_required": true,
         "cascade_policy": {
           "dependency_reopen_status": "candidate",
           "enabled": true,
@@ -596,7 +596,7 @@
           ]
         },
         "default_conflict_outcome": "retain_ree",
-        "external_precedence_candidate": false,
+        "external_precedence_candidate": true,
         "temporary_override_mode": {
           "enabled": true,
           "mode_id": "jepa_internal_proxy_override",
@@ -618,25 +618,27 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-02-13T08:43:59.847373Z"
       },
-      "next_action": "Run paired experiment + literature cycle before status change.",
+      "next_action": "Run anti-lock-in review and forbid schema-preserving tuning without selecting a recorded conflict outcome.",
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert"
+        "anti_lock_in_review_required",
+        "directional_conflict_alert",
+        "external_precedence_pressure"
       ],
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.131,
-          "experimental_confidence": 0.687,
+          "delta_lit_minus_exp": 0.171,
+          "experimental_confidence": 0.647,
           "literature_confidence": 0.818
         },
-        "conflict_ratio": 0.545,
+        "conflict_ratio": 0.643,
         "current_status": "candidate",
-        "entries_total": 22,
-        "overall_confidence": 0.752,
+        "entries_total": 28,
+        "overall_confidence": 0.732,
         "source_counts": {
-          "experimental": 19,
+          "experimental": 25,
           "literature": 3
         }
       },
@@ -759,16 +761,16 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.296,
-          "experimental_confidence": 0.534,
+          "delta_lit_minus_exp": 0.299,
+          "experimental_confidence": 0.531,
           "literature_confidence": 0.83
         },
-        "conflict_ratio": 0.923,
+        "conflict_ratio": 0.933,
         "current_status": "candidate",
-        "entries_total": 40,
-        "overall_confidence": 0.682,
+        "entries_total": 46,
+        "overall_confidence": 0.68,
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 3
         }
       },
@@ -827,16 +829,16 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.281,
-          "experimental_confidence": 0.574,
+          "delta_lit_minus_exp": 0.289,
+          "experimental_confidence": 0.566,
           "literature_confidence": 0.855
         },
-        "conflict_ratio": 0.833,
+        "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "entries_total": 41,
-        "overall_confidence": 0.715,
+        "entries_total": 47,
+        "overall_confidence": 0.711,
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 4
         }
       },
@@ -895,16 +897,16 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.318,
-          "experimental_confidence": 0.534,
+          "delta_lit_minus_exp": 0.321,
+          "experimental_confidence": 0.531,
           "literature_confidence": 0.852
         },
-        "conflict_ratio": 0.9,
+        "conflict_ratio": 0.913,
         "current_status": "candidate",
-        "entries_total": 43,
-        "overall_confidence": 0.693,
+        "entries_total": 49,
+        "overall_confidence": 0.692,
         "source_counts": {
-          "experimental": 37,
+          "experimental": 43,
           "literature": 6
         }
       },
@@ -960,14 +962,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.374,
-          "experimental_confidence": 0.371,
+          "delta_lit_minus_exp": 0.375,
+          "experimental_confidence": 0.37,
           "literature_confidence": 0.745
         },
         "conflict_ratio": 0.5,
         "current_status": "candidate",
         "entries_total": 4,
-        "overall_confidence": 0.558,
+        "overall_confidence": 0.557,
         "source_counts": {
           "experimental": 2,
           "literature": 2
@@ -1212,14 +1214,14 @@
       "signals": {
         "claim_type": "unknown",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.822,
-          "experimental_confidence": 0.822,
+          "delta_lit_minus_exp": -0.821,
+          "experimental_confidence": 0.821,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "unknown",
         "entries_total": 2,
-        "overall_confidence": 0.822,
+        "overall_confidence": 0.821,
         "source_counts": {
           "experimental": 2,
           "literature": 0

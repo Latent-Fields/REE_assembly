@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-14T20:59:13.373576Z`
+Generated: `2026-02-15T08:42:36.434797Z`
 
 ## Cycle Status
 
@@ -26,7 +26,8 @@ Generated: `2026-02-14T20:59:13.373576Z`
 
 Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
-1. Thought Intake: 0 unprocessed thought(s).
+1. Thought Intake: 1 unprocessed thought(s).
+- `2026-02-15_hippocampal_backward_shift.md`
 2. Conflict Resolution: 7 conflict item(s).
 - `ARC-018` conflict_types=directional
 - `MECH-033` conflict_types=directional
@@ -42,9 +43,9 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-060` decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 - `Q-011` decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 4. Architecture Structure: 3 consider-new-structure item(s), 8 total register item(s).
-- `MECH-058` conflict_ratio=0.923; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-060` conflict_ratio=0.9; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
-- `MECH-059` conflict_ratio=0.833; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
+- `MECH-058` conflict_ratio=0.933; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-060` conflict_ratio=0.913; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
+- `MECH-059` conflict_ratio=0.857; trigger_signals=external_precedence_pressure,high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
 5. Structure Dossiers: 3 dossier(s), 3 marked consider-new-structure.
 - dossier index: `evidence/planning/structure_review/latest/INDEX.md`
 6. Connectome Literature Pull: 3 queued claim(s), 3 high-priority.
@@ -52,12 +53,13 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-058` pull_id=`CPULL-0001`
 - `MECH-060` pull_id=`CPULL-0002`
 - `MECH-059` pull_id=`CPULL-0003`
-7. Model Adjudication: 3 external-precedence candidate(s), 3 anti-lock-in review item(s).
+7. Model Adjudication: 4 external-precedence candidate(s), 4 anti-lock-in review item(s).
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.296
-- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.318
-- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.281
+- `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.299
+- `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.321
+- `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.289
+- `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.171
 8. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
 9. Evidence Dispatch: 25 high-priority proposal(s), 46 total.

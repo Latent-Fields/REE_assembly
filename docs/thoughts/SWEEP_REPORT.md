@@ -1,17 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-02-14T20:59:13.026670Z`
+Generated: `2026-02-15T08:42:36.145116Z`
 
 | metric | count |
 |---|---|
-| total thought files | 32 |
+| total thought files | 33 |
 | processed | 32 |
-| unprocessed | 0 |
+| unprocessed | 1 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-15` `2026-02-15_hippocampal_backward_shift.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 

@@ -1,0 +1,258 @@
+{
+  "alternative_interpretations": [
+    {
+      "alternative_id": "ALT-01",
+      "confidence_estimate": 0.541,
+      "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
+      "hypothesis": "jepa substrate / ema target anchor timescale separation is broadly correct, but failures are boundary-condition failures.",
+      "next_evidence_pull": [
+        "Target stress regimes where failures cluster and test whether boundary constraints recover stability.",
+        "Pull replication papers that test similar mechanisms under distribution shift."
+      ]
+    },
+    {
+      "alternative_id": "ALT-02",
+      "confidence_estimate": 0.437,
+      "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
+      "hypothesis": "jepa substrate / ema target anchor timescale separation is over-scoped and should be narrowed or split.",
+      "next_evidence_pull": [
+        "Extract disconfirming sources and isolate the exact violated assumption.",
+        "Run claim-splitting experiments with explicit sub-claim tags in manifests."
+      ]
+    },
+    {
+      "alternative_id": "ALT-03",
+      "confidence_estimate": 0.437,
+      "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
+      "hypothesis": "A hybrid architecture is needed: keep the core of jepa substrate / ema target anchor timescale separation but add explicit gating or interface separation.",
+      "next_evidence_pull": [
+        "Evaluate an ablation that isolates the proposed guardrail/interface addition.",
+        "Collect one adjacent-domain source that uses a similar split architecture."
+      ]
+    }
+  ],
+  "claim": {
+    "claim_id": "MECH-058",
+    "claim_type": "mechanism_hypothesis",
+    "dependents": [
+      "IMPL-023"
+    ],
+    "depends_on": [
+      "ARC-001",
+      "ARC-002",
+      "ARC-004",
+      "ARC-015",
+      "MECH-057"
+    ],
+    "location": "docs/architecture/agency_responsibility_flow.md#mech-058",
+    "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
+    "plain_english_ree_fit_description": "This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently feeds 1 downstream claim(s): `IMPL-023`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.",
+    "status": "candidate",
+    "subject": "jepa_substrate.ema_target_anchor_timescale_separation"
+  },
+  "cycle_date": "2026-02-15",
+  "decision_prompts": [
+    "Which part of the claim appears stable across both supporting and weakening evidence?",
+    "If this claim were split into two sub-claims, where is the cleanest boundary?",
+    "What is the smallest architecture change that would most likely remove the top recurring failure signature?",
+    "What evidence next week would most likely change your current decision?"
+  ],
+  "evidence_items": [
+    {
+      "confidence": 0.78,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_058",
+      "ree_translation": "In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-14_mech058_byol_ema_target_predictor_separation",
+      "source_background": "Bootstrap your own latent: A new approach to self-supervised Learning (2020, arXiv preprint)",
+      "source_type": "literature",
+      "source_wording": "BYOL directly uses a slow EMA target with a fast online predictor and shows stable learning without collapse, closely matching target-anchor/predictor timescale separation.",
+      "timestamp_utc": "2026-02-14T22:45:00Z"
+    },
+    {
+      "confidence": 0.76,
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "ree_translation": "In REE terms, this implies `jepa substrate / ema target anchor timescale separation` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-14_v3jepa_ijepa_control_plane_gap",
+      "source_background": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023)",
+      "source_type": "literature",
+      "source_wording": "I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping.",
+      "timestamp_utc": "2026-02-14T21:10:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_on",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_on` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_on",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_on` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_off",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_off` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_on",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_on` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_off",
+      "source_background": "Run-pack `2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_off` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-14T20:00:00Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z",
+      "source_background": "Run-pack `bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-14T18:53:25.228898Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z",
+      "source_background": "Run-pack `bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z` in `jepa_anchor_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-14T18:53:25.228121Z"
+    }
+  ],
+  "evidence_overview": {
+    "direction_counts": {
+      "mixed": 1,
+      "supports": 24,
+      "unknown": 0,
+      "weakens": 21
+    },
+    "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
+    "source_direction_counts": {
+      "experimental": {
+        "mixed": 0,
+        "supports": 22,
+        "unknown": 0,
+        "weakens": 21
+      },
+      "literature": {
+        "mixed": 1,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      }
+    },
+    "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
+  },
+  "generated_at_utc": "2026-02-15T08:42:36.383016Z",
+  "left_field_suggestions": [
+    {
+      "first_test": "Measure drift and collapse signatures under timescale triad ablations.",
+      "idea": "Try a three-timescale anchor (slow/medium/fast) with disagreement alarms.",
+      "why_it_might_help": "Could reveal whether current failures come from anchor lag mismatch rather than anchor concept failure."
+    },
+    {
+      "first_test": "Compare drift under continuous EMA vs gated reset.",
+      "idea": "Introduce anchor reset checkpoints only on validated low-drift windows.",
+      "why_it_might_help": "Could reduce catastrophic anchor drift under distribution shift."
+    },
+    {
+      "first_test": "Track cluster collapse frequency across single vs ensemble predictor runs.",
+      "idea": "Use predictor ensembles to stress-test anchor stability assumptions.",
+      "why_it_might_help": "Could separate target-anchor instability from predictor idiosyncrasy."
+    }
+  ],
+  "schema_version": "structure_review_dossier/v1",
+  "structure_pressure": {
+    "conflict_ratio": 0.933,
+    "consider_new_structure": true,
+    "gap_id": "AGR-0001",
+    "latest_decision": {
+      "decision_status": "approved",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "timestamp_utc": "2026-02-14T13:22:46.827172Z"
+    },
+    "overall_confidence": 0.68,
+    "recommendation": "consider_new_structure",
+    "recurring_failure_signatures": [
+      {
+        "count": 12,
+        "signature": "mech058:anchor_separation_collapse"
+      },
+      {
+        "count": 12,
+        "signature": "mech058:ema_drift_under_shift"
+      },
+      {
+        "count": 10,
+        "signature": "mech058:latent_cluster_collapse"
+      },
+      {
+        "count": 5,
+        "signature": "threshold:latent_prediction_error_mean"
+      },
+      {
+        "count": 5,
+        "signature": "threshold:latent_prediction_error_p95"
+      }
+    ],
+    "source_counts": {
+      "experimental": 43,
+      "literature": 3
+    },
+    "trigger_signals": [
+      "external_precedence_pressure",
+      "high_conflict_ratio",
+      "recurring_failure_signatures"
+    ]
+  }
+}

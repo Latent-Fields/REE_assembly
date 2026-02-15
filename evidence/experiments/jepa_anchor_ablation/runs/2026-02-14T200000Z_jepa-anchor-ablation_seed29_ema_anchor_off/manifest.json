@@ -1,0 +1,60 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "jepa_anchor_ablation",
+  "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_off",
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-14T20:00:00Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "6bcb466b273ca646a744d66f05e199d1c394c0dd",
+    "branch": "codex/experiment-pack-contract-guard"
+  },
+  "runner": {
+    "name": "ree-v1-bridging-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "ablation",
+  "evidence_direction": "weakens",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true,
+    "jepa_adapter_signal_emission": true
+  },
+  "environment": {
+    "env_id": "ree.bridging.qualification",
+    "env_version": "bridging/v1",
+    "dynamics_hash": "5fdd1a205ae6",
+    "reward_hash": "46e5c9b8663f",
+    "observation_hash": "973b8826ae13",
+    "config_hash": "762e76b12181",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "jepa_anchor_ablation",
+    "condition": "ema_anchor_off",
+    "seed": 29,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "eab49c0c54e1"
+  },
+  "failure_signatures": [
+    "threshold:latent_prediction_error_mean",
+    "threshold:latent_prediction_error_p95",
+    "threshold:latent_rollout_consistency_rate",
+    "threshold:e1_e2_timescale_separation_ratio",
+    "threshold:representation_drift_rate"
+  ]
+}
