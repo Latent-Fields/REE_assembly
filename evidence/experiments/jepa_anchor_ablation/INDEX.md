@@ -1,6 +1,6 @@
 # Experiment Index: jepa_anchor_ablation
 
-Generated: `2026-02-15T19:47:52.735849Z`
+Generated: `2026-02-15T21:11:54.510953Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,9 @@ Generated: `2026-02-15T19:47:52.735849Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `exp_0002_20260215T211117270833Z` | `2026-02-15T21:11:17.270833Z` | PASS | - | - | - | - | [`summary`](runs/exp_0002_20260215T211117270833Z/summary.md) / [`manifest`](runs/exp_0002_20260215T211117270833Z/manifest.json) / [`metrics`](runs/exp_0002_20260215T211117270833Z/metrics.json) |
+| `exp_0002_20260215T205256991224Z` | `2026-02-15T20:52:56.991224Z` | PASS | - | - | - | - | [`summary`](runs/exp_0002_20260215T205256991224Z/summary.md) / [`manifest`](runs/exp_0002_20260215T205256991224Z/manifest.json) / [`metrics`](runs/exp_0002_20260215T205256991224Z/metrics.json) |
+| `exp_0002_20260215T205256931616Z` | `2026-02-15T20:52:56.931616Z` | PASS | - | - | - | - | [`summary`](runs/exp_0002_20260215T205256931616Z/summary.md) / [`manifest`](runs/exp_0002_20260215T205256931616Z/manifest.json) / [`metrics`](runs/exp_0002_20260215T205256931616Z/metrics.json) |
 | `exp_0002_20260215T180710622375Z` | `2026-02-15T18:07:10.622375Z` | PASS | - | - | - | - | [`summary`](runs/exp_0002_20260215T180710622375Z/summary.md) / [`manifest`](runs/exp_0002_20260215T180710622375Z/manifest.json) / [`metrics`](runs/exp_0002_20260215T180710622375Z/metrics.json) |
 | `exp_0002_20260215T180710571305Z` | `2026-02-15T18:07:10.571305Z` | PASS | - | - | - | - | [`summary`](runs/exp_0002_20260215T180710571305Z/summary.md) / [`manifest`](runs/exp_0002_20260215T180710571305Z/manifest.json) / [`metrics`](runs/exp_0002_20260215T180710571305Z/metrics.json) |
 | `2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal` | `2026-02-15T17:39:00Z` | PASS | fatal_error_count=0<br>latent_prediction_error_mean=0.061362<br>latent_prediction_error_p95=0.123369<br>latent_rollout_consistency_rate=1<br>e1_e2_timescale_separation_ratio=2.453479<br>representation_drift_rate=0.041667 | fatal_error_count:+0<br>latent_prediction_error_mean:+0.018192<br>latent_prediction_error_p95:+0.006756<br>latent_rollout_consistency_rate:+0<br>e1_e2_timescale_separation_ratio:+1.192932<br>representation_drift_rate:-0.033333 | - | PASS | [`summary`](runs/2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |

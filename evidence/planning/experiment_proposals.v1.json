@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-15T19:47:52.735849Z",
+  "generated_at_utc": "2026-02-15T21:11:54.510953Z",
   "items": [
     {
       "acceptance_checks": [
@@ -40,42 +40,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0002",
-      "claim_id": "MECH-058",
-      "objective": "Reduce uncertainty for MECH-058 via targeted experiment runs.",
-      "priority": "high",
-      "proposal_id": "EXP-0002",
-      "proposal_type": "experimental",
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "summary": "include scenario and interpretation"
-      },
-      "status": "proposed",
-      "suggested_experiment_type": "jepa_anchor_ablation",
-      "target_repo": "ree-experiments-lab",
-      "why_now": [
-        "active_conflict",
-        "anti_lock_in_review_required",
-        "consider_new_structure",
-        "directional_conflict_alert",
-        "external_precedence_pressure"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0003",
       "claim_id": "MECH-060",
       "objective": "Reduce uncertainty for MECH-060 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0003",
+      "proposal_id": "EXP-0002",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -103,11 +71,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0004",
-      "claim_id": "ARC-007",
-      "objective": "Reduce uncertainty for ARC-007 via targeted experiment runs.",
+      "backlog_id": "EVB-0003",
+      "claim_id": "MECH-058",
+      "objective": "Reduce uncertainty for MECH-058 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0004",
+      "proposal_id": "EXP-0003",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -119,7 +87,7 @@
         "summary": "include scenario and interpretation"
       },
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_arc_007",
+      "suggested_experiment_type": "jepa_anchor_ablation",
       "target_repo": "ree-experiments-lab",
       "why_now": [
         "active_conflict",
@@ -135,11 +103,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0004",
       "claim_id": "MECH-056",
       "objective": "Reduce uncertainty for MECH-056 via targeted experiment runs.",
       "priority": "high",
-      "proposal_id": "EXP-0005",
+      "proposal_id": "EXP-0004",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -157,6 +125,37 @@
         "active_conflict",
         "anti_lock_in_review_required",
         "consider_new_structure",
+        "directional_conflict_alert",
+        "external_precedence_pressure"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0005",
+      "claim_id": "ARC-007",
+      "objective": "Reduce uncertainty for ARC-007 via targeted experiment runs.",
+      "priority": "high",
+      "proposal_id": "EXP-0005",
+      "proposal_type": "experimental",
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "summary": "include scenario and interpretation"
+      },
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_arc_007",
+      "target_repo": "ree-v2",
+      "why_now": [
+        "active_conflict",
+        "anti_lock_in_review_required",
         "directional_conflict_alert",
         "external_precedence_pressure"
       ]

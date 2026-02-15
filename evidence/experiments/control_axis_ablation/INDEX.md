@@ -1,6 +1,6 @@
 # Experiment Index: control_axis_ablation
 
-Generated: `2026-02-15T19:47:52.735849Z`
+Generated: `2026-02-15T21:11:54.510953Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,9 @@ Generated: `2026-02-15T19:47:52.735849Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `exp_0001_20260215T211117186174Z` | `2026-02-15T21:11:17.186174Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T211117186174Z/summary.md) / [`manifest`](runs/exp_0001_20260215T211117186174Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T211117186174Z/metrics.json) |
+| `exp_0001_20260215T205256872005Z` | `2026-02-15T20:52:56.872005Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T205256872005Z/summary.md) / [`manifest`](runs/exp_0001_20260215T205256872005Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T205256872005Z/metrics.json) |
+| `exp_0001_20260215T205256766352Z` | `2026-02-15T20:52:56.766352Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T205256766352Z/summary.md) / [`manifest`](runs/exp_0001_20260215T205256766352Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T205256766352Z/metrics.json) |
 | `exp_0001_20260215T180710518955Z` | `2026-02-15T18:07:10.518955Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T180710518955Z/summary.md) / [`manifest`](runs/exp_0001_20260215T180710518955Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T180710518955Z/metrics.json) |
 | `exp_0001_20260215T180710436413Z` | `2026-02-15T18:07:10.436413Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T180710436413Z/summary.md) / [`manifest`](runs/exp_0001_20260215T180710436413Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T180710436413Z/metrics.json) |
 | `exp_0001_20260215T180629490159Z` | `2026-02-15T18:06:29.490159Z` | **FAIL** | - | - | - | - | [`summary`](runs/exp_0001_20260215T180629490159Z/summary.md) / [`manifest`](runs/exp_0001_20260215T180629490159Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T180629490159Z/metrics.json) |

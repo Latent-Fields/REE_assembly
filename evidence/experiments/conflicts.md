@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-15T19:47:52.735849Z`
+Generated: `2026-02-15T21:11:54.510953Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -8,16 +8,16 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |
 |---|---|---|---|---|---|---|
 | `ARC-003` | directional | 2 | 2 | 1 | `exp_0006_20260215T180924496279Z` | 4 |
-| `ARC-007` | directional | 3 | 3 | 1 | `2026-02-15T181023Z_claim-probe-arc-007_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 6 |
+| `ARC-007` | directional | 5 | 3 | 0.75 | `exp_0004_20260215T205257233345Z` | 8 |
 | `ARC-018` | directional | 3 | 2 | 0.8 | `2026-02-15T180521Z_claim-probe-arc-018_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 5 |
 | `MECH-033` | directional | 3 | 2 | 0.8 | `2026-02-15T180522Z_claim-probe-mech-033_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 5 |
 | `MECH-040` | directional | 2 | 2 | 1 | `2026-02-15T180526Z_claim-probe-mech-040_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 4 |
 | `MECH-046` | directional | 2 | 2 | 1 | `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 4 |
-| `MECH-056` | directional, source_disagreement | 8 | 22 | 0.533 | `exp_0004_20260215T180710843991Z` | 30 |
+| `MECH-056` | directional, source_disagreement | 11 | 22 | 0.667 | `exp_0004_20260215T211117389757Z` | 33 |
 | `MECH-057` | directional | 2 | 2 | 1 | `2026-02-15T181028Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 4 |
-| `MECH-058` | directional | 16 | 14 | 0.933 | `exp_0002_20260215T180710622375Z` | 30 |
+| `MECH-058` | directional | 19 | 14 | 0.848 | `exp_0002_20260215T211117270833Z` | 33 |
 | `MECH-059` | directional, mixed_evidence | 14 | 1 | 0.133 | `2026-02-15T180517Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal` | 31 |
-| `MECH-060` | directional | 16 | 14 | 0.933 | `exp_0003_20260215T180710733435Z` | 30 |
+| `MECH-060` | directional | 19 | 14 | 0.848 | `exp_0003_20260215T211117331544Z` | 33 |
 | `MECH-061` | directional | 2 | 2 | 1 | `exp_0007_20260215T180924601905Z` | 4 |
 | `Q-001` | directional | 4 | 2 | 0.667 | `exp_0015_20260215T184259843878Z` | 7 |
 | `Q-002` | directional | 4 | 2 | 0.667 | `exp_0016_20260215T184259948094Z` | 7 |
@@ -33,7 +33,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-013` | directional | 4 | 2 | 0.667 | `2026-02-15T181025Z_claim-probe-q-013_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 6 |
 | `Q-014` | directional | 4 | 2 | 0.667 | `2026-02-15T181027Z_claim-probe-q-014_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 6 |
 | `Q-015` | directional | 2 | 2 | 1 | `2026-02-15T180529Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal` | 4 |
-| `Q-017` | directional, source_disagreement | 16 | 16 | 1 | `exp_0001_20260215T180710518955Z` | 32 |
+| `Q-017` | directional | 19 | 16 | 0.914 | `exp_0001_20260215T211117186174Z` | 35 |
 
 ## Conflict Details
 
@@ -56,13 +56,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional
-- Evidence breakdown: supports=3, weakens=3, conflict_ratio=1, overall_confidence=0.58
+- Evidence breakdown: supports=5, weakens=3, conflict_ratio=0.75, overall_confidence=0.664
 - Recent entries:
-  - `2026-02-15T17:52:44Z` `experimental` `claim_probe_arc_007` direction=`weakens` confidence=0.75
-  - `2026-02-15T18:05:18Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
   - `2026-02-15T18:05:19Z` `experimental` `claim_probe_arc_007` direction=`weakens` confidence=0.75
   - `2026-02-15T18:10:22Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
   - `2026-02-15T18:10:23Z` `experimental` `claim_probe_arc_007` direction=`weakens` confidence=0.75
+  - `2026-02-15T20:52:57.175710Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:57.233345Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `ledger_editing` (3)
   - `domination_lock_in` (3)
@@ -139,13 +139,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-056
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=8, weakens=22, conflict_ratio=0.533, overall_confidence=0.761
+- Evidence breakdown: supports=11, weakens=22, conflict_ratio=0.667, overall_confidence=0.749
 - Recent entries:
-  - `2026-02-15T17:39:01Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-15T17:39:01Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-15T17:48:50Z` `experimental` `claim_probe_mech_056` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.784771Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.843991Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:57.289360Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:57.348626Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
+  - `2026-02-15T21:11:17.389757Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `ledger_editing` (20)
   - `stop:ledger_edit_detected_count>0` (20)
@@ -175,13 +175,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-058
 - Conflict types: directional
-- Evidence breakdown: supports=16, weakens=14, conflict_ratio=0.933, overall_confidence=0.706
+- Evidence breakdown: supports=19, weakens=14, conflict_ratio=0.848, overall_confidence=0.714
 - Recent entries:
-  - `2026-02-15T17:39:00Z` `experimental` `jepa_anchor_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-15T17:39:00Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
-  - `2026-02-15T17:48:51Z` `experimental` `claim_probe_mech_058` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.571305Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.622375Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:56.931616Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:56.991224Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T21:11:17.270833Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `mech058:anchor_separation_collapse` (12)
   - `mech058:ema_drift_under_shift` (4)
@@ -209,13 +209,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-060
 - Conflict types: directional
-- Evidence breakdown: supports=16, weakens=14, conflict_ratio=0.933, overall_confidence=0.692
+- Evidence breakdown: supports=19, weakens=14, conflict_ratio=0.848, overall_confidence=0.699
 - Recent entries:
-  - `2026-02-15T17:39:00Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
-  - `2026-02-15T17:39:00Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
-  - `2026-02-15T17:48:53Z` `experimental` `claim_probe_mech_060` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.676519Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.733435Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:57.049806Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:57.111103Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-15T21:11:17.331544Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `mech060:postcommit_channel_contamination` (12)
   - `mech060:attribution_reliability_break` (12)
@@ -479,14 +479,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### Q-017
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=16, weakens=16, conflict_ratio=1, overall_confidence=0.72
+- Conflict types: directional
+- Evidence breakdown: supports=19, weakens=16, conflict_ratio=0.914, overall_confidence=0.715
 - Recent entries:
-  - `2026-02-15T17:39:00Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-15T17:48:55Z` `experimental` `claim_probe_q_017` direction=`supports` confidence=0.75
-  - `2026-02-15T18:06:29.490159Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
   - `2026-02-15T18:07:10.436413Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
   - `2026-02-15T18:07:10.518955Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:56.766352Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T20:52:56.872005Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
+  - `2026-02-15T21:11:17.186174Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `q017:control_axis_stability_drop` (12)
   - `q017:control_axis_entropy_collapse` (12)

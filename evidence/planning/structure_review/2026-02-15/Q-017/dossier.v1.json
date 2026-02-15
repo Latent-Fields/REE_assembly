@@ -2,7 +2,7 @@
   "alternative_interpretations": [
     {
       "alternative_id": "ALT-01",
-      "confidence_estimate": 0.519,
+      "confidence_estimate": 0.541,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
       "hypothesis": "control plane / minimal orthogonal axis set is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
@@ -12,7 +12,7 @@
     },
     {
       "alternative_id": "ALT-02",
-      "confidence_estimate": 0.481,
+      "confidence_estimate": 0.459,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
       "hypothesis": "control plane / minimal orthogonal axis set is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
@@ -22,7 +22,7 @@
     },
     {
       "alternative_id": "ALT-03",
-      "confidence_estimate": 0.481,
+      "confidence_estimate": 0.459,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
       "hypothesis": "A hybrid architecture is needed: keep the core of control plane / minimal orthogonal axis set but add explicit gating or interface separation.",
       "next_evidence_pull": [
@@ -54,6 +54,39 @@
     "What evidence next week would most likely change your current decision?"
   ],
   "evidence_items": [
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "exp_0001_20260215T211117186174Z",
+      "source_background": "Run-pack `exp_0001_20260215T211117186174Z` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T21:11:17.186174Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "exp_0001_20260215T205256872005Z",
+      "source_background": "Run-pack `exp_0001_20260215T205256872005Z` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T20:52:56.872005Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "exp_0001_20260215T205256766352Z",
+      "source_background": "Run-pack `exp_0001_20260215T205256766352Z` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T20:52:56.766352Z"
+    },
     {
       "confidence": 0.75,
       "evidence_direction": "supports",
@@ -130,45 +163,12 @@
       "source_type": "experimental",
       "source_wording": "FAIL with weakening direction",
       "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
     }
   ],
   "evidence_overview": {
     "direction_counts": {
       "mixed": 0,
-      "supports": 31,
+      "supports": 34,
       "unknown": 0,
       "weakens": 29
     },
@@ -176,7 +176,7 @@
     "source_direction_counts": {
       "experimental": {
         "mixed": 0,
-        "supports": 27,
+        "supports": 30,
         "unknown": 0,
         "weakens": 29
       },
@@ -189,7 +189,7 @@
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T19:47:53.325229Z",
+  "generated_at_utc": "2026-02-15T21:11:54.734668Z",
   "left_field_suggestions": [
     {
       "first_test": "Create two scoped proposal tracks with explicit condition tags.",
@@ -209,7 +209,7 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.967,
+    "conflict_ratio": 0.921,
     "consider_new_structure": true,
     "gap_id": "AGR-0001",
     "latest_decision": {
@@ -217,7 +217,7 @@
       "recommendation": "hybridize",
       "timestamp_utc": "2026-02-15T18:46:42.773429Z"
     },
-    "overall_confidence": 0.72,
+    "overall_confidence": 0.715,
     "recommendation": "consider_new_structure",
     "recurring_failure_signatures": [
       {
@@ -234,7 +234,7 @@
       }
     ],
     "source_counts": {
-      "experimental": 56,
+      "experimental": 59,
       "literature": 4
     },
     "trigger_signals": [

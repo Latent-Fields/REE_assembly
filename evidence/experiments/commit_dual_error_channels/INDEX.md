@@ -1,6 +1,6 @@
 # Experiment Index: commit_dual_error_channels
 
-Generated: `2026-02-15T19:47:52.735849Z`
+Generated: `2026-02-15T21:11:54.510953Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,9 @@ Generated: `2026-02-15T19:47:52.735849Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `exp_0003_20260215T211117331544Z` | `2026-02-15T21:11:17.331544Z` | PASS | - | - | - | - | [`summary`](runs/exp_0003_20260215T211117331544Z/summary.md) / [`manifest`](runs/exp_0003_20260215T211117331544Z/manifest.json) / [`metrics`](runs/exp_0003_20260215T211117331544Z/metrics.json) |
+| `exp_0003_20260215T205257111103Z` | `2026-02-15T20:52:57.111103Z` | PASS | - | - | - | - | [`summary`](runs/exp_0003_20260215T205257111103Z/summary.md) / [`manifest`](runs/exp_0003_20260215T205257111103Z/manifest.json) / [`metrics`](runs/exp_0003_20260215T205257111103Z/metrics.json) |
+| `exp_0003_20260215T205257049806Z` | `2026-02-15T20:52:57.049806Z` | PASS | - | - | - | - | [`summary`](runs/exp_0003_20260215T205257049806Z/summary.md) / [`manifest`](runs/exp_0003_20260215T205257049806Z/manifest.json) / [`metrics`](runs/exp_0003_20260215T205257049806Z/metrics.json) |
 | `exp_0003_20260215T180710733435Z` | `2026-02-15T18:07:10.733435Z` | PASS | - | - | - | - | [`summary`](runs/exp_0003_20260215T180710733435Z/summary.md) / [`manifest`](runs/exp_0003_20260215T180710733435Z/manifest.json) / [`metrics`](runs/exp_0003_20260215T180710733435Z/metrics.json) |
 | `exp_0003_20260215T180710676519Z` | `2026-02-15T18:07:10.676519Z` | PASS | - | - | - | - | [`summary`](runs/exp_0003_20260215T180710676519Z/summary.md) / [`manifest`](runs/exp_0003_20260215T180710676519Z/manifest.json) / [`metrics`](runs/exp_0003_20260215T180710676519Z/metrics.json) |
 | `2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` | `2026-02-15T17:39:00Z` | **FAIL** | fatal_error_count=0<br>pre_commit_error_signal_to_noise=2.758214<br>post_commit_error_attribution_gain=0.013343<br>cross_channel_leakage_rate=0.878562<br>commitment_reversal_rate=0.4<br>latent_prediction_error_mean=0.197467 | fatal_error_count:+0<br>pre_commit_error_signal_to_noise:-11.472883<br>post_commit_error_attribution_gain:-0.420865<br>cross_channel_leakage_rate:+0.84774<br>commitment_reversal_rate:+0.383333<br>latent_prediction_error_mean:+0.013076 | - | PASS | [`summary`](runs/2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |

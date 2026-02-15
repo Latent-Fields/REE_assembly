@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_054",
+  "entry_id": "2026-02-15_mech054_lhb_negative_reward_signal_nature2007",
+  "timestamp_utc": "2026-02-15T20:54:20Z",
+  "claim_ids_tested": [
+    "MECH-054"
+  ],
+  "source": {
+    "title": "Lateral habenula as a source of negative reward signals in dopamine neurons",
+    "authors": [
+      "Masayuki Matsumoto",
+      "Okihide Hikosaka"
+    ],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05860",
+    "url": "https://doi.org/10.1038/nature05860"
+  },
+  "evidence_class": "systems_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Direct primate physiology evidence for signed negative-value signaling through lateral habenula influence on dopamine pathways, aligned with REE signed harm/benefit precision separation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "habenula",
+    "dopamine",
+    "negative_value",
+    "signed_prediction_error"
+  ],
+  "mapping": {
+    "source_claim_statement": "Lateral habenula neurons encode negative reward-related signals and can drive inhibitory effects on dopamine neurons.",
+    "ree_translation": "Supports MECH-054 requirement for signed harm/benefit-sensitive precision routing rather than unsigned scalar error handling.",
+    "mapping_caveat": "Source is primate task neurophysiology and does not by itself specify full REE control-plane implementation details.",
+    "source_context": "Rhesus monkey reward-biased saccade task with concurrent habenula and dopamine recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.24,
+    "notes": "Strong causal/temporal signal relation evidence; moderate transfer risk from biological circuit to abstract REE control-plane parameterization."
+  }
+}

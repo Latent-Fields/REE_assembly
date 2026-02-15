@@ -1,6 +1,6 @@
 {
   "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T19:47:53.387731Z",
+  "generated_at_utc": "2026-02-15T21:11:54.781938Z",
   "items": [
     {
       "acceptance_checks": [
@@ -74,22 +74,22 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.967,
+        "conflict_ratio": 0.921,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 0,
-          "supports": 31,
+          "supports": 34,
           "unknown": 0,
           "weakens": 29
         },
-        "overall_confidence": 0.72,
+        "overall_confidence": 0.715,
         "recurring_failure_signatures": [
           "q017:control_axis_stability_drop",
           "q017:control_axis_entropy_collapse",
           "q017:control_axis_policy_loss_spike"
         ],
         "source_counts": {
-          "experimental": 56,
+          "experimental": 59,
           "literature": 4
         },
         "trigger_signals": [
@@ -110,115 +110,13 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "MECH-058",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.",
-      "objective": "Run targeted connectome literature pull for MECH-058.",
-      "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.",
-      "priority": "high",
-      "pull_id": "CPULL-0002",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-058 connectome effective connectivity",
-            "jepa substrate / ema target anchor timescale separation neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "jepa substrate / ema target anchor timescale separation computational neuroscience circuit model",
-            "MECH-058 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "jepa substrate / ema target anchor timescale separation conflicting neural evidence",
-            "MECH-058 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.947,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 1,
-          "supports": 50,
-          "unknown": 0,
-          "weakens": 45
-        },
-        "overall_confidence": 0.706,
-        "recurring_failure_signatures": [
-          "mech058:anchor_separation_collapse",
-          "mech058:ema_drift_under_shift",
-          "mech058:latent_cluster_collapse",
-          "threshold:latent_prediction_error_mean",
-          "threshold:latent_prediction_error_p95"
-        ],
-        "source_counts": {
-          "experimental": 91,
-          "literature": 5
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_058",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
       "claim_id": "MECH-060",
       "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
       "objective": "Run targeted connectome literature pull for MECH-060.",
       "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
       "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
       "priority": "high",
-      "pull_id": "CPULL-0003",
+      "pull_id": "CPULL-0002",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -276,15 +174,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.944,
+        "conflict_ratio": 0.919,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 3,
-          "supports": 57,
+          "supports": 60,
           "unknown": 0,
           "weakens": 51
         },
-        "overall_confidence": 0.692,
+        "overall_confidence": 0.699,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
@@ -293,7 +191,7 @@
           "threshold:pre_commit_error_signal_to_noise"
         ],
         "source_counts": {
-          "experimental": 102,
+          "experimental": 105,
           "literature": 9
         },
         "trigger_signals": [
@@ -314,13 +212,13 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "ARC-007",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / path memory`.",
-      "objective": "Run targeted connectome literature pull for ARC-007.",
-      "plain_english_claim_description": "ARC-007 is an architecture commitment about hippocampus / path memory.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 2 upstream claim(s): `ARC-004`, `ARC-003`. It currently influences 17 downstream claim(s): `ARC-011`, `ARC-012`, `ARC-014`, `ARC-015`, `ARC-018`, `ARC-019`, `IMPL-004`, `IMPL-005`, `IMPL-019`, `MECH-016`, `MECH-017`, `MECH-018`, `MECH-022`, `MECH-029`, `MECH-030`, `MECH-037`, `MECH-044`. Primary anchor: `docs/architecture/hippocampal_systems.md#arc-007`.",
+      "claim_id": "MECH-058",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.",
+      "objective": "Run targeted connectome literature pull for MECH-058.",
+      "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.",
       "priority": "high",
-      "pull_id": "CPULL-0004",
+      "pull_id": "CPULL-0003",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -352,8 +250,8 @@
         {
           "focus": "Structural and effective-connectivity constraints",
           "query_stems": [
-            "ARC-007 connectome effective connectivity",
-            "hippocampus / path memory neural pathway dissociation"
+            "MECH-058 connectome effective connectivity",
+            "jepa substrate / ema target anchor timescale separation neural pathway dissociation"
           ],
           "source_preference": "primary",
           "track_id": "TRK-01"
@@ -361,8 +259,8 @@
         {
           "focus": "Computational-neuroscience bridge papers",
           "query_stems": [
-            "hippocampus / path memory computational neuroscience circuit model",
-            "ARC-007 predictive coding pathway evidence"
+            "jepa substrate / ema target anchor timescale separation computational neuroscience circuit model",
+            "MECH-058 predictive coding pathway evidence"
           ],
           "source_preference": "primary",
           "track_id": "TRK-02"
@@ -370,30 +268,33 @@
         {
           "focus": "Disconfirming/alternative pathway evidence",
           "query_stems": [
-            "hippocampus / path memory conflicting neural evidence",
-            "ARC-007 alternative mechanism neural circuits"
+            "jepa substrate / ema target anchor timescale separation conflicting neural evidence",
+            "MECH-058 alternative mechanism neural circuits"
           ],
           "source_preference": "primary",
           "track_id": "TRK-03"
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.857,
+        "conflict_ratio": 0.918,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 4,
+          "mixed": 1,
+          "supports": 53,
           "unknown": 0,
-          "weakens": 3
+          "weakens": 45
         },
-        "overall_confidence": 0.58,
+        "overall_confidence": 0.714,
         "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
+          "mech058:anchor_separation_collapse",
+          "mech058:ema_drift_under_shift",
+          "mech058:latent_cluster_collapse",
+          "threshold:latent_prediction_error_mean",
+          "threshold:latent_prediction_error_p95"
         ],
         "source_counts": {
-          "experimental": 6,
-          "literature": 1
+          "experimental": 94,
+          "literature": 5
         },
         "trigger_signals": [
           "external_precedence_pressure",
@@ -402,7 +303,7 @@
         ]
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_arc_007",
+      "suggested_literature_type": "targeted_review_connectome_mech_058",
       "target_repo": "REE_assembly"
     },
     {
@@ -419,7 +320,7 @@
       "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
       "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
       "priority": "high",
-      "pull_id": "CPULL-0005",
+      "pull_id": "CPULL-0004",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -477,15 +378,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.85,
+        "conflict_ratio": 0.892,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 34,
+          "supports": 37,
           "unknown": 0,
           "weakens": 46
         },
-        "overall_confidence": 0.761,
+        "overall_confidence": 0.749,
         "recurring_failure_signatures": [
           "stop:ledger_edit_detected_count>0",
           "ledger_editing",
@@ -494,7 +395,7 @@
           "stop:explanation_policy_divergence_rate>0.05"
         ],
         "source_counts": {
-          "experimental": 72,
+          "experimental": 75,
           "literature": 9
         },
         "trigger_signals": [
@@ -510,9 +411,9 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "consider_new_structure_items": 5,
+    "consider_new_structure_items": 4,
     "mode": "consider_new_structure_only",
-    "total_selected_items": 5
+    "total_selected_items": 4
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",
