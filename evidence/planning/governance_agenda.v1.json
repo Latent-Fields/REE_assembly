@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-15T09:18:03.969857Z",
+      "last_run_generated_at_utc": "2026-02-15T10:00:08.024759Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -2321,10 +2321,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-15T09:18:03.916537Z",
+        "finished_at_utc": "2026-02-15T10:00:07.981991Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T09:18:03.867450Z",
+        "started_at_utc": "2026-02-15T10:00:07.928109Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=34, processed=34, unprocessed=0, processed_missing_links=0"
@@ -2336,10 +2336,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-15T09:18:03.979082Z",
+        "finished_at_utc": "2026-02-15T10:00:08.031048Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T09:18:03.916571Z",
+        "started_at_utc": "2026-02-15T10:00:07.982055Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=0, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -2349,10 +2349,10 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-15T09:18:04.197821Z",
+        "finished_at_utc": "2026-02-15T10:00:08.135017Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T09:18:03.979122Z",
+        "started_at_utc": "2026-02-15T10:00:08.031099Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 156 run(s) across 4 experiment type(s); FAIL=56; literature entries=23; backlog items=29; proposals=46."
@@ -2362,10 +2362,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-15T09:18:04.259191Z",
+        "finished_at_utc": "2026-02-15T10:00:08.186315Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T09:18:04.197879Z",
+        "started_at_utc": "2026-02-15T10:00:08.135075Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/structure_review_report.v1.json"
@@ -2375,17 +2375,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-15T09:18:04.301551Z",
+        "finished_at_utc": "2026-02-15T10:00:08.229132Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T09:18:04.259245Z",
+        "started_at_utc": "2026-02-15T10:00:08.186367Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-15T09:18:04.301592Z",
+  "generated_at_utc": "2026-02-15T10:00:08.229178Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,

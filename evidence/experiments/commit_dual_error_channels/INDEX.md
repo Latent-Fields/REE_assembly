@@ -1,6 +1,6 @@
 # Experiment Index: commit_dual_error_channels
 
-Generated: `2026-02-15T09:18:04.130037Z`
+Generated: `2026-02-15T10:00:08.108449Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
