@@ -1,414 +1,7 @@
 {
   "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T14:54:28.141040Z",
+  "generated_at_utc": "2026-02-15T14:59:53.638221Z",
   "items": [
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-058",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.",
-      "objective": "Run targeted connectome literature pull for MECH-058.",
-      "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.",
-      "priority": "high",
-      "pull_id": "CPULL-0001",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-058 connectome effective connectivity",
-            "jepa substrate / ema target anchor timescale separation neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "jepa substrate / ema target anchor timescale separation computational neuroscience circuit model",
-            "MECH-058 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "jepa substrate / ema target anchor timescale separation conflicting neural evidence",
-            "MECH-058 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.962,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 1,
-          "supports": 27,
-          "unknown": 0,
-          "weakens": 25
-        },
-        "overall_confidence": 0.676,
-        "recurring_failure_signatures": [
-          "mech058:anchor_separation_collapse",
-          "mech058:ema_drift_under_shift",
-          "mech058:latent_cluster_collapse",
-          "threshold:latent_prediction_error_mean",
-          "threshold:latent_prediction_error_p95"
-        ],
-        "source_counts": {
-          "experimental": 50,
-          "literature": 3
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_058",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-060",
-      "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
-      "objective": "Run targeted connectome literature pull for MECH-060.",
-      "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
-      "priority": "high",
-      "pull_id": "CPULL-0002",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which circuit pathways support pre-decision simulation/error evaluation versus post-outcome attribution updates?",
-        "Where does evidence indicate partial blending, and what boundary conditions separate channels best?",
-        "What anatomical or effective-connectivity findings constrain dual-channel implementations?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Prefrontal-striatal-thalamic pathways for planning vs attribution",
-          "query_stems": [
-            "prefrontal striatal planning outcome attribution connectivity",
-            "model-based model-free error pathways effective connectivity"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Commitment and action-monitoring circuit separation",
-          "query_stems": [
-            "anterior cingulate commitment monitoring prediction error channel",
-            "efference copy outcome evaluation circuit dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Cross-species connectome findings for dual-channel control",
-          "query_stems": [
-            "cross-species connectome decision learning pathway separation",
-            "rodent primate planning attribution neural pathway comparison"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.954,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 3,
-          "supports": 34,
-          "unknown": 0,
-          "weakens": 31
-        },
-        "overall_confidence": 0.691,
-        "recurring_failure_signatures": [
-          "mech060:postcommit_channel_contamination",
-          "mech060:attribution_reliability_break",
-          "mech060:precommit_channel_contamination",
-          "mech060:commitment_reversal_spike",
-          "threshold:pre_commit_error_signal_to_noise"
-        ],
-        "source_counts": {
-          "experimental": 61,
-          "literature": 7
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_060",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "Q-017",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.",
-      "objective": "Run targeted connectome literature pull for Q-017.",
-      "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.",
-      "priority": "high",
-      "pull_id": "CPULL-0003",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "Q-017 connectome effective connectivity",
-            "control plane / minimal orthogonal axis set neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "control plane / minimal orthogonal axis set computational neuroscience circuit model",
-            "Q-017 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "control plane / minimal orthogonal axis set conflicting neural evidence",
-            "Q-017 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.933,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 8,
-          "unknown": 0,
-          "weakens": 7
-        },
-        "overall_confidence": 0.656,
-        "recurring_failure_signatures": [
-          "q017:control_axis_stability_drop",
-          "q017:control_axis_entropy_collapse",
-          "q017:control_axis_policy_loss_spike"
-        ],
-        "source_counts": {
-          "experimental": 13,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_017",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-059",
-      "connectome_focus": "Identify circuit motifs that separate mismatch coding from confidence-weighting pathways.",
-      "objective": "Run targeted connectome literature pull for MECH-059.",
-      "plain_english_claim_description": "MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-005`, `ARC-004`, `ARC-015`, `MECH-054`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `Q-013`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-059`.",
-      "priority": "high",
-      "pull_id": "CPULL-0004",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Where do connectome-informed studies suggest dissociable pathways for error coding versus confidence modulation?",
-        "Which neuromodulatory/cortical loops look most consistent with confidence gating rather than pure error emission?",
-        "What evidence shows confidence weighting is context-sensitive rather than a direct transform of one residual stream?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective connectivity for confidence gating",
-          "query_stems": [
-            "connectome confidence weighting prediction error dissociation",
-            "effective connectivity uncertainty confidence coding cortex"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Neuromodulatory precision/confidence pathways",
-          "query_stems": [
-            "dopamine noradrenaline acetylcholine precision uncertainty circuit",
-            "hierarchical predictive coding confidence pathway connectomics"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Computational analogues constrained by biological circuitry",
-          "query_stems": [
-            "biologically constrained uncertainty calibration neural circuits",
-            "circuit-inspired confidence channel machine learning"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.826,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 8,
-          "supports": 27,
-          "unknown": 0,
-          "weakens": 19
-        },
-        "overall_confidence": 0.719,
-        "recurring_failure_signatures": [
-          "mech059:uncertainty_metric_gaming_detected",
-          "mech059:calibration_slope_break",
-          "mech059:abstention_reliability_collapse",
-          "threshold:latent_prediction_error_mean",
-          "threshold:latent_uncertainty_calibration_error"
-        ],
-        "source_counts": {
-          "experimental": 50,
-          "literature": 4
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "literature_non_support_pressure",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_059",
-      "target_repo": "REE_assembly"
-    },
     {
       "acceptance_checks": [
         "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
@@ -423,7 +16,7 @@
       "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
       "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
       "priority": "high",
-      "pull_id": "CPULL-0005",
+      "pull_id": "CPULL-0001",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -481,25 +74,25 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.824,
+        "conflict_ratio": 0.979,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 0,
-          "supports": 20,
+          "supports": 23,
           "unknown": 0,
-          "weakens": 14
+          "weakens": 24
         },
-        "overall_confidence": 0.692,
+        "overall_confidence": 0.722,
         "recurring_failure_signatures": [
           "stop:ledger_edit_detected_count>0",
           "stop:domination_lock_in_events>0",
-          "stop:explanation_policy_divergence_rate>0.05",
           "ledger_editing",
+          "stop:explanation_policy_divergence_rate>0.05",
           "domination_lock_in"
         ],
         "source_counts": {
-          "experimental": 31,
-          "literature": 3
+          "experimental": 43,
+          "literature": 4
         },
         "trigger_signals": [
           "external_precedence_pressure",
@@ -509,6 +102,412 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_mech_056",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "MECH-058",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.",
+      "objective": "Run targeted connectome literature pull for MECH-058.",
+      "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-001`, `ARC-002`, `ARC-004`, `ARC-015`, `MECH-057`. It currently influences 1 downstream claim(s): `IMPL-023`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-058`.",
+      "priority": "high",
+      "pull_id": "CPULL-0002",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
+        "What results directly contradict a literal REE mapping of this claim?",
+        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Structural and effective-connectivity constraints",
+          "query_stems": [
+            "MECH-058 connectome effective connectivity",
+            "jepa substrate / ema target anchor timescale separation neural pathway dissociation"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Computational-neuroscience bridge papers",
+          "query_stems": [
+            "jepa substrate / ema target anchor timescale separation computational neuroscience circuit model",
+            "MECH-058 predictive coding pathway evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Disconfirming/alternative pathway evidence",
+          "query_stems": [
+            "jepa substrate / ema target anchor timescale separation conflicting neural evidence",
+            "MECH-058 alternative mechanism neural circuits"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.954,
+        "consider_new_structure": true,
+        "direction_counts": {
+          "mixed": 1,
+          "supports": 34,
+          "unknown": 0,
+          "weakens": 31
+        },
+        "overall_confidence": 0.703,
+        "recurring_failure_signatures": [
+          "mech058:anchor_separation_collapse",
+          "mech058:ema_drift_under_shift",
+          "mech058:latent_cluster_collapse",
+          "threshold:latent_prediction_error_mean",
+          "threshold:latent_prediction_error_p95"
+        ],
+        "source_counts": {
+          "experimental": 62,
+          "literature": 4
+        },
+        "trigger_signals": [
+          "external_precedence_pressure",
+          "high_conflict_ratio",
+          "recurring_failure_signatures"
+        ]
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_connectome_mech_058",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "MECH-060",
+      "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
+      "objective": "Run targeted connectome literature pull for MECH-060.",
+      "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
+      "priority": "high",
+      "pull_id": "CPULL-0003",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which circuit pathways support pre-decision simulation/error evaluation versus post-outcome attribution updates?",
+        "Where does evidence indicate partial blending, and what boundary conditions separate channels best?",
+        "What anatomical or effective-connectivity findings constrain dual-channel implementations?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Prefrontal-striatal-thalamic pathways for planning vs attribution",
+          "query_stems": [
+            "prefrontal striatal planning outcome attribution connectivity",
+            "model-based model-free error pathways effective connectivity"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Commitment and action-monitoring circuit separation",
+          "query_stems": [
+            "anterior cingulate commitment monitoring prediction error channel",
+            "efference copy outcome evaluation circuit dissociation"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Cross-species connectome findings for dual-channel control",
+          "query_stems": [
+            "cross-species connectome decision learning pathway separation",
+            "rodent primate planning attribution neural pathway comparison"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.949,
+        "consider_new_structure": true,
+        "direction_counts": {
+          "mixed": 3,
+          "supports": 41,
+          "unknown": 0,
+          "weakens": 37
+        },
+        "overall_confidence": 0.693,
+        "recurring_failure_signatures": [
+          "mech060:postcommit_channel_contamination",
+          "mech060:attribution_reliability_break",
+          "mech060:commitment_reversal_spike",
+          "mech060:precommit_channel_contamination",
+          "threshold:pre_commit_error_signal_to_noise"
+        ],
+        "source_counts": {
+          "experimental": 73,
+          "literature": 8
+        },
+        "trigger_signals": [
+          "external_precedence_pressure",
+          "high_conflict_ratio",
+          "recurring_failure_signatures"
+        ]
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_connectome_mech_060",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "Q-017",
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.",
+      "objective": "Run targeted connectome literature pull for Q-017.",
+      "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
+      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.",
+      "priority": "high",
+      "pull_id": "CPULL-0004",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
+        "What results directly contradict a literal REE mapping of this claim?",
+        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Structural and effective-connectivity constraints",
+          "query_stems": [
+            "Q-017 connectome effective connectivity",
+            "control plane / minimal orthogonal axis set neural pathway dissociation"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Computational-neuroscience bridge papers",
+          "query_stems": [
+            "control plane / minimal orthogonal axis set computational neuroscience circuit model",
+            "Q-017 predictive coding pathway evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Disconfirming/alternative pathway evidence",
+          "query_stems": [
+            "control plane / minimal orthogonal axis set conflicting neural evidence",
+            "Q-017 alternative mechanism neural circuits"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.929,
+        "consider_new_structure": true,
+        "direction_counts": {
+          "mixed": 0,
+          "supports": 15,
+          "unknown": 0,
+          "weakens": 13
+        },
+        "overall_confidence": 0.696,
+        "recurring_failure_signatures": [
+          "q017:control_axis_stability_drop",
+          "q017:control_axis_entropy_collapse",
+          "q017:control_axis_policy_loss_spike"
+        ],
+        "source_counts": {
+          "experimental": 25,
+          "literature": 3
+        },
+        "trigger_signals": [
+          "external_precedence_pressure",
+          "high_conflict_ratio",
+          "recurring_failure_signatures"
+        ]
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_connectome_q_017",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "MECH-059",
+      "connectome_focus": "Identify circuit motifs that separate mismatch coding from confidence-weighting pathways.",
+      "objective": "Run targeted connectome literature pull for MECH-059.",
+      "plain_english_claim_description": "MECH-059 is a mechanism hypothesis about precision / confidence channel separate from prediction error.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-005`, `ARC-004`, `ARC-015`, `MECH-054`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `Q-013`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-059`.",
+      "priority": "high",
+      "pull_id": "CPULL-0005",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Where do connectome-informed studies suggest dissociable pathways for error coding versus confidence modulation?",
+        "Which neuromodulatory/cortical loops look most consistent with confidence gating rather than pure error emission?",
+        "What evidence shows confidence weighting is context-sensitive rather than a direct transform of one residual stream?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Structural and effective connectivity for confidence gating",
+          "query_stems": [
+            "connectome confidence weighting prediction error dissociation",
+            "effective connectivity uncertainty confidence coding cortex"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Neuromodulatory precision/confidence pathways",
+          "query_stems": [
+            "dopamine noradrenaline acetylcholine precision uncertainty circuit",
+            "hierarchical predictive coding confidence pathway connectomics"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Computational analogues constrained by biological circuitry",
+          "query_stems": [
+            "biologically constrained uncertainty calibration neural circuits",
+            "circuit-inspired confidence channel machine learning"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.717,
+        "consider_new_structure": true,
+        "direction_counts": {
+          "mixed": 14,
+          "supports": 34,
+          "unknown": 0,
+          "weakens": 19
+        },
+        "overall_confidence": 0.739,
+        "recurring_failure_signatures": [
+          "mech059:uncertainty_metric_gaming_detected",
+          "mech059:abstention_reliability_collapse",
+          "mech059:calibration_slope_break",
+          "threshold:latent_prediction_error_mean",
+          "threshold:latent_uncertainty_calibration_error"
+        ],
+        "source_counts": {
+          "experimental": 62,
+          "literature": 5
+        },
+        "trigger_signals": [
+          "external_precedence_pressure",
+          "high_conflict_ratio",
+          "recurring_failure_signatures"
+        ]
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_connectome_mech_059",
       "target_repo": "REE_assembly"
     }
   ],
