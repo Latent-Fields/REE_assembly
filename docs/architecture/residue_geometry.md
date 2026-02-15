@@ -95,6 +95,25 @@ Operational implication:
 - Apply residue first to rollout sampling weights and E3 gating.
 - Treat latent distortion as a secondary, capped channel with explicit safeguards against blind spots.
 
+### Loop-specific trajectory-first policy
+
+Trajectory-first placement is not uniform across all gate families. The same ordering rule must be parameterized by
+gate manifold:
+
+- `gate_motor`: strict trajectory-first gating before action release; representational distortion stays a last-resort lane.
+- `gate_cognitive_set`: trajectory-first preferred, but allows broader rehearsal depth and delayed commitment under low
+  urgency.
+- `gate_motivational`: salience/value gating may prune candidate sets before full trajectory expansion; trajectory-first
+  applies inside the selected motivational band.
+
+This keeps "trajectory-first" from becoming an over-broad global rule while preserving the core commitment that residue
+pressure should mainly constrain enactment, not perception.
+
+Cross-claim alignment:
+
+- MECH-062 defines tri-loop gate separation and arbitration.
+- MECH-060/061 define where updates are legal across the commit boundary.
+
 ### DMN-like rehearsal lane (implementation contract)
 
 Uncommitted trajectory generation should be treated as a default-mode-network-like rehearsal/search lane:

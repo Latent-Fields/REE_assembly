@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-056
 
-Generated: `2026-02-15T15:46:22.318526Z`
+Generated: `2026-02-15T15:52:13.042613Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -9,7 +9,7 @@ MECH-056 is a mechanism hypothesis about residue / trajectory first placement.
 
 ## Where This Fits in REE as a Whole
 
-This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`. No downstream claims currently list it as a dependency. Primary architecture anchor: `docs/architecture/residue_geometry.md#mech-056`.
+This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary architecture anchor: `docs/architecture/residue_geometry.md#mech-056`.
 
 ## Structural Pressure Signals
 

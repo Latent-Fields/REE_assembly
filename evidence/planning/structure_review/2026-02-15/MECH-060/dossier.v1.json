@@ -36,6 +36,7 @@
     "claim_type": "mechanism_hypothesis",
     "dependents": [
       "IMPL-023",
+      "MECH-056",
       "MECH-061"
     ],
     "depends_on": [
@@ -47,7 +48,7 @@
     ],
     "location": "docs/architecture/agency_responsibility_flow.md#mech-060",
     "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
-    "plain_english_ree_fit_description": "This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently feeds 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
+    "plain_english_ree_fit_description": "This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently feeds 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
     "status": "candidate",
     "subject": "commitment.dual_error_channels_pre_post_commit"
   },
@@ -194,7 +195,7 @@
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T15:46:22.318526Z",
+  "generated_at_utc": "2026-02-15T15:52:13.042613Z",
   "left_field_suggestions": [
     {
       "first_test": "Ablate commit barrier windows and measure post-commit attribution gain.",

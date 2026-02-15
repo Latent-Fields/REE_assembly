@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-15T15:46:22.095501Z",
+      "last_run_generated_at_utc": "2026-02-15T15:52:12.605711Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -770,7 +770,7 @@
           "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
           "objective": "Run targeted connectome literature pull for MECH-056.",
           "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
-          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
+          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
           "priority": "high",
           "pull_id": "CPULL-0001",
           "required_record_contract": {
@@ -974,7 +974,7 @@
           "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
           "objective": "Run targeted connectome literature pull for MECH-060.",
           "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
-          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
+          "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.",
           "priority": "high",
           "pull_id": "CPULL-0003",
           "required_record_contract": {
@@ -3144,10 +3144,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/sync_task_inbox.py"
         ],
-        "finished_at_utc": "2026-02-15T15:46:21.987743Z",
+        "finished_at_utc": "2026-02-15T15:52:12.507322Z",
         "name": "task_inbox_sync",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:21.891905Z",
+        "started_at_utc": "2026-02-15T15:52:12.433086Z",
         "status": "ok",
         "stderr": "",
         "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
@@ -3157,10 +3157,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-15T15:46:22.047446Z",
+        "finished_at_utc": "2026-02-15T15:52:12.561340Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:21.987791Z",
+        "started_at_utc": "2026-02-15T15:52:12.507359Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=36, processed=36, unprocessed=0, processed_missing_links=0"
@@ -3172,10 +3172,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-15T15:46:22.102270Z",
+        "finished_at_utc": "2026-02-15T15:52:12.611350Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:22.047518Z",
+        "started_at_utc": "2026-02-15T15:52:12.561378Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=1, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -3185,10 +3185,10 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-15T15:46:22.270484Z",
+        "finished_at_utc": "2026-02-15T15:52:12.994886Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:22.102306Z",
+        "started_at_utc": "2026-02-15T15:52:12.611492Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 347 run(s) across 6 experiment type(s); FAIL=153; literature entries=61; backlog items=33; proposals=33."
@@ -3198,10 +3198,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-15T15:46:22.327299Z",
+        "finished_at_utc": "2026-02-15T15:52:13.052414Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:22.270514Z",
+        "started_at_utc": "2026-02-15T15:52:12.994947Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/structure_review_report.v1.json"
@@ -3211,17 +3211,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-15T15:46:22.376607Z",
+        "finished_at_utc": "2026-02-15T15:52:13.098763Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:46:22.327349Z",
+        "started_at_utc": "2026-02-15T15:52:13.052457Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-15T15:46:22.376637Z",
+  "generated_at_utc": "2026-02-15T15:52:13.098824Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,

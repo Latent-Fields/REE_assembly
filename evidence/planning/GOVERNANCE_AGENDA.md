@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T15:46:22.376637Z`
+Generated: `2026-02-15T15:52:13.098824Z`
 
 ## Cycle Status
 

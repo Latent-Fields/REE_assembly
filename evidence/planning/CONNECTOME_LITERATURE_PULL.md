@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T15:46:22.370558Z`
+Generated: `2026-02-15T15:52:13.092109Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -17,7 +17,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Pull ID: `CPULL-0001`
 - Objective: Run targeted connectome literature pull for MECH-056.
 - Claim description: MECH-056 is a mechanism hypothesis about residue / trajectory first placement.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.
 - Evidence pressure: conflict_ratio=0.966, overall_confidence=0.744, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `stop:ledger_edit_detected_count>0`, `ledger_editing`, `stop:domination_lock_in_events>0`, `stop:explanation_policy_divergence_rate>0.05`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.
@@ -53,7 +53,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Pull ID: `CPULL-0003`
 - Objective: Run targeted connectome literature pull for MECH-060.
 - Claim description: MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently influences 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
 - Evidence pressure: conflict_ratio=0.953, overall_confidence=0.698, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break`, `mech060:commitment_reversal_spike`, `mech060:precommit_channel_contamination`, `threshold:pre_commit_error_signal_to_noise`
 - Connectome focus: Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.

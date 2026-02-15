@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-060
 
-Generated: `2026-02-15T15:46:22.318526Z`
+Generated: `2026-02-15T15:52:13.042613Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -9,7 +9,7 @@ MECH-060 is a mechanism hypothesis about commitment / dual error channels pre po
 
 ## Where This Fits in REE as a Whole
 
-This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently feeds 2 downstream claim(s): `IMPL-023`, `MECH-061`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
+This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`. It currently feeds 3 downstream claim(s): `IMPL-023`, `MECH-056`, `MECH-061`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`.
 
 ## Structural Pressure Signals
 

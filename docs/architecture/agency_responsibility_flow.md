@@ -159,6 +159,24 @@ Required implementation checks:
 - Every post-commit update is traceable to a commit token and action trace.
 - Any mixed or contaminated channel event is tagged as a failure signature.
 
+### Update-locus separation contract (learning boundary map)
+
+To prevent cross-channel leakage and ledger corruption, learning/update permissions must be explicit by phase:
+
+- `pre_commit` phase:
+  - allowed writes: temporary rollout cache, gate-threshold scratch stats, proposal ranking buffers.
+  - forbidden writes: policy weights, residue ledger, durable memory traces, attribution ledger.
+- `commit_boundary` phase:
+  - allowed writes: commit token, provenance tags, commit-scoped routing metadata.
+  - forbidden writes: reward/residue attribution updates before realized outcome is observed.
+- `post_commit` phase:
+  - allowed writes: attribution ledger, residue/viability updates, durable policy updates, replay-priority updates.
+  - required joins: `commit_id`, action trace, realized outcome trace.
+
+Tri-loop note:
+- Each gate family (motor, cognitive-set, motivational) may read the same commit token but should write only its own
+  lane metrics pre-commit; cross-lane durable writes are post-commit only.
+
 Primary hooks:
 - `mech060:precommit_channel_contamination`
 - `mech060:postcommit_channel_contamination`
