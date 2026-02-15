@@ -158,6 +158,150 @@ def _proposal_repo_summary(proposals: list[dict[str, Any]]) -> list[dict[str, An
     return sorted(summary.values(), key=lambda x: x["target_repo"])
 
 
+def _parse_utc_timestamp(value: str) -> datetime | None:
+    raw = value.strip()
+    if not raw:
+        return None
+    normalized = raw[:-1] + "+00:00" if raw.endswith("Z") else raw
+    try:
+        return datetime.fromisoformat(normalized).astimezone(timezone.utc)
+    except ValueError:
+        return None
+
+
+def _build_architecture_epoch_applicability_report(
+    claim_matrix: dict[str, Any],
+    planning_criteria: dict[str, Any],
+    generated_at: str,
+    warnings: list[str],
+) -> dict[str, Any]:
+    cfg = (
+        planning_criteria.get("evidence_applicability", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(cfg, dict):
+        cfg = {}
+
+    enabled = bool(cfg.get("enabled", False))
+    current_epoch = str(cfg.get("current_architecture_epoch", "")).strip()
+    epoch_start_utc = str(cfg.get("epoch_start_utc", "")).strip()
+    epoch_start_dt = _parse_utc_timestamp(epoch_start_utc) if epoch_start_utc else None
+    if epoch_start_utc and epoch_start_dt is None:
+        warnings.append(
+            "Invalid evidence_applicability.epoch_start_utc; expected ISO-8601 UTC timestamp."
+        )
+
+    source_types_raw = cfg.get("source_types", ["*"])
+    source_types: set[str] = set()
+    if isinstance(source_types_raw, list):
+        source_types = {str(x).strip().lower() for x in source_types_raw if str(x).strip()}
+    elif isinstance(source_types_raw, str):
+        source_types = {source_types_raw.strip().lower()} if source_types_raw.strip() else set()
+    all_sources = "*" in source_types or not source_types
+
+    stale_before_cutoff = bool(cfg.get("stale_if_timestamp_before_epoch_start", True))
+    require_epoch_tag_for_new = bool(cfg.get("require_epoch_tag_for_new_evidence", False))
+
+    entries_raw = claim_matrix.get("entries", []) if isinstance(claim_matrix, dict) else []
+    entries = entries_raw if isinstance(entries_raw, list) else []
+    if entries_raw and not isinstance(entries_raw, list):
+        warnings.append("claim_evidence.v1.json entries field is not a list; applicability report may be incomplete.")
+
+    by_claim: dict[str, dict[str, Any]] = {}
+    stale_by_reason: dict[str, int] = {}
+    applicable_total = 0
+    stale_total = 0
+    considered_total = 0
+
+    for raw_entry in entries:
+        if not isinstance(raw_entry, dict):
+            continue
+        source_type = str(raw_entry.get("source_type", "")).strip().lower()
+        if not all_sources and source_type not in source_types:
+            continue
+
+        considered_total += 1
+        claim_id = str(raw_entry.get("claim_id", "UNKNOWN")).strip() or "UNKNOWN"
+        slot = by_claim.setdefault(
+            claim_id,
+            {
+                "claim_id": claim_id,
+                "considered_entries": 0,
+                "applicable_entries": 0,
+                "stale_entries": 0,
+                "stale_reasons": {},
+            },
+        )
+        slot["considered_entries"] += 1
+
+        reason = ""
+        entry_epoch = str(raw_entry.get("architecture_epoch", "")).strip()
+        timestamp = _parse_utc_timestamp(str(raw_entry.get("timestamp_utc", "")))
+
+        if entry_epoch:
+            if current_epoch and entry_epoch != current_epoch:
+                reason = "epoch_mismatch"
+        else:
+            if epoch_start_dt and stale_before_cutoff and timestamp and timestamp < epoch_start_dt:
+                reason = "timestamp_before_epoch_start"
+            elif epoch_start_dt and require_epoch_tag_for_new and timestamp and timestamp >= epoch_start_dt:
+                reason = "missing_epoch_tag_after_epoch_start"
+            elif epoch_start_dt and timestamp is None:
+                reason = "missing_or_invalid_timestamp"
+
+        if reason:
+            stale_total += 1
+            slot["stale_entries"] += 1
+            reasons = slot["stale_reasons"]
+            reasons[reason] = int(reasons.get(reason, 0)) + 1
+            stale_by_reason[reason] = int(stale_by_reason.get(reason, 0)) + 1
+        else:
+            applicable_total += 1
+            slot["applicable_entries"] += 1
+
+    stale_claims = []
+    for claim_slot in by_claim.values():
+        considered = int(claim_slot["considered_entries"])
+        stale = int(claim_slot["stale_entries"])
+        stale_ratio = float(stale / considered) if considered > 0 else 0.0
+        if stale > 0:
+            stale_claims.append(
+                {
+                    "claim_id": claim_slot["claim_id"],
+                    "considered_entries": considered,
+                    "applicable_entries": int(claim_slot["applicable_entries"]),
+                    "stale_entries": stale,
+                    "stale_ratio": round(stale_ratio, 3),
+                    "stale_reasons": claim_slot["stale_reasons"],
+                }
+            )
+    stale_claims.sort(
+        key=lambda x: (-int(x["stale_entries"]), -float(x["stale_ratio"]), str(x["claim_id"]))
+    )
+
+    return {
+        "schema_version": "architecture_epoch_applicability/v1",
+        "generated_at_utc": generated_at,
+        "policy": {
+            "enabled": enabled,
+            "current_architecture_epoch": current_epoch,
+            "epoch_start_utc": epoch_start_utc,
+            "source_types": sorted(source_types) if not all_sources else ["*"],
+            "stale_if_timestamp_before_epoch_start": stale_before_cutoff,
+            "require_epoch_tag_for_new_evidence": require_epoch_tag_for_new,
+        },
+        "summary": {
+            "considered_entries": considered_total,
+            "applicable_entries": applicable_total,
+            "stale_entries": stale_total,
+            "claims_with_stale_entries": len(stale_claims),
+            "stale_by_reason": stale_by_reason,
+        },
+        "claims_with_stale_entries": stale_claims,
+    }
+
+
 def _step_status_map(steps: list[StepResult]) -> dict[str, str]:
     return {step.name: step.status for step in steps}
 
@@ -289,10 +433,21 @@ def _build_agenda(
         repo_root / "evidence/planning/manual_carryover_items.v1.json",
         warnings,
     )
+    claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
+    epoch_applicability = _build_architecture_epoch_applicability_report(
+        claim_matrix,
+        planning_criteria if isinstance(planning_criteria, dict) else {},
+        generated_at,
+        warnings,
+    )
+    epoch_applicability_path = repo_root / "evidence/planning/architecture_epoch_applicability.v1.json"
+    epoch_applicability_path.write_text(
+        json.dumps(epoch_applicability, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     adjudication_cascade_state = _load_json_file(
         repo_root / "evidence/decisions/adjudication_cascade_state.v1.json", warnings
     )
-    claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
     recommendations = _read_recommendations(
@@ -404,6 +559,21 @@ def _build_agenda(
     open_carryover_items = [
         item for item in carryover_items if str(item.get("status", "open")).strip().lower() != "done"
     ]
+    epoch_summary = (
+        epoch_applicability.get("summary", {})
+        if isinstance(epoch_applicability, dict)
+        else {}
+    )
+    epoch_stale_claims = (
+        epoch_applicability.get("claims_with_stale_entries", [])
+        if isinstance(epoch_applicability, dict)
+        else []
+    )
+    epoch_policy = (
+        epoch_applicability.get("policy", {})
+        if isinstance(epoch_applicability, dict)
+        else {}
+    )
 
     agenda = {
         "schema_version": "governance_agenda/v1",
@@ -440,6 +610,13 @@ def _build_agenda(
             "autonomy_triage_items": len(autonomy_triage_items),
             "autonomy_open_decisions": len(autonomy_open_decisions),
             "autonomy_failed_gates": len(autonomy_failed_gates),
+            "architecture_epoch_applicability_enabled": bool(epoch_policy.get("enabled", False)),
+            "architecture_epoch_considered_entries": int(epoch_summary.get("considered_entries", 0)),
+            "architecture_epoch_applicable_entries": int(epoch_summary.get("applicable_entries", 0)),
+            "architecture_epoch_stale_entries": int(epoch_summary.get("stale_entries", 0)),
+            "architecture_epoch_claims_with_stale_entries": int(
+                epoch_summary.get("claims_with_stale_entries", 0)
+            ),
         },
         "warnings": warnings,
         "checkpoints": {
@@ -549,6 +726,16 @@ def _build_agenda(
                 "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
                 "unlinked_runs": unlinked_runs,
             },
+            "architecture_epoch_applicability": {
+                "prompt": (
+                    "Review stale-under-spec-change evidence and decide whether to retag, demote weighting, "
+                    "or retire stale runs from active conflict scoring."
+                ),
+                "policy": epoch_policy,
+                "summary": epoch_summary,
+                "claims_with_stale_entries": epoch_stale_claims,
+                "report_path": "evidence/planning/architecture_epoch_applicability.v1.json",
+            },
             "manual_carryover": {
                 "prompt": "Carry forward unfinished manually-tracked governance items.",
                 "items_total": len(carryover_items),
@@ -616,7 +803,22 @@ def _build_agenda(
             conflict_types = str(item.get("conflict_types", ""))
             lines.append(f"- `{claim_id}` conflict_types={conflict_types}")
     lines.append(
-        f"3. Governance Decisions: {len(recommendations)} recommendation queue item(s)."
+        "3. Architecture-Epoch Applicability: "
+        + f"enabled={bool(epoch_policy.get('enabled', False))}; "
+        + f"considered={int(epoch_summary.get('considered_entries', 0))}; "
+        + f"applicable={int(epoch_summary.get('applicable_entries', 0))}; "
+        + f"stale={int(epoch_summary.get('stale_entries', 0))}; "
+        + f"claims_with_stale={int(epoch_summary.get('claims_with_stale_entries', 0))}."
+    )
+    lines.append("- report: `evidence/planning/architecture_epoch_applicability.v1.json`")
+    for item in epoch_stale_claims[:10]:
+        lines.append(
+            "- "
+            + f"`{_strip_ticks(str(item.get('claim_id', '')) )}` stale_entries={item.get('stale_entries', 0)}; "
+            + f"stale_ratio={item.get('stale_ratio', 0)}"
+        )
+    lines.append(
+        f"4. Governance Decisions: {len(recommendations)} recommendation queue item(s)."
     )
     if recommendations:
         for item in recommendations[:10]:
@@ -627,7 +829,7 @@ def _build_agenda(
                 f"- `{claim_id}` decision={decision_needed}; recommendation=`{recommendation}`"
             )
     lines.append(
-        "4. Manual Carryover: "
+        "5. Manual Carryover: "
         + f"{len(open_carryover_items)} open item(s), {len(carryover_items)} total."
     )
     lines.append("- source: `evidence/planning/manual_carryover_items.v1.json`")
@@ -640,7 +842,7 @@ def _build_agenda(
                 f"- `{item_id}` owner=`{owner}` summary={note}"
             )
     lines.append(
-        "5. Architecture Structure: "
+        "6. Architecture Structure: "
         + f"{len(structure_considerations)} consider-new-structure item(s), "
         + f"{len(architecture_items)} total register item(s)."
     )
@@ -653,13 +855,13 @@ def _build_agenda(
                 f"- `{claim_id}` conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
             )
     lines.append(
-        "6. Structure Dossiers: "
+        "7. Structure Dossiers: "
         + f"{structure_review_total} dossier(s), "
         + f"{structure_review_consider} marked consider-new-structure."
     )
     lines.append("- dossier index: `evidence/planning/structure_review/latest/INDEX.md`")
     lines.append(
-        "7. Connectome Literature Pull: "
+        "8. Connectome Literature Pull: "
         + f"{len(connectome_pull_items)} queued claim(s), "
         + f"{len(connectome_pull_high_priority)} high-priority."
     )
@@ -670,7 +872,7 @@ def _build_agenda(
             pull_id = _strip_ticks(str(item.get("pull_id", "")))
             lines.append(f"- `{claim_id}` pull_id=`{pull_id}`")
     lines.append(
-        "8. Model Adjudication: "
+        "9. Model Adjudication: "
         + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
         + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
     )
@@ -695,7 +897,7 @@ def _build_agenda(
                 + f"delta_lit_minus_exp={delta:.3f}"
             )
     lines.append(
-        "9. Adjudication Cascade: "
+        "10. Adjudication Cascade: "
         + f"{len(cascade_actions)} action(s), "
         + f"{len(cascade_claims_updated)} claim update(s), "
         + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
@@ -710,7 +912,7 @@ def _build_agenda(
                 f"- `{claim_id}` outcome=`{outcome}`; reopened_dependents={len(reopened)}"
             )
     lines.append(
-        f"10. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        f"11. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
@@ -719,7 +921,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"11. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"12. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     if warnings:
         for warning in warnings:
@@ -910,6 +1112,7 @@ def main() -> None:
         + f"connectome_pull={agenda['summary']['connectome_pull_items']}, "
         + f"external_precedence={agenda['summary']['external_precedence_candidates']}, "
         + f"cascade_actions={agenda['summary']['adjudication_cascade_actions']}, "
+        + f"epoch_stale={agenda['summary']['architecture_epoch_stale_entries']}, "
         + f"backlog_high={agenda['summary']['backlog_high_priority']}."
     )
     print(f"Agenda JSON: {agenda_json_path.as_posix()}")

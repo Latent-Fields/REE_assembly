@@ -31,7 +31,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 START_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:END -->"
@@ -1213,6 +1213,14 @@ def _default_planning_criteria() -> dict[str, Any]:
             "exploratory_repo": "ree-experiments-lab",
             "literature_owner": "REE_assembly",
         },
+        "evidence_applicability": {
+            "enabled": True,
+            "current_architecture_epoch": "",
+            "epoch_start_utc": "",
+            "source_types": ["*"],
+            "stale_if_timestamp_before_epoch_start": True,
+            "require_epoch_tag_for_new_evidence": False,
+        },
     }
 
 
@@ -1235,6 +1243,12 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
     else:
         for key, value in defaults["repo_routing"].items():
             routing.setdefault(key, value)
+    applicability = data.get("evidence_applicability")
+    if not isinstance(applicability, dict):
+        data["evidence_applicability"] = dict(defaults["evidence_applicability"])
+    else:
+        for key, value in defaults["evidence_applicability"].items():
+            applicability.setdefault(key, value)
     adjudication = data.get("model_adjudication")
     if not isinstance(adjudication, dict):
         data["model_adjudication"] = dict(defaults["model_adjudication"])
@@ -1616,21 +1630,90 @@ def _majority_direction(entries: list[dict[str, Any]], source_type: str) -> str:
     return "supports" if directional["supports"] > directional["weakens"] else "weakens"
 
 
-def _collect_conflicts(matrix: dict[str, Any]) -> list[dict[str, Any]]:
+def _build_applicability_filter(
+    planning_criteria: dict[str, Any],
+) -> tuple[str, Callable[[dict[str, Any]], bool]]:
+    cfg = planning_criteria.get("evidence_applicability", {}) if isinstance(planning_criteria, dict) else {}
+    if not isinstance(cfg, dict) or not bool(cfg.get("enabled", False)):
+        return "all_entries", lambda _entry: True
+
+    epoch = str(cfg.get("current_architecture_epoch", "")).strip()
+    epoch_start_raw = str(cfg.get("epoch_start_utc", "")).strip()
+    source_types_raw = cfg.get("source_types", ["experimental"])
+    stale_before_cutoff = bool(cfg.get("stale_if_timestamp_before_epoch_start", True))
+    require_epoch_tag_for_new = bool(cfg.get("require_epoch_tag_for_new_evidence", False))
+
+    source_types: set[str] = set()
+    if isinstance(source_types_raw, list):
+        source_types = {str(x).strip().lower() for x in source_types_raw if str(x).strip()}
+    elif isinstance(source_types_raw, str):
+        value = source_types_raw.strip().lower()
+        if value:
+            source_types = {value}
+    all_sources = "*" in source_types or not source_types
+
+    epoch_start: datetime | None = None
+    if epoch_start_raw:
+        try:
+            epoch_start = _parse_timestamp_only(epoch_start_raw)
+        except ValueError:
+            epoch_start = None
+
+    scope_bits: list[str] = ["current_epoch_applicable"]
+    if epoch:
+        scope_bits.append(f"epoch={epoch}")
+
+    def _is_applicable(entry: dict[str, Any]) -> bool:
+        source_type = str(entry.get("source_type", "")).strip().lower()
+        if not all_sources and source_type not in source_types:
+            return True
+
+        entry_epoch = str(entry.get("architecture_epoch", "")).strip()
+        if entry_epoch:
+            if epoch and entry_epoch != epoch:
+                return False
+            return True
+
+        ts_raw = str(entry.get("timestamp_utc", "")).strip()
+        ts: datetime | None = None
+        if ts_raw:
+            try:
+                ts = _parse_timestamp_only(ts_raw)
+            except ValueError:
+                ts = None
+
+        if epoch_start and stale_before_cutoff and ts and ts < epoch_start:
+            return False
+        if epoch_start and require_epoch_tag_for_new and ts and ts >= epoch_start:
+            return False
+        return True
+
+    return ",".join(scope_bits), _is_applicable
+
+
+def _collect_conflicts(matrix: dict[str, Any], planning_criteria: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
+    scope_label, is_applicable = _build_applicability_filter(planning_criteria)
     entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for entry in matrix.get("entries", []):
+        if not isinstance(entry, dict):
+            continue
+        if not is_applicable(entry):
+            continue
         entries_by_claim[str(entry.get("claim_id"))].append(entry)
 
     conflicts: list[dict[str, Any]] = []
-    for claim_id in sorted(matrix.get("claims", {}).keys()):
-        claim_meta = matrix["claims"][claim_id]
-        supports = int(claim_meta.get("direction_counts", {}).get("supports", 0))
-        weakens = int(claim_meta.get("direction_counts", {}).get("weakens", 0))
-        mixed = int(claim_meta.get("direction_counts", {}).get("mixed", 0))
+    for claim_id in sorted(entries_by_claim.keys()):
+        claim_entries = entries_by_claim.get(claim_id, [])
+        if not claim_entries:
+            continue
+        claim_entries.sort(key=lambda e: (str(e.get("timestamp_utc", "")), str(e.get("run_id", ""))))
+        direction_counts = Counter(str(e.get("evidence_direction", "unknown")) for e in claim_entries)
+        supports = int(direction_counts.get("supports", 0))
+        weakens = int(direction_counts.get("weakens", 0))
+        mixed = int(direction_counts.get("mixed", 0))
 
         direction_conflict = supports > 0 and weakens > 0
 
-        claim_entries = entries_by_claim.get(claim_id, [])
         exp_majority = _majority_direction(claim_entries, "experimental")
         lit_majority = _majority_direction(claim_entries, "literature")
         source_conflict = (
@@ -1656,36 +1739,42 @@ def _collect_conflicts(matrix: dict[str, Any]) -> list[dict[str, Any]]:
                 "conflict_types": conflict_types,
                 "supports": supports,
                 "weakens": weakens,
-                "conflict_ratio": _direction_conflict_ratio(claim_meta.get("direction_counts", {})),
-                "latest": claim_meta.get("latest_run_id", ""),
+                "conflict_ratio": _direction_conflict_ratio(direction_counts),
+                "latest": str(claim_entries[-1].get("run_id", "")),
+                "entries_considered": len(claim_entries),
             }
         )
-    return conflicts
+    return conflicts, scope_label
 
 
 def _write_conflicts_report(
     base_dir: Path,
     matrix: dict[str, Any],
+    planning_criteria: dict[str, Any],
     conflicts: list[dict[str, Any]],
+    conflict_scope: str,
     generated_at: str,
 ) -> None:
     lines: list[str] = []
     lines.append("# Evidence Conflict Report")
     lines.append("")
     lines.append(f"Generated: `{generated_at}`")
+    lines.append(f"Conflict scope: `{conflict_scope}`")
     lines.append("")
 
+    _, is_applicable = _build_applicability_filter(planning_criteria)
     entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for entry in matrix.get("entries", []):
-        entries_by_claim[str(entry.get("claim_id"))].append(entry)
+        if isinstance(entry, dict) and is_applicable(entry):
+            entries_by_claim[str(entry.get("claim_id"))].append(entry)
 
     lines.append("## Conflict Queue")
     lines.append("")
-    lines.append("| claim_id | conflict_types | supports | weakens | conflict_ratio | latest |")
-    lines.append("|---|---|---|---|---|---|")
+    lines.append("| claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |")
+    lines.append("|---|---|---|---|---|---|---|")
 
     if not conflicts:
-        lines.append("| _none_ | - | 0 | 0 | 0 | - |")
+        lines.append("| _none_ | - | 0 | 0 | 0 | - | 0 |")
     else:
         for item in conflicts:
             lines.append(
@@ -1698,6 +1787,7 @@ def _write_conflicts_report(
                         str(item["weakens"]),
                         _fmt_number(item["conflict_ratio"]),
                         f"`{item['latest']}`",
+                        str(item.get("entries_considered", 0)),
                     ]
                 )
                 + " |"
@@ -2489,7 +2579,7 @@ def main() -> None:
     _write_decision_state(decisions_dir, latest_decisions, generated_at)
 
     matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
-    conflicts = _collect_conflicts(matrix)
+    conflicts, conflict_scope = _collect_conflicts(matrix, planning_criteria)
     backlog_items, proposals, architecture_items = _write_planning_outputs(
         planning_root,
         matrix,
@@ -2499,7 +2589,7 @@ def main() -> None:
         planning_criteria,
         generated_at,
     )
-    _write_conflicts_report(base_dir, matrix, conflicts, generated_at)
+    _write_conflicts_report(base_dir, matrix, planning_criteria, conflicts, conflict_scope, generated_at)
     _write_promotion_demotion_recommendations(
         base_dir,
         matrix,

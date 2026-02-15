@@ -1,6 +1,6 @@
 # Experiment Index: jepa_uncertainty_channels
 
-Generated: `2026-02-15T15:37:22.224857Z`
+Generated: `2026-02-15T15:46:22.220557Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
