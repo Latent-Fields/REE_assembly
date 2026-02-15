@@ -1998,7 +1998,11 @@ def _write_planning_outputs(
                 evidence_needed.add("literature")
             if conflict_ratio >= conflict_alert_threshold:
                 reasons.append("directional_conflict_alert")
-                evidence_needed.update({"experimental", "literature"})
+                # Directional conflict requires new experimental discrimination first.
+                # Ask for literature only when no literature is present yet.
+                evidence_needed.add("experimental")
+                if lit_count == 0:
+                    evidence_needed.add("literature")
             if current_status == "candidate" and exp_count < candidate_min_exp:
                 reasons.append("insufficient_experimental_replication")
                 evidence_needed.add("experimental")
@@ -2008,7 +2012,12 @@ def _write_planning_outputs(
 
             if claim_id in conflicts_by_claim:
                 reasons.append("active_conflict")
-                evidence_needed.update({"experimental", "literature"})
+                # Conflict claims should always get experimental follow-up.
+                # Requiring literature again when it already exists causes an infinite
+                # re-proposal loop and task churn.
+                evidence_needed.add("experimental")
+                if lit_count == 0:
+                    evidence_needed.add("literature")
 
         structure_signals: list[str] = []
         if conflict_ratio >= consider_conflict_ratio:
@@ -2032,7 +2041,9 @@ def _write_planning_outputs(
             structure_signals.append("external_precedence_pressure")
             external_precedence_candidate = True
             reasons.append("external_precedence_pressure")
-            evidence_needed.update({"experimental", "literature"})
+            evidence_needed.add("experimental")
+            if lit_count == 0:
+                evidence_needed.add("literature")
 
             if anti_lock_in_enabled and current_status in {"candidate", "provisional", "active", "stable"}:
                 anti_lock_in_review_required = True
@@ -2041,7 +2052,9 @@ def _write_planning_outputs(
         consider_new_structure = len(structure_signals) >= 3
         if consider_new_structure:
             reasons.append("consider_new_structure")
-            evidence_needed.update({"experimental", "literature"})
+            evidence_needed.add("experimental")
+            if lit_count == 0:
+                evidence_needed.add("literature")
 
         if claim_meta is not None and (structure_signals or recurring_signatures):
             architecture_items.append(

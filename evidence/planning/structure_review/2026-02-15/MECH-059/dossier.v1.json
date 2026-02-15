@@ -2,7 +2,7 @@
   "alternative_interpretations": [
     {
       "alternative_id": "ALT-01",
-      "confidence_estimate": 0.519,
+      "confidence_estimate": 0.552,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
       "hypothesis": "precision / confidence channel separate from prediction error is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
@@ -12,7 +12,7 @@
     },
     {
       "alternative_id": "ALT-02",
-      "confidence_estimate": 0.396,
+      "confidence_estimate": 0.29,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
       "hypothesis": "precision / confidence channel separate from prediction error is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
@@ -22,7 +22,7 @@
     },
     {
       "alternative_id": "ALT-03",
-      "confidence_estimate": 0.396,
+      "confidence_estimate": 0.29,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
       "hypothesis": "A hybrid architecture is needed: keep the core of precision / confidence channel separate from prediction error but add explicit gating or interface separation.",
       "next_evidence_pull": [
@@ -61,141 +61,141 @@
   ],
   "evidence_items": [
     {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "exp_0017_20260215T095123788473Z",
-      "source_background": "Run-pack `exp_0017_20260215T095123788473Z` in `jepa_uncertainty_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T09:51:23.788473Z"
+      "confidence": 0.67,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech059_lit-0019_completion",
+      "source_background": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS)",
+      "source_type": "literature",
+      "source_wording": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. Follow-up extraction scoped to MECH-059 confidence-channel decomposition. Proposal completion extraction for LIT-0019 scoped to MECH-059.",
+      "timestamp_utc": "2026-02-15T16:04:00Z"
     },
     {
       "confidence": 0.67,
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_v3_jepa_mapping_limits",
       "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017",
+      "run_id": "2026-02-15_mech059_uncertainty_decomposition_followup",
       "source_background": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? (2017, NeurIPS)",
       "source_type": "literature",
-      "source_wording": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific.",
-      "timestamp_utc": "2026-02-14T22:50:00Z"
+      "source_wording": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. Follow-up extraction scoped to MECH-059 confidence-channel decomposition.",
+      "timestamp_utc": "2026-02-15T15:15:00Z"
     },
     {
-      "confidence": 0.69,
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_uncertainty_channels",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T14:56:37Z"
+    },
+    {
+      "confidence": 0.5,
       "evidence_direction": "mixed",
-      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "experiment_type": "jepa_uncertainty_channels",
       "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
-      "run_id": "2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits",
-      "source_background": "Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv)",
-      "source_type": "literature",
-      "source_wording": "VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling.",
-      "timestamp_utc": "2026-02-14T21:25:00Z"
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
+      "source_type": "experimental",
+      "source_wording": "mixed direction",
+      "timestamp_utc": "2026-02-15T14:56:37Z"
     },
     {
-      "confidence": 0.76,
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_uncertainty_channels",
+      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T14:56:37Z"
+    },
+    {
+      "confidence": 0.5,
       "evidence_direction": "mixed",
-      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "experiment_type": "jepa_uncertainty_channels",
       "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
-      "run_id": "2026-02-14_v3jepa_ijepa_control_plane_gap",
-      "source_background": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023)",
-      "source_type": "literature",
-      "source_wording": "I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping.",
-      "timestamp_utc": "2026-02-14T21:10:00Z"
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
+      "source_type": "experimental",
+      "source_wording": "mixed direction",
+      "timestamp_utc": "2026-02-15T14:56:37Z"
     },
     {
       "confidence": 0.75,
       "evidence_direction": "supports",
       "experiment_type": "jepa_uncertainty_channels",
       "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head` in `jepa_uncertainty_channels`",
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
       "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
+      "timestamp_utc": "2026-02-15T14:56:37Z"
     },
     {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
+      "confidence": 0.5,
+      "evidence_direction": "mixed",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion` in `jepa_uncertainty_channels`",
+      "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145637Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
+      "source_wording": "mixed direction",
+      "timestamp_utc": "2026-02-15T14:56:37Z"
     },
     {
       "confidence": 0.75,
       "evidence_direction": "supports",
       "experiment_type": "jepa_uncertainty_channels",
       "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head` in `jepa_uncertainty_channels`",
+      "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145611Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
       "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
+      "timestamp_utc": "2026-02-15T14:56:11Z"
     },
     {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
+      "confidence": 0.5,
+      "evidence_direction": "mixed",
       "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion` in `jepa_uncertainty_channels`",
+      "ree_translation": "In REE terms, this implies `precision / confidence channel separate from prediction error` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T145611Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal` in `jepa_uncertainty_channels`",
       "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `precision / confidence channel separate from prediction error` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head` in `jepa_uncertainty_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "jepa_uncertainty_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `precision / confidence channel separate from prediction error` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion",
-      "source_background": "Run-pack `2026-02-14T200000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion` in `jepa_uncertainty_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-14T20:00:00Z"
+      "source_wording": "mixed direction",
+      "timestamp_utc": "2026-02-15T14:56:11Z"
     }
   ],
   "evidence_overview": {
     "direction_counts": {
-      "mixed": 5,
-      "supports": 24,
+      "mixed": 14,
+      "supports": 35,
       "unknown": 0,
       "weakens": 19
     },
     "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
     "source_direction_counts": {
       "experimental": {
-        "mixed": 3,
-        "supports": 22,
+        "mixed": 12,
+        "supports": 31,
         "unknown": 0,
         "weakens": 19
       },
       "literature": {
         "mixed": 2,
-        "supports": 2,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       }
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T14:41:04.790242Z",
+  "generated_at_utc": "2026-02-15T15:07:46.524441Z",
   "left_field_suggestions": [
     {
       "first_test": "Add a toy arbitration layer and compare calibration drift against current single-head setup.",
@@ -215,28 +215,28 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.884,
+    "conflict_ratio": 0.704,
     "consider_new_structure": true,
-    "gap_id": "AGR-0003",
+    "gap_id": "AGR-0005",
     "latest_decision": {
       "decision_status": "approved",
       "recommendation": "hold_candidate_resolve_conflict",
       "timestamp_utc": "2026-02-14T13:22:46.865603Z"
     },
-    "overall_confidence": 0.705,
+    "overall_confidence": 0.737,
     "recommendation": "consider_new_structure",
     "recurring_failure_signatures": [
       {
-        "count": 14,
+        "count": 20,
         "signature": "mech059:uncertainty_metric_gaming_detected"
+      },
+      {
+        "count": 12,
+        "signature": "mech059:abstention_reliability_collapse"
       },
       {
         "count": 10,
         "signature": "mech059:calibration_slope_break"
-      },
-      {
-        "count": 6,
-        "signature": "mech059:abstention_reliability_collapse"
       },
       {
         "count": 5,
@@ -248,13 +248,12 @@
       }
     ],
     "source_counts": {
-      "experimental": 44,
-      "literature": 4
+      "experimental": 62,
+      "literature": 6
     },
     "trigger_signals": [
       "external_precedence_pressure",
       "high_conflict_ratio",
-      "literature_non_support_pressure",
       "recurring_failure_signatures"
     ]
   }

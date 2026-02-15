@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T15:02:46.692191Z`
+Generated: `2026-02-15T15:07:46.577527Z`
 
 ## Cycle Status
 
@@ -70,8 +70,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-059` external_precedence_candidate=yes; delta_lit_minus_exp=0.221
 9. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
-10. Evidence Dispatch: 42 high-priority proposal(s), 42 total.
-- REE_assembly: total=8, experimental=0, literature_review=8
+10. Evidence Dispatch: 34 high-priority proposal(s), 34 total.
 - ree-experiments-lab: total=5, experimental=5, literature_review=0
 - ree-v2: total=29, experimental=29, literature_review=0
 11. Maintenance: 0 unlinked evidence run(s), 0 warning(s).
