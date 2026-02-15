@@ -1,12 +1,12 @@
 # Architecture Gap Register
 
-Generated: `2026-02-15T15:07:46.432258Z`
+Generated: `2026-02-15T15:19:20.479566Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
-| `AGR-0001` | `MECH-056` | `candidate` | 1 | 0 | 0.291 | 5 | yes | yes | `consider_new_structure` |
+| `AGR-0001` | `MECH-056` | `candidate` | 0.941 | 0.111 | 0.297 | 5 | yes | yes | `consider_new_structure` |
 | `AGR-0002` | `MECH-058` | `candidate` | 0.939 | 0.2 | 0.361 | 5 | yes | yes | `consider_new_structure` |
 | `AGR-0003` | `MECH-060` | `candidate` | 0.937 | 0.333 | 0.33 | 5 | yes | yes | `consider_new_structure` |
 | `AGR-0004` | `Q-017` | `active` | 0.897 | 0 | 0.355 | 3 | yes | yes | `consider_new_structure` |
@@ -19,9 +19,9 @@ This register highlights claims under structural pressure and flags where the ev
 
 ## Consider New Structure Queue
 
-- `MECH-056` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=1; lit_non_support_ratio=0.
+- `MECH-056` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.941; lit_non_support_ratio=0.111.
   - recurring_signatures: `stop:ledger_edit_detected_count>0`(26), `stop:domination_lock_in_events>0`(22), `ledger_editing`(21), `stop:explanation_policy_divergence_rate>0.05`(18), `domination_lock_in`(16)
-  - external_precedence_candidate: yes; delta_lit_minus_exp=0.291
+  - external_precedence_candidate: yes; delta_lit_minus_exp=0.297
 - `MECH-058` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.939; lit_non_support_ratio=0.2.
   - recurring_signatures: `mech058:anchor_separation_collapse`(21), `mech058:ema_drift_under_shift`(15), `mech058:latent_cluster_collapse`(10), `threshold:latent_prediction_error_mean`(5), `threshold:latent_prediction_error_p95`(5)
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.361

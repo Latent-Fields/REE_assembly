@@ -1,13 +1,13 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-15T15:07:46.572661Z`
+Generated: `2026-02-15T15:19:20.613388Z`
 Cycle: `2026-02-15`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `MECH-056` | `high` | yes | 1 | `targeted_review_connectome_mech_056` |
+| `CPULL-0001` | `MECH-056` | `high` | yes | 0.941 | `targeted_review_connectome_mech_056` |
 | `CPULL-0002` | `MECH-058` | `high` | yes | 0.939 | `targeted_review_connectome_mech_058` |
 | `CPULL-0003` | `MECH-060` | `high` | yes | 0.937 | `targeted_review_connectome_mech_060` |
 | `CPULL-0004` | `Q-017` | `high` | yes | 0.897 | `targeted_review_connectome_q_017` |
@@ -19,7 +19,7 @@ This queue prioritizes connectome/effective-connectivity evidence pulls for clai
 - Objective: Run targeted connectome literature pull for MECH-056.
 - Claim description: MECH-056 is a mechanism hypothesis about residue / trajectory first placement.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.
-- Evidence pressure: conflict_ratio=1, overall_confidence=0.721, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.941, overall_confidence=0.724, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `stop:ledger_edit_detected_count>0`, `stop:domination_lock_in_events>0`, `ledger_editing`, `stop:explanation_policy_divergence_rate>0.05`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.
 - Research questions:

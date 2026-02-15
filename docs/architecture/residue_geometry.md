@@ -95,6 +95,27 @@ Operational implication:
 - Apply residue first to rollout sampling weights and E3 gating.
 - Treat latent distortion as a secondary, capped channel with explicit safeguards against blind spots.
 
+### DMN-like rehearsal lane (implementation contract)
+
+Uncommitted trajectory generation should be treated as a default-mode-network-like rehearsal/search lane:
+generate, compare, and prune candidate trajectories before commitment.
+
+Hard invariants:
+- Rehearsal traces are pre-commit only and must not write policy/ledger state.
+- Rehearsal may update temporary search statistics, but durable residue updates require commit.
+- Commitment gating, not rehearsal score alone, decides action eligibility.
+
+Required routing:
+- Inputs: current latent state, goals/constraints, control-plane state, replay seeds.
+- Outputs (pre-commit): trajectory risk, feasibility, and veto hints to E3 gate family.
+- Outputs (post-commit only): attributable consequence traces routed to residue/viability updates.
+
+Validation hooks for MECH-056:
+- Keep `ledger_edit_detected_count == 0` in rehearsal-only windows.
+- Keep `explanation_policy_divergence_rate <= 0.05` across seed sweeps.
+- Keep `domination_lock_in_events == 0` under rehearsal-heavy regimes.
+- Track `commitment_reversal_rate` to ensure rehearsal does not leak into unstable enactment.
+
 ## Why geometry
 
 If residue were a scalar penalty, it would be easily traded off against reward and optimized away.

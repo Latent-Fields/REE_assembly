@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-02-15_mech056_connectome_pfc_hippocampal_planning_natneuro2024",
+  "timestamp_utc": "2026-02-15T15:26:00Z",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "source": {
+    "title": "A recurrent network model of planning explains hippocampal replay and human behavior",
+    "authors": [
+      "Kristopher T. Jensen",
+      "Guillaume Hennequin",
+      "Marcelo G. Mattar"
+    ],
+    "year": 2024,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-024-01675-7",
+    "url": "https://doi.org/10.1038/s41593-024-01675-7"
+  },
+  "evidence_class": "connectome_computational_bridge",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "The model explicitly couples prefrontal control with hippocampal replay rollouts, supporting a trajectory-first decision-control pathway with downstream behavioral benefit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "prefrontal_hippocampal",
+    "planning",
+    "replay"
+  ],
+  "mapping": {
+    "source_claim_statement": "Planning can be implemented through prefrontal-controlled hippocampal rollouts that improve behavior when selectively engaged.",
+    "ree_translation": "Supports hybrid MECH-056 implementation where trajectory-first operations are retained but gated by explicit control-plane logic rather than unconstrained rollout dominance.",
+    "mapping_caveat": "Computational-neuroscience bridge, not direct causal connectome perturbation; requires empirical guardrail calibration in REE experiments.",
+    "source_context": "Modeling work aligned with rodent replay signatures and human planning latency data."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.31,
+    "notes": "Strong cross-level bridge; moderate transfer risk due model dependence."
+  }
+}

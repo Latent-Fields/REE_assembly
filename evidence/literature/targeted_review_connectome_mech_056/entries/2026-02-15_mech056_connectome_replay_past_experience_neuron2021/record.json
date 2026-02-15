@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-02-15_mech056_connectome_replay_past_experience_neuron2021",
+  "timestamp_utc": "2026-02-15T15:28:00Z",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "source": {
+    "title": "Hippocampal replay reflects specific past experiences rather than a plan for subsequent choice",
+    "authors": [
+      "Anna K. Gillespie",
+      "Daniela A. Astudillo Maya",
+      "Eric L. Denovellis",
+      "Daniel F. Liu",
+      "David B. Kastner",
+      "Michael E. Coulter",
+      "Demetris K. Roumis",
+      "Uri T. Eden",
+      "Loren M. Frank"
+    ],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.07.029",
+    "url": "https://doi.org/10.1016/j.neuron.2021.07.029"
+  },
+  "evidence_class": "connectome_behavioral_dissociation",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Findings challenge a strict immediate-planning interpretation of replay and indicate memory-maintenance roles, supporting a hybridized MECH-056 with tighter scope and explicit boundary conditions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "trajectory_first_over_scope"
+  ],
+  "tags": [
+    "connectome",
+    "hippocampus",
+    "replay",
+    "disconfirming"
+  ],
+  "mapping": {
+    "source_claim_statement": "Replay content tracked salient past experiences and did not consistently predict immediate subsequent choice planning.",
+    "ree_translation": "Constrains MECH-056: trajectory-first mechanisms should not be interpreted as universally immediate action planners; architecture needs a memory-maintenance branch and planning guardrails.",
+    "mapping_caveat": "Does not negate trajectory relevance; refines where and when trajectory signals should drive commitment-facing pathways.",
+    "source_context": "Large-scale hippocampal replay decoding during memory-guided behavior."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.77,
+    "transfer_risk": 0.36,
+    "notes": "High-quality disconfirming/mixed evidence that motivates scope narrowing rather than full rejection."
+  }
+}

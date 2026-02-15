@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-02-15_mech056_connectome_swr_spatial_memory_science2012",
+  "timestamp_utc": "2026-02-15T15:25:00Z",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "source": {
+    "title": "Awake hippocampal sharp-wave ripples support spatial memory",
+    "authors": [
+      "Shantanu P. Jadhav",
+      "Caleb Kemere",
+      "P. Walter German",
+      "Loren M. Frank"
+    ],
+    "year": 2012,
+    "venue": "Science",
+    "doi": "10.1126/science.1217230",
+    "url": "https://doi.org/10.1126/science.1217230"
+  },
+  "evidence_class": "connectome_task_perturbation",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Causal SWR disruption in awake task performance supports trajectory-level replay as functionally relevant for memory-guided decisions, consistent with trajectory-first pressure before representational updates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "hippocampus",
+    "sharp_wave_ripple",
+    "spatial_memory"
+  ],
+  "mapping": {
+    "source_claim_statement": "Interrupting awake hippocampal sharp-wave ripples causes a persistent deficit in spatial alternation performance while sparing place-field coding.",
+    "ree_translation": "Supports a MECH-056 style separation where trajectory-level replay/selection dynamics are a primary control substrate, with representational coding alone insufficient for intact decision behavior.",
+    "mapping_caveat": "Source is rodent spatial alternation with SWR intervention; transfer to broader REE task families requires boundary validation.",
+    "source_context": "Awake rodent hippocampal electrophysiology with closed-loop ripple disruption."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.24,
+    "notes": "Strong causal manipulation; medium transfer risk outside spatial/hippocampal domains."
+  }
+}

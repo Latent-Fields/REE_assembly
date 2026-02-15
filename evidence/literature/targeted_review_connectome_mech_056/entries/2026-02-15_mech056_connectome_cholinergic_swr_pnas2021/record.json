@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-02-15_mech056_connectome_cholinergic_swr_pnas2021",
+  "timestamp_utc": "2026-02-15T15:27:00Z",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "source": {
+    "title": "Cholinergic suppression of hippocampal sharp-wave ripples impairs working memory",
+    "authors": [
+      "Yiyao Zhang",
+      "Liang Cao",
+      "Viktor Varga",
+      "Miao Jing",
+      "Mursel Karadas",
+      "Yulong Li",
+      "Gyorgy Buzsaki"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2016432118",
+    "url": "https://doi.org/10.1073/pnas.2016432118"
+  },
+  "evidence_class": "connectome_neuromodulatory_gating",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Task-phase-dependent septo-hippocampal cholinergic modulation impacting SWRs and performance supports a control-gated trajectory mechanism rather than a monolithic always-on trajectory policy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "septo_hippocampal",
+    "cholinergic",
+    "swr"
+  ],
+  "mapping": {
+    "source_claim_statement": "Manipulating septal cholinergic drive can suppress hippocampal SWRs and impair working-memory performance in a phase-dependent manner.",
+    "ree_translation": "Supports implementing explicit state/phase guardrails around trajectory-first operations in MECH-056, with gating tied to control-plane context.",
+    "mapping_caveat": "Specific neuromodulatory axis and task context; does not by itself specify full REE guardrail policy.",
+    "source_context": "Optogenetic and photometry-based septo-hippocampal intervention during working-memory behavior."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.34,
+    "notes": "Strong mechanistic manipulation evidence for gating dependence, with moderate transfer risk to generalized architecture."
+  }
+}

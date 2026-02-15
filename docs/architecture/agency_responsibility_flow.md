@@ -146,6 +146,29 @@ MECH‑061 and MECH‑062 provide a concrete realization path for this split:
 - MECH‑061: explicit commit-boundary token as error reclassification boundary,
 - MECH‑062: tri-loop gate family whose arbitration determines which commitment becomes attributable.
 
+### Commit-boundary enforcement contract
+
+To preserve responsibility semantics, REE must enforce a strict boundary between pre-commit rehearsal and post-commit
+attribution:
+
+- Pre-commit channel (`sim_error`): may shape search/gating only.
+- Post-commit channel (`realized_error`): may update durable policy/ledger/residue state.
+
+Required implementation checks:
+- No durable update paths are reachable from `sim_error` without a commit token.
+- Every post-commit update is traceable to a commit token and action trace.
+- Any mixed or contaminated channel event is tagged as a failure signature.
+
+Primary hooks:
+- `mech060:precommit_channel_contamination`
+- `mech060:postcommit_channel_contamination`
+- `mech060:attribution_reliability_break`
+- `mech060:commitment_reversal_spike`
+
+Design intent:
+- Rehearsal is allowed to be broad and exploratory.
+- Responsibility-bearing learning is narrow and commit-gated.
+
 ---
 
 ## Open Questions

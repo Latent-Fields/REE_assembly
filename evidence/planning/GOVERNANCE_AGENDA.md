@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-15T15:07:46.577527Z`
+Generated: `2026-02-15T15:19:20.618103Z`
 
 ## Cycle Status
 
@@ -31,7 +31,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 2. Conflict Resolution: 8 conflict item(s).
 - `ARC-018` conflict_types=directional
 - `MECH-033` conflict_types=directional
-- `MECH-056` conflict_types=directional, source_disagreement
+- `MECH-056` conflict_types=directional, source_disagreement, mixed_evidence
 - `MECH-058` conflict_types=directional, mixed_evidence
 - `MECH-059` conflict_types=directional, mixed_evidence
 - `MECH-060` conflict_types=directional, source_disagreement, mixed_evidence
@@ -46,7 +46,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 4. Manual Carryover: 0 open item(s), 1 total.
 - source: `evidence/planning/manual_carryover_items.v1.json`
 5. Architecture Structure: 5 consider-new-structure item(s), 10 total register item(s).
-- `MECH-056` conflict_ratio=1.0; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-056` conflict_ratio=0.941; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `MECH-058` conflict_ratio=0.939; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `MECH-060` conflict_ratio=0.937; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `Q-017` conflict_ratio=0.897; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
@@ -63,7 +63,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 8. Model Adjudication: 5 external-precedence candidate(s), 5 anti-lock-in review item(s).
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.291
+- `MECH-056` external_precedence_candidate=yes; delta_lit_minus_exp=0.297
 - `MECH-058` external_precedence_candidate=yes; delta_lit_minus_exp=0.361
 - `MECH-060` external_precedence_candidate=yes; delta_lit_minus_exp=0.330
 - `Q-017` external_precedence_candidate=yes; delta_lit_minus_exp=0.355

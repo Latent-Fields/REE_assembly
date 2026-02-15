@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-15T15:07:46.432258Z`
+Generated: `2026-02-15T15:19:20.479566Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -13,14 +13,14 @@ Use this as the human-in-the-loop review queue.
 | `MECH-058` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `approved` |
 | `MECH-059` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `approved` |
 | `MECH-060` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `approved` |
-| `Q-011` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
+| `Q-011` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `approved` |
 
 ## Decision Details
 
 ### MECH-056
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.721, conflict_ratio=1, exp_entries=43, lit_entries=5; directions supports=24, weakens=24, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.724, conflict_ratio=0.941, exp_entries=43, lit_entries=9; directions supports=27, weakens=24, mixed=1, unknown=0, conflict_ratio=0.941
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -31,9 +31,9 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `approved`
-- Last logged decision: `approved` by `dgolden` at `2026-02-13T08:43:59.847373Z`
+- Last logged decision: `approved` by `codex` at `2026-02-15T15:10:33.718527Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: Directional conflict ratio remains 1.0 with symmetric support/weakening evidence; run adjudication experiments and literature triangulation before promotion.
+- Last rationale: Conflict remains high; maintain candidate status while conflict-adjudication experiments continue.
 
 ### MECH-058
 - Current status: `candidate`
@@ -49,9 +49,9 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `approved`
-- Last logged decision: `approved` by `dgolden` at `2026-02-14T13:22:46.827172Z`
+- Last logged decision: `approved` by `codex` at `2026-02-15T15:10:33.757919Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: Approved in review of v3 conflict decision packet; resolve directional conflict with targeted adjudication before any promotion.
+- Last rationale: Directional conflict remains material; keep candidate and continue adjudication protocol.
 
 ### MECH-059
 - Current status: `candidate`
@@ -67,9 +67,9 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `approved`
-- Last logged decision: `approved` by `dgolden` at `2026-02-14T13:22:46.865603Z`
+- Last logged decision: `approved` by `codex` at `2026-02-15T15:10:33.793159Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: Approved in review of v3 conflict decision packet; resolve directional conflict with targeted adjudication before any promotion.
+- Last rationale: Mixed evidence remains unresolved; retain candidate status and continue conflict resolution.
 
 ### MECH-060
 - Current status: `candidate`
@@ -85,9 +85,9 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `approved`
-- Last logged decision: `approved` by `dgolden` at `2026-02-14T13:22:46.902458Z`
+- Last logged decision: `approved` by `codex` at `2026-02-15T15:10:33.830375Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: Approved in review of v3 conflict decision packet; resolve directional conflict with targeted adjudication before any promotion.
+- Last rationale: High conflict ratio persists; hold promotion and continue paired adjudication runs.
 
 ### Q-011
 - Current status: `candidate`
@@ -102,8 +102,7 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `approved` by `dgolden` at `2026-02-14T19:09:36.006388Z`
-- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: After demotion to candidate, user approved the updated recommendation to hold at candidate pending conflict-resolution evidence.
+- Decision status: `approved`
+- Last logged decision: `approved` by `codex` at `2026-02-15T15:10:33.865089Z`
+- Last selected option: Promote now (faster convergence, risk premature lock-in)
+- Last rationale: Current evidence meets provisional promotion recommendation; proceed while monitoring conflict drift.

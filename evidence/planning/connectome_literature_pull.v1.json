@@ -1,6 +1,6 @@
 {
   "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T15:07:46.572661Z",
+  "generated_at_utc": "2026-02-15T15:19:20.613388Z",
   "items": [
     {
       "acceptance_checks": [
@@ -74,15 +74,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 1.0,
+        "conflict_ratio": 0.941,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 24,
+          "mixed": 1,
+          "supports": 27,
           "unknown": 0,
           "weakens": 24
         },
-        "overall_confidence": 0.721,
+        "overall_confidence": 0.724,
         "recurring_failure_signatures": [
           "stop:ledger_edit_detected_count>0",
           "stop:domination_lock_in_events>0",
@@ -92,7 +92,7 @@
         ],
         "source_counts": {
           "experimental": 43,
-          "literature": 5
+          "literature": 9
         },
         "trigger_signals": [
           "external_precedence_pressure",

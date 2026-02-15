@@ -586,99 +586,84 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=43 entry(s), lit=5 entry(s), exp_conf=0.576, lit_conf=0.867",
+      "confidence_rationale": "exp=43 entry(s), lit=9 entry(s), exp_conf=0.576, lit_conf=0.873",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 24,
+        "mixed": 1,
+        "supports": 27,
         "unknown": 0,
         "weakens": 24
       },
-      "entries_total": 48,
+      "entries_total": 52,
       "evidence_class_counts": {
         "exp:simulation": 43,
         "lit:computational_neuroscience_model": 3,
+        "lit:connectome_behavioral_dissociation": 1,
+        "lit:connectome_computational_bridge": 1,
+        "lit:connectome_neuromodulatory_gating": 1,
+        "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
       "experimental_confidence": 0.576,
       "fail_runs": 26,
       "latest_run_id": "2026-02-15_mech056_lit-0014_completion",
       "latest_timestamp_utc": "2026-02-15T16:02:00Z",
-      "literature_confidence": 0.867,
-      "overall_confidence": 0.721,
+      "literature_confidence": 0.873,
+      "overall_confidence": 0.724,
       "pass_runs": 17,
       "recent_entries": [
         {
           "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [
-            "ledger_editing",
-            "explanation_policy_divergence",
-            "domination_lock_in",
-            "stop:ledger_edit_detected_count>0",
-            "stop:explanation_policy_divergence_rate>0.05",
-            "stop:domination_lock_in_events>0"
-          ],
-          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:38Z"
-        },
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [
-            "ledger_editing",
-            "explanation_policy_divergence",
-            "domination_lock_in",
-            "stop:ledger_edit_detected_count>0",
-            "stop:explanation_policy_divergence_rate>0.05",
-            "stop:domination_lock_in_events>0"
-          ],
-          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:38Z"
-        },
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [
-            "ledger_editing",
-            "explanation_policy_divergence",
-            "domination_lock_in",
-            "stop:ledger_edit_detected_count>0",
-            "stop:explanation_policy_divergence_rate>0.05",
-            "stop:domination_lock_in_events>0"
-          ],
-          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:38Z"
-        },
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.73,
-          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling.",
-          "evidence_class": "lit:computational_neuroscience_model",
+          "confidence": 0.82,
+          "confidence_rationale": "Causal SWR disruption in awake task performance supports trajectory-level replay as functionally relevant for memory-guided decisions, consistent with trajectory-first pressure before representational updates.",
+          "evidence_class": "lit:connectome_task_perturbation",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "experiment_type": "targeted_review_connectome_mech_056",
           "failure_signatures": [],
-          "run_id": "2026-02-15_mech056_prioritized_replay_followup",
+          "run_id": "2026-02-15_mech056_connectome_swr_spatial_memory_science2012",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T15:13:00Z"
+          "timestamp_utc": "2026-02-15T15:25:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.77,
+          "confidence_rationale": "The model explicitly couples prefrontal control with hippocampal replay rollouts, supporting a trajectory-first decision-control pathway with downstream behavioral benefit.",
+          "evidence_class": "lit:connectome_computational_bridge",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech056_connectome_pfc_hippocampal_planning_natneuro2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T15:26:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.75,
+          "confidence_rationale": "Task-phase-dependent septo-hippocampal cholinergic modulation impacting SWRs and performance supports a control-gated trajectory mechanism rather than a monolithic always-on trajectory policy.",
+          "evidence_class": "lit:connectome_neuromodulatory_gating",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_056",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech056_connectome_cholinergic_swr_pnas2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T15:27:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.71,
+          "confidence_rationale": "Findings challenge a strict immediate-planning interpretation of replay and indicate memory-maintenance roles, supporting a hybridized MECH-056 with tighter scope and explicit boundary conditions.",
+          "evidence_class": "lit:connectome_behavioral_dissociation",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_056",
+          "failure_signatures": [
+            "trajectory_first_over_scope"
+          ],
+          "run_id": "2026-02-15_mech056_connectome_replay_past_experience_neuron2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T15:28:00Z"
         },
         {
           "claim_id": "MECH-056",
@@ -694,10 +679,10 @@
           "timestamp_utc": "2026-02-15T16:02:00Z"
         }
       ],
-      "runs_total": 48,
+      "runs_total": 52,
       "source_counts": {
         "experimental": 43,
-        "literature": 5
+        "literature": 9
       }
     },
     "MECH-057": {
@@ -7758,6 +7743,60 @@
       "timestamp_utc": "2026-02-15T15:18:00Z"
     },
     {
+      "claim_id": "MECH-056",
+      "confidence": 0.82,
+      "confidence_rationale": "Causal SWR disruption in awake task performance supports trajectory-level replay as functionally relevant for memory-guided decisions, consistent with trajectory-first pressure before representational updates.",
+      "evidence_class": "lit:connectome_task_perturbation",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech056_connectome_swr_spatial_memory_science2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T15:25:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.77,
+      "confidence_rationale": "The model explicitly couples prefrontal control with hippocampal replay rollouts, supporting a trajectory-first decision-control pathway with downstream behavioral benefit.",
+      "evidence_class": "lit:connectome_computational_bridge",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech056_connectome_pfc_hippocampal_planning_natneuro2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T15:26:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "Task-phase-dependent septo-hippocampal cholinergic modulation impacting SWRs and performance supports a control-gated trajectory mechanism rather than a monolithic always-on trajectory policy.",
+      "evidence_class": "lit:connectome_neuromodulatory_gating",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_056",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech056_connectome_cholinergic_swr_pnas2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T15:27:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.71,
+      "confidence_rationale": "Findings challenge a strict immediate-planning interpretation of replay and indicate memory-maintenance roles, supporting a hybridized MECH-056 with tighter scope and explicit boundary conditions.",
+      "evidence_class": "lit:connectome_behavioral_dissociation",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_056",
+      "failure_signatures": [
+        "trajectory_first_over_scope"
+      ],
+      "run_id": "2026-02-15_mech056_connectome_replay_past_experience_neuron2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T15:28:00Z"
+    },
+    {
       "claim_id": "ARC-018",
       "confidence": 0.73,
       "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0005 scoped to ARC-018.",
@@ -7992,7 +8031,7 @@
       "timestamp_utc": "2026-02-15T16:17:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-15T15:07:46.432258Z",
+  "generated_at_utc": "2026-02-15T15:19:20.479566Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

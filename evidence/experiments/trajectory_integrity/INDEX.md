@@ -1,6 +1,6 @@
 # Experiment Index: trajectory_integrity
 
-Generated: `2026-02-15T15:07:46.432258Z`
+Generated: `2026-02-15T15:19:20.479566Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

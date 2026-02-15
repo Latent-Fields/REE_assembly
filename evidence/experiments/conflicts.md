@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-15T15:07:46.432258Z`
+Generated: `2026-02-15T15:19:20.479566Z`
 
 ## Conflict Queue
 
@@ -8,7 +8,7 @@ Generated: `2026-02-15T15:07:46.432258Z`
 |---|---|---|---|---|---|
 | `ARC-018` | directional | 5 | 1 | 0.333 | `2026-02-15_arc018_lit-0005_completion` |
 | `MECH-033` | directional | 5 | 1 | 0.333 | `2026-02-15_mech033_lit-0008_completion` |
-| `MECH-056` | directional, source_disagreement | 24 | 24 | 1 | `2026-02-15_mech056_lit-0014_completion` |
+| `MECH-056` | directional, source_disagreement, mixed_evidence | 27 | 24 | 0.941 | `2026-02-15_mech056_lit-0014_completion` |
 | `MECH-058` | directional, mixed_evidence | 35 | 31 | 0.939 | `2026-02-15_mech058_lit-0017_completion` |
 | `MECH-059` | directional, mixed_evidence | 35 | 19 | 0.704 | `2026-02-15_mech059_lit-0019_completion` |
 | `MECH-060` | directional, source_disagreement, mixed_evidence | 42 | 37 | 0.937 | `2026-02-15_mech060_lit-0021_completion` |
@@ -46,13 +46,13 @@ Generated: `2026-02-15T15:07:46.432258Z`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### MECH-056
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=24, weakens=24, conflict_ratio=1, overall_confidence=0.721
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=27, weakens=24, conflict_ratio=0.941, overall_confidence=0.724
 - Recent entries:
-  - `2026-02-15T14:56:38Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-15T14:56:38Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-15T14:56:38Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-15T15:13:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.73
+  - `2026-02-15T15:25:00Z` `literature` `targeted_review_connectome_mech_056` direction=`supports` confidence=0.82
+  - `2026-02-15T15:26:00Z` `literature` `targeted_review_connectome_mech_056` direction=`supports` confidence=0.77
+  - `2026-02-15T15:27:00Z` `literature` `targeted_review_connectome_mech_056` direction=`supports` confidence=0.75
+  - `2026-02-15T15:28:00Z` `literature` `targeted_review_connectome_mech_056` direction=`mixed` confidence=0.71
   - `2026-02-15T16:02:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.73
 - Recurring failure signatures:
   - `stop:ledger_edit_detected_count>0` (26)
