@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-15T14:41:04.678072Z",
+  "generated_at_utc": "2026-02-15T14:54:27.997179Z",
   "items": [
     {
       "acceptance_checks": [
@@ -403,10 +403,11 @@
       },
       "status": "proposed",
       "suggested_experiment_type": "trajectory_integrity",
-      "target_repo": "ree-v2",
+      "target_repo": "ree-experiments-lab",
       "why_now": [
         "active_conflict",
         "anti_lock_in_review_required",
+        "consider_new_structure",
         "directional_conflict_alert",
         "external_precedence_pressure"
       ]
@@ -439,6 +440,7 @@
       "why_now": [
         "active_conflict",
         "anti_lock_in_review_required",
+        "consider_new_structure",
         "directional_conflict_alert",
         "external_precedence_pressure"
       ]
@@ -992,44 +994,15 @@
     },
     {
       "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Confidence explicitly justified in confidence_rationale.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix."
-      ],
-      "backlog_id": "EVB-0025",
-      "claim_id": "MECH-900",
-      "objective": "Improve literature grounding and confidence for MECH-900.",
-      "priority": "medium",
-      "proposal_id": "LIT-0034",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale"
-        ],
-        "summary": "include caveats and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_900",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 2 additional runs with distinct seeds.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0026",
+      "backlog_id": "EVB-0025",
       "claim_id": "Q-001",
       "objective": "Reduce uncertainty for Q-001 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0035",
+      "proposal_id": "EXP-0034",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1053,11 +1026,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0026",
+      "backlog_id": "EVB-0025",
       "claim_id": "Q-001",
       "objective": "Improve literature grounding and confidence for Q-001.",
       "priority": "low",
-      "proposal_id": "LIT-0036",
+      "proposal_id": "LIT-0035",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1082,11 +1055,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0027",
+      "backlog_id": "EVB-0026",
       "claim_id": "Q-002",
       "objective": "Reduce uncertainty for Q-002 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0037",
+      "proposal_id": "EXP-0036",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1110,11 +1083,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0027",
+      "backlog_id": "EVB-0026",
       "claim_id": "Q-002",
       "objective": "Improve literature grounding and confidence for Q-002.",
       "priority": "low",
-      "proposal_id": "LIT-0038",
+      "proposal_id": "LIT-0037",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1139,11 +1112,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0028",
+      "backlog_id": "EVB-0027",
       "claim_id": "Q-003",
       "objective": "Reduce uncertainty for Q-003 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0039",
+      "proposal_id": "EXP-0038",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1167,11 +1140,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0028",
+      "backlog_id": "EVB-0027",
       "claim_id": "Q-003",
       "objective": "Improve literature grounding and confidence for Q-003.",
       "priority": "low",
-      "proposal_id": "LIT-0040",
+      "proposal_id": "LIT-0039",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1196,11 +1169,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0029",
+      "backlog_id": "EVB-0028",
       "claim_id": "Q-004",
       "objective": "Reduce uncertainty for Q-004 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0041",
+      "proposal_id": "EXP-0040",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1224,11 +1197,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0029",
+      "backlog_id": "EVB-0028",
       "claim_id": "Q-004",
       "objective": "Improve literature grounding and confidence for Q-004.",
       "priority": "low",
-      "proposal_id": "LIT-0042",
+      "proposal_id": "LIT-0041",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1253,11 +1226,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0030",
+      "backlog_id": "EVB-0029",
       "claim_id": "Q-005",
       "objective": "Reduce uncertainty for Q-005 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0043",
+      "proposal_id": "EXP-0042",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1281,11 +1254,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0030",
+      "backlog_id": "EVB-0029",
       "claim_id": "Q-005",
       "objective": "Improve literature grounding and confidence for Q-005.",
       "priority": "low",
-      "proposal_id": "LIT-0044",
+      "proposal_id": "LIT-0043",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1310,11 +1283,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0031",
+      "backlog_id": "EVB-0030",
       "claim_id": "Q-006",
       "objective": "Reduce uncertainty for Q-006 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0045",
+      "proposal_id": "EXP-0044",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1338,11 +1311,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0031",
+      "backlog_id": "EVB-0030",
       "claim_id": "Q-006",
       "objective": "Improve literature grounding and confidence for Q-006.",
       "priority": "low",
-      "proposal_id": "LIT-0046",
+      "proposal_id": "LIT-0045",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1367,11 +1340,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0032",
+      "backlog_id": "EVB-0031",
       "claim_id": "Q-007",
       "objective": "Reduce uncertainty for Q-007 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0047",
+      "proposal_id": "EXP-0046",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1395,11 +1368,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0032",
+      "backlog_id": "EVB-0031",
       "claim_id": "Q-007",
       "objective": "Improve literature grounding and confidence for Q-007.",
       "priority": "low",
-      "proposal_id": "LIT-0048",
+      "proposal_id": "LIT-0047",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1424,11 +1397,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0033",
+      "backlog_id": "EVB-0032",
       "claim_id": "Q-008",
       "objective": "Reduce uncertainty for Q-008 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0049",
+      "proposal_id": "EXP-0048",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1452,11 +1425,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0033",
+      "backlog_id": "EVB-0032",
       "claim_id": "Q-008",
       "objective": "Improve literature grounding and confidence for Q-008.",
       "priority": "low",
-      "proposal_id": "LIT-0050",
+      "proposal_id": "LIT-0049",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1481,11 +1454,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0034",
+      "backlog_id": "EVB-0033",
       "claim_id": "Q-009",
       "objective": "Reduce uncertainty for Q-009 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0051",
+      "proposal_id": "EXP-0050",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1509,11 +1482,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0034",
+      "backlog_id": "EVB-0033",
       "claim_id": "Q-009",
       "objective": "Improve literature grounding and confidence for Q-009.",
       "priority": "low",
-      "proposal_id": "LIT-0052",
+      "proposal_id": "LIT-0051",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [
@@ -1538,11 +1511,11 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0035",
+      "backlog_id": "EVB-0034",
       "claim_id": "Q-010",
       "objective": "Reduce uncertainty for Q-010 via targeted experiment runs.",
       "priority": "low",
-      "proposal_id": "EXP-0053",
+      "proposal_id": "EXP-0052",
       "proposal_type": "experimental",
       "required_pack_contract": {
         "manifest": [
@@ -1566,11 +1539,11 @@
         "Confidence explicitly justified in confidence_rationale.",
         "Direction is supports/weakens/mixed/unknown and reflected in matrix."
       ],
-      "backlog_id": "EVB-0035",
+      "backlog_id": "EVB-0034",
       "claim_id": "Q-010",
       "objective": "Improve literature grounding and confidence for Q-010.",
       "priority": "low",
-      "proposal_id": "LIT-0054",
+      "proposal_id": "LIT-0053",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "record": [

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-02-15T14:41:04.678072Z`
+Generated: `2026-02-15T14:54:27.997179Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Generated: `2026-02-15T14:41:04.678072Z`
 | `targeted_review_mech_061` | [`2026-02-15_mech061_agency_comparator_review_nrn2017`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/record.json) | 2 | [`summary`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/summary.md) |
 | `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
 | `targeted_review_mech_063` | [`2026-02-15_mech063_lcne_adaptive_gain_annurev2005`](targeted_review_mech_063/entries/2026-02-15_mech063_lcne_adaptive_gain_annurev2005/record.json) | 2 | [`summary`](targeted_review_mech_063/entries/2026-02-15_mech063_lcne_adaptive_gain_annurev2005/summary.md) |
+| `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_q_011` | [`2026-02-14_q011_reverse_replay_reward_modulation_neuron2016`](targeted_review_q_011/entries/2026-02-14_q011_reverse_replay_reward_modulation_neuron2016/record.json) | 2 | [`summary`](targeted_review_q_011/entries/2026-02-14_q011_reverse_replay_reward_modulation_neuron2016/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015`](targeted_review_v3_hippocampal_rollout/entries/2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015/record.json) | 5 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017/record.json) | 3 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017/summary.md) |

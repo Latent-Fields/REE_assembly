@@ -547,26 +547,26 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=25 entry(s), lit=3 entry(s), exp_conf=0.647, lit_conf=0.818",
+      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.567, lit_conf=0.818",
       "direction_counts": {
         "mixed": 0,
-        "supports": 19,
+        "supports": 20,
         "unknown": 0,
-        "weakens": 9
+        "weakens": 14
       },
-      "entries_total": 28,
+      "entries_total": 34,
       "evidence_class_counts": {
-        "exp:simulation": 25,
+        "exp:simulation": 31,
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.647,
-      "fail_runs": 11,
-      "latest_run_id": "2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015",
-      "latest_timestamp_utc": "2026-02-14T22:40:00Z",
+      "experimental_confidence": 0.567,
+      "fail_runs": 16,
+      "latest_run_id": "2026-02-15T144904Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+      "latest_timestamp_utc": "2026-02-15T14:49:04Z",
       "literature_confidence": 0.818,
-      "overall_confidence": 0.732,
-      "pass_runs": 14,
+      "overall_confidence": 0.692,
+      "pass_runs": 15,
       "recent_entries": [
         {
           "claim_id": "MECH-056",
@@ -576,74 +576,96 @@
           "evidence_direction": "weakens",
           "experiment_type": "trajectory_integrity",
           "failure_signatures": [
-            "threshold:ledger_edit_detected_count",
-            "threshold:explanation_policy_divergence_rate",
-            "threshold:domination_lock_in_events",
+            "ledger_editing",
+            "domination_lock_in",
             "stop:ledger_edit_detected_count>0",
-            "stop:explanation_policy_divergence_rate>0.05",
             "stop:domination_lock_in_events>0"
           ],
-          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_ablated",
+          "run_id": "2026-02-15T144903Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-14T20:00:00Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-056",
           "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
+          "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
+          "evidence_direction": "weakens",
           "experiment_type": "trajectory_integrity",
-          "failure_signatures": [],
-          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_enabled",
+          "failure_signatures": [
+            "ledger_editing",
+            "stop:ledger_edit_detected_count>0"
+          ],
+          "run_id": "2026-02-15T144903Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
           "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-14T20:00:00Z"
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-056",
-          "confidence": 0.79,
-          "confidence_rationale": "Direct in vivo evidence that hippocampal sequential activity at decision points sweeps toward goal locations; strong support for rollout/path-evaluation roles but indirect for REE-specific residue geometry.",
-          "evidence_class": "lit:neuroscience_experiment",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3hippo_future_path_replay_nature2013",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T20:10:00Z"
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "trajectory_integrity",
+          "failure_signatures": [
+            "ledger_editing",
+            "explanation_policy_divergence",
+            "domination_lock_in",
+            "stop:ledger_edit_detected_count>0",
+            "stop:explanation_policy_divergence_rate>0.05",
+            "stop:domination_lock_in_events>0"
+          ],
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         },
         {
           "claim_id": "MECH-056",
-          "confidence": 0.73,
-          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels.",
-          "evidence_class": "lit:computational_neuroscience_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3hippo_prioritized_replay_planning_natneuro2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T20:25:00Z"
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "trajectory_integrity",
+          "failure_signatures": [
+            "ledger_editing",
+            "explanation_policy_divergence",
+            "domination_lock_in",
+            "stop:ledger_edit_detected_count>0",
+            "stop:explanation_policy_divergence_rate>0.05",
+            "stop:domination_lock_in_events>0"
+          ],
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         },
         {
           "claim_id": "MECH-056",
-          "confidence": 0.69,
-          "confidence_rationale": "Shows reward-biased sequence construction into not-yet-traversed paths, consistent with trajectory-first selection before representational settling; residue geometry mapping remains conceptual.",
-          "evidence_class": "lit:neuroscience_experiment",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3hippo_reward_sequences_unexplored_space_elife2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T22:40:00Z"
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "trajectory_integrity",
+          "failure_signatures": [
+            "ledger_editing",
+            "explanation_policy_divergence",
+            "domination_lock_in",
+            "stop:ledger_edit_detected_count>0",
+            "stop:explanation_policy_divergence_rate>0.05",
+            "stop:domination_lock_in_events>0"
+          ],
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         }
       ],
-      "runs_total": 28,
+      "runs_total": 34,
       "source_counts": {
-        "experimental": 25,
+        "experimental": 31,
         "literature": 3
       }
     },
@@ -741,27 +763,40 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=44 entry(s), lit=3 entry(s), exp_conf=0.522, lit_conf=0.83",
+      "confidence_rationale": "exp=50 entry(s), lit=3 entry(s), exp_conf=0.523, lit_conf=0.83",
       "direction_counts": {
         "mixed": 1,
-        "supports": 24,
+        "supports": 27,
         "unknown": 0,
-        "weakens": 22
+        "weakens": 25
       },
-      "entries_total": 47,
+      "entries_total": 53,
       "evidence_class_counts": {
-        "exp:ablation": 27,
+        "exp:ablation": 33,
         "exp:exploratory_simulation": 17,
         "lit:machine_learning_experiment": 3
       },
-      "experimental_confidence": 0.522,
-      "fail_runs": 16,
-      "latest_run_id": "exp_0015_20260215T095120253293Z",
-      "latest_timestamp_utc": "2026-02-15T09:51:20.253293Z",
+      "experimental_confidence": 0.523,
+      "fail_runs": 19,
+      "latest_run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+      "latest_timestamp_utc": "2026-02-15T14:49:03Z",
       "literature_confidence": 0.83,
       "overall_confidence": 0.676,
-      "pass_runs": 28,
+      "pass_runs": 31,
       "recent_entries": [
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:ablation",
+          "evidence_direction": "supports",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
         {
           "claim_id": "MECH-058",
           "confidence": 0.75,
@@ -770,16 +805,13 @@
           "evidence_direction": "weakens",
           "experiment_type": "jepa_anchor_ablation",
           "failure_signatures": [
-            "threshold:latent_prediction_error_mean",
-            "threshold:latent_prediction_error_p95",
-            "threshold:latent_rollout_consistency_rate",
-            "threshold:e1_e2_timescale_separation_ratio",
-            "threshold:representation_drift_rate"
+            "mech058:ema_drift_under_shift",
+            "mech058:anchor_separation_collapse"
           ],
-          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off",
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-14T20:00:00Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-058",
@@ -789,78 +821,67 @@
           "evidence_direction": "supports",
           "experiment_type": "jepa_anchor_ablation",
           "failure_signatures": [],
-          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_on",
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-14T20:00:00Z"
-        },
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.76,
-          "confidence_rationale": "I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping.",
-          "evidence_class": "lit:machine_learning_experiment",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3jepa_ijepa_control_plane_gap",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T21:10:00Z"
-        },
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.78,
-          "confidence_rationale": "BYOL directly uses a slow EMA target with a fast online predictor and shows stable learning without collapse, closely matching target-anchor/predictor timescale separation.",
-          "evidence_class": "lit:machine_learning_experiment",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_058",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_mech058_byol_ema_target_predictor_separation",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T22:45:00Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-058",
           "confidence": 0.75,
           "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:exploratory_simulation",
+          "evidence_class": "exp:ablation",
           "evidence_direction": "weakens",
           "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [],
-          "run_id": "exp_0015_20260215T095120253293Z",
+          "failure_signatures": [
+            "mech058:anchor_separation_collapse"
+          ],
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T09:51:20.253293Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:ablation",
+          "evidence_direction": "supports",
+          "experiment_type": "jepa_anchor_ablation",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         }
       ],
-      "runs_total": 47,
+      "runs_total": 53,
       "source_counts": {
-        "experimental": 44,
+        "experimental": 50,
         "literature": 3
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=44 entry(s), lit=4 entry(s), exp_conf=0.554, lit_conf=0.855",
+      "confidence_rationale": "exp=50 entry(s), lit=4 entry(s), exp_conf=0.582, lit_conf=0.855",
       "direction_counts": {
-        "mixed": 5,
-        "supports": 24,
+        "mixed": 8,
+        "supports": 27,
         "unknown": 0,
         "weakens": 19
       },
-      "entries_total": 48,
+      "entries_total": 54,
       "evidence_class_counts": {
         "exp:exploratory_simulation": 17,
-        "exp:simulation": 27,
+        "exp:simulation": 33,
         "lit:machine_learning_experiment": 4
       },
-      "experimental_confidence": 0.554,
-      "fail_runs": 16,
-      "latest_run_id": "exp_0017_20260215T095123788473Z",
-      "latest_timestamp_utc": "2026-02-15T09:51:23.788473Z",
+      "experimental_confidence": 0.582,
+      "fail_runs": 18,
+      "latest_run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+      "latest_timestamp_utc": "2026-02-15T14:49:03Z",
       "literature_confidence": 0.855,
-      "overall_confidence": 0.705,
-      "pass_runs": 28,
+      "overall_confidence": 0.719,
+      "pass_runs": 32,
       "recent_entries": [
         {
           "claim_id": "MECH-059",
@@ -870,98 +891,117 @@
           "evidence_direction": "supports",
           "experiment_type": "jepa_uncertainty_channels",
           "failure_signatures": [],
-          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head",
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-14T20:00:00Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-059",
-          "confidence": 0.76,
-          "confidence_rationale": "I-JEPA strongly supports latent predictive substrate and target-anchor timescale separation, but leaves action-conditioned control routing, ethical constraints, and uncertainty calibration interfaces underspecified for direct REE control-plane mapping.",
-          "evidence_class": "lit:machine_learning_experiment",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
           "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3jepa_ijepa_control_plane_gap",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T21:10:00Z"
-        },
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.69,
-          "confidence_rationale": "VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling.",
-          "evidence_class": "lit:machine_learning_experiment",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T21:25:00Z"
-        },
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.67,
-          "confidence_rationale": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific.",
-          "evidence_class": "lit:machine_learning_experiment",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_jepa_mapping_limits",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_v3jepa_uncertainty_decomposition_kendall_gal2017",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T22:50:00Z"
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-059",
           "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:exploratory_simulation",
-          "evidence_direction": "weakens",
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
           "experiment_type": "jepa_uncertainty_channels",
           "failure_signatures": [],
-          "run_id": "exp_0017_20260215T095123788473Z",
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [
+            "mech059:uncertainty_metric_gaming_detected",
+            "mech059:abstention_reliability_collapse"
+          ],
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T09:51:23.788473Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "jepa_uncertainty_channels",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         }
       ],
-      "runs_total": 48,
+      "runs_total": 54,
       "source_counts": {
-        "experimental": 44,
+        "experimental": 50,
         "literature": 4
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=54 entry(s), lit=7 entry(s), exp_conf=0.523, lit_conf=0.851",
+      "confidence_rationale": "exp=61 entry(s), lit=7 entry(s), exp_conf=0.53, lit_conf=0.851",
       "direction_counts": {
         "mixed": 3,
-        "supports": 31,
+        "supports": 34,
         "unknown": 0,
-        "weakens": 27
+        "weakens": 31
       },
-      "entries_total": 61,
+      "entries_total": 68,
       "evidence_class_counts": {
-        "exp:ablation": 37,
-        "exp:exploratory_simulation": 17,
+        "exp:ablation": 43,
+        "exp:exploratory_simulation": 18,
         "lit:computational_neuroscience_model": 1,
         "lit:machine_learning_experiment": 2,
         "lit:neuroscience_experiment": 3,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.523,
-      "fail_runs": 21,
-      "latest_run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
-      "latest_timestamp_utc": "2026-02-15T14:17:52Z",
+      "experimental_confidence": 0.53,
+      "fail_runs": 25,
+      "latest_run_id": "exp_0021_20260215T144911050815Z",
+      "latest_timestamp_utc": "2026-02-15T14:49:11.050815Z",
       "literature_confidence": 0.851,
-      "overall_confidence": 0.687,
-      "pass_runs": 33,
+      "overall_confidence": 0.691,
+      "pass_runs": 36,
       "recent_entries": [
         {
           "claim_id": "MECH-060",
           "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:ablation",
+          "evidence_direction": "supports",
+          "experiment_type": "commit_dual_error_channels",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.75,
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:ablation",
           "evidence_direction": "weakens",
@@ -971,10 +1011,10 @@
             "mech060:attribution_reliability_break",
             "mech060:commitment_reversal_spike"
           ],
-          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:17:52Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-060",
@@ -984,10 +1024,10 @@
           "evidence_direction": "supports",
           "experiment_type": "commit_dual_error_channels",
           "failure_signatures": [],
-          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:17:52Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-060",
@@ -1001,45 +1041,28 @@
             "mech060:attribution_reliability_break",
             "mech060:commitment_reversal_spike"
           ],
-          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:17:52Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "MECH-060",
           "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
           "experiment_type": "commit_dual_error_channels",
           "failure_signatures": [],
-          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:17:52Z"
-        },
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [
-            "mech060:postcommit_channel_contamination",
-            "mech060:attribution_reliability_break",
-            "mech060:commitment_reversal_spike"
-          ],
-          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "run_id": "exp_0021_20260215T144911050815Z",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:17:52Z"
+          "timestamp_utc": "2026-02-15T14:49:11.050815Z"
         }
       ],
-      "runs_total": 61,
+      "runs_total": 68,
       "source_counts": {
-        "experimental": 54,
+        "experimental": 61,
         "literature": 7
       }
     },
@@ -1206,23 +1229,24 @@
       }
     },
     "MECH-900": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.82, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.82, lit_conf=0.72",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "exp:exploratory_simulation": 2
+        "exp:exploratory_simulation": 2,
+        "lit:methodology_reproducibility": 1
       },
       "experimental_confidence": 0.82,
       "fail_runs": 0,
-      "latest_run_id": "exp_fix_0001_20260213T082457170481Z",
-      "latest_timestamp_utc": "2026-02-13T08:24:57.170481Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.82,
+      "latest_run_id": "2026-02-15_mech900_reproducible_computational_science_science2011",
+      "latest_timestamp_utc": "2026-02-15T15:00:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.787,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1250,12 +1274,25 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-02-13T08:24:57.170481Z"
+        },
+        {
+          "claim_id": "MECH-900",
+          "confidence": 0.74,
+          "confidence_rationale": "Strong methodological support that computational claims require reproducible, inspectable artifacts; this aligns with MECH-900 trajectory-integrity evidence discipline but is indirect to REE-specific mechanisms.",
+          "evidence_class": "lit:methodology_reproducibility",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_900",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech900_reproducible_computational_science_science2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T15:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 2,
-        "literature": 0
+        "literature": 1
       }
     },
     "Q-011": {
@@ -1573,27 +1610,40 @@
       }
     },
     "Q-016": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.967, lit_conf=0.8",
+      "confidence_rationale": "exp=18 entry(s), lit=2 entry(s), exp_conf=0.967, lit_conf=0.8",
       "direction_counts": {
-        "mixed": 3,
-        "supports": 8,
+        "mixed": 6,
+        "supports": 14,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 11,
+      "entries_total": 20,
       "evidence_class_counts": {
-        "exp:simulation": 9,
+        "exp:simulation": 18,
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_review": 1
       },
       "experimental_confidence": 0.967,
-      "fail_runs": 3,
-      "latest_run_id": "2026-02-15_mech062_pbwm_gating_neuralcomputation2006",
-      "latest_timestamp_utc": "2026-02-15T14:19:00Z",
+      "fail_runs": 6,
+      "latest_run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+      "latest_timestamp_utc": "2026-02-15T14:49:04Z",
       "literature_confidence": 0.8,
       "overall_confidence": 0.9,
-      "pass_runs": 6,
+      "pass_runs": 12,
       "recent_entries": [
+        {
+          "claim_id": "Q-016",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "tri_loop_arbitration_policy",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:04Z"
+        },
         {
           "claim_id": "Q-016",
           "confidence": 0.5,
@@ -1605,10 +1655,10 @@
             "q016:tri_loop_alignment_break",
             "q016:tri_loop_override_spike"
           ],
-          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:18:17Z"
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         },
         {
           "claim_id": "Q-016",
@@ -1618,10 +1668,10 @@
           "evidence_direction": "supports",
           "experiment_type": "tri_loop_arbitration_policy",
           "failure_signatures": [],
-          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:18:17Z"
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         },
         {
           "claim_id": "Q-016",
@@ -1631,10 +1681,10 @@
           "evidence_direction": "supports",
           "experiment_type": "tri_loop_arbitration_policy",
           "failure_signatures": [],
-          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:18:17Z"
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         },
         {
           "claim_id": "Q-016",
@@ -1646,53 +1696,54 @@
           "failure_signatures": [
             "q016:tri_loop_alignment_break"
           ],
-          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:18:17Z"
-        },
-        {
-          "claim_id": "Q-016",
-          "confidence": 0.77,
-          "confidence_rationale": "Computational evidence supports separable gating channels for cognitive state updates via basal ganglia-prefrontal interaction, consistent with multi-loop gate decomposition in REE.",
-          "evidence_class": "lit:computational_neuroscience_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_062",
-          "failure_signatures": [],
-          "run_id": "2026-02-15_mech062_pbwm_gating_neuralcomputation2006",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T14:19:00Z"
+          "timestamp_utc": "2026-02-15T14:49:04Z"
         }
       ],
-      "runs_total": 11,
+      "runs_total": 20,
       "source_counts": {
-        "experimental": 9,
+        "experimental": 18,
         "literature": 2
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=6 entry(s), lit=2 entry(s), exp_conf=0.525, lit_conf=0.8",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.56, lit_conf=0.8",
       "direction_counts": {
         "mixed": 0,
-        "supports": 5,
+        "supports": 8,
         "unknown": 0,
-        "weakens": 3
+        "weakens": 7
       },
-      "entries_total": 8,
+      "entries_total": 15,
       "evidence_class_counts": {
-        "exp:ablation": 6,
+        "exp:ablation": 12,
+        "exp:exploratory_simulation": 1,
         "lit:computational_neuroscience_theory": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.525,
-      "fail_runs": 3,
-      "latest_run_id": "2026-02-15_mech063_lcne_adaptive_gain_annurev2005",
-      "latest_timestamp_utc": "2026-02-15T14:22:00Z",
+      "experimental_confidence": 0.56,
+      "fail_runs": 7,
+      "latest_run_id": "exp_0032_20260215T144911111065Z",
+      "latest_timestamp_utc": "2026-02-15T14:49:11.111065Z",
       "literature_confidence": 0.8,
-      "overall_confidence": 0.635,
-      "pass_runs": 3,
+      "overall_confidence": 0.656,
+      "pass_runs": 6,
       "recent_entries": [
+        {
+          "claim_id": "Q-017",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:ablation",
+          "evidence_direction": "supports",
+          "experiment_type": "control_axis_ablation",
+          "failure_signatures": [],
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-02-15T14:49:03Z"
+        },
         {
           "claim_id": "Q-017",
           "confidence": 0.75,
@@ -1705,10 +1756,10 @@
             "q017:control_axis_policy_loss_spike",
             "q017:control_axis_entropy_collapse"
           ],
-          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:18:20Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "Q-017",
@@ -1718,10 +1769,10 @@
           "evidence_direction": "supports",
           "experiment_type": "control_axis_ablation",
           "failure_signatures": [],
-          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:18:20Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "Q-017",
@@ -1734,41 +1785,28 @@
             "q017:control_axis_stability_drop",
             "q017:control_axis_entropy_collapse"
           ],
-          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:18:20Z"
+          "timestamp_utc": "2026-02-15T14:49:03Z"
         },
         {
           "claim_id": "Q-017",
-          "confidence": 0.79,
-          "confidence_rationale": "Provides direct theoretical separation of distinct uncertainty/control functions across neuromodulatory systems, supporting REE orthogonal control-axis decomposition.",
-          "evidence_class": "lit:computational_neuroscience_theory",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_063",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:exploratory_simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "control_axis_ablation",
           "failure_signatures": [],
-          "run_id": "2026-02-15_mech063_uncertainty_neuromod_attention_neuron2005",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T14:21:00Z"
-        },
-        {
-          "claim_id": "Q-017",
-          "confidence": 0.81,
-          "confidence_rationale": "Strong evidence for separable tonic and phasic noradrenergic modes with distinct control effects, directly supporting REE tonic/phasic axis decomposition and volatility/readiness separation.",
-          "evidence_class": "lit:neuroscience_theory",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_063",
-          "failure_signatures": [],
-          "run_id": "2026-02-15_mech063_lcne_adaptive_gain_annurev2005",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T14:22:00Z"
+          "run_id": "exp_0032_20260215T144911111065Z",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-02-15T14:49:11.111065Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 15,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 13,
         "literature": 2
       }
     }
@@ -5387,9 +5425,627 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-02-15T14:22:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [
+        "ledger_editing",
+        "domination_lock_in",
+        "stop:ledger_edit_detected_count>0",
+        "stop:domination_lock_in_events>0"
+      ],
+      "run_id": "2026-02-15T144903Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [
+        "ledger_editing",
+        "stop:ledger_edit_detected_count>0"
+      ],
+      "run_id": "2026-02-15T144903Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:anchor_separation_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:ema_drift_under_shift",
+        "mech058:anchor_separation_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [
+        "mech058:anchor_separation_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_anchor_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [
+        "mech059:uncertainty_metric_gaming_detected",
+        "mech059:abstention_reliability_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "jepa_uncertainty_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:postcommit_channel_contamination",
+        "mech060:attribution_reliability_break",
+        "mech060:commitment_reversal_spike"
+      ],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:postcommit_channel_contamination",
+        "mech060:attribution_reliability_break",
+        "mech060:commitment_reversal_spike"
+      ],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [
+        "mech060:postcommit_channel_contamination",
+        "mech060:attribution_reliability_break",
+        "mech060:commitment_reversal_spike"
+      ],
+      "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [
+        "q017:control_axis_stability_drop",
+        "q017:control_axis_policy_loss_spike",
+        "q017:control_axis_entropy_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [
+        "q017:control_axis_stability_drop",
+        "q017:control_axis_policy_loss_spike",
+        "q017:control_axis_entropy_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:ablation",
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [
+        "q017:control_axis_stability_drop",
+        "q017:control_axis_entropy_collapse"
+      ],
+      "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:03Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [
+        "ledger_editing",
+        "explanation_policy_divergence",
+        "domination_lock_in",
+        "stop:ledger_edit_detected_count>0",
+        "stop:explanation_policy_divergence_rate>0.05",
+        "stop:domination_lock_in_events>0"
+      ],
+      "run_id": "2026-02-15T144904Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [
+        "ledger_editing",
+        "explanation_policy_divergence",
+        "domination_lock_in",
+        "stop:ledger_edit_detected_count>0",
+        "stop:explanation_policy_divergence_rate>0.05",
+        "stop:domination_lock_in_events>0"
+      ],
+      "run_id": "2026-02-15T144904Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "trajectory_integrity",
+      "failure_signatures": [
+        "ledger_editing",
+        "explanation_policy_divergence",
+        "domination_lock_in",
+        "stop:ledger_edit_detected_count>0",
+        "stop:explanation_policy_divergence_rate>0.05",
+        "stop:domination_lock_in_events>0"
+      ],
+      "run_id": "2026-02-15T144904Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [
+        "q016:tri_loop_alignment_break"
+      ],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [
+        "q016:tri_loop_alignment_break",
+        "q016:tri_loop_override_spike"
+      ],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "Q-016",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "tri_loop_arbitration_policy",
+      "failure_signatures": [
+        "q016:tri_loop_alignment_break"
+      ],
+      "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:04Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "commit_dual_error_channels",
+      "failure_signatures": [],
+      "run_id": "exp_0021_20260215T144911050815Z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:11.050815Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:exploratory_simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "failure_signatures": [],
+      "run_id": "exp_0032_20260215T144911111065Z",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-02-15T14:49:11.111065Z"
+    },
+    {
+      "claim_id": "MECH-900",
+      "confidence": 0.74,
+      "confidence_rationale": "Strong methodological support that computational claims require reproducible, inspectable artifacts; this aligns with MECH-900 trajectory-integrity evidence discipline but is indirect to REE-specific mechanisms.",
+      "evidence_class": "lit:methodology_reproducibility",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_900",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech900_reproducible_computational_science_science2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T15:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-15T14:41:04.678072Z",
+  "generated_at_utc": "2026-02-15T14:54:27.997179Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []
