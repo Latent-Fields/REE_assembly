@@ -12,14 +12,15 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:36:49Z` signatures: ledger_editing, domination_lock_in
+- `2026-02-15T213620Z_claim-probe-q-010_seed1001_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:36:20Z` signatures: ledger_editing
 - `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T18:10:21Z` signatures: ledger_editing, domination_lock_in
-- `2026-02-15T175302Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T17:53:02Z` signatures: ledger_editing, domination_lock_in
 
 Recurring signatures:
-- `ledger_editing` occurred in 2 FAIL run(s); latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`
-- `domination_lock_in` occurred in 2 FAIL run(s); latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`
+- `ledger_editing` occurred in 4 FAIL run(s); latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
+- `domination_lock_in` occurred in 3 FAIL run(s); latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-058
 
-Generated: `2026-02-15T21:11:54.734668Z`
+Generated: `2026-02-15T21:38:14.133109Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -15,14 +15,14 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
-- Conflict ratio: 0.918
-- Overall confidence: 0.714
+- Conflict ratio: 0.891
+- Overall confidence: 0.709
 
 ## Evidence Mix and Why It Looks This Way
 
-- Direction counts: supports=53, weakens=45, mixed=1, unknown=0.
+- Direction counts: supports=56, weakens=45, mixed=2, unknown=0.
 - Experimental mix: supports=49, weakens=45, mixed=0, unknown=0.
-- Literature mix: supports=4, weakens=0, mixed=1, unknown=0.
+- Literature mix: supports=7, weakens=0, mixed=2, unknown=0.
 - Direction narrative: Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.
 - Source narrative: Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions.
 
@@ -30,22 +30,22 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| jepa substrate / ema target anchor timescale separation is broadly correct, but failures are boundary-condition failures. | 0.545 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| jepa substrate / ema target anchor timescale separation is over-scoped and should be narrowed or split. | 0.445 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of jepa substrate / ema target anchor timescale separation but add explicit gating or interface separation. | 0.445 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| jepa substrate / ema target anchor timescale separation is broadly correct, but failures are boundary-condition failures. | 0.553 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| jepa substrate / ema target anchor timescale separation is over-scoped and should be narrowed or split. | 0.428 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of jepa substrate / ema target anchor timescale separation but add explicit gating or interface separation. | 0.428 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
+| `2026-02-15T21:31:00Z` | How does SimSiam avoid collapse without negative samples? A unified understanding with self-supervised contrastive learning (2022, ICLR 2022) | `supports` | 0.71 | Provides mechanistic analysis of asymmetry and optimization guardrails that supports bounded hybridization around MECH-058 rather than unconditional EMA-only claims. | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-15T21:30:00Z` | Exploring Simple Siamese Representation Learning (2021, CVPR 2021) | `mixed` | 0.69 | Demonstrates collapse avoidance without EMA target in some regimes, weakening a strict necessity claim while preserving asymmetry importance. | In REE terms, this implies `jepa substrate / ema target anchor timescale separation` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
+| `2026-02-15T21:29:00Z` | Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (2023, CVPR 2023) | `supports` | 0.75 | Shows strong predictive representation with target-encoder asymmetry and masked prediction structure. | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-15T21:28:00Z` | Bootstrap your own latent: A new approach to self-supervised learning (2020, NeurIPS) | `supports` | 0.78 | Direct evidence that predictor/target asymmetry and slow target updates stabilize representation learning. | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T21:11:17.270833Z` | Run-pack `exp_0002_20260215T211117270833Z` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T20:52:56.991224Z` | Run-pack `exp_0002_20260215T205256991224Z` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T20:52:56.931616Z` | Run-pack `exp_0002_20260215T205256931616Z` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T18:07:10.622375Z` | Run-pack `exp_0002_20260215T180710622375Z` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T18:07:10.571305Z` | Run-pack `exp_0002_20260215T180710571305Z` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T17:48:51Z` | Run-pack `2026-02-15T174851Z_claim-probe-mech-058_seed11_ema_anchor_on_toyenv_internal_minimal` in `claim_probe_mech_058` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T17:39:00Z` | Run-pack `2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal` in `jepa_anchor_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `jepa substrate / ema target anchor timescale separation` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T17:39:00Z` | Run-pack `2026-02-15T173900Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal` in `jepa_anchor_ablation` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `jepa substrate / ema target anchor timescale separation` and suggests the claim is likely too strong or missing a key gating variable. |
 
 ## Left-Field Suggestions
 

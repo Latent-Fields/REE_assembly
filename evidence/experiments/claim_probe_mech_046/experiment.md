@@ -12,14 +12,15 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:36:35Z` signatures: ledger_editing, domination_lock_in
+- `2026-02-15T213606Z_claim-probe-mech-046_seed1001_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:36:06Z` signatures: ledger_editing
 - `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T18:05:28Z` signatures: ledger_editing, domination_lock_in
-- `2026-02-15T175232Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T17:52:32Z` signatures: ledger_editing, domination_lock_in
 
 Recurring signatures:
-- `ledger_editing` occurred in 2 FAIL run(s); latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`
-- `domination_lock_in` occurred in 2 FAIL run(s); latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`
+- `ledger_editing` occurred in 4 FAIL run(s); latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
+- `domination_lock_in` occurred in 3 FAIL run(s); latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

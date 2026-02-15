@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_058",
+  "entry_id": "2026-02-15_mech058_connectome_simsiam_stopgrad_noema_2021",
+  "timestamp_utc": "2026-02-15T21:30:00Z",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "source": {
+    "title": "Exploring Simple Siamese Representation Learning",
+    "authors": [
+      "Xinlei Chen",
+      "Kaiming He"
+    ],
+    "year": 2021,
+    "venue": "CVPR 2021",
+    "url": "https://arxiv.org/abs/2011.10566"
+  },
+  "evidence_class": "ml_asymmetry_alternative_mechanism",
+  "evidence_direction": "mixed",
+  "confidence": 0.69,
+  "confidence_rationale": "Demonstrates collapse avoidance without EMA target in some regimes, weakening a strict necessity claim while preserving asymmetry importance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "simsiam",
+    "stop_gradient",
+    "mixed_evidence",
+    "collapse_avoidance"
+  ],
+  "mapping": {
+    "source_claim_statement": "SimSiam avoids representational collapse using stop-gradient and predictor asymmetry without a momentum target network.",
+    "ree_translation": "Mixed evidence for MECH-058: timescale separation is useful but may not be strictly required in all settings.",
+    "mapping_caveat": "Training/task regime differs from REE stress settings; this is a boundary case rather than full disproof.",
+    "source_context": "Image SSL ablation-focused architecture analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.81,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.34,
+    "notes": "Important counterexample to strict necessity framing."
+  }
+}

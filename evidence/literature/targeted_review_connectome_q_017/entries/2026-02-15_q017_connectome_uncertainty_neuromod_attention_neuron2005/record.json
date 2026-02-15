@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_q_017",
+  "entry_id": "2026-02-15_q017_connectome_uncertainty_neuromod_attention_neuron2005",
+  "timestamp_utc": "2026-02-15T21:20:00Z",
+  "claim_ids_tested": [
+    "Q-017"
+  ],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": [
+      "Angela J. Yu",
+      "Peter Dayan"
+    ],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "url": "https://doi.org/10.1016/j.neuron.2005.04.026"
+  },
+  "evidence_class": "connectome_functional_dissociation",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Provides a principled separation between expected and unexpected uncertainty channels, consistent with multiple control-plane axes rather than a single scalar modulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "neuromodulation",
+    "uncertainty",
+    "attention"
+  ],
+  "mapping": {
+    "source_claim_statement": "The paper proposes separable neuromodulatory roles in signaling expected versus unexpected uncertainty for attentional control.",
+    "ree_translation": "Supports Q-017 by motivating orthogonal control axes in REE instead of a monolithic control knob.",
+    "mapping_caveat": "Computational and systems-level argument; not a full causal pathway isolation for every axis in REE.",
+    "source_context": "Computational neuroscience framing with neuromodulatory interpretation."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.27,
+    "notes": "Strong theory-to-neuro bridge, moderate transfer risk to full REE control plane."
+  }
+}

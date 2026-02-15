@@ -1,6 +1,6 @@
 # Structure Review Dossier: Q-017
 
-Generated: `2026-02-15T21:11:54.734668Z`
+Generated: `2026-02-15T21:38:14.133109Z`
 Cycle: `2026-02-15`
 
 ## Claim Description
@@ -15,14 +15,14 @@ This sits in REE's uncertainty layer and defines what remains unresolved before 
 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
-- Conflict ratio: 0.921
-- Overall confidence: 0.715
+- Conflict ratio: 0.879
+- Overall confidence: 0.711
 
 ## Evidence Mix and Why It Looks This Way
 
-- Direction counts: supports=34, weakens=29, mixed=0, unknown=0.
+- Direction counts: supports=37, weakens=29, mixed=1, unknown=0.
 - Experimental mix: supports=30, weakens=29, mixed=0, unknown=0.
-- Literature mix: supports=4, weakens=0, mixed=0, unknown=0.
+- Literature mix: supports=7, weakens=0, mixed=1, unknown=0.
 - Direction narrative: Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.
 - Source narrative: Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions.
 
@@ -30,22 +30,22 @@ This sits in REE's uncertainty layer and defines what remains unresolved before 
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| control plane / minimal orthogonal axis set is broadly correct, but failures are boundary-condition failures. | 0.541 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| control plane / minimal orthogonal axis set is over-scoped and should be narrowed or split. | 0.459 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of control plane / minimal orthogonal axis set but add explicit gating or interface separation. | 0.459 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| control plane / minimal orthogonal axis set is broadly correct, but failures are boundary-condition failures. | 0.555 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| control plane / minimal orthogonal axis set is over-scoped and should be narrowed or split. | 0.431 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of control plane / minimal orthogonal axis set but add explicit gating or interface separation. | 0.431 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
+| `2026-02-15T21:23:00Z` | Neuromodulation of neuronal circuits: back to the future (2012, Neuron) | `mixed` | 0.72 | Highlights degeneracy and context dependence, which weakens strict orthogonality claims while still allowing useful functional axes. | In REE terms, this implies `control plane / minimal orthogonal axis set` may hold only in some regimes; the next step is to formalize those regimes explicitly. |
+| `2026-02-15T21:22:00Z` | Inverted-U-shaped dopamine actions on human working memory and cognitive control (2011, Biological Psychiatry) | `supports` | 0.74 | Constrains precision/vigor control to a nonlinear regime, supporting axis-specific guardrails rather than global monotone tuning. | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-15T21:21:00Z` | An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance (2005, Annual Review of Neuroscience) | `supports` | 0.8 | Strongly supports an interrupt/arousal control channel with separable network-level gain effects. | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-15T21:20:00Z` | Uncertainty, neuromodulation, and attention (2005, Neuron) | `supports` | 0.78 | Provides a principled separation between expected and unexpected uncertainty channels, consistent with multiple control-plane axes rather than a single scalar modulation. | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T21:11:17.186174Z` | Run-pack `exp_0001_20260215T211117186174Z` in `control_axis_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T20:52:56.872005Z` | Run-pack `exp_0001_20260215T205256872005Z` in `control_axis_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T20:52:56.766352Z` | Run-pack `exp_0001_20260215T205256766352Z` in `control_axis_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 | `2026-02-15T18:07:10.518955Z` | Run-pack `exp_0001_20260215T180710518955Z` in `control_axis_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T18:07:10.436413Z` | Run-pack `exp_0001_20260215T180710436413Z` in `control_axis_ablation` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T18:06:29.490159Z` | Run-pack `exp_0001_20260215T180629490159Z` in `control_axis_ablation` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-15T17:48:55Z` | Run-pack `2026-02-15T174855Z_claim-probe-q-017_seed11_full_axis_toyenv_internal_minimal` in `claim_probe_q_017` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-15T17:39:00Z` | Run-pack `2026-02-15T173900Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable. |
 
 ## Left-Field Suggestions
 

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_058",
+  "entry_id": "2026-02-15_mech058_connectome_byol_target_predictor_separation_2020",
+  "timestamp_utc": "2026-02-15T21:28:00Z",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "source": {
+    "title": "Bootstrap your own latent: A new approach to self-supervised learning",
+    "authors": [
+      "Jean-Bastien Grill",
+      "Florian Strub",
+      "Florent Altche",
+      "Corentin Tallec",
+      "Pierre H. Richemond",
+      "Elena Buchatskaya",
+      "Carl Doersch",
+      "Bernardo Avila Pires",
+      "Zhaohan Daniel Guo",
+      "Mohammad Gheshlaghi Azar",
+      "Bilal Piot",
+      "Koray Kavukcuoglu",
+      "Remi Munos",
+      "Michal Valko"
+    ],
+    "year": 2020,
+    "venue": "NeurIPS",
+    "url": "https://arxiv.org/abs/2006.07733"
+  },
+  "evidence_class": "ml_target_anchor_timescale",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct evidence that predictor/target asymmetry and slow target updates stabilize representation learning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "jepa",
+    "byol",
+    "ema_target",
+    "timescale_separation"
+  ],
+  "mapping": {
+    "source_claim_statement": "BYOL uses an online predictor and a slowly updated target network to avoid collapse and improve representation quality.",
+    "ree_translation": "Supports MECH-058 core claim that anchor timescale separation can stabilize substrate learning under nonstationarity.",
+    "mapping_caveat": "ML setting lacks explicit biological pathway constraints and may not transfer one-to-one to REE control loops.",
+    "source_context": "Self-supervised visual representation learning benchmark results."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.29,
+    "notes": "Strong engineering evidence for timescale-separated anchor mechanism."
+  }
+}

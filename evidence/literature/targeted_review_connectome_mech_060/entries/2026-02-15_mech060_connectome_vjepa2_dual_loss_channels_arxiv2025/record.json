@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_060",
+  "entry_id": "2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025",
+  "timestamp_utc": "2026-02-15T21:27:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+    "authors": [
+      "Mido Assran",
+      "Adrien Bardes",
+      "David Fan",
+      "Quentin Garrido",
+      "Yann LeCun",
+      "Nicolas Ballas"
+    ],
+    "year": 2025,
+    "venue": "arXiv",
+    "doi": "10.48550/arXiv.2506.09985",
+    "url": "https://arxiv.org/abs/2506.09985"
+  },
+  "evidence_class": "machine_learning_dual_channel_analogy",
+  "evidence_direction": "mixed",
+  "confidence": 0.64,
+  "confidence_rationale": "Supports practical dual-channel learning decomposition but lacks explicit commitment-token attribution semantics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "ml_bridge",
+    "dual_loss",
+    "mixed_evidence",
+    "commit_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "The system uses distinct immediate and rollout objective channels for action-conditioned prediction/planning.",
+    "ree_translation": "Partially supports MECH-060 by showing engineering value of split channels, while leaving responsibility boundary formalization under-specified.",
+    "mapping_caveat": "Not a direct neural connectome result and does not define attributable commit-boundary tokens.",
+    "source_context": "Large-scale machine learning architecture and experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.67,
+    "transfer_risk": 0.39,
+    "notes": "Useful implementation analogy with explicit transfer limitations."
+  }
+}

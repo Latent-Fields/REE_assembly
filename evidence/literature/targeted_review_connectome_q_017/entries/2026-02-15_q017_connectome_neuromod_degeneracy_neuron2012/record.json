@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_q_017",
+  "entry_id": "2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012",
+  "timestamp_utc": "2026-02-15T21:23:00Z",
+  "claim_ids_tested": [
+    "Q-017"
+  ],
+  "source": {
+    "title": "Neuromodulation of neuronal circuits: back to the future",
+    "authors": [
+      "Eve Marder"
+    ],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.09.010",
+    "url": "https://doi.org/10.1016/j.neuron.2012.09.010"
+  },
+  "evidence_class": "connectome_axis_nonorthogonality",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Highlights degeneracy and context dependence, which weakens strict orthogonality claims while still allowing useful functional axes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "neuromodulation",
+    "degeneracy",
+    "mixed_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neuromodulatory effects are circuit- and state-dependent with substantial degeneracy, making one-to-one function mappings unreliable.",
+    "ree_translation": "Introduces a Q-017 caveat: control axes are operational abstractions and should permit overlap and context-dependent coupling.",
+    "mapping_caveat": "This is partly disconfirming for strict orthogonality but not for pragmatic axis decomposition with coupling.",
+    "source_context": "Review focused on circuit-level variability across systems and preparations."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.79,
+    "transfer_risk": 0.33,
+    "notes": "Useful counterweight against over-literal axis independence assumptions."
+  }
+}

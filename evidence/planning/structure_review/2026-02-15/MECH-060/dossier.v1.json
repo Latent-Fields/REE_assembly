@@ -2,7 +2,7 @@
   "alternative_interpretations": [
     {
       "alternative_id": "ALT-01",
-      "confidence_estimate": 0.536,
+      "confidence_estimate": 0.544,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
       "hypothesis": "commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
@@ -12,7 +12,7 @@
     },
     {
       "alternative_id": "ALT-02",
-      "confidence_estimate": 0.441,
+      "confidence_estimate": 0.426,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
       "hypothesis": "commitment / dual error channels pre post commit is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
@@ -22,7 +22,7 @@
     },
     {
       "alternative_id": "ALT-03",
-      "confidence_estimate": 0.441,
+      "confidence_estimate": 0.426,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
       "hypothesis": "A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation.",
       "next_evidence_pull": [
@@ -60,6 +60,50 @@
     "What evidence next week would most likely change your current decision?"
   ],
   "evidence_items": [
+    {
+      "confidence": 0.64,
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_060",
+      "ree_translation": "In REE terms, this implies `commitment / dual error channels pre post commit` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025",
+      "source_background": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning (2025, arXiv)",
+      "source_type": "literature",
+      "source_wording": "Supports practical dual-channel learning decomposition but lacks explicit commitment-token attribution semantics.",
+      "timestamp_utc": "2026-02-15T21:27:00Z"
+    },
+    {
+      "confidence": 0.76,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_060",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech060_connectome_agency_comparator_review_nrn2017",
+      "source_background": "Sense of agency in the human brain (2017, Nature Reviews Neuroscience)",
+      "source_type": "literature",
+      "source_wording": "Comparator and reafference framing supports explicit post-commit responsibility-bearing mismatch channels.",
+      "timestamp_utc": "2026-02-15T21:26:00Z"
+    },
+    {
+      "confidence": 0.79,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_060",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech060_connectome_modelbased_prediction_error_neuron2011",
+      "source_background": "Model-based influences on humans' choices and striatal prediction errors (2011, Neuron)",
+      "source_type": "literature",
+      "source_wording": "Shows outcome-linked striatal PE signals integrating model-based structure, consistent with post-commit attributable update channels.",
+      "timestamp_utc": "2026-02-15T21:25:00Z"
+    },
+    {
+      "confidence": 0.73,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_060",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech060_connectome_conflict_monitoring_control_science2004",
+      "source_background": "Conflict monitoring and cognitive control (2001, Psychological Review)",
+      "source_type": "literature",
+      "source_wording": "Supports a pre-commit evaluative channel (conflict/error likelihood monitoring) that is functionally separable from post-outcome credit updates.",
+      "timestamp_utc": "2026-02-15T21:24:00Z"
+    },
     {
       "confidence": 0.75,
       "evidence_direction": "supports",
@@ -125,56 +169,12 @@
       "source_type": "experimental",
       "source_wording": "PASS with supporting direction",
       "timestamp_utc": "2026-02-15T17:48:53Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T173900Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T173900Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "commit_dual_error_channels",
-      "ree_translation": "In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T173900Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
     }
   ],
   "evidence_overview": {
     "direction_counts": {
-      "mixed": 3,
-      "supports": 60,
+      "mixed": 4,
+      "supports": 63,
       "unknown": 0,
       "weakens": 51
     },
@@ -187,15 +187,15 @@
         "weakens": 51
       },
       "literature": {
-        "mixed": 3,
-        "supports": 6,
+        "mixed": 4,
+        "supports": 9,
         "unknown": 0,
         "weakens": 0
       }
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T21:11:54.734668Z",
+  "generated_at_utc": "2026-02-15T21:38:14.133109Z",
   "left_field_suggestions": [
     {
       "first_test": "Ablate commit barrier windows and measure post-commit attribution gain.",
@@ -215,15 +215,15 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.919,
+    "conflict_ratio": 0.895,
     "consider_new_structure": true,
-    "gap_id": "AGR-0002",
+    "gap_id": "AGR-0001",
     "latest_decision": {
       "decision_status": "applied",
       "recommendation": "hold_candidate_resolve_conflict",
       "timestamp_utc": "2026-02-15T20:58:38.602475Z"
     },
-    "overall_confidence": 0.699,
+    "overall_confidence": 0.7,
     "recommendation": "consider_new_structure",
     "recurring_failure_signatures": [
       {
@@ -249,7 +249,7 @@
     ],
     "source_counts": {
       "experimental": 105,
-      "literature": 9
+      "literature": 13
     },
     "trigger_signals": [
       "external_precedence_pressure",

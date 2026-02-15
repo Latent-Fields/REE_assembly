@@ -1,24 +1,24 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-15T21:11:54.510953Z`
+Generated: `2026-02-15T21:38:13.992121Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_arc_003
 
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (2 FAIL run(s), latest `2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (2 FAIL run(s), latest `2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:commitment_reversal_spike` (2 FAIL run(s), latest `2026-02-15T175225Z_claim-probe-arc-003_seed29_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (4 FAIL run(s), latest `2026-02-15T213603Z_claim-probe-arc-003_seed1001_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (4 FAIL run(s), latest `2026-02-15T213603Z_claim-probe-arc-003_seed1001_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:commitment_reversal_spike` (4 FAIL run(s), latest `2026-02-15T213603Z_claim-probe-arc-003_seed1001_single_error_stream_toyenv_internal_minimal`).
 
 ## claim_probe_arc_007
 
-- [ ] Investigate signature `ledger_editing` (3 FAIL run(s), latest `2026-02-15T181023Z_claim-probe-arc-007_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T181023Z_claim-probe-arc-007_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_arc_018
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180521Z_claim-probe-arc-018_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180521Z_claim-probe-arc-018_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213637Z_claim-probe-arc-018_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213637Z_claim-probe-arc-018_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_impl_022
 
@@ -28,99 +28,104 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_033
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180522Z_claim-probe-mech-033_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180522Z_claim-probe-mech-033_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213638Z_claim-probe-mech-033_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213638Z_claim-probe-mech-033_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_mech_040
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180526Z_claim-probe-mech-040_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180526Z_claim-probe-mech-040_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213634Z_claim-probe-mech-040_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213634Z_claim-probe-mech-040_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_mech_046
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180528Z_claim-probe-mech-046_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213635Z_claim-probe-mech-046_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_mech_057
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181028Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181028Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (4 FAIL run(s), latest `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal`).
+
+## claim_probe_mech_059
+
+- [ ] Investigate signature `mech059:uncertainty_metric_gaming_detected` (8 FAIL run(s), latest `2026-02-15T213803Z_claim-probe-mech-059_seed1008_deterministic_plus_dispersion_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech059:abstention_reliability_collapse` (8 FAIL run(s), latest `2026-02-15T213803Z_claim-probe-mech-059_seed1008_deterministic_plus_dispersion_toyenv_internal_minimal`).
 
 ## claim_probe_mech_061
 
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (2 FAIL run(s), latest `2026-02-15T175235Z_claim-probe-mech-061_seed29_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (2 FAIL run(s), latest `2026-02-15T175235Z_claim-probe-mech-061_seed29_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:commitment_reversal_spike` (2 FAIL run(s), latest `2026-02-15T175235Z_claim-probe-mech-061_seed29_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (4 FAIL run(s), latest `2026-02-15T213606Z_claim-probe-mech-061_seed1001_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (4 FAIL run(s), latest `2026-02-15T213606Z_claim-probe-mech-061_seed1001_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:commitment_reversal_spike` (4 FAIL run(s), latest `2026-02-15T213606Z_claim-probe-mech-061_seed1001_single_error_stream_toyenv_internal_minimal`).
 
 ## claim_probe_q_001
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181006Z_claim-probe-q-001_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181006Z_claim-probe-q-001_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213641Z_claim-probe-q-001_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213641Z_claim-probe-q-001_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_002
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181007Z_claim-probe-q-002_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181007Z_claim-probe-q-002_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213642Z_claim-probe-q-002_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213642Z_claim-probe-q-002_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_003
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181009Z_claim-probe-q-003_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181009Z_claim-probe-q-003_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213643Z_claim-probe-q-003_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213643Z_claim-probe-q-003_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_004
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181011Z_claim-probe-q-004_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181011Z_claim-probe-q-004_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213644Z_claim-probe-q-004_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213644Z_claim-probe-q-004_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_005
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181013Z_claim-probe-q-005_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181013Z_claim-probe-q-005_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213645Z_claim-probe-q-005_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213645Z_claim-probe-q-005_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_006
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181014Z_claim-probe-q-006_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181014Z_claim-probe-q-006_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213645Z_claim-probe-q-006_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213645Z_claim-probe-q-006_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_007
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181016Z_claim-probe-q-007_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181016Z_claim-probe-q-007_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_008
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181018Z_claim-probe-q-008_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181018Z_claim-probe-q-008_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213647Z_claim-probe-q-008_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213647Z_claim-probe-q-008_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_009
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181019Z_claim-probe-q-009_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181019Z_claim-probe-q-009_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213648Z_claim-probe-q-009_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213648Z_claim-probe-q-009_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_010
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181021Z_claim-probe-q-010_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213649Z_claim-probe-q-010_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_012
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180524Z_claim-probe-q-012_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180524Z_claim-probe-q-012_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213633Z_claim-probe-q-012_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213633Z_claim-probe-q-012_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_013
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181025Z_claim-probe-q-013_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181025Z_claim-probe-q-013_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213639Z_claim-probe-q-013_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213639Z_claim-probe-q-013_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_014
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T181027Z_claim-probe-q-014_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T181027Z_claim-probe-q-014_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213640Z_claim-probe-q-014_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213640Z_claim-probe-q-014_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## claim_probe_q_015
 
-- [ ] Investigate signature `ledger_editing` (2 FAIL run(s), latest `2026-02-15T180529Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (2 FAIL run(s), latest `2026-02-15T180529Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213636Z_claim-probe-q-015_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213636Z_claim-probe-q-015_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 
 ## commit_dual_error_channels
 

@@ -1,11 +1,14 @@
 # Literature Evidence Index
 
-Generated: `2026-02-15T21:11:54.510953Z`
+Generated: `2026-02-15T21:38:13.992121Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_connectome_mech_056` | [`2026-02-15_mech056_connectome_replay_past_experience_neuron2021`](targeted_review_connectome_mech_056/entries/2026-02-15_mech056_connectome_replay_past_experience_neuron2021/record.json) | 4 | [`summary`](targeted_review_connectome_mech_056/entries/2026-02-15_mech056_connectome_replay_past_experience_neuron2021/summary.md) |
+| `targeted_review_connectome_mech_058` | [`2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/record.json) | 4 | [`summary`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/summary.md) |
+| `targeted_review_connectome_mech_060` | [`2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/record.json) | 4 | [`summary`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/summary.md) |
+| `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_mech_054` | [`2026-02-15_mech054_lhb_negative_reward_signal_nature2007`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/record.json) | 1 | [`summary`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/summary.md) |
 | `targeted_review_mech_057` | [`2026-02-13_mech057_vljepa_multimodal_world_model`](targeted_review_mech_057/entries/2026-02-13_mech057_vljepa_multimodal_world_model/record.json) | 5 | [`summary`](targeted_review_mech_057/entries/2026-02-13_mech057_vljepa_multimodal_world_model/summary.md) |
 | `targeted_review_mech_058` | [`2026-02-15_mech058_lit-0017_completion`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/record.json) | 4 | [`summary`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/summary.md) |

@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_058",
+  "entry_id": "2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022",
+  "timestamp_utc": "2026-02-15T21:31:00Z",
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "source": {
+    "title": "How does SimSiam avoid collapse without negative samples? A unified understanding with self-supervised contrastive learning",
+    "authors": [
+      "Xinlei Chen",
+      "Saining Xie",
+      "Kaiming He"
+    ],
+    "year": 2022,
+    "venue": "ICLR 2022",
+    "url": "https://arxiv.org/abs/2203.16262"
+  },
+  "evidence_class": "ml_anchor_guardrail_conditioning",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Provides mechanistic analysis of asymmetry and optimization guardrails that supports bounded hybridization around MECH-058 rather than unconditional EMA-only claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "ssl_theory",
+    "asymmetry",
+    "guardrails",
+    "hybrid"
+  ],
+  "mapping": {
+    "source_claim_statement": "Asymmetry and optimization dynamics jointly prevent collapse; multiple stabilizing mechanisms can substitute under specific conditions.",
+    "ree_translation": "Supports MECH-058 hybridization: keep timescale separation core while adding explicit stress-regime guardrails and robustness criteria.",
+    "mapping_caveat": "Theory/ablation evidence remains in SSL settings and does not directly provide biological pathway constraints.",
+    "source_context": "Theoretical and empirical analysis of siamese SSL collapse behavior."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.32,
+    "notes": "Useful for narrowing claim scope and defining guardrails."
+  }
+}

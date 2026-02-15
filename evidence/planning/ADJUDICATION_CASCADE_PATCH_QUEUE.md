@@ -1,6 +1,6 @@
 # Adjudication Cascade Patch Queue
 
-Generated: `2026-02-15T21:11:54.118588Z`
+Generated: `2026-02-15T21:38:13.819458Z`
 
 This queue is generated from applied adjudication outcomes. Use it to patch architecture narrative/docs after
 claim-registry updates and dependency re-open actions.

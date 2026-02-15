@@ -2,7 +2,7 @@
   "alternative_interpretations": [
     {
       "alternative_id": "ALT-01",
-      "confidence_estimate": 0.541,
+      "confidence_estimate": 0.555,
       "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
       "hypothesis": "control plane / minimal orthogonal axis set is broadly correct, but failures are boundary-condition failures.",
       "next_evidence_pull": [
@@ -12,7 +12,7 @@
     },
     {
       "alternative_id": "ALT-02",
-      "confidence_estimate": 0.459,
+      "confidence_estimate": 0.431,
       "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
       "hypothesis": "control plane / minimal orthogonal axis set is over-scoped and should be narrowed or split.",
       "next_evidence_pull": [
@@ -22,7 +22,7 @@
     },
     {
       "alternative_id": "ALT-03",
-      "confidence_estimate": 0.459,
+      "confidence_estimate": 0.431,
       "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
       "hypothesis": "A hybrid architecture is needed: keep the core of control plane / minimal orthogonal axis set but add explicit gating or interface separation.",
       "next_evidence_pull": [
@@ -54,6 +54,50 @@
     "What evidence next week would most likely change your current decision?"
   ],
   "evidence_items": [
+    {
+      "confidence": 0.72,
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_q_017",
+      "ree_translation": "In REE terms, this implies `control plane / minimal orthogonal axis set` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012",
+      "source_background": "Neuromodulation of neuronal circuits: back to the future (2012, Neuron)",
+      "source_type": "literature",
+      "source_wording": "Highlights degeneracy and context dependence, which weakens strict orthogonality claims while still allowing useful functional axes.",
+      "timestamp_utc": "2026-02-15T21:23:00Z"
+    },
+    {
+      "confidence": 0.74,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_q017_connectome_dopamine_inverted_u_biopsy2011",
+      "source_background": "Inverted-U-shaped dopamine actions on human working memory and cognitive control (2011, Biological Psychiatry)",
+      "source_type": "literature",
+      "source_wording": "Constrains precision/vigor control to a nonlinear regime, supporting axis-specific guardrails rather than global monotone tuning.",
+      "timestamp_utc": "2026-02-15T21:22:00Z"
+    },
+    {
+      "confidence": 0.8,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_q017_connectome_lcne_adaptive_gain_annurev2005",
+      "source_background": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance (2005, Annual Review of Neuroscience)",
+      "source_type": "literature",
+      "source_wording": "Strongly supports an interrupt/arousal control channel with separable network-level gain effects.",
+      "timestamp_utc": "2026-02-15T21:21:00Z"
+    },
+    {
+      "confidence": 0.78,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_q017_connectome_uncertainty_neuromod_attention_neuron2005",
+      "source_background": "Uncertainty, neuromodulation, and attention (2005, Neuron)",
+      "source_type": "literature",
+      "source_wording": "Provides a principled separation between expected and unexpected uncertainty channels, consistent with multiple control-plane axes rather than a single scalar modulation.",
+      "timestamp_utc": "2026-02-15T21:20:00Z"
+    },
     {
       "confidence": 0.75,
       "evidence_direction": "supports",
@@ -119,56 +163,12 @@
       "source_type": "experimental",
       "source_wording": "FAIL with weakening direction",
       "timestamp_utc": "2026-02-15T18:06:29.490159Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "claim_probe_q_017",
-      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T174855Z_claim-probe-q-017_seed11_full_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T174855Z_claim-probe-q-017_seed11_full_axis_toyenv_internal_minimal` in `claim_probe_q_017`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:48:55Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "supports",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "PASS with supporting direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
-    },
-    {
-      "confidence": 0.75,
-      "evidence_direction": "weakens",
-      "experiment_type": "control_axis_ablation",
-      "ree_translation": "In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable.",
-      "run_id": "2026-02-15T173900Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
-      "source_background": "Run-pack `2026-02-15T173900Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation`",
-      "source_type": "experimental",
-      "source_wording": "FAIL with weakening direction",
-      "timestamp_utc": "2026-02-15T17:39:00Z"
     }
   ],
   "evidence_overview": {
     "direction_counts": {
-      "mixed": 0,
-      "supports": 34,
+      "mixed": 1,
+      "supports": 37,
       "unknown": 0,
       "weakens": 29
     },
@@ -181,15 +181,15 @@
         "weakens": 29
       },
       "literature": {
-        "mixed": 0,
-        "supports": 4,
+        "mixed": 1,
+        "supports": 7,
         "unknown": 0,
         "weakens": 0
       }
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-15T21:11:54.734668Z",
+  "generated_at_utc": "2026-02-15T21:38:14.133109Z",
   "left_field_suggestions": [
     {
       "first_test": "Create two scoped proposal tracks with explicit condition tags.",
@@ -209,15 +209,15 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.921,
+    "conflict_ratio": 0.879,
     "consider_new_structure": true,
-    "gap_id": "AGR-0001",
+    "gap_id": "AGR-0006",
     "latest_decision": {
       "decision_status": "applied",
       "recommendation": "hybridize",
       "timestamp_utc": "2026-02-15T18:46:42.773429Z"
     },
-    "overall_confidence": 0.715,
+    "overall_confidence": 0.711,
     "recommendation": "consider_new_structure",
     "recurring_failure_signatures": [
       {
@@ -235,7 +235,7 @@
     ],
     "source_counts": {
       "experimental": 59,
-      "literature": 4
+      "literature": 8
     },
     "trigger_signals": [
       "external_precedence_pressure",

@@ -1,0 +1,242 @@
+{
+  "alternative_interpretations": [
+    {
+      "alternative_id": "ALT-01",
+      "confidence_estimate": 0.595,
+      "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
+      "hypothesis": "commitment / boundary token minimal contract is broadly correct, but failures are boundary-condition failures.",
+      "next_evidence_pull": [
+        "Target stress regimes where failures cluster and test whether boundary constraints recover stability.",
+        "Pull replication papers that test similar mechanisms under distribution shift."
+      ]
+    },
+    {
+      "alternative_id": "ALT-02",
+      "confidence_estimate": 0.405,
+      "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
+      "hypothesis": "commitment / boundary token minimal contract is over-scoped and should be narrowed or split.",
+      "next_evidence_pull": [
+        "Extract disconfirming sources and isolate the exact violated assumption.",
+        "Run claim-splitting experiments with explicit sub-claim tags in manifests."
+      ]
+    },
+    {
+      "alternative_id": "ALT-03",
+      "confidence_estimate": 0.405,
+      "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
+      "hypothesis": "A hybrid architecture is needed: keep the core of commitment / boundary token minimal contract but add explicit gating or interface separation.",
+      "next_evidence_pull": [
+        "Evaluate an ablation that isolates the proposed guardrail/interface addition.",
+        "Collect one adjacent-domain source that uses a similar split architecture."
+      ]
+    }
+  ],
+  "claim": {
+    "claim_id": "Q-015",
+    "claim_type": "open_question",
+    "dependents": [],
+    "depends_on": [
+      "MECH-061",
+      "ARC-003",
+      "ARC-015"
+    ],
+    "location": "docs/architecture/e3.md#q-015",
+    "plain_english_claim_description": "Q-015 is an open question about commitment / boundary token minimal contract.",
+    "plain_english_ree_fit_description": "This sits in REE's uncertainty layer and defines what remains unresolved before stronger commitments. It depends on 3 upstream claim(s): `MECH-061`, `ARC-003`, `ARC-015`. No downstream claims currently list it as a dependency. Primary architecture anchor: `docs/architecture/e3.md#q-015`.",
+    "status": "active",
+    "subject": "commitment.boundary_token_minimal_contract"
+  },
+  "cycle_date": "2026-02-15",
+  "decision_prompts": [
+    "Which part of the claim appears stable across both supporting and weakening evidence?",
+    "If this claim were split into two sub-claims, where is the cleanest boundary?",
+    "What is the smallest architecture change that would most likely remove the top recurring failure signature?",
+    "What evidence next week would most likely change your current decision?"
+  ],
+  "evidence_items": [
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / boundary token minimal contract` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T213636Z_claim-probe-q-015_seed1002_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T213636Z_claim-probe-q-015_seed1002_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T21:36:36Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / boundary token minimal contract` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T213607Z_claim-probe-q-015_seed1001_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T213607Z_claim-probe-q-015_seed1001_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T21:36:07Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T211036Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T211036Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T21:10:36Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T205216Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T205216Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T20:52:16Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / boundary token minimal contract` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T180529Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T180529Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T18:05:29Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T180528Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T180528Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T18:05:28Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is negative pressure on `commitment / boundary token minimal contract` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T175242Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T175242Z_claim-probe-q-015_seed29_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T17:52:42Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_015",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T175241Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T175241Z_claim-probe-q-015_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_q_015`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T17:52:41Z"
+    },
+    {
+      "confidence": 0.69,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_061",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech061_agency_comparator_review_nrn2017",
+      "source_background": "Sense of agency in the human brain (2017, Nature Reviews Neuroscience)",
+      "source_type": "literature",
+      "source_wording": "Review-level synthesis supports comparator-based self-attribution after action outcomes, consistent with a pre/post boundary in error interpretation; support is indirect for explicit tokenized routing primitives.",
+      "timestamp_utc": "2026-02-15T14:16:00Z"
+    },
+    {
+      "confidence": 0.72,
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_061",
+      "ree_translation": "In REE terms, this is positive pressure on `commitment / boundary token minimal contract` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15_mech061_internal_model_reafference_science1995",
+      "source_background": "An internal model for sensorimotor integration (1995, Science)",
+      "source_type": "literature",
+      "source_wording": "Strong support for explicit predicted-vs-observed consequence comparison after action, which matches REE post-commit attribution routing; the paper does not define a discrete commit token, so support is mechanistic but indirect.",
+      "timestamp_utc": "2026-02-15T14:15:00Z"
+    }
+  ],
+  "evidence_overview": {
+    "direction_counts": {
+      "mixed": 0,
+      "supports": 6,
+      "unknown": 0,
+      "weakens": 4
+    },
+    "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
+    "source_direction_counts": {
+      "experimental": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 4
+      },
+      "literature": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      }
+    },
+    "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
+  },
+  "generated_at_utc": "2026-02-15T21:38:14.133109Z",
+  "left_field_suggestions": [
+    {
+      "first_test": "Create two scoped proposal tracks with explicit condition tags.",
+      "idea": "Split the claim into two narrower claims and route evidence independently.",
+      "why_it_might_help": "Can reduce hidden regime-mixing that creates persistent conflict ratios."
+    },
+    {
+      "first_test": "Add one adversarial scenario and compare signature incidence.",
+      "idea": "Run one synthetic extreme-condition probe outside normal benchmark regime.",
+      "why_it_might_help": "Can expose assumptions that are invisible in standard task distributions."
+    },
+    {
+      "first_test": "Add a parallel option in next governance packet and score it with the same gates.",
+      "idea": "Bring in one adjacent-domain analogy as an explicit design option, not just evidence.",
+      "why_it_might_help": "Can surface architecture moves that current in-domain framing misses."
+    }
+  ],
+  "schema_version": "structure_review_dossier/v1",
+  "structure_pressure": {
+    "conflict_ratio": 0.8,
+    "consider_new_structure": true,
+    "gap_id": "AGR-0012",
+    "latest_decision": {
+      "decision_status": "applied",
+      "recommendation": "retain_ree",
+      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+    },
+    "overall_confidence": 0.616,
+    "recommendation": "consider_new_structure",
+    "recurring_failure_signatures": [
+      {
+        "count": 4,
+        "signature": "ledger_editing"
+      },
+      {
+        "count": 3,
+        "signature": "domination_lock_in"
+      }
+    ],
+    "source_counts": {
+      "experimental": 8,
+      "literature": 2
+    },
+    "trigger_signals": [
+      "external_precedence_pressure",
+      "high_conflict_ratio",
+      "recurring_failure_signatures"
+    ]
+  }
+}

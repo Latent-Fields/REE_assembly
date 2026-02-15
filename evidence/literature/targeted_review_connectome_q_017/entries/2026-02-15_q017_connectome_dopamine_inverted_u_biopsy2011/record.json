@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_q_017",
+  "entry_id": "2026-02-15_q017_connectome_dopamine_inverted_u_biopsy2011",
+  "timestamp_utc": "2026-02-15T21:22:00Z",
+  "claim_ids_tested": [
+    "Q-017"
+  ],
+  "source": {
+    "title": "Inverted-U-shaped dopamine actions on human working memory and cognitive control",
+    "authors": [
+      "Roshan Cools",
+      "Mark D'Esposito"
+    ],
+    "year": 2011,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2011.03.028",
+    "url": "https://doi.org/10.1016/j.biopsych.2011.03.028"
+  },
+  "evidence_class": "connectome_precision_axis_constraint",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Constrains precision/vigor control to a nonlinear regime, supporting axis-specific guardrails rather than global monotone tuning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "dopamine",
+    "precision",
+    "cognitive_control"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dopamine effects on control are nonlinear, with both low and high levels degrading performance depending on task and baseline.",
+    "ree_translation": "Supports Q-017 guardrails: precision-like axis should be bounded and context-conditional rather than globally increasing.",
+    "mapping_caveat": "Axis-specific pharmacology does not fully specify inter-axis coupling architecture.",
+    "source_context": "Human neurocognitive synthesis on dopamine and control performance."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.3,
+    "notes": "Good constraint evidence; moderate transfer risk to synthetic agent control knobs."
+  }
+}
