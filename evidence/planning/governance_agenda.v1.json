@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-15T15:19:20.372490Z",
+      "last_run_generated_at_utc": "2026-02-15T15:32:10.092748Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -58,9 +58,9 @@
           "external_precedence_candidate": true,
           "gap_id": "AGR-0001",
           "latest_decision": {
-            "decision_status": "approved",
-            "recommendation": "hold_candidate_resolve_conflict",
-            "timestamp_utc": "2026-02-15T15:10:33.718527Z"
+            "decision_status": "applied",
+            "recommendation": "hybridize",
+            "timestamp_utc": "2026-02-15T15:31:31.190642Z"
           },
           "literature_direction_counts": {
             "mixed": 1,
@@ -2108,7 +2108,7 @@
           "claim_id": "`MECH-056`",
           "current_status": "`candidate`",
           "decision_needed": "Conflict resolution before promotion",
-          "decision_status": "`approved`",
+          "decision_status": "`pending_user`",
           "recommendation": "`hold_candidate_resolve_conflict`"
         },
         {
@@ -2205,9 +2205,9 @@
           "external_precedence_candidate": true,
           "gap_id": "AGR-0001",
           "latest_decision": {
-            "decision_status": "approved",
-            "recommendation": "hold_candidate_resolve_conflict",
-            "timestamp_utc": "2026-02-15T15:10:33.718527Z"
+            "decision_status": "applied",
+            "recommendation": "hybridize",
+            "timestamp_utc": "2026-02-15T15:31:31.190642Z"
           },
           "literature_direction_counts": {
             "mixed": 1,
@@ -2649,9 +2649,9 @@
           "external_precedence_candidate": true,
           "gap_id": "AGR-0001",
           "latest_decision": {
-            "decision_status": "approved",
-            "recommendation": "hold_candidate_resolve_conflict",
-            "timestamp_utc": "2026-02-15T15:10:33.718527Z"
+            "decision_status": "applied",
+            "recommendation": "hybridize",
+            "timestamp_utc": "2026-02-15T15:31:31.190642Z"
           },
           "literature_direction_counts": {
             "mixed": 1,
@@ -3108,10 +3108,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/sync_task_inbox.py"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.270735Z",
+        "finished_at_utc": "2026-02-15T15:32:09.980717Z",
         "name": "task_inbox_sync",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.185239Z",
+        "started_at_utc": "2026-02-15T15:32:09.938609Z",
         "status": "ok",
         "stderr": "",
         "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
@@ -3121,10 +3121,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.328343Z",
+        "finished_at_utc": "2026-02-15T15:32:10.030685Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.270782Z",
+        "started_at_utc": "2026-02-15T15:32:09.980756Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=36, processed=36, unprocessed=0, processed_missing_links=0"
@@ -3136,23 +3136,23 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.378057Z",
+        "finished_at_utc": "2026-02-15T15:32:10.098735Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.328370Z",
+        "started_at_utc": "2026-02-15T15:32:10.030729Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "Adjudication cascade complete: eligible_decisions=0, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
+        "stdout": "Adjudication cascade complete: eligible_decisions=1, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
       },
       {
         "command": [
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.522653Z",
+        "finished_at_utc": "2026-02-15T15:32:10.249181Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.378090Z",
+        "started_at_utc": "2026-02-15T15:32:10.098800Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 303 run(s) across 6 experiment type(s); FAIL=129; literature entries=61; backlog items=34; proposals=34."
@@ -3162,10 +3162,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.576134Z",
+        "finished_at_utc": "2026-02-15T15:32:10.304895Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.522682Z",
+        "started_at_utc": "2026-02-15T15:32:10.249231Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-15/structure_review_report.v1.json"
@@ -3175,17 +3175,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-15T15:19:20.618071Z",
+        "finished_at_utc": "2026-02-15T15:32:10.348295Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-15T15:19:20.576167Z",
+        "started_at_utc": "2026-02-15T15:32:10.304949Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md"
       }
     ]
   },
-  "generated_at_utc": "2026-02-15T15:19:20.618103Z",
+  "generated_at_utc": "2026-02-15T15:32:10.348345Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,

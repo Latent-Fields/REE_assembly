@@ -1,0 +1,1494 @@
+{
+  "config_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/cadence_automation.v1.json",
+  "dry_run": false,
+  "generated_at_utc": "2026-02-15T15:32:02.031363Z",
+  "ingestion_steps": [
+    {
+      "command": [
+        "python3",
+        "evidence/experiments/scripts/build_experiment_indexes.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Indexed 303 run(s) across 6 experiment type(s); FAIL=129; literature entries=61; backlog items=34; proposals=34."
+    },
+    {
+      "command": [
+        "python3",
+        "evidence/planning/scripts/run_governance_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Governance cycle complete: steps=6, failures=0, warnings=0, thought_unprocessed=0, decision_queue=5, structure_considerations=5, structure_dossiers=5, connectome_pull=5, external_precedence=5, cascade_actions=0, backlog_high=34.\nAgenda JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/governance_agenda.v1.json\nAgenda MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/GOVERNANCE_AGENDA.md"
+    }
+  ],
+  "repo_root": "/Users/dgolden/Documents/GitHub/REE_assembly",
+  "results": [
+    {
+      "git_pull": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Already up to date."
+      },
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T150300Z_commit-dual-error-channels_seed11_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T150300Z_commit-dual-error-channels_seed11_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T164820Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164820Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T164941Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164941Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T165000Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T165000Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T165932Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T165932Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T183153Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T135835Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T135835Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T135835Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T135835Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T140029Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T140029Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T140029Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T140029Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141752Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T144903Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145611Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T141820Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141820Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T144903Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145611Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed11_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed11_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed47_full_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "control_axis_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/control_axis_ablation/runs/2026-02-15T145637Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T150100Z_jepa-anchor-ablation_seed11_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T150100Z_jepa-anchor-ablation_seed11_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T164820Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164820Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T164941Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164941Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T165000Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T165000Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T165932Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T165932Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183153Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183153Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183153Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183153Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183153Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183153Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T183154Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145611Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed11_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed11_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed29_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-15T145637Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T150200Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T150200Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T164820Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164820Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T164941Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164941Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T165000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T165000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T165932Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T165932Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T183154Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T144903Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145611Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-15T145637Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T150000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T150000Z_trajectory-integrity_seed11_trajectory_first_enabled"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T164820Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164820Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T164941Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T164941Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T165000Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv",
+          "ok": true,
+          "run_id": "2026-02-14T165000Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T165932Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T165932Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T170702Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T170702Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T171300Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference",
+          "ok": true,
+          "run_id": "2026-02-14T171300Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_jepa_inference"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T183154Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-14T183154Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144903Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144903Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144903Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144903Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144904Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144904Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T144904Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145611Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145637Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_trajectory-integrity_seed11_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145637Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_trajectory-integrity_seed29_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145637Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145637Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145638Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed11_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145638Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed29_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-15T145638Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T141817Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T144904Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145611Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145611Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145611Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145611Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145612Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145612Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed11_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_mode_conditioned_precedence_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_veto_lattice_toyenv_internal_minimal"
+        },
+        {
+          "experiment_type": "tri_loop_arbitration_policy",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/tri_loop_arbitration_policy/runs/2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal",
+          "ok": true,
+          "run_id": "2026-02-15T145638Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal"
+        }
+      ],
+      "repo_name": "ree-v2",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v2",
+      "status": "ok"
+    },
+    {
+      "git_pull": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Already up to date."
+      },
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t184853456769z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t184853456769z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t185325220131z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t185325220131z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t184853457259z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t184853457259z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t184853454887z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t184853454887z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t185325216628z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t185325216628z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t184853456215z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t184853456215z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t185325219106z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t185325219106z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t184853461547z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t184853461547z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t184853462018z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t184853462018z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t184853460220z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t184853460220z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t185325226295z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t185325226295z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t184853460858z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t184853460858z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t185325226899z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t185325226899z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t184853457735z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t184853457735z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z"
+        }
+      ],
+      "repo_name": "ree-experiments-lab",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab",
+      "status": "ok"
+    },
+    {
+      "git_pull": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Already up to date."
+      },
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed11_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed11_single_error_stream",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed11_single_error_stream"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed29_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed29_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed29_single_error_stream",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed29_single_error_stream"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed47_pre_post_split_streams",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed47_pre_post_split_streams"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_off",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_off"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed11_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_off",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_off"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed29_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_on",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_on"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed11_deterministic_plus_dispersion"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed29_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/2026-02-14T200000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed11_trajectory_first_ablated",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed11_trajectory_first_ablated"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed11_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed11_trajectory_first_enabled"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed29_trajectory_first_ablated",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed29_trajectory_first_ablated"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed29_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed29_trajectory_first_enabled"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_ablated",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_ablated"
+        },
+        {
+          "experiment_type": "trajectory_integrity",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/trajectory_integrity/runs/2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_enabled",
+          "ok": true,
+          "run_id": "2026-02-14T200000Z_trajectory-integrity_seed47_trajectory_first_enabled"
+        }
+      ],
+      "repo_name": "ree-v1-minimal",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal",
+      "status": "ok"
+    }
+  ],
+  "schema_version": "handoff_sync_report/v1",
+  "targets": [
+    "ree-v2",
+    "ree-experiments-lab",
+    "ree-v1-minimal"
+  ]
+}
