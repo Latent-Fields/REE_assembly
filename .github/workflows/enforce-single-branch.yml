@@ -1,0 +1,51 @@
+name: enforce-single-branch
+
+on:
+  create:
+  push:
+
+jobs:
+  prune-non-default-branches:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Delete non-default branch refs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const defaultBranch = context.payload.repository.default_branch;
+            const eventName = context.eventName;
+
+            let refType = context.payload.ref_type || 'branch';
+            let refName = context.payload.ref || '';
+
+            if (eventName === 'push') {
+              if (!context.ref.startsWith('refs/heads/')) {
+                core.info(`Ignoring non-branch push ref: ${context.ref}`);
+                return;
+              }
+              refType = 'branch';
+              refName = context.ref.replace('refs/heads/', '');
+            }
+
+            if (refType !== 'branch' || !refName || refName === defaultBranch) {
+              core.info(`No action needed (ref_type=${refType}, ref=${refName}, default=${defaultBranch})`);
+              return;
+            }
+
+            core.info(`Deleting branch ${refName}; default branch is ${defaultBranch}`);
+
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${refName}`,
+              });
+            } catch (error) {
+              if (error.status === 404 || error.status === 422) {
+                core.warning(`Branch already absent: ${refName}`);
+                return;
+              }
+              throw error;
+            }
