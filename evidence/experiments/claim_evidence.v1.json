@@ -147,39 +147,26 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.792",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.804",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "lit:computational_neuroscience_model": 2,
+        "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
-      "latest_run_id": "2026-02-15_arc018_future_path_replay_followup",
-      "latest_timestamp_utc": "2026-02-15T15:10:00Z",
-      "literature_confidence": 0.792,
-      "overall_confidence": 0.792,
+      "latest_run_id": "2026-02-15_arc018_lit-0005_completion",
+      "latest_timestamp_utc": "2026-02-15T16:00:00Z",
+      "literature_confidence": 0.804,
+      "overall_confidence": 0.804,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "claim_id": "ARC-018",
-          "confidence": 0.66,
-          "confidence_rationale": "Replay utility is modeled as prioritized by gain/need rather than forced minimum entropy exploration; this weakens the necessity of a hard entropy floor while still leaving room for context-dependent stochasticity.",
-          "evidence_class": "lit:computational_neuroscience_model",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_q_011",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_q011_prioritized_replay_vs_entropy_floor_natneuro2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T14:10:00Z"
-        },
         {
           "claim_id": "ARC-018",
           "confidence": 0.79,
@@ -231,12 +218,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:10:00Z"
+        },
+        {
+          "claim_id": "ARC-018",
+          "confidence": 0.73,
+          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0005 scoped to ARC-018.",
+          "evidence_class": "lit:computational_neuroscience_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_arc018_lit-0005_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 5
+        "literature": 6
       }
     },
     "IMPL-022": {
@@ -293,39 +293,26 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.786",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.799",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "lit:computational_neuroscience_model": 2,
+        "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
-      "latest_run_id": "2026-02-15_mech033_preplay_sequences_followup",
-      "latest_timestamp_utc": "2026-02-15T15:11:00Z",
-      "literature_confidence": 0.786,
-      "overall_confidence": 0.786,
+      "latest_run_id": "2026-02-15_mech033_lit-0008_completion",
+      "latest_timestamp_utc": "2026-02-15T16:01:00Z",
+      "literature_confidence": 0.799,
+      "overall_confidence": 0.799,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "claim_id": "MECH-033",
-          "confidence": 0.66,
-          "confidence_rationale": "Replay utility is modeled as prioritized by gain/need rather than forced minimum entropy exploration; this weakens the necessity of a hard entropy floor while still leaving room for context-dependent stochasticity.",
-          "evidence_class": "lit:computational_neuroscience_model",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_q_011",
-          "failure_signatures": [],
-          "run_id": "2026-02-14_q011_prioritized_replay_vs_entropy_floor_natneuro2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-14T14:10:00Z"
-        },
         {
           "claim_id": "MECH-033",
           "confidence": 0.79,
@@ -377,12 +364,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:11:00Z"
+        },
+        {
+          "claim_id": "MECH-033",
+          "confidence": 0.73,
+          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0008 scoped to MECH-033.",
+          "evidence_class": "lit:computational_neuroscience_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech033_lit-0008_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:01:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 5
+        "literature": 6
       }
     },
     "MECH-040": {
@@ -586,43 +586,27 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=43 entry(s), lit=4 entry(s), exp_conf=0.576, lit_conf=0.868",
+      "confidence_rationale": "exp=43 entry(s), lit=5 entry(s), exp_conf=0.576, lit_conf=0.867",
       "direction_counts": {
         "mixed": 0,
-        "supports": 23,
+        "supports": 24,
         "unknown": 0,
         "weakens": 24
       },
-      "entries_total": 47,
+      "entries_total": 48,
       "evidence_class_counts": {
         "exp:simulation": 43,
-        "lit:computational_neuroscience_model": 2,
+        "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 2
       },
       "experimental_confidence": 0.576,
       "fail_runs": 26,
-      "latest_run_id": "2026-02-15_mech056_prioritized_replay_followup",
-      "latest_timestamp_utc": "2026-02-15T15:13:00Z",
-      "literature_confidence": 0.868,
-      "overall_confidence": 0.722,
+      "latest_run_id": "2026-02-15_mech056_lit-0014_completion",
+      "latest_timestamp_utc": "2026-02-15T16:02:00Z",
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.721,
       "pass_runs": 17,
       "recent_entries": [
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [
-            "ledger_editing",
-            "stop:ledger_edit_detected_count>0"
-          ],
-          "run_id": "2026-02-15T145637Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:37Z"
-        },
         {
           "claim_id": "MECH-056",
           "confidence": 0.75,
@@ -695,12 +679,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:13:00Z"
+        },
+        {
+          "claim_id": "MECH-056",
+          "confidence": 0.73,
+          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0014 scoped to MECH-056.",
+          "evidence_class": "lit:computational_neuroscience_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech056_lit-0014_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:02:00Z"
         }
       ],
-      "runs_total": 47,
+      "runs_total": 48,
       "source_counts": {
         "experimental": 43,
-        "literature": 4
+        "literature": 5
       }
     },
     "MECH-057": {
@@ -797,43 +794,27 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=62 entry(s), lit=4 entry(s), exp_conf=0.523, lit_conf=0.882",
+      "confidence_rationale": "exp=62 entry(s), lit=5 entry(s), exp_conf=0.523, lit_conf=0.884",
       "direction_counts": {
         "mixed": 1,
-        "supports": 34,
+        "supports": 35,
         "unknown": 0,
         "weakens": 31
       },
-      "entries_total": 66,
+      "entries_total": 67,
       "evidence_class_counts": {
         "exp:ablation": 45,
         "exp:exploratory_simulation": 17,
-        "lit:machine_learning_experiment": 4
+        "lit:machine_learning_experiment": 5
       },
       "experimental_confidence": 0.523,
       "fail_runs": 25,
-      "latest_run_id": "2026-02-15_mech058_byol_target_anchor_followup",
-      "latest_timestamp_utc": "2026-02-15T15:14:00Z",
-      "literature_confidence": 0.882,
-      "overall_confidence": 0.703,
+      "latest_run_id": "2026-02-15_mech058_lit-0017_completion",
+      "latest_timestamp_utc": "2026-02-15T16:03:00Z",
+      "literature_confidence": 0.884,
+      "overall_confidence": 0.704,
       "pass_runs": 37,
       "recent_entries": [
-        {
-          "claim_id": "MECH-058",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "weakens",
-          "experiment_type": "jepa_anchor_ablation",
-          "failure_signatures": [
-            "mech058:ema_drift_under_shift",
-            "mech058:anchor_separation_collapse"
-          ],
-          "run_id": "2026-02-15T145637Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:37Z"
-        },
         {
           "claim_id": "MECH-058",
           "confidence": 0.75,
@@ -887,52 +868,49 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:14:00Z"
+        },
+        {
+          "claim_id": "MECH-058",
+          "confidence": 0.78,
+          "confidence_rationale": "BYOL directly uses a slow EMA target with a fast online predictor and shows stable learning without collapse, closely matching target-anchor/predictor timescale separation. Follow-up extraction scoped to MECH-058 anchor/predictor timescale separation. Proposal completion extraction for LIT-0017 scoped to MECH-058.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_058",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech058_lit-0017_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:03:00Z"
         }
       ],
-      "runs_total": 66,
+      "runs_total": 67,
       "source_counts": {
         "experimental": 62,
-        "literature": 4
+        "literature": 5
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=62 entry(s), lit=5 entry(s), exp_conf=0.627, lit_conf=0.851",
+      "confidence_rationale": "exp=62 entry(s), lit=6 entry(s), exp_conf=0.627, lit_conf=0.848",
       "direction_counts": {
         "mixed": 14,
-        "supports": 34,
+        "supports": 35,
         "unknown": 0,
         "weakens": 19
       },
-      "entries_total": 67,
+      "entries_total": 68,
       "evidence_class_counts": {
         "exp:exploratory_simulation": 17,
         "exp:simulation": 45,
-        "lit:machine_learning_experiment": 5
+        "lit:machine_learning_experiment": 6
       },
       "experimental_confidence": 0.627,
       "fail_runs": 22,
-      "latest_run_id": "2026-02-15_mech059_uncertainty_decomposition_followup",
-      "latest_timestamp_utc": "2026-02-15T15:15:00Z",
-      "literature_confidence": 0.851,
-      "overall_confidence": 0.739,
+      "latest_run_id": "2026-02-15_mech059_lit-0019_completion",
+      "latest_timestamp_utc": "2026-02-15T16:04:00Z",
+      "literature_confidence": 0.848,
+      "overall_confidence": 0.737,
       "pass_runs": 40,
       "recent_entries": [
-        {
-          "claim_id": "MECH-059",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "jepa_uncertainty_channels",
-          "failure_signatures": [
-            "mech059:uncertainty_metric_gaming_detected",
-            "mech059:abstention_reliability_collapse"
-          ],
-          "run_id": "2026-02-15T145637Z_jepa-uncertainty-channels_seed29_deterministic_plus_dispersion_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T14:56:37Z"
-        },
         {
           "claim_id": "MECH-059",
           "confidence": 0.75,
@@ -987,52 +965,52 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:15:00Z"
+        },
+        {
+          "claim_id": "MECH-059",
+          "confidence": 0.67,
+          "confidence_rationale": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. Follow-up extraction scoped to MECH-059 confidence-channel decomposition. Proposal completion extraction for LIT-0019 scoped to MECH-059.",
+          "evidence_class": "lit:machine_learning_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech059_lit-0019_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:04:00Z"
         }
       ],
-      "runs_total": 67,
+      "runs_total": 68,
       "source_counts": {
         "experimental": 62,
-        "literature": 5
+        "literature": 6
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=73 entry(s), lit=8 entry(s), exp_conf=0.53, lit_conf=0.856",
+      "confidence_rationale": "exp=73 entry(s), lit=9 entry(s), exp_conf=0.53, lit_conf=0.86",
       "direction_counts": {
         "mixed": 3,
-        "supports": 41,
+        "supports": 42,
         "unknown": 0,
         "weakens": 37
       },
-      "entries_total": 81,
+      "entries_total": 82,
       "evidence_class_counts": {
         "exp:ablation": 55,
         "exp:exploratory_simulation": 18,
         "lit:computational_neuroscience_model": 1,
         "lit:machine_learning_experiment": 2,
-        "lit:neuroscience_experiment": 4,
+        "lit:neuroscience_experiment": 5,
         "lit:neuroscience_review": 1
       },
       "experimental_confidence": 0.53,
       "fail_runs": 31,
-      "latest_run_id": "2026-02-15_mech060_conflict_control_followup",
-      "latest_timestamp_utc": "2026-02-15T15:16:00Z",
-      "literature_confidence": 0.856,
-      "overall_confidence": 0.693,
+      "latest_run_id": "2026-02-15_mech060_lit-0021_completion",
+      "latest_timestamp_utc": "2026-02-15T16:05:00Z",
+      "literature_confidence": 0.86,
+      "overall_confidence": 0.695,
       "pass_runs": 42,
       "recent_entries": [
-        {
-          "claim_id": "MECH-060",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "commit_dual_error_channels",
-          "failure_signatures": [],
-          "run_id": "2026-02-15T145637Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:56:37Z"
-        },
         {
           "claim_id": "MECH-060",
           "confidence": 0.75,
@@ -1092,12 +1070,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:16:00Z"
+        },
+        {
+          "claim_id": "MECH-060",
+          "confidence": 0.78,
+          "confidence_rationale": "Empirical conflict-monitoring evidence links ACC signals to downstream control adjustment, strongly supporting control routing claims; mapping to specific habenula-style aversive gating and dual-error channel implementation is still partial. Follow-up extraction scoped to MECH-060 control arbitration and conflict-monitoring interface. Proposal completion extraction for LIT-0021 scoped to MECH-060.",
+          "evidence_class": "lit:neuroscience_experiment",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_prefrontal_control",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_mech060_lit-0021_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:05:00Z"
         }
       ],
-      "runs_total": 81,
+      "runs_total": 82,
       "source_counts": {
         "experimental": 73,
-        "literature": 8
+        "literature": 9
       }
     },
     "MECH-061": {
@@ -1329,41 +1320,428 @@
         "literature": 1
       }
     },
+    "Q-001": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q001_lit-0034_completion",
+      "latest_timestamp_utc": "2026-02-15T16:08:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-001",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-001; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_001",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q001_lit-0034_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:08:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-002": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q002_lit-0036_completion",
+      "latest_timestamp_utc": "2026-02-15T16:09:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-002",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-002; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_002",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q002_lit-0036_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:09:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-003": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q003_lit-0038_completion",
+      "latest_timestamp_utc": "2026-02-15T16:10:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-003",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-003; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_003",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q003_lit-0038_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:10:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-004": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q004_lit-0040_completion",
+      "latest_timestamp_utc": "2026-02-15T16:11:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-004",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-004; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_004",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q004_lit-0040_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:11:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-005": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q005_lit-0042_completion",
+      "latest_timestamp_utc": "2026-02-15T16:12:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-005",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-005; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_005",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q005_lit-0042_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:12:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-006": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q006_lit-0044_completion",
+      "latest_timestamp_utc": "2026-02-15T16:13:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-006",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-006; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_006",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q006_lit-0044_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:13:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-007": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q007_lit-0046_completion",
+      "latest_timestamp_utc": "2026-02-15T16:14:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-007",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-007; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_007",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q007_lit-0046_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:14:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-008": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q008_lit-0048_completion",
+      "latest_timestamp_utc": "2026-02-15T16:15:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-008",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-008; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_008",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q008_lit-0048_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:15:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-009": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q009_lit-0050_completion",
+      "latest_timestamp_utc": "2026-02-15T16:16:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-009",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-009; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_009",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q009_lit-0050_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:16:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "Q-010": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.46",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 1,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theory_mapping_gap": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "latest_run_id": "2026-02-15_q010_lit-0052_completion",
+      "latest_timestamp_utc": "2026-02-15T16:17:00Z",
+      "literature_confidence": 0.46,
+      "overall_confidence": 0.46,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "claim_id": "Q-010",
+          "confidence": 0.42,
+          "confidence_rationale": "Seed literature completion entry for Q-010; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+          "evidence_class": "lit:theory_mapping_gap",
+          "evidence_direction": "unknown",
+          "experiment_type": "targeted_review_q_010",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q010_lit-0052_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:17:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.37, lit_conf=0.8",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.37, lit_conf=0.852",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
-        "weakens": 4
+        "weakens": 5
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
         "exp:simulation": 2,
         "lit:computational_neuroscience_model": 1,
-        "lit:neuroscience_experiment": 2
+        "lit:neuroscience_experiment": 3
       },
       "experimental_confidence": 0.37,
       "fail_runs": 1,
-      "latest_run_id": "2026-02-15_q011_reverse_replay_reward_followup",
-      "latest_timestamp_utc": "2026-02-15T15:17:00Z",
-      "literature_confidence": 0.8,
-      "overall_confidence": 0.628,
+      "latest_run_id": "2026-02-15_q011_lit-0026_completion",
+      "latest_timestamp_utc": "2026-02-15T16:06:00Z",
+      "literature_confidence": 0.852,
+      "overall_confidence": 0.659,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "claim_id": "Q-011",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "trajectory_integrity",
-          "failure_signatures": [],
-          "run_id": "2026-02-13T060000Z_dummy-pass",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-13T06:00:00Z"
-        },
         {
           "claim_id": "Q-011",
           "confidence": 0.75,
@@ -1421,12 +1799,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:17:00Z"
+        },
+        {
+          "claim_id": "Q-011",
+          "confidence": 0.72,
+          "confidence_rationale": "Replay expression tracks reward-change structure rather than a fixed exploration floor, weakening the necessity of a minimum entropy floor as a universal hippocampal constraint. Follow-up extraction scoped to Q-011 replay-priority modulation under reward shifts. Proposal completion extraction for LIT-0026 scoped to Q-011.",
+          "evidence_class": "lit:neuroscience_experiment",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_011",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q011_lit-0026_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:06:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 2,
-        "literature": 3
+        "literature": 4
       }
     },
     "Q-012": {
@@ -1756,41 +2147,28 @@
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=25 entry(s), lit=3 entry(s), exp_conf=0.543, lit_conf=0.848",
+      "confidence_rationale": "exp=25 entry(s), lit=4 entry(s), exp_conf=0.543, lit_conf=0.898",
       "direction_counts": {
         "mixed": 0,
-        "supports": 15,
+        "supports": 16,
         "unknown": 0,
         "weakens": 13
       },
-      "entries_total": 28,
+      "entries_total": 29,
       "evidence_class_counts": {
         "exp:ablation": 24,
         "exp:exploratory_simulation": 1,
-        "lit:computational_neuroscience_theory": 2,
+        "lit:computational_neuroscience_theory": 3,
         "lit:neuroscience_theory": 1
       },
       "experimental_confidence": 0.543,
       "fail_runs": 13,
-      "latest_run_id": "2026-02-15_q017_uncertainty_neuromod_followup",
-      "latest_timestamp_utc": "2026-02-15T15:18:00Z",
-      "literature_confidence": 0.848,
-      "overall_confidence": 0.696,
+      "latest_run_id": "2026-02-15_q017_lit-0032_completion",
+      "latest_timestamp_utc": "2026-02-15T16:07:00Z",
+      "literature_confidence": 0.898,
+      "overall_confidence": 0.721,
       "pass_runs": 12,
       "recent_entries": [
-        {
-          "claim_id": "Q-017",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:ablation",
-          "evidence_direction": "supports",
-          "experiment_type": "control_axis_ablation",
-          "failure_signatures": [],
-          "run_id": "2026-02-15T145637Z_control-axis-ablation_seed29_full_axis_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-15T14:56:37Z"
-        },
         {
           "claim_id": "Q-017",
           "confidence": 0.75,
@@ -1849,12 +2227,25 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T15:18:00Z"
+        },
+        {
+          "claim_id": "Q-017",
+          "confidence": 0.79,
+          "confidence_rationale": "Provides direct theoretical separation of distinct uncertainty/control functions across neuromodulatory systems, supporting REE orthogonal control-axis decomposition. Follow-up extraction scoped to Q-017 uncertainty-sensitive control allocation. Proposal completion extraction for LIT-0032 scoped to Q-017.",
+          "evidence_class": "lit:computational_neuroscience_theory",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_063",
+          "failure_signatures": [],
+          "run_id": "2026-02-15_q017_lit-0032_completion",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-02-15T16:07:00Z"
         }
       ],
-      "runs_total": 28,
+      "runs_total": 29,
       "source_counts": {
         "experimental": 25,
-        "literature": 3
+        "literature": 4
       }
     }
   },
@@ -7365,9 +7756,243 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-02-15T15:18:00Z"
+    },
+    {
+      "claim_id": "ARC-018",
+      "confidence": 0.73,
+      "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0005 scoped to ARC-018.",
+      "evidence_class": "lit:computational_neuroscience_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_arc018_lit-0005_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:00:00Z"
+    },
+    {
+      "claim_id": "MECH-033",
+      "confidence": 0.73,
+      "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0008 scoped to MECH-033.",
+      "evidence_class": "lit:computational_neuroscience_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech033_lit-0008_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:01:00Z"
+    },
+    {
+      "claim_id": "MECH-056",
+      "confidence": 0.73,
+      "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0014 scoped to MECH-056.",
+      "evidence_class": "lit:computational_neuroscience_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech056_lit-0014_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:02:00Z"
+    },
+    {
+      "claim_id": "MECH-058",
+      "confidence": 0.78,
+      "confidence_rationale": "BYOL directly uses a slow EMA target with a fast online predictor and shows stable learning without collapse, closely matching target-anchor/predictor timescale separation. Follow-up extraction scoped to MECH-058 anchor/predictor timescale separation. Proposal completion extraction for LIT-0017 scoped to MECH-058.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_058",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech058_lit-0017_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:03:00Z"
+    },
+    {
+      "claim_id": "MECH-059",
+      "confidence": 0.67,
+      "confidence_rationale": "Explicit decomposition of aleatoric and epistemic uncertainty supports separating precision/uncertainty streams from residual prediction error, but is not JEPA-specific. Follow-up extraction scoped to MECH-059 confidence-channel decomposition. Proposal completion extraction for LIT-0019 scoped to MECH-059.",
+      "evidence_class": "lit:machine_learning_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech059_lit-0019_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:04:00Z"
+    },
+    {
+      "claim_id": "MECH-060",
+      "confidence": 0.78,
+      "confidence_rationale": "Empirical conflict-monitoring evidence links ACC signals to downstream control adjustment, strongly supporting control routing claims; mapping to specific habenula-style aversive gating and dual-error channel implementation is still partial. Follow-up extraction scoped to MECH-060 control arbitration and conflict-monitoring interface. Proposal completion extraction for LIT-0021 scoped to MECH-060.",
+      "evidence_class": "lit:neuroscience_experiment",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_prefrontal_control",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_mech060_lit-0021_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:05:00Z"
+    },
+    {
+      "claim_id": "Q-011",
+      "confidence": 0.72,
+      "confidence_rationale": "Replay expression tracks reward-change structure rather than a fixed exploration floor, weakening the necessity of a minimum entropy floor as a universal hippocampal constraint. Follow-up extraction scoped to Q-011 replay-priority modulation under reward shifts. Proposal completion extraction for LIT-0026 scoped to Q-011.",
+      "evidence_class": "lit:neuroscience_experiment",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_011",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q011_lit-0026_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:06:00Z"
+    },
+    {
+      "claim_id": "Q-017",
+      "confidence": 0.79,
+      "confidence_rationale": "Provides direct theoretical separation of distinct uncertainty/control functions across neuromodulatory systems, supporting REE orthogonal control-axis decomposition. Follow-up extraction scoped to Q-017 uncertainty-sensitive control allocation. Proposal completion extraction for LIT-0032 scoped to Q-017.",
+      "evidence_class": "lit:computational_neuroscience_theory",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_063",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q017_lit-0032_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:07:00Z"
+    },
+    {
+      "claim_id": "Q-001",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-001; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_001",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q001_lit-0034_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:08:00Z"
+    },
+    {
+      "claim_id": "Q-002",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-002; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_002",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q002_lit-0036_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:09:00Z"
+    },
+    {
+      "claim_id": "Q-003",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-003; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_003",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q003_lit-0038_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:10:00Z"
+    },
+    {
+      "claim_id": "Q-004",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-004; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_004",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q004_lit-0040_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:11:00Z"
+    },
+    {
+      "claim_id": "Q-005",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-005; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_005",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q005_lit-0042_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:12:00Z"
+    },
+    {
+      "claim_id": "Q-006",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-006; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_006",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q006_lit-0044_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:13:00Z"
+    },
+    {
+      "claim_id": "Q-007",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-007; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_007",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q007_lit-0046_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:14:00Z"
+    },
+    {
+      "claim_id": "Q-008",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-008; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_008",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q008_lit-0048_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:15:00Z"
+    },
+    {
+      "claim_id": "Q-009",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-009; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_009",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q009_lit-0050_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:16:00Z"
+    },
+    {
+      "claim_id": "Q-010",
+      "confidence": 0.42,
+      "confidence_rationale": "Seed literature completion entry for Q-010; source is indirect and does not yet provide direct mechanistic support, so direction is unknown pending targeted pull.",
+      "evidence_class": "lit:theory_mapping_gap",
+      "evidence_direction": "unknown",
+      "experiment_type": "targeted_review_q_010",
+      "failure_signatures": [],
+      "run_id": "2026-02-15_q010_lit-0052_completion",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-02-15T16:17:00Z"
     }
   ],
-  "generated_at_utc": "2026-02-15T14:59:53.493960Z",
+  "generated_at_utc": "2026-02-15T15:02:46.495933Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []
