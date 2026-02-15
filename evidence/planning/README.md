@@ -117,3 +117,12 @@ To ensure unfinished governance items persist across weekly/full-run agenda rege
 
 `run_governance_cycle.py` automatically merges all items with `status != done` into the generated agenda under
 `manual_carryover`.
+
+Quick capture commands:
+
+- add a task:
+  - `python3 evidence/planning/scripts/capture_carryover_item.py add --summary "Your task here" --priority high`
+- list open tasks:
+  - `python3 evidence/planning/scripts/capture_carryover_item.py list --open-only`
+- mark done:
+  - `python3 evidence/planning/scripts/capture_carryover_item.py done --item-id MCI-0002`

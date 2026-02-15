@@ -157,3 +157,11 @@ Use:
 
 Any item with `status != done` is automatically merged into each newly generated governance agenda so unfinished
 manual items persist across weekly and full-run cycles.
+
+Fast capture helper:
+
+```bash
+python3 evidence/planning/scripts/capture_carryover_item.py add --summary "Follow up X" --priority high
+python3 evidence/planning/scripts/capture_carryover_item.py list --open-only
+python3 evidence/planning/scripts/capture_carryover_item.py done --item-id MCI-0002
+```

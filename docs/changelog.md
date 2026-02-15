@@ -1657,3 +1657,6 @@ and weekly cadence cycles.
 - Updated planning docs:
   - `evidence/planning/README.md`
   - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+- Added quick-capture helper:
+  - `evidence/planning/scripts/capture_carryover_item.py`
+  - supports `add`, `list`, and `done` actions for carryover tasks.
