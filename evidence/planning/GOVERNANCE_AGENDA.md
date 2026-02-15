@@ -1,11 +1,12 @@
 # Governance Agenda
 
-Generated: `2026-02-15T14:34:09.477247Z`
+Generated: `2026-02-15T14:41:04.845237Z`
 
 ## Cycle Status
 
 | step | status | command |
 |---|---|---|
+| `task_inbox_sync` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/sync_task_inbox.py` |
 | `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py` |
 | `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied` |
 | `evidence_build` | `ok` | `/opt/local/bin/python3 evidence/experiments/scripts/build_experiment_indexes.py` |
