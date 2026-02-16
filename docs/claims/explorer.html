@@ -496,6 +496,36 @@
       padding: 6px 0;
     }
 
+    .gov-context-links {
+      margin: 4px 0 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .gov-link-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f7f2e9;
+      font-size: 11px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .gov-claim-cell {
+      display: grid;
+      gap: 2px;
+      min-width: 200px;
+    }
+
+    .gov-claim-meta {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
     .command-list {
       display: grid;
       gap: 8px;
@@ -1040,6 +1070,55 @@
     const CMD_RUN_GOVERNANCE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py';
     const CMD_RUN_GOVERNANCE_STRICT = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
     const CMD_RECORD_DECISION_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/record_decision.py --claim-id <CLAIM_ID> --recommendation <RECOMMENDATION> --decision-needed \"<DECISION_NEEDED>\" --decision-status approved --selected-option \"<OPTION>\" --rationale \"<RATIONALE>\" --actor dgolden';
+    const REPO_ABS_PREFIX = '/Users/dgolden/Documents/GitHub/REE_assembly/';
+    const GOVERNANCE_CONTEXT_DOCS = {
+      thought_intake: [
+        'docs/thoughts/SWEEP_REPORT.md',
+        'docs/thoughts/thought_sweep.v1.json',
+      ],
+      conflict_resolution: [
+        'evidence/experiments/conflicts.md',
+        'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
+      ],
+      architecture_epoch_applicability: [
+        'evidence/planning/architecture_epoch_applicability.v1.json',
+        'evidence/planning/planning_criteria.v1.yaml',
+      ],
+      governance_decisions: [
+        'evidence/experiments/promotion_demotion_recommendations.md',
+        'evidence/decisions/decision_log.v1.jsonl',
+      ],
+      manual_carryover: [
+        'evidence/planning/manual_carryover_items.v1.json',
+        'evidence/planning/task_inbox.md',
+      ],
+      architecture_structure: [
+        'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
+        'evidence/planning/structure_review/latest/INDEX.md',
+      ],
+      structure_review_dossiers: [
+        'evidence/planning/structure_review/latest/INDEX.md',
+      ],
+      connectome_literature_pull: [
+        'evidence/planning/CONNECTOME_LITERATURE_PULL.md',
+        'evidence/planning/connectome_pull_state.v1.json',
+      ],
+      model_adjudication: [
+        'evidence/planning/planning_criteria.v1.yaml',
+        'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
+      ],
+      adjudication_cascade: [
+        'evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md',
+        'evidence/decisions/adjudication_cascade_state.v1.json',
+      ],
+      evidence_dispatch: [
+        'evidence/planning/experiment_proposals.v1.json',
+      ],
+      maintenance: [
+        'evidence/experiments/claim_evidence.v1.json',
+        'evidence/experiments/TODOs.md',
+      ],
+    };
 
     const FALLBACK_THOUGHT_PROMPT = `You are the AI agent maintaining the REE repository (Codex in this session). I am going to describe a thought, concern, or new understanding about REE in free text.
 
@@ -1148,6 +1227,21 @@ END CONFLICT RESOLUTION`;
           { title: 'REE Minimum Spec', path: '../REE_MIN_SPEC.md' },
           { title: 'REE Overview', path: '../REE_overview.md' },
           { title: 'REE Failure Modes', path: '../REE_failure_modes.md' },
+        ],
+      },
+      {
+        label: 'Governance / Planning',
+        docs: [
+          { title: 'Governance Agenda', path: '../../evidence/planning/GOVERNANCE_AGENDA.md' },
+          { title: 'Architecture Gap Register', path: '../../evidence/planning/ARCHITECTURE_GAP_REGISTER.md' },
+          { title: 'Connectome Literature Pull', path: '../../evidence/planning/CONNECTOME_LITERATURE_PULL.md' },
+          { title: 'Planning README', path: '../../evidence/planning/README.md' },
+          { title: 'Task Inbox', path: '../../evidence/planning/task_inbox.md' },
+          { title: 'Manual Carryover Items', path: '../../evidence/planning/manual_carryover_items.v1.json' },
+          { title: 'Planning Criteria', path: '../../evidence/planning/planning_criteria.v1.yaml' },
+          { title: 'Structure Review Index', path: '../../evidence/planning/structure_review/latest/INDEX.md' },
+          { title: 'Connectome Pull State', path: '../../evidence/planning/connectome_pull_state.v1.json' },
+          { title: 'Experiment Proposals', path: '../../evidence/planning/experiment_proposals.v1.json' },
         ],
       },
     ];
@@ -1731,6 +1825,91 @@ END CONFLICT RESOLUTION`;
       return stripTicks(value);
     }
 
+    function normalizeClaimId(value) {
+      if (value === null || value === undefined) return '';
+      const match = stripTicks(value).match(/\b(INV|ARC|MECH|IMPL|Q)-\d{3}\b/);
+      return match ? match[0] : '';
+    }
+
+    function repoRelativePath(location) {
+      if (!location) return '';
+      let path = stripTicks(location).trim();
+      if (!path) return '';
+      if (path.match(/^https?:\/\//)) return path;
+      if (path.startsWith(REPO_ABS_PREFIX)) {
+        path = path.slice(REPO_ABS_PREFIX.length);
+      } else {
+        const marker = '/REE_assembly/';
+        const markerIdx = path.indexOf(marker);
+        if (markerIdx !== -1) path = path.slice(markerIdx + marker.length);
+      }
+      if (path.startsWith('./') || path.startsWith('../') || path.startsWith('#')) return path;
+      if (path.startsWith('/')) path = path.slice(1);
+      if (path.startsWith('docs/')) return '../' + path.slice(5);
+      return '../../' + path;
+    }
+
+    function checkpointLabel(key) {
+      if (!key) return '';
+      return key.replace(/_/g, ' ');
+    }
+
+    function collectCheckpointContextDocs(checkpointKey, checkpointData) {
+      const docs = new Set((GOVERNANCE_CONTEXT_DOCS[checkpointKey] || []).map(stripTicks));
+      const pathFields = ['queue_path', 'patch_queue_path', 'report_path', 'index_path', 'source_path'];
+      pathFields.forEach(field => {
+        const value = checkpointData && checkpointData[field];
+        if (value) docs.add(stripTicks(value));
+      });
+      const itemPathFields = ['dossier_md_path', 'dossier_json_path'];
+      const items = checkpointData && Array.isArray(checkpointData.items) ? checkpointData.items : [];
+      items.slice(0, 10).forEach(item => {
+        itemPathFields.forEach(field => {
+          if (item && item[field]) docs.add(stripTicks(item[field]));
+        });
+      });
+      return Array.from(docs);
+    }
+
+    function renderContextLinks(paths) {
+      if (!paths || !paths.length) return '';
+      return `<div class="gov-context-links">${paths.map(path => {
+        const href = repoRelativePath(path);
+        const label = stripTicks(path).replace(REPO_ABS_PREFIX, '');
+        return `<a class="gov-link-chip" href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
+      }).join('')}</div>`;
+    }
+
+    function renderCheckpointMeta(checkpointKey, checkpointData) {
+      const prompt = checkpointData && checkpointData.prompt
+        ? `<div class="gov-meta">${escapeHtml(checkpointData.prompt)}</div>`
+        : '';
+      const contextDocs = collectCheckpointContextDocs(checkpointKey, checkpointData);
+      const contextLinks = renderContextLinks(contextDocs);
+      return `${prompt}${contextLinks}`;
+    }
+
+    function renderClaimCell(rawClaimId) {
+      const claimId = normalizeClaimId(rawClaimId);
+      if (!claimId) return escapeHtml(toCellText(rawClaimId)) || '-';
+      const claim = claimMap.get(claimId);
+      if (!claim) return `<code>${escapeHtml(claimId)}</code>`;
+      const subject = claim.subject ? escapeHtml(claim.subject) : '';
+      const type = claim.type ? escapeHtml(claim.type.replace(/_/g, ' ')) : '';
+      const loc = claim.location ? repoRelativePath(claim.location) : '';
+      const locHtml = loc
+        ? `<div class="gov-claim-meta"><a href="${escapeHtml(loc)}" target="_blank" rel="noopener">spec anchor</a></div>`
+        : '';
+      return `
+        <div class="gov-claim-cell">
+          <div><code>${escapeHtml(claimId)}</code></div>
+          ${subject ? `<div>${subject}</div>` : ''}
+          ${type ? `<div class="gov-claim-meta">${type}</div>` : ''}
+          ${locHtml}
+        </div>
+      `;
+    }
+
     function stalenessBadge(generatedAtUtc) {
       if (!generatedAtUtc) return { label: 'unknown', cls: 'old' };
       const then = new Date(generatedAtUtc);
@@ -1748,6 +1927,10 @@ END CONFLICT RESOLUTION`;
       const head = columns.map(col => `<th>${escapeHtml(col.label)}</th>`).join('');
       const body = rows.map(row => {
         const cells = columns.map(col => {
+          if (col.render) {
+            const rendered = col.render(row[col.key], row);
+            return `<td>${rendered || '-'}</td>`;
+          }
           const raw = col.format ? col.format(row[col.key], row) : row[col.key];
           return `<td>${escapeHtml(toCellText(raw)) || '-'}</td>`;
         }).join('');
@@ -1869,6 +2052,11 @@ END CONFLICT RESOLUTION`;
         .slice(0, 15);
 
       const allProposals = governanceProposals && governanceProposals.items ? governanceProposals.items : [];
+      const checkpointGuideRows = Object.entries(checkpoints).map(([key, checkpoint]) => ({
+        checkpoint: checkpointLabel(key),
+        prompt: checkpoint && checkpoint.prompt ? checkpoint.prompt : '',
+        context_docs: collectCheckpointContextDocs(key, checkpoint),
+      }));
 
       const generatedLabel = generatedAt ? new Date(generatedAt).toLocaleString() : 'unknown';
       const loadedLabel = governanceLoadedAt ? new Date(governanceLoadedAt).toLocaleTimeString() : 'unknown';
@@ -1893,7 +2081,20 @@ END CONFLICT RESOLUTION`;
       const checkpointSections = `
         <div class="gov-sections">
           <div class="gov-section">
+            <h3>Checkpoint Guide</h3>
+            ${renderGovTable(
+              checkpointGuideRows,
+              [
+                { key: 'checkpoint', label: 'checkpoint' },
+                { key: 'prompt', label: 'prompt' },
+                { key: 'context_docs', label: 'context_docs', render: value => renderContextLinks(value) },
+              ],
+              'No checkpoints available.'
+            )}
+          </div>
+          <div class="gov-section">
             <h3>Thought Intake</h3>
+            ${renderCheckpointMeta('thought_intake', checkpoints.thought_intake)}
             ${renderGovTable(
               thoughtItems,
               [
@@ -1905,10 +2106,11 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>Conflict Resolution</h3>
+            ${renderCheckpointMeta('conflict_resolution', checkpoints.conflict_resolution)}
             ${renderGovTable(
               conflictItems,
               [
-                { key: 'claim_id', label: 'claim_id' },
+                { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
                 { key: 'conflict_types', label: 'conflict_types' },
                 { key: 'conflict_ratio', label: 'conflict_ratio' },
                 { key: 'latest', label: 'latest' },
@@ -1918,10 +2120,11 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>Governance Decisions</h3>
+            ${renderCheckpointMeta('governance_decisions', checkpoints.governance_decisions)}
             ${renderGovTable(
               decisionItems,
               [
-                { key: 'claim_id', label: 'claim_id' },
+                { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
                 { key: 'decision_needed', label: 'decision_needed' },
                 { key: 'recommendation', label: 'recommendation' },
                 { key: 'decision_status', label: 'decision_status' },
@@ -1931,11 +2134,15 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>Backlog (High Priority)</h3>
+            ${renderContextLinks([
+              'evidence/planning/evidence_backlog.v1.json',
+              'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
+            ])}
             ${renderGovTable(
               highBacklogRows,
               [
                 { key: 'backlog_id', label: 'backlog_id' },
-                { key: 'claim_id', label: 'claim_id' },
+                { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
                 { key: 'evidence_needed', label: 'evidence_needed' },
                 { key: 'reasons', label: 'reasons' },
               ],
@@ -1944,6 +2151,7 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>Evidence Dispatch by Repo</h3>
+            ${renderCheckpointMeta('evidence_dispatch', checkpoints.evidence_dispatch)}
             ${renderGovTable(
               dispatchByRepo,
               [
@@ -1957,11 +2165,12 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>High Priority Proposals</h3>
+            ${renderCheckpointMeta('evidence_dispatch', checkpoints.evidence_dispatch)}
             ${renderGovTable(
               highPriority,
               [
                 { key: 'proposal_id', label: 'proposal_id' },
-                { key: 'claim_id', label: 'claim_id' },
+                { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
                 { key: 'proposal_type', label: 'type' },
                 { key: 'target_repo', label: 'target_repo' },
                 { key: 'status', label: 'status' },
@@ -1974,6 +2183,7 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="gov-section">
             <h3>Maintenance Flags</h3>
+            ${renderCheckpointMeta('maintenance', checkpoints.maintenance)}
             ${renderGovTable(
               maintenanceRuns,
               [
@@ -2346,9 +2556,7 @@ END CONFLICT RESOLUTION`;
     }
 
     function relativeLink(location) {
-      if (!location) return '';
-      if (location.startsWith('docs/')) return '../' + location.slice(5);
-      return location;
+      return repoRelativePath(location);
     }
 
     const metaPrefixes = [
