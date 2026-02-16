@@ -36,6 +36,71 @@ def _safe_float(value: Any, default: float = 0.0) -> float:
         return default
 
 
+def _load_connectome_completion_settings(
+    planning_criteria: dict[str, Any],
+) -> dict[str, float | int]:
+    thresholds = (
+        planning_criteria.get("thresholds", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(thresholds, dict):
+        thresholds = {}
+    return {
+        "min_entries": max(1, int(thresholds.get("connectome_pull_completion_min_entries", 4))),
+        "min_non_support_entries": max(
+            1, int(thresholds.get("connectome_pull_completion_min_non_support_entries", 1))
+        ),
+        "reopen_conflict_ratio": float(
+            thresholds.get("connectome_pull_reopen_conflict_ratio", 0.9)
+        ),
+    }
+
+
+def _count_literature_completion(
+    repo_root: Path,
+    literature_type: str,
+    claim_id: str,
+) -> dict[str, Any]:
+    entries_root = repo_root / "evidence" / "literature" / literature_type / "entries"
+    counts = {
+        "entries_total": 0,
+        "non_support_entries": 0,
+        "latest_timestamp_utc": "",
+    }
+    if not entries_root.exists():
+        return counts
+
+    latest_ts = ""
+    for record_path in sorted(entries_root.glob("**/record.json")):
+        payload = _load_json(record_path)
+        if claim_id not in payload.get("claim_ids_tested", []):
+            continue
+        counts["entries_total"] += 1
+        direction = str(payload.get("evidence_direction", "unknown")).strip().lower()
+        if direction in {"weakens", "mixed"}:
+            counts["non_support_entries"] += 1
+        ts = str(payload.get("timestamp_utc", "")).strip()
+        if ts and ts > latest_ts:
+            latest_ts = ts
+
+    counts["latest_timestamp_utc"] = latest_ts
+    return counts
+
+
+def _load_state(path: Path) -> dict[str, dict[str, Any]]:
+    payload = _load_json(path)
+    items = payload.get("items", []) if isinstance(payload, dict) else []
+    out: dict[str, dict[str, Any]] = {}
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        claim_id = str(item.get("claim_id", "")).strip()
+        if claim_id:
+            out[claim_id] = item
+    return out
+
+
 def _load_claim_registry(path: Path) -> dict[str, dict[str, Any]]:
     claims: dict[str, dict[str, Any]] = {}
     if not path.exists():
@@ -371,6 +436,7 @@ def _format_markdown(doc: dict[str, Any]) -> str:
     generated_at = str(doc.get("generated_at_utc", ""))
     cycle_date = str(doc.get("cycle_date", ""))
     items = doc.get("items", [])
+    completed_items = doc.get("completed_items", [])
 
     lines: list[str] = []
     lines.append("# Connectome Literature Pull Queue")
@@ -380,6 +446,10 @@ def _format_markdown(doc: dict[str, Any]) -> str:
     lines.append("")
     lines.append(
         "This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure."
+    )
+    lines.append("")
+    lines.append(
+        f"Active queue items: `{len(items)}`. Completed items tracked: `{len(completed_items)}`."
     )
     lines.append("")
     lines.append("| pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |")
@@ -410,6 +480,7 @@ def _format_markdown(doc: dict[str, Any]) -> str:
         lines.append(f"## {claim_id}")
         lines.append("")
         lines.append(f"- Pull ID: `{item.get('pull_id', '')}`")
+        lines.append(f"- Status: `{item.get('status', 'proposed')}`")
         lines.append(f"- Objective: {item.get('objective', '')}")
         lines.append(f"- Claim description: {item.get('plain_english_claim_description', '')}")
         lines.append(f"- REE fit: {item.get('plain_english_ree_fit_description', '')}")
@@ -433,6 +504,40 @@ def _format_markdown(doc: dict[str, Any]) -> str:
                 f"  - `{track.get('track_id', '')}` {track.get('focus', '')}; "
                 + f"query stems: {', '.join(f'`{x}`' for x in track.get('query_stems', []))}"
             )
+        completion = item.get("completion_status", {})
+        if isinstance(completion, dict):
+            lines.append(
+                "- Completion check: "
+                + f"entries_total={completion.get('entries_total', 0)}, "
+                + f"non_support_entries={completion.get('non_support_entries', 0)}, "
+                + f"status_reason={completion.get('status_reason', '-')}"
+            )
+        lines.append("")
+
+    if completed_items:
+        lines.append("## Completed Pulls")
+        lines.append("")
+        lines.append(
+            "These claims currently satisfy completion criteria and are excluded from the active queue unless reopened."
+        )
+        lines.append("")
+        lines.append("| pull_id | claim_id | status_reason | conflict_ratio |")
+        lines.append("|---|---|---|---:|")
+        for item in completed_items:
+            signals = item.get("selection_signals", {})
+            completion = item.get("completion_status", {})
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{item.get('pull_id', '')}`",
+                        f"`{item.get('claim_id', '')}`",
+                        str(completion.get("status_reason", "-")),
+                        _fmt_number(_safe_float(signals.get("conflict_ratio", 0.0), 0.0)),
+                    ]
+                )
+                + " |"
+            )
         lines.append("")
 
     lines.append("## Copy/Paste Prompt")
@@ -447,10 +552,13 @@ def _format_markdown(doc: dict[str, Any]) -> str:
     lines.append("- `evidence/literature/schemas/v1/literature_evidence.schema.json`")
     lines.append("")
     lines.append("Queue items:")
-    for item in items:
-        lines.append(
-            f"- `{item.get('pull_id', '')}` / `{item.get('claim_id', '')}` / `{item.get('suggested_literature_type', '')}`"
-        )
+    if not items:
+        lines.append("- `_none_` (active queue drained; monitor for reopen conditions)")
+    else:
+        for item in items:
+            lines.append(
+                f"- `{item.get('pull_id', '')}` / `{item.get('claim_id', '')}` / `{item.get('suggested_literature_type', '')}`"
+            )
     lines.append("")
     lines.append("Per-entry requirements (mandatory):")
     lines.append("- preserve source wording in summary and add explicit REE translation")
@@ -501,6 +609,16 @@ def main() -> int:
         help="Path to claim registry file.",
     )
     parser.add_argument(
+        "--planning-criteria",
+        default="evidence/planning/planning_criteria.v1.yaml",
+        help="Path to planning criteria JSON-compatible YAML.",
+    )
+    parser.add_argument(
+        "--state-json",
+        default="evidence/planning/connectome_pull_state.v1.json",
+        help="Path to connectome pull persistent state JSON.",
+    )
+    parser.add_argument(
         "--output-json",
         default="evidence/planning/connectome_literature_pull.v1.json",
         help="Output JSON path.",
@@ -515,6 +633,11 @@ def main() -> int:
         action="store_true",
         help="Include non-triggered architecture gap items.",
     )
+    parser.add_argument(
+        "--include-completed",
+        action="store_true",
+        help="Include completed pull items in active queue output.",
+    )
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
@@ -522,6 +645,10 @@ def main() -> int:
     matrix = _load_json(repo_root / args.claim_matrix)
     claims = _load_claim_registry(repo_root / args.claims_file)
     dependents = _dependents_map(claims)
+    planning_criteria = _load_json(repo_root / args.planning_criteria)
+    completion_settings = _load_connectome_completion_settings(planning_criteria)
+    state_path = repo_root / args.state_json
+    prior_state = _load_state(state_path)
 
     generated_at = _now_utc()
     cycle_date = str(gap_doc.get("generated_at_utc", generated_at))[:10]
@@ -540,7 +667,7 @@ def main() -> int:
         )
     )
 
-    items: list[dict[str, Any]] = []
+    all_items: list[dict[str, Any]] = []
     matrix_claims = matrix.get("claims", {}) if isinstance(matrix, dict) else {}
     for idx, gap_item in enumerate(selected, start=1):
         claim_id = str(gap_item.get("claim_id", "")).strip()
@@ -557,15 +684,105 @@ def main() -> int:
                 "depends_on": [],
             },
         )
-        items.append(
-            _build_item(
-                idx=idx,
-                gap_item=gap_item,
-                claim_meta=claim_meta,
-                registry_meta=registry_meta,
-                dependents=dependents.get(claim_id, []),
-            )
+        item = _build_item(
+            idx=idx,
+            gap_item=gap_item,
+            claim_meta=claim_meta,
+            registry_meta=registry_meta,
+            dependents=dependents.get(claim_id, []),
         )
+        lit_type = str(item.get("suggested_literature_type", ""))
+        completion = _count_literature_completion(repo_root, lit_type, claim_id)
+        completion_ready = bool(
+            completion["entries_total"] >= int(completion_settings["min_entries"])
+            and completion["non_support_entries"] >= int(completion_settings["min_non_support_entries"])
+        )
+        conflict_ratio = _safe_float(
+            item.get("selection_signals", {}).get("conflict_ratio", 0.0), 0.0
+        )
+        prev = prior_state.get(claim_id, {})
+        prev_status = str(prev.get("status", "proposed")).strip().lower()
+        was_completed = prev_status == "completed"
+        reopen_conflict_ratio = float(completion_settings["reopen_conflict_ratio"])
+
+        status = "proposed"
+        status_reason = "awaiting_connectome_evidence"
+        if completion_ready and conflict_ratio < reopen_conflict_ratio:
+            status = "completed"
+            status_reason = "completion_criteria_met"
+        elif was_completed and conflict_ratio < reopen_conflict_ratio:
+            status = "completed"
+            status_reason = "preserve_completed_state"
+        elif was_completed and conflict_ratio >= reopen_conflict_ratio:
+            status = "proposed"
+            status_reason = "reopened_due_conflict_pressure"
+        elif completion_ready and conflict_ratio >= reopen_conflict_ratio:
+            status = "proposed"
+            status_reason = "completion_met_but_reopened_for_high_conflict"
+
+        item["status"] = status
+        item["completion_status"] = {
+            "entries_total": int(completion["entries_total"]),
+            "non_support_entries": int(completion["non_support_entries"]),
+            "latest_timestamp_utc": str(completion.get("latest_timestamp_utc", "")),
+            "min_entries": int(completion_settings["min_entries"]),
+            "min_non_support_entries": int(completion_settings["min_non_support_entries"]),
+            "reopen_conflict_ratio": float(completion_settings["reopen_conflict_ratio"]),
+            "status_reason": status_reason,
+        }
+        all_items.append(item)
+
+    active_items = [
+        item for item in all_items if args.include_completed or str(item.get("status", "")) != "completed"
+    ]
+    completed_items = [
+        item for item in all_items if str(item.get("status", "")) == "completed"
+    ]
+
+    state_items: list[dict[str, Any]] = []
+    for item in all_items:
+        claim_id = str(item.get("claim_id", "")).strip()
+        prev = prior_state.get(claim_id, {})
+        prev_status = str(prev.get("status", "")).strip().lower()
+        status = str(item.get("status", "proposed")).strip().lower()
+        last_status_change = str(prev.get("last_status_change_utc", generated_at))
+        if prev_status != status:
+            last_status_change = generated_at
+        completed_at = str(prev.get("completed_at_utc", ""))
+        if status == "completed":
+            if not completed_at:
+                completed_at = generated_at
+        else:
+            completed_at = ""
+        state_items.append(
+            {
+                "claim_id": claim_id,
+                "pull_id": str(item.get("pull_id", "")),
+                "status": status,
+                "last_status_change_utc": last_status_change,
+                "completed_at_utc": completed_at,
+                "status_reason": str(item.get("completion_status", {}).get("status_reason", "")),
+                "conflict_ratio": round(
+                    _safe_float(item.get("selection_signals", {}).get("conflict_ratio", 0.0), 0.0), 3
+                ),
+                "entries_total": int(item.get("completion_status", {}).get("entries_total", 0)),
+                "non_support_entries": int(
+                    item.get("completion_status", {}).get("non_support_entries", 0)
+                ),
+                "latest_timestamp_utc": str(
+                    item.get("completion_status", {}).get("latest_timestamp_utc", "")
+                ),
+            }
+        )
+
+    state_doc = {
+        "schema_version": "connectome_pull_state/v1",
+        "generated_at_utc": generated_at,
+        "source_queue_json": (repo_root / args.output_json).as_posix(),
+        "items": sorted(state_items, key=lambda x: str(x.get("claim_id", ""))),
+    }
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state_path.write_text(json.dumps(state_doc, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     doc = {
         "schema_version": "connectome_literature_pull/v1",
@@ -581,9 +798,18 @@ def main() -> int:
             "consider_new_structure_items": sum(
                 1 for item in selected if bool(item.get("consider_new_structure", False))
             ),
-            "total_selected_items": len(items),
+            "total_selected_items": len(all_items),
+            "active_queue_items": len(active_items),
+            "completed_items": len(completed_items),
         },
-        "items": items,
+        "completion_policy": {
+            "min_entries": int(completion_settings["min_entries"]),
+            "min_non_support_entries": int(completion_settings["min_non_support_entries"]),
+            "reopen_conflict_ratio": float(completion_settings["reopen_conflict_ratio"]),
+            "state_path": state_path.as_posix(),
+        },
+        "items": active_items,
+        "completed_items": completed_items,
     }
 
     output_json_path = repo_root / args.output_json
@@ -595,9 +821,13 @@ def main() -> int:
 
     print(f"Wrote connectome literature pull JSON: {output_json_path.as_posix()}")
     print(f"Wrote connectome literature pull MD: {output_md_path.as_posix()}")
+    print(f"Wrote connectome pull state JSON: {state_path.as_posix()}")
+    print(
+        "Connectome queue status: "
+        + f"active={len(active_items)} completed={len(completed_items)} total_selected={len(all_items)}"
+    )
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

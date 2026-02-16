@@ -1175,6 +1175,19 @@ def _default_planning_criteria() -> dict[str, Any]:
             "external_precedence_conflict_ratio": 0.55,
             "external_precedence_min_confidence_delta": 0.05,
             "external_precedence_min_total_entries": 6,
+            "external_precedence_min_experimental_entries": 4,
+            "external_precedence_min_literature_entries": 4,
+            "external_precedence_min_recurring_signatures": 2,
+            "proposal_saturation_conflict_ratio": 0.70,
+            "proposal_saturation_min_experimental_entries": 16,
+            "proposal_saturation_recent_window": 12,
+            "proposal_saturation_min_recent_entries": 8,
+            "proposal_saturation_max_unique_signature_sets": 2,
+            "proposal_saturation_max_directions": 2,
+            "escalation_min_conflict_ratio": 0.75,
+            "escalation_min_experimental_entries": 24,
+            "escalation_min_recurring_signatures": 2,
+            "escalation_min_max_signature_count": 8,
         },
         "model_adjudication": {
             "external_precedence_enabled": True,
@@ -1854,7 +1867,9 @@ def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
     entries_total = int(signals.get("entries_total", 0))
     # Lower rank is more urgent.
     # 0: architecture-pressure conflict triage, 1: active conflicts, 2+: evidence-coverage gaps.
-    if "anti_lock_in_review_required" in reasons or "external_precedence_pressure" in reasons:
+    if "escalate_architecture_decision" in reasons:
+        tier = 0
+    elif "anti_lock_in_review_required" in reasons or "external_precedence_pressure" in reasons:
         tier = 0
     elif "consider_new_structure" in reasons:
         tier = 1
@@ -1871,6 +1886,7 @@ def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
 
 def _priority_from_reasons(reasons: list[str]) -> str:
     high_markers = {
+        "escalate_architecture_decision",
         "directional_conflict_alert",
         "active_conflict",
         "missing_experimental_evidence",
@@ -1950,6 +1966,41 @@ def _write_planning_outputs(
     external_precedence_min_total_entries = max(
         1, int(thresholds.get("external_precedence_min_total_entries", 6))
     )
+    external_precedence_min_exp_entries = max(
+        1, int(thresholds.get("external_precedence_min_experimental_entries", 4))
+    )
+    external_precedence_min_lit_entries = max(
+        1, int(thresholds.get("external_precedence_min_literature_entries", 4))
+    )
+    external_precedence_min_recurring = max(
+        1, int(thresholds.get("external_precedence_min_recurring_signatures", 2))
+    )
+    saturation_conflict_ratio = float(thresholds.get("proposal_saturation_conflict_ratio", 0.70))
+    saturation_min_exp_entries = max(
+        1, int(thresholds.get("proposal_saturation_min_experimental_entries", 16))
+    )
+    saturation_recent_window = max(
+        1, int(thresholds.get("proposal_saturation_recent_window", 12))
+    )
+    saturation_min_recent_entries = max(
+        1, int(thresholds.get("proposal_saturation_min_recent_entries", 8))
+    )
+    saturation_max_signature_sets = max(
+        1, int(thresholds.get("proposal_saturation_max_unique_signature_sets", 2))
+    )
+    saturation_max_directions = max(
+        1, int(thresholds.get("proposal_saturation_max_directions", 2))
+    )
+    escalation_min_conflict_ratio = float(thresholds.get("escalation_min_conflict_ratio", 0.75))
+    escalation_min_exp_entries = max(
+        1, int(thresholds.get("escalation_min_experimental_entries", 24))
+    )
+    escalation_min_recurring = max(
+        1, int(thresholds.get("escalation_min_recurring_signatures", 2))
+    )
+    escalation_min_signature_count = max(
+        1, int(thresholds.get("escalation_min_max_signature_count", 8))
+    )
 
     default_exp_repo = str(routing.get("experimental_default_repo", "ree-v2"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
@@ -2028,6 +2079,9 @@ def _write_planning_outputs(
         confidence_delta_lit_minus_exp = 0.0
         external_precedence_candidate = False
         anti_lock_in_review_required = False
+        saturation_guard_engaged = False
+        escalate_architecture_decision = False
+        saturation_signal_details: dict[str, Any] = {}
 
         signature_counts: Counter[str] = Counter()
         for entry in claim_entries:
@@ -2040,6 +2094,30 @@ def _write_planning_outputs(
             for sig, count in signature_counts.most_common()
             if count >= consider_min_sig_repeats
         ]
+        max_recurring_signature_count = (
+            int(recurring_signatures[0].get("count", 0)) if recurring_signatures else 0
+        )
+
+        exp_entries = [
+            entry
+            for entry in claim_entries
+            if str(entry.get("source_type", "")) == "experimental"
+        ]
+        exp_entries.sort(key=lambda x: (str(x.get("timestamp_utc", "")), str(x.get("run_id", ""))))
+        recent_exp_entries = exp_entries[-saturation_recent_window:]
+        if not recent_exp_entries:
+            recent_exp_entries = exp_entries
+        recent_direction_set = {
+            str(entry.get("evidence_direction", "unknown")) for entry in recent_exp_entries
+        }
+        unique_signature_sets: set[tuple[str, ...]] = set()
+        for entry in recent_exp_entries:
+            sigs = {
+                str(sig).strip() for sig in entry.get("failure_signatures", []) if str(sig).strip()
+            }
+            if not sigs:
+                sigs = {"__none__"}
+            unique_signature_sets.add(tuple(sorted(sigs)))
 
         lit_direction_counts: Counter[str] = Counter()
         for entry in claim_entries:
@@ -2146,8 +2224,9 @@ def _write_planning_outputs(
             external_precedence_enabled
             and conflict_ratio >= external_precedence_conflict_ratio
             and entries_total >= external_precedence_min_total_entries
-            and lit_count > 0
-            and exp_count > 0
+            and lit_count >= external_precedence_min_lit_entries
+            and exp_count >= external_precedence_min_exp_entries
+            and len(recurring_signatures) >= external_precedence_min_recurring
             and confidence_delta_lit_minus_exp >= external_precedence_min_conf_delta
         ):
             structure_signals.append("external_precedence_pressure")
@@ -2167,6 +2246,41 @@ def _write_planning_outputs(
             evidence_needed.add("experimental")
             if lit_count == 0:
                 evidence_needed.add("literature")
+
+        if (
+            conflict_ratio >= saturation_conflict_ratio
+            and exp_count >= saturation_min_exp_entries
+            and len(recurring_signatures) >= consider_min_distinct_sigs
+            and len(recent_exp_entries) >= saturation_min_recent_entries
+            and len(unique_signature_sets) <= saturation_max_signature_sets
+            and len(recent_direction_set) <= saturation_max_directions
+        ):
+            saturation_guard_engaged = True
+            saturation_signal_details = {
+                "recent_window_used": len(recent_exp_entries),
+                "unique_signature_sets": len(unique_signature_sets),
+                "unique_directions": len(recent_direction_set),
+            }
+            signals["proposal_saturation"] = dict(saturation_signal_details)
+            reasons.append("saturation_guard_hold")
+
+        if (
+            consider_new_structure
+            and conflict_ratio >= escalation_min_conflict_ratio
+            and exp_count >= escalation_min_exp_entries
+            and len(recurring_signatures) >= escalation_min_recurring
+            and max_recurring_signature_count >= escalation_min_signature_count
+        ):
+            escalate_architecture_decision = True
+            signals["escalation_required"] = True
+            reasons.append("escalate_architecture_decision")
+
+        # Saturation guard prevents infinite re-dispatch loops for stale experimental probes.
+        if saturation_guard_engaged and "experimental" in evidence_needed:
+            evidence_needed.discard("experimental")
+        # Escalation guard routes repeated-failure claims to architecture decisions before more routine reruns.
+        if escalate_architecture_decision and "experimental" in evidence_needed:
+            evidence_needed.discard("experimental")
 
         if claim_meta is not None and (structure_signals or recurring_signatures):
             architecture_items.append(
@@ -2195,11 +2309,16 @@ def _write_planning_outputs(
                     },
                     "external_precedence_candidate": external_precedence_candidate,
                     "anti_lock_in_review_required": anti_lock_in_review_required,
+                    "saturation_guard_engaged": saturation_guard_engaged,
+                    "escalate_architecture_decision": escalate_architecture_decision,
+                    "saturation_signal_details": saturation_signal_details,
                     "recurring_failure_signatures": recurring_signatures[:5],
                     "trigger_signals": sorted(set(structure_signals)),
                     "consider_new_structure": consider_new_structure,
                     "recommendation": (
-                        "consider_new_structure"
+                        "escalate_architecture_decision"
+                        if escalate_architecture_decision
+                        else "consider_new_structure"
                         if consider_new_structure
                         else "monitor_and_collect_targeted_evidence"
                     ),
@@ -2227,7 +2346,9 @@ def _write_planning_outputs(
             continue
 
         priority = _priority_from_reasons(reasons)
-        if not evidence_needed:
+        if not evidence_needed and not (
+            saturation_guard_engaged or escalate_architecture_decision
+        ):
             evidence_needed.add("experimental")
 
         next_action = "Run targeted experimental probe."
@@ -2250,6 +2371,16 @@ def _write_planning_outputs(
                 "Run anti-lock-in review and forbid schema-preserving tuning without selecting a "
                 "recorded conflict outcome."
             )
+        if "saturation_guard_hold" in reasons:
+            next_action = (
+                "Pause repetitive low-information reruns and require either a materially different "
+                "protocol variation or an architecture decision before new experimental dispatch."
+            )
+        if "escalate_architecture_decision" in reasons:
+            next_action = (
+                "Escalate to architecture decision queue now (retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim) "
+                "and hold additional routine reruns until the decision is recorded."
+            )
 
         backlog_items.append(
             {
@@ -2259,12 +2390,22 @@ def _write_planning_outputs(
                 "reasons": sorted(set(reasons)),
                 "signals": signals,
                 "evidence_needed": sorted(evidence_needed),
+                "recommendation": (
+                    "escalate_architecture_decision"
+                    if escalate_architecture_decision
+                    else "consider_new_structure"
+                    if consider_new_structure
+                    else "collect_targeted_evidence"
+                ),
                 "next_action": next_action,
                 "adjudication_context": {
                     "default_conflict_outcome": default_conflict_outcome,
                     "allowed_conflict_outcomes": allowed_conflict_outcomes,
                     "external_precedence_candidate": external_precedence_candidate,
                     "anti_lock_in_review_required": anti_lock_in_review_required,
+                    "saturation_guard_engaged": saturation_guard_engaged,
+                    "escalate_architecture_decision": escalate_architecture_decision,
+                    "saturation_signal_details": saturation_signal_details,
                     "cascade_policy": {
                         "enabled": cascade_enabled,
                         "trigger_outcomes": cascade_trigger_outcomes,
@@ -2411,6 +2552,19 @@ def _write_planning_outputs(
             "external_precedence_conflict_ratio": external_precedence_conflict_ratio,
             "external_precedence_min_confidence_delta": external_precedence_min_conf_delta,
             "external_precedence_min_total_entries": external_precedence_min_total_entries,
+            "external_precedence_min_experimental_entries": external_precedence_min_exp_entries,
+            "external_precedence_min_literature_entries": external_precedence_min_lit_entries,
+            "external_precedence_min_recurring_signatures": external_precedence_min_recurring,
+            "proposal_saturation_conflict_ratio": saturation_conflict_ratio,
+            "proposal_saturation_min_experimental_entries": saturation_min_exp_entries,
+            "proposal_saturation_recent_window": saturation_recent_window,
+            "proposal_saturation_min_recent_entries": saturation_min_recent_entries,
+            "proposal_saturation_max_unique_signature_sets": saturation_max_signature_sets,
+            "proposal_saturation_max_directions": saturation_max_directions,
+            "escalation_min_conflict_ratio": escalation_min_conflict_ratio,
+            "escalation_min_experimental_entries": escalation_min_exp_entries,
+            "escalation_min_recurring_signatures": escalation_min_recurring,
+            "escalation_min_max_signature_count": escalation_min_signature_count,
         },
         "model_adjudication": {
             "external_precedence_enabled": external_precedence_enabled,
@@ -2509,6 +2663,18 @@ def _write_planning_outputs(
                 arch_lines.append(
                     "  - external_precedence_candidate: yes; "
                     + f"delta_lit_minus_exp={_fmt_number(float(confidence_split.get('delta_lit_minus_exp', 0.0)))}"
+                )
+            if bool(item.get("saturation_guard_engaged", False)):
+                sat = item.get("saturation_signal_details", {})
+                arch_lines.append(
+                    "  - saturation_guard: engaged; "
+                    + f"recent_window_used={_fmt_number(float(sat.get('recent_window_used', 0)))}, "
+                    + f"unique_signature_sets={_fmt_number(float(sat.get('unique_signature_sets', 0)))}, "
+                    + f"unique_directions={_fmt_number(float(sat.get('unique_directions', 0)))}"
+                )
+            if bool(item.get("escalate_architecture_decision", False)):
+                arch_lines.append(
+                    "  - escalation_required: yes; route directly to architecture decision checkpoint."
                 )
 
     (planning_root / "ARCHITECTURE_GAP_REGISTER.md").write_text(

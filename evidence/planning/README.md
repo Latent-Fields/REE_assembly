@@ -11,6 +11,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `structure_review/latest/structure_review_report.v1.json`: latest dossier generation report.
 - `connectome_literature_pull.v1.json`: connectome-oriented literature pull queue for structure-pressure claims.
 - `CONNECTOME_LITERATURE_PULL.md`: human-readable connectome pull brief + copy/paste execution prompt.
+- `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
 - `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
 - `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, and `ree-v1-minimal`.

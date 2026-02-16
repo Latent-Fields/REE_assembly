@@ -169,6 +169,79 @@ def _parse_utc_timestamp(value: str) -> datetime | None:
         return None
 
 
+def _load_claim_registry(path: Path, warnings: list[str]) -> dict[str, dict[str, str]]:
+    claims: dict[str, dict[str, str]] = {}
+    if not path.exists():
+        warnings.append(f"Missing claim registry: {path.as_posix()}")
+        return claims
+
+    current: dict[str, str] | None = None
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.rstrip()
+        if line.startswith("- id:"):
+            if current and current.get("id", "").strip():
+                claims[current["id"]] = current
+            current = {
+                "id": line.split(":", 1)[1].strip(),
+                "claim_type": "",
+                "subject": "",
+                "location": "",
+            }
+            continue
+
+        if current is None:
+            continue
+
+        if line.startswith("  claim_type:"):
+            current["claim_type"] = line.split(":", 1)[1].strip()
+            continue
+        if line.startswith("  subject:"):
+            current["subject"] = line.split(":", 1)[1].strip()
+            continue
+        if line.startswith("  location:"):
+            current["location"] = line.split(":", 1)[1].strip()
+            continue
+
+    if current and current.get("id", "").strip():
+        claims[current["id"]] = current
+    return claims
+
+
+def _claim_type_label(claim_type: str) -> str:
+    labels = {
+        "architectural_commitment": "architecture commitment",
+        "mechanism_hypothesis": "mechanism hypothesis",
+        "open_question": "open question",
+        "implementation_note": "implementation note",
+        "invariant": "invariant",
+    }
+    token = str(claim_type).strip()
+    return labels.get(token, token or "claim")
+
+
+def _claim_reference(claim_id: str, claim_registry: dict[str, dict[str, str]]) -> str:
+    cid = _strip_ticks(str(claim_id))
+    if not cid:
+        return "`UNKNOWN` (missing claim id; see `docs/claims/claims.yaml`)"
+
+    meta = claim_registry.get(cid)
+    if not meta:
+        return f"`{cid}` (no registry metadata found; see `docs/claims/claims.yaml`)"
+
+    claim_type = _claim_type_label(str(meta.get("claim_type", "")))
+    subject = str(meta.get("subject", "")).replace(".", " / ").replace("_", " ").strip()
+    location = str(meta.get("location", "")).strip()
+
+    summary_bits: list[str] = [claim_type]
+    if subject:
+        summary_bits.append(subject)
+    summary = "; ".join(summary_bits)
+
+    if location:
+        return f"`{cid}` ({summary}; see `{location}`)"
+    return f"`{cid}` ({summary}; see `docs/claims/claims.yaml`)"
+
+
 def _build_architecture_epoch_applicability_report(
     claim_matrix: dict[str, Any],
     planning_criteria: dict[str, Any],
@@ -433,6 +506,7 @@ def _build_agenda(
         repo_root / "evidence/planning/manual_carryover_items.v1.json",
         warnings,
     )
+    claim_registry_meta = _load_claim_registry(repo_root / "docs/claims/claims.yaml", warnings)
     claim_matrix = _load_json_file(repo_root / "evidence/experiments/claim_evidence.v1.json", warnings)
     epoch_applicability = _build_architecture_epoch_applicability_report(
         claim_matrix,
@@ -461,6 +535,16 @@ def _build_agenda(
 
     backlog_items = backlog.get("items", []) if isinstance(backlog, dict) else []
     high_backlog = [item for item in backlog_items if item.get("priority") == "high"]
+    backlog_saturation_holds = [
+        item
+        for item in backlog_items
+        if "saturation_guard_hold" in {str(x) for x in item.get("reasons", [])}
+    ]
+    backlog_escalation_required = [
+        item
+        for item in backlog_items
+        if "escalate_architecture_decision" in {str(x) for x in item.get("reasons", [])}
+    ]
 
     proposal_items = proposals.get("items", []) if isinstance(proposals, dict) else []
     high_proposals = [item for item in proposal_items if item.get("priority") == "high"]
@@ -488,6 +572,9 @@ def _build_agenda(
     )
     connectome_pull_items = (
         connectome_pull.get("items", []) if isinstance(connectome_pull, dict) else []
+    )
+    connectome_pull_completed_items = (
+        connectome_pull.get("completed_items", []) if isinstance(connectome_pull, dict) else []
     )
     connectome_pull_high_priority = [
         item for item in connectome_pull_items if str(item.get("priority", "")) == "high"
@@ -591,6 +678,8 @@ def _build_agenda(
             "decision_queue_items": len(recommendations),
             "backlog_items": len(backlog_items),
             "backlog_high_priority": len(high_backlog),
+            "backlog_saturation_holds": len(backlog_saturation_holds),
+            "backlog_escalation_required": len(backlog_escalation_required),
             "proposal_items": len(proposal_items),
             "proposal_high_priority": len(high_proposals),
             "architecture_gap_items": len(architecture_items),
@@ -598,6 +687,7 @@ def _build_agenda(
             "structure_review_dossiers": structure_review_total,
             "structure_review_considerations": structure_review_consider,
             "connectome_pull_items": len(connectome_pull_items),
+            "connectome_pull_completed_items": len(connectome_pull_completed_items),
             "connectome_pull_high_priority": len(connectome_pull_high_priority),
             "external_precedence_candidates": len(external_precedence_candidates),
             "anti_lock_in_reviews": len(anti_lock_in_reviews),
@@ -636,6 +726,8 @@ def _build_agenda(
                 "prompt": "Review structure-pressure signals and decide whether to draft architecture changes.",
                 "consider_new_structure": structure_considerations,
                 "register_total_items": len(architecture_items),
+                "saturation_holds": backlog_saturation_holds,
+                "escalation_required": backlog_escalation_required,
             },
             "structure_review_dossiers": {
                 "prompt": "Review claim dossiers before deciding architecture changes.",
@@ -647,8 +739,10 @@ def _build_agenda(
             "connectome_literature_pull": {
                 "prompt": "Review connectome-oriented literature pull queue for architecture-pressure claims.",
                 "items_total": len(connectome_pull_items),
+                "completed_items_total": len(connectome_pull_completed_items),
                 "high_priority_total": len(connectome_pull_high_priority),
                 "items": connectome_pull_items,
+                "completed_items": connectome_pull_completed_items,
                 "queue_path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md",
             },
             "model_adjudication": {
@@ -793,15 +887,18 @@ def _build_agenda(
     lines.append("")
 
     lines.append(f"1. Thought Intake: {len(thought_unprocessed)} unprocessed thought(s).")
+    lines.append("- context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`")
     if thought_unprocessed:
         for rec in thought_unprocessed:
             lines.append(f"- `{rec.get('file', '')}`")
     lines.append(f"2. Conflict Resolution: {len(conflicts)} conflict item(s).")
+    lines.append("- context: `evidence/experiments/conflicts.md`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`")
     if conflicts:
         for item in conflicts[:10]:
             claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             conflict_types = str(item.get("conflict_types", ""))
-            lines.append(f"- `{claim_id}` conflict_types={conflict_types}")
+            lines.append(f"- {claim_ref}; conflict_types={conflict_types}")
     lines.append(
         "3. Architecture-Epoch Applicability: "
         + f"enabled={bool(epoch_policy.get('enabled', False))}; "
@@ -810,29 +907,32 @@ def _build_agenda(
         + f"stale={int(epoch_summary.get('stale_entries', 0))}; "
         + f"claims_with_stale={int(epoch_summary.get('claims_with_stale_entries', 0))}."
     )
-    lines.append("- report: `evidence/planning/architecture_epoch_applicability.v1.json`")
+    lines.append("- context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`")
     for item in epoch_stale_claims[:10]:
+        claim_ref = _claim_reference(str(item.get("claim_id", "")), claim_registry_meta)
         lines.append(
             "- "
-            + f"`{_strip_ticks(str(item.get('claim_id', '')) )}` stale_entries={item.get('stale_entries', 0)}; "
+            + f"{claim_ref} stale_entries={item.get('stale_entries', 0)}; "
             + f"stale_ratio={item.get('stale_ratio', 0)}"
         )
     lines.append(
         f"4. Governance Decisions: {len(recommendations)} recommendation queue item(s)."
     )
+    lines.append("- context: `evidence/experiments/promotion_demotion_recommendations.md`, `evidence/decisions/decision_log.v1.jsonl`")
     if recommendations:
         for item in recommendations[:10]:
             claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             decision_needed = str(item.get("decision_needed", ""))
             recommendation = _strip_ticks(str(item.get("recommendation", "")))
             lines.append(
-                f"- `{claim_id}` decision={decision_needed}; recommendation=`{recommendation}`"
+                f"- {claim_ref}; decision={decision_needed}; recommendation=`{recommendation}`"
             )
     lines.append(
         "5. Manual Carryover: "
         + f"{len(open_carryover_items)} open item(s), {len(carryover_items)} total."
     )
-    lines.append("- source: `evidence/planning/manual_carryover_items.v1.json`")
+    lines.append("- context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`")
     if open_carryover_items:
         for item in open_carryover_items[:10]:
             item_id = _strip_ticks(str(item.get("item_id", "")))
@@ -846,36 +946,46 @@ def _build_agenda(
         + f"{len(structure_considerations)} consider-new-structure item(s), "
         + f"{len(architecture_items)} total register item(s)."
     )
+    lines.append("- context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, `evidence/planning/structure_review/latest/INDEX.md`")
+    lines.append(
+        "- backlog mode guards: "
+        + f"saturation_holds={len(backlog_saturation_holds)}, "
+        + f"escalation_required={len(backlog_escalation_required)}"
+    )
     if structure_considerations:
         for item in structure_considerations[:10]:
             claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             conflict_ratio = str(item.get("conflict_ratio", "n/a"))
             trigger_signals = ",".join(str(x) for x in item.get("trigger_signals", []))
             lines.append(
-                f"- `{claim_id}` conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
+                f"- {claim_ref}; conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
             )
     lines.append(
         "7. Structure Dossiers: "
         + f"{structure_review_total} dossier(s), "
         + f"{structure_review_consider} marked consider-new-structure."
     )
-    lines.append("- dossier index: `evidence/planning/structure_review/latest/INDEX.md`")
+    lines.append("- context: `evidence/planning/structure_review/latest/INDEX.md`")
     lines.append(
         "8. Connectome Literature Pull: "
         + f"{len(connectome_pull_items)} queued claim(s), "
-        + f"{len(connectome_pull_high_priority)} high-priority."
+        + f"{len(connectome_pull_high_priority)} high-priority, "
+        + f"{len(connectome_pull_completed_items)} completed."
     )
-    lines.append("- connectome queue: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`")
+    lines.append("- context: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`, `evidence/planning/connectome_pull_state.v1.json`")
     if connectome_pull_high_priority:
         for item in connectome_pull_high_priority[:10]:
             claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             pull_id = _strip_ticks(str(item.get("pull_id", "")))
-            lines.append(f"- `{claim_id}` pull_id=`{pull_id}`")
+            lines.append(f"- {claim_ref}; pull_id=`{pull_id}`")
     lines.append(
         "9. Model Adjudication: "
         + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
         + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
     )
+    lines.append("- context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`")
     lines.append(
         "- allowed outcomes: "
         + ",".join(allowed_conflict_outcomes)
@@ -890,10 +1000,11 @@ def _build_agenda(
     if external_precedence_candidates:
         for item in external_precedence_candidates[:10]:
             claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             confidence_split = item.get("confidence_split", {})
             delta = float(confidence_split.get("delta_lit_minus_exp", 0.0))
             lines.append(
-                f"- `{claim_id}` external_precedence_candidate=yes; "
+                f"- {claim_ref}; external_precedence_candidate=yes; "
                 + f"delta_lit_minus_exp={delta:.3f}"
             )
     lines.append(
@@ -902,18 +1013,20 @@ def _build_agenda(
         + f"{len(cascade_claims_updated)} claim update(s), "
         + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
     )
-    lines.append("- patch queue: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`")
+    lines.append("- context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`")
     if cascade_actions:
         for action in cascade_actions[:10]:
             claim_id = _strip_ticks(str(action.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
             outcome = _strip_ticks(str(action.get("outcome", "")))
             reopened = action.get("dependents_reopened", [])
             lines.append(
-                f"- `{claim_id}` outcome=`{outcome}`; reopened_dependents={len(reopened)}"
+                f"- {claim_ref}; outcome=`{outcome}`; reopened_dependents={len(reopened)}"
             )
     lines.append(
         f"11. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
+    lines.append("- context: `evidence/planning/experiment_proposals.v1.json`")
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
             "- "
@@ -923,6 +1036,7 @@ def _build_agenda(
     lines.append(
         f"12. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
+    lines.append("- context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`")
     if warnings:
         for warning in warnings:
             lines.append(f"- {warning}")

@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_arc_007
 
-Generated: `2026-02-15T21:38:13.992121Z`
+Generated: `2026-02-16T15:09:35.081467Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,8 @@ Generated: `2026-02-15T21:38:13.992121Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `exp_0011_20260215T213710856170Z` | `2026-02-15T21:37:10.856170Z` | PASS | - | - | - | - | [`summary`](runs/exp_0011_20260215T213710856170Z/summary.md) / [`manifest`](runs/exp_0011_20260215T213710856170Z/manifest.json) / [`metrics`](runs/exp_0011_20260215T213710856170Z/metrics.json) |
+| `exp_0007_20260215T213657544367Z` | `2026-02-15T21:36:57.544367Z` | PASS | - | - | - | - | [`summary`](runs/exp_0007_20260215T213657544367Z/summary.md) / [`manifest`](runs/exp_0007_20260215T213657544367Z/manifest.json) / [`metrics`](runs/exp_0007_20260215T213657544367Z/metrics.json) |
 | `2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal` | `2026-02-15T21:36:01Z` | **FAIL** | fatal_error_count=0<br>latent_prediction_error_mean=0.027502<br>latent_prediction_error_p95=0.070865<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:-0.006111<br>latent_prediction_error_p95:-0.004724<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |
 | `2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal` | `2026-02-15T21:10:31Z` | PASS | fatal_error_count=0<br>latent_prediction_error_mean=0.033613<br>latent_prediction_error_p95=0.075589<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | - | - | PASS | [`summary`](runs/2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |
 | `exp_0004_20260215T205257233345Z` | `2026-02-15T20:52:57.233345Z` | PASS | - | - | - | - | [`summary`](runs/exp_0004_20260215T205257233345Z/summary.md) / [`manifest`](runs/exp_0004_20260215T205257233345Z/manifest.json) / [`metrics`](runs/exp_0004_20260215T205257233345Z/metrics.json) |

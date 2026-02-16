@@ -1,7 +1,5 @@
 {
-  "cycle_date": "2026-02-15",
-  "generated_at_utc": "2026-02-15T21:38:14.184276Z",
-  "items": [
+  "completed_items": [
     {
       "acceptance_checks": [
         "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
@@ -11,6 +9,15 @@
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
       "claim_id": "MECH-060",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-15T21:27:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
       "connectome_focus": "Identify circuit evidence for separating planning-time error processing from outcome-attribution learning signals.",
       "objective": "Run targeted connectome literature pull for MECH-060.",
       "plain_english_claim_description": "MECH-060 is a mechanism hypothesis about commitment / dual error channels pre post commit.",
@@ -82,7 +89,7 @@
           "unknown": 0,
           "weakens": 51
         },
-        "overall_confidence": 0.7,
+        "overall_confidence": 0.698,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
@@ -100,7 +107,7 @@
           "recurring_failure_signatures"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_060",
       "target_repo": "REE_assembly"
     },
@@ -113,6 +120,15 @@
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
       "claim_id": "MECH-056",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-15T15:28:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
       "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
       "objective": "Run targeted connectome literature pull for MECH-056.",
       "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
@@ -202,7 +218,7 @@
           "recurring_failure_signatures"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_056",
       "target_repo": "REE_assembly"
     },
@@ -215,6 +231,15 @@
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
       "claim_id": "MECH-058",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-15T21:31:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
       "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `jepa substrate / ema target anchor timescale separation`.",
       "objective": "Run targeted connectome literature pull for MECH-058.",
       "plain_english_claim_description": "MECH-058 is a mechanism hypothesis about jepa substrate / ema target anchor timescale separation.",
@@ -304,7 +329,7 @@
           "recurring_failure_signatures"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_058",
       "target_repo": "REE_assembly"
     },
@@ -316,213 +341,22 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "ARC-003",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `E3 / trajectory commitment`.",
-      "objective": "Run targeted connectome literature pull for ARC-003.",
-      "plain_english_claim_description": "ARC-003 is an architecture commitment about E3 / trajectory commitment.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 5 upstream claim(s): `INV-012`, `ARC-001`, `ARC-002`, `ARC-004`, `ARC-005`. It currently influences 23 downstream claim(s): `ARC-007`, `ARC-008`, `ARC-012`, `ARC-014`, `ARC-015`, `ARC-017`, `ARC-018`, `IMPL-003`, `IMPL-004`, `IMPL-016`, `MECH-004`, `MECH-005`, `MECH-008`, `MECH-035`, `MECH-037`, `MECH-049`, `MECH-056`, `MECH-057`, `MECH-060`, `MECH-061`, `MECH-062`, `Q-015`, `Q-016`. Primary anchor: `docs/architecture/e3.md#arc-003`.",
-      "priority": "high",
-      "pull_id": "CPULL-0004",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "ARC-003 connectome effective connectivity",
-            "E3 / trajectory commitment neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "E3 / trajectory commitment computational neuroscience circuit model",
-            "ARC-003 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "E3 / trajectory commitment conflicting neural evidence",
-            "ARC-003 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.889,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 5,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.665,
-        "recurring_failure_signatures": [
-          "mech060:postcommit_channel_contamination",
-          "mech060:attribution_reliability_break",
-          "mech060:commitment_reversal_spike"
-        ],
-        "source_counts": {
-          "experimental": 7,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_arc_003",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-061",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `commitment / boundary token error reclassification`.",
-      "objective": "Run targeted connectome literature pull for MECH-061.",
-      "plain_english_claim_description": "MECH-061 is a mechanism hypothesis about commitment / boundary token error reclassification.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-003`, `ARC-015`, `INV-012`, `MECH-060`. It currently influences 4 downstream claim(s): `IMPL-023`, `IMPL-025`, `MECH-062`, `Q-015`. Primary anchor: `docs/architecture/e3.md#mech-061`.",
-      "priority": "high",
-      "pull_id": "CPULL-0005",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-061 connectome effective connectivity",
-            "commitment / boundary token error reclassification neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "commitment / boundary token error reclassification computational neuroscience circuit model",
-            "MECH-061 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "commitment / boundary token error reclassification conflicting neural evidence",
-            "MECH-061 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.889,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 5,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.654,
-        "recurring_failure_signatures": [
-          "mech060:postcommit_channel_contamination",
-          "mech060:attribution_reliability_break",
-          "mech060:commitment_reversal_spike"
-        ],
-        "source_counts": {
-          "experimental": 7,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_061",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
       "claim_id": "Q-017",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-15T21:23:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
       "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / minimal orthogonal axis set`.",
       "objective": "Run targeted connectome literature pull for Q-017.",
       "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
       "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/control_plane.md#q-017`.",
       "priority": "high",
-      "pull_id": "CPULL-0006",
+      "pull_id": "CPULL-0004",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -580,22 +414,22 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.879,
+        "conflict_ratio": 0.866,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 37,
+          "supports": 38,
           "unknown": 0,
           "weakens": 29
         },
-        "overall_confidence": 0.711,
+        "overall_confidence": 0.713,
         "recurring_failure_signatures": [
           "q017:control_axis_stability_drop",
           "q017:control_axis_entropy_collapse",
           "q017:control_axis_policy_loss_spike"
         ],
         "source_counts": {
-          "experimental": 59,
+          "experimental": 60,
           "literature": 8
         },
         "trigger_signals": [
@@ -604,604 +438,20 @@
           "recurring_failure_signatures"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_q_017",
       "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-040",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / safety baseline volatility`.",
-      "objective": "Run targeted connectome literature pull for MECH-040.",
-      "plain_english_claim_description": "MECH-040 is a mechanism hypothesis about control plane / safety baseline volatility.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-005`, `MECH-005`, `MECH-019`. It currently influences 3 downstream claim(s): `MECH-042`, `MECH-063`, `Q-007`. Primary anchor: `docs/architecture/control_plane.md#mech-040`.",
-      "priority": "high",
-      "pull_id": "CPULL-0007",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-040 connectome effective connectivity",
-            "control plane / safety baseline volatility neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "control plane / safety baseline volatility computational neuroscience circuit model",
-            "MECH-040 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "control plane / safety baseline volatility conflicting neural evidence",
-            "MECH-040 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.637,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 8,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_040",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-046",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `control plane / amygdala mode priors`.",
-      "objective": "Run targeted connectome literature pull for MECH-046.",
-      "plain_english_claim_description": "MECH-046 is a mechanism hypothesis about control plane / amygdala mode priors.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 2 upstream claim(s): `ARC-005`, `MECH-039`. It currently influences 1 downstream claim(s): `MECH-047`. Primary anchor: `docs/architecture/control_plane.md#mech-046`.",
-      "priority": "high",
-      "pull_id": "CPULL-0008",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-046 connectome effective connectivity",
-            "control plane / amygdala mode priors neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "control plane / amygdala mode priors computational neuroscience circuit model",
-            "MECH-046 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "control plane / amygdala mode priors conflicting neural evidence",
-            "MECH-046 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.627,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 8,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_046",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "Q-012",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `latent predictive models / control completion falsifiability`.",
-      "objective": "Run targeted connectome literature pull for Q-012.",
-      "plain_english_claim_description": "Q-012 is an open question about latent predictive models / control completion falsifiability.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `ARC-015`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-012`.",
-      "priority": "high",
-      "pull_id": "CPULL-0009",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "Q-012 connectome effective connectivity",
-            "latent predictive models / control completion falsifiability neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "latent predictive models / control completion falsifiability computational neuroscience circuit model",
-            "Q-012 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "latent predictive models / control completion falsifiability conflicting neural evidence",
-            "Q-012 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 1,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.66,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 8,
-          "literature": 3
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_012",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "Q-013",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.",
-      "objective": "Run targeted connectome literature pull for Q-013.",
-      "plain_english_claim_description": "Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.",
-      "priority": "high",
-      "pull_id": "CPULL-0010",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "Q-013 connectome effective connectivity",
-            "uncertainty / deterministic vs stochastic jepa calibration neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "uncertainty / deterministic vs stochastic jepa calibration computational neuroscience circuit model",
-            "Q-013 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "uncertainty / deterministic vs stochastic jepa calibration conflicting neural evidence",
-            "Q-013 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 2,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.634,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 10,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "high_conflict_ratio",
-          "literature_non_support_pressure",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_013",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "Q-014",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.",
-      "objective": "Run targeted connectome literature pull for Q-014.",
-      "plain_english_claim_description": "Q-014 is an open question about invariance / ethical relevance blind spot risk.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.",
-      "priority": "high",
-      "pull_id": "CPULL-0011",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "Q-014 connectome effective connectivity",
-            "invariance / ethical relevance blind spot risk neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "invariance / ethical relevance blind spot risk computational neuroscience circuit model",
-            "Q-014 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "invariance / ethical relevance blind spot risk conflicting neural evidence",
-            "Q-014 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 2,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.634,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 10,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "high_conflict_ratio",
-          "literature_non_support_pressure",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_014",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "Q-015",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `commitment / boundary token minimal contract`.",
-      "objective": "Run targeted connectome literature pull for Q-015.",
-      "plain_english_claim_description": "Q-015 is an open question about commitment / boundary token minimal contract.",
-      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-061`, `ARC-003`, `ARC-015`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/e3.md#q-015`.",
-      "priority": "high",
-      "pull_id": "CPULL-0012",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "Q-015 connectome effective connectivity",
-            "commitment / boundary token minimal contract neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "commitment / boundary token minimal contract computational neuroscience circuit model",
-            "Q-015 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "commitment / boundary token minimal contract conflicting neural evidence",
-            "Q-015 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.8,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 6,
-          "unknown": 0,
-          "weakens": 4
-        },
-        "overall_confidence": 0.616,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 8,
-          "literature": 2
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_q_015",
-      "target_repo": "REE_assembly"
-    },
+    }
+  ],
+  "completion_policy": {
+    "min_entries": 4,
+    "min_non_support_entries": 1,
+    "reopen_conflict_ratio": 0.9,
+    "state_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
+  },
+  "cycle_date": "2026-02-16",
+  "generated_at_utc": "2026-02-16T15:09:35.578222Z",
+  "items": [
     {
       "acceptance_checks": [
         "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
@@ -1211,12 +461,21 @@
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
       "claim_id": "MECH-057",
+      "completion_status": {
+        "entries_total": 0,
+        "latest_timestamp_utc": "",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 0,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "awaiting_connectome_evidence"
+      },
       "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.",
       "objective": "Run targeted connectome literature pull for MECH-057.",
       "plain_english_claim_description": "MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.",
       "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.",
       "priority": "high",
-      "pull_id": "CPULL-0013",
+      "pull_id": "CPULL-0005",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -1282,7 +541,7 @@
           "unknown": 0,
           "weakens": 5
         },
-        "overall_confidence": 0.712,
+        "overall_confidence": 0.711,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
@@ -1309,13 +568,22 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "ARC-007",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / path memory`.",
-      "objective": "Run targeted connectome literature pull for ARC-007.",
-      "plain_english_claim_description": "ARC-007 is an architecture commitment about hippocampus / path memory.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 2 upstream claim(s): `ARC-004`, `ARC-003`. It currently influences 17 downstream claim(s): `ARC-011`, `ARC-012`, `ARC-014`, `ARC-015`, `ARC-018`, `ARC-019`, `IMPL-004`, `IMPL-005`, `IMPL-019`, `MECH-016`, `MECH-017`, `MECH-018`, `MECH-022`, `MECH-029`, `MECH-030`, `MECH-037`, `MECH-044`. Primary anchor: `docs/architecture/hippocampal_systems.md#arc-007`.",
+      "claim_id": "Q-013",
+      "completion_status": {
+        "entries_total": 0,
+        "latest_timestamp_utc": "",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 0,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "awaiting_connectome_evidence"
+      },
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.",
+      "objective": "Run targeted connectome literature pull for Q-013.",
+      "plain_english_claim_description": "Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.",
+      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.",
       "priority": "high",
-      "pull_id": "CPULL-0014",
+      "pull_id": "CPULL-0006",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -1347,8 +615,8 @@
         {
           "focus": "Structural and effective-connectivity constraints",
           "query_stems": [
-            "ARC-007 connectome effective connectivity",
-            "hippocampus / path memory neural pathway dissociation"
+            "Q-013 connectome effective connectivity",
+            "uncertainty / deterministic vs stochastic jepa calibration neural pathway dissociation"
           ],
           "source_preference": "primary",
           "track_id": "TRK-01"
@@ -1356,8 +624,8 @@
         {
           "focus": "Computational-neuroscience bridge papers",
           "query_stems": [
-            "hippocampus / path memory computational neuroscience circuit model",
-            "ARC-007 predictive coding pathway evidence"
+            "uncertainty / deterministic vs stochastic jepa calibration computational neuroscience circuit model",
+            "Q-013 predictive coding pathway evidence"
           ],
           "source_preference": "primary",
           "track_id": "TRK-02"
@@ -1365,8 +633,8 @@
         {
           "focus": "Disconfirming/alternative pathway evidence",
           "query_stems": [
-            "hippocampus / path memory conflicting neural evidence",
-            "ARC-007 alternative mechanism neural circuits"
+            "uncertainty / deterministic vs stochastic jepa calibration conflicting neural evidence",
+            "Q-013 alternative mechanism neural circuits"
           ],
           "source_preference": "primary",
           "track_id": "TRK-03"
@@ -1376,28 +644,28 @@
         "conflict_ratio": 0.727,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 0,
+          "mixed": 2,
           "supports": 7,
           "unknown": 0,
           "weakens": 4
         },
-        "overall_confidence": 0.647,
+        "overall_confidence": 0.652,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
         ],
         "source_counts": {
-          "experimental": 10,
-          "literature": 1
+          "experimental": 11,
+          "literature": 2
         },
         "trigger_signals": [
-          "external_precedence_pressure",
           "high_conflict_ratio",
+          "literature_non_support_pressure",
           "recurring_failure_signatures"
         ]
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_arc_007",
+      "suggested_literature_type": "targeted_review_connectome_q_013",
       "target_repo": "REE_assembly"
     },
     {
@@ -1408,13 +676,22 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "ARC-018",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / rollout viability mapping`.",
-      "objective": "Run targeted connectome literature pull for ARC-018.",
-      "plain_english_claim_description": "ARC-018 is an architecture commitment about hippocampus / rollout viability mapping.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 4 upstream claim(s): `ARC-007`, `ARC-003`, `ARC-002`, `ARC-001`. It currently influences 8 downstream claim(s): `IMPL-004`, `IMPL-005`, `MECH-033`, `MECH-034`, `MECH-037`, `MECH-038`, `MECH-056`, `Q-011`. Primary anchor: `docs/architecture/hippocampal_systems.md#arc-018`.",
+      "claim_id": "Q-014",
+      "completion_status": {
+        "entries_total": 0,
+        "latest_timestamp_utc": "",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 0,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "awaiting_connectome_evidence"
+      },
+      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.",
+      "objective": "Run targeted connectome literature pull for Q-014.",
+      "plain_english_claim_description": "Q-014 is an open question about invariance / ethical relevance blind spot risk.",
+      "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.",
       "priority": "high",
-      "pull_id": "CPULL-0015",
+      "pull_id": "CPULL-0007",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -1446,8 +723,8 @@
         {
           "focus": "Structural and effective-connectivity constraints",
           "query_stems": [
-            "ARC-018 connectome effective connectivity",
-            "hippocampus / rollout viability mapping neural pathway dissociation"
+            "Q-014 connectome effective connectivity",
+            "invariance / ethical relevance blind spot risk neural pathway dissociation"
           ],
           "source_preference": "primary",
           "track_id": "TRK-01"
@@ -1455,8 +732,8 @@
         {
           "focus": "Computational-neuroscience bridge papers",
           "query_stems": [
-            "hippocampus / rollout viability mapping computational neuroscience circuit model",
-            "ARC-018 predictive coding pathway evidence"
+            "invariance / ethical relevance blind spot risk computational neuroscience circuit model",
+            "Q-014 predictive coding pathway evidence"
           ],
           "source_preference": "primary",
           "track_id": "TRK-02"
@@ -1464,146 +741,49 @@
         {
           "focus": "Disconfirming/alternative pathway evidence",
           "query_stems": [
-            "hippocampus / rollout viability mapping conflicting neural evidence",
-            "ARC-018 alternative mechanism neural circuits"
+            "invariance / ethical relevance blind spot risk conflicting neural evidence",
+            "Q-014 alternative mechanism neural circuits"
           ],
           "source_preference": "primary",
           "track_id": "TRK-03"
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.714,
+        "conflict_ratio": 0.727,
         "consider_new_structure": true,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 9,
+          "mixed": 2,
+          "supports": 7,
           "unknown": 0,
-          "weakens": 5
+          "weakens": 4
         },
-        "overall_confidence": 0.664,
+        "overall_confidence": 0.652,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
         ],
         "source_counts": {
-          "experimental": 8,
-          "literature": 6
+          "experimental": 11,
+          "literature": 2
         },
         "trigger_signals": [
-          "external_precedence_pressure",
           "high_conflict_ratio",
+          "literature_non_support_pressure",
           "recurring_failure_signatures"
         ]
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_arc_018",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-033",
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `hippocampus / kernel chaining interface`.",
-      "objective": "Run targeted connectome literature pull for MECH-033.",
-      "plain_english_claim_description": "MECH-033 is a mechanism hypothesis about hippocampus / kernel chaining interface.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-018`, `ARC-002`, `ARC-001`, `ARC-005`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/hippocampal_systems.md#mech-033`.",
-      "priority": "high",
-      "pull_id": "CPULL-0016",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-033 connectome effective connectivity",
-            "hippocampus / kernel chaining interface neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "hippocampus / kernel chaining interface computational neuroscience circuit model",
-            "MECH-033 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "hippocampus / kernel chaining interface conflicting neural evidence",
-            "MECH-033 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.714,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 9,
-          "unknown": 0,
-          "weakens": 5
-        },
-        "overall_confidence": 0.662,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 8,
-          "literature": 6
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_033",
+      "suggested_literature_type": "targeted_review_connectome_q_014",
       "target_repo": "REE_assembly"
     }
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "consider_new_structure_items": 16,
+    "active_queue_items": 3,
+    "completed_items": 4,
+    "consider_new_structure_items": 7,
     "mode": "consider_new_structure_only",
-    "total_selected_items": 16
+    "total_selected_items": 7
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",

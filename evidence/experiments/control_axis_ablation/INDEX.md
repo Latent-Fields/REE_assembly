@@ -1,6 +1,6 @@
 # Experiment Index: control_axis_ablation
 
-Generated: `2026-02-15T21:38:13.992121Z`
+Generated: `2026-02-16T15:09:35.081467Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-02-15T21:38:13.992121Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `exp_0006_20260215T213657486711Z` | `2026-02-15T21:36:57.486711Z` | PASS | - | - | - | - | [`summary`](runs/exp_0006_20260215T213657486711Z/summary.md) / [`manifest`](runs/exp_0006_20260215T213657486711Z/manifest.json) / [`metrics`](runs/exp_0006_20260215T213657486711Z/metrics.json) |
 | `exp_0001_20260215T211117186174Z` | `2026-02-15T21:11:17.186174Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T211117186174Z/summary.md) / [`manifest`](runs/exp_0001_20260215T211117186174Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T211117186174Z/metrics.json) |
 | `exp_0001_20260215T205256872005Z` | `2026-02-15T20:52:56.872005Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T205256872005Z/summary.md) / [`manifest`](runs/exp_0001_20260215T205256872005Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T205256872005Z/metrics.json) |
 | `exp_0001_20260215T205256766352Z` | `2026-02-15T20:52:56.766352Z` | PASS | - | - | - | - | [`summary`](runs/exp_0001_20260215T205256766352Z/summary.md) / [`manifest`](runs/exp_0001_20260215T205256766352Z/manifest.json) / [`metrics`](runs/exp_0001_20260215T205256766352Z/metrics.json) |
