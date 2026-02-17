@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/control_plane_signal_map.md` (MECH-004, MECH-064, MECH-065, Q-018)
+- `docs/architecture/sensory_stream_tags.md` (ARC-017)
+- `docs/claims/claims.yaml` (MECH-004, ARC-017, MECH-064, MECH-065, Q-018)
+- `evidence/experiments/claim_probe_mech_064/experiment.md` (experimental model)
+- `evidence/experiments/claim_probe_mech_065/experiment.md` (experimental model)
+
+---
+
 1) Injection Resistance Conditions for REE
 
 Below is a concrete “conditions checklist” you can treat like a spec. The core idea: inputs may change beliefs, but must not directly change authority, identity, policy, or commit logic.

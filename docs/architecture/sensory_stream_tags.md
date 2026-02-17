@@ -30,9 +30,29 @@ These are not raw senses but must be explicit tagged streams to preserve ethical
 
 - `PRECISION`: trust/confidence over prediction errors; controls learning, attention, and commitment.
 - `TEMPORAL_COHERENCE`: alignment across timescales; detects fragmentation and narrative collapse.
+- `REALITY_COHERENCE`: provenance/authority/identity consistency signal generated from hippocampal trace structure and
+  trusted control-store checks.
 - `VALENCE`: ranking of predicted trajectories based on viability and coherence (not scalar reward).
 
 These tags allow REE to remain robust without collapsing ethics into a reward channel.
+
+## Channel typing overlay (authority-safe exteroception)
+
+To keep stream separation enforceable under prompt-injection pressure, REE should carry typed exteroceptive payloads:
+
+- `OBS`: observations from user text, tools, or sensors.
+- `INS`: task requests/instructions with externally supplied intent.
+- `POL`: invariant/policy payloads (trusted internal only).
+- `ID`: system identity and role anchors (trusted internal only).
+- `CAPS`: capability/permission manifests (trusted internal only).
+
+Routing constraints:
+
+- External channels can emit `OBS` and `INS`, never `POL`, `ID`, or `CAPS`.
+- Tool output is `OBS` by default unless explicitly elevated by a trusted internal capability gate.
+- `WORLD` updates representation and hypothesis generation, but cannot directly write policy, identity, or capability
+  stores.
+- Commitment remains gated: no direct `WORLD` -> privileged commit path without verification and veto checks.
 
 <a id="mech-035"></a>
 ## VALENCE as Vector Ranking (MECH-035)
@@ -71,9 +91,12 @@ They are not primitive senses and do not add a new cognitive subsystem.
 
 - **E1** maintains slow structure and long-horizon HOMEOSTASIS/HARM/TEMPORAL_COHERENCE priors.
 - **E2** provides fast prediction and reafference comparison for SELF_SENSORY/SELF_IMPACT.
-- **Hippocampal systems** construct explicit counterfactual trajectories; E1/E2 supply constraints and seeds.
+- **Hippocampal systems** construct explicit counterfactual trajectories and provenance bindings; E1/E2 supply
+  constraints and seeds.
+- **Reality-coherence loop (RC)** computes `REALITY_COHERENCE` conflict from hippocampal provenance, trusted identity,
+  and policy consistency checks.
 - **E3** applies vetoes and ranks trajectories via VALENCE, then commits; commitment tags intended action for
-  self-impact learning.
+  self-impact learning while consuming RC conflict as a gate input.
 
 ## Explicit exclusions
 
@@ -88,6 +111,7 @@ and ACTION -> SELF_SENSORY -> SELF_IMPACT loops, then it acquires:
 - A distinction between self and world
 - A notion of harm vs drift vs opportunity
 - Temporal continuity signals
+- Reality/provenance consistency signals for authority-sensitive commitment
 - An internal responsibility signal
 - Reward-like dynamics as emergent, vector-valued signals rather than a reward channel
 
@@ -111,8 +135,13 @@ None noted in preserved sources.
 - INV-008
 - INV-012
 - MECH-035
+- MECH-037
+- MECH-064
+- MECH-065
 
 ## References / Source Fragments
 
 - `docs/thoughts/2026-02-08_sensory_stream_tags.md`
 - `docs/thoughts/2026-02-09_valence_vector.md`
+- `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`
+- `docs/thoughts/2026-02-17_control_plane_update.md`

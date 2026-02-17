@@ -649,10 +649,15 @@
   depends_on:
     - ARC-005
     - ARC-003
+    - ARC-017
+    - MECH-037
+    - MECH-062
   location: docs/architecture/control_plane_signal_map.md#mech-004
   source:
     - docs/processed/legacy_tree/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
+    - docs/thoughts/2026-02-17_control_plane_update.md
+    - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: MECH-005
   claim_type: mechanism_hypothesis
   subject: control_plane.path_authority
@@ -1023,6 +1028,8 @@
     - docs/thoughts/2026-02-08_sensory_stream_tags.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_empathy.md
+    - docs/thoughts/2026-02-17_control_plane_update.md
+    - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: ARC-018
   claim_type: architectural_commitment
   subject: hippocampus.rollout_viability_mapping
@@ -1643,6 +1650,39 @@
     - docs/architecture/control_plane.md
     - docs/thoughts/2026-02-15_basal_ganglia.md
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
+- id: MECH-064
+  claim_type: mechanism_hypothesis
+  subject: control_plane.typed_authority_control_store_separation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-003
+    - ARC-015
+    - INV-014
+    - INV-007
+    - MECH-062
+  location: docs/architecture/control_plane_signal_map.md#mech-064
+  source:
+    - docs/architecture/control_plane_signal_map.md
+    - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
+- id: MECH-065
+  claim_type: mechanism_hypothesis
+  subject: control_plane.reality_coherence_conflict_lane
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-005
+    - ARC-007
+    - ARC-018
+    - MECH-037
+    - MECH-054
+    - MECH-062
+  location: docs/architecture/control_plane_signal_map.md#mech-065
+  source:
+    - docs/architecture/control_plane_signal_map.md
+    - docs/thoughts/2026-02-17_control_plane_update.md
+    - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: Q-012
   claim_type: open_question
   subject: latent_predictive_models.control_completion_falsifiability
@@ -1735,6 +1775,19 @@
   source:
     - docs/architecture/control_plane.md
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
+- id: Q-018
+  claim_type: open_question
+  subject: control_plane.reality_conflict_hysteresis_calibration
+  polarity: asks
+  status: active
+  depends_on:
+    - MECH-065
+    - MECH-062
+    - ARC-005
+  location: docs/architecture/control_plane_signal_map.md#q-018
+  source:
+    - docs/architecture/control_plane_signal_map.md
+    - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: IMPL-020
   claim_type: implementation_note
   subject: terminology.jepa_ree_alignment_glossary

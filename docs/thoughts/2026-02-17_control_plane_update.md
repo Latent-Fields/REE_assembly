@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/control_plane_signal_map.md` (MECH-004, MECH-065, Q-018)
+- `docs/architecture/sensory_stream_tags.md` (ARC-017)
+- `docs/claims/claims.yaml` (MECH-004, ARC-017, MECH-065)
+
+---
+
 Yes — but with a refinement.
 
 If you introduce multiple control planes, one per stream (exteroceptive, interoceptive, proprioceptive, nociceptive, reality-coherence), that is neurobiologically faithful — provided they are:
@@ -311,4 +320,3 @@ RC_{conflict} < \theta
 Global modulators alter DA_* and \Pi_*.
 
 ⸻
-

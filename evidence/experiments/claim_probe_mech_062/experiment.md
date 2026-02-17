@@ -2,11 +2,17 @@
 
 ## What it tests
 
-- TODO: describe the invariant or mechanism this experiment validates.
+- Whether tri-loop commitment gating keeps motor, cognitive-set, and motivational commitments partially independent.
+- Whether associative-gate commitment requires provenance/authority consistency before task-set lock-in.
+- Whether motor-gate execution stays blocked when veto or capability checks fail, even if upstream loops favor commit.
 
 ## Failure modes it detects
 
-- TODO: list concrete failure signatures this experiment is expected to surface.
+- `cross_gate_coupling_collapse`
+- `associative_gate_authority_spoof_acceptance`
+- `motor_gate_executes_without_veto_clearance`
+- `arbitration_without_commit_trace`
+- `loop_specific_threshold_leakage`
 
 ## Design implications
 

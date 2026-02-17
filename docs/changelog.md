@@ -7,6 +7,44 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-17: Integrated Injection-Resistance Stream Separation Thoughts
+
+### Overview
+
+Processed two new thought-intake files on stream separation, typed authority boundaries, and reality-coherence conflict
+gating; promoted them into canonical claims, signal routing docs, and experiment model templates.
+
+### What Changed
+
+- Updated sensory stream contract:
+  - `docs/architecture/sensory_stream_tags.md`
+  - added explicit `REALITY_COHERENCE` derived stream
+  - added typed channel overlay (`OBS`, `INS`, `POL`, `ID`, `CAPS`) and exteroceptive write-path constraints
+- Updated control-plane signal map:
+  - `docs/architecture/control_plane_signal_map.md`
+  - added `S5` reality-coherence conflict lane and hierarchical stream/loop/global precision decomposition
+  - added new claim sections:
+    - `MECH-064` typed authority and control-store separation
+    - `MECH-065` reality-coherence conflict lane
+  - added open question:
+    - `Q-018` RC-conflict hysteresis calibration
+  - added explicit correction for over-absolute assumptions: rapid safety interrupts may bypass deliberation, but still
+    cannot grant privileged policy/identity/capability writes.
+- Updated claim registry/index:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+  - added `MECH-064`, `MECH-065`, `Q-018`
+  - expanded source/dependency links for `MECH-004` and `ARC-017`
+- Added experimental model templates:
+  - `evidence/experiments/claim_probe_arc_017/experiment.md`
+  - `evidence/experiments/claim_probe_mech_064/experiment.md`
+  - `evidence/experiments/claim_probe_mech_065/experiment.md`
+  - updated `evidence/experiments/claim_probe_mech_062/experiment.md` to remove TODOs and align failure signatures
+    with tri-loop + authority constraints
+- Marked thought files as processed with backlinks:
+  - `docs/thoughts/2026-02-17_control_plane_update.md`
+  - `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`
+
 ## 2026-02-15: Processed Commit-Gating Refresh Thought
 
 ### Overview

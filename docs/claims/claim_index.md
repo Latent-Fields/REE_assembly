@@ -53,7 +53,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [ARC-014](../architecture/default_mode.md#arc-014) Default Mode enables safe imagination without commitment.
 - [ARC-015](../architecture/agency_responsibility_flow.md#arc-015) Self-impact attribution and responsibility flow are required.
 - [ARC-016](../architecture/modes_of_cognition.md#arc-016) Modes are control-plane regimes applied to shared predictive machinery.
-- [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal sensory stream tags for REE (world, homeostasis, harm, self-sensory, precision, temporal coherence, valence, action, self-impact).
+- [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal stream tags with typed exteroception and explicit reality-coherence lane (world, homeostasis, harm, self-sensory, precision, temporal/reality coherence, valence, action, self-impact).
 - [ARC-018](../architecture/hippocampal_systems.md#arc-018) Hippocampus generates explicit rollouts and post-commitment viability mapping.
 - [ARC-019](../architecture/developmental_curriculum.md#arc-019) REE requires staged developmental training with explicit curriculum gates.
 
@@ -123,6 +123,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-061](../architecture/e3.md#mech-061) Commit-boundary token reclassifies pre-commit vs post-commit error routing.
 - [MECH-062](../architecture/e3.md#mech-062) E3 should use coordinated tri-loop gating (motor, cognitive-set, motivational) instead of one global gate.
 - [MECH-063](../architecture/control_plane.md#mech-063) Control plane should retain orthogonal tonic/phasic axes rather than collapsing into one scalar regulation signal.
+- [MECH-064](../architecture/control_plane_signal_map.md#mech-064) Typed authority/control-store separation blocks direct exteroceptive writes into policy, identity, and capability stores.
+- [MECH-065](../architecture/control_plane_signal_map.md#mech-065) Reality-coherence conflict lane should modulate loop precision and commitment thresholds before execution lock-in.
 
 ---
 
@@ -145,6 +147,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [Q-015](../architecture/e3.md#q-015) What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?
 - [Q-016](../architecture/e3.md#q-016) What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?
 - [Q-017](../architecture/control_plane.md#q-017) What is the minimal orthogonal control-axis subset that preserves observed regime separations?
+- [Q-018](../architecture/control_plane_signal_map.md#q-018) What RC-conflict threshold/hysteresis calibration blocks authority spoofing without chronic over-suppression?
 
 ---
 

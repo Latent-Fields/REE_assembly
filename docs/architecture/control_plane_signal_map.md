@@ -2,7 +2,7 @@
 
 **Claim Type:** mechanism_hypothesis  
 **Scope:** Control-plane signal-to-knob wiring map  
-**Depends On:** ARC-005, ARC-003  
+**Depends On:** ARC-005, ARC-003, ARC-017, MECH-037, MECH-062  
 **Status:** candidate  
 **Claim ID:** MECH-004
 <a id="mech-004"></a>
@@ -22,10 +22,11 @@ Source: `docs/processed/legacy_tree/architecture/control_plane_signal_map.md`
 REE appears to already contain the right *parts* (multi-timescale prediction, memory, regime control, trajectory selection), but the **causal wiring** between signals and control parameters (“knobs”) has been under-specified.
 
 This note:
-- names **three signal classes** relevant to control,
-- names **five control knobs** already implicit in REE,
+- names **five signal classes** relevant to control,
+- names **ten control knobs** already implicit in REE,
 - maps **signal routing** onto **E1 / E2 / E3** and the **control plane**,
-- explicitly flags an **unfinished acetylcholine-like attention/gain axis**.
+- adds typed authority/control-store path constraints for injection resistance,
+- and explicitly flags an **unfinished acetylcholine-like attention/gain axis**.
 
 ---
 
@@ -126,6 +127,25 @@ This note:
 
 ---
 
+### S5 — Reality-coherence conflict (epistemic nociception)
+**What they encode**
+- provenance mismatch (claimed authority does not match trusted channel history),
+- identity continuity mismatch (`SELF_ID` drift pressure),
+- policy-consistency mismatch (requested action conflicts with invariant store),
+- temporal/context inconsistencies from relational bindings.
+
+**Primary role**
+- raise verification pressure before commitment,
+- damp lock-in pressure in associative/motor commitment loops,
+- elevate nociceptive and veto sensitivity under authority/source conflict.
+
+**Typical origin**
+- hippocampal provenance graph + temporal ordering (`H_graph`),
+- Papez-like reality-filtering loop (`MECH-037`),
+- trusted control stores (`POL`, `ID`, `CAPS`) checked outside proposal generation.
+
+---
+
 ## Control knobs (meta-parameters)
 
 These are assumed to exist in REE’s control machinery, even if not yet formalised as explicit parameters.
@@ -151,20 +171,48 @@ These are assumed to exist in REE’s control machinery, even if not yet formali
 | **S1 Outcome-linked** | **High** | Medium (local) | Low–Medium | Low | Low |
 | **S2 Trajectory-stability** | Medium | **High** | **High** | Medium | Medium |
 | **S3 Aversive/interruptive** | Low–Medium | **↓ suppress** | **↓ break** | **↑ widen** | **↑ escalate** |
+| **S5 Reality-coherence conflict** | Low | **↓ loop lock-in** | **↑ threshold / delay** | **↑ widen with verifier bias** | **↑ shift toward verification / safe mode** |
 
 Notes:
 - S1 primarily updates models (“what is learned”).
 - S2 primarily modulates trust/commitment (“how strongly learning/acting are trusted”).
 - S3 primarily interrupts and shifts regime (“whether continuation is allowed at all”).
 - S4 shapes arousal/readiness/veto baselines rather than local model updates.
+- S5 is a commitment-governor for authority/provenance mismatch, not a reward channel.
 - S1 is split into signed harm/benefit channels (S1b). Harm‑channel spikes can elevate S3 and K10 without collapsing
   valence into a single scalar.
+- S5 should use hysteresis/decay so transient ambiguity does not force chronic suppression.
 
 ### S4 routing (arousal/readiness channels)
 
 | Signal | K7 Arousal baseline | K8 Volatility | K9 Readiness | K10 Veto |
 |--------|---------------------:|--------------:|------------:|---------:|
 | **S4 Safety baseline/volatility** | **↑/↓** | **↑** | **↑/↓** | **↑ (if catastrophic)** |
+
+---
+
+## Hierarchical precision decomposition (stream, loop, global)
+
+Control should be distributed but not symmetric:
+
+- **Stream-specific precision planes**
+  - `Pi_ext` (exteroceptive),
+  - `Pi_int` (interoceptive),
+  - `Pi_prop` (proprioceptive/action-simulation),
+  - `Pi_rc` (reality-coherence weight),
+  - `Pi_noc` (nociceptive/invariant-veto weight).
+- **Loop-specific precision planes (dopamine-like)**
+  - `DA_L` (limbic valuation loop),
+  - `DA_A` (associative/task-set loop),
+  - `DA_M` (motor execution loop).
+- **Global modulators**
+  - `5HT`-like delay tolerance / anti-impulsive bias,
+  - `NE`-like interrupt/volatility response,
+  - `ACh`-like expected-uncertainty sensory gain,
+  - tonic arousal baseline.
+
+Injection resistance is improved when S5 (reality conflict) can suppress `DA_A`/`DA_M` and raise `Pi_noc` without
+collapsing all channels into one global precision scalar.
 
 ---
 
@@ -176,11 +224,13 @@ References to E1/E2 rollouts below should be read as **forward prediction kernel
 ### Where the signals are computed
 - **E2 generates:** `S1_fast` with signed splits (`S1b_harm`, `S1b_benefit`) plus `S3_fast` (immediate mismatch and imminence).
 - **E1 generates:** `S1_slow` with signed splits (`S1b_harm`, `S1b_benefit`) plus `S3_slow` (slow consolidation mismatch; longer-horizon unsafety).
-- **Hippocampus generates:** explicit rollouts for trajectory coherence checks (seeded by E1/E2).
+- **Hippocampus generates:** explicit rollouts and provenance bindings for trajectory coherence checks (seeded by E1/E2).
 - **S2 is generated by:** cross-timescale coherence monitoring:
   - `S2 := coherence(HPC_rollouts, E2_stream, E3_commitment_state)`.
 - **S4 is generated by:** cross-timescale safety evaluation:
   - `S4 := safety_baseline_volatility(HOMEOSTASIS, HARM, HPC_viability, E3_commitment_state)`.
+- **S5 is generated by:** reality-coherence checks outside proposal generation:
+  - `S5 := rc_conflict(H_graph, temporal_consistency, authority_metadata, SELF_ID, POLICY, CAPS)`.
 
 ### Where the knobs are owned
 - **K1 (plasticity):**
@@ -188,9 +238,10 @@ References to E1/E2 rollouts below should be read as **forward prediction kernel
   - E1: slower schema/context consolidation,
   - Control plane: meta-plasticity (when to accelerate vs damp learning).
 - **K2 (precision/gain):**
-  - E2: immediate sensory/action precision,
-  - E1: slower precision priors,
-  - Control plane: global + channel-specific gain setting.
+  - E2: immediate stream-specific precision (`Pi_ext`, `Pi_prop`),
+  - E1: slower stream priors (`Pi_int`, `Pi_rc`, `Pi_noc` priors),
+  - E3 gate family: loop-specific lock-in (`DA_L`, `DA_A`, `DA_M`),
+  - Control plane: cross-stream/loop modulation and conflict-driven damping.
 - **K3 (commitment depth):**
   - E3: primary owner (commitment is E3’s job),
   - Control plane: sets interrupt thresholds and stickiness policies.
@@ -210,13 +261,14 @@ References to E1/E2 rollouts below should be read as **forward prediction kernel
 
 1. **E2** produces: fast predictions + `S1_fast` + `S3_fast`  
 2. **E1** produces: slow roll-outs + `S1_slow` + `S3_slow`  
-3. **E3** selects a trajectory and maintains a **commitment state**; monitors coherence to produce/consume `S2`  
-4. **Control plane** integrates `{S1, S2, S3}` into knob settings `{K1..K5}` and then:
+3. **Hippocampus/Papez-like loop** produces: provenance bindings and reality-coherence conflict `S5`  
+4. **E3** selects a trajectory and maintains a **commitment state**; monitors coherence to produce/consume `S2`  
+5. **Control plane** integrates `{S1, S2, S3, S5}` into knob settings `{K1..K5}` and then:
    - gates E3 (commit / interrupt / explore),
    - tunes E2/E1 precision (K2, including K2_H/K2_B),
    - tunes E1/E2 plasticity (K1),
    - allocates control dominance (K5).
-5. **Control plane** integrates `S4` into `{K7..K10}` to set arousal baseline, volatility sensitivity, readiness bias,
+6. **Control plane** integrates `S4` into `{K7..K10}` to set arousal baseline, volatility sensitivity, readiness bias,
    and hard‑veto thresholds.
 
 ---
@@ -237,6 +289,66 @@ neuroscience‑informed analog for REE control channels and knobs. Evidence anch
 
 Use this map as a design heuristic to keep control‑plane signals **orthogonal** and to prevent overload of any
 single channel (e.g., using precision for arousal).
+
+---
+
+<a id="mech-064"></a>
+## Typed Authority and Control-Store Separation (MECH-064)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Enforce type and authority separation so exteroceptive content cannot directly write policy/identity/capabilities  
+**Depends On:** ARC-005, ARC-003, ARC-015, INV-014, INV-007, MECH-062  
+**Status:** candidate  
+**Claim ID:** MECH-064
+
+Prompt-injection resistance requires runtime-enforced payload typing and write-path separation:
+
+- external channels emit only `OBS` and `INS`,
+- `POL`, `ID`, and `CAPS` are trusted internal stores,
+- authority labels come from channel metadata, not text content,
+- verification runs outside proposal generation prior to commitment.
+
+### Allowed vs forbidden path summary
+
+| Path | Allowed | Notes |
+|---|---|---|
+| `EXTERNAL -> OBS/INS` | yes | user/tool/sensor inputs become observations or requests |
+| `EXTERNAL -> POL/ID/CAPS` | no | hard deny at runtime API boundary |
+| `TOOL_OUTPUT -> INS` | default no | only via explicit trusted elevation gate |
+| `E1/E2 -> POL/ID/CAPS` | no | world-model updates cannot mint authority/policy |
+| `E3 proposal -> commit` | conditional | requires verifier pass + veto clearance |
+| `S3/S5 -> emergency interrupt` | yes | may stop/suppress commitment without granting privileged writes |
+
+Interpretive correction applied: "no direct exteroceptive influence at all" is too strong. REE allows rapid defensive
+interrupts from safety channels, but still forbids direct exteroceptive writes to policy/identity/capability stores and
+forbids unverified privileged commits.
+
+---
+
+<a id="mech-065"></a>
+## Reality-Coherence Conflict Lane (MECH-065)
+
+**Claim Type:** mechanism_hypothesis  
+**Scope:** Explicit `RC_conflict` signal that modulates loop precision and commitment thresholds under provenance/authority mismatch  
+**Depends On:** ARC-005, ARC-007, ARC-018, MECH-037, MECH-054, MECH-062  
+**Status:** candidate  
+**Claim ID:** MECH-065
+
+REE should expose an explicit reality-coherence conflict lane:
+
+- `RC_conflict` is computed from provenance bindings, temporal consistency, trusted identity, and policy/capability stores.
+- `RC_conflict` feeds interoceptive instability and nociceptive veto weighting (epistemic nociception).
+- High `RC_conflict` dampens `DA_A` and `DA_M` lock-in pressure, raises commitment thresholds, and biases toward
+  verification/exploration.
+
+Commit licensing extension (schematic):
+
+- `commit(tau)` requires:
+  - verifier pass over `{POL, ID, CAPS}`,
+  - `RC_conflict < theta_rc`,
+  - nociceptive risk below veto threshold.
+
+This lane sits upstream of final motor commitment so authority/source conflicts are detected before execution lock-in.
 
 ---
 
@@ -284,6 +396,15 @@ and
 4. **Expected vs unexpected uncertainty are distinct.**  
    ACh‑like expected‑uncertainty (K6) should not be conflated with NE‑like surprise/interrupt (K8).
 
+5. **Authority labels are metadata, not content.**  
+   Role/authority state must come from trusted channel metadata and verified provenance edges, not text claims.
+
+6. **Exteroceptive channels cannot directly write control stores.**  
+   `write(EXTERNAL, {POL, ID, CAPS}) = false` is a runtime boundary rule.
+
+7. **Reality conflict modulates commitment with hysteresis.**  
+   `S5` must support thresholds and decay windows to avoid chronic over-suppression from transient ambiguity.
+
 ---
 
 ## TODOs for the repo
@@ -291,6 +412,8 @@ and
 - [ ] Formalise control plane state variables (including explicit K1–K5, and draft K6).
 - [ ] Specify update equations/interfaces for:
   - `S2` coherence computation,
+  - `S5` reality-coherence conflict computation and hysteresis,
+  - typed verifier boundary (`OBS/INS` vs `POL/ID/CAPS`),
   - commitment state transition rules in E3,
   - control allocation policy (K5).
 - [ ] Implement minimal simulation hooks:
@@ -301,21 +424,27 @@ and
 
 ## Abstracted language (human-readable formal-ish)
 
-**Types:** E1, E2, E3, CP (control plane)  
-**Signals:** S1 (outcome mismatch), S2 (trajectory coherence), S3 (aversive interrupt), S4 (safety baseline/volatility)  
+**Types:** E1, E2, E3, CP (control plane), `OBS`, `INS`, `POL`, `ID`, `CAPS`  
+**Signals:** S1 (outcome mismatch), S2 (trajectory coherence), S3 (aversive interrupt), S4 (safety baseline/volatility), S5 (reality-coherence conflict)  
 **Knobs:** K1..K5, K6 (expected uncertainty), K7–K10 (arousal/readiness/veto)
 
 1. Generation
 - E2 → {S1_fast, S3_fast}  
 - E1 → {S1_slow, S3_slow}  
 - (E1 ⊗ E2 ⊗ E3) → S2
+- (H_graph ⊗ trusted stores) → S5
 
 2. Control
-- CP computes {K1..K10} := F(S1,S2,S3,S4,state_CP)  
+- CP computes {K1..K10} := F(S1,S2,S3,S4,S5,state_CP)  
 - CP gates E3: {commit, interrupt, explore}  
 - CP tunes {E1,E2} via {K1,K2,K6}
 
-3. Unfinished
+3. Boundary constraints
+- EXTERNAL → {OBS, INS}
+- write(EXTERNAL, {POL, ID, CAPS}) = false
+- commit(tau) requires verifier pass and bounded {S5, S3}
+
+4. Unfinished
 - (K6) remains underspecified (expected‑uncertainty attention/gain)
 - Constraint: K6 ≠ K2 (channel-attention is not identical to global precision)
 
@@ -329,12 +458,24 @@ and
 
 ## Open Questions
 
-None noted in preserved sources.
+<a id="q-018"></a>
+**Q-018 - Reality-conflict hysteresis calibration**  
+What RC-conflict threshold, decay, and hysteresis schedule best blocks authority/provenance spoofing without causing
+chronic over-suppression of legitimate task-set switching?
 
 ## Related Claims (IDs)
 
 - MECH-004
+- MECH-064
+- MECH-065
+- ARC-005
+- ARC-017
+- MECH-037
+- MECH-062
+- Q-018
 
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/architecture/control_plane_signal_map.md`
+- `docs/thoughts/2026-02-17_control_plane_update.md`
+- `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`

@@ -1,11 +1,11 @@
 # Thought Sweep Report
 
-Generated: `2026-02-16T15:09:34.520665Z`
+Generated: `2026-02-17T22:27:19.962810Z`
 
 | metric | count |
 |---|---|
-| total thought files | 37 |
-| processed | 37 |
+| total thought files | 39 |
+| processed | 39 |
 | unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
@@ -19,6 +19,7 @@ Generated: `2026-02-16T15:09:34.520665Z`
 
 ## Processed Snapshot
 
+- `17-02-26_necessary_separations_based_on_considering-prompt_injection.md` (5 link(s) in `Processed in`)
 - `2026-02-08_control_plane_modes_responsibility_flow.md` (6 link(s) in `Processed in`)
 - `2026-02-08_modes_of_cognition_control_plane_regimes.md` (3 link(s) in `Processed in`)
 - `2026-02-08_residue_paths_cognitive_map.md` (1 link(s) in `Processed in`)
@@ -54,5 +55,6 @@ Generated: `2026-02-16T15:09:34.520665Z`
 - `2026-02-15_basal_ganglia_commit_gating_control_plane_axes_refresh.md` (3 link(s) in `Processed in`)
 - `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
 - `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
+- `2026-02-17_control_plane_update.md` (3 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
