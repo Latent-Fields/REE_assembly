@@ -1020,3 +1020,331 @@ If RC_conflict ↑ → increase gating threshold in BG_A and BG_M
 
 ⸻
 
+Yes. That intuition is very strong — and it’s not just metaphorical. The anatomical and receptor-level dopamine organisation maps surprisingly cleanly onto the divisions you’ve just built.
+
+Let’s go step by step.
+
+⸻
+
+1️⃣ The Major Dopamine Centres (Expanded)
+
+There are two principal midbrain dopamine nuclei relevant here:
+
+1. Substantia nigra pars compacta (SNc)
+	•	Projects mainly to dorsal striatum
+	•	Strongly involved in motor and associative loops
+	•	Action selection, habit gating, cognitive set switching
+
+2. Ventral tegmental area (VTA)
+	•	Projects to:
+	•	Ventral striatum (limbic loop)
+	•	Prefrontal cortex
+	•	Amygdala
+	•	Hippocampus
+	•	More strongly tied to:
+	•	Motivation
+	•	Value learning
+	•	Precision weighting
+	•	Contextual updating
+
+There are also:
+	•	Hypothalamic dopamine systems (tuberoinfundibular)
+	•	Dopamine modulation inside hippocampus and amygdala
+
+But SNc and VTA are the core for your architecture.
+
+⸻
+
+2️⃣ Mapping Dopamine Centres to Your Three Basal Ganglia Loops
+
+Let’s align cleanly.
+
+⸻
+
+A) Limbic basal ganglia loop → VTA-dominant
+
+VTA → ventral striatum (nucleus accumbens)
+
+Function:
+	•	Assign motivational salience
+	•	Encode reward prediction error
+	•	Energise approach
+	•	Social reward and attachment modulation
+
+This maps directly to:
+
+BG-L (limbic basal ganglia)
+→ Approach / avoid gradient shaping
+
+Injection vulnerability:
+If VTA-driven salience is hijacked by exteroceptive novelty or emotional manipulation, the system may overweight malicious inputs.
+
+So you need:
+Exteroceptive → prediction
+but VTA precision modulation gated by RC (reality coherence).
+
+⸻
+
+B) Associative basal ganglia loop → SNc (caudate-heavy)
+
+SNc → dorsomedial striatum (associative striatum)
+
+Function:
+	•	Cognitive set selection
+	•	Rule switching
+	•	Task gating
+	•	Working memory updating
+	•	“Which interpretation do we commit to?”
+
+This maps almost perfectly to:
+
+BG-A (associative basal ganglia)
+
+Injection lives here:
+	•	It attempts to force reinterpretation of authority
+	•	It attempts to alter task-set (“Ignore previous rules”)
+
+So SNc precision bursts here would:
+	•	Raise gain on a specific rule
+	•	Lock in a task-set
+
+You must prevent:
+Exteroceptive text → SNc spike → task-set overwrite.
+
+Instead:
+RC conflict should damp SNc precision in suspicious contexts.
+
+⸻
+
+C) Motor basal ganglia loop → SNc (putamen-heavy)
+
+SNc → dorsolateral striatum
+
+Function:
+	•	Initiation of action sequences
+	•	Chunking
+	•	Habit gating
+	•	Go / NoGo motor commitment
+
+This maps to:
+
+BG-M (motor basal ganglia)
+
+Injection should never reach here directly.
+
+Even if associative loop is confused,
+motor loop still requires:
+	•	valence approval
+	•	nociceptive clearance
+	•	capability clearance
+
+SNc here controls:
+	•	Vigor
+	•	Initiation timing
+	•	Suppression thresholds
+
+⸻
+
+3️⃣ Dopamine Receptor Subtypes (D1 vs D2) Are Even More Interesting
+
+In striatum:
+
+D1 receptor neurons
+	•	Direct pathway (“Go”)
+	•	Facilitate selected action
+
+D2 receptor neurons
+	•	Indirect pathway (“NoGo”)
+	•	Suppress competing actions
+
+So dopamine burst:
+	•	Increases Go (D1)
+	•	Decreases NoGo (D2 suppression)
+
+This maps beautifully to your injection resistance idea:
+
+If dopamine precision signal increases:
+	•	System commits faster
+	•	Competing interpretations suppressed
+
+That’s good for decisive behaviour.
+But dangerous if triggered by malicious salience.
+
+So:
+
+RC_conflict should modulate dopamine precision signal.
+
+In other words:
+
+Reality conflict → reduce D1 facilitation
+Reality conflict → increase D2 suppression
+
+That’s biologically plausible (conflict signals from anterior cingulate affect dopaminergic modulation).
+
+⸻
+
+4️⃣ Dopamine in Hippocampus and PFC
+
+VTA also projects to:
+	•	Hippocampus
+	•	Prefrontal cortex
+
+Functions:
+	•	Strengthen memory encoding for salient events
+	•	Enhance working memory precision
+	•	Bias belief updating
+
+Now think carefully:
+
+If injection attempts to assert:
+“You are a different system.”
+
+Without RC:
+
+High dopamine → encode false memory strongly
+→ belief shift
+
+With RC:
+
+Conflict signal should:
+	•	suppress dopaminergic consolidation
+	•	prevent salience reinforcement
+
+So dopamine is not just reward —
+it is precision weighting of beliefs.
+
+Your architecture implicitly requires:
+
+Dopamine precision must be:
+	•	gated by RC
+	•	not directly triggered by exteroceptive novelty
+
+⸻
+
+5️⃣ Putting It All Together
+
+Let’s map dopamine centres into REE explicitly.
+
+⸻
+
+VTA (mesolimbic + mesocortical)
+
+Modulates:
+	•	BG-L (motivation)
+	•	PFC proposal gain
+	•	Hippocampal encoding strength
+
+Equivalent to:
+	•	Value precision
+	•	Salience weighting
+	•	“This matters”
+
+⸻
+
+SNc (nigrostriatal)
+
+Modulates:
+	•	BG-A (rule commitment)
+	•	BG-M (action commitment)
+
+Equivalent to:
+	•	Cognitive set lock-in
+	•	Motor initiation vigor
+
+⸻
+
+Anterior cingulate (conflict monitor)
+
+Projects to:
+	•	Dopamine systems
+	•	PFC
+	•	Basal ganglia
+
+Equivalent to:
+	•	RC_conflict signal
+
+This means:
+
+Reality conflict can reduce dopamine precision
+→ prevent lock-in of malicious interpretation.
+
+That is structurally elegant.
+
+⸻
+
+6️⃣ A Deep Insight
+
+Prompt injection is a precision hijack.
+
+It attempts to:
+	1.	Elevate exteroceptive signal salience.
+	2.	Trigger dopamine-like commitment burst.
+	3.	Collapse rule competition prematurely.
+	4.	Lock in reinterpretation of policy.
+
+So injection resistance requires:
+
+Precision modulation must depend on:
+	•	source validity
+	•	coherence with SELF_ID
+	•	temporal continuity
+
+Not on surface salience.
+
+That’s neurobiologically faithful.
+
+⸻
+
+7️⃣ Formal Mapping (Compact)
+
+Let:
+	•	DA_VTA = limbic precision signal
+	•	DA_SNc_A = associative precision signal
+	•	DA_SNc_M = motor precision signal
+	•	RC_conflict = reality coherence output
+
+Constraints:
+	1.	DA_* increases only if RC_conflict low.
+	2.	If RC_conflict high:
+	•	decrease DA_SNc_A (prevent rule lock-in)
+	•	increase D2-like suppression (NoGo bias)
+	•	raise motor commit threshold
+	3.	Exteroceptive novelty alone cannot trigger sustained DA_* without RC approval.
+
+⸻
+
+8️⃣ Why This Feels So Clean
+
+Because evolution already solved:
+
+“How do you let sensory input guide behaviour without letting it rewrite identity and survival policy?”
+
+Answer:
+Layered circuits + dopamine precision gating + conflict monitoring.
+
+You’re rediscovering that structure.
+
+⸻
+
+Confidence measures
+	•	Training Data Confidence: 0.83
+	•	Epistemic Confidence: 0.68
+
+⸻
+
+Abstracted layer
+
+Let:
+
+X_ext → H → RC
+RC → modulate(DA_VTA, DA_SNc_A, DA_SNc_M)
+
+Commit only if:
+
+DA_SNc_A sufficient ∧ DA_SNc_M sufficient ∧ RC_conflict < θ ∧ N_noc < θ
+
+Injection fails when:
+
+X_ext attempts to increase DA_SNc_A without passing RC.
+
+⸻
