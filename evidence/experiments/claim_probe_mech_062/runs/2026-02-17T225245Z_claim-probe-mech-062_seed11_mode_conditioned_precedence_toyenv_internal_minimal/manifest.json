@@ -1,0 +1,57 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_062",
+  "run_id": "2026-02-17T225245Z_claim-probe-mech-062_seed11_mode_conditioned_precedence_toyenv_internal_minimal",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-17T22:52:45Z",
+  "source_repo": {
+    "name": "ree-v2",
+    "commit": "d7d8b2546dbc7986f50c179e7b627109abb6bedd",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v2-qualification-harness",
+    "version": "toy_env_runner.v1+internal_minimal"
+  },
+  "scenario": {
+    "name": "claim_probe_mech_062",
+    "condition": "mode_conditioned_precedence",
+    "seed": 11,
+    "seed_cohort": [
+      11,
+      29,
+      47
+    ],
+    "config_hash": "8b15f0628888",
+    "trajectory_steps": 120,
+    "execution_driver": "deterministic_toy_env_v1",
+    "backend": "internal_minimal",
+    "jepa_source_mode": "submodule_pin",
+    "jepa_source_commit": "c2963a47433ecca0ad4f06ec28bcfa8cb5b5cefb",
+    "jepa_patch_set_hash": "664e1467b722c3ca",
+    "jepa_checkpoint_repo_id": "facebook/vjepa2-vitg-fpc64-256",
+    "jepa_checkpoint_revision": "f353acddbcb72f0e7f87e0e7f5bb8f8a1a8cee62",
+    "jepa_checkpoint_license_id": "Apache-2.0",
+    "jepa_model_source": "ree_v2_internal_minimal",
+    "synthetic_frame_fallback": false,
+    "synthetic_frame_fallback_reason": "",
+    "jepa_checkpoint_filename": "model.safetensors",
+    "jepa_checkpoint_sha256": "f205e77aa2ade168db6b09d4bc420d156141f64ab964278a9c181a2bdf2a232b",
+    "jepa_checkpoint_size_bytes": 4138311608,
+    "jepa_checkpoint_verified": false,
+    "jepa_checkpoint_verification_reason": "not_jepa_inference_backend",
+    "require_real_jepa": false
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "failure_signatures": [],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  }
+}

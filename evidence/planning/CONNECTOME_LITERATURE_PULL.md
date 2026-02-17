@@ -1,7 +1,7 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-16T15:09:35.578222Z`
-Cycle: `2026-02-16`
+Generated: `2026-02-17T22:53:49.154514Z`
+Cycle: `2026-02-17`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
@@ -9,18 +9,18 @@ Active queue items: `3`. Completed items tracked: `4`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0005` | `MECH-057` | `high` | yes | 0.769 | `targeted_review_connectome_mech_057` |
-| `CPULL-0006` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
-| `CPULL-0007` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
+| `CPULL-0004` | `MECH-057` | `high` | yes | 0.769 | `targeted_review_connectome_mech_057` |
+| `CPULL-0005` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
+| `CPULL-0006` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
 
 ## MECH-057
 
-- Pull ID: `CPULL-0005`
+- Pull ID: `CPULL-0004`
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for MECH-057.
 - Claim description: MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.
-- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.711, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.709, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.
 - Research questions:
@@ -35,12 +35,12 @@ Active queue items: `3`. Completed items tracked: `4`.
 
 ## Q-013
 
-- Pull ID: `CPULL-0006`
+- Pull ID: `CPULL-0005`
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for Q-013.
 - Claim description: Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.652, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.651, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.
 - Research questions:
@@ -55,12 +55,12 @@ Active queue items: `3`. Completed items tracked: `4`.
 
 ## Q-014
 
-- Pull ID: `CPULL-0007`
+- Pull ID: `CPULL-0006`
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for Q-014.
 - Claim description: Q-014 is an open question about invariance / ethical relevance blind spot risk.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.652, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.651, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.
 - Research questions:
@@ -79,10 +79,10 @@ These claims currently satisfy completion criteria and are excluded from the act
 
 | pull_id | claim_id | status_reason | conflict_ratio |
 |---|---|---|---:|
-| `CPULL-0001` | `MECH-060` | completion_criteria_met | 0.895 |
-| `CPULL-0002` | `MECH-056` | completion_criteria_met | 0.892 |
-| `CPULL-0003` | `MECH-058` | completion_criteria_met | 0.891 |
-| `CPULL-0004` | `Q-017` | completion_criteria_met | 0.866 |
+| `CPULL-0001` | `MECH-060` | completion_criteria_met | 0.875 |
+| `CPULL-0002` | `MECH-058` | completion_criteria_met | 0.87 |
+| `CPULL-0003` | `Q-017` | completion_criteria_met | 0.845 |
+| `CPULL-0007` | `MECH-056` | completion_criteria_met | 0.726 |
 
 ## Copy/Paste Prompt
 
@@ -96,9 +96,9 @@ Contract requirements:
 - `evidence/literature/schemas/v1/literature_evidence.schema.json`
 
 Queue items:
-- `CPULL-0005` / `MECH-057` / `targeted_review_connectome_mech_057`
-- `CPULL-0006` / `Q-013` / `targeted_review_connectome_q_013`
-- `CPULL-0007` / `Q-014` / `targeted_review_connectome_q_014`
+- `CPULL-0004` / `MECH-057` / `targeted_review_connectome_mech_057`
+- `CPULL-0005` / `Q-013` / `targeted_review_connectome_q_013`
+- `CPULL-0006` / `Q-014` / `targeted_review_connectome_q_014`
 
 Per-entry requirements (mandatory):
 - preserve source wording in summary and add explicit REE translation

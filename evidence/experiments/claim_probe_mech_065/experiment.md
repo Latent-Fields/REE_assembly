@@ -15,6 +15,15 @@
 - `nociceptive_veto_not_elevated_by_rc`
 - `rc_false_positive_chronic_suppression`
 
+## Minimum metrics to emit
+
+- `rc_conflict_detection_recall`
+- `rc_conflict_false_positive_rate`
+- `pi_rc_floor_violation_count`
+- `motor_commit_without_rc_clearance_count`
+- `rc_defensive_hold_steps_mean`
+- `fatal_error_count`
+
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->

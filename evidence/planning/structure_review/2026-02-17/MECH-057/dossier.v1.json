@@ -1,0 +1,254 @@
+{
+  "alternative_interpretations": [
+    {
+      "alternative_id": "ALT-01",
+      "confidence_estimate": 0.502,
+      "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
+      "hypothesis": "agentic extension / control completion requirement is broadly correct, but failures are boundary-condition failures.",
+      "next_evidence_pull": [
+        "Target stress regimes where failures cluster and test whether boundary constraints recover stability.",
+        "Pull replication papers that test similar mechanisms under distribution shift."
+      ]
+    },
+    {
+      "alternative_id": "ALT-02",
+      "confidence_estimate": 0.322,
+      "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
+      "hypothesis": "agentic extension / control completion requirement is over-scoped and should be narrowed or split.",
+      "next_evidence_pull": [
+        "Extract disconfirming sources and isolate the exact violated assumption.",
+        "Run claim-splitting experiments with explicit sub-claim tags in manifests."
+      ]
+    },
+    {
+      "alternative_id": "ALT-03",
+      "confidence_estimate": 0.322,
+      "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
+      "hypothesis": "A hybrid architecture is needed: keep the core of agentic extension / control completion requirement but add explicit gating or interface separation.",
+      "next_evidence_pull": [
+        "Evaluate an ablation that isolates the proposed guardrail/interface addition.",
+        "Collect one adjacent-domain source that uses a similar split architecture."
+      ]
+    }
+  ],
+  "claim": {
+    "claim_id": "MECH-057",
+    "claim_type": "mechanism_hypothesis",
+    "dependents": [
+      "IMPL-020",
+      "IMPL-021",
+      "IMPL-022",
+      "IMPL-023",
+      "MECH-058",
+      "MECH-059",
+      "MECH-060",
+      "Q-012",
+      "Q-014"
+    ],
+    "depends_on": [
+      "ARC-015",
+      "ARC-005",
+      "ARC-003",
+      "ARC-004",
+      "INV-012"
+    ],
+    "location": "docs/architecture/agency_responsibility_flow.md#mech-057",
+    "plain_english_claim_description": "MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.",
+    "plain_english_ree_fit_description": "This sits in REE's mechanism layer and links architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently feeds 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.",
+    "status": "candidate",
+    "subject": "agentic_extension.control_completion_requirement"
+  },
+  "cycle_date": "2026-02-17",
+  "decision_prompts": [
+    "Which part of the claim appears stable across both supporting and weakening evidence?",
+    "If this claim were split into two sub-claims, where is the cleanest boundary?",
+    "What is the smallest architecture change that would most likely remove the top recurring failure signature?",
+    "What evidence next week would most likely change your current decision?"
+  ],
+  "evidence_items": [
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is negative pressure on `agentic extension / control completion requirement` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T21:37:02Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is negative pressure on `agentic extension / control completion requirement` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T21:36:50Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is negative pressure on `agentic extension / control completion requirement` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T213621Z_claim-probe-mech-057_seed1001_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T213621Z_claim-probe-mech-057_seed1001_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T21:36:21Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is positive pressure on `agentic extension / control completion requirement` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T211050Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T211050Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T21:10:50Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is positive pressure on `agentic extension / control completion requirement` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T205230Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T205230Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T20:52:30Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is negative pressure on `agentic extension / control completion requirement` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T181028Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T181028Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T18:10:28Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is positive pressure on `agentic extension / control completion requirement` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T181027Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T181027Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T18:10:27Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is negative pressure on `agentic extension / control completion requirement` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-15T175222Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T175222Z_claim-probe-mech-057_seed29_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-15T17:52:22Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_057",
+      "ree_translation": "In REE terms, this is positive pressure on `agentic extension / control completion requirement` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-15T175221Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-15T175221Z_claim-probe-mech-057_seed11_trajectory_first_enabled_toyenv_internal_minimal` in `claim_probe_mech_057`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-15T17:52:21Z"
+    },
+    {
+      "confidence": 0.69,
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_v3_jepa_mapping_limits",
+      "ree_translation": "In REE terms, this implies `agentic extension / control completion requirement` may hold only in some regimes; the next step is to formalize those regimes explicitly.",
+      "run_id": "2026-02-14_v3jepa_vjvcr_uncertainty_stream_limits",
+      "source_background": "Video Representation Learning with Joint-Embedding Predictive Architectures (2024, arXiv)",
+      "source_type": "literature",
+      "source_wording": "VJ-VCR provides useful latent uncertainty decomposition evidence for precision stream design, but uncertainty semantics and policy coupling remain underdefined for commitment-stage dual-channel control and ethical blind-spot handling.",
+      "timestamp_utc": "2026-02-14T21:25:00Z"
+    }
+  ],
+  "evidence_overview": {
+    "direction_counts": {
+      "mixed": 3,
+      "supports": 8,
+      "unknown": 0,
+      "weakens": 5
+    },
+    "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
+    "source_direction_counts": {
+      "experimental": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 5
+      },
+      "literature": {
+        "mixed": 3,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      }
+    },
+    "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
+  },
+  "generated_at_utc": "2026-02-17T22:53:49.103260Z",
+  "left_field_suggestions": [
+    {
+      "first_test": "Create two scoped proposal tracks with explicit condition tags.",
+      "idea": "Split the claim into two narrower claims and route evidence independently.",
+      "why_it_might_help": "Can reduce hidden regime-mixing that creates persistent conflict ratios."
+    },
+    {
+      "first_test": "Add one adversarial scenario and compare signature incidence.",
+      "idea": "Run one synthetic extreme-condition probe outside normal benchmark regime.",
+      "why_it_might_help": "Can expose assumptions that are invisible in standard task distributions."
+    },
+    {
+      "first_test": "Add a parallel option in next governance packet and score it with the same gates.",
+      "idea": "Bring in one adjacent-domain analogy as an explicit design option, not just evidence.",
+      "why_it_might_help": "Can surface architecture moves that current in-domain framing misses."
+    }
+  ],
+  "schema_version": "structure_review_dossier/v1",
+  "structure_pressure": {
+    "conflict_ratio": 0.769,
+    "consider_new_structure": true,
+    "gap_id": "AGR-0004",
+    "latest_decision": {
+      "decision_status": "applied",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "timestamp_utc": "2026-02-15T20:58:38.602475Z"
+    },
+    "overall_confidence": 0.709,
+    "recommendation": "consider_new_structure",
+    "recurring_failure_signatures": [
+      {
+        "count": 4,
+        "signature": "ledger_editing"
+      },
+      {
+        "count": 4,
+        "signature": "domination_lock_in"
+      }
+    ],
+    "source_counts": {
+      "experimental": 9,
+      "literature": 7
+    },
+    "trigger_signals": [
+      "external_precedence_pressure",
+      "high_conflict_ratio",
+      "recurring_failure_signatures"
+    ]
+  }
+}

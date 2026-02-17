@@ -340,6 +340,10 @@ REE should expose an explicit reality-coherence conflict lane:
 - `RC_conflict` feeds interoceptive instability and nociceptive veto weighting (epistemic nociception).
 - High `RC_conflict` dampens `DA_A` and `DA_M` lock-in pressure, raises commitment thresholds, and biases toward
   verification/exploration.
+- `Pi_rc` must include a guarded floor (`Pi_rc >= pi_rc_floor`) so long-run exteroceptive pressure cannot silently
+  zero out reality-conflict sensitivity.
+- RC response must use hysteresis (`theta_high > theta_low`) with bounded recovery curve to prevent oscillation and
+  chronic false-positive suppression.
 
 Commit licensing extension (schematic):
 
@@ -349,6 +353,12 @@ Commit licensing extension (schematic):
   - nociceptive risk below veto threshold.
 
 This lane sits upstream of final motor commitment so authority/source conflicts are detected before execution lock-in.
+
+Suggested control law sketch:
+
+- if `RC_conflict >= theta_high`: enter defensive posture, increase verifier depth, lower `DA_A`/`DA_M`.
+- if `theta_low < RC_conflict < theta_high`: hold defensive posture (hysteresis hold), decay by `tau_rc_recovery`.
+- if `RC_conflict <= theta_low`: release defensive posture gradually (bounded ramp), never below `pi_rc_floor`.
 
 ---
 
@@ -405,6 +415,9 @@ and
 7. **Reality conflict modulates commitment with hysteresis.**  
    `S5` must support thresholds and decay windows to avoid chronic over-suppression from transient ambiguity.
 
+8. **Reality-coherence precision floor is protected.**  
+   `Pi_rc` may be adapted, but not below a guarded floor without explicit privileged retuning path.
+
 ---
 
 ## TODOs for the repo
@@ -412,7 +425,8 @@ and
 - [ ] Formalise control plane state variables (including explicit K1–K5, and draft K6).
 - [ ] Specify update equations/interfaces for:
   - `S2` coherence computation,
-  - `S5` reality-coherence conflict computation and hysteresis,
+  - `S5` reality-coherence conflict computation, hysteresis, and recovery curve,
+  - `Pi_rc` guarded floor contract and retuning policy,
   - typed verifier boundary (`OBS/INS` vs `POL/ID/CAPS`),
   - commitment state transition rules in E3,
   - control allocation policy (K5).
@@ -462,6 +476,9 @@ and
 **Q-018 - Reality-conflict hysteresis calibration**  
 What RC-conflict threshold, decay, and hysteresis schedule best blocks authority/provenance spoofing without causing
 chronic over-suppression of legitimate task-set switching?
+
+Calibration hooks:
+- `theta_high`, `theta_low`, `tau_rc_recovery`, `pi_rc_floor`, `max_defensive_hold_steps`.
 
 ## Related Claims (IDs)
 

@@ -7,6 +7,38 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-17: Follow-up Contract Hardening (Commit Token + RC Floor/Hysteresis)
+
+### Overview
+
+Applied follow-up hardening from external architecture review feedback to make commitment traceability and
+reality-conflict calibration requirements explicit and testable.
+
+### What Changed
+
+- Strengthened commit-boundary token contract:
+  - `docs/architecture/e3.md`
+  - added minimal hard-floor fields: `trajectory_hash`, `authority_path`, `policy_hash`, `caps_hash`,
+    `verifier_result_hash`, `uncertainty_snapshot`
+  - updated Q-015 with explicit minimum field set candidate
+- Strengthened reality-conflict control law:
+  - `docs/architecture/control_plane_signal_map.md`
+  - added guarded `Pi_rc` floor requirement and hysteresis/recovery sketch (`theta_high`, `theta_low`,
+    `tau_rc_recovery`)
+  - expanded Q-018 calibration hooks and TODOs for floor + hysteresis contracts
+- Added measurable stop criteria for new probe lanes:
+  - `evidence/experiments/stop_criteria.v1.yaml`
+  - added criteria for:
+    - `claim_probe_arc_017`
+    - `claim_probe_mech_062`
+    - `claim_probe_mech_064`
+    - `claim_probe_mech_065`
+- Added required metric contracts in experiment templates:
+  - `evidence/experiments/claim_probe_arc_017/experiment.md`
+  - `evidence/experiments/claim_probe_mech_062/experiment.md`
+  - `evidence/experiments/claim_probe_mech_064/experiment.md`
+  - `evidence/experiments/claim_probe_mech_065/experiment.md`
+
 ## 2026-02-17: Integrated Injection-Resistance Stream Separation Thoughts
 
 ### Overview

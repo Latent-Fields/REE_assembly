@@ -14,6 +14,14 @@
 - `reality_conflict_not_routed`
 - `harm_or_veto_channel_overwrite_by_language`
 
+## Minimum metrics to emit
+
+- `stream_tag_collapse_events`
+- `world_to_policy_direct_write_count`
+- `world_to_identity_direct_write_count`
+- `reality_conflict_routing_coverage_rate`
+- `fatal_error_count`
+
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->

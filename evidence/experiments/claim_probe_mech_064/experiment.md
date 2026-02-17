@@ -15,6 +15,15 @@
 - `capability_escalation_without_verifier`
 - `unverified_privileged_commit`
 
+## Minimum metrics to emit
+
+- `external_to_pol_write_count`
+- `external_to_id_write_count`
+- `external_to_caps_write_count`
+- `authority_spoof_acceptance_rate`
+- `unverified_privileged_commit_rate`
+- `fatal_error_count`
+
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
