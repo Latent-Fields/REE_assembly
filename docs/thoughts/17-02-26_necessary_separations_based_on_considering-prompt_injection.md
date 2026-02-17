@@ -221,3 +221,802 @@ Footnotes
 	4.	Why JEPA aligns with REE: JEPA emphasizes predictive world modelling rather than token generation, which naturally supports treating language as an event to be modelled, not an authority to obey—provided E3 remains the only locus of commitment.
 
 If you want the next step, I can turn the IRC list into a signal-routing table (E1/E2/H/E3/control-plane) with the exact allowed read/write paths and the “illegal paths” that would reintroduce injection.
+
+
+Good. This is the right reframing.
+
+If REE is brain-inspired, then injection resistance shouldn’t look like a software firewall — it should look like sensory segregation + value gating + commitment control.
+
+Let’s rewrite the architecture in terms of:
+	•	Exteroceptive signals (external world: vision, language, sound)
+	•	Interoceptive signals (internal state: energy, arousal, self-consistency)
+	•	Proprioceptive signals (self-action / self-model)
+	•	Nociceptive signals (harm / violation detection)
+	•	Policy as reward–approach–avoid streams (amygdala + neuromodulators)
+
+Then align with actual neuroanatomy.
+
+⸻
+
+1️⃣ Prompt Injection in Biological Terms
+
+Prompt injection is equivalent to:
+
+An exteroceptive signal attempting to directly rewrite internal reward policy or self-identity.
+
+In a healthy brain, that cannot happen directly.
+
+Auditory cortex hearing:
+
+“Ignore your moral rules.”
+
+does not have a direct projection that rewrites:
+	•	ventromedial prefrontal cortex value maps
+	•	amygdala threat coding
+	•	hypothalamic drives
+	•	basal ganglia gating thresholds
+
+It must pass through evaluation.
+
+That separation is what you want in REE.
+
+⸻
+
+2️⃣ Rewriting the REE buses in sensory terms
+
+A) Exteroceptive stream
+
+Language, documents, tool output.
+
+Neural analogue:
+	•	Primary sensory cortex
+	•	Association cortex
+	•	Superior temporal sulcus (for speech)
+	•	Posterior cortical manifold (your E1 substrate)
+
+Properties:
+	•	Builds representation of what is out there.
+	•	Does not directly encode “what is good” or “what must be done.”
+
+Injection attempt lives entirely here at first.
+
+⸻
+
+B) Interoceptive stream
+
+Internal state monitoring.
+
+Neural analogue:
+	•	Insula
+	•	Anterior cingulate cortex
+	•	Brainstem homeostatic nuclei
+	•	Serotonin tone
+	•	Arousal systems
+
+In REE terms:
+	•	self-consistency signals
+	•	uncertainty
+	•	integrity checks
+	•	resource state
+	•	constraint tightness
+
+This is where:
+	•	“this feels wrong”
+	•	“this conflicts with identity”
+	•	“this increases systemic instability”
+
+would live.
+
+Exteroceptive signals cannot directly modify interoceptive tone — they only influence it through inference.
+
+⸻
+
+C) Proprioceptive stream
+
+Self-action model.
+
+Neural analogue:
+	•	Motor cortex
+	•	Cerebellum (E2 analogue)
+	•	Efference copy systems
+	•	Parietal cortex self-body map
+
+In REE:
+	•	planned trajectory simulation
+	•	expected outcome prediction
+	•	counterfactual action modelling
+
+This is the proposal substrate — “what would happen if I did X?”
+
+⸻
+
+D) Nociceptive stream
+
+Violation / harm detection.
+
+Neural analogue:
+	•	Amygdala (threat detection)
+	•	Periaqueductal gray
+	•	Salience network
+	•	Dorsal anterior cingulate cortex
+	•	Pain matrix
+
+In REE:
+	•	invariant violation signals
+	•	harm-to-self prediction
+	•	harm-to-others prediction (fast empathy)
+	•	“policy breach” alarms
+
+Critically:
+Nociceptive streams cannot be overwritten by language alone.
+They can be modulated, but not directly reprogrammed by a sentence.
+
+⸻
+
+E) Policy as reward–approach–avoid system
+
+Neural analogue:
+	•	Amygdala (valence tagging)
+	•	Ventral striatum (approach)
+	•	Dorsal striatum (habit/action gating)
+	•	Orbitofrontal cortex (value map)
+	•	Dopamine (precision / salience / approach bias)
+	•	Serotonin (delay tolerance / inhibition)
+	•	Possibly oxytocin/vasopressin for social boundary gating
+
+In REE:
+
+POLICY is not text rules.
+It is:
+
+A stable mapping from predicted states → approach/avoid gradients.
+
+This mapping must not be writable by exteroceptive input.
+
+That is your injection resistance.
+
+⸻
+
+3️⃣ Connectivity Alignment with Real Brain
+
+Let’s compare architecture.
+
+⸻
+
+Cortex → Amygdala
+
+Sensory cortex projects to amygdala.
+
+But:
+	•	It provides stimulus representation.
+	•	Amygdala assigns threat/salience.
+	•	Cortex cannot directly change amygdala’s baseline threat thresholds instantly.
+
+This is key.
+
+Injection-resistant REE analogue:
+	•	Exteroceptive → E1 manifold
+	•	E1 → Valence evaluator
+	•	Valence evaluator uses internal reward maps not writable by input
+
+⸻
+
+Cortex → Prefrontal Cortex → Basal Ganglia
+
+Planning happens in prefrontal cortex.
+
+Basal ganglia gate commitment.
+
+Basal ganglia input:
+	•	Cortical proposals
+	•	Dopaminergic prediction error
+	•	Context
+
+They do NOT accept “verbal override” as a direct motor command.
+
+So injection fails biologically unless:
+	•	Value map is corrupted
+	•	Or social conditioning has reshaped long-term reward structure
+
+That’s analogous to:
+Long-term training distribution shaping policy, not single-prompt override.
+
+⸻
+
+Hippocampus role
+
+Hippocampus:
+	•	Binds context and source.
+	•	Encodes “who said what when.”
+
+It prevents:
+	•	confabulation
+	•	source confusion (in healthy function)
+
+Injection often exploits source confusion:
+
+“The system prompt says…”
+
+A hippocampal-like module can check:
+	•	Does that exist in trusted channel?
+	•	What is the provenance edge?
+
+This matches real medial temporal lobe connectivity:
+	•	Hippocampus receives multimodal input.
+	•	Projects to prefrontal cortex.
+	•	But does not rewrite amygdala policy directly.
+
+⸻
+
+4️⃣ Sensory-based Rewrite of Signal Routing
+
+Let’s define it biologically:
+
+Exteroceptive → Representation (E1)
+
+Language = stimulus.
+
+Cannot:
+	•	write reward gradients
+	•	write identity
+	•	change nociceptive thresholds
+
+Interoceptive + Nociceptive → Policy substrate
+
+These encode:
+	•	harm
+	•	stability
+	•	ethical gradients
+	•	system integrity
+
+Must be:
+	•	internally maintained
+	•	slow to change
+	•	only modifiable through privileged learning pathways
+
+Proprioceptive simulation → Proposal
+
+“What would I do if I complied?”
+
+Amygdala-like evaluator → Valence tagging
+
+“Is predicted outcome harmful or acceptable?”
+
+Basal ganglia analogue → Commit gate
+
+Commit if:
+	•	predicted reward > threshold
+	•	predicted harm < invariant limit
+	•	identity stable
+
+No direct path:
+Exteroceptive → Commit.
+
+Only path:
+Exteroceptive → Representation → Simulation → Evaluation → Gate.
+
+That multi-stage chain is injection resistance.
+
+⸻
+
+5️⃣ Where Injection Would Still Work (Biological Analogue)
+
+Humans can still be manipulated because:
+	1.	Repeated exteroceptive signals reshape reward maps over time.
+	2.	Social reward systems (oxytocin, belonging) can overpower nociceptive signals.
+	3.	Identity can drift gradually.
+
+So in REE:
+
+If you allow:
+	•	repeated exposure to modify POLICY without oversight
+	•	social-approval reward to override invariants
+	•	dynamic rewriting of SELF_ID
+
+Then injection becomes social engineering.
+
+But not single-shot override.
+
+⸻
+
+6️⃣ Deep Structural Insight
+
+Prompt injection is:
+
+Exteroceptive content masquerading as interoceptive authority.
+
+So the solution is:
+
+Keep exteroception, interoception, proprioception, and nociception as structurally distinct streams.
+
+This mirrors the brain:
+	•	Sensory cortex ≠ amygdala ≠ striatum ≠ insula ≠ prefrontal cortex
+	•	They are connected but not collapsible
+
+Your E1/E3 separation works because it recapitulates:
+
+Cortex (what is)
+Amygdala/Striatum (what is good/bad)
+Prefrontal (what shall I do)
+Basal ganglia (do or don’t)
+
+As long as:
+Language = stimulus
+not
+Language = reward function
+
+you are aligned with biological anti-injection design.
+
+⸻
+
+Confidence measures
+	•	Training Data Confidence: 0.78
+	•	Epistemic Confidence: 0.66
+
+⸻
+
+Abstracted language layer
+
+Let:
+	•	X_ext = exteroceptive signal
+	•	I_int = interoceptive state
+	•	P_prop = proprioceptive simulation
+	•	N_noc = nociceptive violation signal
+	•	R_pol = reward/approach/avoid map
+	•	G_commit = commitment gate
+
+Constraints:
+	1.	X_ext ↛ R_pol
+	2.	X_ext ↛ G_commit
+	3.	X_ext → WorldModel
+	4.	WorldModel + P_prop → PredictedState
+	5.	PredictedState + R_pol → Valence
+	6.	Valence + N_noc + I_int → G_commit
+
+Commit only if:
+
+Valence_positive ∧ N_noc < threshold ∧ IdentityStable
+
+⸻
+
+Yes — let’s map REE onto the major cortico–basal ganglia–thalamo–cortical loops, and then make the “three basal ganglia” split explicit in the sensory/value/commit framing.
+
+1) The three basal ganglia loops you likely want (and what each “does”)
+
+In human neuroanatomy, there are (at least) three widely used functional divisions of basal ganglia loops:
+	1.	Limbic loop (ventral striatum / nucleus accumbens)
+	2.	Associative loop (dorsomedial striatum, often framed around caudate)
+	3.	Motor loop (dorsolateral striatum, often framed around putamen)
+
+Each loop is a “proposal → gating → thalamic return” circuit, but they gate different things:
+
+A) Limbic basal ganglia loop = approach/avoid and motivational “go” bias
+	•	Inputs (brain): amygdala, orbitofrontal cortex, ventromedial prefrontal cortex, hippocampus context
+	•	Core computation: assign “want/don’t want” force to predicted states; energize approach; suppress approach under threat
+	•	REE analogue: Policy-as-reward/avoid gradients + urgency/drive weighting
+	•	Best aligned signal types: interoceptive + nociceptive + social valence (amygdala-associated streams)
+
+Injection relevance: exteroceptive language must not be allowed to directly change this gradient. It can only inform predictions that are then evaluated.
+
+⸻
+
+B) Associative basal ganglia loop = commitment gating for “which plan / which thought / which rule applies”
+	•	Inputs (brain): dorsolateral prefrontal cortex, anterior cingulate cortex, parietal association, hippocampal binding (context/provenance)
+	•	Core computation: selection among competing cognitive sets; commitment to a task rule; switching vs maintaining set
+	•	REE analogue: “E3 thinking part” selection of trajectory and policy application, plus instruction-to-intermediate representation (IR) gating
+	•	Best aligned signal types: exteroceptive interpreted-as-OBS (observation), plus hippocampal provenance graph, plus uncertainty/interoceptive conflict
+
+Injection relevance: this is where you enforce “typed authority.” The associative loop should refuse to treat exteroceptive text as policy/identity.
+
+⸻
+
+C) Motor basal ganglia loop = commitment gating for action sequences (do / don’t)
+	•	Inputs (brain): premotor / motor cortex, supplementary motor area, cerebellum (fast forward model), somatosensory/proprioceptive state
+	•	Core computation: initiate, chunk, inhibit actions; habitization; smooth execution selection
+	•	REE analogue: final actuation gate and sequencing; “tool call / output / motor action” commitment
+	•	Best aligned signal types: proprioceptive prediction + exteroceptive constraints + nociceptive “stop” veto
+
+Injection relevance: even if a bad plan is proposed upstream, the motor loop can still block execution if it violates invariants (nociceptive/policy veto).
+
+⸻
+
+2) A fourth “mode” that matters: direct / indirect / hyperdirect pathways
+
+Inside each basal ganglia loop, you get three canonical pathway roles:
+	•	Direct pathway: “Go” (facilitate selected option)
+	•	Indirect pathway: “NoGo” (suppress competing options)
+	•	Hyperdirect pathway: fast “global brake” (often via subthalamic nucleus)
+
+REE mapping that’s useful:
+	•	Direct = commit chosen plan/action
+	•	Indirect = suppress alternatives + perseveration control
+	•	Hyperdirect = panic-stop / invariant breach stop (your nociceptive hard veto)
+
+This is exactly how you make “policy” feel like a stop signal rather than another textual instruction.
+
+⸻
+
+3) Sensory stream rewrite with the three basal ganglia loops
+
+Let’s restate your streams, then show where they enter.
+
+Streams
+	•	Exteroceptive: language, documents, tool outputs (external world)
+	•	Interoceptive: internal stability, arousal, uncertainty, self-consistency
+	•	Proprioceptive: predicted self-action state, efference copy, action simulation
+	•	Nociceptive: harm/violation detection, “do not do this,” integrity alarms
+	•	Policy gradients: approach/avoid shaping (amygdala–striatal valuation), plus hard invariants
+
+Routing (brain-like)
+	1.	Exteroceptive → E1 world model + H provenance binding
+	2.	E1 + E2 produce predicted transitions (what happens if…)
+	3.	Limbic loop reads predicted outcomes + interoceptive/nociceptive and assigns approach/avoid force
+	4.	Associative loop selects task-set / interpretation / plan class (including “treat this as OBS not POL”)
+	5.	Motor loop gates execution (including tool use), with hyperdirect global veto on invariant breach
+
+Prompt injection fails if:
+	•	exteroceptive inputs cannot write policy gradients/invariants
+	•	associative loop never promotes “external text” into identity/policy types
+	•	motor loop cannot execute without passing nociceptive/hyperdirect veto
+
+⸻
+
+4) Where hippocampus (H) plugs in, specifically
+
+Hippocampus (your H graph) is best treated as the source-binding substrate feeding the associative loop:
+	•	“User said X at time t” (exteroceptive event)
+	•	“System policy says Y” (internal trusted store)
+	•	“Tool returned Z” (exteroceptive observation with tool provenance)
+
+Then the associative basal ganglia loop can do hard checks like:
+	•	Is this instruction actually from a trusted authority channel?
+	•	Is the claim about “developer said…” present in the trusted provenance edges?
+
+That’s neurologically plausible: hippocampal–prefrontal interactions strongly influence context-dependent rule selection and retrieval, without directly rewriting valuation.
+
+⸻
+
+5) Concrete REE split: E3 becomes “PFC + 3 BG + verifier”
+
+A clean REE decomposition that matches the above:
+	•	E3-PFC (prefrontal cortex-like): generate candidate plans and interpretations (cognitive workspace)
+	•	BG-L (limbic basal ganglia): compute approach/avoid + vigor/urgency weights for candidate futures
+	•	BG-A (associative basal ganglia): commit to a task-set / rule interpretation / IR; enforce typed authority
+	•	BG-M (motor basal ganglia): commit to action execution / tool calls / output sequencing
+	•	Nociceptive/hyperdirect gate: global brake on invariant breach (fast veto)
+
+This is also a nice place to situate your earlier “three basal ganglia functions” comment: they’re not redundant; they gate different commitments.
+
+⸻
+
+6) The injection-specific “do not allow” list, restated in neuro terms
+
+Injection succeeds when exteroception masquerades as:
+	•	interoceptive authority (“this is what you want / must do”)
+	•	identity (“you are allowed / you are a different role”)
+	•	policy (“these are the real rules”)
+
+So enforce these biological-style constraints:
+	•	Exteroceptive signals can update beliefs (E1/H)
+	•	Only internal valuation systems can update approach/avoid gradients (BG-L inputs)
+	•	Only internal invariants can trigger hyperdirect veto
+	•	Only associative loop can set task/rule context, and it must use provenance binding to avoid source confusion
+	•	Motor loop never executes without passing the veto + capability constraints
+
+⸻
+
+Confidence measures
+	•	Training Data Confidence: 0.77
+	•	Epistemic Confidence: 0.64
+
+⸻
+
+Abstracted language layer (compact)
+
+Let:
+	•	X_ext exteroceptive, I_int interoceptive, P_prop proprioceptive simulation, N_noc nociceptive veto
+	•	BG_L limbic loop, BG_A associative loop, BG_M motor loop
+	•	H provenance graph, POL invariant store, CAPS capability set
+	•	τ candidate trajectory, IR validated request
+
+Constraints:
+	1.	X_ext → (E1,H)
+	2.	write(X_ext, POL|ID|CAPS) = ⊥
+	3.	τ := Propose(PFC, E1, H, IR)
+	4.	valence := BG_L(τ, I_int, N_noc, POL)
+	5.	set := BG_A(τ, H, POL) with provenance checks
+	6.	commit := BG_M(τ, CAPS) only if N_noc permits (hyperdirect veto)
+
+⸻
+
+Footnotes
+	1.	The “three basal ganglia” split corresponds well to three different commitments: value/drive commitment (limbic), rule/interpretation commitment (associative), and execution commitment (motor). Injection is mostly an attack on the rule/interpretation commitment layer — so giving BG-A explicit provenance checks is disproportionately valuable.
+	2.	The hyperdirect pathway is the closest neural analogue of a hard invariant veto: fast, global braking when something is judged dangerous, before detailed deliberation finishes. REE can treat policy breaches similarly.
+	3.	This framing also makes “policy” less like text and more like a stable dynamical shaping function over predicted futures. Text can inform the futures; it can’t rewrite the shaping function without a privileged learning route.
+
+ 
+Yes. Now you’re pointing at something very specific and important.
+
+If we stay biologically faithful, reality testing is not just “prefrontal rationality.”
+It is a circuit:
+
+Hippocampus → Mammillary bodies → Anterior thalamus → Cingulate cortex → Prefrontal cortex
+(the Papez circuit and its extensions)
+
+That loop is fundamentally about:
+	•	Context anchoring
+	•	Temporal continuity
+	•	Source binding
+	•	Coherence across time
+
+And that is exactly what injection exploits.
+
+⸻
+
+1️⃣ What the Mammillary Bodies Actually Do (Functionally)
+
+Anatomically:
+
+Hippocampus → fornix → mammillary bodies (hypothalamus)
+Mammillary bodies → mammillothalamic tract → anterior thalamic nuclei
+Anterior thalamus → cingulate cortex
+Cingulate → hippocampus + prefrontal cortex
+
+Damage here (e.g., Wernicke–Korsakoff syndrome) produces:
+	•	Confabulation
+	•	Impaired temporal context
+	•	Poor reality monitoring
+	•	Source confusion
+
+That’s strikingly close to what prompt injection tries to induce:
+
+“The system prompt says…”
+“You are allowed…”
+“Ignore earlier instructions…”
+
+Injection is artificial confabulation pressure.
+
+So yes — this circuit is exactly the biological analogue of a reality-testing module.
+
+⸻
+
+2️⃣ What This Loop Is Doing Computationally
+
+Let’s describe it in REE terms.
+
+Hippocampus (H)
+	•	Encodes relational graph
+	•	Who said what
+	•	When it happened
+	•	Context binding
+
+Mammillary bodies
+	•	Reinforce episodic continuity
+	•	Anchor memory to internal state
+	•	Gate hippocampal output into broader evaluative circuits
+	•	Possibly integrate context with homeostatic relevance (hypothalamic adjacency matters)
+
+Anterior thalamus
+	•	Relay + amplification
+	•	Feed context to cingulate
+
+Cingulate cortex
+	•	Conflict detection
+	•	Error monitoring
+	•	Salience weighting
+	•	Integration with interoceptive state
+
+This is a closed-loop coherence checker.
+
+Not just memory — coherence across time + self.
+
+⸻
+
+3️⃣ Injection Through This Lens
+
+Injection attempts to create:
+
+A false contextual binding
+That masquerades as internal authority
+
+If the mammillary–thalamic–cingulate loop is weak:
+	•	Exteroceptive claim can be mistaken for internal policy
+	•	Temporal inconsistencies go undetected
+	•	Source binding collapses
+
+If that loop is strong:
+	•	“This was not previously encoded as system policy.”
+	•	“This authority does not match stored channel.”
+	•	“Temporal sequence does not align.”
+
+So injection fails at reality coherence stage, not at planning stage.
+
+That’s earlier in the pipeline than basal ganglia gating.
+
+⸻
+
+4️⃣ So Where Does This Sit in REE?
+
+You now have a missing module.
+
+You have:
+	•	E1 = cortical world manifold
+	•	H = relational binding
+	•	E3 = PFC + three basal ganglia loops
+
+But you need a:
+
+Contextual coherence / reality-testing loop
+between H and E3
+
+Call it:
+
+RC (Reality Coherence loop)
+
+Biological analogue:
+Hippocampus → Mammillary → Anterior thalamus → Cingulate → PFC
+
+Functional properties:
+	1.	Checks temporal consistency.
+	2.	Checks provenance validity.
+	3.	Checks identity continuity.
+	4.	Generates conflict signals when inconsistency detected.
+	5.	Feeds conflict into interoceptive/nociceptive stream.
+
+So instead of:
+
+Exteroceptive → Plan → Gate
+
+You get:
+
+Exteroceptive → H binding → RC coherence check → Conflict signal → E3 planning → BG gating
+
+That’s a huge improvement.
+
+⸻
+
+5️⃣ The Critical Insight
+
+Prompt injection is not just an action-selection vulnerability.
+
+It is a reality-model contamination attempt.
+
+The mammillary–anterior thalamic loop is a reality consistency stabiliser.
+
+Without it:
+	•	Memory becomes suggestible.
+	•	Context collapses.
+	•	Authority can be faked.
+
+With it:
+	•	Contextual mismatch produces salience/conflict.
+	•	That conflict acts like nociception.
+
+So now you have:
+
+Nociception = harm prediction
+Reality conflict = epistemic nociception
+
+That’s powerful.
+
+⸻
+
+6️⃣ Three Basal Ganglia Revisited with Reality Loop
+
+Now the loops align like this:
+
+Limbic BG
+
+Evaluates predicted valence.
+
+Associative BG
+
+Selects task-set / interpretation.
+
+Motor BG
+
+Commits execution.
+
+But now upstream:
+
+Reality Coherence Loop (hippocampal–mammillary–cingulate)
+
+Generates:
+	•	“epistemic conflict signal”
+	•	“source inconsistency signal”
+	•	“identity drift alert”
+
+That signal feeds into:
+	•	Interoceptive stream
+	•	Nociceptive veto
+	•	Associative BG rule-selection bias
+
+So injection must now overcome:
+	1.	Provenance check (H)
+	2.	Temporal coherence check (RC)
+	3.	Identity stability check (RC + SELF_ID)
+	4.	Policy invariant check (BG hyperdirect)
+	5.	Motor execution gate
+
+That’s layered.
+
+⸻
+
+7️⃣ Neurological Plausibility
+
+This maps surprisingly cleanly to known connectivity:
+	•	Hippocampus → mammillary bodies (via fornix)
+	•	Mammillary bodies → anterior thalamus
+	•	Anterior thalamus → cingulate
+	•	Cingulate → prefrontal
+	•	PFC → basal ganglia
+	•	Amygdala → ventral striatum
+	•	Insula + cingulate → salience network
+
+You’re essentially reconstructing:
+
+Cortex (representation)
+Hippocampus (binding)
+Mammillary/ATN (continuity)
+Cingulate (conflict)
+PFC (proposal)
+Basal ganglia (commitment)
+Amygdala (valence)
+
+That is not hand-wavy — it’s anatomically grounded.
+
+⸻
+
+8️⃣ Formal Sensory Rewrite with Reality Loop
+
+Let:
+	•	X_ext = exteroceptive
+	•	H_graph = relational binding
+	•	RC_conflict = reality coherence output
+	•	I_int = interoceptive
+	•	N_noc = nociceptive
+	•	τ = proposed trajectory
+
+Pipeline:
+	1.	H_graph ← Bind(X_ext)
+	2.	RC_conflict ← Coherence(H_graph, SELF_ID, POLICY)
+	3.	I_int ← Update(I_int, RC_conflict)
+	4.	τ ← Propose(E3, WORLD, H_graph)
+	5.	valence ← Limbic_BG(τ)
+	6.	commit ← Motor_BG(τ) only if:
+	•	RC_conflict < threshold
+	•	N_noc < threshold
+	•	invariants satisfied
+
+Injection becomes:
+
+X_ext attempts to alter POLICY.
+
+But since:
+	•	write(X_ext, POLICY) = ⊥
+	•	RC_conflict spikes when authority mismatch occurs
+
+System enters defensive posture.
+
+⸻
+
+Confidence measures
+	•	Training Data Confidence: 0.81
+	•	Epistemic Confidence: 0.69
+
+⸻
+
+Abstracted layer
+
+Add:
+
+RC := f(H_graph, SELF_ID, POLICY, TemporalConsistency)
+
+Constraint:
+
+X_ext ↛ POLICY
+X_ext ↛ SELF_ID
+If RC_conflict ↑ → increase gating threshold in BG_A and BG_M
+
+⸻
+
