@@ -23,6 +23,12 @@ This repo is documentation‑only. It is designed to:
 - promote new understanding into typed claims,
 - and surface conflicts explicitly rather than resolving them silently.
 
+## External Testing Ground
+
+- `REE_OpenClaw` now lives as a standalone repository at `/Users/dgolden/Documents/GitHub/REE_OpenClaw`.
+- `REE_assembly` remains the canonical source for REE claims, invariants, and thought intake that drive that implementation.
+- Handoff details are in `evidence/planning/REE_OPENCLAW_TESTBED_INTERFACE.md`.
+
 For the full workflow and required prompts, see `docs/README.md`.
 
 ## License And Citation

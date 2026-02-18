@@ -19,6 +19,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, and `ree-v1-minimal`.
 - `HOBBY_OPERATOR_PLAYBOOK.md`: weekly structured workflow and buy/hold compute decision policy for spare-time operation.
 - `LOCAL_CADENCE_AUTOMATION.md`: local scheduler runbook for weekly handoff pull/ingest and outbound dispatch emission.
+- `REE_OPENCLAW_TESTBED_INTERFACE.md`: minimal upstream/downstream contract for using standalone `REE_OpenClaw` as an implementation testbed.
 
 ## Inputs
 
