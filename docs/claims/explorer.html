@@ -298,14 +298,45 @@
       cursor: default;
     }
 
-    .excerpt {
+    .excerpt-content {
       background: #fbfaf6;
       border: 1px solid var(--border);
-      padding: 8px;
+      padding: 10px;
       border-radius: 8px;
-      max-height: 320px;
+      max-height: 380px;
       overflow: auto;
       font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .conflict-detail {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: #fff;
+      margin: 8px 0;
+    }
+
+    .conflict-detail summary {
+      font-weight: 600;
+      color: #6d4c1f;
+    }
+
+    .conflict-meta {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .conflict-body {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .conflict-block {
+      margin: 8px 0;
     }
 
     details summary {
@@ -735,6 +766,177 @@
       background: #fff5de;
     }
 
+    .legend-wrap {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: #fcfaf5;
+      margin: 0 0 10px 0;
+    }
+
+    .legend-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .legend-note {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .legend-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 11px;
+    }
+
+    .legend-node {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .legend-node.invariant { background: #f7ecd0; border-color: #dfc17a; }
+    .legend-node.architectural_commitment { background: #e5efff; border-color: #9bb6e8; }
+    .legend-node.mechanism_hypothesis { background: #e3f2ee; border-color: #92c9b7; }
+    .legend-node.open_question { background: #fdebd8; border-color: #e5b37d; }
+    .legend-node.implementation_note { background: #efeff2; border-color: #c0c4ce; }
+
+    .legend-status {
+      width: 16px;
+      height: 10px;
+      border: 2px solid #7f7f7f;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .legend-status.provisional { border-style: dashed; }
+    .legend-status.candidate { border-style: dotted; }
+    .legend-status.legacy { border-style: solid; border-color: #8c2f2f; }
+
+    .legend-line {
+      width: 18px;
+      border-top: 2px solid #777;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .legend-line.upstream {
+      border-top: 2px dashed var(--accent-2);
+    }
+
+    .legend-line.downstream {
+      border-top: 2px solid var(--accent);
+    }
+
+    .legend-line.dim {
+      border-top: 2px solid #cfc6b8;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      display: inline-block;
+      flex-shrink: 0;
+      background: #fff;
+    }
+
+    .legend-swatch.heat-low {
+      border-color: #9ab6d6;
+      background: #f7fbff;
+    }
+
+    .legend-swatch.heat-medium {
+      border-color: #d8b36d;
+      background: #fffaf0;
+    }
+
+    .legend-swatch.heat-high {
+      border-color: #c98f8f;
+      background: #fff5f5;
+    }
+
+    .map-legend .map-chip {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .map-legend .map-badge {
+      pointer-events: none;
+    }
+
+    .help-tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1;
+      cursor: help;
+      user-select: none;
+      outline: none;
+    }
+
+    .help-tip::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 8px);
+      transform: translateX(-50%);
+      background: #1f2328;
+      color: #fff;
+      border-radius: 8px;
+      padding: 6px 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+      font-size: 11px;
+      line-height: 1.35;
+      width: max-content;
+      max-width: 280px;
+      min-width: 180px;
+      white-space: normal;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    .help-tip:hover::after,
+    .help-tip:focus-visible::after {
+      opacity: 1;
+    }
+
     .docs-toolbar {
       display: grid;
       grid-template-columns: minmax(200px, 1fr) minmax(180px, 240px);
@@ -1102,6 +1304,32 @@
             </div>
           </div>
         </div>
+          <div class="legend-wrap" id="graphLegend">
+            <div class="legend-title">
+              Graph key
+              <span class="help-tip" tabindex="0" data-tip="Hover nodes for quick claim details. Click a node to open the claim panel and related conflicts.">?</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-item"><span class="legend-node invariant"></span>Invariant</span>
+              <span class="legend-item"><span class="legend-node architectural_commitment"></span>Architectural commitment</span>
+              <span class="legend-item"><span class="legend-node mechanism_hypothesis"></span>Mechanism hypothesis</span>
+              <span class="legend-item"><span class="legend-node open_question"></span>Open question</span>
+              <span class="legend-item"><span class="legend-node implementation_note"></span>Implementation note</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-item"><span class="legend-status"></span>Stable/active</span>
+              <span class="legend-item"><span class="legend-status provisional"></span>Provisional</span>
+              <span class="legend-item"><span class="legend-status candidate"></span>Candidate</span>
+              <span class="legend-item"><span class="legend-status legacy"></span>Legacy</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-item"><span class="legend-line"></span>Dependency edge</span>
+              <span class="legend-item"><span class="legend-line upstream"></span>Upstream focus path</span>
+              <span class="legend-item"><span class="legend-line downstream"></span>Downstream focus path</span>
+              <span class="legend-item"><span class="legend-line dim"></span>Outside focus</span>
+              <span class="legend-item"><code>*</code> Claim has conflict file(s)</span>
+            </div>
+          </div>
           <div class="graph-panel" id="graphPanel"></div>
           <div class="graph-tooltip" id="graphTooltip"></div>
         </div>
@@ -1137,6 +1365,29 @@
               <input type="checkbox" id="mapGovernanceOnly" />
               Governance-Signaled Only
             </label>
+          </div>
+          <div class="legend-wrap map-legend" id="mapLegend">
+            <div class="legend-title">
+              Map key
+              <span class="help-tip" tabindex="0" data-tip="Each chip is a claim. Click a chip to open full claim context in the right-side panel.">?</span>
+              <span class="legend-note" id="mapLegendMode">Subsystem Atlas lens active</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-item"><span class="map-badge decision">D</span>Human decision queue</span>
+              <span class="legend-item"><span class="map-badge creative">I</span>Human inspiration / generative input</span>
+              <span class="legend-item"><span class="map-badge conflict">C</span>Conflict queue</span>
+            </div>
+            <div class="legend-row">
+              <span class="map-chip">MECH-000</span>
+              <span class="map-chip selected">Selected claim</span>
+              <span class="map-chip stale-only">Stale-only (not current epoch)</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-low"></span>Low heat</span>
+              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-medium"></span>Medium heat</span>
+              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-high"></span>High heat</span>
+              <span class="legend-item" data-lens-only="atlas">Heat colors appear only in Governance Heat lens</span>
+            </div>
           </div>
           <div id="mapMeta" class="map-summary"></div>
           <div id="mapGrid" class="map-grid"></div>
@@ -1540,6 +1791,8 @@ END CONFLICT RESOLUTION`;
       graphWrap: document.getElementById('graphWrap'),
       docsWrap: document.getElementById('docsWrap'),
       mapWrap: document.getElementById('mapWrap'),
+      mapLegend: document.getElementById('mapLegend'),
+      mapLegendMode: document.getElementById('mapLegendMode'),
       mapMeta: document.getElementById('mapMeta'),
       mapLens: document.getElementById('mapLens'),
       graphPanel: document.getElementById('graphPanel'),
@@ -1600,6 +1853,7 @@ END CONFLICT RESOLUTION`;
     let allClaims = [];
     let claimMap = new Map();
     let conflictsMap = {};
+    const conflictDetailCache = new Map();
     const claimTextCache = new Map();
     const fileCache = new Map();
     let initialized = false;
@@ -2127,6 +2381,19 @@ END CONFLICT RESOLUTION`;
       return order.filter(k => counts[k]).map(k => `${k} ${counts[k]}`).join(' \u2022 ');
     }
 
+    function updateMapLegend(lens) {
+      if (!els.mapLegend) return;
+      if (els.mapLegendMode) {
+        els.mapLegendMode.textContent = lens === 'governance_heat'
+          ? 'Governance Heat lens active'
+          : 'Subsystem Atlas lens active';
+      }
+      els.mapLegend.querySelectorAll('[data-lens-only]').forEach(node => {
+        const target = String(node.getAttribute('data-lens-only') || '').trim();
+        node.hidden = !!target && target !== lens;
+      });
+    }
+
     function renderMap() {
       if (!els.mapGrid) return;
       const checkpoints = governanceAgenda && governanceAgenda.checkpoints
@@ -2136,6 +2403,7 @@ END CONFLICT RESOLUTION`;
       const signals = buildGovernanceClaimSignals(checkpoints);
       const conflictRatios = buildConflictRatioMap(checkpoints);
       const lens = els.mapLens ? String(els.mapLens.value || 'atlas') : 'atlas';
+      updateMapLegend(lens);
       const epochOnly = els.mapEpochOnly ? !!els.mapEpochOnly.checked : true;
       const governanceOnly = els.mapGovernanceOnly ? !!els.mapGovernanceOnly.checked : false;
 
@@ -3300,6 +3568,184 @@ END CONFLICT RESOLUTION`;
       return { claimLine: cleanClaimLine(claimLine, anchorLine), excerpt };
     }
 
+    function normalizeSectionExcerpt(excerpt) {
+      if (!excerpt) return '';
+      const lines = String(excerpt)
+        .split(/\r?\n/)
+        .filter(line => !line.includes('<a id='));
+      return lines.join('\n').trim();
+    }
+
+    function parseMarkdownHeadingSections(text) {
+      const lines = String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+      let title = '';
+      let currentHeading = '';
+      let buffer = [];
+      const sections = [];
+
+      function flush() {
+        const content = buffer.join('\n').trim();
+        sections.push({ heading: currentHeading, content });
+        buffer = [];
+      }
+
+      lines.forEach((line, idx) => {
+        const trimmed = line.trim();
+        const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
+        if (headingMatch) {
+          const heading = headingMatch[2].trim();
+          if (!title && headingMatch[1].length === 1) title = heading;
+          if (currentHeading || buffer.length) flush();
+          currentHeading = heading;
+          return;
+        }
+        if (!currentHeading && !title && idx === 0 && trimmed.startsWith('#')) {
+          title = trimmed.replace(/^#+\s*/, '').trim();
+          return;
+        }
+        buffer.push(line);
+      });
+      if (currentHeading || buffer.length) flush();
+
+      const map = new Map();
+      sections.forEach(section => {
+        map.set(String(section.heading || '').toLowerCase(), section.content || '');
+      });
+      return { title, sections, map };
+    }
+
+    function getSectionByHeadingPrefix(parsed, prefixes) {
+      if (!parsed || !Array.isArray(parsed.sections)) return '';
+      const tokens = (prefixes || []).map(p => String(p).toLowerCase());
+      for (const section of parsed.sections) {
+        const heading = String(section.heading || '').toLowerCase();
+        if (tokens.some(token => heading.startsWith(token))) {
+          return String(section.content || '').trim();
+        }
+      }
+      return '';
+    }
+
+    function toFirstParagraph(text) {
+      const blocks = String(text || '')
+        .split(/\n\s*\n/)
+        .map(s => s.trim())
+        .filter(Boolean);
+      return blocks.length ? blocks[0] : '';
+    }
+
+    function parseConflictDetail(filePath, content) {
+      const parsed = parseMarkdownHeadingSections(content);
+      const title = parsed.title || filePath;
+      const why = getSectionByHeadingPrefix(parsed, ['why they conflict']);
+      const question = getSectionByHeadingPrefix(parsed, ['reconciliation question']);
+      const statusBlock = getSectionByHeadingPrefix(parsed, ['status', 'resolution']);
+      const idsBlock = getSectionByHeadingPrefix(parsed, ['conflicting claim ids']);
+      const conflictingIds = (idsBlock.match(/\b(?:INV|ARC|MECH|IMPL|Q)-\d{3}\b/g) || []).filter(Boolean);
+
+      let statusLabel = 'status unspecified';
+      const lowered = String(statusBlock || '').toLowerCase();
+      if (lowered.includes('resolved')) statusLabel = 'resolved';
+      else if (lowered.includes('open')) statusLabel = 'open';
+
+      const summary = toFirstParagraph(why) || toFirstParagraph(statusBlock);
+      const resolutionNoteMatch = String(statusBlock || '').match(/Resolution note:\s*`([^`]+)`/i);
+      const resolutionNote = resolutionNoteMatch ? resolutionNoteMatch[1].trim() : '';
+
+      return {
+        filePath,
+        title,
+        statusLabel,
+        conflictingIds,
+        whyBlock: String(why || '').trim(),
+        summary,
+        questionBlock: String(question || '').trim(),
+        question: toFirstParagraph(question),
+        statusBlock: String(statusBlock || '').trim(),
+        resolutionNote,
+      };
+    }
+
+    async function loadConflictDetailsForClaim(claimId, files) {
+      const out = [];
+      for (const file of files || []) {
+        const key = `${claimId}:${file}`;
+        if (conflictDetailCache.has(key)) {
+          out.push(conflictDetailCache.get(key));
+          continue;
+        }
+        try {
+          const rel = relativeLink(file);
+          const content = await fetchText(rel);
+          const parsed = parseConflictDetail(file, content);
+          conflictDetailCache.set(key, parsed);
+          out.push(parsed);
+        } catch (_) {
+          const fallback = {
+            filePath: file,
+            title: file,
+            statusLabel: 'unreadable',
+            conflictingIds: [],
+            whyBlock: '',
+            summary: '',
+            questionBlock: '',
+            question: '',
+            statusBlock: '',
+            resolutionNote: '',
+          };
+          conflictDetailCache.set(key, fallback);
+          out.push(fallback);
+        }
+      }
+      return out;
+    }
+
+    function renderConflictDetailHtml(claimId, details) {
+      if (!details || !details.length) {
+        return '<div class="meta">No linked conflict files.</div>';
+      }
+      return details.map((detail, idx) => {
+        const link = relativeLink(detail.filePath);
+        const ids = (detail.conflictingIds || []).filter(Boolean);
+        const idsHtml = ids.length
+          ? ids.map(item => {
+            if (item === claimId) return `<code>${escapeHtml(item)}</code>`;
+            if (!claimMap.has(item)) return `<code>${escapeHtml(item)}</code>`;
+            return `<a href="#" data-id="${escapeHtml(item)}">${escapeHtml(item)}</a>`;
+          }).join(', ')
+          : '-';
+        const summaryHtml = detail.summary
+          ? `<div class="conflict-block"><strong>Summary:</strong> ${escapeHtml(detail.summary)}</div>`
+          : '';
+        const whyHtml = detail.whyBlock
+          ? `<div class="conflict-block"><strong>Why they conflict:</strong><div class="excerpt-content">${renderMarkdown(detail.whyBlock)}</div></div>`
+          : '';
+        const questionHtml = detail.questionBlock
+          ? `<div class="conflict-block"><strong>Reconciliation question:</strong><div class="excerpt-content">${renderMarkdown(detail.questionBlock)}</div></div>`
+          : '';
+        const statusHtml = detail.statusBlock
+          ? `<div class="conflict-block"><strong>Status detail:</strong><div class="excerpt-content">${renderMarkdown(detail.statusBlock)}</div></div>`
+          : '';
+        const noteHtml = detail.resolutionNote
+          ? `<div class="conflict-block"><strong>Resolution note:</strong> <a href="${escapeHtml(repoRelativePath(detail.resolutionNote))}" target="_blank" rel="noopener">${escapeHtml(detail.resolutionNote)}</a></div>`
+          : '';
+        return `
+          <details class="conflict-detail"${idx === 0 ? ' open' : ''}>
+            <summary>${escapeHtml(detail.title)} <span class="conflict-meta">(${escapeHtml(detail.statusLabel)})</span></summary>
+            <div class="conflict-meta">Source: <a href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(detail.filePath)}</a></div>
+            <div class="conflict-meta">Conflicting IDs: ${idsHtml}</div>
+            <div class="conflict-body">
+              ${summaryHtml}
+              ${whyHtml}
+              ${questionHtml}
+              ${statusHtml}
+              ${noteHtml}
+            </div>
+          </details>
+        `;
+      }).join('');
+    }
+
     async function loadClaimText(claim) {
       if (claimTextCache.has(claim.id)) return claimTextCache.get(claim.id);
       if (!claim.location || !claim.location.includes('#')) {
@@ -3394,16 +3840,27 @@ END CONFLICT RESOLUTION`;
       wireDetailToggles(c.id);
 
       try {
-        const { claimLine, excerpt } = await loadClaimText(c);
+        const [{ claimLine, excerpt }, conflictDetails] = await Promise.all([
+          loadClaimText(c),
+          loadConflictDetailsForClaim(c.id, conflicts),
+        ]);
         if (selectedId !== id) return;
         const claimLineText = claimLine ? escapeHtml(claimLine) : '-';
-        const excerptText = excerpt ? escapeHtml(excerpt) : '';
-        const excerptBlock = excerptText ? `
-          <details>
-            <summary>Show section excerpt</summary>
-            <pre class="excerpt">${excerptText}</pre>
+        const sectionExcerpt = normalizeSectionExcerpt(excerpt);
+        const sectionBlock = sectionExcerpt ? `
+          <details open>
+            <summary>Full section description</summary>
+            <div class="excerpt-content">${renderMarkdown(sectionExcerpt)}</div>
           </details>
-        ` : '<div class="meta">No excerpt found.</div>';
+        ` : '<div class="meta">No section text found.</div>';
+        const conflictDetailsBlock = `
+          <details ${conflicts.length ? 'open' : ''}>
+            <summary>Conflict context</summary>
+            <div class="conflict-body">
+              ${renderConflictDetailHtml(c.id, conflictDetails)}
+            </div>
+          </details>
+        `;
 
         els.detailContent.innerHTML = `
           <h2>${c.id}</h2>
@@ -3416,12 +3873,13 @@ END CONFLICT RESOLUTION`;
           <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
             <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
             <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
-            <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
+            <li><strong>Conflict files:</strong> ${conflicts.length ? conflicts.map(f => {
               const link = relativeLink(f);
               return `<a href="${link}" target="_blank">${f}</a>`;
             }).join(', ') : '-'}</li>
           </ul>
-          ${excerptBlock}
+          ${sectionBlock}
+          ${conflictDetailsBlock}
         `;
         els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
           a.addEventListener('click', (e) => {
