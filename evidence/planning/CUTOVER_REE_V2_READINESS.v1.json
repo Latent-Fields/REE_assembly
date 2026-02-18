@@ -1,6 +1,6 @@
 {
   "schema_version": "ree_v2_cutover_readiness/v2",
-  "generated_at_utc": "2026-02-15T11:20:50.536340Z",
+  "generated_at_utc": "2026-02-18T18:46:47.948835Z",
   "decision": "NO_CUTOVER",
   "routing_change_applied": false,
   "required_claims": [
@@ -13,41 +13,41 @@
     "ree_v2_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "03c825ddeb9882c17feadc17ed58a099f20313cd",
-        "generated_utc": "2026-02-15T08:36:04Z",
-        "week_of_utc": "2026-02-09"
+        "revision": "a2387c3a969905ca82bb4fdbce2968b53de87190",
+        "generated_utc": "2026-02-17T22:53:39Z",
+        "week_of_utc": "2026-02-16"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "4ab69172f0c282ea0b98c6103b65ab70fb021fbe",
-        "generated_utc": "2026-02-14T18:32:05Z",
+        "revision": "d7d8b2546dbc7986f50c179e7b627109abb6bedd",
+        "generated_utc": "2026-02-15T21:38:04Z",
         "week_of_utc": "2026-02-09"
       }
     ],
     "ree_v1_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "4c16ed05f5967916cabfbc896c71b604cd42a92c",
+        "revision": "ca273130d49bd39c94b537cce4059cd9a0db62f7",
         "generated_utc": "2026-02-14T20:00:00Z",
         "week_of_utc": "2026-02-09"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "0a964c6b348463c841a173752a99db6aaaf97be3",
-        "generated_utc": "2026-02-14T03:00:00Z",
+        "revision": "4c16ed05f5967916cabfbc896c71b604cd42a92c",
+        "generated_utc": "2026-02-14T20:00:00Z",
         "week_of_utc": "2026-02-09"
       }
     ],
     "ree_lab_handoff_snapshot": {
       "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
-      "revision": "b3478d565a359c803179c49c5d31ae51d143f753",
-      "generated_utc": "2026-02-15T09:56:11.530965Z",
+      "revision": "bede0b35cd2968625be9e23711607cffe004b588",
+      "generated_utc": "2026-02-17T22:52:33.899619Z",
       "week_of_utc": "2026-02-09"
     },
     "latest_thursday_ingestion_reports": [
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T112045Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-15T11:20:45.157656Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260217T225349Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-17T22:53:45.429797Z",
         "targets": [
           "ree-v2",
           "ree-experiments-lab",
@@ -72,15 +72,15 @@
         ]
       },
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260215T111152Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-15T11:11:51.496555Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260217T225327Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-17T22:53:23.761857Z",
         "targets": [
           "ree-v2",
           "ree-experiments-lab",
           "ree-v1-minimal"
         ],
         "repo_statuses": {
-          "ree-v2": "skipped",
+          "ree-v2": "ok",
           "ree-experiments-lab": "ok",
           "ree-v1-minimal": "ok"
         },
@@ -111,8 +111,8 @@
           "remote_export_import"
         ],
         "snapshots_checked": [
-          "03c825ddeb98",
-          "4ab69172f0c2"
+          "a2387c3a9699",
+          "d7d8b2546dbc"
         ],
         "failures": []
       }
@@ -128,10 +128,40 @@
           "MECH-060"
         ],
         "ree_v2_claims_present": [
+          "ARC-003",
+          "ARC-005",
+          "ARC-007",
+          "ARC-018",
+          "IMPL-022",
+          "MECH-033",
+          "MECH-040",
+          "MECH-046",
+          "MECH-053",
+          "MECH-054",
           "MECH-056",
+          "MECH-057",
           "MECH-058",
           "MECH-059",
-          "MECH-060"
+          "MECH-060",
+          "MECH-061",
+          "MECH-062",
+          "MECH-063",
+          "Q-001",
+          "Q-002",
+          "Q-003",
+          "Q-004",
+          "Q-005",
+          "Q-006",
+          "Q-007",
+          "Q-008",
+          "Q-009",
+          "Q-010",
+          "Q-012",
+          "Q-013",
+          "Q-014",
+          "Q-015",
+          "Q-016",
+          "Q-017"
         ],
         "missing_claims": []
       }
@@ -194,7 +224,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.8888888888888888,
+                      "v2": 2.857142857142857,
                       "v1": 0.5,
                       "improved": false
                     },
@@ -220,7 +250,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.03613750188022222,
+                      "v2": 0.05136393616342857,
                       "v1": 0.05644672005295201,
                       "improved": true
                     },
@@ -241,14 +271,14 @@
                 "domination_lock_in_events": {
                   "direction": "lower",
                   "compared_seed_count": 3,
-                  "improved_seed_count": 1,
+                  "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.3333333333333333,
+                      "v2": 1.0714285714285714,
                       "v1": 0.5,
-                      "improved": true
+                      "improved": false
                     },
                     "29": {
                       "compared": true,
@@ -303,7 +333,13 @@
               "v2_seeds": [
                 11,
                 29,
-                47
+                47,
+                53,
+                71,
+                89,
+                101,
+                131,
+                151
               ],
               "v1_seeds": [
                 11,
@@ -358,7 +394,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.07253495364042857,
+                      "v2": 0.05896282341407692,
                       "v1": 0.16890412606795166,
                       "improved": true
                     },
@@ -370,7 +406,7 @@
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.052265957078,
+                      "v2": 0.052265957078000004,
                       "v1": 0.1705859091157576,
                       "improved": true
                     }
@@ -384,7 +420,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.14319594617114287,
+                      "v2": 0.12229733098023075,
                       "v1": 0.3000879000328516,
                       "improved": true
                     },
@@ -396,7 +432,7 @@
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.1199911474825,
+                      "v2": 0.11999114748249999,
                       "v1": 0.3138915209468386,
                       "improved": true
                     }
@@ -410,7 +446,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.9785296799372858,
+                      "v2": 0.9942195292138846,
                       "v1": 0.8060579713522409,
                       "improved": true
                     },
@@ -436,13 +472,13 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 3.5822286126065714,
+                      "v2": 2.449688890913769,
                       "v1": 1.7487304195719489,
                       "improved": true
                     },
                     "29": {
                       "compared": true,
-                      "v2": 1.8724704033189998,
+                      "v2": 1.872470403319,
                       "v1": 1.8428912173826544,
                       "improved": true
                     },
@@ -462,7 +498,7 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.13288074787614285,
+                      "v2": 0.06846789365907692,
                       "v1": 0.033635206340704785,
                       "improved": false
                     },
@@ -474,7 +510,7 @@
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.0583333333335,
+                      "v2": 0.058333333333500006,
                       "v1": 0.038613702657828514,
                       "improved": false
                     }
@@ -502,7 +538,13 @@
               "v2_seeds": [
                 11,
                 29,
-                47
+                47,
+                53,
+                71,
+                89,
+                101,
+                131,
+                151
               ],
               "v1_seeds": [
                 11,
@@ -557,19 +599,19 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.15762375938285714,
+                      "v2": 0.165195659384,
                       "v1": 0.14897349655809816,
                       "improved": false
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.1635563169165,
+                      "v2": 0.16437870712036362,
                       "v1": 0.15591023229845624,
                       "improved": false
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.15941722002199998,
+                      "v2": 0.159417220022,
                       "v1": 0.14596679987780067,
                       "improved": false
                     }
@@ -578,24 +620,24 @@
                 "latent_uncertainty_calibration_error": {
                   "direction": "lower",
                   "compared_seed_count": 3,
-                  "improved_seed_count": 1,
+                  "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.09102146079457143,
+                      "v2": 0.10472390324316666,
                       "v1": 0.10385181059468575,
-                      "improved": true
+                      "improved": false
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.1183292757295,
+                      "v2": 0.11962295776118183,
                       "v1": 0.09980651254652953,
                       "improved": false
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.1270423142065,
+                      "v2": 0.12704231420649997,
                       "v1": 0.11035386856085118,
                       "improved": false
                     }
@@ -609,13 +651,13 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.9719099035364286,
+                      "v2": 0.9517789774918667,
                       "v1": 0.9044571764251277,
                       "improved": true
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.954166666667,
+                      "v2": 0.9507575757579091,
                       "v1": 0.8784685583446998,
                       "improved": true
                     },
@@ -630,18 +672,18 @@
                 "uncertainty_coverage_rate": {
                   "direction": "higher",
                   "compared_seed_count": 3,
-                  "improved_seed_count": 1,
+                  "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.803237118316,
+                      "v2": 0.7781627350142667,
                       "v1": 0.7909941523478108,
-                      "improved": true
+                      "improved": false
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.708333333333,
+                      "v2": 0.6969696969693636,
                       "v1": 0.7958452439308761,
                       "improved": false
                     },
@@ -675,7 +717,21 @@
               "v2_seeds": [
                 11,
                 29,
-                47
+                47,
+                53,
+                71,
+                89,
+                101,
+                131,
+                151,
+                1001,
+                1002,
+                1003,
+                1004,
+                1005,
+                1006,
+                1007,
+                1008
               ],
               "v1_seeds": [
                 11,
@@ -730,19 +786,19 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 4.331898574836571,
+                      "v2": 5.126099905832969,
                       "v1": 1.8528726630447703,
                       "improved": true
                     },
                     "29": {
                       "compared": true,
-                      "v2": 6.8958217686209995,
+                      "v2": 8.614533507897818,
                       "v1": 1.7562294725481906,
                       "improved": true
                     },
                     "47": {
                       "compared": true,
-                      "v2": 6.510145105223001,
+                      "v2": 8.314245987618909,
                       "v1": 1.8700028874885959,
                       "improved": true
                     }
@@ -756,19 +812,19 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.3880874965598572,
+                      "v2": 0.30357711233525003,
                       "v1": 0.2890355460209545,
                       "improved": true
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.246494933567,
+                      "v2": 0.23570255611745453,
                       "v1": 0.2867889056143319,
                       "improved": false
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.235508024888,
+                      "v2": 0.22484239166800002,
                       "v1": 0.27996737033635777,
                       "improved": false
                     }
@@ -782,19 +838,19 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.3164984330927143,
+                      "v2": 0.4039081286339375,
                       "v1": 0.15618686602986032,
                       "improved": false
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.477187487478,
+                      "v2": 0.4546430846220909,
                       "v1": 0.16381519404583966,
                       "improved": false
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.47968020505450004,
+                      "v2": 0.4569640979554091,
                       "v1": 0.15470014145372074,
                       "improved": false
                     }
@@ -808,19 +864,19 @@
                   "per_seed": {
                     "11": {
                       "compared": true,
-                      "v2": 0.26597439002142853,
+                      "v2": 0.23031731448371875,
                       "v1": 0.12018840896879732,
                       "improved": false
                     },
                     "29": {
                       "compared": true,
-                      "v2": 0.17500000000000002,
+                      "v2": 0.20909090909090908,
                       "v1": 0.11494151502313366,
                       "improved": false
                     },
                     "47": {
                       "compared": true,
-                      "v2": 0.266666666667,
+                      "v2": 0.21363636363654548,
                       "v1": 0.10448757892747257,
                       "improved": false
                     }
@@ -848,7 +904,13 @@
               "v2_seeds": [
                 11,
                 29,
-                47
+                47,
+                53,
+                71,
+                89,
+                101,
+                131,
+                151
               ],
               "v1_seeds": [
                 11,
@@ -908,7 +970,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.8888888888888888,
+                "v2": 2.857142857142857,
                 "v1": 0.5,
                 "improved": false
               },
@@ -934,7 +996,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.03613750188022222,
+                "v2": 0.05136393616342857,
                 "v1": 0.05644672005295201,
                 "improved": true
               },
@@ -955,14 +1017,14 @@
           "domination_lock_in_events": {
             "direction": "lower",
             "compared_seed_count": 3,
-            "improved_seed_count": 1,
+            "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.3333333333333333,
+                "v2": 1.0714285714285714,
                 "v1": 0.5,
-                "improved": true
+                "improved": false
               },
               "29": {
                 "compared": true,
@@ -1017,7 +1079,13 @@
         "v2_seeds": [
           11,
           29,
-          47
+          47,
+          53,
+          71,
+          89,
+          101,
+          131,
+          151
         ],
         "v1_seeds": [
           11,
@@ -1072,7 +1140,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.07253495364042857,
+                "v2": 0.05896282341407692,
                 "v1": 0.16890412606795166,
                 "improved": true
               },
@@ -1084,7 +1152,7 @@
               },
               "47": {
                 "compared": true,
-                "v2": 0.052265957078,
+                "v2": 0.052265957078000004,
                 "v1": 0.1705859091157576,
                 "improved": true
               }
@@ -1098,7 +1166,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.14319594617114287,
+                "v2": 0.12229733098023075,
                 "v1": 0.3000879000328516,
                 "improved": true
               },
@@ -1110,7 +1178,7 @@
               },
               "47": {
                 "compared": true,
-                "v2": 0.1199911474825,
+                "v2": 0.11999114748249999,
                 "v1": 0.3138915209468386,
                 "improved": true
               }
@@ -1124,7 +1192,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.9785296799372858,
+                "v2": 0.9942195292138846,
                 "v1": 0.8060579713522409,
                 "improved": true
               },
@@ -1150,13 +1218,13 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 3.5822286126065714,
+                "v2": 2.449688890913769,
                 "v1": 1.7487304195719489,
                 "improved": true
               },
               "29": {
                 "compared": true,
-                "v2": 1.8724704033189998,
+                "v2": 1.872470403319,
                 "v1": 1.8428912173826544,
                 "improved": true
               },
@@ -1176,7 +1244,7 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.13288074787614285,
+                "v2": 0.06846789365907692,
                 "v1": 0.033635206340704785,
                 "improved": false
               },
@@ -1188,7 +1256,7 @@
               },
               "47": {
                 "compared": true,
-                "v2": 0.0583333333335,
+                "v2": 0.058333333333500006,
                 "v1": 0.038613702657828514,
                 "improved": false
               }
@@ -1216,7 +1284,13 @@
         "v2_seeds": [
           11,
           29,
-          47
+          47,
+          53,
+          71,
+          89,
+          101,
+          131,
+          151
         ],
         "v1_seeds": [
           11,
@@ -1271,19 +1345,19 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.15762375938285714,
+                "v2": 0.165195659384,
                 "v1": 0.14897349655809816,
                 "improved": false
               },
               "29": {
                 "compared": true,
-                "v2": 0.1635563169165,
+                "v2": 0.16437870712036362,
                 "v1": 0.15591023229845624,
                 "improved": false
               },
               "47": {
                 "compared": true,
-                "v2": 0.15941722002199998,
+                "v2": 0.159417220022,
                 "v1": 0.14596679987780067,
                 "improved": false
               }
@@ -1292,24 +1366,24 @@
           "latent_uncertainty_calibration_error": {
             "direction": "lower",
             "compared_seed_count": 3,
-            "improved_seed_count": 1,
+            "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.09102146079457143,
+                "v2": 0.10472390324316666,
                 "v1": 0.10385181059468575,
-                "improved": true
+                "improved": false
               },
               "29": {
                 "compared": true,
-                "v2": 0.1183292757295,
+                "v2": 0.11962295776118183,
                 "v1": 0.09980651254652953,
                 "improved": false
               },
               "47": {
                 "compared": true,
-                "v2": 0.1270423142065,
+                "v2": 0.12704231420649997,
                 "v1": 0.11035386856085118,
                 "improved": false
               }
@@ -1323,13 +1397,13 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.9719099035364286,
+                "v2": 0.9517789774918667,
                 "v1": 0.9044571764251277,
                 "improved": true
               },
               "29": {
                 "compared": true,
-                "v2": 0.954166666667,
+                "v2": 0.9507575757579091,
                 "v1": 0.8784685583446998,
                 "improved": true
               },
@@ -1344,18 +1418,18 @@
           "uncertainty_coverage_rate": {
             "direction": "higher",
             "compared_seed_count": 3,
-            "improved_seed_count": 1,
+            "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.803237118316,
+                "v2": 0.7781627350142667,
                 "v1": 0.7909941523478108,
-                "improved": true
+                "improved": false
               },
               "29": {
                 "compared": true,
-                "v2": 0.708333333333,
+                "v2": 0.6969696969693636,
                 "v1": 0.7958452439308761,
                 "improved": false
               },
@@ -1389,7 +1463,21 @@
         "v2_seeds": [
           11,
           29,
-          47
+          47,
+          53,
+          71,
+          89,
+          101,
+          131,
+          151,
+          1001,
+          1002,
+          1003,
+          1004,
+          1005,
+          1006,
+          1007,
+          1008
         ],
         "v1_seeds": [
           11,
@@ -1444,19 +1532,19 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 4.331898574836571,
+                "v2": 5.126099905832969,
                 "v1": 1.8528726630447703,
                 "improved": true
               },
               "29": {
                 "compared": true,
-                "v2": 6.8958217686209995,
+                "v2": 8.614533507897818,
                 "v1": 1.7562294725481906,
                 "improved": true
               },
               "47": {
                 "compared": true,
-                "v2": 6.510145105223001,
+                "v2": 8.314245987618909,
                 "v1": 1.8700028874885959,
                 "improved": true
               }
@@ -1470,19 +1558,19 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.3880874965598572,
+                "v2": 0.30357711233525003,
                 "v1": 0.2890355460209545,
                 "improved": true
               },
               "29": {
                 "compared": true,
-                "v2": 0.246494933567,
+                "v2": 0.23570255611745453,
                 "v1": 0.2867889056143319,
                 "improved": false
               },
               "47": {
                 "compared": true,
-                "v2": 0.235508024888,
+                "v2": 0.22484239166800002,
                 "v1": 0.27996737033635777,
                 "improved": false
               }
@@ -1496,19 +1584,19 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.3164984330927143,
+                "v2": 0.4039081286339375,
                 "v1": 0.15618686602986032,
                 "improved": false
               },
               "29": {
                 "compared": true,
-                "v2": 0.477187487478,
+                "v2": 0.4546430846220909,
                 "v1": 0.16381519404583966,
                 "improved": false
               },
               "47": {
                 "compared": true,
-                "v2": 0.47968020505450004,
+                "v2": 0.4569640979554091,
                 "v1": 0.15470014145372074,
                 "improved": false
               }
@@ -1522,19 +1610,19 @@
             "per_seed": {
               "11": {
                 "compared": true,
-                "v2": 0.26597439002142853,
+                "v2": 0.23031731448371875,
                 "v1": 0.12018840896879732,
                 "improved": false
               },
               "29": {
                 "compared": true,
-                "v2": 0.17500000000000002,
+                "v2": 0.20909090909090908,
                 "v1": 0.11494151502313366,
                 "improved": false
               },
               "47": {
                 "compared": true,
-                "v2": 0.266666666667,
+                "v2": 0.21363636363654548,
                 "v1": 0.10448757892747257,
                 "improved": false
               }
@@ -1562,7 +1650,13 @@
         "v2_seeds": [
           11,
           29,
-          47
+          47,
+          53,
+          71,
+          89,
+          101,
+          131,
+          151
         ],
         "v1_seeds": [
           11,

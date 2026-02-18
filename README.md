@@ -25,4 +25,8 @@ This repo is documentation‑only. It is designed to:
 
 For the full workflow and required prompts, see `docs/README.md`.
 
-License: Apache License 2.0
+## License And Citation
+
+- License: Apache License 2.0 (`LICENSE`)
+- Attribution and safety notice: `NOTICE`
+- Citation metadata (Daniel Golden): `CITATION.cff`
