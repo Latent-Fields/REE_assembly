@@ -142,10 +142,10 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [Q-005](../architecture/astrocyte_regulatory_stack.md#q-005) Can sleep anneal or reset R(x,t)?
 - [Q-006](../architecture/agency_responsibility_flow.md#q-006) Is ethics developmental rather than additive?
 - [Q-007](../architecture/control_plane.md#q-007) Do universal expressions map to stable control‑channel regimes?
-- [Q-008](../architecture/control_plane.md#q-008) Do μ/κ stability overlays obviate or complement valence vectors? Tracked in `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`.
-- [Q-009](../architecture/social.md#q-009) Can care‑investment weights override other‑harm veto without ethical failure? Tracked in `docs/conflicts/care_override_vs_other_harm_veto.md`.
+- [Q-008](../architecture/control_plane.md#q-008) Legacy: resolved in favor of valence/μκ separation with calibration follow-up.
+- [Q-009](../architecture/social.md#q-009) Legacy: resolved via bounded care-override policy with hard catastrophic other-harm veto.
 - [Q-010](../architecture/control_plane.md#q-010) Legacy: separation question resolved into MECH‑055.
-- [Q-011](../architecture/hippocampal_systems.md#q-011) Should REE enforce a minimum rollout-diversity floor under repeated unavoidable harm? Tracked in `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`.
+- [Q-011](../architecture/hippocampal_systems.md#q-011) Legacy: resolved by placing diversity-floor control in pre-commit/offline sampling while preserving residue invariants.
 - [Q-012](../architecture/agency_responsibility_flow.md#q-012) Can latent predictive world models stay agentically stable without explicit REE-like control constraints?
 - [Q-013](../architecture/agency_responsibility_flow.md#q-013) Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
 - [Q-014](../architecture/agency_responsibility_flow.md#q-014) Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?

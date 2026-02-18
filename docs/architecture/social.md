@@ -280,10 +280,11 @@ This yields fast empathy as **routing + weighting**, not a new moral module.
 ## Open Questions
 
 <a id="q-009"></a>
-**Q-009 — Care weights vs other‑harm veto**  
-Should high care‑investment weights ever override other‑harm veto thresholds to avoid paralysis in complex
-environments, or must catastrophic other‑harm remain a hard veto regardless of care? This remains ethically open.
-Tracked conflict: `docs/conflicts/care_override_vs_other_harm_veto.md`
+**Q-009 — Care weights vs other‑harm veto (legacy)**  
+This question is resolved by a bounded override policy: catastrophic high-certainty irreversible other-harm remains a
+hard veto; non-catastrophic override is allowed only under necessity, imminence, proportionality, and explainability
+gates, with mandatory post-commit accountability logging.
+Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-harm-veto.md`
 
 ## Related Claims (IDs)
 

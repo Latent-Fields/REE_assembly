@@ -30,4 +30,13 @@ strict necessity/proportionality/imminence constraints with explicit accountabil
 
 ## Status
 
-Open. No resolution note recorded yet.
+Resolved on 2026-02-18.
+
+Resolution summary:
+- Catastrophic high-certainty irreversible other-harm remains a hard veto.
+- Care-driven overrides are permitted only for non-catastrophic cases under necessity, imminence, proportionality,
+  and explainability gates, with mandatory post-commit accountability logging.
+- This is a bounded override policy, not an unrestricted care override.
+
+Resolution note:
+- `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-harm-veto.md`

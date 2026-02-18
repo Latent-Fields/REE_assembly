@@ -12,22 +12,24 @@
 ## Recorded Conflicts
 
 - `docs/conflicts/ethics_module_vs_cost_term.md` (resolved)
-- `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md` (open)
-- `docs/conflicts/care_override_vs_other_harm_veto.md` (open)
-- `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md` (open)
+- `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md` (resolved)
+- `docs/conflicts/care_override_vs_other_harm_veto.md` (resolved)
+- `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md` (resolved)
 
 ## Resolution Notes
 
 Resolution notes are stored in `docs/conflicts/resolutions/`.
 Current file: `docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md`
+Additional notes:
+- `docs/conflicts/resolutions/2026-02-18_valence-vs-mu-kappa.md`
+- `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-harm-veto.md`
+- `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`
 
 ---
 
 ## Open Questions
 
-- Q-008 tracked in `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
-- Q-009 tracked in `docs/conflicts/care_override_vs_other_harm_veto.md`
-- Q-011 tracked in `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`
+None in this conflict set. Q-008, Q-009, and Q-011 were resolved on 2026-02-18 and retained as legacy question IDs.
 
 ## Related Claims (IDs)
 

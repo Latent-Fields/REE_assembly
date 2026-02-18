@@ -30,4 +30,12 @@ reopens while residue remains intact and harm-relevant constraints stay authorit
 
 ## Status
 
-Open. No resolution note recorded yet.
+Resolved on 2026-02-18.
+
+Resolution summary:
+- Diversity restoration is allowed at pre-commit sampling/replay scheduling and offline recovery.
+- Residue geometry and post-commit harm traces remain non-erasable and authoritative.
+- Entropy-floor controls are anti-collapse guards, not residue-flattening operations.
+
+Resolution note:
+- `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`

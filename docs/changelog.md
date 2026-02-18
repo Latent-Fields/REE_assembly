@@ -1814,3 +1814,30 @@ and weekly cadence cycles.
 - Added quick-capture helper:
   - `evidence/planning/scripts/capture_carryover_item.py`
   - supports `add`, `list`, and `done` actions for carryover tasks.
+
+## 2026-02-18: Conflict Resolution Pass (Q-008, Q-009, Q-011)
+
+### Overview
+
+Resolved three explicitly documented architecture conflicts by clarifying separation boundaries and legal update loci,
+while preserving historical question IDs as legacy entries.
+
+### What Changed
+
+- Added resolution notes:
+  - `docs/conflicts/resolutions/2026-02-18_valence-vs-mu-kappa.md`
+  - `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-harm-veto.md`
+  - `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`
+- Updated conflict records to resolved status:
+  - `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
+  - `docs/conflicts/care_override_vs_other_harm_veto.md`
+  - `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`
+  - `docs/conflicts/README.md`
+  - `docs/conflicts/resolutions/README.md`
+- Updated canonical architecture text:
+  - `docs/architecture/control_plane.md` (`Q-008` marked legacy with resolution pointer)
+  - `docs/architecture/social.md` (`Q-009` marked legacy with bounded override policy)
+  - `docs/architecture/hippocampal_systems.md` (`Q-011` marked legacy with update-locus separation)
+- Updated claim registry/index:
+  - `docs/claims/claims.yaml` (`Q-008`, `Q-009`, `Q-011` status set to `legacy`)
+  - `docs/claims/claim_index.md` legacy summaries updated for `Q-008`, `Q-009`, `Q-011`

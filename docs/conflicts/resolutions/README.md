@@ -4,6 +4,9 @@ This folder contains resolution notes for conflicts documented in `docs/conflict
 
 Current resolution notes:
 - `docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md`
+- `docs/conflicts/resolutions/2026-02-18_valence-vs-mu-kappa.md`
+- `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-harm-veto.md`
+- `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`
 
 ## Rules
 

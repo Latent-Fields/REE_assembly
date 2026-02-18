@@ -283,11 +283,11 @@ The hippocampal braid enables the REE agent to say:
 ## Open Questions
 
 <a id="q-011"></a>
-**Q-011 — Minimum rollout entropy floor under repeated harm**  
-Under repeated unavoidable harm, should REE enforce a non-zero rollout-diversity floor to prevent pathological
-trajectory collapse? If yes, where should it be enforced: control-plane exploration pressure, hippocampal sampling,
-offline/sleep recovery, or a combination?
-Tracked conflict: `docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md`
+**Q-011 — Minimum rollout entropy floor under repeated harm (legacy)**  
+This question is resolved by update-locus separation: rollout-diversity floors can operate on pre-commit
+sampling/replay policy and offline recovery, but cannot erase residue geometry, flatten post-commit harm traces, or
+bypass harm gating.
+Resolution note: `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`
 
 ## Related Claims (IDs)
 

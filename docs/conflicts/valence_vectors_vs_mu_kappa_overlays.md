@@ -30,4 +30,12 @@ those functions without loss of behavioral discrimination?
 
 ## Status
 
-Open. No resolution note recorded yet.
+Resolved on 2026-02-18.
+
+Resolution summary:
+- Valence remains a dedicated affective appraisal stream.
+- μ/κ overlays remain stability/commitment modulators and do not replace valence ranking semantics.
+- Remaining work is calibration and orthogonality testing, not axis collapse.
+
+Resolution note:
+- `docs/conflicts/resolutions/2026-02-18_valence-vs-mu-kappa.md`

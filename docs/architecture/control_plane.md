@@ -474,11 +474,11 @@ in REE, and if so which combinations of arousal, readiness, precision, valence, 
 observed universals? This remains an evidence‑constrained hypothesis, not an architectural primitive.
 
 <a id="q-008"></a>
-**Q-008 — Valence vectors vs μ/κ stability overlays**  
-Should REE retain a dedicated **valence vector** (as a sensory/affective stream tag), or can μ/κ stability overlays
-subsume the functional role of valence? If both remain, what is the minimal separation of concerns between affective
-bias (valence) and commitment stability (μ/κ)?
-Tracked conflict: `docs/conflicts/valence_vectors_vs_mu_kappa_overlays.md`
+**Q-008 — Valence vectors vs μ/κ stability overlays (legacy)**  
+This question is resolved in favor of channel separation: valence remains a dedicated affective appraisal stream,
+while μ/κ overlays remain stability/commitment modulators. The remaining issue is calibration and orthogonality, not
+axis replacement.
+Resolution note: `docs/conflicts/resolutions/2026-02-18_valence-vs-mu-kappa.md`
 
 <a id="q-010"></a>
 **Q-010 — Hedonic tone vs valence vs signed PE precision (legacy)**  
