@@ -183,6 +183,7 @@ def _load_claim_registry(path: Path, warnings: list[str]) -> dict[str, dict[str,
                 claims[current["id"]] = current
             current = {
                 "id": line.split(":", 1)[1].strip(),
+                "status": "",
                 "claim_type": "",
                 "subject": "",
                 "location": "",
@@ -192,6 +193,9 @@ def _load_claim_registry(path: Path, warnings: list[str]) -> dict[str, dict[str,
         if current is None:
             continue
 
+        if line.startswith("  status:"):
+            current["status"] = line.split(":", 1)[1].strip()
+            continue
         if line.startswith("  claim_type:"):
             current["claim_type"] = line.split(":", 1)[1].strip()
             continue
@@ -205,6 +209,12 @@ def _load_claim_registry(path: Path, warnings: list[str]) -> dict[str, dict[str,
     if current and current.get("id", "").strip():
         claims[current["id"]] = current
     return claims
+
+
+def _is_inactive_claim(claim_id: str, claim_registry: dict[str, dict[str, str]]) -> bool:
+    cid = _strip_ticks(str(claim_id))
+    status = str(claim_registry.get(cid, {}).get("status", "")).strip().lower()
+    return status in {"legacy"}
 
 
 def _claim_type_label(claim_type: str) -> str:
@@ -245,6 +255,7 @@ def _claim_reference(claim_id: str, claim_registry: dict[str, dict[str, str]]) -
 def _build_architecture_epoch_applicability_report(
     claim_matrix: dict[str, Any],
     planning_criteria: dict[str, Any],
+    claim_registry: dict[str, dict[str, str]],
     generated_at: str,
     warnings: list[str],
 ) -> dict[str, Any]:
@@ -335,13 +346,16 @@ def _build_architecture_epoch_applicability_report(
 
     stale_claims = []
     for claim_slot in by_claim.values():
+        claim_id = str(claim_slot["claim_id"])
+        if _is_inactive_claim(claim_id, claim_registry):
+            continue
         considered = int(claim_slot["considered_entries"])
         stale = int(claim_slot["stale_entries"])
         stale_ratio = float(stale / considered) if considered > 0 else 0.0
         if stale > 0:
             stale_claims.append(
                 {
-                    "claim_id": claim_slot["claim_id"],
+                    "claim_id": claim_id,
                     "considered_entries": considered,
                     "applicable_entries": int(claim_slot["applicable_entries"]),
                     "stale_entries": stale,
@@ -511,6 +525,7 @@ def _build_agenda(
     epoch_applicability = _build_architecture_epoch_applicability_report(
         claim_matrix,
         planning_criteria if isinstance(planning_criteria, dict) else {},
+        claim_registry_meta,
         generated_at,
         warnings,
     )
@@ -524,9 +539,19 @@ def _build_agenda(
     )
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
+    conflicts = [
+        item
+        for item in conflicts
+        if not _is_inactive_claim(str(item.get("claim_id", "")), claim_registry_meta)
+    ]
     recommendations = _read_recommendations(
         repo_root / "evidence/experiments/promotion_demotion_recommendations.md", warnings
     )
+    recommendations = [
+        item
+        for item in recommendations
+        if not _is_inactive_claim(str(item.get("claim_id", "")), claim_registry_meta)
+    ]
 
     thought_records = thought_sweep.get("records", []) if isinstance(thought_sweep, dict) else []
     thought_unprocessed = [

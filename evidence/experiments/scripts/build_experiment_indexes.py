@@ -1123,6 +1123,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     return registry
 
 
+def _is_inactive_claim_status(status: str) -> bool:
+    return str(status).strip().lower() in {"legacy"}
+
+
 def _default_decision_criteria() -> dict[str, Any]:
     return {
         "schema_version": "decision_criteria/v1",
@@ -1523,6 +1527,8 @@ def _write_promotion_demotion_recommendations(
         claim_meta = matrix["claims"][claim_id]
         registry_meta = claim_registry.get(claim_id, {})
         current_status = str(registry_meta.get("status", "unknown"))
+        if _is_inactive_claim_status(current_status):
+            continue
         claim_type = str(registry_meta.get("claim_type", "unknown"))
 
         rec = _recommendation_for_claim(
@@ -1704,7 +1710,11 @@ def _build_applicability_filter(
     return ",".join(scope_bits), _is_applicable
 
 
-def _collect_conflicts(matrix: dict[str, Any], planning_criteria: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
+def _collect_conflicts(
+    matrix: dict[str, Any],
+    planning_criteria: dict[str, Any],
+    claim_registry: dict[str, dict[str, str]],
+) -> tuple[list[dict[str, Any]], str]:
     scope_label, is_applicable = _build_applicability_filter(planning_criteria)
     entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for entry in matrix.get("entries", []):
@@ -1716,6 +1726,9 @@ def _collect_conflicts(matrix: dict[str, Any], planning_criteria: dict[str, Any]
 
     conflicts: list[dict[str, Any]] = []
     for claim_id in sorted(entries_by_claim.keys()):
+        current_status = str(claim_registry.get(claim_id, {}).get("status", "unknown"))
+        if _is_inactive_claim_status(current_status):
+            continue
         claim_entries = entries_by_claim.get(claim_id, [])
         if not claim_entries:
             continue
@@ -2059,6 +2072,8 @@ def _write_planning_outputs(
     for claim_id in claim_ids:
         registry_meta = claim_registry.get(claim_id, {})
         current_status = str(registry_meta.get("status", "unknown"))
+        if _is_inactive_claim_status(current_status):
+            continue
         claim_type = str(registry_meta.get("claim_type", "unknown"))
         claim_meta = matrix_claims.get(claim_id)
         claim_entries = entries_by_claim.get(claim_id, [])
@@ -2767,7 +2782,7 @@ def main() -> None:
     _write_decision_state(decisions_dir, latest_decisions, generated_at)
 
     matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
-    conflicts, conflict_scope = _collect_conflicts(matrix, planning_criteria)
+    conflicts, conflict_scope = _collect_conflicts(matrix, planning_criteria, claim_registry)
     backlog_items, proposals, architecture_items = _write_planning_outputs(
         planning_root,
         matrix,
