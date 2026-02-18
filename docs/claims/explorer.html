@@ -452,6 +452,42 @@
       margin-bottom: 12px;
     }
 
+    .gov-toolbar label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: #f8f5ef;
+    }
+
+    .gov-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      border: 1px solid var(--border);
+      background: #f8f5ef;
+      margin-left: 6px;
+    }
+
+    .gov-pill.human {
+      background: #fbecec;
+      border-color: #c98f8f;
+      color: #8c2f2f;
+    }
+
+    .gov-pill.creative {
+      background: #e9f1fb;
+      border-color: #93afcf;
+      color: #24466b;
+    }
+
     .gov-sections {
       display: grid;
       gap: 12px;
@@ -553,6 +589,31 @@
       min-width: 0;
     }
 
+    .map-toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .map-toolbar label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: #f8f5ef;
+    }
+
+    .map-summary {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 8px 0;
+    }
+
     .map-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -588,6 +649,7 @@
     .map-chip {
       display: inline-flex;
       align-items: center;
+      gap: 6px;
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
@@ -596,9 +658,66 @@
       cursor: pointer;
     }
 
+    .map-chip.signal-decision {
+      border-color: #c98f8f;
+      background: #fbecec;
+    }
+
+    .map-chip.signal-creative {
+      border-color: #93afcf;
+      background: #e9f1fb;
+    }
+
+    .map-chip.signal-conflict {
+      border-color: #d8b36d;
+      background: #fff5de;
+    }
+
+    .map-chip.stale-only {
+      opacity: 0.65;
+    }
+
     .map-chip.selected {
       border-color: var(--accent);
       background: #e7f1f1;
+    }
+
+    .map-badges {
+      display: inline-flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .map-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      font-size: 9px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .map-badge.decision {
+      border-color: #c98f8f;
+      color: #8c2f2f;
+      background: #fbecec;
+    }
+
+    .map-badge.creative {
+      border-color: #93afcf;
+      color: #24466b;
+      background: #e9f1fb;
+    }
+
+    .map-badge.conflict {
+      border-color: #d8b36d;
+      color: #7c5a1f;
+      background: #fff5de;
     }
 
     .docs-toolbar {
@@ -987,10 +1106,27 @@
         </div>
         <div id="mapWrap" class="panel map-wrap">
           <div class="meta">Subsystem map (filtered set)</div>
+          <div class="map-toolbar">
+            <label title="Hide claims with zero applicable evidence in the current architecture epoch.">
+              <input type="checkbox" id="mapEpochOnly" checked />
+              Current Epoch Only
+            </label>
+            <label title="Show only claims currently touched by governance queues (conflict/decision/structure).">
+              <input type="checkbox" id="mapGovernanceOnly" />
+              Governance-Signaled Only
+            </label>
+          </div>
+          <div id="mapMeta" class="map-summary"></div>
           <div id="mapGrid" class="map-grid"></div>
         </div>
         <div id="governanceWrap" class="panel governance-wrap">
           <div class="meta" id="governanceMeta">Governance cycle dashboard</div>
+          <div class="gov-toolbar">
+            <label title="Filter claim-centric governance tables to claims with current-epoch applicable evidence.">
+              <input type="checkbox" id="govEpochOnly" checked />
+              Current Epoch Claims Only
+            </label>
+          </div>
           <div id="governanceContent" class="gov-empty">Loading governance agenda...</div>
         </div>
       </div>
@@ -1263,6 +1399,7 @@ END CONFLICT RESOLUTION`;
       graphWrap: document.getElementById('graphWrap'),
       docsWrap: document.getElementById('docsWrap'),
       mapWrap: document.getElementById('mapWrap'),
+      mapMeta: document.getElementById('mapMeta'),
       graphPanel: document.getElementById('graphPanel'),
       graphMeta: document.getElementById('graphMeta'),
       graphTooltip: document.getElementById('graphTooltip'),
@@ -1276,6 +1413,9 @@ END CONFLICT RESOLUTION`;
       docsViewBtn: document.getElementById('docsViewBtn'),
       mapViewBtn: document.getElementById('mapViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
+      mapEpochOnly: document.getElementById('mapEpochOnly'),
+      mapGovernanceOnly: document.getElementById('mapGovernanceOnly'),
+      govEpochOnly: document.getElementById('govEpochOnly'),
       includeDeps: document.getElementById('includeDeps'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
@@ -1765,7 +1905,26 @@ END CONFLICT RESOLUTION`;
 
     function renderMap() {
       if (!els.mapGrid) return;
-      const filtered = applyFilters();
+      const checkpoints = governanceAgenda && governanceAgenda.checkpoints
+        ? governanceAgenda.checkpoints
+        : {};
+      const epochMap = buildEpochApplicabilityMap(checkpoints);
+      const signals = buildGovernanceClaimSignals(checkpoints);
+      const epochOnly = els.mapEpochOnly ? !!els.mapEpochOnly.checked : true;
+      const governanceOnly = els.mapGovernanceOnly ? !!els.mapGovernanceOnly.checked : false;
+
+      let filtered = applyFilters();
+      if (epochOnly) {
+        filtered = filtered.filter(c => isCurrentEpochClaim(c.id, epochMap));
+      }
+      if (governanceOnly) {
+        filtered = filtered.filter(c => {
+          return signals.decisionClaims.has(c.id)
+            || signals.conflictClaims.has(c.id)
+            || signals.creativeClaims.has(c.id);
+        });
+      }
+
       const groups = new Map();
       const order = (subsystemRules || []).map(r => r.key);
       filtered.forEach(c => {
@@ -1783,6 +1942,9 @@ END CONFLICT RESOLUTION`;
       });
 
       els.mapGrid.innerHTML = '';
+      let decisionCount = 0;
+      let conflictCount = 0;
+      let creativeCount = 0;
       keys.forEach(key => {
         const claims = groups.get(key) || [];
         if (!claims.length) return;
@@ -1797,10 +1959,56 @@ END CONFLICT RESOLUTION`;
         const chips = document.createElement('div');
         chips.className = 'map-chips';
         claims.forEach(c => {
+          const hasDecision = signals.decisionClaims.has(c.id);
+          const hasConflict = signals.conflictClaims.has(c.id);
+          const hasCreative = signals.creativeClaims.has(c.id);
+          if (hasDecision) decisionCount += 1;
+          if (hasConflict) conflictCount += 1;
+          if (hasCreative) creativeCount += 1;
+
           const chip = document.createElement('span');
           chip.className = 'map-chip';
+          if (hasDecision) chip.classList.add('signal-decision');
+          if (hasConflict) chip.classList.add('signal-conflict');
+          if (hasCreative) chip.classList.add('signal-creative');
+          if (!isCurrentEpochClaim(c.id, epochMap)) chip.classList.add('stale-only');
           if (selectedId === c.id) chip.classList.add('selected');
-          chip.textContent = c.id;
+          const flags = [];
+          if (hasDecision) flags.push('decision_queue');
+          if (hasConflict) flags.push('conflict_queue');
+          if (hasCreative) flags.push('creative_structure_review');
+          if (!isCurrentEpochClaim(c.id, epochMap)) flags.push('stale_only');
+          chip.title = flags.length ? `${c.id}: ${flags.join(', ')}` : c.id;
+
+          const label = document.createElement('span');
+          label.textContent = c.id;
+          chip.appendChild(label);
+
+          const badges = document.createElement('span');
+          badges.className = 'map-badges';
+          if (hasDecision) {
+            const b = document.createElement('span');
+            b.className = 'map-badge decision';
+            b.textContent = 'D';
+            b.title = 'Human decision queue';
+            badges.appendChild(b);
+          }
+          if (hasCreative) {
+            const b = document.createElement('span');
+            b.className = 'map-badge creative';
+            b.textContent = 'I';
+            b.title = 'Human inspiration / generative design input';
+            badges.appendChild(b);
+          }
+          if (hasConflict) {
+            const b = document.createElement('span');
+            b.className = 'map-badge conflict';
+            b.textContent = 'C';
+            b.title = 'Conflict queue';
+            badges.appendChild(b);
+          }
+          if (badges.childNodes.length) chip.appendChild(badges);
+
           chip.addEventListener('click', () => selectClaim(c.id));
           chips.appendChild(chip);
         });
@@ -1809,6 +2017,18 @@ END CONFLICT RESOLUTION`;
         card.appendChild(chips);
         els.mapGrid.appendChild(card);
       });
+
+      if (els.mapMeta) {
+        const tokens = [
+          `Claims shown: ${filtered.length}`,
+          `Decision-signaled: ${decisionCount}`,
+          `Creative-signaled: ${creativeCount}`,
+          `Conflict-signaled: ${conflictCount}`,
+        ];
+        if (epochOnly) tokens.push('Epoch filter: ON');
+        if (governanceOnly) tokens.push('Governance filter: ON');
+        els.mapMeta.textContent = tokens.join(' | ');
+      }
     }
 
     async function fetchJson(url) {
@@ -1913,6 +2133,81 @@ END CONFLICT RESOLUTION`;
       `;
     }
 
+    function extractClaimIdFromItem(item) {
+      if (!item || typeof item !== 'object') return '';
+      return normalizeClaimId(item.claim_id || item.id || item.claim || '');
+    }
+
+    function buildEpochApplicabilityMap(checkpoints) {
+      const out = new Map();
+      const epoch = checkpoints && checkpoints.architecture_epoch_applicability
+        ? checkpoints.architecture_epoch_applicability
+        : {};
+      const rows = Array.isArray(epoch.claims_with_stale_entries)
+        ? epoch.claims_with_stale_entries
+        : [];
+      rows.forEach(row => {
+        const claimId = normalizeClaimId(row.claim_id);
+        if (!claimId) return;
+        const applicable = Number(row.applicable_entries || 0);
+        const stale = Number(row.stale_entries || 0);
+        out.set(claimId, {
+          applicable_entries: applicable,
+          stale_entries: stale,
+          stale_ratio: Number(row.stale_ratio || 0),
+          current_epoch_only: applicable > 0,
+        });
+      });
+      return out;
+    }
+
+    function isCurrentEpochClaim(claimId, epochMap) {
+      const normalized = normalizeClaimId(claimId);
+      if (!normalized) return true;
+      if (!epochMap || !epochMap.size) return true;
+      const slot = epochMap.get(normalized);
+      if (!slot) return true;
+      return Number(slot.applicable_entries || 0) > 0;
+    }
+
+    function filterRowsByCurrentEpoch(rows, epochMap, enabled) {
+      if (!enabled) return rows || [];
+      const list = Array.isArray(rows) ? rows : [];
+      return list.filter(row => isCurrentEpochClaim(extractClaimIdFromItem(row), epochMap));
+    }
+
+    function buildGovernanceClaimSignals(checkpoints) {
+      const decisionClaims = new Set();
+      const conflictClaims = new Set();
+      const creativeClaims = new Set();
+
+      const decisionItems = checkpoints && checkpoints.governance_decisions && Array.isArray(checkpoints.governance_decisions.items)
+        ? checkpoints.governance_decisions.items
+        : [];
+      decisionItems.forEach(item => {
+        const claimId = extractClaimIdFromItem(item);
+        if (claimId) decisionClaims.add(claimId);
+      });
+
+      const conflictItems = checkpoints && checkpoints.conflict_resolution && Array.isArray(checkpoints.conflict_resolution.items)
+        ? checkpoints.conflict_resolution.items
+        : [];
+      conflictItems.forEach(item => {
+        const claimId = extractClaimIdFromItem(item);
+        if (claimId) conflictClaims.add(claimId);
+      });
+
+      const structureItems = checkpoints && checkpoints.architecture_structure && Array.isArray(checkpoints.architecture_structure.consider_new_structure)
+        ? checkpoints.architecture_structure.consider_new_structure
+        : [];
+      structureItems.forEach(item => {
+        const claimId = extractClaimIdFromItem(item);
+        if (claimId) creativeClaims.add(claimId);
+      });
+
+      return { decisionClaims, conflictClaims, creativeClaims };
+    }
+
     function stalenessBadge(generatedAtUtc) {
       if (!generatedAtUtc) return { label: 'unknown', cls: 'old' };
       const then = new Date(generatedAtUtc);
@@ -2010,6 +2305,7 @@ END CONFLICT RESOLUTION`;
       governanceLoadedAt = new Date().toISOString();
       governanceLoading = false;
       if (currentView === 'governance') renderGovernance();
+      if (currentView === 'map') renderMap();
     }
 
     function renderGovernance() {
@@ -2037,11 +2333,19 @@ END CONFLICT RESOLUTION`;
 
       const summary = governanceAgenda.summary || {};
       const checkpoints = governanceAgenda.checkpoints || {};
+      const epochMap = buildEpochApplicabilityMap(checkpoints);
+      const epochOnly = els.govEpochOnly ? !!els.govEpochOnly.checked : true;
       const thoughtItems = (checkpoints.thought_intake && checkpoints.thought_intake.items) || [];
-      const conflictItems = (checkpoints.conflict_resolution && checkpoints.conflict_resolution.items) || [];
-      const decisionItems = (checkpoints.governance_decisions && checkpoints.governance_decisions.items) || [];
+      const conflictItemsRaw = (checkpoints.conflict_resolution && checkpoints.conflict_resolution.items) || [];
+      const decisionItemsRaw = (checkpoints.governance_decisions && checkpoints.governance_decisions.items) || [];
+      const conflictItems = filterRowsByCurrentEpoch(conflictItemsRaw, epochMap, epochOnly);
+      const decisionItems = filterRowsByCurrentEpoch(decisionItemsRaw, epochMap, epochOnly);
+      const structureItemsRaw = (checkpoints.architecture_structure && checkpoints.architecture_structure.consider_new_structure) || [];
+      const structureItems = filterRowsByCurrentEpoch(structureItemsRaw, epochMap, epochOnly);
+      const autonomyItems = (checkpoints.autonomy_triage && checkpoints.autonomy_triage.items) || [];
       const dispatch = checkpoints.evidence_dispatch || {};
-      const highPriority = dispatch.high_priority_proposals || [];
+      const highPriorityRaw = dispatch.high_priority_proposals || [];
+      const highPriority = filterRowsByCurrentEpoch(highPriorityRaw, epochMap, epochOnly);
       const dispatchByRepo = dispatch.by_target_repo || [];
       const maintenance = checkpoints.maintenance || {};
       const maintenanceRuns = maintenance.unlinked_runs || [];
@@ -2053,6 +2357,45 @@ END CONFLICT RESOLUTION`;
       const highBacklogRows = backlogItems
         .filter(item => item.priority === 'high')
         .slice(0, 15);
+      const highBacklogVisible = filterRowsByCurrentEpoch(highBacklogRows, epochMap, epochOnly);
+
+      const isPendingDecision = (item) => {
+        const token = String((item && item.decision_status) || '').toLowerCase().trim();
+        return !token || !['applied', 'approved', 'done'].includes(token);
+      };
+      const claimDecisionRows = decisionItems.filter(isPendingDecision);
+      const humanOnlyRows = autonomyItems.filter(item => String(item.tier || '').toUpperCase() === 'HUMAN_ONLY');
+      const approvalRows = autonomyItems.filter(item => {
+        const tier = String(item.tier || '').toUpperCase();
+        const needed = String(item.decision_needed || '').toLowerCase() === 'yes';
+        return tier === 'AUTO_WITH_APPROVAL' && needed;
+      });
+      const humanDecisionRows = [
+        ...claimDecisionRows.map(item => ({
+          source: 'claim_queue',
+          claim_id: item.claim_id || '',
+          work_item: item.decision_needed || '',
+          recommendation: item.recommendation || '',
+          rationale: item.decision_status ? `decision_status=${item.decision_status}` : '',
+        })),
+        ...humanOnlyRows.map(item => ({
+          source: 'autonomy_gate',
+          claim_id: '',
+          work_item: item.work_item || '',
+          recommendation: item.recommendation || '',
+          rationale: item.rationale || '',
+        })),
+        ...approvalRows.map(item => ({
+          source: 'approval_gate',
+          claim_id: '',
+          work_item: item.work_item || '',
+          recommendation: item.recommendation || '',
+          rationale: item.rationale || '',
+        })),
+      ];
+      const creativeRows = structureItems
+        .filter(item => Boolean(item.consider_new_structure) || Boolean(item.escalate_architecture_decision))
+        .slice(0, 20);
 
       const allProposals = governanceProposals && governanceProposals.items ? governanceProposals.items : [];
       const checkpointGuideRows = Object.entries(checkpoints).map(([key, checkpoint]) => ({
@@ -2063,20 +2406,24 @@ END CONFLICT RESOLUTION`;
 
       const generatedLabel = generatedAt ? new Date(generatedAt).toLocaleString() : 'unknown';
       const loadedLabel = governanceLoadedAt ? new Date(governanceLoadedAt).toLocaleTimeString() : 'unknown';
+      const epochLabel = epochOnly ? 'current epoch only' : 'all epochs';
       if (els.governanceMeta) {
         els.governanceMeta.innerHTML =
           `Agenda generated: <strong>${escapeHtml(generatedLabel)}</strong>` +
           `<span class="gov-staleness ${escapeHtml(stale.cls)}">${escapeHtml(stale.label)}</span>` +
-          ` &nbsp;|&nbsp; dashboard refreshed: ${escapeHtml(loadedLabel)}`;
+          ` &nbsp;|&nbsp; dashboard refreshed: ${escapeHtml(loadedLabel)}` +
+          ` &nbsp;|&nbsp; scope: ${escapeHtml(epochLabel)}`;
       }
 
       const cards = `
         <div class="governance-grid">
           <div class="gov-card"><div class="label">Unprocessed Thoughts</div><div class="value">${Number(summary.thought_unprocessed || 0)}</div></div>
-          <div class="gov-card"><div class="label">Conflicts</div><div class="value">${Number(summary.conflicts || 0)}</div></div>
-          <div class="gov-card"><div class="label">Decision Queue</div><div class="value">${Number(summary.decision_queue_items || 0)}</div></div>
-          <div class="gov-card"><div class="label">High Priority Backlog</div><div class="value">${Number(summary.backlog_high_priority || 0)}</div></div>
-          <div class="gov-card"><div class="label">High Priority Proposals</div><div class="value">${Number(summary.proposal_high_priority || 0)}</div></div>
+          <div class="gov-card"><div class="label">Conflicts (visible)</div><div class="value">${conflictItems.length}</div></div>
+          <div class="gov-card"><div class="label">Decision Queue (visible)</div><div class="value">${decisionItems.length}</div></div>
+          <div class="gov-card"><div class="label">Human Decisions Needed</div><div class="value">${humanDecisionRows.length}</div></div>
+          <div class="gov-card"><div class="label">Inspiration / Generative Needed</div><div class="value">${creativeRows.length}</div></div>
+          <div class="gov-card"><div class="label">High Priority Backlog (visible)</div><div class="value">${highBacklogVisible.length}</div></div>
+          <div class="gov-card"><div class="label">High Priority Proposals (visible)</div><div class="value">${highPriority.length}</div></div>
           <div class="gov-card"><div class="label">Warnings</div><div class="value">${Number(summary.warnings || 0)}</div></div>
         </div>
       `;
@@ -2122,7 +2469,7 @@ END CONFLICT RESOLUTION`;
             )}
           </div>
           <div class="gov-section">
-            <h3>Governance Decisions</h3>
+            <h3>Governance Decisions <span class="gov-pill human">human ${humanDecisionRows.length}</span></h3>
             ${renderCheckpointMeta('governance_decisions', checkpoints.governance_decisions)}
             ${renderGovTable(
               decisionItems,
@@ -2136,13 +2483,43 @@ END CONFLICT RESOLUTION`;
             )}
           </div>
           <div class="gov-section">
+            <h3>Human Attention Queue <span class="gov-pill human">decide ${humanDecisionRows.length}</span><span class="gov-pill creative">design ${creativeRows.length}</span></h3>
+            ${renderContextLinks([
+              'evidence/planning/GOVERNANCE_AGENDA.md',
+              'evidence/planning/structure_review/latest/ACTIVE_INDEX.md',
+            ])}
+            <div class="gov-meta">Items in this section require explicit human ownership and cannot be resolved by automated runs alone.</div>
+            ${renderGovTable(
+              humanDecisionRows,
+              [
+                { key: 'source', label: 'source' },
+                { key: 'claim_id', label: 'claim', render: value => value ? renderClaimCell(value) : '-' },
+                { key: 'work_item', label: 'work_item' },
+                { key: 'recommendation', label: 'recommendation' },
+                { key: 'rationale', label: 'rationale' },
+              ],
+              'No explicit human-decision items.'
+            )}
+            <div style="height:8px;"></div>
+            ${renderGovTable(
+              creativeRows,
+              [
+                { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
+                { key: 'recommendation', label: 'recommendation' },
+                { key: 'conflict_ratio', label: 'conflict_ratio' },
+                { key: 'trigger_signals', label: 'trigger_signals' },
+              ],
+              'No explicit human-inspiration items.'
+            )}
+          </div>
+          <div class="gov-section">
             <h3>Backlog (High Priority)</h3>
             ${renderContextLinks([
               'evidence/planning/evidence_backlog.v1.json',
               'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
             ])}
             ${renderGovTable(
-              highBacklogRows,
+              highBacklogVisible,
               [
                 { key: 'backlog_id', label: 'backlog_id' },
                 { key: 'claim_id', label: 'claim', render: value => renderClaimCell(value) },
@@ -2181,7 +2558,7 @@ END CONFLICT RESOLUTION`;
               'No high-priority proposals.'
             )}
             <div class="gov-meta" style="margin-top:8px;">
-              Total proposals in file: ${allProposals.length}
+              Total proposals in file: ${allProposals.length} | visible under scope: ${highPriority.length}
             </div>
           </div>
           <div class="gov-section">
@@ -3378,6 +3755,18 @@ END CONFLICT RESOLUTION`;
       }
       if (els.governanceViewBtn) {
         els.governanceViewBtn.addEventListener('click', () => setView('governance'));
+      }
+      if (els.mapEpochOnly) {
+        els.mapEpochOnly.addEventListener('change', () => renderMap());
+      }
+      if (els.mapGovernanceOnly) {
+        els.mapGovernanceOnly.addEventListener('change', () => renderMap());
+      }
+      if (els.govEpochOnly) {
+        els.govEpochOnly.addEventListener('change', () => {
+          renderGovernance();
+          renderMap();
+        });
       }
 
       els.graphFocusRadios.forEach(radio => {
