@@ -628,6 +628,21 @@
       box-shadow: 0 2px 8px var(--shadow);
     }
 
+    .map-card.heat-low {
+      border-color: #9ab6d6;
+      background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+    }
+
+    .map-card.heat-medium {
+      border-color: #d8b36d;
+      background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+    }
+
+    .map-card.heat-high {
+      border-color: #c98f8f;
+      background: linear-gradient(180deg, #fff5f5 0%, #ffffff 100%);
+    }
+
     .map-card h3 {
       margin: 0 0 6px 0;
       font-size: 15px;
@@ -1107,6 +1122,13 @@
         <div id="mapWrap" class="panel map-wrap">
           <div class="meta">Subsystem map (filtered set)</div>
           <div class="map-toolbar">
+            <label title="Choose map interpretation lens.">
+              Lens
+              <select id="mapLens">
+                <option value="atlas" selected>Subsystem Atlas</option>
+                <option value="governance_heat">Governance Heat</option>
+              </select>
+            </label>
             <label title="Hide claims with zero applicable evidence in the current architecture epoch.">
               <input type="checkbox" id="mapEpochOnly" checked />
               Current Epoch Only
@@ -1387,6 +1409,125 @@ END CONFLICT RESOLUTION`;
 
     const SUBSYSTEM_MAP_URL = './subsystem_map.yaml';
     let subsystemRules = [];
+    const ATLAS_ORDER = [
+      'INV',
+      'REP',
+      'CTL',
+      'TRJ',
+      'COM',
+      'AUT',
+      'SOC',
+      'LAN',
+      'SLP',
+      'IMP',
+      'META',
+      'UNMAPPED',
+    ];
+    const ATLAS_LABEL = {
+      INV: 'INV Foundations',
+      REP: 'REP Representation',
+      CTL: 'CTL Control Plane',
+      TRJ: 'TRJ Trajectory & Residue',
+      COM: 'COM Commitment & Responsibility',
+      AUT: 'AUT Authority & Verifier',
+      SOC: 'SOC Social',
+      LAN: 'LAN Language',
+      SLP: 'SLP Sleep & Consolidation',
+      IMP: 'IMP Implementation & Interfaces',
+      META: 'META Docs & Governance',
+      UNMAPPED: 'UNMAPPED',
+    };
+    const SUBJECT_PREFIX_TO_ATLAS = {
+      e1: 'REP',
+      e2: 'REP',
+      e3: 'COM',
+      l_space: 'REP',
+      latent_predictive_models: 'REP',
+      jepa_substrate: 'REP',
+      control_plane: 'CTL',
+      precision: 'CTL',
+      astrocyte: 'CTL',
+      attention: 'CTL',
+      cognitive_modes: 'CTL',
+      temporal: 'CTL',
+      default_mode: 'CTL',
+      sensory_stream_tags: 'CTL',
+      hippocampus: 'TRJ',
+      hippocampal: 'TRJ',
+      residue: 'TRJ',
+      trajectory: 'TRJ',
+      commitment: 'COM',
+      agency: 'COM',
+      responsibility: 'COM',
+      agentic_extension: 'COM',
+      affect: 'COM',
+      provenance: 'AUT',
+      entities: 'AUT',
+      social: 'SOC',
+      emotion: 'SOC',
+      care_weights_override_other_harm_veto: 'SOC',
+      valence_vs_mu_kappa_overlays: 'SOC',
+      selfhood_personality_ethics: 'SOC',
+      language: 'LAN',
+      terminology: 'LAN',
+      sleep: 'SLP',
+      interfaces: 'IMP',
+      integration: 'IMP',
+      roadmap: 'IMP',
+      spec: 'IMP',
+      invariance: 'INV',
+      ethics: 'INV',
+      consequence: 'INV',
+      coherence: 'INV',
+      architecture: 'INV',
+      meta: 'META',
+      docs: 'META',
+      repo: 'META',
+      claims: 'META',
+      conflicts: 'META',
+      failure: 'META',
+      failure_modes: 'META',
+      examples: 'META',
+      migration: 'META',
+      overview: 'META',
+      refactor: 'META',
+      design: 'META',
+      developmental: 'META',
+      developmental_ordering: 'META',
+      wiring: 'META',
+      diagrams: 'META',
+    };
+    const LOCATION_RULES_TO_ATLAS = [
+      ['docs/architecture/language/', 'LAN'],
+      ['docs/architecture/language.md', 'LAN'],
+      ['docs/architecture/social', 'SOC'],
+      ['docs/architecture/sleep', 'SLP'],
+      ['docs/architecture/agency_responsibility_flow', 'COM'],
+      ['docs/architecture/e3', 'COM'],
+      ['docs/architecture/path_authority', 'AUT'],
+      ['docs/architecture/entities_and_binding', 'AUT'],
+      ['docs/architecture/papez_circuit', 'AUT'],
+      ['docs/architecture/control_plane', 'CTL'],
+      ['docs/architecture/precision', 'CTL'],
+      ['docs/architecture/astrocyte', 'CTL'],
+      ['docs/architecture/serotonin', 'CTL'],
+      ['docs/architecture/temporal', 'CTL'],
+      ['docs/architecture/mode', 'CTL'],
+      ['docs/architecture/hippocampal', 'TRJ'],
+      ['docs/architecture/residue', 'TRJ'],
+      ['docs/architecture/trajectory', 'TRJ'],
+      ['docs/architecture/e1', 'REP'],
+      ['docs/architecture/e2', 'REP'],
+      ['docs/architecture/l_space', 'REP'],
+      ['docs/architecture/jepa', 'REP'],
+      ['docs/architecture/hook_surface', 'IMP'],
+      ['docs/invariants', 'INV'],
+      ['docs/REE_MIN_SPEC', 'INV'],
+      ['docs/claims/', 'META'],
+      ['docs/changelog', 'META'],
+      ['docs/roadmap', 'META'],
+      ['docs/README', 'META'],
+    ];
 
     const els = {
       search: document.getElementById('search'),
@@ -1400,6 +1541,7 @@ END CONFLICT RESOLUTION`;
       docsWrap: document.getElementById('docsWrap'),
       mapWrap: document.getElementById('mapWrap'),
       mapMeta: document.getElementById('mapMeta'),
+      mapLens: document.getElementById('mapLens'),
       graphPanel: document.getElementById('graphPanel'),
       graphMeta: document.getElementById('graphMeta'),
       graphTooltip: document.getElementById('graphTooltip'),
@@ -1893,6 +2035,88 @@ END CONFLICT RESOLUTION`;
       return 'Unmapped';
     }
 
+    function atlasKeyFromSubject(claim) {
+      const subject = String((claim && claim.subject) || '').trim().toLowerCase();
+      if (!subject) return '';
+      const prefix = subject.split('.')[0] || '';
+      return SUBJECT_PREFIX_TO_ATLAS[prefix] || '';
+    }
+
+    function atlasKeyFromLocation(claim) {
+      const path = String((claim && claim.location) || '').split('#')[0].toLowerCase();
+      if (!path) return '';
+      for (const [needle, key] of LOCATION_RULES_TO_ATLAS) {
+        if (path.includes(String(needle).toLowerCase())) return key;
+      }
+      return '';
+    }
+
+    function atlasGroupForClaim(claim) {
+      if (!claim) return { key: 'UNMAPPED', label: ATLAS_LABEL.UNMAPPED, reason: 'missing_claim' };
+      const bySubject = atlasKeyFromSubject(claim);
+      if (bySubject) {
+        return { key: bySubject, label: ATLAS_LABEL[bySubject] || bySubject, reason: `subject:${claim.subject}` };
+      }
+      const byLocation = atlasKeyFromLocation(claim);
+      if (byLocation) {
+        return { key: byLocation, label: ATLAS_LABEL[byLocation] || byLocation, reason: `location:${claim.location}` };
+      }
+      const mapped = getSubsystemKey(claim);
+      if (mapped && mapped !== 'Unmapped') {
+        const token = String(mapped).toLowerCase();
+        const fallback = (
+          token.includes('language') ? 'LAN'
+          : token.includes('social') ? 'SOC'
+          : token.includes('sleep') ? 'SLP'
+          : token.includes('hippocamp') || token.includes('residue') || token.includes('trajectory') ? 'TRJ'
+          : token.includes('agency') || token === 'e3' ? 'COM'
+          : token.includes('authority') || token.includes('entities') || token.includes('papez') ? 'AUT'
+          : token.includes('control') || token.includes('precision') || token.includes('serotonin') || token.includes('mode') ? 'CTL'
+          : token === 'e1' || token === 'e2' || token.includes('l-space') || token.includes('jepa') ? 'REP'
+          : token.includes('invariant') ? 'INV'
+          : token.includes('hook') ? 'IMP'
+          : 'META'
+        );
+        return { key: fallback, label: ATLAS_LABEL[fallback] || fallback, reason: `fallback:${mapped}` };
+      }
+      if (claim.type === 'invariant') {
+        return { key: 'INV', label: ATLAS_LABEL.INV, reason: 'claim_type:invariant' };
+      }
+      if (claim.type === 'implementation_note') {
+        return { key: 'IMP', label: ATLAS_LABEL.IMP, reason: 'claim_type:implementation_note' };
+      }
+      return { key: 'UNMAPPED', label: ATLAS_LABEL.UNMAPPED, reason: 'no_subject_or_location_rule' };
+    }
+
+    function buildConflictRatioMap(checkpoints) {
+      const ratios = new Map();
+      const rows = checkpoints && checkpoints.conflict_resolution && Array.isArray(checkpoints.conflict_resolution.items)
+        ? checkpoints.conflict_resolution.items
+        : [];
+      rows.forEach(row => {
+        const claimId = extractClaimIdFromItem(row);
+        if (!claimId) return;
+        const ratio = Number(row.conflict_ratio || 0);
+        if (!Number.isNaN(ratio)) ratios.set(claimId, ratio);
+      });
+      return ratios;
+    }
+
+    function governancePressureScore(claimId, signals, epochMap, conflictRatios) {
+      let score = 0;
+      if (signals.decisionClaims.has(claimId)) score += 2.0;
+      if (signals.creativeClaims.has(claimId)) score += 1.6;
+      if (signals.conflictClaims.has(claimId)) score += 1.4;
+      const ratio = Number(conflictRatios.get(claimId) || 0);
+      if (ratio > 0) score += Math.min(1.5, ratio * 1.5);
+      const epochSlot = epochMap.get(claimId);
+      if (epochSlot) {
+        const staleRatio = Number(epochSlot.stale_ratio || 0);
+        if (staleRatio > 0.4) score += 0.6;
+      }
+      return score;
+    }
+
     function statusSummary(claims) {
       const counts = {};
       claims.forEach(c => {
@@ -1910,6 +2134,8 @@ END CONFLICT RESOLUTION`;
         : {};
       const epochMap = buildEpochApplicabilityMap(checkpoints);
       const signals = buildGovernanceClaimSignals(checkpoints);
+      const conflictRatios = buildConflictRatioMap(checkpoints);
+      const lens = els.mapLens ? String(els.mapLens.value || 'atlas') : 'atlas';
       const epochOnly = els.mapEpochOnly ? !!els.mapEpochOnly.checked : true;
       const governanceOnly = els.mapGovernanceOnly ? !!els.mapGovernanceOnly.checked : false;
 
@@ -1926,16 +2152,50 @@ END CONFLICT RESOLUTION`;
       }
 
       const groups = new Map();
-      const order = (subsystemRules || []).map(r => r.key);
       filtered.forEach(c => {
-        const key = getSubsystemKey(c);
-        if (!groups.has(key)) groups.set(key, []);
-        groups.get(key).push(c);
+        const atlas = atlasGroupForClaim(c);
+        const key = atlas.key;
+        if (!groups.has(key)) {
+          groups.set(key, {
+            key,
+            label: atlas.label || ATLAS_LABEL[key] || key,
+            claims: [],
+            decision: 0,
+            conflict: 0,
+            creative: 0,
+            pressure_total: 0,
+          });
+        }
+        const hasDecision = signals.decisionClaims.has(c.id);
+        const hasConflict = signals.conflictClaims.has(c.id);
+        const hasCreative = signals.creativeClaims.has(c.id);
+        const pressure = governancePressureScore(c.id, signals, epochMap, conflictRatios);
+        const slot = groups.get(key);
+        slot.claims.push({
+          claim: c,
+          atlas,
+          hasDecision,
+          hasConflict,
+          hasCreative,
+          pressure,
+          staleOnly: !isCurrentEpochClaim(c.id, epochMap),
+        });
+        if (hasDecision) slot.decision += 1;
+        if (hasConflict) slot.conflict += 1;
+        if (hasCreative) slot.creative += 1;
+        slot.pressure_total += pressure;
       });
       const keys = Array.from(groups.keys()).sort((a, b) => {
-        const ai = order.indexOf(a);
-        const bi = order.indexOf(b);
-        if (ai === -1 && bi === -1) return a.localeCompare(b);
+        if (lens === 'governance_heat') {
+          const as = groups.get(a);
+          const bs = groups.get(b);
+          const av = as && as.claims.length ? as.pressure_total / as.claims.length : 0;
+          const bv = bs && bs.claims.length ? bs.pressure_total / bs.claims.length : 0;
+          if (bv !== av) return bv - av;
+        }
+        const ai = ATLAS_ORDER.indexOf(a);
+        const bi = ATLAS_ORDER.indexOf(b);
+        if (ai === -1 && bi === -1) return String(a).localeCompare(String(b));
         if (ai === -1) return 1;
         if (bi === -1) return -1;
         return ai - bi;
@@ -1946,22 +2206,46 @@ END CONFLICT RESOLUTION`;
       let conflictCount = 0;
       let creativeCount = 0;
       keys.forEach(key => {
-        const claims = groups.get(key) || [];
-        if (!claims.length) return;
-        claims.sort((a, b) => a.id.localeCompare(b.id));
+        const group = groups.get(key);
+        if (!group || !group.claims.length) return;
+        const claims = group.claims.slice();
+        if (lens === 'governance_heat') {
+          claims.sort((a, b) => {
+            if (b.pressure !== a.pressure) return b.pressure - a.pressure;
+            return a.claim.id.localeCompare(b.claim.id);
+          });
+        } else {
+          claims.sort((a, b) => a.claim.id.localeCompare(b.claim.id));
+        }
+
+        const avgPressure = group.claims.length
+          ? group.pressure_total / group.claims.length
+          : 0;
         const card = document.createElement('div');
         card.className = 'map-card';
+        if (lens === 'governance_heat') {
+          if (avgPressure >= 3.2) card.classList.add('heat-high');
+          else if (avgPressure >= 1.8) card.classList.add('heat-medium');
+          else card.classList.add('heat-low');
+        }
         const title = document.createElement('h3');
-        title.textContent = key;
+        title.textContent = group.label;
         const meta = document.createElement('div');
         meta.className = 'map-meta';
-        meta.textContent = `Total ${claims.length}` + (claims.length ? ` \u2022 ${statusSummary(claims)}` : '');
+        const statusText = statusSummary(claims.map(entry => entry.claim));
+        const signalText = `D ${group.decision} • C ${group.conflict} • I ${group.creative}`;
+        if (lens === 'governance_heat') {
+          meta.textContent = `Total ${claims.length} • Heat ${avgPressure.toFixed(2)} • ${signalText}` + (statusText ? ` • ${statusText}` : '');
+        } else {
+          meta.textContent = `Total ${claims.length}` + (statusText ? ` • ${statusText}` : '') + ` • ${signalText}`;
+        }
         const chips = document.createElement('div');
         chips.className = 'map-chips';
-        claims.forEach(c => {
-          const hasDecision = signals.decisionClaims.has(c.id);
-          const hasConflict = signals.conflictClaims.has(c.id);
-          const hasCreative = signals.creativeClaims.has(c.id);
+        claims.forEach(entry => {
+          const c = entry.claim;
+          const hasDecision = entry.hasDecision;
+          const hasConflict = entry.hasConflict;
+          const hasCreative = entry.hasCreative;
           if (hasDecision) decisionCount += 1;
           if (hasConflict) conflictCount += 1;
           if (hasCreative) creativeCount += 1;
@@ -1971,13 +2255,14 @@ END CONFLICT RESOLUTION`;
           if (hasDecision) chip.classList.add('signal-decision');
           if (hasConflict) chip.classList.add('signal-conflict');
           if (hasCreative) chip.classList.add('signal-creative');
-          if (!isCurrentEpochClaim(c.id, epochMap)) chip.classList.add('stale-only');
+          if (entry.staleOnly) chip.classList.add('stale-only');
           if (selectedId === c.id) chip.classList.add('selected');
           const flags = [];
           if (hasDecision) flags.push('decision_queue');
           if (hasConflict) flags.push('conflict_queue');
           if (hasCreative) flags.push('creative_structure_review');
-          if (!isCurrentEpochClaim(c.id, epochMap)) flags.push('stale_only');
+          if (entry.staleOnly) flags.push('stale_only');
+          flags.push(entry.atlas.reason);
           chip.title = flags.length ? `${c.id}: ${flags.join(', ')}` : c.id;
 
           const label = document.createElement('span');
@@ -2007,6 +2292,13 @@ END CONFLICT RESOLUTION`;
             b.title = 'Conflict queue';
             badges.appendChild(b);
           }
+          if (lens === 'governance_heat') {
+            const b = document.createElement('span');
+            b.className = 'map-badge';
+            b.textContent = `${Math.round(entry.pressure)}`;
+            b.title = `Governance pressure score: ${entry.pressure.toFixed(2)}`;
+            badges.appendChild(b);
+          }
           if (badges.childNodes.length) chip.appendChild(badges);
 
           chip.addEventListener('click', () => selectClaim(c.id));
@@ -2020,7 +2312,9 @@ END CONFLICT RESOLUTION`;
 
       if (els.mapMeta) {
         const tokens = [
+          `Lens: ${lens === 'governance_heat' ? 'Governance Heat' : 'Subsystem Atlas'}`,
           `Claims shown: ${filtered.length}`,
+          `Subsystems shown: ${keys.length}`,
           `Decision-signaled: ${decisionCount}`,
           `Creative-signaled: ${creativeCount}`,
           `Conflict-signaled: ${conflictCount}`,
@@ -3761,6 +4055,9 @@ END CONFLICT RESOLUTION`;
       }
       if (els.mapGovernanceOnly) {
         els.mapGovernanceOnly.addEventListener('change', () => renderMap());
+      }
+      if (els.mapLens) {
+        els.mapLens.addEventListener('change', () => renderMap());
       }
       if (els.govEpochOnly) {
         els.govEpochOnly.addEventListener('change', () => {
