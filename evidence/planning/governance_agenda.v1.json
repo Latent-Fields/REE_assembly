@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-18T19:10:11.493680Z",
+      "last_run_generated_at_utc": "2026-02-18T19:44:25.975814Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -418,8 +418,8 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.316,
-            "experimental_confidence": 0.559,
+            "delta_lit_minus_exp": 0.317,
+            "experimental_confidence": 0.558,
             "literature_confidence": 0.875
           },
           "conflict_ratio": 0.87,
@@ -1038,8 +1038,8 @@
           "signals": {
             "claim_type": "mechanism_hypothesis",
             "confidence_split": {
-              "delta_lit_minus_exp": 0.316,
-              "experimental_confidence": 0.559,
+              "delta_lit_minus_exp": 0.317,
+              "experimental_confidence": 0.558,
               "literature_confidence": 0.875
             },
             "conflict_ratio": 0.87,
@@ -1285,8 +1285,8 @@
           "signals": {
             "claim_type": "mechanism_hypothesis",
             "confidence_split": {
-              "delta_lit_minus_exp": 0.316,
-              "experimental_confidence": 0.559,
+              "delta_lit_minus_exp": 0.317,
+              "experimental_confidence": 0.558,
               "literature_confidence": 0.875
             },
             "conflict_ratio": 0.87,
@@ -3288,8 +3288,8 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.316,
-            "experimental_confidence": 0.559,
+            "delta_lit_minus_exp": 0.317,
+            "experimental_confidence": 0.558,
             "literature_confidence": 0.875
           },
           "conflict_ratio": 0.87,
@@ -3747,8 +3747,8 @@
           "claim_id": "MECH-058",
           "claim_type": "mechanism_hypothesis",
           "confidence_split": {
-            "delta_lit_minus_exp": 0.316,
-            "experimental_confidence": 0.559,
+            "delta_lit_minus_exp": 0.317,
+            "experimental_confidence": 0.558,
             "literature_confidence": 0.875
           },
           "conflict_ratio": 0.87,
@@ -4080,57 +4080,67 @@
       }
     },
     "structure_review_dossiers": {
+      "active_items_total": 7,
+      "archive_index_path": "evidence/planning/structure_review/latest/ARCHIVE_INDEX.md",
+      "archive_items_total": 34,
       "consider_new_structure_total": 7,
-      "index_path": "evidence/planning/structure_review/latest/INDEX.md",
+      "index_path": "evidence/planning/structure_review/latest/ACTIVE_INDEX.md",
       "items": [
         {
           "claim_id": "MECH-060",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-060/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-060/DOSSIER.md",
-          "recommendation": "escalate_architecture_decision"
+          "recommendation": "escalate_architecture_decision",
+          "status": "candidate"
         },
         {
           "claim_id": "MECH-058",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-058/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-058/DOSSIER.md",
-          "recommendation": "escalate_architecture_decision"
+          "recommendation": "escalate_architecture_decision",
+          "status": "candidate"
         },
         {
           "claim_id": "Q-017",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-017/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-017/DOSSIER.md",
-          "recommendation": "escalate_architecture_decision"
+          "recommendation": "escalate_architecture_decision",
+          "status": "active"
         },
         {
           "claim_id": "MECH-057",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-057/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-057/DOSSIER.md",
-          "recommendation": "consider_new_structure"
+          "recommendation": "consider_new_structure",
+          "status": "candidate"
         },
         {
           "claim_id": "Q-013",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-013/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-013/DOSSIER.md",
-          "recommendation": "consider_new_structure"
+          "recommendation": "consider_new_structure",
+          "status": "active"
         },
         {
           "claim_id": "Q-014",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-014/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/Q-014/DOSSIER.md",
-          "recommendation": "consider_new_structure"
+          "recommendation": "consider_new_structure",
+          "status": "active"
         },
         {
           "claim_id": "MECH-056",
           "consider_new_structure": true,
           "dossier_json_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-056/dossier.v1.json",
           "dossier_md_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/MECH-056/DOSSIER.md",
-          "recommendation": "consider_new_structure"
+          "recommendation": "consider_new_structure",
+          "status": "candidate"
         }
       ],
       "items_total": 7,
@@ -4150,10 +4160,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/sync_task_inbox.py"
         ],
-        "finished_at_utc": "2026-02-18T19:10:11.388335Z",
+        "finished_at_utc": "2026-02-18T19:44:25.874208Z",
         "name": "task_inbox_sync",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:11.293235Z",
+        "started_at_utc": "2026-02-18T19:44:25.783128Z",
         "status": "ok",
         "stderr": "",
         "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
@@ -4163,10 +4173,10 @@
           "/opt/local/bin/python3",
           "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-18T19:10:11.447261Z",
+        "finished_at_utc": "2026-02-18T19:44:25.929807Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:11.388380Z",
+        "started_at_utc": "2026-02-18T19:44:25.874246Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=40, processed=40, unprocessed=0, processed_missing_links=0"
@@ -4178,10 +4188,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-18T19:10:11.500543Z",
+        "finished_at_utc": "2026-02-18T19:44:25.983956Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:11.447295Z",
+        "started_at_utc": "2026-02-18T19:44:25.929856Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=9, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -4191,10 +4201,10 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-18T19:10:12.066585Z",
+        "finished_at_utc": "2026-02-18T19:44:27.548116Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:11.500602Z",
+        "started_at_utc": "2026-02-18T19:44:25.984020Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 940 run(s) across 39 experiment type(s); FAIL=409; literature entries=74; backlog items=25; proposals=23."
@@ -4204,10 +4214,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-18T19:10:12.132449Z",
+        "finished_at_utc": "2026-02-18T19:44:27.754410Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:12.066637Z",
+        "started_at_utc": "2026-02-18T19:44:27.548255Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-18/structure_review_report.v1.json"
@@ -4217,17 +4227,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-18T19:10:12.185293Z",
+        "finished_at_utc": "2026-02-18T19:44:27.866778Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-18T19:10:12.132510Z",
+        "started_at_utc": "2026-02-18T19:44:27.754467Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md\nWrote connectome pull state JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json\nConnectome queue status: active=3 completed=4 total_selected=7"
       }
     ]
   },
-  "generated_at_utc": "2026-02-18T19:10:12.185369Z",
+  "generated_at_utc": "2026-02-18T19:44:27.866909Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,

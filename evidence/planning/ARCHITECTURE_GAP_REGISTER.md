@@ -1,13 +1,13 @@
 # Architecture Gap Register
 
-Generated: `2026-02-18T19:10:11.780002Z`
+Generated: `2026-02-18T19:44:26.545366Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
 | `AGR-0001` | `MECH-060` | `candidate` | 0.875 | 0.308 | 0.309 | 5 | yes | yes | `escalate_architecture_decision` |
-| `AGR-0002` | `MECH-058` | `candidate` | 0.87 | 0.222 | 0.316 | 5 | yes | yes | `escalate_architecture_decision` |
+| `AGR-0002` | `MECH-058` | `candidate` | 0.87 | 0.222 | 0.317 | 5 | yes | yes | `escalate_architecture_decision` |
 | `AGR-0003` | `Q-017` | `active` | 0.845 | 0.125 | 0.325 | 3 | yes | yes | `escalate_architecture_decision` |
 | `AGR-0004` | `MECH-057` | `candidate` | 0.769 | 0.429 | 0.279 | 2 | yes | yes | `consider_new_structure` |
 | `AGR-0005` | `Q-013` | `active` | 0.727 | 1 | 0.02 | 2 | yes | no | `consider_new_structure` |
@@ -43,7 +43,7 @@ This register highlights claims under structural pressure and flags where the ev
   - escalation_required: yes; route directly to architecture decision checkpoint.
 - `MECH-058` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.87; lit_non_support_ratio=0.222.
   - recurring_signatures: `mech058:anchor_separation_collapse`(45), `mech058:ema_drift_under_shift`(21), `mech058:latent_cluster_collapse`(10), `threshold:latent_prediction_error_mean`(5), `threshold:latent_prediction_error_p95`(5)
-  - external_precedence_candidate: yes; delta_lit_minus_exp=0.316
+  - external_precedence_candidate: yes; delta_lit_minus_exp=0.317
   - saturation_guard: engaged; recent_window_used=12, unique_signature_sets=2, unique_directions=2
   - escalation_required: yes; route directly to architecture decision checkpoint.
 - `Q-017` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.845; lit_non_support_ratio=0.125.

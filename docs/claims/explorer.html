@@ -1094,10 +1094,12 @@
       ],
       architecture_structure: [
         'evidence/planning/ARCHITECTURE_GAP_REGISTER.md',
-        'evidence/planning/structure_review/latest/INDEX.md',
+        'evidence/planning/structure_review/latest/ACTIVE_INDEX.md',
+        'evidence/planning/structure_review/latest/ARCHIVE_INDEX.md',
       ],
       structure_review_dossiers: [
-        'evidence/planning/structure_review/latest/INDEX.md',
+        'evidence/planning/structure_review/latest/ACTIVE_INDEX.md',
+        'evidence/planning/structure_review/latest/ARCHIVE_INDEX.md',
       ],
       connectome_literature_pull: [
         'evidence/planning/CONNECTOME_LITERATURE_PULL.md',
@@ -1239,7 +1241,8 @@ END CONFLICT RESOLUTION`;
           { title: 'Task Inbox', path: '../../evidence/planning/task_inbox.md' },
           { title: 'Manual Carryover Items', path: '../../evidence/planning/manual_carryover_items.v1.json' },
           { title: 'Planning Criteria', path: '../../evidence/planning/planning_criteria.v1.yaml' },
-          { title: 'Structure Review Index', path: '../../evidence/planning/structure_review/latest/INDEX.md' },
+          { title: 'Structure Review (Active)', path: '../../evidence/planning/structure_review/latest/ACTIVE_INDEX.md' },
+          { title: 'Structure Review (Archive)', path: '../../evidence/planning/structure_review/latest/ARCHIVE_INDEX.md' },
           { title: 'Connectome Pull State', path: '../../evidence/planning/connectome_pull_state.v1.json' },
           { title: 'Experiment Proposals', path: '../../evidence/planning/experiment_proposals.v1.json' },
         ],
@@ -1856,12 +1859,12 @@ END CONFLICT RESOLUTION`;
 
     function collectCheckpointContextDocs(checkpointKey, checkpointData) {
       const docs = new Set((GOVERNANCE_CONTEXT_DOCS[checkpointKey] || []).map(stripTicks));
-      const pathFields = ['queue_path', 'patch_queue_path', 'report_path', 'index_path', 'source_path'];
+      const pathFields = ['queue_path', 'patch_queue_path', 'report_path', 'index_path', 'active_index_path', 'archive_index_path', 'source_path'];
       pathFields.forEach(field => {
         const value = checkpointData && checkpointData[field];
         if (value) docs.add(stripTicks(value));
       });
-      const itemPathFields = ['dossier_md_path', 'dossier_json_path'];
+      const itemPathFields = ['dossier_md_path'];
       const items = checkpointData && Array.isArray(checkpointData.items) ? checkpointData.items : [];
       items.slice(0, 10).forEach(item => {
         itemPathFields.forEach(field => {

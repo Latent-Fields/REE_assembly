@@ -587,6 +587,32 @@ def _build_agenda(
         if isinstance(structure_review_report, dict)
         else 0
     )
+    structure_review_active_total = int(
+        structure_review_report.get("active_items_total", structure_review_total)
+        if isinstance(structure_review_report, dict)
+        else structure_review_total
+    )
+    structure_review_archive_total = int(
+        structure_review_report.get("archive_items_total", 0)
+        if isinstance(structure_review_report, dict)
+        else 0
+    )
+    structure_review_active_index_path = str(
+        structure_review_report.get(
+            "active_index_path",
+            "evidence/planning/structure_review/latest/ACTIVE_INDEX.md",
+        )
+        if isinstance(structure_review_report, dict)
+        else "evidence/planning/structure_review/latest/ACTIVE_INDEX.md"
+    )
+    structure_review_archive_index_path = str(
+        structure_review_report.get(
+            "archive_index_path",
+            "evidence/planning/structure_review/latest/ARCHIVE_INDEX.md",
+        )
+        if isinstance(structure_review_report, dict)
+        else "evidence/planning/structure_review/latest/ARCHIVE_INDEX.md"
+    )
     structure_review_consider = int(
         structure_review_report.get(
             "consider_new_structure_total",
@@ -757,9 +783,12 @@ def _build_agenda(
             "structure_review_dossiers": {
                 "prompt": "Review claim dossiers before deciding architecture changes.",
                 "items_total": structure_review_total,
+                "active_items_total": structure_review_active_total,
+                "archive_items_total": structure_review_archive_total,
                 "consider_new_structure_total": structure_review_consider,
                 "items": structure_review_items,
-                "index_path": "evidence/planning/structure_review/latest/INDEX.md",
+                "index_path": structure_review_active_index_path,
+                "archive_index_path": structure_review_archive_index_path,
             },
             "connectome_literature_pull": {
                 "prompt": "Review connectome-oriented literature pull queue for architecture-pressure claims.",
@@ -971,7 +1000,10 @@ def _build_agenda(
         + f"{len(structure_considerations)} consider-new-structure item(s), "
         + f"{len(architecture_items)} total register item(s)."
     )
-    lines.append("- context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, `evidence/planning/structure_review/latest/INDEX.md`")
+    lines.append(
+        "- context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, "
+        + f"`{structure_review_active_index_path}`"
+    )
     lines.append(
         "- backlog mode guards: "
         + f"saturation_holds={len(backlog_saturation_holds)}, "
@@ -988,10 +1020,15 @@ def _build_agenda(
             )
     lines.append(
         "7. Structure Dossiers: "
-        + f"{structure_review_total} dossier(s), "
-        + f"{structure_review_consider} marked consider-new-structure."
+        + f"{structure_review_active_total} active dossier(s), "
+        + f"{structure_review_archive_total} archived dossier(s), "
+        + f"{structure_review_consider} active marked consider-new-structure."
     )
-    lines.append("- context: `evidence/planning/structure_review/latest/INDEX.md`")
+    lines.append(
+        "- context: "
+        + f"`{structure_review_active_index_path}`, "
+        + f"`{structure_review_archive_index_path}`"
+    )
     lines.append(
         "8. Connectome Literature Pull: "
         + f"{len(connectome_pull_items)} queued claim(s), "

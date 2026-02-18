@@ -46,6 +46,23 @@ def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _repo_relative(path: Path, repo_root: Path) -> str:
+    try:
+        return path.relative_to(repo_root).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
+def _is_cycle_label(token: str) -> bool:
+    if len(token) != 10:
+        return False
+    try:
+        datetime.strptime(token, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
+
+
 def _load_claim_registry(path: Path) -> dict[str, dict[str, Any]]:
     """Parse key claim metadata from docs/claims/claims.yaml."""
     claims: dict[str, dict[str, Any]] = {}
@@ -611,6 +628,70 @@ def _format_dossier_md(dossier: dict[str, Any]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _render_index(
+    *,
+    title: str,
+    generated_at: str,
+    cycle_date: str,
+    description: str,
+    rows: list[dict[str, str]],
+    include_cycle: bool = False,
+) -> str:
+    lines: list[str] = []
+    lines.append(f"# {title}")
+    lines.append("")
+    lines.append(f"Generated: `{generated_at}`")
+    lines.append(f"Cycle: `{cycle_date}`")
+    lines.append("")
+    lines.append(description)
+    lines.append("")
+    if include_cycle:
+        lines.append("| cycle | claim_id | status | recommendation | consider_new_structure | dossier |")
+        lines.append("|---|---|---|---|---|---|")
+    else:
+        lines.append("| claim_id | status | recommendation | consider_new_structure | dossier |")
+        lines.append("|---|---|---|---|---|")
+
+    if not rows:
+        if include_cycle:
+            lines.append("| _none_ | _none_ | - | - | - | - |")
+        else:
+            lines.append("| _none_ | - | - | - | - |")
+        return "\n".join(lines).rstrip() + "\n"
+
+    for row in rows:
+        if include_cycle:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{row.get('cycle', '')}`",
+                        f"`{row.get('claim_id', '')}`",
+                        f"`{row.get('status', 'unknown')}`",
+                        f"`{row.get('recommendation', '')}`",
+                        row.get("consider_new_structure", "no"),
+                        f"`{row.get('dossier_md_path', '')}`",
+                    ]
+                )
+                + " |"
+            )
+        else:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{row.get('claim_id', '')}`",
+                        f"`{row.get('status', 'unknown')}`",
+                        f"`{row.get('recommendation', '')}`",
+                        row.get("consider_new_structure", "no"),
+                        f"`{row.get('dossier_md_path', '')}`",
+                    ]
+                )
+                + " |"
+            )
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build structure review dossiers from architecture gap register.")
     parser.add_argument(
@@ -694,22 +775,9 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     report_items: list[dict[str, Any]] = []
-    index_lines: list[str] = []
-    index_lines.append("# Structure Review Dossier Index")
-    index_lines.append("")
-    index_lines.append(f"Generated: `{generated_at}`")
-    index_lines.append(f"Cycle: `{cycle_date}`")
-    index_lines.append("")
-    index_lines.append(
-        "These dossiers are designed to support human judgment when claims show structural pressure in the evidence stream."
-    )
-    index_lines.append("")
-    index_lines.append("| claim_id | status | recommendation | consider_new_structure | dossier |")
-    index_lines.append("|---|---|---|---|---|")
+    active_rows: list[dict[str, str]] = []
 
-    if not selected_items:
-        index_lines.append("| _none_ | - | - | - | - |")
-    else:
+    if selected_items:
         for item in selected_items:
             claim_id = str(item.get("claim_id", "")).strip()
             if not claim_id:
@@ -748,23 +816,25 @@ def main() -> int:
             )
             dossier_md_path.write_text(_format_dossier_md(dossier), encoding="utf-8")
 
-            rel_md = dossier_md_path.relative_to(repo_root).as_posix()
-            index_lines.append(
-                "| "
-                + " | ".join(
-                    [
-                        f"`{claim_id}`",
-                        f"`{registry_meta.get('status', 'unknown')}`",
-                        f"`{item.get('recommendation', '')}`",
-                        "yes" if bool(item.get("consider_new_structure", False)) else "no",
-                        f"`{rel_md}`",
-                    ]
-                )
-                + " |"
+            rel_md = _repo_relative(dossier_md_path, repo_root)
+            status = str(registry_meta.get("status", "unknown"))
+            recommendation = str(item.get("recommendation", ""))
+            consider = "yes" if bool(item.get("consider_new_structure", False)) else "no"
+            active_rows.append(
+                {
+                    "cycle": cycle_date,
+                    "claim_id": claim_id,
+                    "status": status,
+                    "recommendation": recommendation,
+                    "consider_new_structure": consider,
+                    "dossier_md_path": rel_md,
+                    "dossier_json_path": _repo_relative(dossier_json_path, repo_root),
+                }
             )
             report_items.append(
                 {
                     "claim_id": claim_id,
+                    "status": str(registry_meta.get("status", "unknown")),
                     "consider_new_structure": bool(item.get("consider_new_structure", False)),
                     "recommendation": str(item.get("recommendation", "")),
                     "dossier_json_path": dossier_json_path.as_posix(),
@@ -772,12 +842,103 @@ def main() -> int:
                 }
             )
 
+    active_rows.sort(key=lambda row: str(row.get("claim_id", "")))
+    active_index_text = _render_index(
+        title="Active Structure Review Dossier Index",
+        generated_at=generated_at,
+        cycle_date=cycle_date,
+        description=(
+            "These are currently relevant dossiers for governance decisions in the latest cycle."
+        ),
+        rows=active_rows,
+    )
+
+    active_md_paths = {str(row.get("dossier_md_path", "")).strip() for row in active_rows}
+    archive_rows: list[dict[str, str]] = []
+    for cycle_dir in sorted(output_root.iterdir()):
+        if not cycle_dir.is_dir():
+            continue
+        cycle_token = cycle_dir.name
+        if cycle_token == "latest" or not _is_cycle_label(cycle_token):
+            continue
+        for dossier_path in sorted(cycle_dir.glob("*/DOSSIER.md")):
+            rel_md = _repo_relative(dossier_path, repo_root)
+            if rel_md in active_md_paths:
+                continue
+            claim_id = dossier_path.parent.name
+            dossier_json = dossier_path.parent / "dossier.v1.json"
+            status = "unknown"
+            recommendation = ""
+            consider = "no"
+            if dossier_json.exists():
+                dossier_doc = _load_json(dossier_json)
+                claim = dossier_doc.get("claim", {}) if isinstance(dossier_doc, dict) else {}
+                pressure = (
+                    dossier_doc.get("structure_pressure", {})
+                    if isinstance(dossier_doc, dict)
+                    else {}
+                )
+                status = str(claim.get("status", "unknown"))
+                recommendation = str(pressure.get("recommendation", ""))
+                consider = (
+                    "yes"
+                    if bool(pressure.get("consider_new_structure", False))
+                    else "no"
+                )
+            archive_rows.append(
+                {
+                    "cycle": cycle_token,
+                    "claim_id": claim_id,
+                    "status": status,
+                    "recommendation": recommendation,
+                    "consider_new_structure": consider,
+                    "dossier_md_path": rel_md,
+                }
+            )
+
+    archive_rows.sort(
+        key=lambda row: (
+            str(row.get("cycle", "")),
+            str(row.get("claim_id", "")),
+        )
+    )
+    archive_index_text = _render_index(
+        title="Archived Structure Review Dossier Index",
+        generated_at=generated_at,
+        cycle_date=cycle_date,
+        description=(
+            "These dossiers are historical context from prior cycles or non-active dossiers from this cycle."
+        ),
+        rows=archive_rows,
+        include_cycle=True,
+    )
+
     index_path = out_dir / "INDEX.md"
-    index_path.write_text("\n".join(index_lines).rstrip() + "\n", encoding="utf-8")
+    index_path.write_text(active_index_text, encoding="utf-8")
 
     latest_dir = output_root / "latest"
     latest_dir.mkdir(parents=True, exist_ok=True)
     (latest_dir / "INDEX.md").write_text(index_path.read_text(encoding="utf-8"), encoding="utf-8")
+    active_index_path = latest_dir / "ACTIVE_INDEX.md"
+    archive_index_path = latest_dir / "ARCHIVE_INDEX.md"
+    active_index_path.write_text(active_index_text, encoding="utf-8")
+    archive_index_path.write_text(archive_index_text, encoding="utf-8")
+
+    root_index_lines = [
+        "# Structure Review Index",
+        "",
+        f"Generated: `{generated_at}`",
+        f"Cycle: `{cycle_date}`",
+        "",
+        f"- Active dossiers: `{len(active_rows)}`",
+        f"- Archived dossiers: `{len(archive_rows)}`",
+        "",
+        "- Active index: `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`",
+        "- Archive index: `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`",
+        "- Cycle index: `evidence/planning/structure_review/latest/INDEX.md`",
+        "",
+    ]
+    (output_root / "INDEX.md").write_text("\n".join(root_index_lines), encoding="utf-8")
 
     report = {
         "schema_version": "structure_review_report/v1",
@@ -792,6 +953,10 @@ def main() -> int:
         "consider_new_structure_total": sum(
             1 for item in report_items if bool(item.get("consider_new_structure", False))
         ),
+        "active_items_total": len(report_items),
+        "archive_items_total": len(archive_rows),
+        "active_index_path": _repo_relative(active_index_path, repo_root),
+        "archive_index_path": _repo_relative(archive_index_path, repo_root),
         "output_dir": out_dir.as_posix(),
         "items": report_items,
     }
@@ -808,4 +973,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

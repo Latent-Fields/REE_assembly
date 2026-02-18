@@ -7,7 +7,9 @@ This folder closes the architecture loop by converting current evidence into a m
 - `evidence_backlog.v1.json`: claims requiring new evidence and why.
 - `experiment_proposals.v1.json`: concrete proposed work items for experimental/literature producers.
 - `INDEX.md`: generated summary.
-- `structure_review/latest/INDEX.md`: latest human-readable structure review dossier index.
+- `structure_review/latest/INDEX.md`: latest active structure review dossier index (compatibility alias).
+- `structure_review/latest/ACTIVE_INDEX.md`: latest active dossiers (current governance-relevant set).
+- `structure_review/latest/ARCHIVE_INDEX.md`: historical/archived dossiers (prior cycles and non-active).
 - `structure_review/latest/structure_review_report.v1.json`: latest dossier generation report.
 - `connectome_literature_pull.v1.json`: connectome-oriented literature pull queue for structure-pressure claims.
 - `CONNECTOME_LITERATURE_PULL.md`: human-readable connectome pull brief + copy/paste execution prompt.
@@ -69,6 +71,8 @@ This also generates structure review dossiers from the architecture gap register
 - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/DOSSIER.md`
 - `evidence/planning/structure_review/<YYYY-MM-DD>/<CLAIM_ID>/dossier.v1.json`
 - `evidence/planning/structure_review/latest/INDEX.md`
+- `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`
+- `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`
 
 It also generates connectome literature pull planning outputs:
 
