@@ -243,6 +243,80 @@ Interpretation note:
 
 ---
 
+## Meta-Invariant Compression Layer (Derived Lens)
+
+This layer is a **compression lens** over existing invariants. It is intended to reduce review surface area by grouping
+lower-level invariants/mechanisms into a smaller set of structural contracts.
+
+Important scope note:
+- This does **not** replace INV-001..INV-018.
+- This does **not** claim theorem-level proof of "traversal-axis invariance."
+- It is a structural review aid for architecture updates, signal routing, and experiment design.
+
+<a id="inv-019"></a>
+### INV-019: Selection Compression Boundary
+
+**Subject:** meta.selection_compression_boundary  
+**Polarity:** asserts  
+**Claim:** Rehearsal traversal and irreversible durable update must remain separated; no channel may allow unrestricted
+exploration and unrestricted durable write at the same time.
+
+**Corollary mapping:** INV-011, INV-004, INV-006, MECH-060
+
+---
+
+<a id="inv-020"></a>
+### INV-020: Authority Stratification Boundary
+
+**Subject:** meta.authority_stratification_boundary  
+**Polarity:** asserts  
+**Claim:** Constraint stores (`POL`, `ID`, `CAPS`, and equivalent viability constraints) must be insulated from direct
+observational/symbolic writes; durable changes require verifier-mediated commit paths.
+
+Interpretation note:
+- This forbids **direct writes**, not proposal generation.
+- Fast defensive interrupts are still allowed to stop/suppress commitment without minting privileged writes.
+
+**Corollary mapping:** INV-014, INV-007, MECH-064, MECH-065
+
+---
+
+<a id="inv-021"></a>
+### INV-021: Commit-Boundary Irreversibility
+
+**Subject:** meta.commit_boundary_irreversibility  
+**Polarity:** asserts  
+**Claim:** Responsibility-bearing durable updates occur only at explicit typed commitment boundaries (tokenized commit
+events), not during pre-commit simulation.
+
+**Corollary mapping:** INV-012, MECH-061, Q-015
+
+---
+
+<a id="inv-022"></a>
+### INV-022: Heterogeneous Trust Allocation
+
+**Subject:** meta.heterogeneous_trust_allocation  
+**Polarity:** asserts  
+**Claim:** Trust/precision must be distributed across stream, loop, and global control planes; a single global scalar
+cannot govern all control-routing and commitment behavior.
+
+**Corollary mapping:** INV-008, INV-009, MECH-063, Q-017
+
+---
+
+<a id="inv-023"></a>
+### INV-023: Stability-Preserving Offline Reweighting
+
+**Subject:** meta.offline_reweighting_requirement  
+**Polarity:** asserts  
+**Claim:** Systems that commit and preserve identity across time require protected offline regimes for precision
+recalibration and residue integration.
+
+**Corollary mapping:** INV-010, ARC-011, MECH-016, MECH-017, MECH-018
+
+---
+
 ## Interpretation
 
 These invariants collectively assert that:
@@ -287,6 +361,11 @@ None noted in preserved sources.
 - INV-016
 - INV-017
 - INV-018
+- INV-019
+- INV-020
+- INV-021
+- INV-022
+- INV-023
 
 ## References / Source Fragments
 

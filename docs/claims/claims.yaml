@@ -1884,3 +1884,77 @@
   source:
     - docs/architecture/hook_surface_contract.md
     - docs/architecture/hook_registry.v1.json
+- id: INV-019
+  claim_type: invariant
+  subject: meta.selection_compression_boundary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-011
+    - INV-004
+    - INV-006
+    - MECH-060
+  location: docs/invariants.md#inv-019
+  source:
+    - docs/invariants.md
+    - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+- id: INV-020
+  claim_type: invariant
+  subject: meta.authority_stratification_boundary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-014
+    - INV-007
+    - MECH-064
+    - MECH-065
+  location: docs/invariants.md#inv-020
+  source:
+    - docs/invariants.md
+    - docs/architecture/control_plane_signal_map.md
+    - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+- id: INV-021
+  claim_type: invariant
+  subject: meta.commit_boundary_irreversibility
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-012
+    - MECH-061
+    - Q-015
+  location: docs/invariants.md#inv-021
+  source:
+    - docs/invariants.md
+    - docs/architecture/e3.md
+    - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+- id: INV-022
+  claim_type: invariant
+  subject: meta.heterogeneous_trust_allocation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-008
+    - INV-009
+    - MECH-063
+    - Q-017
+  location: docs/invariants.md#inv-022
+  source:
+    - docs/invariants.md
+    - docs/architecture/control_plane_signal_map.md
+    - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+- id: INV-023
+  claim_type: invariant
+  subject: meta.offline_reweighting_requirement
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-010
+    - ARC-011
+    - MECH-016
+    - MECH-017
+    - MECH-018
+  location: docs/invariants.md#inv-023
+  source:
+    - docs/invariants.md
+    - docs/architecture/sleep.md
+    - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md

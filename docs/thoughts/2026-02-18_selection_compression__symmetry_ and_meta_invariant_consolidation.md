@@ -1,3 +1,19 @@
+Status: processed
+
+Processed in:
+- `docs/invariants.md` (INV-019, INV-020, INV-021, INV-022, INV-023)
+- `docs/claims/claims.yaml` (INV-019..INV-023 registry entries)
+- `docs/architecture/control_plane_signal_map.md` (meta-invariant coverage mapping)
+- `evidence/experiments/meta_invariant_compression_audit/experiment.md`
+- `evidence/experiments/stop_criteria.v1.yaml` (`meta_invariant_compression_audit`)
+
+Processing note:
+- Treated as a **compression lens**, not a replacement of INV-001..INV-018.
+- Authority insulation interpreted as "no direct observational/symbolic writes to trusted stores" while preserving
+  verifier-mediated commits and emergency interrupts without privileged writes.
+
+---
+
 THOUGHT: Selection-Compression Symmetry and Meta-Invariant Consolidation
 
 Date: 2026-02-18

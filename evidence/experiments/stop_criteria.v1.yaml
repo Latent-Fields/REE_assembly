@@ -44,6 +44,15 @@
         { "metric": "pi_rc_floor_violation_count", "op": ">", "threshold": 0 },
         { "metric": "motor_commit_without_rc_clearance_count", "op": ">", "threshold": 0 }
       ]
+    },
+    "meta_invariant_compression_audit": {
+      "fail_if": [
+        { "metric": "rehearsal_to_durable_write_bypass_count", "op": ">", "threshold": 0 },
+        { "metric": "external_to_constraint_store_write_count", "op": ">", "threshold": 0 },
+        { "metric": "commit_without_token_count", "op": ">", "threshold": 0 },
+        { "metric": "precision_scalar_collapse_index", "op": ">", "threshold": 0.15 },
+        { "metric": "offline_recalibration_skip_rate", "op": ">", "threshold": 0.05 }
+      ]
     }
   }
 }

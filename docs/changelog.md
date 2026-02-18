@@ -7,6 +7,39 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-18: Processed Meta-Invariant Compression Thought
+
+### Overview
+
+Processed a new thought proposing consolidation of many lower-level constraints into a smaller meta-invariant layer,
+with explicit guardrails so compression does not weaken existing architectural safety or responsibility boundaries.
+
+### What Changed
+
+- Added derived meta-invariant layer:
+  - `docs/invariants.md`
+  - added `INV-019..INV-023`:
+    - selection compression boundary
+    - authority stratification boundary
+    - commit-boundary irreversibility
+    - heterogeneous trust allocation
+    - stability-preserving offline reweighting
+  - explicitly marked as a compression lens (not replacement) over existing invariants
+- Updated claim registry/index:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+  - added claim records and links for `INV-019..INV-023`
+- Updated control-plane stream contract:
+  - `docs/architecture/control_plane_signal_map.md`
+  - added explicit coverage mapping from signal/knob wiring to `INV-019..INV-023` and associated failure signatures
+- Updated experiment model contracts:
+  - `evidence/experiments/stop_criteria.v1.yaml`
+  - added `meta_invariant_compression_audit` stop-criteria block
+  - `evidence/experiments/meta_invariant_compression_audit/experiment.md`
+  - added minimum metric contract for compressed-layer falsification
+- Marked thought file as processed with canonical links:
+  - `docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md`
+
 ## 2026-02-17: Follow-up Contract Hardening (Commit Token + RC Floor/Hysteresis)
 
 ### Overview

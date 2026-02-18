@@ -1,11 +1,11 @@
 # Thought Sweep Report
 
-Generated: `2026-02-17T22:53:48.613483Z`
+Generated: `2026-02-18T18:32:34.628167Z`
 
 | metric | count |
 |---|---|
-| total thought files | 39 |
-| processed | 39 |
+| total thought files | 40 |
+| processed | 40 |
 | unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
@@ -56,5 +56,6 @@ Generated: `2026-02-17T22:53:48.613483Z`
 - `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
 - `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
 - `2026-02-17_control_plane_update.md` (3 link(s) in `Processed in`)
+- `2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md` (5 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

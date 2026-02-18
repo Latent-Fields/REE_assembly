@@ -32,6 +32,11 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [INV-016](../invariants.md#inv-016) Stability is prioritized over maximal performance.
 - [INV-017](../invariants.md#inv-017) Runaway behavior is a control failure, not representational.
 - [INV-018](../invariants.md#inv-018) Agency is required; passive predictors are not REE.
+- [INV-019](../invariants.md#inv-019) Rehearsal traversal and irreversible durable write must remain separated.
+- [INV-020](../invariants.md#inv-020) Constraint stores are authority-stratified from direct observational/symbolic writes.
+- [INV-021](../invariants.md#inv-021) Responsibility-bearing durable updates occur only at typed commit boundaries.
+- [INV-022](../invariants.md#inv-022) Trust/precision allocation must remain heterogeneous, not a single scalar.
+- [INV-023](../invariants.md#inv-023) Protected offline recalibration/integration regimes are structurally required.
 
 ---
 
