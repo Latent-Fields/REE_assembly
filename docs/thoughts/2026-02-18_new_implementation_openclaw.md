@@ -1269,3 +1269,84 @@ Why this helps
 	•	Hysteresis is what prevents “flickering caution mode.”
 
 ⸻
+Yes — “end-of-task” is a first-class effector in an agent shell, and REE should make it explicit rather than implicit.
+
+End-of-task effector in REE terms
+
+You want an E3-level commitment outcome that releases no further ACTION and transitions the system into a different control-plane regime.
+
+Think of it as:
+	•	ACTION:TERMINATE_TASK (soft stop)
+	•	ACTION:IDLE_SCAN (look for other things to do, if authorized)
+	•	ACTION:HAND_BACK (return control to user; no further agency)
+	•	ACTION:SLEEP_CONSOLIDATE (offline integration, no external actions)
+
+In OpenClaw-class systems, there’s usually already a notion of:
+	•	“final response”
+	•	“stop tool loop”
+	•	“wait for next input”
+	•	“schedule something”
+	•	“handoff/complete”
+
+Even if it exists, REE wants it typed and logged:
+	•	end-of-task is a commit with a commit_id
+	•	it writes to the post-commit ledger (“task closed; outcome summary; residual uncertainties”)
+	•	it changes mode (task-engaged → idle/await)
+
+And importantly: “look for other things to do” must be delegated authority, not default, or it becomes creepily agentic.
+
+What to call that mechanism
+
+A clean term that fits your style:
+	•	gate_terminate (a fourth gate)
+or
+	•	MECH: task_termination_commit
+or
+	•	effector: disengage / handback
+
+I’d implement it as an effector family rather than a gate, because it is downstream of gates and changes control-plane regime.
+
+⸻
+
+Repo name options
+
+You want something that signals: “REE upgrade layer for an agent shell” without being too cute.
+
+Here are good candidates:
+
+Most straightforward
+	•	ree_claw
+	•	openclaw_ree
+
+Emphasizes “bridge / integration”
+	•	ree_openclaw_bridge
+	•	openclaw_ree_bridge
+
+Emphasizes “control plane / verifier”
+	•	claw_verifier
+	•	claw_control_plane
+
+Emphasizes “REE substrate for agent shells”
+	•	ree_agent_shell
+	•	ree_shellkit
+
+If you want it in the Latent-Fields org with your naming convention, I’d pick one of:
+	•	Latent-Fields/ree_claw (short, memorable)
+	•	Latent-Fields/openclaw_ree_bridge (descriptive, explicit)
+
+My vote: ree_claw unless you expect many shells later (then “bridge” is better).
+
+⸻
+
+Minimal “end-of-task” spec (for Codex / future doc)
+	•	Trigger: E3 decides no further ACTION is justified, or user requests stop.
+	•	Token: commit_id stamped with ACTION_CLASS = TERMINATE_TASK
+	•	Effects:
+	•	stop tool/action loop
+	•	write ledger closure record
+	•	set mode → AWAIT_USER (default)
+	•	optionally propose IDLE_SCAN but requires consent
+
+⸻
+
+REE_OpenClaw may be best name. put in a licence, citation and other relevant things and also a strategy for visibility is a viable product is made. the repo must include a sandboxed testing environment
