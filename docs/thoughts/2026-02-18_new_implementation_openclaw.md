@@ -921,4 +921,351 @@ So: epistemics update WORLD beliefs; authority updates CAPS/consent for actions.
 
 ⸻
 
-If you want, I can draft that repo-ready contract doc next (same style as the LLM routing contract), including the consent token schema and how it interacts with commit tokens and RC_conflict.
+I now aim to draft that repo-ready contract doc next (same style as the LLM routing contract), including the consent token schema and how it interacts with commit tokens and RC_conflict.
+
+Excellent. Below is a repo-ready draft contract for REE_assembly that formalises user interaction as a delegated-authority channel — without collapsing structural separation.
+
+⸻
+
+📄 Contract: User Interaction & Delegated Authority
+
+File:
+docs/contracts/user_interaction_and_delegation.md
+
+⸻
+
+1. Purpose
+
+This contract defines:
+	•	How user input enters REE.
+	•	How user authority is represented.
+	•	How consent elevates permissions.
+	•	What cannot be overridden.
+	•	How this differs between independent entity and tool modes.
+
+This prevents:
+	•	Prompt injection collapse
+	•	Identity rewriting by text
+	•	Silent privilege escalation
+	•	Architectural bypass of harm gating
+
+⸻
+
+2. Core Principle
+
+User input is always a WORLD sensory stream.
+Authority is granted through explicit, typed delegation — not through text itself.
+
+⸻
+
+3. Sensory Classification
+
+All incoming user messages are classified as:
+
+WORLD:INS    (instruction / request)
+WORLD:OBS    (report / correction / information)
+
+They are never:
+	•	POL
+	•	ID
+	•	CAPS
+	•	COMMIT tokens
+	•	internal state writes
+
+This preserves ARC-014 (architecture separation) and INV-014 (typed authority separation).
+
+⸻
+
+4. Authority Model
+
+We distinguish two orthogonal properties:
+
+4.1 Epistemic Privilege
+
+The user may be the highest-confidence source regarding:
+	•	their own preferences
+	•	their intentions
+	•	subjective experiences
+	•	asset ownership
+
+This updates E1 WORLD belief state.
+
+It does not grant policy write access.
+
+⸻
+
+4.2 Delegated Authority
+
+In tool mode, the user may authorize:
+	•	irreversible actions
+	•	access to resources
+	•	goal selection
+	•	capability activation
+	•	configuration changes within bounds
+
+Delegation occurs only through explicit consent tokens.
+
+⸻
+
+5. Consent Token Schema
+
+Consent is a typed object:
+
+CONSENT(
+    action_class,
+    scope,
+    duration,
+    constraints,
+    nonce,
+    issued_at
+)
+
+Where:
+	•	action_class – e.g. SEND_EMAIL, DELETE_FILE, EXECUTE_SCRIPT
+	•	scope – specific targets (email address, file path)
+	•	duration – single-use or time-limited
+	•	constraints – optional guardrails
+	•	nonce – anti-replay token
+	•	issued_at – timestamp
+
+Consent tokens are:
+	•	Logged
+	•	Revocable
+	•	Bound to verifier approval
+	•	Non-transferable
+
+⸻
+
+6. Commitment Flow
+
+The full pipeline:
+
+User WORLD:INS
+        ↓
+E2 proposes trajectory
+        ↓
+HPC rollouts (ARC-018)
+        ↓
+RC_conflict lane check (MECH-065)
+        ↓
+Tri-loop gating (MECH-062)
+        ↓
+Verifier detects privileged action?
+        ↓
+If yes → request CONSENT
+        ↓
+CONSENT verified
+        ↓
+CAPS temporarily elevated (scoped)
+        ↓
+E3 commit token issued
+        ↓
+Action executed
+        ↓
+Residue + log persisted (INV-004)
+
+No text instruction alone can skip this flow.
+
+⸻
+
+7. Non-Overridable Invariants
+
+Even in tool mode, user input cannot:
+	•	Rewrite ID anchors (ARC-015)
+	•	Disable RC_conflict
+	•	Disable harm hard veto (MECH-036 / MECH-053)
+	•	Erase logs (INV-004 / INV-006)
+	•	Directly write POL/CAPS stores
+	•	Grant undefined new capabilities
+	•	Disable audit
+
+If override is allowed for specific classes (rare), it must itself require explicit privileged configuration and dual-verification.
+
+⸻
+
+8. Tool Mode vs Independent Mode
+
+Property	Independent Entity	Tool Mode
+User is WORLD sensory stream	Yes	Yes
+User has epistemic privilege	Sometimes	Often
+User has delegated authority	No	Yes (scoped)
+Consent token required	N/A	Yes
+Architectural override possible	No	No
+
+The structure does not change between modes — only the policy configuration of delegated authority changes.
+
+⸻
+
+9. Special Case: Preference Updates
+
+User claims about preferences may update:
+	•	WORLD model
+	•	Valence priors
+	•	Goal selection
+
+But durable policy changes require:
+	•	Explicit configuration pathway
+	•	Verifier validation
+	•	Logging
+
+⸻
+
+10. RC_conflict Integration
+
+User requests can trigger:
+	•	World-model conflict
+	•	Policy conflict
+	•	Harm conflict
+	•	Capability conflict
+
+RC_conflict lane (MECH-065) computes:
+
+conflict_score
+
+If above threshold:
+	•	escalation to reflective mode
+	•	request clarification
+	•	refuse execution
+	•	or require higher-order confirmation
+
+Hysteresis applies to avoid flip-flopping decisions.
+
+⸻
+
+11. Replay Protection
+
+Consent tokens:
+	•	Include nonce
+	•	Are invalid after use
+	•	Cannot be replayed
+	•	Expire by duration
+
+⸻
+
+12. Why This Matters
+
+This structure ensures:
+	•	No prompt injection collapse
+	•	No authority via persuasion alone
+	•	No identity rewrite by text
+	•	No silent privilege escalation
+	•	No unlogged irreversible action
+	•	No architectural mutation via chat
+
+It enforces:
+
+INV-014 – architectural separation
+INV-012 – commitment epistemology
+INV-004 – consequence persistence
+
+⸻
+
+13. Minimal Implementation Hooks
+
+Requires:
+	•	Verifier module
+	•	Consent token generator
+	•	Scoped capability elevation
+	•	Conflict lane integration
+	•	Persistent logging
+
+⸻
+
+14. Open Questions
+	•	Should some low-risk actions bypass consent?
+	•	Should repeated identical actions use rolling authorization?
+	•	How are UI confirmations cryptographically bound?
+	•	How do we prevent social engineering through multi-turn drift?
+
+⸻
+
+we can:
+	1.	Integrate this into the tri-loop diagram formally.
+	2.	Connect it to OpenClaw upgrade architecture.
+	3.	Write the RC_conflict hysteresis specification.
+
+
+Sure — here are three written “ways to go” (1, 2, 3), each as a concrete next step for REE_assembly / the proposed REE-Claw repo.
+
+1) Integrate into the tri-loop diagram formally
+
+Goal: Make the user-delegation + verifier + RC placement visibly unavoidable in the architecture.
+
+Deliverables
+	•	Update the mermaid graph to include:
+	•	USER: WORLD(OBS/INS) explicitly
+	•	CONSENT token path
+	•	Verifier as eligibility prerequisite for privileged ACTION
+	•	RC_conflict feeding both Verifier and gate thresholds
+	•	Commit token stamping point and post-commit ledger write path
+	•	Add a short “diagram contract” note:
+	•	“No edge exists from WORLD to POL/ID/CAPS.”
+	•	“No edge exists from LLM output to ACTION without E3+Verifier.”
+
+Why this helps
+	•	Prevents accidental collapse during implementation (“we’ll just execute tools when model says so”).
+	•	Makes security/authority separations legible to future contributors.
+
+⸻
+
+2) Connect it to the OpenClaw upgrade architecture
+
+Goal: Turn REE principles into a repo plan that can actually wrap/fork OpenClaw.
+
+Deliverables
+	•	Create ree_claw/ repo scaffold with:
+	•	docs/contracts/ (LLM routing, user delegation, skill CAPS manifest, RC hysteresis)
+	•	src/adapter/ that intercepts:
+	•	inbound user messages
+	•	outbound LLM calls
+	•	tool execution requests
+	•	src/verifier/ implementing:
+	•	capability checks
+	•	consent requirements
+	•	audit logging
+	•	src/ledger/ append-only post-commit store
+	•	Define “minimal integration surface” with OpenClaw:
+	•	where tool calls are requested
+	•	where tool calls execute
+	•	where memory is stored
+	•	where model prompts are built
+
+Why this helps
+	•	Converts REE from abstract architecture into a stress-testable system.
+	•	Uses a real tool environment to validate invariants (commit boundaries, authority separation).
+
+⸻
+
+3) Write the RC_conflict hysteresis specification
+
+Goal: Make RC_conflict operational: how it’s computed, how it enters/exits “verification posture,” and how it modulates gates without causing chronic suppression.
+
+Deliverables
+	•	docs/contracts/rc_conflict_hysteresis.md defining:
+	•	Inputs to RC_conflict:
+	•	provenance mismatch
+	•	identity/capability contradictions
+	•	temporal discontinuity
+	•	tool output inconsistency with declared effects
+	•	Output:
+	•	RC_conflict_score ∈ [0,1]
+	•	RC_state ∈ {NORMAL, VERIFY, LOCKDOWN} (optional)
+	•	Hysteresis:
+	•	T_high enter VERIFY
+	•	T_low exit VERIFY
+	•	optional T_lock for LOCKDOWN
+	•	Actions on state changes:
+	•	raise gate thresholds
+	•	increase verifier strictness
+	•	dampen lock-in
+	•	require consent even for normally low-risk actions (in VERIFY)
+	•	Define probe tests:
+	•	spoof attempt should push RC above T_high
+	•	system should not oscillate around threshold
+	•	recovery should require dropping below T_low
+
+Why this helps
+	•	RC is the linchpin that stops authority spoofing without making the agent unusable.
+	•	Hysteresis is what prevents “flickering caution mode.”
+
+⸻
