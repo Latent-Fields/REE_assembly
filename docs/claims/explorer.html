@@ -789,6 +789,31 @@
       color: var(--muted);
     }
 
+    .legend-toggle {
+      margin-left: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 2px 8px;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .legend-toggle.push {
+      margin-left: auto;
+    }
+
+    .legend-toggle:hover {
+      color: var(--ink);
+      border-color: #b7ae9d;
+    }
+
+    .legend-body[hidden] {
+      display: none;
+    }
+
     .legend-row {
       display: flex;
       flex-wrap: wrap;
@@ -1308,26 +1333,29 @@
             <div class="legend-title">
               Graph key
               <span class="help-tip" tabindex="0" data-tip="Hover nodes for quick claim details. Click a node to open the claim panel and related conflicts.">?</span>
+              <button type="button" class="legend-toggle push" data-target="graphLegendBody" data-pref="graph">Hide key</button>
             </div>
-            <div class="legend-row">
-              <span class="legend-item"><span class="legend-node invariant"></span>Invariant</span>
-              <span class="legend-item"><span class="legend-node architectural_commitment"></span>Architectural commitment</span>
-              <span class="legend-item"><span class="legend-node mechanism_hypothesis"></span>Mechanism hypothesis</span>
-              <span class="legend-item"><span class="legend-node open_question"></span>Open question</span>
-              <span class="legend-item"><span class="legend-node implementation_note"></span>Implementation note</span>
-            </div>
-            <div class="legend-row">
-              <span class="legend-item"><span class="legend-status"></span>Stable/active</span>
-              <span class="legend-item"><span class="legend-status provisional"></span>Provisional</span>
-              <span class="legend-item"><span class="legend-status candidate"></span>Candidate</span>
-              <span class="legend-item"><span class="legend-status legacy"></span>Legacy</span>
-            </div>
-            <div class="legend-row">
-              <span class="legend-item"><span class="legend-line"></span>Dependency edge</span>
-              <span class="legend-item"><span class="legend-line upstream"></span>Upstream focus path</span>
-              <span class="legend-item"><span class="legend-line downstream"></span>Downstream focus path</span>
-              <span class="legend-item"><span class="legend-line dim"></span>Outside focus</span>
-              <span class="legend-item"><code>*</code> Claim has conflict file(s)</span>
+            <div class="legend-body" id="graphLegendBody">
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-node invariant"></span>Invariant</span>
+                <span class="legend-item"><span class="legend-node architectural_commitment"></span>Architectural commitment</span>
+                <span class="legend-item"><span class="legend-node mechanism_hypothesis"></span>Mechanism hypothesis</span>
+                <span class="legend-item"><span class="legend-node open_question"></span>Open question</span>
+                <span class="legend-item"><span class="legend-node implementation_note"></span>Implementation note</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-status"></span>Stable/active</span>
+                <span class="legend-item"><span class="legend-status provisional"></span>Provisional</span>
+                <span class="legend-item"><span class="legend-status candidate"></span>Candidate</span>
+                <span class="legend-item"><span class="legend-status legacy"></span>Legacy</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-line"></span>Dependency edge</span>
+                <span class="legend-item"><span class="legend-line upstream"></span>Upstream focus path</span>
+                <span class="legend-item"><span class="legend-line downstream"></span>Downstream focus path</span>
+                <span class="legend-item"><span class="legend-line dim"></span>Outside focus</span>
+                <span class="legend-item"><code>*</code> Claim has conflict file(s)</span>
+              </div>
             </div>
           </div>
           <div class="graph-panel" id="graphPanel"></div>
@@ -1371,22 +1399,25 @@
               Map key
               <span class="help-tip" tabindex="0" data-tip="Each chip is a claim. Click a chip to open full claim context in the right-side panel.">?</span>
               <span class="legend-note" id="mapLegendMode">Subsystem Atlas lens active</span>
+              <button type="button" class="legend-toggle" data-target="mapLegendBody" data-pref="map">Hide key</button>
             </div>
-            <div class="legend-row">
-              <span class="legend-item"><span class="map-badge decision">D</span>Human decision queue</span>
-              <span class="legend-item"><span class="map-badge creative">I</span>Human inspiration / generative input</span>
-              <span class="legend-item"><span class="map-badge conflict">C</span>Conflict queue</span>
-            </div>
-            <div class="legend-row">
-              <span class="map-chip">MECH-000</span>
-              <span class="map-chip selected">Selected claim</span>
-              <span class="map-chip stale-only">Stale-only (not current epoch)</span>
-            </div>
-            <div class="legend-row">
-              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-low"></span>Low heat</span>
-              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-medium"></span>Medium heat</span>
-              <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-high"></span>High heat</span>
-              <span class="legend-item" data-lens-only="atlas">Heat colors appear only in Governance Heat lens</span>
+            <div class="legend-body" id="mapLegendBody">
+              <div class="legend-row">
+                <span class="legend-item"><span class="map-badge decision">D</span>Human decision queue</span>
+                <span class="legend-item"><span class="map-badge creative">I</span>Human inspiration / generative input</span>
+                <span class="legend-item"><span class="map-badge conflict">C</span>Conflict queue</span>
+              </div>
+              <div class="legend-row">
+                <span class="map-chip">MECH-000</span>
+                <span class="map-chip selected">Selected claim</span>
+                <span class="map-chip stale-only">Stale-only (not current epoch)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-low"></span>Low heat</span>
+                <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-medium"></span>Medium heat</span>
+                <span class="legend-item" data-lens-only="governance_heat"><span class="legend-swatch heat-high"></span>High heat</span>
+                <span class="legend-item" data-lens-only="atlas">Heat colors appear only in Governance Heat lens</span>
+              </div>
             </div>
           </div>
           <div id="mapMeta" class="map-summary"></div>
@@ -2391,6 +2422,46 @@ END CONFLICT RESOLUTION`;
       els.mapLegend.querySelectorAll('[data-lens-only]').forEach(node => {
         const target = String(node.getAttribute('data-lens-only') || '').trim();
         node.hidden = !!target && target !== lens;
+      });
+    }
+
+    function readLegendTogglePref(key, fallback) {
+      try {
+        const raw = localStorage.getItem(`ree_explorer.legend.${key}`);
+        if (raw === '0') return false;
+        if (raw === '1') return true;
+      } catch (_) {}
+      return fallback;
+    }
+
+    function writeLegendTogglePref(key, expanded) {
+      try {
+        localStorage.setItem(`ree_explorer.legend.${key}`, expanded ? '1' : '0');
+      } catch (_) {}
+    }
+
+    function setLegendToggleState(button, body, expanded) {
+      if (!button || !body) return;
+      body.hidden = !expanded;
+      button.textContent = expanded ? 'Hide key' : 'Show key';
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      button.setAttribute('aria-controls', body.id);
+    }
+
+    function initLegendToggles() {
+      document.querySelectorAll('.legend-toggle[data-target]').forEach(button => {
+        const targetId = String(button.getAttribute('data-target') || '').trim();
+        if (!targetId) return;
+        const body = document.getElementById(targetId);
+        if (!body) return;
+        const pref = String(button.getAttribute('data-pref') || targetId).trim();
+        const initialExpanded = readLegendTogglePref(pref, true);
+        setLegendToggleState(button, body, initialExpanded);
+        button.addEventListener('click', () => {
+          const nextExpanded = !!body.hidden;
+          setLegendToggleState(button, body, nextExpanded);
+          writeLegendTogglePref(pref, nextExpanded);
+        });
       });
     }
 
@@ -4659,6 +4730,7 @@ END CONFLICT RESOLUTION`;
         initDraftTabs();
         setupDraftActions();
         wireEvents();
+        initLegendToggles();
         updateWorksetUI();
         initialized = true;
       }
