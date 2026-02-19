@@ -1063,6 +1063,21 @@
   location: docs/architecture/developmental_curriculum.md#arc-019
   source:
     - docs/architecture/developmental_curriculum.md
+- id: ARC-020
+  claim_type: architectural_commitment
+  subject: sleep.protected_offline_consolidation_boundary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-011
+    - INV-010
+    - INV-021
+    - INV-023
+  location: docs/architecture/sleep.md#arc-020
+  source:
+    - docs/architecture/sleep.md
+    - docs/architecture/agency_responsibility_flow.md
+    - docs/invariants.md
 - id: MECH-025
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
@@ -1683,6 +1698,35 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-17_control_plane_update.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
+- id: MECH-066
+  claim_type: mechanism_hypothesis
+  subject: agency.boundary_conditioned_channel_separation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-015
+    - MECH-060
+    - MECH-061
+    - INV-021
+  location: docs/architecture/agency_responsibility_flow.md#mech-066
+  source:
+    - docs/architecture/agency_responsibility_flow.md
+    - docs/invariants.md
+- id: MECH-067
+  claim_type: mechanism_hypothesis
+  subject: agency.write_locus_permission_matrix
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-060
+    - MECH-061
+    - MECH-066
+    - INV-020
+    - INV-021
+  location: docs/architecture/agency_responsibility_flow.md#mech-067
+  source:
+    - docs/architecture/agency_responsibility_flow.md
+    - docs/architecture/control_plane_signal_map.md
 - id: Q-012
   claim_type: open_question
   subject: latent_predictive_models.control_completion_falsifiability
@@ -1958,3 +2002,18 @@
     - docs/invariants.md
     - docs/architecture/sleep.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+- id: INV-024
+  claim_type: invariant
+  subject: meta.offline_online_update_locus_isolation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-021
+    - INV-023
+    - ARC-020
+    - MECH-067
+  location: docs/invariants.md#inv-024
+  source:
+    - docs/invariants.md
+    - docs/architecture/sleep.md
+    - docs/architecture/agency_responsibility_flow.md

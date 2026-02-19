@@ -7,6 +7,31 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-19: Boundary-Conditioned Separation Claims for Commit and Sleep Loci
+
+### Overview
+
+Added focused claims to resolve ambiguity around "strict separation" by defining enforceable write-boundary contracts
+for pre/post-commit learning and offline/online consolidation, without over-claiming full informational isolation.
+
+### What Changed
+
+- Added agency/responsibility mechanism claims:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - added `MECH-066` (boundary-conditioned channel separation with bounded coupling)
+  - added `MECH-067` (machine-checkable write-locus permission matrix)
+  - expanded related-claims coverage with commit-boundary invariants
+- Added protected offline consolidation architecture claim:
+  - `docs/architecture/sleep.md`
+  - added `ARC-020` to require typed authority/write boundaries during offline consolidation
+- Added cross-phase isolation invariant:
+  - `docs/invariants.md`
+  - added `INV-024` (offline/online update-locus isolation for responsibility-bearing writes)
+- Updated claim registry and index:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+  - added records/navigation for `ARC-020`, `MECH-066`, `MECH-067`, `INV-024`
+
 ## 2026-02-18: Processed Meta-Invariant Compression Thought
 
 ### Overview

@@ -30,9 +30,23 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures. | 0.555 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| commitment / dual error channels pre post commit is over-scoped and should be narrowed or split. | 0.421 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation. | 0.421 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures. | 0.555 | Supporting evidence dominates enough to keep the core mechanism plausible. | Completed 2026-02-19: stress ablations comparing `single_error_stream` vs `pre_post_split_streams` in `commit_dual_error_channels` (`2026-02-17T225311Z_*` and `2026-02-17T225337Z_*`) show boundary-conditioned recovery when channels are split.; Completed 2026-02-19: replication/adjacent pull captured in `targeted_review_v3_prefrontal_control` and `targeted_review_connectome_mech_060` entries. |
+| commitment / dual error channels pre post commit is over-scoped and should be narrowed or split. | 0.421 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Completed 2026-02-19: disconfirming evidence isolated from failing `single_error_stream` runs with recurring signatures `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break`, `mech060:commitment_reversal_spike`.; Completed 2026-02-19: claim-scoped split probes captured in `claim_probe_mech_060` manifests (`2026-02-17T225245Z_*`, `2026-02-17T225311Z_*`, `2026-02-17T225337Z_*`). |
+| A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation. | 0.421 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Completed 2026-02-19: guardrail ablation isolating split-channel interface added via `commit_dual_error_channels` split-vs-merged condition pairs.; Completed 2026-02-19: adjacent-domain split-architecture source captured (e.g., `targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_agency_comparator_review_nrn2017`). |
+
+## Evidence Pull Completion (2026-02-19)
+
+1. Stress-regime boundary pull completed.
+- Evidence: split/merged comparisons in `evidence/experiments/commit_dual_error_channels/runs/2026-02-17T225311Z_commit-dual-error-channels_seed89_single_error_stream_toyenv_internal_minimal` and paired split run `...seed89_pre_post_split_streams...`, plus follow-on seed expansions in `2026-02-17T225337Z_*`.
+
+2. Disconfirming-source extraction completed.
+- Evidence: weakening signatures extracted from `single_error_stream` manifests (post-commit contamination + attribution break + commitment reversal spike).
+
+3. Claim-splitting pull completed.
+- Evidence: claim-scoped probe manifests under `evidence/experiments/claim_probe_mech_060/runs/` with explicit `experiment_type=claim_probe_mech_060`.
+
+4. Adjacent-domain split-architecture pull completed.
+- Evidence: `evidence/literature/targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_agency_comparator_review_nrn2017` and related connectome entries.
 
 ## Source Wording vs REE Translation
 

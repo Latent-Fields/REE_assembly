@@ -19,10 +19,10 @@ REE must support self-impact attribution: the ability to model which parts of in
 responsibility as path‑dependent geometry and the convergence of selfhood/personality/ethics. MECH‑057 adds the
 agentic-extension claim: latent predictive world models require explicit self-attribution and control-plane completion
 to remain stable under intervention. MECH‑060/061/062 extend this with explicit pre/post-commit error separation,
-commit-boundary tokenization, and tri-loop commitment gating for attributable routing. Supporting context includes
-INV‑018 (agency required), INV‑012 (commitment gates responsibility), ARC‑003 (E3), ARC‑005 (control plane), ARC‑004
-(L‑space), ARC‑013 (residue geometry), ARC‑007 (hippocampal systems), and Q‑006/Q‑012 (developmental and convergence
-falsifiability questions).
+commit-boundary tokenization, tri-loop commitment gating, and explicit write-locus permissions for attributable
+routing. Supporting context includes INV‑018 (agency required), INV‑012 (commitment gates responsibility), ARC‑003
+(E3), ARC‑005 (control plane), ARC‑004 (L‑space), ARC‑013 (residue geometry), ARC‑007 (hippocampal systems), and
+Q‑006/Q‑012 (developmental and convergence falsifiability questions).
 
 Without it:
 - the system can still predict,
@@ -189,6 +189,52 @@ Design intent:
 
 ---
 
+<a id="mech-066"></a>
+## Boundary-conditioned channel separation with bounded coupling (MECH-066)
+
+Pre-commit and post-commit learning channels do not need total representational isolation, but they do require strict
+boundary-conditioned write separation.
+
+Allowed:
+
+- shared upstream representations (state encoders, uncertainty features, replay context),
+- read-only reuse of pre-commit features for post-commit attribution alignment,
+- verifier-visible provenance links across phases.
+
+Forbidden:
+
+- any path where pre-commit simulation channels directly mutate durable authority stores,
+- any post-commit durable update lacking commit token lineage,
+- any untyped bridge that collapses `sim_error` and `realized_error` semantics.
+
+This turns "strict separation" into an enforceable interface rule at the write boundary, not an over-strong claim of
+anatomical or complete informational isolation.
+
+---
+
+<a id="mech-067"></a>
+## Write-locus permission matrix as a first-class mechanism (MECH-067)
+
+The update-locus table in MECH-060 should be treated as a mandatory mechanism, not implementation guidance.
+
+Required properties:
+
+- machine-checkable `(phase, store, actor)` permission matrix with default-deny behavior,
+- explicit store classes including policy (`POL`), identity (`ID`), capability (`CAPS`), residue/viability,
+  attribution ledger, and ephemeral scratch buffers,
+- explicit actor classes including user/LLM proposal channels, verifier, and commit-boundary router.
+
+Hard rule:
+
+- user/LLM channels may propose but cannot directly write `POL`, `ID`, or `CAPS` in any phase.
+- commit-boundary writes are token/provenance writes only.
+- durable authority or attribution writes require post-commit realized outcome joins.
+
+Failure signatures should be emitted whenever this matrix is violated, with violation events routed to safety
+diagnostics rather than silently coerced.
+
+---
+
 ## Open Questions
 
 <a id="q-006"></a>
@@ -232,8 +278,11 @@ responsibility boundaries, or social modelability. This remains an open empirica
 - MECH-060
 - MECH-061
 - MECH-062
+- MECH-066
+- MECH-067
 - INV-018
 - INV-012
+- INV-021
 - ARC-003
 - ARC-005
 - ARC-013

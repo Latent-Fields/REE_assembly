@@ -37,6 +37,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [INV-021](../invariants.md#inv-021) Responsibility-bearing durable updates occur only at typed commit boundaries.
 - [INV-022](../invariants.md#inv-022) Trust/precision allocation must remain heterogeneous, not a single scalar.
 - [INV-023](../invariants.md#inv-023) Protected offline recalibration/integration regimes are structurally required.
+- [INV-024](../invariants.md#inv-024) Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci.
 
 ---
 
@@ -61,6 +62,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [ARC-017](../architecture/sensory_stream_tags.md#arc-017) Minimal stream tags with typed exteroception and explicit reality-coherence lane (world, homeostasis, harm, self-sensory, precision, temporal/reality coherence, valence, action, self-impact).
 - [ARC-018](../architecture/hippocampal_systems.md#arc-018) Hippocampus generates explicit rollouts and post-commitment viability mapping.
 - [ARC-019](../architecture/developmental_curriculum.md#arc-019) REE requires staged developmental training with explicit curriculum gates.
+- [ARC-020](../architecture/sleep.md#arc-020) Offline consolidation is protected by typed authority/write boundaries and cannot bypass commit-path governance.
 
 ---
 
@@ -130,6 +132,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-063](../architecture/control_plane.md#mech-063) Control plane should retain orthogonal tonic/phasic axes rather than collapsing into one scalar regulation signal.
 - [MECH-064](../architecture/control_plane_signal_map.md#mech-064) Typed authority/control-store separation blocks direct exteroceptive writes into policy, identity, and capability stores.
 - [MECH-065](../architecture/control_plane_signal_map.md#mech-065) Reality-coherence conflict lane should modulate loop precision and commitment thresholds before execution lock-in.
+- [MECH-066](../architecture/agency_responsibility_flow.md#mech-066) Pre-commit and post-commit channels may share representations but must stay strictly separated at durable write boundaries.
+- [MECH-067](../architecture/agency_responsibility_flow.md#mech-067) A machine-checkable phase/store/actor permission matrix is required to enforce commit-boundary write rules.
 
 ---
 

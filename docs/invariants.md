@@ -317,6 +317,23 @@ recalibration and residue integration.
 
 ---
 
+<a id="inv-024"></a>
+### INV-024: Offline/Online Update-Locus Isolation
+
+**Subject:** meta.offline_online_update_locus_isolation  
+**Polarity:** asserts  
+**Claim:** Offline consolidation and online commitment may share representational context, but they must remain
+isolated at responsibility-bearing write loci: offline phases cannot directly perform authority writes, and online
+durable attribution writes require explicit commit-boundary lineage.
+
+Interpretation note:
+- This requires strict write-path separation, not total informational isolation.
+- Consolidation is allowed to improve representations; it is not allowed to bypass typed authority boundaries.
+
+**Corollary mapping:** INV-021, INV-023, ARC-020, MECH-067
+
+---
+
 ## Interpretation
 
 These invariants collectively assert that:
@@ -366,6 +383,7 @@ None noted in preserved sources.
 - INV-021
 - INV-022
 - INV-023
+- INV-024
 
 ## References / Source Fragments
 

@@ -24,9 +24,10 @@ Sleep is not optional at the architectural level. It is required to:
 See `residue_geometry.md` for the distinction between residue curvature and viability mapping, and how deeper residue
 integration is expected to occur offline.
 
-**Subsystem abstract (core claims):** ARC‑011 defines offline integration as required; MECH‑030 specifies sleep as a
-family of control regimes for consolidation. Supporting context includes ARC‑007 (hippocampal replay), ARC‑005
-(control plane), ARC‑013 (residue geometry), INV‑010 (offline integration), and INV‑006 (residue persistence).
+**Subsystem abstract (core claims):** ARC‑011 defines offline integration as required; ARC‑020 adds protected offline
+consolidation boundaries; MECH‑030 specifies sleep as a family of control regimes for consolidation. Supporting context
+includes ARC‑007 (hippocampal replay), ARC‑005 (control plane), ARC‑013 (residue geometry), INV‑010 (offline
+integration), and INV‑006 (residue persistence).
 
 Implementations MAY differ.
 The interfaces defined here MUST exist.
@@ -62,6 +63,30 @@ It preserves harm facts while preventing runaway residue and rigidity.
 - Brittle or frozen policy selection
 
 Source: `docs/processed/legacy_tree/architecture/sleep/sleep_contract.md`
+
+---
+
+<a id="arc-020"></a>
+## Protected Offline Consolidation Boundary (ARC-020)
+
+Offline consolidation is required, but it is not an unrestricted write phase.
+
+Sleep/offline phases MAY update:
+
+- representational parameters used for prediction and abstraction,
+- residue/viability integration structures,
+- precision priors and replay prioritization fields.
+
+Sleep/offline phases MUST NOT:
+
+- mint commitment tokens,
+- execute external actions,
+- directly mutate privileged authority stores (`POL`, `ID`, `CAPS`) from untyped or proposal channels.
+
+Any candidate authority-affecting change surfaced offline must re-enter online operation through typed commit-boundary
+routing with verifier mediation and provenance.
+
+This preserves consolidation benefits while preventing offline contamination of responsibility-bearing write paths.
 
 ---
 
@@ -119,11 +144,13 @@ None noted in preserved sources.
 ## Related Claims (IDs)
 
 - ARC-011
+- ARC-020
 - ARC-007
 - ARC-005
 - ARC-013
 - INV-010
 - INV-006
+- INV-024
 - MECH-030
 
 ## References / Source Fragments
