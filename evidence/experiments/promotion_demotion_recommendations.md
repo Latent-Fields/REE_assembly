@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-18T19:44:26.545366Z`
+Generated: `2026-02-19T07:51:26.478056Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -22,7 +22,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-056
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.781, conflict_ratio=0.726, exp_entries=105, lit_entries=9; directions supports=41, weakens=72, mixed=1, unknown=0, conflict_ratio=0.726
+- Why this decision is needed: overall_conf=0.78, conflict_ratio=0.726, exp_entries=105, lit_entries=9; directions supports=41, weakens=72, mixed=1, unknown=0, conflict_ratio=0.726
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -58,7 +58,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-058
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.717, conflict_ratio=0.87, exp_entries=124, lit_entries=9; directions supports=74, weakens=57, mixed=2, unknown=0, conflict_ratio=0.87
+- Why this decision is needed: overall_conf=0.716, conflict_ratio=0.87, exp_entries=124, lit_entries=9; directions supports=74, weakens=57, mixed=2, unknown=0, conflict_ratio=0.87
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -76,7 +76,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-059
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.763, conflict_ratio=0.605, exp_entries=132, lit_entries=6; directions supports=60, weakens=26, mixed=52, unknown=0, conflict_ratio=0.605
+- Why this decision is needed: overall_conf=0.762, conflict_ratio=0.605, exp_entries=132, lit_entries=6; directions supports=60, weakens=26, mixed=52, unknown=0, conflict_ratio=0.605
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -94,7 +94,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-060
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.707, conflict_ratio=0.875, exp_entries=135, lit_entries=13; directions supports=81, weakens=63, mixed=4, unknown=0, conflict_ratio=0.875
+- Why this decision is needed: overall_conf=0.706, conflict_ratio=0.875, exp_entries=135, lit_entries=13; directions supports=81, weakens=63, mixed=4, unknown=0, conflict_ratio=0.875
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -112,7 +112,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-061
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.612, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.611, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -130,7 +130,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-062
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.9, conflict_ratio=0, exp_entries=24, lit_entries=2; directions supports=20, weakens=0, mixed=6, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.899, conflict_ratio=0, exp_entries=24, lit_entries=2; directions supports=20, weakens=0, mixed=6, unknown=0, conflict_ratio=0
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
   - Promote now (clear canonical status, risk under-tested edge cases)

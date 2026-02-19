@@ -1,7 +1,7 @@
 # Archived Structure Review Dossier Index
 
-Generated: `2026-02-18T19:44:27.698616Z`
-Cycle: `2026-02-18`
+Generated: `2026-02-19T07:51:11.474187Z`
+Cycle: `2026-02-19`
 
 These dossiers are historical context from prior cycles or non-active dossiers from this cycle.
 
@@ -41,3 +41,10 @@ These dossiers are historical context from prior cycles or non-active dossiers f
 | `2026-02-17` | `Q-013` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-17/Q-013/DOSSIER.md` |
 | `2026-02-17` | `Q-014` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-17/Q-014/DOSSIER.md` |
 | `2026-02-17` | `Q-017` | `active` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-17/Q-017/DOSSIER.md` |
+| `2026-02-18` | `MECH-056` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-18/MECH-056/DOSSIER.md` |
+| `2026-02-18` | `MECH-057` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-18/MECH-057/DOSSIER.md` |
+| `2026-02-18` | `MECH-058` | `candidate` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-18/MECH-058/DOSSIER.md` |
+| `2026-02-18` | `MECH-060` | `candidate` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-18/MECH-060/DOSSIER.md` |
+| `2026-02-18` | `Q-013` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-18/Q-013/DOSSIER.md` |
+| `2026-02-18` | `Q-014` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-18/Q-014/DOSSIER.md` |
+| `2026-02-18` | `Q-017` | `active` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-18/Q-017/DOSSIER.md` |

@@ -1,0 +1,248 @@
+{
+  "alternative_interpretations": [
+    {
+      "alternative_id": "ALT-01",
+      "confidence_estimate": 0.573,
+      "current_findings": "Supporting evidence dominates enough to keep the core mechanism plausible.",
+      "hypothesis": "control plane / minimal orthogonal axis set is broadly correct, but failures are boundary-condition failures.",
+      "next_evidence_pull": [
+        "Target stress regimes where failures cluster and test whether boundary constraints recover stability.",
+        "Pull replication papers that test similar mechanisms under distribution shift."
+      ]
+    },
+    {
+      "alternative_id": "ALT-02",
+      "confidence_estimate": 0.417,
+      "current_findings": "Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks.",
+      "hypothesis": "control plane / minimal orthogonal axis set is over-scoped and should be narrowed or split.",
+      "next_evidence_pull": [
+        "Extract disconfirming sources and isolate the exact violated assumption.",
+        "Run claim-splitting experiments with explicit sub-claim tags in manifests."
+      ]
+    },
+    {
+      "alternative_id": "ALT-03",
+      "confidence_estimate": 0.417,
+      "current_findings": "Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails.",
+      "hypothesis": "A hybrid architecture is needed: keep the core of control plane / minimal orthogonal axis set but add explicit gating or interface separation.",
+      "next_evidence_pull": [
+        "Evaluate an ablation that isolates the proposed guardrail/interface addition.",
+        "Collect one adjacent-domain source that uses a similar split architecture."
+      ]
+    }
+  ],
+  "claim": {
+    "claim_id": "Q-017",
+    "claim_type": "open_question",
+    "dependents": [
+      "INV-022"
+    ],
+    "depends_on": [
+      "MECH-063",
+      "ARC-005",
+      "MECH-055"
+    ],
+    "location": "docs/architecture/control_plane.md#q-017",
+    "plain_english_claim_description": "Q-017 is an open question about control plane / minimal orthogonal axis set.",
+    "plain_english_ree_fit_description": "This sits in REE's uncertainty layer and defines what remains unresolved before stronger commitments. It depends on 3 upstream claim(s): `MECH-063`, `ARC-005`, `MECH-055`. It currently feeds 1 downstream claim(s): `INV-022`. Primary architecture anchor: `docs/architecture/control_plane.md#q-017`.",
+    "status": "active",
+    "subject": "control_plane.minimal_orthogonal_axis_set"
+  },
+  "cycle_date": "2026-02-19",
+  "decision_prompts": [
+    "Which part of the claim appears stable across both supporting and weakening evidence?",
+    "If this claim were split into two sub-claims, where is the cleanest boundary?",
+    "What is the smallest architecture change that would most likely remove the top recurring failure signature?",
+    "What evidence next week would most likely change your current decision?"
+  ],
+  "evidence_items": [
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_control-axis-ablation_seed151_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_control-axis-ablation_seed151_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_control-axis-ablation_seed131_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_control-axis-ablation_seed131_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_control-axis-ablation_seed101_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_control-axis-ablation_seed101_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_claim-probe-q-017_seed151_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_claim-probe-q-017_seed151_full_axis_toyenv_internal_minimal` in `claim_probe_q_017`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_claim-probe-q-017_seed131_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_claim-probe-q-017_seed131_full_axis_toyenv_internal_minimal` in `claim_probe_q_017`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_q_017",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225337Z_claim-probe-q-017_seed101_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225337Z_claim-probe-q-017_seed101_full_axis_toyenv_internal_minimal` in `claim_probe_q_017`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:37Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-17T225312Z_control-axis-ablation_seed89_reduced_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225312Z_control-axis-ablation_seed89_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-17T22:53:12Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "weakens",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is negative pressure on `control plane / minimal orthogonal axis set` and suggests the claim is likely too strong or missing a key gating variable.",
+      "run_id": "2026-02-17T225312Z_control-axis-ablation_seed71_reduced_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225312Z_control-axis-ablation_seed71_reduced_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "FAIL with weakening direction",
+      "timestamp_utc": "2026-02-17T22:53:12Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225311Z_control-axis-ablation_seed89_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225311Z_control-axis-ablation_seed89_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:11Z"
+    },
+    {
+      "confidence": 0.75,
+      "evidence_direction": "supports",
+      "experiment_type": "control_axis_ablation",
+      "ree_translation": "In REE terms, this is positive pressure on `control plane / minimal orthogonal axis set` and supports keeping the mechanism, with tighter boundary conditions where failures recur.",
+      "run_id": "2026-02-17T225311Z_control-axis-ablation_seed71_full_axis_toyenv_internal_minimal",
+      "source_background": "Run-pack `2026-02-17T225311Z_control-axis-ablation_seed71_full_axis_toyenv_internal_minimal` in `control_axis_ablation`",
+      "source_type": "experimental",
+      "source_wording": "PASS with supporting direction",
+      "timestamp_utc": "2026-02-17T22:53:11Z"
+    }
+  ],
+  "evidence_overview": {
+    "direction_counts": {
+      "mixed": 1,
+      "supports": 56,
+      "unknown": 0,
+      "weakens": 41
+    },
+    "direction_mix_narrative": "Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.",
+    "source_direction_counts": {
+      "experimental": {
+        "mixed": 0,
+        "supports": 49,
+        "unknown": 0,
+        "weakens": 41
+      },
+      "literature": {
+        "mixed": 1,
+        "supports": 7,
+        "unknown": 0,
+        "weakens": 0
+      }
+    },
+    "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
+  },
+  "generated_at_utc": "2026-02-19T07:51:11.474187Z",
+  "left_field_suggestions": [
+    {
+      "first_test": "Create two scoped proposal tracks with explicit condition tags.",
+      "idea": "Split the claim into two narrower claims and route evidence independently.",
+      "why_it_might_help": "Can reduce hidden regime-mixing that creates persistent conflict ratios."
+    },
+    {
+      "first_test": "Add one adversarial scenario and compare signature incidence.",
+      "idea": "Run one synthetic extreme-condition probe outside normal benchmark regime.",
+      "why_it_might_help": "Can expose assumptions that are invisible in standard task distributions."
+    },
+    {
+      "first_test": "Add a parallel option in next governance packet and score it with the same gates.",
+      "idea": "Bring in one adjacent-domain analogy as an explicit design option, not just evidence.",
+      "why_it_might_help": "Can surface architecture moves that current in-domain framing misses."
+    }
+  ],
+  "schema_version": "structure_review_dossier/v1",
+  "structure_pressure": {
+    "conflict_ratio": 0.845,
+    "consider_new_structure": true,
+    "gap_id": "AGR-0003",
+    "latest_decision": {
+      "decision_status": "applied",
+      "recommendation": "hybridize",
+      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+    },
+    "overall_confidence": 0.725,
+    "recommendation": "escalate_architecture_decision",
+    "recurring_failure_signatures": [
+      {
+        "count": 36,
+        "signature": "q017:control_axis_stability_drop"
+      },
+      {
+        "count": 36,
+        "signature": "q017:control_axis_entropy_collapse"
+      },
+      {
+        "count": 26,
+        "signature": "q017:control_axis_policy_loss_spike"
+      }
+    ],
+    "source_counts": {
+      "experimental": 90,
+      "literature": 8
+    },
+    "trigger_signals": [
+      "external_precedence_pressure",
+      "high_conflict_ratio",
+      "recurring_failure_signatures"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-18T19:44:27.848326Z`
-Cycle: `2026-02-18`
+Generated: `2026-02-19T07:51:11.540131Z`
+Cycle: `2026-02-19`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
@@ -40,7 +40,7 @@ Active queue items: `3`. Completed items tracked: `4`.
 - Objective: Run targeted connectome literature pull for Q-013.
 - Claim description: Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.649, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.648, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.
 - Research questions:
@@ -60,7 +60,7 @@ Active queue items: `3`. Completed items tracked: `4`.
 - Objective: Run targeted connectome literature pull for Q-014.
 - Claim description: Q-014 is an open question about invariance / ethical relevance blind spot risk.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.649, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.648, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.
 - Research questions:
