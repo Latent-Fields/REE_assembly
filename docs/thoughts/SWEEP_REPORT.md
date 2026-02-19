@@ -1,17 +1,19 @@
 # Thought Sweep Report
 
-Generated: `2026-02-18T19:44:25.923919Z`
+Generated: `2026-02-19T07:15:07.120699Z`
 
 | metric | count |
 |---|---|
-| total thought files | 40 |
+| total thought files | 43 |
 | processed | 40 |
-| unprocessed | 0 |
+| unprocessed | 3 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-18` `2026-02-18_commitment_as_layered_eligibility_filters.md` (status=`unprocessed`)
+- `2026-02-18` `2026-02-18_new_implementation_openclaw.md` (status=`unprocessed`)
+- `2026-02-19` `2026-02-19_basal_ganglia_evolutionary_conservation_pull.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
