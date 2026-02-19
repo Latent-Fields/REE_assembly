@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-19T07:51:26.478056Z`
+Generated: `2026-02-19T17:53:23.758124Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -36,7 +36,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-003
 - Conflict types: directional
-- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.661
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.66
 - Recent entries:
   - `2026-02-15T18:09:24.416725Z` `experimental` `claim_probe_arc_003` direction=`supports` confidence=0.75
   - `2026-02-15T18:09:24.496279Z` `experimental` `claim_probe_arc_003` direction=`supports` confidence=0.75
@@ -54,7 +54,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional
-- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.686
+- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.685
 - Recent entries:
   - `2026-02-15T20:52:57.233345Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:31Z` `experimental` `claim_probe_arc_007` direction=`supports` confidence=0.75
@@ -71,7 +71,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-018
 - Conflict types: directional
-- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.685
+- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.684
 - Recent entries:
   - `2026-02-15T20:52:17Z` `experimental` `claim_probe_arc_018` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:37Z` `experimental` `claim_probe_arc_018` direction=`supports` confidence=0.75
@@ -88,7 +88,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-033
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.703
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.702
 - Recent entries:
   - `2026-02-15T21:10:38Z` `experimental` `claim_probe_mech_033` direction=`supports` confidence=0.75
   - `2026-02-15T21:36:09Z` `experimental` `claim_probe_mech_033` direction=`weakens` confidence=0.75
@@ -105,7 +105,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-040
 - Conflict types: directional
-- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.662
+- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.661
 - Recent entries:
   - `2026-02-15T20:52:14Z` `experimental` `claim_probe_mech_040` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:34Z` `experimental` `claim_probe_mech_040` direction=`supports` confidence=0.75
@@ -122,7 +122,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-046
 - Conflict types: directional
-- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.652
+- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.651
 - Recent entries:
   - `2026-02-15T20:52:15Z` `experimental` `claim_probe_mech_046` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:35Z` `experimental` `claim_probe_mech_046` direction=`supports` confidence=0.75
@@ -159,7 +159,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-057
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, overall_confidence=0.708
+- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, overall_confidence=0.707
 - Recent entries:
   - `2026-02-15T20:52:30Z` `experimental` `claim_probe_mech_057` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:50Z` `experimental` `claim_probe_mech_057` direction=`supports` confidence=0.75
@@ -193,7 +193,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-059
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=26, weakens=7, conflict_ratio=0.424, overall_confidence=0.762
+- Evidence breakdown: supports=26, weakens=7, conflict_ratio=0.424, overall_confidence=0.761
 - Recent entries:
   - `2026-02-17T22:53:37Z` `experimental` `claim_probe_mech_059` direction=`weakens` confidence=0.75
   - `2026-02-17T22:53:37Z` `experimental` `claim_probe_mech_059` direction=`supports` confidence=0.75
@@ -210,7 +210,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-060
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=40, weakens=26, conflict_ratio=0.788, overall_confidence=0.706
+- Evidence breakdown: supports=40, weakens=26, conflict_ratio=0.788, overall_confidence=0.705
 - Recent entries:
   - `2026-02-17T22:53:37Z` `experimental` `claim_probe_mech_060` direction=`supports` confidence=0.75
   - `2026-02-17T22:53:37Z` `experimental` `claim_probe_mech_060` direction=`supports` confidence=0.75
@@ -228,7 +228,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-061
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=4, conflict_ratio=1, overall_confidence=0.611
+- Evidence breakdown: supports=4, weakens=4, conflict_ratio=1, overall_confidence=0.61
 - Recent entries:
   - `2026-02-15T18:09:24.601905Z` `experimental` `claim_probe_mech_061` direction=`supports` confidence=0.75
   - `2026-02-15T20:52:15Z` `experimental` `claim_probe_mech_061` direction=`weakens` confidence=0.75
@@ -246,7 +246,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-001
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:21Z` `experimental` `claim_probe_q_001` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:42Z` `experimental` `claim_probe_q_001` direction=`supports` confidence=0.75
@@ -263,7 +263,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-002
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:22Z` `experimental` `claim_probe_q_002` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:43Z` `experimental` `claim_probe_q_002` direction=`supports` confidence=0.75
@@ -280,7 +280,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-003
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:23Z` `experimental` `claim_probe_q_003` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:43Z` `experimental` `claim_probe_q_003` direction=`supports` confidence=0.75
@@ -297,7 +297,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-004
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:24Z` `experimental` `claim_probe_q_004` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:44Z` `experimental` `claim_probe_q_004` direction=`supports` confidence=0.75
@@ -314,7 +314,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-005
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:25Z` `experimental` `claim_probe_q_005` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:45Z` `experimental` `claim_probe_q_005` direction=`supports` confidence=0.75
@@ -331,7 +331,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-006
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.595
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.594
 - Recent entries:
   - `2026-02-15T20:52:26Z` `experimental` `claim_probe_q_006` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:46Z` `experimental` `claim_probe_q_006` direction=`supports` confidence=0.75
@@ -348,7 +348,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-007
 - Conflict types: directional
-- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.619
+- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.618
 - Recent entries:
   - `2026-02-15T21:10:47Z` `experimental` `claim_probe_q_007` direction=`supports` confidence=0.75
   - `2026-02-15T21:36:18Z` `experimental` `claim_probe_q_007` direction=`weakens` confidence=0.75
@@ -365,7 +365,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-012
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=4, conflict_ratio=1, overall_confidence=0.655
+- Evidence breakdown: supports=4, weakens=4, conflict_ratio=1, overall_confidence=0.654
 - Recent entries:
   - `2026-02-15T18:05:24Z` `experimental` `claim_probe_q_012` direction=`weakens` confidence=0.75
   - `2026-02-15T20:52:12Z` `experimental` `claim_probe_q_012` direction=`supports` confidence=0.75
@@ -416,7 +416,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-015
 - Conflict types: directional
-- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.641
+- Evidence breakdown: supports=5, weakens=4, conflict_ratio=0.889, overall_confidence=0.64
 - Recent entries:
   - `2026-02-15T20:52:16Z` `experimental` `claim_probe_q_015` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:36Z` `experimental` `claim_probe_q_015` direction=`supports` confidence=0.75

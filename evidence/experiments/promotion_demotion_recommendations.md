@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-19T07:51:26.478056Z`
+Generated: `2026-02-19T17:53:23.758124Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -15,7 +15,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-059` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-060` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-061` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-062` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `pending_user` |
+| `MECH-062` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `approved` |
 
 ## Decision Details
 
@@ -40,7 +40,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.708, conflict_ratio=0.769, exp_entries=9, lit_entries=7; directions supports=8, weakens=5, mixed=3, unknown=0, conflict_ratio=0.769
+- Why this decision is needed: overall_conf=0.707, conflict_ratio=0.769, exp_entries=9, lit_entries=7; directions supports=8, weakens=5, mixed=3, unknown=0, conflict_ratio=0.769
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -76,7 +76,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-059
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.762, conflict_ratio=0.605, exp_entries=132, lit_entries=6; directions supports=60, weakens=26, mixed=52, unknown=0, conflict_ratio=0.605
+- Why this decision is needed: overall_conf=0.761, conflict_ratio=0.605, exp_entries=132, lit_entries=6; directions supports=60, weakens=26, mixed=52, unknown=0, conflict_ratio=0.605
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -94,7 +94,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-060
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.706, conflict_ratio=0.875, exp_entries=135, lit_entries=13; directions supports=81, weakens=63, mixed=4, unknown=0, conflict_ratio=0.875
+- Why this decision is needed: overall_conf=0.705, conflict_ratio=0.875, exp_entries=135, lit_entries=13; directions supports=81, weakens=63, mixed=4, unknown=0, conflict_ratio=0.875
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -112,7 +112,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-061
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.611, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.61, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -140,8 +140,7 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-02-15T20:51:27.090007Z`
-- Last selected option: promote_to_provisional
-- Last rationale: Applied approved promotion decision from governance queue.
+- Decision status: `approved`
+- Last logged decision: `approved` by `user` at `2026-02-19T17:53:18.007513Z`
+- Last selected option: Promote now (clear canonical status, risk under-tested edge cases)
+- Last rationale: Approved promotion recommendation to stable based on high confidence and zero directional conflict.
