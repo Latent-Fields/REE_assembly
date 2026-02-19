@@ -27,6 +27,7 @@ This repo is documentation‑only. It is designed to:
 
 - `REE_OpenClaw` now lives as a standalone repository at `/Users/dgolden/Documents/GitHub/REE_OpenClaw`.
 - `REE_assembly` remains the canonical source for REE claims, invariants, and thought intake that drive that implementation.
+- Weekly handoff cadence now includes `REE_OpenClaw` via `evidence/planning/cadence_automation.v1.json` producer `ree-openclaw`.
 - Handoff details are in `evidence/planning/REE_OPENCLAW_TESTBED_INTERFACE.md`.
 
 For the full workflow and required prompts, see `docs/README.md`.

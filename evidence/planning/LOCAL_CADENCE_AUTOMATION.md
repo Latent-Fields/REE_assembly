@@ -51,7 +51,7 @@ python3 evidence/planning/scripts/sync_weekly_handoffs.py --day TUESDAY
 python3 evidence/planning/scripts/sync_weekly_handoffs.py --day WEDNESDAY
 ```
 
-### Thursday (full ingest + governance)
+### Thursday (full ingest + governance; ree-v2 + ree-experiments-lab + ree-v1-minimal + ree-openclaw)
 
 ```bash
 python3 evidence/planning/scripts/sync_weekly_handoffs.py \

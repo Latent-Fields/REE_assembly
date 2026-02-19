@@ -1,11 +1,11 @@
-# Weekly Dispatch - ree-v1-minimal
+# Weekly Dispatch - ree-openclaw
 
 Generated: `2026-02-19T17:50:36.268497Z`
 
 ## Context
 
 - Source: `evidence/planning/experiment_proposals.v1.json`
-- Target repo: `ree-v1-minimal`
+- Target repo: `ree-openclaw`
 - Contract reference: `evidence/experiments/INTERFACE_CONTRACT.md`
 
 ## Proposals
@@ -16,7 +16,7 @@ Generated: `2026-02-19T17:50:36.268497Z`
 ## Copy/Paste Prompt
 
 ```md
-You are Codex operating in `ree-v1-minimal`.
+You are Codex operating in `ree-openclaw`.
 
 Goal: execute this week's approved proposals and emit contract-compliant Experiment Packs.
 

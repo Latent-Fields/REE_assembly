@@ -37,3 +37,18 @@ Define the minimal interface between:
 Do not keep an implementation copy of `REE_OpenClaw` inside `REE_assembly`.  
 `REE_assembly` is upstream docs/planning; `REE_OpenClaw` is the execution testbed.
 
+## Cadence Integration
+
+`REE_OpenClaw` is wired into the same handoff sync cadence used for other producer repos.
+
+- Producer repo name in cadence config: `ree-openclaw`
+- Producer path: `/Users/dgolden/Documents/GitHub/REE_OpenClaw`
+- Required bootstrap handoff path:
+  - `evidence/planning/weekly_handoff/latest.md`
+
+The handoff must include:
+
+- `## CI Gates` table with required gates from `evidence/planning/cadence_automation.v1.json`
+- `## Run-Pack Inventory` table with required columns from `required_handoff_columns`
+
+This keeps `REE_OpenClaw` in the same sync -> ingestion -> governance -> epoch applicability flow.

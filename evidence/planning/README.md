@@ -16,7 +16,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
 - `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
-- `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, and `ree-v1-minimal`.
+- `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, `ree-v1-minimal`, and `ree-openclaw`.
 - `HOBBY_OPERATOR_PLAYBOOK.md`: weekly structured workflow and buy/hold compute decision policy for spare-time operation.
 - `LOCAL_CADENCE_AUTOMATION.md`: local scheduler runbook for weekly handoff pull/ingest and outbound dispatch emission.
 - `REE_OPENCLAW_TESTBED_INTERFACE.md`: minimal upstream/downstream contract for using standalone `REE_OpenClaw` as an implementation testbed.

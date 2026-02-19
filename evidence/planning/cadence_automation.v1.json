@@ -14,14 +14,16 @@
     "THURSDAY": [
       "ree-v2",
       "ree-experiments-lab",
-      "ree-v1-minimal"
+      "ree-v1-minimal",
+      "ree-openclaw"
     ],
     "FRIDAY": []
   },
   "full_run_repos": [
     "ree-v2",
     "ree-experiments-lab",
-    "ree-v1-minimal"
+    "ree-v1-minimal",
+    "ree-openclaw"
   ],
   "producer_repos": [
     {
@@ -45,6 +47,15 @@
     {
       "name": "ree-v1-minimal",
       "path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal",
+      "handoff_globs": [
+        "evidence/planning/weekly_handoff/latest.md",
+        "evidence/planning/weekly_handoffs/*.md",
+        "evidence/planning/handoffs/*.md"
+      ]
+    },
+    {
+      "name": "ree-openclaw",
+      "path": "/Users/dgolden/Documents/GitHub/REE_OpenClaw",
       "handoff_globs": [
         "evidence/planning/weekly_handoff/latest.md",
         "evidence/planning/weekly_handoffs/*.md",
@@ -83,7 +94,8 @@
     "producer_repo_order": [
       "ree-v2",
       "ree-experiments-lab",
-      "ree-v1-minimal"
+      "ree-v1-minimal",
+      "ree-openclaw"
     ]
   }
 }
