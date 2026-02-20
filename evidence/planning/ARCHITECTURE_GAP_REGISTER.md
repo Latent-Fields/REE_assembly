@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-02-19T17:53:23.758124Z`
+Generated: `2026-02-19T18:37:26.664713Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 

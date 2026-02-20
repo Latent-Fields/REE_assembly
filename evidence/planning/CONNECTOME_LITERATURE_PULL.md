@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-19T07:51:11.540131Z`
+Generated: `2026-02-19T18:37:27.172564Z`
 Cycle: `2026-02-19`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -20,7 +20,7 @@ Active queue items: `3`. Completed items tracked: `4`.
 - Objective: Run targeted connectome literature pull for MECH-057.
 - Claim description: MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.
-- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.708, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.707, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.
 - Research questions:

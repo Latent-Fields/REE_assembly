@@ -537,6 +537,10 @@ def _build_agenda(
     adjudication_cascade_state = _load_json_file(
         repo_root / "evidence/decisions/adjudication_cascade_state.v1.json", warnings
     )
+    human_decision_briefs_report = _load_optional_json_file(
+        repo_root / "evidence/decisions/human_decision_briefs/latest/human_decision_briefs_report.v1.json",
+        warnings,
+    )
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
     conflicts = [
@@ -697,6 +701,34 @@ def _build_agenda(
     open_carryover_items = [
         item for item in carryover_items if str(item.get("status", "open")).strip().lower() != "done"
     ]
+    human_decision_brief_items = (
+        human_decision_briefs_report.get("items", [])
+        if isinstance(human_decision_briefs_report, dict)
+        else []
+    )
+    if not isinstance(human_decision_brief_items, list):
+        human_decision_brief_items = []
+    human_decision_brief_total = int(
+        human_decision_briefs_report.get("claim_briefs_total", len(human_decision_brief_items))
+        if isinstance(human_decision_briefs_report, dict)
+        else 0
+    )
+    human_decision_brief_index_path = str(
+        human_decision_briefs_report.get(
+            "latest_index_path",
+            human_decision_briefs_report.get(
+                "index_path",
+                "evidence/decisions/human_decision_briefs/latest/INDEX.md",
+            ),
+        )
+        if isinstance(human_decision_briefs_report, dict)
+        else "evidence/decisions/human_decision_briefs/latest/INDEX.md"
+    )
+    human_decision_dispatch_brief_path = str(
+        human_decision_briefs_report.get("dispatch_brief_path", "")
+        if isinstance(human_decision_briefs_report, dict)
+        else ""
+    )
     epoch_summary = (
         epoch_applicability.get("summary", {})
         if isinstance(epoch_applicability, dict)
@@ -748,6 +780,7 @@ def _build_agenda(
             "unlinked_evidence_runs": len(unlinked_runs),
             "manual_carryover_items": len(carryover_items),
             "manual_carryover_open": len(open_carryover_items),
+            "human_decision_briefs": human_decision_brief_total,
             "autonomy_triage_items": len(autonomy_triage_items),
             "autonomy_open_decisions": len(autonomy_open_decisions),
             "autonomy_failed_gates": len(autonomy_failed_gates),
@@ -891,6 +924,16 @@ def _build_agenda(
                 "items": open_carryover_items,
                 "source_path": "evidence/planning/manual_carryover_items.v1.json",
             },
+            "human_decision_briefs": {
+                "prompt": (
+                    "Review claim-level human decision briefs with mechanism context and metric glossary before recording any human decision."
+                ),
+                "claim_briefs_total": human_decision_brief_total,
+                "items": human_decision_brief_items,
+                "index_path": human_decision_brief_index_path,
+                "dispatch_brief_path": human_decision_dispatch_brief_path,
+                "glossary_path": "evidence/decisions/HUMAN_DECISION_GLOSSARY.md",
+            },
         },
     }
 
@@ -983,7 +1026,18 @@ def _build_agenda(
                 f"- {claim_ref}; decision={decision_needed}; recommendation=`{recommendation}`"
             )
     lines.append(
-        "5. Manual Carryover: "
+        "5. Human Decision Briefs: "
+        + f"{human_decision_brief_total} claim brief(s)."
+    )
+    lines.append(
+        "- context: "
+        + f"`{human_decision_brief_index_path}`, "
+        + "`evidence/decisions/HUMAN_DECISION_GLOSSARY.md`"
+    )
+    if human_decision_dispatch_brief_path:
+        lines.append(f"- weekly dispatch brief: `{human_decision_dispatch_brief_path}`")
+    lines.append(
+        "6. Manual Carryover: "
         + f"{len(open_carryover_items)} open item(s), {len(carryover_items)} total."
     )
     lines.append("- context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`")
@@ -996,7 +1050,7 @@ def _build_agenda(
                 f"- `{item_id}` owner=`{owner}` summary={note}"
             )
     lines.append(
-        "6. Architecture Structure: "
+        "7. Architecture Structure: "
         + f"{len(structure_considerations)} consider-new-structure item(s), "
         + f"{len(architecture_items)} total register item(s)."
     )
@@ -1019,7 +1073,7 @@ def _build_agenda(
                 f"- {claim_ref}; conflict_ratio={conflict_ratio}; trigger_signals={trigger_signals}"
             )
     lines.append(
-        "7. Structure Dossiers: "
+        "8. Structure Dossiers: "
         + f"{structure_review_active_total} active dossier(s), "
         + f"{structure_review_archive_total} archived dossier(s), "
         + f"{structure_review_consider} active marked consider-new-structure."
@@ -1030,7 +1084,7 @@ def _build_agenda(
         + f"`{structure_review_archive_index_path}`"
     )
     lines.append(
-        "8. Connectome Literature Pull: "
+        "9. Connectome Literature Pull: "
         + f"{len(connectome_pull_items)} queued claim(s), "
         + f"{len(connectome_pull_high_priority)} high-priority, "
         + f"{len(connectome_pull_completed_items)} completed."
@@ -1043,7 +1097,7 @@ def _build_agenda(
             pull_id = _strip_ticks(str(item.get("pull_id", "")))
             lines.append(f"- {claim_ref}; pull_id=`{pull_id}`")
     lines.append(
-        "9. Model Adjudication: "
+        "10. Model Adjudication: "
         + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
         + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
     )
@@ -1070,7 +1124,7 @@ def _build_agenda(
                 + f"delta_lit_minus_exp={delta:.3f}"
             )
     lines.append(
-        "10. Adjudication Cascade: "
+        "11. Adjudication Cascade: "
         + f"{len(cascade_actions)} action(s), "
         + f"{len(cascade_claims_updated)} claim update(s), "
         + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
@@ -1086,7 +1140,7 @@ def _build_agenda(
                 f"- {claim_ref}; outcome=`{outcome}`; reopened_dependents={len(reopened)}"
             )
     lines.append(
-        f"11. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        f"12. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     lines.append("- context: `evidence/planning/experiment_proposals.v1.json`")
     for slot in _proposal_repo_summary(proposal_items):
@@ -1096,7 +1150,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"12. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"13. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     lines.append("- context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`")
     if warnings:
@@ -1146,6 +1200,11 @@ def main() -> None:
         "--skip-connectome-pull",
         action="store_true",
         help="Skip connectome literature pull queue generation step.",
+    )
+    parser.add_argument(
+        "--skip-human-decision-briefs",
+        action="store_true",
+        help="Skip human decision brief generation step.",
     )
     parser.add_argument(
         "--skip-adjudication-cascade",
@@ -1248,6 +1307,16 @@ def main() -> None:
                 ],
             )
         )
+    if not args.skip_human_decision_briefs:
+        plan.append(
+            (
+                "human_decision_briefs",
+                [
+                    str(sys.executable),
+                    "evidence/planning/scripts/build_human_decision_briefs.py",
+                ],
+            )
+        )
     if not args.skip_connectome_pull:
         plan.append(
             (
@@ -1283,6 +1352,7 @@ def main() -> None:
         + f"warnings={agenda['summary']['warnings']}, "
         + f"thought_unprocessed={agenda['summary']['thought_unprocessed']}, "
         + f"decision_queue={agenda['summary']['decision_queue_items']}, "
+        + f"human_briefs={agenda['summary']['human_decision_briefs']}, "
         + f"structure_considerations={agenda['summary']['structure_considerations']}, "
         + f"structure_dossiers={agenda['summary']['structure_review_dossiers']}, "
         + f"connectome_pull={agenda['summary']['connectome_pull_items']}, "
