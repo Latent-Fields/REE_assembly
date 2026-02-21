@@ -26,7 +26,7 @@ Cycle: `2026-02-21`
 - Decision needed: Conflict resolution before promotion
 - Recommendation: `hold_candidate_resolve_conflict`
 - Decision status: `applied`
-- Why this lane is open: overall_conf=0.703, conflict_ratio=0.875, exp_entries=135, lit_entries=13; directions supports=81, weakens=63, mixed=4, unknown=0, conflict_ratio=0.875
+- Why this lane is open: overall_conf=0.706, conflict_ratio=0.885, exp_entries=147, lit_entries=13; directions supports=87, weakens=69, mixed=4, unknown=0, conflict_ratio=0.885
 - Options:
   - Keep candidate and run conflict-resolution experiments (most balanced)
   - Promote despite conflict (speed, high lock-in risk)
@@ -36,20 +36,20 @@ Cycle: `2026-02-21`
 
 - Lane recommendation: `escalate_architecture_decision`
 - Structure pressure recommendation: `escalate_architecture_decision`
-- Conflict ratio: `0.875`; overall confidence: `0.703`
+- Conflict ratio: `0.885`; overall confidence: `0.706`
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (52)
-  - `mech060:attribution_reliability_break` (50)
-  - `mech060:commitment_reversal_spike` (38)
+  - `mech060:postcommit_channel_contamination` (58)
+  - `mech060:attribution_reliability_break` (56)
+  - `mech060:commitment_reversal_spike` (44)
   - `mech060:precommit_channel_contamination` (10)
   - `threshold:pre_commit_error_signal_to_noise` (5)
 
 ## Evidence Snapshot
 
-- Conflict report window: supports=40, weakens=26, conflict_ratio=0.788, entries_considered=67.
-- Dossier direction mix: supports=81, weakens=63, mixed=4, unknown=0.
-- Source counts: experimental=135, literature=13.
+- Conflict report window: supports=46, weakens=32, conflict_ratio=0.821, entries_considered=79.
+- Dossier direction mix: supports=87, weakens=69, mixed=4, unknown=0.
+- Source counts: experimental=147, literature=13.
 - Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-15T20:58:38.602475Z`.
 - Recent decision history:
   - 2026-02-15T18:46:42.773429Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection

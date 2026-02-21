@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-21T12:48:17.087851Z`
+Generated: `2026-02-21T13:02:03.046390Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -43,9 +43,9 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_056
 
-- [ ] Investigate signature `ledger_editing` (13 FAIL run(s), latest `2026-02-17T225337Z_claim-probe-mech-056_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (8 FAIL run(s), latest `2026-02-17T225337Z_claim-probe-mech-056_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `explanation_policy_divergence` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-056_seed89_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (18 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-056_seed47_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (12 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-056_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `explanation_policy_divergence` (9 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-056_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
 
 ## claim_probe_mech_057
 
@@ -54,19 +54,19 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_058
 
-- [ ] Investigate signature `mech058:anchor_separation_collapse` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-058_seed89_ema_anchor_off_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech058:ema_drift_under_shift` (1 FAIL run(s), latest `2026-02-17T225244Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:anchor_separation_collapse` (9 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:ema_drift_under_shift` (2 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`).
 
 ## claim_probe_mech_059
 
-- [ ] Investigate signature `mech059:uncertainty_metric_gaming_detected` (16 FAIL run(s), latest `2026-02-17T225337Z_claim-probe-mech-059_seed131_explicit_uncertainty_head_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech059:abstention_reliability_collapse` (13 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-059_seed89_deterministic_plus_dispersion_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech059:uncertainty_metric_gaming_detected` (18 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-059_seed47_deterministic_plus_dispersion_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech059:abstention_reliability_collapse` (15 FAIL run(s), latest `2026-02-21T130141Z_claim-probe-mech-059_seed47_deterministic_plus_dispersion_toyenv_internal_minimal`).
 
 ## claim_probe_mech_060
 
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-060_seed89_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-060_seed89_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:commitment_reversal_spike` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-060_seed89_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:commitment_reversal_spike` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
 
 ## claim_probe_mech_061
 
@@ -76,8 +76,8 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_062
 
-- [ ] Investigate signature `q016:tri_loop_alignment_break` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-062_seed89_weighted_merge_toyenv_internal_minimal`).
-- [ ] Investigate signature `q016:tri_loop_override_spike` (1 FAIL run(s), latest `2026-02-17T225245Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_alignment_break` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_override_spike` (2 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`).
 - [ ] Investigate signature `q016:tri_loop_conflict_spike` (1 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-062_seed89_weighted_merge_toyenv_internal_minimal`).
 
 ## claim_probe_q_001
@@ -152,29 +152,29 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_q_017
 
-- [ ] Investigate signature `q017:control_axis_stability_drop` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-q-017_seed89_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_entropy_collapse` (6 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-q-017_seed89_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (5 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-q-017_seed89_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_stability_drop` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-q-017_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_entropy_collapse` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-q-017_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (7 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-q-017_seed29_reduced_axis_toyenv_internal_minimal`).
 
 ## commit_dual_error_channels
 
-- [ ] Investigate signature `mech060:postcommit_channel_contamination` (42 FAIL run(s), latest `2026-02-17T225311Z_commit-dual-error-channels_seed89_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:attribution_reliability_break` (40 FAIL run(s), latest `2026-02-17T225311Z_commit-dual-error-channels_seed89_single_error_stream_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech060:commitment_reversal_spike` (32 FAIL run(s), latest `2026-02-17T225311Z_commit-dual-error-channels_seed89_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:postcommit_channel_contamination` (45 FAIL run(s), latest `2026-02-21T130142Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:attribution_reliability_break` (43 FAIL run(s), latest `2026-02-21T130142Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:commitment_reversal_spike` (35 FAIL run(s), latest `2026-02-21T130142Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:precommit_channel_contamination` (10 FAIL run(s), latest `bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z`).
 - [ ] Investigate signature `threshold:pre_commit_error_signal_to_noise` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
 - [ ] Investigate signature `threshold:post_commit_error_attribution_gain` (5 FAIL run(s), latest `2026-02-14T200000Z_commit-dual-error-channels_seed47_single_error_stream`).
 
 ## control_axis_ablation
 
-- [ ] Investigate signature `q017:control_axis_stability_drop` (30 FAIL run(s), latest `2026-02-17T225312Z_control-axis-ablation_seed89_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_entropy_collapse` (30 FAIL run(s), latest `2026-02-17T225312Z_control-axis-ablation_seed89_reduced_axis_toyenv_internal_minimal`).
-- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (21 FAIL run(s), latest `2026-02-17T225312Z_control-axis-ablation_seed89_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_stability_drop` (33 FAIL run(s), latest `2026-02-21T130142Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_entropy_collapse` (33 FAIL run(s), latest `2026-02-21T130142Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal`).
+- [ ] Investigate signature `q017:control_axis_policy_loss_spike` (23 FAIL run(s), latest `2026-02-21T130142Z_control-axis-ablation_seed29_reduced_axis_toyenv_internal_minimal`).
 
 ## jepa_anchor_ablation
 
-- [ ] Investigate signature `mech058:anchor_separation_collapse` (36 FAIL run(s), latest `2026-02-17T225312Z_jepa-anchor-ablation_seed89_ema_anchor_off_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech058:ema_drift_under_shift` (18 FAIL run(s), latest `2026-02-17T225246Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:anchor_separation_collapse` (39 FAIL run(s), latest `2026-02-21T130142Z_jepa-anchor-ablation_seed47_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:ema_drift_under_shift` (19 FAIL run(s), latest `2026-02-21T130142Z_jepa-anchor-ablation_seed29_ema_anchor_off_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech058:latent_cluster_collapse` (10 FAIL run(s), latest `bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z`).
 - [ ] Investigate signature `threshold:latent_prediction_error_mean` (5 FAIL run(s), latest `2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off`).
 - [ ] Investigate signature `threshold:latent_prediction_error_p95` (5 FAIL run(s), latest `2026-02-14T200000Z_jepa-anchor-ablation_seed47_ema_anchor_off`).
@@ -182,8 +182,8 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## jepa_uncertainty_channels
 
-- [ ] Investigate signature `mech059:uncertainty_metric_gaming_detected` (34 FAIL run(s), latest `2026-02-17T225337Z_jepa-uncertainty-channels_seed131_explicit_uncertainty_head_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech059:abstention_reliability_collapse` (25 FAIL run(s), latest `2026-02-17T225312Z_jepa-uncertainty-channels_seed89_deterministic_plus_dispersion_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech059:uncertainty_metric_gaming_detected` (36 FAIL run(s), latest `2026-02-21T130142Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech059:abstention_reliability_collapse` (27 FAIL run(s), latest `2026-02-21T130142Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech059:calibration_slope_break` (10 FAIL run(s), latest `bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z`).
 - [ ] Investigate signature `threshold:latent_prediction_error_mean` (5 FAIL run(s), latest `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion`).
 - [ ] Investigate signature `threshold:latent_uncertainty_calibration_error` (5 FAIL run(s), latest `2026-02-14T200000Z_jepa-uncertainty-channels_seed47_deterministic_plus_dispersion`).
@@ -191,15 +191,15 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## trajectory_integrity
 
-- [ ] Investigate signature `stop:ledger_edit_detected_count>0` (59 FAIL run(s), latest `2026-02-17T225337Z_trajectory-integrity_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `ledger_editing` (54 FAIL run(s), latest `2026-02-17T225337Z_trajectory-integrity_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `stop:domination_lock_in_events>0` (46 FAIL run(s), latest `2026-02-17T225337Z_trajectory-integrity_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (40 FAIL run(s), latest `2026-02-17T225337Z_trajectory-integrity_seed151_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `stop:explanation_policy_divergence_rate>0.05` (36 FAIL run(s), latest `2026-02-17T225312Z_trajectory-integrity_seed89_trajectory_first_ablated_toyenv_internal_minimal`).
-- [ ] Investigate signature `explanation_policy_divergence` (31 FAIL run(s), latest `2026-02-17T225312Z_trajectory-integrity_seed89_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:ledger_edit_detected_count>0` (64 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (59 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:domination_lock_in_events>0` (50 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (44 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:explanation_policy_divergence_rate>0.05` (39 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `explanation_policy_divergence` (34 FAIL run(s), latest `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
 
 ## tri_loop_arbitration_policy
 
-- [ ] Investigate signature `q016:tri_loop_alignment_break` (30 FAIL run(s), latest `2026-02-17T225312Z_tri-loop-arbitration-policy_seed89_weighted_merge_toyenv_internal_minimal`).
-- [ ] Investigate signature `q016:tri_loop_override_spike` (9 FAIL run(s), latest `2026-02-17T225246Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_alignment_break` (33 FAIL run(s), latest `2026-02-21T130143Z_tri-loop-arbitration-policy_seed47_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_override_spike` (10 FAIL run(s), latest `2026-02-21T130143Z_tri-loop-arbitration-policy_seed29_weighted_merge_toyenv_internal_minimal`).
 - [ ] Investigate signature `q016:tri_loop_conflict_spike` (1 FAIL run(s), latest `2026-02-17T225312Z_tri-loop-arbitration-policy_seed89_weighted_merge_toyenv_internal_minimal`).

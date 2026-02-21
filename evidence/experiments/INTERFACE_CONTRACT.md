@@ -35,6 +35,7 @@ Optional but recommended:
 
 - `scenario`: object (`name`, `seed`, `config_hash`, etc.)
 - `stop_criteria_version`: string, e.g. `"stop_criteria/v1"`
+- `architecture_epoch`: string, e.g. `"ree_hybrid_guardrails_v1"` for epoch-aware applicability tracking
 - `claim_ids_tested`: string array of REE claim IDs, e.g. `["MECH-056", "Q-011"]`
 - `evidence_class`: string, e.g. `"simulation"`, `"behavioral"`, `"control_theory"`
 - `evidence_direction`: one of `"supports"`, `"weakens"`, `"mixed"`, `"unknown"`
@@ -144,6 +145,10 @@ The matrix includes confidence channels:
 - `overall_confidence`
 
 Runs without `claim_ids_tested` are still indexed but tracked under `unlinked_runs` in the matrix.
+
+Epoch note:
+
+- Producers should stamp `manifest.architecture_epoch` for all new runs aligned to the current REE architecture epoch.
 
 ## Stability Guarantees for Producers
 

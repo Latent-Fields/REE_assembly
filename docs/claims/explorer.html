@@ -494,6 +494,41 @@
       text-decoration: underline;
     }
 
+    .triple-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .triple-controls button {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    .triple-controls button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .triple-controls .zoom-value {
+      min-width: 46px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .triple-controls .hint {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
     .triple-body {
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -504,9 +539,19 @@
       padding: 8px;
     }
 
+    .triple-body.zoomable {
+      cursor: grab;
+    }
+
+    .triple-body.zoomable.dragging {
+      cursor: grabbing;
+      user-select: none;
+    }
+
     .triple-body svg {
       display: block;
       width: 100%;
+      max-width: none;
       height: auto;
     }
 
@@ -1553,6 +1598,13 @@
                   <a href="../architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
               </div>
+              <div class="triple-controls">
+                <button type="button" data-triple-zoom-out="static" title="Zoom out">-</button>
+                <button type="button" data-triple-zoom-in="static" title="Zoom in">+</button>
+                <button type="button" data-triple-zoom-reset="static" title="Reset zoom">Reset</button>
+                <span id="tripleStaticZoomLabel" class="zoom-value">100%</span>
+                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
+              </div>
               <div id="tripleStaticBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
               </div>
@@ -1568,6 +1620,13 @@
                   <a href="../architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
               </div>
+              <div class="triple-controls">
+                <button type="button" data-triple-zoom-out="typed" title="Zoom out">-</button>
+                <button type="button" data-triple-zoom-in="typed" title="Zoom in">+</button>
+                <button type="button" data-triple-zoom-reset="typed" title="Reset zoom">Reset</button>
+                <span id="tripleTypedZoomLabel" class="zoom-value">100%</span>
+                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
+              </div>
               <div id="tripleTypedBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
               </div>
@@ -1582,6 +1641,13 @@
                   <a href="../architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
                   <a href="../architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
+              </div>
+              <div class="triple-controls">
+                <button type="button" data-triple-zoom-out="episode" title="Zoom out">-</button>
+                <button type="button" data-triple-zoom-in="episode" title="Zoom in">+</button>
+                <button type="button" data-triple-zoom-reset="episode" title="Reset zoom">Reset</button>
+                <span id="tripleEpisodeZoomLabel" class="zoom-value">100%</span>
+                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
               </div>
               <div id="tripleEpisodeBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -1980,6 +2046,7 @@ END CONFLICT RESOLUTION`;
         svgPath: '../architecture/architecture_static.svg',
         mmdPath: '../architecture/architecture_static.mmd',
         bodyId: 'tripleStaticBody',
+        zoomLabelId: 'tripleStaticZoomLabel',
       },
       {
         id: 'typed',
@@ -1987,6 +2054,7 @@ END CONFLICT RESOLUTION`;
         svgPath: '../architecture/architecture_typed_dataflow.svg',
         mmdPath: '../architecture/architecture_typed_dataflow.mmd',
         bodyId: 'tripleTypedBody',
+        zoomLabelId: 'tripleTypedZoomLabel',
       },
       {
         id: 'episode',
@@ -1994,6 +2062,7 @@ END CONFLICT RESOLUTION`;
         svgPath: '../architecture/episode_sequence.svg',
         mmdPath: '../architecture/episode_sequence.mmd',
         bodyId: 'tripleEpisodeBody',
+        zoomLabelId: 'tripleEpisodeZoomLabel',
       },
     ];
 
@@ -2097,6 +2166,7 @@ END CONFLICT RESOLUTION`;
     let governanceLoading = false;
     let tripleViewLoaded = false;
     let tripleViewLoading = false;
+    const tripleZoomState = new Map();
 
     function showError(message) {
       els.errorBanner.textContent = message;
@@ -3532,32 +3602,199 @@ END CONFLICT RESOLUTION`;
       docsInitialized = true;
     }
 
-    function renderTripleSourceFallback(container, label, mmdText, reason) {
+    function getTripleControlButton(kind, specId) {
+      return document.querySelector(`[data-triple-${kind}="${specId}"]`);
+    }
+
+    function setTripleControlState(spec, enabled, labelText) {
+      ['zoom-in', 'zoom-out', 'zoom-reset'].forEach(kind => {
+        const btn = getTripleControlButton(kind, spec.id);
+        if (btn) btn.disabled = !enabled;
+      });
+      if (!spec.zoomLabelId) return;
+      const label = document.getElementById(spec.zoomLabelId);
+      if (!label) return;
+      if (typeof labelText === 'string') {
+        label.textContent = labelText;
+      } else if (!enabled) {
+        label.textContent = 'n/a';
+      }
+    }
+
+    function setTripleZoom(spec, requestedScale, preserveCenter = true) {
+      const state = tripleZoomState.get(spec.id);
+      if (!state || !state.svg || !state.container) return;
+
+      const minScale = state.minScale || 0.5;
+      const maxScale = state.maxScale || 4;
+      const nextScale = Math.max(minScale, Math.min(maxScale, Number(requestedScale) || 1));
+      const currentScale = state.scale || 1;
+      const container = state.container;
+
+      let focusX = 0;
+      let focusY = 0;
+      if (preserveCenter) {
+        focusX = (container.scrollLeft + container.clientWidth / 2) / currentScale;
+        focusY = (container.scrollTop + container.clientHeight / 2) / currentScale;
+      }
+
+      state.scale = nextScale;
+      state.svg.style.width = `${(nextScale * 100).toFixed(0)}%`;
+      state.svg.style.maxWidth = 'none';
+      state.svg.style.height = 'auto';
+
+      if (spec.zoomLabelId) {
+        const label = document.getElementById(spec.zoomLabelId);
+        if (label) label.textContent = `${Math.round(nextScale * 100)}%`;
+      }
+
+      if (preserveCenter) {
+        container.scrollLeft = Math.max(0, focusX * nextScale - container.clientWidth / 2);
+        container.scrollTop = Math.max(0, focusY * nextScale - container.clientHeight / 2);
+      }
+    }
+
+    function attachTriplePanHandlers(spec, container) {
+      if (!container || container.dataset.triplePanBound === '1') return;
+      container.dataset.triplePanBound = '1';
+
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+      let startLeft = 0;
+      let startTop = 0;
+
+      container.addEventListener('mousedown', (event) => {
+        if (event.button !== 0) return;
+        if (event.target && event.target.closest('button,a,input,textarea,select')) return;
+        const state = tripleZoomState.get(spec.id);
+        if (!state || !state.svg) return;
+        dragging = true;
+        startX = event.clientX;
+        startY = event.clientY;
+        startLeft = container.scrollLeft;
+        startTop = container.scrollTop;
+        container.classList.add('dragging');
+        event.preventDefault();
+      });
+
+      window.addEventListener('mousemove', (event) => {
+        if (!dragging) return;
+        container.scrollLeft = startLeft - (event.clientX - startX);
+        container.scrollTop = startTop - (event.clientY - startY);
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        container.classList.remove('dragging');
+      });
+
+      container.addEventListener('wheel', (event) => {
+        if (!(event.ctrlKey || event.metaKey)) return;
+        const state = tripleZoomState.get(spec.id);
+        if (!state || !state.svg) return;
+        event.preventDefault();
+        const direction = event.deltaY < 0 ? 1 : -1;
+        setTripleZoom(spec, (state.scale || 1) + direction * (state.step || 0.1), true);
+      }, { passive: false });
+    }
+
+    function bindTripleControls() {
+      TRIPLE_VIEW_SPECS.forEach(spec => {
+        const zoomInBtn = getTripleControlButton('zoom-in', spec.id);
+        const zoomOutBtn = getTripleControlButton('zoom-out', spec.id);
+        const zoomResetBtn = getTripleControlButton('zoom-reset', spec.id);
+
+        if (zoomInBtn && !zoomInBtn.dataset.bound) {
+          zoomInBtn.dataset.bound = '1';
+          zoomInBtn.addEventListener('click', () => {
+            const state = tripleZoomState.get(spec.id);
+            if (!state) return;
+            setTripleZoom(spec, (state.scale || 1) + (state.step || 0.1), true);
+          });
+        }
+        if (zoomOutBtn && !zoomOutBtn.dataset.bound) {
+          zoomOutBtn.dataset.bound = '1';
+          zoomOutBtn.addEventListener('click', () => {
+            const state = tripleZoomState.get(spec.id);
+            if (!state) return;
+            setTripleZoom(spec, (state.scale || 1) - (state.step || 0.1), true);
+          });
+        }
+        if (zoomResetBtn && !zoomResetBtn.dataset.bound) {
+          zoomResetBtn.dataset.bound = '1';
+          zoomResetBtn.addEventListener('click', () => {
+            const state = tripleZoomState.get(spec.id);
+            if (!state || !state.container) return;
+            setTripleZoom(spec, 1, false);
+            state.container.scrollLeft = 0;
+            state.container.scrollTop = 0;
+          });
+        }
+        setTripleControlState(spec, false, 'n/a');
+      });
+    }
+
+    function configureTripleSvg(spec, container) {
+      if (!container) return;
+      const svg = container.querySelector('svg');
+      if (!svg) {
+        container.classList.remove('zoomable', 'dragging');
+        tripleZoomState.delete(spec.id);
+        setTripleControlState(spec, false, 'n/a');
+        return;
+      }
+
+      const previous = tripleZoomState.get(spec.id);
+      const initialScale = previous && typeof previous.scale === 'number' ? previous.scale : 1;
+      tripleZoomState.set(spec.id, {
+        container,
+        svg,
+        scale: initialScale,
+        minScale: 0.5,
+        maxScale: 4,
+        step: 0.1,
+      });
+      container.classList.add('zoomable');
+      attachTriplePanHandlers(spec, container);
+      setTripleControlState(spec, true);
+      setTripleZoom(spec, initialScale, false);
+    }
+
+    function renderTripleSourceFallback(spec, container, mmdText, reason) {
       if (!container) return;
       const note = document.createElement('div');
       note.className = 'meta';
-      note.textContent = `${label}: ${reason}. Showing Mermaid source instead.`;
+      note.textContent = `${spec.label}: ${reason}. Showing Mermaid source instead.`;
       const pre = document.createElement('pre');
       pre.className = 'triple-code';
       pre.textContent = mmdText;
       container.innerHTML = '';
       container.appendChild(note);
       container.appendChild(pre);
+      container.classList.remove('zoomable', 'dragging');
+      tripleZoomState.delete(spec.id);
+      setTripleControlState(spec, false, 'src');
     }
 
-    function renderTripleUnavailable(container, label, errorText) {
+    function renderTripleUnavailable(spec, container, errorText) {
       if (!container) return;
       container.innerHTML = '';
       const note = document.createElement('div');
       note.className = 'meta';
-      note.textContent = `${label}: unable to load SVG or Mermaid source (${errorText}).`;
+      note.textContent = `${spec.label}: unable to load SVG or Mermaid source (${errorText}).`;
       container.appendChild(note);
+      container.classList.remove('zoomable', 'dragging');
+      tripleZoomState.delete(spec.id);
+      setTripleControlState(spec, false, 'err');
     }
 
     async function loadTripleDiagram(spec) {
       const container = document.getElementById(spec.bodyId);
       if (!container) return { id: spec.id, mode: 'missing-container' };
       container.innerHTML = '<div class="meta">Loading diagram...</div>';
+      setTripleControlState(spec, false, '...');
 
       const svgUrl = new URL(spec.svgPath, window.location.href).toString();
       try {
@@ -3566,15 +3803,16 @@ END CONFLICT RESOLUTION`;
           throw new Error('svg_content_missing');
         }
         container.innerHTML = svgText;
+        configureTripleSvg(spec, container);
         return { id: spec.id, mode: 'svg' };
       } catch (svgErr) {
         const mmdUrl = new URL(spec.mmdPath, window.location.href).toString();
         try {
           const mmdText = await fetchText(mmdUrl);
-          renderTripleSourceFallback(container, spec.label, mmdText, 'SVG not available');
+          renderTripleSourceFallback(spec, container, mmdText, 'SVG not available');
           return { id: spec.id, mode: 'mmd' };
         } catch (mmdErr) {
-          renderTripleUnavailable(container, spec.label, String(mmdErr));
+          renderTripleUnavailable(spec, container, String(mmdErr));
           return { id: spec.id, mode: 'error' };
         }
       }
@@ -5003,6 +5241,7 @@ END CONFLICT RESOLUTION`;
         initDraftTabs();
         setupDraftActions();
         wireEvents();
+        bindTripleControls();
         initLegendToggles();
         updateWorksetUI();
         initialized = true;

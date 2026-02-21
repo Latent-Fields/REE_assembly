@@ -1,0 +1,53 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "claim_probe_mech_056",
+  "run_id": "2026-02-21T130141Z_claim-probe-mech-056_seed11_trajectory_first_enabled_toyenv_internal_minimal",
+  "adapter": {
+    "name": "ree_v2_toy_jepa_adapter",
+    "version": "toy_env_runner.v1+internal_minimal"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": true,
+    "trace_context_mask_ids": true,
+    "trace_action_token": false,
+    "trace_commit_boundary_token": true,
+    "trace_tri_loop_gate": true,
+    "trace_control_axis_telemetry": true
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95",
+    "by_mask"
+  ],
+  "uncertainty_estimator": "dispersion",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.033613202682,
+    "latent_prediction_error_p95": 0.075588737739,
+    "latent_residual_coverage_rate": 1.0,
+    "precision_input_completeness_rate": 1.0,
+    "latent_uncertainty_calibration_error": 0.008287855789,
+    "commit_boundary_join_coverage_rate": 1.0,
+    "tri_loop_trace_coverage_rate": 1.0
+  },
+  "stream_tag_quality": {
+    "WORLD": {
+      "present": true,
+      "quality": 1.0
+    },
+    "HOMEOSTASIS": {
+      "present": true,
+      "quality": 0.5553146713725678
+    },
+    "HARM": {
+      "present": true,
+      "quality": 0.966666666667
+    },
+    "SELF_SENSORY": {
+      "present": false,
+      "quality": 0.0
+    }
+  }
+}

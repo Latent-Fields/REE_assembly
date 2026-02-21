@@ -1,6 +1,6 @@
 # Archived Structure Review Dossier Index
 
-Generated: `2026-02-21T12:48:17.776767Z`
+Generated: `2026-02-21T13:02:03.272755Z`
 Cycle: `2026-02-21`
 
 These dossiers are historical context from prior cycles or non-active dossiers from this cycle.
@@ -55,3 +55,4 @@ These dossiers are historical context from prior cycles or non-active dossiers f
 | `2026-02-19` | `Q-013` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-19/Q-013/DOSSIER.md` |
 | `2026-02-19` | `Q-014` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-19/Q-014/DOSSIER.md` |
 | `2026-02-19` | `Q-017` | `active` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-19/Q-017/DOSSIER.md` |
+| `2026-02-21` | `MECH-056` | `candidate` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-21/MECH-056/DOSSIER.md` |

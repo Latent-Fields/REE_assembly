@@ -13,8 +13,8 @@
 | target_repo | total | experimental | literature_review |
 |---|---:|---:|---:|
 | `REE_assembly` | 1 | 0 | 1 |
-| `ree-experiments-lab` | 16 | 16 | 0 |
-| `ree-v2` | 6 | 6 | 0 |
+| `ree-experiments-lab` | 15 | 15 | 0 |
+| `ree-v2` | 7 | 7 | 0 |
 
 ## What Approval Means
 

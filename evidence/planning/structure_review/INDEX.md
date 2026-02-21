@@ -1,10 +1,10 @@
 # Structure Review Index
 
-Generated: `2026-02-21T12:48:17.776767Z`
+Generated: `2026-02-21T13:02:03.272755Z`
 Cycle: `2026-02-21`
 
-- Active dossiers: `7`
-- Archived dossiers: `48`
+- Active dossiers: `6`
+- Archived dossiers: `49`
 
 - Active index: `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`
 - Archive index: `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`

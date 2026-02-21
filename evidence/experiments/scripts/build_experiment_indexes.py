@@ -76,6 +76,7 @@ class RunRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "simulation"
     evidence_direction: str = "unknown"
+    architecture_epoch: str = ""
     adapter_signals_path: Path | None = None
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
@@ -92,6 +93,7 @@ class LiteratureRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "review"
     evidence_direction: str = "unknown"
+    architecture_epoch: str = ""
     confidence: float = 0.5
     confidence_rationale: str = ""
     failure_signatures: list[str] = field(default_factory=list)
@@ -221,8 +223,25 @@ def _compare(value: float, op: str, threshold: float) -> bool:
     raise RuntimeError(f"Unsupported stop criteria operator: {op}")
 
 
-def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
+def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, list[RunRecord]]:
     by_experiment: dict[str, list[RunRecord]] = defaultdict(list)
+
+    applicability = (
+        planning_criteria.get("evidence_applicability", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(applicability, dict):
+        applicability = {}
+    current_epoch = str(applicability.get("current_architecture_epoch", "")).strip()
+    epoch_start_raw = str(applicability.get("epoch_start_utc", "")).strip()
+    epoch_start: datetime | None = None
+    if epoch_start_raw:
+        try:
+            epoch_start = _parse_timestamp_only(epoch_start_raw)
+        except ValueError:
+            epoch_start = None
+
     for manifest_path in sorted(base_dir.glob("**/runs/**/manifest.json")):
         run_dir = manifest_path.parent
         if run_dir.parent.name != "runs":
@@ -234,6 +253,9 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
         timestamp_raw, timestamp = _parse_timestamp(
             manifest.get("timestamp_utc"), manifest_path
         )
+        architecture_epoch = str(manifest.get("architecture_epoch", "")).strip()
+        if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
+            architecture_epoch = current_epoch
 
         artifacts = manifest.get("artifacts", {}) if isinstance(manifest, dict) else {}
         metrics_rel = artifacts.get("metrics_path", "metrics.json")
@@ -280,6 +302,7 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
             )
         )
@@ -289,10 +312,29 @@ def _scan_runs(base_dir: Path) -> dict[str, list[RunRecord]]:
     return by_experiment
 
 
-def _scan_literature(literature_root: Path) -> dict[str, list[LiteratureRecord]]:
+def _scan_literature(
+    literature_root: Path,
+    planning_criteria: dict[str, Any],
+) -> dict[str, list[LiteratureRecord]]:
     by_literature: dict[str, list[LiteratureRecord]] = defaultdict(list)
     if not literature_root.exists():
         return by_literature
+
+    applicability = (
+        planning_criteria.get("evidence_applicability", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(applicability, dict):
+        applicability = {}
+    current_epoch = str(applicability.get("current_architecture_epoch", "")).strip()
+    epoch_start_raw = str(applicability.get("epoch_start_utc", "")).strip()
+    epoch_start: datetime | None = None
+    if epoch_start_raw:
+        try:
+            epoch_start = _parse_timestamp_only(epoch_start_raw)
+        except ValueError:
+            epoch_start = None
 
     for record_path in sorted(literature_root.glob("**/entries/**/record.json")):
         entry_dir = record_path.parent
@@ -311,6 +353,9 @@ def _scan_literature(literature_root: Path) -> dict[str, list[LiteratureRecord]]
 
         evidence_class = str(record.get("evidence_class", "review")).strip() or "review"
         evidence_direction = _normalize_direction(record.get("evidence_direction"))
+        architecture_epoch = str(record.get("architecture_epoch", "")).strip()
+        if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
+            architecture_epoch = current_epoch
         confidence = _normalize_confidence(record.get("confidence"), default=0.6)
         confidence_rationale = str(record.get("confidence_rationale", "")).strip()
 
@@ -332,6 +377,7 @@ def _scan_literature(literature_root: Path) -> dict[str, list[LiteratureRecord]]
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                architecture_epoch=architecture_epoch,
                 confidence=confidence,
                 confidence_rationale=confidence_rationale,
                 failure_signatures=[str(x) for x in signatures],
@@ -959,6 +1005,8 @@ def _write_claim_evidence_matrix(
                 "confidence_rationale": entry_confidence_rationale,
                 "failure_signatures": run.failure_signatures,
             }
+            if run.architecture_epoch:
+                entry["architecture_epoch"] = run.architecture_epoch
             matrix["entries"].append(entry)
             claim_to_entries[claim_id].append(entry)
 
@@ -989,6 +1037,8 @@ def _write_claim_evidence_matrix(
                 "confidence_rationale": lit.confidence_rationale,
                 "failure_signatures": lit.failure_signatures,
             }
+            if lit.architecture_epoch:
+                entry["architecture_epoch"] = lit.architecture_epoch
             matrix["entries"].append(entry)
             claim_to_entries[claim_id].append(entry)
 
@@ -2753,8 +2803,8 @@ def main() -> None:
     decision_log_entries = _load_decision_log(decision_log_path)
     latest_decisions = _latest_decision_by_claim(decision_log_entries)
 
-    by_experiment = _scan_runs(base_dir)
-    by_literature = _scan_literature(literature_root)
+    by_experiment = _scan_runs(base_dir, planning_criteria)
+    by_literature = _scan_literature(literature_root, planning_criteria)
 
     generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     todos_by_experiment: dict[str, list[str]] = {}

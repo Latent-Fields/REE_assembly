@@ -1,6 +1,6 @@
 # Human Decision Brief Index
 
-Generated: `2026-02-21T12:48:18.027636Z`
+Generated: `2026-02-21T13:02:03.361992Z`
 Cycle: `2026-02-21`
 
 These briefs are mandatory context for human-governed lanes.
@@ -10,7 +10,7 @@ These briefs are mandatory context for human-governed lanes.
 
 | claim_id | lanes | brief |
 |---|---|---|
-| `MECH-056` | `promotion_demotion_conflict_resolution,architecture_structure_adjudication` | `evidence/decisions/human_decision_briefs/2026-02-21/MECH-056.md` |
+| `MECH-056` | `promotion_demotion_conflict_resolution` | `evidence/decisions/human_decision_briefs/2026-02-21/MECH-056.md` |
 | `MECH-057` | `promotion_demotion_conflict_resolution,architecture_structure_adjudication` | `evidence/decisions/human_decision_briefs/2026-02-21/MECH-057.md` |
 | `MECH-058` | `promotion_demotion_conflict_resolution,architecture_structure_adjudication` | `evidence/decisions/human_decision_briefs/2026-02-21/MECH-058.md` |
 | `MECH-059` | `promotion_demotion_conflict_resolution` | `evidence/decisions/human_decision_briefs/2026-02-21/MECH-059.md` |

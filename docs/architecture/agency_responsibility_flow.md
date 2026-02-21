@@ -187,6 +187,20 @@ Design intent:
 - Rehearsal is allowed to be broad and exploratory.
 - Responsibility-bearing learning is narrow and commit-gated.
 
+### Role in current architecture (explicit non-supersession)
+
+MECH-060 is the umbrella commit-boundary separation principle, not a retired mechanism.
+Newer structures clarify and operationalize it rather than replacing it:
+
+- MECH-061: commit-token boundary that reclassifies pre-commit vs post-commit routing.
+- MECH-062: pre-commit selection realization (tri-loop/eligibility structure for what can cross commitment).
+- MECH-066: refines "strict separation" into boundary-conditioned separation with bounded representational coupling.
+- MECH-067: enforces the boundary via a machine-checkable phase/store/actor write-permission matrix.
+
+Interpretation rule:
+- treat MECH-060 as the invariant intent (two responsibility-distinct channels around commitment),
+- treat MECH-061/062/066/067 as the implementation structure that realizes that intent.
+
 ---
 
 <a id="mech-066"></a>

@@ -31,6 +31,9 @@ def _format_dispatch_md(
     items: list[dict[str, Any]],
     generated_at: str,
     contract_path: str,
+    current_epoch: str,
+    epoch_start_utc: str,
+    planning_criteria_path: str,
 ) -> str:
     lines: list[str] = []
     lines.append(f"# Weekly Dispatch - {repo_name}")
@@ -42,6 +45,11 @@ def _format_dispatch_md(
     lines.append("- Source: `evidence/planning/experiment_proposals.v1.json`")
     lines.append(f"- Target repo: `{repo_name}`")
     lines.append(f"- Contract reference: `{contract_path}`")
+    if current_epoch:
+        lines.append(f"- Architecture epoch: `{current_epoch}`")
+        if epoch_start_utc:
+            lines.append(f"- Epoch start (UTC): `{epoch_start_utc}`")
+        lines.append(f"- Epoch policy source: `{planning_criteria_path}`")
     lines.append("")
     lines.append("## Proposals")
     lines.append("")
@@ -78,9 +86,17 @@ def _format_dispatch_md(
     lines.append("Contract to follow exactly:")
     lines.append(f"- `{contract_path}`")
     lines.append("")
+    if current_epoch:
+        lines.append("Epoch tagging requirements:")
+        lines.append(f"- Stamp every new run `manifest.json` with `\"architecture_epoch\": \"{current_epoch}\"`.")
+        if epoch_start_utc:
+            lines.append(f"- Keep `timestamp_utc` aligned with the current epoch window (`>= {epoch_start_utc}`).")
+        lines.append("")
     lines.append("Acceptance checks per proposal:")
     lines.append("- At least 2 additional runs with distinct seeds.")
     lines.append("- Experiment Pack validates against v1 schema.")
+    if current_epoch:
+        lines.append(f"- Each emitted manifest includes `architecture_epoch={current_epoch}`.")
     lines.append("- Result links to claim_ids_tested and updates matrix direction counts.")
     lines.append("")
     lines.append("Output required:")
@@ -104,6 +120,11 @@ def main() -> int:
         help="Path to experiment proposals JSON.",
     )
     parser.add_argument(
+        "--planning-criteria",
+        default="evidence/planning/planning_criteria.v1.yaml",
+        help="Path to planning criteria (JSON-compatible YAML).",
+    )
+    parser.add_argument(
         "--date",
         default="auto",
         help="Date label for output folder (YYYY-MM-DD) or 'auto'.",
@@ -125,8 +146,19 @@ def main() -> int:
     repo_root = Path(__file__).resolve().parents[3]
     config_path = repo_root / args.config
     proposals_path = repo_root / args.proposals
+    planning_criteria_path = repo_root / args.planning_criteria
     config = _load_json(config_path)
     proposals = _load_json(proposals_path)
+    planning_criteria = _load_json(planning_criteria_path)
+    evidence_applicability = (
+        planning_criteria.get("evidence_applicability", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(evidence_applicability, dict):
+        evidence_applicability = {}
+    current_epoch = str(evidence_applicability.get("current_architecture_epoch", "")).strip()
+    epoch_start_utc = str(evidence_applicability.get("epoch_start_utc", "")).strip()
 
     dispatch_cfg = config.get("dispatch", {}) if isinstance(config, dict) else {}
     out_root_rel = str(dispatch_cfg.get("default_output_root", "evidence/planning/outbound_dispatches"))
@@ -163,6 +195,9 @@ def main() -> int:
         "schema_version": "weekly_dispatch_report/v1",
         "generated_at_utc": generated_at,
         "output_dir": out_dir.as_posix(),
+        "current_architecture_epoch": current_epoch,
+        "epoch_start_utc": epoch_start_utc,
+        "planning_criteria_path": planning_criteria_path.as_posix(),
         "targets": [],
     }
 
@@ -187,6 +222,9 @@ def main() -> int:
                 items=selected,
                 generated_at=generated_at,
                 contract_path=contract_path,
+                current_epoch=current_epoch,
+                epoch_start_utc=epoch_start_utc,
+                planning_criteria_path=args.planning_criteria,
             ),
             encoding="utf-8",
         )

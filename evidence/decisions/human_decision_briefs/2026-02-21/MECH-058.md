@@ -26,7 +26,7 @@ Cycle: `2026-02-21`
 - Decision needed: Conflict resolution before promotion
 - Recommendation: `hold_candidate_resolve_conflict`
 - Decision status: `applied`
-- Why this lane is open: overall_conf=0.714, conflict_ratio=0.87, exp_entries=124, lit_entries=9; directions supports=74, weakens=57, mixed=2, unknown=0, conflict_ratio=0.87
+- Why this lane is open: overall_conf=0.716, conflict_ratio=0.881, exp_entries=136, lit_entries=9; directions supports=80, weakens=63, mixed=2, unknown=0, conflict_ratio=0.881
 - Options:
   - Keep candidate and run conflict-resolution experiments (most balanced)
   - Promote despite conflict (speed, high lock-in risk)
@@ -36,20 +36,20 @@ Cycle: `2026-02-21`
 
 - Lane recommendation: `escalate_architecture_decision`
 - Structure pressure recommendation: `escalate_architecture_decision`
-- Conflict ratio: `0.87`; overall confidence: `0.714`
+- Conflict ratio: `0.881`; overall confidence: `0.716`
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Recurring failure signatures:
-  - `mech058:anchor_separation_collapse` (45)
-  - `mech058:ema_drift_under_shift` (21)
+  - `mech058:anchor_separation_collapse` (51)
+  - `mech058:ema_drift_under_shift` (23)
   - `mech058:latent_cluster_collapse` (10)
   - `threshold:latent_prediction_error_mean` (5)
   - `threshold:latent_prediction_error_p95` (5)
 
 ## Evidence Snapshot
 
-- Conflict report window: supports=40, weakens=26, conflict_ratio=0.788, entries_considered=67.
-- Dossier direction mix: supports=74, weakens=57, mixed=2, unknown=0.
-- Source counts: experimental=124, literature=9.
+- Conflict report window: supports=46, weakens=32, conflict_ratio=0.821, entries_considered=79.
+- Dossier direction mix: supports=80, weakens=63, mixed=2, unknown=0.
+- Source counts: experimental=136, literature=9.
 - Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-15T20:58:38.602475Z`.
 - Recent decision history:
   - 2026-02-15T18:46:42.773429Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection

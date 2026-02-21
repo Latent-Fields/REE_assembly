@@ -81,15 +81,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.875,
+        "conflict_ratio": 0.885,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 4,
-          "supports": 81,
+          "supports": 87,
           "unknown": 0,
-          "weakens": 63
+          "weakens": 69
         },
-        "overall_confidence": 0.703,
+        "overall_confidence": 0.706,
         "recurring_failure_signatures": [
           "mech060:postcommit_channel_contamination",
           "mech060:attribution_reliability_break",
@@ -98,7 +98,7 @@
           "threshold:pre_commit_error_signal_to_noise"
         ],
         "source_counts": {
-          "experimental": 135,
+          "experimental": 147,
           "literature": 13
         },
         "trigger_signals": [
@@ -192,15 +192,15 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.87,
+        "conflict_ratio": 0.881,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 2,
-          "supports": 74,
+          "supports": 80,
           "unknown": 0,
-          "weakens": 57
+          "weakens": 63
         },
-        "overall_confidence": 0.714,
+        "overall_confidence": 0.716,
         "recurring_failure_signatures": [
           "mech058:anchor_separation_collapse",
           "mech058:ema_drift_under_shift",
@@ -209,7 +209,7 @@
           "threshold:latent_prediction_error_p95"
         ],
         "source_counts": {
-          "experimental": 124,
+          "experimental": 136,
           "literature": 9
         },
         "trigger_signals": [
@@ -303,22 +303,22 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.845,
+        "conflict_ratio": 0.862,
         "consider_new_structure": true,
         "direction_counts": {
           "mixed": 1,
-          "supports": 56,
+          "supports": 62,
           "unknown": 0,
-          "weakens": 41
+          "weakens": 47
         },
-        "overall_confidence": 0.722,
+        "overall_confidence": 0.724,
         "recurring_failure_signatures": [
           "q017:control_axis_stability_drop",
           "q017:control_axis_entropy_collapse",
           "q017:control_axis_policy_loss_spike"
         ],
         "source_counts": {
-          "experimental": 90,
+          "experimental": 102,
           "literature": 8
         },
         "trigger_signals": [
@@ -330,117 +330,6 @@
       "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_q_017",
       "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-056",
-      "completion_status": {
-        "entries_total": 4,
-        "latest_timestamp_utc": "2026-02-15T15:28:00Z",
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "non_support_entries": 1,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "completion_criteria_met"
-      },
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `residue / trajectory first placement`.",
-      "objective": "Run targeted connectome literature pull for MECH-056.",
-      "plain_english_claim_description": "MECH-056 is a mechanism hypothesis about residue / trajectory first placement.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 7 upstream claim(s): `ARC-013`, `ARC-018`, `ARC-003`, `ARC-004`, `MECH-034`, `MECH-060`, `MECH-062`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/residue_geometry.md#mech-056`.",
-      "priority": "high",
-      "pull_id": "CPULL-0007",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-056 connectome effective connectivity",
-            "residue / trajectory first placement neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "residue / trajectory first placement computational neuroscience circuit model",
-            "MECH-056 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "residue / trajectory first placement conflicting neural evidence",
-            "MECH-056 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.726,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 1,
-          "supports": 41,
-          "unknown": 0,
-          "weakens": 72
-        },
-        "overall_confidence": 0.778,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "stop:ledger_edit_detected_count>0",
-          "domination_lock_in",
-          "stop:domination_lock_in_events>0",
-          "explanation_policy_divergence"
-        ],
-        "source_counts": {
-          "experimental": 105,
-          "literature": 9
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "completed",
-      "suggested_literature_type": "targeted_review_connectome_mech_056",
-      "target_repo": "REE_assembly"
     }
   ],
   "completion_policy": {
@@ -450,7 +339,7 @@
     "state_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
   },
   "cycle_date": "2026-02-21",
-  "generated_at_utc": "2026-02-21T12:48:18.096325Z",
+  "generated_at_utc": "2026-02-21T13:02:03.409776Z",
   "items": [
     {
       "acceptance_checks": [
@@ -780,10 +669,10 @@
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
     "active_queue_items": 3,
-    "completed_items": 4,
-    "consider_new_structure_items": 7,
+    "completed_items": 3,
+    "consider_new_structure_items": 6,
     "mode": "consider_new_structure_only",
-    "total_selected_items": 7
+    "total_selected_items": 6
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",

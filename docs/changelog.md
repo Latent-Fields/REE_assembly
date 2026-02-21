@@ -7,6 +7,51 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-21: Applied Epoch Metadata Plumbing (Ingestion + Dispatch)
+
+### Overview
+
+Applied epoch propagation and producer-facing epoch tagging so current-epoch evidence is explicitly stamped and future
+dispatches carry architecture-epoch requirements by default.
+
+### What Changed
+
+- Extended experimental/literature ingestion to carry `architecture_epoch` into claim-evidence entries:
+  - `evidence/experiments/scripts/build_experiment_indexes.py`
+  - defaults post-epoch timestamps to current epoch when explicit tag is absent
+- Updated Experiment Pack contract guidance:
+  - `evidence/experiments/INTERFACE_CONTRACT.md`
+  - added recommended `manifest.architecture_epoch` field and epoch note
+- Updated weekly dispatch emitter:
+  - `evidence/planning/scripts/emit_weekly_dispatches.py`
+  - dispatch bundles now include current epoch context and explicit manifest tagging requirements
+  - dispatch report now records epoch metadata
+- Regenerated epoch-aware outputs:
+  - `evidence/experiments/claim_evidence.v1.json`
+  - `evidence/planning/architecture_epoch_applicability.v1.json`
+  - `evidence/planning/governance_agenda.v1.json`
+  - `evidence/planning/GOVERNANCE_AGENDA.md`
+  - `evidence/planning/outbound_dispatches/2026-02-21/*`
+
+## 2026-02-21: Clarified MECH-060 Hierarchy (Non-Supersession)
+
+### Overview
+
+Made the commit-boundary claim hierarchy explicit so MECH-060 is interpreted as an umbrella boundary principle, while
+MECH-062/066/067 are implementation realizations rather than replacements.
+
+### What Changed
+
+- Clarified MECH-060 role and interpretation rule:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - added explicit "non-supersession" section linking MECH-060 to MECH-061/062/066/067
+- Clarified MECH-062 relationship to MECH-060:
+  - `docs/architecture/e3.md`
+  - added hierarchy note under layered eligibility refinement
+- Updated canonical claim summaries:
+  - `docs/claims/claim_index.md`
+  - MECH-060 and MECH-062 descriptions now encode umbrella-vs-realization framing
+
 ## 2026-02-21: Processed Remaining Thought Intake Queue (6 files)
 
 ### Overview

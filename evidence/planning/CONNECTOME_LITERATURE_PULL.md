@@ -1,11 +1,11 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-21T12:48:18.096325Z`
+Generated: `2026-02-21T13:02:03.409776Z`
 Cycle: `2026-02-21`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `3`. Completed items tracked: `4`.
+Active queue items: `3`. Completed items tracked: `3`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
@@ -79,10 +79,9 @@ These claims currently satisfy completion criteria and are excluded from the act
 
 | pull_id | claim_id | status_reason | conflict_ratio |
 |---|---|---|---:|
-| `CPULL-0001` | `MECH-060` | completion_criteria_met | 0.875 |
-| `CPULL-0002` | `MECH-058` | completion_criteria_met | 0.87 |
-| `CPULL-0003` | `Q-017` | completion_criteria_met | 0.845 |
-| `CPULL-0007` | `MECH-056` | completion_criteria_met | 0.726 |
+| `CPULL-0001` | `MECH-060` | completion_criteria_met | 0.885 |
+| `CPULL-0002` | `MECH-058` | completion_criteria_met | 0.881 |
+| `CPULL-0003` | `Q-017` | completion_criteria_met | 0.862 |
 
 ## Copy/Paste Prompt
 
