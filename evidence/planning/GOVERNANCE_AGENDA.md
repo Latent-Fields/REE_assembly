@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-21T16:23:04.445325Z`
+Generated: `2026-02-21T16:31:23.053929Z`
 
 ## Cycle Status
 
@@ -9,7 +9,6 @@ Generated: `2026-02-21T16:23:04.445325Z`
 | `task_inbox_sync` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/sync_task_inbox.py` |
 | `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py` |
 | `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses approved,applied` |
-| `evidence_build` | `ok` | `/opt/local/bin/python3 evidence/experiments/scripts/build_experiment_indexes.py` |
 | `structure_review` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_structure_review_dossiers.py` |
 | `human_decision_briefs` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_human_decision_briefs.py` |
 | `connectome_pull` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_connectome_literature_pull.py` |
@@ -94,10 +93,10 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.285
 11. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
-12. Evidence Dispatch: 21 high-priority proposal(s), 23 total.
+12. Evidence Dispatch: 9 high-priority proposal(s), 28 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
 - REE_assembly: total=1, experimental=0, literature_review=1
 - ree-experiments-lab: total=15, experimental=15, literature_review=0
-- ree-v2: total=7, experimental=7, literature_review=0
+- ree-v2: total=12, experimental=12, literature_review=0
 13. Maintenance: 0 unlinked evidence run(s), 0 warning(s).
 - context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`
