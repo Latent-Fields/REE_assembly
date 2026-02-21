@@ -442,6 +442,30 @@
       margin: 0;
     }
 
+    .triple-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .triple-meta-row .meta {
+      margin: 0;
+    }
+
+    .triple-epoch-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      background: #f8f5ef;
+      color: var(--muted);
+    }
+
     .triple-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -537,6 +561,7 @@
       max-height: 520px;
       overflow: auto;
       padding: 8px;
+      position: relative;
     }
 
     .triple-body.zoomable {
@@ -565,6 +590,209 @@
       font-size: 12px;
       font-family: "SFMono-Regular", Menlo, Consolas, monospace;
       white-space: pre;
+    }
+
+    .triple-node-badges {
+      pointer-events: none;
+    }
+
+    .triple-node-badge {
+      stroke-width: 1;
+    }
+
+    .triple-node-badge.claims {
+      fill: #e8f2f2;
+      stroke: #2b6f72;
+    }
+
+    .triple-node-badge.conflicts {
+      fill: #fbecec;
+      stroke: #8c2f2f;
+    }
+
+    .triple-node-badge.needs {
+      fill: #fff5de;
+      stroke: #b67923;
+    }
+
+    .triple-node-badge-text {
+      font-size: 9px;
+      fill: #1f2328;
+      font-weight: 600;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .triple-edge-marker {
+      pointer-events: none;
+    }
+
+    .triple-edge-marker circle {
+      stroke-width: 1;
+      fill: #fff;
+    }
+
+    .triple-edge-marker.conflicts circle {
+      stroke: #8c2f2f;
+    }
+
+    .triple-edge-marker.questions circle {
+      stroke: #b67923;
+    }
+
+    .triple-edge-marker text {
+      font-size: 9px;
+      fill: #1f2328;
+      font-weight: 600;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .triple-edge-conflict {
+      stroke: #8c2f2f !important;
+      stroke-width: 2.3px !important;
+    }
+
+    .triple-edge-open {
+      stroke-dasharray: 5 3 !important;
+    }
+
+    .triple-target {
+      cursor: pointer;
+    }
+
+    .triple-target:focus-visible {
+      outline: none;
+      filter: drop-shadow(0 0 0.35rem rgba(43, 111, 114, 0.35));
+    }
+
+    .triple-tooltip {
+      position: fixed;
+      z-index: 20;
+      display: none;
+      width: min(360px, calc(100vw - 24px));
+      max-height: 320px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+      padding: 10px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    .triple-tooltip .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .triple-tooltip .meta {
+      margin-bottom: 4px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .triple-tooltip ul {
+      margin: 6px 0;
+      padding-left: 16px;
+    }
+
+    .triple-tooltip li {
+      margin: 0 0 4px 0;
+      line-height: 1.35;
+    }
+
+    .triple-tooltip .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    .triple-tooltip .actions button {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+
+    .triple-inspector {
+      display: grid;
+      gap: 8px;
+    }
+
+    .triple-inspector h2 {
+      margin: 0;
+      font-size: 20px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+
+    .triple-inspector .meta {
+      margin: 0;
+    }
+
+    .triple-inspector .inspector-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .triple-inspector .inspector-tabs button {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .triple-inspector .inspector-tabs button.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .triple-inspector .inspector-pane {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+      display: none;
+      max-height: 330px;
+      overflow: auto;
+    }
+
+    .triple-inspector .inspector-pane.active {
+      display: block;
+    }
+
+    .triple-inspector .inspector-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .triple-inspector .inspector-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+      background: #fbfaf6;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .triple-inspector .inspector-item .meta {
+      margin-top: 2px;
+      font-size: 11px;
+    }
+
+    .triple-inspector .inspector-empty {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .triple-inspector .inspector-close {
+      justify-self: end;
+      font-size: 12px;
+      padding: 4px 8px;
     }
 
     .governance-wrap {
@@ -1586,6 +1814,27 @@
               <button id="tripleReloadBtn" type="button">Reload Diagrams</button>
             </div>
           </div>
+          <div class="triple-meta-row">
+            <div class="meta">Latest-epoch annotations on nodes/edges show claims, conflicts, and structure gaps.</div>
+            <span id="tripleEpochChip" class="triple-epoch-chip">epoch: --</span>
+          </div>
+          <div class="legend-wrap" id="tripleLegend">
+            <div class="legend-title">
+              Triple annotation key
+              <span class="help-tip" tabindex="0" data-tip="Hover nodes/edges for latest-epoch summaries. Click to inspect Claims, Conflicts, and Needs in the right panel.">?</span>
+              <button type="button" class="legend-toggle push" data-target="tripleLegendBody" data-pref="triple">Hide key</button>
+            </div>
+            <div class="legend-body" id="tripleLegendBody">
+              <div class="legend-row">
+                <span class="legend-item">Node badges: <code>C</code> claims, <code>F</code> conflicts, <code>N</code> needs/gaps</span>
+                <span class="legend-item">Edge markers: <code>!</code> conflict pressure, <code>?</code> open question / unresolved support</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-line" style="border-top-color:#8c2f2f;"></span>Conflict-contested edge</span>
+                <span class="legend-item"><span class="legend-line" style="border-top-style:dashed;"></span>Open-question / gap edge</span>
+              </div>
+            </div>
+          </div>
           <div class="triple-grid">
             <div class="triple-card">
               <div class="triple-card-head">
@@ -1654,6 +1903,7 @@
               </div>
             </div>
           </div>
+          <div id="tripleTooltip" class="triple-tooltip" role="dialog" aria-live="polite"></div>
         </div>
       </div>
       <div class="panel detail" id="detailPanel">
@@ -1721,6 +1971,12 @@
   </main>
 
   <script>
+    /*
+      Latest epoch annotations: how it works
+      1) Derive a "latest epoch" snapshot from already-loaded governance payloads.
+      2) Build a per-diagram view-model from current-epoch claims only (respecting active filters).
+      3) Attach node/edge annotation metadata as __anno and render subtle SVG cues + inspector links.
+    */
     const CLAIMS_URL = './claims.yaml';
     const CONFLICT_INDEX_URL = '../conflicts/README.md';
     const README_URL = '../README.md';
@@ -2065,6 +2321,42 @@ END CONFLICT RESOLUTION`;
         zoomLabelId: 'tripleEpisodeZoomLabel',
       },
     ];
+    const TRIPLE_ATLAS_ALIAS_FALLBACK = {
+      INV: ['BND', 'VER', 'STORES'],
+      REP: ['E1', 'E2', 'BND'],
+      CTL: ['CP', 'CAL', 'F1', 'F2', 'F3', 'F4'],
+      TRJ: ['HPC', 'LRN'],
+      COM: ['E3', 'G1', 'G2', 'G3', 'ACT'],
+      AUT: ['VER', 'STORES'],
+      SOC: ['F3', 'G2'],
+      LAN: ['BND', 'E1', 'E3'],
+      SLP: ['LRN', 'HPC', 'CAL'],
+      IMP: ['CP', 'BND', 'ACT'],
+      META: ['CP', 'VER'],
+      UNMAPPED: [],
+    };
+    const TRIPLE_SUBJECT_ALIAS_HINTS = [
+      [/(\b|_)e1(\b|_)/i, 'E1'],
+      [/(\b|_)e2(\b|_)/i, 'E2'],
+      [/(\b|_)e3(\b|_)/i, 'E3'],
+      [/control_plane|precision|serotonin|astrocyte|mode|temporal/i, 'CP'],
+      [/hippocamp|path_memory|trajectory|residue/i, 'HPC'],
+      [/reality_coherence|\brc\b/i, 'RC'],
+      [/verifier|authority|provenance/i, 'VER'],
+      [/trusted_store|caps|pol_id_caps/i, 'STORES'],
+      [/commit|gate_motor|motor/i, 'G3'],
+      [/gate_cognitive|cognitive_set/i, 'G1'],
+      [/gate_motivational|motivational/i, 'G2'],
+      [/action_executor|actuator|effect/i, 'ACT'],
+      [/post_commit|learning|outcome_trace/i, 'LRN'],
+      [/context_anchor/i, 'F1'],
+      [/body_feasible|homeostasis/i, 'F2'],
+      [/motivation_ok|valence|motivation/i, 'F3'],
+      [/hard_veto|harm|veto/i, 'F4'],
+      [/external_inputs|sensor|exteroceptive/i, 'EXT'],
+      [/world_state|environment|world/i, 'WORLD'],
+      [/typed_payload|boundary/i, 'BND'],
+    ];
 
     const els = {
       search: document.getElementById('search'),
@@ -2097,7 +2389,9 @@ END CONFLICT RESOLUTION`;
       tripleViewBtn: document.getElementById('tripleViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
       tripleStatus: document.getElementById('tripleStatus'),
+      tripleEpochChip: document.getElementById('tripleEpochChip'),
       tripleReloadBtn: document.getElementById('tripleReloadBtn'),
+      tripleTooltip: document.getElementById('tripleTooltip'),
       mapEpochOnly: document.getElementById('mapEpochOnly'),
       mapGovernanceOnly: document.getElementById('mapGovernanceOnly'),
       govEpochOnly: document.getElementById('govEpochOnly'),
@@ -2167,6 +2461,11 @@ END CONFLICT RESOLUTION`;
     let tripleViewLoaded = false;
     let tripleViewLoading = false;
     const tripleZoomState = new Map();
+    const tripleDiagramModel = new Map();
+    const tripleInteractiveIndex = new Map();
+    let tripleLatestEpoch = '';
+    let tripleViewModel = null;
+    let tripleTooltipHideTimer = null;
 
     function showError(message) {
       els.errorBanner.textContent = message;
@@ -3201,6 +3500,7 @@ END CONFLICT RESOLUTION`;
       governanceLoading = false;
       if (currentView === 'governance') renderGovernance();
       if (currentView === 'map') renderMap();
+      refreshTripleAnnotationsFromCurrentFilters();
     }
 
     function renderGovernance() {
@@ -3602,6 +3902,534 @@ END CONFLICT RESOLUTION`;
       docsInitialized = true;
     }
 
+    function normalizeSpace(text) {
+      return String(text || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function normalizeEdgeLabel(text) {
+      return normalizeSpace(String(text || '').replace(/^["'`]+|["'`]+$/g, ''));
+    }
+
+    function escapeSelectorValue(value) {
+      if (window.CSS && typeof window.CSS.escape === 'function') return window.CSS.escape(String(value));
+      return String(value).replace(/[^a-zA-Z0-9_\-]/g, '\\$&');
+    }
+
+    function parseFlowchartMmd(text) {
+      const nodes = new Map();
+      const edges = [];
+      const lines = String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+
+      lines.forEach((raw, idx) => {
+        const line = raw.replace(/%%.*$/, '').trim();
+        if (!line) return;
+
+        const quotedNodeRe = /\b([A-Za-z][A-Za-z0-9_]*)\s*\[\s*"([^"]+)"\s*\]/g;
+        let match = null;
+        while ((match = quotedNodeRe.exec(line)) !== null) {
+          const nodeId = match[1];
+          const label = normalizeSpace(match[2]) || nodeId;
+          if (!nodes.has(nodeId)) nodes.set(nodeId, { id: nodeId, label });
+        }
+
+        const plainNodeRe = /\b([A-Za-z][A-Za-z0-9_]*)\s*\[\s*([^\]"'][^\]]*?)\s*\]/g;
+        while ((match = plainNodeRe.exec(line)) !== null) {
+          const nodeId = match[1];
+          if (nodes.has(nodeId)) continue;
+          const label = normalizeSpace(match[2]) || nodeId;
+          nodes.set(nodeId, { id: nodeId, label });
+        }
+
+        const edgeMatch = line.match(/^([A-Za-z][A-Za-z0-9_]*)\s*-->\s*(?:\|([^|]+)\|\s*)?([A-Za-z][A-Za-z0-9_]*)\s*$/);
+        if (!edgeMatch) return;
+        const from = edgeMatch[1];
+        const to = edgeMatch[3];
+        const label = normalizeEdgeLabel(edgeMatch[2] || '');
+        if (!nodes.has(from)) nodes.set(from, { id: from, label: from });
+        if (!nodes.has(to)) nodes.set(to, { id: to, label: to });
+        edges.push({
+          id: `flow-${from}-${to}-${idx}`,
+          from,
+          to,
+          label,
+        });
+      });
+
+      return {
+        type: 'flowchart',
+        nodes: Array.from(nodes.values()),
+        edges,
+      };
+    }
+
+    function parseSequenceMmd(text) {
+      const nodes = new Map();
+      const edges = [];
+      const lines = String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+
+      lines.forEach((raw, idx) => {
+        const line = raw.trim();
+        if (!line) return;
+
+        const participantMatch = line.match(/^participant\s+([A-Za-z][A-Za-z0-9_]*)\s+as\s+(.+?)\s*$/);
+        if (participantMatch) {
+          const id = participantMatch[1];
+          const label = normalizeSpace(participantMatch[2]) || id;
+          if (!nodes.has(id)) nodes.set(id, { id, label });
+          return;
+        }
+
+        const msgMatch = line.match(/^([A-Za-z][A-Za-z0-9_]*)\s*-+>>\s*([A-Za-z][A-Za-z0-9_]*)\s*:\s*(.+?)\s*$/);
+        if (!msgMatch) return;
+        const from = msgMatch[1];
+        const to = msgMatch[2];
+        const label = normalizeEdgeLabel(msgMatch[3] || '');
+        if (!nodes.has(from)) nodes.set(from, { id: from, label: from });
+        if (!nodes.has(to)) nodes.set(to, { id: to, label: to });
+        edges.push({
+          id: `seq-${from}-${to}-${idx}`,
+          from,
+          to,
+          label,
+        });
+      });
+
+      return {
+        type: 'sequence',
+        nodes: Array.from(nodes.values()),
+        edges,
+      };
+    }
+
+    function parseTripleDiagramModel(spec, mmdText) {
+      if (!mmdText) return null;
+      const trimmed = String(mmdText).trim();
+      if (!trimmed) return null;
+      if (trimmed.startsWith('sequenceDiagram')) {
+        return parseSequenceMmd(trimmed);
+      }
+      if (trimmed.startsWith('flowchart')) {
+        return parseFlowchartMmd(trimmed);
+      }
+      return null;
+    }
+
+    function compareEpochCandidate(a, b) {
+      if (!a) return -1;
+      if (!b) return 1;
+      if (a.kind === b.kind) {
+        if (a.kind === 'time' || a.kind === 'number') {
+          return a.value === b.value ? 0 : (a.value > b.value ? 1 : -1);
+        }
+        return String(a.raw).localeCompare(String(b.raw));
+      }
+      const rank = { time: 3, number: 2, string: 1 };
+      return (rank[a.kind] || 0) - (rank[b.kind] || 0);
+    }
+
+    function coerceEpochCandidate(raw) {
+      if (raw === null || raw === undefined) return null;
+      if (typeof raw === 'number' && Number.isFinite(raw)) {
+        return { kind: 'number', value: raw, raw: String(raw) };
+      }
+      const text = normalizeSpace(raw);
+      if (!text) return null;
+      const asNumber = Number(text);
+      if (!Number.isNaN(asNumber) && Number.isFinite(asNumber)) {
+        return { kind: 'number', value: asNumber, raw: text };
+      }
+      const parsed = Date.parse(text);
+      if (!Number.isNaN(parsed)) {
+        return { kind: 'time', value: parsed, raw: new Date(parsed).toISOString() };
+      }
+      return { kind: 'string', value: 0, raw: text };
+    }
+
+    function collectEpochCandidates(node, path, out) {
+      if (node === null || node === undefined) return;
+      if (typeof node !== 'object') {
+        const key = path.length ? path[path.length - 1] : '';
+        if (!key) return;
+        if (!/(epoch|timestamp|generated_at_utc|adjudicated_at_utc|latest)/i.test(key)) return;
+        const cand = coerceEpochCandidate(node);
+        if (cand) out.push(cand);
+        return;
+      }
+      if (Array.isArray(node)) {
+        node.forEach((item, idx) => collectEpochCandidates(item, path.concat(String(idx)), out));
+        return;
+      }
+      Object.entries(node).forEach(([key, value]) => {
+        collectEpochCandidates(value, path.concat(key), out);
+      });
+    }
+
+    function getLatestEpoch(data) {
+      const candidates = [];
+
+      const policyEpoch = data
+        && data.governanceAgenda
+        && data.governanceAgenda.checkpoints
+        && data.governanceAgenda.checkpoints.architecture_epoch_applicability
+        && data.governanceAgenda.checkpoints.architecture_epoch_applicability.policy
+        ? data.governanceAgenda.checkpoints.architecture_epoch_applicability.policy.current_architecture_epoch
+        : '';
+      const policyEpochStart = data
+        && data.governanceAgenda
+        && data.governanceAgenda.checkpoints
+        && data.governanceAgenda.checkpoints.architecture_epoch_applicability
+        && data.governanceAgenda.checkpoints.architecture_epoch_applicability.policy
+        ? data.governanceAgenda.checkpoints.architecture_epoch_applicability.policy.epoch_start_utc
+        : '';
+      const generatedAt = data && data.governanceAgenda ? data.governanceAgenda.generated_at_utc : '';
+
+      [policyEpoch, policyEpochStart, generatedAt].forEach(value => {
+        const cand = coerceEpochCandidate(value);
+        if (cand) candidates.push(cand);
+      });
+      collectEpochCandidates(data && data.governanceAgenda ? data.governanceAgenda : {}, ['governanceAgenda'], candidates);
+
+      if (!candidates.length) return '';
+      let best = candidates[0];
+      for (let i = 1; i < candidates.length; i++) {
+        if (compareEpochCandidate(candidates[i], best) > 0) best = candidates[i];
+      }
+      return best.raw || '';
+    }
+
+    function makeClaimRef(claim) {
+      if (!claim) return null;
+      return {
+        id: claim.id,
+        title: claim.subject || claim.id,
+        type: claim.type || '',
+        status: claim.status || '',
+        location: claim.location || '',
+      };
+    }
+
+    function dedupeById(entries) {
+      const out = [];
+      const seen = new Set();
+      (entries || []).forEach(entry => {
+        if (!entry) return;
+        const id = normalizeSpace(entry.id || entry.claimId || entry.title || JSON.stringify(entry));
+        if (!id || seen.has(id)) return;
+        seen.add(id);
+        out.push(entry);
+      });
+      return out;
+    }
+
+    function mapClaimToTripleAliases(claim, specModel) {
+      const aliases = new Set();
+      if (!claim || !specModel || !Array.isArray(specModel.nodes)) return aliases;
+      const available = new Set(specModel.nodes.map(node => String(node.id || '').trim()).filter(Boolean));
+      const hay = `${claim.subject || ''} ${claim.location || ''}`.toLowerCase();
+
+      const subjectPrefix = String(claim.subject || '').split('.')[0].trim();
+      if (subjectPrefix) {
+        const upper = subjectPrefix.toUpperCase();
+        if (available.has(upper)) aliases.add(upper);
+      }
+
+      TRIPLE_SUBJECT_ALIAS_HINTS.forEach(([pattern, alias]) => {
+        if (pattern.test(hay) && available.has(alias)) aliases.add(alias);
+      });
+
+      specModel.nodes.forEach(node => {
+        const alias = String(node.id || '').trim();
+        if (!alias) return;
+        const aliasLower = alias.toLowerCase();
+        if (new RegExp(`\\b${escapeRegex(aliasLower)}\\b`, 'i').test(hay)) aliases.add(alias);
+
+        const labelTokens = String(node.label || '')
+          .toLowerCase()
+          .split(/[^a-z0-9]+/)
+          .filter(token => token.length >= 3 && !['ree', 'env', 'stream', 'control', 'typed'].includes(token));
+        if (labelTokens.some(token => hay.includes(token))) aliases.add(alias);
+      });
+
+      if (!aliases.size) {
+        const atlas = atlasGroupForClaim(claim).key;
+        const fallback = TRIPLE_ATLAS_ALIAS_FALLBACK[atlas] || [];
+        fallback.forEach(alias => {
+          if (available.has(alias)) aliases.add(alias);
+        });
+      }
+
+      return aliases;
+    }
+
+    function claimSupportsTripleEdge(claim, edge, aliasMap) {
+      if (!claim || !edge) return false;
+      const claimAliases = aliasMap.get(claim.id) || new Set();
+      if (claimAliases.has(edge.from) && claimAliases.has(edge.to)) return true;
+
+      const deps = Array.isArray(claim.depends_on) ? claim.depends_on : [];
+      for (const depId of deps) {
+        const depAliases = aliasMap.get(depId) || new Set();
+        if (depAliases.has(edge.from) && claimAliases.has(edge.to)) return true;
+        if (depAliases.has(edge.to) && claimAliases.has(edge.from)) return true;
+      }
+      return false;
+    }
+
+    function buildViewModelForEpoch(rawData, latestEpoch) {
+      const claims = Array.isArray(rawData && rawData.claims) ? rawData.claims : [];
+      const filteredClaims = Array.isArray(rawData && rawData.filteredClaims) ? rawData.filteredClaims : claims;
+      const filteredSet = new Set(filteredClaims.map(c => c.id));
+      const checkpoints = rawData && rawData.governanceAgenda && rawData.governanceAgenda.checkpoints
+        ? rawData.governanceAgenda.checkpoints
+        : {};
+      const epochMap = buildEpochApplicabilityMap(checkpoints);
+      const epochClaims = claims.filter(claim => isCurrentEpochClaim(claim.id, epochMap));
+      const activeClaims = epochClaims.filter(claim => filteredSet.has(claim.id));
+      const activeIds = new Set(activeClaims.map(claim => claim.id));
+
+      const conflictRows = checkpoints && checkpoints.conflict_resolution && Array.isArray(checkpoints.conflict_resolution.items)
+        ? checkpoints.conflict_resolution.items
+        : [];
+      const structureRows = checkpoints && checkpoints.architecture_structure && Array.isArray(checkpoints.architecture_structure.consider_new_structure)
+        ? checkpoints.architecture_structure.consider_new_structure
+        : [];
+      const decisionRows = checkpoints && checkpoints.governance_decisions && Array.isArray(checkpoints.governance_decisions.items)
+        ? checkpoints.governance_decisions.items
+        : [];
+
+      const conflictsByClaim = new Map();
+      const needsByClaim = new Map();
+      const evidenceByClaim = new Map();
+
+      function pushMapEntry(map, claimId, entry) {
+        const norm = normalizeClaimId(claimId);
+        if (!norm || !activeIds.has(norm)) return;
+        if (!map.has(norm)) map.set(norm, []);
+        map.get(norm).push(entry);
+      }
+
+      Object.entries(conflictsMap || {}).forEach(([claimId, files]) => {
+        const norm = normalizeClaimId(claimId);
+        if (!norm || !activeIds.has(norm)) return;
+        (files || []).forEach((filePath, idx) => {
+          const short = String(filePath || '').split('/').pop() || String(filePath || '');
+          pushMapEntry(conflictsByClaim, norm, {
+            id: `conf-file-${norm}-${idx}-${short}`,
+            claimId: norm,
+            title: short,
+            source: 'conflict_file',
+            href: relativeLink(filePath),
+            detail: filePath,
+          });
+        });
+      });
+
+      conflictRows.forEach((row, idx) => {
+        const claimId = extractClaimIdFromItem(row);
+        if (!claimId) return;
+        const typeLabel = toCellText(row.conflict_types || row.recommendation || 'governance conflict');
+        const latest = stripTicks(row.latest || '');
+        pushMapEntry(conflictsByClaim, claimId, {
+          id: `gov-conf-${claimId}-${idx}`,
+          claimId,
+          title: typeLabel || 'governance conflict',
+          source: 'governance_conflict',
+          detail: latest || '',
+          ratio: Number(row.conflict_ratio || 0),
+        });
+      });
+
+      structureRows.forEach((row, idx) => {
+        const claimId = extractClaimIdFromItem(row);
+        if (!claimId) return;
+        const needTitle = toCellText(row.recommendation || row.consider_new_structure || row.escalate_architecture_decision || 'needs structure review');
+        const signals = toCellText(row.trigger_signals || []);
+        pushMapEntry(needsByClaim, claimId, {
+          id: String(row.gap_id || `need-${claimId}-${idx}`),
+          claimId,
+          title: needTitle || 'needs structure review',
+          source: 'architecture_structure',
+          detail: signals || '',
+        });
+        const confidence = Number(row.overall_confidence);
+        if (!Number.isNaN(confidence)) {
+          const prev = evidenceByClaim.get(claimId);
+          evidenceByClaim.set(claimId, prev === undefined ? confidence : Math.max(prev, confidence));
+        }
+      });
+
+      decisionRows.forEach((row, idx) => {
+        const claimId = extractClaimIdFromItem(row);
+        if (!claimId || !activeIds.has(claimId)) return;
+        const needsDecision = String(row.decision_needed || '').toLowerCase() === 'yes';
+        if (!needsDecision) return;
+        pushMapEntry(needsByClaim, claimId, {
+          id: `decision-${claimId}-${idx}`,
+          claimId,
+          title: toCellText(row.recommendation || 'decision pending'),
+          source: 'governance_decision',
+          detail: toCellText(row.decision_status || ''),
+        });
+      });
+
+      const diagrams = {};
+      TRIPLE_VIEW_SPECS.forEach(spec => {
+        const model = tripleDiagramModel.get(spec.id);
+        if (!model) {
+          diagrams[spec.id] = {
+            id: spec.id,
+            label: spec.label,
+            type: 'unknown',
+            nodes: [],
+            edges: [],
+          };
+          return;
+        }
+
+        const aliasMap = new Map();
+        activeClaims.forEach(claim => {
+          aliasMap.set(claim.id, mapClaimToTripleAliases(claim, model));
+        });
+
+        const nodes = model.nodes.map(node => {
+          const relatedClaims = activeClaims
+            .filter(claim => (aliasMap.get(claim.id) || new Set()).has(node.id))
+            .map(makeClaimRef)
+            .filter(Boolean);
+          const claimIds = relatedClaims.map(entry => entry.id);
+          const conflicts = dedupeById(claimIds.flatMap(claimId => conflictsByClaim.get(claimId) || []));
+          const needsStructure = dedupeById(claimIds.flatMap(claimId => needsByClaim.get(claimId) || []));
+          const evidenceVals = claimIds
+            .map(claimId => evidenceByClaim.get(claimId))
+            .filter(value => typeof value === 'number' && !Number.isNaN(value));
+          const evidenceStrength = evidenceVals.length
+            ? Number((evidenceVals.reduce((acc, value) => acc + value, 0) / evidenceVals.length).toFixed(3))
+            : null;
+
+          return {
+            ...node,
+            __anno: {
+              epoch: latestEpoch,
+              relatedClaims,
+              conflicts,
+              needsStructure,
+              evidenceStrength,
+            },
+          };
+        });
+
+        const edges = model.edges.map(edge => {
+          const supportingClaims = activeClaims
+            .filter(claim => claimSupportsTripleEdge(claim, edge, aliasMap))
+            .map(makeClaimRef)
+            .filter(Boolean);
+          const supportingIds = supportingClaims.map(entry => entry.id);
+          const conflicts = dedupeById(supportingIds.flatMap(claimId => conflictsByClaim.get(claimId) || []));
+          let openQuestions = dedupeById(
+            supportingIds.flatMap(claimId => {
+              const claim = claimMap.get(claimId);
+              const out = [];
+              if (claim && claim.type === 'open_question') {
+                out.push({
+                  id: `oq-${claimId}`,
+                  claimId,
+                  title: `${claimId} remains open`,
+                  source: 'claim_type',
+                  detail: claim.subject || '',
+                });
+              }
+              (needsByClaim.get(claimId) || []).forEach(entry => {
+                out.push({
+                  id: `need-as-question-${entry.id}`,
+                  claimId,
+                  title: entry.title,
+                  source: entry.source,
+                  detail: entry.detail,
+                });
+              });
+              return out;
+            })
+          );
+          if (!supportingClaims.length) {
+            openQuestions = openQuestions.concat([{
+              id: `edge-gap-${spec.id}-${edge.id}`,
+              claimId: '',
+              title: 'No supporting claim mapped in current filters / epoch',
+              source: 'gap',
+              detail: '',
+            }]);
+          }
+          openQuestions = dedupeById(openQuestions);
+          const evidenceVals = supportingIds
+            .map(claimId => evidenceByClaim.get(claimId))
+            .filter(value => typeof value === 'number' && !Number.isNaN(value));
+          const evidenceStrength = evidenceVals.length
+            ? Number((evidenceVals.reduce((acc, value) => acc + value, 0) / evidenceVals.length).toFixed(3))
+            : null;
+
+          return {
+            ...edge,
+            __anno: {
+              epoch: latestEpoch,
+              supportingClaims,
+              conflicts,
+              openQuestions,
+              evidenceStrength,
+            },
+          };
+        });
+
+        diagrams[spec.id] = {
+          id: spec.id,
+          label: spec.label,
+          type: model.type,
+          nodes,
+          edges,
+        };
+      });
+
+      return {
+        latestEpoch,
+        diagrams,
+      };
+    }
+
+    function refreshTripleViewModel() {
+      const latestEpoch = getLatestEpoch({
+        governanceAgenda,
+      }) || normalizeSpace(governanceLoadedAt || '');
+      tripleLatestEpoch = latestEpoch || '';
+      tripleViewModel = buildViewModelForEpoch({
+        claims: allClaims,
+        filteredClaims: applyFilters(),
+        governanceAgenda,
+      }, tripleLatestEpoch);
+
+      updateTripleEpochChip(tripleViewModel);
+      console.assert(Boolean(tripleLatestEpoch), 'triple annotations: latestEpoch should exist');
+      console.assert(Boolean(tripleViewModel && tripleViewModel.diagrams), 'triple annotations: view-model should exist');
+      TRIPLE_VIEW_SPECS.forEach(spec => {
+        const diagram = tripleViewModel && tripleViewModel.diagrams ? tripleViewModel.diagrams[spec.id] : null;
+        if (!diagram) return;
+        console.assert(diagram.nodes.every(node => !!node.__anno), `triple annotations: node __anno missing for ${spec.id}`);
+        console.assert(diagram.edges.every(edge => !!edge.__anno), `triple annotations: edge __anno missing for ${spec.id}`);
+      });
+      return tripleViewModel;
+    }
+
+    function updateTripleEpochChip(vm) {
+      if (!els.tripleEpochChip) return;
+      const epochPolicy = governanceAgenda
+        && governanceAgenda.checkpoints
+        && governanceAgenda.checkpoints.architecture_epoch_applicability
+        && governanceAgenda.checkpoints.architecture_epoch_applicability.policy
+        ? governanceAgenda.checkpoints.architecture_epoch_applicability.policy.current_architecture_epoch
+        : '';
+      const token = normalizeSpace(epochPolicy || (vm && vm.latestEpoch) || '--');
+      els.tripleEpochChip.textContent = `epoch: ${token}`;
+      els.tripleEpochChip.title = vm && vm.latestEpoch ? `latest snapshot: ${vm.latestEpoch}` : '';
+    }
+
     function getTripleControlButton(kind, specId) {
       return document.querySelector(`[data-triple-${kind}="${specId}"]`);
     }
@@ -3654,6 +4482,529 @@ END CONFLICT RESOLUTION`;
       }
     }
 
+    function tripleNodeCounts(anno) {
+      const claims = Array.isArray(anno && anno.relatedClaims) ? anno.relatedClaims.length : 0;
+      const conflicts = Array.isArray(anno && anno.conflicts) ? anno.conflicts.length : 0;
+      const needs = Array.isArray(anno && anno.needsStructure) ? anno.needsStructure.length : 0;
+      return { claims, conflicts, needs };
+    }
+
+    function tripleEdgeCounts(anno) {
+      const claims = Array.isArray(anno && anno.supportingClaims) ? anno.supportingClaims.length : 0;
+      const conflicts = Array.isArray(anno && anno.conflicts) ? anno.conflicts.length : 0;
+      const needs = Array.isArray(anno && anno.openQuestions) ? anno.openQuestions.length : 0;
+      return { claims, conflicts, needs };
+    }
+
+    function createSvgEl(tag, attrs) {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      Object.entries(attrs || {}).forEach(([key, value]) => {
+        if (value === undefined || value === null) return;
+        el.setAttribute(key, String(value));
+      });
+      return el;
+    }
+
+    function clearTripleTooltipTimer() {
+      if (!tripleTooltipHideTimer) return;
+      clearTimeout(tripleTooltipHideTimer);
+      tripleTooltipHideTimer = null;
+    }
+
+    function hideTripleTooltip() {
+      clearTripleTooltipTimer();
+      if (!els.tripleTooltip) return;
+      els.tripleTooltip.style.display = 'none';
+      els.tripleTooltip.innerHTML = '';
+    }
+
+    function scheduleHideTripleTooltip() {
+      clearTripleTooltipTimer();
+      tripleTooltipHideTimer = setTimeout(() => {
+        hideTripleTooltip();
+      }, 120);
+    }
+
+    function positionTripleTooltip(event) {
+      if (!els.tripleTooltip || els.tripleTooltip.style.display === 'none') return;
+      const pad = 12;
+      const maxX = window.innerWidth - els.tripleTooltip.offsetWidth - pad;
+      const maxY = window.innerHeight - els.tripleTooltip.offsetHeight - pad;
+      const x = Math.max(pad, Math.min(event.clientX + 14, maxX));
+      const y = Math.max(pad, Math.min(event.clientY + 14, maxY));
+      els.tripleTooltip.style.left = `${x}px`;
+      els.tripleTooltip.style.top = `${y}px`;
+    }
+
+    function sliceTopItems(items, limit) {
+      return Array.isArray(items) ? items.slice(0, limit) : [];
+    }
+
+    function tooltipListHtml(items, emptyLabel) {
+      if (!items || !items.length) return `<div class="meta">${escapeHtml(emptyLabel)}</div>`;
+      return `<ul>${items.map(item => `<li>${escapeHtml(item.title || item.id || String(item))}</li>`).join('')}</ul>`;
+    }
+
+    function renderTripleTooltip(payload, event) {
+      if (!payload || !els.tripleTooltip) return;
+      const anno = payload.item && payload.item.__anno ? payload.item.__anno : {};
+      const counts = payload.kind === 'edge' ? tripleEdgeCounts(anno) : tripleNodeCounts(anno);
+      const epoch = normalizeSpace(anno.epoch || tripleLatestEpoch || '');
+      const claims = payload.kind === 'edge'
+        ? sliceTopItems(anno.supportingClaims || [], 5)
+        : sliceTopItems(anno.relatedClaims || [], 5);
+      const conflicts = sliceTopItems(anno.conflicts || [], 5);
+      const needs = payload.kind === 'edge'
+        ? sliceTopItems(anno.openQuestions || [], 5)
+        : sliceTopItems(anno.needsStructure || [], 5);
+
+      const title = payload.kind === 'edge'
+        ? `${payload.item.from} -> ${payload.item.to}${payload.item.label ? ` (${payload.item.label})` : ''}`
+        : `${payload.item.label || payload.item.id}`;
+      const kindLabel = payload.kind === 'edge' ? 'connection' : 'node';
+      const evidenceLabel = typeof anno.evidenceStrength === 'number'
+        ? `evidence ${anno.evidenceStrength.toFixed(3)}`
+        : 'evidence n/a';
+
+      els.tripleTooltip.innerHTML = `
+        <div class="title">${escapeHtml(title)}</div>
+        <div class="meta">${escapeHtml(kindLabel)} | epoch ${escapeHtml(epoch || 'n/a')}</div>
+        <div class="meta">claims ${counts.claims} • conflicts ${counts.conflicts} • needs ${counts.needs} • ${escapeHtml(evidenceLabel)}</div>
+        <div class="meta"><strong>Top claims</strong></div>
+        ${tooltipListHtml(claims, 'No mapped claims in latest epoch view.')}
+        <div class="meta"><strong>Top conflicts</strong></div>
+        ${tooltipListHtml(conflicts, 'No mapped conflicts.')}
+        <div class="meta"><strong>Top needs / gaps</strong></div>
+        ${tooltipListHtml(needs, 'No mapped needs.')}
+        <div class="actions">
+          <button type="button" data-triple-view-all="1">View all</button>
+        </div>
+      `;
+      const viewAll = els.tripleTooltip.querySelector('button[data-triple-view-all="1"]');
+      if (viewAll) {
+        viewAll.addEventListener('click', (evt) => {
+          evt.preventDefault();
+          evt.stopPropagation();
+          openTripleInspector(payload);
+          hideTripleTooltip();
+        });
+      }
+
+      els.tripleTooltip.style.display = 'block';
+      positionTripleTooltip(event);
+      els.tripleTooltip.addEventListener('mouseenter', clearTripleTooltipTimer, { once: true });
+      els.tripleTooltip.addEventListener('mouseleave', scheduleHideTripleTooltip, { once: true });
+    }
+
+    function renderTripleInspectorList(items, mode) {
+      const list = Array.isArray(items) ? items : [];
+      if (!list.length) {
+        return '<div class="inspector-empty">No items in this tab for the latest epoch view.</div>';
+      }
+      const html = list.map((entry, idx) => {
+        const stableId = normalizeSpace(entry.id || entry.claimId || `item-${idx}`).replace(/[^A-Za-z0-9_\-:.]/g, '-');
+        const claimId = normalizeClaimId(entry.claimId || entry.id || '');
+        let titleHtml = escapeHtml(entry.title || entry.id || String(entry));
+        if (mode === 'claims') {
+          if (claimId && claimMap.has(claimId)) {
+            titleHtml = `<a href="#" data-inspector-claim="${escapeHtml(claimId)}"><code>${escapeHtml(claimId)}</code> — ${escapeHtml(entry.title || claimId)}</a>`;
+          } else if (claimId) {
+            titleHtml = `<a href="#triple-claim-${escapeHtml(claimId)}"><code>${escapeHtml(claimId)}</code> — ${escapeHtml(entry.title || claimId)}</a>`;
+          }
+        } else if (claimId && claimMap.has(claimId)) {
+          titleHtml = `<a href="#" data-inspector-claim="${escapeHtml(claimId)}"><code>${escapeHtml(claimId)}</code> — ${escapeHtml(entry.title || claimId)}</a>`;
+        } else if (claimId) {
+          titleHtml = `<a href="#triple-claim-${escapeHtml(claimId)}"><code>${escapeHtml(claimId)}</code> — ${escapeHtml(entry.title || claimId)}</a>`;
+        }
+        const detail = normalizeSpace(entry.detail || '');
+        const source = normalizeSpace(entry.source || '');
+        const href = normalizeSpace(entry.href || '');
+        const hrefHtml = href ? `<div class="meta"><a href="${escapeHtml(href)}" target="_blank" rel="noopener">source</a></div>` : '';
+        return `
+          <li class="inspector-item" id="triple-${mode}-${stableId}">
+            <div>${titleHtml}</div>
+            ${detail ? `<div class="meta">${escapeHtml(detail)}</div>` : ''}
+            ${source ? `<div class="meta">source: ${escapeHtml(source)}</div>` : ''}
+            ${hrefHtml}
+          </li>
+        `;
+      }).join('');
+      return `<ul class="inspector-list">${html}</ul>`;
+    }
+
+    function closeTripleInspector() {
+      if (!els.detailContent) return;
+      const inspector = els.detailContent.querySelector('.triple-inspector');
+      if (!inspector) return;
+      if (selectedId && claimMap.has(selectedId)) {
+        selectClaim(selectedId);
+        return;
+      }
+      els.detailContent.innerHTML = '<div class="meta">Select a claim to see details.</div>';
+    }
+
+    function wireTripleInspectorTabs() {
+      if (!els.detailContent) return;
+      const tabs = Array.from(els.detailContent.querySelectorAll('[data-inspector-tab]'));
+      const panes = Array.from(els.detailContent.querySelectorAll('[data-inspector-pane]'));
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-inspector-tab');
+          tabs.forEach(other => other.classList.toggle('active', other === tab));
+          panes.forEach(pane => pane.classList.toggle('active', pane.getAttribute('data-inspector-pane') === tabId));
+        });
+      });
+      const closeBtn = els.detailContent.querySelector('.inspector-close');
+      if (closeBtn) closeBtn.addEventListener('click', () => closeTripleInspector());
+      els.detailContent.querySelectorAll('a[data-inspector-claim]').forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const id = link.getAttribute('data-inspector-claim');
+          if (id) selectClaim(id);
+        });
+      });
+    }
+
+    function openTripleInspector(payload) {
+      if (!payload || !payload.item || !payload.item.__anno || !els.detailContent) return;
+      const anno = payload.item.__anno;
+      const counts = payload.kind === 'edge' ? tripleEdgeCounts(anno) : tripleNodeCounts(anno);
+      const claims = payload.kind === 'edge' ? (anno.supportingClaims || []) : (anno.relatedClaims || []);
+      const conflicts = anno.conflicts || [];
+      const needs = payload.kind === 'edge' ? (anno.openQuestions || []) : (anno.needsStructure || []);
+      const epoch = normalizeSpace(anno.epoch || tripleLatestEpoch || '');
+      const title = payload.kind === 'edge'
+        ? `${payload.item.from} -> ${payload.item.to}${payload.item.label ? ` (${payload.item.label})` : ''}`
+        : (payload.item.label || payload.item.id);
+
+      const tabs = [
+        { id: 'claims', label: `Claims (${claims.length})`, items: claims, mode: 'claims', required: true },
+        { id: 'conflicts', label: `Conflicts (${conflicts.length})`, items: conflicts, mode: 'conflicts', required: conflicts.length > 0 },
+        { id: 'needs', label: `Needs / Gaps (${needs.length})`, items: needs, mode: 'needs', required: needs.length > 0 },
+      ].filter(tab => tab.required);
+
+      const firstTab = tabs[0] ? tabs[0].id : 'claims';
+      const tabsHtml = tabs.map(tab => `
+        <button type="button" data-inspector-tab="${tab.id}" class="${tab.id === firstTab ? 'active' : ''}">${escapeHtml(tab.label)}</button>
+      `).join('');
+      const panesHtml = tabs.map(tab => `
+        <div class="inspector-pane ${tab.id === firstTab ? 'active' : ''}" data-inspector-pane="${tab.id}">
+          ${renderTripleInspectorList(tab.items, tab.mode)}
+        </div>
+      `).join('');
+      const evidenceLabel = typeof anno.evidenceStrength === 'number'
+        ? anno.evidenceStrength.toFixed(3)
+        : 'n/a';
+
+      els.detailContent.innerHTML = `
+        <div class="triple-inspector">
+          <button type="button" class="inspector-close">Close Inspector</button>
+          <h2>Triple Inspector</h2>
+          <div class="meta">${escapeHtml(payload.specLabel || payload.specId)} • ${escapeHtml(payload.kind)} • epoch ${escapeHtml(epoch || 'n/a')}</div>
+          <div><strong>${escapeHtml(title)}</strong></div>
+          <div class="meta">claims ${counts.claims} • conflicts ${counts.conflicts} • needs ${counts.needs} • evidence ${escapeHtml(evidenceLabel)}</div>
+          <div class="inspector-tabs">${tabsHtml}</div>
+          ${panesHtml}
+        </div>
+      `;
+      wireTripleInspectorTabs();
+      const detailPanel = document.getElementById('detailPanel');
+      if (detailPanel) detailPanel.scrollTop = 0;
+    }
+
+    function resolveTriplePayloadFromElement(target) {
+      if (!target || typeof target.closest !== 'function') return null;
+      const el = target.closest('[data-triple-key]');
+      if (!el) return null;
+      const key = el.getAttribute('data-triple-key');
+      if (!key) return null;
+      return tripleInteractiveIndex.get(key) || null;
+    }
+
+    function onTripleTargetEnter(event) {
+      const payload = resolveTriplePayloadFromElement(event.target);
+      if (!payload) return;
+      clearTripleTooltipTimer();
+      renderTripleTooltip(payload, event);
+    }
+
+    function onTripleTargetMove(event) {
+      if (!els.tripleTooltip || els.tripleTooltip.style.display === 'none') return;
+      positionTripleTooltip(event);
+    }
+
+    function onTripleTargetLeave() {
+      scheduleHideTripleTooltip();
+    }
+
+    function onTripleTargetClick(event) {
+      const payload = resolveTriplePayloadFromElement(event.target);
+      if (!payload) return;
+      event.preventDefault();
+      openTripleInspector(payload);
+    }
+
+    function onTripleTargetKeydown(event) {
+      if (event.key === 'Escape') {
+        hideTripleTooltip();
+        closeTripleInspector();
+        return;
+      }
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const payload = resolveTriplePayloadFromElement(event.target);
+      if (!payload) return;
+      event.preventDefault();
+      openTripleInspector(payload);
+    }
+
+    function registerTripleTarget(target, payload) {
+      if (!target || !payload) return;
+      const key = `${payload.specId}:${payload.kind}:${payload.item.id}`;
+      tripleInteractiveIndex.set(key, payload);
+      target.setAttribute('data-triple-interactive', '1');
+      target.setAttribute('data-triple-key', key);
+      target.classList.add('triple-target');
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '0');
+      target.setAttribute('role', 'button');
+      if (target.dataset.tripleBound === '1') return;
+      target.dataset.tripleBound = '1';
+      target.addEventListener('mouseenter', onTripleTargetEnter);
+      target.addEventListener('mousemove', onTripleTargetMove);
+      target.addEventListener('mouseleave', onTripleTargetLeave);
+      target.addEventListener('click', onTripleTargetClick);
+      target.addEventListener('keydown', onTripleTargetKeydown);
+    }
+
+    function clearTripleInteractiveForSpec(specId) {
+      const prefix = `${specId}:`;
+      Array.from(tripleInteractiveIndex.keys()).forEach(key => {
+        if (key.startsWith(prefix)) tripleInteractiveIndex.delete(key);
+      });
+    }
+
+    function clearTripleSvgAnnotations(svg) {
+      if (!svg) return;
+      svg.querySelectorAll('.triple-node-badges').forEach(node => node.remove());
+      svg.querySelectorAll('.triple-edge-marker').forEach(node => node.remove());
+      svg.querySelectorAll('.triple-edge-conflict').forEach(node => node.classList.remove('triple-edge-conflict'));
+      svg.querySelectorAll('.triple-edge-open').forEach(node => node.classList.remove('triple-edge-open'));
+      svg.querySelectorAll('[data-triple-key]').forEach(node => node.removeAttribute('data-triple-key'));
+      svg.querySelectorAll('[data-triple-interactive]').forEach(node => node.removeAttribute('data-triple-interactive'));
+    }
+
+    function addTripleNodeBadges(nodeElement, counts, isSequence) {
+      if (!nodeElement) return;
+      const claims = Number(counts.claims || 0);
+      const conflicts = Number(counts.conflicts || 0);
+      const needs = Number(counts.needs || 0);
+      if (claims <= 0 && conflicts <= 0 && needs <= 0) return;
+
+      const badges = createSvgEl('g', { class: 'triple-node-badges' });
+      const add = (x, y, count, cls, label) => {
+        if (count <= 0) return;
+        const circle = createSvgEl('circle', { cx: x, cy: y, r: 6, class: `triple-node-badge ${cls}` });
+        const text = createSvgEl('text', { x, y: y + 0.3, class: 'triple-node-badge-text' });
+        text.textContent = count > 99 ? '99+' : String(count);
+        const title = createSvgEl('title');
+        title.textContent = `${label}: ${count}`;
+        circle.appendChild(title);
+        badges.appendChild(circle);
+        badges.appendChild(text);
+      };
+
+      if (isSequence) {
+        const x = Number(nodeElement.getAttribute('x') || 0);
+        const y = Number(nodeElement.getAttribute('y') || 0);
+        const w = Number(nodeElement.getAttribute('width') || 0);
+        add(x + w - 8, y + 8, claims, 'claims', 'claims');
+        add(x + w - 22, y + 8, conflicts, 'conflicts', 'conflicts');
+        add(x + w - 36, y + 8, needs, 'needs', 'needs');
+        nodeElement.parentNode.appendChild(badges);
+        return;
+      }
+
+      const rect = nodeElement.querySelector('rect');
+      if (!rect) return;
+      const x = Number(rect.getAttribute('x') || 0);
+      const y = Number(rect.getAttribute('y') || 0);
+      const w = Number(rect.getAttribute('width') || 0);
+      add(x + w - 8, y + 8, claims, 'claims', 'claims');
+      add(x + w - 22, y + 8, conflicts, 'conflicts', 'conflicts');
+      add(x + w - 36, y + 8, needs, 'needs', 'needs');
+      nodeElement.appendChild(badges);
+    }
+
+    function addTripleEdgeMarker(svg, target, counts, isSequence) {
+      if (!svg || !target) return;
+      const conflicts = Number(counts.conflicts || 0);
+      const needs = Number(counts.needs || 0);
+      if (conflicts <= 0 && needs <= 0) return;
+
+      let x = 0;
+      let y = 0;
+      if (isSequence) {
+        const x1 = Number(target.getAttribute('x1') || 0);
+        const x2 = Number(target.getAttribute('x2') || 0);
+        const y1 = Number(target.getAttribute('y1') || 0);
+        x = (x1 + x2) / 2;
+        y = y1 - 8;
+      } else {
+        const len = typeof target.getTotalLength === 'function' ? target.getTotalLength() : 0;
+        if (!len) return;
+        const pt = target.getPointAtLength(len / 2);
+        x = pt.x;
+        y = pt.y - 9;
+      }
+
+      const marker = createSvgEl('g', { class: 'triple-edge-marker' });
+      if (conflicts > 0) {
+        marker.classList.add('conflicts');
+        const c = createSvgEl('circle', { cx: x - 8, cy: y, r: 6 });
+        const t = createSvgEl('text', { x: x - 8, y: y + 0.3 });
+        t.textContent = conflicts > 99 ? '99+' : String(conflicts);
+        marker.appendChild(c);
+        marker.appendChild(t);
+      }
+      if (needs > 0) {
+        marker.classList.add('questions');
+        const c = createSvgEl('circle', { cx: x + 8, cy: y, r: 6 });
+        const t = createSvgEl('text', { x: x + 8, y: y + 0.3 });
+        t.textContent = needs > 99 ? '99+' : String(needs);
+        marker.appendChild(c);
+        marker.appendChild(t);
+      }
+      svg.appendChild(marker);
+    }
+
+    function annotateFlowchartTriple(spec, svg, vmSpec) {
+      const nodesById = new Map();
+      svg.querySelectorAll('g.node[id^="flowchart-"]').forEach(nodeEl => {
+        const id = nodeEl.getAttribute('id') || '';
+        const match = id.match(/^flowchart-([A-Za-z0-9_]+)-\d+$/);
+        if (!match) return;
+        const alias = match[1];
+        if (!nodesById.has(alias)) nodesById.set(alias, []);
+        nodesById.get(alias).push(nodeEl);
+      });
+
+      vmSpec.nodes.forEach(node => {
+        const targets = nodesById.get(node.id) || [];
+        targets.forEach(target => {
+          addTripleNodeBadges(target, tripleNodeCounts(node.__anno), false);
+          registerTripleTarget(target, {
+            specId: spec.id,
+            specLabel: spec.label,
+            kind: 'node',
+            item: node,
+          });
+        });
+      });
+
+      const edgeElements = new Map();
+      svg.querySelectorAll('path[id^="L_"]').forEach(path => {
+        const id = path.getAttribute('id') || '';
+        const match = id.match(/^L_([A-Za-z0-9_]+)_([A-Za-z0-9_]+)_\d+$/);
+        if (!match) return;
+        const from = match[1];
+        const to = match[2];
+        const labelEl = svg.querySelector(`g.label[data-id="${escapeSelectorValue(id)}"] span.edgeLabel p`);
+        const label = normalizeEdgeLabel(labelEl ? labelEl.textContent : '');
+        const key = `${from}->${to}|${label}`;
+        if (!edgeElements.has(key)) edgeElements.set(key, []);
+        edgeElements.get(key).push(path);
+      });
+
+      vmSpec.edges.forEach(edge => {
+        const key = `${edge.from}->${edge.to}|${normalizeEdgeLabel(edge.label || '')}`;
+        let targets = edgeElements.get(key) || [];
+        if (!targets.length) {
+          const fallbackKey = `${edge.from}->${edge.to}|`;
+          targets = edgeElements.get(fallbackKey) || [];
+        }
+        const target = targets.shift();
+        if (!target) return;
+
+        const counts = tripleEdgeCounts(edge.__anno);
+        if (counts.conflicts > 0) target.classList.add('triple-edge-conflict');
+        if (counts.needs > 0) target.classList.add('triple-edge-open');
+        addTripleEdgeMarker(svg, target, counts, false);
+        registerTripleTarget(target, {
+          specId: spec.id,
+          specLabel: spec.label,
+          kind: 'edge',
+          item: edge,
+        });
+      });
+    }
+
+    function annotateSequenceTriple(spec, svg, vmSpec) {
+      const topActors = new Map();
+      svg.querySelectorAll('rect.actor.actor-top[name]').forEach(rect => {
+        const alias = rect.getAttribute('name');
+        if (!alias) return;
+        topActors.set(alias, rect);
+      });
+
+      vmSpec.nodes.forEach(node => {
+        const actor = topActors.get(node.id);
+        if (!actor) return;
+        addTripleNodeBadges(actor, tripleNodeCounts(node.__anno), true);
+        registerTripleTarget(actor, {
+          specId: spec.id,
+          specLabel: spec.label,
+          kind: 'node',
+          item: node,
+        });
+      });
+
+      const lines = Array.from(svg.querySelectorAll('line.messageLine0, line.messageLine1'));
+      const edgeCount = Math.min(lines.length, vmSpec.edges.length);
+      for (let idx = 0; idx < edgeCount; idx++) {
+        const edge = vmSpec.edges[idx];
+        const line = lines[idx];
+        if (!line || !edge) continue;
+        const counts = tripleEdgeCounts(edge.__anno);
+        if (counts.conflicts > 0) line.classList.add('triple-edge-conflict');
+        if (counts.needs > 0) line.classList.add('triple-edge-open');
+        addTripleEdgeMarker(svg, line, counts, true);
+        registerTripleTarget(line, {
+          specId: spec.id,
+          specLabel: spec.label,
+          kind: 'edge',
+          item: edge,
+        });
+      }
+    }
+
+    function applyTripleAnnotations(spec, container) {
+      if (!container) return;
+      const svg = container.querySelector('svg');
+      clearTripleInteractiveForSpec(spec.id);
+      if (!svg) return;
+      clearTripleSvgAnnotations(svg);
+      const vmSpec = tripleViewModel && tripleViewModel.diagrams ? tripleViewModel.diagrams[spec.id] : null;
+      if (!vmSpec) return;
+      if (vmSpec.type === 'sequence') {
+        annotateSequenceTriple(spec, svg, vmSpec);
+      } else {
+        annotateFlowchartTriple(spec, svg, vmSpec);
+      }
+    }
+
+    function applyTripleAnnotationsAll() {
+      TRIPLE_VIEW_SPECS.forEach(spec => {
+        const container = document.getElementById(spec.bodyId);
+        if (!container) return;
+        applyTripleAnnotations(spec, container);
+      });
+    }
+
+    function refreshTripleAnnotationsFromCurrentFilters() {
+      if (!tripleViewLoaded) return;
+      refreshTripleViewModel();
+      applyTripleAnnotationsAll();
+    }
+
     function attachTriplePanHandlers(spec, container) {
       if (!container || container.dataset.triplePanBound === '1') return;
       container.dataset.triplePanBound = '1';
@@ -3666,7 +5017,7 @@ END CONFLICT RESOLUTION`;
 
       container.addEventListener('mousedown', (event) => {
         if (event.button !== 0) return;
-        if (event.target && event.target.closest('button,a,input,textarea,select')) return;
+        if (event.target && event.target.closest('[data-triple-interactive="1"],button,a,input,textarea,select')) return;
         const state = tripleZoomState.get(spec.id);
         if (!state || !state.svg) return;
         dragging = true;
@@ -3742,6 +5093,7 @@ END CONFLICT RESOLUTION`;
       if (!svg) {
         container.classList.remove('zoomable', 'dragging');
         tripleZoomState.delete(spec.id);
+        clearTripleInteractiveForSpec(spec.id);
         setTripleControlState(spec, false, 'n/a');
         return;
       }
@@ -3775,6 +5127,7 @@ END CONFLICT RESOLUTION`;
       container.appendChild(pre);
       container.classList.remove('zoomable', 'dragging');
       tripleZoomState.delete(spec.id);
+      clearTripleInteractiveForSpec(spec.id);
       setTripleControlState(spec, false, 'src');
     }
 
@@ -3787,6 +5140,7 @@ END CONFLICT RESOLUTION`;
       container.appendChild(note);
       container.classList.remove('zoomable', 'dragging');
       tripleZoomState.delete(spec.id);
+      clearTripleInteractiveForSpec(spec.id);
       setTripleControlState(spec, false, 'err');
     }
 
@@ -3797,31 +5151,55 @@ END CONFLICT RESOLUTION`;
       setTripleControlState(spec, false, '...');
 
       const svgUrl = new URL(spec.svgPath, window.location.href).toString();
-      try {
-        const svgText = await fetchText(svgUrl);
-        if (!svgText.includes('<svg')) {
-          throw new Error('svg_content_missing');
+      const mmdUrl = new URL(spec.mmdPath, window.location.href).toString();
+      const [svgResult, mmdResult] = await Promise.allSettled([
+        fetchText(svgUrl),
+        fetchText(mmdUrl),
+      ]);
+
+      let mmdText = '';
+      if (mmdResult.status === 'fulfilled') {
+        mmdText = String(mmdResult.value || '');
+        try {
+          const parsedModel = parseTripleDiagramModel(spec, mmdText);
+          if (parsedModel) tripleDiagramModel.set(spec.id, parsedModel);
+          else tripleDiagramModel.delete(spec.id);
+        } catch (_) {
+          tripleDiagramModel.delete(spec.id);
         }
-        container.innerHTML = svgText;
+      } else {
+        tripleDiagramModel.delete(spec.id);
+      }
+
+      if (svgResult.status === 'fulfilled' && String(svgResult.value || '').includes('<svg')) {
+        container.innerHTML = svgResult.value;
         configureTripleSvg(spec, container);
         return { id: spec.id, mode: 'svg' };
-      } catch (svgErr) {
-        const mmdUrl = new URL(spec.mmdPath, window.location.href).toString();
-        try {
-          const mmdText = await fetchText(mmdUrl);
-          renderTripleSourceFallback(spec, container, mmdText, 'SVG not available');
-          return { id: spec.id, mode: 'mmd' };
-        } catch (mmdErr) {
-          renderTripleUnavailable(spec, container, String(mmdErr));
-          return { id: spec.id, mode: 'error' };
-        }
       }
+
+      if (mmdText) {
+        renderTripleSourceFallback(spec, container, mmdText, 'SVG not available');
+        return { id: spec.id, mode: 'mmd' };
+      }
+
+      const errText = svgResult.status === 'rejected'
+        ? String(svgResult.reason || 'svg load failed')
+        : (mmdResult.status === 'rejected' ? String(mmdResult.reason || 'mmd load failed') : 'unknown');
+      renderTripleUnavailable(spec, container, errText);
+      return { id: spec.id, mode: 'error' };
     }
 
     async function renderTripleView(forceReload) {
       if (!els.tripleViewWrap || !els.tripleStatus) return;
       if (tripleViewLoading) return;
-      if (tripleViewLoaded && !forceReload) return;
+      if (tripleViewLoaded && !forceReload) {
+        const vm = refreshTripleViewModel();
+        applyTripleAnnotationsAll();
+        els.tripleStatus.textContent = vm && vm.latestEpoch
+          ? `Triple-view diagrams loaded • epoch ${vm.latestEpoch}.`
+          : 'Triple-view diagrams loaded.';
+        return;
+      }
 
       tripleViewLoading = true;
       els.tripleStatus.textContent = 'Loading triple-view diagrams...';
@@ -3829,12 +5207,16 @@ END CONFLICT RESOLUTION`;
       const svgCount = results.filter(r => r.mode === 'svg').length;
       const mmdCount = results.filter(r => r.mode === 'mmd').length;
       const errorCount = results.filter(r => r.mode === 'error' || r.mode === 'missing-container').length;
+      const vm = refreshTripleViewModel();
+      applyTripleAnnotationsAll();
       const loadedAt = new Date().toLocaleTimeString();
       els.tripleStatus.textContent =
         `Loaded ${svgCount}/${TRIPLE_VIEW_SPECS.length} SVGs` +
         (mmdCount ? `, ${mmdCount} source fallbacks` : '') +
         (errorCount ? `, ${errorCount} errors` : '') +
-        ` at ${loadedAt}.`;
+        ` at ${loadedAt}` +
+        (vm && vm.latestEpoch ? ` • epoch ${vm.latestEpoch}` : '') +
+        '.';
       tripleViewLoaded = true;
       tripleViewLoading = false;
     }
@@ -4912,6 +6294,7 @@ END CONFLICT RESOLUTION`;
       if (els.mapWrap) els.mapWrap.style.display = 'none';
       if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'none';
       if (els.governanceWrap) els.governanceWrap.style.display = 'none';
+      hideTripleTooltip();
     }
 
     function setView(view) {
@@ -5052,10 +6435,10 @@ END CONFLICT RESOLUTION`;
 
     function wireEvents() {
       ['input', 'change'].forEach(evt => {
-        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
-        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
-        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
-        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); });
+        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
+        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
+        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
+        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
         els.includeDeps.addEventListener(evt, () => renderGraph());
       });
 
@@ -5068,6 +6451,7 @@ END CONFLICT RESOLUTION`;
         renderTable();
         renderGraph();
         renderMap();
+        refreshTripleAnnotationsFromCurrentFilters();
       });
 
       els.listViewBtn.addEventListener('click', () => setView('list'));
@@ -5091,10 +6475,16 @@ END CONFLICT RESOLUTION`;
         });
       }
       if (els.mapEpochOnly) {
-        els.mapEpochOnly.addEventListener('change', () => renderMap());
+        els.mapEpochOnly.addEventListener('change', () => {
+          renderMap();
+          refreshTripleAnnotationsFromCurrentFilters();
+        });
       }
       if (els.mapGovernanceOnly) {
-        els.mapGovernanceOnly.addEventListener('change', () => renderMap());
+        els.mapGovernanceOnly.addEventListener('change', () => {
+          renderMap();
+          refreshTripleAnnotationsFromCurrentFilters();
+        });
       }
       if (els.mapLens) {
         els.mapLens.addEventListener('change', () => renderMap());
@@ -5103,6 +6493,7 @@ END CONFLICT RESOLUTION`;
         els.govEpochOnly.addEventListener('change', () => {
           renderGovernance();
           renderMap();
+          refreshTripleAnnotationsFromCurrentFilters();
         });
       }
 
@@ -5132,6 +6523,11 @@ END CONFLICT RESOLUTION`;
           populateDocSelect(els.docSearch.value);
         });
       }
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        hideTripleTooltip();
+        closeTripleInspector();
+      });
     }
 
     async function loadConflicts() {
