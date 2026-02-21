@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-060
 
-Generated: `2026-02-21T14:26:55.385584Z`
+Generated: `2026-02-21T15:24:34.194239Z`
 Cycle: `2026-02-21`
 
 ## Claim Description
@@ -13,15 +13,15 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 ## Structural Pressure Signals
 
-- Recommendation: `escalate_architecture_decision` (consider_new_structure=true)
+- Recommendation: `mandatory_decision_checkpoint` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
-- Conflict ratio: 0.885
-- Overall confidence: 0.706
+- Conflict ratio: 0.875
+- Overall confidence: 0.709
 
 ## Evidence Mix and Why It Looks This Way
 
-- Direction counts: supports=87, weakens=69, mixed=4, unknown=0.
-- Experimental mix: supports=78, weakens=69, mixed=0, unknown=0.
+- Direction counts: supports=99, weakens=77, mixed=4, unknown=0.
+- Experimental mix: supports=90, weakens=77, mixed=0, unknown=0.
 - Literature mix: supports=9, weakens=0, mixed=4, unknown=0.
 - Direction narrative: Evidence is directionally split between support and weakening, which indicates either claim over-breadth or hidden context dependence.
 - Source narrative: Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions.
@@ -30,22 +30,22 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 | alternative | confidence_estimate | current_findings | next_pull_focus |
 |---|---:|---|---|
-| commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures. | 0.551 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
-| commitment / dual error channels pre post commit is over-scoped and should be narrowed or split. | 0.427 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
-| A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation. | 0.427 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
+| commitment / dual error channels pre post commit is broadly correct, but failures are boundary-condition failures. | 0.557 | Supporting evidence dominates enough to keep the core mechanism plausible. | Target stress regimes where failures cluster and test whether boundary constraints recover stability.; Pull replication papers that test similar mechanisms under distribution shift. |
+| commitment / dual error channels pre post commit is over-scoped and should be narrowed or split. | 0.424 | Weakening evidence indicates at least one sub-regime where the current claim phrasing breaks. | Extract disconfirming sources and isolate the exact violated assumption.; Run claim-splitting experiments with explicit sub-claim tags in manifests. |
+| A hybrid architecture is needed: keep the core of commitment / dual error channels pre post commit but add explicit gating or interface separation. | 0.424 | Mixed evidence and conflict patterns suggest partial validity with missing structural guardrails. | Evaluate an ablation that isolates the proposed guardrail/interface addition.; Collect one adjacent-domain source that uses a similar split architecture. |
 
 ## Source Wording vs REE Translation
 
 | timestamp | source | direction | confidence | evidence wording (preserved) | REE translation |
 |---|---|---|---:|---|---|
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed47_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed29_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed29_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed11_single_error_stream_toyenv_internal_minimal` in `commit_dual_error_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_commit-dual-error-channels_seed11_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal` in `claim_probe_mech_060` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
-| `2026-02-21T13:01:42Z` | Run-pack `2026-02-21T130142Z_claim-probe-mech-060_seed47_pre_post_split_streams_toyenv_internal_minimal` in `claim_probe_mech_060` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:14:42Z` | Run-pack `2026-02-21T151442Z_commit-dual-error-channels_seed71_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:14:42Z` | Run-pack `2026-02-21T151442Z_commit-dual-error-channels_seed53_pre_post_split_streams_toyenv_internal_minimal` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:14:42Z` | Run-pack `2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal` in `claim_probe_mech_060` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:14:42Z` | Run-pack `2026-02-21T151442Z_claim-probe-mech-060_seed53_pre_post_split_streams_toyenv_internal_minimal` in `claim_probe_mech_060` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:12:23Z` | Run-pack `2026-02-21T151223Z_commit-dual-error-channels_seed29_single_error_stream` in `commit_dual_error_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-21T15:12:23Z` | Run-pack `2026-02-21T151223Z_commit-dual-error-channels_seed29_pre_post_split_streams` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
+| `2026-02-21T15:12:23Z` | Run-pack `2026-02-21T151223Z_commit-dual-error-channels_seed11_single_error_stream` in `commit_dual_error_channels` | `weakens` | 0.75 | FAIL with weakening direction | In REE terms, this is negative pressure on `commitment / dual error channels pre post commit` and suggests the claim is likely too strong or missing a key gating variable. |
+| `2026-02-21T15:12:23Z` | Run-pack `2026-02-21T151223Z_commit-dual-error-channels_seed11_pre_post_split_streams` in `commit_dual_error_channels` | `supports` | 0.75 | PASS with supporting direction | In REE terms, this is positive pressure on `commitment / dual error channels pre post commit` and supports keeping the mechanism, with tighter boundary conditions where failures recur. |
 
 ## Left-Field Suggestions
 

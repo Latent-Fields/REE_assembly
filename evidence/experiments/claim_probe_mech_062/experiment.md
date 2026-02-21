@@ -26,17 +26,17 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `2026-02-21T130142Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal` at `2026-02-21T13:01:42Z` signatures: q016:tri_loop_alignment_break
-- `2026-02-21T130142Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal` at `2026-02-21T13:01:42Z` signatures: q016:tri_loop_alignment_break, q016:tri_loop_override_spike
-- `2026-02-21T130142Z_claim-probe-mech-062_seed11_weighted_merge_toyenv_internal_minimal` at `2026-02-21T13:01:42Z` signatures: q016:tri_loop_alignment_break
+- `2026-02-21T150649Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: q016:tri_loop_alignment_break
+- `2026-02-21T150649Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: q016:tri_loop_alignment_break, q016:tri_loop_override_spike
+- `2026-02-21T150649Z_claim-probe-mech-062_seed11_weighted_merge_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: q016:tri_loop_alignment_break
 
 Recurring signatures:
-- `q016:tri_loop_alignment_break` occurred in 9 FAIL run(s); latest `2026-02-21T130142Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`
-- `q016:tri_loop_override_spike` occurred in 2 FAIL run(s); latest `2026-02-21T130142Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`
+- `q016:tri_loop_alignment_break` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`
+- `q016:tri_loop_override_spike` occurred in 3 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`
 - `q016:tri_loop_conflict_spike` occurred in 1 FAIL run(s); latest `2026-02-17T225311Z_claim-probe-mech-062_seed89_weighted_merge_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `q016:tri_loop_alignment_break` (9 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`).
-- [ ] Investigate signature `q016:tri_loop_override_spike` (2 FAIL run(s), latest `2026-02-21T130142Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_alignment_break` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`).
+- [ ] Investigate signature `q016:tri_loop_override_spike` (3 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`).
 - [ ] Investigate signature `q016:tri_loop_conflict_spike` (1 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-062_seed89_weighted_merge_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

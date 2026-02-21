@@ -1213,7 +1213,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--adjudication-cascade-statuses",
-        default="applied",
+        default="approved,applied",
         help="Comma-separated decision statuses eligible for adjudication cascade application.",
     )
     parser.add_argument(

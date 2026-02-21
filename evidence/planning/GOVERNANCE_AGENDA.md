@@ -1,14 +1,14 @@
 # Governance Agenda
 
-Generated: `2026-02-21T14:26:55.517620Z`
+Generated: `2026-02-21T15:24:34.344265Z`
 
 ## Cycle Status
 
 | step | status | command |
 |---|---|---|
 | `task_inbox_sync` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/sync_task_inbox.py` |
-| `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py` |
-| `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied` |
+| `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py --check-unprocessed` |
+| `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses approved,applied` |
 | `evidence_build` | `ok` | `/opt/local/bin/python3 evidence/experiments/scripts/build_experiment_indexes.py` |
 | `structure_review` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_structure_review_dossiers.py` |
 | `human_decision_briefs` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_human_decision_briefs.py` |
@@ -42,14 +42,14 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); conflict_types=directional
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_types=directional, mixed_evidence
 - `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`); conflict_types=directional, mixed_evidence
-3. Architecture-Epoch Applicability: enabled=True; considered=1131; applicable=746; stale=385; claims_with_stale=25.
+3. Architecture-Epoch Applicability: enabled=True; considered=1249; applicable=864; stale=385; claims_with_stale=25.
 - context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=81; stale_ratio=0.506
-- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`) stale_entries=67; stale_ratio=0.447
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`) stale_entries=66; stale_ratio=0.455
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=51; stale_ratio=0.405
-- `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`) stale_entries=38; stale_ratio=0.365
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`) stale_entries=28; stale_ratio=0.255
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=81; stale_ratio=0.45
+- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`) stale_entries=67; stale_ratio=0.394
+- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`) stale_entries=66; stale_ratio=0.4
+- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=51; stale_ratio=0.349
+- `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`) stale_entries=38; stale_ratio=0.33
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`) stale_entries=28; stale_ratio=0.222
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`) stale_entries=7; stale_ratio=0.438
 - `ARC-018` (architecture commitment; hippocampus / rollout viability mapping; see `docs/architecture/hippocampal_systems.md#arc-018`) stale_entries=5; stale_ratio=0.333
 - `MECH-033` (mechanism hypothesis; hippocampus / kernel chaining interface; see `docs/architecture/hippocampal_systems.md#mech-033`) stale_entries=5; stale_ratio=0.312
@@ -70,10 +70,10 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`
 7. Architecture Structure: 6 consider-new-structure item(s), 27 total register item(s).
 - context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`
-- backlog mode guards: saturation_holds=1, escalation_required=3
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); conflict_ratio=0.885; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_ratio=0.881; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); conflict_ratio=0.862; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- backlog mode guards: saturation_holds=0, escalation_required=3
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); conflict_ratio=0.875; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_ratio=0.871; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); conflict_ratio=0.848; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); conflict_ratio=0.769; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`); conflict_ratio=0.727; trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
 - `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); conflict_ratio=0.727; trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
@@ -88,9 +88,9 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.308
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.318
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.327
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.301
+- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.310
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.316
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.285
 11. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`

@@ -1,0 +1,30 @@
+# Experiment Run Summary
+
+## Scenario
+- claim_id: `MECH-060`
+- experiment_type: `commit_dual_error_channels`
+- condition: `single_error_stream`
+- run_id: `2026-02-21T151223Z_commit-dual-error-channels_seed29_single_error_stream`
+- timestamp_utc: `2026-02-21T15:12:23Z`
+- seed: `29`
+- seed_cohort: `11`, `29`
+
+## Outcome
+- status: **FAIL**
+- evidence_direction: `weakens`
+
+## Key Metrics
+- pre_commit_error_signal_to_noise: 1.357466
+- post_commit_error_attribution_gain: 0.154444
+- cross_channel_leakage_rate: 0.236359
+- commitment_reversal_rate: 0.151960
+
+## PASS/FAIL Thresholds
+- `pre_commit_error_signal_to_noise >= 1.8` (observed: `1.357466`)
+- `post_commit_error_attribution_gain >= 0.3` (observed: `0.154444`)
+- `cross_channel_leakage_rate <= 0.15` (observed: `0.236359`)
+- `commitment_reversal_rate <= 0.1` (observed: `0.151960`)
+
+## Interpretation
+- threshold logic is explicit above for REE_assembly auditability.
+- proposed evidence_direction for this run: `weakens`.

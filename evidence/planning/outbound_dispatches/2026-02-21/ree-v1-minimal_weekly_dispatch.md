@@ -1,6 +1,6 @@
 # Weekly Dispatch - ree-v1-minimal
 
-Generated: `2026-02-21T13:01:54.607462Z`
+Generated: `2026-02-21T15:24:37.871161Z`
 
 ## Context
 
@@ -13,8 +13,8 @@ Generated: `2026-02-21T13:01:54.607462Z`
 
 ## Proposals
 
-| proposal_id | claim_id | priority | experiment_type | objective | acceptance_checks |
-| --- | --- | --- | --- | --- | --- |
+| proposal_id | claim_id | priority | experiment_type | dispatch_mode | decision_deadline_utc | objective | acceptance_checks |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Copy/Paste Prompt
 
@@ -33,7 +33,7 @@ Epoch tagging requirements:
 - Keep `timestamp_utc` aligned with the current epoch window (`>= 2026-02-15T15:31:31Z`).
 
 Acceptance checks per proposal:
-- At least 2 additional runs with distinct seeds.
+- At least 2 additional runs with distinct seeds unless stricter pair checks are specified in proposal acceptance checks.
 - Experiment Pack validates against v1 schema.
 - Each emitted manifest includes `architecture_epoch=ree_hybrid_guardrails_v1`.
 - Result links to claim_ids_tested and updates matrix direction counts.

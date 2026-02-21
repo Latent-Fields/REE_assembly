@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "jepa_uncertainty_channels",
+  "run_id": "2026-02-21T151223Z_jepa-uncertainty-channels_seed11_explicit_uncertainty_head",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-21T15:12:23Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "8654ce36691d62bf774cf67617811d5a3cc245ca",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v1-bridging-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "adapter_signals_path": "jepa_adapter_signals.v1.json"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": false,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true,
+    "jepa_adapter_signal_emission": true
+  },
+  "environment": {
+    "env_id": "ree.bridging.qualification",
+    "env_version": "bridging/v1",
+    "dynamics_hash": "5dc9a8f4c6d1",
+    "reward_hash": "5e1ed7915bd4",
+    "observation_hash": "5241bd4521e4",
+    "config_hash": "b27153aeb6f9",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "jepa_uncertainty_channels",
+    "condition": "explicit_uncertainty_head",
+    "seed": 11,
+    "seed_cohort": [
+      11,
+      29
+    ],
+    "config_hash": "68c000f13132"
+  },
+  "failure_signatures": []
+}

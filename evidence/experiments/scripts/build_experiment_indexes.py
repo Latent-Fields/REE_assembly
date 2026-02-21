@@ -29,7 +29,7 @@ import argparse
 import json
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable
 
@@ -1242,6 +1242,16 @@ def _default_planning_criteria() -> dict[str, Any]:
             "escalation_min_experimental_entries": 24,
             "escalation_min_recurring_signatures": 2,
             "escalation_min_max_signature_count": 8,
+            "mandatory_decision_conflict_ratio": 0.80,
+            "mandatory_decision_min_fresh_batches": 2,
+            "mandatory_decision_recent_window": 24,
+            "mandatory_decision_deadline_hours": 72,
+            "atomic_split_conflict_ratio": 0.70,
+            "atomic_split_min_mixed_entries": 1,
+            "atomic_split_min_recurring_signatures": 2,
+            "discriminative_pair_conflict_ratio": 0.55,
+            "discriminative_pair_min_shared_seeds": 2,
+            "literature_min_disconfirming_entries": 1,
         },
         "model_adjudication": {
             "external_precedence_enabled": True,
@@ -1930,7 +1940,9 @@ def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
     entries_total = int(signals.get("entries_total", 0))
     # Lower rank is more urgent.
     # 0: architecture-pressure conflict triage, 1: active conflicts, 2+: evidence-coverage gaps.
-    if "escalate_architecture_decision" in reasons:
+    if "mandatory_decision_checkpoint" in reasons:
+        tier = 0
+    elif "escalate_architecture_decision" in reasons:
         tier = 0
     elif "anti_lock_in_review_required" in reasons or "external_precedence_pressure" in reasons:
         tier = 0
@@ -1949,6 +1961,7 @@ def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
 
 def _priority_from_reasons(reasons: list[str]) -> str:
     high_markers = {
+        "mandatory_decision_checkpoint",
         "escalate_architecture_decision",
         "directional_conflict_alert",
         "active_conflict",
@@ -1956,6 +1969,7 @@ def _priority_from_reasons(reasons: list[str]) -> str:
         "consider_new_structure",
         "external_precedence_pressure",
         "anti_lock_in_review_required",
+        "atomic_split_recommended",
     }
     medium_markers = {
         "low_overall_confidence",
@@ -2064,6 +2078,36 @@ def _write_planning_outputs(
     escalation_min_signature_count = max(
         1, int(thresholds.get("escalation_min_max_signature_count", 8))
     )
+    mandatory_decision_conflict_ratio = float(
+        thresholds.get("mandatory_decision_conflict_ratio", 0.80)
+    )
+    mandatory_decision_min_fresh_batches = max(
+        1, int(thresholds.get("mandatory_decision_min_fresh_batches", 2))
+    )
+    mandatory_decision_recent_window = max(
+        1, int(thresholds.get("mandatory_decision_recent_window", 24))
+    )
+    mandatory_decision_deadline_hours = max(
+        1, int(thresholds.get("mandatory_decision_deadline_hours", 72))
+    )
+    atomic_split_conflict_ratio = float(
+        thresholds.get("atomic_split_conflict_ratio", 0.70)
+    )
+    atomic_split_min_mixed_entries = max(
+        1, int(thresholds.get("atomic_split_min_mixed_entries", 1))
+    )
+    atomic_split_min_recurring_signatures = max(
+        1, int(thresholds.get("atomic_split_min_recurring_signatures", 2))
+    )
+    discriminative_pair_conflict_ratio = float(
+        thresholds.get("discriminative_pair_conflict_ratio", 0.55)
+    )
+    discriminative_pair_min_shared_seeds = max(
+        2, int(thresholds.get("discriminative_pair_min_shared_seeds", 2))
+    )
+    literature_min_disconfirming_entries = max(
+        1, int(thresholds.get("literature_min_disconfirming_entries", 1))
+    )
 
     default_exp_repo = str(routing.get("experimental_default_repo", "ree-v2"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
@@ -2107,6 +2151,7 @@ def _write_planning_outputs(
     ]
     anti_lock_in_gate = adjudication.get("anti_lock_in_gate", {})
     anti_lock_in_enabled = bool(anti_lock_in_gate.get("enabled", True))
+    generated_at_dt = _parse_timestamp_only(generated_at)
 
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
     matrix_claims = matrix.get("claims", {})
@@ -2142,10 +2187,17 @@ def _write_planning_outputs(
         experimental_confidence = 0.0
         literature_confidence = 0.0
         confidence_delta_lit_minus_exp = 0.0
+        supports_count = 0
+        weakens_count = 0
+        mixed_count = 0
         external_precedence_candidate = False
         anti_lock_in_review_required = False
         saturation_guard_engaged = False
         escalate_architecture_decision = False
+        mandatory_decision_checkpoint = False
+        atomic_split_recommended = False
+        decision_deadline_utc = ""
+        recent_targeted_batches = 0
         saturation_signal_details: dict[str, Any] = {}
 
         signature_counts: Counter[str] = Counter()
@@ -2183,6 +2235,26 @@ def _write_planning_outputs(
             if not sigs:
                 sigs = {"__none__"}
             unique_signature_sets.add(tuple(sorted(sigs)))
+        decision_recent_exp_entries = exp_entries[-mandatory_decision_recent_window:]
+        if not decision_recent_exp_entries:
+            decision_recent_exp_entries = exp_entries
+        batch_keys: set[str] = set()
+        for entry in decision_recent_exp_entries:
+            ts_raw = str(entry.get("timestamp_utc", "")).strip()
+            if ts_raw:
+                try:
+                    batch_dt = _parse_timestamp_only(ts_raw).replace(second=0, microsecond=0)
+                    batch_key = batch_dt.isoformat().replace("+00:00", "Z")
+                except ValueError:
+                    batch_key = ts_raw
+            else:
+                run_id = str(entry.get("run_id", "")).strip()
+                batch_key = run_id.split("_", 1)[0] if run_id else ""
+            if batch_key:
+                batch_keys.add(batch_key)
+        recent_targeted_batches = len(batch_keys)
+        if recent_targeted_batches > 0:
+            signals["recent_targeted_batches"] = recent_targeted_batches
 
         lit_direction_counts: Counter[str] = Counter()
         for entry in claim_entries:
@@ -2224,7 +2296,11 @@ def _write_planning_outputs(
             experimental_confidence = float(claim_meta.get("experimental_confidence", 0.0))
             literature_confidence = float(claim_meta.get("literature_confidence", 0.0))
             confidence_delta_lit_minus_exp = literature_confidence - experimental_confidence
-            conflict_ratio = _direction_conflict_ratio(claim_meta.get("direction_counts", {}))
+            direction_counts = claim_meta.get("direction_counts", {})
+            supports_count = int(direction_counts.get("supports", 0))
+            weakens_count = int(direction_counts.get("weakens", 0))
+            mixed_count = int(direction_counts.get("mixed", 0))
+            conflict_ratio = _direction_conflict_ratio(direction_counts)
 
             signals.update(
                 {
@@ -2340,12 +2416,48 @@ def _write_planning_outputs(
             signals["escalation_required"] = True
             reasons.append("escalate_architecture_decision")
 
+        if (
+            conflict_ratio >= atomic_split_conflict_ratio
+            and supports_count > 0
+            and weakens_count > 0
+            and mixed_count >= atomic_split_min_mixed_entries
+            and len(recurring_signatures) >= atomic_split_min_recurring_signatures
+        ):
+            atomic_split_recommended = True
+            signals["atomic_split_recommended"] = True
+            reasons.append("atomic_split_recommended")
+
+        decision_status = str(decision_state.get("decision_status", "none")).strip().lower()
+        decision_recommendation = str(decision_state.get("recommendation", "")).strip()
+        decision_resolved = (
+            decision_status in {"approved", "applied"}
+            and decision_recommendation in allowed_conflict_outcomes
+        )
+        decision_unresolved = not decision_resolved
+        if (
+            conflict_ratio >= mandatory_decision_conflict_ratio
+            and recent_targeted_batches >= mandatory_decision_min_fresh_batches
+            and decision_unresolved
+        ):
+            mandatory_decision_checkpoint = True
+            decision_deadline_utc = (
+                generated_at_dt + timedelta(hours=mandatory_decision_deadline_hours)
+            ).isoformat().replace("+00:00", "Z")
+            signals["mandatory_decision_checkpoint"] = True
+            signals["decision_deadline_utc"] = decision_deadline_utc
+            signals["decision_required_outcomes"] = list(allowed_conflict_outcomes)
+            reasons.append("mandatory_decision_checkpoint")
+
         # Saturation guard prevents infinite re-dispatch loops for stale experimental probes.
         if saturation_guard_engaged and "experimental" in evidence_needed:
             evidence_needed.discard("experimental")
         # Escalation guard routes repeated-failure claims to architecture decisions before more routine reruns.
         if escalate_architecture_decision and "experimental" in evidence_needed:
             evidence_needed.discard("experimental")
+        # Mandatory decision checkpoint halts routine reruns until an explicit outcome is recorded.
+        if mandatory_decision_checkpoint:
+            evidence_needed.discard("experimental")
+            evidence_needed.discard("literature")
 
         if claim_meta is not None and (structure_signals or recurring_signatures):
             architecture_items.append(
@@ -2376,11 +2488,21 @@ def _write_planning_outputs(
                     "anti_lock_in_review_required": anti_lock_in_review_required,
                     "saturation_guard_engaged": saturation_guard_engaged,
                     "escalate_architecture_decision": escalate_architecture_decision,
+                    "mandatory_decision_checkpoint": mandatory_decision_checkpoint,
+                    "decision_deadline_utc": decision_deadline_utc,
+                    "decision_required_outcomes": (
+                        list(allowed_conflict_outcomes) if mandatory_decision_checkpoint else []
+                    ),
+                    "recent_targeted_batches": recent_targeted_batches,
+                    "atomic_split_recommended": atomic_split_recommended,
                     "saturation_signal_details": saturation_signal_details,
                     "recurring_failure_signatures": recurring_signatures[:5],
                     "trigger_signals": sorted(set(structure_signals)),
                     "consider_new_structure": consider_new_structure,
                     "recommendation": (
+                        "mandatory_decision_checkpoint"
+                        if mandatory_decision_checkpoint
+                        else
                         "escalate_architecture_decision"
                         if escalate_architecture_decision
                         else "consider_new_structure"
@@ -2441,10 +2563,24 @@ def _write_planning_outputs(
                 "Pause repetitive low-information reruns and require either a materially different "
                 "protocol variation or an architecture decision before new experimental dispatch."
             )
+        if "atomic_split_recommended" in reasons:
+            next_action = (
+                "Split this claim into atomic subclaims before broad reruns; then run one discriminative "
+                "support-vs-ablation pair per subclaim."
+            )
         if "escalate_architecture_decision" in reasons:
             next_action = (
                 "Escalate to architecture decision queue now (retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim) "
                 "and hold additional routine reruns until the decision is recorded."
+            )
+        if "mandatory_decision_checkpoint" in reasons:
+            deadline_note = f" by {decision_deadline_utc}" if decision_deadline_utc else ""
+            next_action = (
+                "Decision checkpoint required"
+                + deadline_note
+                + ": choose one outcome "
+                + "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns "
+                + "until the decision is recorded."
             )
 
         backlog_items.append(
@@ -2456,6 +2592,9 @@ def _write_planning_outputs(
                 "signals": signals,
                 "evidence_needed": sorted(evidence_needed),
                 "recommendation": (
+                    "mandatory_decision_checkpoint"
+                    if mandatory_decision_checkpoint
+                    else
                     "escalate_architecture_decision"
                     if escalate_architecture_decision
                     else "consider_new_structure"
@@ -2470,6 +2609,12 @@ def _write_planning_outputs(
                     "anti_lock_in_review_required": anti_lock_in_review_required,
                     "saturation_guard_engaged": saturation_guard_engaged,
                     "escalate_architecture_decision": escalate_architecture_decision,
+                    "mandatory_decision_checkpoint": mandatory_decision_checkpoint,
+                    "decision_deadline_utc": decision_deadline_utc,
+                    "decision_required_outcomes": (
+                        list(allowed_conflict_outcomes) if mandatory_decision_checkpoint else []
+                    ),
+                    "atomic_split_recommended": atomic_split_recommended,
                     "saturation_signal_details": saturation_signal_details,
                     "cascade_policy": {
                         "enabled": cascade_enabled,
@@ -2519,6 +2664,52 @@ def _write_planning_outputs(
         if "experimental" in needed:
             target_repo = exploratory_repo if conflict_ratio >= 0.7 else default_exp_repo
             exp_type = _suggest_experiment_type(claim_id, matrix)
+            discriminative_pair_required = (
+                conflict_ratio >= discriminative_pair_conflict_ratio
+                or "active_conflict" in reasons
+                or "directional_conflict_alert" in reasons
+                or "mandatory_decision_checkpoint" in reasons
+            )
+            objective = f"Reduce uncertainty for {claim_id} via targeted experiment runs."
+            if discriminative_pair_required:
+                objective = (
+                    f"Run a discriminative support-vs-ablation pair for {claim_id} "
+                    "with matched seeds and pre-registered thresholds."
+                )
+            if "mandatory_decision_checkpoint" in reasons:
+                objective = (
+                    f"Generate decision-grade discriminative evidence for {claim_id} before governance deadline."
+                )
+            acceptance_checks = [
+                "Experiment Pack validates against v1 schema.",
+                "Result links to claim_ids_tested and updates matrix direction counts.",
+            ]
+            if discriminative_pair_required:
+                acceptance_checks = [
+                    "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+                    f"Use at least {discriminative_pair_min_shared_seeds} matched seeds shared across both pair conditions.",
+                    "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+                    "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+                ] + acceptance_checks
+            else:
+                acceptance_checks.insert(0, "At least 2 additional runs with distinct seeds.")
+            if "atomic_split_recommended" in reasons:
+                acceptance_checks.append(
+                    "If conflicting behaviors persist, split the claim into atomic subclaims before requesting another broad rerun."
+                )
+            if "mandatory_decision_checkpoint" in reasons:
+                deadline = str(signals.get("decision_deadline_utc", "")).strip()
+                outcomes = signals.get("decision_required_outcomes", [])
+                outcomes_text = (
+                    "|".join(str(x) for x in outcomes if str(x).strip())
+                    if isinstance(outcomes, list)
+                    else "retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim"
+                )
+                deadline_suffix = f" by `{deadline}`" if deadline else ""
+                acceptance_checks.append(
+                    "Package outputs as decision-grade comparison" + deadline_suffix
+                    + f"; explicitly score outcomes `{outcomes_text}`."
+                )
             proposal_id = f"EXP-{proposal_counter:04d}"
             proposal_counter += 1
             proposals.append(
@@ -2529,25 +2720,53 @@ def _write_planning_outputs(
                     "proposal_type": "experimental",
                     "priority": item["priority"],
                     "target_repo": target_repo,
-                    "objective": f"Reduce uncertainty for {claim_id} via targeted experiment runs.",
+                    "objective": objective,
                     "suggested_experiment_type": exp_type,
+                    "dispatch_mode": "discriminative_pair" if discriminative_pair_required else "targeted_probe",
+                    "seed_policy": "matched_shared_seeds" if discriminative_pair_required else "distinct_seeds",
+                    "min_shared_seeds": discriminative_pair_min_shared_seeds
+                    if discriminative_pair_required
+                    else 0,
+                    "require_pre_registered_thresholds": bool(discriminative_pair_required),
+                    "exclude_broad_profile_sweeps": bool(discriminative_pair_required),
+                    "decision_deadline_utc": str(signals.get("decision_deadline_utc", "")).strip(),
+                    "decision_required_outcomes": (
+                        signals.get("decision_required_outcomes", [])
+                        if isinstance(signals.get("decision_required_outcomes", []), list)
+                        else []
+                    ),
                     "why_now": reasons,
                     "required_pack_contract": {
                         "manifest": ["claim_ids_tested", "evidence_class", "evidence_direction"],
                         "metrics": "stable numeric keys only",
-                        "summary": "include scenario and interpretation",
+                        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair",
+                        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
                     },
-                    "acceptance_checks": [
-                        "At least 2 additional runs with distinct seeds.",
-                        "Experiment Pack validates against v1 schema.",
-                        "Result links to claim_ids_tested and updates matrix direction counts.",
-                    ],
+                    "acceptance_checks": acceptance_checks,
                     "status": "proposed",
                 }
             )
 
         if "literature" in needed:
             lit_type = _suggest_literature_type(claim_id, matrix)
+            lit_objective = f"Improve literature grounding and confidence for {claim_id}."
+            if "mandatory_decision_checkpoint" in reasons:
+                lit_objective = (
+                    f"Produce decision-grade literature triangulation for {claim_id}, including disconfirming evidence."
+                )
+            lit_acceptance_checks = [
+                "At least 1 structured literature entry linked to claim_ids_tested.",
+                f"Include at least {literature_min_disconfirming_entries} disconfirming/mixed source(s) alongside supporting sources.",
+                "Confidence explicitly justified in confidence_rationale and confidence_components.",
+                "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+                "Preserve source wording, REE translation, and mapping caveat for each record.",
+            ]
+            if "mandatory_decision_checkpoint" in reasons:
+                deadline = str(signals.get("decision_deadline_utc", "")).strip()
+                deadline_suffix = f" by `{deadline}`" if deadline else ""
+                lit_acceptance_checks.append(
+                    "Complete adjudication-ready literature brief" + deadline_suffix + "."
+                )
             proposal_id = f"LIT-{proposal_counter:04d}"
             proposal_counter += 1
             proposals.append(
@@ -2558,8 +2777,11 @@ def _write_planning_outputs(
                     "proposal_type": "literature_review",
                     "priority": item["priority"],
                     "target_repo": literature_owner,
-                    "objective": f"Improve literature grounding and confidence for {claim_id}.",
+                    "objective": lit_objective,
                     "suggested_literature_type": lit_type,
+                    "disconfirming_evidence_required": literature_min_disconfirming_entries,
+                    "mapping_quality_weighting_required": True,
+                    "decision_deadline_utc": str(signals.get("decision_deadline_utc", "")).strip(),
                     "why_now": reasons,
                     "required_record_contract": {
                         "record": [
@@ -2568,14 +2790,22 @@ def _write_planning_outputs(
                             "evidence_direction",
                             "confidence",
                             "confidence_rationale",
+                            "mapping",
+                            "confidence_components",
                         ],
-                        "summary": "include caveats and mapping limits",
+                        "mapping_fields": [
+                            "mapping.source_claim_statement",
+                            "mapping.ree_translation",
+                            "mapping.mapping_caveat",
+                        ],
+                        "confidence_component_fields": [
+                            "confidence_components.source_quality",
+                            "confidence_components.mapping_fidelity",
+                            "confidence_components.transfer_risk",
+                        ],
+                        "summary": "include caveats, disconfirming evidence, and mapping limits",
                     },
-                    "acceptance_checks": [
-                        "At least 1 structured literature entry linked to claim_ids_tested.",
-                        "Confidence explicitly justified in confidence_rationale.",
-                        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-                    ],
+                    "acceptance_checks": lit_acceptance_checks,
                     "status": "proposed",
                 }
             )
@@ -2630,6 +2860,16 @@ def _write_planning_outputs(
             "escalation_min_experimental_entries": escalation_min_exp_entries,
             "escalation_min_recurring_signatures": escalation_min_recurring,
             "escalation_min_max_signature_count": escalation_min_signature_count,
+            "mandatory_decision_conflict_ratio": mandatory_decision_conflict_ratio,
+            "mandatory_decision_min_fresh_batches": mandatory_decision_min_fresh_batches,
+            "mandatory_decision_recent_window": mandatory_decision_recent_window,
+            "mandatory_decision_deadline_hours": mandatory_decision_deadline_hours,
+            "atomic_split_conflict_ratio": atomic_split_conflict_ratio,
+            "atomic_split_min_mixed_entries": atomic_split_min_mixed_entries,
+            "atomic_split_min_recurring_signatures": atomic_split_min_recurring_signatures,
+            "discriminative_pair_conflict_ratio": discriminative_pair_conflict_ratio,
+            "discriminative_pair_min_shared_seeds": discriminative_pair_min_shared_seeds,
+            "literature_min_disconfirming_entries": literature_min_disconfirming_entries,
         },
         "model_adjudication": {
             "external_precedence_enabled": external_precedence_enabled,
@@ -2740,6 +2980,21 @@ def _write_planning_outputs(
             if bool(item.get("escalate_architecture_decision", False)):
                 arch_lines.append(
                     "  - escalation_required: yes; route directly to architecture decision checkpoint."
+                )
+            if bool(item.get("mandatory_decision_checkpoint", False)):
+                arch_lines.append(
+                    "  - mandatory_decision_checkpoint: yes; "
+                    + f"deadline={item.get('decision_deadline_utc', '') or 'n/a'}; "
+                    + "required_outcomes="
+                    + "|".join(
+                        str(x)
+                        for x in item.get("decision_required_outcomes", [])
+                        if str(x).strip()
+                    )
+                )
+            if bool(item.get("atomic_split_recommended", False)):
+                arch_lines.append(
+                    "  - atomic_split_recommended: yes; split into narrower subclaims before broad reruns."
                 )
 
     (planning_root / "ARCHITECTURE_GAP_REGISTER.md").write_text(

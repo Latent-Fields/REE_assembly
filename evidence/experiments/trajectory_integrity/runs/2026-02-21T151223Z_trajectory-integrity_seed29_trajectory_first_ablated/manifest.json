@@ -1,0 +1,56 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "trajectory_integrity",
+  "run_id": "2026-02-21T151223Z_trajectory-integrity_seed29_trajectory_first_ablated",
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-21T15:12:23Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "8654ce36691d62bf774cf67617811d5a3cc245ca",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v1-bridging-qualification",
+    "version": "dispatch.v1"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "producer_capabilities": {
+    "trajectory_integrity_channelized_bias": true,
+    "mech056_dispatch_metric_set": true,
+    "mech056_summary_escalation_trace": true,
+    "jepa_adapter_signal_emission": false
+  },
+  "environment": {
+    "env_id": "ree.bridging.qualification",
+    "env_version": "bridging/v1",
+    "dynamics_hash": "a55e09bf8203",
+    "reward_hash": "fac37be853d9",
+    "observation_hash": "ab75e9fc97a5",
+    "config_hash": "987375138350",
+    "tier": "qualification"
+  },
+  "scenario": {
+    "name": "trajectory_integrity",
+    "condition": "trajectory_first_ablated",
+    "seed": 29,
+    "seed_cohort": [
+      11,
+      29
+    ],
+    "config_hash": "b1ddf786deeb"
+  },
+  "failure_signatures": [
+    "threshold:ledger_edit_detected_count",
+    "threshold:explanation_policy_divergence_rate",
+    "threshold:domination_lock_in_events"
+  ]
+}

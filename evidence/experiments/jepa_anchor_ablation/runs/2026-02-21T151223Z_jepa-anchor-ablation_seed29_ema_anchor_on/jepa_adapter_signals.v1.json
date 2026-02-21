@@ -1,0 +1,28 @@
+{
+  "schema_version": "jepa_adapter_signals/v1",
+  "experiment_type": "jepa_anchor_ablation",
+  "run_id": "2026-02-21T151223Z_jepa-anchor-ablation_seed29_ema_anchor_on",
+  "adapter": {
+    "name": "ree_jepa_adapter",
+    "version": "v1+dispatch.v1"
+  },
+  "stream_presence": {
+    "z_t": true,
+    "z_hat": true,
+    "pe_latent": true,
+    "uncertainty_latent": false,
+    "trace_context_mask_ids": true,
+    "trace_action_token": false
+  },
+  "pe_latent_fields": [
+    "mean",
+    "p95"
+  ],
+  "uncertainty_estimator": "none",
+  "signal_metrics": {
+    "latent_prediction_error_mean": 0.11487467858054763,
+    "latent_prediction_error_p95": 0.22610343836381644,
+    "latent_residual_coverage_rate": 0.8926941301610338,
+    "precision_input_completeness_rate": 0.9798547317170396
+  }
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-21T14:26:55.222271Z`
+Generated: `2026-02-21T15:24:33.746558Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -13,11 +13,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-033` | directional | 7 | 4 | 0.727 | `exp_0014_20260215T213723404871Z` | 11 |
 | `MECH-040` | directional | 5 | 4 | 0.889 | `exp_0008_20260215T213710679868Z` | 9 |
 | `MECH-046` | directional | 5 | 4 | 0.889 | `exp_0009_20260215T213710739916Z` | 9 |
-| `MECH-056` | directional, source_disagreement | 17 | 58 | 0.453 | `2026-02-21T130142Z_trajectory-integrity_seed47_trajectory_first_enabled_toyenv_internal_minimal` | 75 |
+| `MECH-056` | directional, source_disagreement | 21 | 74 | 0.442 | `2026-02-21T151443Z_trajectory-integrity_seed71_trajectory_first_enabled_toyenv_internal_minimal` | 95 |
 | `MECH-057` | directional | 4 | 5 | 0.889 | `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal` | 9 |
-| `MECH-058` | directional, mixed_evidence | 46 | 32 | 0.821 | `2026-02-21T130142Z_jepa-anchor-ablation_seed47_ema_anchor_on_toyenv_internal_minimal` | 79 |
-| `MECH-059` | directional, mixed_evidence | 32 | 7 | 0.359 | `2026-02-21T130142Z_jepa-uncertainty-channels_seed47_explicit_uncertainty_head_toyenv_internal_minimal` | 83 |
-| `MECH-060` | directional, mixed_evidence | 46 | 32 | 0.821 | `2026-02-21T130142Z_commit-dual-error-channels_seed47_single_error_stream_toyenv_internal_minimal` | 79 |
+| `MECH-058` | directional, mixed_evidence | 58 | 40 | 0.816 | `2026-02-21T151442Z_jepa-anchor-ablation_seed71_ema_anchor_on_toyenv_internal_minimal` | 99 |
+| `MECH-059` | directional, mixed_evidence | 42 | 11 | 0.415 | `2026-02-21T151442Z_jepa-uncertainty-channels_seed71_explicit_uncertainty_head_toyenv_internal_minimal` | 103 |
+| `MECH-060` | directional, mixed_evidence | 58 | 40 | 0.816 | `2026-02-21T151442Z_commit-dual-error-channels_seed71_pre_post_split_streams_toyenv_internal_minimal` | 99 |
 | `MECH-061` | directional | 4 | 4 | 1 | `exp_0005_20260215T213657425679Z` | 8 |
 | `Q-001` | directional | 7 | 4 | 0.727 | `exp_0018_20260215T213711149303Z` | 12 |
 | `Q-002` | directional | 7 | 4 | 0.727 | `exp_0019_20260215T213711209047Z` | 12 |
@@ -30,7 +30,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-013` | directional | 7 | 4 | 0.727 | `exp_0016_20260215T213711036144Z` | 11 |
 | `Q-014` | directional | 7 | 4 | 0.727 | `exp_0017_20260215T213711090991Z` | 11 |
 | `Q-015` | directional | 5 | 4 | 0.889 | `exp_0010_20260215T213710798125Z` | 9 |
-| `Q-017` | directional, mixed_evidence | 47 | 34 | 0.84 | `2026-02-21T130142Z_control-axis-ablation_seed47_reduced_axis_toyenv_internal_minimal` | 82 |
+| `Q-017` | directional, mixed_evidence | 57 | 40 | 0.825 | `2026-02-21T151442Z_control-axis-ablation_seed71_full_axis_toyenv_internal_minimal` | 98 |
 
 ## Conflict Details
 
@@ -139,19 +139,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-056
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=17, weakens=58, conflict_ratio=0.453, overall_confidence=0.788
+- Evidence breakdown: supports=21, weakens=74, conflict_ratio=0.442, overall_confidence=0.795
 - Recent entries:
-  - `2026-02-21T13:01:42Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:12:23Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:43Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:43Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
-  - `ledger_editing` (56)
-  - `domination_lock_in` (40)
-  - `stop:ledger_edit_detected_count>0` (38)
-  - `explanation_policy_divergence` (30)
-  - `stop:domination_lock_in_events>0` (28)
+  - `ledger_editing` (70)
+  - `domination_lock_in` (48)
+  - `stop:ledger_edit_detected_count>0` (47)
+  - `explanation_policy_divergence` (36)
+  - `stop:domination_lock_in_events>0` (34)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -176,16 +176,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-058
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=46, weakens=32, conflict_ratio=0.821, overall_confidence=0.716
+- Evidence breakdown: supports=58, weakens=40, conflict_ratio=0.816, overall_confidence=0.72
 - Recent entries:
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_anchor_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_anchor_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-21T15:12:23Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_058` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_058` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `jepa_anchor_ablation` direction=`supports` confidence=0.75
 - Recurring failure signatures:
-  - `mech058:anchor_separation_collapse` (30)
-  - `mech058:ema_drift_under_shift` (8)
+  - `mech058:anchor_separation_collapse` (36)
+  - `mech058:ema_drift_under_shift` (10)
+  - `threshold:latent_prediction_error_mean` (2)
+  - `threshold:latent_prediction_error_p95` (2)
+  - `threshold:latent_rollout_consistency_rate` (2)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -193,16 +196,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-059
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=32, weakens=7, conflict_ratio=0.359, overall_confidence=0.773
+- Evidence breakdown: supports=42, weakens=11, conflict_ratio=0.415, overall_confidence=0.773
 - Recent entries:
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_uncertainty_channels` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_uncertainty_channels` direction=`mixed` confidence=0.5
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_uncertainty_channels` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_uncertainty_channels` direction=`mixed` confidence=0.5
-  - `2026-02-21T13:01:42Z` `experimental` `jepa_uncertainty_channels` direction=`supports` confidence=0.75
+  - `2026-02-21T15:12:23Z` `experimental` `jepa_uncertainty_channels` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_059` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_059` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `jepa_uncertainty_channels` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `jepa_uncertainty_channels` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
-  - `mech059:uncertainty_metric_gaming_detected` (38)
-  - `mech059:abstention_reliability_collapse` (32)
+  - `mech059:uncertainty_metric_gaming_detected` (44)
+  - `mech059:abstention_reliability_collapse` (36)
+  - `threshold:latent_prediction_error_mean` (2)
+  - `threshold:latent_uncertainty_calibration_error` (2)
+  - `threshold:precision_input_completeness_rate` (2)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -210,17 +216,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-060
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=46, weakens=32, conflict_ratio=0.821, overall_confidence=0.706
+- Evidence breakdown: supports=58, weakens=40, conflict_ratio=0.816, overall_confidence=0.709
 - Recent entries:
-  - `2026-02-21T13:01:42Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:12:23Z` `experimental` `commit_dual_error_channels` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_060` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_060` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `commit_dual_error_channels` direction=`supports` confidence=0.75
 - Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (30)
-  - `mech060:attribution_reliability_break` (30)
-  - `mech060:commitment_reversal_spike` (30)
+  - `mech060:postcommit_channel_contamination` (36)
+  - `mech060:attribution_reliability_break` (36)
+  - `mech060:commitment_reversal_spike` (36)
+  - `threshold:pre_commit_error_signal_to_noise` (2)
+  - `threshold:post_commit_error_attribution_gain` (2)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -433,17 +441,17 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-017
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=47, weakens=34, conflict_ratio=0.84, overall_confidence=0.724
+- Evidence breakdown: supports=57, weakens=40, conflict_ratio=0.825, overall_confidence=0.729
 - Recent entries:
-  - `2026-02-21T13:01:42Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
-  - `2026-02-21T13:01:42Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:06:50Z` `experimental` `control_axis_ablation` direction=`weakens` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_q_017` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_q_017` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
+  - `2026-02-21T15:14:42Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
 - Recurring failure signatures:
-  - `q017:control_axis_stability_drop` (30)
-  - `q017:control_axis_entropy_collapse` (30)
-  - `q017:control_axis_policy_loss_spike` (22)
+  - `q017:control_axis_stability_drop` (36)
+  - `q017:control_axis_entropy_collapse` (36)
+  - `q017:control_axis_policy_loss_spike` (26)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

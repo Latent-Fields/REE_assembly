@@ -53,18 +53,20 @@ def _format_dispatch_md(
     lines.append("")
     lines.append("## Proposals")
     lines.append("")
-    lines.append("| proposal_id | claim_id | priority | experiment_type | objective | acceptance_checks |")
-    lines.append("| --- | --- | --- | --- | --- | --- |")
+    lines.append("| proposal_id | claim_id | priority | experiment_type | dispatch_mode | decision_deadline_utc | objective | acceptance_checks |")
+    lines.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
     for item in items:
         pid = str(item.get("proposal_id", ""))
         claim = str(item.get("claim_id", ""))
         priority = str(item.get("priority", ""))
         exp_type = str(item.get("suggested_experiment_type", "n/a"))
+        dispatch_mode = str(item.get("dispatch_mode", "targeted_probe"))
+        decision_deadline = str(item.get("decision_deadline_utc", "")).strip() or "n/a"
         objective = str(item.get("objective", "")).replace("|", "\\|")
         checks = "; ".join(str(x) for x in item.get("acceptance_checks", []))
         checks = checks.replace("|", "\\|")
         lines.append(
-            f"| `{pid}` | `{claim}` | `{priority}` | `{exp_type}` | {objective} | {checks} |"
+            f"| `{pid}` | `{claim}` | `{priority}` | `{exp_type}` | `{dispatch_mode}` | `{decision_deadline}` | {objective} | {checks} |"
         )
     lines.append("")
     lines.append("## Copy/Paste Prompt")
@@ -81,7 +83,18 @@ def _format_dispatch_md(
         pid = str(item.get("proposal_id", ""))
         claim = str(item.get("claim_id", ""))
         exp_type = str(item.get("suggested_experiment_type", "n/a"))
-        lines.append(f"- `{pid}` / `{claim}` / `{exp_type}`")
+        dispatch_mode = str(item.get("dispatch_mode", "targeted_probe"))
+        deadline = str(item.get("decision_deadline_utc", "")).strip()
+        outcomes = item.get("decision_required_outcomes", [])
+        outcomes_text = ""
+        if isinstance(outcomes, list) and outcomes:
+            outcomes_text = "|".join(str(x) for x in outcomes if str(x).strip())
+        suffix_bits: list[str] = [f"mode={dispatch_mode}"]
+        if deadline:
+            suffix_bits.append(f"deadline={deadline}")
+        if outcomes_text:
+            suffix_bits.append(f"required_outcomes={outcomes_text}")
+        lines.append(f"- `{pid}` / `{claim}` / `{exp_type}` ({'; '.join(suffix_bits)})")
     lines.append("")
     lines.append("Contract to follow exactly:")
     lines.append(f"- `{contract_path}`")
@@ -93,7 +106,10 @@ def _format_dispatch_md(
             lines.append(f"- Keep `timestamp_utc` aligned with the current epoch window (`>= {epoch_start_utc}`).")
         lines.append("")
     lines.append("Acceptance checks per proposal:")
-    lines.append("- At least 2 additional runs with distinct seeds.")
+    if any(str(item.get("dispatch_mode", "")) == "discriminative_pair" for item in items):
+        lines.append("- Use discriminative pairs (primary vs explicit ablation/control), not broad profile sweeps.")
+        lines.append("- Use matched shared seeds across pair conditions and pre-register thresholds before execution.")
+    lines.append("- At least 2 additional runs with distinct seeds unless stricter pair checks are specified in proposal acceptance checks.")
     lines.append("- Experiment Pack validates against v1 schema.")
     if current_epoch:
         lines.append(f"- Each emitted manifest includes `architecture_epoch={current_epoch}`.")
