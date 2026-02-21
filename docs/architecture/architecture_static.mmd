@@ -1,0 +1,51 @@
+flowchart TB
+  subgraph ENV[Environment]
+    WORLD["ENV.world_state"]
+    EXT["EXT.external_inputs"]
+  end
+
+  subgraph REE[REE Core]
+    BND["BOUNDARY.typed_payload_boundary"]
+    E1["REE.E1_persistent_predictive_substrate"]
+    E2["REE.E2_fast_forward_predictor"]
+    HPC["REE.HippocampalSystems_rollout_and_provenance"]
+    RC["REE.RC_reality_coherence_loop"]
+    CP["REE.control_plane_router"]
+    E3["REE.E3_trajectory_selector"]
+    G1["REE.gate_cognitive_set"]
+    G2["REE.gate_motivational"]
+    G3["REE.gate_motor"]
+    ACT["REE.action_executor"]
+    LRN["REE.post_commit_learning"]
+  end
+
+  subgraph TRUST[Trusted Governance]
+    VER["REE.verifier"]
+    STORES["REE.trusted_stores_POL_ID_CAPS"]
+  end
+
+  EXT --> BND
+  BND --> E1
+  BND --> E2
+  E1 --> HPC
+  E2 --> HPC
+  HPC --> RC
+  RC --> CP
+  E1 --> CP
+  E2 --> CP
+  CP --> E3
+  HPC --> E3
+  VER --> E3
+  STORES --> VER
+  E3 --> G1
+  E3 --> G2
+  E3 --> G3
+  CP --> G1
+  CP --> G2
+  CP --> G3
+  G3 --> ACT
+  ACT --> WORLD
+  WORLD --> EXT
+  ACT --> LRN
+  LRN --> E1
+  LRN --> HPC

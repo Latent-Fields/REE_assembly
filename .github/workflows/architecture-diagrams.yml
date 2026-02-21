@@ -1,0 +1,68 @@
+name: architecture-diagrams
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - docs/architecture/*.mmd
+      - docs/architecture/streams.md
+      - docs/architecture/stream_routing.v1.yaml
+      - docs/architecture/diagram_views.md
+      - scripts/architecture/**
+      - .github/workflows/architecture-diagrams.yml
+  pull_request:
+    paths:
+      - docs/architecture/*.mmd
+      - docs/architecture/streams.md
+      - docs/architecture/stream_routing.v1.yaml
+      - docs/architecture/diagram_views.md
+      - scripts/architecture/**
+      - .github/workflows/architecture-diagrams.yml
+
+jobs:
+  consistency:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate diagram consistency
+        run: bash scripts/architecture/check_consistency.sh
+
+  render:
+    if: github.event_name == 'push'
+    needs: consistency
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Mermaid CLI
+        run: npm install --global @mermaid-js/mermaid-cli
+
+      - name: Render architecture diagrams
+        run: bash scripts/architecture/render_diagrams.sh
+
+      - name: Commit rendered SVGs
+        run: |
+          if git diff --quiet; then
+            echo "No rendered SVG updates to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture/*.svg
+          git commit -m "docs: render architecture diagrams"
+          git push

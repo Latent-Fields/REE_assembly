@@ -1,0 +1,61 @@
+flowchart LR
+  subgraph REE[REE Typed Dataflow]
+    EXT["EXT.external_inputs"]
+    BND["BOUNDARY.typed_payload_boundary"]
+    E1["REE.E1_persistent_predictive_substrate"]
+    E2["REE.E2_fast_forward_predictor"]
+    HPC["REE.HippocampalSystems_rollout_and_provenance"]
+    RC["REE.RC_reality_coherence_loop"]
+    CP["REE.control_plane_router"]
+    E3["REE.E3_trajectory_selector"]
+    VER["REE.verifier"]
+    STORES["REE.trusted_stores_POL_ID_CAPS"]
+    G1["REE.gate_cognitive_set"]
+    G2["REE.gate_motivational"]
+    G3["REE.gate_motor"]
+    ACT["REE.action_executor"]
+    LRN["REE.post_commit_learning"]
+  end
+
+  EXT -->|payload.OBS| BND
+  EXT -->|payload.INS| BND
+
+  BND -->|stream.WORLD| E1
+  BND -->|stream.WORLD| E2
+  BND -->|stream.HOMEOSTASIS| E1
+  BND -->|stream.HARM| E2
+
+  E1 -->|latent.prior_bundle| HPC
+  E2 -->|forward_prediction_kernel| HPC
+  HPC -->|rollout.candidates| E3
+  HPC -->|provenance.bindings| RC
+
+  E2 -->|signal.S1_fast| CP
+  E2 -->|signal.S3_fast| CP
+  E1 -->|signal.S1_slow| CP
+  E1 -->|signal.S3_slow| CP
+  RC -->|signal.S5_RC_conflict| CP
+
+  CP -->|control.Pi_int+Pi_rc+Pi_noc| E1
+  CP -->|control.Pi_ext+Pi_prop| E2
+  CP -->|control.K3+K4+K5+K10| E3
+
+  STORES -->|trusted.POL+ID+CAPS| VER
+  E3 -->|candidate_commit| VER
+  VER -->|verifier.approve_or_deny| E3
+
+  E3 -->|gate_request| G1
+  E3 -->|gate_request| G2
+  E3 -->|gate_request| G3
+  CP -->|gate_bias| G1
+  CP -->|gate_bias| G2
+  CP -->|gate_bias| G3
+
+  G3 -->|stream.ACTION| ACT
+  ACT -->|stream.SELF_SENSORY| E2
+  E3 -->|stream.sim_error| CP
+
+  ACT -->|stream.SELF_IMPACT| LRN
+  LRN -->|stream.realized_error| E1
+  LRN -->|post_commit.outcome_trace| HPC
+  LRN -->|commit_boundary.tokenized_update| E1

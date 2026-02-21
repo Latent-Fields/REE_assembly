@@ -1,0 +1,190 @@
+version: 1
+components:
+  - ENV.world_state
+  - EXT.external_inputs
+  - BOUNDARY.typed_payload_boundary
+  - REE.E1_persistent_predictive_substrate
+  - REE.E2_fast_forward_predictor
+  - REE.HippocampalSystems_rollout_and_provenance
+  - REE.RC_reality_coherence_loop
+  - REE.control_plane_router
+  - REE.E3_trajectory_selector
+  - REE.gate_cognitive_set
+  - REE.gate_motivational
+  - REE.gate_motor
+  - REE.action_executor
+  - REE.post_commit_learning
+  - REE.verifier
+  - REE.trusted_stores_POL_ID_CAPS
+
+edges:
+  - id: EDGE-001
+    from: EXT.external_inputs
+    to: BOUNDARY.typed_payload_boundary
+    stream: payload.OBS
+    phase: pre_commit
+  - id: EDGE-002
+    from: EXT.external_inputs
+    to: BOUNDARY.typed_payload_boundary
+    stream: payload.INS
+    phase: pre_commit
+  - id: EDGE-003
+    from: BOUNDARY.typed_payload_boundary
+    to: REE.E1_persistent_predictive_substrate
+    stream: stream.WORLD
+    phase: pre_commit
+  - id: EDGE-004
+    from: BOUNDARY.typed_payload_boundary
+    to: REE.E2_fast_forward_predictor
+    stream: stream.WORLD
+    phase: pre_commit
+  - id: EDGE-005
+    from: BOUNDARY.typed_payload_boundary
+    to: REE.E1_persistent_predictive_substrate
+    stream: stream.HOMEOSTASIS
+    phase: pre_commit
+  - id: EDGE-006
+    from: BOUNDARY.typed_payload_boundary
+    to: REE.E2_fast_forward_predictor
+    stream: stream.HARM
+    phase: pre_commit
+  - id: EDGE-007
+    from: REE.E1_persistent_predictive_substrate
+    to: REE.HippocampalSystems_rollout_and_provenance
+    stream: latent.prior_bundle
+    phase: pre_commit
+  - id: EDGE-008
+    from: REE.E2_fast_forward_predictor
+    to: REE.HippocampalSystems_rollout_and_provenance
+    stream: forward_prediction_kernel
+    phase: pre_commit
+  - id: EDGE-009
+    from: REE.HippocampalSystems_rollout_and_provenance
+    to: REE.E3_trajectory_selector
+    stream: rollout.candidates
+    phase: pre_commit
+  - id: EDGE-010
+    from: REE.HippocampalSystems_rollout_and_provenance
+    to: REE.RC_reality_coherence_loop
+    stream: provenance.bindings
+    phase: pre_commit
+  - id: EDGE-011
+    from: REE.E2_fast_forward_predictor
+    to: REE.control_plane_router
+    stream: signal.S1_fast
+    phase: pre_commit
+  - id: EDGE-012
+    from: REE.E2_fast_forward_predictor
+    to: REE.control_plane_router
+    stream: signal.S3_fast
+    phase: pre_commit
+  - id: EDGE-013
+    from: REE.E1_persistent_predictive_substrate
+    to: REE.control_plane_router
+    stream: signal.S1_slow
+    phase: pre_commit
+  - id: EDGE-014
+    from: REE.E1_persistent_predictive_substrate
+    to: REE.control_plane_router
+    stream: signal.S3_slow
+    phase: pre_commit
+  - id: EDGE-015
+    from: REE.RC_reality_coherence_loop
+    to: REE.control_plane_router
+    stream: signal.S5_RC_conflict
+    phase: pre_commit
+  - id: EDGE-016
+    from: REE.control_plane_router
+    to: REE.E3_trajectory_selector
+    stream: control.K3+K4+K5+K10
+    phase: pre_commit
+  - id: EDGE-017
+    from: REE.control_plane_router
+    to: REE.E1_persistent_predictive_substrate
+    stream: control.Pi_int+Pi_rc+Pi_noc
+    phase: pre_commit
+  - id: EDGE-018
+    from: REE.control_plane_router
+    to: REE.E2_fast_forward_predictor
+    stream: control.Pi_ext+Pi_prop
+    phase: pre_commit
+  - id: EDGE-019
+    from: REE.E3_trajectory_selector
+    to: REE.verifier
+    stream: candidate_commit
+    phase: commit_boundary
+  - id: EDGE-020
+    from: REE.trusted_stores_POL_ID_CAPS
+    to: REE.verifier
+    stream: trusted.POL+ID+CAPS
+    phase: commit_boundary
+  - id: EDGE-021
+    from: REE.verifier
+    to: REE.E3_trajectory_selector
+    stream: verifier.approve_or_deny
+    phase: commit_boundary
+  - id: EDGE-022
+    from: REE.E3_trajectory_selector
+    to: REE.gate_cognitive_set
+    stream: gate_request
+    phase: commit_boundary
+  - id: EDGE-023
+    from: REE.E3_trajectory_selector
+    to: REE.gate_motivational
+    stream: gate_request
+    phase: commit_boundary
+  - id: EDGE-024
+    from: REE.E3_trajectory_selector
+    to: REE.gate_motor
+    stream: gate_request
+    phase: commit_boundary
+  - id: EDGE-025
+    from: REE.control_plane_router
+    to: REE.gate_cognitive_set
+    stream: gate_bias
+    phase: commit_boundary
+  - id: EDGE-026
+    from: REE.control_plane_router
+    to: REE.gate_motivational
+    stream: gate_bias
+    phase: commit_boundary
+  - id: EDGE-027
+    from: REE.control_plane_router
+    to: REE.gate_motor
+    stream: gate_bias
+    phase: commit_boundary
+  - id: EDGE-028
+    from: REE.gate_motor
+    to: REE.action_executor
+    stream: stream.ACTION
+    phase: post_commit
+  - id: EDGE-029
+    from: REE.action_executor
+    to: REE.E2_fast_forward_predictor
+    stream: stream.SELF_SENSORY
+    phase: post_commit
+  - id: EDGE-030
+    from: REE.action_executor
+    to: REE.post_commit_learning
+    stream: stream.SELF_IMPACT
+    phase: post_commit
+  - id: EDGE-031
+    from: REE.E3_trajectory_selector
+    to: REE.control_plane_router
+    stream: stream.sim_error
+    phase: pre_commit
+  - id: EDGE-032
+    from: REE.post_commit_learning
+    to: REE.E1_persistent_predictive_substrate
+    stream: stream.realized_error
+    phase: post_commit
+  - id: EDGE-033
+    from: REE.post_commit_learning
+    to: REE.E1_persistent_predictive_substrate
+    stream: commit_boundary.tokenized_update
+    phase: post_commit
+  - id: EDGE-034
+    from: REE.post_commit_learning
+    to: REE.HippocampalSystems_rollout_and_provenance
+    stream: post_commit.outcome_trace
+    phase: post_commit

@@ -1,0 +1,55 @@
+sequenceDiagram
+  participant WORLD as ENV.world_state
+  participant EXT as EXT.external_inputs
+  participant BND as BOUNDARY.typed_payload_boundary
+  participant E2 as REE.E2_fast_forward_predictor
+  participant E1 as REE.E1_persistent_predictive_substrate
+  participant HPC as REE.HippocampalSystems_rollout_and_provenance
+  participant RC as REE.RC_reality_coherence_loop
+  participant CP as REE.control_plane_router
+  participant E3 as REE.E3_trajectory_selector
+  participant VER as REE.verifier
+  participant G1 as REE.gate_cognitive_set
+  participant G2 as REE.gate_motivational
+  participant G3 as REE.gate_motor
+  participant ACT as REE.action_executor
+  participant LRN as REE.post_commit_learning
+
+  WORLD->>EXT: stream.WORLD + stream.HOMEOSTASIS + stream.HARM
+  EXT->>BND: payload.OBS / payload.INS
+  BND->>E2: stream.WORLD + stream.HARM
+  BND->>E1: stream.WORLD + stream.HOMEOSTASIS
+
+  CP->>E2: control.Pi_ext + control.Pi_prop
+  CP->>E1: control.Pi_int + control.Pi_rc + control.Pi_noc
+
+  E2->>CP: signal.S1_fast + signal.S3_fast
+  E1->>CP: signal.S1_slow + signal.S3_slow
+  E2->>HPC: forward_prediction_kernel
+  E1->>HPC: latent.prior_bundle
+  HPC->>RC: provenance.bindings
+  RC->>CP: signal.S5_RC_conflict
+  HPC->>E3: rollout.candidates
+  CP->>E3: control.K3 + K4 + K5 + K10
+
+  E3->>VER: candidate_commit
+  VER->>E3: verifier.approve_or_deny
+
+  alt verifier.approve
+    E3->>G1: gate_request
+    E3->>G2: gate_request
+    E3->>G3: gate_request
+    CP->>G1: gate_bias
+    CP->>G2: gate_bias
+    CP->>G3: gate_bias
+    G3->>ACT: stream.ACTION
+    ACT->>WORLD: action_effect
+    WORLD->>EXT: post_action_frame
+    EXT->>BND: payload.OBS
+    BND->>LRN: stream.SELF_SENSORY + stream.SELF_IMPACT
+    E3->>CP: stream.sim_error
+    LRN->>E1: stream.realized_error + commit_boundary.tokenized_update
+    LRN->>HPC: post_commit.outcome_trace
+  else verifier.deny
+    E3->>CP: commit.inhibit + search.widen
+  end
