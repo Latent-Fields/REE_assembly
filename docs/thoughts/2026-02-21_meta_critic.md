@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/control_plane_signal_map.md` (associative-loop governance calibration note)
+
+---
+
 Yes. I’ll write this as a clean REE_assembly intake thought, structured and implementation-facing.
 
 ⸻
@@ -184,4 +191,3 @@ ControlPlane := Govern(PrecisionVector ∧ Thresholds)
 Hierarchy := World → Value → Control
 
 ⸻
-

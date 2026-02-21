@@ -472,3 +472,17 @@ Priority order is highest risk first.
 - no refactor of existing `REE_assembly` architecture claims
 - no v3 policy implementation inside `ree-v2`
 - no schema-version bump beyond current `v1` contract family
+
+---
+
+## 10. Adjacent Lane Note: Agent-Shell Upgrade Path
+
+This v2 bootstrap remains a substrate-qualification lane. A separate agent-shell lane (for example, an "REE-Claw"
+bridge) can reuse these contracts with additional requirements:
+
+- typed input/output routing (`OBS`/`INS`/trajectory proposal lanes),
+- strict authority-store separation (`POL`/`ID`/`CAPS`) with verifier-gated privileged commits,
+- explicit commit tokenization on irreversible tool actions,
+- post-commit append-only attribution ledger and replay-safe offline consolidation.
+
+This note clarifies interoperability scope; it does not expand `ree-v2` non-goals.

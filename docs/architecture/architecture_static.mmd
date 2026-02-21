@@ -12,6 +12,11 @@ flowchart TB
     RC["REE.RC_reality_coherence_loop"]
     CP["REE.control_plane_router"]
     E3["REE.E3_trajectory_selector"]
+    CAL["REE.associative_meta_calibration"]
+    F1["REE.filter_context_anchor"]
+    F2["REE.filter_body_feasible"]
+    F3["REE.filter_motivation_ok"]
+    F4["REE.filter_hard_veto"]
     G1["REE.gate_cognitive_set"]
     G2["REE.gate_motivational"]
     G3["REE.gate_motor"]
@@ -33,8 +38,18 @@ flowchart TB
   RC --> CP
   E1 --> CP
   E2 --> CP
+  CP --> CAL
+  CAL --> CP
   CP --> E3
   HPC --> E3
+  HPC --> F1
+  BND --> F2
+  E3 --> F3
+  E2 --> F4
+  F1 --> E3
+  F2 --> E3
+  F3 --> E3
+  F4 --> E3
   VER --> E3
   STORES --> VER
   E3 --> G1

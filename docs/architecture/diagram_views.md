@@ -31,5 +31,7 @@ bash scripts/architecture/render_diagrams.sh
 ## CI behavior
 
 - Workflow: `.github/workflows/architecture-diagrams.yml`
-- On pull requests touching architecture diagram files: run consistency checks only.
-- On pushes to `master` touching architecture diagram files (including merges): run consistency checks, render SVGs, and commit updated SVG assets back to `master`.
+- On pull requests touching architecture docs/contracts: run freshness check and consistency checks.
+- Freshness rule: if architecture source docs change without any triple-view diagram contract updates, CI fails.
+- On pushes to `master` touching architecture docs/contracts (including merges): run freshness+consistency, render SVGs, and commit updated SVG assets back to `master`.
+- Weekly rhythm: scheduled run every Monday at 16:00 UTC performs freshness+consistency and re-renders SVGs if needed.

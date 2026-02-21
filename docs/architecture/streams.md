@@ -20,6 +20,11 @@ This file defines the canonical identifiers shared by:
 | `REE.RC_reality_coherence_loop` | Reality-coherence conflict lane (`S5`/`RC_conflict`) |
 | `REE.control_plane_router` | Control routing over stream/loop/global planes |
 | `REE.E3_trajectory_selector` | Commitment gating and trajectory selection |
+| `REE.associative_meta_calibration` | Outcome-vs-decision calibration for control-plane retuning |
+| `REE.filter_context_anchor` | Pre-commit contextual/provenance eligibility filter |
+| `REE.filter_body_feasible` | Pre-commit homeostasis/feasibility eligibility filter |
+| `REE.filter_motivation_ok` | Pre-commit motivational sufficiency eligibility filter |
+| `REE.filter_hard_veto` | Pre-commit hard-veto eligibility filter |
 | `REE.gate_cognitive_set` | Cognitive-set commit gate |
 | `REE.gate_motivational` | Motivational commit gate |
 | `REE.gate_motor` | Motor/action release gate |
@@ -70,12 +75,18 @@ This file defines the canonical identifiers shared by:
 - `gate_request`
 - `gate_bias`
 - `trusted.POL+ID+CAPS`
+- `filter.context_anchor`
+- `filter.motivation_ok`
+- `eligibility.pass_or_fail`
+- `eligibility.veto_state`
 
 ### Control routing channels
 
 - `control.Pi_ext+Pi_prop`
 - `control.Pi_int+Pi_rc+Pi_noc`
 - `control.K3+K4+K5+K10`
+- `control.P_cognitive`
+- `control.meta_recalibration`
 - `commit.inhibit`
 - `search.widen`
 
@@ -85,6 +96,8 @@ This file defines the canonical identifiers shared by:
 - `stream.realized_error`
 - `commit_boundary.tokenized_update`
 - `post_commit.outcome_trace`
+- `packet.decision_snapshot`
+- `packet.outcome_snapshot`
 
 ## Logging event envelope (recommended)
 

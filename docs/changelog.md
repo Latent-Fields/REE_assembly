@@ -7,6 +7,38 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-21: Processed Remaining Thought Intake Queue (6 files)
+
+### Overview
+
+Ingested the remaining unprocessed thought files into canonical architecture docs using existing claim surfaces
+(no new claim IDs), and marked each thought as processed with backlinks.
+
+### What Changed
+
+- Updated Papez functional mechanism framing:
+  - `docs/architecture/papez_circuit.md`
+  - added affective retrieval-augmentation interpretation and explicit commitment-boundary clarification for MECH-037
+- Updated E3 commitment mechanics:
+  - `docs/architecture/e3.md`
+  - added layered eligibility filter ordering and disinhibitory-gating rationale under MECH-062 implementation guidance
+- Updated control-plane wiring narrative:
+  - `docs/architecture/control_plane_signal_map.md`
+  - added loop-vector precision (`P_motor`, `P_cognitive`, `P_value`) and associative-loop governance calibration note
+- Added agent-shell compatibility notes to implementation contracts:
+  - `docs/architecture/hook_surface_contract.md`
+  - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
+- Marked thought files as processed with canonical links:
+  - `docs/thoughts/2026-02-17_papez_RAG.md`
+  - `docs/thoughts/2026-02-18_commitment_as_layered_eligibility_filters.md`
+  - `docs/thoughts/2026-02-18_new_implementation_openclaw.md`
+  - `docs/thoughts/2026-02-19_basal_ganglia_evolutionary_conservation_pull.md`
+  - `docs/thoughts/2026-02-21_meta_critic.md`
+  - `docs/thoughts/2026-02-21_more_control_plane_necessities.md`
+- Refreshed sweep outputs:
+  - `docs/thoughts/thought_sweep.v1.json`
+  - `docs/thoughts/SWEEP_REPORT.md`
+
 ## 2026-02-19: Boundary-Conditioned Separation Claims for Commit and Sleep Loci
 
 ### Overview

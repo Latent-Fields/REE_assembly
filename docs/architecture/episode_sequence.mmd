@@ -8,6 +8,11 @@ sequenceDiagram
   participant RC as REE.RC_reality_coherence_loop
   participant CP as REE.control_plane_router
   participant E3 as REE.E3_trajectory_selector
+  participant CAL as REE.associative_meta_calibration
+  participant F1 as REE.filter_context_anchor
+  participant F2 as REE.filter_body_feasible
+  participant F3 as REE.filter_motivation_ok
+  participant F4 as REE.filter_hard_veto
   participant VER as REE.verifier
   participant G1 as REE.gate_cognitive_set
   participant G2 as REE.gate_motivational
@@ -31,6 +36,14 @@ sequenceDiagram
   RC->>CP: signal.S5_RC_conflict
   HPC->>E3: rollout.candidates
   CP->>E3: control.K3 + K4 + K5 + K10
+  HPC->>F1: filter.context_anchor
+  BND->>F2: stream.HOMEOSTASIS
+  E3->>F3: filter.motivation_ok
+  E2->>F4: stream.HARM
+  F1->>E3: eligibility.pass_or_fail
+  F2->>E3: eligibility.pass_or_fail
+  F3->>E3: eligibility.pass_or_fail
+  F4->>E3: eligibility.veto_state
 
   E3->>VER: candidate_commit
   VER->>E3: verifier.approve_or_deny
@@ -50,6 +63,9 @@ sequenceDiagram
     E3->>CP: stream.sim_error
     LRN->>E1: stream.realized_error + commit_boundary.tokenized_update
     LRN->>HPC: post_commit.outcome_trace
+    E3->>CAL: packet.decision_snapshot
+    LRN->>CAL: packet.outcome_snapshot
+    CAL->>CP: control.meta_recalibration
   else verifier.deny
     E3->>CP: commit.inhibit + search.widen
   end

@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-062 implementation refinement)
+- `docs/architecture/control_plane_signal_map.md` (loop-precision decomposition note)
+
+---
+
 ## REE_assembly Thought
 
 ### Conserved Commitment Machinery: Basal Ganglia as an Evolutionary Invariant

@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-062, Q-016)
+
+---
+
 THOUGHT: Commitment as Layered Eligibility Filters
 
 Date: 2026-02-18

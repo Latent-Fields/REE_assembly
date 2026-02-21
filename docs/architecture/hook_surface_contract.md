@@ -78,6 +78,18 @@ To preserve v3-control completion viability, the v2 hook surface must include br
 
 These are interface commitments for evidence and routing continuity, not full v3 behavior commitments.
 
+## Agent-Shell Routing Compatibility Note
+
+For tool-using agent-shell integrations, hook payload typing must preserve authority separation:
+
+- model/tool/user outputs are routed as observational or proposal channels (`OBS`/`INS`/trajectory proposal),
+- trusted authority stores (`POL`/`ID`/`CAPS`) are write-protected and verifier-mediated,
+- commit-bearing hooks must carry provenance and verifier artifacts before durable post-commit updates.
+
+Interpretive rule:
+- "internal model output" is not automatically privileged.
+- privilege is granted by typed routing + verifier pass, not by origin.
+
 ---
 
 ## Governance Expectations

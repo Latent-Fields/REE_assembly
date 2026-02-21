@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/control_plane_signal_map.md` (loop-vector precision note)
+
+---
+
 REE_assembly Intake Thought
 
 Title: Vectorised Precision Across Basal Ganglia Loops

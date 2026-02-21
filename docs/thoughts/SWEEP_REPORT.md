@@ -1,19 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-02-19T18:37:26.055842Z`
+Generated: `2026-02-21T12:48:16.475391Z`
 
 | metric | count |
 |---|---|
-| total thought files | 43 |
-| processed | 40 |
-| unprocessed | 3 |
+| total thought files | 46 |
+| processed | 46 |
+| unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- `2026-02-18` `2026-02-18_commitment_as_layered_eligibility_filters.md` (status=`unprocessed`)
-- `2026-02-18` `2026-02-18_new_implementation_openclaw.md` (status=`unprocessed`)
-- `2026-02-19` `2026-02-19_basal_ganglia_evolutionary_conservation_pull.md` (status=`unprocessed`)
+- _none_
 
 ## Processed Missing Links
 
@@ -58,6 +56,12 @@ Generated: `2026-02-19T18:37:26.055842Z`
 - `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
 - `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
 - `2026-02-17_control_plane_update.md` (3 link(s) in `Processed in`)
+- `2026-02-17_papez_RAG.md` (1 link(s) in `Processed in`)
+- `2026-02-18_commitment_as_layered_eligibility_filters.md` (1 link(s) in `Processed in`)
+- `2026-02-18_new_implementation_openclaw.md` (2 link(s) in `Processed in`)
 - `2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md` (5 link(s) in `Processed in`)
+- `2026-02-19_basal_ganglia_evolutionary_conservation_pull.md` (2 link(s) in `Processed in`)
+- `2026-02-21_meta_critic.md` (1 link(s) in `Processed in`)
+- `2026-02-21_more_control_plane_necessities.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

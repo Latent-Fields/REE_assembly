@@ -8,6 +8,11 @@ flowchart LR
     RC["REE.RC_reality_coherence_loop"]
     CP["REE.control_plane_router"]
     E3["REE.E3_trajectory_selector"]
+    CAL["REE.associative_meta_calibration"]
+    F1["REE.filter_context_anchor"]
+    F2["REE.filter_body_feasible"]
+    F3["REE.filter_motivation_ok"]
+    F4["REE.filter_hard_veto"]
     VER["REE.verifier"]
     STORES["REE.trusted_stores_POL_ID_CAPS"]
     G1["REE.gate_cognitive_set"]
@@ -39,10 +44,23 @@ flowchart LR
   CP -->|control.Pi_int+Pi_rc+Pi_noc| E1
   CP -->|control.Pi_ext+Pi_prop| E2
   CP -->|control.K3+K4+K5+K10| E3
+  CP -->|control.P_cognitive| CAL
+  E3 -->|packet.decision_snapshot| CAL
+  LRN -->|packet.outcome_snapshot| CAL
+  CAL -->|control.meta_recalibration| CP
 
   STORES -->|trusted.POL+ID+CAPS| VER
   E3 -->|candidate_commit| VER
   VER -->|verifier.approve_or_deny| E3
+
+  HPC -->|filter.context_anchor| F1
+  BND -->|stream.HOMEOSTASIS| F2
+  E3 -->|filter.motivation_ok| F3
+  E2 -->|stream.HARM| F4
+  F1 -->|eligibility.pass_or_fail| E3
+  F2 -->|eligibility.pass_or_fail| E3
+  F3 -->|eligibility.pass_or_fail| E3
+  F4 -->|eligibility.veto_state| E3
 
   E3 -->|gate_request| G1
   E3 -->|gate_request| G2

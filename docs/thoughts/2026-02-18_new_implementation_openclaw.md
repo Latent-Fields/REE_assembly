@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/hook_surface_contract.md` (IMPL-025)
+- `docs/architecture/ree_v2_repo_bootstrap_spec.md` (agent-shell compatibility note)
+
+---
+
 SPECIAL THOUGHT: REE→Agent-Shell Mapping and Proposal to Build an “REE-Claw” Upgrade Repo
 
 Date: 2026-02-18

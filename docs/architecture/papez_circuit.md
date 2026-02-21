@@ -20,6 +20,23 @@ where internally generated content is treated as real without adequate provenanc
 - **Commitment filter:** E3 commitment is licensed only when provenance gating is satisfied.
 - **Control-plane bias:** the control plane can down-weight untraced content or mark it as speculative.
 
+## Affective retrieval-augmentation interpretation
+
+The same loop can be interpreted as a **retrieval-augmentation stage** upstream of commitment:
+
+- hippocampal systems retrieve relational traces,
+- relay/loop dynamics stabilize temporal context,
+- cingulate-like conflict/valence signals reweight retrieval eligibility,
+- entorhinal interface returns a context-shaped candidate bundle back to cortical manifolds.
+
+In REE terms, this is not "RAG as static lookup." It is **precision- and valence-modulated retrieval under viability
+constraints** before E3 commitment.
+
+Boundary clarification:
+
+- the loop can amplify or suppress candidate trajectories,
+- but it does not mint authority writes (`POL`/`ID`/`CAPS`) and does not bypass E3/verifier commit checks.
+
 ## Failure mode
 
 When provenance gating fails, E1 content can be committed without trace support, producing confabulation-like behavior:
@@ -56,3 +73,4 @@ None noted in preserved sources.
 ## References / Source Fragments
 
 - `docs/thoughts/2026-02-09_papez_circuit_reality_filtering.md`
+- `docs/thoughts/2026-02-17_papez_RAG.md`

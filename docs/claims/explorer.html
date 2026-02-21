@@ -422,6 +422,106 @@
       min-width: 0;
     }
 
+    .triple-view-wrap {
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      display: none;
+      min-width: 0;
+    }
+
+    .triple-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .triple-toolbar .meta {
+      margin: 0;
+    }
+
+    .triple-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .triple-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .triple-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .triple-card-head h3 {
+      margin: 0;
+      font-size: 16px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+
+    .triple-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .triple-links a {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 11px;
+      padding: 2px 8px;
+    }
+
+    .triple-links a:hover {
+      text-decoration: underline;
+    }
+
+    .triple-body {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      min-height: 200px;
+      max-height: 520px;
+      overflow: auto;
+      padding: 8px;
+    }
+
+    .triple-body svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .triple-code {
+      margin: 8px 0 0 0;
+      background: #f7f5f0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      overflow: auto;
+      font-size: 12px;
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      white-space: pre;
+    }
+
     .governance-wrap {
       display: none;
       max-height: calc(100vh - 160px);
@@ -1243,6 +1343,7 @@
           <button id="graphViewBtn">Graph</button>
           <button id="docsViewBtn">Docs</button>
           <button id="mapViewBtn">Map</button>
+          <button id="tripleViewBtn">Triple View</button>
           <button id="governanceViewBtn">Governance</button>
         </div>
       </div>
@@ -1432,6 +1533,61 @@
             </label>
           </div>
           <div id="governanceContent" class="gov-empty">Loading governance agenda...</div>
+        </div>
+        <div id="tripleViewWrap" class="panel triple-view-wrap">
+          <div class="triple-toolbar">
+            <div class="meta" id="tripleStatus">Triple-view diagrams are not loaded.</div>
+            <div class="buttons">
+              <button id="tripleReloadBtn" type="button">Reload Diagrams</button>
+            </div>
+          </div>
+          <div class="triple-grid">
+            <div class="triple-card">
+              <div class="triple-card-head">
+                <div>
+                  <h3>1. Static Structure</h3>
+                  <div class="meta">Component atlas (stable interfaces).</div>
+                </div>
+                <div class="triple-links">
+                  <a href="../architecture/architecture_static.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="../architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
+                </div>
+              </div>
+              <div id="tripleStaticBody" class="triple-body">
+                <div class="meta">Not loaded.</div>
+              </div>
+            </div>
+            <div class="triple-card">
+              <div class="triple-card-head">
+                <div>
+                  <h3>2. Typed Dataflow</h3>
+                  <div class="meta">Stream/signal routing view.</div>
+                </div>
+                <div class="triple-links">
+                  <a href="../architecture/architecture_typed_dataflow.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="../architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
+                </div>
+              </div>
+              <div id="tripleTypedBody" class="triple-body">
+                <div class="meta">Not loaded.</div>
+              </div>
+            </div>
+            <div class="triple-card">
+              <div class="triple-card-head">
+                <div>
+                  <h3>3. Episode Trace</h3>
+                  <div class="meta">Single-tick temporal sequence trace.</div>
+                </div>
+                <div class="triple-links">
+                  <a href="../architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="../architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
+                </div>
+              </div>
+              <div id="tripleEpisodeBody" class="triple-body">
+                <div class="meta">Not loaded.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="panel detail" id="detailPanel">
@@ -1640,6 +1796,12 @@ END CONFLICT RESOLUTION`;
           { title: 'Sleep (overview)', path: '../architecture/sleep.md' },
           { title: 'Social', path: '../architecture/social.md' },
           { title: 'Why Attention Must Be Fragmented', path: '../architecture/why_attention_must_be_fragmented.md' },
+          { title: 'Architecture Triple-View Guide', path: '../architecture/diagram_views.md' },
+          { title: 'Architecture Stream Catalog', path: '../architecture/streams.md' },
+          { title: 'Architecture Routing Table', path: '../architecture/stream_routing.v1.yaml' },
+          { title: 'Architecture Static Diagram Source', path: '../architecture/architecture_static.mmd' },
+          { title: 'Architecture Typed Dataflow Source', path: '../architecture/architecture_typed_dataflow.mmd' },
+          { title: 'Architecture Episode Sequence Source', path: '../architecture/episode_sequence.mmd' },
         ],
       },
       {
@@ -1811,6 +1973,30 @@ END CONFLICT RESOLUTION`;
       ['docs/README', 'META'],
     ];
 
+    const TRIPLE_VIEW_SPECS = [
+      {
+        id: 'static',
+        label: 'Static Structure',
+        svgPath: '../architecture/architecture_static.svg',
+        mmdPath: '../architecture/architecture_static.mmd',
+        bodyId: 'tripleStaticBody',
+      },
+      {
+        id: 'typed',
+        label: 'Typed Dataflow',
+        svgPath: '../architecture/architecture_typed_dataflow.svg',
+        mmdPath: '../architecture/architecture_typed_dataflow.mmd',
+        bodyId: 'tripleTypedBody',
+      },
+      {
+        id: 'episode',
+        label: 'Episode Trace',
+        svgPath: '../architecture/episode_sequence.svg',
+        mmdPath: '../architecture/episode_sequence.mmd',
+        bodyId: 'tripleEpisodeBody',
+      },
+    ];
+
     const els = {
       search: document.getElementById('search'),
       typeFilter: document.getElementById('typeFilter'),
@@ -1822,6 +2008,7 @@ END CONFLICT RESOLUTION`;
       graphWrap: document.getElementById('graphWrap'),
       docsWrap: document.getElementById('docsWrap'),
       mapWrap: document.getElementById('mapWrap'),
+      tripleViewWrap: document.getElementById('tripleViewWrap'),
       mapLegend: document.getElementById('mapLegend'),
       mapLegendMode: document.getElementById('mapLegendMode'),
       mapMeta: document.getElementById('mapMeta'),
@@ -1838,7 +2025,10 @@ END CONFLICT RESOLUTION`;
       graphViewBtn: document.getElementById('graphViewBtn'),
       docsViewBtn: document.getElementById('docsViewBtn'),
       mapViewBtn: document.getElementById('mapViewBtn'),
+      tripleViewBtn: document.getElementById('tripleViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
+      tripleStatus: document.getElementById('tripleStatus'),
+      tripleReloadBtn: document.getElementById('tripleReloadBtn'),
       mapEpochOnly: document.getElementById('mapEpochOnly'),
       mapGovernanceOnly: document.getElementById('mapGovernanceOnly'),
       govEpochOnly: document.getElementById('govEpochOnly'),
@@ -1905,6 +2095,8 @@ END CONFLICT RESOLUTION`;
     let governanceError = '';
     let governanceLoadedAt = '';
     let governanceLoading = false;
+    let tripleViewLoaded = false;
+    let tripleViewLoading = false;
 
     function showError(message) {
       els.errorBanner.textContent = message;
@@ -3340,6 +3532,75 @@ END CONFLICT RESOLUTION`;
       docsInitialized = true;
     }
 
+    function renderTripleSourceFallback(container, label, mmdText, reason) {
+      if (!container) return;
+      const note = document.createElement('div');
+      note.className = 'meta';
+      note.textContent = `${label}: ${reason}. Showing Mermaid source instead.`;
+      const pre = document.createElement('pre');
+      pre.className = 'triple-code';
+      pre.textContent = mmdText;
+      container.innerHTML = '';
+      container.appendChild(note);
+      container.appendChild(pre);
+    }
+
+    function renderTripleUnavailable(container, label, errorText) {
+      if (!container) return;
+      container.innerHTML = '';
+      const note = document.createElement('div');
+      note.className = 'meta';
+      note.textContent = `${label}: unable to load SVG or Mermaid source (${errorText}).`;
+      container.appendChild(note);
+    }
+
+    async function loadTripleDiagram(spec) {
+      const container = document.getElementById(spec.bodyId);
+      if (!container) return { id: spec.id, mode: 'missing-container' };
+      container.innerHTML = '<div class="meta">Loading diagram...</div>';
+
+      const svgUrl = new URL(spec.svgPath, window.location.href).toString();
+      try {
+        const svgText = await fetchText(svgUrl);
+        if (!svgText.includes('<svg')) {
+          throw new Error('svg_content_missing');
+        }
+        container.innerHTML = svgText;
+        return { id: spec.id, mode: 'svg' };
+      } catch (svgErr) {
+        const mmdUrl = new URL(spec.mmdPath, window.location.href).toString();
+        try {
+          const mmdText = await fetchText(mmdUrl);
+          renderTripleSourceFallback(container, spec.label, mmdText, 'SVG not available');
+          return { id: spec.id, mode: 'mmd' };
+        } catch (mmdErr) {
+          renderTripleUnavailable(container, spec.label, String(mmdErr));
+          return { id: spec.id, mode: 'error' };
+        }
+      }
+    }
+
+    async function renderTripleView(forceReload) {
+      if (!els.tripleViewWrap || !els.tripleStatus) return;
+      if (tripleViewLoading) return;
+      if (tripleViewLoaded && !forceReload) return;
+
+      tripleViewLoading = true;
+      els.tripleStatus.textContent = 'Loading triple-view diagrams...';
+      const results = await Promise.all(TRIPLE_VIEW_SPECS.map(loadTripleDiagram));
+      const svgCount = results.filter(r => r.mode === 'svg').length;
+      const mmdCount = results.filter(r => r.mode === 'mmd').length;
+      const errorCount = results.filter(r => r.mode === 'error' || r.mode === 'missing-container').length;
+      const loadedAt = new Date().toLocaleTimeString();
+      els.tripleStatus.textContent =
+        `Loaded ${svgCount}/${TRIPLE_VIEW_SPECS.length} SVGs` +
+        (mmdCount ? `, ${mmdCount} source fallbacks` : '') +
+        (errorCount ? `, ${errorCount} errors` : '') +
+        ` at ${loadedAt}.`;
+      tripleViewLoaded = true;
+      tripleViewLoading = false;
+    }
+
     function readFilterState() {
       return {
         search: els.search.value,
@@ -4391,69 +4652,72 @@ END CONFLICT RESOLUTION`;
       }
     }
 
+    function setPrimaryViewButton(activeButton) {
+      [
+        els.listViewBtn,
+        els.graphViewBtn,
+        els.docsViewBtn,
+        els.mapViewBtn,
+        els.tripleViewBtn,
+        els.governanceViewBtn,
+      ].forEach(btn => {
+        if (!btn) return;
+        if (btn === activeButton) btn.classList.add('primary');
+        else btn.classList.remove('primary');
+      });
+    }
+
+    function hideAllPrimaryViews() {
+      if (els.listWrap) els.listWrap.style.display = 'none';
+      if (els.graphWrap) els.graphWrap.style.display = 'none';
+      if (els.docsWrap) els.docsWrap.style.display = 'none';
+      if (els.mapWrap) els.mapWrap.style.display = 'none';
+      if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'none';
+      if (els.governanceWrap) els.governanceWrap.style.display = 'none';
+    }
+
     function setView(view) {
       currentView = view;
+      hideAllPrimaryViews();
+
       if (view === 'graph') {
-        els.listWrap.style.display = 'none';
-        els.graphWrap.style.display = 'block';
-        els.docsWrap.style.display = 'none';
-        els.mapWrap.style.display = 'none';
-        els.governanceWrap.style.display = 'none';
-        els.graphViewBtn.classList.add('primary');
-        els.listViewBtn.classList.remove('primary');
-        els.docsViewBtn.classList.remove('primary');
-        els.mapViewBtn.classList.remove('primary');
-        els.governanceViewBtn.classList.remove('primary');
+        if (els.graphWrap) els.graphWrap.style.display = 'block';
+        setPrimaryViewButton(els.graphViewBtn);
         renderGraph();
-      } else if (view === 'docs') {
-        els.listWrap.style.display = 'none';
-        els.graphWrap.style.display = 'none';
-        els.docsWrap.style.display = 'block';
-        els.mapWrap.style.display = 'none';
-        els.governanceWrap.style.display = 'none';
-        els.docsViewBtn.classList.add('primary');
-        els.listViewBtn.classList.remove('primary');
-        els.graphViewBtn.classList.remove('primary');
-        els.mapViewBtn.classList.remove('primary');
-        els.governanceViewBtn.classList.remove('primary');
+        return;
+      }
+
+      if (view === 'docs') {
+        if (els.docsWrap) els.docsWrap.style.display = 'block';
+        setPrimaryViewButton(els.docsViewBtn);
         initDocs();
-      } else if (view === 'map') {
-        els.listWrap.style.display = 'none';
-        els.graphWrap.style.display = 'none';
-        els.docsWrap.style.display = 'none';
-        els.mapWrap.style.display = 'block';
-        els.governanceWrap.style.display = 'none';
-        els.mapViewBtn.classList.add('primary');
-        els.listViewBtn.classList.remove('primary');
-        els.graphViewBtn.classList.remove('primary');
-        els.docsViewBtn.classList.remove('primary');
-        els.governanceViewBtn.classList.remove('primary');
+        return;
+      }
+
+      if (view === 'map') {
+        if (els.mapWrap) els.mapWrap.style.display = 'block';
+        setPrimaryViewButton(els.mapViewBtn);
         renderMap();
-      } else if (view === 'governance') {
-        els.listWrap.style.display = 'none';
-        els.graphWrap.style.display = 'none';
-        els.docsWrap.style.display = 'none';
-        els.mapWrap.style.display = 'none';
-        els.governanceWrap.style.display = 'block';
-        els.governanceViewBtn.classList.add('primary');
-        els.listViewBtn.classList.remove('primary');
-        els.graphViewBtn.classList.remove('primary');
-        els.docsViewBtn.classList.remove('primary');
-        els.mapViewBtn.classList.remove('primary');
+        return;
+      }
+
+      if (view === 'triple') {
+        if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'block';
+        setPrimaryViewButton(els.tripleViewBtn);
+        renderTripleView(false);
+        return;
+      }
+
+      if (view === 'governance') {
+        if (els.governanceWrap) els.governanceWrap.style.display = 'block';
+        setPrimaryViewButton(els.governanceViewBtn);
         renderGovernance();
         refreshGovernanceData();
-      } else {
-        els.listWrap.style.display = 'block';
-        els.graphWrap.style.display = 'none';
-        els.docsWrap.style.display = 'none';
-        els.mapWrap.style.display = 'none';
-        els.governanceWrap.style.display = 'none';
-        els.listViewBtn.classList.add('primary');
-        els.graphViewBtn.classList.remove('primary');
-        els.docsViewBtn.classList.remove('primary');
-        els.mapViewBtn.classList.remove('primary');
-        els.governanceViewBtn.classList.remove('primary');
+        return;
       }
+
+      if (els.listWrap) els.listWrap.style.display = 'block';
+      setPrimaryViewButton(els.listViewBtn);
     }
 
     function initDraftTabs() {
@@ -4576,8 +4840,17 @@ END CONFLICT RESOLUTION`;
       if (els.mapViewBtn) {
         els.mapViewBtn.addEventListener('click', () => setView('map'));
       }
+      if (els.tripleViewBtn) {
+        els.tripleViewBtn.addEventListener('click', () => setView('triple'));
+      }
       if (els.governanceViewBtn) {
         els.governanceViewBtn.addEventListener('click', () => setView('governance'));
+      }
+      if (els.tripleReloadBtn) {
+        els.tripleReloadBtn.addEventListener('click', () => {
+          tripleViewLoaded = false;
+          renderTripleView(true);
+        });
       }
       if (els.mapEpochOnly) {
         els.mapEpochOnly.addEventListener('change', () => renderMap());

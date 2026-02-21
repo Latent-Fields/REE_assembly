@@ -9,6 +9,11 @@ components:
   - REE.RC_reality_coherence_loop
   - REE.control_plane_router
   - REE.E3_trajectory_selector
+  - REE.associative_meta_calibration
+  - REE.filter_context_anchor
+  - REE.filter_body_feasible
+  - REE.filter_motivation_ok
+  - REE.filter_hard_veto
   - REE.gate_cognitive_set
   - REE.gate_motivational
   - REE.gate_motor
@@ -188,3 +193,63 @@ edges:
     to: REE.HippocampalSystems_rollout_and_provenance
     stream: post_commit.outcome_trace
     phase: post_commit
+  - id: EDGE-035
+    from: REE.control_plane_router
+    to: REE.associative_meta_calibration
+    stream: control.P_cognitive
+    phase: pre_commit
+  - id: EDGE-036
+    from: REE.E3_trajectory_selector
+    to: REE.associative_meta_calibration
+    stream: packet.decision_snapshot
+    phase: post_commit
+  - id: EDGE-037
+    from: REE.post_commit_learning
+    to: REE.associative_meta_calibration
+    stream: packet.outcome_snapshot
+    phase: post_commit
+  - id: EDGE-038
+    from: REE.associative_meta_calibration
+    to: REE.control_plane_router
+    stream: control.meta_recalibration
+    phase: post_commit
+  - id: EDGE-039
+    from: REE.HippocampalSystems_rollout_and_provenance
+    to: REE.filter_context_anchor
+    stream: filter.context_anchor
+    phase: pre_commit
+  - id: EDGE-040
+    from: BOUNDARY.typed_payload_boundary
+    to: REE.filter_body_feasible
+    stream: stream.HOMEOSTASIS
+    phase: pre_commit
+  - id: EDGE-041
+    from: REE.E3_trajectory_selector
+    to: REE.filter_motivation_ok
+    stream: filter.motivation_ok
+    phase: pre_commit
+  - id: EDGE-042
+    from: REE.E2_fast_forward_predictor
+    to: REE.filter_hard_veto
+    stream: stream.HARM
+    phase: pre_commit
+  - id: EDGE-043
+    from: REE.filter_context_anchor
+    to: REE.E3_trajectory_selector
+    stream: eligibility.pass_or_fail
+    phase: pre_commit
+  - id: EDGE-044
+    from: REE.filter_body_feasible
+    to: REE.E3_trajectory_selector
+    stream: eligibility.pass_or_fail
+    phase: pre_commit
+  - id: EDGE-045
+    from: REE.filter_motivation_ok
+    to: REE.E3_trajectory_selector
+    stream: eligibility.pass_or_fail
+    phase: pre_commit
+  - id: EDGE-046
+    from: REE.filter_hard_veto
+    to: REE.E3_trajectory_selector
+    stream: eligibility.veto_state
+    phase: pre_commit

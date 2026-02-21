@@ -216,6 +216,31 @@ collapsing all channels into one global precision scalar.
 
 ---
 
+## Loop-vector precision and governance calibration note
+
+Implementation should treat loop precision as a **vector**, not a scalar:
+
+- `P_motor` ~ `DA_M` (execution release/readiness competition),
+- `P_cognitive` ~ `DA_A` (task-set stability, strategy, arbitration),
+- `P_value` ~ `DA_L` (salience/valuation pressure).
+
+Each loop axis should carry at least:
+
+- tonic baseline,
+- phasic event modulation,
+- plasticity coupling (effective learning-rate pressure).
+
+This keeps failure regimes interpretable (for example, high value lock-in with low cognitive stability) without
+collapsing to one "confidence" number.
+
+### Associative loop as meta-calibration locus
+
+Outcome-vs-decision calibration should be modeled as a function of the associative loop (`DA_A` lane): compare
+commit-time control state to realized outcomes, then retune control-plane weights/thresholds. This is a governance
+function over control parameters, not a separate fourth commitment loop.
+
+---
+
 ## Meta-invariant compression coverage (INV-019..INV-023)
 
 This wiring map now carries an explicit compression check against the reduced meta-invariant layer:
@@ -514,3 +539,6 @@ Calibration hooks:
 - `docs/processed/legacy_tree/architecture/control_plane_signal_map.md`
 - `docs/thoughts/2026-02-17_control_plane_update.md`
 - `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`
+- `docs/thoughts/2026-02-21_meta_critic.md`
+- `docs/thoughts/2026-02-21_more_control_plane_necessities.md`
+- `docs/thoughts/2026-02-19_basal_ganglia_evolutionary_conservation_pull.md`
