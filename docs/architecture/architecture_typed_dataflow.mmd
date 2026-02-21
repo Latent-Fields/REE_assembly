@@ -2,11 +2,16 @@ flowchart LR
   subgraph REE[REE Typed Dataflow]
     EXT["EXT.external_inputs"]
     BND["BOUNDARY.typed_payload_boundary"]
+    SUB["REE.shared_latent_substrate"]
     E1["REE.E1_persistent_predictive_substrate"]
     E2["REE.E2_fast_forward_predictor"]
     HPC["REE.HippocampalSystems_rollout_and_provenance"]
     RC["REE.RC_reality_coherence_loop"]
+    ERR["REE.error_channel_router"]
     CP["REE.control_plane_router"]
+    THAL["REE.thalamic_precision_relay"]
+    NM["REE.neuromodulatory_state_estimator"]
+    CCM["REE.connectome_constraint_model"]
     E3["REE.E3_trajectory_selector"]
     CAL["REE.associative_meta_calibration"]
     F1["REE.filter_context_anchor"]
@@ -18,6 +23,7 @@ flowchart LR
     G1["REE.gate_cognitive_set"]
     G2["REE.gate_motivational"]
     G3["REE.gate_motor"]
+    GPS["REE.gate_probe_sweep"]
     ACT["REE.action_executor"]
     LRN["REE.post_commit_learning"]
   end
@@ -25,10 +31,15 @@ flowchart LR
   EXT -->|payload.OBS| BND
   EXT -->|payload.INS| BND
 
-  BND -->|stream.WORLD| E1
-  BND -->|stream.WORLD| E2
-  BND -->|stream.HOMEOSTASIS| E1
+  BND -->|stream.WORLD| SUB
+  BND -->|stream.HOMEOSTASIS| SUB
   BND -->|stream.HARM| E2
+  BND -->|error.sensory_prediction| ERR
+
+  SUB -->|latent.shared_state| E1
+  SUB -->|latent.shared_state| E2
+  E1 -->|latent.slow_update_proposal| SUB
+  E2 -->|latent.fast_update_proposal| SUB
 
   E1 -->|latent.prior_bundle| HPC
   E2 -->|forward_prediction_kernel| HPC
@@ -40,6 +51,14 @@ flowchart LR
   E1 -->|signal.S1_slow| CP
   E1 -->|signal.S3_slow| CP
   RC -->|signal.S5_RC_conflict| CP
+  NM -->|control.modulator_state| CP
+  CP -->|route.candidate_profile| CCM
+  CCM -->|route.constraint_feedback| CP
+
+  CP -->|control.precision_bias_bundle| THAL
+  THAL -->|control.precision_thal| E1
+  THAL -->|control.precision_thal| E2
+  THAL -->|control.delay_bias_thal| E3
 
   CP -->|control.Pi_int+Pi_rc+Pi_noc| E1
   CP -->|control.Pi_ext+Pi_prop| E2
@@ -62,6 +81,16 @@ flowchart LR
   F3 -->|eligibility.pass_or_fail| E3
   F4 -->|eligibility.veto_state| E3
 
+  E3 -->|gate_probe.request| GPS
+  CP -->|gate_probe.policy| GPS
+  GPS -->|gate_probe.inject| G1
+  GPS -->|gate_probe.inject| G2
+  GPS -->|gate_probe.inject| G3
+  G1 -->|gate_probe.response| GPS
+  G2 -->|gate_probe.response| GPS
+  G3 -->|gate_probe.response| GPS
+  GPS -->|gate_probe.summary| E3
+
   E3 -->|gate_request| G1
   E3 -->|gate_request| G2
   E3 -->|gate_request| G3
@@ -71,6 +100,12 @@ flowchart LR
 
   G3 -->|stream.ACTION| ACT
   ACT -->|stream.SELF_SENSORY| E2
+  ACT -->|error.action_prediction| ERR
+  E3 -->|error.precommit_sim| ERR
+  LRN -->|error.postcommit_outcome| ERR
+  ERR -->|error.precommit_sim+error.action_prediction+error.sensory_prediction| CP
+  ERR -->|error.postcommit_outcome| E1
+  ERR -->|error.postcommit_outcome_replay| HPC
   E3 -->|stream.sim_error| CP
 
   ACT -->|stream.SELF_IMPACT| LRN

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-21T16:23:03.753684Z`
+Generated: `2026-02-21T17:00:14.752703Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -71,7 +71,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-018
 - Conflict types: directional
-- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.683
+- Evidence breakdown: supports=6, weakens=4, conflict_ratio=0.8, overall_confidence=0.682
 - Recent entries:
   - `2026-02-15T20:52:17Z` `experimental` `claim_probe_arc_018` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:37Z` `experimental` `claim_probe_arc_018` direction=`supports` confidence=0.75

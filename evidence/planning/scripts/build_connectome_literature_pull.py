@@ -57,6 +57,36 @@ def _load_connectome_completion_settings(
     }
 
 
+def _load_connectome_manual_seed_settings(
+    planning_criteria: dict[str, Any],
+) -> dict[str, Any]:
+    pull_cfg = planning_criteria.get("connectome_pull", {}) if isinstance(planning_criteria, dict) else {}
+    if not isinstance(pull_cfg, dict):
+        pull_cfg = {}
+
+    raw_claim_ids = pull_cfg.get("manual_claim_ids", [])
+    claim_ids: list[str] = []
+    if isinstance(raw_claim_ids, list):
+        for item in raw_claim_ids:
+            token = str(item).strip()
+            if token and token not in claim_ids:
+                claim_ids.append(token)
+
+    priority = str(pull_cfg.get("manual_priority", "high")).strip().lower()
+    if priority not in {"high", "medium", "low"}:
+        priority = "high"
+
+    trigger_signal = str(pull_cfg.get("manual_trigger_signal", "manual_mode_transition_pull")).strip()
+    if not trigger_signal:
+        trigger_signal = "manual_mode_transition_pull"
+
+    return {
+        "claim_ids": claim_ids,
+        "priority": priority,
+        "trigger_signal": trigger_signal,
+    }
+
+
 def _count_literature_completion(
     repo_root: Path,
     literature_type: str,
@@ -291,6 +321,210 @@ def _connectome_templates(claim_id: str, claim_subject: str) -> dict[str, Any]:
                 },
             ],
         },
+        "ARC-016": {
+            "focus": "Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.",
+            "questions": [
+                "Which large-scale network control findings support regime-like mode organization over shared predictive machinery?",
+                "What effective-connectivity signatures best mark transitions between task, DMN-like, vigilance, and offline regimes?",
+                "Which findings contradict strict discrete-mode assumptions and imply quasi-continuous landscapes?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "Triple-network and salience-control switching evidence",
+                    "query_stems": [
+                        "triple network salience switching default mode executive control",
+                        "effective connectivity mode transition salience network",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Connectome gradients and controllability constraints",
+                    "query_stems": [
+                        "connectome gradient default mode control network transition",
+                        "network controllability cognitive state transitions connectome",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "Disconfirming evidence for strict regime separability",
+                    "query_stems": [
+                        "continuous cognitive state manifold versus discrete modes fMRI",
+                        "dynamic functional connectivity gradual transitions evidence",
+                    ],
+                },
+            ],
+        },
+        "MECH-025": {
+            "focus": "Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.",
+            "questions": [
+                "Which pathways reliably increase during action commitment and enaction?",
+                "What evidence links action-mode precision shifts to thalamo-cortico-striatal routing?",
+                "Where does action-mode evidence fail to separate from vigilance-like readiness?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "Action execution network integration",
+                    "query_stems": [
+                        "action enaction network integration corticostriatal thalamic",
+                        "task engaged mode suppression default mode network",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Commitment gating and action monitoring",
+                    "query_stems": [
+                        "preSMA ACC commitment decision threshold action execution",
+                        "efference copy action monitoring prediction signals",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "Mixed findings and mode boundary failures",
+                    "query_stems": [
+                        "action mode vigilance overlap neural evidence",
+                        "task mode state misclassification neuroimaging",
+                    ],
+                },
+            ],
+        },
+        "MECH-026": {
+            "focus": "Disambiguate ready-vigilance from action commitment using inhibitory priming and salience routing evidence.",
+            "questions": [
+                "Which circuits express high sensitivity/priming while still suppressing motor release?",
+                "What signatures separate restraint-oriented vigilance from imminent action preparation?",
+                "What evidence suggests vigilance and action are not cleanly dissociable?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "Inhibitory control and orienting circuits",
+                    "query_stems": [
+                        "ready vigilance inhibitory control network",
+                        "orienting salience motor inhibition effective connectivity",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Threat/salience and restraint coupling",
+                    "query_stems": [
+                        "threat vigilance without action neural circuits",
+                        "salience network motor suppression pathways",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "Boundary cases between vigilance and action",
+                    "query_stems": [
+                        "hypervigilance transition to action neural markers",
+                        "false alarm motor gating neural evidence",
+                    ],
+                },
+            ],
+        },
+        "MECH-029": {
+            "focus": "Test DMN-like reflective replay constraints against action-network suppression and hippocampal-cortical coupling.",
+            "questions": [
+                "Which data best supports DMN-like reflective replay with commitment suppression?",
+                "How strong is evidence for hippocampal-cortical coupling during internally generated simulation?",
+                "Where does DMN activity fail to support safe replay assumptions?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "DMN architecture and anti-correlation with action networks",
+                    "query_stems": [
+                        "default mode network anti-correlation task positive network",
+                        "DMN executive control dynamic coupling transitions",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Hippocampal replay and autobiographical simulation",
+                    "query_stems": [
+                        "hippocampal cortical replay default mode simulation",
+                        "episodic future thinking hippocampus default mode",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "DMN instability/pathology boundary evidence",
+                    "query_stems": [
+                        "rumination default mode control failure connectivity",
+                        "psychosis default mode internal model intrusion evidence",
+                    ],
+                },
+            ],
+        },
+        "MECH-030": {
+            "focus": "Constrain sleep/offline consolidation mode assumptions with replay, renormalization, and boundary-protection evidence.",
+            "questions": [
+                "Which sleep-stage mechanisms support consolidation without online commit leakage?",
+                "What evidence supports replay-driven integration across modes?",
+                "Which findings suggest offline updates can distort rather than stabilize mode boundaries?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "Sleep replay and consolidation pathways",
+                    "query_stems": [
+                        "sleep replay hippocampal cortical consolidation pathways",
+                        "sleep stage memory consolidation network connectivity",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Precision recalibration and homeostatic renormalization",
+                    "query_stems": [
+                        "sleep synaptic homeostasis precision recalibration",
+                        "offline neural renormalization predictive processing",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "Failure signatures of offline integration",
+                    "query_stems": [
+                        "sleep disturbance mode switching instability",
+                        "maladaptive consolidation replay bias evidence",
+                    ],
+                },
+            ],
+        },
+        "MECH-047": {
+            "focus": "Evaluate mode-commitment hysteresis and switching-cost hypotheses with state-transition neuroscience evidence.",
+            "questions": [
+                "What evidence supports hysteresis-like switching inertia in brain state transitions?",
+                "Which control variables predict stable mode commitment versus thrash?",
+                "Where does evidence support continuous adaptation over explicit switching-cost dynamics?",
+            ],
+            "tracks": [
+                {
+                    "track_id": "TRK-01",
+                    "focus": "State-transition and metastability analyses",
+                    "query_stems": [
+                        "brain state transition hysteresis metastability",
+                        "dynamic functional connectivity state switching costs",
+                    ],
+                },
+                {
+                    "track_id": "TRK-02",
+                    "focus": "Salience/LC-NE and transition gating",
+                    "query_stems": [
+                        "locus coeruleus salience network state transitions",
+                        "arousal modulation cognitive state switching",
+                    ],
+                },
+                {
+                    "track_id": "TRK-03",
+                    "focus": "Disconfirming evidence for explicit mode manager dynamics",
+                    "query_stems": [
+                        "continuous control model cognitive state dynamics evidence",
+                        "noisy manifold transitions versus discrete states",
+                    ],
+                },
+            ],
+        },
     }
 
     if claim_id in specific:
@@ -333,6 +567,9 @@ def _connectome_templates(claim_id: str, claim_subject: str) -> dict[str, Any]:
 
 
 def _priority_for_gap(gap_item: dict[str, Any]) -> str:
+    manual_priority = str(gap_item.get("manual_priority", "")).strip().lower()
+    if manual_priority in {"high", "medium", "low"}:
+        return manual_priority
     if bool(gap_item.get("consider_new_structure", False)):
         return "high"
     conflict_ratio = _safe_float(gap_item.get("conflict_ratio", 0.0), 0.0)
@@ -647,6 +884,7 @@ def main() -> int:
     dependents = _dependents_map(claims)
     planning_criteria = _load_json(repo_root / args.planning_criteria)
     completion_settings = _load_connectome_completion_settings(planning_criteria)
+    manual_seed_settings = _load_connectome_manual_seed_settings(planning_criteria)
     state_path = repo_root / args.state_json
     prior_state = _load_state(state_path)
 
@@ -654,13 +892,48 @@ def main() -> int:
     cycle_date = str(gap_doc.get("generated_at_utc", generated_at))[:10]
 
     gap_items = gap_doc.get("items", []) if isinstance(gap_doc, dict) else []
+    gap_by_claim: dict[str, dict[str, Any]] = {}
+    for raw_gap in gap_items:
+        if not isinstance(raw_gap, dict):
+            continue
+        claim_id = str(raw_gap.get("claim_id", "")).strip()
+        if claim_id and claim_id not in gap_by_claim:
+            gap_by_claim[claim_id] = raw_gap
+
     selected: list[dict[str, Any]] = []
     for gap_item in gap_items:
         if args.include_monitor or bool(gap_item.get("consider_new_structure", False)):
             selected.append(gap_item)
 
+    selected_claims = {str(item.get("claim_id", "")).strip() for item in selected}
+    for claim_id in manual_seed_settings.get("claim_ids", []):
+        if claim_id in selected_claims:
+            continue
+        seed = dict(gap_by_claim.get(claim_id, {}))
+        if not seed:
+            seed = {
+                "claim_id": claim_id,
+                "claim_type": claims.get(claim_id, {}).get("claim_type", "unknown"),
+                "current_status": claims.get(claim_id, {}).get("status", "unknown"),
+                "conflict_ratio": 0.0,
+                "overall_confidence": 0.5,
+                "consider_new_structure": False,
+                "trigger_signals": [],
+                "recurring_failure_signatures": [],
+            }
+        seed["manual_seed"] = True
+        seed["manual_priority"] = str(manual_seed_settings.get("priority", "high"))
+        trigger_signals = [str(x) for x in seed.get("trigger_signals", []) if str(x).strip()]
+        manual_trigger = str(manual_seed_settings.get("trigger_signal", "")).strip()
+        if manual_trigger and manual_trigger not in trigger_signals:
+            trigger_signals.append(manual_trigger)
+        seed["trigger_signals"] = trigger_signals
+        selected.append(seed)
+        selected_claims.add(claim_id)
+
     selected.sort(
         key=lambda item: (
+            0 if bool(item.get("manual_seed", False)) else 1,
             0 if bool(item.get("consider_new_structure", False)) else 1,
             -_safe_float(item.get("conflict_ratio", 0.0), 0.0),
             str(item.get("claim_id", "")),
@@ -784,6 +1057,10 @@ def main() -> int:
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(json.dumps(state_doc, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
+    selection_mode = "include_monitor" if args.include_monitor else "consider_new_structure_only"
+    if manual_seed_settings.get("claim_ids"):
+        selection_mode = selection_mode + "+manual_seed_claims"
+
     doc = {
         "schema_version": "connectome_literature_pull/v1",
         "generated_at_utc": generated_at,
@@ -794,10 +1071,12 @@ def main() -> int:
             "claims_file": (repo_root / args.claims_file).as_posix(),
         },
         "selection": {
-            "mode": "consider_new_structure_only" if not args.include_monitor else "include_monitor",
+            "mode": selection_mode,
             "consider_new_structure_items": sum(
                 1 for item in selected if bool(item.get("consider_new_structure", False))
             ),
+            "manual_seed_items": sum(1 for item in selected if bool(item.get("manual_seed", False))),
+            "manual_seed_claim_ids": [str(x) for x in manual_seed_settings.get("claim_ids", [])],
             "total_selected_items": len(all_items),
             "active_queue_items": len(active_items),
             "completed_items": len(completed_items),

@@ -6,11 +6,16 @@ flowchart TB
 
   subgraph REE[REE Core]
     BND["BOUNDARY.typed_payload_boundary"]
+    SUB["REE.shared_latent_substrate"]
     E1["REE.E1_persistent_predictive_substrate"]
     E2["REE.E2_fast_forward_predictor"]
     HPC["REE.HippocampalSystems_rollout_and_provenance"]
     RC["REE.RC_reality_coherence_loop"]
+    ERR["REE.error_channel_router"]
     CP["REE.control_plane_router"]
+    THAL["REE.thalamic_precision_relay"]
+    NM["REE.neuromodulatory_state_estimator"]
+    CCM["REE.connectome_constraint_model"]
     E3["REE.E3_trajectory_selector"]
     CAL["REE.associative_meta_calibration"]
     F1["REE.filter_context_anchor"]
@@ -20,6 +25,7 @@ flowchart TB
     G1["REE.gate_cognitive_set"]
     G2["REE.gate_motivational"]
     G3["REE.gate_motor"]
+    GPS["REE.gate_probe_sweep"]
     ACT["REE.action_executor"]
     LRN["REE.post_commit_learning"]
   end
@@ -30,14 +36,27 @@ flowchart TB
   end
 
   EXT --> BND
-  BND --> E1
+  BND --> SUB
   BND --> E2
+  BND --> ERR
+  SUB --> E1
+  SUB --> E2
+  E1 --> SUB
+  E2 --> SUB
+
   E1 --> HPC
   E2 --> HPC
   HPC --> RC
+
+  NM --> CP
   RC --> CP
-  E1 --> CP
-  E2 --> CP
+  CP --> CCM
+  CCM --> CP
+  CP --> THAL
+  THAL --> E1
+  THAL --> E2
+  THAL --> E3
+
   CP --> CAL
   CAL --> CP
   CP --> E3
@@ -50,8 +69,21 @@ flowchart TB
   F2 --> E3
   F3 --> E3
   F4 --> E3
-  VER --> E3
+
   STORES --> VER
+  E3 --> VER
+  VER --> E3
+
+  E3 --> GPS
+  CP --> GPS
+  GPS --> G1
+  GPS --> G2
+  GPS --> G3
+  G1 --> GPS
+  G2 --> GPS
+  G3 --> GPS
+  GPS --> E3
+
   E3 --> G1
   E3 --> G2
   E3 --> G3
@@ -59,8 +91,17 @@ flowchart TB
   CP --> G2
   CP --> G3
   G3 --> ACT
+
   ACT --> WORLD
   WORLD --> EXT
+
+  E3 --> ERR
+  ACT --> ERR
   ACT --> LRN
+  LRN --> ERR
+  ERR --> CP
+  ERR --> E1
+  ERR --> HPC
+
   LRN --> E1
   LRN --> HPC

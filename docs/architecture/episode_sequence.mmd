@@ -2,11 +2,16 @@ sequenceDiagram
   participant WORLD as ENV.world_state
   participant EXT as EXT.external_inputs
   participant BND as BOUNDARY.typed_payload_boundary
+  participant SUB as REE.shared_latent_substrate
   participant E2 as REE.E2_fast_forward_predictor
   participant E1 as REE.E1_persistent_predictive_substrate
   participant HPC as REE.HippocampalSystems_rollout_and_provenance
   participant RC as REE.RC_reality_coherence_loop
+  participant ERR as REE.error_channel_router
   participant CP as REE.control_plane_router
+  participant THAL as REE.thalamic_precision_relay
+  participant NM as REE.neuromodulatory_state_estimator
+  participant CCM as REE.connectome_constraint_model
   participant E3 as REE.E3_trajectory_selector
   participant CAL as REE.associative_meta_calibration
   participant F1 as REE.filter_context_anchor
@@ -17,13 +22,28 @@ sequenceDiagram
   participant G1 as REE.gate_cognitive_set
   participant G2 as REE.gate_motivational
   participant G3 as REE.gate_motor
+  participant GPS as REE.gate_probe_sweep
   participant ACT as REE.action_executor
   participant LRN as REE.post_commit_learning
 
   WORLD->>EXT: stream.WORLD + stream.HOMEOSTASIS + stream.HARM
   EXT->>BND: payload.OBS / payload.INS
+  BND->>SUB: stream.WORLD + stream.HOMEOSTASIS
   BND->>E2: stream.WORLD + stream.HARM
-  BND->>E1: stream.WORLD + stream.HOMEOSTASIS
+  BND->>ERR: error.sensory_prediction
+
+  SUB->>E1: latent.shared_state
+  SUB->>E2: latent.shared_state
+  E1->>SUB: latent.slow_update_proposal
+  E2->>SUB: latent.fast_update_proposal
+
+  NM->>CP: control.modulator_state
+  CP->>CCM: route.candidate_profile
+  CCM->>CP: route.constraint_feedback
+  CP->>THAL: control.precision_bias_bundle
+  THAL->>E2: control.precision_thal
+  THAL->>E1: control.precision_thal
+  THAL->>E3: control.delay_bias_thal
 
   CP->>E2: control.Pi_ext + control.Pi_prop
   CP->>E1: control.Pi_int + control.Pi_rc + control.Pi_noc
@@ -49,6 +69,15 @@ sequenceDiagram
   VER->>E3: verifier.approve_or_deny
 
   alt verifier.approve
+    E3->>GPS: gate_probe.request
+    CP->>GPS: gate_probe.policy
+    GPS->>G1: gate_probe.inject
+    GPS->>G2: gate_probe.inject
+    GPS->>G3: gate_probe.inject
+    G1->>GPS: gate_probe.response
+    G2->>GPS: gate_probe.response
+    G3->>GPS: gate_probe.response
+    GPS->>E3: gate_probe.summary
     E3->>G1: gate_request
     E3->>G2: gate_request
     E3->>G3: gate_request
@@ -60,6 +89,12 @@ sequenceDiagram
     WORLD->>EXT: post_action_frame
     EXT->>BND: payload.OBS
     BND->>LRN: stream.SELF_SENSORY + stream.SELF_IMPACT
+    E3->>ERR: error.precommit_sim
+    ACT->>ERR: error.action_prediction
+    LRN->>ERR: error.postcommit_outcome
+    ERR->>CP: error.precommit_sim+error.action_prediction+error.sensory_prediction
+    ERR->>E1: error.postcommit_outcome
+    ERR->>HPC: error.postcommit_outcome_replay
     E3->>CP: stream.sim_error
     LRN->>E1: stream.realized_error + commit_boundary.tokenized_update
     LRN->>HPC: post_commit.outcome_trace

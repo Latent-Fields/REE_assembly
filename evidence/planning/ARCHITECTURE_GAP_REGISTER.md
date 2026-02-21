@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-02-21T16:23:03.753684Z`
+Generated: `2026-02-21T17:00:14.752703Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
@@ -24,10 +24,10 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0016` | `Q-005` | `active` | 0.727 | 0 | -0.177 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0017` | `Q-006` | `active` | 0.727 | 0 | -0.177 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0018` | `Q-015` | `active` | 0.727 | 0 | 0.189 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0019` | `ARC-018` | `provisional` | 0.667 | 0.167 | 0.241 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0019` | `ARC-018` | `provisional` | 0.667 | 0.167 | 0.24 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0020` | `Q-007` | `active` | 0.667 | 0 | -0.209 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0021` | `MECH-056` | `candidate` | 0.648 | 0.111 | 0.154 | 5 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0022` | `MECH-033` | `provisional` | 0.625 | 0.167 | 0.196 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0022` | `MECH-033` | `provisional` | 0.625 | 0.167 | 0.195 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0023` | `ARC-007` | `active` | 0.615 | 0 | 0.081 | 2 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0024` | `MECH-059` | `candidate` | 0.566 | 0.333 | 0.147 | 5 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0025` | `IMPL-022` | `stable` | 0 | 1 | -0.151 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -40,13 +40,13 @@ This register highlights claims under structural pressure and flags where the ev
   - recurring_signatures: `mech060:postcommit_channel_contamination`(64), `mech060:attribution_reliability_break`(62), `mech060:commitment_reversal_spike`(50), `mech060:precommit_channel_contamination`(10), `threshold:pre_commit_error_signal_to_noise`(7)
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.301
   - escalation_required: yes; route directly to architecture decision checkpoint.
-  - mandatory_decision_checkpoint: yes; deadline=2026-02-24T16:23:03.753684Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
+  - mandatory_decision_checkpoint: yes; deadline=2026-02-24T17:00:14.752703Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
   - atomic_split_recommended: yes; split into narrower subclaims before broad reruns.
 - `MECH-058` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.871; lit_non_support_ratio=0.222.
   - recurring_signatures: `mech058:anchor_separation_collapse`(57), `mech058:ema_drift_under_shift`(25), `mech058:latent_cluster_collapse`(10), `threshold:latent_prediction_error_mean`(7), `threshold:latent_prediction_error_p95`(7)
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.311
   - escalation_required: yes; route directly to architecture decision checkpoint.
-  - mandatory_decision_checkpoint: yes; deadline=2026-02-24T16:23:03.753684Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
+  - mandatory_decision_checkpoint: yes; deadline=2026-02-24T17:00:14.752703Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
   - atomic_split_recommended: yes; split into narrower subclaims before broad reruns.
 - `Q-017` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.848; lit_non_support_ratio=0.125.
   - recurring_signatures: `q017:control_axis_stability_drop`(48), `q017:control_axis_entropy_collapse`(48), `q017:control_axis_policy_loss_spike`(34)
