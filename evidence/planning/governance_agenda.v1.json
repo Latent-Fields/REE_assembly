@@ -9,7 +9,7 @@
       ],
       "dependents_reopened_total": 0,
       "dry_run": false,
-      "last_run_generated_at_utc": "2026-02-21T13:02:02.717608Z",
+      "last_run_generated_at_utc": "2026-02-21T14:26:54.989294Z",
       "patch_queue_path": "evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md",
       "prompt": "Apply approved/applied adjudication outcomes to claims registry and reopen dependents when cascade triggers fire."
     },
@@ -3641,10 +3641,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/sync_task_inbox.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:02.604192Z",
+        "finished_at_utc": "2026-02-21T14:26:54.829091Z",
         "name": "task_inbox_sync",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:02.558579Z",
+        "started_at_utc": "2026-02-21T14:26:54.762587Z",
         "status": "ok",
         "stderr": "",
         "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
@@ -3652,13 +3652,12 @@
       {
         "command": [
           "/opt/local/bin/python3",
-          "docs/thoughts/scripts/thought_sweep.py",
-          "--check-unprocessed"
+          "docs/thoughts/scripts/thought_sweep.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:02.675587Z",
+        "finished_at_utc": "2026-02-21T14:26:54.896019Z",
         "name": "thought_sweep",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:02.604248Z",
+        "started_at_utc": "2026-02-21T14:26:54.829144Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Thought sweep: total=46, processed=46, unprocessed=0, processed_missing_links=0"
@@ -3670,10 +3669,10 @@
           "--decision-statuses",
           "applied"
         ],
-        "finished_at_utc": "2026-02-21T13:02:02.723464Z",
+        "finished_at_utc": "2026-02-21T14:26:55.000418Z",
         "name": "adjudication_cascade",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:02.675622Z",
+        "started_at_utc": "2026-02-21T14:26:54.896116Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Adjudication cascade complete: eligible_decisions=9, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
@@ -3683,10 +3682,10 @@
           "/opt/local/bin/python3",
           "evidence/experiments/scripts/build_experiment_indexes.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:03.216805Z",
+        "finished_at_utc": "2026-02-21T14:26:55.335275Z",
         "name": "evidence_build",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:02.723505Z",
+        "started_at_utc": "2026-02-21T14:26:55.000474Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Indexed 1018 run(s) across 39 experiment type(s); FAIL=447; literature entries=74; backlog items=25; proposals=23."
@@ -3696,10 +3695,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_structure_review_dossiers.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:03.313757Z",
+        "finished_at_utc": "2026-02-21T14:26:55.416101Z",
         "name": "structure_review",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:03.216854Z",
+        "started_at_utc": "2026-02-21T14:26:55.335317Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-21\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-21/structure_review_report.v1.json"
@@ -3709,10 +3708,10 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_human_decision_briefs.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:03.366968Z",
+        "finished_at_utc": "2026-02-21T14:26:55.464324Z",
         "name": "human_decision_briefs",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:03.313813Z",
+        "started_at_utc": "2026-02-21T14:26:55.416144Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Human decision briefs generated: cycle=2026-02-21, claims=10, index=/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-21/INDEX.md, warnings=0"
@@ -3722,17 +3721,17 @@
           "/opt/local/bin/python3",
           "evidence/planning/scripts/build_connectome_literature_pull.py"
         ],
-        "finished_at_utc": "2026-02-21T13:02:03.416660Z",
+        "finished_at_utc": "2026-02-21T14:26:55.517580Z",
         "name": "connectome_pull",
         "returncode": 0,
-        "started_at_utc": "2026-02-21T13:02:03.367014Z",
+        "started_at_utc": "2026-02-21T14:26:55.464365Z",
         "status": "ok",
         "stderr": "",
         "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md\nWrote connectome pull state JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json\nConnectome queue status: active=3 completed=3 total_selected=6"
       }
     ]
   },
-  "generated_at_utc": "2026-02-21T13:02:03.416713Z",
+  "generated_at_utc": "2026-02-21T14:26:55.517620Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,
