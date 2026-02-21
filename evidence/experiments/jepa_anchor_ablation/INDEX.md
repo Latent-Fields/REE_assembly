@@ -1,6 +1,6 @@
 # Experiment Index: jepa_anchor_ablation
 
-Generated: `2026-02-21T15:24:33.746558Z`
+Generated: `2026-02-21T16:23:03.753684Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

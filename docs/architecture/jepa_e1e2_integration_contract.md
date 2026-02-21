@@ -18,6 +18,15 @@ Specify how JEPA-family models can be integrated into REE as:
 
 This contract isolates the substrate boundary so control-completion behavior remains explicit REE scope.
 
+Functional mapping note:
+
+- `E1` and `E2` should be treated as functional decomposition over JEPA streams, not necessarily separate physical
+  modules.
+- Fast online predictor adaptation can realize `E2` behavior.
+- Slow target/anchor dynamics and continuity constraints can realize `E1` behavior.
+- The required separations are update-rate asymmetry, typed routing, and write-locus permissions, not total latent
+  isolation.
+
 ---
 
 ## Integration Boundary
@@ -118,6 +127,8 @@ internal proxy used by REE confidence/channel logic. Each proxy entry should inc
 3. `pe_latent` feeds REE prediction-error routing (precision/eligibility inputs), not direct policy rewrite.
 4. Any action-conditioned JEPA output is treated as hypothetical until E3 commitment.
 5. Internal JEPA proxies are valid control inputs only after explicit REE-side calibration and attribution-safe routing.
+6. Shared latent producers are acceptable if E1/E2 contractual roles remain distinguishable by update-rate and routing
+   policy.
 
 ### Signed PE and precision routing bridge
 

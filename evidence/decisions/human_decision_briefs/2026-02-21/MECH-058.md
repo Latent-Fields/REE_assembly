@@ -13,11 +13,11 @@ Cycle: `2026-02-21`
 
 ## How It Functions In The Architecture
 
-- ## EMA target anchoring preserves E1/E2 substrate separation (MECH-058)
+- ## EMA target anchoring stabilizes shared JEPA substrate with functional E1/E2 rate separation (MECH-058)
 - When JEPA-like substrate training is used for REE E1/E2, a slow target-anchor pathway (for example, EMA-updated target
 - encoder) should be treated as a stability requirement rather than an optimization trick.
-- Proposed role in REE terms:
-- - fast predictor updates support E2-like short-horizon adaptation,
+- Interpretation guard:
+- - E1 and E2 are functional roles over a partially shared JEPA substrate, not a claim of total module isolation.
 
 ## Decision Lanes
 

@@ -100,16 +100,23 @@ constraint routing, rather than replaced by them.
 ---
 
 <a id="mech-058"></a>
-## EMA target anchoring preserves E1/E2 substrate separation (MECH-058)
+## EMA target anchoring stabilizes shared JEPA substrate with functional E1/E2 rate separation (MECH-058)
 
 When JEPA-like substrate training is used for REE E1/E2, a slow target-anchor pathway (for example, EMA-updated target
 encoder) should be treated as a stability requirement rather than an optimization trick.
+
+Interpretation guard:
+
+- E1 and E2 are functional roles over a partially shared JEPA substrate, not a claim of total module isolation.
+- E2-like behavior maps to fast online predictor adaptation and short-horizon rollout support.
+- E1-like behavior maps to slow anchor continuity and long-horizon representational stability.
 
 Proposed role in REE terms:
 
 - fast predictor updates support E2-like short-horizon adaptation,
 - slow anchor updates preserve E1-like representational continuity,
-- their separation reduces collapse/drift that would otherwise corrupt commitment-level attribution.
+- asymmetric update rates and typed interfaces prevent timescale collapse even when representation substrate is shared.
+- this separation requirement is functional/contractual (rate + routing + write boundaries), not anatomical.
 
 This mechanism is currently a candidate and needs direct ablation evidence in REE-shaped tasks.
 
@@ -140,6 +147,14 @@ REE should maintain two explicit error channels around E3 commitment:
 
 In JEPA-integrated systems this implies at least one exploratory/simulation-side error stream and one
 execution-outcome stream; both are required and should not be merged.
+
+Interpretation guard:
+
+- channel separation is semantic and write-locus constrained, not a requirement for complete informational isolation.
+- pre-commit and post-commit signals may both inform selection/arbitration dynamics before commitment settles.
+- durable attribution and policy/ledger updates remain strictly commit-boundary-gated.
+- current conflict pressure mostly reflects boundary contamination events, not the mere existence of shared upstream
+  predictors.
 
 MECH‑061 and MECH‑062 provide a concrete realization path for this split:
 
@@ -213,6 +228,7 @@ Allowed:
 
 - shared upstream representations (state encoders, uncertainty features, replay context),
 - read-only reuse of pre-commit features for post-commit attribution alignment,
+- bounded cross-gate read access for arbitration/diagnostics before durable write stage,
 - verifier-visible provenance links across phases.
 
 Forbidden:
