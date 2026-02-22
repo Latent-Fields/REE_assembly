@@ -34,6 +34,10 @@ queue before any canonical promotion in `REE_assembly`.
   - new flags:
     - `--skip-convergence-intake`
     - `--convergence-fail-on-invalid`
+- Pruned canonical JEPA glossary scope and moved extended term-harmonization tables to convergence intake:
+  - `docs/glossary.md` (`IMPL-020` canonical core only)
+  - `REE_convergence/sources/jepa/glossary.md`
+  - `REE_convergence/translations/glossary_master.md`
 - Updated planning runbooks:
   - `evidence/planning/README.md`
   - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`

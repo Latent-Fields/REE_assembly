@@ -193,6 +193,11 @@ Interpretation note:
 **Polarity:** asserts  
 **Claim:** There is a strict separation between representation (content) and regulation (control).
 
+Interpretation note:
+- This separation is an interface and responsibility boundary, not a claim of full functional isolation.
+- REE is treated as a coherent single cognifold with bounded, typed cross-axis coupling.
+- Biological center separation alone is not sufficient evidence of independent function.
+
 **Source:** [DANIEL_README.md](../DANIEL_README.md) Layer 1
 
 ---

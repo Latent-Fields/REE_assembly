@@ -32,6 +32,11 @@ REE separates cognition into three irreducible functions:
 - **Reachability in the near future** (what can be done next)
 - **Commitment in the present** (what is lived as “now”)
 
+Interpretation note:
+- This decomposition is an analysis lens and typed-boundary contract.
+- It is not an ontological claim that functions are fully isolated in biology or implementation.
+- REE remains a coherent single cognifold with bounded coupling across these functions.
+
 These functions are implemented by three major components:
 
 - **E1 — Persistent Predictive Substrate**

@@ -33,93 +33,55 @@
 Purpose: align terminology between latent predictive world-model research (JEPA framing) and REE so claims are
 structurally interoperable without forcing conceptual merger.
 
-#### 1. Representation layer
+Canonical scope:
+- maintain only adjudicated JEPA-to-REE term translations needed by canonical REE docs and contracts,
+- keep source-specific and exploratory translation drafts in `REE_convergence`,
+- promote external translation changes back through convergence packets before canonical adoption.
 
-| JEPA term | REE term | Alignment note |
+#### Canonical term translation set
+
+| JEPA term | REE term | Canonical interpretation |
 |---|---|---|
-| Embedding / latent representation | L-space | Both refer to abstract latent manifolds where prediction happens without raw sensory reconstruction. |
-| Encoder | E1 deep integrative predictor | Both construct representational geometry; REE E1 adds slow cross-modal and cross-temporal synthesis. |
-| Target embedding | Projected future L-state | JEPA predicts latent targets; REE predicts future state trajectories in latent space. |
+| Embedding / latent representation | L-space | Shared latent manifold where prediction and rollout preparation operate. |
+| Encoder / context-target encoder | E1 deep integrative predictor | Slow cross-modal and cross-temporal integration path. |
+| Latent predictor | E2 fast predictive generator | Short-horizon latent transition generator. |
+| Target embedding | Projected future L-state | Latent future target used for predictive alignment. |
+| Joint embedding alignment loss / latent prediction error | L-state prediction error signal (PE routing input) | Deviation signal for adaptation without requiring one global scalar objective. |
+| Temporal/video JEPA context | Multi-timescale predictive integration (E1+E2 coupling) | Coupled short- and long-horizon trajectory modeling. |
+| Action-conditioned prediction | Efference/reafference loop | Embodied prediction stream conditioned on intervention. |
+| Self-model in latent manifold | Self L-state modeling | Viability-critical self representation. |
+| Control mechanism (implicit gap in JEPA) | E3 trajectory selector + control plane | Explicit trajectory arbitration and gating under uncertainty. |
+| Representation collapse avoidance / predictable invariants | Viability constraint + shared modelability | Stability requirements spanning single- and multi-agent conditions. |
+| Multi-agent stability requirement | Ethical stability constraint | Preservation of shared predictability as a viability condition. |
 
-#### 2. Predictive dynamics
-
-| JEPA term | REE term | Alignment note |
-|---|---|---|
-| Latent predictor | E2 fast predictive generator | Both implement rapid transition modeling in latent space. |
-| Joint embedding alignment loss | L-state prediction error signal | REE does not require a single scalar objective but still uses prediction deviation for adaptation. |
-| Invariant structure learning | Coherence preservation across time | JEPA invariance pressure maps to REE long-horizon structural coherence pressure. |
-
-#### 3. Temporal structure
-
-| JEPA term | REE term | Alignment note |
-|---|---|---|
-| Temporal/video JEPA | Multi-timescale predictive integration (E1+E2 coupling) | Both move from static inference toward trajectory prediction. |
-| Context window | Current L-state with memory integration | REE extends context with deeper temporal and replay-linked integration. |
-
-#### 4. Agency extension layer
-
-| JEPA (agentic extension) | REE term | Alignment note |
-|---|---|---|
-| Action-conditioned prediction | Efference/reafference loop | Required for embodied intervention-stable prediction. |
-| Self-model in latent manifold | Self L-state modeling | REE treats this as viability-critical, not optional. |
-| Control mechanism (implicit gap) | E3 trajectory selector + control plane | REE explicitly defines trajectory arbitration and gating under uncertainty. |
-
-#### 5. Stability and constraint
-
-| JEPA term | REE term | Alignment note |
-|---|---|---|
-| Representation collapse avoidance | Viability constraint | REE generalizes collapse risk from embeddings to behavior and multi-agent dynamics. |
-| Predictable invariants | Shared modelability | REE extends invariance to mutual predictability between agents. |
-| Training objective | Long-horizon coherence bias | REE frames this as destabilization constraints rather than reward optimization. |
-
-#### 6. Multi-agent extension
-
-| JEPA extension need | REE term | Alignment note |
-|---|---|---|
-| Modeling other agents | Other L-state modeling | Mutual modeling is foundational for REE social/ethical dynamics. |
-| Multi-agent stability (unspecified) | Ethical stability constraint | REE treats preservation of shared predictability as a viability requirement. |
-
-#### 7. Meta-architecture summary
-
-| Layer | JEPA | REE |
-|---|---|---|
-| Representation | latent embedding | L-space |
-| Fast prediction | latent predictor | E2 |
-| Deep integration | encoder hierarchy | E1 |
-| Error correction | alignment loss | prediction-error routing |
-| Action integration | optional extension | core requirement |
-| Trajectory control | not defined | E3 |
-| Stability principle | invariant learning | long-horizon coherence |
-
-#### 8. Divergence points
+#### Divergence points
 
 - JEPA is typically objective-centric; REE is constraint-centric.
 - JEPA does not require ethical modeling; REE treats ethical stability as structural viability.
 - JEPA does not define control-plane arbitration; REE treats control arbitration as irreducible.
 
-#### 9. Minimal interoperability principle
+#### Minimal interoperability principle
 
 A JEPA-derived world model can serve as REE E1/E2 representational substrate.  
 REE contributes control-plane architecture, self-impact attribution, trajectory constraints, and multi-agent stability
 modeling.
 
-#### 10. Terminology harmonization proposal
-
-- latent embedding <-> L-space
-- prediction error <-> L-state deviation
-- action-conditioned prediction <-> efference/reafference loop
-- invariant representation <-> coherence-preserving state
-
-#### 11. v2 wording policy
+#### Wording and boundary policy
 
 For v2-facing docs and user-facing interactions:
 
 - use JEPA-first wording at first mention with inline REE translation:
   - `JEPA term (REE term)`
 - keep REE schema keys stable in machine contracts.
+- keep extended source-level term tables in `REE_convergence`:
+  - `sources/jepa/glossary.md`
+  - `translations/glossary_master.md`
+- require convergence packet references for canonical JEPA terminology updates.
 
 Reference:
 - `docs/notes/jepa_language_policy.md#impl-024`
+- `evidence/planning/CONVERGENCE_EXTRACTION_MAP.md`
+- `evidence/planning/REE_CONVERGENCE_INTERFACE.md`
 
 ---
 
