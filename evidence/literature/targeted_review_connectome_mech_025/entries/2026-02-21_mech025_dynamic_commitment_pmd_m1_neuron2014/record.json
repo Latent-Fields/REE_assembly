@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-02-21_mech025_dynamic_commitment_pmd_m1_neuron2014",
+  "timestamp_utc": "2026-02-21T17:12:00Z",
+  "claim_ids_tested": [
+    "MECH-025"
+  ],
+  "source": {
+    "title": "Deliberation and commitment in the premotor and primary motor cortex during dynamic decision making",
+    "authors": [
+      "David Thura",
+      "Paul Cisek"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24945771/"
+  },
+  "evidence_class": "sensorimotor_commitment_dynamics",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Directly measures deliberation-to-commitment transitions in action circuits, aligning with MECH-025 action-mode commitment framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "mech025",
+    "action_mode",
+    "commitment",
+    "premotor",
+    "motor_cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neural activity in premotor and motor cortex tracks deliberation and converges during commitment in dynamic action decisions.",
+    "ree_translation": "Supports MECH-025 claim that action mode is characterized by short-horizon commitment dynamics linked to action enaction pathways.",
+    "mapping_caveat": "Circuit-level findings do not independently specify REE control-plane precision routing knobs.",
+    "source_context": "Action decision neurophysiology linking deliberation and commitment in sensorimotor cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.27,
+    "notes": "Strong mechanistic relevance to commitment timing in action mode."
+  }
+}

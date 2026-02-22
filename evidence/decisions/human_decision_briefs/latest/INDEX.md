@@ -1,6 +1,6 @@
 # Human Decision Brief Index
 
-Generated: `2026-02-21T17:00:15.243114Z`
+Generated: `2026-02-21T17:40:43.362972Z`
 Cycle: `2026-02-21`
 
 These briefs are mandatory context for human-governed lanes.

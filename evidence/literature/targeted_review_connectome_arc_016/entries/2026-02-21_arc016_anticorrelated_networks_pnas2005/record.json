@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-02-21_arc016_anticorrelated_networks_pnas2005",
+  "timestamp_utc": "2026-02-21T17:10:00Z",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "source": {
+    "title": "The human brain is intrinsically organized into dynamic, anticorrelated functional networks",
+    "authors": [
+      "Michael D. Fox",
+      "Abraham Z. Snyder",
+      "Justin L. Vincent",
+      "et al."
+    ],
+    "year": 2005,
+    "venue": "PNAS",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16260707/"
+  },
+  "evidence_class": "intrinsic_network_competition",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong foundational evidence for antagonistic large-scale networks supports regime-like mode interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "arc016",
+    "dmn",
+    "task_positive",
+    "anticorrelation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Default-mode and task-positive systems show robust intrinsic anticorrelation in functional organization.",
+    "ree_translation": "Supports ARC-016 expectation that control regimes can bias mutually competitive network configurations.",
+    "mapping_caveat": "Anticorrelation strength depends on preprocessing and does not alone specify causal switching or policy-level control logic.",
+    "source_context": "Human resting-state functional connectivity study."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.34,
+    "notes": "Foundational but indirect relative to full REE architecture."
+  }
+}

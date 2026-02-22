@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-02-21_arc016_hierarchical_network_metastates_pnas2017",
+  "timestamp_utc": "2026-02-21T17:09:00Z",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "source": {
+    "title": "Brain network dynamics are hierarchically organized in time",
+    "authors": [
+      "Diego Vidaurre",
+      "Romesh Abeysuriya",
+      "Robert Becker",
+      "et al."
+    ],
+    "year": 2017,
+    "venue": "PNAS",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28679880/"
+  },
+  "evidence_class": "metastate_hierarchical_dynamics",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Strong support for temporally organized brain-state regimes consistent with control-plane mode landscapes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "arc016",
+    "metastates",
+    "hierarchy",
+    "state_transitions"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large-scale brain dynamics show hierarchical temporal organization with metastable states and transitions.",
+    "ree_translation": "Supports ARC-016 by grounding mode-regime persistence and transition structure in observed hierarchical state dynamics.",
+    "mapping_caveat": "State decomposition choices can vary by model assumptions; not all inferred states map one-to-one to REE mode labels.",
+    "source_context": "Resting-state and dynamic connectivity analyses across temporal scales."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.79,
+    "transfer_risk": 0.31,
+    "notes": "Useful for hysteresis/persistence assumptions but indirect for stream-level causality."
+  }
+}

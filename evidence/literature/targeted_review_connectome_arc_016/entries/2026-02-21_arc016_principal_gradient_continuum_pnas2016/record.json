@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-02-21_arc016_principal_gradient_continuum_pnas2016",
+  "timestamp_utc": "2026-02-21T17:11:00Z",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "source": {
+    "title": "Situating the default-mode network along a principal gradient of macroscale cortical organization",
+    "authors": [
+      "Daniel S. Margulies",
+      "S. Lucie Goulas",
+      "Haohao Jefferies",
+      "et al."
+    ],
+    "year": 2016,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.1608282113",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27791099/"
+  },
+  "evidence_class": "connectome_gradient_continuous_landscape",
+  "evidence_direction": "mixed",
+  "confidence": 0.73,
+  "confidence_rationale": "Strong evidence for continuous cortical gradients tempers overly discrete mode interpretations while still compatible with regime regions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "mode_discreteness_overreach"
+  ],
+  "tags": [
+    "arc016",
+    "dmn",
+    "connectome_gradient",
+    "mixed_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "The default-mode network is positioned on a continuous macroscale cortical gradient rather than an isolated categorical module.",
+    "ree_translation": "Mixed for ARC-016: supports mode regions in control space, but weakens strict hard-discrete mode partitioning assumptions.",
+    "mapping_caveat": "Gradient geometry does not by itself specify dynamic transition policies or commitment thresholds.",
+    "source_context": "Macroscale connectome-gradient analysis linking unimodal to transmodal cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.33,
+    "notes": "Important boundary evidence against literal discrete-mode claims."
+  }
+}

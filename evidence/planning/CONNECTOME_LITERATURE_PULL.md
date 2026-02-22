@@ -1,16 +1,14 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-21T17:00:15.290143Z`
+Generated: `2026-02-21T17:40:43.408298Z`
 Cycle: `2026-02-21`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `9`. Completed items tracked: `3`.
+Active queue items: `7`. Completed items tracked: `5`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `ARC-016` | `high` | no | 0 | `targeted_review_connectome_arc_016` |
-| `CPULL-0002` | `MECH-025` | `high` | no | 0 | `targeted_review_connectome_mech_025` |
 | `CPULL-0003` | `MECH-026` | `high` | no | 0 | `targeted_review_connectome_mech_026` |
 | `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
 | `CPULL-0005` | `MECH-030` | `high` | no | 0 | `targeted_review_connectome_mech_030` |
@@ -18,44 +16,6 @@ Active queue items: `9`. Completed items tracked: `3`.
 | `CPULL-0010` | `MECH-057` | `high` | yes | 0.769 | `targeted_review_connectome_mech_057` |
 | `CPULL-0011` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
 | `CPULL-0012` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
-
-## ARC-016
-
-- Pull ID: `CPULL-0001`
-- Status: `proposed`
-- Objective: Run targeted connectome literature pull for ARC-016.
-- Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
-- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 1 upstream claim(s): `ARC-005`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
-- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
-- Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
-- Research questions:
-  - Which large-scale network control findings support regime-like mode organization over shared predictive machinery?
-  - What effective-connectivity signatures best mark transitions between task, DMN-like, vigilance, and offline regimes?
-  - Which findings contradict strict discrete-mode assumptions and imply quasi-continuous landscapes?
-- Search tracks:
-  - `TRK-01` Triple-network and salience-control switching evidence; query stems: `triple network salience switching default mode executive control`, `effective connectivity mode transition salience network`
-  - `TRK-02` Connectome gradients and controllability constraints; query stems: `connectome gradient default mode control network transition`, `network controllability cognitive state transitions connectome`
-  - `TRK-03` Disconfirming evidence for strict regime separability; query stems: `continuous cognitive state manifold versus discrete modes fMRI`, `dynamic functional connectivity gradual transitions evidence`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
-
-## MECH-025
-
-- Pull ID: `CPULL-0002`
-- Status: `proposed`
-- Objective: Run targeted connectome literature pull for MECH-025.
-- Claim description: MECH-025 is a mechanism hypothesis about cognitive modes / action doing.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.
-- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
-- Connectome focus: Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.
-- Research questions:
-  - Which pathways reliably increase during action commitment and enaction?
-  - What evidence links action-mode precision shifts to thalamo-cortico-striatal routing?
-  - Where does action-mode evidence fail to separate from vigilance-like readiness?
-- Search tracks:
-  - `TRK-01` Action execution network integration; query stems: `action enaction network integration corticostriatal thalamic`, `task engaged mode suppression default mode network`
-  - `TRK-02` Commitment gating and action monitoring; query stems: `preSMA ACC commitment decision threshold action execution`, `efference copy action monitoring prediction signals`
-  - `TRK-03` Mixed findings and mode boundary failures; query stems: `action mode vigilance overlap neural evidence`, `task mode state misclassification neuroimaging`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
 
 ## MECH-026
 
@@ -199,6 +159,8 @@ These claims currently satisfy completion criteria and are excluded from the act
 
 | pull_id | claim_id | status_reason | conflict_ratio |
 |---|---|---|---:|
+| `CPULL-0001` | `ARC-016` | completion_criteria_met | 0 |
+| `CPULL-0002` | `MECH-025` | completion_criteria_met | 0 |
 | `CPULL-0007` | `MECH-060` | completion_criteria_met | 0.875 |
 | `CPULL-0008` | `MECH-058` | completion_criteria_met | 0.871 |
 | `CPULL-0009` | `Q-017` | completion_criteria_met | 0.848 |
@@ -215,8 +177,6 @@ Contract requirements:
 - `evidence/literature/schemas/v1/literature_evidence.schema.json`
 
 Queue items:
-- `CPULL-0001` / `ARC-016` / `targeted_review_connectome_arc_016`
-- `CPULL-0002` / `MECH-025` / `targeted_review_connectome_mech_025`
 - `CPULL-0003` / `MECH-026` / `targeted_review_connectome_mech_026`
 - `CPULL-0004` / `MECH-029` / `targeted_review_connectome_mech_029`
 - `CPULL-0005` / `MECH-030` / `targeted_review_connectome_mech_030`

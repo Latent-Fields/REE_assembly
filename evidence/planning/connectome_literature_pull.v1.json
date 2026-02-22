@@ -8,6 +8,212 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
+      "claim_id": "ARC-016",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-21T17:11:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
+      "connectome_focus": "Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.",
+      "objective": "Run targeted connectome literature pull for ARC-016.",
+      "plain_english_claim_description": "ARC-016 is an architecture commitment about cognitive modes / control plane regimes.",
+      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 1 upstream claim(s): `ARC-005`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.",
+      "priority": "high",
+      "pull_id": "CPULL-0001",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which large-scale network control findings support regime-like mode organization over shared predictive machinery?",
+        "What effective-connectivity signatures best mark transitions between task, DMN-like, vigilance, and offline regimes?",
+        "Which findings contradict strict discrete-mode assumptions and imply quasi-continuous landscapes?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Triple-network and salience-control switching evidence",
+          "query_stems": [
+            "triple network salience switching default mode executive control",
+            "effective connectivity mode transition salience network"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Connectome gradients and controllability constraints",
+          "query_stems": [
+            "connectome gradient default mode control network transition",
+            "network controllability cognitive state transitions connectome"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Disconfirming evidence for strict regime separability",
+          "query_stems": [
+            "continuous cognitive state manifold versus discrete modes fMRI",
+            "dynamic functional connectivity gradual transitions evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.0,
+        "consider_new_structure": false,
+        "direction_counts": {
+          "mixed": 1,
+          "supports": 3,
+          "unknown": 0,
+          "weakens": 0
+        },
+        "overall_confidence": 0.5,
+        "recurring_failure_signatures": [],
+        "source_counts": {
+          "experimental": 0,
+          "literature": 4
+        },
+        "trigger_signals": [
+          "manual_mode_transition_pull"
+        ]
+      },
+      "status": "completed",
+      "suggested_literature_type": "targeted_review_connectome_arc_016",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "MECH-025",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-21T17:15:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
+      "connectome_focus": "Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.",
+      "objective": "Run targeted connectome literature pull for MECH-025.",
+      "plain_english_claim_description": "MECH-025 is a mechanism hypothesis about cognitive modes / action doing.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.",
+      "priority": "high",
+      "pull_id": "CPULL-0002",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which pathways reliably increase during action commitment and enaction?",
+        "What evidence links action-mode precision shifts to thalamo-cortico-striatal routing?",
+        "Where does action-mode evidence fail to separate from vigilance-like readiness?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Action execution network integration",
+          "query_stems": [
+            "action enaction network integration corticostriatal thalamic",
+            "task engaged mode suppression default mode network"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Commitment gating and action monitoring",
+          "query_stems": [
+            "preSMA ACC commitment decision threshold action execution",
+            "efference copy action monitoring prediction signals"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Mixed findings and mode boundary failures",
+          "query_stems": [
+            "action mode vigilance overlap neural evidence",
+            "task mode state misclassification neuroimaging"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.0,
+        "consider_new_structure": false,
+        "direction_counts": {
+          "mixed": 1,
+          "supports": 3,
+          "unknown": 0,
+          "weakens": 0
+        },
+        "overall_confidence": 0.5,
+        "recurring_failure_signatures": [],
+        "source_counts": {
+          "experimental": 0,
+          "literature": 4
+        },
+        "trigger_signals": [
+          "manual_mode_transition_pull"
+        ]
+      },
+      "status": "completed",
+      "suggested_literature_type": "targeted_review_connectome_mech_025",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
       "claim_id": "MECH-060",
       "completion_status": {
         "entries_total": 4,
@@ -339,214 +545,8 @@
     "state_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
   },
   "cycle_date": "2026-02-21",
-  "generated_at_utc": "2026-02-21T17:00:15.290143Z",
+  "generated_at_utc": "2026-02-21T17:40:43.408298Z",
   "items": [
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "ARC-016",
-      "completion_status": {
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "non_support_entries": 0,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence"
-      },
-      "connectome_focus": "Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.",
-      "objective": "Run targeted connectome literature pull for ARC-016.",
-      "plain_english_claim_description": "ARC-016 is an architecture commitment about cognitive modes / control plane regimes.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 1 upstream claim(s): `ARC-005`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.",
-      "priority": "high",
-      "pull_id": "CPULL-0001",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which large-scale network control findings support regime-like mode organization over shared predictive machinery?",
-        "What effective-connectivity signatures best mark transitions between task, DMN-like, vigilance, and offline regimes?",
-        "Which findings contradict strict discrete-mode assumptions and imply quasi-continuous landscapes?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Triple-network and salience-control switching evidence",
-          "query_stems": [
-            "triple network salience switching default mode executive control",
-            "effective connectivity mode transition salience network"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Connectome gradients and controllability constraints",
-          "query_stems": [
-            "connectome gradient default mode control network transition",
-            "network controllability cognitive state transitions connectome"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming evidence for strict regime separability",
-          "query_stems": [
-            "continuous cognitive state manifold versus discrete modes fMRI",
-            "dynamic functional connectivity gradual transitions evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_transition_pull"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_arc_016",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-025",
-      "completion_status": {
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "non_support_entries": 0,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence"
-      },
-      "connectome_focus": "Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.",
-      "objective": "Run targeted connectome literature pull for MECH-025.",
-      "plain_english_claim_description": "MECH-025 is a mechanism hypothesis about cognitive modes / action doing.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.",
-      "priority": "high",
-      "pull_id": "CPULL-0002",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways reliably increase during action commitment and enaction?",
-        "What evidence links action-mode precision shifts to thalamo-cortico-striatal routing?",
-        "Where does action-mode evidence fail to separate from vigilance-like readiness?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Action execution network integration",
-          "query_stems": [
-            "action enaction network integration corticostriatal thalamic",
-            "task engaged mode suppression default mode network"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Commitment gating and action monitoring",
-          "query_stems": [
-            "preSMA ACC commitment decision threshold action execution",
-            "efference copy action monitoring prediction signals"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Mixed findings and mode boundary failures",
-          "query_stems": [
-            "action mode vigilance overlap neural evidence",
-            "task mode state misclassification neuroimaging"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_transition_pull"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_025",
-      "target_repo": "REE_assembly"
-    },
     {
       "acceptance_checks": [
         "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
@@ -1286,8 +1286,8 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "active_queue_items": 9,
-    "completed_items": 3,
+    "active_queue_items": 7,
+    "completed_items": 5,
     "consider_new_structure_items": 6,
     "manual_seed_claim_ids": [
       "ARC-016",

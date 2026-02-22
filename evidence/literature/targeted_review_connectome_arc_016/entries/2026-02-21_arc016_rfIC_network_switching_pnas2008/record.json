@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-02-21_arc016_rfIC_network_switching_pnas2008",
+  "timestamp_utc": "2026-02-21T17:08:00Z",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "source": {
+    "title": "A critical role for the right fronto-insular cortex in switching between central-executive and default-mode networks",
+    "authors": [
+      "Lucina Q. Uddin",
+      "Koushik Supekar",
+      "Huiling Chen",
+      "Vinod Menon"
+    ],
+    "year": 2008,
+    "venue": "PNAS",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19304389/"
+  },
+  "evidence_class": "network_switching_salience_control",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Strong network-switching evidence supports mode-transition control routing, though it does not directly specify REE stream contracts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "arc016",
+    "mode_transition",
+    "salience",
+    "dmn",
+    "executive"
+  ],
+  "mapping": {
+    "source_claim_statement": "The right fronto-insular region is implicated in switching between default-mode and central-executive network states.",
+    "ree_translation": "Supports ARC-016 framing that cognitive modes can be treated as control-plane regime transitions over shared predictive machinery.",
+    "mapping_caveat": "fMRI network-switching evidence is correlational-dominant and does not by itself define mechanistic stream-level routing policies.",
+    "source_context": "Human fMRI network-dynamics analysis during cognitive switching tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.28,
+    "notes": "Directly relevant to salience-mediated network regime switching."
+  }
+}

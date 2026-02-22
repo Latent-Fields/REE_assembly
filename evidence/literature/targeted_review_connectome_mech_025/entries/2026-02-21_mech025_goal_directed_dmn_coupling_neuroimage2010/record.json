@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010",
+  "timestamp_utc": "2026-02-21T17:15:00Z",
+  "claim_ids_tested": [
+    "MECH-025"
+  ],
+  "source": {
+    "title": "Default network activity, coupled with the frontoparietal control network, supports goal-directed cognition",
+    "authors": [
+      "R. Nathan Spreng",
+      "W. D. Stevens",
+      "M. C. Chamberlain",
+      "et al."
+    ],
+    "year": 2010,
+    "venue": "NeuroImage",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20185139/"
+  },
+  "evidence_class": "goal_directed_dmn_control_coupling",
+  "evidence_direction": "mixed",
+  "confidence": 0.76,
+  "confidence_rationale": "Strong mixed evidence that goal-directed behavior can involve DMN-control cooperation, limiting strict action-mode suppression claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "strict_dmn_suppression_overreach"
+  ],
+  "tags": [
+    "mech025",
+    "mixed_evidence",
+    "goal_directed",
+    "dmn",
+    "control_network"
+  ],
+  "mapping": {
+    "source_claim_statement": "Goal-directed cognition can involve cooperative coupling between default-network and frontoparietal control systems.",
+    "ree_translation": "Mixed for MECH-025: action mode should allow conditional reflective-lane coupling under some goal structures, not absolute DMN exclusion.",
+    "mapping_caveat": "Task class and cognitive demand strongly modulate coupling patterns; not all enaction contexts behave this way.",
+    "source_context": "Meta-analytic and connectivity evidence on goal-directed cognition network coupling."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.33,
+    "notes": "Key boundary source preventing over-rigid action-mode assumptions."
+  }
+}
