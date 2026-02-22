@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-02-22T09:29:08.059135Z`
+Generated: `2026-02-22T09:56:21.094417Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
