@@ -24,6 +24,10 @@
   durable attribution/policy/residue updates.
 - **Superseding commit:** A new commit event that interrupts/re-routes a previously dispatched commit; extends lineage
   history without erasing accountability of the earlier commit.
+- **Hazard class:** Typed safety category attached to superseding commits, indicating why fast interruption authority was
+  invoked.
+- **Override scope:** Bounded mitigation envelope for a superseding commit (for example halt, brake, evade, contain,
+  safe-mode transition).
 - **\(\zeta\):** Selected trajectory (latent + hippocampal action rollout).
 - **\(\mathcal{F}\):** Reality constraint (computable proxy for VFE (Variational Free Energy)).
 - **\(M\):** Legacy ethical cost proxy (predicted degradation of self/other variables). Retained for traceability and evaluation; current canonical framing does not require an explicit ethical cost term (see `docs/architecture/e3.md`).

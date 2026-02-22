@@ -171,6 +171,23 @@ Continuous-stream interpretation (non-stop-and-wait):
 - accountability for realized outcomes remains attached to the original commit lineage; superseding commits append
   control history, they do not erase it.
 
+Reflex supersession policy (post-dispatch safety interrupt):
+
+- default source for post-dispatch superseding commits should be fast safety/interrupt lanes (control-plane aversive and
+  hard-veto pathways), not ordinary deliberative preference updates.
+- supersession authority priority is safety-first: reflex interrupt lanes may preempt slower arbitration when hazard
+  thresholds are crossed.
+- supersession must be hazard-scoped and include explicit metadata:
+  - `supersession_reason`
+  - `hazard_class`
+  - `override_scope`
+  - `supersedes_commit_id`
+- allowed supersession scope should be bounded to mitigation/control actions (halt, brake, evasive maneuver,
+  containment, safe-mode transition), not broad semantic policy rewriting.
+- attribution must remain split:
+  - original commit: accountable for initial irreversible dispatch and its consequences,
+  - superseding commit: accountable for interruption and mitigation consequences.
+
 MECH‑061 and MECH‑062 provide a concrete realization path for this split:
 
 - MECH‑061: explicit commit-boundary token as error reclassification boundary,

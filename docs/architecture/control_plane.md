@@ -438,6 +438,8 @@ Operationally:
 - I2 is driven by aversive/imminence channels (S3-like) and veto controls (\(v_{veto}\), MECH-053).
 - I4 is a commitment precondition.
 - I5 is a post-commit invariant aligned with responsibility flow and residue preservation.
+- post-dispatch emergency interruption should be emitted as a superseding commit event from fast safety lanes, with
+  hazard-class and override-scope metadata.
 
 A care-driven override is allowed only when I1-I4 hold. I5 is mandatory after action.
 
