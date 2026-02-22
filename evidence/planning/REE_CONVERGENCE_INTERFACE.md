@@ -27,6 +27,13 @@ Define the minimal interface between:
   - `evidence/planning/convergence_packets/inbox/`
 - Optional source-side supporting docs linked from each packet.
 
+Source-side authoring/sync tooling in `REE_convergence`:
+
+- `tools/build_convergence_promotion_packet.py`
+- `tools/validate_convergence_promotion_packet.py`
+- `tools/run_cross_repo_handoff.py`
+- `handoff/README.md`
+
 Packet contract:
 - `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`
 - `evidence/planning/CONVERGENCE_PROMOTION_PACKET_TEMPLATE.json`
@@ -36,6 +43,8 @@ Packet contract:
 - Queue and validation status for intake packets:
   - `evidence/planning/convergence_intake_queue.v1.json`
   - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
+- Packet receipts:
+  - `evidence/planning/convergence_packets/receipts/*.json`
 - Governance outcomes (accept/reject/hybridize/defer) captured through existing planning/decision flow.
 
 ## Operating Rule
@@ -54,6 +63,14 @@ Promotion path is:
 ## Validation Commands
 
 ```bash
+# in REE_convergence (source side):
+python3 tools/validate_convergence_promotion_packet.py \
+  --input-glob "handoff/packets/outbox/*.json" \
+  --check-gate-readiness
+
+python3 tools/run_cross_repo_handoff.py --assembly-repo ../REE_assembly
+
+# in REE_assembly (canonical intake side):
 python3 evidence/planning/scripts/validate_convergence_promotion_packet.py \
   --input-glob "evidence/planning/convergence_packets/inbox/*.json"
 

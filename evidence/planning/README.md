@@ -16,6 +16,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
 - `convergence_intake_queue.v1.json`: normalized queue of convergence promotion packets awaiting review.
 - `CONVERGENCE_INTAKE_QUEUE.md`: human-readable review table for convergence promotion packets.
+- `convergence_packets/receipts/*.json`: machine-readable packet acknowledgments/adjudication outcomes.
 - `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
 - `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, `ree-v1-minimal`, and `ree-openclaw`.
@@ -123,6 +124,8 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
 - Validate convergence promotion packet(s):
   - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json" --check-gate-readiness --fail-on-gate-failure`
+- Validate convergence packet receipt(s):
+  - `python3 evidence/planning/scripts/validate_convergence_packet_receipt.py --input-glob "evidence/planning/convergence_packets/receipts/*.json"`
 - Build convergence intake queue:
   - `python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid`
 - Apply adjudication cascade from applied decisions:
@@ -139,18 +142,27 @@ See:
 
 Use this path for external-source knowledge/implementation proposals before canonical promotion:
 
-1. Add packet JSON files to:
+1. In `REE_convergence`, build and validate packet(s):
+  - `python3 tools/build_convergence_promotion_packet.py --intake sources/<intake>`
+  - `python3 tools/validate_convergence_promotion_packet.py --input-glob "handoff/packets/outbox/*.json" --check-gate-readiness`
+2. In `REE_convergence`, run cross-repo handoff:
+  - `python3 tools/run_cross_repo_handoff.py --assembly-repo ../REE_assembly`
+3. Confirm packet JSON files are in:
   - `evidence/planning/convergence_packets/inbox/`
-2. Validate packet contract:
+4. Validate packet contract:
   - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json" --check-gate-readiness --fail-on-gate-failure`
-3. Build queue artifacts:
+5. Build queue artifacts:
   - `python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid`
-4. Review queue outputs:
+6. Review queue outputs:
   - `evidence/planning/convergence_intake_queue.v1.json`
   - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
-5. For `interface`/`architecture` packets, include `implementation_readiness` with probe IDs, adapter patch refs, and
+7. Write/update a receipt for each packet as queue/adjudication state changes:
+  - `evidence/planning/convergence_packets/receipts/<receipt>.json`
+  - validate receipts:
+    - `python3 evidence/planning/scripts/validate_convergence_packet_receipt.py --input-glob "evidence/planning/convergence_packets/receipts/*.json"`
+8. For `interface`/`architecture` packets, include `implementation_readiness` with probe IDs, adapter patch refs, and
    benchmark acceptance criteria.
-6. For all packets, include source-license provenance:
+9. For all packets, include source-license provenance:
   - `source.content_mode`, `source.upstream_license_id`, `source.license_review_status=verified`,
     and `source.license_review_notes`.
   - If copied content is proposed (`quoted_text`, `code_copied`, `weights_used`, `mixed`), include non-empty

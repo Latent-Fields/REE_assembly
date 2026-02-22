@@ -7,6 +7,41 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-22: Convergence Receipt Loop (Packet Acknowledgment + Adjudication State)
+
+### Overview
+
+Promoted convergence handoff from one-way packet submission to a closed-loop, machine-readable process by adding
+receipt artifacts and queue-level receipt/adjudication visibility.
+
+### What Changed
+
+- Added convergence receipt contract artifacts:
+  - `evidence/planning/schemas/v1/convergence_packet_receipt.schema.json`
+  - `evidence/planning/CONVERGENCE_PACKET_RECEIPT_TEMPLATE.json`
+  - `evidence/planning/convergence_packets/receipts/.gitkeep`
+- Added receipt validator:
+  - `evidence/planning/scripts/validate_convergence_packet_receipt.py`
+- Extended convergence queue builder:
+  - `evidence/planning/scripts/build_convergence_intake_queue.py`
+    - now ingests `convergence_packets/receipts/*.json`
+    - annotates queue items with latest receipt queue/adjudication state
+    - reports receipt validity/state counts in queue summary
+    - emits invalid receipt section in markdown output
+- Updated convergence runbooks and inbox docs:
+  - `evidence/planning/convergence_packets/README.md`
+  - `evidence/planning/README.md`
+  - added shared lifecycle state model and receipt requirements for closed-loop handoff.
+- Added first-class source-side roundtrip tooling in companion repo `REE_convergence`:
+  - `handoff/README.md`
+  - `handoff/schemas/v1/convergence_promotion_packet.schema.json`
+  - `handoff/schemas/v1/convergence_packet_receipt.schema.json`
+  - `tools/build_convergence_promotion_packet.py`
+  - `tools/validate_convergence_promotion_packet.py`
+  - `tools/validate_convergence_packet_receipt.py`
+  - `tools/run_cross_repo_handoff.py`
+  - this now establishes packet authoring/validation/submission + receipt/status mirror as a symmetric two-repo flow.
+
 ## 2026-02-22: Convergence Ingestion Route (External Knowledge -> Canonical Review)
 
 ### Overview

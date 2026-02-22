@@ -15,6 +15,7 @@ from jsonschema import Draft202012Validator
 
 PLACEHOLDER_EVIDENCE_TOKENS = ("todo", "needs evidence", "example.org")
 COPIED_CONTENT_MODES = {"quoted_text", "code_copied", "weights_used", "mixed"}
+RECEIPT_PENDING_STATES = {"pending", "under_review"}
 
 
 def _now_utc() -> str:
@@ -49,6 +50,18 @@ def _relative(path: Path, repo_root: Path) -> str:
 def _glob_paths(repo_root: Path, pattern: str) -> list[Path]:
     full_pattern = pattern if Path(pattern).is_absolute() else (repo_root / pattern).as_posix()
     return [Path(p) for p in sorted(glob(full_pattern))]
+
+
+def _parse_datetime(value: str) -> datetime | None:
+    token = value.strip()
+    if not token:
+        return None
+    if token.endswith("Z"):
+        token = token[:-1] + "+00:00"
+    try:
+        return datetime.fromisoformat(token)
+    except ValueError:
+        return None
 
 
 def _string_list(value: Any) -> list[str]:
@@ -256,7 +269,7 @@ def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bo
     return len(failures) == 0, failures, placeholder_found, placeholder_hits
 
 
-def _validate_packet(
+def _validate_against_schema(
     path: Path,
     validator: Draft202012Validator,
 ) -> tuple[bool, list[str], dict[str, Any]]:
@@ -276,7 +289,62 @@ def _validate_packet(
     return False, formatted, payload
 
 
-def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path) -> dict[str, Any]:
+def _receipt_sort_key(receipt: dict[str, Any]) -> tuple[datetime, str]:
+    updated = _parse_datetime(str(receipt.get("updated_at_utc", "")).strip())
+    adjudicated = _parse_datetime(str(receipt.get("adjudicated_at_utc", "")).strip())
+    created = _parse_datetime(str(receipt.get("created_at_utc", "")).strip())
+    effective = updated or adjudicated or created or datetime.min.replace(tzinfo=timezone.utc)
+    receipt_id = str(receipt.get("receipt_id", "")).strip()
+    return effective, receipt_id
+
+
+def _load_valid_receipts(
+    receipt_paths: list[Path],
+    receipt_validator: Draft202012Validator,
+    repo_root: Path,
+) -> tuple[dict[str, dict[str, Any]], list[dict[str, Any]], int]:
+    invalid_receipts: list[dict[str, Any]] = []
+    receipt_lookup: dict[str, dict[str, Any]] = {}
+    valid_receipt_files = 0
+
+    for receipt_path in receipt_paths:
+        is_valid, validation_errors, payload = _validate_against_schema(receipt_path, receipt_validator)
+        if not is_valid:
+            invalid_receipts.append(
+                {
+                    "receipt_path": _relative(receipt_path, repo_root),
+                    "validation_errors": validation_errors,
+                }
+            )
+            continue
+
+        valid_receipt_files += 1
+        packet_id = str(payload.get("packet_id", "")).strip()
+        if not packet_id:
+            invalid_receipts.append(
+                {
+                    "receipt_path": _relative(receipt_path, repo_root),
+                    "validation_errors": ["packet_id: required non-empty value missing"],
+                }
+            )
+            continue
+
+        receipt_obj = dict(payload)
+        receipt_obj["receipt_path"] = _relative(receipt_path, repo_root)
+
+        existing = receipt_lookup.get(packet_id)
+        if existing is None or _receipt_sort_key(receipt_obj) >= _receipt_sort_key(existing):
+            receipt_lookup[packet_id] = receipt_obj
+
+    return receipt_lookup, invalid_receipts, valid_receipt_files
+
+
+def _build_valid_item(
+    packet: dict[str, Any],
+    packet_path: Path,
+    repo_root: Path,
+    receipt_lookup: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
     source = packet.get("source", {}) if isinstance(packet.get("source"), dict) else {}
     evidence = packet.get("evidence_summary", {}) if isinstance(packet.get("evidence_summary"), dict) else {}
     touchpoints = packet.get("ree_touchpoints", {}) if isinstance(packet.get("ree_touchpoints"), dict) else {}
@@ -309,8 +377,31 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
     )
     gate_ready, gate_failures, placeholder_evidence_found, placeholder_evidence_hits = _packet_gate_evaluation(packet)
 
+    packet_id = str(packet.get("packet_id", "")).strip()
+    receipt = receipt_lookup.get(packet_id)
+    receipt_queue_state = "missing"
+    receipt_adjudication_state = "missing"
+    receipt_id = ""
+    receipt_owner = ""
+    receipt_path = ""
+    receipt_updated_at_utc = ""
+    receipt_decision_ref = ""
+    receipt_gate_failure_count = 0
+    receipt_present = False
+
+    if isinstance(receipt, dict):
+        receipt_present = True
+        receipt_queue_state = str(receipt.get("queue_state", "")).strip() or "missing"
+        receipt_adjudication_state = str(receipt.get("adjudication_state", "")).strip() or "missing"
+        receipt_id = str(receipt.get("receipt_id", "")).strip()
+        receipt_owner = str(receipt.get("owner", "")).strip()
+        receipt_path = str(receipt.get("receipt_path", "")).strip()
+        receipt_updated_at_utc = str(receipt.get("updated_at_utc", "")).strip()
+        receipt_decision_ref = str(receipt.get("decision_ref", "")).strip()
+        receipt_gate_failure_count = len(_string_list(receipt.get("gate_failures")))
+
     return {
-        "packet_id": str(packet.get("packet_id", "")).strip(),
+        "packet_id": packet_id,
         "status": str(packet.get("status", "proposed")).strip(),
         "blast_radius": str(controls.get("blast_radius", "")).strip(),
         "source_repo": str(source.get("repo_name", "")).strip(),
@@ -340,6 +431,15 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
         "delta_count": len(deltas),
         "impact_areas": impact_areas,
         "claim_ids": _string_list(touchpoints.get("claim_ids")),
+        "receipt_present": receipt_present,
+        "receipt_id": receipt_id,
+        "receipt_owner": receipt_owner,
+        "receipt_queue_state": receipt_queue_state,
+        "receipt_adjudication_state": receipt_adjudication_state,
+        "receipt_path": receipt_path,
+        "receipt_updated_at_utc": receipt_updated_at_utc,
+        "receipt_decision_ref": receipt_decision_ref,
+        "receipt_gate_failure_count": receipt_gate_failure_count,
         "packet_path": _relative(packet_path, repo_root),
         "validation_errors": [],
     }
@@ -349,6 +449,7 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
     summary = queue.get("summary", {}) if isinstance(queue.get("summary"), dict) else {}
     items = queue.get("items", []) if isinstance(queue.get("items"), list) else []
     invalid_items = queue.get("invalid_items", []) if isinstance(queue.get("invalid_items"), list) else []
+    invalid_receipts = queue.get("invalid_receipts", []) if isinstance(queue.get("invalid_receipts"), list) else []
 
     lines: list[str] = []
     lines.append("# Convergence Intake Queue")
@@ -366,6 +467,11 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
     lines.append(f"- Packets with gate failures: `{summary.get('gate_failure_packets', 0)}`")
     lines.append(f"- Packets with placeholder evidence: `{summary.get('placeholder_evidence_packets', 0)}`")
     lines.append(f"- Packets with implementation plans: `{summary.get('implementation_plan_packets', 0)}`")
+    lines.append(f"- Receipt files total: `{summary.get('receipt_files_total', 0)}`")
+    lines.append(f"- Receipt files valid: `{summary.get('receipt_files_valid', 0)}`")
+    lines.append(f"- Receipt files invalid: `{summary.get('receipt_files_invalid', 0)}`")
+    lines.append(f"- Packets with receipt: `{summary.get('packets_with_receipt', 0)}`")
+    lines.append(f"- Packets adjudicated: `{summary.get('packets_adjudicated', 0)}`")
     lines.append("")
 
     by_status = summary.get("by_status", {})
@@ -392,10 +498,26 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
             lines.append(f"- `{radius_key}`: `{by_blast[radius_key]}`")
         lines.append("")
 
+    by_receipt_queue = summary.get("by_receipt_queue_state", {})
+    if isinstance(by_receipt_queue, dict) and by_receipt_queue:
+        lines.append("### Receipt Queue-State Counts")
+        lines.append("")
+        for key in sorted(by_receipt_queue):
+            lines.append(f"- `{key}`: `{by_receipt_queue[key]}`")
+        lines.append("")
+
+    by_receipt_adjudication = summary.get("by_receipt_adjudication_state", {})
+    if isinstance(by_receipt_adjudication, dict) and by_receipt_adjudication:
+        lines.append("### Receipt Adjudication-State Counts")
+        lines.append("")
+        for key in sorted(by_receipt_adjudication):
+            lines.append(f"- `{key}`: `{by_receipt_adjudication[key]}`")
+        lines.append("")
+
     lines.append("## Valid Packets")
     lines.append("")
-    lines.append("| Packet | Status | Blast | Source | Mode | License | License Review | Evidence | Impl | Bench | Gate Ready | Gate Failures | Deltas | Claims | Owner | Due | Path |")
-    lines.append("|---|---|---|---|---|---|---|---|---|---:|---|---:|---:|---:|---|---|---|")
+    lines.append("| Packet | Status | Blast | Source | Mode | License | License Review | Evidence | Impl | Bench | Gate Ready | Gate Failures | Receipt Queue | Adjudication | Deltas | Claims | Owner | Due | Path | Receipt |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---:|---|---:|---|---|---:|---:|---|---|---|---|")
     if items:
         for item in items:
             lines.append(
@@ -412,14 +534,17 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
                 f"{item.get('benchmark_criteria_count', 0)} | "
                 f"`{str(item.get('gate_ready', False)).lower()}` | "
                 f"{len(_string_list(item.get('gate_failures', [])))} | "
+                f"`{item.get('receipt_queue_state','')}` | "
+                f"`{item.get('receipt_adjudication_state','')}` | "
                 f"{item.get('delta_count', 0)} | "
                 f"{len(item.get('claim_ids', []))} | "
                 f"`{item.get('owner','')}` | "
                 f"`{item.get('decision_due_utc','')}` | "
-                f"`{item.get('packet_path','')}` |"
+                f"`{item.get('packet_path','')}` | "
+                f"`{item.get('receipt_path','')}` |"
             )
     else:
-        lines.append("| _none_ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |")
+        lines.append("| _none_ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |")
     lines.append("")
 
     gate_failure_items = [
@@ -451,6 +576,17 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
         lines.append("- None")
     lines.append("")
 
+    lines.append("## Invalid Receipts")
+    lines.append("")
+    if invalid_receipts:
+        for item in invalid_receipts:
+            lines.append(f"- `{item.get('receipt_path', '')}`")
+            for err in item.get("validation_errors", []):
+                lines.append(f"  - {err}")
+    else:
+        lines.append("- None")
+    lines.append("")
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(lines), encoding="utf-8")
 
@@ -464,9 +600,19 @@ def main() -> int:
         help="Schema path (absolute or repo-relative).",
     )
     parser.add_argument(
+        "--receipt-schema",
+        default="evidence/planning/schemas/v1/convergence_packet_receipt.schema.json",
+        help="Receipt schema path (absolute or repo-relative).",
+    )
+    parser.add_argument(
         "--input-glob",
         default="evidence/planning/convergence_packets/inbox/*.json",
         help="Glob pattern for packet JSON files (absolute or repo-relative).",
+    )
+    parser.add_argument(
+        "--receipt-glob",
+        default="evidence/planning/convergence_packets/receipts/*.json",
+        help="Glob pattern for packet receipt JSON files (absolute or repo-relative).",
     )
     parser.add_argument(
         "--output-json",
@@ -486,21 +632,30 @@ def main() -> int:
     args = parser.parse_args()
 
     schema_path = _resolve(repo_root, args.schema)
+    receipt_schema_path = _resolve(repo_root, args.receipt_schema)
     output_json_path = _resolve(repo_root, args.output_json)
     output_md_path = _resolve(repo_root, args.output_md)
 
     if not schema_path.exists():
         raise SystemExit(f"Schema not found: {schema_path}")
+    if not receipt_schema_path.exists():
+        raise SystemExit(f"Receipt schema not found: {receipt_schema_path}")
 
     schema = _load_json(schema_path)
     validator = Draft202012Validator(schema)
+    receipt_schema = _load_json(receipt_schema_path)
+    receipt_validator = Draft202012Validator(receipt_schema)
 
     packet_paths = _glob_paths(repo_root, args.input_glob)
+    receipt_paths = _glob_paths(repo_root, args.receipt_glob)
+    receipt_lookup, invalid_receipts, valid_receipt_files = _load_valid_receipts(
+        receipt_paths, receipt_validator, repo_root
+    )
     valid_items: list[dict[str, Any]] = []
     invalid_items: list[dict[str, Any]] = []
 
     for packet_path in packet_paths:
-        is_valid, validation_errors, payload = _validate_packet(packet_path, validator)
+        is_valid, validation_errors, payload = _validate_against_schema(packet_path, validator)
         if not is_valid:
             invalid_items.append(
                 {
@@ -509,7 +664,7 @@ def main() -> int:
                 }
             )
             continue
-        valid_items.append(_build_valid_item(payload, packet_path, repo_root))
+        valid_items.append(_build_valid_item(payload, packet_path, repo_root, receipt_lookup))
 
     valid_items.sort(key=lambda x: (str(x.get("status", "")), str(x.get("packet_id", ""))))
 
@@ -520,6 +675,10 @@ def main() -> int:
     gate_failure_count = 0
     placeholder_evidence_count = 0
     implementation_plan_count = 0
+    packets_with_receipt_count = 0
+    packets_adjudicated_count = 0
+    receipt_queue_counts: Counter[str] = Counter()
+    receipt_adjudication_counts: Counter[str] = Counter()
     for item in valid_items:
         status_counts.update([str(item.get("status", "")).strip() or "unknown"])
         impact_counts.update(_string_list(item.get("impact_areas")))
@@ -536,12 +695,25 @@ def main() -> int:
             and int(item.get("benchmark_criteria_count", 0)) > 0
         ):
             implementation_plan_count += 1
+        receipt_queue_state = str(item.get("receipt_queue_state", "")).strip()
+        if receipt_queue_state:
+            receipt_queue_counts.update([receipt_queue_state])
+        receipt_adjudication_state = str(item.get("receipt_adjudication_state", "")).strip()
+        if receipt_adjudication_state:
+            receipt_adjudication_counts.update([receipt_adjudication_state])
+        if bool(item.get("receipt_present", False)):
+            packets_with_receipt_count += 1
+            if receipt_adjudication_state and receipt_adjudication_state not in RECEIPT_PENDING_STATES:
+                if receipt_adjudication_state != "missing":
+                    packets_adjudicated_count += 1
 
     queue = {
         "schema_version": "convergence_intake_queue/v1",
         "generated_at_utc": _now_utc(),
         "source_glob": args.input_glob,
+        "receipt_glob": args.receipt_glob,
         "schema_path": _relative(schema_path, repo_root),
+        "receipt_schema_path": _relative(receipt_schema_path, repo_root),
         "summary": {
             "total_packets": len(packet_paths),
             "valid_packets": len(valid_items),
@@ -550,12 +722,20 @@ def main() -> int:
             "gate_failure_packets": gate_failure_count,
             "placeholder_evidence_packets": placeholder_evidence_count,
             "implementation_plan_packets": implementation_plan_count,
+            "receipt_files_total": len(receipt_paths),
+            "receipt_files_valid": valid_receipt_files,
+            "receipt_files_invalid": len(invalid_receipts),
+            "packets_with_receipt": packets_with_receipt_count,
+            "packets_adjudicated": packets_adjudicated_count,
             "by_status": dict(sorted(status_counts.items())),
             "by_impact_area": dict(sorted(impact_counts.items())),
             "by_blast_radius": dict(sorted(blast_counts.items())),
+            "by_receipt_queue_state": dict(sorted(receipt_queue_counts.items())),
+            "by_receipt_adjudication_state": dict(sorted(receipt_adjudication_counts.items())),
         },
         "items": valid_items,
         "invalid_items": invalid_items,
+        "invalid_receipts": invalid_receipts,
     }
 
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
@@ -566,10 +746,15 @@ def main() -> int:
     print(f"Wrote: {output_md_path}")
     print(
         "Queue summary: "
-        f"total={len(packet_paths)} valid={len(valid_items)} invalid={len(invalid_items)}"
+        f"total_packets={len(packet_paths)} "
+        f"valid_packets={len(valid_items)} "
+        f"invalid_packets={len(invalid_items)} "
+        f"total_receipts={len(receipt_paths)} "
+        f"valid_receipts={valid_receipt_files} "
+        f"invalid_receipts={len(invalid_receipts)}"
     )
 
-    if args.fail_on_invalid and invalid_items:
+    if args.fail_on_invalid and (invalid_items or invalid_receipts):
         return 1
     return 0
 

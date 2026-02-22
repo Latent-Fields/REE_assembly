@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ree://planning/v1/convergence_packet_receipt.schema.json",
+  "title": "REE Convergence Packet Receipt v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "packet_id",
+    "created_at_utc",
+    "queue_state",
+    "adjudication_state",
+    "owner"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "convergence_packet_receipt/v1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packet_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_repo_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_snapshot_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "queue_state": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "invalid",
+        "gate_blocked",
+        "gate_ready",
+        "superseded"
+      ]
+    },
+    "adjudication_state": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "under_review",
+        "accepted",
+        "rejected",
+        "deferred",
+        "hybridize",
+        "retain_ree",
+        "adopt_jepa_structure",
+        "retire_ree_claim"
+      ]
+    },
+    "adjudicated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "queue_json_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "gate_failures": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "queue_state": {
+            "const": "gate_blocked"
+          }
+        },
+        "required": [
+          "queue_state"
+        ]
+      },
+      "then": {
+        "required": [
+          "gate_failures"
+        ],
+        "properties": {
+          "gate_failures": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adjudication_state": {
+            "enum": [
+              "accepted",
+              "rejected",
+              "deferred",
+              "hybridize",
+              "retain_ree",
+              "adopt_jepa_structure",
+              "retire_ree_claim"
+            ]
+          }
+        },
+        "required": [
+          "adjudication_state"
+        ]
+      },
+      "then": {
+        "required": [
+          "adjudicated_at_utc",
+          "decision_ref"
+        ]
+      }
+    }
+  ]
+}

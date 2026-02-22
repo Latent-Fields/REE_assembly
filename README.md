@@ -51,9 +51,22 @@ Commit semantics are continuous-stream, not stop-and-wait:
 This is the safe path for integrating implementation wisdom or external model insights:
 
 1. Intake and translate in `REE_convergence` with explicit source provenance and license metadata.
-2. Build a convergence promotion packet (candidate deltas only; no direct canonical overwrite).
-3. Submit packet to `REE_assembly` inbox: `evidence/planning/convergence_packets/inbox/`.
-4. Run queue validation and queue build:
+2. Build and validate a convergence promotion packet in `REE_convergence`:
+
+```bash
+python3 tools/build_convergence_promotion_packet.py --intake sources/<intake>
+python3 tools/validate_convergence_promotion_packet.py \
+  --input-glob "handoff/packets/outbox/*.json" \
+  --check-gate-readiness
+```
+
+3. Run cross-repo handoff from `REE_convergence` (submission + receipt/status mirror):
+
+```bash
+python3 tools/run_cross_repo_handoff.py --assembly-repo ../REE_assembly
+```
+
+4. In `REE_assembly`, run queue validation and queue build:
 
 ```bash
 python3 evidence/planning/scripts/validate_convergence_promotion_packet.py \
@@ -62,7 +75,9 @@ python3 evidence/planning/scripts/build_convergence_intake_queue.py
 ```
 
 5. Human governance adjudicates accept/reject/hybridize/defer.
-6. Only accepted deltas are promoted into canonical claims/docs/contracts, then dispatched to implementation repos.
+6. `REE_assembly` writes packet receipt updates in `evidence/planning/convergence_packets/receipts/*.json`.
+7. `REE_convergence` pulls receipts/queue status via the same handoff script to close lineage.
+8. Only accepted deltas are promoted into canonical claims/docs/contracts, then dispatched to implementation repos.
 
 ## Cross-Repo Implementation Loop
 
