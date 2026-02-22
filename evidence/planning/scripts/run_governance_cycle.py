@@ -80,6 +80,26 @@ def _load_optional_json_file(path: Path, warnings: list[str]) -> dict[str, Any]:
     return _load_json_file(path, warnings)
 
 
+def _load_jsonl_file(path: Path, warnings: list[str]) -> list[dict[str, Any]]:
+    if not path.exists():
+        warnings.append(f"Missing file: {path.as_posix()}")
+        return []
+
+    out: list[dict[str, Any]] = []
+    for lineno, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        line = raw_line.strip()
+        if not line:
+            continue
+        try:
+            payload = json.loads(line)
+        except json.JSONDecodeError as exc:
+            warnings.append(f"Invalid JSONL ({path.as_posix()}:{lineno}): {exc}")
+            continue
+        if isinstance(payload, dict):
+            out.append(payload)
+    return out
+
+
 def _strip_ticks(text: str) -> str:
     return text.strip().strip("`")
 
@@ -167,6 +187,59 @@ def _parse_utc_timestamp(value: str) -> datetime | None:
         return datetime.fromisoformat(normalized).astimezone(timezone.utc)
     except ValueError:
         return None
+
+
+def _weekly_dispatch_approval_state(
+    decision_entries: list[dict[str, Any]],
+    cycle_date: str,
+) -> dict[str, Any]:
+    """Return approval state for weekly dispatch export in the given cycle date (YYYY-MM-DD)."""
+
+    matched: list[dict[str, Any]] = []
+    for entry in decision_entries:
+        if not isinstance(entry, dict):
+            continue
+
+        recommendation = str(entry.get("recommendation", "")).strip().lower()
+        decision_needed = str(entry.get("decision_needed", "")).strip().lower()
+        claim_id = str(entry.get("claim_id", "")).strip().upper()
+        context = entry.get("context", {})
+        notes = str(context.get("notes", "")).strip().lower() if isinstance(context, dict) else ""
+        ts = str(entry.get("timestamp_utc", "")).strip()
+        ts_date = ts[:10] if len(ts) >= 10 else ""
+
+        looks_like_dispatch_entry = (
+            recommendation == "approve_dispatch"
+            or "weekly dispatch" in decision_needed
+            or claim_id in {"WEEKLY-DISPATCH", "WEEKLY_DISPATCH", "WEEKLY_DISPATCH_EXPORT"}
+        )
+        if not looks_like_dispatch_entry:
+            continue
+
+        cycle_tag_match = f"cycle={cycle_date}" in notes
+        date_match = ts_date == cycle_date
+        if cycle_tag_match or date_match:
+            matched.append(entry)
+
+    if not matched:
+        return {
+            "approved_for_cycle": False,
+            "latest_status": "missing",
+            "latest_recommendation": "",
+            "latest_timestamp_utc": "",
+        }
+
+    matched.sort(key=lambda x: str(x.get("timestamp_utc", "")))
+    latest = matched[-1]
+    latest_status = str(latest.get("decision_status", "")).strip().lower()
+    latest_recommendation = str(latest.get("recommendation", "")).strip().lower()
+    approved = latest_recommendation == "approve_dispatch" and latest_status in {"approved", "applied"}
+    return {
+        "approved_for_cycle": approved,
+        "latest_status": latest_status or "missing",
+        "latest_recommendation": latest_recommendation,
+        "latest_timestamp_utc": str(latest.get("timestamp_utc", "")).strip(),
+    }
 
 
 def _load_claim_registry(path: Path, warnings: list[str]) -> dict[str, dict[str, str]]:
@@ -403,6 +476,7 @@ def _build_autonomy_triage_items(
     external_precedence_count: int,
     anti_lock_in_reviews_count: int,
     high_proposals_count: int,
+    weekly_dispatch_approved_for_cycle: bool,
     cascade_actions_count: int,
     convergence_packets_ready_count: int,
     convergence_packets_invalid_count: int,
@@ -452,13 +526,24 @@ def _build_autonomy_triage_items(
             "tier": "AUTO_WITH_APPROVAL",
             "gate_status": "PASS",
             "recommendation": (
+                "dispatch_already_approved"
+                if high_proposals_count > 0 and weekly_dispatch_approved_for_cycle
+                else (
                 "approve_dispatch"
                 if high_proposals_count > 0
                 else "no_dispatch_this_cycle"
+                )
             ),
             "rollback_ready": "yes",
-            "decision_needed": "yes" if high_proposals_count > 0 else "no",
-            "rationale": f"high_priority_proposals={high_proposals_count}.",
+            "decision_needed": (
+                "no"
+                if high_proposals_count == 0 or weekly_dispatch_approved_for_cycle
+                else "yes"
+            ),
+            "rationale": (
+                f"high_priority_proposals={high_proposals_count}; "
+                + f"approved_for_cycle={str(weekly_dispatch_approved_for_cycle).lower()}."
+            ),
         },
         {
             "work_item": "convergence_packet_review_queue",
@@ -592,6 +677,12 @@ def _build_agenda(
         repo_root / "evidence/decisions/human_decision_briefs/latest/human_decision_briefs_report.v1.json",
         warnings,
     )
+    decision_log_entries = _load_jsonl_file(
+        repo_root / "evidence/decisions/decision_log.v1.jsonl",
+        warnings,
+    )
+    cycle_date = generated_at[:10] if len(generated_at) >= 10 else ""
+    weekly_dispatch_approval = _weekly_dispatch_approval_state(decision_log_entries, cycle_date)
 
     conflicts = _read_conflicts(repo_root / "evidence/experiments/conflicts.md", warnings)
     conflicts = [
@@ -802,6 +893,7 @@ def _build_agenda(
         external_precedence_count=len(external_precedence_candidates),
         anti_lock_in_reviews_count=len(anti_lock_in_reviews),
         high_proposals_count=len(high_proposals),
+        weekly_dispatch_approved_for_cycle=bool(weekly_dispatch_approval.get("approved_for_cycle", False)),
         cascade_actions_count=len(cascade_actions),
         convergence_packets_ready_count=convergence_packets_ready,
         convergence_packets_invalid_count=convergence_packets_invalid,
@@ -918,6 +1010,9 @@ def _build_agenda(
             "autonomy_triage_items": len(autonomy_triage_items),
             "autonomy_open_decisions": len(autonomy_open_decisions),
             "autonomy_failed_gates": len(autonomy_failed_gates),
+            "weekly_dispatch_approved_for_cycle": bool(
+                weekly_dispatch_approval.get("approved_for_cycle", False)
+            ),
             "architecture_epoch_applicability_enabled": bool(epoch_policy.get("enabled", False)),
             "architecture_epoch_considered_entries": int(epoch_summary.get("considered_entries", 0)),
             "architecture_epoch_applicable_entries": int(epoch_summary.get("applicable_entries", 0)),
@@ -1059,6 +1154,7 @@ def _build_agenda(
                 "prompt": "Approve export of high-priority proposals to execution repos.",
                 "high_priority_proposals": high_proposals,
                 "by_target_repo": _proposal_repo_summary(proposal_items),
+                "approval_state": weekly_dispatch_approval,
             },
             "maintenance": {
                 "prompt": "Address ingestion hygiene warnings and unlinked evidence runs.",
@@ -1359,6 +1455,13 @@ def _build_agenda(
         f"13. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     lines.append("- context: `evidence/planning/experiment_proposals.v1.json`")
+    lines.append(
+        "- approval state: "
+        + f"approved_for_cycle={str(bool(weekly_dispatch_approval.get('approved_for_cycle', False))).lower()}; "
+        + f"latest_status=`{weekly_dispatch_approval.get('latest_status', 'missing')}`; "
+        + f"latest_recommendation=`{weekly_dispatch_approval.get('latest_recommendation', '')}`; "
+        + f"latest_timestamp_utc=`{weekly_dispatch_approval.get('latest_timestamp_utc', '')}`"
+    )
     for slot in _proposal_repo_summary(proposal_items):
         lines.append(
             "- "

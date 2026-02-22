@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-22T16:07:31.471252Z`
+Generated: `2026-02-22T20:38:12.637347Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -13,7 +13,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-033` | directional | 7 | 4 | 0.727 | `exp_0014_20260215T213723404871Z` | 11 |
 | `MECH-040` | directional | 5 | 4 | 0.889 | `exp_0008_20260215T213710679868Z` | 9 |
 | `MECH-046` | directional | 5 | 4 | 0.889 | `exp_0009_20260215T213710739916Z` | 9 |
-| `MECH-056` | directional, source_disagreement | 21 | 74 | 0.442 | `2026-02-21T151443Z_trajectory-integrity_seed71_trajectory_first_enabled_toyenv_internal_minimal` | 95 |
+| `MECH-056` | directional, source_disagreement, mixed_evidence | 22 | 83 | 0.419 | `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` | 108 |
 | `MECH-057` | directional | 4 | 5 | 0.889 | `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal` | 9 |
 | `MECH-058` | directional, mixed_evidence | 58 | 40 | 0.816 | `2026-02-21T151442Z_jepa-anchor-ablation_seed71_ema_anchor_on_toyenv_internal_minimal` | 99 |
 | `MECH-059` | directional, mixed_evidence | 42 | 11 | 0.415 | `2026-02-21T151442Z_jepa-uncertainty-channels_seed71_explicit_uncertainty_head_toyenv_internal_minimal` | 103 |
@@ -138,19 +138,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### MECH-056
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=21, weakens=74, conflict_ratio=0.442, overall_confidence=0.793
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=22, weakens=83, conflict_ratio=0.419, overall_confidence=0.8
 - Recent entries:
-  - `2026-02-21T15:12:23Z` `experimental` `trajectory_integrity` direction=`supports` confidence=0.75
-  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
-  - `2026-02-21T15:14:42Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
-  - `2026-02-21T15:14:43Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
-  - `2026-02-21T15:14:43Z` `experimental` `trajectory_integrity` direction=`weakens` confidence=0.75
+  - `2026-02-22T20:37:11Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
+  - `2026-02-22T20:37:12Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
+  - `2026-02-22T20:37:13Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
+  - `2026-02-22T20:37:14Z` `experimental` `claim_probe_mech_056` direction=`supports` confidence=0.75
+  - `2026-02-22T20:37:15Z` `experimental` `claim_probe_mech_056` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
-  - `ledger_editing` (70)
-  - `domination_lock_in` (48)
+  - `ledger_editing` (81)
+  - `domination_lock_in` (59)
   - `stop:ledger_edit_detected_count>0` (47)
-  - `explanation_policy_divergence` (36)
+  - `explanation_policy_divergence` (43)
   - `stop:domination_lock_in_events>0` (34)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
@@ -390,7 +390,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-013
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.644
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.643
 - Recent entries:
   - `2026-02-15T20:52:20Z` `experimental` `claim_probe_q_013` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:39Z` `experimental` `claim_probe_q_013` direction=`supports` confidence=0.75
@@ -407,7 +407,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-014
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.644
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, overall_confidence=0.643
 - Recent entries:
   - `2026-02-15T20:52:21Z` `experimental` `claim_probe_q_014` direction=`supports` confidence=0.75
   - `2026-02-15T21:10:41Z` `experimental` `claim_probe_q_014` direction=`supports` confidence=0.75

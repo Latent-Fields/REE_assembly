@@ -86,6 +86,16 @@ Responsibility is a global property of this evolved control geometry, not a loca
 Latent predictive representation learning (for example, JEPA-like world-model framing) is likely necessary but
 insufficient for stable agency.
 
+Definition split (scope guard):
+
+- **Task-stable operator:** can perform bounded tasks reliably with stable input/output behavior, even without explicit
+  self-attribution of intervention consequences.
+- **Architectural ethical agent:** can intervene, attribute consequences to its own commitments, and preserve
+  responsibility flow across commit boundaries.
+
+MECH-057 is about the second category. It does not claim that every useful stable controller requires full agency
+completion loops.
+
 Once an architecture moves from representation to intervention, it must support:
 
 - action emission and consequence prediction,

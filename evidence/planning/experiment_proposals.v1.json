@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-22T16:07:31.471252Z",
+  "generated_at_utc": "2026-02-22T20:38:12.637347Z",
   "items": [
     {
       "acceptance_checks": [
@@ -9,11 +9,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-02-25T16:07:31.471252Z`; explicitly score outcomes `retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-02-25T20:38:12.637347Z`; explicitly score outcomes `retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0004",
       "claim_id": "MECH-061",
-      "decision_deadline_utc": "2026-02-25T16:07:31.471252Z",
+      "decision_deadline_utc": "2026-02-25T20:38:12.637347Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -711,13 +711,13 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0021",
-      "claim_id": "MECH-056",
+      "claim_id": "MECH-033",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
       "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-056 with matched seeds and pre-registered thresholds.",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-033 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0018",
       "proposal_type": "experimental",
@@ -734,7 +734,7 @@
       },
       "seed_policy": "matched_shared_seeds",
       "status": "proposed",
-      "suggested_experiment_type": "trajectory_integrity",
+      "suggested_experiment_type": "claim_probe_mech_033",
       "target_repo": "ree-v2",
       "why_now": [
         "active_conflict",
@@ -743,25 +743,46 @@
     },
     {
       "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Run one claim-focused 2x2 matrix for MECH-056: valence_channel(on/off_or_neutral) x hippocampal_mapping(adaptive/frozen).",
+        "Use at least 3 matched seeds shared across all four conditions (12 runs minimum).",
+        "Pre-register distortion criteria: C2 vs C4 latent_procrustes_drift increase >=20% and at least two geometry metrics worsen >=10%.",
+        "Pre-register competition criteria: C1/C2 geometry metrics remain within 5% of C4 while retrieval-valence skew or conditioned recall error worsens >=20% in C1 vs C2.",
+        "Record required metrics: latent_procrustes_drift, latent_knn_overlap, latent_trustworthiness, latent_continuity, hippocampal_retrieval_valence_skew, hippocampal_path_selection_entropy, valence_conditioned_recall_error, policy_error_rate, commitment_reversal_rate, conflict_signature_rate.",
+        "Avoid broad profile sweeps for this dispatch item; emit only matrix-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0022",
-      "claim_id": "MECH-033",
+      "claim_id": "MECH-056",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
+      "dispatch_override_applied": true,
       "exclude_broad_profile_sweeps": true,
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-033 with matched seeds and pre-registered thresholds.",
+      "matrix_conditions": [
+        "C1: valence_on + mapping_adaptive",
+        "C2: valence_on + mapping_frozen",
+        "C3: valence_off_or_neutral + mapping_adaptive",
+        "C4: valence_off_or_neutral + mapping_frozen"
+      ],
+      "min_shared_seeds": 3,
+      "objective": "Disambiguate latent-geometry distortion vs valence-weighted hippocampal mapping competition for MECH-056 using a matched 2x2 factorial matrix.",
       "priority": "high",
       "proposal_id": "EXP-0019",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": true,
+      "required_metrics": [
+        "latent_procrustes_drift",
+        "latent_knn_overlap",
+        "latent_trustworthiness",
+        "latent_continuity",
+        "hippocampal_retrieval_valence_skew",
+        "hippocampal_path_selection_entropy",
+        "valence_conditioned_recall_error",
+        "policy_error_rate",
+        "commitment_reversal_rate",
+        "conflict_signature_rate"
+      ],
       "required_pack_contract": {
         "manifest": [
           "claim_ids_tested",
@@ -769,12 +790,12 @@
           "evidence_direction"
         ],
         "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+        "registered_thresholds": "required; include distortion, competition, and mixed-coupling criteria used for classification",
+        "summary": "include per-condition table (C1..C4), pairwise deltas, and explicit distortion-vs-competition verdict with threshold checks"
       },
       "seed_policy": "matched_shared_seeds",
       "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_033",
+      "suggested_experiment_type": "trajectory_integrity",
       "target_repo": "ree-v2",
       "why_now": [
         "active_conflict",

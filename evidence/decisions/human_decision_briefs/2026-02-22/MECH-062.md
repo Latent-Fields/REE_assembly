@@ -26,7 +26,7 @@ Cycle: `2026-02-22`
 - Decision needed: Promotion review: provisional -> stable
 - Recommendation: `promote_to_stable`
 - Decision status: `approved`
-- Why this lane is open: overall_conf=0.899, conflict_ratio=0, exp_entries=44, lit_entries=2; directions supports=34, weakens=0, mixed=12, unknown=0, conflict_ratio=0
+- Why this lane is open: overall_conf=0.898, conflict_ratio=0, exp_entries=44, lit_entries=2; directions supports=34, weakens=0, mixed=12, unknown=0, conflict_ratio=0
 - Options:
   - Promote now (clear canonical status, risk under-tested edge cases)
   - Hold pending stress-test replication (better stress confidence, slower closure)

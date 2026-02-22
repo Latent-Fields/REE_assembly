@@ -168,6 +168,29 @@ def _normalize_confidence(raw: Any, default: float = 0.5) -> float:
     return round(value, 3)
 
 
+def _normalize_text_list(raw: Any) -> list[str]:
+    if not isinstance(raw, list):
+        return []
+    out: list[str] = []
+    for item in raw:
+        token = str(item).strip()
+        if token:
+            out.append(token)
+    return out
+
+
+def _dedupe_preserve_order(items: list[str]) -> list[str]:
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in items:
+        token = item.strip()
+        if not token or token in seen:
+            continue
+        out.append(token)
+        seen.add(token)
+    return out
+
+
 def _prefix_class(source_type: str, evidence_class: str) -> str:
     token = (evidence_class or "unclassified").strip()
     prefix = "exp" if source_type == "experimental" else "lit"
@@ -1290,6 +1313,7 @@ def _default_planning_criteria() -> dict[str, Any]:
             "exploratory_repo": "ree-experiments-lab",
             "literature_owner": "REE_assembly",
         },
+        "dispatch_overrides": {},
         "evidence_applicability": {
             "enabled": True,
             "current_architecture_epoch": "",
@@ -1320,6 +1344,9 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
     else:
         for key, value in defaults["repo_routing"].items():
             routing.setdefault(key, value)
+    dispatch_overrides = data.get("dispatch_overrides")
+    if not isinstance(dispatch_overrides, dict):
+        data["dispatch_overrides"] = {}
     applicability = data.get("evidence_applicability")
     if not isinstance(applicability, dict):
         data["evidence_applicability"] = dict(defaults["evidence_applicability"])
@@ -2112,6 +2139,14 @@ def _write_planning_outputs(
     default_exp_repo = str(routing.get("experimental_default_repo", "ree-v2"))
     exploratory_repo = str(routing.get("exploratory_repo", "ree-experiments-lab"))
     literature_owner = str(routing.get("literature_owner", "REE_assembly"))
+    dispatch_overrides_raw = planning_criteria.get("dispatch_overrides", {})
+    dispatch_overrides: dict[str, dict[str, Any]] = {}
+    if isinstance(dispatch_overrides_raw, dict):
+        for raw_claim_id, raw_override in dispatch_overrides_raw.items():
+            claim_key = str(raw_claim_id).strip().upper()
+            if not claim_key or not isinstance(raw_override, dict):
+                continue
+            dispatch_overrides[claim_key] = raw_override
 
     external_precedence_enabled = bool(adjudication.get("external_precedence_enabled", True))
     allowed_conflict_outcomes_raw = adjudication.get("allowed_conflict_outcomes", [])
@@ -2680,6 +2715,11 @@ def _write_planning_outputs(
                 objective = (
                     f"Generate decision-grade discriminative evidence for {claim_id} before governance deadline."
                 )
+            dispatch_mode = "discriminative_pair" if discriminative_pair_required else "targeted_probe"
+            seed_policy = "matched_shared_seeds" if discriminative_pair_required else "distinct_seeds"
+            min_shared_seeds = discriminative_pair_min_shared_seeds if discriminative_pair_required else 0
+            require_pre_registered_thresholds = bool(discriminative_pair_required)
+            exclude_broad_profile_sweeps = bool(discriminative_pair_required)
             acceptance_checks = [
                 "Experiment Pack validates against v1 schema.",
                 "Result links to claim_ids_tested and updates matrix direction counts.",
@@ -2710,42 +2750,127 @@ def _write_planning_outputs(
                     "Package outputs as decision-grade comparison" + deadline_suffix
                     + f"; explicitly score outcomes `{outcomes_text}`."
                 )
+
+            required_pack_contract: dict[str, Any] = {
+                "manifest": ["claim_ids_tested", "evidence_class", "evidence_direction"],
+                "metrics": "stable numeric keys only",
+                "summary": (
+                    "include scenario, interpretation, and pairwise deltas "
+                    "when dispatch_mode=discriminative_pair"
+                ),
+                "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+            }
+            dispatch_override_applied = False
+            proposal_patch: dict[str, Any] = {}
+            raw_override = dispatch_overrides.get(claim_id.upper(), {})
+            experimental_override: dict[str, Any] = {}
+            if isinstance(raw_override, dict):
+                nested_override = raw_override.get("experimental", {})
+                if isinstance(nested_override, dict) and nested_override:
+                    experimental_override = nested_override
+                elif "experimental" not in raw_override:
+                    experimental_override = raw_override
+            if experimental_override:
+                dispatch_override_applied = True
+
+                override_target_repo = str(experimental_override.get("target_repo", "")).strip()
+                if override_target_repo:
+                    target_repo = override_target_repo
+
+                override_exp_type = str(
+                    experimental_override.get("suggested_experiment_type", "")
+                ).strip()
+                if override_exp_type:
+                    exp_type = override_exp_type
+
+                override_objective = str(experimental_override.get("objective", "")).strip()
+                if override_objective:
+                    objective = override_objective
+
+                override_dispatch_mode = str(
+                    experimental_override.get("dispatch_mode", "")
+                ).strip()
+                if override_dispatch_mode:
+                    dispatch_mode = override_dispatch_mode
+
+                override_seed_policy = str(experimental_override.get("seed_policy", "")).strip()
+                if override_seed_policy:
+                    seed_policy = override_seed_policy
+
+                if "min_shared_seeds" in experimental_override:
+                    try:
+                        min_shared_seeds = max(
+                            0, int(experimental_override.get("min_shared_seeds", min_shared_seeds))
+                        )
+                    except (TypeError, ValueError):
+                        pass
+
+                if "require_pre_registered_thresholds" in experimental_override:
+                    require_pre_registered_thresholds = bool(
+                        experimental_override.get("require_pre_registered_thresholds")
+                    )
+
+                if "exclude_broad_profile_sweeps" in experimental_override:
+                    exclude_broad_profile_sweeps = bool(
+                        experimental_override.get("exclude_broad_profile_sweeps")
+                    )
+
+                override_acceptance_checks = _normalize_text_list(
+                    experimental_override.get("acceptance_checks")
+                )
+                if override_acceptance_checks:
+                    acceptance_checks = override_acceptance_checks
+                else:
+                    prepend_checks = _normalize_text_list(
+                        experimental_override.get("prepend_acceptance_checks")
+                    )
+                    append_checks = _normalize_text_list(
+                        experimental_override.get("append_acceptance_checks")
+                    )
+                    acceptance_checks = prepend_checks + acceptance_checks + append_checks
+
+                override_pack_contract = experimental_override.get("required_pack_contract")
+                if isinstance(override_pack_contract, dict):
+                    required_pack_contract.update(override_pack_contract)
+
+                proposal_patch_candidate = experimental_override.get("proposal_patch", {})
+                if isinstance(proposal_patch_candidate, dict):
+                    proposal_patch = proposal_patch_candidate
+
+            acceptance_checks = _dedupe_preserve_order(acceptance_checks)
             proposal_id = f"EXP-{proposal_counter:04d}"
             proposal_counter += 1
-            proposals.append(
-                {
-                    "proposal_id": proposal_id,
-                    "backlog_id": item["backlog_id"],
-                    "claim_id": claim_id,
-                    "proposal_type": "experimental",
-                    "priority": item["priority"],
-                    "target_repo": target_repo,
-                    "objective": objective,
-                    "suggested_experiment_type": exp_type,
-                    "dispatch_mode": "discriminative_pair" if discriminative_pair_required else "targeted_probe",
-                    "seed_policy": "matched_shared_seeds" if discriminative_pair_required else "distinct_seeds",
-                    "min_shared_seeds": discriminative_pair_min_shared_seeds
-                    if discriminative_pair_required
-                    else 0,
-                    "require_pre_registered_thresholds": bool(discriminative_pair_required),
-                    "exclude_broad_profile_sweeps": bool(discriminative_pair_required),
-                    "decision_deadline_utc": str(signals.get("decision_deadline_utc", "")).strip(),
-                    "decision_required_outcomes": (
-                        signals.get("decision_required_outcomes", [])
-                        if isinstance(signals.get("decision_required_outcomes", []), list)
-                        else []
-                    ),
-                    "why_now": reasons,
-                    "required_pack_contract": {
-                        "manifest": ["claim_ids_tested", "evidence_class", "evidence_direction"],
-                        "metrics": "stable numeric keys only",
-                        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair",
-                        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-                    },
-                    "acceptance_checks": acceptance_checks,
-                    "status": "proposed",
-                }
-            )
+            proposal: dict[str, Any] = {
+                "proposal_id": proposal_id,
+                "backlog_id": item["backlog_id"],
+                "claim_id": claim_id,
+                "proposal_type": "experimental",
+                "priority": item["priority"],
+                "target_repo": target_repo,
+                "objective": objective,
+                "suggested_experiment_type": exp_type,
+                "dispatch_mode": dispatch_mode,
+                "seed_policy": seed_policy,
+                "min_shared_seeds": min_shared_seeds,
+                "require_pre_registered_thresholds": require_pre_registered_thresholds,
+                "exclude_broad_profile_sweeps": exclude_broad_profile_sweeps,
+                "decision_deadline_utc": str(signals.get("decision_deadline_utc", "")).strip(),
+                "decision_required_outcomes": (
+                    signals.get("decision_required_outcomes", [])
+                    if isinstance(signals.get("decision_required_outcomes", []), list)
+                    else []
+                ),
+                "why_now": reasons,
+                "required_pack_contract": required_pack_contract,
+                "acceptance_checks": acceptance_checks,
+                "status": "proposed",
+            }
+            if dispatch_override_applied:
+                proposal["dispatch_override_applied"] = True
+            for key, value in proposal_patch.items():
+                if str(key).strip():
+                    proposal[str(key)] = value
+            proposals.append(proposal)
 
         if "literature" in needed:
             lit_type = _suggest_literature_type(claim_id, matrix)

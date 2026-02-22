@@ -75,6 +75,53 @@
     "exploratory_repo": "ree-experiments-lab",
     "literature_owner": "REE_assembly"
   },
+  "dispatch_overrides": {
+    "MECH-056": {
+      "experimental": {
+        "target_repo": "ree-v2",
+        "dispatch_mode": "discriminative_pair",
+        "seed_policy": "matched_shared_seeds",
+        "min_shared_seeds": 3,
+        "require_pre_registered_thresholds": true,
+        "exclude_broad_profile_sweeps": true,
+        "objective": "Disambiguate latent-geometry distortion vs valence-weighted hippocampal mapping competition for MECH-056 using a matched 2x2 factorial matrix.",
+        "required_pack_contract": {
+          "summary": "include per-condition table (C1..C4), pairwise deltas, and explicit distortion-vs-competition verdict with threshold checks",
+          "registered_thresholds": "required; include distortion, competition, and mixed-coupling criteria used for classification"
+        },
+        "acceptance_checks": [
+          "Run one claim-focused 2x2 matrix for MECH-056: valence_channel(on/off_or_neutral) x hippocampal_mapping(adaptive/frozen).",
+          "Use at least 3 matched seeds shared across all four conditions (12 runs minimum).",
+          "Pre-register distortion criteria: C2 vs C4 latent_procrustes_drift increase >=20% and at least two geometry metrics worsen >=10%.",
+          "Pre-register competition criteria: C1/C2 geometry metrics remain within 5% of C4 while retrieval-valence skew or conditioned recall error worsens >=20% in C1 vs C2.",
+          "Record required metrics: latent_procrustes_drift, latent_knn_overlap, latent_trustworthiness, latent_continuity, hippocampal_retrieval_valence_skew, hippocampal_path_selection_entropy, valence_conditioned_recall_error, policy_error_rate, commitment_reversal_rate, conflict_signature_rate.",
+          "Avoid broad profile sweeps for this dispatch item; emit only matrix-comparison run packs.",
+          "Experiment Pack validates against v1 schema.",
+          "Result links to claim_ids_tested and updates matrix direction counts."
+        ],
+        "proposal_patch": {
+          "matrix_conditions": [
+            "C1: valence_on + mapping_adaptive",
+            "C2: valence_on + mapping_frozen",
+            "C3: valence_off_or_neutral + mapping_adaptive",
+            "C4: valence_off_or_neutral + mapping_frozen"
+          ],
+          "required_metrics": [
+            "latent_procrustes_drift",
+            "latent_knn_overlap",
+            "latent_trustworthiness",
+            "latent_continuity",
+            "hippocampal_retrieval_valence_skew",
+            "hippocampal_path_selection_entropy",
+            "valence_conditioned_recall_error",
+            "policy_error_rate",
+            "commitment_reversal_rate",
+            "conflict_signature_rate"
+          ]
+        }
+      }
+    }
+  },
   "connectome_pull": {
     "manual_claim_ids": [
       "ARC-016",

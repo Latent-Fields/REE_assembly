@@ -16,8 +16,8 @@ Cycle: `2026-02-22`
 - ## Agentic extension requires control completion (MECH-057)
 - Latent predictive representation learning (for example, JEPA-like world-model framing) is likely necessary but
 - insufficient for stable agency.
-- Once an architecture moves from representation to intervention, it must support:
-- - action emission and consequence prediction,
+- Definition split (scope guard):
+- - Task-stable operator: can perform bounded tasks reliably with stable input/output behavior, even without explicit
 
 ## Decision Lanes
 

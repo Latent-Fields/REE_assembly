@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-22T16:07:31.471252Z`
+Generated: `2026-02-22T20:38:12.637347Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -22,7 +22,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-056
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.793, conflict_ratio=0.648, exp_entries=137, lit_entries=9; directions supports=47, weakens=98, mixed=1, unknown=0, conflict_ratio=0.648
+- Why this decision is needed: overall_conf=0.8, conflict_ratio=0.619, exp_entries=150, lit_entries=9; directions supports=48, weakens=107, mixed=4, unknown=0, conflict_ratio=0.619
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -130,7 +130,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-062
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.899, conflict_ratio=0, exp_entries=44, lit_entries=2; directions supports=34, weakens=0, mixed=12, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.898, conflict_ratio=0, exp_entries=44, lit_entries=2; directions supports=34, weakens=0, mixed=12, unknown=0, conflict_ratio=0
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
   - Promote now (clear canonical status, risk under-tested edge cases)

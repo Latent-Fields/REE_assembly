@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-22T16:07:31.905695Z`
+Generated: `2026-02-22T20:38:13.112283Z`
 
 ## Cycle Status
 
@@ -23,12 +23,12 @@ Generated: `2026-02-22T16:07:31.905695Z`
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
 | `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
-| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `review_ready_packets` | `yes` | `yes` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
 | `architecture_structure_adjudication` | `HUMAN_ONLY` | `FAIL` | `review_structure_dossiers_and_model_adjudication` | `n/a` | `yes` |
 
-Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
+Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
 1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
@@ -40,16 +40,16 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - `MECH-033` (mechanism hypothesis; hippocampus / kernel chaining interface; see `docs/architecture/hippocampal_systems.md#mech-033`); conflict_types=directional
 - `MECH-040` (mechanism hypothesis; control plane / safety baseline volatility; see `docs/architecture/control_plane.md#mech-040`); conflict_types=directional
 - `MECH-046` (mechanism hypothesis; control plane / amygdala mode priors; see `docs/architecture/control_plane.md#mech-046`); conflict_types=directional
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`); conflict_types=directional, source_disagreement
+- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`); conflict_types=directional, source_disagreement, mixed_evidence
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); conflict_types=directional
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_types=directional, mixed_evidence
 - `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`); conflict_types=directional, mixed_evidence
-3. Architecture-Epoch Applicability: enabled=True; considered=1265; applicable=880; stale=385; claims_with_stale=25.
+3. Architecture-Epoch Applicability: enabled=True; considered=1278; applicable=893; stale=385; claims_with_stale=25.
 - context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=81; stale_ratio=0.45
 - `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`) stale_entries=67; stale_ratio=0.394
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`) stale_entries=66; stale_ratio=0.4
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=51; stale_ratio=0.349
+- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=51; stale_ratio=0.321
 - `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`) stale_entries=38; stale_ratio=0.33
 - `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`) stale_entries=28; stale_ratio=0.222
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`) stale_entries=7; stale_ratio=0.438
@@ -109,6 +109,7 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
+- approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-02-22T16:21:53.723682Z`
 - REE_assembly: total=1, experimental=0, literature_review=1
 - ree-experiments-lab: total=15, experimental=15, literature_review=0
 - ree-v2: total=11, experimental=11, literature_review=0
