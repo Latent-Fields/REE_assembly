@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-22T20:38:12.637347Z`
+Generated: `2026-02-22T21:03:05.259301Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -43,10 +43,10 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_056
 
-- [ ] Investigate signature `ledger_editing` (36 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (27 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `explanation_policy_divergence` (19 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech056:valence_mapping_competition` (4 FAIL run(s), latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (35 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (26 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `explanation_policy_divergence` (18 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech056:valence_mapping_competition` (3 FAIL run(s), latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech056:latent_geometry_distortion` (3 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
 
 ## claim_probe_mech_057

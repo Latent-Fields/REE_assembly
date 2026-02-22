@@ -105,16 +105,16 @@ Recent failure runs:
 - `2026-02-22T203712Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_adaptive_toyenv_internal_minimal` at `2026-02-22T20:37:12Z` signatures: ledger_editing
 
 Recurring signatures:
-- `ledger_editing` occurred in 36 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
-- `domination_lock_in` occurred in 27 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
-- `explanation_policy_divergence` occurred in 19 FAIL run(s); latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`
-- `mech056:valence_mapping_competition` occurred in 4 FAIL run(s); latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`
+- `ledger_editing` occurred in 35 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
+- `domination_lock_in` occurred in 26 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`
+- `explanation_policy_divergence` occurred in 18 FAIL run(s); latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`
+- `mech056:valence_mapping_competition` occurred in 3 FAIL run(s); latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`
 - `mech056:latent_geometry_distortion` occurred in 3 FAIL run(s); latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`
 
 Suggested design TODOs:
-- [ ] Investigate signature `ledger_editing` (36 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `domination_lock_in` (27 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `explanation_policy_divergence` (19 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
-- [ ] Investigate signature `mech056:valence_mapping_competition` (4 FAIL run(s), latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (35 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (26 FAIL run(s), latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `explanation_policy_divergence` (18 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech056:valence_mapping_competition` (3 FAIL run(s), latest `2026-02-22T203707Z_claim-probe-mech-056_seed47_valence_on_mapping_adaptive_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech056:latent_geometry_distortion` (3 FAIL run(s), latest `2026-02-22T203710Z_claim-probe-mech-056_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
