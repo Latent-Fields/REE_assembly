@@ -41,6 +41,8 @@ Packet contract:
 ## Operating Rule
 
 Do not directly copy unresolved external-source analysis into canonical architecture docs.
+Do not promote copied upstream text/code/weights without explicit source-license metadata and attribution paths in the
+promotion packet.
 
 Promotion path is:
 

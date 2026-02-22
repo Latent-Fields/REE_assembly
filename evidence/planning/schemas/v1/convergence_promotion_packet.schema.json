@@ -14,6 +14,7 @@
     "promotion_gates",
     "falsification",
     "governance_controls",
+    "implementation_readiness",
     "deltas"
   ],
   "properties": {
@@ -37,7 +38,11 @@
       "required": [
         "repo_name",
         "source_system_id",
-        "snapshot_ref"
+        "snapshot_ref",
+        "content_mode",
+        "upstream_license_id",
+        "license_review_status",
+        "license_review_notes"
       ],
       "properties": {
         "repo_name": {
@@ -52,6 +57,33 @@
           "type": "string",
           "minLength": 1
         },
+        "content_mode": {
+          "type": "string",
+          "enum": [
+            "citation_only",
+            "paraphrase_only",
+            "quoted_text",
+            "code_reference_only",
+            "code_copied",
+            "weights_used",
+            "mixed"
+          ]
+        },
+        "upstream_license_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "license_review_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "needs_review"
+          ]
+        },
+        "license_review_notes": {
+          "type": "string",
+          "minLength": 1
+        },
         "intake_path": {
           "type": "string"
         },
@@ -61,6 +93,16 @@
             "type": "string",
             "format": "uri"
           }
+        },
+        "attribution_paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reuse_notes": {
+          "type": "string"
         }
       },
       "additionalProperties": false
@@ -234,6 +276,97 @@
       },
       "additionalProperties": false
     },
+    "implementation_readiness": {
+      "type": "object",
+      "required": [
+        "mechanism_probe_ids",
+        "adapter_patch_refs",
+        "benchmark_acceptance_criteria",
+        "implementation_owner",
+        "status"
+      ],
+      "properties": {
+        "mechanism_probe_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "adapter_patch_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "benchmark_acceptance_criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "criterion_id",
+              "metric",
+              "comparator",
+              "target",
+              "measurement_ref"
+            ],
+            "properties": {
+              "criterion_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "metric": {
+                "type": "string",
+                "minLength": 1
+              },
+              "comparator": {
+                "type": "string",
+                "enum": [
+                  ">=",
+                  "<=",
+                  "=",
+                  "between",
+                  "trend_down",
+                  "trend_up"
+                ]
+              },
+              "target": {
+                "type": "string",
+                "minLength": 1
+              },
+              "measurement_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "implementation_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "in_progress",
+            "met",
+            "not_met"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
     "promotion_gates": {
       "type": "object",
       "required": [
@@ -357,6 +490,48 @@
     {
       "if": {
         "properties": {
+          "source": {
+            "properties": {
+              "content_mode": {
+                "enum": [
+                  "quoted_text",
+                  "code_copied",
+                  "weights_used",
+                  "mixed"
+                ]
+              }
+            },
+            "required": [
+              "content_mode"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "source": {
+            "required": [
+              "attribution_paths",
+              "reuse_notes"
+            ],
+            "properties": {
+              "attribution_paths": {
+                "minItems": 1
+              },
+              "reuse_notes": {
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
           "governance_controls": {
             "properties": {
               "blast_radius": {
@@ -393,6 +568,19 @@
                 "minimum": 1
               },
               "rollback_conditions": {
+                "minItems": 1
+              }
+            }
+          },
+          "implementation_readiness": {
+            "properties": {
+              "mechanism_probe_ids": {
+                "minItems": 1
+              },
+              "adapter_patch_refs": {
+                "minItems": 1
+              },
+              "benchmark_acceptance_criteria": {
                 "minItems": 1
               }
             }
@@ -450,6 +638,17 @@
               },
               "rollback_conditions": {
                 "minItems": 1
+              }
+            }
+          },
+          "implementation_readiness": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "in_progress",
+                  "met",
+                  "not_met"
+                ]
               }
             }
           },

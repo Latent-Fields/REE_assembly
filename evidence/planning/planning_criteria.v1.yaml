@@ -94,13 +94,20 @@
     "packet_inbox_glob": "evidence/planning/convergence_packets/inbox/*.json",
     "required_gates": [
       "primary_sources_verified",
+      "source_content_mode_defined",
+      "source_license_id_defined",
+      "source_license_review_verified",
+      "copied_content_attribution_defined",
       "separation_tests_defined",
       "falsifiability_defined",
       "rollback_plan_defined",
       "falsification_plan_complete",
       "conflict_review_completed",
+      "mechanism_probe_ids_defined",
+      "benchmark_acceptance_criteria_defined",
       "non_lexical_probation_window_configured",
       "non_lexical_rollback_conditions_defined",
+      "non_lexical_adapter_patch_refs_defined",
       "no_placeholder_evidence_tokens"
     ],
     "queue_owner": "REE_assembly"

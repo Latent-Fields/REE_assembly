@@ -738,6 +738,19 @@ def _build_agenda(
             ),
         )
     )
+    convergence_packets_with_impl_plan = int(
+        convergence_queue_summary.get(
+            "implementation_plan_packets",
+            sum(
+                1
+                for item in convergence_items
+                if isinstance(item, dict)
+                and int(item.get("mechanism_probe_count", 0)) > 0
+                and int(item.get("adapter_patch_ref_count", 0)) > 0
+                and int(item.get("benchmark_criteria_count", 0)) > 0
+            ),
+        )
+    )
     convergence_blast_radius_counts = (
         convergence_queue_summary.get("by_blast_radius", {})
         if isinstance(convergence_queue_summary.get("by_blast_radius", {}), dict)
@@ -892,6 +905,7 @@ def _build_agenda(
             "convergence_packets_ready": convergence_packets_ready,
             "convergence_packets_gate_failures": convergence_packets_gate_failures,
             "convergence_packets_placeholder_evidence": convergence_packets_placeholder_evidence,
+            "convergence_packets_with_implementation_plan": convergence_packets_with_impl_plan,
             "external_precedence_candidates": len(external_precedence_candidates),
             "anti_lock_in_reviews": len(anti_lock_in_reviews),
             "adjudication_cascade_actions": len(cascade_actions),
@@ -968,6 +982,7 @@ def _build_agenda(
                 "packets_gate_ready": convergence_packets_ready,
                 "packets_gate_failures": convergence_packets_gate_failures,
                 "packets_placeholder_evidence": convergence_packets_placeholder_evidence,
+                "packets_with_implementation_plan": convergence_packets_with_impl_plan,
                 "by_blast_radius": convergence_blast_radius_counts,
                 "items": convergence_items,
                 "invalid_items": convergence_invalid_items,
@@ -1246,7 +1261,8 @@ def _build_agenda(
         + f"invalid={convergence_packets_invalid}; "
         + f"gate_ready={convergence_packets_ready}; "
         + f"gate_failures={convergence_packets_gate_failures}; "
-        + f"placeholder_evidence={convergence_packets_placeholder_evidence}."
+        + f"placeholder_evidence={convergence_packets_placeholder_evidence}; "
+        + f"implementation_plans={convergence_packets_with_impl_plan}."
     )
     lines.append(
         "- context: `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`, "
@@ -1274,6 +1290,9 @@ def _build_agenda(
             status = _strip_ticks(str(item.get("status", "")))
             blast_radius = _strip_ticks(str(item.get("blast_radius", "")))
             gate_ready = bool(item.get("gate_ready", False))
+            impl_status = _strip_ticks(str(item.get("implementation_status", "")))
+            probe_count = int(item.get("mechanism_probe_count", 0) or 0)
+            bench_count = int(item.get("benchmark_criteria_count", 0) or 0)
             gate_failures = (
                 item.get("gate_failures", [])
                 if isinstance(item.get("gate_failures", []), list)
@@ -1283,7 +1302,8 @@ def _build_agenda(
             lines.append(
                 f"- packet=`{packet_id}` source=`{source_id}` status=`{status}` "
                 + f"blast=`{blast_radius}` gate_ready={str(gate_ready).lower()} "
-                + f"gate_failures={len(gate_failures)} claims={claim_count}"
+                + f"gate_failures={len(gate_failures)} impl=`{impl_status}` "
+                + f"probes={probe_count} bench={bench_count} claims={claim_count}"
             )
             if gate_failures:
                 for reason in gate_failures[:5]:
@@ -1574,6 +1594,7 @@ def main() -> None:
         + f"convergence_ready={agenda['summary']['convergence_packets_ready']}, "
         + f"convergence_gate_failures={agenda['summary']['convergence_packets_gate_failures']}, "
         + f"convergence_placeholder={agenda['summary']['convergence_packets_placeholder_evidence']}, "
+        + f"convergence_impl_plans={agenda['summary']['convergence_packets_with_implementation_plan']}, "
         + f"external_precedence={agenda['summary']['external_precedence_candidates']}, "
         + f"cascade_actions={agenda['summary']['adjudication_cascade_actions']}, "
         + f"epoch_stale={agenda['summary']['architecture_epoch_stale_entries']}, "

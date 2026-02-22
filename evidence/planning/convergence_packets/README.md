@@ -39,6 +39,19 @@ Each packet must include:
   - conflict review status/notes,
   - probation window days,
   - rollback conditions/owner.
+- `implementation_readiness`:
+  - `mechanism_probe_ids` (required for `interface`/`architecture`),
+  - `adapter_patch_refs` (required for `interface`/`architecture`),
+  - `benchmark_acceptance_criteria` (required for `interface`/`architecture`),
+  - implementation owner/status.
+- `source` licensing/provenance:
+  - `content_mode` (what is being reused),
+  - `upstream_license_id`,
+  - `license_review_status` must be `verified`,
+  - `license_review_notes`,
+  - if `content_mode` is `quoted_text`, `code_copied`, `weights_used`, or `mixed`, include:
+    - `attribution_paths` (non-empty),
+    - `reuse_notes` (non-empty).
 
 Gate-ready status is blocked when placeholder evidence tokens (`TODO`, `Needs evidence`, `example.org`) appear in
 evidence-bearing fields.

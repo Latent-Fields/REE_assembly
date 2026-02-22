@@ -14,6 +14,7 @@ from typing import Any
 from jsonschema import Draft202012Validator
 
 PLACEHOLDER_EVIDENCE_TOKENS = ("todo", "needs evidence", "example.org")
+COPIED_CONTENT_MODES = {"quoted_text", "code_copied", "weights_used", "mixed"}
 
 
 def _now_utc() -> str:
@@ -72,10 +73,30 @@ def _placeholder_evidence_hits(packet: dict[str, Any]) -> list[str]:
     evidence = packet.get("evidence_summary", {}) if isinstance(packet.get("evidence_summary"), dict) else {}
     deltas = packet.get("deltas", []) if isinstance(packet.get("deltas"), list) else []
     falsification = packet.get("falsification", {}) if isinstance(packet.get("falsification"), dict) else {}
+    implementation = (
+        packet.get("implementation_readiness", {})
+        if isinstance(packet.get("implementation_readiness"), dict)
+        else {}
+    )
 
     for link in _string_list(source.get("primary_links")):
         if _contains_placeholder_evidence_token(link):
             hits.append(f"source.primary_links: {link}")
+    for path in _string_list(source.get("attribution_paths")):
+        if _contains_placeholder_evidence_token(path):
+            hits.append(f"source.attribution_paths: {path}")
+
+    upstream_license_id = str(source.get("upstream_license_id", "")).strip()
+    if upstream_license_id and _contains_placeholder_evidence_token(upstream_license_id):
+        hits.append("source.upstream_license_id")
+
+    license_review_notes = str(source.get("license_review_notes", "")).strip()
+    if license_review_notes and _contains_placeholder_evidence_token(license_review_notes):
+        hits.append("source.license_review_notes")
+
+    reuse_notes = str(source.get("reuse_notes", "")).strip()
+    if reuse_notes and _contains_placeholder_evidence_token(reuse_notes):
+        hits.append("source.reuse_notes")
 
     evidence_notes = str(evidence.get("notes", "")).strip()
     if evidence_notes and _contains_placeholder_evidence_token(evidence_notes):
@@ -92,18 +113,44 @@ def _placeholder_evidence_hits(packet: dict[str, Any]) -> list[str]:
         if _contains_placeholder_evidence_token(ref):
             hits.append(f"falsification.test_plan_refs: {ref}")
 
+    for ref in _string_list(implementation.get("adapter_patch_refs")):
+        if _contains_placeholder_evidence_token(ref):
+            hits.append(f"implementation_readiness.adapter_patch_refs: {ref}")
+
+    benchmark_criteria = (
+        implementation.get("benchmark_acceptance_criteria", [])
+        if isinstance(implementation.get("benchmark_acceptance_criteria", []), list)
+        else []
+    )
+    for index, criterion in enumerate(benchmark_criteria):
+        if not isinstance(criterion, dict):
+            continue
+        measurement_ref = str(criterion.get("measurement_ref", "")).strip()
+        if measurement_ref and _contains_placeholder_evidence_token(measurement_ref):
+            hits.append(
+                f"implementation_readiness.benchmark_acceptance_criteria[{index}].measurement_ref: {measurement_ref}"
+            )
+
     return hits
 
 
 def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bool, list[str]]:
+    source = packet.get("source", {})
     evidence = packet.get("evidence_summary", {})
     gates = packet.get("promotion_gates", {})
     touchpoints = packet.get("ree_touchpoints", {})
     controls = packet.get("governance_controls", {})
     falsification = packet.get("falsification", {})
+    implementation = (
+        packet.get("implementation_readiness", {})
+        if isinstance(packet.get("implementation_readiness"), dict)
+        else {}
+    )
     decisions = packet.get("decisions", {})
     if not isinstance(evidence, dict) or not isinstance(gates, dict):
         return False, ["evidence_or_gate_structure_missing"], False, []
+    if not isinstance(source, dict):
+        source = {}
     if not isinstance(touchpoints, dict):
         touchpoints = {}
     if not isinstance(controls, dict):
@@ -114,6 +161,24 @@ def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bo
         decisions = {}
 
     failures: list[str] = []
+
+    source_content_mode = str(source.get("content_mode", "")).strip()
+    source_upstream_license_id = str(source.get("upstream_license_id", "")).strip()
+    source_license_review_status = str(source.get("license_review_status", "")).strip()
+    source_attribution_paths = _string_list(source.get("attribution_paths"))
+    source_reuse_notes = str(source.get("reuse_notes", "")).strip()
+
+    if not source_content_mode:
+        failures.append("source.content_mode_missing")
+    if not source_upstream_license_id:
+        failures.append("source.upstream_license_id_missing")
+    if source_license_review_status != "verified":
+        failures.append("source.license_review_status_not_verified")
+    if source_content_mode in COPIED_CONTENT_MODES:
+        if not source_attribution_paths:
+            failures.append("copied_content_requires_attribution_paths")
+        if not source_reuse_notes:
+            failures.append("copied_content_requires_reuse_notes")
 
     if not bool(evidence.get("primary_sources_verified")):
         failures.append("primary_sources_verified=false")
@@ -139,6 +204,15 @@ def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bo
 
     blast_radius = str(controls.get("blast_radius", "")).strip()
     rollback_conditions = _string_list(controls.get("rollback_conditions"))
+    mechanism_probe_ids = _string_list(implementation.get("mechanism_probe_ids"))
+    adapter_patch_refs = _string_list(implementation.get("adapter_patch_refs"))
+    benchmark_acceptance_criteria = (
+        implementation.get("benchmark_acceptance_criteria", [])
+        if isinstance(implementation.get("benchmark_acceptance_criteria", []), list)
+        else []
+    )
+    implementation_owner = str(implementation.get("implementation_owner", "")).strip()
+    implementation_status = str(implementation.get("status", "")).strip()
     try:
         probation_window_days = int(controls.get("probation_window_days", 0))
     except (TypeError, ValueError):
@@ -152,6 +226,17 @@ def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bo
             failures.append("non_lexical_requires_rollback_conditions")
         if not bool(gates.get("rollback_plan_defined")):
             failures.append("non_lexical_requires_rollback_plan_defined=true")
+        if not mechanism_probe_ids:
+            failures.append("non_lexical_requires_mechanism_probe_ids")
+        if not adapter_patch_refs:
+            failures.append("non_lexical_requires_adapter_patch_refs")
+        if not benchmark_acceptance_criteria:
+            failures.append("non_lexical_requires_benchmark_acceptance_criteria")
+
+    if not implementation_owner:
+        failures.append("implementation_owner_missing")
+    if not implementation_status:
+        failures.append("implementation_status_missing")
 
     if blast_radius == "architecture":
         if str(evidence.get("evidence_status", "")).strip() != "sufficient":
@@ -160,6 +245,8 @@ def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bo
             failures.append("architecture_requires_anti_lock_in_review")
         if probation_window_days < 7:
             failures.append("architecture_requires_probation_window_days>=7")
+        if implementation_status == "planned":
+            failures.append("architecture_requires_implementation_status_non_planned")
 
     placeholder_hits = _placeholder_evidence_hits(packet)
     placeholder_found = len(placeholder_hits) > 0
@@ -196,6 +283,11 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
     gates = packet.get("promotion_gates", {}) if isinstance(packet.get("promotion_gates"), dict) else {}
     falsification = packet.get("falsification", {}) if isinstance(packet.get("falsification"), dict) else {}
     controls = packet.get("governance_controls", {}) if isinstance(packet.get("governance_controls"), dict) else {}
+    implementation = (
+        packet.get("implementation_readiness", {})
+        if isinstance(packet.get("implementation_readiness"), dict)
+        else {}
+    )
     deltas = packet.get("deltas", []) if isinstance(packet.get("deltas"), list) else []
 
     delta_scopes = []
@@ -208,6 +300,13 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
 
     impact_areas = _string_list(touchpoints.get("impact_areas")) + delta_scopes
     impact_areas = _string_list(impact_areas)
+    mechanism_probe_ids = _string_list(implementation.get("mechanism_probe_ids"))
+    adapter_patch_refs = _string_list(implementation.get("adapter_patch_refs"))
+    benchmark_acceptance_criteria = (
+        implementation.get("benchmark_acceptance_criteria", [])
+        if isinstance(implementation.get("benchmark_acceptance_criteria", []), list)
+        else []
+    )
     gate_ready, gate_failures, placeholder_evidence_found, placeholder_evidence_hits = _packet_gate_evaluation(packet)
 
     return {
@@ -217,12 +316,21 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
         "source_repo": str(source.get("repo_name", "")).strip(),
         "source_system_id": str(source.get("source_system_id", "")).strip(),
         "snapshot_ref": str(source.get("snapshot_ref", "")).strip(),
+        "source_content_mode": str(source.get("content_mode", "")).strip(),
+        "source_upstream_license_id": str(source.get("upstream_license_id", "")).strip(),
+        "source_license_review_status": str(source.get("license_review_status", "")).strip(),
+        "source_attribution_path_count": len(_string_list(source.get("attribution_paths"))),
         "intake_path": str(source.get("intake_path", "")).strip(),
         "evidence_status": str(evidence.get("evidence_status", "")).strip(),
         "primary_sources_verified": bool(evidence.get("primary_sources_verified", False)),
         "falsification_status": str(falsification.get("status", "")).strip(),
         "conflict_review_completed": bool(controls.get("conflict_review_completed", False)),
         "probation_window_days": int(controls.get("probation_window_days", 0) or 0),
+        "implementation_status": str(implementation.get("status", "")).strip(),
+        "implementation_owner": str(implementation.get("implementation_owner", "")).strip(),
+        "mechanism_probe_count": len(mechanism_probe_ids),
+        "adapter_patch_ref_count": len(adapter_patch_refs),
+        "benchmark_criteria_count": len(benchmark_acceptance_criteria),
         "gate_ready": gate_ready,
         "gate_failures": gate_failures,
         "placeholder_evidence_found": placeholder_evidence_found,
@@ -257,6 +365,7 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
     lines.append(f"- Gate-ready packets: `{summary.get('gate_ready_packets', 0)}`")
     lines.append(f"- Packets with gate failures: `{summary.get('gate_failure_packets', 0)}`")
     lines.append(f"- Packets with placeholder evidence: `{summary.get('placeholder_evidence_packets', 0)}`")
+    lines.append(f"- Packets with implementation plans: `{summary.get('implementation_plan_packets', 0)}`")
     lines.append("")
 
     by_status = summary.get("by_status", {})
@@ -285,8 +394,8 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
 
     lines.append("## Valid Packets")
     lines.append("")
-    lines.append("| Packet | Status | Blast | Source | Evidence | Gate Ready | Gate Failures | Deltas | Claims | Owner | Due | Path |")
-    lines.append("|---|---|---|---|---|---|---:|---:|---:|---|---|---|")
+    lines.append("| Packet | Status | Blast | Source | Mode | License | License Review | Evidence | Impl | Bench | Gate Ready | Gate Failures | Deltas | Claims | Owner | Due | Path |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---:|---|---:|---:|---:|---|---|---|")
     if items:
         for item in items:
             lines.append(
@@ -295,7 +404,12 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
                 f"`{item.get('status','')}` | "
                 f"`{item.get('blast_radius','')}` | "
                 f"`{item.get('source_system_id','')}` | "
+                f"`{item.get('source_content_mode','')}` | "
+                f"`{item.get('source_upstream_license_id','')}` | "
+                f"`{item.get('source_license_review_status','')}` | "
                 f"`{item.get('evidence_status','')}` | "
+                f"`{item.get('implementation_status','')}` | "
+                f"{item.get('benchmark_criteria_count', 0)} | "
                 f"`{str(item.get('gate_ready', False)).lower()}` | "
                 f"{len(_string_list(item.get('gate_failures', [])))} | "
                 f"{item.get('delta_count', 0)} | "
@@ -305,7 +419,7 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
                 f"`{item.get('packet_path','')}` |"
             )
     else:
-        lines.append("| _none_ | - | - | - | - | - | - | - | - | - | - | - |")
+        lines.append("| _none_ | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |")
     lines.append("")
 
     gate_failure_items = [
@@ -405,6 +519,7 @@ def main() -> int:
     gate_ready_count = 0
     gate_failure_count = 0
     placeholder_evidence_count = 0
+    implementation_plan_count = 0
     for item in valid_items:
         status_counts.update([str(item.get("status", "")).strip() or "unknown"])
         impact_counts.update(_string_list(item.get("impact_areas")))
@@ -415,6 +530,12 @@ def main() -> int:
             gate_failure_count += 1
         if bool(item.get("placeholder_evidence_found", False)):
             placeholder_evidence_count += 1
+        if (
+            int(item.get("mechanism_probe_count", 0)) > 0
+            and int(item.get("adapter_patch_ref_count", 0)) > 0
+            and int(item.get("benchmark_criteria_count", 0)) > 0
+        ):
+            implementation_plan_count += 1
 
     queue = {
         "schema_version": "convergence_intake_queue/v1",
@@ -428,6 +549,7 @@ def main() -> int:
             "gate_ready_packets": gate_ready_count,
             "gate_failure_packets": gate_failure_count,
             "placeholder_evidence_packets": placeholder_evidence_count,
+            "implementation_plan_packets": implementation_plan_count,
             "by_status": dict(sorted(status_counts.items())),
             "by_impact_area": dict(sorted(impact_counts.items())),
             "by_blast_radius": dict(sorted(blast_counts.items())),

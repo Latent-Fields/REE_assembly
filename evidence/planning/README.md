@@ -148,6 +148,13 @@ Use this path for external-source knowledge/implementation proposals before cano
 4. Review queue outputs:
   - `evidence/planning/convergence_intake_queue.v1.json`
   - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
+5. For `interface`/`architecture` packets, include `implementation_readiness` with probe IDs, adapter patch refs, and
+   benchmark acceptance criteria.
+6. For all packets, include source-license provenance:
+  - `source.content_mode`, `source.upstream_license_id`, `source.license_review_status=verified`,
+    and `source.license_review_notes`.
+  - If copied content is proposed (`quoted_text`, `code_copied`, `weights_used`, `mixed`), include non-empty
+    `source.attribution_paths` and `source.reuse_notes`.
 
 Related docs:
 

@@ -38,6 +38,7 @@ queue before any canonical promotion in `REE_assembly`.
   - `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`
     - required `falsification` section (claim under test, disconfirming conditions, test-plan refs)
     - required `governance_controls` (blast radius, conflict review, probation, rollback conditions/owner)
+    - required `implementation_readiness` block (probe IDs, adapter patch refs, benchmark acceptance criteria)
     - conditional stricter requirements for `interface`/`architecture` blast-radius packets
   - `evidence/planning/scripts/validate_convergence_promotion_packet.py`
     - new flags:
@@ -47,8 +48,10 @@ queue before any canonical promotion in `REE_assembly`.
     - gate-failure reasons surfaced per packet
     - placeholder evidence token detection (`TODO`, `Needs evidence`, `example.org`) blocks gate-ready status
     - queue summary now tracks blast-radius and gate-failure counts
+    - implementation-readiness metadata captured (probe/adapter/benchmark counts)
   - `evidence/planning/scripts/run_governance_cycle.py`
     - convergence triage now reports gate-failures/placeholder-evidence counts and blast-radius breakdown
+    - convergence triage now reports packets carrying implementation-ready plans
 - Pruned canonical JEPA glossary scope and moved extended term-harmonization tables to convergence intake:
   - `docs/glossary.md` (`IMPL-020` canonical core only)
   - `REE_convergence/sources/jepa/glossary.md`

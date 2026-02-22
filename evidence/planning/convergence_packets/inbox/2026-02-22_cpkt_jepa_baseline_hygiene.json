@@ -7,6 +7,10 @@
     "repo_name": "REE_convergence",
     "source_system_id": "jepa",
     "snapshot_ref": "ree_convergence_jepa_extract_2026-02-22",
+    "content_mode": "code_reference_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "Current packet links primary papers and code locations for evidence traceability; it does not promote copied upstream code, text, or model weights into REE_assembly.",
     "intake_path": "sources/jepa",
     "primary_links": [
       "https://arxiv.org/abs/2301.08243",
@@ -14,7 +18,8 @@
       "https://arxiv.org/abs/2412.10925",
       "https://github.com/facebookresearch/ijepa/blob/main/src/train.py",
       "https://github.com/facebookresearch/vjepa2/blob/main/app/vjepa/train.py"
-    ]
+    ],
+    "attribution_paths": []
   },
   "status": "proposed",
   "evidence_summary": {
@@ -79,6 +84,37 @@
       "Governance cycle reports invalid convergence packet in this lineage for two consecutive runs."
     ],
     "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "JEPA-P-001",
+      "CPKT-JEPA-TRACE-001"
+    ],
+    "adapter_patch_refs": [
+      "REE_convergence/sources/jepa/integration_deltas.md#jepa-delta-1001",
+      "evidence/planning/CONVERGENCE_EXTRACTION_MAP.md"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "CPKT-JEPA-BENCH-001",
+        "metric": "canonical_packet_traceability_ratio",
+        "comparator": ">=",
+        "target": "1.0",
+        "measurement_ref": "evidence/planning/GOVERNANCE_AGENDA.md",
+        "notes": "Every promoted JEPA-facing canonical update should cite packet lineage."
+      },
+      {
+        "criterion_id": "CPKT-JEPA-BENCH-002",
+        "metric": "post_promotion_conflict_ratio_delta",
+        "comparator": "<=",
+        "target": "0.0 over 2 cycles",
+        "measurement_ref": "evidence/experiments/promotion_demotion_recommendations.md",
+        "notes": "Do not increase unresolved conflict pressure in touched claims after promotion."
+      }
+    ],
+    "implementation_owner": "ree-governance",
+    "status": "in_progress",
+    "notes": "Implementation-lane probes and governance metrics are staged for two-cycle observation."
   },
   "deltas": [
     {
