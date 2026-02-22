@@ -214,6 +214,212 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
+      "claim_id": "MECH-026",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-21T17:48:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
+      "connectome_focus": "Disambiguate ready-vigilance from action commitment using inhibitory priming and salience routing evidence.",
+      "objective": "Run targeted connectome literature pull for MECH-026.",
+      "plain_english_claim_description": "MECH-026 is a mechanism hypothesis about cognitive modes / ready vigilance.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 2 upstream claim(s): `ARC-016`, `ARC-005`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-026`.",
+      "priority": "high",
+      "pull_id": "CPULL-0003",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which circuits express high sensitivity/priming while still suppressing motor release?",
+        "What signatures separate restraint-oriented vigilance from imminent action preparation?",
+        "What evidence suggests vigilance and action are not cleanly dissociable?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "Inhibitory control and orienting circuits",
+          "query_stems": [
+            "ready vigilance inhibitory control network",
+            "orienting salience motor inhibition effective connectivity"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Threat/salience and restraint coupling",
+          "query_stems": [
+            "threat vigilance without action neural circuits",
+            "salience network motor suppression pathways"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "Boundary cases between vigilance and action",
+          "query_stems": [
+            "hypervigilance transition to action neural markers",
+            "false alarm motor gating neural evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.0,
+        "consider_new_structure": false,
+        "direction_counts": {
+          "mixed": 1,
+          "supports": 3,
+          "unknown": 0,
+          "weakens": 0
+        },
+        "overall_confidence": 0.5,
+        "recurring_failure_signatures": [],
+        "source_counts": {
+          "experimental": 0,
+          "literature": 4
+        },
+        "trigger_signals": [
+          "manual_mode_transition_pull"
+        ]
+      },
+      "status": "completed",
+      "suggested_literature_type": "targeted_review_connectome_mech_026",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
+      "claim_id": "MECH-029",
+      "completion_status": {
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-02-21T17:52:00Z",
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "completion_criteria_met"
+      },
+      "connectome_focus": "Test DMN-like reflective replay constraints against action-network suppression and hippocampal-cortical coupling.",
+      "objective": "Run targeted connectome literature pull for MECH-029.",
+      "plain_english_claim_description": "MECH-029 is a mechanism hypothesis about default mode / reflective ethics.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-014`, `ARC-005`, `ARC-007`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/default_mode.md#mech-029`.",
+      "priority": "high",
+      "pull_id": "CPULL-0004",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "preserve source wording and add REE translation with caveat boundaries"
+      },
+      "research_questions": [
+        "Which data best supports DMN-like reflective replay with commitment suppression?",
+        "How strong is evidence for hippocampal-cortical coupling during internally generated simulation?",
+        "Where does DMN activity fail to support safe replay assumptions?"
+      ],
+      "search_tracks": [
+        {
+          "focus": "DMN architecture and anti-correlation with action networks",
+          "query_stems": [
+            "default mode network anti-correlation task positive network",
+            "DMN executive control dynamic coupling transitions"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-01"
+        },
+        {
+          "focus": "Hippocampal replay and autobiographical simulation",
+          "query_stems": [
+            "hippocampal cortical replay default mode simulation",
+            "episodic future thinking hippocampus default mode"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-02"
+        },
+        {
+          "focus": "DMN instability/pathology boundary evidence",
+          "query_stems": [
+            "rumination default mode control failure connectivity",
+            "psychosis default mode internal model intrusion evidence"
+          ],
+          "source_preference": "primary",
+          "track_id": "TRK-03"
+        }
+      ],
+      "selection_signals": {
+        "conflict_ratio": 0.0,
+        "consider_new_structure": false,
+        "direction_counts": {
+          "mixed": 1,
+          "supports": 3,
+          "unknown": 0,
+          "weakens": 0
+        },
+        "overall_confidence": 0.5,
+        "recurring_failure_signatures": [],
+        "source_counts": {
+          "experimental": 0,
+          "literature": 4
+        },
+        "trigger_signals": [
+          "manual_mode_transition_pull"
+        ]
+      },
+      "status": "completed",
+      "suggested_literature_type": "targeted_review_connectome_mech_029",
+      "target_repo": "REE_assembly"
+    },
+    {
+      "acceptance_checks": [
+        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
+        "At least 1 disconfirming or mixed-direction source is included.",
+        "Each record includes mapping + confidence_components fields.",
+        "Summary includes source wording, REE translation, and explicit mapping caveat.",
+        "No duplicate DOI+claim linkage unless rationale is materially different."
+      ],
       "claim_id": "MECH-060",
       "completion_status": {
         "entries_total": 4,
@@ -406,7 +612,7 @@
           "unknown": 0,
           "weakens": 71
         },
-        "overall_confidence": 0.72,
+        "overall_confidence": 0.719,
         "recurring_failure_signatures": [
           "mech058:anchor_separation_collapse",
           "mech058:ema_drift_under_shift",
@@ -517,7 +723,7 @@
           "unknown": 0,
           "weakens": 53
         },
-        "overall_confidence": 0.729,
+        "overall_confidence": 0.728,
         "recurring_failure_signatures": [
           "q017:control_axis_stability_drop",
           "q017:control_axis_entropy_collapse",
@@ -544,215 +750,9 @@
     "reopen_conflict_ratio": 0.9,
     "state_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
   },
-  "cycle_date": "2026-02-21",
-  "generated_at_utc": "2026-02-21T17:40:43.408298Z",
+  "cycle_date": "2026-02-22",
+  "generated_at_utc": "2026-02-22T09:29:08.640890Z",
   "items": [
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-026",
-      "completion_status": {
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "non_support_entries": 0,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence"
-      },
-      "connectome_focus": "Disambiguate ready-vigilance from action commitment using inhibitory priming and salience routing evidence.",
-      "objective": "Run targeted connectome literature pull for MECH-026.",
-      "plain_english_claim_description": "MECH-026 is a mechanism hypothesis about cognitive modes / ready vigilance.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 2 upstream claim(s): `ARC-016`, `ARC-005`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-026`.",
-      "priority": "high",
-      "pull_id": "CPULL-0003",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which circuits express high sensitivity/priming while still suppressing motor release?",
-        "What signatures separate restraint-oriented vigilance from imminent action preparation?",
-        "What evidence suggests vigilance and action are not cleanly dissociable?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Inhibitory control and orienting circuits",
-          "query_stems": [
-            "ready vigilance inhibitory control network",
-            "orienting salience motor inhibition effective connectivity"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Threat/salience and restraint coupling",
-          "query_stems": [
-            "threat vigilance without action neural circuits",
-            "salience network motor suppression pathways"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Boundary cases between vigilance and action",
-          "query_stems": [
-            "hypervigilance transition to action neural markers",
-            "false alarm motor gating neural evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_transition_pull"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_026",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
-      "claim_id": "MECH-029",
-      "completion_status": {
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "non_support_entries": 0,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence"
-      },
-      "connectome_focus": "Test DMN-like reflective replay constraints against action-network suppression and hippocampal-cortical coupling.",
-      "objective": "Run targeted connectome literature pull for MECH-029.",
-      "plain_english_claim_description": "MECH-029 is a mechanism hypothesis about default mode / reflective ethics.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-014`, `ARC-005`, `ARC-007`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/default_mode.md#mech-029`.",
-      "priority": "high",
-      "pull_id": "CPULL-0004",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which data best supports DMN-like reflective replay with commitment suppression?",
-        "How strong is evidence for hippocampal-cortical coupling during internally generated simulation?",
-        "Where does DMN activity fail to support safe replay assumptions?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "DMN architecture and anti-correlation with action networks",
-          "query_stems": [
-            "default mode network anti-correlation task positive network",
-            "DMN executive control dynamic coupling transitions"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Hippocampal replay and autobiographical simulation",
-          "query_stems": [
-            "hippocampal cortical replay default mode simulation",
-            "episodic future thinking hippocampus default mode"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "DMN instability/pathology boundary evidence",
-          "query_stems": [
-            "rumination default mode control failure connectivity",
-            "psychosis default mode internal model intrusion evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_transition_pull"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_029",
-      "target_repo": "REE_assembly"
-    },
     {
       "acceptance_checks": [
         "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
@@ -1048,7 +1048,7 @@
           "unknown": 0,
           "weakens": 5
         },
-        "overall_confidence": 0.705,
+        "overall_confidence": 0.704,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
@@ -1156,7 +1156,7 @@
           "unknown": 0,
           "weakens": 4
         },
-        "overall_confidence": 0.645,
+        "overall_confidence": 0.644,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
@@ -1264,7 +1264,7 @@
           "unknown": 0,
           "weakens": 4
         },
-        "overall_confidence": 0.645,
+        "overall_confidence": 0.644,
         "recurring_failure_signatures": [
           "ledger_editing",
           "domination_lock_in"
@@ -1286,8 +1286,8 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "active_queue_items": 7,
-    "completed_items": 5,
+    "active_queue_items": 5,
+    "completed_items": 7,
     "consider_new_structure_items": 6,
     "manual_seed_claim_ids": [
       "ARC-016",

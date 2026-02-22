@@ -1,12 +1,14 @@
 # Literature Evidence Index
 
-Generated: `2026-02-21T17:40:42.838186Z`
+Generated: `2026-02-22T09:29:08.059135Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-02-21_arc016_principal_gradient_continuum_pnas2016`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/record.json) | 4 | [`summary`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/summary.md) |
 | `targeted_review_connectome_mech_025` | [`2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/summary.md) |
+| `targeted_review_connectome_mech_026` | [`2026-02-21_mech026_concurrent_direct_indirect_nature2013`](targeted_review_connectome_mech_026/entries/2026-02-21_mech026_concurrent_direct_indirect_nature2013/record.json) | 4 | [`summary`](targeted_review_connectome_mech_026/entries/2026-02-21_mech026_concurrent_direct_indirect_nature2013/summary.md) |
+| `targeted_review_connectome_mech_029` | [`2026-02-21_mech029_goal_directed_default_coupling_neuroimage2010`](targeted_review_connectome_mech_029/entries/2026-02-21_mech029_goal_directed_default_coupling_neuroimage2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_029/entries/2026-02-21_mech029_goal_directed_default_coupling_neuroimage2010/summary.md) |
 | `targeted_review_connectome_mech_056` | [`2026-02-15_mech056_connectome_replay_past_experience_neuron2021`](targeted_review_connectome_mech_056/entries/2026-02-15_mech056_connectome_replay_past_experience_neuron2021/record.json) | 4 | [`summary`](targeted_review_connectome_mech_056/entries/2026-02-15_mech056_connectome_replay_past_experience_neuron2021/summary.md) |
 | `targeted_review_connectome_mech_058` | [`2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/record.json) | 4 | [`summary`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/summary.md) |
 | `targeted_review_connectome_mech_060` | [`2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/record.json) | 4 | [`summary`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/summary.md) |

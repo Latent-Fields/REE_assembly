@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_026",
+  "entry_id": "2026-02-21_mech026_concurrent_direct_indirect_nature2013",
+  "timestamp_utc": "2026-02-21T17:48:00Z",
+  "claim_ids_tested": [
+    "MECH-026"
+  ],
+  "source": {
+    "title": "Concurrent activation of striatal direct and indirect pathways during action initiation",
+    "authors": [
+      "Guohong Cui",
+      "Sayuri Jun B. Jun",
+      "Tingting Jin",
+      "et al."
+    ],
+    "year": 2013,
+    "venue": "Nature",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23954683/"
+  },
+  "evidence_class": "action_initiation_pathway_overlap",
+  "evidence_direction": "mixed",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong boundary evidence that action-initiation and suppression channels can be coactive, weakening strict separability assumptions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "strict_vigilance_action_dissociation_overreach"
+  ],
+  "tags": [
+    "mech026",
+    "mixed_evidence",
+    "basal_ganglia",
+    "pathway_overlap"
+  ],
+  "mapping": {
+    "source_claim_statement": "Direct and indirect striatal pathways can activate concurrently around action initiation.",
+    "ree_translation": "Mixed for MECH-026: vigilance-related inhibition is plausible, but action and restraint channels are partly overlapping and dynamically coupled.",
+    "mapping_caveat": "Concurrent pathway activity is measured in specific movement contexts and does not fully resolve cognitive vigilance semantics.",
+    "source_context": "In vivo pathway recordings during movement initiation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.79,
+    "transfer_risk": 0.32,
+    "notes": "Critical disconfirming boundary for over-clean loop separation."
+  }
+}

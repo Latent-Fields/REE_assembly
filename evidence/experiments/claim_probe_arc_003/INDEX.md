@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_arc_003
 
-Generated: `2026-02-21T17:40:42.838182Z`
+Generated: `2026-02-22T09:29:08.059135Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
