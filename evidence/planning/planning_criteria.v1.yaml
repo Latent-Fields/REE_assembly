@@ -89,6 +89,17 @@
     "manual_require_adjudication_for_completion": true,
     "manual_claim_ids_adjudicated": []
   },
+  "convergence_ingestion": {
+    "enabled": true,
+    "packet_inbox_glob": "evidence/planning/convergence_packets/inbox/*.json",
+    "required_gates": [
+      "primary_sources_verified",
+      "separation_tests_defined",
+      "falsifiability_defined",
+      "rollback_plan_defined"
+    ],
+    "queue_owner": "REE_assembly"
+  },
   "evidence_applicability": {
     "enabled": true,
     "current_architecture_epoch": "ree_hybrid_guardrails_v1",

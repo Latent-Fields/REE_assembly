@@ -1,0 +1,67 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-JEPA-0001",
+  "created_at_utc": "2026-02-22T00:00:00Z",
+  "updated_at_utc": "2026-02-22T00:00:00Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "jepa",
+    "snapshot_ref": "worktree-2026-02-22",
+    "intake_path": "sources/jepa",
+    "primary_links": [
+      "https://example.org/jepa-paper",
+      "https://example.org/jepa-repo"
+    ]
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": false,
+    "notes": "Replace placeholder links and add citation anchors before promotion."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MECH-057",
+      "MECH-058",
+      "IMPL-022"
+    ],
+    "docs_paths": [
+      "docs/architecture/jepa_e1e2_integration_contract.md",
+      "docs/glossary.md"
+    ],
+    "impact_areas": [
+      "representation",
+      "transition",
+      "tooling"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": false,
+    "owner": "TODO",
+    "decision_due_utc": "2026-03-01T00:00:00Z"
+  },
+  "deltas": [
+    {
+      "delta_id": "JEPA-DELTA-001",
+      "title": "JEPA adapter interface clarification",
+      "proposal": "Clarify adapter boundary wording and emit stable signal keys.",
+      "rationale": "Align external intake evidence with existing IMPL-022 contract language.",
+      "target_scope": "tooling",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://example.org/jepa-paper"
+      ],
+      "risk_flags": [
+        "evidence_gap",
+        "schema_drift_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "hybridize",
+    "anti_lock_in_review_required": true,
+    "notes": "Do not promote until primary-source verification is complete."
+  }
+}

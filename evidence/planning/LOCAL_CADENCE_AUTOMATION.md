@@ -22,6 +22,10 @@ and cadence config:
   - `python3 evidence/planning/scripts/build_structure_review_dossiers.py`
 - Connectome pull queue:
   - `python3 evidence/planning/scripts/build_connectome_literature_pull.py`
+- Convergence packet validation:
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+- Convergence intake queue:
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
 - Adjudication cascade application:
   - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 - Task inbox sync:
@@ -69,6 +73,14 @@ Then generate connectome literature pull queue:
 
 ```bash
 python3 evidence/planning/scripts/build_connectome_literature_pull.py
+```
+
+Then validate/build convergence intake queue:
+
+```bash
+python3 evidence/planning/scripts/validate_convergence_promotion_packet.py \
+  --input-glob "evidence/planning/convergence_packets/inbox/*.json"
+python3 evidence/planning/scripts/build_convergence_intake_queue.py
 ```
 
 Then apply adjudication cascade (if any `applied` model-adjudication decisions exist):
@@ -152,6 +164,9 @@ Example (Europe/Dublin local machine clock):
 - Adjudication cascade outputs:
   - `evidence/decisions/adjudication_cascade_state.v1.json`
   - `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`
+- Convergence intake queue outputs:
+  - `evidence/planning/convergence_intake_queue.v1.json`
+  - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
 
 ## Persistent Unfinished Items
 

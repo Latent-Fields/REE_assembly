@@ -7,6 +7,31 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-22: Convergence Ingestion Route (External Knowledge -> Canonical Review)
+
+### Overview
+
+Added a packet-first ingestion route so external architecture/implementation knowledge can be reviewed in a structured
+queue before any canonical promotion in `REE_assembly`.
+
+### What Changed
+
+- Added convergence boundary and extraction guidance:
+  - `evidence/planning/CONVERGENCE_EXTRACTION_MAP.md`
+  - `evidence/planning/REE_CONVERGENCE_INTERFACE.md`
+- Added promotion packet contract and template:
+  - `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`
+  - `evidence/planning/CONVERGENCE_PROMOTION_PACKET_TEMPLATE.json`
+  - `evidence/planning/convergence_packets/README.md`
+  - `evidence/planning/convergence_packets/inbox/.gitkeep`
+- Added packet validation/queue tooling:
+  - `evidence/planning/scripts/validate_convergence_promotion_packet.py`
+  - `evidence/planning/scripts/build_convergence_intake_queue.py`
+- Updated planning runbooks:
+  - `evidence/planning/README.md`
+  - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+  - `evidence/planning/planning_criteria.v1.yaml` (`convergence_ingestion` section)
+
 ## 2026-02-21: Applied Epoch Metadata Plumbing (Ingestion + Dispatch)
 
 ### Overview

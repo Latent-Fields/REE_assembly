@@ -14,6 +14,8 @@ This folder closes the architecture loop by converting current evidence into a m
 - `connectome_literature_pull.v1.json`: connectome-oriented literature pull queue for structure-pressure claims.
 - `CONNECTOME_LITERATURE_PULL.md`: human-readable connectome pull brief + copy/paste execution prompt.
 - `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
+- `convergence_intake_queue.v1.json`: normalized queue of convergence promotion packets awaiting review.
+- `CONVERGENCE_INTAKE_QUEUE.md`: human-readable review table for convergence promotion packets.
 - `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
 - `WEEKLY_HANDOFF_TEMPLATE.md`: shared producer handoff packet format for `ree-v2`, `ree-experiments-lab`, `ree-v1-minimal`, and `ree-openclaw`.
@@ -27,6 +29,7 @@ This folder closes the architecture loop by converting current evidence into a m
 - `evidence/experiments/conflicts.md`
 - `evidence/experiments/promotion_demotion_recommendations.md`
 - `evidence/decisions/decision_log.v1.jsonl`
+- `evidence/planning/convergence_packets/inbox/*.json`
 
 ## Configuration
 
@@ -111,6 +114,10 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
   - full cross-repo sync on demand: `python3 evidence/planning/scripts/sync_weekly_handoffs.py --full-run --run-ingestion`
 - Emit weekly dispatch bundles:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
+- Validate convergence promotion packet(s):
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+- Build convergence intake queue:
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
 - Apply adjudication cascade from applied decisions:
   - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 - Run ree-v2 cutover readiness (adjudicated divergence mode):
@@ -120,6 +127,26 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
 See:
 
 - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`
+
+## Convergence Packet Ingestion
+
+Use this path for external-source knowledge/implementation proposals before canonical promotion:
+
+1. Add packet JSON files to:
+  - `evidence/planning/convergence_packets/inbox/`
+2. Validate packet contract:
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+3. Build queue artifacts:
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
+4. Review queue outputs:
+  - `evidence/planning/convergence_intake_queue.v1.json`
+  - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
+
+Related docs:
+
+- `evidence/planning/REE_CONVERGENCE_INTERFACE.md`
+- `evidence/planning/CONVERGENCE_EXTRACTION_MAP.md`
+- `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`
 
 ## Manual Carryover Queue
 
