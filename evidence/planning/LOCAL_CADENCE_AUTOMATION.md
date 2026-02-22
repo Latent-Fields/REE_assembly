@@ -91,6 +91,7 @@ python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statu
 
 Note: `run_governance_cycle.py` now executes this step automatically unless `--skip-adjudication-cascade` is used.
 It also runs task inbox sync automatically unless `--skip-task-inbox-sync` is used.
+It also builds convergence intake queue automatically unless `--skip-convergence-intake` is used.
 Checked (`- [x]`) task lines are removed from inbox automatically during sync.
 
 ### Friday (dispatch bundle generation for next week)

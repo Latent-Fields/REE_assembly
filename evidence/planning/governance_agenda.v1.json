@@ -1117,7 +1117,7 @@
         {
           "decision_needed": "no",
           "gate_status": "PASS",
-          "rationale": "adjudication_cascade_step=ok; actions=0.",
+          "rationale": "adjudication_cascade_step=skipped; actions=0.",
           "recommendation": "execute_no_pending_actions",
           "rollback_ready": "yes",
           "tier": "AUTO",
@@ -1131,6 +1131,15 @@
           "rollback_ready": "yes",
           "tier": "AUTO_WITH_APPROVAL",
           "work_item": "weekly_dispatch_export"
+        },
+        {
+          "decision_needed": "yes",
+          "gate_status": "PASS",
+          "rationale": "convergence_intake_queue_step=ok; ready=1; invalid=0.",
+          "recommendation": "review_ready_packets",
+          "rollback_ready": "yes",
+          "tier": "AUTO_WITH_APPROVAL",
+          "work_item": "convergence_packet_review_queue"
         },
         {
           "decision_needed": "yes",
@@ -1151,11 +1160,11 @@
           "work_item": "architecture_structure_adjudication"
         }
       ],
-      "open_decisions_total": 3,
+      "open_decisions_total": 4,
       "prompt": "Use this table to keep automation high while preserving explicit human ownership of architecture commitments.",
       "tier_counts": {
         "AUTO": 2,
-        "AUTO_WITH_APPROVAL": 1,
+        "AUTO_WITH_APPROVAL": 2,
         "HUMAN_ONLY": 2
       }
     },
@@ -2771,6 +2780,60 @@
       "items_total": 9,
       "prompt": "Review connectome-oriented literature pull queue for architecture-pressure claims.",
       "queue_path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md"
+    },
+    "convergence_intake": {
+      "enabled": true,
+      "invalid_items": [],
+      "items": [
+        {
+          "claim_ids": [
+            "MECH-057",
+            "MECH-058",
+            "MECH-059",
+            "MECH-060",
+            "IMPL-020",
+            "IMPL-022",
+            "Q-012",
+            "Q-013",
+            "Q-014"
+          ],
+          "decision_due_utc": "2026-03-07T00:00:00Z",
+          "delta_count": 2,
+          "evidence_status": "partial",
+          "gate_ready": true,
+          "impact_areas": [
+            "representation",
+            "transition",
+            "commitment",
+            "control_plane",
+            "docs",
+            "governance"
+          ],
+          "intake_path": "sources/jepa",
+          "owner": "ree-governance",
+          "packet_id": "CPKT-JEPA-2026-0001",
+          "packet_path": "evidence/planning/convergence_packets/inbox/2026-02-22_cpkt_jepa_baseline_hygiene.json",
+          "primary_sources_verified": true,
+          "snapshot_ref": "ree_convergence_jepa_extract_2026-02-22",
+          "source_repo": "REE_convergence",
+          "source_system_id": "jepa",
+          "status": "proposed",
+          "validation_errors": []
+        }
+      ],
+      "packets_gate_ready": 1,
+      "packets_invalid": 0,
+      "packets_total": 1,
+      "packets_valid": 1,
+      "prompt": "Review external convergence promotion packets before any canonical architecture/doc updates.",
+      "queue_json_path": "evidence/planning/convergence_intake_queue.v1.json",
+      "queue_markdown_path": "evidence/planning/CONVERGENCE_INTAKE_QUEUE.md",
+      "required_gates": [
+        "primary_sources_verified",
+        "separation_tests_defined",
+        "falsifiability_defined",
+        "rollback_plan_defined"
+      ]
     },
     "evidence_dispatch": {
       "by_target_repo": [
@@ -4801,99 +4864,19 @@
       {
         "command": [
           "/opt/local/bin/python3",
-          "evidence/planning/scripts/sync_task_inbox.py"
+          "evidence/planning/scripts/build_convergence_intake_queue.py"
         ],
-        "finished_at_utc": "2026-02-22T09:56:20.368732Z",
-        "name": "task_inbox_sync",
+        "finished_at_utc": "2026-02-22T11:57:35.817778Z",
+        "name": "convergence_intake_queue",
         "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:20.297502Z",
+        "started_at_utc": "2026-02-22T11:57:35.681060Z",
         "status": "ok",
         "stderr": "",
-        "stdout": "task inbox sync: inbox_open=0, inbox_done=0, added=0, reopened=0, marked_done=0, changed_records=0, pruned_completed=0, carryover_open_total=0"
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "docs/thoughts/scripts/thought_sweep.py"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:20.424970Z",
-        "name": "thought_sweep",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:20.368781Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Thought sweep: total=46, processed=46, unprocessed=0, processed_missing_links=0"
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "evidence/planning/scripts/apply_adjudication_cascade.py",
-          "--decision-statuses",
-          "approved,applied"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:20.480311Z",
-        "name": "adjudication_cascade",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:20.425002Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Adjudication cascade complete: eligible_decisions=9, actions=0, claims_updated=0, dependents_reopened=0, dry_run=false.\nState JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/adjudication_cascade_state.v1.json\nPatch queue: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md\nNo claim registry changes applied."
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "evidence/experiments/scripts/build_experiment_indexes.py"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:21.456395Z",
-        "name": "evidence_build",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:20.480359Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Indexed 1136 run(s) across 39 experiment type(s); FAIL=499; literature entries=90; backlog items=29; proposals=27."
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "evidence/planning/scripts/build_structure_review_dossiers.py"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:21.563015Z",
-        "name": "structure_review",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:21.456441Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Wrote structure review dossiers: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-22\nWrote report: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-22/structure_review_report.v1.json"
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "evidence/planning/scripts/build_human_decision_briefs.py"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:21.615480Z",
-        "name": "human_decision_briefs",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:21.563063Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Human decision briefs generated: cycle=2026-02-22, claims=10, index=/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-22/INDEX.md, warnings=0"
-      },
-      {
-        "command": [
-          "/opt/local/bin/python3",
-          "evidence/planning/scripts/build_connectome_literature_pull.py"
-        ],
-        "finished_at_utc": "2026-02-22T09:56:21.667897Z",
-        "name": "connectome_pull",
-        "returncode": 0,
-        "started_at_utc": "2026-02-22T09:56:21.615526Z",
-        "status": "ok",
-        "stderr": "",
-        "stdout": "Wrote connectome literature pull JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_literature_pull.v1.json\nWrote connectome literature pull MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONNECTOME_LITERATURE_PULL.md\nWrote connectome pull state JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json\nConnectome queue status: active=9 completed=3 total_selected=12"
+        "stdout": "Wrote: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/convergence_intake_queue.v1.json\nWrote: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/CONVERGENCE_INTAKE_QUEUE.md\nQueue summary: total=1 valid=1 invalid=0"
       }
     ]
   },
-  "generated_at_utc": "2026-02-22T09:56:21.667937Z",
+  "generated_at_utc": "2026-02-22T11:57:35.817817Z",
   "schema_version": "governance_agenda/v1",
   "summary": {
     "adjudication_cascade_actions": 0,
@@ -4907,8 +4890,8 @@
     "architecture_epoch_stale_entries": 385,
     "architecture_gap_items": 27,
     "autonomy_failed_gates": 2,
-    "autonomy_open_decisions": 3,
-    "autonomy_triage_items": 5,
+    "autonomy_open_decisions": 4,
+    "autonomy_triage_items": 6,
     "backlog_escalation_required": 3,
     "backlog_high_priority": 28,
     "backlog_items": 29,
@@ -4917,6 +4900,10 @@
     "connectome_pull_completed_items": 3,
     "connectome_pull_high_priority": 9,
     "connectome_pull_items": 9,
+    "convergence_packets_invalid": 0,
+    "convergence_packets_ready": 1,
+    "convergence_packets_total": 1,
+    "convergence_packets_valid": 1,
     "decision_queue_items": 7,
     "external_precedence_candidates": 4,
     "human_decision_briefs": 10,

@@ -27,6 +27,13 @@ queue before any canonical promotion in `REE_assembly`.
 - Added packet validation/queue tooling:
   - `evidence/planning/scripts/validate_convergence_promotion_packet.py`
   - `evidence/planning/scripts/build_convergence_intake_queue.py`
+- Added first JEPA convergence packet in inbox:
+  - `evidence/planning/convergence_packets/inbox/2026-02-22_cpkt_jepa_baseline_hygiene.json`
+- Integrated convergence queue generation into governance cycle:
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - new flags:
+    - `--skip-convergence-intake`
+    - `--convergence-fail-on-invalid`
 - Updated planning runbooks:
   - `evidence/planning/README.md`
   - `evidence/planning/LOCAL_CADENCE_AUTOMATION.md`

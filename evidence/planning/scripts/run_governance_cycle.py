@@ -404,6 +404,8 @@ def _build_autonomy_triage_items(
     anti_lock_in_reviews_count: int,
     high_proposals_count: int,
     cascade_actions_count: int,
+    convergence_packets_ready_count: int,
+    convergence_packets_invalid_count: int,
     step_status: dict[str, str],
 ) -> list[dict[str, Any]]:
     maintenance_ok = step_failures == 0 and warning_count == 0
@@ -455,6 +457,26 @@ def _build_autonomy_triage_items(
             "rollback_ready": "yes",
             "decision_needed": "yes" if high_proposals_count > 0 else "no",
             "rationale": f"high_priority_proposals={high_proposals_count}.",
+        },
+        {
+            "work_item": "convergence_packet_review_queue",
+            "tier": "AUTO_WITH_APPROVAL",
+            "gate_status": "PASS"
+            if step_status.get("convergence_intake_queue", "skipped") != "failed"
+            and convergence_packets_invalid_count == 0
+            else "FAIL",
+            "recommendation": (
+                "review_ready_packets"
+                if convergence_packets_ready_count > 0
+                else "no_ready_packets"
+            ),
+            "rollback_ready": "yes",
+            "decision_needed": "yes" if convergence_packets_ready_count > 0 else "no",
+            "rationale": (
+                "convergence_intake_queue_step="
+                + f"{step_status.get('convergence_intake_queue', 'skipped')}; "
+                + f"ready={convergence_packets_ready_count}; invalid={convergence_packets_invalid_count}."
+            ),
         },
         {
             "work_item": "promotion_demotion_and_conflict_resolution",
@@ -516,6 +538,20 @@ def _build_agenda(
     planning_criteria = _load_json_file(
         repo_root / "evidence/planning/planning_criteria.v1.yaml", warnings
     )
+    convergence_intake_queue_path = repo_root / "evidence/planning/convergence_intake_queue.v1.json"
+    convergence_intake_queue = _load_optional_json_file(convergence_intake_queue_path, warnings)
+    convergence_ingestion_cfg = (
+        planning_criteria.get("convergence_ingestion", {})
+        if isinstance(planning_criteria, dict)
+        else {}
+    )
+    if not isinstance(convergence_ingestion_cfg, dict):
+        convergence_ingestion_cfg = {}
+    if bool(convergence_ingestion_cfg.get("enabled", False)) and not convergence_intake_queue_path.exists():
+        warnings.append(
+            "Missing convergence intake queue while convergence_ingestion.enabled=true: "
+            + convergence_intake_queue_path.as_posix()
+        )
     carryover = _load_optional_json_file(
         repo_root / "evidence/planning/manual_carryover_items.v1.json",
         warnings,
@@ -634,6 +670,38 @@ def _build_agenda(
     connectome_pull_high_priority = [
         item for item in connectome_pull_items if str(item.get("priority", "")) == "high"
     ]
+    convergence_queue_summary = (
+        convergence_intake_queue.get("summary", {})
+        if isinstance(convergence_intake_queue, dict)
+        else {}
+    )
+    convergence_items = (
+        convergence_intake_queue.get("items", [])
+        if isinstance(convergence_intake_queue, dict)
+        else []
+    )
+    if not isinstance(convergence_items, list):
+        convergence_items = []
+    convergence_invalid_items = (
+        convergence_intake_queue.get("invalid_items", [])
+        if isinstance(convergence_intake_queue, dict)
+        else []
+    )
+    if not isinstance(convergence_invalid_items, list):
+        convergence_invalid_items = []
+    convergence_packets_total = int(
+        convergence_queue_summary.get(
+            "total_packets",
+            len(convergence_items) + len(convergence_invalid_items),
+        )
+    )
+    convergence_packets_valid = int(
+        convergence_queue_summary.get("valid_packets", len(convergence_items))
+    )
+    convergence_packets_invalid = int(
+        convergence_queue_summary.get("invalid_packets", len(convergence_invalid_items))
+    )
+    convergence_packets_ready = sum(1 for item in convergence_items if bool(item.get("gate_ready", False)))
     external_precedence_candidates = [
         item for item in architecture_items if bool(item.get("external_precedence_candidate", False))
     ]
@@ -680,6 +748,8 @@ def _build_agenda(
         anti_lock_in_reviews_count=len(anti_lock_in_reviews),
         high_proposals_count=len(high_proposals),
         cascade_actions_count=len(cascade_actions),
+        convergence_packets_ready_count=convergence_packets_ready,
+        convergence_packets_invalid_count=convergence_packets_invalid,
         step_status=step_status,
     )
     autonomy_tier_counts = {
@@ -772,6 +842,10 @@ def _build_agenda(
             "connectome_pull_items": len(connectome_pull_items),
             "connectome_pull_completed_items": len(connectome_pull_completed_items),
             "connectome_pull_high_priority": len(connectome_pull_high_priority),
+            "convergence_packets_total": convergence_packets_total,
+            "convergence_packets_valid": convergence_packets_valid,
+            "convergence_packets_invalid": convergence_packets_invalid,
+            "convergence_packets_ready": convergence_packets_ready,
             "external_precedence_candidates": len(external_precedence_candidates),
             "anti_lock_in_reviews": len(anti_lock_in_reviews),
             "adjudication_cascade_actions": len(cascade_actions),
@@ -831,6 +905,25 @@ def _build_agenda(
                 "items": connectome_pull_items,
                 "completed_items": connectome_pull_completed_items,
                 "queue_path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md",
+            },
+            "convergence_intake": {
+                "prompt": (
+                    "Review external convergence promotion packets before any canonical architecture/doc updates."
+                ),
+                "enabled": bool(convergence_ingestion_cfg.get("enabled", False)),
+                "required_gates": [
+                    str(x).strip()
+                    for x in convergence_ingestion_cfg.get("required_gates", [])
+                    if str(x).strip()
+                ],
+                "packets_total": convergence_packets_total,
+                "packets_valid": convergence_packets_valid,
+                "packets_invalid": convergence_packets_invalid,
+                "packets_gate_ready": convergence_packets_ready,
+                "items": convergence_items,
+                "invalid_items": convergence_invalid_items,
+                "queue_json_path": "evidence/planning/convergence_intake_queue.v1.json",
+                "queue_markdown_path": "evidence/planning/CONVERGENCE_INTAKE_QUEUE.md",
             },
             "model_adjudication": {
                 "prompt": (
@@ -1097,7 +1190,41 @@ def _build_agenda(
             pull_id = _strip_ticks(str(item.get("pull_id", "")))
             lines.append(f"- {claim_ref}; pull_id=`{pull_id}`")
     lines.append(
-        "10. Model Adjudication: "
+        "10. Convergence Intake: "
+        + f"enabled={bool(convergence_ingestion_cfg.get('enabled', False))}; "
+        + f"total={convergence_packets_total}; "
+        + f"valid={convergence_packets_valid}; "
+        + f"invalid={convergence_packets_invalid}; "
+        + f"gate_ready={convergence_packets_ready}."
+    )
+    lines.append(
+        "- context: `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`, "
+        + "`evidence/planning/convergence_intake_queue.v1.json`"
+    )
+    required_gates = [
+        str(x).strip()
+        for x in convergence_ingestion_cfg.get("required_gates", [])
+        if str(x).strip()
+    ]
+    if required_gates:
+        lines.append("- required gates: " + ", ".join(f"`{x}`" for x in required_gates))
+    if convergence_items:
+        for item in convergence_items[:10]:
+            packet_id = _strip_ticks(str(item.get("packet_id", "")))
+            source_id = _strip_ticks(str(item.get("source_system_id", "")))
+            status = _strip_ticks(str(item.get("status", "")))
+            gate_ready = bool(item.get("gate_ready", False))
+            claim_count = len(item.get("claim_ids", [])) if isinstance(item.get("claim_ids", []), list) else 0
+            lines.append(
+                f"- packet=`{packet_id}` source=`{source_id}` status=`{status}` "
+                + f"gate_ready={str(gate_ready).lower()} claims={claim_count}"
+            )
+    if convergence_invalid_items:
+        for item in convergence_invalid_items[:10]:
+            packet_path = _strip_ticks(str(item.get("packet_path", "")))
+            lines.append(f"- INVALID packet path=`{packet_path}`")
+    lines.append(
+        "11. Model Adjudication: "
         + f"{len(external_precedence_candidates)} external-precedence candidate(s), "
         + f"{len(anti_lock_in_reviews)} anti-lock-in review item(s)."
     )
@@ -1124,7 +1251,7 @@ def _build_agenda(
                 + f"delta_lit_minus_exp={delta:.3f}"
             )
     lines.append(
-        "11. Adjudication Cascade: "
+        "12. Adjudication Cascade: "
         + f"{len(cascade_actions)} action(s), "
         + f"{len(cascade_claims_updated)} claim update(s), "
         + f"{len(cascade_dependents_reopened)} dependent reopen(s)."
@@ -1140,7 +1267,7 @@ def _build_agenda(
                 f"- {claim_ref}; outcome=`{outcome}`; reopened_dependents={len(reopened)}"
             )
     lines.append(
-        f"12. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
+        f"13. Evidence Dispatch: {len(high_proposals)} high-priority proposal(s), {len(proposal_items)} total."
     )
     lines.append("- context: `evidence/planning/experiment_proposals.v1.json`")
     for slot in _proposal_repo_summary(proposal_items):
@@ -1150,7 +1277,7 @@ def _build_agenda(
             + f"experimental={slot['experimental']}, literature_review={slot['literature_review']}"
         )
     lines.append(
-        f"13. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
+        f"14. Maintenance: {len(unlinked_runs)} unlinked evidence run(s), {len(warnings)} warning(s)."
     )
     lines.append("- context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`")
     if warnings:
@@ -1200,6 +1327,16 @@ def main() -> None:
         "--skip-connectome-pull",
         action="store_true",
         help="Skip connectome literature pull queue generation step.",
+    )
+    parser.add_argument(
+        "--skip-convergence-intake",
+        action="store_true",
+        help="Skip convergence promotion packet queue generation step.",
+    )
+    parser.add_argument(
+        "--convergence-fail-on-invalid",
+        action="store_true",
+        help="Fail convergence intake step when packet(s) are invalid.",
     )
     parser.add_argument(
         "--skip-human-decision-briefs",
@@ -1327,6 +1464,14 @@ def main() -> None:
                 ],
             )
         )
+    if not args.skip_convergence_intake:
+        convergence_cmd = [
+            str(sys.executable),
+            "evidence/planning/scripts/build_convergence_intake_queue.py",
+        ]
+        if args.convergence_fail_on_invalid:
+            convergence_cmd.append("--fail-on-invalid")
+        plan.append(("convergence_intake_queue", convergence_cmd))
 
     for name, command in plan:
         result = _run_step(name=name, command=command, cwd=repo_root)
@@ -1356,6 +1501,8 @@ def main() -> None:
         + f"structure_considerations={agenda['summary']['structure_considerations']}, "
         + f"structure_dossiers={agenda['summary']['structure_review_dossiers']}, "
         + f"connectome_pull={agenda['summary']['connectome_pull_items']}, "
+        + f"convergence_total={agenda['summary']['convergence_packets_total']}, "
+        + f"convergence_ready={agenda['summary']['convergence_packets_ready']}, "
         + f"external_precedence={agenda['summary']['external_precedence_candidates']}, "
         + f"cascade_actions={agenda['summary']['adjudication_cascade_actions']}, "
         + f"epoch_stale={agenda['summary']['architecture_epoch_stale_entries']}, "

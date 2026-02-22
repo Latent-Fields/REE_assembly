@@ -1,0 +1,97 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-JEPA-2026-0001",
+  "created_at_utc": "2026-02-22T10:00:00Z",
+  "updated_at_utc": "2026-02-22T10:25:00Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "jepa",
+    "snapshot_ref": "ree_convergence_jepa_extract_2026-02-22",
+    "intake_path": "sources/jepa",
+    "primary_links": [
+      "https://arxiv.org/abs/2301.08243",
+      "https://arxiv.org/abs/2506.09985",
+      "https://arxiv.org/abs/2412.10925",
+      "https://github.com/facebookresearch/ijepa/blob/main/src/train.py",
+      "https://github.com/facebookresearch/vjepa2/blob/main/app/vjepa/train.py"
+    ]
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": true,
+    "notes": "Primary JEPA papers and reference implementation streams are anchored in IMPL-022 and targeted literature entries; REE_convergence jepa intake files have been populated but remain provisional for canonical promotion."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MECH-057",
+      "MECH-058",
+      "MECH-059",
+      "MECH-060",
+      "IMPL-020",
+      "IMPL-022",
+      "Q-012",
+      "Q-013",
+      "Q-014"
+    ],
+    "docs_paths": [
+      "docs/architecture/agency_responsibility_flow.md",
+      "docs/architecture/jepa_e1e2_integration_contract.md",
+      "docs/glossary.md",
+      "docs/claims/claims.yaml"
+    ],
+    "impact_areas": [
+      "representation",
+      "transition",
+      "commitment",
+      "control_plane",
+      "docs",
+      "governance"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-03-07T00:00:00Z"
+  },
+  "deltas": [
+    {
+      "delta_id": "JEPA-DELTA-1001",
+      "title": "Shift external JEPA comparison details to REE_convergence",
+      "proposal": "Keep canonical JEPA contracts in REE_assembly while moving source-level comparison and glossary draft detail to REE_convergence.",
+      "rationale": "Reduces duplicate narratives and keeps unresolved external intake out of canonical architecture docs.",
+      "target_scope": "docs",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2301.08243",
+        "https://arxiv.org/abs/2506.09985"
+      ],
+      "risk_flags": [
+        "duplication_risk",
+        "canonical_drift_risk"
+      ]
+    },
+    {
+      "delta_id": "JEPA-DELTA-1002",
+      "title": "Require convergence packet references for JEPA canonical changes",
+      "proposal": "When IMPL-020 or IMPL-022 are materially changed based on external sources, require a convergence packet reference in planning/changelog context.",
+      "rationale": "Creates auditable evidence lineage between external intake and canonical REE updates.",
+      "target_scope": "governance",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://github.com/facebookresearch/ijepa/blob/main/src/train.py",
+        "https://github.com/facebookresearch/vjepa2/blob/main/app/vjepa_droid/train.py"
+      ],
+      "risk_flags": [
+        "process_adoption_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "hybridize",
+    "anti_lock_in_review_required": true,
+    "notes": "Promote only governance/process deltas now; keep architecture semantics gated behind existing adjudication flow."
+  }
+}

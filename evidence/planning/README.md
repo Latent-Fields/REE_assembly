@@ -83,6 +83,13 @@ It also generates connectome literature pull planning outputs:
 - `evidence/planning/connectome_literature_pull.v1.json`
 - `evidence/planning/CONNECTOME_LITERATURE_PULL.md`
 
+It also builds convergence intake queue outputs by default:
+
+- `evidence/planning/convergence_intake_queue.v1.json`
+- `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
+- skip with: `--skip-convergence-intake`
+- make invalid packets fail the run: `--convergence-fail-on-invalid`
+
 Run dossier generation directly:
 
 ```bash

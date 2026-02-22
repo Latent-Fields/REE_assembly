@@ -1,15 +1,60 @@
 {
-  "generated_at_utc": "2026-02-22T10:06:09.035725Z",
+  "generated_at_utc": "2026-02-22T11:57:35.809219Z",
   "invalid_items": [],
-  "items": [],
+  "items": [
+    {
+      "claim_ids": [
+        "MECH-057",
+        "MECH-058",
+        "MECH-059",
+        "MECH-060",
+        "IMPL-020",
+        "IMPL-022",
+        "Q-012",
+        "Q-013",
+        "Q-014"
+      ],
+      "decision_due_utc": "2026-03-07T00:00:00Z",
+      "delta_count": 2,
+      "evidence_status": "partial",
+      "gate_ready": true,
+      "impact_areas": [
+        "representation",
+        "transition",
+        "commitment",
+        "control_plane",
+        "docs",
+        "governance"
+      ],
+      "intake_path": "sources/jepa",
+      "owner": "ree-governance",
+      "packet_id": "CPKT-JEPA-2026-0001",
+      "packet_path": "evidence/planning/convergence_packets/inbox/2026-02-22_cpkt_jepa_baseline_hygiene.json",
+      "primary_sources_verified": true,
+      "snapshot_ref": "ree_convergence_jepa_extract_2026-02-22",
+      "source_repo": "REE_convergence",
+      "source_system_id": "jepa",
+      "status": "proposed",
+      "validation_errors": []
+    }
+  ],
   "schema_path": "evidence/planning/schemas/v1/convergence_promotion_packet.schema.json",
   "schema_version": "convergence_intake_queue/v1",
   "source_glob": "evidence/planning/convergence_packets/inbox/*.json",
   "summary": {
-    "by_impact_area": {},
-    "by_status": {},
+    "by_impact_area": {
+      "commitment": 1,
+      "control_plane": 1,
+      "docs": 1,
+      "governance": 1,
+      "representation": 1,
+      "transition": 1
+    },
+    "by_status": {
+      "proposed": 1
+    },
     "invalid_packets": 0,
-    "total_packets": 0,
-    "valid_packets": 0
+    "total_packets": 1,
+    "valid_packets": 1
   }
 }
