@@ -23,6 +23,12 @@ This repo is documentation‑only. It is designed to:
 - promote new understanding into typed claims,
 - and surface conflicts explicitly rather than resolving them silently.
 
+## Cognifold Interpretation
+
+- REE is interpreted as a coherent single cognifold.
+- E1/E2/hippocampal/control-plane decomposition is an analysis and interface lens, not a claim of strict functional isolation.
+- Biological center separation does not imply independent function; bounded coupling across centers is expected and must be documented.
+
 ## External Testing Ground
 
 - `REE_OpenClaw` now lives as a standalone repository at `/Users/dgolden/Documents/GitHub/REE_OpenClaw`.
