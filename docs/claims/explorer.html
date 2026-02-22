@@ -986,6 +986,52 @@
       margin: 4px 0 8px 0;
     }
 
+    .decision-inbox-toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0 0 8px 0;
+    }
+
+    .decision-cell-claim {
+      min-width: 220px;
+    }
+
+    .decision-cell-short {
+      min-width: 170px;
+    }
+
+    .decision-cell-medium {
+      min-width: 220px;
+    }
+
+    .decision-cell-long {
+      min-width: 260px;
+    }
+
+    .decision-row input,
+    .decision-row select,
+    .decision-row textarea {
+      font-size: 12px;
+      padding: 6px 8px;
+    }
+
+    .decision-row textarea {
+      min-height: 52px;
+      resize: vertical;
+    }
+
+    .decision-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .decision-actions button {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+
     .map-wrap {
       display: none;
       max-height: calc(100vh - 160px);
@@ -1988,6 +2034,8 @@
     const CMD_RUN_GOVERNANCE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py';
     const CMD_RUN_GOVERNANCE_STRICT = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
     const CMD_RECORD_DECISION_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/record_decision.py --claim-id <CLAIM_ID> --recommendation <RECOMMENDATION> --decision-needed \"<DECISION_NEEDED>\" --decision-status approved --selected-option \"<OPTION>\" --rationale \"<RATIONALE>\" --actor dgolden';
+    const CMD_APPLY_DECISION_BATCH_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/apply_decision_batch.py --input <PATH_TO_DECISION_BATCH_JSON> --refresh-indexes --run-governance';
+    const DECISION_DRAFT_STORAGE_KEY = 'ree_explorer.decision_drafts.v1';
     const REPO_ABS_PREFIX = '/Users/dgolden/Documents/GitHub/REE_assembly/';
     const GOVERNANCE_CONTEXT_DOCS = {
       thought_intake: [
@@ -2005,6 +2053,10 @@
       governance_decisions: [
         'evidence/experiments/promotion_demotion_recommendations.md',
         'evidence/decisions/decision_log.v1.jsonl',
+      ],
+      human_decision_briefs: [
+        'evidence/decisions/human_decision_briefs/latest/INDEX.md',
+        'evidence/decisions/HUMAN_DECISION_GLOSSARY.md',
       ],
       manual_carryover: [
         'evidence/planning/manual_carryover_items.v1.json',
@@ -3273,12 +3325,22 @@ END CONFLICT RESOLUTION`;
 
     function collectCheckpointContextDocs(checkpointKey, checkpointData) {
       const docs = new Set((GOVERNANCE_CONTEXT_DOCS[checkpointKey] || []).map(stripTicks));
-      const pathFields = ['queue_path', 'patch_queue_path', 'report_path', 'index_path', 'active_index_path', 'archive_index_path', 'source_path'];
+      const pathFields = [
+        'queue_path',
+        'patch_queue_path',
+        'report_path',
+        'index_path',
+        'active_index_path',
+        'archive_index_path',
+        'source_path',
+        'dispatch_brief_path',
+        'glossary_path',
+      ];
       pathFields.forEach(field => {
         const value = checkpointData && checkpointData[field];
         if (value) docs.add(stripTicks(value));
       });
-      const itemPathFields = ['dossier_md_path'];
+      const itemPathFields = ['dossier_md_path', 'path'];
       const items = checkpointData && Array.isArray(checkpointData.items) ? checkpointData.items : [];
       items.slice(0, 10).forEach(item => {
         itemPathFields.forEach(field => {
@@ -3436,6 +3498,7 @@ END CONFLICT RESOLUTION`;
         { label: 'Run governance cycle', cmd: CMD_RUN_GOVERNANCE },
         { label: 'Run strict governance cycle', cmd: CMD_RUN_GOVERNANCE_STRICT },
         { label: 'Record decision (template)', cmd: CMD_RECORD_DECISION_TEMPLATE },
+        { label: 'Apply decision batch (template)', cmd: CMD_APPLY_DECISION_BATCH_TEMPLATE },
       ];
       return rows.map((row, idx) => `
         <div class="command-row">
@@ -3471,6 +3534,386 @@ END CONFLICT RESOLUTION`;
             if (status) status.textContent = 'Command copied to clipboard.';
           } catch (_) {
             if (status) status.textContent = 'Copy failed. Select command text manually.';
+          }
+        });
+      });
+    }
+
+    function loadDecisionDraftMap() {
+      try {
+        const raw = localStorage.getItem(DECISION_DRAFT_STORAGE_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+        return parsed;
+      } catch (_) {
+        return {};
+      }
+    }
+
+    function saveDecisionDraftMap(map) {
+      try {
+        localStorage.setItem(DECISION_DRAFT_STORAGE_KEY, JSON.stringify(map));
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function normalizeDecisionStatusToken(value) {
+      const allowed = new Set(['pending_user', 'discussing', 'approved', 'rejected', 'applied']);
+      const token = normalizeSpace(stripTicks(value || '')).toLowerCase();
+      return allowed.has(token) ? token : 'approved';
+    }
+
+    function buildDecisionInboxRows(briefItems, decisionItems) {
+      const rows = [];
+      const drafts = loadDecisionDraftMap();
+      const decisionByClaim = new Map();
+
+      (decisionItems || []).forEach(item => {
+        const claimId = normalizeClaimId(item && item.claim_id);
+        if (!claimId || decisionByClaim.has(claimId)) return;
+        decisionByClaim.set(claimId, item || {});
+      });
+
+      (briefItems || []).forEach(item => {
+        const claimId = normalizeClaimId(item && item.claim_id);
+        if (!claimId) return;
+
+        const laneTokens = Array.isArray(item && item.lanes)
+          ? item.lanes.map(token => normalizeSpace(String(token || ''))).filter(Boolean)
+          : [];
+        const queueItem = decisionByClaim.get(claimId) || {};
+        const draft = drafts[claimId] && typeof drafts[claimId] === 'object' ? drafts[claimId] : {};
+        const briefPath = normalizeSpace(stripTicks(item && item.path ? item.path : ''));
+        const sourceFile = normalizeSpace(
+          stripTicks(draft.source_file || briefPath || 'evidence/decisions/human_decision_briefs/latest/INDEX.md')
+        );
+
+        let decisionNeededDefault = normalizeSpace(stripTicks(queueItem.decision_needed || ''));
+        if (!decisionNeededDefault) {
+          if (laneTokens.includes('promotion_demotion_conflict_resolution')) {
+            decisionNeededDefault = 'Conflict resolution before promotion';
+          } else if (laneTokens.includes('architecture_structure_adjudication')) {
+            decisionNeededDefault = 'Architecture adjudication outcome selection';
+          } else {
+            decisionNeededDefault = 'Human governance decision';
+          }
+        }
+
+        rows.push({
+          claim_id: claimId,
+          lanes: laneTokens,
+          brief_path: briefPath,
+          source_file: sourceFile,
+          include: Boolean(draft.include),
+          recommendation: normalizeSpace(stripTicks(draft.recommendation || queueItem.recommendation || '')),
+          decision_needed: normalizeSpace(stripTicks(draft.decision_needed || decisionNeededDefault)),
+          decision_status: normalizeDecisionStatusToken(draft.decision_status || 'approved'),
+          selected_option: normalizeSpace(stripTicks(draft.selected_option || '')),
+          rationale: normalizeSpace(stripTicks(draft.rationale || '')),
+          actor: normalizeSpace(stripTicks(draft.actor || 'dgolden')) || 'dgolden',
+          notes: normalizeSpace(stripTicks(draft.notes || '')),
+        });
+      });
+
+      rows.sort((a, b) => a.claim_id.localeCompare(b.claim_id));
+      return rows;
+    }
+
+    function decisionRowField(row, field) {
+      return row.querySelector(`[data-field="${field}"]`);
+    }
+
+    function decisionRowAttrKey(field) {
+      return `data-default-${String(field || '').replace(/_/g, '-')}`;
+    }
+
+    function applyDecisionRowDefaults(row) {
+      if (!row) return;
+      const fields = [
+        'include',
+        'recommendation',
+        'decision_needed',
+        'decision_status',
+        'selected_option',
+        'rationale',
+        'actor',
+        'notes',
+      ];
+      fields.forEach(field => {
+        const node = decisionRowField(row, field);
+        if (!node) return;
+        const rawDefault = row.getAttribute(decisionRowAttrKey(field)) || '';
+        if (field === 'include') {
+          node.checked = rawDefault === '1';
+        } else {
+          node.value = rawDefault;
+        }
+      });
+    }
+
+    function decisionDraftFromRow(row) {
+      if (!row) return null;
+      const claimId = normalizeClaimId(row.getAttribute('data-claim-id') || '');
+      if (!claimId) return null;
+
+      const includeNode = decisionRowField(row, 'include');
+      const recommendationNode = decisionRowField(row, 'recommendation');
+      const decisionNeededNode = decisionRowField(row, 'decision_needed');
+      const decisionStatusNode = decisionRowField(row, 'decision_status');
+      const selectedOptionNode = decisionRowField(row, 'selected_option');
+      const rationaleNode = decisionRowField(row, 'rationale');
+      const actorNode = decisionRowField(row, 'actor');
+      const notesNode = decisionRowField(row, 'notes');
+
+      return {
+        claim_id: claimId,
+        include: Boolean(includeNode && includeNode.checked),
+        recommendation: normalizeSpace(recommendationNode ? recommendationNode.value : ''),
+        decision_needed: normalizeSpace(decisionNeededNode ? decisionNeededNode.value : ''),
+        decision_status: normalizeDecisionStatusToken(decisionStatusNode ? decisionStatusNode.value : 'approved'),
+        selected_option: normalizeSpace(selectedOptionNode ? selectedOptionNode.value : ''),
+        rationale: normalizeSpace(rationaleNode ? rationaleNode.value : ''),
+        actor: normalizeSpace(actorNode ? actorNode.value : '') || 'user',
+        source_file: normalizeSpace(row.getAttribute('data-source-file') || ''),
+        notes: normalizeSpace(notesNode ? notesNode.value : ''),
+      };
+    }
+
+    function collectDecisionDraftsFromDom() {
+      const out = {};
+      if (!els.governanceContent) return out;
+      els.governanceContent.querySelectorAll('tr.decision-row').forEach(row => {
+        const draft = decisionDraftFromRow(row);
+        if (!draft || !draft.claim_id) return;
+        out[draft.claim_id] = draft;
+      });
+      return out;
+    }
+
+    function decisionBatchPayloadFromDraftMap(draftMap) {
+      const drafts = Object.values(draftMap || {}).filter(item => item && typeof item === 'object');
+      const included = drafts.filter(item => Boolean(item.include));
+      const invalidClaims = [];
+      const items = [];
+
+      included.forEach(item => {
+        const claimId = normalizeClaimId(item.claim_id || '');
+        const recommendation = normalizeSpace(item.recommendation || '');
+        const decisionNeeded = normalizeSpace(item.decision_needed || '');
+        const decisionStatus = normalizeDecisionStatusToken(item.decision_status || 'approved');
+        if (!claimId || !recommendation || !decisionNeeded || !decisionStatus) {
+          invalidClaims.push(claimId || 'UNKNOWN');
+          return;
+        }
+        items.push({
+          claim_id: claimId,
+          recommendation,
+          decision_needed: decisionNeeded,
+          decision_status: decisionStatus,
+          selected_option: normalizeSpace(item.selected_option || ''),
+          rationale: normalizeSpace(item.rationale || ''),
+          actor: normalizeSpace(item.actor || '') || 'user',
+          source_file: normalizeSpace(item.source_file || ''),
+          notes: normalizeSpace(item.notes || ''),
+        });
+      });
+
+      items.sort((a, b) => a.claim_id.localeCompare(b.claim_id));
+
+      return {
+        included_count: included.length,
+        invalid_claims: invalidClaims,
+        payload: {
+          schema_version: 'decision_batch/v1',
+          generated_at_utc: new Date().toISOString(),
+          source: 'docs/claims/explorer.html',
+          items,
+        },
+      };
+    }
+
+    function renderDecisionInbox(rows) {
+      if (!rows || !rows.length) {
+        return '<div class="gov-empty">No decision briefs in scope.</div>';
+      }
+
+      const statusOptions = ['pending_user', 'discussing', 'approved', 'rejected', 'applied'];
+      const head = [
+        'claim',
+        'recommendation',
+        'decision_needed',
+        'selected_option',
+        'rationale',
+        'status / actor',
+        'notes',
+        'actions',
+      ].map(label => `<th>${escapeHtml(label)}</th>`).join('');
+
+      const body = rows.map(row => {
+        const lanes = row.lanes && row.lanes.length ? row.lanes.join(', ') : '-';
+        const briefHref = row.brief_path ? repoRelativePath(row.brief_path) : '';
+        const briefLabel = row.brief_path
+          ? stripTicks(row.brief_path).replace(REPO_ABS_PREFIX, '')
+          : '';
+        const optionsHtml = statusOptions.map(token => {
+          const selected = token === row.decision_status ? ' selected' : '';
+          return `<option value="${escapeHtml(token)}"${selected}>${escapeHtml(token)}</option>`;
+        }).join('');
+
+        return `
+          <tr class="decision-row"
+              data-claim-id="${escapeHtml(row.claim_id)}"
+              data-source-file="${escapeHtml(row.source_file)}"
+              data-default-include="${row.include ? '1' : '0'}"
+              data-default-recommendation="${escapeHtml(row.recommendation)}"
+              data-default-decision-needed="${escapeHtml(row.decision_needed)}"
+              data-default-decision-status="${escapeHtml(row.decision_status)}"
+              data-default-selected-option="${escapeHtml(row.selected_option)}"
+              data-default-rationale="${escapeHtml(row.rationale)}"
+              data-default-actor="${escapeHtml(row.actor)}"
+              data-default-notes="${escapeHtml(row.notes)}">
+            <td class="decision-cell-claim">
+              <div><label><input type="checkbox" data-field="include"${row.include ? ' checked' : ''} /> include</label></div>
+              <div><code>${escapeHtml(row.claim_id)}</code></div>
+              <div class="gov-claim-meta">${escapeHtml(lanes)}</div>
+              ${briefHref ? `<div class="gov-claim-meta"><a href="${escapeHtml(briefHref)}" target="_blank" rel="noopener">${escapeHtml(briefLabel || 'brief')}</a></div>` : ''}
+            </td>
+            <td class="decision-cell-short"><input type="text" data-field="recommendation" value="${escapeHtml(row.recommendation)}" placeholder="recommendation token" /></td>
+            <td class="decision-cell-medium"><input type="text" data-field="decision_needed" value="${escapeHtml(row.decision_needed)}" placeholder="decision question" /></td>
+            <td class="decision-cell-medium"><textarea data-field="selected_option" placeholder="selected option text">${escapeHtml(row.selected_option)}</textarea></td>
+            <td class="decision-cell-long"><textarea data-field="rationale" placeholder="rationale">${escapeHtml(row.rationale)}</textarea></td>
+            <td class="decision-cell-short">
+              <select data-field="decision_status">${optionsHtml}</select>
+              <input type="text" data-field="actor" value="${escapeHtml(row.actor)}" placeholder="actor" style="margin-top:6px;" />
+            </td>
+            <td class="decision-cell-medium"><textarea data-field="notes" placeholder="optional notes">${escapeHtml(row.notes)}</textarea></td>
+            <td>
+              <div class="decision-actions">
+                <button type="button" class="ghost" data-decision-save="${escapeHtml(row.claim_id)}">Save</button>
+                <button type="button" class="ghost" data-decision-reset="${escapeHtml(row.claim_id)}">Reset</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      return `
+        <div class="decision-inbox-toolbar">
+          <button type="button" class="ghost" data-decision-action="save-all">Save all rows</button>
+          <button type="button" class="ghost" data-decision-action="copy-json">Copy batch JSON</button>
+          <button type="button" class="ghost" data-decision-action="download-json">Download batch JSON</button>
+          <button type="button" class="ghost" data-decision-action="copy-cmd">Copy apply command</button>
+          <button type="button" class="ghost" data-decision-action="clear-saved">Clear saved drafts</button>
+        </div>
+        <div id="decisionInboxStatus" class="gov-meta">Select "include" on rows you want in the batch export.</div>
+        <table class="gov-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>
+      `;
+    }
+
+    function wireGovernanceDecisionInbox() {
+      if (!els.governanceContent) return;
+
+      const statusNode = els.governanceContent.querySelector('#decisionInboxStatus');
+      const setStatus = (text) => {
+        if (statusNode) statusNode.textContent = text;
+      };
+
+      const persistDrafts = (showStatus) => {
+        const drafts = collectDecisionDraftsFromDom();
+        const ok = saveDecisionDraftMap(drafts);
+        if (showStatus) {
+          setStatus(ok ? `Saved ${Object.keys(drafts).length} decision draft(s).` : 'Could not save drafts to localStorage.');
+        }
+        return drafts;
+      };
+
+      els.governanceContent.querySelectorAll('button[data-decision-save]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('tr.decision-row');
+          if (!row) return;
+          const claimId = normalizeClaimId(btn.getAttribute('data-decision-save') || '');
+          const drafts = loadDecisionDraftMap();
+          const draft = decisionDraftFromRow(row);
+          if (!claimId || !draft) return;
+          drafts[claimId] = draft;
+          const ok = saveDecisionDraftMap(drafts);
+          setStatus(ok ? `Saved draft for ${claimId}.` : `Could not save draft for ${claimId}.`);
+        });
+      });
+
+      els.governanceContent.querySelectorAll('button[data-decision-reset]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('tr.decision-row');
+          if (!row) return;
+          const claimId = normalizeClaimId(btn.getAttribute('data-decision-reset') || '');
+          applyDecisionRowDefaults(row);
+          const drafts = loadDecisionDraftMap();
+          if (claimId && drafts[claimId]) delete drafts[claimId];
+          saveDecisionDraftMap(drafts);
+          setStatus(claimId ? `Reset row for ${claimId}.` : 'Row reset.');
+        });
+      });
+
+      els.governanceContent.querySelectorAll('tr.decision-row [data-field]').forEach(node => {
+        node.addEventListener('change', () => {
+          persistDrafts(false);
+        });
+      });
+
+      els.governanceContent.querySelectorAll('button[data-decision-action]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const action = btn.getAttribute('data-decision-action') || '';
+          if (!action) return;
+
+          if (action === 'save-all') {
+            persistDrafts(true);
+            return;
+          }
+
+          if (action === 'clear-saved') {
+            saveDecisionDraftMap({});
+            els.governanceContent.querySelectorAll('tr.decision-row').forEach(row => applyDecisionRowDefaults(row));
+            setStatus('Cleared saved decision drafts.');
+            return;
+          }
+
+          if (action === 'copy-cmd') {
+            try {
+              await copyText(CMD_APPLY_DECISION_BATCH_TEMPLATE);
+              setStatus('Batch apply command copied.');
+            } catch (_) {
+              setStatus('Copy failed. Select command text manually.');
+            }
+            return;
+          }
+
+          if (action === 'copy-json' || action === 'download-json') {
+            const drafts = persistDrafts(false);
+            const result = decisionBatchPayloadFromDraftMap(drafts);
+            if (!result.included_count) {
+              setStatus('No rows selected for export. Tick "include" on at least one row.');
+              return;
+            }
+            const jsonText = JSON.stringify(result.payload, null, 2);
+            if (action === 'copy-json') {
+              try {
+                await copyText(jsonText);
+                setStatus(`Copied decision batch JSON (${result.payload.items.length} valid item(s)).`);
+              } catch (_) {
+                setStatus('Copy failed. Try Download batch JSON.');
+              }
+            } else {
+              downloadFile('decision_batch.v1.json', jsonText, 'application/json');
+              setStatus(`Downloaded decision batch JSON (${result.payload.items.length} valid item(s)).`);
+            }
+            if (result.invalid_claims.length) {
+              setStatus(
+                `Exported ${result.payload.items.length} valid item(s); invalid rows: ${result.invalid_claims.join(', ')}.`
+              );
+            }
           }
         });
       });
@@ -3535,6 +3978,12 @@ END CONFLICT RESOLUTION`;
       const decisionItemsRaw = (checkpoints.governance_decisions && checkpoints.governance_decisions.items) || [];
       const conflictItems = filterRowsByCurrentEpoch(conflictItemsRaw, epochMap, epochOnly);
       const decisionItems = filterRowsByCurrentEpoch(decisionItemsRaw, epochMap, epochOnly);
+      const humanDecisionBriefCheckpoint = checkpoints.human_decision_briefs || {};
+      const briefItemsRaw = Array.isArray(humanDecisionBriefCheckpoint.items)
+        ? humanDecisionBriefCheckpoint.items
+        : [];
+      const briefItems = filterRowsByCurrentEpoch(briefItemsRaw, epochMap, epochOnly);
+      const decisionInboxRows = buildDecisionInboxRows(briefItems, decisionItems);
       const structureItemsRaw = (checkpoints.architecture_structure && checkpoints.architecture_structure.consider_new_structure) || [];
       const structureItems = filterRowsByCurrentEpoch(structureItemsRaw, epochMap, epochOnly);
       const autonomyItems = (checkpoints.autonomy_triage && checkpoints.autonomy_triage.items) || [];
@@ -3615,6 +4064,7 @@ END CONFLICT RESOLUTION`;
           <div class="gov-card"><div class="label">Unprocessed Thoughts</div><div class="value">${Number(summary.thought_unprocessed || 0)}</div></div>
           <div class="gov-card"><div class="label">Conflicts (visible)</div><div class="value">${conflictItems.length}</div></div>
           <div class="gov-card"><div class="label">Decision Queue (visible)</div><div class="value">${decisionItems.length}</div></div>
+          <div class="gov-card"><div class="label">Decision Briefs (visible)</div><div class="value">${briefItems.length}</div></div>
           <div class="gov-card"><div class="label">Human Decisions Needed</div><div class="value">${humanDecisionRows.length}</div></div>
           <div class="gov-card"><div class="label">Inspiration / Generative Needed</div><div class="value">${creativeRows.length}</div></div>
           <div class="gov-card"><div class="label">High Priority Backlog (visible)</div><div class="value">${highBacklogVisible.length}</div></div>
@@ -3676,6 +4126,12 @@ END CONFLICT RESOLUTION`;
               ],
               'No decision items.'
             )}
+          </div>
+          <div class="gov-section">
+            <h3>Human Decision Brief Inbox <span class="gov-pill human">briefs ${briefItems.length}</span></h3>
+            ${renderCheckpointMeta('human_decision_briefs', humanDecisionBriefCheckpoint)}
+            <div class="gov-meta">Fill decision fields, mark rows to include, export JSON, then run the batch-apply command.</div>
+            ${renderDecisionInbox(decisionInboxRows)}
           </div>
           <div class="gov-section">
             <h3>Human Attention Queue <span class="gov-pill human">decide ${humanDecisionRows.length}</span><span class="gov-pill creative">design ${creativeRows.length}</span></h3>
@@ -3784,6 +4240,7 @@ END CONFLICT RESOLUTION`;
         ${checkpointSections}
       `;
       wireGovernanceCommandButtons();
+      wireGovernanceDecisionInbox();
     }
 
     function populateDocSelect(filterText) {
@@ -6406,7 +6863,11 @@ END CONFLICT RESOLUTION`;
         document.execCommand('copy');
       });
       els.downloadThought.addEventListener('click', () => {
-        downloadFile('thought_intake.md', els.thoughtOutput.value || buildThoughtDraft(els.thoughtInput.value.trim()));
+        downloadFile(
+          'thought_intake.md',
+          els.thoughtOutput.value || buildThoughtDraft(els.thoughtInput.value.trim()),
+          'text/markdown'
+        );
       });
 
       els.generateConflict.addEventListener('click', () => {
@@ -6417,12 +6878,16 @@ END CONFLICT RESOLUTION`;
         document.execCommand('copy');
       });
       els.downloadConflict.addEventListener('click', () => {
-        downloadFile('conflict_resolution.md', els.conflictOutput.value || buildConflictDraft(els.conflictRefs.value.trim(), els.conflictDecision.value.trim()));
+        downloadFile(
+          'conflict_resolution.md',
+          els.conflictOutput.value || buildConflictDraft(els.conflictRefs.value.trim(), els.conflictDecision.value.trim()),
+          'text/markdown'
+        );
       });
     }
 
-    function downloadFile(name, content) {
-      const blob = new Blob([content], {type: 'text/markdown'});
+    function downloadFile(name, content, mimeType) {
+      const blob = new Blob([content], {type: mimeType || 'text/plain'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

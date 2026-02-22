@@ -53,6 +53,20 @@ Then refresh indexes:
 python3 evidence/experiments/scripts/build_experiment_indexes.py
 ```
 
+## Apply a Saved Decision Batch (Explorer Inbox)
+
+The governance view in `docs/claims/explorer.html` can export a `decision_batch.v1.json`
+from the Human Decision Brief Inbox.
+
+Apply the batch in one sweep:
+
+```bash
+python3 evidence/experiments/scripts/apply_decision_batch.py \
+  --input /absolute/path/to/decision_batch.v1.json \
+  --refresh-indexes \
+  --run-governance
+```
+
 ## Model-Adjudication Outcomes
 
 For architecture adjudication decisions, use one of these recommendation tokens:
