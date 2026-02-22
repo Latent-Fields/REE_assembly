@@ -11,6 +11,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from build_convergence_intake_queue import _packet_gate_evaluation
+
 
 def _load_json(path: Path) -> object:
     with path.open("r", encoding="utf-8") as f:
@@ -56,6 +58,16 @@ def main() -> int:
         default="",
         help="Glob pattern for packet JSON files (absolute or repo-relative).",
     )
+    parser.add_argument(
+        "--check-gate-readiness",
+        action="store_true",
+        help="Also evaluate gate readiness (beyond schema validity).",
+    )
+    parser.add_argument(
+        "--fail-on-gate-failure",
+        action="store_true",
+        help="Return non-zero when a packet is schema-valid but gate-blocked.",
+    )
     args = parser.parse_args()
 
     if not args.input and not args.input_glob:
@@ -74,6 +86,7 @@ def main() -> int:
         return 0
 
     any_invalid = False
+    any_gate_blocked = False
     for input_path in input_paths:
         if not input_path.exists():
             print(f"Input not found: {input_path}", file=sys.stderr)
@@ -89,6 +102,18 @@ def main() -> int:
         errors = sorted(validator.iter_errors(payload), key=lambda e: list(e.path))
         if not errors:
             print(f"VALID: {input_path}")
+            if args.check_gate_readiness:
+                gate_ready, gate_failures, placeholder_found, placeholder_hits = _packet_gate_evaluation(payload)
+                if gate_ready:
+                    print(f"GATE-READY: {input_path}")
+                else:
+                    any_gate_blocked = True
+                    print(f"GATE-BLOCKED: {input_path}")
+                    for reason in gate_failures:
+                        print(f"- gate_failure: {reason}")
+                    if placeholder_found:
+                        for hit in placeholder_hits[:10]:
+                            print(f"- placeholder_hit: {hit}")
             continue
 
         any_invalid = True
@@ -97,7 +122,11 @@ def main() -> int:
             location = _format_path(list(err.path))
             print(f"- {location}: {err.message}")
 
-    return 1 if any_invalid else 0
+    if any_invalid:
+        return 1
+    if args.fail_on_gate_failure and any_gate_blocked:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

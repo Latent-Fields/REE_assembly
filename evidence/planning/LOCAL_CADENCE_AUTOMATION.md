@@ -23,9 +23,9 @@ and cadence config:
 - Connectome pull queue:
   - `python3 evidence/planning/scripts/build_connectome_literature_pull.py`
 - Convergence packet validation:
-  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json" --check-gate-readiness --fail-on-gate-failure`
 - Convergence intake queue:
-  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid`
 - Adjudication cascade application:
   - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 - Task inbox sync:
@@ -79,8 +79,10 @@ Then validate/build convergence intake queue:
 
 ```bash
 python3 evidence/planning/scripts/validate_convergence_promotion_packet.py \
-  --input-glob "evidence/planning/convergence_packets/inbox/*.json"
-python3 evidence/planning/scripts/build_convergence_intake_queue.py
+  --input-glob "evidence/planning/convergence_packets/inbox/*.json" \
+  --check-gate-readiness \
+  --fail-on-gate-failure
+python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid
 ```
 
 Then apply adjudication cascade (if any `applied` model-adjudication decisions exist):

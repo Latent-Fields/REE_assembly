@@ -12,6 +12,8 @@
     "evidence_summary",
     "ree_touchpoints",
     "promotion_gates",
+    "falsification",
+    "governance_controls",
     "deltas"
   ],
   "properties": {
@@ -109,18 +111,24 @@
       "properties": {
         "claim_ids": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
         },
         "docs_paths": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
         },
         "impact_areas": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string",
             "enum": [
@@ -135,6 +143,93 @@
               "other"
             ]
           }
+        }
+      },
+      "additionalProperties": false
+    },
+    "falsification": {
+      "type": "object",
+      "required": [
+        "claim_under_test",
+        "could_be_wrong_if",
+        "test_plan_refs",
+        "status"
+      ],
+      "properties": {
+        "claim_under_test": {
+          "type": "string",
+          "minLength": 1
+        },
+        "could_be_wrong_if": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "test_plan_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "in_progress",
+            "complete"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "governance_controls": {
+      "type": "object",
+      "required": [
+        "blast_radius",
+        "conflict_review_completed",
+        "conflict_review_notes",
+        "probation_window_days",
+        "rollback_conditions",
+        "rollback_owner"
+      ],
+      "properties": {
+        "blast_radius": {
+          "type": "string",
+          "enum": [
+            "lexical",
+            "interface",
+            "architecture"
+          ]
+        },
+        "conflict_review_completed": {
+          "type": "boolean"
+        },
+        "conflict_review_notes": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probation_window_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rollback_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rollback_owner": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "additionalProperties": false
@@ -257,5 +352,119 @@
       "additionalProperties": false
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "governance_controls": {
+            "properties": {
+              "blast_radius": {
+                "enum": [
+                  "interface",
+                  "architecture"
+                ]
+              }
+            },
+            "required": [
+              "blast_radius"
+            ]
+          }
+        },
+        "required": [
+          "governance_controls"
+        ]
+      },
+      "then": {
+        "properties": {
+          "promotion_gates": {
+            "properties": {
+              "rollback_plan_defined": {
+                "const": true
+              }
+            }
+          },
+          "governance_controls": {
+            "properties": {
+              "conflict_review_completed": {
+                "const": true
+              },
+              "probation_window_days": {
+                "minimum": 1
+              },
+              "rollback_conditions": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance_controls": {
+            "properties": {
+              "blast_radius": {
+                "const": "architecture"
+              }
+            },
+            "required": [
+              "blast_radius"
+            ]
+          }
+        },
+        "required": [
+          "governance_controls"
+        ]
+      },
+      "then": {
+        "required": [
+          "decisions"
+        ],
+        "properties": {
+          "evidence_summary": {
+            "properties": {
+              "evidence_status": {
+                "const": "sufficient"
+              }
+            }
+          },
+          "promotion_gates": {
+            "properties": {
+              "separation_tests_defined": {
+                "const": true
+              },
+              "falsifiability_defined": {
+                "const": true
+              },
+              "rollback_plan_defined": {
+                "const": true
+              }
+            }
+          },
+          "governance_controls": {
+            "properties": {
+              "probation_window_days": {
+                "minimum": 7
+              },
+              "rollback_conditions": {
+                "minItems": 1
+              }
+            }
+          },
+          "decisions": {
+            "required": [
+              "anti_lock_in_review_required"
+            ],
+            "properties": {
+              "anti_lock_in_review_required": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

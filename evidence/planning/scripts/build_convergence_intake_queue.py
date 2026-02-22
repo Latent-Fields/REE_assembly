@@ -13,6 +13,8 @@ from typing import Any
 
 from jsonschema import Draft202012Validator
 
+PLACEHOLDER_EVIDENCE_TOKENS = ("todo", "needs evidence", "example.org")
+
 
 def _now_utc() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -59,19 +61,112 @@ def _string_list(value: Any) -> list[str]:
     return out
 
 
-def _packet_gate_ready(packet: dict[str, Any]) -> bool:
+def _contains_placeholder_evidence_token(text: str) -> bool:
+    lowered = text.lower()
+    return any(token in lowered for token in PLACEHOLDER_EVIDENCE_TOKENS)
+
+
+def _placeholder_evidence_hits(packet: dict[str, Any]) -> list[str]:
+    hits: list[str] = []
+    source = packet.get("source", {}) if isinstance(packet.get("source"), dict) else {}
+    evidence = packet.get("evidence_summary", {}) if isinstance(packet.get("evidence_summary"), dict) else {}
+    deltas = packet.get("deltas", []) if isinstance(packet.get("deltas"), list) else []
+    falsification = packet.get("falsification", {}) if isinstance(packet.get("falsification"), dict) else {}
+
+    for link in _string_list(source.get("primary_links")):
+        if _contains_placeholder_evidence_token(link):
+            hits.append(f"source.primary_links: {link}")
+
+    evidence_notes = str(evidence.get("notes", "")).strip()
+    if evidence_notes and _contains_placeholder_evidence_token(evidence_notes):
+        hits.append("evidence_summary.notes")
+
+    for index, delta in enumerate(deltas):
+        if not isinstance(delta, dict):
+            continue
+        for link in _string_list(delta.get("evidence_links")):
+            if _contains_placeholder_evidence_token(link):
+                hits.append(f"deltas[{index}].evidence_links: {link}")
+
+    for ref in _string_list(falsification.get("test_plan_refs")):
+        if _contains_placeholder_evidence_token(ref):
+            hits.append(f"falsification.test_plan_refs: {ref}")
+
+    return hits
+
+
+def _packet_gate_evaluation(packet: dict[str, Any]) -> tuple[bool, list[str], bool, list[str]]:
     evidence = packet.get("evidence_summary", {})
     gates = packet.get("promotion_gates", {})
+    touchpoints = packet.get("ree_touchpoints", {})
+    controls = packet.get("governance_controls", {})
+    falsification = packet.get("falsification", {})
+    decisions = packet.get("decisions", {})
     if not isinstance(evidence, dict) or not isinstance(gates, dict):
-        return False
-    return all(
-        [
-            bool(evidence.get("primary_sources_verified")),
-            bool(gates.get("separation_tests_defined")),
-            bool(gates.get("falsifiability_defined")),
-            bool(gates.get("rollback_plan_defined")),
-        ]
-    )
+        return False, ["evidence_or_gate_structure_missing"], False, []
+    if not isinstance(touchpoints, dict):
+        touchpoints = {}
+    if not isinstance(controls, dict):
+        controls = {}
+    if not isinstance(falsification, dict):
+        falsification = {}
+    if not isinstance(decisions, dict):
+        decisions = {}
+
+    failures: list[str] = []
+
+    if not bool(evidence.get("primary_sources_verified")):
+        failures.append("primary_sources_verified=false")
+    if not bool(gates.get("separation_tests_defined")):
+        failures.append("separation_tests_defined=false")
+    if not bool(gates.get("falsifiability_defined")):
+        failures.append("falsifiability_defined=false")
+    if not bool(controls.get("conflict_review_completed")):
+        failures.append("conflict_review_completed=false")
+
+    claim_ids = _string_list(touchpoints.get("claim_ids"))
+    if not claim_ids:
+        failures.append("touchpoints.claim_ids_empty")
+
+    falsification_disconfirming = _string_list(falsification.get("could_be_wrong_if"))
+    falsification_test_refs = _string_list(falsification.get("test_plan_refs"))
+    if not str(falsification.get("claim_under_test", "")).strip():
+        failures.append("falsification.claim_under_test_missing")
+    if not falsification_disconfirming:
+        failures.append("falsification.could_be_wrong_if_empty")
+    if not falsification_test_refs:
+        failures.append("falsification.test_plan_refs_empty")
+
+    blast_radius = str(controls.get("blast_radius", "")).strip()
+    rollback_conditions = _string_list(controls.get("rollback_conditions"))
+    try:
+        probation_window_days = int(controls.get("probation_window_days", 0))
+    except (TypeError, ValueError):
+        probation_window_days = 0
+        failures.append("governance_controls.probation_window_days_invalid")
+
+    if blast_radius in {"interface", "architecture"}:
+        if probation_window_days < 1:
+            failures.append("non_lexical_requires_probation_window_days>=1")
+        if not rollback_conditions:
+            failures.append("non_lexical_requires_rollback_conditions")
+        if not bool(gates.get("rollback_plan_defined")):
+            failures.append("non_lexical_requires_rollback_plan_defined=true")
+
+    if blast_radius == "architecture":
+        if str(evidence.get("evidence_status", "")).strip() != "sufficient":
+            failures.append("architecture_requires_evidence_status=sufficient")
+        if not bool(decisions.get("anti_lock_in_review_required")):
+            failures.append("architecture_requires_anti_lock_in_review")
+        if probation_window_days < 7:
+            failures.append("architecture_requires_probation_window_days>=7")
+
+    placeholder_hits = _placeholder_evidence_hits(packet)
+    placeholder_found = len(placeholder_hits) > 0
+    if placeholder_found:
+        failures.append("placeholder_evidence_detected")
+
+    return len(failures) == 0, failures, placeholder_found, placeholder_hits
 
 
 def _validate_packet(
@@ -99,6 +194,8 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
     evidence = packet.get("evidence_summary", {}) if isinstance(packet.get("evidence_summary"), dict) else {}
     touchpoints = packet.get("ree_touchpoints", {}) if isinstance(packet.get("ree_touchpoints"), dict) else {}
     gates = packet.get("promotion_gates", {}) if isinstance(packet.get("promotion_gates"), dict) else {}
+    falsification = packet.get("falsification", {}) if isinstance(packet.get("falsification"), dict) else {}
+    controls = packet.get("governance_controls", {}) if isinstance(packet.get("governance_controls"), dict) else {}
     deltas = packet.get("deltas", []) if isinstance(packet.get("deltas"), list) else []
 
     delta_scopes = []
@@ -111,17 +208,25 @@ def _build_valid_item(packet: dict[str, Any], packet_path: Path, repo_root: Path
 
     impact_areas = _string_list(touchpoints.get("impact_areas")) + delta_scopes
     impact_areas = _string_list(impact_areas)
+    gate_ready, gate_failures, placeholder_evidence_found, placeholder_evidence_hits = _packet_gate_evaluation(packet)
 
     return {
         "packet_id": str(packet.get("packet_id", "")).strip(),
         "status": str(packet.get("status", "proposed")).strip(),
+        "blast_radius": str(controls.get("blast_radius", "")).strip(),
         "source_repo": str(source.get("repo_name", "")).strip(),
         "source_system_id": str(source.get("source_system_id", "")).strip(),
         "snapshot_ref": str(source.get("snapshot_ref", "")).strip(),
         "intake_path": str(source.get("intake_path", "")).strip(),
         "evidence_status": str(evidence.get("evidence_status", "")).strip(),
         "primary_sources_verified": bool(evidence.get("primary_sources_verified", False)),
-        "gate_ready": _packet_gate_ready(packet),
+        "falsification_status": str(falsification.get("status", "")).strip(),
+        "conflict_review_completed": bool(controls.get("conflict_review_completed", False)),
+        "probation_window_days": int(controls.get("probation_window_days", 0) or 0),
+        "gate_ready": gate_ready,
+        "gate_failures": gate_failures,
+        "placeholder_evidence_found": placeholder_evidence_found,
+        "placeholder_evidence_hits": placeholder_evidence_hits,
         "owner": str(gates.get("owner", "")).strip(),
         "decision_due_utc": str(gates.get("decision_due_utc", "")).strip(),
         "delta_count": len(deltas),
@@ -149,6 +254,9 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
     lines.append(f"- Total packets: `{summary.get('total_packets', 0)}`")
     lines.append(f"- Valid packets: `{summary.get('valid_packets', 0)}`")
     lines.append(f"- Invalid packets: `{summary.get('invalid_packets', 0)}`")
+    lines.append(f"- Gate-ready packets: `{summary.get('gate_ready_packets', 0)}`")
+    lines.append(f"- Packets with gate failures: `{summary.get('gate_failure_packets', 0)}`")
+    lines.append(f"- Packets with placeholder evidence: `{summary.get('placeholder_evidence_packets', 0)}`")
     lines.append("")
 
     by_status = summary.get("by_status", {})
@@ -167,19 +275,29 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
             lines.append(f"- `{area_key}`: `{by_impact[area_key]}`")
         lines.append("")
 
+    by_blast = summary.get("by_blast_radius", {})
+    if isinstance(by_blast, dict) and by_blast:
+        lines.append("### Blast-Radius Counts")
+        lines.append("")
+        for radius_key in sorted(by_blast):
+            lines.append(f"- `{radius_key}`: `{by_blast[radius_key]}`")
+        lines.append("")
+
     lines.append("## Valid Packets")
     lines.append("")
-    lines.append("| Packet | Status | Source | Evidence | Gate Ready | Deltas | Claims | Owner | Due | Path |")
-    lines.append("|---|---|---|---|---|---:|---:|---|---|---|")
+    lines.append("| Packet | Status | Blast | Source | Evidence | Gate Ready | Gate Failures | Deltas | Claims | Owner | Due | Path |")
+    lines.append("|---|---|---|---|---|---|---:|---:|---:|---|---|---|")
     if items:
         for item in items:
             lines.append(
                 "| "
                 f"`{item.get('packet_id','')}` | "
                 f"`{item.get('status','')}` | "
+                f"`{item.get('blast_radius','')}` | "
                 f"`{item.get('source_system_id','')}` | "
                 f"`{item.get('evidence_status','')}` | "
                 f"`{str(item.get('gate_ready', False)).lower()}` | "
+                f"{len(_string_list(item.get('gate_failures', [])))} | "
                 f"{item.get('delta_count', 0)} | "
                 f"{len(item.get('claim_ids', []))} | "
                 f"`{item.get('owner','')}` | "
@@ -187,7 +305,25 @@ def _render_markdown(queue: dict[str, Any], output_path: Path) -> None:
                 f"`{item.get('packet_path','')}` |"
             )
     else:
-        lines.append("| _none_ | - | - | - | - | - | - | - | - | - |")
+        lines.append("| _none_ | - | - | - | - | - | - | - | - | - | - | - |")
+    lines.append("")
+
+    gate_failure_items = [
+        item
+        for item in items
+        if _string_list(item.get("gate_failures"))
+    ]
+    if gate_failure_items:
+        lines.append("### Gate Failure Details")
+        lines.append("")
+        for item in gate_failure_items:
+            packet_id = str(item.get("packet_id", "")).strip()
+            lines.append(f"- `{packet_id}`")
+            for reason in _string_list(item.get("gate_failures")):
+                lines.append(f"  - {reason}")
+            if bool(item.get("placeholder_evidence_found", False)):
+                for hit in _string_list(item.get("placeholder_evidence_hits"))[:10]:
+                    lines.append(f"  - placeholder_hit: {hit}")
     lines.append("")
 
     lines.append("## Invalid Packets")
@@ -265,9 +401,20 @@ def main() -> int:
 
     status_counts: Counter[str] = Counter()
     impact_counts: Counter[str] = Counter()
+    blast_counts: Counter[str] = Counter()
+    gate_ready_count = 0
+    gate_failure_count = 0
+    placeholder_evidence_count = 0
     for item in valid_items:
         status_counts.update([str(item.get("status", "")).strip() or "unknown"])
         impact_counts.update(_string_list(item.get("impact_areas")))
+        blast_counts.update([str(item.get("blast_radius", "")).strip() or "unknown"])
+        if bool(item.get("gate_ready", False)):
+            gate_ready_count += 1
+        if _string_list(item.get("gate_failures")):
+            gate_failure_count += 1
+        if bool(item.get("placeholder_evidence_found", False)):
+            placeholder_evidence_count += 1
 
     queue = {
         "schema_version": "convergence_intake_queue/v1",
@@ -278,8 +425,12 @@ def main() -> int:
             "total_packets": len(packet_paths),
             "valid_packets": len(valid_items),
             "invalid_packets": len(invalid_items),
+            "gate_ready_packets": gate_ready_count,
+            "gate_failure_packets": gate_failure_count,
+            "placeholder_evidence_packets": placeholder_evidence_count,
             "by_status": dict(sorted(status_counts.items())),
             "by_impact_area": dict(sorted(impact_counts.items())),
+            "by_blast_radius": dict(sorted(blast_counts.items())),
         },
         "items": valid_items,
         "invalid_items": invalid_items,

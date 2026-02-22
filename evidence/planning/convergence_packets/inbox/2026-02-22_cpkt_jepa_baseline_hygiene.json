@@ -56,6 +56,30 @@
     "owner": "ree-governance",
     "decision_due_utc": "2026-03-07T00:00:00Z"
   },
+  "falsification": {
+    "claim_under_test": "External JEPA intake can improve REE canonical guidance without architecture drift when promoted through packet-first governance.",
+    "could_be_wrong_if": [
+      "Canonical JEPA claim updates occur without packet lineage in changelog/governance outputs.",
+      "Promoted deltas increase unresolved conflict ratio in affected claims over two governance cycles."
+    ],
+    "test_plan_refs": [
+      "evidence/planning/CONVERGENCE_INTAKE_QUEUE.md",
+      "evidence/planning/GOVERNANCE_AGENDA.md"
+    ],
+    "status": "planned",
+    "notes": "Monitor queue-to-canonical traceability and post-promotion conflict signatures before expanding scope."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Reviewed against IMPL-020/IMPL-022 touchpoints and current architecture gap register; no unresolved claim-ID conflicts for proposed governance/docs deltas.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any canonical JEPA terminology change lands without convergence packet reference.",
+      "Governance cycle reports invalid convergence packet in this lineage for two consecutive runs."
+    ],
+    "rollback_owner": "ree-governance"
+  },
   "deltas": [
     {
       "delta_id": "JEPA-DELTA-1001",

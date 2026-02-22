@@ -406,6 +406,8 @@ def _build_autonomy_triage_items(
     cascade_actions_count: int,
     convergence_packets_ready_count: int,
     convergence_packets_invalid_count: int,
+    convergence_packets_gate_failure_count: int,
+    convergence_packets_placeholder_count: int,
     step_status: dict[str, str],
 ) -> list[dict[str, Any]]:
     maintenance_ok = step_failures == 0 and warning_count == 0
@@ -464,18 +466,31 @@ def _build_autonomy_triage_items(
             "gate_status": "PASS"
             if step_status.get("convergence_intake_queue", "skipped") != "failed"
             and convergence_packets_invalid_count == 0
+            and convergence_packets_gate_failure_count == 0
             else "FAIL",
             "recommendation": (
+                "resolve_gate_failures_then_review"
+                if convergence_packets_gate_failure_count > 0
+                else (
                 "review_ready_packets"
                 if convergence_packets_ready_count > 0
                 else "no_ready_packets"
+                )
             ),
             "rollback_ready": "yes",
-            "decision_needed": "yes" if convergence_packets_ready_count > 0 else "no",
+            "decision_needed": (
+                "yes"
+                if convergence_packets_ready_count > 0
+                or convergence_packets_gate_failure_count > 0
+                else "no"
+            ),
             "rationale": (
                 "convergence_intake_queue_step="
                 + f"{step_status.get('convergence_intake_queue', 'skipped')}; "
-                + f"ready={convergence_packets_ready_count}; invalid={convergence_packets_invalid_count}."
+                + f"ready={convergence_packets_ready_count}; "
+                + f"invalid={convergence_packets_invalid_count}; "
+                + f"gate_failures={convergence_packets_gate_failure_count}; "
+                + f"placeholder_evidence={convergence_packets_placeholder_count}."
             ),
         },
         {
@@ -701,6 +716,33 @@ def _build_agenda(
     convergence_packets_invalid = int(
         convergence_queue_summary.get("invalid_packets", len(convergence_invalid_items))
     )
+    convergence_packets_gate_failures = int(
+        convergence_queue_summary.get(
+            "gate_failure_packets",
+            sum(
+                1
+                for item in convergence_items
+                if isinstance(item, dict)
+                and isinstance(item.get("gate_failures", []), list)
+                and len(item.get("gate_failures", [])) > 0
+            ),
+        )
+    )
+    convergence_packets_placeholder_evidence = int(
+        convergence_queue_summary.get(
+            "placeholder_evidence_packets",
+            sum(
+                1
+                for item in convergence_items
+                if isinstance(item, dict) and bool(item.get("placeholder_evidence_found", False))
+            ),
+        )
+    )
+    convergence_blast_radius_counts = (
+        convergence_queue_summary.get("by_blast_radius", {})
+        if isinstance(convergence_queue_summary.get("by_blast_radius", {}), dict)
+        else {}
+    )
     convergence_packets_ready = sum(1 for item in convergence_items if bool(item.get("gate_ready", False)))
     external_precedence_candidates = [
         item for item in architecture_items if bool(item.get("external_precedence_candidate", False))
@@ -750,6 +792,8 @@ def _build_agenda(
         cascade_actions_count=len(cascade_actions),
         convergence_packets_ready_count=convergence_packets_ready,
         convergence_packets_invalid_count=convergence_packets_invalid,
+        convergence_packets_gate_failure_count=convergence_packets_gate_failures,
+        convergence_packets_placeholder_count=convergence_packets_placeholder_evidence,
         step_status=step_status,
     )
     autonomy_tier_counts = {
@@ -846,6 +890,8 @@ def _build_agenda(
             "convergence_packets_valid": convergence_packets_valid,
             "convergence_packets_invalid": convergence_packets_invalid,
             "convergence_packets_ready": convergence_packets_ready,
+            "convergence_packets_gate_failures": convergence_packets_gate_failures,
+            "convergence_packets_placeholder_evidence": convergence_packets_placeholder_evidence,
             "external_precedence_candidates": len(external_precedence_candidates),
             "anti_lock_in_reviews": len(anti_lock_in_reviews),
             "adjudication_cascade_actions": len(cascade_actions),
@@ -920,6 +966,9 @@ def _build_agenda(
                 "packets_valid": convergence_packets_valid,
                 "packets_invalid": convergence_packets_invalid,
                 "packets_gate_ready": convergence_packets_ready,
+                "packets_gate_failures": convergence_packets_gate_failures,
+                "packets_placeholder_evidence": convergence_packets_placeholder_evidence,
+                "by_blast_radius": convergence_blast_radius_counts,
                 "items": convergence_items,
                 "invalid_items": convergence_invalid_items,
                 "queue_json_path": "evidence/planning/convergence_intake_queue.v1.json",
@@ -1195,7 +1244,9 @@ def _build_agenda(
         + f"total={convergence_packets_total}; "
         + f"valid={convergence_packets_valid}; "
         + f"invalid={convergence_packets_invalid}; "
-        + f"gate_ready={convergence_packets_ready}."
+        + f"gate_ready={convergence_packets_ready}; "
+        + f"gate_failures={convergence_packets_gate_failures}; "
+        + f"placeholder_evidence={convergence_packets_placeholder_evidence}."
     )
     lines.append(
         "- context: `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`, "
@@ -1208,17 +1259,35 @@ def _build_agenda(
     ]
     if required_gates:
         lines.append("- required gates: " + ", ".join(f"`{x}`" for x in required_gates))
+    if convergence_blast_radius_counts:
+        lines.append(
+            "- blast radius counts: "
+            + ", ".join(
+                f"`{key}`={convergence_blast_radius_counts[key]}"
+                for key in sorted(convergence_blast_radius_counts)
+            )
+        )
     if convergence_items:
         for item in convergence_items[:10]:
             packet_id = _strip_ticks(str(item.get("packet_id", "")))
             source_id = _strip_ticks(str(item.get("source_system_id", "")))
             status = _strip_ticks(str(item.get("status", "")))
+            blast_radius = _strip_ticks(str(item.get("blast_radius", "")))
             gate_ready = bool(item.get("gate_ready", False))
+            gate_failures = (
+                item.get("gate_failures", [])
+                if isinstance(item.get("gate_failures", []), list)
+                else []
+            )
             claim_count = len(item.get("claim_ids", [])) if isinstance(item.get("claim_ids", []), list) else 0
             lines.append(
                 f"- packet=`{packet_id}` source=`{source_id}` status=`{status}` "
-                + f"gate_ready={str(gate_ready).lower()} claims={claim_count}"
+                + f"blast=`{blast_radius}` gate_ready={str(gate_ready).lower()} "
+                + f"gate_failures={len(gate_failures)} claims={claim_count}"
             )
+            if gate_failures:
+                for reason in gate_failures[:5]:
+                    lines.append(f"  - gate_failure: {reason}")
     if convergence_invalid_items:
         for item in convergence_invalid_items[:10]:
             packet_path = _strip_ticks(str(item.get("packet_path", "")))
@@ -1503,6 +1572,8 @@ def main() -> None:
         + f"connectome_pull={agenda['summary']['connectome_pull_items']}, "
         + f"convergence_total={agenda['summary']['convergence_packets_total']}, "
         + f"convergence_ready={agenda['summary']['convergence_packets_ready']}, "
+        + f"convergence_gate_failures={agenda['summary']['convergence_packets_gate_failures']}, "
+        + f"convergence_placeholder={agenda['summary']['convergence_packets_placeholder_evidence']}, "
         + f"external_precedence={agenda['summary']['external_precedence_candidates']}, "
         + f"cascade_actions={agenda['summary']['adjudication_cascade_actions']}, "
         + f"epoch_stale={agenda['summary']['architecture_epoch_stale_entries']}, "

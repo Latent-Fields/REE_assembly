@@ -122,9 +122,9 @@ python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts
 - Emit weekly dispatch bundles:
   - `python3 evidence/planning/scripts/emit_weekly_dispatches.py`
 - Validate convergence promotion packet(s):
-  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json" --check-gate-readiness --fail-on-gate-failure`
 - Build convergence intake queue:
-  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid`
 - Apply adjudication cascade from applied decisions:
   - `python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied`
 - Run ree-v2 cutover readiness (adjudicated divergence mode):
@@ -142,9 +142,9 @@ Use this path for external-source knowledge/implementation proposals before cano
 1. Add packet JSON files to:
   - `evidence/planning/convergence_packets/inbox/`
 2. Validate packet contract:
-  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json"`
+  - `python3 evidence/planning/scripts/validate_convergence_promotion_packet.py --input-glob "evidence/planning/convergence_packets/inbox/*.json" --check-gate-readiness --fail-on-gate-failure`
 3. Build queue artifacts:
-  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py`
+  - `python3 evidence/planning/scripts/build_convergence_intake_queue.py --fail-on-invalid`
 4. Review queue outputs:
   - `evidence/planning/convergence_intake_queue.v1.json`
   - `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`
