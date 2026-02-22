@@ -36,6 +36,30 @@ def _safe_float(value: Any, default: float = 0.0) -> float:
         return default
 
 
+def _safe_bool(value: Any, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    token = str(value).strip().lower()
+    if token in {"1", "true", "yes", "on"}:
+        return True
+    if token in {"0", "false", "no", "off"}:
+        return False
+    return default
+
+
+def _string_list(value: Any) -> list[str]:
+    out: list[str] = []
+    if isinstance(value, list):
+        candidates = value
+    else:
+        candidates = []
+    for item in candidates:
+        token = str(item).strip()
+        if token and token not in out:
+            out.append(token)
+    return out
+
+
 def _load_connectome_completion_settings(
     planning_criteria: dict[str, Any],
 ) -> dict[str, float | int]:
@@ -48,6 +72,9 @@ def _load_connectome_completion_settings(
         thresholds = {}
     return {
         "min_entries": max(1, int(thresholds.get("connectome_pull_completion_min_entries", 4))),
+        "min_support_entries": max(
+            1, int(thresholds.get("connectome_pull_completion_min_support_entries", 1))
+        ),
         "min_non_support_entries": max(
             1, int(thresholds.get("connectome_pull_completion_min_non_support_entries", 1))
         ),
@@ -65,12 +92,7 @@ def _load_connectome_manual_seed_settings(
         pull_cfg = {}
 
     raw_claim_ids = pull_cfg.get("manual_claim_ids", [])
-    claim_ids: list[str] = []
-    if isinstance(raw_claim_ids, list):
-        for item in raw_claim_ids:
-            token = str(item).strip()
-            if token and token not in claim_ids:
-                claim_ids.append(token)
+    claim_ids = _string_list(raw_claim_ids)
 
     priority = str(pull_cfg.get("manual_priority", "high")).strip().lower()
     if priority not in {"high", "medium", "low"}:
@@ -80,10 +102,20 @@ def _load_connectome_manual_seed_settings(
     if not trigger_signal:
         trigger_signal = "manual_mode_transition_pull"
 
+    adjudicated_claim_ids = _string_list(
+        pull_cfg.get("manual_claim_ids_adjudicated", pull_cfg.get("adjudicated_claim_ids", []))
+    )
+    require_adjudication = _safe_bool(
+        pull_cfg.get("manual_require_adjudication_for_completion", True),
+        default=True,
+    )
+
     return {
         "claim_ids": claim_ids,
         "priority": priority,
         "trigger_signal": trigger_signal,
+        "adjudicated_claim_ids": adjudicated_claim_ids,
+        "require_adjudication_for_completion": require_adjudication,
     }
 
 
@@ -604,6 +636,7 @@ def _build_item(
         "claim_id": claim_id,
         "priority": _priority_for_gap(gap_item),
         "status": "proposed",
+        "manual_seed": bool(gap_item.get("manual_seed", False)),
         "target_repo": "REE_assembly",
         "objective": f"Run targeted connectome literature pull for {claim_id}.",
         "suggested_literature_type": f"targeted_review_connectome_{claim_id.lower().replace('-', '_')}",
@@ -746,9 +779,18 @@ def _format_markdown(doc: dict[str, Any]) -> str:
             lines.append(
                 "- Completion check: "
                 + f"entries_total={completion.get('entries_total', 0)}, "
+                + f"support_entries={completion.get('support_entries', 0)}, "
                 + f"non_support_entries={completion.get('non_support_entries', 0)}, "
+                + f"coverage_ready={completion.get('coverage_ready', False)}, "
+                + f"clarification_ready={completion.get('clarification_ready', False)}, "
                 + f"status_reason={completion.get('status_reason', '-')}"
             )
+            if bool(item.get("manual_seed", False)):
+                lines.append(
+                    "- Manual-seed adjudication: "
+                    + f"required={completion.get('manual_adjudication_required', False)}, "
+                    + f"adjudicated={completion.get('manual_adjudicated', False)}."
+                )
         lines.append("")
 
     if completed_items:
@@ -966,9 +1008,14 @@ def main() -> int:
         )
         lit_type = str(item.get("suggested_literature_type", ""))
         completion = _count_literature_completion(repo_root, lit_type, claim_id)
-        completion_ready = bool(
-            completion["entries_total"] >= int(completion_settings["min_entries"])
-            and completion["non_support_entries"] >= int(completion_settings["min_non_support_entries"])
+        support_entries = max(
+            0,
+            int(completion["entries_total"]) - int(completion["non_support_entries"]),
+        )
+        coverage_ready = bool(
+            int(completion["entries_total"]) >= int(completion_settings["min_entries"])
+            and support_entries >= int(completion_settings["min_support_entries"])
+            and int(completion["non_support_entries"]) >= int(completion_settings["min_non_support_entries"])
         )
         conflict_ratio = _safe_float(
             item.get("selection_signals", {}).get("conflict_ratio", 0.0), 0.0
@@ -977,30 +1024,67 @@ def main() -> int:
         prev_status = str(prev.get("status", "proposed")).strip().lower()
         was_completed = prev_status == "completed"
         reopen_conflict_ratio = float(completion_settings["reopen_conflict_ratio"])
+        is_manual_seed = bool(item.get("manual_seed", False))
+        manual_adjudication_required = bool(
+            is_manual_seed and bool(manual_seed_settings.get("require_adjudication_for_completion", True))
+        )
+        adjudicated_claim_ids = {
+            str(x).strip() for x in manual_seed_settings.get("adjudicated_claim_ids", []) if str(x).strip()
+        }
+        manual_adjudicated = claim_id in adjudicated_claim_ids
+        manual_adjudication_gate_passed = bool(
+            (not manual_adjudication_required) or manual_adjudicated
+        )
+        clarification_ready = bool(
+            coverage_ready
+            and conflict_ratio < reopen_conflict_ratio
+            and manual_adjudication_gate_passed
+        )
 
         status = "proposed"
         status_reason = "awaiting_connectome_evidence"
-        if completion_ready and conflict_ratio < reopen_conflict_ratio:
+        clarification_reason = "awaiting_coverage"
+        if clarification_ready:
             status = "completed"
-            status_reason = "completion_criteria_met"
-        elif was_completed and conflict_ratio < reopen_conflict_ratio:
+            status_reason = "clarification_criteria_met"
+            clarification_reason = "clarification_gate_satisfied"
+        elif was_completed and conflict_ratio < reopen_conflict_ratio and manual_adjudication_gate_passed:
             status = "completed"
             status_reason = "preserve_completed_state"
+            clarification_reason = "preserved_completed_state"
         elif was_completed and conflict_ratio >= reopen_conflict_ratio:
             status = "proposed"
             status_reason = "reopened_due_conflict_pressure"
-        elif completion_ready and conflict_ratio >= reopen_conflict_ratio:
+            clarification_reason = "conflict_ratio_above_reopen_threshold"
+        elif coverage_ready and conflict_ratio >= reopen_conflict_ratio:
             status = "proposed"
-            status_reason = "completion_met_but_reopened_for_high_conflict"
+            status_reason = "coverage_met_but_reopened_for_high_conflict"
+            clarification_reason = "conflict_ratio_above_reopen_threshold"
+        elif coverage_ready and manual_adjudication_required and not manual_adjudicated:
+            status = "proposed"
+            status_reason = "coverage_met_pending_manual_adjudication"
+            clarification_reason = "manual_seed_adjudication_pending"
+        elif coverage_ready:
+            status = "proposed"
+            status_reason = "coverage_met_pending_clarification"
+            clarification_reason = "clarification_gate_not_satisfied"
 
         item["status"] = status
         item["completion_status"] = {
             "entries_total": int(completion["entries_total"]),
+            "support_entries": int(support_entries),
             "non_support_entries": int(completion["non_support_entries"]),
             "latest_timestamp_utc": str(completion.get("latest_timestamp_utc", "")),
             "min_entries": int(completion_settings["min_entries"]),
+            "min_support_entries": int(completion_settings["min_support_entries"]),
             "min_non_support_entries": int(completion_settings["min_non_support_entries"]),
             "reopen_conflict_ratio": float(completion_settings["reopen_conflict_ratio"]),
+            "coverage_ready": bool(coverage_ready),
+            "clarification_ready": bool(clarification_ready),
+            "clarification_reason": clarification_reason,
+            "manual_seed": bool(is_manual_seed),
+            "manual_adjudication_required": bool(manual_adjudication_required),
+            "manual_adjudicated": bool(manual_adjudicated),
             "status_reason": status_reason,
         }
         all_items.append(item)
@@ -1039,8 +1123,20 @@ def main() -> int:
                     _safe_float(item.get("selection_signals", {}).get("conflict_ratio", 0.0), 0.0), 3
                 ),
                 "entries_total": int(item.get("completion_status", {}).get("entries_total", 0)),
+                "support_entries": int(item.get("completion_status", {}).get("support_entries", 0)),
                 "non_support_entries": int(
                     item.get("completion_status", {}).get("non_support_entries", 0)
+                ),
+                "coverage_ready": bool(item.get("completion_status", {}).get("coverage_ready", False)),
+                "clarification_ready": bool(
+                    item.get("completion_status", {}).get("clarification_ready", False)
+                ),
+                "manual_seed": bool(item.get("completion_status", {}).get("manual_seed", False)),
+                "manual_adjudication_required": bool(
+                    item.get("completion_status", {}).get("manual_adjudication_required", False)
+                ),
+                "manual_adjudicated": bool(
+                    item.get("completion_status", {}).get("manual_adjudicated", False)
                 ),
                 "latest_timestamp_utc": str(
                     item.get("completion_status", {}).get("latest_timestamp_utc", "")
@@ -1083,8 +1179,15 @@ def main() -> int:
         },
         "completion_policy": {
             "min_entries": int(completion_settings["min_entries"]),
+            "min_support_entries": int(completion_settings["min_support_entries"]),
             "min_non_support_entries": int(completion_settings["min_non_support_entries"]),
             "reopen_conflict_ratio": float(completion_settings["reopen_conflict_ratio"]),
+            "manual_require_adjudication_for_completion": bool(
+                manual_seed_settings.get("require_adjudication_for_completion", True)
+            ),
+            "manual_claim_ids_adjudicated": [
+                str(x) for x in manual_seed_settings.get("adjudicated_claim_ids", [])
+            ],
             "state_path": state_path.as_posix(),
         },
         "items": active_items,

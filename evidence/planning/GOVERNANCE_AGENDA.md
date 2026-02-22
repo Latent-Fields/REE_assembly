@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-22T09:29:08.649933Z`
+Generated: `2026-02-22T09:56:21.667937Z`
 
 ## Cycle Status
 
@@ -79,8 +79,12 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); conflict_ratio=0.727; trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
 8. Structure Dossiers: 6 active dossier(s), 55 archived dossier(s), 6 active marked consider-new-structure.
 - context: `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`, `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`
-9. Connectome Literature Pull: 5 queued claim(s), 5 high-priority, 7 completed.
+9. Connectome Literature Pull: 9 queued claim(s), 9 high-priority, 3 completed.
 - context: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`, `evidence/planning/connectome_pull_state.v1.json`
+- `ARC-016` (architecture commitment; cognitive modes / control plane regimes; see `docs/architecture/modes_of_cognition.md#arc-016`); pull_id=`CPULL-0001`
+- `MECH-025` (mechanism hypothesis; cognitive modes / action doing; see `docs/architecture/modes_of_cognition.md#mech-025`); pull_id=`CPULL-0002`
+- `MECH-026` (mechanism hypothesis; cognitive modes / ready vigilance; see `docs/architecture/modes_of_cognition.md#mech-026`); pull_id=`CPULL-0003`
+- `MECH-029` (mechanism hypothesis; default mode / reflective ethics; see `docs/architecture/default_mode.md#mech-029`); pull_id=`CPULL-0004`
 - `MECH-030` (mechanism hypothesis; sleep / modes consolidation; see `docs/architecture/sleep.md#mech-030`); pull_id=`CPULL-0005`
 - `MECH-047` (mechanism hypothesis; control plane / precommitment mode manager; see `docs/architecture/mode_manager.md#mech-047`); pull_id=`CPULL-0006`
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); pull_id=`CPULL-0010`

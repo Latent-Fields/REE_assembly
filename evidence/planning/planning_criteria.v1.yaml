@@ -35,7 +35,8 @@
     "proposal_saturation_min_experimental_entries": 16,
     "proposal_saturation_min_recent_entries": 8,
     "proposal_saturation_recent_window": 12,
-    "provisional_min_literature_entries": 2
+    "provisional_min_literature_entries": 2,
+    "connectome_pull_completion_min_support_entries": 1
   },
   "model_adjudication": {
     "external_precedence_enabled": true,
@@ -84,7 +85,9 @@
       "MECH-047"
     ],
     "manual_priority": "high",
-    "manual_trigger_signal": "manual_mode_transition_pull"
+    "manual_trigger_signal": "manual_mode_transition_pull",
+    "manual_require_adjudication_for_completion": true,
+    "manual_claim_ids_adjudicated": []
   },
   "evidence_applicability": {
     "enabled": true,

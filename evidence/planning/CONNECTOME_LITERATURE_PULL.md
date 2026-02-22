@@ -1,19 +1,103 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-22T09:29:08.640890Z`
+Generated: `2026-02-22T09:56:21.659741Z`
 Cycle: `2026-02-22`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `5`. Completed items tracked: `7`.
+Active queue items: `9`. Completed items tracked: `3`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
+| `CPULL-0001` | `ARC-016` | `high` | no | 0 | `targeted_review_connectome_arc_016` |
+| `CPULL-0002` | `MECH-025` | `high` | no | 0 | `targeted_review_connectome_mech_025` |
+| `CPULL-0003` | `MECH-026` | `high` | no | 0 | `targeted_review_connectome_mech_026` |
+| `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
 | `CPULL-0005` | `MECH-030` | `high` | no | 0 | `targeted_review_connectome_mech_030` |
 | `CPULL-0006` | `MECH-047` | `high` | no | 0 | `targeted_review_connectome_mech_047` |
 | `CPULL-0010` | `MECH-057` | `high` | yes | 0.769 | `targeted_review_connectome_mech_057` |
 | `CPULL-0011` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
 | `CPULL-0012` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
+
+## ARC-016
+
+- Pull ID: `CPULL-0001`
+- Status: `proposed`
+- Objective: Run targeted connectome literature pull for ARC-016.
+- Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
+- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 1 upstream claim(s): `ARC-005`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
+- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
+- Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
+- Research questions:
+  - Which large-scale network control findings support regime-like mode organization over shared predictive machinery?
+  - What effective-connectivity signatures best mark transitions between task, DMN-like, vigilance, and offline regimes?
+  - Which findings contradict strict discrete-mode assumptions and imply quasi-continuous landscapes?
+- Search tracks:
+  - `TRK-01` Triple-network and salience-control switching evidence; query stems: `triple network salience switching default mode executive control`, `effective connectivity mode transition salience network`
+  - `TRK-02` Connectome gradients and controllability constraints; query stems: `connectome gradient default mode control network transition`, `network controllability cognitive state transitions connectome`
+  - `TRK-03` Disconfirming evidence for strict regime separability; query stems: `continuous cognitive state manifold versus discrete modes fMRI`, `dynamic functional connectivity gradual transitions evidence`
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
+- Manual-seed adjudication: required=True, adjudicated=False.
+
+## MECH-025
+
+- Pull ID: `CPULL-0002`
+- Status: `proposed`
+- Objective: Run targeted connectome literature pull for MECH-025.
+- Claim description: MECH-025 is a mechanism hypothesis about cognitive modes / action doing.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.
+- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
+- Connectome focus: Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.
+- Research questions:
+  - Which pathways reliably increase during action commitment and enaction?
+  - What evidence links action-mode precision shifts to thalamo-cortico-striatal routing?
+  - Where does action-mode evidence fail to separate from vigilance-like readiness?
+- Search tracks:
+  - `TRK-01` Action execution network integration; query stems: `action enaction network integration corticostriatal thalamic`, `task engaged mode suppression default mode network`
+  - `TRK-02` Commitment gating and action monitoring; query stems: `preSMA ACC commitment decision threshold action execution`, `efference copy action monitoring prediction signals`
+  - `TRK-03` Mixed findings and mode boundary failures; query stems: `action mode vigilance overlap neural evidence`, `task mode state misclassification neuroimaging`
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
+- Manual-seed adjudication: required=True, adjudicated=False.
+
+## MECH-026
+
+- Pull ID: `CPULL-0003`
+- Status: `proposed`
+- Objective: Run targeted connectome literature pull for MECH-026.
+- Claim description: MECH-026 is a mechanism hypothesis about cognitive modes / ready vigilance.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 2 upstream claim(s): `ARC-016`, `ARC-005`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-026`.
+- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
+- Connectome focus: Disambiguate ready-vigilance from action commitment using inhibitory priming and salience routing evidence.
+- Research questions:
+  - Which circuits express high sensitivity/priming while still suppressing motor release?
+  - What signatures separate restraint-oriented vigilance from imminent action preparation?
+  - What evidence suggests vigilance and action are not cleanly dissociable?
+- Search tracks:
+  - `TRK-01` Inhibitory control and orienting circuits; query stems: `ready vigilance inhibitory control network`, `orienting salience motor inhibition effective connectivity`
+  - `TRK-02` Threat/salience and restraint coupling; query stems: `threat vigilance without action neural circuits`, `salience network motor suppression pathways`
+  - `TRK-03` Boundary cases between vigilance and action; query stems: `hypervigilance transition to action neural markers`, `false alarm motor gating neural evidence`
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
+- Manual-seed adjudication: required=True, adjudicated=False.
+
+## MECH-029
+
+- Pull ID: `CPULL-0004`
+- Status: `proposed`
+- Objective: Run targeted connectome literature pull for MECH-029.
+- Claim description: MECH-029 is a mechanism hypothesis about default mode / reflective ethics.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-014`, `ARC-005`, `ARC-007`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/default_mode.md#mech-029`.
+- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
+- Connectome focus: Test DMN-like reflective replay constraints against action-network suppression and hippocampal-cortical coupling.
+- Research questions:
+  - Which data best supports DMN-like reflective replay with commitment suppression?
+  - How strong is evidence for hippocampal-cortical coupling during internally generated simulation?
+  - Where does DMN activity fail to support safe replay assumptions?
+- Search tracks:
+  - `TRK-01` DMN architecture and anti-correlation with action networks; query stems: `default mode network anti-correlation task positive network`, `DMN executive control dynamic coupling transitions`
+  - `TRK-02` Hippocampal replay and autobiographical simulation; query stems: `hippocampal cortical replay default mode simulation`, `episodic future thinking hippocampus default mode`
+  - `TRK-03` DMN instability/pathology boundary evidence; query stems: `rumination default mode control failure connectivity`, `psychosis default mode internal model intrusion evidence`
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
+- Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-030
 
@@ -32,7 +116,8 @@ Active queue items: `5`. Completed items tracked: `7`.
   - `TRK-01` Sleep replay and consolidation pathways; query stems: `sleep replay hippocampal cortical consolidation pathways`, `sleep stage memory consolidation network connectivity`
   - `TRK-02` Precision recalibration and homeostatic renormalization; query stems: `sleep synaptic homeostasis precision recalibration`, `offline neural renormalization predictive processing`
   - `TRK-03` Failure signatures of offline integration; query stems: `sleep disturbance mode switching instability`, `maladaptive consolidation replay bias evidence`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
+- Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-047
 
@@ -51,7 +136,8 @@ Active queue items: `5`. Completed items tracked: `7`.
   - `TRK-01` State-transition and metastability analyses; query stems: `brain state transition hysteresis metastability`, `dynamic functional connectivity state switching costs`
   - `TRK-02` Salience/LC-NE and transition gating; query stems: `locus coeruleus salience network state transitions`, `arousal modulation cognitive state switching`
   - `TRK-03` Disconfirming evidence for explicit mode manager dynamics; query stems: `continuous control model cognitive state dynamics evidence`, `noisy manifold transitions versus discrete states`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
+- Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-057
 
@@ -71,7 +157,7 @@ Active queue items: `5`. Completed items tracked: `7`.
   - `TRK-01` Structural and effective-connectivity constraints; query stems: `MECH-057 connectome effective connectivity`, `agentic extension / control completion requirement neural pathway dissociation`
   - `TRK-02` Computational-neuroscience bridge papers; query stems: `agentic extension / control completion requirement computational neuroscience circuit model`, `MECH-057 predictive coding pathway evidence`
   - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `agentic extension / control completion requirement conflicting neural evidence`, `MECH-057 alternative mechanism neural circuits`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 
 ## Q-013
 
@@ -91,7 +177,7 @@ Active queue items: `5`. Completed items tracked: `7`.
   - `TRK-01` Structural and effective-connectivity constraints; query stems: `Q-013 connectome effective connectivity`, `uncertainty / deterministic vs stochastic jepa calibration neural pathway dissociation`
   - `TRK-02` Computational-neuroscience bridge papers; query stems: `uncertainty / deterministic vs stochastic jepa calibration computational neuroscience circuit model`, `Q-013 predictive coding pathway evidence`
   - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `uncertainty / deterministic vs stochastic jepa calibration conflicting neural evidence`, `Q-013 alternative mechanism neural circuits`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 
 ## Q-014
 
@@ -111,7 +197,7 @@ Active queue items: `5`. Completed items tracked: `7`.
   - `TRK-01` Structural and effective-connectivity constraints; query stems: `Q-014 connectome effective connectivity`, `invariance / ethical relevance blind spot risk neural pathway dissociation`
   - `TRK-02` Computational-neuroscience bridge papers; query stems: `invariance / ethical relevance blind spot risk computational neuroscience circuit model`, `Q-014 predictive coding pathway evidence`
   - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `invariance / ethical relevance blind spot risk conflicting neural evidence`, `Q-014 alternative mechanism neural circuits`
-- Completion check: entries_total=0, non_support_entries=0, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 
 ## Completed Pulls
 
@@ -119,13 +205,9 @@ These claims currently satisfy completion criteria and are excluded from the act
 
 | pull_id | claim_id | status_reason | conflict_ratio |
 |---|---|---|---:|
-| `CPULL-0001` | `ARC-016` | completion_criteria_met | 0 |
-| `CPULL-0002` | `MECH-025` | completion_criteria_met | 0 |
-| `CPULL-0003` | `MECH-026` | completion_criteria_met | 0 |
-| `CPULL-0004` | `MECH-029` | completion_criteria_met | 0 |
-| `CPULL-0007` | `MECH-060` | completion_criteria_met | 0.875 |
-| `CPULL-0008` | `MECH-058` | completion_criteria_met | 0.871 |
-| `CPULL-0009` | `Q-017` | completion_criteria_met | 0.848 |
+| `CPULL-0007` | `MECH-060` | clarification_criteria_met | 0.875 |
+| `CPULL-0008` | `MECH-058` | clarification_criteria_met | 0.871 |
+| `CPULL-0009` | `Q-017` | clarification_criteria_met | 0.848 |
 
 ## Copy/Paste Prompt
 
@@ -139,6 +221,10 @@ Contract requirements:
 - `evidence/literature/schemas/v1/literature_evidence.schema.json`
 
 Queue items:
+- `CPULL-0001` / `ARC-016` / `targeted_review_connectome_arc_016`
+- `CPULL-0002` / `MECH-025` / `targeted_review_connectome_mech_025`
+- `CPULL-0003` / `MECH-026` / `targeted_review_connectome_mech_026`
+- `CPULL-0004` / `MECH-029` / `targeted_review_connectome_mech_029`
 - `CPULL-0005` / `MECH-030` / `targeted_review_connectome_mech_030`
 - `CPULL-0006` / `MECH-047` / `targeted_review_connectome_mech_047`
 - `CPULL-0010` / `MECH-057` / `targeted_review_connectome_mech_057`
