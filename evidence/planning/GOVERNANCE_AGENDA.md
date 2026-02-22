@@ -1,11 +1,18 @@
 # Governance Agenda
 
-Generated: `2026-02-22T11:57:35.817817Z`
+Generated: `2026-02-22T16:07:31.905695Z`
 
 ## Cycle Status
 
 | step | status | command |
 |---|---|---|
+| `task_inbox_sync` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/sync_task_inbox.py` |
+| `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py` |
+| `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses approved,applied` |
+| `evidence_build` | `ok` | `/opt/local/bin/python3 evidence/experiments/scripts/build_experiment_indexes.py` |
+| `structure_review` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_structure_review_dossiers.py` |
+| `human_decision_briefs` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_human_decision_briefs.py` |
+| `connectome_pull` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_connectome_literature_pull.py` |
 | `convergence_intake_queue` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_convergence_intake_queue.py` |
 
 ## Discussion Checkpoints
@@ -85,18 +92,19 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); pull_id=`CPULL-0010`
 - `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`); pull_id=`CPULL-0011`
 - `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); pull_id=`CPULL-0012`
-10. Convergence Intake: enabled=True; total=1; valid=1; invalid=0; gate_ready=1.
+10. Convergence Intake: enabled=True; total=1; valid=1; invalid=0; gate_ready=1; gate_failures=0; placeholder_evidence=0; implementation_plans=1.
 - context: `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`, `evidence/planning/convergence_intake_queue.v1.json`
-- required gates: `primary_sources_verified`, `separation_tests_defined`, `falsifiability_defined`, `rollback_plan_defined`
-- packet=`CPKT-JEPA-2026-0001` source=`jepa` status=`proposed` gate_ready=true claims=9
+- required gates: `primary_sources_verified`, `source_content_mode_defined`, `source_license_id_defined`, `source_license_review_verified`, `copied_content_attribution_defined`, `separation_tests_defined`, `falsifiability_defined`, `rollback_plan_defined`, `falsification_plan_complete`, `conflict_review_completed`, `mechanism_probe_ids_defined`, `benchmark_acceptance_criteria_defined`, `non_lexical_probation_window_configured`, `non_lexical_rollback_conditions_defined`, `non_lexical_adapter_patch_refs_defined`, `no_placeholder_evidence_tokens`
+- blast radius counts: `interface`=1
+- packet=`CPKT-JEPA-2026-0001` source=`jepa` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=2 bench=2 claims=9
 11. Model Adjudication: 4 external-precedence candidate(s), 4 anti-lock-in review item(s).
 - context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.302
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.311
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.318
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.286
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.303
+- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.312
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.319
+- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.287
 12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.

@@ -26,7 +26,7 @@ Cycle: `2026-02-22`
 - Decision needed: Conflict resolution before promotion
 - Recommendation: `hold_candidate_resolve_conflict`
 - Decision status: `applied`
-- Why this lane is open: overall_conf=0.719, conflict_ratio=0.871, exp_entries=156, lit_entries=9; directions supports=92, weakens=71, mixed=2, unknown=0, conflict_ratio=0.871
+- Why this lane is open: overall_conf=0.718, conflict_ratio=0.871, exp_entries=156, lit_entries=9; directions supports=92, weakens=71, mixed=2, unknown=0, conflict_ratio=0.871
 - Options:
   - Keep candidate and run conflict-resolution experiments (most balanced)
   - Promote despite conflict (speed, high lock-in risk)
@@ -36,7 +36,7 @@ Cycle: `2026-02-22`
 
 - Lane recommendation: `mandatory_decision_checkpoint`
 - Structure pressure recommendation: `mandatory_decision_checkpoint`
-- Conflict ratio: `0.871`; overall confidence: `0.719`
+- Conflict ratio: `0.871`; overall confidence: `0.718`
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Recurring failure signatures:
   - `mech058:anchor_separation_collapse` (57)
