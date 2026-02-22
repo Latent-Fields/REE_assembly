@@ -156,6 +156,21 @@ Interpretation guard:
 - current conflict pressure mostly reflects boundary contamination events, not the mere existence of shared upstream
   predictors.
 
+Continuous-stream interpretation (non-stop-and-wait):
+
+- commit boundary is an authority boundary, not a requirement to pause processing and run a serial "before then after"
+  workflow.
+- pre-commit and post-commit channels may both run continuously; what changes at boundary crossing is write authority and
+  error-class attribution.
+- boundary crossing is the first irreversible dispatch (external action commitment) or the first privilege-bearing
+  durable write authorization tied to a `commit_id`.
+- fast-path veto and urgency channels may still interrupt/re-route *before* irreversible dispatch without violating
+  commit-boundary semantics.
+- if interruption occurs *after* irreversible dispatch, REE must model it as a new superseding commit event rather than
+  rewriting the original commit as if it never happened.
+- accountability for realized outcomes remains attached to the original commit lineage; superseding commits append
+  control history, they do not erase it.
+
 MECH‑061 and MECH‑062 provide a concrete realization path for this split:
 
 - MECH‑061: explicit commit-boundary token as error reclassification boundary,
@@ -182,7 +197,7 @@ To prevent cross-channel leakage and ledger corruption, learning/update permissi
   - allowed writes: temporary rollout cache, gate-threshold scratch stats, proposal ranking buffers.
   - forbidden writes: policy weights, residue ledger, durable memory traces, attribution ledger.
 - `commit_boundary` phase:
-  - allowed writes: commit token, provenance tags, commit-scoped routing metadata.
+  - allowed writes: commit token, provenance tags, commit-scoped routing metadata, supersession link metadata.
   - forbidden writes: reward/residue attribution updates before realized outcome is observed.
 - `post_commit` phase:
   - allowed writes: attribution ledger, residue/viability updates, durable policy updates, replay-priority updates.
