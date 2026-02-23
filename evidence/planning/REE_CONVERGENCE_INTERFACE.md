@@ -16,10 +16,12 @@ Define the minimal interface between:
 - Owns canonical claims, architecture docs, and adoption decisions.
 - Owns final machine contracts and governance outcomes.
 - Accepts external updates only through promotion packets and review.
+- Stays REE-first in canonical wording and model ownership.
 
 2. `REE_convergence`
 - Owns external-source intake workflow and evidence-first translation.
 - Owns provisional mappings, separation checks, and candidate deltas before promotion.
+- Owns source-level JEPA integration playbooks and method details (`sources/jepa/*`).
 
 ## Upstream Inputs From `REE_convergence`
 
@@ -33,6 +35,13 @@ Source-side authoring/sync tooling in `REE_convergence`:
 - `tools/validate_convergence_promotion_packet.py`
 - `tools/run_cross_repo_handoff.py`
 - `handoff/README.md`
+
+JEPA section anchors in `REE_convergence` (source-side integration owner):
+
+- `sources/jepa/INTEGRATION_PLAYBOOK.md`
+- `sources/jepa/integration_deltas.md`
+- `sources/jepa/probes.md`
+- `sources/jepa/evidence_anchors.md`
 
 Packet contract:
 - `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`

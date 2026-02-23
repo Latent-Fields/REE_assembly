@@ -68,6 +68,16 @@
     "anti_lock_in_gate": {
       "enabled": true,
       "description": "If matched JEPA evidence repeatedly outperforms REE assumptions, force adjudication rather than schema-preserving tuning."
+    },
+    "canonical_boundary_policy": {
+      "ree_assembly_role": "REE-first canonical claims/contracts/governance only",
+      "external_integration_playbook_owner": "REE_convergence/sources/jepa",
+      "adopt_jepa_structure_requires": [
+        "convergence_packet_gate_ready",
+        "human_decision_brief_reviewed",
+        "rollback_plan_defined"
+      ],
+      "notes": "Hybridization should prefer REE interface contracts over direct source-structure adoption unless escalation criteria are met."
     }
   },
   "repo_routing": {

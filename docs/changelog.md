@@ -7,6 +7,37 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-23: Re-centered Canonical Boundary (REE-First, Convergence-Owned JEPA Playbooks)
+
+### Overview
+
+Reinforced repository boundaries so `REE_assembly` remains REE-core canonical authority while JEPA source-method
+"how-to integrate" guidance is explicitly convergence-owned.
+
+### What Changed
+
+- Tightened repository boundary language in root docs:
+  - `README.md`
+  - explicit REE-first canonical boundary and pointer to `REE_convergence/sources/jepa/*`.
+- Updated roadmap language away from JEPA-first canonical framing:
+  - `docs/roadmap.md`
+  - status snapshot, v2 framing, and immediate queue now encode convergence-owned JEPA integration playbooks.
+- Updated terminology policy from JEPA-first to REE-first canonical:
+  - `docs/notes/jepa_language_policy.md` (`IMPL-024`)
+  - `docs/glossary.md` (boundary wording section under `IMPL-020`)
+  - `docs/architecture/ree_v2_spec.md` (terminology mode section)
+- Added explicit boundary note in JEPA substrate contract:
+  - `docs/architecture/jepa_e1e2_integration_contract.md`
+- Strengthened convergence interface/extraction docs with JEPA playbook ownership:
+  - `evidence/planning/REE_CONVERGENCE_INTERFACE.md`
+  - `evidence/planning/CONVERGENCE_EXTRACTION_MAP.md`
+- Added governance-policy note for boundary discipline:
+  - `evidence/planning/planning_criteria.v1.yaml`
+  - new `model_adjudication.canonical_boundary_policy`.
+- Updated claim metadata/index text for `IMPL-024` wording shift:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+
 ## 2026-02-23: Processed Subjective Skill-Drift Thought Intake (2 files)
 
 ### Overview

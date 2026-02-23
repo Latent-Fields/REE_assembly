@@ -9,12 +9,13 @@
 
 ---
 
-## Status Snapshot (2026-02-14)
+## Status Snapshot (2026-02-23)
 
 - `REE_assembly` is now the canonical governance + specification repo.
 - `ree-v1-minimal` is serving as a qualification harness (controlled mechanism comparisons).
 - `ree-experiments-lab` is serving as a stress/falsification harness (adversarial and non-stationary checks).
-- JEPA alignment docs now exist and are sufficient to define a substrate-first `v2` plan.
+- JEPA integration guidance is now convergence-first: source-method details live in `REE_convergence`, while
+  `REE_assembly` keeps REE-first canonical contracts and adjudication outputs.
 
 ---
 
@@ -29,13 +30,13 @@ Outcome:
 - useful for signal discovery and contract hardening,
 - not sufficient as final architecture target due to stress-lane conflicts and limited environment breadth.
 
-## REE-v2 (current focus: JEPA-aligned substrate)
+## REE-v2 (current focus: REE-first substrate contract with JEPA-compatible interface)
 
 Primary role:
 - lock a stable substrate contract for sensing adapters + E1/E2 latent prediction.
 
 In-scope:
-- sensor adapters mapped to JEPA-style context/target latent interfaces,
+- sensor adapters mapped to JEPA-compatible context/target latent interfaces,
 - E1/E2 substrate integration contract implementation (`IMPL-022`),
 - stable output streams for latent prediction error and uncertainty,
 - run-pack/adapter-signal compliance and calibration metrics.
@@ -86,6 +87,7 @@ Primary role:
 
 Current recommendation:
 - keep `v2` spec and contract refinement in `REE_assembly`,
+- keep source-specific JEPA integration playbooks in `REE_convergence` and promote only adjudicated deltas,
 - bootstrap `ree-v2` now and use it as the qualification lane,
 - keep `ree-v1-minimal` for transitional parity checks until `ree-v2` coverage is complete.
 
@@ -93,13 +95,14 @@ Current recommendation:
 
 ## Immediate Work Queue (This Cycle)
 
-1. Finalize JEPA language alignment in architecture docs and v2 spec.
-2. Produce first-pass v2 implementation spec (subsystem boundaries + required metrics + failure gates).
-3. Run targeted literature program for v3-critical systems:
+1. Enforce REE-first canonical wording in `REE_assembly` while preserving JEPA interface translations.
+2. Keep JEPA source-method integration details in `REE_convergence/sources/jepa/*` and promote only packet-backed deltas.
+3. Produce first-pass v2 implementation spec (subsystem boundaries + required metrics + failure gates).
+4. Run targeted literature program for v3-critical systems:
    - hippocampal replay/planning/map-update mechanisms,
    - prefrontal control/arbitration/commitment mechanisms,
    - JEPA-latent-to-hippocampal mapping constraints.
-4. Route resulting evidence into backlog/proposals and governance decisions.
+5. Route resulting evidence into backlog/proposals and governance decisions.
 
 ---
 

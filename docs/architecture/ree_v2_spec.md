@@ -24,12 +24,14 @@ fighting unstable representation plumbing.
 
 ## Terminology Mode (v2)
 
-v2 uses JEPA-first language with inline REE translation for user-facing docs and interactions.
+v2 canonical docs in `REE_assembly` use REE-first language with JEPA interface translation where needed.
 
-- First mention format: `JEPA term (REE term)`.
-- Substrate sections default to JEPA wording.
+- First mention format in canonical docs: `REE term (JEPA term)`.
+- Substrate sections remain REE-contract-first while preserving JEPA adapter terminology at interfaces.
 - Control/commitment sections default to REE wording.
 - Contract keys remain stable REE ingestion keys (no schema churn from terminology changes).
+
+Source-intake and source-method JEPA narratives remain convergence-owned in `REE_convergence/sources/jepa/*`.
 
 Reference policy:
 - `docs/notes/jepa_language_policy.md#impl-024`

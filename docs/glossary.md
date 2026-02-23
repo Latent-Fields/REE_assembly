@@ -80,15 +80,19 @@ modeling.
 
 #### Wording and boundary policy
 
-For v2-facing docs and user-facing interactions:
+For canonical docs in `REE_assembly`:
 
-- use JEPA-first wording at first mention with inline REE translation:
-  - `JEPA term (REE term)`
+- use REE-first wording with optional JEPA translation when needed:
+  - `REE term (JEPA term)`
 - keep REE schema keys stable in machine contracts.
 - keep extended source-level term tables in `REE_convergence`:
   - `sources/jepa/glossary.md`
   - `translations/glossary_master.md`
 - require convergence packet references for canonical JEPA terminology updates.
+
+For source-intake and integration-playbook docs in `REE_convergence`:
+
+- JEPA-first wording is acceptable and often preferred for source fidelity.
 
 Reference:
 - `docs/notes/jepa_language_policy.md#impl-024`

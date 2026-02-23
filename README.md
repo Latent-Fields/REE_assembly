@@ -9,7 +9,7 @@ Implementation code and stress testing run in companion repositories, then feed 
 ## If You Are New (Read In This Order)
 
 1. `docs/README.md` - operating procedure and required update discipline.
-2. `docs/glossary.md` - canonical term definitions, including JEPA-to-REE translations.
+2. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
 3. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
 4. `docs/roadmap.md` - current phase plan and repository roles.
 5. `evidence/planning/REE_CONVERGENCE_INTERFACE.md` - how external knowledge enters REE.
@@ -22,6 +22,17 @@ Implementation code and stress testing run in companion repositories, then feed 
 - Evidence intake boundaries and planning outputs (`evidence/experiments/`, `evidence/planning/`, `evidence/literature/`).
 - Conflict capture without silent merge (`docs/conflicts/`).
 - Historical source preservation (`docs/processed/legacy_tree/`).
+
+## Canonical Boundary (REE-First)
+
+- `REE_assembly` is REE-core first: canonical REE claims, invariants, and interface contracts.
+- JEPA may inspire REE or be integrated as substrate interface, but JEPA source-method details are not canonical here.
+- JEPA integration playbooks, source-level comparisons, and exploratory mappings live in `REE_convergence`, especially:
+  - `sources/jepa/INTEGRATION_PLAYBOOK.md`
+  - `sources/jepa/integration_deltas.md`
+  - `sources/jepa/probes.md`
+  - `sources/jepa/evidence_anchors.md`
+- Canonical updates in this repo are packet-first via convergence intake and explicit adjudication.
 
 ## Architecture Snapshot (Plain Language)
 
@@ -51,6 +62,7 @@ Commit semantics are continuous-stream, not stop-and-wait:
 This is the safe path for integrating implementation wisdom or external model insights:
 
 1. Intake and translate in `REE_convergence` with explicit source provenance and license metadata.
+   - for JEPA-specific integration methodology, update `REE_convergence/sources/jepa/*` first.
 2. Build and validate a convergence promotion packet in `REE_convergence`:
 
 ```bash

@@ -16,6 +16,11 @@ Do a **partial extraction**:
 - move external-source intake, translation, and pre-promotion comparison work into `REE_convergence`,
 - re-enter `REE_assembly` only through explicit promotion packets and review.
 
+Interpretation rule:
+
+- `REE_assembly` remains REE-core and interface-contract focused.
+- JEPA source-method "how to integrate" material is convergence-owned under `REE_convergence/sources/jepa/*`.
+
 ## Keep In `REE_assembly` (Canonical)
 
 1. Claim registry and claim lifecycle metadata:
@@ -47,6 +52,7 @@ Do a **partial extraction**:
 3. Candidate deltas before canonical acceptance:
 - provisional adapter ideas
 - integration hypotheses not yet adjudicated in `REE_assembly`
+- source-level JEPA integration playbooks (`sources/jepa/INTEGRATION_PLAYBOOK.md`, `sources/jepa/integration_deltas.md`, `sources/jepa/probes.md`)
 
 4. Translation and vocabulary harmonization drafts:
 - source-level terminology mappings before promotion to canonical glossary

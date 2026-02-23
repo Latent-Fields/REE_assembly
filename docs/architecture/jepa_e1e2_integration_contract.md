@@ -18,6 +18,12 @@ Specify how JEPA-family models can be integrated into REE as:
 
 This contract isolates the substrate boundary so control-completion behavior remains explicit REE scope.
 
+Canonical boundary note:
+
+- this document defines the REE-side integration contract only,
+- source-specific JEPA integration playbooks, exploratory mappings, and probe planning live in `REE_convergence`
+  (`sources/jepa/*`) and enter here only via convergence packets.
+
 Functional mapping note:
 
 - `E1` and `E2` should be treated as functional decomposition over JEPA streams, not necessarily separate physical
