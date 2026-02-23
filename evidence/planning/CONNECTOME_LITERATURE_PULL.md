@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-23T07:49:22.023165Z`
+Generated: `2026-02-23T22:18:39.750562Z`
 Cycle: `2026-02-23`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -146,7 +146,7 @@ Active queue items: `9`. Completed items tracked: `3`.
 - Objective: Run targeted connectome literature pull for MECH-057.
 - Claim description: MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.
 - REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.
-- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.703, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.702, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.
 - Research questions:
@@ -166,7 +166,7 @@ Active queue items: `9`. Completed items tracked: `3`.
 - Objective: Run targeted connectome literature pull for Q-013.
 - Claim description: Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.643, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.642, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.
 - Research questions:
@@ -186,7 +186,7 @@ Active queue items: `9`. Completed items tracked: `3`.
 - Objective: Run targeted connectome literature pull for Q-014.
 - Claim description: Q-014 is an open question about invariance / ethical relevance blind spot risk.
 - REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.643, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
+- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.642, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
 - Recurring failure signatures: `ledger_editing`, `domination_lock_in`
 - Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.
 - Research questions:

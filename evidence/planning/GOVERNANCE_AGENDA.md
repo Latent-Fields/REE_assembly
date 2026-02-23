@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-23T07:49:22.261606Z`
+Generated: `2026-02-23T22:18:39.926232Z`
 
 ## Cycle Status
 
@@ -30,8 +30,10 @@ Generated: `2026-02-23T07:49:22.261606Z`
 
 Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
-1. Thought Intake: 0 unprocessed thought(s).
+1. Thought Intake: 2 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
+- `2026-02-13_subjective_experience_pre_post_commit.md`
+- `2026-02-23_some_subjective_experience_mapping.md`
 2. Conflict Resolution: 24 conflict item(s).
 - context: `evidence/experiments/conflicts.md`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); conflict_types=directional
@@ -101,10 +103,10 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.304
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.313
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.320
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.289
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.305
+- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.314
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.321
+- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.290
 12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.

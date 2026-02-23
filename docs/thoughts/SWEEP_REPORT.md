@@ -1,17 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-02-23T07:49:20.811259Z`
+Generated: `2026-02-23T22:18:38.497807Z`
 
 | metric | count |
 |---|---|
-| total thought files | 46 |
+| total thought files | 48 |
 | processed | 46 |
-| unprocessed | 0 |
+| unprocessed | 2 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-13` `2026-02-13_subjective_experience_pre_post_commit.md` (status=`unprocessed`)
+- `2026-02-23` `2026-02-23_some_subjective_experience_mapping.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
