@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-22T21:03:05.992165Z`
+Generated: `2026-02-22T21:33:01.805794Z`
 
 ## Cycle Status
 
@@ -65,7 +65,7 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 - `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 - `MECH-062` (mechanism hypothesis; commitment / tri loop gate coordination; see `docs/architecture/e3.md#mech-062`); decision=Promotion review: provisional -> stable; recommendation=`promote_to_stable`
-5. Human Decision Briefs: 10 claim brief(s).
+5. Human Decision Briefs: 6 claim brief(s).
 - context: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/latest/INDEX.md`, `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`
 - weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-22/WEEKLY_DISPATCH.md`
 6. Manual Carryover: 0 open item(s), 1 total.

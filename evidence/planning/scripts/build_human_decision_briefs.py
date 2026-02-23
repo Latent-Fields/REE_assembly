@@ -380,6 +380,88 @@ def _group_decision_history(entries: list[dict[str, Any]]) -> dict[str, list[dic
     return grouped
 
 
+def _parse_timestamp(value: Any) -> datetime | None:
+    token = str(value or "").strip()
+    if not token:
+        return None
+    normalized = token[:-1] + "+00:00" if token.endswith("Z") else token
+    try:
+        return datetime.fromisoformat(normalized).astimezone(timezone.utc)
+    except ValueError:
+        return None
+
+
+def _promotion_lane_actionable(item: dict[str, Any] | None) -> bool:
+    if not isinstance(item, dict):
+        return False
+    recommendation = str(item.get("recommendation", "")).strip()
+    decision_needed = str(item.get("decision_needed", "")).strip()
+    decision_status = str(item.get("decision_status", "")).strip().lower()
+    status_note = str(item.get("status_note", "")).strip()
+
+    if not recommendation and not decision_needed:
+        return False
+
+    # If the same recommendation is already approved/applied and no status_note
+    # indicates a recommendation change, suppress repeat prompting.
+    if decision_status in {"approved", "applied"} and not status_note:
+        return False
+    return True
+
+
+def _structure_lane_actionable(
+    item: dict[str, Any] | None,
+    dossier: dict[str, Any] | None,
+    allowed_outcomes: list[str],
+) -> bool:
+    if not isinstance(item, dict):
+        return False
+
+    recommendation = str(item.get("recommendation", "")).strip().lower()
+    consider_new_structure = bool(item.get("consider_new_structure", False))
+    if not recommendation and not consider_new_structure:
+        return False
+
+    if not isinstance(dossier, dict):
+        return True
+    structure_pressure = dossier.get("structure_pressure", {})
+    if not isinstance(structure_pressure, dict):
+        return True
+
+    latest_decision = structure_pressure.get("latest_decision", {})
+    if not isinstance(latest_decision, dict):
+        return True
+
+    decision_status = str(latest_decision.get("decision_status", "")).strip().lower()
+    decision_recommendation = str(latest_decision.get("recommendation", "")).strip().lower()
+    decision_ts = _parse_timestamp(latest_decision.get("timestamp_utc", ""))
+    if decision_status not in {"approved", "applied"} or decision_ts is None:
+        return True
+
+    # A resolved architecture outcome (or matching lane recommendation) should
+    # stay closed unless fresh dossier evidence arrived after the decision.
+    allowed = {token.strip().lower() for token in allowed_outcomes if token.strip()}
+    if decision_recommendation not in allowed and decision_recommendation != recommendation:
+        return True
+
+    evidence_items = dossier.get("evidence_items", [])
+    if not isinstance(evidence_items, list):
+        evidence_items = []
+    latest_evidence_ts: datetime | None = None
+    for entry in evidence_items:
+        if not isinstance(entry, dict):
+            continue
+        ts = _parse_timestamp(entry.get("timestamp_utc", ""))
+        if ts is None:
+            continue
+        if latest_evidence_ts is None or ts > latest_evidence_ts:
+            latest_evidence_ts = ts
+
+    if latest_evidence_ts is None:
+        return False
+    return latest_evidence_ts > decision_ts
+
+
 def _write_metric_glossary(path: Path) -> None:
     lines = [
         "# Human Decision Metric Glossary",
@@ -441,11 +523,17 @@ def _claim_decision_lanes(
     claim_id: str,
     promotion: dict[str, dict[str, Any]],
     structure_items: dict[str, dict[str, Any]],
+    dossier_by_claim: dict[str, dict[str, Any]],
+    allowed_outcomes: list[str],
 ) -> list[str]:
     lanes: list[str] = []
-    if claim_id in promotion:
+    if _promotion_lane_actionable(promotion.get(claim_id)):
         lanes.append("promotion_demotion_conflict_resolution")
-    if claim_id in structure_items:
+    if _structure_lane_actionable(
+        structure_items.get(claim_id),
+        dossier_by_claim.get(claim_id),
+        allowed_outcomes,
+    ):
         lanes.append("architecture_structure_adjudication")
     return lanes
 
@@ -849,7 +937,13 @@ def main() -> None:
 
     index_rows: list[dict[str, Any]] = []
     for claim_id in claim_ids:
-        lanes = _claim_decision_lanes(claim_id, promotion, structure_items)
+        lanes = _claim_decision_lanes(
+            claim_id,
+            promotion,
+            structure_items,
+            dossier_by_claim,
+            allowed_outcomes,
+        )
         if not lanes:
             continue
         brief_path = cycle_dir / f"{claim_id}.md"

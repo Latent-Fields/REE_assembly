@@ -1,6 +1,6 @@
 # Active Structure Review Dossier Index
 
-Generated: `2026-02-22T21:03:05.677854Z`
+Generated: `2026-02-22T21:33:01.495281Z`
 Cycle: `2026-02-22`
 
 These are currently relevant dossiers for governance decisions in the latest cycle.
