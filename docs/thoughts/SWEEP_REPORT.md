@@ -1,18 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-02-23T22:18:38.497807Z`
+Generated: `2026-02-23T22:27:30.862497Z`
 
 | metric | count |
 |---|---|
 | total thought files | 48 |
-| processed | 46 |
-| unprocessed | 2 |
+| processed | 48 |
+| unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- `2026-02-13` `2026-02-13_subjective_experience_pre_post_commit.md` (status=`unprocessed`)
-- `2026-02-23` `2026-02-23_some_subjective_experience_mapping.md` (status=`unprocessed`)
+- _none_
 
 ## Processed Missing Links
 
@@ -51,6 +50,7 @@ Generated: `2026-02-23T22:18:38.497807Z`
 - `2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md` (1 link(s) in `Processed in`)
 - `2026-02-13_LeCun_developed_lots_of_REE.md` (5 link(s) in `Processed in`)
 - `2026-02-13_jepa_ree_formal_alignment_glossary.md` (4 link(s) in `Processed in`)
+- `2026-02-13_subjective_experience_pre_post_commit.md` (5 link(s) in `Processed in`)
 - `2026-02-15_basal_ganglia.md` (2 link(s) in `Processed in`)
 - `2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md` (2 link(s) in `Processed in`)
 - `2026-02-15_basal_ganglia_commit_gating_control_plane_axes_refresh.md` (3 link(s) in `Processed in`)
@@ -64,5 +64,6 @@ Generated: `2026-02-23T22:18:38.497807Z`
 - `2026-02-19_basal_ganglia_evolutionary_conservation_pull.md` (2 link(s) in `Processed in`)
 - `2026-02-21_meta_critic.md` (1 link(s) in `Processed in`)
 - `2026-02-21_more_control_plane_necessities.md` (1 link(s) in `Processed in`)
+- `2026-02-23_some_subjective_experience_mapping.md` (5 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

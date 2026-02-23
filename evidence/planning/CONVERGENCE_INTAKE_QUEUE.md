@@ -1,6 +1,6 @@
 # Convergence Intake Queue
 
-Generated: `2026-02-23T22:18:39.916228Z`
+Generated: `2026-02-23T22:27:32.356004Z`
 Source glob: `evidence/planning/convergence_packets/inbox/*.json`
 Schema: `evidence/planning/schemas/v1/convergence_promotion_packet.schema.json`
 

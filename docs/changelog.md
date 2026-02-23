@@ -7,6 +7,32 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-23: Processed Subjective Skill-Drift Thought Intake (2 files)
+
+### Overview
+
+Processed the remaining unprocessed subjective-experience thought pair and mapped them into existing canonical claims
+without creating new IDs. The update clarifies partial re-engagement behavior, trigger competition, and sleep-driven
+tactic expansion expectations.
+
+### What Changed
+
+- Extended tri-loop commitment guidance with overlay re-engagement and trigger-field routing:
+  - `docs/architecture/e3.md`
+  - added `EXECUTE_BASE` / `OVERLAY_AUDIT` / `FULL_REPLAN` state framing and bounded trigger-field arbitration notes.
+- Extended control-plane contract with bounded trigger-bandwidth policy:
+  - `docs/architecture/control_plane.md`
+  - added competitive trigger field guidance and axis-tuned trigger selection dynamics.
+- Extended sleep mechanism expectations for tactic-option expansion:
+  - `docs/architecture/sleep.md`
+  - added probe-facing expectation that sleep should improve tactic diversity, not only smoothness.
+- Updated claim source lineage:
+  - `docs/claims/claims.yaml`
+  - added thought-source links for `MECH-030`, `MECH-057`, `MECH-060`, `MECH-062`, and `MECH-063`.
+- Marked thought files as processed with backlinks:
+  - `docs/thoughts/2026-02-13_subjective_experience_pre_post_commit.md`
+  - `docs/thoughts/2026-02-23_some_subjective_experience_mapping.md`
+
 ## 2026-02-22: Convergence Receipt Loop (Packet Acknowledgment + Adjudication State)
 
 ### Overview

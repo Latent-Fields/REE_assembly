@@ -135,7 +135,15 @@ From an ethical perspective, sleep modes are where:
 
 This suggests that ethical development depends not only on waking control, but on how learning is consolidated when action is impossible.
 
+Operational expectation (for probe design):
+
+- sleep should improve not only execution smoothness but also **tactic-option breadth** by recombining successful
+  sub-trajectories into new candidate strategies,
+- post-sleep gains should therefore be measured on both policy smoothness and diversity/quality of viable tactics,
+  especially after periods of high trigger competition during wake execution.
+
 Source: `docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md`
+Additional thought anchor: `docs/thoughts/2026-02-23_some_subjective_experience_mapping.md`
 
 ## Open Questions
 
@@ -158,3 +166,4 @@ None noted in preserved sources.
 - `docs/processed/legacy_tree/architecture/sleep/README.md`
 - `docs/processed/legacy_tree/architecture/sleep/sleep_contract.md`
 - `docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md`
+- `docs/thoughts/2026-02-23_some_subjective_experience_mapping.md`

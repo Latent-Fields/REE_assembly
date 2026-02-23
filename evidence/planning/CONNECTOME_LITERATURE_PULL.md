@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-23T22:18:39.750562Z`
+Generated: `2026-02-23T22:27:32.192783Z`
 Cycle: `2026-02-23`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.

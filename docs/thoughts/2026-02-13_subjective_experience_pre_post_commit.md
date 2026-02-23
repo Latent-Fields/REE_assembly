@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-062 overlay re-engagement + trigger-field routing)
+- `docs/architecture/control_plane.md` (MECH-063 competitive trigger-field bandwidth policy)
+- `docs/architecture/sleep.md` (MECH-030 post-sleep tactic-option expansion expectation)
+- `docs/claims/claims.yaml` (source lineage updates for MECH-030/057/060/062/063)
+- `docs/changelog.md` (2026-02-23 thought-intake processing record)
+
+---
+
 THOUGHT for REE_assembly
 
 Title: Skill drift from conscious control to post-commit automation; abstraction-level gating; surprise interrupts

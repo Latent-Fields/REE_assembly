@@ -264,6 +264,23 @@ Each axis should carry:
 This decomposition allows regimes like "focused but initiation-suppressed" (stable representation, high commitment
 threshold, low energy budget) without forcing contradictory updates into a single scalar channel.
 
+### Competitive trigger field and bounded tactical bandwidth
+
+Control pressure should be treated as a competitive trigger field rather than a single "interrupt happened" scalar.
+At minimum, candidate trigger families should include:
+
+- sensory mismatch,
+- goal conflict,
+- hazard pressure,
+- social-rule conflict,
+- salience spikes,
+- fatigue/energy collapse,
+- novelty-driven exploration pressure.
+
+Only a bounded top-priority subset should enter E3 tactical processing on each cycle. Orthogonal axes in MECH-063 tune
+the selection dynamics: precision and delay-tolerance stabilize continuation, interrupt/volatility and threat channels
+escalate rapid reorientation, and energy budget limits tactical depth to prevent thrashing.
+
 ### Phenomenology-Aligned Diagnostic Profile
 
 A useful control-plane validation profile is the observed sequence:
