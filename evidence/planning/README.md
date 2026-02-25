@@ -38,6 +38,7 @@ This folder closes the architecture loop by converting current evidence into a m
 
 - `planning_criteria.v1.yaml`: thresholds and repo-routing hints.
 - `planning_criteria.v1.yaml#model_adjudication`: JEPA-vs-REE conflict outcomes, cascade policy, temporary override mode, and anti-lock-in gate.
+- `planning_criteria.v1.yaml#claim_evidence_staging`: claim-specific evidence-maturity lanes (for example `proxy -> integration -> behavioral`) and governance suppression guards to avoid over-reading proxy-only evidence.
 
 ## Generation
 

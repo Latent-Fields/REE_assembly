@@ -1322,6 +1322,10 @@ def _default_planning_criteria() -> dict[str, Any]:
             "stale_if_timestamp_before_epoch_start": True,
             "require_epoch_tag_for_new_evidence": False,
         },
+        "claim_evidence_staging": {
+            "enabled": False,
+            "claims": {},
+        },
     }
 
 
@@ -1353,6 +1357,14 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
     else:
         for key, value in defaults["evidence_applicability"].items():
             applicability.setdefault(key, value)
+    staging = data.get("claim_evidence_staging")
+    if not isinstance(staging, dict):
+        data["claim_evidence_staging"] = dict(defaults["claim_evidence_staging"])
+    else:
+        for key, value in defaults["claim_evidence_staging"].items():
+            staging.setdefault(key, value)
+        if not isinstance(staging.get("claims"), dict):
+            staging["claims"] = {}
     adjudication = data.get("model_adjudication")
     if not isinstance(adjudication, dict):
         data["model_adjudication"] = dict(defaults["model_adjudication"])
@@ -2031,6 +2043,100 @@ def _suggest_literature_type(claim_id: str, matrix: dict[str, Any]) -> str:
     return f"targeted_review_{claim_id.lower().replace('-', '_')}"
 
 
+def _claim_stage_index(stage_order: list[str], stage_id: str) -> int:
+    token = str(stage_id).strip()
+    if token in stage_order:
+        return stage_order.index(token)
+    return -1
+
+
+def _build_claim_evidence_stage_info(
+    claim_id: str,
+    claim_entries: list[dict[str, Any]],
+    stage_cfg: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not isinstance(stage_cfg, dict):
+        return {}
+
+    configured_order = stage_cfg.get("stage_order", [])
+    if isinstance(configured_order, list):
+        stage_order = _dedupe_preserve_order([str(token).strip() for token in configured_order])
+    else:
+        stage_order = []
+    if not stage_order:
+        stage_order = ["proxy", "integration", "behavioral"]
+
+    configured_stage = str(stage_cfg.get("current_stage", "proxy")).strip() or "proxy"
+    if configured_stage not in stage_order:
+        configured_stage = stage_order[0]
+
+    observed_classes = _dedupe_preserve_order(
+        [str(entry.get("evidence_class", "")).strip() for entry in claim_entries if str(entry.get("evidence_class", "")).strip()]
+    )
+
+    advance_rules_raw = stage_cfg.get("advance_rules", {})
+    advance_rules: dict[str, list[str]] = {}
+    if isinstance(advance_rules_raw, dict):
+        for stage_id, prefixes_raw in advance_rules_raw.items():
+            stage_token = str(stage_id).strip()
+            if not stage_token or stage_token not in stage_order:
+                continue
+            prefixes: list[str] = []
+            if isinstance(prefixes_raw, list):
+                prefixes = _dedupe_preserve_order([str(token).strip() for token in prefixes_raw if str(token).strip()])
+            if prefixes:
+                advance_rules[stage_token] = prefixes
+
+    resolved_stage = configured_stage
+    resolved_index = _claim_stage_index(stage_order, resolved_stage)
+    for candidate in stage_order:
+        candidate_idx = _claim_stage_index(stage_order, candidate)
+        if candidate_idx <= resolved_index:
+            continue
+        prefixes = advance_rules.get(candidate, [])
+        if not prefixes:
+            continue
+        matched = any(
+            observed.startswith(prefix)
+            for observed in observed_classes
+            for prefix in prefixes
+        )
+        if matched:
+            resolved_stage = candidate
+            resolved_index = candidate_idx
+
+    governance_cfg = stage_cfg.get("governance", {})
+    if not isinstance(governance_cfg, dict):
+        governance_cfg = {}
+
+    def _suppressed(min_stage_key: str) -> bool:
+        min_stage = str(governance_cfg.get(min_stage_key, "")).strip()
+        if not min_stage or min_stage not in stage_order:
+            return False
+        min_idx = _claim_stage_index(stage_order, min_stage)
+        return resolved_index < min_idx
+
+    notes = stage_cfg.get("notes", {})
+    if not isinstance(notes, dict):
+        notes = {}
+
+    return {
+        "claim_id": claim_id,
+        "claim_focus": str(stage_cfg.get("claim_focus", "")).strip(),
+        "stage_mode": str(stage_cfg.get("stage_mode", "")).strip(),
+        "stage_order": stage_order,
+        "configured_stage": configured_stage,
+        "resolved_stage": resolved_stage,
+        "proxy_noise_expected": bool(stage_cfg.get("proxy_noise_expected", False)),
+        "observed_evidence_classes": observed_classes,
+        "suppress_structure_signals": _suppressed("structure_signals_min_stage"),
+        "suppress_external_precedence": _suppressed("external_precedence_min_stage"),
+        "suppress_mandatory_decision": _suppressed("mandatory_decision_min_stage"),
+        "proxy_interpretation": str(notes.get("proxy_interpretation", "")).strip(),
+        "final_test_basis": str(notes.get("final_test_basis", "")).strip(),
+    }
+
+
 def _write_planning_outputs(
     planning_root: Path,
     matrix: dict[str, Any],
@@ -2186,6 +2292,17 @@ def _write_planning_outputs(
     ]
     anti_lock_in_gate = adjudication.get("anti_lock_in_gate", {})
     anti_lock_in_enabled = bool(anti_lock_in_gate.get("enabled", True))
+    staging_root = planning_criteria.get("claim_evidence_staging", {})
+    staging_enabled = bool(staging_root.get("enabled", False)) if isinstance(staging_root, dict) else False
+    staging_claims: dict[str, dict[str, Any]] = {}
+    if staging_enabled and isinstance(staging_root, dict):
+        raw_claims = staging_root.get("claims", {})
+        if isinstance(raw_claims, dict):
+            for raw_claim_id, raw_cfg in raw_claims.items():
+                claim_key = str(raw_claim_id).strip().upper()
+                if not claim_key or not isinstance(raw_cfg, dict):
+                    continue
+                staging_claims[claim_key] = raw_cfg
     generated_at_dt = _parse_timestamp_only(generated_at)
 
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
@@ -2210,10 +2327,33 @@ def _write_planning_outputs(
 
         reasons: list[str] = []
         evidence_needed: set[str] = set()
+        stage_info: dict[str, Any] = {}
+        suppress_structure_signals = False
+        suppress_external_precedence = False
+        suppress_mandatory_decision = False
+
+        def _add_reason(token: str) -> None:
+            if token and token not in reasons:
+                reasons.append(token)
+
+        if staging_enabled:
+            stage_info = _build_claim_evidence_stage_info(
+                claim_id,
+                claim_entries,
+                staging_claims.get(claim_id),
+            )
+            if stage_info:
+                suppress_structure_signals = bool(stage_info.get("suppress_structure_signals", False))
+                suppress_external_precedence = bool(stage_info.get("suppress_external_precedence", False))
+                suppress_mandatory_decision = bool(stage_info.get("suppress_mandatory_decision", False))
+                if bool(stage_info.get("proxy_noise_expected", False)):
+                    _add_reason("proxy_stage_noise_expected")
         signals: dict[str, Any] = {
             "current_status": current_status,
             "claim_type": claim_type,
         }
+        if stage_info:
+            signals["evidence_stage"] = stage_info
         overall_conf = 0.0
         exp_count = 0
         lit_count = 0
@@ -2355,29 +2495,31 @@ def _write_planning_outputs(
             )
 
             if overall_conf < low_conf_threshold:
-                reasons.append("low_overall_confidence")
+                _add_reason("low_overall_confidence")
             if exp_count == 0:
-                reasons.append("missing_experimental_evidence")
+                _add_reason("missing_experimental_evidence")
                 evidence_needed.add("experimental")
             if lit_count == 0:
-                reasons.append("missing_literature_evidence")
+                _add_reason("missing_literature_evidence")
                 evidence_needed.add("literature")
             if conflict_ratio >= conflict_alert_threshold:
-                reasons.append("directional_conflict_alert")
+                if not suppress_structure_signals:
+                    _add_reason("directional_conflict_alert")
                 # Directional conflict requires new experimental discrimination first.
                 # Ask for literature only when no literature is present yet.
                 evidence_needed.add("experimental")
                 if lit_count == 0:
                     evidence_needed.add("literature")
             if current_status == "candidate" and exp_count < candidate_min_exp:
-                reasons.append("insufficient_experimental_replication")
+                _add_reason("insufficient_experimental_replication")
                 evidence_needed.add("experimental")
             if current_status == "provisional" and lit_count < provisional_min_lit:
-                reasons.append("insufficient_literature_grounding")
+                _add_reason("insufficient_literature_grounding")
                 evidence_needed.add("literature")
 
             if claim_id in conflicts_by_claim:
-                reasons.append("active_conflict")
+                if not suppress_structure_signals:
+                    _add_reason("active_conflict")
                 # Conflict claims should always get experimental follow-up.
                 # Requiring literature again when it already exists causes an infinite
                 # re-proposal loop and task churn.
@@ -2386,18 +2528,22 @@ def _write_planning_outputs(
                     evidence_needed.add("literature")
 
         structure_signals: list[str] = []
-        if conflict_ratio >= consider_conflict_ratio:
-            structure_signals.append("high_conflict_ratio")
-        if len(recurring_signatures) >= consider_min_distinct_sigs:
-            structure_signals.append("recurring_failure_signatures")
-        if (
-            lit_total >= consider_min_lit_entries
-            and lit_non_support_ratio >= consider_lit_non_support_ratio
-        ):
-            structure_signals.append("literature_non_support_pressure")
+        if not suppress_structure_signals:
+            if conflict_ratio >= consider_conflict_ratio:
+                structure_signals.append("high_conflict_ratio")
+            if len(recurring_signatures) >= consider_min_distinct_sigs:
+                structure_signals.append("recurring_failure_signatures")
+            if (
+                lit_total >= consider_min_lit_entries
+                and lit_non_support_ratio >= consider_lit_non_support_ratio
+            ):
+                structure_signals.append("literature_non_support_pressure")
+        else:
+            signals["stage_structure_signals_suppressed"] = True
 
         if (
             external_precedence_enabled
+            and not suppress_external_precedence
             and conflict_ratio >= external_precedence_conflict_ratio
             and entries_total >= external_precedence_min_total_entries
             and lit_count >= external_precedence_min_lit_entries
@@ -2407,18 +2553,18 @@ def _write_planning_outputs(
         ):
             structure_signals.append("external_precedence_pressure")
             external_precedence_candidate = True
-            reasons.append("external_precedence_pressure")
+            _add_reason("external_precedence_pressure")
             evidence_needed.add("experimental")
             if lit_count == 0:
                 evidence_needed.add("literature")
 
             if anti_lock_in_enabled and current_status in {"candidate", "provisional", "active", "stable"}:
                 anti_lock_in_review_required = True
-                reasons.append("anti_lock_in_review_required")
+                _add_reason("anti_lock_in_review_required")
 
         consider_new_structure = len(structure_signals) >= 3
         if consider_new_structure:
-            reasons.append("consider_new_structure")
+            _add_reason("consider_new_structure")
             evidence_needed.add("experimental")
             if lit_count == 0:
                 evidence_needed.add("literature")
@@ -2438,7 +2584,7 @@ def _write_planning_outputs(
                 "unique_directions": len(recent_direction_set),
             }
             signals["proposal_saturation"] = dict(saturation_signal_details)
-            reasons.append("saturation_guard_hold")
+            _add_reason("saturation_guard_hold")
 
         if (
             consider_new_structure
@@ -2449,7 +2595,7 @@ def _write_planning_outputs(
         ):
             escalate_architecture_decision = True
             signals["escalation_required"] = True
-            reasons.append("escalate_architecture_decision")
+            _add_reason("escalate_architecture_decision")
 
         if (
             conflict_ratio >= atomic_split_conflict_ratio
@@ -2460,7 +2606,7 @@ def _write_planning_outputs(
         ):
             atomic_split_recommended = True
             signals["atomic_split_recommended"] = True
-            reasons.append("atomic_split_recommended")
+            _add_reason("atomic_split_recommended")
 
         decision_status = str(decision_state.get("decision_status", "none")).strip().lower()
         decision_recommendation = str(decision_state.get("recommendation", "")).strip()
@@ -2470,6 +2616,8 @@ def _write_planning_outputs(
         )
         decision_unresolved = not decision_resolved
         if (
+            not suppress_mandatory_decision
+            and
             conflict_ratio >= mandatory_decision_conflict_ratio
             and recent_targeted_batches >= mandatory_decision_min_fresh_batches
             and decision_unresolved
@@ -2481,7 +2629,7 @@ def _write_planning_outputs(
             signals["mandatory_decision_checkpoint"] = True
             signals["decision_deadline_utc"] = decision_deadline_utc
             signals["decision_required_outcomes"] = list(allowed_conflict_outcomes)
-            reasons.append("mandatory_decision_checkpoint")
+            _add_reason("mandatory_decision_checkpoint")
 
         # Saturation guard prevents infinite re-dispatch loops for stale experimental probes.
         if saturation_guard_engaged and "experimental" in evidence_needed:
@@ -2533,6 +2681,7 @@ def _write_planning_outputs(
                     "saturation_signal_details": saturation_signal_details,
                     "recurring_failure_signatures": recurring_signatures[:5],
                     "trigger_signals": sorted(set(structure_signals)),
+                    "evidence_stage": stage_info,
                     "consider_new_structure": consider_new_structure,
                     "recommendation": (
                         "mandatory_decision_checkpoint"
@@ -3088,6 +3237,30 @@ def _write_planning_outputs(
                     for sig in rec_sigs
                 )
                 arch_lines.append(f"  - recurring_signatures: {formatted}")
+            stage = item.get("evidence_stage", {})
+            if isinstance(stage, dict) and stage:
+                resolved_stage = str(stage.get("resolved_stage", "")).strip()
+                stage_order = [
+                    str(token).strip()
+                    for token in stage.get("stage_order", [])
+                    if str(token).strip()
+                ]
+                if resolved_stage:
+                    arch_lines.append(
+                        "  - evidence_stage: "
+                        + f"`{resolved_stage}`"
+                        + (f"; stage_order={','.join(stage_order)}" if stage_order else "")
+                    )
+                if bool(stage.get("proxy_noise_expected", False)):
+                    arch_lines.append(
+                        "  - interpretation_guard: proxy-stage evidence is expected noisy; avoid final ethics adjudication from proxy-only signals."
+                    )
+                proxy_note = str(stage.get("proxy_interpretation", "")).strip()
+                if proxy_note:
+                    arch_lines.append(f"  - proxy_note: {proxy_note}")
+                final_note = str(stage.get("final_test_basis", "")).strip()
+                if final_note:
+                    arch_lines.append(f"  - final_test_basis: {final_note}")
             if bool(item.get("external_precedence_candidate", False)):
                 confidence_split = item.get("confidence_split", {})
                 arch_lines.append(

@@ -1,11 +1,11 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-25T14:08:31.571159Z`
+Generated: `2026-02-25T15:07:53.938816Z`
 Cycle: `2026-02-25`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `9`. Completed items tracked: `3`.
+Active queue items: `8`. Completed items tracked: `3`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
@@ -15,9 +15,8 @@ Active queue items: `9`. Completed items tracked: `3`.
 | `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
 | `CPULL-0005` | `MECH-030` | `high` | no | 0 | `targeted_review_connectome_mech_030` |
 | `CPULL-0006` | `MECH-047` | `high` | no | 0 | `targeted_review_connectome_mech_047` |
-| `CPULL-0010` | `MECH-057` | `high` | yes | 0.769 | `targeted_review_connectome_mech_057` |
-| `CPULL-0011` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
-| `CPULL-0012` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
+| `CPULL-0010` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
+| `CPULL-0011` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
 
 ## ARC-016
 
@@ -139,29 +138,9 @@ Active queue items: `9`. Completed items tracked: `3`.
 - Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 - Manual-seed adjudication: required=True, adjudicated=False.
 
-## MECH-057
-
-- Pull ID: `CPULL-0010`
-- Status: `proposed`
-- Objective: Run targeted connectome literature pull for MECH-057.
-- Claim description: MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.
-- Evidence pressure: conflict_ratio=0.769, overall_confidence=0.7, trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures.
-- Recurring failure signatures: `ledger_editing`, `domination_lock_in`
-- Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.
-- Research questions:
-  - Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?
-  - What results directly contradict a literal REE mapping of this claim?
-  - Which circuit motifs inspire a cleaner architecture split or guardrail in REE?
-- Search tracks:
-  - `TRK-01` Structural and effective-connectivity constraints; query stems: `MECH-057 connectome effective connectivity`, `agentic extension / control completion requirement neural pathway dissociation`
-  - `TRK-02` Computational-neuroscience bridge papers; query stems: `agentic extension / control completion requirement computational neuroscience circuit model`, `MECH-057 predictive coding pathway evidence`
-  - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `agentic extension / control completion requirement conflicting neural evidence`, `MECH-057 alternative mechanism neural circuits`
-- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
-
 ## Q-013
 
-- Pull ID: `CPULL-0011`
+- Pull ID: `CPULL-0010`
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for Q-013.
 - Claim description: Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.
@@ -181,7 +160,7 @@ Active queue items: `9`. Completed items tracked: `3`.
 
 ## Q-014
 
-- Pull ID: `CPULL-0012`
+- Pull ID: `CPULL-0011`
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for Q-014.
 - Claim description: Q-014 is an open question about invariance / ethical relevance blind spot risk.
@@ -227,9 +206,8 @@ Queue items:
 - `CPULL-0004` / `MECH-029` / `targeted_review_connectome_mech_029`
 - `CPULL-0005` / `MECH-030` / `targeted_review_connectome_mech_030`
 - `CPULL-0006` / `MECH-047` / `targeted_review_connectome_mech_047`
-- `CPULL-0010` / `MECH-057` / `targeted_review_connectome_mech_057`
-- `CPULL-0011` / `Q-013` / `targeted_review_connectome_q_013`
-- `CPULL-0012` / `Q-014` / `targeted_review_connectome_q_014`
+- `CPULL-0010` / `Q-013` / `targeted_review_connectome_q_013`
+- `CPULL-0011` / `Q-014` / `targeted_review_connectome_q_014`
 
 Per-entry requirements (mandatory):
 - preserve source wording in summary and add explicit REE translation

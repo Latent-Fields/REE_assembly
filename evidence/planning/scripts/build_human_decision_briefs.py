@@ -629,6 +629,21 @@ def _build_claim_brief(
             lines.append(
                 f"- Conflict ratio: `{structure_pressure.get('conflict_ratio', 'n/a')}`; overall confidence: `{structure_pressure.get('overall_confidence', 'n/a')}`"
             )
+            evidence_stage = structure_pressure.get("evidence_stage", {})
+            if isinstance(evidence_stage, dict) and evidence_stage:
+                resolved_stage = str(evidence_stage.get("resolved_stage", "")).strip()
+                if resolved_stage:
+                    lines.append(f"- Evidence stage: `{resolved_stage}`")
+                if bool(evidence_stage.get("proxy_noise_expected", False)):
+                    lines.append(
+                        "- Interpretation guard: proxy-stage evidence is expected noisy and should not be treated as final ethical-adjudication evidence."
+                    )
+                proxy_note = str(evidence_stage.get("proxy_interpretation", "")).strip()
+                if proxy_note:
+                    lines.append(f"- Proxy interpretation: {proxy_note}")
+                final_note = str(evidence_stage.get("final_test_basis", "")).strip()
+                if final_note:
+                    lines.append(f"- Final-test basis: {final_note}")
             trigger_signals = structure_pressure.get("trigger_signals", [])
             if isinstance(trigger_signals, list) and trigger_signals:
                 lines.append(

@@ -369,7 +369,7 @@
     "state_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
   },
   "cycle_date": "2026-02-25",
-  "generated_at_utc": "2026-02-25T14:08:31.571159Z",
+  "generated_at_utc": "2026-02-25T15:07:53.938816Z",
   "items": [
     {
       "acceptance_checks": [
@@ -1051,123 +1051,6 @@
         "Summary includes source wording, REE translation, and explicit mapping caveat.",
         "No duplicate DOI+claim linkage unless rationale is materially different."
       ],
-      "claim_id": "MECH-057",
-      "completion_status": {
-        "clarification_ready": false,
-        "clarification_reason": "awaiting_coverage",
-        "coverage_ready": false,
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
-        "manual_adjudicated": false,
-        "manual_adjudication_required": false,
-        "manual_seed": false,
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "min_support_entries": 1,
-        "non_support_entries": 0,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence",
-        "support_entries": 0
-      },
-      "connectome_focus": "Find connectome-constrained evidence that can confirm, refute, or refine `agentic extension / control completion requirement`.",
-      "manual_seed": false,
-      "objective": "Run targeted connectome literature pull for MECH-057.",
-      "plain_english_claim_description": "MECH-057 is a mechanism hypothesis about agentic extension / control completion requirement.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-015`, `ARC-005`, `ARC-003`, `ARC-004`, `INV-012`. It currently influences 9 downstream claim(s): `IMPL-020`, `IMPL-021`, `IMPL-022`, `IMPL-023`, `MECH-058`, `MECH-059`, `MECH-060`, `Q-012`, `Q-014`. Primary anchor: `docs/architecture/agency_responsibility_flow.md#mech-057`.",
-      "priority": "high",
-      "pull_id": "CPULL-0010",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "preserve source wording and add REE translation with caveat boundaries"
-      },
-      "research_questions": [
-        "Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?",
-        "What results directly contradict a literal REE mapping of this claim?",
-        "Which circuit motifs inspire a cleaner architecture split or guardrail in REE?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Structural and effective-connectivity constraints",
-          "query_stems": [
-            "MECH-057 connectome effective connectivity",
-            "agentic extension / control completion requirement neural pathway dissociation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01"
-        },
-        {
-          "focus": "Computational-neuroscience bridge papers",
-          "query_stems": [
-            "agentic extension / control completion requirement computational neuroscience circuit model",
-            "MECH-057 predictive coding pathway evidence"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02"
-        },
-        {
-          "focus": "Disconfirming/alternative pathway evidence",
-          "query_stems": [
-            "agentic extension / control completion requirement conflicting neural evidence",
-            "MECH-057 alternative mechanism neural circuits"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.769,
-        "consider_new_structure": true,
-        "direction_counts": {
-          "mixed": 3,
-          "supports": 8,
-          "unknown": 0,
-          "weakens": 5
-        },
-        "overall_confidence": 0.7,
-        "recurring_failure_signatures": [
-          "ledger_editing",
-          "domination_lock_in"
-        ],
-        "source_counts": {
-          "experimental": 9,
-          "literature": 7
-        },
-        "trigger_signals": [
-          "external_precedence_pressure",
-          "high_conflict_ratio",
-          "recurring_failure_signatures"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_connectome_mech_057",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 3 primary sources per claim pull (peer-reviewed journals, major conference papers, or canonical preprints).",
-        "At least 1 disconfirming or mixed-direction source is included.",
-        "Each record includes mapping + confidence_components fields.",
-        "Summary includes source wording, REE translation, and explicit mapping caveat.",
-        "No duplicate DOI+claim linkage unless rationale is materially different."
-      ],
       "claim_id": "Q-013",
       "completion_status": {
         "clarification_ready": false,
@@ -1192,7 +1075,7 @@
       "plain_english_claim_description": "Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.",
       "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.",
       "priority": "high",
-      "pull_id": "CPULL-0011",
+      "pull_id": "CPULL-0010",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -1309,7 +1192,7 @@
       "plain_english_claim_description": "Q-014 is an open question about invariance / ethical relevance blind spot risk.",
       "plain_english_ree_fit_description": "This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.",
       "priority": "high",
-      "pull_id": "CPULL-0012",
+      "pull_id": "CPULL-0011",
       "required_record_contract": {
         "confidence_component_fields": [
           "confidence_components.source_quality",
@@ -1397,9 +1280,9 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "active_queue_items": 9,
+    "active_queue_items": 8,
     "completed_items": 3,
-    "consider_new_structure_items": 6,
+    "consider_new_structure_items": 5,
     "manual_seed_claim_ids": [
       "ARC-016",
       "MECH-025",
@@ -1410,7 +1293,7 @@
     ],
     "manual_seed_items": 6,
     "mode": "consider_new_structure_only+manual_seed_claims",
-    "total_selected_items": 12
+    "total_selected_items": 11
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/claim_evidence.v1.json",

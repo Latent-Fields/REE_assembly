@@ -96,6 +96,32 @@ Suggested run_id suffix pattern:
 - `..._action_attribution_no_commit_gate_...`
 - `..._full_control_completion_...`
 
+## Evidence staging contract (ethical-agency maturation)
+
+MECH-057 is scoped to **architectural ethical agency**, not generic task stability.
+
+Use a three-stage evidence maturity model:
+
+- `proxy` (current default): toy/simulation mechanistic pressure tests.
+  - Typical evidence classes: `exp:simulation`
+  - Interpretation: useful for mechanism stress signatures, **not** final ethical-agency adjudication.
+- `integration`: multi-component REE integration probes with responsibility-bearing traces.
+  - Typical evidence classes: `exp:integration`, `exp:system_integration`
+  - Interpretation: validates that required loops coexist under integrated constraints.
+- `behavioral`: in-situ behavioral evidence for ethical-agency claims.
+  - Typical evidence classes: `exp:behavioral_ethics`, `exp:human_eval`, `exp:in_situ_behavior`
+  - Interpretation: required for final MECH-057 adjudication confidence.
+
+Interpretation guard:
+
+- Mixed/noisy proxy evidence is expected and should not be over-read as final falsification of MECH-057.
+- Final adjudication requires stage `behavioral` evidence where intervention, attribution, and commitment lineage are all visible in the same system context.
+
+Required metadata for stage-aware governance:
+
+- `manifest.json` `evidence_class` must be set deliberately (do not leave implicit defaults once non-proxy stages begin).
+- Stage-up runs must include explicit justification in `summary.md` linking observed behavior to ethical-agency scope.
+
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->

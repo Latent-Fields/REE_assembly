@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-25T14:08:30.922337Z`
+Generated: `2026-02-25T15:07:53.362408Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -10,7 +10,7 @@ Use this as the human-in-the-loop review queue.
 | claim_id | current_status | decision_needed | recommendation | decision_status |
 |---|---|---|---|---|
 | `MECH-056` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-057` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-057` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-058` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-059` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-060` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -49,10 +49,11 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-02-15T20:58:38.602475Z`
-- Last selected option: hold_candidate_resolve_conflict
-- Last rationale: Applied approved conflict-hold decision to keep queue actionable without pending manual status.
+- Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `user` at `2026-02-25T14:59:46.253616Z`
+- Last selected option: hybridize
+- Last rationale: Clarified scope: MECH-057 concerns ethical agency (responsibility-bearing intervention), not generic stable task performance. JEPA-like world-model structure is likely necessary but insufficient without E3 commitment gating, self-attribution, and social/responsibility scaffolding. Mixed interim evidence is expected and does not by itself falsify the claim because ethical behavior emergence depends on broader architecture integration; literature is inherently mixed due contested ethics definitions. Treat interim experiment signals as noisy/provisional while preserving REE-first canonical contracts and guardrailed integration.
 
 ### MECH-058
 - Current status: `candidate`

@@ -485,6 +485,7 @@ def _build_dossier(
             "trigger_signals": [str(x) for x in gap_item.get("trigger_signals", [])],
             "conflict_ratio": round(_safe_float(gap_item.get("conflict_ratio", 0.0), 0.0), 3),
             "overall_confidence": round(_safe_float(gap_item.get("overall_confidence", 0.0), 0.0), 3),
+            "evidence_stage": gap_item.get("evidence_stage", {}),
             "source_counts": {
                 "experimental": int(gap_item.get("source_counts", {}).get("experimental", 0)),
                 "literature": int(gap_item.get("source_counts", {}).get("literature", 0)),
@@ -546,6 +547,21 @@ def _format_dossier_md(dossier: dict[str, Any]) -> str:
     lines.append(f"- Trigger signals: {', '.join(str(x) for x in pressure.get('trigger_signals', [])) or '-'}")
     lines.append(f"- Conflict ratio: {_fmt_number(_safe_float(pressure.get('conflict_ratio', 0.0), 0.0))}")
     lines.append(f"- Overall confidence: {_fmt_number(_safe_float(pressure.get('overall_confidence', 0.0), 0.0))}")
+    stage = pressure.get("evidence_stage", {})
+    if isinstance(stage, dict) and stage:
+        resolved_stage = str(stage.get("resolved_stage", "")).strip()
+        if resolved_stage:
+            lines.append(f"- Evidence stage: `{resolved_stage}`")
+        if bool(stage.get("proxy_noise_expected", False)):
+            lines.append(
+                "- Interpretation guard: proxy-stage evidence is expected noisy and should not be treated as final ethical-adjudication evidence."
+            )
+        proxy_note = str(stage.get("proxy_interpretation", "")).strip()
+        if proxy_note:
+            lines.append(f"- Proxy interpretation: {proxy_note}")
+        final_note = str(stage.get("final_test_basis", "")).strip()
+        if final_note:
+            lines.append(f"- Final-test basis: {final_note}")
     lines.append("")
 
     lines.append("## Evidence Mix and Why It Looks This Way")

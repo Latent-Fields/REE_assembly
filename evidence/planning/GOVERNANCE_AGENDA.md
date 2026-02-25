@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-25T14:08:31.855816Z`
+Generated: `2026-02-25T15:07:54.170587Z`
 
 ## Cycle Status
 
@@ -24,19 +24,18 @@ Generated: `2026-02-25T14:08:31.855816Z`
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
 | `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
-| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `review_ready_packets` | `yes` | `yes` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
 | `architecture_structure_adjudication` | `HUMAN_ONLY` | `FAIL` | `review_structure_dossiers_and_model_adjudication` | `n/a` | `yes` |
 
-Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
+Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
 
 1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
-1a. Thought-Adjudication Bridge: 7 candidate item(s); approved_pending_apply=0.
+1a. Thought-Adjudication Bridge: 6 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
 - `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `MECH-062` (mechanism hypothesis; commitment / tri loop gate coordination; see `docs/architecture/e3.md#mech-062`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
@@ -79,18 +78,17 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-25/WEEKLY_DISPATCH.md`
 6. Manual Carryover: 0 open item(s), 1 total.
 - context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`
-7. Architecture Structure: 6 consider-new-structure item(s), 27 total register item(s).
+7. Architecture Structure: 5 consider-new-structure item(s), 27 total register item(s).
 - context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`
 - backlog mode guards: saturation_holds=0, escalation_required=3
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); conflict_ratio=0.875; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_ratio=0.871; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); conflict_ratio=0.848; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); conflict_ratio=0.769; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
 - `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`); conflict_ratio=0.727; trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
 - `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); conflict_ratio=0.727; trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures
-8. Structure Dossiers: 6 active dossier(s), 73 archived dossier(s), 6 active marked consider-new-structure.
+8. Structure Dossiers: 5 active dossier(s), 74 archived dossier(s), 5 active marked consider-new-structure.
 - context: `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`, `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`
-9. Connectome Literature Pull: 9 queued claim(s), 9 high-priority, 3 completed.
+9. Connectome Literature Pull: 8 queued claim(s), 8 high-priority, 3 completed.
 - context: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`, `evidence/planning/connectome_pull_state.v1.json`
 - `ARC-016` (architecture commitment; cognitive modes / control plane regimes; see `docs/architecture/modes_of_cognition.md#arc-016`); pull_id=`CPULL-0001`
 - `MECH-025` (mechanism hypothesis; cognitive modes / action doing; see `docs/architecture/modes_of_cognition.md#mech-025`); pull_id=`CPULL-0002`
@@ -98,9 +96,8 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - `MECH-029` (mechanism hypothesis; default mode / reflective ethics; see `docs/architecture/default_mode.md#mech-029`); pull_id=`CPULL-0004`
 - `MECH-030` (mechanism hypothesis; sleep / modes consolidation; see `docs/architecture/sleep.md#mech-030`); pull_id=`CPULL-0005`
 - `MECH-047` (mechanism hypothesis; control plane / precommitment mode manager; see `docs/architecture/mode_manager.md#mech-047`); pull_id=`CPULL-0006`
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); pull_id=`CPULL-0010`
-- `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`); pull_id=`CPULL-0011`
-- `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); pull_id=`CPULL-0012`
+- `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`); pull_id=`CPULL-0010`
+- `Q-014` (open question; invariance / ethical relevance blind spot risk; see `docs/architecture/agency_responsibility_flow.md#q-014`); pull_id=`CPULL-0011`
 10. Convergence Intake: enabled=True; total=10; valid=10; invalid=0; gate_ready=10; gate_failures=0; placeholder_evidence=0; implementation_plans=10.
 - context: `evidence/planning/CONVERGENCE_INTAKE_QUEUE.md`, `evidence/planning/convergence_intake_queue.v1.json`
 - required gates: `primary_sources_verified`, `source_content_mode_defined`, `source_license_id_defined`, `source_license_review_verified`, `copied_content_attribution_defined`, `separation_tests_defined`, `falsifiability_defined`, `rollback_plan_defined`, `falsification_plan_complete`, `conflict_review_completed`, `mechanism_probe_ids_defined`, `benchmark_acceptance_criteria_defined`, `non_lexical_probation_window_configured`, `non_lexical_rollback_conditions_defined`, `non_lexical_adapter_patch_refs_defined`, `no_placeholder_evidence_tokens`
@@ -115,19 +112,18 @@ Open decision items: `weekly_dispatch_export`, `convergence_packet_review_queue`
 - packet=`CPKT-MUZERO-20260223` source=`muzero` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
 - packet=`CPKT-RAG-20260223` source=`rag` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
 - packet=`CPKT-RT-2-20260223` source=`rt-2` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
-11. Model Adjudication: 4 external-precedence candidate(s), 4 anti-lock-in review item(s).
+11. Model Adjudication: 3 external-precedence candidate(s), 3 anti-lock-in review item(s).
 - context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
 - temporary override mode: `jepa_internal_proxy_override`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.308
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.317
 - `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.324
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); external_precedence_candidate=yes; delta_lit_minus_exp=0.293
 12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
-- approval state: approved_for_cycle=false; latest_status=`missing`; latest_recommendation=``; latest_timestamp_utc=``
+- approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-02-25T14:21:58.933796Z`
 - REE_assembly: total=1, experimental=0, literature_review=1
 - ree-experiments-lab: total=15, experimental=15, literature_review=0
 - ree-v2: total=11, experimental=11, literature_review=0

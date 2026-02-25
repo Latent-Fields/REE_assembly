@@ -80,6 +80,42 @@
       "notes": "Hybridization should prefer REE interface contracts over direct source-structure adoption unless escalation criteria are met."
     }
   },
+  "claim_evidence_staging": {
+    "enabled": true,
+    "claims": {
+      "MECH-057": {
+        "claim_focus": "ethical_agency_only",
+        "stage_mode": "behavior_emergence",
+        "current_stage": "proxy",
+        "stage_order": [
+          "proxy",
+          "integration",
+          "behavioral"
+        ],
+        "advance_rules": {
+          "integration": [
+            "exp:integration",
+            "exp:system_integration"
+          ],
+          "behavioral": [
+            "exp:behavioral_ethics",
+            "exp:human_eval",
+            "exp:in_situ_behavior"
+          ]
+        },
+        "proxy_noise_expected": true,
+        "governance": {
+          "structure_signals_min_stage": "integration",
+          "external_precedence_min_stage": "integration",
+          "mandatory_decision_min_stage": "integration"
+        },
+        "notes": {
+          "proxy_interpretation": "Current MECH-057 probes are proxy mechanistic pressure tests and should not be read as final ethical-agency verdicts.",
+          "final_test_basis": "Final MECH-057 adjudication requires integrated behavioral evidence with responsibility-bearing intervention traces, not toy proxy runs alone."
+        }
+      }
+    }
+  },
   "repo_routing": {
     "experimental_default_repo": "ree-v2",
     "exploratory_repo": "ree-experiments-lab",
