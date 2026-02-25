@@ -1,11 +1,11 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-25T16:56:24.641589Z`
+Generated: `2026-02-25T20:08:01.546210Z`
 Cycle: `2026-02-25`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `8`. Completed items tracked: `3`.
+Active queue items: `6`. Completed items tracked: `3`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
@@ -15,8 +15,6 @@ Active queue items: `8`. Completed items tracked: `3`.
 | `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
 | `CPULL-0005` | `MECH-030` | `high` | no | 0 | `targeted_review_connectome_mech_030` |
 | `CPULL-0006` | `MECH-047` | `high` | no | 0 | `targeted_review_connectome_mech_047` |
-| `CPULL-0010` | `Q-013` | `high` | yes | 0.727 | `targeted_review_connectome_q_013` |
-| `CPULL-0011` | `Q-014` | `high` | yes | 0.727 | `targeted_review_connectome_q_014` |
 
 ## ARC-016
 
@@ -138,55 +136,15 @@ Active queue items: `8`. Completed items tracked: `3`.
 - Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 - Manual-seed adjudication: required=True, adjudicated=False.
 
-## Q-013
-
-- Pull ID: `CPULL-0010`
-- Status: `proposed`
-- Objective: Run targeted connectome literature pull for Q-013.
-- Claim description: Q-013 is an open question about uncertainty / deterministic vs stochastic jepa calibration.
-- REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 3 upstream claim(s): `MECH-059`, `ARC-005`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-013`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.639, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
-- Recurring failure signatures: `ledger_editing`, `domination_lock_in`
-- Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `uncertainty / deterministic vs stochastic jepa calibration`.
-- Research questions:
-  - Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?
-  - What results directly contradict a literal REE mapping of this claim?
-  - Which circuit motifs inspire a cleaner architecture split or guardrail in REE?
-- Search tracks:
-  - `TRK-01` Structural and effective-connectivity constraints; query stems: `Q-013 connectome effective connectivity`, `uncertainty / deterministic vs stochastic jepa calibration neural pathway dissociation`
-  - `TRK-02` Computational-neuroscience bridge papers; query stems: `uncertainty / deterministic vs stochastic jepa calibration computational neuroscience circuit model`, `Q-013 predictive coding pathway evidence`
-  - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `uncertainty / deterministic vs stochastic jepa calibration conflicting neural evidence`, `Q-013 alternative mechanism neural circuits`
-- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
-
-## Q-014
-
-- Pull ID: `CPULL-0011`
-- Status: `proposed`
-- Objective: Run targeted connectome literature pull for Q-014.
-- Claim description: Q-014 is an open question about invariance / ethical relevance blind spot risk.
-- REE fit: This is in REE's uncertainty layer and defines unresolved boundaries before promotion. It depends on 4 upstream claim(s): `MECH-057`, `MECH-059`, `ARC-015`, `ARC-004`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/agency_responsibility_flow.md#q-014`.
-- Evidence pressure: conflict_ratio=0.727, overall_confidence=0.639, trigger_signals=high_conflict_ratio,literature_non_support_pressure,recurring_failure_signatures.
-- Recurring failure signatures: `ledger_editing`, `domination_lock_in`
-- Connectome focus: Find connectome-constrained evidence that can confirm, refute, or refine `invariance / ethical relevance blind spot risk`.
-- Research questions:
-  - Which pathways in connectome/effective-connectivity findings are most relevant to this claim's mechanism?
-  - What results directly contradict a literal REE mapping of this claim?
-  - Which circuit motifs inspire a cleaner architecture split or guardrail in REE?
-- Search tracks:
-  - `TRK-01` Structural and effective-connectivity constraints; query stems: `Q-014 connectome effective connectivity`, `invariance / ethical relevance blind spot risk neural pathway dissociation`
-  - `TRK-02` Computational-neuroscience bridge papers; query stems: `invariance / ethical relevance blind spot risk computational neuroscience circuit model`, `Q-014 predictive coding pathway evidence`
-  - `TRK-03` Disconfirming/alternative pathway evidence; query stems: `invariance / ethical relevance blind spot risk conflicting neural evidence`, `Q-014 alternative mechanism neural circuits`
-- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
-
 ## Completed Pulls
 
 These claims currently satisfy completion criteria and are excluded from the active queue unless reopened.
 
 | pull_id | claim_id | status_reason | conflict_ratio |
 |---|---|---|---:|
-| `CPULL-0007` | `MECH-060` | clarification_criteria_met | 0.875 |
-| `CPULL-0008` | `MECH-058` | clarification_criteria_met | 0.871 |
-| `CPULL-0009` | `Q-017` | clarification_criteria_met | 0.848 |
+| `CPULL-0007` | `MECH-058` | clarification_criteria_met | 0.816 |
+| `CPULL-0008` | `Q-017` | clarification_criteria_met | 0.808 |
+| `CPULL-0009` | `MECH-060` | clarification_criteria_met | 0.8 |
 
 ## Copy/Paste Prompt
 
@@ -206,8 +164,6 @@ Queue items:
 - `CPULL-0004` / `MECH-029` / `targeted_review_connectome_mech_029`
 - `CPULL-0005` / `MECH-030` / `targeted_review_connectome_mech_030`
 - `CPULL-0006` / `MECH-047` / `targeted_review_connectome_mech_047`
-- `CPULL-0010` / `Q-013` / `targeted_review_connectome_q_013`
-- `CPULL-0011` / `Q-014` / `targeted_review_connectome_q_014`
 
 Per-entry requirements (mandatory):
 - preserve source wording in summary and add explicit REE translation

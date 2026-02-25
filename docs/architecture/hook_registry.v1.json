@@ -209,9 +209,10 @@
     {
       "hook_id": "HK-101",
       "hook_name": "pre_commit_simulation_error_stream",
-      "tier": "v3_planned",
-      "status": "planned",
+      "tier": "v2_bridge_active",
+      "status": "active",
       "producer_modules": [
+        "pack_emitter",
         "v3_hook_adapter"
       ],
       "consumer_modules": [
@@ -226,14 +227,15 @@
       ],
       "availability": "always",
       "stability": "experimental",
-      "notes": "Exploratory/simulation-side error for gating/search."
+      "notes": "Exploratory/simulation-side error for gating/search; emitted by ree-v2 runtime."
     },
     {
       "hook_id": "HK-102",
       "hook_name": "post_commit_realized_error_stream",
-      "tier": "v3_planned",
-      "status": "planned",
+      "tier": "v2_bridge_active",
+      "status": "active",
       "producer_modules": [
+        "pack_emitter",
         "v3_hook_adapter"
       ],
       "consumer_modules": [
@@ -249,14 +251,15 @@
       ],
       "availability": "always",
       "stability": "experimental",
-      "notes": "Realized outcome delta stream for accountability updates."
+      "notes": "Realized outcome delta stream for accountability updates; emitted by ree-v2 runtime."
     },
     {
       "hook_id": "HK-103",
       "hook_name": "commitment_trace_id_export",
-      "tier": "v3_planned",
-      "status": "planned",
+      "tier": "v2_bridge_active",
+      "status": "active",
       "producer_modules": [
+        "pack_emitter",
         "v3_hook_adapter"
       ],
       "consumer_modules": [
@@ -272,14 +275,15 @@
       ],
       "availability": "always",
       "stability": "experimental",
-      "notes": "Joins commitment decisions to later model/map updates."
+      "notes": "Joins commitment decisions to later model/map updates; emitted by ree-v2 runtime."
     },
     {
       "hook_id": "HK-104",
       "hook_name": "rollout_candidate_metadata_export",
-      "tier": "v3_planned",
-      "status": "planned",
+      "tier": "v2_bridge_active",
+      "status": "active",
       "producer_modules": [
+        "pack_emitter",
         "v3_hook_adapter"
       ],
       "consumer_modules": [
@@ -296,7 +300,7 @@
       ],
       "availability": "always",
       "stability": "experimental",
-      "notes": "Metadata for rollout arbitration and replay routing."
+      "notes": "Metadata for rollout arbitration and replay routing; emitted by ree-v2 runtime."
     },
     {
       "hook_id": "HK-201",

@@ -16,6 +16,8 @@ This folder closes the architecture loop by converting current evidence into a m
 - `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
 - `convergence_intake_queue.v1.json`: normalized queue of convergence promotion packets awaiting review.
 - `CONVERGENCE_INTAKE_QUEUE.md`: human-readable review table for convergence promotion packets.
+- `experiment_regime_coverage.v1.json`: active-claim claim-to-regime coverage matrix with missing-lane flags.
+- `EXPERIMENT_REGIME_COVERAGE.md`: human-readable claim-to-regime coverage report and priority nuance gaps.
 - `thought_adjudication_bridge.v1.json`: claims where thought-intake likely implies adjudication refresh or pending status-apply.
 - `THOUGHT_ADJUDICATION_BRIDGE.md`: human-readable bridge queue for thought-driven adjudication follow-through.
 - `convergence_packets/receipts/*.json`: machine-readable packet acknowledgments/adjudication outcomes.
@@ -110,6 +112,12 @@ Run connectome pull queue generation directly:
 
 ```bash
 python3 evidence/planning/scripts/build_connectome_literature_pull.py
+```
+
+Run experiment-regime coverage matrix generation directly:
+
+```bash
+python3 evidence/planning/scripts/build_experiment_regime_coverage.py
 ```
 
 Run adjudication-cascade directly:

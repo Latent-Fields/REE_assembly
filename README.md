@@ -4,16 +4,19 @@
 It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
 Implementation code and stress testing run in companion repositories, then feed evidence back here.
 
-**Start here:** `docs/README.md`
+**Human start:** `docs/roadmap.md`  
+**Agent-maintenance start:** `docs/README.md`
 
 ## If You Are New (Read In This Order)
 
-1. `docs/README.md` - operating procedure and required update discipline.
-2. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
-3. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
-4. `docs/roadmap.md` - current phase plan and repository roles.
+1. `docs/roadmap.md` - current phase plan, repository roles, and immediate queue.
+2. `docs/REE_overview.md` - high-level REE architecture orientation.
+3. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
+4. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
 5. `evidence/planning/REE_CONVERGENCE_INTERFACE.md` - how external knowledge enters REE.
 6. `evidence/experiments/CROSS_REPO_SYNC_POLICY.md` - how implementation repos stay contract-aligned.
+
+If you are operating Codex/automation against this repo, also read `docs/README.md`.
 
 ## What This Repository Owns
 
@@ -47,6 +50,18 @@ Commit semantics are continuous-stream, not stop-and-wait:
 - Pre-commit and post-commit streams may both run continuously.
 - The **commit boundary** is an authority boundary: irreversible dispatch and/or privilege-bearing durable-write eligibility for a `commit_id`.
 - If interruption happens after irreversible dispatch, a **new superseding commit** is required; accountability lineage is extended, not erased.
+
+## Explorer And Triple View
+
+- Launch local docs server from repo root:
+
+```bash
+python3 -m http.server
+```
+
+- Open `http://localhost:8000/docs/claims/explorer.html`.
+- Use `View -> Triple View` for synchronized static/dataflow/episode diagrams with claim/conflict overlays.
+- Use `View -> Governance` for decision inbox, dispatch context, and cycle checkpoints.
 
 ## Ecosystem Map (How Repositories Work Together)
 
@@ -108,6 +123,15 @@ Weekly cadence (current policy):
 - Do not copy unresolved external prose/code/weights directly into canonical architecture.
 - Require provenance and license attribution before promotion.
 - Keep schema contracts versioned and immutable once published.
+
+## GitHub Automation Policies
+
+- Architecture freshness/consistency/rendering:
+  - `.github/workflows/architecture-diagrams.yml`
+  - `scripts/architecture/check_freshness.sh`
+  - `scripts/architecture/check_consistency.sh`
+- Default-branch enforcement (non-default branch refs are auto-pruned):
+  - `.github/workflows/enforce-single-branch.yml`
 
 ## Working Structure
 

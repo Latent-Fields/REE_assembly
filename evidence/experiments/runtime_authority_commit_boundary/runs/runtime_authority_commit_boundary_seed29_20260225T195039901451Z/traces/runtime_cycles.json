@@ -1,0 +1,58 @@
+{
+  "schema_version": "runtime_authority_trace/v1",
+  "seed": 29,
+  "steps": [
+    {
+      "action_class": "WRITE_FILE",
+      "allowed": true,
+      "commit_id": "30ca776d-6371-40cd-8fcf-e7ff36b4a501",
+      "effect_class": "reversible",
+      "execution_returncode": 0,
+      "ledger_event": "commit_executed",
+      "rc_conflict_score": 0.18288714322870195,
+      "rc_state": "NORMAL",
+      "reason": "allowed",
+      "scenario": "safe_write_commit",
+      "scope": "workspace:project"
+    },
+    {
+      "action_class": "DELETE_FILE",
+      "allowed": true,
+      "commit_id": "d397b265-e1b5-40f9-961b-87ddfe6a6d39",
+      "effect_class": "destructive",
+      "execution_returncode": 0,
+      "ledger_event": "commit_executed",
+      "rc_conflict_score": 0.18288714322870195,
+      "rc_state": "NORMAL",
+      "reason": "allowed",
+      "scenario": "destructive_commit_with_consent",
+      "scope": "workspace:sandbox"
+    },
+    {
+      "action_class": "SEND_EMAIL",
+      "allowed": false,
+      "commit_id": null,
+      "effect_class": "privileged",
+      "execution_returncode": null,
+      "ledger_event": "proposal_rejected",
+      "rc_conflict_score": 0.9637940435426651,
+      "rc_state": "LOCKDOWN",
+      "reason": "lockdown_posture_block",
+      "scenario": "post_dispatch_lockdown_reflex",
+      "scope": "mailbox:primary"
+    },
+    {
+      "action_class": "SEND_EMAIL",
+      "allowed": false,
+      "commit_id": null,
+      "effect_class": "privileged",
+      "execution_returncode": null,
+      "ledger_event": "proposal_rejected",
+      "rc_conflict_score": 0.3276665458670444,
+      "rc_state": "NORMAL",
+      "reason": "consent_required",
+      "scenario": "privileged_without_consent",
+      "scope": "mailbox:primary"
+    }
+  ]
+}

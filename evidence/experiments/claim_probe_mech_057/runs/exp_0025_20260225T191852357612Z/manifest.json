@@ -1,0 +1,38 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "claim_ids_tested": [
+    "MECH-057"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "experiment_type": "claim_probe_mech_057",
+  "failure_signatures": [
+    "mech057:action_prediction_gap",
+    "mech057:consequence_model_drift",
+    "mech057:lineage_integrity_drop"
+  ],
+  "run_id": "exp_0025_20260225T191852357612Z",
+  "runner": {
+    "name": "scripts/run_proposal.py",
+    "version": "0.2.0"
+  },
+  "scenario": {
+    "backlog_id": "EVB-0028",
+    "dispatch_mode": "discriminative_pair",
+    "name": "proposal_exp_0025",
+    "proposal_id": "EXP-0025",
+    "seed": 713397892
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "8c994db1cee57db0a059a68a5d787a753a862d59",
+    "name": "ree-experiments-lab"
+  },
+  "status": "FAIL",
+  "stop_criteria_version": "dispatch_claim_aware_v2",
+  "timestamp_utc": "2026-02-25T19:18:52.357612Z"
+}

@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-25T16:56:24.019606Z`
+Generated: `2026-02-25T20:08:01.120819Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -53,6 +53,9 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (4 FAIL run(s), latest `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech057:action_prediction_gap` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
+- [ ] Investigate signature `mech057:consequence_model_drift` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
+- [ ] Investigate signature `mech057:lineage_integrity_drop` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 
 ## claim_probe_mech_058
 
@@ -193,12 +196,12 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## trajectory_integrity
 
-- [ ] Investigate signature `stop:ledger_edit_detected_count>0` (73 FAIL run(s), latest `2026-02-21T151443Z_trajectory-integrity_seed71_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `ledger_editing` (66 FAIL run(s), latest `2026-02-21T151443Z_trajectory-integrity_seed71_trajectory_first_enabled_toyenv_internal_minimal`).
-- [ ] Investigate signature `stop:domination_lock_in_events>0` (56 FAIL run(s), latest `2026-02-21T151223Z_trajectory-integrity_seed29_trajectory_first_ablated`).
-- [ ] Investigate signature `domination_lock_in` (48 FAIL run(s), latest `2026-02-21T150650Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
-- [ ] Investigate signature `stop:explanation_policy_divergence_rate>0.05` (44 FAIL run(s), latest `2026-02-21T151223Z_trajectory-integrity_seed29_trajectory_first_ablated`).
-- [ ] Investigate signature `explanation_policy_divergence` (37 FAIL run(s), latest `2026-02-21T150650Z_trajectory-integrity_seed47_trajectory_first_ablated_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:ledger_edit_detected_count>0` (83 FAIL run(s), latest `2026-02-25T171458Z_trajectory-integrity_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `ledger_editing` (76 FAIL run(s), latest `2026-02-25T171458Z_trajectory-integrity_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:domination_lock_in_events>0` (66 FAIL run(s), latest `2026-02-25T171458Z_trajectory-integrity_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `domination_lock_in` (58 FAIL run(s), latest `2026-02-25T171458Z_trajectory-integrity_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `stop:explanation_policy_divergence_rate>0.05` (50 FAIL run(s), latest `2026-02-25T171457Z_trajectory-integrity_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
+- [ ] Investigate signature `explanation_policy_divergence` (43 FAIL run(s), latest `2026-02-25T171457Z_trajectory-integrity_seed47_valence_on_mapping_frozen_toyenv_internal_minimal`).
 
 ## tri_loop_arbitration_policy
 

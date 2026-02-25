@@ -479,6 +479,8 @@ def _build_autonomy_triage_items(
     weekly_dispatch_approved_for_cycle: bool,
     cascade_actions_count: int,
     convergence_packets_ready_count: int,
+    convergence_packets_pending_review_count: int,
+    convergence_packets_adjudicated_count: int,
     convergence_packets_invalid_count: int,
     convergence_packets_gate_failure_count: int,
     convergence_packets_placeholder_count: int,
@@ -558,14 +560,14 @@ def _build_autonomy_triage_items(
                 if convergence_packets_gate_failure_count > 0
                 else (
                 "review_ready_packets"
-                if convergence_packets_ready_count > 0
-                else "no_ready_packets"
+                if convergence_packets_pending_review_count > 0
+                else "all_packets_adjudicated"
                 )
             ),
             "rollback_ready": "yes",
             "decision_needed": (
                 "yes"
-                if convergence_packets_ready_count > 0
+                if convergence_packets_pending_review_count > 0
                 or convergence_packets_gate_failure_count > 0
                 else "no"
             ),
@@ -573,6 +575,8 @@ def _build_autonomy_triage_items(
                 "convergence_intake_queue_step="
                 + f"{step_status.get('convergence_intake_queue', 'skipped')}; "
                 + f"ready={convergence_packets_ready_count}; "
+                + f"pending_review={convergence_packets_pending_review_count}; "
+                + f"adjudicated={convergence_packets_adjudicated_count}; "
                 + f"invalid={convergence_packets_invalid_count}; "
                 + f"gate_failures={convergence_packets_gate_failure_count}; "
                 + f"placeholder_evidence={convergence_packets_placeholder_count}."
@@ -866,6 +870,25 @@ def _build_agenda(
         else {}
     )
     convergence_packets_ready = sum(1 for item in convergence_items if bool(item.get("gate_ready", False)))
+    convergence_pending_states = {"", "missing", "pending", "under_review"}
+    convergence_packets_pending_review = sum(
+        1
+        for item in convergence_items
+        if bool(item.get("gate_ready", False))
+        and str(item.get("receipt_adjudication_state", "")).strip() in convergence_pending_states
+    )
+    convergence_packets_adjudicated = int(
+        convergence_queue_summary.get(
+            "packets_adjudicated",
+            sum(
+                1
+                for item in convergence_items
+                if bool(item.get("gate_ready", False))
+                and str(item.get("receipt_adjudication_state", "")).strip()
+                not in convergence_pending_states
+            ),
+        )
+    )
     external_precedence_candidates = [
         item for item in architecture_items if bool(item.get("external_precedence_candidate", False))
     ]
@@ -914,6 +937,8 @@ def _build_agenda(
         weekly_dispatch_approved_for_cycle=bool(weekly_dispatch_approval.get("approved_for_cycle", False)),
         cascade_actions_count=len(cascade_actions),
         convergence_packets_ready_count=convergence_packets_ready,
+        convergence_packets_pending_review_count=convergence_packets_pending_review,
+        convergence_packets_adjudicated_count=convergence_packets_adjudicated,
         convergence_packets_invalid_count=convergence_packets_invalid,
         convergence_packets_gate_failure_count=convergence_packets_gate_failures,
         convergence_packets_placeholder_count=convergence_packets_placeholder_evidence,

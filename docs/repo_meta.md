@@ -11,19 +11,24 @@
 
 ## CITATION.cff
 
+Current canonical citation metadata:
+
 ```
 cff-version: 1.2.0
-message: "If you use this work, please cite it."
-title: "Reflective-Ethical Engine (REE): Specification and Reference Architecture"
+message: "If you use this work in academic research or derivative systems, please cite it."
+title: "Reflective-Ethical Engine (REE)"
+type: software
 authors:
-  - family-names: "De La Harpe Golden"
+  - family-names: "Golden"
     given-names: "Daniel"
-date-released: "2026-01-15"
-license: "CC-BY-4.0"
-repository-code: "https://github.com/Latent-Fields/Reflective-Ethical-Engine"
+    affiliation: "Independent Researcher"
+year: 2026
+license: Apache-2.0
+repository-code: https://github.com/Latent-Fields/REE_assembly/
 ```
 
-Source: `docs/processed/legacy_tree/CITATION.cff`
+Canonical source: `CITATION.cff`  
+Legacy source snapshot: `docs/processed/legacy_tree/CITATION.cff`
 
 ---
 

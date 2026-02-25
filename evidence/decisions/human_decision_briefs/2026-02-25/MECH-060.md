@@ -26,7 +26,7 @@ Cycle: `2026-02-25`
 - Decision needed: Conflict resolution before promotion
 - Recommendation: `hold_candidate_resolve_conflict`
 - Decision status: `applied`
-- Why this lane is open: overall_conf=0.705, conflict_ratio=0.875, exp_entries=167, lit_entries=13; directions supports=99, weakens=77, mixed=4, unknown=0, conflict_ratio=0.875
+- Why this lane is open: overall_conf=0.733, conflict_ratio=0.8, exp_entries=96, lit_entries=5; directions supports=60, weakens=40, mixed=1, unknown=0, conflict_ratio=0.8
 - Options:
   - Keep candidate and run conflict-resolution experiments (most balanced)
   - Promote despite conflict (speed, high lock-in risk)
@@ -34,22 +34,20 @@ Cycle: `2026-02-25`
 
 ### Architecture Structure Lane
 
-- Lane recommendation: `mandatory_decision_checkpoint`
-- Structure pressure recommendation: `mandatory_decision_checkpoint`
-- Conflict ratio: `0.875`; overall confidence: `0.705`
+- Lane recommendation: `escalate_architecture_decision`
+- Structure pressure recommendation: `escalate_architecture_decision`
+- Conflict ratio: `0.8`; overall confidence: `0.733`
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (64)
-  - `mech060:attribution_reliability_break` (62)
-  - `mech060:commitment_reversal_spike` (50)
-  - `mech060:precommit_channel_contamination` (10)
-  - `threshold:pre_commit_error_signal_to_noise` (7)
+  - `mech060:postcommit_channel_contamination` (36)
+  - `mech060:attribution_reliability_break` (36)
+  - `mech060:commitment_reversal_spike` (36)
 
 ## Evidence Snapshot
 
-- Conflict report window: supports=58, weakens=40, conflict_ratio=0.816, entries_considered=99.
-- Dossier direction mix: supports=99, weakens=77, mixed=4, unknown=0.
-- Source counts: experimental=167, literature=13.
+- Conflict report window: supports=60, weakens=40, conflict_ratio=0.8, entries_considered=101.
+- Dossier direction mix: supports=101, weakens=77, mixed=4, unknown=0.
+- Source counts: experimental=96, literature=5.
 - Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-25T16:35:40.759224Z`.
 - Recent decision history:
   - 2026-02-15T20:58:38.602475Z: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion

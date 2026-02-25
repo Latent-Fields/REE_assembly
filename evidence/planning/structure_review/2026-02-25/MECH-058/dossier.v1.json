@@ -193,7 +193,7 @@
     },
     "source_mix_narrative": "Both experiment and literature are present. Use disagreement between these sources as a cue to refine claim scope before making status promotions."
   },
-  "generated_at_utc": "2026-02-25T16:56:24.505114Z",
+  "generated_at_utc": "2026-02-25T20:08:01.386574Z",
   "left_field_suggestions": [
     {
       "first_test": "Measure drift and collapse signatures under timescale triad ablations.",
@@ -213,42 +213,30 @@
   ],
   "schema_version": "structure_review_dossier/v1",
   "structure_pressure": {
-    "conflict_ratio": 0.871,
+    "conflict_ratio": 0.816,
     "consider_new_structure": true,
     "evidence_stage": {},
-    "gap_id": "AGR-0002",
+    "gap_id": "AGR-0001",
     "latest_decision": {
       "decision_status": "applied",
       "recommendation": "hybridize",
       "timestamp_utc": "2026-02-25T16:00:13.142266Z"
     },
-    "overall_confidence": 0.715,
+    "overall_confidence": 0.725,
     "recommendation": "escalate_architecture_decision",
     "recurring_failure_signatures": [
       {
-        "count": 57,
+        "count": 36,
         "signature": "mech058:anchor_separation_collapse"
       },
       {
-        "count": 25,
-        "signature": "mech058:ema_drift_under_shift"
-      },
-      {
         "count": 10,
-        "signature": "mech058:latent_cluster_collapse"
-      },
-      {
-        "count": 7,
-        "signature": "threshold:latent_prediction_error_mean"
-      },
-      {
-        "count": 7,
-        "signature": "threshold:latent_prediction_error_p95"
+        "signature": "mech058:ema_drift_under_shift"
       }
     ],
     "source_counts": {
-      "experimental": 156,
-      "literature": 9
+      "experimental": 94,
+      "literature": 5
     },
     "trigger_signals": [
       "external_precedence_pressure",

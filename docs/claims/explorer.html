@@ -2031,12 +2031,11 @@
     const GOVERNANCE_PROPOSALS_URL = '../../evidence/planning/experiment_proposals.v1.json';
     const REFRESH_MS = 60000;
 
-    const CMD_RUN_GOVERNANCE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py';
-    const CMD_RUN_GOVERNANCE_STRICT = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
-    const CMD_RECORD_DECISION_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/record_decision.py --claim-id <CLAIM_ID> --recommendation <RECOMMENDATION> --decision-needed \"<DECISION_NEEDED>\" --decision-status approved --selected-option \"<OPTION>\" --rationale \"<RATIONALE>\" --actor dgolden';
-    const CMD_APPLY_DECISION_BATCH_TEMPLATE = 'python3 /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/scripts/apply_decision_batch.py --input <PATH_TO_DECISION_BATCH_JSON> --refresh-indexes --run-governance';
+    const CMD_RUN_GOVERNANCE = 'python3 evidence/planning/scripts/run_governance_cycle.py';
+    const CMD_RUN_GOVERNANCE_STRICT = 'python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
+    const CMD_RECORD_DECISION_TEMPLATE = 'python3 evidence/experiments/scripts/record_decision.py --claim-id <CLAIM_ID> --recommendation <RECOMMENDATION> --decision-needed \"<DECISION_NEEDED>\" --decision-status approved --selected-option \"<OPTION>\" --rationale \"<RATIONALE>\" --actor <ACTOR>';
+    const CMD_APPLY_DECISION_BATCH_TEMPLATE = 'python3 evidence/experiments/scripts/apply_decision_batch.py --input <PATH_TO_DECISION_BATCH_JSON> --refresh-indexes --run-governance';
     const DECISION_DRAFT_STORAGE_KEY = 'ree_explorer.decision_drafts.v1';
-    const REPO_ABS_PREFIX = '/Users/dgolden/Documents/GitHub/REE_assembly/';
     const GOVERNANCE_CONTEXT_DOCS = {
       thought_intake: [
         'docs/thoughts/SWEEP_REPORT.md',
@@ -2150,9 +2149,13 @@ END CONFLICT RESOLUTION`;
           { title: 'L-space', path: '../architecture/l_space.md' },
           { title: 'Control Plane', path: '../architecture/control_plane.md' },
           { title: 'Control Plane Signal Map', path: '../architecture/control_plane_signal_map.md' },
+          { title: 'Hook Surface Contract', path: '../architecture/hook_surface_contract.md' },
           { title: 'Default Mode', path: '../architecture/default_mode.md' },
           { title: 'Hippocampal Systems', path: '../architecture/hippocampal_systems.md' },
           { title: 'Hippocampal Braid (legacy)', path: '../architecture/hippocampal_braid.md' },
+          { title: 'Papez Circuit', path: '../architecture/papez_circuit.md' },
+          { title: 'Arcuate Fasciculus', path: '../architecture/arcuate_fasciculus.md' },
+          { title: 'Developmental Curriculum', path: '../architecture/developmental_curriculum.md' },
           { title: 'Residue Geometry', path: '../architecture/residue_geometry.md' },
           { title: 'Sensory Stream Tags', path: '../architecture/sensory_stream_tags.md' },
           { title: 'Temporal Dynamics', path: '../architecture/temporal_dynamics.md' },
@@ -2170,6 +2173,10 @@ END CONFLICT RESOLUTION`;
           { title: 'Sleep (overview)', path: '../architecture/sleep.md' },
           { title: 'Social', path: '../architecture/social.md' },
           { title: 'Why Attention Must Be Fragmented', path: '../architecture/why_attention_must_be_fragmented.md' },
+          { title: 'JEPA E1/E2 Integration Contract', path: '../architecture/jepa_e1e2_integration_contract.md' },
+          { title: 'JEPA-REE Hybrid Diagram Spec', path: '../architecture/jepa_ree_hybrid_diagram_spec.md' },
+          { title: 'REE-v2 Spec', path: '../architecture/ree_v2_spec.md' },
+          { title: 'REE-v2 Repo Bootstrap Spec', path: '../architecture/ree_v2_repo_bootstrap_spec.md' },
           { title: 'Architecture Triple-View Guide', path: '../architecture/diagram_views.md' },
           { title: 'Architecture Stream Catalog', path: '../architecture/streams.md' },
           { title: 'Architecture Routing Table', path: '../architecture/stream_routing.v1.yaml' },
@@ -3287,6 +3294,17 @@ END CONFLICT RESOLUTION`;
       return String(value).replace(/`/g, '');
     }
 
+    function stripRepoAbsolutePrefix(value) {
+      let path = stripTicks(value).trim();
+      if (!path) return '';
+      const marker = '/REE_assembly/';
+      const markerIdx = path.indexOf(marker);
+      if (markerIdx !== -1) {
+        path = path.slice(markerIdx + marker.length);
+      }
+      return path;
+    }
+
     function toCellText(value) {
       if (Array.isArray(value)) return value.map(v => stripTicks(v)).join(', ');
       if (value === null || value === undefined) return '';
@@ -3302,16 +3320,9 @@ END CONFLICT RESOLUTION`;
 
     function repoRelativePath(location) {
       if (!location) return '';
-      let path = stripTicks(location).trim();
+      let path = stripRepoAbsolutePrefix(location);
       if (!path) return '';
       if (path.match(/^https?:\/\//)) return path;
-      if (path.startsWith(REPO_ABS_PREFIX)) {
-        path = path.slice(REPO_ABS_PREFIX.length);
-      } else {
-        const marker = '/REE_assembly/';
-        const markerIdx = path.indexOf(marker);
-        if (markerIdx !== -1) path = path.slice(markerIdx + marker.length);
-      }
       if (path.startsWith('./') || path.startsWith('../') || path.startsWith('#')) return path;
       if (path.startsWith('/')) path = path.slice(1);
       if (path.startsWith('docs/')) return '../' + path.slice(5);
@@ -3354,7 +3365,7 @@ END CONFLICT RESOLUTION`;
       if (!paths || !paths.length) return '';
       return `<div class="gov-context-links">${paths.map(path => {
         const href = repoRelativePath(path);
-        const label = stripTicks(path).replace(REPO_ABS_PREFIX, '');
+        const label = stripRepoAbsolutePrefix(path);
         return `<a class="gov-link-chip" href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
       }).join('')}</div>`;
     }
@@ -3756,7 +3767,7 @@ END CONFLICT RESOLUTION`;
         const lanes = row.lanes && row.lanes.length ? row.lanes.join(', ') : '-';
         const briefHref = row.brief_path ? repoRelativePath(row.brief_path) : '';
         const briefLabel = row.brief_path
-          ? stripTicks(row.brief_path).replace(REPO_ABS_PREFIX, '')
+          ? stripRepoAbsolutePrefix(row.brief_path)
           : '';
         const optionsHtml = statusOptions.map(token => {
           const selected = token === row.decision_status ? ' selected' : '';
@@ -7089,7 +7100,7 @@ END CONFLICT RESOLUTION`;
         showErrorHtml(
           'Opened via <code>file://</code>. This page needs a local server to read repo files.<br><br>' +
           'Steps:<br>' +
-          '<pre>cd /Users/dgolden/Documents/GitHub/REE_assembly\npython3 -m http.server</pre>' +
+          '<pre>cd <repo-root>\npython3 -m http.server</pre>' +
           'Then open:<br>' +
           '<pre>http://localhost:8000/docs/claims/explorer.html</pre>'
         );

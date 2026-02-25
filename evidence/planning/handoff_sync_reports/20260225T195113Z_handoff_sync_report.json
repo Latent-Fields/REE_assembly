@@ -1,0 +1,209 @@
+{
+  "config_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/cadence_automation.v1.json",
+  "dry_run": false,
+  "generated_at_utc": "2026-02-25T19:51:10.874283Z",
+  "ingestion_steps": [
+    {
+      "command": [
+        "python3",
+        "evidence/experiments/scripts/build_experiment_indexes.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Indexed 1163 run(s) across 40 experiment type(s); FAIL=522; literature entries=90; backlog items=29; proposals=27."
+    },
+    {
+      "command": [
+        "python3",
+        "evidence/planning/scripts/run_governance_cycle.py"
+      ],
+      "returncode": 0,
+      "status": "ok",
+      "stderr": "",
+      "stdout": "Governance cycle complete: steps=9, failures=0, warnings=0, thought_unprocessed=0, thought_bridge=0, decision_queue=6, human_briefs=2, structure_considerations=3, structure_dossiers=3, connectome_pull=6, convergence_total=10, convergence_ready=10, convergence_gate_failures=0, convergence_placeholder=0, convergence_impl_plans=10, external_precedence=3, cascade_actions=0, epoch_stale=385, backlog_high=28.\nAgenda JSON: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/governance_agenda.v1.json\nAgenda MD: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/GOVERNANCE_AGENDA.md"
+    }
+  ],
+  "repo_root": "/Users/dgolden/Documents/GitHub/REE_assembly",
+  "results": [
+    {
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t184853456769z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t184853456769z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t185325220131z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60021_20260214t185325220131z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t184853457259z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t184853457259z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_cross_channel_contamination_stress_s60022_20260214t185325220849z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t184853454887z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t184853454887z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t185325216628z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60021_20260214t185325216628z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t184853456215z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t184853456215z"
+        },
+        {
+          "experiment_type": "commit_dual_error_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/commit_dual_error_channels/runs/bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t185325219106z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_060_planning_leakage_probe_s60022_20260214t185325219106z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t184853461547z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t184853461547z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58021_20260214t185325227820z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t184853462018z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t184853462018z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_anchor_drift_extreme_shift_s58022_20260214t185325228646z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t184853460220z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t184853460220z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t185325226295z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58021_20260214t185325226295z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t184853460858z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t184853460858z"
+        },
+        {
+          "experiment_type": "jepa_anchor_ablation",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_anchor_ablation/runs/bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t185325226899z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_058_nonstationary_shift_replay_s58022_20260214t185325226899z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t184853459071z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59021_20260214t185325224408z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t184853459667z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_adversarial_uncertainty_gaming_s59022_20260214t185325225490z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t184853457735z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t184853457735z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59021_20260214t185325221806z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t184853458326z"
+        },
+        {
+          "experiment_type": "jepa_uncertainty_channels",
+          "message": "already exists, skipped: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/jepa_uncertainty_channels/runs/bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z",
+          "ok": true,
+          "run_id": "bridge_v2_mech_059_ood_ambiguity_sweep_s59022_20260214t185325223141z"
+        }
+      ],
+      "repo_name": "ree-experiments-lab",
+      "repo_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab",
+      "status": "ok"
+    },
+    {
+      "handoff_issues": [],
+      "handoff_path": "/Users/dgolden/Documents/GitHub/REE_OpenClaw/evidence/planning/weekly_handoff/latest.md",
+      "imports": [
+        {
+          "experiment_type": "runtime_authority_commit_boundary",
+          "message": "imported: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runtime_authority_commit_boundary/runs/runtime_authority_commit_boundary_seed11_20260225T195039888432Z",
+          "ok": true,
+          "run_id": "runtime_authority_commit_boundary_seed11_20260225T195039888432Z"
+        },
+        {
+          "experiment_type": "runtime_authority_commit_boundary",
+          "message": "imported: /Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runtime_authority_commit_boundary/runs/runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
+          "ok": true,
+          "run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z"
+        }
+      ],
+      "repo_name": "ree-openclaw",
+      "repo_path": "/Users/dgolden/Documents/GitHub/REE_OpenClaw",
+      "status": "ok"
+    }
+  ],
+  "schema_version": "handoff_sync_report/v1",
+  "targets": [
+    "ree-experiments-lab",
+    "ree-openclaw"
+  ]
+}

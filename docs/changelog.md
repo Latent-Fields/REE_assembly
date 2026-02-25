@@ -7,6 +7,33 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: GitHub Documentation + Triple-View Portability Refresh
+
+### Overview
+
+Updated GitHub-facing onboarding docs and the claims explorer triple-view/governance UX references so they are
+portable across machines and aligned with current architecture/governance workflow.
+
+### What Changed
+
+- Refined root onboarding guidance and linked explorer/triple-view usage:
+  - `README.md`
+  - added human-first entry points, explorer launch steps, and workflow policy references.
+- Expanded and clarified triple-view runbook:
+  - `docs/architecture/diagram_views.md`
+  - renamed to "Triple-View" wording, documented explorer inspector behavior, and tightened update/CI guidance.
+- Updated repository metadata citation excerpt to match canonical file:
+  - `docs/repo_meta.md`
+  - aligned license/repository/author metadata to `CITATION.cff`, with legacy source retained as reference.
+- Hardened explorer portability and doc coverage:
+  - `docs/claims/explorer.html`
+  - removed machine-specific absolute command paths, generalized actor placeholder, improved `file://` help text,
+    and added missing architecture documents to the docs browser catalog.
+- Extended architecture freshness scope to include non-markdown contract artifacts:
+  - `.github/workflows/architecture-diagrams.yml`
+  - `scripts/architecture/check_freshness.sh`
+  - `hook_registry.v1.json` changes now trigger freshness review.
+
 ## 2026-02-25: Clarified MECH-060 With Phase Control-Variation Sources/Outputs Map
 
 ### Overview

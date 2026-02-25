@@ -1,18 +1,31 @@
-# REE Three-View Diagram Bundle
+# REE Triple-View Diagram Bundle
 
 This bundle keeps architecture visualization in three synchronized views:
 
-1. `architecture_static.mmd` (C4-style static structure)
-2. `architecture_typed_dataflow.mmd` (typed runtime streams/signals)
-3. `episode_sequence.mmd` (single-tick temporal trace)
+1. `architecture_static.mmd` / `architecture_static.svg` (component structure)
+2. `architecture_typed_dataflow.mmd` / `architecture_typed_dataflow.svg` (typed runtime streams/signals)
+3. `episode_sequence.mmd` / `episode_sequence.svg` (single-tick temporal trace)
 
-Shared naming contract:
+## Explorer Integration
+
+The Claims Explorer exposes this as `View -> Triple View` in:
+
+- `docs/claims/explorer.html`
+
+The triple view includes:
+
+- current-epoch claim overlays,
+- conflict and gap badges on nodes/edges,
+- tooltip summaries and clickable inspector tabs (`Claims`, `Conflicts`, `Needs / Gaps`).
+
+## Shared Contract
 
 - Components and stream IDs are canonicalized in `streams.md`.
 - Routing source of truth for edges lives in `stream_routing.v1.yaml`.
 - Edge labels are loggable stream/signal IDs.
+- Changes to architecture contract artifacts (including `hook_registry.v1.json`) require an explicit triple-view freshness review.
 
-## Local render commands
+## Local Commands
 
 If Mermaid CLI is available (`mmdc`):
 
@@ -21,17 +34,18 @@ bash scripts/architecture/check_consistency.sh
 bash scripts/architecture/render_diagrams.sh
 ```
 
-## Update flow
+## Update Flow
 
-1. Update `stream_routing.v1.yaml` first.
-2. Mirror those changes into the `.mmd` files.
-3. Render `.svg` assets.
-4. Verify component IDs still match `streams.md`.
+1. Update `stream_routing.v1.yaml` (and relevant architecture contracts/docs) first.
+2. Mirror routing/structure changes into the `.mmd` sources.
+3. Run `bash scripts/architecture/check_consistency.sh`.
+4. Render `.svg` assets with `bash scripts/architecture/render_diagrams.sh`.
+5. If view behavior changed, update `docs/claims/explorer.html` and this guide.
 
-## CI behavior
+## CI Behavior
 
 - Workflow: `.github/workflows/architecture-diagrams.yml`
-- On pull requests touching architecture docs/contracts: run freshness check and consistency checks.
-- Freshness rule: if architecture source docs change without any triple-view diagram contract updates, CI fails.
-- On pushes to `master` touching architecture docs/contracts (including merges): run freshness+consistency, render SVGs, and commit updated SVG assets back to `master`.
+- On pull requests touching architecture docs/contracts: run freshness and consistency checks.
+- Freshness rule: if architecture source docs/contracts change without triple-view maintenance files changing, CI fails.
+- On pushes to the default branch touching architecture docs/contracts: run freshness+consistency, render SVGs, and commit updated SVGs.
 - Weekly rhythm: scheduled run every Monday at 16:00 UTC performs freshness+consistency and re-renders SVGs if needed.

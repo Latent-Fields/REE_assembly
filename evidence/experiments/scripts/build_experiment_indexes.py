@@ -972,6 +972,63 @@ def _compute_claim_confidence(
     return exp_conf, lit_conf, overall, rationale
 
 
+def _summarize_claim_entries(
+    entries: list[dict[str, Any]],
+    now: datetime,
+) -> dict[str, Any]:
+    ordered_entries = list(entries)
+    ordered_entries.sort(key=lambda e: (str(e.get("timestamp_utc", "")), str(e.get("run_id", ""))))
+    if not ordered_entries:
+        return {}
+
+    direction_counts = {
+        "supports": 0,
+        "weakens": 0,
+        "mixed": 0,
+        "unknown": 0,
+    }
+    evidence_class_counts: dict[str, int] = {}
+    source_counts: dict[str, int] = {"experimental": 0, "literature": 0}
+
+    pass_runs = 0
+    fail_runs = 0
+
+    for entry in ordered_entries:
+        direction = str(entry.get("evidence_direction", "unknown"))
+        direction_counts[direction] = direction_counts.get(direction, 0) + 1
+
+        evidence_class = str(entry.get("evidence_class", "unclassified"))
+        evidence_class_counts[evidence_class] = evidence_class_counts.get(evidence_class, 0) + 1
+
+        source = str(entry.get("source_type", "experimental"))
+        source_counts[source] = source_counts.get(source, 0) + 1
+
+        status = str(entry.get("status", "PASS"))
+        if status == "PASS":
+            pass_runs += 1
+        if status == "FAIL":
+            fail_runs += 1
+
+    exp_conf, lit_conf, overall_conf, rationale = _compute_claim_confidence(ordered_entries, now)
+    latest = ordered_entries[-1]
+    return {
+        "runs_total": len(ordered_entries),
+        "entries_total": len(ordered_entries),
+        "pass_runs": pass_runs,
+        "fail_runs": fail_runs,
+        "latest_run_id": str(latest.get("run_id", "")),
+        "latest_timestamp_utc": str(latest.get("timestamp_utc", "")),
+        "direction_counts": direction_counts,
+        "evidence_class_counts": evidence_class_counts,
+        "source_counts": source_counts,
+        "experimental_confidence": exp_conf,
+        "literature_confidence": lit_conf,
+        "overall_confidence": overall_conf,
+        "confidence_rationale": rationale,
+        "recent_entries": ordered_entries[-5:],
+    }
+
+
 def _write_claim_evidence_matrix(
     base_dir: Path,
     by_experiment: dict[str, list[RunRecord]],
@@ -1067,56 +1124,9 @@ def _write_claim_evidence_matrix(
 
     now = _parse_timestamp_only(generated_at)
     for claim_id in sorted(claim_to_entries.keys()):
-        entries = claim_to_entries[claim_id]
-        entries.sort(key=lambda e: (e["timestamp_utc"], e["run_id"]))
-
-        direction_counts = {
-            "supports": 0,
-            "weakens": 0,
-            "mixed": 0,
-            "unknown": 0,
-        }
-        evidence_class_counts: dict[str, int] = {}
-        source_counts = {"experimental": 0, "literature": 0}
-
-        pass_runs = 0
-        fail_runs = 0
-
-        for entry in entries:
-            direction = str(entry.get("evidence_direction", "unknown"))
-            direction_counts[direction] = direction_counts.get(direction, 0) + 1
-
-            evidence_class = str(entry.get("evidence_class", "unclassified"))
-            evidence_class_counts[evidence_class] = evidence_class_counts.get(evidence_class, 0) + 1
-
-            source = str(entry.get("source_type", "experimental"))
-            source_counts[source] = source_counts.get(source, 0) + 1
-
-            status = str(entry.get("status", "PASS"))
-            if status == "PASS":
-                pass_runs += 1
-            if status == "FAIL":
-                fail_runs += 1
-
-        exp_conf, lit_conf, overall_conf, rationale = _compute_claim_confidence(entries, now)
-
-        latest = entries[-1]
-        matrix["claims"][claim_id] = {
-            "runs_total": len(entries),
-            "entries_total": len(entries),
-            "pass_runs": pass_runs,
-            "fail_runs": fail_runs,
-            "latest_run_id": latest["run_id"],
-            "latest_timestamp_utc": latest["timestamp_utc"],
-            "direction_counts": direction_counts,
-            "evidence_class_counts": evidence_class_counts,
-            "source_counts": source_counts,
-            "experimental_confidence": exp_conf,
-            "literature_confidence": lit_conf,
-            "overall_confidence": overall_conf,
-            "confidence_rationale": rationale,
-            "recent_entries": entries[-5:],
-        }
+        summary = _summarize_claim_entries(claim_to_entries[claim_id], now)
+        if summary:
+            matrix["claims"][claim_id] = summary
 
     matrix["entries"].sort(
         key=lambda e: (e["timestamp_utc"], e["claim_id"], e["experiment_type"], e["run_id"])
@@ -1642,19 +1652,39 @@ def _write_promotion_demotion_recommendations(
     latest_decisions: dict[str, DecisionLogEntry],
     latest_decisions_by_needed: dict[str, dict[str, DecisionLogEntry]],
     generated_at: str,
+    planning_criteria: dict[str, Any],
 ) -> None:
+    scope_label, is_applicable = _build_applicability_filter(planning_criteria)
     lines: list[str] = []
     lines.append("# Promotion / Demotion Recommendations")
     lines.append("")
     lines.append(f"Generated: `{generated_at}`")
+    lines.append(f"Decision scope: `{scope_label}`")
     lines.append("")
     lines.append("This file proposes decisions only. No claim status changes are applied automatically.")
     lines.append("Use this as the human-in-the-loop review queue.")
     lines.append("")
 
+    entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for entry in matrix.get("entries", []):
+        if not isinstance(entry, dict):
+            continue
+        if not is_applicable(entry):
+            continue
+        claim_id = str(entry.get("claim_id", "")).strip()
+        if claim_id:
+            entries_by_claim[claim_id].append(entry)
+
+    now = _parse_timestamp_only(generated_at)
+    scoped_claims: dict[str, dict[str, Any]] = {}
+    for claim_id, claim_entries in entries_by_claim.items():
+        summary = _summarize_claim_entries(claim_entries, now)
+        if summary:
+            scoped_claims[claim_id] = summary
+
     recommendations: list[dict[str, Any]] = []
-    for claim_id in sorted(matrix.get("claims", {}).keys()):
-        claim_meta = matrix["claims"][claim_id]
+    for claim_id in sorted(scoped_claims.keys()):
+        claim_meta = scoped_claims[claim_id]
         registry_meta = claim_registry.get(claim_id, {})
         current_status = str(registry_meta.get("status", "unknown"))
         if _is_inactive_claim_status(current_status):
@@ -1734,7 +1764,7 @@ def _write_promotion_demotion_recommendations(
     else:
         for rec in recommendations:
             claim_id = rec["claim_id"]
-            claim_meta = matrix["claims"].get(claim_id, {})
+            claim_meta = scoped_claims.get(claim_id, {})
             supports = int(claim_meta.get("direction_counts", {}).get("supports", 0))
             weakens = int(claim_meta.get("direction_counts", {}).get("weakens", 0))
             mixed = int(claim_meta.get("direction_counts", {}).get("mixed", 0))
@@ -2344,13 +2374,17 @@ def _write_planning_outputs(
     generated_at_dt = _parse_timestamp_only(generated_at)
 
     conflicts_by_claim = {str(item.get("claim_id")): item for item in conflicts}
+    applicability_scope_label, is_applicable = _build_applicability_filter(planning_criteria)
     matrix_claims = matrix.get("claims", {})
     claim_ids = sorted(set(claim_registry.keys()) | set(matrix_claims.keys()))
     entries_by_claim: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for entry in matrix.get("entries", []):
+        if not isinstance(entry, dict):
+            continue
         claim_key = str(entry.get("claim_id", "")).strip()
         if claim_key:
-            entries_by_claim[claim_key].append(entry)
+            if is_applicable(entry):
+                entries_by_claim[claim_key].append(entry)
 
     backlog_items: list[dict[str, Any]] = []
     architecture_items: list[dict[str, Any]] = []
@@ -2360,8 +2394,8 @@ def _write_planning_outputs(
         if _is_inactive_claim_status(current_status):
             continue
         claim_type = str(registry_meta.get("claim_type", "unknown"))
-        claim_meta = matrix_claims.get(claim_id)
         claim_entries = entries_by_claim.get(claim_id, [])
+        claim_meta = _summarize_claim_entries(claim_entries, generated_at_dt) if claim_entries else None
 
         reasons: list[str] = []
         evidence_needed: set[str] = set()
@@ -3144,6 +3178,7 @@ def _write_planning_outputs(
     backlog_doc = {
         "schema_version": "evidence_backlog/v1",
         "generated_at_utc": generated_at,
+        "evidence_scope": applicability_scope_label,
         "source": {
             "claim_matrix": "evidence/experiments/claim_evidence.v1.json",
             "conflicts": "evidence/experiments/conflicts.md",
@@ -3161,6 +3196,7 @@ def _write_planning_outputs(
     architecture_gap_doc = {
         "schema_version": "architecture_gap_register/v1",
         "generated_at_utc": generated_at,
+        "evidence_scope": applicability_scope_label,
         "criteria_version": str(planning_criteria.get("schema_version", "planning_criteria/v1")),
         "source": {
             "claim_matrix": "evidence/experiments/claim_evidence.v1.json",
@@ -3237,6 +3273,7 @@ def _write_planning_outputs(
     arch_lines.append("# Architecture Gap Register")
     arch_lines.append("")
     arch_lines.append(f"Generated: `{generated_at}`")
+    arch_lines.append(f"Evidence scope: `{applicability_scope_label}`")
     arch_lines.append("")
     arch_lines.append(
         "This register highlights claims under structural pressure and flags where the evidence pattern "
@@ -3478,6 +3515,7 @@ def main() -> None:
         latest_decisions,
         latest_decisions_by_needed,
         generated_at,
+        planning_criteria,
     )
     _write_top_level_index(
         base_dir,

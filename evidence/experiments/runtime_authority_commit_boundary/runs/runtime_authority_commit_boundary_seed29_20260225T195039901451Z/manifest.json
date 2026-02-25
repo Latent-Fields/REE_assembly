@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "traces_dir": "traces"
+  },
+  "claim_ids_tested": [
+    "MECH-056",
+    "MECH-057",
+    "MECH-060",
+    "MECH-061",
+    "Q-013",
+    "Q-014",
+    "Q-017"
+  ],
+  "evidence_class": "runtime",
+  "evidence_direction": "supports",
+  "experiment_type": "runtime_authority_commit_boundary",
+  "failure_signatures": [],
+  "run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
+  "runner": {
+    "name": "scripts/run_runtime_authority_probes.py",
+    "version": "0.1.0"
+  },
+  "scenario": {
+    "config_hash": "389aec185dc24bc4e5f39cbb13fc1f827306a4dd1424ca88a60eea4eb08502d7",
+    "dispatch_mode": "runtime_authority_probe",
+    "name": "runtime_authority_commit_boundary_probe",
+    "seed": 29
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "a7a26c120ac93fab0decdb9e85ec08976bfd3725",
+    "name": "ree-openclaw"
+  },
+  "status": "PASS",
+  "stop_criteria_version": "runtime_authority_probe_v1",
+  "timestamp_utc": "2026-02-25T19:50:39.901451Z"
+}

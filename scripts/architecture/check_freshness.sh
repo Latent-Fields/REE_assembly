@@ -29,7 +29,7 @@ trap 'rm -rf "${tmpdir}"' EXIT
 printf "%s\n" "${changed_file_list}" > "${tmpdir}/changed.txt"
 
 # Architecture source files that should trigger a diagram review.
-grep -E '^docs/architecture/.*\.md$|^docs/(REE_ARCHITECTURE_SNAPSHOT_.*\.md|invariants\.md|glossary\.md|REE_MIN_SPEC\.md|claims/(claims\.yaml|claim_index\.md))$' \
+grep -E '^docs/architecture/.*\.md$|^docs/architecture/hook_registry\.v1\.json$|^docs/(REE_ARCHITECTURE_SNAPSHOT_.*\.md|invariants\.md|glossary\.md|REE_MIN_SPEC\.md|claims/(claims\.yaml|claim_index\.md))$' \
   "${tmpdir}/changed.txt" \
   | grep -Ev '^docs/architecture/(diagram_views\.md|streams\.md)$' \
   > "${tmpdir}/source_changed.txt" || true

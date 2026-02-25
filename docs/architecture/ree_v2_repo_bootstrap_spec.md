@@ -314,7 +314,7 @@ Required checks:
 
 1. `HK-001..HK-006` present when availability conditions are satisfied.
 2. `key_fields` required by hook registry are present in emitted payloads.
-3. `HK-101..HK-104` stubs emitted with stable IDs.
+3. `HK-101..HK-104` live bridge payloads emitted with required key fields.
 
 Minimum command contract:
 
@@ -449,18 +449,18 @@ Priority order is highest risk first.
 1. **P0: uncertainty calibration policy remains unsettled (`Q-013`)**
    - blocker: no finalized decision on deterministic-dispersion vs explicit uncertainty-head default.
    - impact: `MECH-059` qualification outcomes may be non-comparable across runs.
-2. **P0: pre/post-commit channel semantics are only stubbed in v2**
-   - blocker: `MECH-060` can be qualified only at hook/instrumentation level until v3 control completion.
-   - impact: attribution reliability can be measured, but causal learning-policy effects remain partial.
+2. **P0: pre/post-commit channels are instrumented but still toy-substrate mediated in v2**
+   - blocker: `MECH-060` causal-policy effects are still bounded by toy rollout abstractions.
+   - impact: attribution reliability is measurable, but transfer confidence to richer substrates remains limited.
 3. **P1: failure-signature namespace inconsistency (`MECH-056` legacy IDs vs prefixed IDs)**
    - blocker: mixed signature naming can fragment conflict tracking.
    - impact: governance reports may under-cluster recurring failures.
 4. **P1: migration overlap period can create contradictory direction updates**
    - blocker: simultaneous `ree-v1-minimal` and `ree-v2` qualification outputs may diverge.
    - impact: temporary conflict inflation in `claim_evidence.v1.json`.
-5. **P2: hook stub payload expectations for `HK-101..HK-104` are not yet schema-pinned**
-   - blocker: planned hooks are defined in registry but payload schemas are still informal.
-   - impact: future v3 integration churn risk if stub shape drifts now.
+5. **P2: bridge hook payload schemas for `HK-101..HK-104` require ongoing lockstep maintenance**
+   - blocker: active bridge hooks now exist and must stay synchronized across `REE_assembly`, `ree-v2`, and ingestion validators.
+   - impact: unsynchronized updates can silently degrade cross-repo handoff reliability.
 6. **P2: cloud backend operational risk (credentials, quotas, cost control)**
    - blocker: remote execution path can fail if credentials/quotas are not prepared before qualification sweeps.
    - impact: qualification schedule stalls or silently falls back to underpowered local runs.
