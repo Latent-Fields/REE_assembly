@@ -149,7 +149,8 @@ Signed control semantics (harm/benefit channeling) remain a downstream REE contr
 <a id="mech-060"></a>
 ## Dual error channels map to pre-commit and post-commit learning (MECH-060)
 
-REE should maintain two explicit error channels around E3 commitment:
+REE should maintain two explicit error channels and a phase-scoped control-plane variation contract around E3
+commitment:
 
 - pre-commit simulation error: from uncommitted rollouts/counterfactuals, used for gating/search,
 - post-commit realized error: from executed committed trajectories, used for responsibility attribution and durable
@@ -229,6 +230,18 @@ To prevent cross-channel leakage and ledger corruption, learning/update permissi
 - `post_commit` phase:
   - allowed writes: attribution ledger, residue/viability updates, durable policy updates, replay-priority updates.
   - required joins: `commit_id`, action trace, realized outcome trace.
+
+### Functional control-plane variation map (phase, sources, outputs)
+
+This makes the phase contract explicit as a functional table: where control variation comes from, what it is allowed to
+change, what it can emit, and where writes may land.
+
+| Phase | Primary variation sources | Control variation (what can change) | Primary control outputs | Writable sinks (allowed) | Durable sinks forbidden |
+| --- | --- | --- | --- | --- | --- |
+| `pre_commit` | `signal.S1_fast`, `signal.S1_slow`, `signal.S3_fast`, `signal.S3_slow`, `signal.S5_RC_conflict`, `control.modulator_state`, `stream.sim_error` | precision vectors (`Pi_*`), gate bias, commitment/search pressure (`K3/K4/K5/K10`) | `control.precision_bias_bundle`, `control.Pi_ext+Pi_prop`, `control.Pi_int+Pi_rc+Pi_noc`, `control.K3+K4+K5+K10`, `gate_bias`, `search.widen`, `commit.inhibit` | rollout cache, proposal ranking buffers, gate-threshold scratch stats, lane-local gate diagnostics | policy weights, residue ledger, durable memory traces, attribution ledger |
+| `commit_boundary` | `candidate_commit`, `gate_probe.summary`, `eligibility.pass_or_fail`, `eligibility.veto_state`, `verifier.approve_or_deny` | authorization state, provenance binding, supersession linkage eligibility | `commit_boundary.tokenized_update`, commit provenance tags, commit-scoped routing metadata, supersession metadata (`supersedes_commit_id`) | commit token store, provenance tags, commit routing metadata | residue/policy/attribution updates before realized outcomes |
+| `post_commit` | `stream.SELF_IMPACT`, `error.action_prediction`, `error.postcommit_outcome`, `post_commit.outcome_trace`, `packet.outcome_snapshot` | attribution gain, replay priority, control retuning pressure | `stream.realized_error`, `error.postcommit_outcome_replay`, `control.meta_recalibration`, attribution/residue update deltas | attribution ledger, residue/viability ledger, durable policy update queue, replay-priority queue | commit lineage rewrite, pre-commit-only scratch stores as authoritative history |
+| `post_commit` (supersession path) | hazard interrupts from fast aversive/hard-veto lanes after irreversible dispatch | mitigation-only override scope, safety-priority re-routing | superseding commit metadata (`supersession_reason`, `hazard_class`, `override_scope`, `supersedes_commit_id`) | supersession event ledger, mitigation control actions, append-only control history | erasing or mutating original commit accountability lineage |
 
 Tri-loop note:
 - Each gate family (motor, cognitive-set, motivational) may read the same commit token but should write only its own

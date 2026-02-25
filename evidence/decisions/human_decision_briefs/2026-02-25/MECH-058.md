@@ -25,7 +25,7 @@ Cycle: `2026-02-25`
 
 - Decision needed: Conflict resolution before promotion
 - Recommendation: `hold_candidate_resolve_conflict`
-- Decision status: `applied`
+- Decision status: `pending_user`
 - Why this lane is open: overall_conf=0.715, conflict_ratio=0.871, exp_entries=156, lit_entries=9; directions supports=92, weakens=71, mixed=2, unknown=0, conflict_ratio=0.871
 - Options:
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -34,8 +34,8 @@ Cycle: `2026-02-25`
 
 ### Architecture Structure Lane
 
-- Lane recommendation: `mandatory_decision_checkpoint`
-- Structure pressure recommendation: `mandatory_decision_checkpoint`
+- Lane recommendation: `escalate_architecture_decision`
+- Structure pressure recommendation: `escalate_architecture_decision`
 - Conflict ratio: `0.871`; overall confidence: `0.715`
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Recurring failure signatures:
@@ -50,11 +50,11 @@ Cycle: `2026-02-25`
 - Conflict report window: supports=58, weakens=40, conflict_ratio=0.816, entries_considered=99.
 - Dossier direction mix: supports=92, weakens=71, mixed=2, unknown=0.
 - Source counts: experimental=156, literature=9.
-- Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-15T20:58:38.602475Z`.
+- Latest decision state: status=`applied`, recommendation=`hybridize`, timestamp=`2026-02-25T16:00:13.142266Z`.
 - Recent decision history:
-  - 2026-02-15T18:46:42.773429Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection
   - 2026-02-15T20:49:23.356752Z: status=`approved`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
   - 2026-02-15T20:58:38.602475Z: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
+  - 2026-02-25T16:00:13.142266Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection
 
 ## Human Decision Prompt
 

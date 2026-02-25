@@ -126,7 +126,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-057](../architecture/agency_responsibility_flow.md#mech-057) Agentic latent-predictive models require control-plane completion and self-attribution loops.
 - [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize shared JEPA substrate via functional E1/E2 rate separation.
 - [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
-- [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Umbrella commit-boundary separation principle: pre-commit simulation and post-commit realized-error channels remain responsibility-distinct via write-boundary enforcement (MECH-061/062/066/067).
+- [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Umbrella commit-boundary separation principle with explicit phase control-variation map: pre-commit simulation and post-commit realized-error channels stay responsibility-distinct via write-boundary enforcement (MECH-061/062/066/067).
 - [MECH-061](../architecture/e3.md#mech-061) Commit-boundary token reclassifies pre-commit vs post-commit error routing.
 - [MECH-062](../architecture/e3.md#mech-062) E3 should use coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility realization layer for MECH-060.
 - [MECH-063](../architecture/control_plane.md#mech-063) Control plane should retain orthogonal tonic/phasic axes rather than collapsing into one scalar regulation signal.

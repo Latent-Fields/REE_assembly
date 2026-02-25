@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-25T15:07:53.362408Z`
+Generated: `2026-02-25T16:00:17.442237Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -11,7 +11,7 @@ Use this as the human-in-the-loop review queue.
 |---|---|---|---|---|
 | `MECH-056` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-057` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
-| `MECH-058` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-058` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-059` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-060` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-061` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -68,15 +68,16 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-02-15T20:58:38.602475Z`
-- Last selected option: hold_candidate_resolve_conflict
-- Last rationale: Applied approved conflict-hold decision to keep queue actionable without pending manual status.
+- Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `user` at `2026-02-25T16:00:13.142266Z`
+- Last selected option: hybridize
+- Last rationale: JEPA is accepted as a functional E1/E2 substrate implementation in REE terms (fast predictor dynamics + slow anchor continuity), while REE retains E3/control/responsibility ownership. Keep MECH-058 as hybridized with explicit rate/routing/write-boundary guardrails; do not treat this as full source-structure adoption.
 
 ### MECH-059
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.769, conflict_ratio=0.566, exp_entries=164, lit_entries=6; directions supports=76, weakens=30, mixed=64, unknown=0, conflict_ratio=0.566
+- Why this decision is needed: overall_conf=0.768, conflict_ratio=0.566, exp_entries=164, lit_entries=6; directions supports=76, weakens=30, mixed=64, unknown=0, conflict_ratio=0.566
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)

@@ -1,6 +1,6 @@
 # Structure Review Dossier: Q-014
 
-Generated: `2026-02-25T15:07:53.803643Z`
+Generated: `2026-02-25T16:00:17.928615Z`
 Cycle: `2026-02-25`
 
 ## Claim Description
@@ -16,7 +16,7 @@ This sits in REE's uncertainty layer and defines what remains unresolved before 
 - Recommendation: `consider_new_structure` (consider_new_structure=true)
 - Trigger signals: high_conflict_ratio, literature_non_support_pressure, recurring_failure_signatures
 - Conflict ratio: 0.727
-- Overall confidence: 0.64
+- Overall confidence: 0.639
 
 ## Evidence Mix and Why It Looks This Way
 

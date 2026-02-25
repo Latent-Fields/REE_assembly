@@ -1,13 +1,13 @@
 # Active Structure Review Dossier Index
 
-Generated: `2026-02-25T15:07:53.803643Z`
+Generated: `2026-02-25T16:00:17.928615Z`
 Cycle: `2026-02-25`
 
 These are currently relevant dossiers for governance decisions in the latest cycle.
 
 | claim_id | status | recommendation | consider_new_structure | dossier |
 |---|---|---|---|---|
-| `MECH-058` | `candidate` | `mandatory_decision_checkpoint` | yes | `evidence/planning/structure_review/2026-02-25/MECH-058/DOSSIER.md` |
+| `MECH-058` | `candidate` | `escalate_architecture_decision` | yes | `evidence/planning/structure_review/2026-02-25/MECH-058/DOSSIER.md` |
 | `MECH-060` | `candidate` | `mandatory_decision_checkpoint` | yes | `evidence/planning/structure_review/2026-02-25/MECH-060/DOSSIER.md` |
 | `Q-013` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-25/Q-013/DOSSIER.md` |
 | `Q-014` | `active` | `consider_new_structure` | yes | `evidence/planning/structure_review/2026-02-25/Q-014/DOSSIER.md` |

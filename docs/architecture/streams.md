@@ -128,6 +128,15 @@ This file defines the canonical identifiers shared by:
 - `packet.decision_snapshot`
 - `packet.outcome_snapshot`
 
+`commit_boundary.tokenized_update` events should carry explicit lineage and safety-override metadata:
+
+- required: `commit_id`, `trace_id`, `phase`
+- optional lineage: `parent_commit_id`, `supersedes_commit_id`
+- optional supersession fields (when applicable): `supersession_reason`, `hazard_class`, `override_scope`
+
+This keeps post-dispatch interruption append-only and auditable rather than allowing silent rewrite of original
+commit accountability.
+
 ## Logging event envelope (recommended)
 
 ```json

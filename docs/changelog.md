@@ -7,6 +7,29 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: Clarified MECH-060 With Phase Control-Variation Sources/Outputs Map
+
+### Overview
+
+Refined `MECH-060` to explicitly include the functional control-plane variation contract across `pre_commit`,
+`commit_boundary`, and `post_commit`, including supersession-after-dispatch handling. This closes a readability gap where
+phase write rules existed but source/output variation mapping remained implicit across multiple files.
+
+### What Changed
+
+- Expanded canonical `MECH-060` wording to include phase-scoped control variation contract:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - added explicit functional table: phase -> variation sources -> control outputs -> writable sinks -> forbidden sinks.
+- Added supersession-path clarification in the same table:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - made post-dispatch safety override handling explicit as append-only lineage, not commit rewrite.
+- Added token-envelope lineage/supersession metadata guidance:
+  - `docs/architecture/streams.md`
+  - clarified required and optional `commit_boundary.tokenized_update` fields for auditable supersession.
+- Updated claim index phrasing to match the refined scope:
+  - `docs/claims/claim_index.md`
+  - `MECH-060` description now references the explicit phase control-variation map.
+
 ## 2026-02-25: Applied MECH-062 Promotion and Added Thought-Adjudication Governance Bridge
 
 ### Overview
