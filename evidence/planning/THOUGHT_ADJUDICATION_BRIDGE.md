@@ -1,13 +1,13 @@
 # Thought Adjudication Bridge
 
-Generated: `2026-02-25T16:29:46.088997Z`
+Generated: `2026-02-25T16:35:45.227536Z`
 
 This report surfaces claims where thought-intake progression likely needs adjudication refresh or direct
 status-application follow-through.
 
-- total bridge items: `6`
+- total bridge items: `5`
 - approved decisions pending apply: `0`
-- thought newer than latest decision: `4`
+- thought newer than latest decision: `3`
 - thought-enriched claims lacking decision timestamp: `2`
 
 ## Candidate Queue
@@ -15,7 +15,6 @@ status-application follow-through.
 | claim_id | status | reason | latest_decision | latest_thought | action |
 |---|---|---|---|---|---|
 | `ARC-003` | `active` | `thought_newer_than_decision` | `2026-02-15T18:46:42.773429Z` | `2026-02-26` | `refresh_decision_brief_and_record_adjudication_outcome` |
-| `MECH-060` | `candidate` | `thought_newer_than_decision` | `2026-02-15T20:58:38.602475Z` | `2026-02-24` | `refresh_decision_brief_and_record_adjudication_outcome` |
 | `MECH-061` | `candidate` | `thought_newer_than_decision` | `2026-02-15T20:58:38.602475Z` | `2026-02-26` | `refresh_decision_brief_and_record_adjudication_outcome` |
 | `MECH-062` | `stable` | `thought_newer_than_decision` | `2026-02-25T14:07:04.606327Z` | `2026-02-26` | `refresh_decision_brief_and_record_adjudication_outcome` |
 | `Q-006` | `active` | `no_decision_for_thought_enriched_claim` | `` | `2026-02-08` | `open_decision_lane_for_thought_enriched_claim` |
@@ -35,19 +34,6 @@ status-application follow-through.
   - `docs/thoughts/2026-02-09_starting_with_sensory_streams.md`
   - `docs/thoughts/2026-02-24_prefrontal_primitives.md`
   - `docs/thoughts/2026-02-26_task_loop_extraction_and_latent_field_ethics.md`
-
-### MECH-060
-- claim_type: `mechanism_hypothesis`
-- status: `candidate`
-- reason: `thought_newer_than_decision`
-- location: `docs/architecture/agency_responsibility_flow.md#mech-060`
-- recommended_action: `refresh_decision_brief_and_record_adjudication_outcome`
-- decision: status=`applied` recommendation=`hold_candidate_resolve_conflict` timestamp=`2026-02-15T20:58:38.602475Z`
-- thought_signals: processed_source_count=`3` latest_file=`2026-02-24_determinism_action_gating_boundary.md` latest_date=`2026-02-24`
-- thought_sources:
-  - `docs/thoughts/2026-02-13_subjective_experience_pre_post_commit.md`
-  - `docs/thoughts/2026-02-23_some_subjective_experience_mapping.md`
-  - `docs/thoughts/2026-02-24_determinism_action_gating_boundary.md`
 
 ### MECH-061
 - claim_type: `mechanism_hypothesis`

@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-25T16:29:45.651513Z`
+Generated: `2026-02-25T16:35:44.600583Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -106,9 +106,9 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-02-15T20:58:38.602475Z`
+- Last logged decision: `applied` by `user` at `2026-02-25T16:35:40.759224Z`
 - Last selected option: hold_candidate_resolve_conflict
-- Last rationale: Applied approved conflict-hold decision to keep queue actionable without pending manual status.
+- Last rationale: Applied conflict-lane hold after architecture adjudication reaffirmation; maintain candidate status while continuing targeted boundary-condition probes.
 
 ### MECH-061
 - Current status: `candidate`

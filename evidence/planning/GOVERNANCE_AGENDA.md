@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-25T16:29:46.508873Z`
+Generated: `2026-02-25T16:35:45.783550Z`
 
 ## Cycle Status
 
@@ -33,10 +33,9 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 
 1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
-1a. Thought-Adjudication Bridge: 6 candidate item(s); approved_pending_apply=0.
+1a. Thought-Adjudication Bridge: 5 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
 - `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `MECH-062` (mechanism hypothesis; commitment / tri loop gate coordination; see `docs/architecture/e3.md#mech-062`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
 - `Q-006` (open question; ethics / developmental; see `docs/architecture/agency_responsibility_flow.md#q-006`); reason=`no_decision_for_thought_enriched_claim`; action=`open_decision_lane_for_thought_enriched_claim`

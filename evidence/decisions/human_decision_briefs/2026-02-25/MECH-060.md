@@ -50,11 +50,11 @@ Cycle: `2026-02-25`
 - Conflict report window: supports=58, weakens=40, conflict_ratio=0.816, entries_considered=99.
 - Dossier direction mix: supports=99, weakens=77, mixed=4, unknown=0.
 - Source counts: experimental=167, literature=13.
-- Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-15T20:58:38.602475Z`.
+- Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-25T16:35:40.759224Z`.
 - Recent decision history:
-  - 2026-02-15T18:46:42.773429Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection
-  - 2026-02-15T20:49:23.356752Z: status=`approved`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
   - 2026-02-15T20:58:38.602475Z: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
+  - 2026-02-25T16:33:23.830904Z: status=`applied`, recommendation=`hybridize`, decision_needed=Model adjudication outcome selection
+  - 2026-02-25T16:35:40.759224Z: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
 
 ## Human Decision Prompt
 

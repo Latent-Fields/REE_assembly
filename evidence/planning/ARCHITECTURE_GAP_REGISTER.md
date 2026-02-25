@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-02-25T16:29:45.651513Z`
+Generated: `2026-02-25T16:35:44.600583Z`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
@@ -40,7 +40,7 @@ This register highlights claims under structural pressure and flags where the ev
   - recurring_signatures: `mech060:postcommit_channel_contamination`(64), `mech060:attribution_reliability_break`(62), `mech060:commitment_reversal_spike`(50), `mech060:precommit_channel_contamination`(10), `threshold:pre_commit_error_signal_to_noise`(7)
   - external_precedence_candidate: yes; delta_lit_minus_exp=0.309
   - escalation_required: yes; route directly to architecture decision checkpoint.
-  - mandatory_decision_checkpoint: yes; deadline=2026-02-28T16:29:45.651513Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
+  - mandatory_decision_checkpoint: yes; deadline=2026-02-28T16:35:44.600583Z; required_outcomes=retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim
   - atomic_split_recommended: yes; split into narrower subclaims before broad reruns.
 - `MECH-058` triggers=external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures; conflict_ratio=0.871; lit_non_support_ratio=0.222.
   - recurring_signatures: `mech058:anchor_separation_collapse`(57), `mech058:ema_drift_under_shift`(25), `mech058:latent_cluster_collapse`(10), `threshold:latent_prediction_error_mean`(7), `threshold:latent_prediction_error_p95`(7)
