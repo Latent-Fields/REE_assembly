@@ -1445,6 +1445,36 @@ def _latest_decision_by_claim(entries: list[DecisionLogEntry]) -> dict[str, Deci
     return latest
 
 
+def _latest_decision_by_claim_and_needed(
+    entries: list[DecisionLogEntry],
+) -> dict[str, dict[str, DecisionLogEntry]]:
+    latest: dict[str, dict[str, DecisionLogEntry]] = {}
+    for entry in entries:
+        decision_needed = entry.decision_needed.strip()
+        if not decision_needed:
+            continue
+        by_needed = latest.setdefault(entry.claim_id, {})
+        existing = by_needed.get(decision_needed)
+        if existing is None or entry.timestamp_utc >= existing.timestamp_utc:
+            by_needed[decision_needed] = entry
+    return latest
+
+
+def _latest_adjudication_decision_by_claim(
+    entries: list[DecisionLogEntry],
+    allowed_outcomes: set[str],
+) -> dict[str, DecisionLogEntry]:
+    latest: dict[str, DecisionLogEntry] = {}
+    for entry in entries:
+        recommendation = entry.recommendation.strip()
+        if recommendation not in allowed_outcomes:
+            continue
+        existing = latest.get(entry.claim_id)
+        if existing is None or entry.timestamp_utc >= existing.timestamp_utc:
+            latest[entry.claim_id] = entry
+    return latest
+
+
 def _write_decision_state(
     decisions_dir: Path,
     latest_by_claim: dict[str, DecisionLogEntry],
@@ -1610,6 +1640,7 @@ def _write_promotion_demotion_recommendations(
     claim_registry: dict[str, dict[str, str]],
     decision_criteria: dict[str, Any],
     latest_decisions: dict[str, DecisionLogEntry],
+    latest_decisions_by_needed: dict[str, dict[str, DecisionLogEntry]],
     generated_at: str,
 ) -> None:
     lines: list[str] = []
@@ -1638,7 +1669,13 @@ def _write_promotion_demotion_recommendations(
             criteria=decision_criteria,
         )
 
-        prior = latest_decisions.get(claim_id)
+        prior = None
+        rec_needed = str(rec.get("decision_needed", "")).strip()
+        claim_lane_map = latest_decisions_by_needed.get(claim_id, {})
+        if rec_needed:
+            prior = claim_lane_map.get(rec_needed)
+        if prior is None:
+            prior = latest_decisions.get(claim_id)
         rec["last_decision"] = None
         if prior is not None:
             rec["last_decision"] = {
@@ -2143,6 +2180,7 @@ def _write_planning_outputs(
     claim_registry: dict[str, dict[str, str]],
     conflicts: list[dict[str, Any]],
     latest_decisions: dict[str, DecisionLogEntry],
+    latest_adjudication_decisions: dict[str, DecisionLogEntry],
     planning_criteria: dict[str, Any],
     generated_at: str,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
@@ -2443,11 +2481,28 @@ def _write_planning_outputs(
         lit_non_support_ratio = round((lit_non_support / lit_total), 3) if lit_total else 0.0
 
         decision_entry = latest_decisions.get(claim_id)
+        outcome_decision_entry = latest_adjudication_decisions.get(claim_id)
         decision_state = {
             "decision_status": decision_entry.decision_status if decision_entry else "none",
             "timestamp_utc": decision_entry.timestamp_utc if decision_entry else "",
             "recommendation": decision_entry.recommendation if decision_entry else "",
         }
+        outcome_decision_state = {
+            "decision_status": (
+                outcome_decision_entry.decision_status if outcome_decision_entry else "none"
+            ),
+            "timestamp_utc": (
+                outcome_decision_entry.timestamp_utc if outcome_decision_entry else ""
+            ),
+            "recommendation": (
+                outcome_decision_entry.recommendation if outcome_decision_entry else ""
+            ),
+        }
+        effective_decision_state = (
+            outcome_decision_state
+            if outcome_decision_entry is not None
+            else decision_state
+        )
 
         if claim_meta is None:
             if claim_type == "open_question":
@@ -2608,8 +2663,8 @@ def _write_planning_outputs(
             signals["atomic_split_recommended"] = True
             _add_reason("atomic_split_recommended")
 
-        decision_status = str(decision_state.get("decision_status", "none")).strip().lower()
-        decision_recommendation = str(decision_state.get("recommendation", "")).strip()
+        decision_status = str(outcome_decision_state.get("decision_status", "none")).strip().lower()
+        decision_recommendation = str(outcome_decision_state.get("recommendation", "")).strip()
         decision_resolved = (
             decision_status in {"approved", "applied"}
             and decision_recommendation in allowed_conflict_outcomes
@@ -2709,7 +2764,7 @@ def _write_planning_outputs(
                         },
                         "anti_lock_in_gate_enabled": anti_lock_in_enabled,
                     },
-                    "latest_decision": decision_state,
+                    "latest_decision": effective_decision_state,
                 }
             )
 
@@ -2812,7 +2867,7 @@ def _write_planning_outputs(
                         "requirements": override_requirements,
                     },
                 },
-                "latest_decision": decision_state,
+                "latest_decision": effective_decision_state,
                 "status": "open",
             }
         )
@@ -3355,6 +3410,24 @@ def main() -> None:
     claim_registry = _load_claim_registry(repo_root / "docs/claims/claims.yaml")
     decision_log_entries = _load_decision_log(decision_log_path)
     latest_decisions = _latest_decision_by_claim(decision_log_entries)
+    latest_decisions_by_needed = _latest_decision_by_claim_and_needed(decision_log_entries)
+    adjudication_cfg = planning_criteria.get("model_adjudication", {})
+    allowed_conflict_outcomes = {
+        str(token).strip()
+        for token in adjudication_cfg.get("allowed_conflict_outcomes", [])
+        if str(token).strip()
+    }
+    if not allowed_conflict_outcomes:
+        allowed_conflict_outcomes = {
+            "retain_ree",
+            "hybridize",
+            "adopt_jepa_structure",
+            "retire_ree_claim",
+        }
+    latest_adjudication_decisions = _latest_adjudication_decision_by_claim(
+        decision_log_entries,
+        allowed_conflict_outcomes,
+    )
 
     by_experiment = _scan_runs(base_dir, planning_criteria)
     by_literature = _scan_literature(literature_root, planning_criteria)
@@ -3392,6 +3465,7 @@ def main() -> None:
         claim_registry,
         conflicts,
         latest_decisions,
+        latest_adjudication_decisions,
         planning_criteria,
         generated_at,
     )
@@ -3402,6 +3476,7 @@ def main() -> None:
         claim_registry,
         decision_criteria,
         latest_decisions,
+        latest_decisions_by_needed,
         generated_at,
     )
     _write_top_level_index(

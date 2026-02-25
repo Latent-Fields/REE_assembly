@@ -1,6 +1,6 @@
 # Thought Sweep Report
 
-Generated: `2026-02-25T16:35:43.794592Z`
+Generated: `2026-02-25T16:56:23.126374Z`
 
 | metric | count |
 |---|---|
@@ -67,6 +67,6 @@ Generated: `2026-02-25T16:35:43.794592Z`
 - `2026-02-23_some_subjective_experience_mapping.md` (5 link(s) in `Processed in`)
 - `2026-02-24_determinism_action_gating_boundary.md` (3 link(s) in `Processed in`)
 - `2026-02-24_prefrontal_primitives.md` (3 link(s) in `Processed in`)
-- `2026-02-26_task_loop_extraction_and_latent_field_ethics.md` (5 link(s) in `Processed in`)
+- `2026-02-25_task_loop_extraction_and_latent_field_ethics.md` (5 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

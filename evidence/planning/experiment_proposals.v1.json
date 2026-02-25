@@ -1,53 +1,6 @@
 {
-  "generated_at_utc": "2026-02-25T16:35:44.600583Z",
+  "generated_at_utc": "2026-02-25T16:56:24.019606Z",
   "items": [
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-02-28T16:35:44.600583Z`; explicitly score outcomes `retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim`."
-      ],
-      "backlog_id": "EVB-0004",
-      "claim_id": "MECH-061",
-      "decision_deadline_utc": "2026-02-28T16:35:44.600583Z",
-      "decision_required_outcomes": [
-        "retain_ree",
-        "hybridize",
-        "adopt_jepa_structure",
-        "retire_ree_claim"
-      ],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "min_shared_seeds": 2,
-      "objective": "Generate decision-grade discriminative evidence for MECH-061 before governance deadline.",
-      "priority": "high",
-      "proposal_id": "EXP-0001",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_061",
-      "target_repo": "ree-experiments-lab",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "mandatory_decision_checkpoint"
-      ]
-    },
     {
       "acceptance_checks": [
         "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
@@ -58,7 +11,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts.",
         "If conflicting behaviors persist, split the claim into atomic subclaims before requesting another broad rerun."
       ],
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0004",
       "claim_id": "Q-013",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -67,7 +20,7 @@
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for Q-013 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0002",
+      "proposal_id": "EXP-0001",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
@@ -101,7 +54,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts.",
         "If conflicting behaviors persist, split the claim into atomic subclaims before requesting another broad rerun."
       ],
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0005",
       "claim_id": "Q-014",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -110,7 +63,7 @@
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for Q-014 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0003",
+      "proposal_id": "EXP-0002",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
@@ -143,7 +96,7 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0006",
       "claim_id": "ARC-003",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -152,7 +105,7 @@
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for ARC-003 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0004",
+      "proposal_id": "EXP-0003",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
@@ -184,7 +137,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts.",
         "If conflicting behaviors persist, split the claim into atomic subclaims before requesting another broad rerun."
       ],
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0007",
       "claim_id": "Q-012",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -193,7 +146,7 @@
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for Q-012 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0005",
+      "proposal_id": "EXP-0004",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
@@ -213,6 +166,46 @@
       "why_now": [
         "active_conflict",
         "atomic_split_recommended",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0008",
+      "claim_id": "MECH-061",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-061 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0005",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_061",
+      "target_repo": "ree-experiments-lab",
+      "why_now": [
+        "active_conflict",
         "directional_conflict_alert"
       ]
     },

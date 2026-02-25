@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-25T16:35:45.783550Z`
+Generated: `2026-02-25T16:56:24.856032Z`
 
 ## Cycle Status
 
@@ -23,7 +23,7 @@ Generated: `2026-02-25T16:35:45.783550Z`
 | work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
-| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
+| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
 | `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `review_ready_packets` | `yes` | `yes` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
@@ -33,13 +33,8 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 
 1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
-1a. Thought-Adjudication Bridge: 5 candidate item(s); approved_pending_apply=0.
+1a. Thought-Adjudication Bridge: 0 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
-- `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
-- `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
-- `MECH-062` (mechanism hypothesis; commitment / tri loop gate coordination; see `docs/architecture/e3.md#mech-062`); reason=`thought_newer_than_decision`; action=`refresh_decision_brief_and_record_adjudication_outcome`
-- `Q-006` (open question; ethics / developmental; see `docs/architecture/agency_responsibility_flow.md#q-006`); reason=`no_decision_for_thought_enriched_claim`; action=`open_decision_lane_for_thought_enriched_claim`
-- `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`); reason=`no_decision_for_thought_enriched_claim`; action=`open_decision_lane_for_thought_enriched_claim`
 2. Conflict Resolution: 24 conflict item(s).
 - context: `evidence/experiments/conflicts.md`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
 - `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); conflict_types=directional
@@ -72,7 +67,7 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 - `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
 - `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-5. Human Decision Briefs: 6 claim brief(s).
+5. Human Decision Briefs: 0 claim brief(s).
 - context: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/latest/INDEX.md`, `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`
 - weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-25/WEEKLY_DISPATCH.md`
 6. Manual Carryover: 0 open item(s), 1 total.
@@ -118,8 +113,9 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.309
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.317
 - `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.324
-12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
+12. Adjudication Cascade: 1 action(s), 1 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
+- `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); outcome=`retain_ree`; reopened_dependents=0
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
 - approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-02-25T14:21:58.933796Z`

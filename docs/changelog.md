@@ -82,7 +82,7 @@ No new claim IDs were added.
 
 ### Overview
 
-Processed `2026-02-26_task_loop_extraction_and_latent_field_ethics.md` into canonical REE docs using existing claim
+Processed `2026-02-25_task_loop_extraction_and_latent_field_ethics.md` into canonical REE docs using existing claim
 surfaces. The ingestion clarified E3 task-loop extraction contracts, signed social coupling semantics, and deterministic
 boundary interpretation without adding new claim IDs.
 
@@ -101,7 +101,7 @@ boundary interpretation without adding new claim IDs.
   - `docs/claims/claims.yaml`
   - added thought source links for `ARC-003`, `ARC-010`, `MECH-052`, `MECH-061`, `MECH-062`, and `INV-021`.
 - Marked thought file as processed with backlinks:
-  - `docs/thoughts/2026-02-26_task_loop_extraction_and_latent_field_ethics.md`
+  - `docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md`
 
 ## 2026-02-23: Re-centered Canonical Boundary (REE-First, Convergence-Owned JEPA Playbooks)
 

@@ -324,4 +324,4 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - `docs/thoughts/2026-02-09_other_harm_gating.md`
 - `docs/thoughts/2026-02-11_oxytocin_vasopressin.md`
 - `docs/thoughts/2026-02-11_prolactin.md`
-- `docs/thoughts/2026-02-26_task_loop_extraction_and_latent_field_ethics.md`
+- `docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md`

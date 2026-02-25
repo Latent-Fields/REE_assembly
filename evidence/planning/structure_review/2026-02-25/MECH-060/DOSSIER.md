@@ -1,6 +1,6 @@
 # Structure Review Dossier: MECH-060
 
-Generated: `2026-02-25T16:35:45.287306Z`
+Generated: `2026-02-25T16:56:24.505114Z`
 Cycle: `2026-02-25`
 
 ## Claim Description
@@ -13,7 +13,7 @@ This sits in REE's mechanism layer and links architecture commitments to testabl
 
 ## Structural Pressure Signals
 
-- Recommendation: `mandatory_decision_checkpoint` (consider_new_structure=true)
+- Recommendation: `escalate_architecture_decision` (consider_new_structure=true)
 - Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
 - Conflict ratio: 0.875
 - Overall confidence: 0.705
