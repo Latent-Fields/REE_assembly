@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (MECH-061 operational note: stochastic internal dynamics, deterministic boundary projection)
+- `docs/claims/claims.yaml` (source lineage updates for MECH-060/MECH-061/INV-021)
+- `docs/changelog.md` (2026-02-25 queue-closure thought-intake record)
+
+---
+
 Yes — this is the clean architectural separation you’re circling.
 
 If we strip it down:

@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (TaskLoopObject neuro-inspired primitive mapping and typed-interface constraint)
+- `docs/claims/claims.yaml` (source lineage updates for ARC-003/MECH-062)
+- `docs/changelog.md` (2026-02-25 queue-closure thought-intake record)
+
+---
+
 Great — let’s do a pass that is primitive → representation → anatomy → pathways → signal types.
 
 I’ll keep it “neuroanatomically specific enough to be actionable for REE_assembly”, without pretending any mapping is one-to-one.

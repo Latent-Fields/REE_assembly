@@ -7,6 +7,28 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: Processed Determinism-Boundary + Prefrontal-Primitives Thought Intake (Queue to Zero)
+
+### Overview
+
+Processed the remaining two thought files in the queue and mapped their deltas into existing canonical claim surfaces.
+No new claim IDs were added.
+
+### What Changed
+
+- Extended E3 implementation contract with constrained neuro-inspired primitive mapping:
+  - `docs/architecture/e3.md`
+  - added non-isomorphic mapping guidance for `TaskLoopObject` fields and typed-interface separation during tri-loop arbitration.
+- Clarified boundary determinism at commit-token transition:
+  - `docs/architecture/e3.md`
+  - added explicit note that stochastic internal rehearsal is compatible with deterministic responsibility-bearing projection.
+- Updated claim source lineage:
+  - `docs/claims/claims.yaml`
+  - added thought-source links for `ARC-003`, `MECH-060`, `MECH-061`, `MECH-062`, and `INV-021`.
+- Marked thought files as processed with backlinks:
+  - `docs/thoughts/2026-02-24_determinism_action_gating_boundary.md`
+  - `docs/thoughts/2026-02-24_prefrontal_primitives.md`
+
 ## 2026-02-25: Processed Task-Loop Extraction + Signed Social Coupling Thought Intake
 
 ### Overview
