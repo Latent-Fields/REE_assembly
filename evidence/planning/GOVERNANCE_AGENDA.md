@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-25T16:00:18.347774Z`
+Generated: `2026-02-25T16:29:46.508873Z`
 
 ## Cycle Status
 
@@ -23,7 +23,7 @@ Generated: `2026-02-25T16:00:18.347774Z`
 | work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
-| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
+| `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
 | `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `review_ready_packets` | `yes` | `yes` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
@@ -119,9 +119,8 @@ Open decision items: `convergence_packet_review_queue`, `promotion_demotion_and_
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.309
 - `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.317
 - `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.324
-12. Adjudication Cascade: 1 action(s), 1 claim update(s), 0 dependent reopen(s).
+12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); outcome=`hybridize`; reopened_dependents=0
 13. Evidence Dispatch: 25 high-priority proposal(s), 27 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
 - approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-02-25T14:21:58.933796Z`

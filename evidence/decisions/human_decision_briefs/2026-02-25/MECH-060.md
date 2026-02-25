@@ -14,10 +14,10 @@ Cycle: `2026-02-25`
 ## How It Functions In The Architecture
 
 - ## Dual error channels map to pre-commit and post-commit learning (MECH-060)
-- REE should maintain two explicit error channels around E3 commitment:
+- REE should maintain two explicit error channels and a phase-scoped control-plane variation contract around E3
+- commitment:
 - - pre-commit simulation error: from uncommitted rollouts/counterfactuals, used for gating/search,
 - - post-commit realized error: from executed committed trajectories, used for responsibility attribution and durable
-- model update.
 
 ## Decision Lanes
 

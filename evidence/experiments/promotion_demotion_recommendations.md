@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-25T16:00:17.442237Z`
+Generated: `2026-02-25T16:29:45.651513Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
