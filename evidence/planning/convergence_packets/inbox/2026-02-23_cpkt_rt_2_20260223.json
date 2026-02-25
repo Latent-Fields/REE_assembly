@@ -1,0 +1,124 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-RT-2-20260223",
+  "created_at_utc": "2026-02-23T22:54:46.272252Z",
+  "updated_at_utc": "2026-02-23T22:54:46.272252Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "rt-2",
+    "snapshot_ref": "git-42d4a5b",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "This intake currently uses paraphrased claims and citation links; no copied upstream text, code, or weights are stored in this source.yaml.",
+    "intake_path": "sources/rt-2",
+    "primary_links": [
+      "https://arxiv.org/abs/2307.15818",
+      "https://deepmind.google/discover/blog/rt-2-new-model-translates-vision-and-language-into-action/",
+      "https://robotics-transformer2.github.io/"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "sufficient",
+    "primary_sources_verified": true,
+    "notes": "Auto-generated from source.yaml; verify claim-to-evidence alignment before submission."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "RT-2-MOD-001",
+      "RT-2-DATA-001",
+      "RT-2-OBJ-001",
+      "RT-2-EVAL-001",
+      "RT-2-LIM-001"
+    ],
+    "docs_paths": [
+      "sources/rt-2/source.yaml",
+      "sources/rt-2/claims.md",
+      "sources/rt-2/ree_map.md",
+      "sources/rt-2/comparison_table.md",
+      "sources/rt-2/integration_deltas.md",
+      "sources/rt-2/probes.md",
+      "sources/rt-2/glossary.md",
+      "sources/rt-2/evidence_anchors.md"
+    ],
+    "impact_areas": [
+      "tooling",
+      "control_plane",
+      "representation"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-03-09T22:54:46.272252Z"
+  },
+  "falsification": {
+    "claim_under_test": "Robotics Transformer 2 (RT-2) external intake deltas can be promoted to REE without architecture drift.",
+    "could_be_wrong_if": [
+      "Conflict review identifies unresolved canonical claim collisions.",
+      "Probe outcomes fail to replicate claimed separation or coupling behavior."
+    ],
+    "test_plan_refs": [
+      "sources/rt-2/probes.md",
+      "sources/rt-2/integration_deltas.md"
+    ],
+    "status": "planned",
+    "notes": "Auto-generated baseline packet; refine with explicit disconfirming tests before submission."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete; REE_assembly adjudication still required.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts after promotion."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "RT-2-P-001"
+    ],
+    "adapter_patch_refs": [
+      "sources/rt-2/integration_deltas.md#pending-delta"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "RT-2-BENCH-001",
+        "metric": "post_promotion_conflict_ratio_delta",
+        "comparator": "<=",
+        "target": "0.0 over 2 cycles",
+        "measurement_ref": "sources/rt-2/comparison_table.md",
+        "notes": "Do not increase unresolved conflict pressure in touched claims."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "in_progress",
+    "notes": "Populate implementation artifacts for interface/architecture blast radius promotions."
+  },
+  "deltas": [
+    {
+      "delta_id": "RT-2-DELTA-0001",
+      "title": "Robotics Transformer 2 (RT-2) convergence delta candidate",
+      "proposal": "Promote evidence-backed convergence deltas through REE governance.",
+      "rationale": "Make external intake lineage explicit before canonical adoption.",
+      "target_scope": "tooling",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2307.15818"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "defer",
+    "anti_lock_in_review_required": false,
+    "notes": "Auto-generated baseline recommendation; final outcome set during governance adjudication."
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-RAG-20260223",
+  "created_at_utc": "2026-02-23T22:54:46.154658Z",
+  "updated_at_utc": "2026-02-23T22:54:46.154658Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "rag",
+    "snapshot_ref": "git-42d4a5b",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "This intake currently uses paraphrased claims and citation links; no copied upstream text, code, or weights are stored in this source.yaml.",
+    "intake_path": "sources/rag",
+    "primary_links": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://huggingface.co/docs/transformers/en/model_doc/rag",
+      "https://github.com/huggingface/transformers/blob/main/src/transformers/models/rag/modeling_rag.py"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "sufficient",
+    "primary_sources_verified": true,
+    "notes": "Auto-generated from source.yaml; verify claim-to-evidence alignment before submission."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "RAG-MOD-001",
+      "RAG-DATA-001",
+      "RAG-OBJ-001",
+      "RAG-EVAL-001",
+      "RAG-LIM-001"
+    ],
+    "docs_paths": [
+      "sources/rag/source.yaml",
+      "sources/rag/claims.md",
+      "sources/rag/ree_map.md",
+      "sources/rag/comparison_table.md",
+      "sources/rag/integration_deltas.md",
+      "sources/rag/probes.md",
+      "sources/rag/glossary.md",
+      "sources/rag/evidence_anchors.md"
+    ],
+    "impact_areas": [
+      "memory",
+      "tooling",
+      "control_plane"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-03-09T22:54:46.154658Z"
+  },
+  "falsification": {
+    "claim_under_test": "Retrieval Augmented Generation (RAG) external intake deltas can be promoted to REE without architecture drift.",
+    "could_be_wrong_if": [
+      "Conflict review identifies unresolved canonical claim collisions.",
+      "Probe outcomes fail to replicate claimed separation or coupling behavior."
+    ],
+    "test_plan_refs": [
+      "sources/rag/probes.md",
+      "sources/rag/integration_deltas.md"
+    ],
+    "status": "planned",
+    "notes": "Auto-generated baseline packet; refine with explicit disconfirming tests before submission."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete; REE_assembly adjudication still required.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts after promotion."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "RAG-P-001"
+    ],
+    "adapter_patch_refs": [
+      "sources/rag/integration_deltas.md#pending-delta"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "RAG-BENCH-001",
+        "metric": "post_promotion_conflict_ratio_delta",
+        "comparator": "<=",
+        "target": "0.0 over 2 cycles",
+        "measurement_ref": "sources/rag/comparison_table.md",
+        "notes": "Do not increase unresolved conflict pressure in touched claims."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "in_progress",
+    "notes": "Populate implementation artifacts for interface/architecture blast radius promotions."
+  },
+  "deltas": [
+    {
+      "delta_id": "RAG-DELTA-0001",
+      "title": "Retrieval Augmented Generation (RAG) convergence delta candidate",
+      "proposal": "Promote evidence-backed convergence deltas through REE governance.",
+      "rationale": "Make external intake lineage explicit before canonical adoption.",
+      "target_scope": "tooling",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2005.11401"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "defer",
+    "anti_lock_in_review_required": false,
+    "notes": "Auto-generated baseline recommendation; final outcome set during governance adjudication."
+  }
+}

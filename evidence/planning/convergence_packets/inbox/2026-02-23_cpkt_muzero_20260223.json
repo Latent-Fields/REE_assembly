@@ -1,0 +1,125 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-MUZERO-20260223",
+  "created_at_utc": "2026-02-23T22:54:46.037485Z",
+  "updated_at_utc": "2026-02-23T22:54:46.037485Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "muzero",
+    "snapshot_ref": "git-42d4a5b",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "This intake currently uses paraphrased claims and citation links; no copied upstream text, code, or weights are stored in this source.yaml.",
+    "intake_path": "sources/muzero",
+    "primary_links": [
+      "https://arxiv.org/abs/1911.08265",
+      "https://www.nature.com/articles/s41586-020-03051-4",
+      "https://deepmind.google/discover/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules/"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "sufficient",
+    "primary_sources_verified": true,
+    "notes": "Auto-generated from source.yaml; verify claim-to-evidence alignment before submission."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MUZERO-MOD-001",
+      "MUZERO-DATA-001",
+      "MUZERO-OBJ-001",
+      "MUZERO-EVAL-001",
+      "MUZERO-LIM-001"
+    ],
+    "docs_paths": [
+      "sources/muzero/source.yaml",
+      "sources/muzero/claims.md",
+      "sources/muzero/ree_map.md",
+      "sources/muzero/comparison_table.md",
+      "sources/muzero/integration_deltas.md",
+      "sources/muzero/probes.md",
+      "sources/muzero/glossary.md",
+      "sources/muzero/evidence_anchors.md"
+    ],
+    "impact_areas": [
+      "transition",
+      "control_plane",
+      "commitment",
+      "tooling"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-03-09T22:54:46.037485Z"
+  },
+  "falsification": {
+    "claim_under_test": "MuZero external intake deltas can be promoted to REE without architecture drift.",
+    "could_be_wrong_if": [
+      "Conflict review identifies unresolved canonical claim collisions.",
+      "Probe outcomes fail to replicate claimed separation or coupling behavior."
+    ],
+    "test_plan_refs": [
+      "sources/muzero/probes.md",
+      "sources/muzero/integration_deltas.md"
+    ],
+    "status": "planned",
+    "notes": "Auto-generated baseline packet; refine with explicit disconfirming tests before submission."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete; REE_assembly adjudication still required.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts after promotion."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "MUZERO-P-001"
+    ],
+    "adapter_patch_refs": [
+      "sources/muzero/integration_deltas.md#pending-delta"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "MUZERO-BENCH-001",
+        "metric": "post_promotion_conflict_ratio_delta",
+        "comparator": "<=",
+        "target": "0.0 over 2 cycles",
+        "measurement_ref": "sources/muzero/comparison_table.md",
+        "notes": "Do not increase unresolved conflict pressure in touched claims."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "in_progress",
+    "notes": "Populate implementation artifacts for interface/architecture blast radius promotions."
+  },
+  "deltas": [
+    {
+      "delta_id": "MUZERO-DELTA-0001",
+      "title": "MuZero convergence delta candidate",
+      "proposal": "Promote evidence-backed convergence deltas through REE governance.",
+      "rationale": "Make external intake lineage explicit before canonical adoption.",
+      "target_scope": "tooling",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/1911.08265"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "defer",
+    "anti_lock_in_review_required": false,
+    "notes": "Auto-generated baseline recommendation; final outcome set during governance adjudication."
+  }
+}

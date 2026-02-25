@@ -1,0 +1,126 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-DREAMER-V3-20260223",
+  "created_at_utc": "2026-02-23T22:54:45.692605Z",
+  "updated_at_utc": "2026-02-23T22:54:45.692605Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "dreamer-v3",
+    "snapshot_ref": "git-42d4a5b",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "This intake currently uses paraphrased claims and citation links; no copied upstream text, code, or weights are stored in this source.yaml.",
+    "intake_path": "sources/dreamer-v3",
+    "primary_links": [
+      "https://arxiv.org/abs/2301.04104",
+      "https://github.com/danijar/dreamerv3",
+      "https://danijar.com/project/dreamerv3/"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": true,
+    "notes": "Auto-generated from source.yaml; verify claim-to-evidence alignment before submission."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "DREAMER-V3-MOD-001",
+      "DREAMER-V3-DATA-001",
+      "DREAMER-V3-OBJ-001",
+      "DREAMER-V3-EVAL-001",
+      "DREAMER-V3-LIM-001"
+    ],
+    "docs_paths": [
+      "sources/dreamer-v3/source.yaml",
+      "sources/dreamer-v3/claims.md",
+      "sources/dreamer-v3/ree_map.md",
+      "sources/dreamer-v3/comparison_table.md",
+      "sources/dreamer-v3/integration_deltas.md",
+      "sources/dreamer-v3/probes.md",
+      "sources/dreamer-v3/glossary.md",
+      "sources/dreamer-v3/evidence_anchors.md"
+    ],
+    "impact_areas": [
+      "representation",
+      "transition",
+      "memory",
+      "control_plane",
+      "tooling"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-03-09T22:54:45.692605Z"
+  },
+  "falsification": {
+    "claim_under_test": "DreamerV3 external intake deltas can be promoted to REE without architecture drift.",
+    "could_be_wrong_if": [
+      "Conflict review identifies unresolved canonical claim collisions.",
+      "Probe outcomes fail to replicate claimed separation or coupling behavior."
+    ],
+    "test_plan_refs": [
+      "sources/dreamer-v3/probes.md",
+      "sources/dreamer-v3/integration_deltas.md"
+    ],
+    "status": "planned",
+    "notes": "Auto-generated baseline packet; refine with explicit disconfirming tests before submission."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete; REE_assembly adjudication still required.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts after promotion."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "DREAMER-V3-P-001"
+    ],
+    "adapter_patch_refs": [
+      "sources/dreamer-v3/integration_deltas.md#pending-delta"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "DREAMER-V3-BENCH-001",
+        "metric": "post_promotion_conflict_ratio_delta",
+        "comparator": "<=",
+        "target": "0.0 over 2 cycles",
+        "measurement_ref": "sources/dreamer-v3/comparison_table.md",
+        "notes": "Do not increase unresolved conflict pressure in touched claims."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "in_progress",
+    "notes": "Populate implementation artifacts for interface/architecture blast radius promotions."
+  },
+  "deltas": [
+    {
+      "delta_id": "DREAMER-V3-DELTA-0001",
+      "title": "DreamerV3 convergence delta candidate",
+      "proposal": "Promote evidence-backed convergence deltas through REE governance.",
+      "rationale": "Make external intake lineage explicit before canonical adoption.",
+      "target_scope": "tooling",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2301.04104"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "defer",
+    "anti_lock_in_review_required": false,
+    "notes": "Auto-generated baseline recommendation; final outcome set during governance adjudication."
+  }
+}
