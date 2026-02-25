@@ -7,6 +7,31 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: Processed Task-Loop Extraction + Signed Social Coupling Thought Intake
+
+### Overview
+
+Processed `2026-02-26_task_loop_extraction_and_latent_field_ethics.md` into canonical REE docs using existing claim
+surfaces. The ingestion clarified E3 task-loop extraction contracts, signed social coupling semantics, and deterministic
+boundary interpretation without adding new claim IDs.
+
+### What Changed
+
+- Clarified E3 extracted-loop representation contract:
+  - `docs/architecture/e3.md`
+  - added implementation-facing `TaskLoopObject` contract and explicit relation to `MECH-060/061/062`.
+- Clarified social coupling as signed (benefit + harm), not harm-only:
+  - `docs/architecture/social.md`
+  - added signed viability coupling note, `BENEFIT_j` shadow-stream mention, and `MECH-036` veto-scope alignment.
+- Clarified determinism scope at commitment boundaries:
+  - `docs/invariants.md`
+  - expanded `INV-021` interpretation to distinguish internal stochasticity from boundary determinism/auditability.
+- Updated claim source lineage:
+  - `docs/claims/claims.yaml`
+  - added thought source links for `ARC-003`, `ARC-010`, `MECH-052`, `MECH-061`, `MECH-062`, and `INV-021`.
+- Marked thought file as processed with backlinks:
+  - `docs/thoughts/2026-02-26_task_loop_extraction_and_latent_field_ethics.md`
+
 ## 2026-02-23: Re-centered Canonical Boundary (REE-First, Convergence-Owned JEPA Playbooks)
 
 ### Overview

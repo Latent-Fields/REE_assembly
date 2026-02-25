@@ -1,17 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-02-24T22:25:22.982050Z`
+Generated: `2026-02-25T13:37:17.089455Z`
 
 | metric | count |
 |---|---|
-| total thought files | 48 |
-| processed | 48 |
-| unprocessed | 0 |
+| total thought files | 51 |
+| processed | 49 |
+| unprocessed | 2 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-02-24` `2026-02-24_determinism_action_gating_boundary.md` (status=`unprocessed`)
+- `2026-02-24` `2026-02-24_prefrontal_primitives.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
@@ -65,5 +66,6 @@ Generated: `2026-02-24T22:25:22.982050Z`
 - `2026-02-21_meta_critic.md` (1 link(s) in `Processed in`)
 - `2026-02-21_more_control_plane_necessities.md` (1 link(s) in `Processed in`)
 - `2026-02-23_some_subjective_experience_mapping.md` (5 link(s) in `Processed in`)
+- `2026-02-26_task_loop_extraction_and_latent_field_ethics.md` (5 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

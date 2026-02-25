@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e3.md` (task-loop extraction object contract tied to MECH-060/061/062)
+- `docs/architecture/social.md` (signed social coupling clarification: benefit + harm)
+- `docs/invariants.md` (INV-021 boundary-determinism interpretation)
+- `docs/claims/claims.yaml` (source lineage updates for ARC-003/ARC-010/MECH-052/MECH-061/MECH-062/INV-021)
+- `docs/changelog.md` (2026-02-25 thought-intake processing record)
+
+---
+
 # THOUGHT INTAKE: Latent-Fields Cognifold, Task-Loop Extraction, and Field-Ethics (Love Attractor)
 
 ## 0. Summary claim (why this belongs in REE_assembly)

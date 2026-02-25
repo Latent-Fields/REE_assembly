@@ -61,6 +61,16 @@ Mirror modelling is the primary pathway by which:
 
 Note: legacy sources use the ethical cost term M. Current canonical framing removes the explicit cost term while retaining residue and mirror modelling (see `docs/architecture/e3.md`).
 
+### Signed viability coupling (clarification)
+Canonical social coupling should remain **signed**, not harm-only:
+
+- predicted other-benefit and predicted other-harm both influence selection/ranking,
+- harm channels retain stronger veto/interrupt authority under catastrophic/high-certainty conditions (`MECH-036`),
+- benefit channels provide approach/repair pressure without becoming a standalone objective function.
+
+This keeps REE aligned with INV-001/ARC-012 (no explicit moral reward module) while avoiding a purely aversive social
+model.
+
 ### Failure Modes
 - Low gain: psychopathy / callousness
 - Excessive gain: empathic overwhelm / paralysis
@@ -81,7 +91,7 @@ Social coupling determines how strongly mirrored models influence selection.
 - Language-mediated trust signals
 
 ### Coupling Effects
-- Scales harm equivalence contribution
+- Scales signed other-impact contribution (harm and benefit)
 - Modulates ethical consequence and residue (legacy \(M\) proxy)
 - Affects residue accumulation
 
@@ -253,6 +263,9 @@ Care weight should scale how strongly predicted harm to \(j\) influences traject
 relational distance. Oxytocin lowers distance; prolactin sustains care; μ‑style stability overlays reduce rapid
 oscillation once care is established.
 
+Operational clarification: \(C_j\) should scale signed other-impact routing (benefit and harm) rather than only the
+harm channel, while catastrophic other-harm veto behavior remains governed by `MECH-036`.
+
 Care weights are **control‑plane priorities**, not standalone ethical objectives. They bias selection and learning
 within the existing commitment/residue framework.
 
@@ -262,7 +275,7 @@ within the existing commitment/residue framework.
 
 When `OTHER_SELFLIKE` is high, REE can instantiate a shadow bundle of inferred streams for an agent `j`:
 
-- `HOMEOSTASIS_j`, `HARM_j`, `SELF_IMPACT_j`, optionally `TEMPORAL_COHERENCE_j`.
+- `HOMEOSTASIS_j`, `HARM_j`, `BENEFIT_j`, `SELF_IMPACT_j`, optionally `TEMPORAL_COHERENCE_j`.
 
 These are estimated viability variables, not direct interoception. The control plane can couple them into pruning and
 ranking via a small set of knobs:
@@ -311,3 +324,4 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - `docs/thoughts/2026-02-09_other_harm_gating.md`
 - `docs/thoughts/2026-02-11_oxytocin_vasopressin.md`
 - `docs/thoughts/2026-02-11_prolactin.md`
+- `docs/thoughts/2026-02-26_task_loop_extraction_and_latent_field_ethics.md`

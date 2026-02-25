@@ -294,6 +294,11 @@ Interpretation note:
 **Claim:** Responsibility-bearing durable updates occur only at explicit typed commitment boundaries (tokenized commit
 events), not during pre-commit simulation.
 
+Interpretation note:
+- REE internals may remain probabilistic/non-deterministic.
+- determinism is required at responsibility-bearing boundaries (irreversible dispatch and privileged durable writes),
+  where lineage and attribution must be stable and auditable.
+
 **Corollary mapping:** INV-012, MECH-061, Q-015
 
 ---
