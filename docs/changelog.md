@@ -7,6 +7,32 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: Applied MECH-062 Promotion and Added Thought-Adjudication Governance Bridge
+
+### Overview
+
+Closed a status-application gap where `MECH-062` had an approved promotion decision but remained provisional in the
+claims registry, and added a first-class governance bridge so thought-intake deltas can explicitly surface adjudication
+follow-through candidates.
+
+### What Changed
+
+- Applied approved `MECH-062` promotion into canonical claim status:
+  - `docs/claims/claims.yaml`
+  - `MECH-062` status set to `stable`.
+- Aligned architecture status banner with claim registry:
+  - `docs/architecture/e3.md`
+  - `MECH-062` section status updated to `stable`; implementation-gap language reframed as hardening/falsifiability work.
+- Recorded applied decision-log entry for traceability:
+  - `evidence/decisions/decision_log.v1.jsonl`
+  - appended `MECH-062` `decision_status=applied` for `promote_to_stable`.
+- Added thought-derived adjudication bridge tooling and governance integration:
+  - `evidence/planning/scripts/build_thought_adjudication_bridge.py`
+  - `evidence/planning/scripts/run_governance_cycle.py`
+  - `evidence/planning/README.md`
+  - new outputs: `evidence/planning/thought_adjudication_bridge.v1.json`,
+    `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`.
+
 ## 2026-02-25: Processed Determinism-Boundary + Prefrontal-Primitives Thought Intake (Queue to Zero)
 
 ### Overview

@@ -16,6 +16,8 @@ This folder closes the architecture loop by converting current evidence into a m
 - `connectome_pull_state.v1.json`: persistent completion/reopen state for connectome pull claims.
 - `convergence_intake_queue.v1.json`: normalized queue of convergence promotion packets awaiting review.
 - `CONVERGENCE_INTAKE_QUEUE.md`: human-readable review table for convergence promotion packets.
+- `thought_adjudication_bridge.v1.json`: claims where thought-intake likely implies adjudication refresh or pending status-apply.
+- `THOUGHT_ADJUDICATION_BRIDGE.md`: human-readable bridge queue for thought-driven adjudication follow-through.
 - `convergence_packets/receipts/*.json`: machine-readable packet acknowledgments/adjudication outcomes.
 - `ADJUDICATION_CASCADE_PATCH_QUEUE.md`: generated architecture/doc patch queue after adjudication-cascade application.
 - `DISPATCH_*.md`: curated copy/paste dispatch bundles for active claim batches.
@@ -91,6 +93,12 @@ It also builds convergence intake queue outputs by default:
 - skip with: `--skip-convergence-intake`
 - make invalid packets fail the run: `--convergence-fail-on-invalid`
 
+It also builds thought-adjudication bridge outputs by default:
+
+- `evidence/planning/thought_adjudication_bridge.v1.json`
+- `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`
+- skip with: `--skip-thought-adjudication-bridge`
+
 Run dossier generation directly:
 
 ```bash
@@ -107,6 +115,12 @@ Run adjudication-cascade directly:
 
 ```bash
 python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses applied
+```
+
+Run thought-adjudication bridge directly:
+
+```bash
+python3 evidence/planning/scripts/build_thought_adjudication_bridge.py
 ```
 
 Strict thought gate mode:

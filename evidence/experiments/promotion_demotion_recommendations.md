@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-24T22:25:24.264766Z`
+Generated: `2026-02-25T14:08:30.922337Z`
 
 This file proposes decisions only. No claim status changes are applied automatically.
 Use this as the human-in-the-loop review queue.
@@ -15,14 +15,13 @@ Use this as the human-in-the-loop review queue.
 | `MECH-059` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-060` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-061` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-062` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `approved` |
 
 ## Decision Details
 
 ### MECH-056
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.797, conflict_ratio=0.623, exp_entries=149, lit_entries=9; directions supports=48, weakens=106, mixed=4, unknown=0, conflict_ratio=0.623
+- Why this decision is needed: overall_conf=0.796, conflict_ratio=0.623, exp_entries=149, lit_entries=9; directions supports=48, weakens=106, mixed=4, unknown=0, conflict_ratio=0.623
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -58,7 +57,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-058
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.716, conflict_ratio=0.871, exp_entries=156, lit_entries=9; directions supports=92, weakens=71, mixed=2, unknown=0, conflict_ratio=0.871
+- Why this decision is needed: overall_conf=0.715, conflict_ratio=0.871, exp_entries=156, lit_entries=9; directions supports=92, weakens=71, mixed=2, unknown=0, conflict_ratio=0.871
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -94,7 +93,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-060
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.706, conflict_ratio=0.875, exp_entries=167, lit_entries=13; directions supports=99, weakens=77, mixed=4, unknown=0, conflict_ratio=0.875
+- Why this decision is needed: overall_conf=0.705, conflict_ratio=0.875, exp_entries=167, lit_entries=13; directions supports=99, weakens=77, mixed=4, unknown=0, conflict_ratio=0.875
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -112,7 +111,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-061
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.603, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.602, conflict_ratio=0.8, exp_entries=8, lit_entries=2; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -126,21 +125,3 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-02-15T20:58:38.602475Z`
 - Last selected option: hold_candidate_resolve_conflict
 - Last rationale: Applied approved conflict-hold decision to keep queue actionable without pending manual status.
-
-### MECH-062
-- Current status: `provisional`
-- Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.895, conflict_ratio=0, exp_entries=44, lit_entries=2; directions supports=34, weakens=0, mixed=12, unknown=0, conflict_ratio=0
-- Recommendation: `promote_to_stable`
-- Options (pros/cons):
-  - Promote now (clear canonical status, risk under-tested edge cases)
-  - Hold pending stress-test replication (better stress confidence, slower closure)
-  - Split claim scope before promotion (clearer boundaries, added doc work)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `approved`
-- Last logged decision: `approved` by `user` at `2026-02-19T17:53:18.007513Z`
-- Last selected option: Promote now (clear canonical status, risk under-tested edge cases)
-- Last rationale: Approved promotion recommendation to stable based on high confidence and zero directional conflict.

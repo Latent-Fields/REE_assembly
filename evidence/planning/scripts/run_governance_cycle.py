@@ -623,6 +623,10 @@ def _build_agenda(
     generated_at: str,
 ) -> tuple[dict[str, Any], str]:
     thought_sweep = _load_json_file(repo_root / "docs/thoughts/thought_sweep.v1.json", warnings)
+    thought_bridge = _load_optional_json_file(
+        repo_root / "evidence/planning/thought_adjudication_bridge.v1.json",
+        warnings,
+    )
     backlog = _load_json_file(repo_root / "evidence/planning/evidence_backlog.v1.json", warnings)
     proposals = _load_json_file(repo_root / "evidence/planning/experiment_proposals.v1.json", warnings)
     architecture_gaps = _load_json_file(
@@ -703,6 +707,20 @@ def _build_agenda(
     thought_unprocessed = [
         rec for rec in thought_records if not bool(rec.get("is_processed", False))
     ]
+    thought_bridge_items = (
+        thought_bridge.get("items", [])
+        if isinstance(thought_bridge, dict)
+        else []
+    )
+    if not isinstance(thought_bridge_items, list):
+        thought_bridge_items = []
+    thought_bridge_summary = (
+        thought_bridge.get("summary", {})
+        if isinstance(thought_bridge, dict)
+        else {}
+    )
+    if not isinstance(thought_bridge_summary, dict):
+        thought_bridge_summary = {}
 
     backlog_items = backlog.get("items", []) if isinstance(backlog, dict) else []
     high_backlog = [item for item in backlog_items if item.get("priority") == "high"]
@@ -976,6 +994,10 @@ def _build_agenda(
             "step_failures": sum(1 for step in steps if step.status != "ok"),
             "warnings": len(warnings),
             "thought_unprocessed": len(thought_unprocessed),
+            "thought_adjudication_bridge_items": len(thought_bridge_items),
+            "thought_adjudication_bridge_approved_pending_apply": int(
+                thought_bridge_summary.get("approved_pending_apply", 0)
+            ),
             "conflicts": len(conflicts),
             "decision_queue_items": len(recommendations),
             "backlog_items": len(backlog_items),
@@ -1026,6 +1048,15 @@ def _build_agenda(
             "thought_intake": {
                 "prompt": "Decide promote/defer/split for unprocessed thoughts.",
                 "items": thought_unprocessed,
+            },
+            "thought_adjudication_bridge": {
+                "prompt": (
+                    "Review thought-derived adjudication candidates and apply approved status decisions that are still pending."
+                ),
+                "items": thought_bridge_items,
+                "summary": thought_bridge_summary,
+                "report_markdown_path": "evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md",
+                "report_json_path": "evidence/planning/thought_adjudication_bridge.v1.json",
             },
             "conflict_resolution": {
                 "prompt": "Resolve directional/source conflicts before status promotions.",
@@ -1241,6 +1272,22 @@ def _build_agenda(
     if thought_unprocessed:
         for rec in thought_unprocessed:
             lines.append(f"- `{rec.get('file', '')}`")
+    lines.append(
+        "1a. Thought-Adjudication Bridge: "
+        + f"{len(thought_bridge_items)} candidate item(s); "
+        + f"approved_pending_apply={int(thought_bridge_summary.get('approved_pending_apply', 0))}."
+    )
+    lines.append(
+        "- context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, "
+        + "`evidence/planning/thought_adjudication_bridge.v1.json`"
+    )
+    if thought_bridge_items:
+        for item in thought_bridge_items[:10]:
+            claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
+            reason = _strip_ticks(str(item.get("reason", "")))
+            action = _strip_ticks(str(item.get("recommended_action", "")))
+            lines.append(f"- {claim_ref}; reason=`{reason}`; action=`{action}`")
     lines.append(f"2. Conflict Resolution: {len(conflicts)} conflict item(s).")
     lines.append("- context: `evidence/experiments/conflicts.md`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`")
     if conflicts:
@@ -1506,6 +1553,11 @@ def main() -> None:
         help="Skip docs/thoughts sweep step.",
     )
     parser.add_argument(
+        "--skip-thought-adjudication-bridge",
+        action="store_true",
+        help="Skip thought-to-adjudication bridge generation step.",
+    )
+    parser.add_argument(
         "--skip-evidence-build",
         action="store_true",
         help="Skip evidence ingestion/index build step.",
@@ -1626,6 +1678,16 @@ def main() -> None:
                 ],
             )
         )
+    if not args.skip_thought_adjudication_bridge:
+        plan.append(
+            (
+                "thought_adjudication_bridge",
+                [
+                    str(sys.executable),
+                    "evidence/planning/scripts/build_thought_adjudication_bridge.py",
+                ],
+            )
+        )
     if not args.skip_structure_review:
         plan.append(
             (
@@ -1688,6 +1750,7 @@ def main() -> None:
         + f"steps={len(steps)}, failures={agenda['summary']['step_failures']}, "
         + f"warnings={agenda['summary']['warnings']}, "
         + f"thought_unprocessed={agenda['summary']['thought_unprocessed']}, "
+        + f"thought_bridge={agenda['summary']['thought_adjudication_bridge_items']}, "
         + f"decision_queue={agenda['summary']['decision_queue_items']}, "
         + f"human_briefs={agenda['summary']['human_decision_briefs']}, "
         + f"structure_considerations={agenda['summary']['structure_considerations']}, "
