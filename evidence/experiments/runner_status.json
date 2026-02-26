@@ -13,8 +13,8 @@
       "title": "Residue Trajectory Placement",
       "description": "Tests whether residue accumulates at trajectory positions during rollout, not only at the final executed step.",
       "estimated_minutes": 15.0,
-      "status": "needs_script",
-      "status_reason": "Experiment script not yet written (P2 backlog)"
+      "status": "pending",
+      "status_reason": "Script written and smoke-tested 2026-02-26"
     },
     {
       "queue_id": "EXQ-002",
@@ -23,8 +23,8 @@
       "title": "E1/E2 Timescale Ablation",
       "description": "Ablates the E1 (LSTM slow predictor) vs E2 (fast rollout) timescale separation. Tests whether the two-speed architecture improves latent stability.",
       "estimated_minutes": 15.0,
-      "status": "needs_script",
-      "status_reason": "Experiment script not yet written (P2 backlog)"
+      "status": "pending",
+      "status_reason": "Script written and smoke-tested 2026-02-26"
     },
     {
       "queue_id": "EXQ-003",
@@ -33,8 +33,8 @@
       "title": "Commitment Boundary Token Reclassification",
       "description": "Validates that REE's commitment boundary correctly reclassifies pre-commit simulation errors as post-commit realised errors.",
       "estimated_minutes": 15.0,
-      "status": "needs_script",
-      "status_reason": "Experiment script not yet written (P2 backlog)"
+      "status": "pending",
+      "status_reason": "Script written and smoke-tested 2026-02-26"
     },
     {
       "queue_id": "EXQ-004",
@@ -42,9 +42,9 @@
       "claim_id": "MECH-057",
       "title": "Control Completion Requirement",
       "description": "Tests MECH-057: whether REE's control plane requires action completion before new precision updates are admitted.",
-      "estimated_minutes": 15.0,
-      "status": "needs_script",
-      "status_reason": "Needs redesign after JEPA decoupling (P3 backlog)"
+      "estimated_minutes": 23.0,
+      "status": "pending",
+      "status_reason": "Script written and smoke-tested 2026-02-26. P3 — FAIL expected at this scale; informative baseline."
     }
   ],
   "completed": [
