@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "visual_cortex_compact_models",
+  "entry_id": "2026-02-26_cowley_2023_compact_v4",
+  "timestamp_utc": "2026-02-26T00:00:00Z",
+  "claim_ids_tested": [
+    "ARC-001",
+    "ARC-003",
+    "ARC-005",
+    "INV-014",
+    "MECH-068"
+  ],
+  "source": {
+    "title": "Compact deep neural network models of visual cortex",
+    "authors": [
+      "Benjamin R. Cowley",
+      "Patricia L. Stan",
+      "Jonathan W. Pillow",
+      "Matthew A. Smith"
+    ],
+    "year": 2023,
+    "venue": "bioRxiv preprint",
+    "doi": "10.1101/2023.11.22.568315",
+    "url": "https://www.biorxiv.org/content/10.1101/2023.11.22.568315v1"
+  },
+  "evidence_class": "computational_neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong empirical support for shared-basis + consolidation motif in macaque V4. Transfer risk to general cognition is real but structurally coherent. Confidence capped at 0.72 to reflect species/modality gap and the inferential step from sensory cortex to full cognitive architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "visual_cortex",
+    "v4",
+    "compact_models",
+    "consolidation",
+    "shared_basis",
+    "compression",
+    "divisive_normalization",
+    "winner_take_all",
+    "surround_suppression",
+    "canonical_computations"
+  ],
+  "mapping": {
+    "source_claim_statement": "V4 neurons share an early filter bank; stimulus preference is determined by a neuron-specific consolidation step (selective pooling + competition + normalization). Accurate models can be compressed ~5000x without accuracy loss.",
+    "ree_translation": "E1 provides a shared representational basis; behavioural selectivity emerges at the consolidation/gating layer (E3 + control plane), not at the feature basis. Viable REE architectures must admit large compression without functional collapse.",
+    "mapping_caveat": "Paper studies macaque V4 (mid-level visual cortex). Extension to full cognitive architecture — E3 commitment gating, ethical residue, trajectory selection — is inferential. Canonical operations (WTA, divisive normalization, surround suppression) are well-established cortical motifs and transfer risk is lower for those sub-claims.",
+    "source_context": "Macaque electrophysiology, V4 responses to natural and synthetic images, ~78k unique stimuli, 3 animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: large-scale empirical study with causal validation via adversarial stimulus synthesis. Mapping fidelity good for E1-shared-basis and canonical-ops claims; lower for E3 commitment specifics. Transfer risk non-trivial: sensory cortex to full cognitive architecture is a substantive inferential step."
+  }
+}

@@ -74,10 +74,30 @@ Canonical scope:
 
 #### Minimal interoperability principle
 
-A JEPA-like world-model design can serve as a REE E1/E2 representational reference architecture.  
-JEPA itself remains an external project and is not a component inside REE.  
+A JEPA-like world-model design can serve as a REE E1/E2 representational reference architecture.
+JEPA itself remains an external project and is not a component inside REE.
 REE contributes substrate ownership, control-plane architecture, E3 commitment, self-impact attribution, trajectory constraints, and multi-agent stability
 modeling.
+
+#### JEPA scope boundary (Consolidation Selectivity, 2026-02-26)
+
+Empirical compact modelling of macaque V4 (Cowley et al. 2023; MECH-068) clarifies the JEPA
+scope boundary within REE:
+
+- **JEPA covers stage 1:** the shared feature basis / early filter bank — E1 representation.
+- **JEPA does not cover stage 2:** the consolidation/gating step that determines behavioural
+  selectivity — E3 trajectory gating and the control plane.
+
+**JEPA should be treated as a reference architecture for E1 representation only.**
+The consolidation step — where trajectory preference, value weighting, and commitment identity
+emerge — is outside JEPA's design scope. This is not a limitation of JEPA; it is simply a
+different architectural concern.
+
+Consequence: integration work that attempts to use JEPA as the complete REE substrate (rather
+than as an E1 representation reference) is out of scope and should not proceed. JEPA-related
+convergence packets should be scoped to E1 representation only.
+
+See `docs/architecture/compact_consolidation_principle.md` (MECH-068).
 
 #### Wording and boundary policy
 
