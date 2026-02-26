@@ -2696,7 +2696,12 @@
       "experiment_description": "Probe whether the confidence channel (precision alpha_k) in ree-v1-minimal E3 selector produces signals independent of prediction error PE. Measure correlation between alpha_k and PE across diverse rollout conditions.",
       "synthetic_evidence_note": "All 38 prior runs (jepa_uncertainty_channels, claim_probe_mech_059) are synthetic. Do not use as baseline.",
       "added_at_utc": "2026-02-26T00:00:00Z",
-      "added_reason": "synthetic_evidence_audit"
+      "added_reason": "synthetic_evidence_audit",
+      "status": "completed",
+      "completed_at_utc": "2026-02-26T16:13:49Z",
+      "result": "PASS",
+      "result_notes": "control_plane_precision_separation experiment (200 eps × 3 seeds). |corr(score_dispersion, PE)| = 0.067 (<0.3 threshold) — signals independent. SEPARATED last-Q harm 0.663 vs MERGED 0.875 — separation beneficial. Both MECH-059 criteria met.",
+      "result_file": "ree-v1-minimal/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260226T161349.json"
     },
     {
       "backlog_id": "EVB-0038",

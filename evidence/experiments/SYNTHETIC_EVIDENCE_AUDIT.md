@@ -10,12 +10,13 @@
 All experimental runs in `evidence/experiments/` that originated from `ree-v2` or `ree-experiments-lab` are **synthetic parametric data**, not genuine measurements. This audit catalogs which claims are affected and what genuine re-experimentation is required.
 
 **Valid substrate:** `ree-v1-minimal` only.
-**Genuine experiments completed so far (2 total):**
+**Genuine experiments completed so far (3 total):**
 
 | experiment | claim | result |
 |---|---|---|
 | `consolidation_ablation` | CSH-1 (consolidation improves multi-hop reasoning) | **PASS** |
 | `training_run` | Harm reduction under training | **IMPROVED** (harm 1.0→0.675) |
+| `control_plane_precision_separation` | MECH-059 (confidence channel separate from PE) | **PASS** (2026-02-26, EVB-0037) |
 
 ---
 
