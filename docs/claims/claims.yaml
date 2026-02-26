@@ -1498,6 +1498,7 @@
     - adopt_jepa_structure
     - retire_ree_claim
   dependency_reopen_status: candidate
+  evidence_quality_note: "All prior experimental evidence (42 runs, trajectory_integrity experiment type) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). Confidence scores are unreliable. Genuine ree-v1-minimal experiments required before promotion."
   depends_on:
     - ARC-013
     - ARC-018
@@ -1521,6 +1522,7 @@
   adjudicated_at_utc: 2026-02-25T14:59:46.253616Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
+  evidence_quality_note: "All prior experimental evidence (10 runs, claim_probe_mech_057 experiment type) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). Confidence 0.525 is unreliable. Genuine ree-v1-minimal experiments required."
   depends_on:
     - ARC-015
     - ARC-005
@@ -1586,6 +1588,7 @@
     - adopt_jepa_structure
     - retire_ree_claim
   dependency_reopen_status: candidate
+  evidence_quality_note: "All prior experimental evidence (38 runs, jepa_uncertainty_channels and claim_probe_mech_059 types) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). Adjudication outcome (retain_ree) is a valid architectural decision. Mechanistic predictions need genuine ree-v1-minimal experiments."
   depends_on:
     - ARC-005
     - ARC-004
@@ -1605,6 +1608,7 @@
   lifecycle_stage: adjudicated
   pending_design: true
   pending_design_note: "Pure REE design required: implement explicit pre-commit (simulation) and post-commit (realized) error routing within REE control plane, without JEPA substrate proxy. Depends on ARC-003 architecture decisions."
+  evidence_quality_note: "All prior experimental evidence (137 runs, commit_dual_error_channels experiment type) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). All runs used ree-v2-qualification-harness with toy_env_runner even when labelled toyenv_internal_minimal. Genuine ree-v1-minimal design + experiments required."
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:33:23.830904Z
   adjudication_decision_status: applied
@@ -1641,6 +1645,7 @@
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
+  evidence_quality_note: "Prior experimental evidence (8 runs, claim_probe_mech_061) from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). Adjudication (retain_ree) is a valid architectural decision. Mechanistic predictions need genuine ree-v1-minimal experiments."
   adjudication_recommendation: retain_ree
   depends_on:
     - ARC-003
@@ -1797,6 +1802,7 @@
   adjudicated_at_utc: 2026-02-25T16:51:50.720541Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
+  evidence_quality_note: "Prior experimental evidence from jepa_uncertainty_channels (126 runs) was from ree-v2 synthetic scaffolding. Adjudication direction (hybridize) is valid. Needs genuine ree-v1-minimal uncertainty calibration experiments."
   depends_on:
     - MECH-059
     - ARC-005
@@ -1814,6 +1820,7 @@
   adjudicated_at_utc: 2026-02-25T16:51:50.758372Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
+  evidence_quality_note: "Prior experimental evidence from jepa_uncertainty_channels (126 runs) was from ree-v2 synthetic scaffolding. Adjudication direction (hybridize) is valid. Needs genuine ree-v1-minimal blind-spot probe experiments."
   depends_on:
     - MECH-057
     - MECH-059
@@ -1832,6 +1839,7 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
+  evidence_quality_note: "Prior experimental evidence from claim_probe_mech_061 (8 runs) was from ree-v2 synthetic scaffolding. Adjudication (retain_ree) is valid. Needs genuine ree-v1-minimal commitment boundary experiments."
   depends_on:
     - MECH-061
     - ARC-003
@@ -1863,6 +1871,7 @@
   adjudicated_at_utc: 2026-02-25T16:51:50.648196Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
+  evidence_quality_note: "Prior experimental evidence from claim_probe_q_017 / control_axis_ablation (30 runs) was from ree-v2 synthetic scaffolding. Adjudication (hybridize) is valid architectural direction. Needs genuine ree-v1-minimal control axis experiments."
   depends_on:
     - MECH-063
     - ARC-005
