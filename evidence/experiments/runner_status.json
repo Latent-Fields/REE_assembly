@@ -1,0 +1,63 @@
+{
+  "schema_version": "v1",
+  "runner_pid": null,
+  "runner_started_at": null,
+  "last_updated": "2026-02-26T00:00:00Z",
+  "idle": true,
+  "current": null,
+  "queue": [
+    {
+      "queue_id": "EXQ-001",
+      "backlog_id": "EVB-0039",
+      "claim_id": "MECH-056",
+      "title": "Residue Trajectory Placement",
+      "description": "Tests whether residue accumulates at trajectory positions during rollout, not only at the final executed step.",
+      "estimated_minutes": 15.0,
+      "status": "needs_script",
+      "status_reason": "Experiment script not yet written (P2 backlog)"
+    },
+    {
+      "queue_id": "EXQ-002",
+      "backlog_id": "EVB-0040",
+      "claim_id": "MECH-058",
+      "title": "E1/E2 Timescale Ablation",
+      "description": "Ablates the E1 (LSTM slow predictor) vs E2 (fast rollout) timescale separation. Tests whether the two-speed architecture improves latent stability.",
+      "estimated_minutes": 15.0,
+      "status": "needs_script",
+      "status_reason": "Experiment script not yet written (P2 backlog)"
+    },
+    {
+      "queue_id": "EXQ-003",
+      "backlog_id": "EVB-0041",
+      "claim_id": "MECH-061",
+      "title": "Commitment Boundary Token Reclassification",
+      "description": "Validates that REE's commitment boundary correctly reclassifies pre-commit simulation errors as post-commit realised errors.",
+      "estimated_minutes": 15.0,
+      "status": "needs_script",
+      "status_reason": "Experiment script not yet written (P2 backlog)"
+    },
+    {
+      "queue_id": "EXQ-004",
+      "backlog_id": "EVB-0042",
+      "claim_id": "MECH-057",
+      "title": "Control Completion Requirement",
+      "description": "Tests MECH-057: whether REE's control plane requires action completion before new precision updates are admitted.",
+      "estimated_minutes": 15.0,
+      "status": "needs_script",
+      "status_reason": "Needs redesign after JEPA decoupling (P3 backlog)"
+    }
+  ],
+  "completed": [
+    {
+      "queue_id": "EXQ-000",
+      "backlog_id": "EVB-0037",
+      "claim_id": "MECH-059",
+      "title": "Control Plane Precision Separation",
+      "description": "Tests whether E3 score dispersion (confidence proxy) and E1 prediction error are independent signals, and whether routing them separately reduces harm.",
+      "result": "PASS",
+      "result_summary": "|corr(dispersion, PE)| = 0.067 (<0.30 threshold) — signals independent | SEPARATED last-Q harm 0.663 vs MERGED 0.875 — separation beneficial",
+      "completed_at": "2026-02-26T16:13:49Z",
+      "output_file": "ree-v1-minimal/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260226T161349.json"
+    }
+  ]
+}

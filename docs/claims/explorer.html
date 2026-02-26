@@ -1698,6 +1698,66 @@
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
     }
+
+    /* ── Experiment Runner view ── */
+    .exp-wrap { padding: 20px 24px; max-width: 860px; }
+    .exp-section { margin-bottom: 28px; }
+    .exp-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); margin: 0 0 12px 0;
+      padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    }
+    .exp-card {
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 14px 16px; margin-bottom: 10px; background: var(--card);
+    }
+    .exp-card.running { border-color: var(--accent); background: rgba(43,111,114,0.04); }
+    .exp-card.pass { border-left: 3px solid #2e7d32; }
+    .exp-card.fail { border-left: 3px solid #c0392b; }
+    .exp-card.improved { border-left: 3px solid #1565c0; }
+    .exp-card.needs-script { opacity: 0.65; }
+    .exp-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+    .exp-claim-chip {
+      font-size: 11px; font-weight: 700; background: var(--bg-2);
+      border-radius: 3px; padding: 2px 7px; color: var(--muted); white-space: nowrap;
+    }
+    .exp-title { font-size: 13px; font-weight: 600; }
+    .exp-desc { font-size: 12px; color: var(--muted); margin: 4px 0 8px 0; line-height: 1.5; }
+    .exp-badge {
+      font-size: 11px; font-weight: 600; padding: 2px 8px;
+      border-radius: 10px; white-space: nowrap;
+    }
+    .exp-badge.running   { background: #e3f2fd; color: #1565c0; }
+    .exp-badge.pass      { background: #e8f5e9; color: #2e7d32; }
+    .exp-badge.fail      { background: #fff3e0; color: #e65100; }
+    .exp-badge.improved  { background: #e8f5e9; color: #1565c0; }
+    .exp-badge.error     { background: #fce4ec; color: #c62828; }
+    .exp-badge.pending   { background: #fff8e1; color: #f57f17; }
+    .exp-badge.needs-script { background: var(--bg-2); color: var(--muted); }
+    .exp-progress-bar {
+      height: 5px; background: var(--border); border-radius: 3px;
+      overflow: hidden; margin: 10px 0 4px 0;
+    }
+    .exp-progress-fill {
+      height: 100%; background: var(--accent);
+      transition: width 0.4s ease; border-radius: 3px;
+    }
+    .exp-progress-label { font-size: 11px; color: var(--muted); display: flex; gap: 16px; }
+    .exp-output {
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: 11px; background: var(--bg-2); border-radius: 4px;
+      padding: 8px 10px; margin: 10px 0 0 0; white-space: pre-wrap;
+      color: var(--ink); max-height: 120px; overflow-y: auto;
+    }
+    .exp-result-summary { font-size: 12px; color: var(--muted); margin-top: 6px; font-style: italic; }
+    .exp-timing { font-size: 11px; color: var(--muted); }
+    .exp-idle-msg { text-align: center; padding: 48px 24px; color: var(--muted); }
+    .exp-idle-msg code {
+      display: block; font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: 12px; background: var(--bg-2); border-radius: 4px;
+      padding: 10px 14px; margin: 12px auto; max-width: 540px; text-align: left;
+    }
+    .exp-refresh-note { font-size: 11px; color: var(--muted); margin-top: 20px; text-align: right; }
   </style>
 </head>
 <body>
@@ -1740,6 +1800,7 @@
           <button id="mapViewBtn">Map</button>
           <button id="tripleViewBtn">Triple View</button>
           <button id="governanceViewBtn">Governance</button>
+          <button id="experimentsViewBtn">Experiments</button>
         </div>
       </div>
       <div>
@@ -1929,6 +1990,9 @@
           </div>
           <div id="governanceContent" class="gov-empty">Loading governance agenda...</div>
         </div>
+        <div id="expWrap" class="exp-wrap" style="display:none">
+          <div id="expContent"></div>
+        </div>
         <div id="tripleViewWrap" class="panel triple-view-wrap">
           <div class="triple-toolbar">
             <div class="meta" id="tripleStatus">Triple-view diagrams are not loaded.</div>
@@ -2105,7 +2169,9 @@
     const GOVERNANCE_AGENDA_URL = '../../evidence/planning/governance_agenda.v1.json';
     const GOVERNANCE_BACKLOG_URL = '../../evidence/planning/evidence_backlog.v1.json';
     const GOVERNANCE_PROPOSALS_URL = '../../evidence/planning/experiment_proposals.v1.json';
+    const RUNNER_STATUS_URL = '../../evidence/experiments/runner_status.json';
     const REFRESH_MS = 60000;
+    const EXP_REFRESH_MS = 10000;
 
     const CMD_RUN_GOVERNANCE = 'python3 evidence/planning/scripts/run_governance_cycle.py';
     const CMD_RUN_GOVERNANCE_STRICT = 'python3 evidence/planning/scripts/run_governance_cycle.py --strict-thoughts';
@@ -2523,6 +2589,9 @@ END CONFLICT RESOLUTION`;
       mapViewBtn: document.getElementById('mapViewBtn'),
       tripleViewBtn: document.getElementById('tripleViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
+      experimentsViewBtn: document.getElementById('experimentsViewBtn'),
+      expWrap: document.getElementById('expWrap'),
+      expContent: document.getElementById('expContent'),
       tripleStatus: document.getElementById('tripleStatus'),
       tripleEpochChip: document.getElementById('tripleEpochChip'),
       tripleReloadBtn: document.getElementById('tripleReloadBtn'),
@@ -6878,6 +6947,7 @@ END CONFLICT RESOLUTION`;
         els.mapViewBtn,
         els.tripleViewBtn,
         els.governanceViewBtn,
+        els.experimentsViewBtn,
       ].forEach(btn => {
         if (!btn) return;
         if (btn === activeButton) btn.classList.add('primary');
@@ -6892,6 +6962,8 @@ END CONFLICT RESOLUTION`;
       if (els.mapWrap) els.mapWrap.style.display = 'none';
       if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'none';
       if (els.governanceWrap) els.governanceWrap.style.display = 'none';
+      if (els.expWrap) els.expWrap.style.display = 'none';
+      stopExpRefresh();
       hideTripleTooltip();
     }
 
@@ -6935,9 +7007,178 @@ END CONFLICT RESOLUTION`;
         return;
       }
 
+      if (view === 'experiments') {
+        if (els.expWrap) els.expWrap.style.display = 'block';
+        setPrimaryViewButton(els.experimentsViewBtn);
+        renderExperiments();
+        startExpRefresh();
+        return;
+      }
+
       if (els.listWrap) els.listWrap.style.display = 'block';
       setPrimaryViewButton(els.listViewBtn);
     }
+
+    // ── Experiment Runner dashboard ──────────────────────────────────────────
+
+    let expRefreshTimer = null;
+
+    function startExpRefresh() {
+      if (expRefreshTimer) return;
+      expRefreshTimer = setInterval(() => {
+        renderExperiments().catch(() => {});
+      }, EXP_REFRESH_MS);
+    }
+
+    function stopExpRefresh() {
+      if (expRefreshTimer) { clearInterval(expRefreshTimer); expRefreshTimer = null; }
+    }
+
+    function fmtMinutes(mins) {
+      if (mins < 1) return '<1 min';
+      if (mins < 60) return `~${Math.round(mins)} min`;
+      return `~${(mins / 60).toFixed(1)} hr`;
+    }
+
+    function fmtSeconds(secs) {
+      if (secs < 60) return `${Math.round(secs)}s`;
+      return `${Math.floor(secs / 60)}m ${Math.round(secs % 60)}s`;
+    }
+
+    function expBadgeHtml(status, result) {
+      const s = (result || status || '').toLowerCase();
+      let cls = 'pending', label = status || 'pending';
+      if (s === 'running')      { cls = 'running';      label = 'Running'; }
+      else if (s === 'pass')    { cls = 'pass';         label = 'PASS'; }
+      else if (s === 'fail')    { cls = 'fail';         label = 'FAIL'; }
+      else if (s === 'improved'){ cls = 'improved';     label = 'IMPROVED'; }
+      else if (s === 'error')   { cls = 'error';        label = 'ERROR'; }
+      else if (s === 'needs_script') { cls = 'needs-script'; label = 'Needs script'; }
+      return `<span class="exp-badge ${cls}">${escapeHtml(label)}</span>`;
+    }
+
+    function expCurrentHtml(cur) {
+      const p = cur.progress || {};
+      const pct = Math.min(100, p.overall_pct || 0);
+      const runLabel = p.run_label || '';
+      const runsDone = p.runs_done || 0;
+      const runsTotal = p.runs_total || '?';
+      const epDone = p.episodes_done || 0;
+      const epTotal = p.episodes_total || '?';
+      const elapsed = cur.seconds_elapsed || 0;
+      const remaining = cur.seconds_remaining || 0;
+      const lines = (cur.recent_lines || []).join('\n');
+      return `
+        <div class="exp-card running">
+          <div class="exp-card-header">
+            <span class="exp-claim-chip">${escapeHtml(cur.claim_id || '')}</span>
+            <span class="exp-title">${escapeHtml(cur.title || '')}</span>
+            ${expBadgeHtml('running')}
+          </div>
+          <div class="exp-desc">${escapeHtml(cur.description || '')}</div>
+          <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
+          <div class="exp-progress-label">
+            <span>${pct.toFixed(1)}% complete</span>
+            <span>Run ${runsDone}/${runsTotal} — ${runLabel} — ep ${epDone}/${epTotal}</span>
+            <span>Elapsed: ${fmtSeconds(elapsed)}</span>
+            <span>Remaining: ~${fmtSeconds(remaining)}</span>
+          </div>
+          ${lines ? `<div class="exp-output">${escapeHtml(lines)}</div>` : ''}
+        </div>`;
+    }
+
+    function expQueueItemHtml(qi) {
+      const s = (qi.status || 'pending').toLowerCase().replace('_', '-');
+      return `
+        <div class="exp-card ${s}">
+          <div class="exp-card-header">
+            <span class="exp-claim-chip">${escapeHtml(qi.claim_id || '')}</span>
+            <span class="exp-title">${escapeHtml(qi.title || '')}</span>
+            ${expBadgeHtml(qi.status)}
+            <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
+          </div>
+          <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
+          ${qi.status_reason ? `<div class="exp-timing">${escapeHtml(qi.status_reason)}</div>` : ''}
+        </div>`;
+    }
+
+    function expCompletedHtml(c) {
+      const resultClass = (c.result || '').toLowerCase();
+      return `
+        <div class="exp-card ${resultClass}">
+          <div class="exp-card-header">
+            <span class="exp-claim-chip">${escapeHtml(c.claim_id || '')}</span>
+            <span class="exp-title">${escapeHtml(c.title || '')}</span>
+            ${expBadgeHtml('', c.result)}
+          </div>
+          <div class="exp-desc">${escapeHtml(c.description || '')}</div>
+          ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
+          <div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at ? c.completed_at.replace('T', ' ').replace('Z', ' UTC') : ''}</div>
+        </div>`;
+    }
+
+    async function renderExperiments() {
+      if (!els.expContent) return;
+      let status = null;
+      try {
+        const resp = await fetch(RUNNER_STATUS_URL + '?t=' + Date.now());
+        if (resp.ok) status = await resp.json();
+      } catch (_) { /* runner_status.json not present or server not running */ }
+
+      if (!status) {
+        els.expContent.innerHTML = `
+          <div class="exp-idle-msg">
+            <div>No runner status found. Start the experiment runner from ree-v1-minimal:</div>
+            <code>cd ~/Documents/GitHub/ree-v1-minimal\nnohup python experiment_runner.py > runner.log 2>&1 &</code>
+            <div>Then serve this explorer from the REE_assembly root:</div>
+            <code>cd ~/Documents/GitHub/REE_assembly\npython3 -m http.server 8000</code>
+          </div>`;
+        return;
+      }
+
+      const cur = status.current;
+      const queue = status.queue || [];
+      const completed = [...(status.completed || [])].reverse(); // newest first
+      const lastUpdated = status.last_updated ? status.last_updated.replace('T',' ').replace('Z',' UTC') : '';
+
+      let html = '';
+
+      // Running
+      if (cur) {
+        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>${expCurrentHtml(cur)}</div>`;
+      } else if (!status.idle) {
+        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div><div class="exp-card"><div class="exp-desc">Runner active — waiting for next experiment to start.</div></div></div>`;
+      }
+
+      // Queue
+      if (queue.length > 0) {
+        html += `<div class="exp-section"><div class="exp-section-title">Queue — ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
+        html += queue.map(expQueueItemHtml).join('');
+        html += '</div>';
+      }
+
+      // Completed
+      if (completed.length > 0) {
+        html += `<div class="exp-section"><div class="exp-section-title">Completed — ${completed.length}</div>`;
+        html += completed.map(expCompletedHtml).join('');
+        html += '</div>';
+      }
+
+      if (!cur && status.idle && queue.length === 0 && completed.length === 0) {
+        html = `<div class="exp-idle-msg">No experiments in queue.</div>`;
+      }
+
+      if (status.idle && !cur) {
+        html += `<div class="exp-idle-msg" style="padding:12px 0;text-align:left">
+          <span style="font-weight:600">Runner idle.</span> To run the queue:<br>
+          <code>cd ~/Documents/GitHub/ree-v1-minimal && python experiment_runner.py</code></div>`;
+      }
+
+      html += `<div class="exp-refresh-note">Auto-refreshes every ${EXP_REFRESH_MS / 1000}s &mdash; last updated ${escapeHtml(lastUpdated)}</div>`;
+      els.expContent.innerHTML = html;
+    }
+
+    // ── End Experiment Runner dashboard ─────────────────────────────────────
 
     function initDraftTabs() {
       const tabs = document.querySelectorAll('.draft-tab');
@@ -7073,6 +7314,9 @@ END CONFLICT RESOLUTION`;
       }
       if (els.governanceViewBtn) {
         els.governanceViewBtn.addEventListener('click', () => setView('governance'));
+      }
+      if (els.experimentsViewBtn) {
+        els.experimentsViewBtn.addEventListener('click', () => setView('experiments'));
       }
       if (els.tripleReloadBtn) {
         els.tripleReloadBtn.addEventListener('click', () => {
