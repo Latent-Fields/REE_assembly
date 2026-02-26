@@ -186,11 +186,12 @@ def main():
 
     def shutdown(sig, frame):
         print("\n[serve] Shutting down.", flush=True)
-        pid = _runner_pid()
         if _runner_proc and _runner_proc.poll() is None:
             print("[serve] Stopping runner process.", flush=True)
             _runner_proc.terminate()
-        server.shutdown()
+        # server.shutdown() deadlocks when called from the main thread's signal
+        # handler while serve_forever() is also on the main thread — use sys.exit.
+        sys.exit(0)
 
     signal.signal(signal.SIGINT, shutdown)
     signal.signal(signal.SIGTERM, shutdown)
