@@ -7048,11 +7048,11 @@ END CONFLICT RESOLUTION`;
     function expBadgeHtml(status, result) {
       const s = (result || status || '').toLowerCase();
       let cls = 'pending', label = status || 'pending';
-      if (s === 'running')      { cls = 'running';      label = 'Running'; }
-      else if (s === 'pass')    { cls = 'pass';         label = 'PASS'; }
-      else if (s === 'fail')    { cls = 'fail';         label = 'FAIL'; }
-      else if (s === 'improved'){ cls = 'improved';     label = 'IMPROVED'; }
-      else if (s === 'error')   { cls = 'error';        label = 'ERROR'; }
+      if (s === 'running')           { cls = 'running';      label = 'Running'; }
+      else if (s === 'pass')         { cls = 'pass';         label = 'PASS'; }
+      else if (s === 'fail')         { cls = 'fail';         label = 'FAIL'; }
+      else if (s === 'improved')     { cls = 'improved';     label = 'IMPROVED'; }
+      else if (s === 'error')        { cls = 'error';        label = 'ERROR'; }
       else if (s === 'needs_script') { cls = 'needs-script'; label = 'Needs script'; }
       return `<span class="exp-badge ${cls}">${escapeHtml(label)}</span>`;
     }
@@ -7079,7 +7079,7 @@ END CONFLICT RESOLUTION`;
           <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
           <div class="exp-progress-label">
             <span>${pct.toFixed(1)}% complete</span>
-            <span>Run ${runsDone}/${runsTotal} — ${runLabel} — ep ${epDone}/${epTotal}</span>
+            <span>Run ${runsDone}/${runsTotal} &mdash; ${runLabel} &mdash; ep ${epDone}/${epTotal}</span>
             <span>Elapsed: ${fmtSeconds(elapsed)}</span>
             <span>Remaining: ~${fmtSeconds(remaining)}</span>
           </div>
@@ -7098,7 +7098,7 @@ END CONFLICT RESOLUTION`;
             <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
-          ${qi.status_reason ? `<div class="exp-timing">${escapeHtml(qi.status_reason)}</div>` : ''}
+          ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
         </div>`;
     }
 
@@ -7117,65 +7117,118 @@ END CONFLICT RESOLUTION`;
         </div>`;
     }
 
+    async function callRunnerAPI(endpoint) {
+      try {
+        const resp = await fetch(endpoint, { method: 'POST' });
+        if (!resp.ok) return { status: 'error', message: `HTTP ${resp.status}` };
+        return await resp.json();
+      } catch (e) {
+        return { status: 'error', message: 'API unavailable — is serve.py running?' };
+      }
+    }
+
     async function renderExperiments() {
       if (!els.expContent) return;
+
       let status = null;
       try {
         const resp = await fetch(RUNNER_STATUS_URL + '?t=' + Date.now());
         if (resp.ok) status = await resp.json();
-      } catch (_) { /* runner_status.json not present or server not running */ }
+      } catch (_) {}
 
-      if (!status) {
-        els.expContent.innerHTML = `
-          <div class="exp-idle-msg">
-            <div>No runner status found. Start the experiment runner from ree-v1-minimal:</div>
-            <code>cd ~/Documents/GitHub/ree-v1-minimal\nnohup python experiment_runner.py > runner.log 2>&1 &</code>
-            <div>Then serve this explorer from the REE_assembly root:</div>
-            <code>cd ~/Documents/GitHub/REE_assembly\npython3 -m http.server 8000</code>
-          </div>`;
-        return;
-      }
+      const isRunning = !!(status && !status.idle && status.runner_pid);
+      const cur = status && status.current;
+      const queue = (status && status.queue) || [];
+      const completed = [...((status && status.completed) || [])].reverse();
+      const lastUpdated = status && status.last_updated
+        ? status.last_updated.replace('T', ' ').replace('Z', ' UTC') : '';
 
-      const cur = status.current;
-      const queue = status.queue || [];
-      const completed = [...(status.completed || [])].reverse(); // newest first
-      const lastUpdated = status.last_updated ? status.last_updated.replace('T',' ').replace('Z',' UTC') : '';
+      // ── Control panel (always shown) ──
+      const statusDot = isRunning
+        ? `<span style="color:#2e7d32;font-weight:600">&#9679; Running${status.runner_pid ? ` (PID&nbsp;${status.runner_pid})` : ''}</span>`
+        : `<span style="color:var(--muted)">&#9675; Idle</span>`;
 
-      let html = '';
+      let html = `
+        <div class="exp-section">
+          <div class="exp-section-title">Runner Control</div>
+          <div class="exp-card" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+            <div style="flex:1;min-width:260px">
+              <div style="font-size:13px;margin-bottom:10px">Status: ${statusDot}</div>
+              <div class="exp-desc" style="margin:0;line-height:1.9">
+                <strong>First time setup</strong> — use this instead of <code>python3&nbsp;-m&nbsp;http.server</code>:<br>
+                <code>cd ~/Documents/GitHub/REE_assembly</code><br>
+                <code>python3 serve.py</code><br>
+                <span style="color:var(--muted);margin-top:4px;display:block">
+                  Experiments run detached in background &mdash; log saved to
+                  <code>runner.log</code> in REE_assembly.<br>
+                  Each experiment takes ~15&nbsp;min on M2&nbsp;Air&nbsp;8&nbsp;GB.
+                  Queue runs sequentially to stay within memory.
+                </span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:150px;align-items:stretch">
+              <button id="expStartBtn" ${isRunning ? 'disabled' : ''}>&#9654; Start Runner</button>
+              <button id="expStopBtn" class="ghost" ${!isRunning ? 'disabled' : ''}>&#9632; Stop Runner</button>
+              <div id="expCtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px"></div>
+            </div>
+          </div>
+        </div>`;
 
-      // Running
+      // ── Now Running ──
       if (cur) {
         html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>${expCurrentHtml(cur)}</div>`;
-      } else if (!status.idle) {
-        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div><div class="exp-card"><div class="exp-desc">Runner active — waiting for next experiment to start.</div></div></div>`;
+      } else if (isRunning) {
+        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>
+          <div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div></div>`;
       }
 
-      // Queue
+      // ── Queue ──
       if (queue.length > 0) {
-        html += `<div class="exp-section"><div class="exp-section-title">Queue — ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
+        html += `<div class="exp-section"><div class="exp-section-title">Queue &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
         html += queue.map(expQueueItemHtml).join('');
         html += '</div>';
       }
 
-      // Completed
+      // ── Completed ──
       if (completed.length > 0) {
-        html += `<div class="exp-section"><div class="exp-section-title">Completed — ${completed.length}</div>`;
+        html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${completed.length}</div>`;
         html += completed.map(expCompletedHtml).join('');
         html += '</div>';
       }
 
-      if (!cur && status.idle && queue.length === 0 && completed.length === 0) {
-        html = `<div class="exp-idle-msg">No experiments in queue.</div>`;
-      }
-
-      if (status.idle && !cur) {
-        html += `<div class="exp-idle-msg" style="padding:12px 0;text-align:left">
-          <span style="font-weight:600">Runner idle.</span> To run the queue:<br>
-          <code>cd ~/Documents/GitHub/ree-v1-minimal && python experiment_runner.py</code></div>`;
-      }
-
-      html += `<div class="exp-refresh-note">Auto-refreshes every ${EXP_REFRESH_MS / 1000}s &mdash; last updated ${escapeHtml(lastUpdated)}</div>`;
+      html += `<div class="exp-refresh-note">Refreshes every ${EXP_REFRESH_MS / 1000}s${lastUpdated ? ` &mdash; last updated ${escapeHtml(lastUpdated)}` : ''}</div>`;
       els.expContent.innerHTML = html;
+
+      // Wire buttons (after innerHTML set)
+      const startBtn = document.getElementById('expStartBtn');
+      const stopBtn  = document.getElementById('expStopBtn');
+      const ctrlMsg  = document.getElementById('expCtrlMsg');
+
+      if (startBtn) {
+        startBtn.addEventListener('click', async () => {
+          startBtn.disabled = true;
+          startBtn.textContent = 'Starting\u2026';
+          const r = await callRunnerAPI('/api/runner/start');
+          if (ctrlMsg) ctrlMsg.textContent =
+            r.status === 'started'         ? `Started (PID ${r.pid})` :
+            r.status === 'already_running' ? `Already running (PID ${r.pid})` :
+            r.message || r.status;
+          setTimeout(() => renderExperiments(), 800);
+        });
+      }
+
+      if (stopBtn) {
+        stopBtn.addEventListener('click', async () => {
+          stopBtn.disabled = true;
+          stopBtn.textContent = 'Stopping\u2026';
+          const r = await callRunnerAPI('/api/runner/stop');
+          if (ctrlMsg) ctrlMsg.textContent =
+            r.status === 'stopped'     ? 'Runner stopped.' :
+            r.status === 'not_running' ? 'Runner was not running.' :
+            r.message || r.status;
+          setTimeout(() => renderExperiments(), 800);
+        });
+      }
     }
 
     // ── End Experiment Runner dashboard ─────────────────────────────────────
