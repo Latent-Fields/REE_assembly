@@ -7162,7 +7162,8 @@ END CONFLICT RESOLUTION`;
                   Experiments run detached in background &mdash; log saved to
                   <code>runner.log</code> in REE_assembly.<br>
                   Each experiment takes ~15&nbsp;min on M2&nbsp;Air&nbsp;8&nbsp;GB.
-                  Queue runs sequentially to stay within memory.
+                  Queue runs sequentially to stay within memory.<br>
+                  For long runs, prevent sleep: <code>caffeinate -i python3 serve.py</code>
                 </span>
               </div>
             </div>
