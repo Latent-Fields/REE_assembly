@@ -1,0 +1,51 @@
+{
+  "experiment": "commitment_boundary_validation",
+  "claim": "MECH-061",
+  "evb_id": "EVB-0041",
+  "run_timestamp": "2026-02-26T19:43:50.131993+00:00",
+  "config": {
+    "num_episodes": 5,
+    "max_steps": 100,
+    "seeds": [
+      7
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "blend_alpha": 0.5,
+    "e1_lr": 0.0001,
+    "policy_lr": 0.001
+  },
+  "verdict": "PASS",
+  "partial_support": false,
+  "aggregate": {
+    "with_boundary_harm_last_quarter": 0.5,
+    "blended_harm_last_quarter": 1.0,
+    "mean_abs_pre_post_corr_with_boundary": 0.1734,
+    "corr_threshold": 0.7,
+    "harm_tolerance_factor": 1.05,
+    "distinct_signals_criterion_met": true,
+    "boundary_helps_criterion_met": true
+  },
+  "per_run": [
+    {
+      "condition": "WITH-BOUNDARY",
+      "seed": 7,
+      "first_quarter_harm": 1.0,
+      "last_quarter_harm": 0.5,
+      "mean_prediction_error": 0.45339,
+      "pre_post_corr": 0.1734,
+      "abs_pre_post_corr": 0.1734,
+      "episode_count": 5
+    },
+    {
+      "condition": "BLENDED",
+      "seed": 7,
+      "first_quarter_harm": 1.6,
+      "last_quarter_harm": 1.0,
+      "mean_prediction_error": 0.471875,
+      "pre_post_corr": 0.0081,
+      "abs_pre_post_corr": 0.0081,
+      "episode_count": 5
+    }
+  ]
+}

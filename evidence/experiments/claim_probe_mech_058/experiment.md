@@ -12,15 +12,17 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260226T205244_claim_probe_mech_058_ree_v1_minimal` at `2026-02-26T20:52:44Z` signatures: mech058:latent_stability_criterion_not_met_at_v1_minimal_scale
 - `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech058:anchor_separation_collapse
 - `2026-02-21T150649Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech058:ema_drift_under_shift, mech058:anchor_separation_collapse
-- `2026-02-21T150649Z_claim-probe-mech-058_seed11_ema_anchor_off_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech058:anchor_separation_collapse
 
 Recurring signatures:
 - `mech058:anchor_separation_collapse` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`
 - `mech058:ema_drift_under_shift` occurred in 3 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`
+- `mech058:latent_stability_criterion_not_met_at_v1_minimal_scale` occurred in 1 FAIL run(s); latest `20260226T205244_claim_probe_mech_058_ree_v1_minimal`
 
 Suggested design TODOs:
 - [ ] Investigate signature `mech058:anchor_separation_collapse` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech058:ema_drift_under_shift` (3 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:latent_stability_criterion_not_met_at_v1_minimal_scale` (1 FAIL run(s), latest `20260226T205244_claim_probe_mech_058_ree_v1_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

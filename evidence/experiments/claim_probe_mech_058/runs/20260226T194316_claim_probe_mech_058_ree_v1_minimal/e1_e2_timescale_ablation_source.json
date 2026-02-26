@@ -1,0 +1,56 @@
+{
+  "experiment": "e1_e2_timescale_ablation",
+  "claim": "MECH-058",
+  "evb_id": "EVB-0040",
+  "run_timestamp": "2026-02-26T19:43:16.449943+00:00",
+  "config": {
+    "num_episodes": 5,
+    "max_steps": 100,
+    "seeds": [
+      7
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "separated_e1_lr": 0.0001,
+    "separated_policy_lr": 0.001,
+    "same_timescale_e1_lr": 0.001,
+    "same_timescale_policy_lr": 0.001
+  },
+  "verdict": "PASS",
+  "partial_support": false,
+  "aggregate": {
+    "separated_mean_latent_stability": 0.007436,
+    "same_timescale_mean_latent_stability": 0.009826,
+    "separated_harm_last_quarter": 0.5,
+    "same_timescale_harm_last_quarter": 1.0,
+    "harm_tolerance_factor": 1.05,
+    "stability_criterion_met": true,
+    "performance_criterion_met": true
+  },
+  "per_run": [
+    {
+      "condition": "SEPARATED",
+      "seed": 7,
+      "e1_lr": 0.0001,
+      "policy_lr": 0.001,
+      "first_quarter_harm": 0.2,
+      "last_quarter_harm": 0.5,
+      "mean_latent_stability": 0.007436,
+      "last_quarter_latent_stability": 0.007381,
+      "mean_e1_loss": 0.008731,
+      "episode_count": 5
+    },
+    {
+      "condition": "SAME-TIMESCALE",
+      "seed": 7,
+      "e1_lr": 0.001,
+      "policy_lr": 0.001,
+      "first_quarter_harm": 1.5,
+      "last_quarter_harm": 1.0,
+      "mean_latent_stability": 0.009826,
+      "last_quarter_latent_stability": 0.011687,
+      "mean_e1_loss": 0.007312,
+      "episode_count": 5
+    }
+  ]
+}

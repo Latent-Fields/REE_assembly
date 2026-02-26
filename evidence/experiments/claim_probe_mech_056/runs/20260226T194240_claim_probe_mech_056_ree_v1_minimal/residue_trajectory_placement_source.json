@@ -1,0 +1,46 @@
+{
+  "experiment": "residue_trajectory_placement",
+  "claim": "MECH-056",
+  "evb_id": "EVB-0039",
+  "run_timestamp": "2026-02-26T19:42:40.542993+00:00",
+  "config": {
+    "num_episodes": 5,
+    "max_steps": 100,
+    "seeds": [
+      7
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "intermediate_weight_scheme": "linear_ramp_i_over_H"
+  },
+  "verdict": "FAIL",
+  "partial_support": true,
+  "aggregate": {
+    "trajectory_wide_harm_last_quarter": 1.3,
+    "endpoint_only_harm_last_quarter": 0.5,
+    "trajectory_wide_mean_intermediate_residue_mass": 3.42,
+    "harm_tolerance_factor": 1.05,
+    "path_spread_criterion_met": true,
+    "harm_avoidance_criterion_met": false
+  },
+  "per_run": [
+    {
+      "condition": "TRAJECTORY-WIDE",
+      "seed": 7,
+      "first_quarter_harm": 1.0,
+      "last_quarter_harm": 1.3,
+      "mean_intermediate_residue_mass": 3.42,
+      "mean_trajectory_residue_cost": 3.873246,
+      "episode_count": 5
+    },
+    {
+      "condition": "ENDPOINT-ONLY",
+      "seed": 7,
+      "first_quarter_harm": 0.5,
+      "last_quarter_harm": 0.5,
+      "mean_intermediate_residue_mass": 0.0,
+      "mean_trajectory_residue_cost": 1.010754,
+      "episode_count": 5
+    }
+  ]
+}

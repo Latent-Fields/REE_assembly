@@ -1,0 +1,39 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_061",
+  "run_id": "20260226T213745_claim_probe_mech_061_ree_v1_minimal",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-26T21:37:45Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "7d1f92a0ac1407bca41965dbd0a161b4f95b2036",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "experiments/commitment_boundary_validation.py",
+    "version": "ree_v1_minimal.v1"
+  },
+  "scenario": {
+    "name": "commitment_boundary_validation",
+    "architecture_epoch": "ree_v1_minimal_genuine_v1",
+    "evb_id": "EVB-0041",
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "num_episodes": 200
+  },
+  "claim_ids_tested": [
+    "MECH-061"
+  ],
+  "evidence_class": "exp:ablation",
+  "evidence_direction": "supports",
+  "failure_signatures": [],
+  "partial_support": false,
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "source_json": "commitment_boundary_validation_source.json"
+  }
+}

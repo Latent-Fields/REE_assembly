@@ -100,9 +100,9 @@ Suggested run_id suffix pattern:
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260226T194240_claim_probe_mech_056_ree_v1_minimal` at `2026-02-26T19:42:40Z` signatures: none
 - `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` at `2026-02-22T20:37:15Z` signatures: ledger_editing, domination_lock_in
 - `2026-02-22T203713Z_claim-probe-mech-056_seed11_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` at `2026-02-22T20:37:13Z` signatures: ledger_editing, domination_lock_in
-- `2026-02-22T203712Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_adaptive_toyenv_internal_minimal` at `2026-02-22T20:37:12Z` signatures: ledger_editing
 
 Recurring signatures:
 - `ledger_editing` occurred in 35 FAIL run(s); latest `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal`

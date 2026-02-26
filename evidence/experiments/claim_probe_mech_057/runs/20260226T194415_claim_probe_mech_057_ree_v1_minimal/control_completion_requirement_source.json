@@ -1,0 +1,62 @@
+{
+  "experiment": "control_completion_requirement",
+  "claim": "MECH-057",
+  "evb_id": "EVB-0042",
+  "run_timestamp": "2026-02-26T19:44:15.818488+00:00",
+  "config": {
+    "num_episodes": 5,
+    "max_steps": 100,
+    "seeds": [
+      7
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "e1_lr": 0.0001,
+    "policy_lr": 0.001,
+    "degradation_threshold": 1.1,
+    "conditions": [
+      "FULL",
+      "NO_ATTRIBUTION",
+      "NO_GATING"
+    ]
+  },
+  "verdict": "FAIL",
+  "partial_support": false,
+  "aggregate": {
+    "full_harm_last_quarter": 1.0,
+    "no_attribution_harm_last_quarter": 1.0,
+    "no_gating_harm_last_quarter": 0.7,
+    "degradation_threshold": 1.1,
+    "attribution_criterion_met": false,
+    "gating_criterion_met": false
+  },
+  "per_run": [
+    {
+      "condition": "FULL",
+      "seed": 7,
+      "first_quarter_harm": 1.5,
+      "last_quarter_harm": 1.0,
+      "mean_e1_loss": 0.008455,
+      "mean_trajectory_residue_cost": 1.223261,
+      "episode_count": 5
+    },
+    {
+      "condition": "NO_ATTRIBUTION",
+      "seed": 7,
+      "first_quarter_harm": 0.5,
+      "last_quarter_harm": 1.0,
+      "mean_e1_loss": 0.008748,
+      "mean_trajectory_residue_cost": 0.747162,
+      "episode_count": 5
+    },
+    {
+      "condition": "NO_GATING",
+      "seed": 7,
+      "first_quarter_harm": 1.0,
+      "last_quarter_harm": 0.7,
+      "mean_e1_loss": 0.008352,
+      "mean_trajectory_residue_cost": 1.179878,
+      "episode_count": 5
+    }
+  ]
+}

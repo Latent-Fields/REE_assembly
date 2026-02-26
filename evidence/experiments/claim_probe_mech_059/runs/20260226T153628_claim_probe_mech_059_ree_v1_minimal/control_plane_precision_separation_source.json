@@ -1,0 +1,110 @@
+{
+  "experiment": "control_plane_precision_separation",
+  "claim": "MECH-059",
+  "evb_id": "EVB-0037",
+  "run_timestamp": "2026-02-26T15:36:28.834422+00:00",
+  "config": {
+    "num_episodes": 200,
+    "max_steps": 100,
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "dispersion_modulation_strength": 0.02,
+    "max_dispersion_scale": 5.0
+  },
+  "verdict": "PASS",
+  "partial_support": false,
+  "aggregate": {
+    "merged_harm_last_quarter": 0.8753,
+    "separated_harm_last_quarter": 0.6627,
+    "abs_corr_dispersion_pe_merged": 0.0666,
+    "abs_corr_dispersion_pe_separated": 0.0753,
+    "independence_threshold": 0.3,
+    "signals_independent": true,
+    "separation_helps": true
+  },
+  "per_run": [
+    {
+      "condition": "MERGED",
+      "seed": 7,
+      "first_quarter_harm": 0.886,
+      "last_quarter_harm": 0.874,
+      "harm_reduction": 0.012,
+      "harm_improved": true,
+      "corr_dispersion_pe": 0.0123,
+      "abs_corr_dispersion_pe": 0.0123,
+      "mean_dispersion": 0.173,
+      "mean_e1_loss": 0.0087,
+      "episode_count": 200
+    },
+    {
+      "condition": "SEPARATED",
+      "seed": 7,
+      "first_quarter_harm": 0.64,
+      "last_quarter_harm": 0.778,
+      "harm_reduction": -0.138,
+      "harm_improved": false,
+      "corr_dispersion_pe": 0.0148,
+      "abs_corr_dispersion_pe": 0.0148,
+      "mean_dispersion": 0.6202,
+      "mean_e1_loss": 0.0087,
+      "episode_count": 200
+    },
+    {
+      "condition": "MERGED",
+      "seed": 42,
+      "first_quarter_harm": 0.93,
+      "last_quarter_harm": 0.974,
+      "harm_reduction": -0.044,
+      "harm_improved": false,
+      "corr_dispersion_pe": -0.1805,
+      "abs_corr_dispersion_pe": 0.1805,
+      "mean_dispersion": 0.1704,
+      "mean_e1_loss": 0.0082,
+      "episode_count": 200
+    },
+    {
+      "condition": "SEPARATED",
+      "seed": 42,
+      "first_quarter_harm": 0.786,
+      "last_quarter_harm": 0.786,
+      "harm_reduction": 0.0,
+      "harm_improved": true,
+      "corr_dispersion_pe": -0.0624,
+      "abs_corr_dispersion_pe": 0.0624,
+      "mean_dispersion": 0.631,
+      "mean_e1_loss": 0.0082,
+      "episode_count": 200
+    },
+    {
+      "condition": "MERGED",
+      "seed": 99,
+      "first_quarter_harm": 0.95,
+      "last_quarter_harm": 0.778,
+      "harm_reduction": 0.172,
+      "harm_improved": true,
+      "corr_dispersion_pe": -0.0069,
+      "abs_corr_dispersion_pe": 0.0069,
+      "mean_dispersion": 0.1506,
+      "mean_e1_loss": 0.0124,
+      "episode_count": 200
+    },
+    {
+      "condition": "SEPARATED",
+      "seed": 99,
+      "first_quarter_harm": 0.456,
+      "last_quarter_harm": 0.424,
+      "harm_reduction": 0.032,
+      "harm_improved": true,
+      "corr_dispersion_pe": 0.1488,
+      "abs_corr_dispersion_pe": 0.1488,
+      "mean_dispersion": 0.3295,
+      "mean_e1_loss": 0.0123,
+      "episode_count": 200
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "experiment": "commitment_boundary_validation",
+  "claim": "MECH-061",
+  "evb_id": "EVB-0041",
+  "run_timestamp": "2026-02-26T21:37:45.161061+00:00",
+  "config": {
+    "num_episodes": 200,
+    "max_steps": 100,
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "blend_alpha": 0.5,
+    "e1_lr": 0.0001,
+    "policy_lr": 0.001
+  },
+  "verdict": "PASS",
+  "partial_support": false,
+  "aggregate": {
+    "with_boundary_harm_last_quarter": 0.8613,
+    "blended_harm_last_quarter": 0.956,
+    "mean_abs_pre_post_corr_with_boundary": 0.1135,
+    "corr_threshold": 0.7,
+    "harm_tolerance_factor": 1.05,
+    "distinct_signals_criterion_met": true,
+    "boundary_helps_criterion_met": true
+  },
+  "per_run": [
+    {
+      "condition": "WITH-BOUNDARY",
+      "seed": 7,
+      "first_quarter_harm": 0.82,
+      "last_quarter_harm": 0.776,
+      "mean_prediction_error": 0.466664,
+      "pre_post_corr": 0.0441,
+      "abs_pre_post_corr": 0.0441,
+      "episode_count": 200
+    },
+    {
+      "condition": "BLENDED",
+      "seed": 7,
+      "first_quarter_harm": 0.868,
+      "last_quarter_harm": 0.98,
+      "mean_prediction_error": 0.465362,
+      "pre_post_corr": 0.096,
+      "abs_pre_post_corr": 0.096,
+      "episode_count": 200
+    },
+    {
+      "condition": "WITH-BOUNDARY",
+      "seed": 42,
+      "first_quarter_harm": 0.884,
+      "last_quarter_harm": 0.866,
+      "mean_prediction_error": 0.478877,
+      "pre_post_corr": -0.1922,
+      "abs_pre_post_corr": 0.1922,
+      "episode_count": 200
+    },
+    {
+      "condition": "BLENDED",
+      "seed": 42,
+      "first_quarter_harm": 0.882,
+      "last_quarter_harm": 0.992,
+      "mean_prediction_error": 0.481869,
+      "pre_post_corr": -0.5258,
+      "abs_pre_post_corr": 0.5258,
+      "episode_count": 200
+    },
+    {
+      "condition": "WITH-BOUNDARY",
+      "seed": 99,
+      "first_quarter_harm": 0.872,
+      "last_quarter_harm": 0.942,
+      "mean_prediction_error": 0.477591,
+      "pre_post_corr": 0.1041,
+      "abs_pre_post_corr": 0.1041,
+      "episode_count": 200
+    },
+    {
+      "condition": "BLENDED",
+      "seed": 99,
+      "first_quarter_harm": 0.906,
+      "last_quarter_harm": 0.896,
+      "mean_prediction_error": 0.478046,
+      "pre_post_corr": -0.085,
+      "abs_pre_post_corr": 0.085,
+      "episode_count": 200
+    }
+  ]
+}

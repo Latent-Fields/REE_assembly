@@ -1,0 +1,37 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_058",
+  "run_id": "20260226T194316_claim_probe_mech_058_ree_v1_minimal",
+  "status": "PASS",
+  "timestamp_utc": "2026-02-26T19:43:16Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "7d1f92a0ac1407bca41965dbd0a161b4f95b2036",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "experiments/e1_e2_timescale_ablation.py",
+    "version": "ree_v1_minimal.v1"
+  },
+  "scenario": {
+    "name": "e1_e2_timescale_ablation",
+    "architecture_epoch": "ree_v1_minimal_genuine_v1",
+    "evb_id": "EVB-0040",
+    "seeds": [
+      7
+    ],
+    "num_episodes": 5
+  },
+  "claim_ids_tested": [
+    "MECH-058"
+  ],
+  "evidence_class": "exp:ablation",
+  "evidence_direction": "supports",
+  "failure_signatures": [],
+  "partial_support": false,
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "source_json": "e1_e2_timescale_ablation_source.json"
+  }
+}

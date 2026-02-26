@@ -1,0 +1,56 @@
+{
+  "experiment": "control_plane_precision_separation",
+  "claim": "MECH-059",
+  "evb_id": "EVB-0037",
+  "run_timestamp": "2026-02-26T15:35:06.316200+00:00",
+  "config": {
+    "num_episodes": 20,
+    "max_steps": 100,
+    "seeds": [
+      7
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "dispersion_modulation_strength": 0.02,
+    "max_dispersion_scale": 5.0
+  },
+  "verdict": "FAIL",
+  "partial_support": true,
+  "aggregate": {
+    "merged_harm_last_quarter": 0.58,
+    "separated_harm_last_quarter": 0.54,
+    "abs_corr_dispersion_pe_merged": 0.3026,
+    "abs_corr_dispersion_pe_separated": 0.3136,
+    "independence_threshold": 0.3,
+    "signals_independent": false,
+    "separation_helps": true
+  },
+  "per_run": [
+    {
+      "condition": "MERGED",
+      "seed": 7,
+      "first_quarter_harm": 0.7,
+      "last_quarter_harm": 0.58,
+      "harm_reduction": 0.12,
+      "harm_improved": true,
+      "corr_dispersion_pe": -0.3026,
+      "abs_corr_dispersion_pe": 0.3026,
+      "mean_dispersion": 0.046,
+      "mean_e1_loss": 0.0088,
+      "episode_count": 20
+    },
+    {
+      "condition": "SEPARATED",
+      "seed": 7,
+      "first_quarter_harm": 0.98,
+      "last_quarter_harm": 0.54,
+      "harm_reduction": 0.44,
+      "harm_improved": true,
+      "corr_dispersion_pe": -0.3136,
+      "abs_corr_dispersion_pe": 0.3136,
+      "mean_dispersion": 0.0796,
+      "mean_e1_loss": 0.0087,
+      "episode_count": 20
+    }
+  ]
+}

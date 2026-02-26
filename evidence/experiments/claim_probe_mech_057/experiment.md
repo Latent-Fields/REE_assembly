@@ -126,9 +126,9 @@ Required metadata for stage-aware governance:
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260226T194415_claim_probe_mech_057_ree_v1_minimal` at `2026-02-26T19:44:15Z` signatures: mech057:attribution_loop_not_differentiated, mech057:gating_loop_not_differentiated
 - `exp_0025_20260225T191852357612Z` at `2026-02-25T19:18:52.357612Z` signatures: mech057:action_prediction_gap, mech057:consequence_model_drift, mech057:lineage_integrity_drop
 - `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:37:02Z` signatures: domination_lock_in
-- `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal` at `2026-02-15T21:36:50Z` signatures: ledger_editing, domination_lock_in
 
 Recurring signatures:
 - `ledger_editing` occurred in 4 FAIL run(s); latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
@@ -136,6 +136,8 @@ Recurring signatures:
 - `mech057:action_prediction_gap` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
 - `mech057:consequence_model_drift` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
 - `mech057:lineage_integrity_drop` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
+- `mech057:attribution_loop_not_differentiated` occurred in 1 FAIL run(s); latest `20260226T194415_claim_probe_mech_057_ree_v1_minimal`
+- `mech057:gating_loop_not_differentiated` occurred in 1 FAIL run(s); latest `20260226T194415_claim_probe_mech_057_ree_v1_minimal`
 
 Suggested design TODOs:
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
@@ -143,4 +145,5 @@ Suggested design TODOs:
 - [ ] Investigate signature `mech057:action_prediction_gap` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 - [ ] Investigate signature `mech057:consequence_model_drift` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 - [ ] Investigate signature `mech057:lineage_integrity_drop` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
+- [ ] Investigate signature `mech057:attribution_loop_not_differentiated` (1 FAIL run(s), latest `20260226T194415_claim_probe_mech_057_ree_v1_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

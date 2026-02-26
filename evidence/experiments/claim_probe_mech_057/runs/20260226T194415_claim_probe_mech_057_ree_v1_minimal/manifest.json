@@ -1,0 +1,40 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_057",
+  "run_id": "20260226T194415_claim_probe_mech_057_ree_v1_minimal",
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-26T19:44:15Z",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "7d1f92a0ac1407bca41965dbd0a161b4f95b2036",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "experiments/control_completion_requirement.py",
+    "version": "ree_v1_minimal.v1"
+  },
+  "scenario": {
+    "name": "control_completion_requirement",
+    "architecture_epoch": "ree_v1_minimal_genuine_v1",
+    "evb_id": "EVB-0042",
+    "seeds": [
+      7
+    ],
+    "num_episodes": 5
+  },
+  "claim_ids_tested": [
+    "MECH-057"
+  ],
+  "evidence_class": "exp:ablation",
+  "evidence_direction": "weakens",
+  "failure_signatures": [
+    "mech057:attribution_loop_not_differentiated",
+    "mech057:gating_loop_not_differentiated"
+  ],
+  "partial_support": false,
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "source_json": "control_completion_requirement_source.json"
+  }
+}
