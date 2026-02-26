@@ -203,13 +203,14 @@ These are treated as structural control failures, not mere parameter noise.
 
 ---
 
-## 12) JEPA / Substrate Position
+## 12) JEPA / Representation-Reference Position
 
 Current project stance:
 
-- JEPA-like machinery is strongest as E1/E2 substrate support.
+- JEPA-like machinery (inspired by an external project) is strongest as an E1/E2 representational reference architecture.
 - Control-plane completion, commitment gating, and responsibility routing remain REE-defining requirements.
-- Substrate alignment is governed through explicit integration contracts (`IMPL-022`, `IMPL-023`, `IMPL-025`), not
+- JEPA does not carry E3 commitment semantics or substrate ownership in REE.
+- Representation-interface alignment is governed through explicit integration contracts (`IMPL-022`, `IMPL-023`, `IMPL-025`), not
   terminology-only mapping.
 
 ---

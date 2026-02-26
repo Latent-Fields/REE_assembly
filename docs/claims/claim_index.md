@@ -124,7 +124,7 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-055](../architecture/control_plane.md#mech-055) Affective channel separation keeps hedonic tone, valence, and signed PE distinct.
 - [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
 - [MECH-057](../architecture/agency_responsibility_flow.md#mech-057) Agentic latent-predictive models require control-plane completion and self-attribution loops.
-- [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize shared JEPA substrate via functional E1/E2 rate separation.
+- [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize JEPA-like-referenced E1/E2 representation via functional rate separation.
 - [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
 - [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Umbrella commit-boundary separation principle with explicit phase control-variation map: pre-commit simulation and post-commit realized-error channels stay responsibility-distinct via write-boundary enforcement (MECH-061/062/066/067).
 - [MECH-061](../architecture/e3.md#mech-061) Commit-boundary token reclassifies pre-commit vs post-commit error routing.
@@ -183,8 +183,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [IMPL-019](../architecture/developmental_curriculum.md#impl-019) Self-first, social-later developmental testing order heuristic.
 - [IMPL-020](../glossary.md#impl-020) Formal JEPA↔REE terminology alignment glossary for interoperability.
 - [IMPL-021](../architecture/jepa_ree_hybrid_diagram_spec.md#impl-021) Hybrid JEPA↔REE architecture diagram contract and rendering checklist.
-- [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-as-E1/E2 integration contract (inputs, outputs, knobs, and failure gates).
-- [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 substrate-first spec and phase gate with hook bridges to commit-boundary, tri-loop gating, and orthogonal control-axis completion.
+- [IMPL-022](../architecture/jepa_e1e2_integration_contract.md#impl-022) JEPA-like E1/E2 representation-reference contract (inputs, outputs, knobs, and failure gates).
+- [IMPL-023](../architecture/ree_v2_spec.md#impl-023) REE-v2 representation-interface-first spec and phase gate with hook bridges to commit-boundary, tri-loop gating, and orthogonal control-axis completion.
 - [IMPL-024](../notes/jepa_language_policy.md#impl-024) v2 REE-first canonical wording policy with JEPA interface translation and convergence-owned source-method language.
 - [IMPL-025](../architecture/hook_surface_contract.md#impl-025) Cross-version hook surface contract and registry, including v2 bridge families for commit-boundary, tri-loop arbitration, and orthogonal-axis telemetry.
 

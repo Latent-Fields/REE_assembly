@@ -16,6 +16,7 @@
 - `ree-experiments-lab` is serving as a stress/falsification harness (adversarial and non-stationary checks).
 - JEPA integration guidance is now convergence-first: source-method details live in `REE_convergence`, while
   `REE_assembly` keeps REE-first canonical contracts and adjudication outputs.
+- JEPA remains an external reference project; REE uses JEPA-like representational patterns for comparison/inspiration only.
 
 ---
 
@@ -30,14 +31,14 @@ Outcome:
 - useful for signal discovery and contract hardening,
 - not sufficient as final architecture target due to stress-lane conflicts and limited environment breadth.
 
-## REE-v2 (current focus: REE-first substrate contract with JEPA-compatible interface)
+## REE-v2 (current focus: REE-first representation-interface contract with JEPA-like mappings)
 
 Primary role:
-- lock a stable substrate contract for sensing adapters + E1/E2 latent prediction.
+- lock a stable representation-interface contract for sensing adapters + E1/E2 latent prediction.
 
 In-scope:
-- sensor adapters mapped to JEPA-compatible context/target latent interfaces,
-- E1/E2 substrate integration contract implementation (`IMPL-022`),
+- sensor adapters mapped to JEPA-like context/target latent interfaces,
+- E1/E2 representation-reference integration contract implementation (`IMPL-022`),
 - stable output streams for latent prediction error and uncertainty,
 - run-pack/adapter-signal compliance and calibration metrics.
 
@@ -47,14 +48,14 @@ Out-of-scope:
 - full ethical arbitration dynamics.
 
 Exit criteria to start v3 implementation focus:
-- substrate contract stable across both qualification and stress lanes,
+- representation-interface contract stable across both qualification and stress lanes,
 - uncertainty/error streams are calibrated and non-gamed across shifts,
 - no unresolved adapter contract drift.
 
 ## REE-v3 (next focus: control completion)
 
 Primary role:
-- add and iterate control-plane, hippocampal functions, and E3 commitment/accountability on top of v2 substrate.
+- add and iterate control-plane, hippocampal functions, and E3 commitment/accountability on top of the v2 representation interface foundation.
 
 In-scope:
 - control-plane arbitration and precision routing,
@@ -79,7 +80,7 @@ Primary role:
 - `REE_assembly`:
   - canonical claims, architecture docs, evidence matrix, governance outputs.
 - `ree-v2`:
-  - primary qualification lane for v2 substrate profiles and acceptance gates.
+  - primary qualification lane for v2 representation-interface profiles and acceptance gates.
 - `ree-experiments-lab`:
   - stress/adversarial/replication experiments and falsification pressure.
 - `ree-v1-minimal`:
@@ -95,13 +96,13 @@ Current recommendation:
 
 ## Immediate Work Queue (This Cycle)
 
-1. Enforce REE-first canonical wording in `REE_assembly` while preserving JEPA interface translations.
+1. Enforce REE-first canonical wording in `REE_assembly` while preserving JEPA-like interface translations.
 2. Keep JEPA source-method integration details in `REE_convergence/sources/jepa/*` and promote only packet-backed deltas.
 3. Produce first-pass v2 implementation spec (subsystem boundaries + required metrics + failure gates).
 4. Run targeted literature program for v3-critical systems:
    - hippocampal replay/planning/map-update mechanisms,
    - prefrontal control/arbitration/commitment mechanisms,
-   - JEPA-latent-to-hippocampal mapping constraints.
+   - JEPA-like latent-to-hippocampal mapping constraints.
 5. Route resulting evidence into backlog/proposals and governance decisions.
 
 ---

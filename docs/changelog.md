@@ -7,6 +7,61 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-02-25: Tightened Decoupling Wording (JEPA External, JEPA-Like In REE)
+
+### Overview
+
+Refined canonical wording so REE references JEPA-like representational patterns while explicitly treating JEPA as a
+separate external project, not a REE architectural component.
+
+### What Changed
+
+- Strengthened external-project boundary wording:
+  - `README.md`
+  - `docs/roadmap.md`
+  - `docs/notes/jepa_language_policy.md`
+  - `docs/glossary.md`
+- Updated IMPL-022 framing from JEPA-family integration toward JEPA-like reference usage:
+  - `docs/architecture/jepa_e1e2_integration_contract.md`
+  - title/scope/purpose and control-boundary language now encode "external JEPA, internal REE".
+- Updated mechanism/spec wording to use JEPA-like phrasing where appropriate:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - `docs/architecture/ree_v2_spec.md`
+  - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
+  - `docs/REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md`
+- Aligned claim metadata/index text:
+  - `docs/claims/claims.yaml`
+  - `docs/claims/claim_index.md`
+
+## 2026-02-25: Declared JEPA Decoupling (Representation Reference, Not REE Substrate)
+
+### Overview
+
+Made the canonical boundary explicit: JEPA is treated as a representation reference architecture for E1/E2 interfaces,
+while E3 commitment/control/responsibility semantics remain REE-native and non-delegable.
+
+### What Changed
+
+- Updated repository-level boundary wording:
+  - `README.md`
+  - JEPA now described as representational reference architecture (not REE substrate ownership).
+- Added explicit decoupling declaration to JEPA integration contract:
+  - `docs/architecture/jepa_e1e2_integration_contract.md`
+  - now states JEPA cannot carry E3 commitment/control authority semantics.
+- Reworded MECH-058 JEPA framing from substrate to representational reference:
+  - `docs/architecture/agency_responsibility_flow.md`
+  - `docs/claims/claim_index.md`
+  - `docs/claims/claims.yaml`
+- Updated language policy and glossary boundary phrasing:
+  - `docs/notes/jepa_language_policy.md`
+  - `docs/glossary.md`
+- Updated roadmap/spec wording to align with representation-interface framing:
+  - `docs/roadmap.md`
+  - `docs/architecture/ree_v2_spec.md`
+  - `docs/architecture/ree_v2_repo_bootstrap_spec.md`
+- Updated architecture snapshot wording for JEPA position:
+  - `docs/REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md`
+
 ## 2026-02-25: GitHub Documentation + Triple-View Portability Refresh
 
 ### Overview

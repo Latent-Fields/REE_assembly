@@ -74,8 +74,9 @@ Canonical scope:
 
 #### Minimal interoperability principle
 
-A JEPA-derived world model can serve as REE E1/E2 representational substrate.  
-REE contributes control-plane architecture, self-impact attribution, trajectory constraints, and multi-agent stability
+A JEPA-like world-model design can serve as a REE E1/E2 representational reference architecture.  
+JEPA itself remains an external project and is not a component inside REE.  
+REE contributes substrate ownership, control-plane architecture, E3 commitment, self-impact attribution, trajectory constraints, and multi-agent stability
 modeling.
 
 #### Wording and boundary policy

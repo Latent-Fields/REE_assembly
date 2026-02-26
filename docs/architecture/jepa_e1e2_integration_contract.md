@@ -1,7 +1,7 @@
-# JEPA as E1/E2 Integration Contract
+# JEPA-Like E1/E2 Representation Reference Contract
 
 **Claim Type:** implementation_note  
-**Scope:** Interface contract for using JEPA-family world models as REE E1/E2 substrate  
+**Scope:** Interface contract for using JEPA-like world-model patterns as E1/E2 representational reference architecture (JEPA project remains external)  
 **Depends On:** IMPL-020, IMPL-021, ARC-001, ARC-002, ARC-005, ARC-015, MECH-057  
 **Status:** stable  
 **Claim ID:** IMPL-022
@@ -11,12 +11,19 @@
 
 ## Purpose
 
-Specify how JEPA-family models can be integrated into REE as:
+Specify how JEPA-like patterns can be integrated into REE as representational references for:
 
-- `E1` deep predictive substrate (slow, coherence-preserving latent structure),
-- `E2` fast predictive substrate (short-horizon transition prediction).
+- `E1` deep predictive representation path (slow, coherence-preserving latent structure),
+- `E2` fast predictive representation path (short-horizon transition prediction).
 
-This contract isolates the substrate boundary so control-completion behavior remains explicit REE scope.
+This contract isolates the representation boundary so control-completion behavior remains explicit REE scope.
+
+Decoupling declaration:
+
+- JEPA is an external project and not a component of REE.
+- REE may use JEPA-like representational patterns as reference points for E1/E2 interfaces.
+- JEPA is not treated as REE substrate ownership.
+- JEPA cannot carry E3 commitment, responsibility attribution, or control-plane authority semantics.
 
 Canonical boundary note:
 
@@ -26,7 +33,7 @@ Canonical boundary note:
 
 Functional mapping note:
 
-- `E1` and `E2` should be treated as functional decomposition over JEPA streams, not necessarily separate physical
+- `E1` and `E2` should be treated as functional decomposition over JEPA-like reference streams, not necessarily separate physical
   modules.
 - Fast online predictor adaptation can realize `E2` behavior.
 - Slow target/anchor dynamics and continuity constraints can realize `E1` behavior.
@@ -37,7 +44,7 @@ Functional mapping note:
 
 ## Integration Boundary
 
-JEPA side provides:
+Reference-profile side provides:
 
 - latent state encoding,
 - latent future prediction,
@@ -54,21 +61,21 @@ REE side retains ownership of:
 
 ## Required Interface Surfaces
 
-### Inputs into JEPA substrate
+### Inputs into JEPA-like reference adapter
 
 - `obs_t`: current observation slice.
 - `ctx_{t-k:t}`: context window (optional memory-conditioned input).
 - `a_t` (optional): candidate action token/vector for action-conditioned predictions.
 - `mode_tags` (optional): REE regime hints (`deliberative`, `reactive`, `reflective`) for evaluation-only stratification.
 
-### Outputs from JEPA substrate
+### Outputs from JEPA-like reference adapter
 
 - `z_t`: latent representation for current context.
 - `z_hat_{t+1:t+h}`: predicted latent futures for horizon `h`.
 - `pe_latent`: latent prediction deviation statistics (`L-state deviation`).
 - `uncertainty_latent` (optional): calibrated uncertainty/dispersion estimate over latent predictions.
 
-### JEPA-native signal map (adapter contract)
+### JEPA-inspired signal map (adapter contract)
 
 The adapter must map native JEPA training/runtime streams onto stable REE-facing keys:
 
@@ -93,11 +100,11 @@ Notes:
 
 ### JEPA↔REE control signal mapping matrix (execution contract)
 
-This table defines ownership and gating for control-plane-relevant channels when JEPA backs E1/E2.
+This table defines ownership and gating for control-plane-relevant channels when a JEPA-like reference profile backs E1/E2.
 
 | REE control function | REE-facing channel | JEPA source class | JEPA extraction examples | Final transform owner | Required checks | Canonical failure signatures |
 | --- | --- | --- | --- | --- | --- | --- |
-| Substrate mismatch feed (`MECH-058`) | `pe_latent` | explicit/derived | `smooth_l1` residual, `p95`, `by_mask` | REE consumes; adapter exports only | `latent_residual_coverage_rate >= 0.95` | `contract:jepa_residual_stream_missing`, `mech058:timescale_separation_collapse` |
+| Representation mismatch feed (`MECH-058`) | `pe_latent` | explicit/derived | `smooth_l1` residual, `p95`, `by_mask` | REE consumes; adapter exports only | `latent_residual_coverage_rate >= 0.95` | `contract:jepa_residual_stream_missing`, `mech058:timescale_separation_collapse` |
 | Confidence-channel synthesis (`MECH-059`) | `confidence_channel` | derived proxy bank | `uncertainty_latent.dispersion`, ensemble disagreement, attention entropy, rollout inconsistency, action sensitivity | REE control plane only | calibration, separability, and completeness checks | `mech059:calibration_slope_break`, `mech059:uncertainty_metric_gaming_detected`, `mech059:abstention_reliability_collapse` |
 | Pre-commit planning signal (`MECH-060`) | `pre_commit_error` | hybrid | `pe_latent` + hypothetical action-conditioned rollout deltas | REE control plane only | `pre_commit_error_signal_to_noise` and leakage checks | `mech060:precommit_channel_contamination` |
 | Post-commit attribution signal (`MECH-060`) | `post_commit_error` | hybrid | realized residuals + reafference delta + action trace | REE attribution path | `post_commit_error_attribution_gain` and attribution reliability checks | `mech060:postcommit_channel_contamination`, `mech060:attribution_reliability_break` |
@@ -106,7 +113,7 @@ This table defines ownership and gating for control-plane-relevant channels when
 
 ### Proxy bank declaration (adapter to control handoff)
 
-When JEPA-backed control routing is enabled, the adapter should export `proxy_bank` declarations for each active
+When a JEPA-inspired control-routing profile is enabled, the adapter should export `proxy_bank` declarations for each active
 internal proxy used by REE confidence/channel logic. Each proxy entry should include:
 
 - `proxy_id`: stable key (`uncertainty_dispersion`, `ensemble_disagreement`, `attention_entropy`, `rollout_inconsistency`, `action_sensitivity`, `other`)
@@ -121,8 +128,8 @@ internal proxy used by REE confidence/channel logic. Each proxy entry should inc
 
 - Output latents must remain numerically stable under repeated rollout calls.
 - Prediction deviation keys must be fixed-name numeric fields across runs.
-- JEPA outputs must not directly commit actions; they are advisory inputs to REE control.
-- JEPA adapters may emit proxy signals, but must not emit final control-plane decisions or commitment actions.
+- JEPA-like adapter outputs must not directly commit actions; they are advisory inputs to REE control.
+- JEPA-like adapters may emit proxy signals, but must not emit final control-plane decisions or commitment actions.
 
 ---
 
@@ -131,29 +138,29 @@ internal proxy used by REE confidence/channel logic. Each proxy entry should inc
 1. `z_t` feeds REE `L-space` ingest path.
 2. Multi-step `z_hat` feeds `E2` short-horizon prediction interfaces and hippocampal rollout seeding.
 3. `pe_latent` feeds REE prediction-error routing (precision/eligibility inputs), not direct policy rewrite.
-4. Any action-conditioned JEPA output is treated as hypothetical until E3 commitment.
-5. Internal JEPA proxies are valid control inputs only after explicit REE-side calibration and attribution-safe routing.
+4. Any action-conditioned JEPA-like output is treated as hypothetical until E3 commitment.
+5. Internal JEPA-like proxies are valid control inputs only after explicit REE-side calibration and attribution-safe routing.
 6. Shared latent producers are acceptable if E1/E2 contractual roles remain distinguishable by update-rate and routing
    policy.
 
 ### Signed PE and precision routing bridge
 
-To keep substrate/control separation explicit:
+To keep representation/control separation explicit:
 
-- JEPA adapter emits unsigned latent deviation and uncertainty streams only.
+- JEPA-like adapter emits unsigned latent deviation and uncertainty streams only.
 - REE computes signed decomposition downstream (for example, harm/benefit directional channels) using claim-owned control-plane rules.
-- Precision routing consumes `pe_latent` + the confidence channel (derived from calibrated proxy bank inputs such as `uncertainty_latent`) + context tags; it is not learned implicitly inside the JEPA adapter.
+- Precision routing consumes `pe_latent` + the confidence channel (derived from calibrated proxy bank inputs such as `uncertainty_latent`) + context tags; it is not learned implicitly inside the JEPA-like adapter.
 
 Practical interpretation:
 
-- JEPA gives the mismatch stream (`what was wrong`) and can expose dispersion (`how many futures looked plausible`).
+- A JEPA-like reference profile gives the mismatch stream (`what was wrong`) and can expose dispersion (`how many futures looked plausible`).
 - REE converts that into a confidence channel (uncertainty-derived precision: `how strongly to trust this error for control`) with explicit, auditable transforms.
 
 ---
 
 ## Required Knobs (Config Contract)
 
-The substrate adapter must expose, at minimum:
+The representation adapter must expose, at minimum:
 
 - `latent_dim`
 - `prediction_horizon`
@@ -165,7 +172,7 @@ The substrate adapter must expose, at minimum:
 - `residual_export_mode` (`global_only` | `per_mask` | `per_token`)
 - `uncertainty_estimator` (`none` | `dispersion` | `ensemble` | `head`)
 
-REE-side control knobs remain out-of-scope for JEPA substrate and must be separately configured in control-plane docs.
+REE-side control knobs remain out-of-scope for JEPA-like reference adapters and must be separately configured in control-plane docs.
 
 ---
 
@@ -181,7 +188,7 @@ REE-side control knobs remain out-of-scope for JEPA substrate and must be separa
 - `latent_residual_coverage_rate` (fraction of predictions with exported residual trace)
 - `precision_input_completeness_rate` (fraction of steps with all required PE/uncertainty fields)
 
-### Additional required metrics (JEPA control-proxy routing profiles)
+### Additional required metrics (JEPA-like control-proxy routing profiles)
 
 - `proxy_bank_coverage_rate` (fraction of steps with declared proxy provenance)
 - `proxy_confidence_calibration_ece` (confidence-channel calibration error from proxy-driven confidence)
@@ -191,10 +198,10 @@ REE-side control knobs remain out-of-scope for JEPA substrate and must be separa
 ### Required checks
 
 - separation check: E1-proxy updates are slower than E2-proxy updates;
-- no direct commitment check: substrate outputs cannot bypass E3;
+- no direct commitment check: representation outputs cannot bypass E3;
 - attribution readiness check: outputs contain enough trace context for reafference comparison.
 - uncertainty provenance check: every uncertainty value must declare estimator type (`dispersion`/`ensemble`/`head`);
-- signed-PE boundary check: adapter does not emit control-plane valence labels as if they were substrate-native.
+- signed-PE boundary check: adapter does not emit control-plane valence labels as if they were representation-native authority labels.
 - proxy provenance check: every active control proxy has `proxy_bank` declaration fields.
 - confidence/residual separability check: confidence channel is not a direct alias of residual magnitude.
 - ablation utility check: at least one declared proxy improves control/attribution behavior under matched seeds.
@@ -207,7 +214,7 @@ REE-side control knobs remain out-of-scope for JEPA substrate and must be separa
   Symptom: low training error with poor transfer under intervention shifts.  
   Handling: adversarial environment variants + counterfactual action sweeps.
 
-- **FM-INT-002: Substrate overreach into control**  
+- **FM-INT-002: Representation adapter overreach into control**  
   Symptom: adapter performs implicit action selection before E3.  
   Handling: strict interface check that adapter emits predictions only.
 
@@ -237,12 +244,13 @@ Evidence should be recorded via:
 
 ## Acceptance Gate for Adoption
 
-Adopt JEPA substrate as REE default E1/E2 backend only when all conditions hold:
+Adopt a JEPA-like representational adapter profile for E1/E2 interfaces only when all conditions hold:
 
-- literature support for substrate adequacy remains net-positive,
+- literature support for representation adequacy remains net-positive,
 - experimental runs pass interface checks and stable-key metric checks,
-- no unresolved evidence that substrate bypasses REE commitment/control ownership,
+- no unresolved evidence that the reference adapter bypasses REE commitment/control ownership,
 - governance queue has explicit approval for adoption decision.
+- adoption remains interface/reference scoped and does not make JEPA part of REE architecture.
 
 ---
 

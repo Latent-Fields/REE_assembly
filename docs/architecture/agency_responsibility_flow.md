@@ -110,14 +110,14 @@ constraint routing, rather than replaced by them.
 ---
 
 <a id="mech-058"></a>
-## EMA target anchoring stabilizes shared JEPA substrate with functional E1/E2 rate separation (MECH-058)
+## EMA target anchoring stabilizes JEPA-like E1/E2 representation references with functional rate separation (MECH-058)
 
-When JEPA-like substrate training is used for REE E1/E2, a slow target-anchor pathway (for example, EMA-updated target
+When JEPA-like representation training is used as an E1/E2 reference profile, a slow target-anchor pathway (for example, EMA-updated target
 encoder) should be treated as a stability requirement rather than an optimization trick.
 
 Interpretation guard:
 
-- E1 and E2 are functional roles over a partially shared JEPA substrate, not a claim of total module isolation.
+- E1 and E2 are functional roles over a partially shared JEPA-like representational reference layer, not a claim of total module isolation.
 - E2-like behavior maps to fast online predictor adaptation and short-horizon rollout support.
 - E1-like behavior maps to slow anchor continuity and long-horizon representational stability.
 
@@ -125,7 +125,7 @@ Proposed role in REE terms:
 
 - fast predictor updates support E2-like short-horizon adaptation,
 - slow anchor updates preserve E1-like representational continuity,
-- asymmetric update rates and typed interfaces prevent timescale collapse even when representation substrate is shared.
+- asymmetric update rates and typed interfaces prevent timescale collapse even when representation references are shared.
 - this separation requirement is functional/contractual (rate + routing + write boundaries), not anatomical.
 
 This mechanism is currently a candidate and needs direct ablation evidence in REE-shaped tasks.
@@ -156,7 +156,7 @@ commitment:
 - post-commit realized error: from executed committed trajectories, used for responsibility attribution and durable
   model update.
 
-In JEPA-integrated systems this implies at least one exploratory/simulation-side error stream and one
+In systems using JEPA-like reference profiles this implies at least one exploratory/simulation-side error stream and one
 execution-outcome stream; both are required and should not be merged.
 
 Interpretation guard:
@@ -340,14 +340,14 @@ It strengthens if scaling to embodied and multi-agent settings repeatedly requir
 - trajectory constraints that prevent destabilizing branches.
 
 <a id="q-013"></a>
-### Q-013: Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
+### Q-013: Can deterministic JEPA-like predictors plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?
 
 If deterministic predictors with derived dispersion estimates are sufficient, REE can keep substrate complexity lower.
 If explicit stochastic/latent-variable heads produce materially better calibration under intervention, they may be
 required for stable precision routing.
 
 <a id="q-014"></a>
-### Q-014: Do JEPA invariances hide ethically relevant distinctions in REE contexts?
+### Q-014: Do JEPA-like invariance regimes hide ethically relevant distinctions in REE contexts?
 
 Invariant representations can improve robustness, but may also suppress distinctions that matter for harm attribution,
 responsibility boundaries, or social modelability. This remains an open empirical risk question.

@@ -29,7 +29,7 @@ If you are operating Codex/automation against this repo, also read `docs/README.
 ## Canonical Boundary (REE-First)
 
 - `REE_assembly` is REE-core first: canonical REE claims, invariants, and interface contracts.
-- JEPA may inspire REE or be integrated as substrate interface, but JEPA source-method details are not canonical here.
+- JEPA is an external project that may inspire REE. REE uses JEPA-like representational patterns as optional reference points for E1/E2 interfaces, but JEPA is not a REE component, not REE substrate ownership, and does not carry E3 commitment semantics.
 - JEPA integration playbooks, source-level comparisons, and exploratory mappings live in `REE_convergence`, especially:
   - `sources/jepa/INTEGRATION_PLAYBOOK.md`
   - `sources/jepa/integration_deltas.md`
@@ -67,7 +67,7 @@ python3 -m http.server
 
 - `REE_assembly` (this repo): canonical claims, architecture, schemas, and governance decisions.
 - `REE_convergence`: external-source intake, translation, provenance checking, and candidate deltas before promotion.
-- `ree-v2`: qualification lane for substrate and contract stability.
+- `ree-v2`: qualification lane for representation-interface and contract stability.
 - `ree-experiments-lab`: stress/adversarial and falsification lane.
 - `ree-v1-minimal`: baseline/parity harness during transition and regression checks.
 - `REE_OpenClaw`: external applied testbed consuming REE contracts and reporting handoff evidence.
@@ -77,7 +77,7 @@ python3 -m http.server
 This is the safe path for integrating implementation wisdom or external model insights:
 
 1. Intake and translate in `REE_convergence` with explicit source provenance and license metadata.
-   - for JEPA-specific integration methodology, update `REE_convergence/sources/jepa/*` first.
+   - for JEPA-project-specific integration methodology, update `REE_convergence/sources/jepa/*` first.
 2. Build and validate a convergence promotion packet in `REE_convergence`:
 
 ```bash

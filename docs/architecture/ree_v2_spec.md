@@ -1,7 +1,7 @@
-# REE-v2 Substrate Spec
+# REE-v2 Representation Interface Spec
 
 **Claim Type:** implementation_note  
-**Scope:** v2 substrate-first architecture and implementation contract  
+**Scope:** v2 representation-interface-first architecture and implementation contract  
 **Depends On:** IMPL-008, IMPL-021, IMPL-022, IMPL-025, MECH-057, MECH-058, MECH-059, MECH-060, MECH-061, MECH-062, MECH-063  
 **Status:** candidate  
 **Claim ID:** IMPL-023
@@ -12,22 +12,26 @@
 ## Purpose
 
 Define a concrete, buildable target for REE-v2:
-- JEPA-aligned sensing + E1/E2 substrate first,
+- JEPA-like-inspired sensing + E1/E2 representation interface first,
 - explicit interface hooks for later control completion (hippocampal, control-plane, E3).
 
 This document is intentionally implementation-oriented and keeps philosophy out of scope.
 
-v2 is the phase where substrate behavior becomes reliable enough that v3 can focus on control completion rather than
-fighting unstable representation plumbing.
+v2 is the phase where representation-interface behavior becomes reliable enough that v3 can focus on control completion
+rather than fighting unstable representation plumbing.
+
+Boundary note:
+- JEPA is external to REE and is used here as an inspiration/comparison reference only.
+- REE-v2 does not require JEPA to be part of the REE architecture graph.
 
 ---
 
 ## Terminology Mode (v2)
 
-v2 canonical docs in `REE_assembly` use REE-first language with JEPA interface translation where needed.
+v2 canonical docs in `REE_assembly` use REE-first language with JEPA-like interface translation where needed.
 
 - First mention format in canonical docs: `REE term (JEPA term)`.
-- Substrate sections remain REE-contract-first while preserving JEPA adapter terminology at interfaces.
+- Representation-interface sections remain REE-contract-first while preserving JEPA-like adapter terminology at interfaces.
 - Control/commitment sections default to REE wording.
 - Contract keys remain stable REE ingestion keys (no schema churn from terminology changes).
 
@@ -42,8 +46,8 @@ Reference policy:
 
 ## In scope (v2)
 
-- Sensory adapter contract from environment observations to latent substrate inputs.
-- JEPA-aligned latent representation/prediction substrate for E1/E2.
+- Sensory adapter contract from environment observations to latent representation-interface inputs.
+- JEPA-like latent representation/prediction interface for E1/E2.
 - Stable output streams for:
   - latent state (`z_t`),
   - predicted latent futures (`z_hat`),
@@ -68,7 +72,7 @@ These become v3 primary implementation scope.
 
 ## Implementation Objectives
 
-- `OBJ-V2-001`: stable latent substrate outputs under repeated runs and seed variation.
+- `OBJ-V2-001`: stable latent representation outputs under repeated runs and seed variation.
 - `OBJ-V2-002`: explicit uncertainty/error channels with measurable calibration.
 - `OBJ-V2-003`: strict experiment-pack and adapter-signal contract compliance.
 - `OBJ-V2-004`: expose v3-ready hooks without embedding v3 policy decisions.
@@ -79,12 +83,12 @@ These become v3 primary implementation scope.
 
 v2 should be implemented as the following modules (names are descriptive, not mandatory file names):
 
-1. `sensor_adapter` (JEPA context/target adapter, REE sensory ingress)
+1. `sensor_adapter` (JEPA-like context/target pattern adapter, REE sensory ingress)
 - normalize observation streams,
 - build context/target slices,
 - emit adapter metadata hashes for reproducibility.
 
-2. `latent_substrate` (JEPA substrate core, REE E1/E2 substrate path)
+2. `latent_substrate` (REE representation adapter core, JEPA-like E1/E2 reference path)
 - context encoder,
 - target encoder (slow anchor / EMA path),
 - latent predictor (fast transition path).
@@ -193,7 +197,7 @@ Mechanism-targeted metrics:
 - `uncertainty_coverage_rate` (`MECH-059`)
 - `cross_channel_leakage_rate` (`MECH-060`, provisional hook for v3)
 
-JEPA control-proxy metrics (required for JEPA-backed control routing profiles):
+JEPA-like control-proxy metrics (required for JEPA-inspired control-routing profiles):
 
 - `proxy_bank_coverage_rate`
 - `proxy_confidence_calibration_ece`

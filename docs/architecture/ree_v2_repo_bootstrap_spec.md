@@ -1,7 +1,7 @@
 # REE-v2 Repository Bootstrap Spec
 
 **Document Type:** implementation_bootstrap  
-**Scope:** New `ree-v2` repository setup for qualification-lane substrate validation  
+**Scope:** New `ree-v2` repository setup for qualification-lane representation-interface validation  
 **Depends On:** IMPL-022, IMPL-023, IMPL-025, IMPL-008, MECH-056, MECH-058, MECH-059, MECH-060  
 **Status:** candidate
 
@@ -9,13 +9,17 @@
 
 ## 1. Purpose and Lane Role
 
-`ree-v2` is the primary **qualification lane** for REE substrate claims and contract-hardening runs.
+`ree-v2` is the primary **qualification lane** for REE representation-interface claims and contract-hardening runs.
 
 - Qualification lane owner: `ree-v2`
 - Stress/falsification lane owner: `ree-experiments-lab` (unchanged)
 - Transitional parity backstop: `ree-v1-minimal` until migration gates are met
 
 This bootstrap spec defines the minimum repository surfaces needed to run claim-bearing qualification experiments that are ingestible by `REE_assembly` without schema or hook drift.
+
+Boundary note:
+- JEPA is an external reference project; it is not a REE component.
+- v2 may use JEPA-like representational patterns or JEPA-origin reference code under explicit provenance controls.
 
 ---
 
@@ -31,7 +35,7 @@ This section is the direct audit output for:
 
 ### 2.1 Scope requirements extracted from source docs
 
-1. `ree-v2` must implement JEPA-based E1/E2 substrate interfaces from `IMPL-022`:
+1. `ree-v2` must implement JEPA-like-referenced E1/E2 representation interfaces from `IMPL-022`:
    - inputs: `obs_t`, `ctx_{t-k:t}`, optional `a_t`
    - outputs: `z_t`, `z_hat_{t+1:t+h}`, `pe_latent`, optional `uncertainty_latent`
 2. `ree-v2` must emit contract-compliant Experiment Packs:
@@ -49,7 +53,7 @@ This section is the direct audit output for:
    - `latent_residual_coverage_rate`
    - `precision_input_completeness_rate`
 7. v2 must preserve stable schema keys and version constants (`v1` contracts).
-8. v2 must define a JEPA source/provenance lock so substrate code origin is auditable and reproducible.
+8. v2 must define external-reference source/provenance lock policy so origin is auditable and reproducible.
 9. v2 must define explicit local-vs-cloud execution policy; qualification sweeps must not assume local laptop compute.
 
 ---
@@ -120,7 +124,7 @@ Notes:
 
 ## 4. Required Interface Contracts
 
-## 4.1 Runtime substrate contract (`IMPL-022`)
+## 4.1 Runtime representation-interface contract (`IMPL-022`)
 
 Ingress keys:
 
@@ -182,9 +186,9 @@ Required manifest linkage fields:
 
 For v2, stub hooks are allowed to be marked `planned_stub=true` with non-empty ID-bearing payload shells.
 
-## 4.4 JEPA source acquisition and provenance contract
+## 4.4 External Reference Source Acquisition and Provenance Contract
 
-`ree-v2` must choose and document one JEPA source mode:
+If a JEPA-origin reference implementation is used, `ree-v2` must choose and document one source mode:
 
 - `vendored_snapshot` (copied snapshot pinned to upstream commit)
 - `submodule_pin` (git submodule pinned to commit)

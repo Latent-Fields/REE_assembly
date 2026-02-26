@@ -12,11 +12,11 @@
 ## Purpose
 
 For v2 and onward, canonical documentation in `REE_assembly` should be REE-first while preserving explicit translation
-to JEPA interface terms where helpful.
+to JEPA-like interface terms where helpful.
 
 Goal:
 - keep `REE_assembly` centered on REE architectural semantics,
-- keep JEPA wording available as interface translation without shifting canonical ownership,
+- keep JEPA-like wording available as interface translation without shifting canonical ownership,
 - keep source-fidelity JEPA-first narratives in `REE_convergence`.
 
 ---
@@ -39,15 +39,21 @@ Goal:
 - machine keys stay stable and REE-contract-compatible (`z_t`, `z_hat`, `pe_latent`, `uncertainty_latent`).
 - language policy must not cause schema key churn.
 
+5. Decoupling rule:
+- JEPA is an external project and not a REE component.
+- JEPA-like patterns are treated as representational references for E1/E2 interfaces.
+- JEPA is not canonical REE substrate ownership.
+- E3 commitment, control-plane authority, and responsibility routing remain REE-native and cannot be delegated to JEPA.
+
 ---
 
 ## Canonical Quick Map
 
 - L-space <- latent embedding
 - E2 fast predictor <- latent predictor
-- E1 substrate path <- context/target encoder
+- E1 representation path <- context/target encoder
 - L-state deviation / PE routing input <- latent prediction error
-- efference/reafference-ready substrate stream <- action-conditioned prediction
+- efference/reafference-ready representation stream <- action-conditioned prediction
 
 ---
 
