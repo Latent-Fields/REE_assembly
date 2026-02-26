@@ -809,12 +809,21 @@
       margin-bottom: 12px;
     }
 
+    .governance-grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .gov-card {
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #fff;
       padding: 10px;
       box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .gov-card-alert {
+      border-color: #f59e0b;
+      background: #fffbeb;
     }
 
     .gov-card .label {
@@ -828,6 +837,72 @@
       font-weight: 600;
       line-height: 1;
     }
+
+    .gov-card-sub {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Priority pane */
+    .gov-priority-pane {
+      background: #fffbeb;
+      border: 1px solid #f59e0b;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+
+    .gov-priority-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+
+    .gov-priority-items {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .priority-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .priority-count {
+      min-width: 28px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .priority-label a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .priority-urgent { color: #b91c1c; }
+    .priority-warn   { color: #92400e; }
+    .priority-ok     { color: #166534; }
+
+    /* Design state bar (header) */
+    .design-state-bar {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      padding: 4px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .dsb-label { font-weight: 600; color: var(--text); }
+    .dsb-sep   { margin: 0 4px; opacity: 0.4; }
+    .dsb-run   { opacity: 0.7; }
 
     .gov-meta {
       font-size: 12px;
@@ -1632,6 +1707,7 @@
     <div class="subtitle" style="margin-top:6px;">Auto-updates require a local server (not file://). Run: <code>python3 -m http.server</code> from repo root.</div>
     <div class="subtitle" id="refreshStatus" style="margin-top:6px;">Last refreshed: --</div>
     <div id="stats" class="stats"></div>
+    <div id="designStateBar" class="design-state-bar"></div>
   </header>
 
   <main>
@@ -2457,6 +2533,7 @@ END CONFLICT RESOLUTION`;
       includeDeps: document.getElementById('includeDeps'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
+      designStateBar: document.getElementById('designStateBar'),
       errorBanner: document.getElementById('errorBanner'),
       refreshStatus: document.getElementById('refreshStatus'),
       selectedThought: document.getElementById('selectedThought'),
@@ -4070,17 +4147,47 @@ END CONFLICT RESOLUTION`;
           ` &nbsp;|&nbsp; scope: ${escapeHtml(epochLabel)}`;
       }
 
+      // --- Priority pane: "What do I need to do now?" ---
+      const readyToPromote = allClaims.filter(c =>
+        c.status === 'candidate' &&
+        c.lifecycle_stage === 'adjudicated' &&
+        (c.adjudication_decision_status === 'applied' || c.adjudication_decision_status === 'approved') &&
+        !c.pending_design
+      ).length;
+      const priorityItems = [
+        { count: humanDecisionRows.length, label: 'Human decisions pending', anchor: '#gov-human-queue', nonzeroClass: 'priority-urgent' },
+        { count: Number(summary.thought_unprocessed || 0), label: 'Unprocessed thoughts', anchor: '#gov-thought-intake', nonzeroClass: 'priority-warn' },
+        { count: readyToPromote, label: 'Claims ready to promote', anchor: '#gov-claim-queue', nonzeroClass: 'priority-warn' },
+        { count: Number(summary.warnings || 0), label: 'Warnings', anchor: '#gov-warnings', nonzeroClass: 'priority-warn' },
+      ];
+      const totalActions = priorityItems.reduce((s, i) => s + i.count, 0);
+      const priorityRows = priorityItems.map(item => {
+        const cls = item.count > 0 ? item.nonzeroClass : 'priority-ok';
+        const countStr = item.count > 0 ? `<strong>${item.count}</strong>` : '0';
+        return `<div class="priority-row ${cls}"><span class="priority-count">${countStr}</span><span class="priority-label"><a href="${item.anchor}">${item.label}</a></span></div>`;
+      }).join('');
+      const priorityPaneContent = totalActions === 0
+        ? '<div class="priority-row priority-ok"><span class="priority-count">✓</span><span class="priority-label">Nothing needs immediate attention.</span></div>'
+        : priorityRows;
+      const priorityPane = `
+        <div class="gov-priority-pane">
+          <div class="gov-priority-header">What to do now</div>
+          <div class="gov-priority-items">${priorityPaneContent}</div>
+        </div>
+      `;
+
+      // --- Summary cards (4 meaningful cards) ---
+      const actionRequired = humanDecisionRows.length + Number(summary.thought_unprocessed || 0);
+      const activeCount = allClaims.filter(c => c.status === 'active').length;
+      const candidateCount = allClaims.filter(c => c.status === 'candidate').length;
+      const fullCount = allClaims.filter(c => c.status === 'full').length;
+      const openQCount = allClaims.filter(c => c.type === 'question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
       const cards = `
-        <div class="governance-grid">
-          <div class="gov-card"><div class="label">Unprocessed Thoughts</div><div class="value">${Number(summary.thought_unprocessed || 0)}</div></div>
-          <div class="gov-card"><div class="label">Conflicts (visible)</div><div class="value">${conflictItems.length}</div></div>
-          <div class="gov-card"><div class="label">Decision Queue (visible)</div><div class="value">${decisionItems.length}</div></div>
-          <div class="gov-card"><div class="label">Decision Briefs (visible)</div><div class="value">${briefItems.length}</div></div>
-          <div class="gov-card"><div class="label">Human Decisions Needed</div><div class="value">${humanDecisionRows.length}</div></div>
-          <div class="gov-card"><div class="label">Inspiration / Generative Needed</div><div class="value">${creativeRows.length}</div></div>
-          <div class="gov-card"><div class="label">High Priority Backlog (visible)</div><div class="value">${highBacklogVisible.length}</div></div>
-          <div class="gov-card"><div class="label">High Priority Proposals (visible)</div><div class="value">${highPriority.length}</div></div>
-          <div class="gov-card"><div class="label">Warnings</div><div class="value">${Number(summary.warnings || 0)}</div></div>
+        <div class="governance-grid governance-grid-4">
+          <div class="gov-card ${actionRequired > 0 ? 'gov-card-alert' : ''}"><div class="label">Action Required</div><div class="value">${actionRequired}</div><div class="gov-card-sub">decisions + thoughts</div></div>
+          <div class="gov-card"><div class="label">Claim Progress</div><div class="value">${activeCount} / ${candidateCount} / ${fullCount}</div><div class="gov-card-sub">active / candidate / full</div></div>
+          <div class="gov-card"><div class="label">Open Questions</div><div class="value">${openQCount}</div><div class="gov-card-sub">unresolved Q-claims</div></div>
+          <div class="gov-card ${Number(summary.warnings || 0) > 0 ? 'gov-card-alert' : ''}"><div class="label">Warnings</div><div class="value">${Number(summary.warnings || 0)}</div><div class="gov-card-sub">health issues</div></div>
         </div>
       `;
 
@@ -4098,7 +4205,7 @@ END CONFLICT RESOLUTION`;
               'No checkpoints available.'
             )}
           </div>
-          <div class="gov-section">
+          <div class="gov-section" id="gov-thought-intake">
             <h3>Thought Intake</h3>
             ${renderCheckpointMeta('thought_intake', checkpoints.thought_intake)}
             ${renderGovTable(
@@ -4124,7 +4231,7 @@ END CONFLICT RESOLUTION`;
               'No active conflicts.'
             )}
           </div>
-          <div class="gov-section">
+          <div class="gov-section" id="gov-claim-queue">
             <h3>Governance Decisions <span class="gov-pill human">human ${humanDecisionRows.length}</span></h3>
             ${renderCheckpointMeta('governance_decisions', checkpoints.governance_decisions)}
             ${renderGovTable(
@@ -4144,7 +4251,7 @@ END CONFLICT RESOLUTION`;
             <div class="gov-meta">Fill decision fields, mark rows to include, export JSON, then run the batch-apply command.</div>
             ${renderDecisionInbox(decisionInboxRows)}
           </div>
-          <div class="gov-section">
+          <div class="gov-section" id="gov-human-queue">
             <h3>Human Attention Queue <span class="gov-pill human">decide ${humanDecisionRows.length}</span><span class="gov-pill creative">design ${creativeRows.length}</span></h3>
             ${renderContextLinks([
               'evidence/planning/GOVERNANCE_AGENDA.md',
@@ -4223,7 +4330,7 @@ END CONFLICT RESOLUTION`;
               Total proposals in file: ${allProposals.length} | visible under scope: ${highPriority.length}
             </div>
           </div>
-          <div class="gov-section">
+          <div class="gov-section" id="gov-warnings">
             <h3>Maintenance Flags</h3>
             ${renderCheckpointMeta('maintenance', checkpoints.maintenance)}
             ${renderGovTable(
@@ -4242,6 +4349,7 @@ END CONFLICT RESOLUTION`;
       `;
 
       els.governanceContent.innerHTML = `
+        ${priorityPane}
         ${cards}
         <div class="gov-section">
           <h3>Manual Commands</h3>
@@ -5825,6 +5933,28 @@ END CONFLICT RESOLUTION`;
       Object.keys(byStatus).sort().forEach(s => {
         els.stats.appendChild(statCard(`status ${s}: ${byStatus[s]}`));
       });
+
+      // Design state bar — persistent summary visible from all views
+      if (els.designStateBar) {
+        const activeN = byStatus['active'] || 0;
+        const candidateN = byStatus['candidate'] || 0;
+        const fullN = byStatus['full'] || 0;
+        const openQN = allClaims.filter(c => c.type === 'question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
+        const lastRun = governanceAgenda && governanceAgenda.generated_at_utc
+          ? new Date(governanceAgenda.generated_at_utc).toLocaleDateString()
+          : '—';
+        els.designStateBar.innerHTML =
+          `<span class="dsb-label">REE Design State:</span>` +
+          ` <span class="dsb-item"><strong>${activeN}</strong> active</span>` +
+          ` <span class="dsb-sep">·</span>` +
+          ` <span class="dsb-item"><strong>${candidateN}</strong> candidates</span>` +
+          ` <span class="dsb-sep">·</span>` +
+          ` <span class="dsb-item"><strong>${fullN}</strong> full</span>` +
+          ` <span class="dsb-sep">·</span>` +
+          ` <span class="dsb-item"><strong>${openQN}</strong> open Qs</span>` +
+          ` <span class="dsb-sep">·</span>` +
+          ` <span class="dsb-item dsb-run">Last gov run: ${escapeHtml(lastRun)}</span>`;
+      }
     }
 
     function populateFilters() {

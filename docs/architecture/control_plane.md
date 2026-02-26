@@ -232,6 +232,22 @@ In REE, these are treated as **functional control channels**, not biological cla
 
 These channels alter *how cognition runs*, not *what it represents*.
 
+### Canonical operations anchor (Cowley et al. 2023)
+
+Compact modelling of macaque V4 (Cowley et al. 2023) confirms empirically that the following
+computational motifs are sufficient primitives for a wide range of selective neural responses:
+
+| Canonical operation | REE control-plane mechanism |
+|---|---|
+| Surround suppression | Precision modulation — MECH-040, MECH-054 |
+| Divisive normalisation | Gain control — ARC-005, MECH-063 |
+| Winner-take-all competition | Commit threshold + disinhibitory sweep — MECH-062 |
+
+These are not novel requirements. They are already present in the control-plane architecture
+and are now anchored to direct empirical evidence.
+
+See `docs/architecture/compact_consolidation_principle.md` (MECH-068, CSH-3).
+
 ---
 
 <a id="mech-063"></a>
