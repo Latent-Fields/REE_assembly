@@ -13,8 +13,10 @@
       "title": "Write-Locus Contamination (MECH-060 / MECH-067)",
       "description": "Tests whether write-locus separation between pre-commit (sim_error) and post-commit (realized_error) channels is load-bearing for attribution reliability. Three conditions: FULL, CONTAMINATED_DURABLE, CONTAMINATED_RESIDUE.",
       "estimated_minutes": 22.5,
-      "status": "needs_script",
-      "status_reason": "Design complete 2026-02-27. pending_design cleared — channels confirmed in ree-v1-minimal via EXQ-003 (MECH-061 PASS). Script not yet written."
+      "script": "experiments/write_locus_contamination.py",
+      "run_command": "python experiments/write_locus_contamination.py --episodes 200 --seeds 7 42 99",
+      "status": "pending",
+      "status_reason": "Script written 2026-02-27. Ready to run: cd ree-v1-minimal && python experiments/write_locus_contamination.py"
     }
   ],
   "completed": [
