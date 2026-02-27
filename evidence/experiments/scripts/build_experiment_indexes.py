@@ -1515,13 +1515,84 @@ def _write_decision_state(
     )
 
 
+def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
+    """Count experiment entries for claim_id that come from genuine ree-v1-minimal runs.
+
+    Genuine runs are identified by either:
+    - architecture_epoch == "ree_v1_minimal_genuine_v1" (explicit epoch tag), OR
+    - run_id ending with "_ree_v1_minimal" (naming convention used by record_ree_v1_results.py)
+
+    This is distinct from synthetic ree-v2 runs whose run_ids end with
+    "_toyenv_internal_minimal".
+    """
+    count = 0
+    for entry in matrix.get("entries", []):
+        if str(entry.get("claim_id", "")) != claim_id:
+            continue
+        if entry.get("source_type") != "experimental":
+            continue
+        run_id = str(entry.get("run_id", ""))
+        if (
+            entry.get("architecture_epoch") == "ree_v1_minimal_genuine_v1"
+            or run_id.endswith("_ree_v1_minimal")
+        ):
+            count += 1
+    return count
+
+
 def _recommendation_for_claim(
     claim_id: str,
     claim_meta: dict[str, Any],
     current_status: str,
     claim_type: str,
     criteria: dict[str, Any],
+    registry_meta: "dict[str, Any] | None" = None,
+    matrix: "dict[str, Any] | None" = None,
 ) -> dict[str, Any]:
+    # ── Contamination guard ─────────────────────────────────────────────────
+    # If the claim has experimental entries but NONE of them come from the
+    # genuine ree-v1-minimal substrate (all are from synthetic ree-v2 /
+    # ree-experiments-lab runs), override the statistical recommendation with
+    # an explicit "collect_genuine_evidence" instruction.  This prevents stale
+    # confidence scores and conflict ratios from driving spurious promotions or
+    # demotions.
+    #
+    # Genuine runs are detected by run_id ending with "_ree_v1_minimal" or by
+    # an explicit architecture_epoch == "ree_v1_minimal_genuine_v1" tag.
+    # Synthetic runs end with "_toyenv_internal_minimal".
+    _exp_entries = int(claim_meta.get("source_counts", {}).get("experimental", 0))
+    _genuine_count = _genuine_run_count(claim_id, matrix) if matrix is not None else 0
+    # Trigger when there ARE experimental entries but NONE are genuine.
+    if _exp_entries > 0 and _genuine_count == 0:
+        discussion_prompts = [
+            "Which uncertainty source dominates: model variance, threshold choice, or claim scope?",
+            "What single additional experiment or literature extraction would most reduce uncertainty?",
+            "If this decision is wrong, what downstream architecture risk is largest?",
+        ]
+        return {
+            "claim_id": claim_id,
+            "current_status": current_status,
+            "decision_needed": "Genuine evidence required before any status change",
+            "recommendation": "collect_genuine_evidence",
+            "synthetic_data_flag": True,
+            "rationale": (
+                f"All experimental evidence for {claim_id} is from synthetic substrates "
+                f"(ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: {_genuine_count}. "
+                f"Total synthetic exp entries: {_exp_entries}. "
+                "Confidence scores and conflict ratios are unreliable. "
+                "Collect ≥1 genuine experimental run on ree-v1-minimal before treating "
+                "this claim as a promotion or demotion candidate."
+            ),
+            "options": [
+                "Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).",
+                "Demote to legacy and re-open when genuine evidence is available.",
+                "Keep current status and suppress recommendations until genuine run completes.",
+            ],
+            "discussion_prompts": discussion_prompts,
+            "decision_status": str(criteria.get("decision_status_default", "pending_user")),
+        }
+    # ── end contamination guard ──────────────────────────────────────────────
+
     thresholds = criteria.get("thresholds", {})
     t_candidate = thresholds.get("candidate_to_provisional", {})
     t_stable = thresholds.get("provisional_to_stable", {})
@@ -1697,6 +1768,8 @@ def _write_promotion_demotion_recommendations(
             current_status=current_status,
             claim_type=claim_type,
             criteria=decision_criteria,
+            registry_meta=registry_meta,
+            matrix=matrix,
         )
 
         prior = None
@@ -1779,6 +1852,12 @@ def _write_promotion_demotion_recommendations(
                 + f"{rec['rationale']}; directions supports={supports}, weakens={weakens}, mixed={mixed}, unknown={unknown}, conflict_ratio={_fmt_number(conflict_ratio)}"
             )
             lines.append(f"- Recommendation: `{rec['recommendation']}`")
+            if rec.get("synthetic_data_flag"):
+                lines.append(
+                    "- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates "
+                    "(ree-v2 / ree-experiments-lab). Confidence scores unreliable. "
+                    "Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate."
+                )
             lines.append("- Options (pros/cons):")
             for option in rec["options"]:
                 lines.append(f"  - {option}")
@@ -2906,6 +2985,43 @@ def _write_planning_outputs(
             }
         )
 
+    # ── Backlog merge: preserve user_notes and pinned items ────────────────────
+    # Read the existing backlog so we can (a) carry forward any user_notes the
+    # user added to auto-generated items, and (b) re-inject items the user
+    # pinned manually (pinned: true) that the auto-generator would otherwise drop.
+    existing_backlog_path = planning_root / "evidence_backlog.v1.json"
+    _existing_user_notes: dict[str, str] = {}      # claim_id -> user_notes string
+    _pinned_items: list[dict[str, Any]] = []        # items with pinned: true not auto-covered
+    if existing_backlog_path.exists():
+        try:
+            _existing_doc = json.loads(existing_backlog_path.read_text(encoding="utf-8"))
+            _auto_claim_ids = {str(item.get("claim_id", "")) for item in backlog_items}
+            for _item in _existing_doc.get("items", []):
+                if not isinstance(_item, dict):
+                    continue
+                _cid = str(_item.get("claim_id", "")).strip()
+                # Carry forward user_notes for any claim_id in the generated set
+                if _cid and "user_notes" in _item and _item["user_notes"]:
+                    _existing_user_notes[_cid] = str(_item["user_notes"])
+                # Re-inject pinned items whose claim_id was NOT auto-generated
+                if _item.get("pinned", False) and _cid not in _auto_claim_ids:
+                    _pinned_copy = dict(_item)
+                    _pinned_copy.setdefault("priority", "medium")
+                    _pinned_items.append(_pinned_copy)
+        except Exception:
+            pass  # Corrupt or missing backlog — start fresh, no merge
+
+    # Restore preserved user_notes onto auto-generated items
+    for item in backlog_items:
+        _cid = str(item.get("claim_id", ""))
+        if _cid in _existing_user_notes:
+            item["user_notes"] = _existing_user_notes[_cid]
+
+    # Append pinned items (they'll sort after standard items of equal priority
+    # because they carry the pinned flag but no urgency signals from this run)
+    backlog_items.extend(_pinned_items)
+    # ── end merge ───────────────────────────────────────────────────────────────
+
     backlog_items.sort(
         key=lambda item: (
             _priority_rank(str(item.get("priority", "low"))),
@@ -3431,6 +3547,18 @@ def main() -> None:
         default=3,
         help="How many most recent FAIL runs to include in design implications.",
     )
+    parser.add_argument(
+        "--index-only",
+        action="store_true",
+        default=False,
+        help=(
+            "Stop after writing claim_evidence.v1.json and INDEX.md. "
+            "Skips backlog regeneration, proposals, architecture gap register, "
+            "and promotion/demotion recommendations. "
+            "Safe to run immediately after ingesting new experiment results "
+            "without clobbering manually-maintained planning artefacts."
+        ),
+    )
     args = parser.parse_args()
 
     base_dir = args.root.resolve()
@@ -3495,6 +3623,19 @@ def main() -> None:
     _write_decision_state(decisions_dir, latest_decisions, generated_at)
 
     matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
+
+    if args.index_only:
+        total_runs = sum(len(runs) for runs in by_experiment.values())
+        total_fail = sum(1 for runs in by_experiment.values() for r in runs if r.final_status == "FAIL")
+        total_lit = sum(len(entries) for entries in by_literature.values())
+        print(
+            "[--index-only] Stopped after claim_evidence matrix and INDEX.md. "
+            + f"Indexed {total_runs} run(s) across {len(by_experiment)} experiment type(s); "
+            + f"FAIL={total_fail}; literature entries={total_lit}. "
+            + "Planning artefacts (backlog, proposals, recommendations) NOT regenerated."
+        )
+        return
+
     conflicts, conflict_scope = _collect_conflicts(matrix, planning_criteria, claim_registry)
     backlog_items, proposals, architecture_items = _write_planning_outputs(
         planning_root,
