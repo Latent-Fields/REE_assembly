@@ -261,17 +261,31 @@ Currently `E2FastPredictor.generate_candidates()` performs **hippocampal traject
 
 **Impact on current results:** EXQ-006 and EXQ-007 results remain valid as behavioral baselines. The PASS/FAIL verdicts measure system-level harm reduction; the substrate debt affects mechanistic interpretation only.
 
-### SD-002: E1/E2 described as timescale-shifted; should be described as knowledge-orthogonal
+### SD-002: E1/E2 relationship — mutually constitutive, not merely orthogonal
 
 **Filed:** 2026-02-27
-**Priority:** low (documentation/framing)
-**Blocking:** nothing — framing update only
+**Priority:** low (documentation/framing; architectural implication for training)
+**Blocking:** nothing currently — framing update + future E2→E1 autotrain pathway
 
-MECH-058's `latent_stack.e1_e2_timescale_separation` label is a partial description. The deeper claim (confirmed by user 2026-02-27):
+MECH-058's `latent_stack.e1_e2_timescale_separation` label is incomplete. The correct framing has two layers:
 
-- **E1 = associative engine** ("register of what IS"): action-unconditioned, learns what latent states associate with across many timescales — harm patterns, room types, affective valence. LSTM, no action input.
-- **E2 = transition model** ("how things change"): action-conditioned `f(z_t, a_t) → z_{t+1}`. Knows action North from position X leads to position X+1. Fast feedforward MLP.
+**Layer 1 — Knowledge orthogonality:**
+- **E1 = associative engine** ("register of what IS"): action-unconditioned LSTM, learns what latent states associate with across timescales — harm patterns, affective valence, semantic context (e.g. "arm-up associates with throwing"). No action input.
+- **E2 = transition model** ("how things change"): action-conditioned `f(z_t, a_t) → z_{t+1}`. Learns kinematic sequences — "neutral → raising → peak → extension → release." Fast feedforward MLP.
 
-These are **orthogonal in knowledge type**, not just different in timescale. The timescale difference is secondary. EXQ-006 (associative_vs_transition) was designed to test this richer framing.
+**Layer 2 — Mutual constitution (confirmed 2026-02-27):**
+E1 and E2 are not simply parallel systems with orthogonal outputs. They are co-constitutive:
 
-**Action:** Update `docs/architecture/e2.md` to clarify E2's transition-only role. Update MECH-058 claim scope if EXQ-006 yields clean results.
+1. **E2 scaffolds E1**: E2's transition sequence is the temporal evidence stream from which E1 distills associations. The association "arm-up → throwing" only becomes learnable because E2 provides the ordered kinematic chain that instantiates it. Without transition structure, the association would require many raw observations to converge. E2 narrates the transition; E1 registers the pattern.
+
+2. **E2 autotrains E1** (aspiration, not yet implemented): E2's forward predictions can generate synthetic temporal sequences that E1 learns from, without waiting for ground-truth observations. This is the "autotrain" pathway: E2 rolls out a simulated trajectory, E1 updates its associative model on that rollout. Currently E1 is trained only on actual observations (`compute_prediction_loss()`); the E2→E1 autotrain path is future work.
+
+3. **E1 primes E2**: E1's associative prior conditions E2's transition predictions. Knowing "this is a throwing pattern" (E1 association) lets E2 anticipate upcoming transitions more accurately — arm extension predicts release, not retraction. The current architecture partially implements this: E1 generates a prior that is passed to E2's rollout. The full bidirectional loop is:
+   ```
+   E2 transitions → temporal scaffolding → E1 association distillation
+   E1 association → predictive prior → E2 transition smoothing/context
+   ```
+
+**Implication for EXQ-006:** The E1_FROZEN condition breaks not only E1's associative learning but also the E1→E2 prior conditioning. The E2_FROZEN condition breaks not only transition predictions but also the temporal scaffolding that would train E1. Results should be interpreted at the system level (harm reduction) rather than as clean isolation of individual components.
+
+**Action:** Update `docs/architecture/e2.md` to capture mutual constitution. Add E2→E1 autotrain as a future architectural item. Update MECH-058 claim scope if EXQ-006 yields clean results.
