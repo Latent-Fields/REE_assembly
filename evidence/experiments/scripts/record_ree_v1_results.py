@@ -130,11 +130,12 @@ def _build_manifest(reg: dict, data: dict, run_id: str, ev_dir: str, commit: str
     partial = data.get("partial_support", False)
     ts = _fmt_ts(data.get("run_timestamp", data.get("run_timestamp_utc", "")))
     return {
-        "schema_version":  "experiment_pack/v1",
-        "experiment_type": reg["experiment_type"],
-        "run_id":          run_id,
-        "status":          verdict,
-        "timestamp_utc":   ts,
+        "schema_version":      "experiment_pack/v1",
+        "experiment_type":     reg["experiment_type"],
+        "run_id":              run_id,
+        "status":              verdict,
+        "timestamp_utc":       ts,
+        "architecture_epoch":  "ree_v1_minimal_genuine_v1",
         "source_repo": {
             "name":   "ree-v1-minimal",
             "commit": commit,

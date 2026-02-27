@@ -129,9 +129,8 @@ Items with `pinned: true` are preserved across regeneration. Items from the ree-
 | `ree_hybrid_guardrails_v1` | Current planning epoch (all post-adjudication entries) | 2026-02-15T15:31Z | N/A (planning criteria) |
 | `ree_v1_minimal_genuine_v1` | Genuine ree-v1-minimal experiment results | 2026-02-26T00:00Z | ree-v1-minimal |
 
-Note: The build scanner currently reads `architecture_epoch` from `manifest.architecture_epoch`
-(top level) or falls back to `current_architecture_epoch` from planning_criteria. Genuine
-EXQ manifests store the epoch at `scenario.architecture_epoch` (nested), which the scanner
-misses. As a result, genuine runs are tagged `ree_hybrid_guardrails_v1` in the matrix.
-Genuine run detection in the contamination filter uses the run_id `_ree_v1_minimal` suffix
-as a reliable alternative. Future manifests should store `architecture_epoch` at the top level.
+The build scanner reads `architecture_epoch` from `manifest.architecture_epoch` (top level)
+or falls back to `current_architecture_epoch` from planning_criteria. Genuine EXQ manifests
+now store `architecture_epoch: ree_v1_minimal_genuine_v1` at the top level (fixed 2026-02-27).
+The contamination filter in `_genuine_run_count()` also accepts the `_ree_v1_minimal` run_id
+suffix as a fallback for resilience.
