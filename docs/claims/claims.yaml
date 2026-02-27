@@ -1283,6 +1283,15 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
+  evidence_quality_note: |
+    No experimental evidence in current genuine corpus. All prior entries (9 runs,
+    synthetic scaffolding) originated from ree-v2/ree-experiments-lab (archived 2026-02-26)
+    and have been removed from the index. The demotion recommendation in
+    promotion_demotion_recommendations.md (conflict_ratio=0.889, conf=0.55) is stale —
+    it was computed from those invalid entries, which no longer exist.
+    Retain provisional (adjudication retain_ree is valid as architectural decision) pending
+    genuine ree-v1-minimal experiments. Do not act on demotion recommendation until
+    genuine experimental evidence is available for this claim.
   depends_on:
     - ARC-005
     - MECH-005
@@ -1361,6 +1370,15 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
+  evidence_quality_note: |
+    No experimental evidence in current genuine corpus. All prior entries (9 runs,
+    synthetic scaffolding) originated from ree-v2/ree-experiments-lab (archived 2026-02-26)
+    and have been removed from the index. The demotion recommendation in
+    promotion_demotion_recommendations.md (conflict_ratio=0.889, conf=0.55) is stale —
+    it was computed from those invalid entries, which no longer exist.
+    Retain provisional (adjudication retain_ree is valid as architectural decision) pending
+    genuine ree-v1-minimal experiments. Do not act on demotion recommendation until
+    genuine experimental evidence is available for this claim.
   depends_on:
     - ARC-005
     - MECH-039
@@ -1887,7 +1905,18 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
-  evidence_quality_note: "Prior experimental evidence from claim_probe_mech_061 (8 runs) was from ree-v2 synthetic scaffolding. Adjudication (retain_ree) is valid. Needs genuine ree-v1-minimal commitment boundary experiments."
+  evidence_quality_note: |
+    Prior experimental evidence from claim_probe_mech_061 (8 runs) was from ree-v2 synthetic
+    scaffolding (archived 2026-02-26) — those entries are invalid.
+    Genuine ree-v1-minimal experiment completed 2026-02-26 (EVB-0041, commitment_boundary_validation,
+    EXQ-003): PASS — MECH-061 confirmed. WITH-BOUNDARY harm < BLENDED, |corr|=0.114.
+    This partially answers Q-015: the minimal contract requires at minimum that pre-commit and
+    post-commit signals remain uncorrelated (|corr|<0.7) and that routing them separately
+    outperforms blending. Both criteria confirmed at ree-v1-minimal scale.
+    Demotion recommendation in promotion_demotion_recommendations.md (conflict_ratio=0.889,
+    conf=0.55) is superseded — it was computed from the now-invalid synthetic entries.
+    Retain active. Question is partially answered; further experiments on richer substrates
+    will tighten the boundary contract definition.
   depends_on:
     - MECH-061
     - ARC-003
