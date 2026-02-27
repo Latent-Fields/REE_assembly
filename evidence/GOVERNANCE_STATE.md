@@ -223,11 +223,55 @@ only. See MECH-057 `evidence_quality_note` for scope-revision flag.
 
 ### Literature to Extract (EVB-PINNED-Q019)
 
-| Paper | Key claim |
-|-------|-----------|
-| O'Reilly & Frank (2006) "Making working memory work" | BG Go/NoGo gates what enters PFC WM; theta-organised slots |
-| Hazy, Frank, O'Reilly (2007) "Towards an executive without a homunculus" | Three-loop BG hierarchy, anatomical separation |
-| Aron et al. (2007) "Triangulating a cognitive control network" | STN hyperdirect pathway, beta as fast broad suppression |
-| Brittain & Brown (2014) "Oscillating to a halt" | Beta = "hold/status quo" signal; STN beta and action suppression |
-| Buckner et al. (2008) "The brain's default network" | mPFC-hippocampal axis; DMN suppression by task onset |
-| Crick (1984) / Zikopoulos & Barbas | Reticular nucleus as attentional gating switch between thalamic channels |
+**Status: COMPLETED 2026-02-27.** All 6 papers extracted to `evidence/literature/targeted_review_q_019/entries/`. 97 total literature entries in index.
+
+| Paper | Evidence direction | Entry ID |
+|-------|-------------------|----------|
+| O'Reilly & Frank (2006) PBWM | supports | 2026-02-27_q019_oreilly_frank_2006 |
+| Hazy, Frank, O'Reilly (2007) | supports (strongest) | 2026-02-27_q019_hazy_frank_oreilly_2007 |
+| Aron et al. (2007) IFC-STN hyperdirect | supports | 2026-02-27_q019_aron_2007 |
+| Brittain & Brown (2013) beta oscillations | supports | 2026-02-27_q019_brittain_brown_2013 |
+| Buckner et al. (2008) default network | mixed (indirect) | 2026-02-27_q019_buckner_2008 |
+| Crick (1984) TRN searchlight | supports | 2026-02-27_q019_crick_1984 |
+
+---
+
+## Substrate Debt Register
+
+Implementation misapprehensions that have accumulated and affect experiment interpretation.
+Tracked here to prevent knowledge drift and guide future refactoring.
+
+### SD-001: E2FastPredictor.generate_candidates() labelled as E2 but doing E3/hippocampal work
+
+**Filed:** 2026-02-27
+**Priority:** medium
+**Blocking:** architectural redesign of hippocampal module in ree-v1-minimal
+
+E2's role in REE architecture is a **fast cerebellum-like transition model**: `f(z_t, a_t) → z_{t+1}`. It should predict what latent state results from taking action `a` from state `z`.
+
+Currently `E2FastPredictor.generate_candidates()` performs **hippocampal trajectory proposal** — enumerating and evaluating multiple full action sequences. This is E3 complex work (hippocampal map navigation) incorrectly housed in E2. Consequences:
+
+- EXQ-006 E2_FROZEN condition tests "no trajectory proposal" rather than "no transition prediction"
+- MECH-058 experiments cannot cleanly separate E2 transition accuracy from E3 trajectory planning
+- Any experiment comparing E1 vs E2 roles is partially conflated
+
+**Future separation needed:**
+- `E2FastPredictor` → pure fast transition: `forward(z, a) → z_next` (action-conditioned MLP, cerebellum-like)
+- `HippocampalModule` (new, part of E3 complex) → trajectory proposal by navigating affective terrain, not by running transition predictions
+
+**Impact on current results:** EXQ-006 and EXQ-007 results remain valid as behavioral baselines. The PASS/FAIL verdicts measure system-level harm reduction; the substrate debt affects mechanistic interpretation only.
+
+### SD-002: E1/E2 described as timescale-shifted; should be described as knowledge-orthogonal
+
+**Filed:** 2026-02-27
+**Priority:** low (documentation/framing)
+**Blocking:** nothing — framing update only
+
+MECH-058's `latent_stack.e1_e2_timescale_separation` label is a partial description. The deeper claim (confirmed by user 2026-02-27):
+
+- **E1 = associative engine** ("register of what IS"): action-unconditioned, learns what latent states associate with across many timescales — harm patterns, room types, affective valence. LSTM, no action input.
+- **E2 = transition model** ("how things change"): action-conditioned `f(z_t, a_t) → z_{t+1}`. Knows action North from position X leads to position X+1. Fast feedforward MLP.
+
+These are **orthogonal in knowledge type**, not just different in timescale. The timescale difference is secondary. EXQ-006 (associative_vs_transition) was designed to test this richer framing.
+
+**Action:** Update `docs/architecture/e2.md` to clarify E2's transition-only role. Update MECH-058 claim scope if EXQ-006 yields clean results.

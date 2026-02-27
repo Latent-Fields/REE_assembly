@@ -5,7 +5,30 @@
   "last_updated": "2026-02-27T10:33:02.000000+00:00",
   "idle": true,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "EXQ-006",
+      "backlog_id": "EVB-0005",
+      "claim_id": "MECH-058",
+      "title": "E1/E2 Associative vs Transition Knowledge (MultiRoomGrid)",
+      "description": "Tests the orthogonality of E1 (associative engine) vs E2 (transition model) using MultiRoomGrid with 4 hazard-density quadrants. Four conditions: FULL, E1_FROZEN, E2_FROZEN, SAME_RATE. PASS: FULL < both frozen conditions AND <= SAME_RATE*1.10.",
+      "script": "experiments/e1_e2_associative_transition.py",
+      "priority": "high",
+      "status": "pending",
+      "added_at": "2026-02-27T12:30:00Z"
+    },
+    {
+      "queue_id": "EXQ-007",
+      "backlog_id": "EVB-0033",
+      "claim_id": "MECH-057",
+      "title": "Multi-Step Control Completion Gating",
+      "description": "Richer MECH-057 substrate: macro-actions spanning 4 sub-steps. GATED (updates suppressed mid-macro) vs UNGATED (updates every sub-step) vs NO_MACRO (atomic baseline).",
+      "script": "experiments/multistep_control_completion.py",
+      "priority": "high",
+      "status": "pending",
+      "added_at": "2026-02-27T12:30:00Z"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
