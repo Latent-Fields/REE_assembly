@@ -2818,6 +2818,9 @@ END CONFLICT RESOLUTION`;
         polarity: c.polarity || '',
         depends_on: c.depends_on || [],
         location: c.location || '',
+        lifecycle_stage: c.lifecycle_stage || '',
+        adjudication_decision_status: c.adjudication_decision_status || '',
+        pending_design: c.pending_design || false,
       };
     }
 
@@ -4250,7 +4253,7 @@ END CONFLICT RESOLUTION`;
       const activeCount = allClaims.filter(c => c.status === 'active').length;
       const candidateCount = allClaims.filter(c => c.status === 'candidate').length;
       const fullCount = allClaims.filter(c => c.status === 'full').length;
-      const openQCount = allClaims.filter(c => c.type === 'question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
+      const openQCount = allClaims.filter(c => c.type === 'open_question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
       const cards = `
         <div class="governance-grid governance-grid-4">
           <div class="gov-card ${actionRequired > 0 ? 'gov-card-alert' : ''}"><div class="label">Action Required</div><div class="value">${actionRequired}</div><div class="gov-card-sub">decisions + thoughts</div></div>
@@ -6008,7 +6011,7 @@ END CONFLICT RESOLUTION`;
         const activeN = byStatus['active'] || 0;
         const candidateN = byStatus['candidate'] || 0;
         const fullN = byStatus['full'] || 0;
-        const openQN = allClaims.filter(c => c.type === 'question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
+        const openQN = allClaims.filter(c => c.type === 'open_question' && (c.status === 'open' || c.status === 'active' || c.status === 'candidate')).length;
         const lastRun = governanceAgenda && governanceAgenda.generated_at_utc
           ? new Date(governanceAgenda.generated_at_utc).toLocaleDateString()
           : '—';
