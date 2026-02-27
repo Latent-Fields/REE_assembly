@@ -2185,22 +2185,38 @@
     (A) Single-gate: BG gate one action endpoint, evaluating three criteria
     simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment).
     (B) Three-gate: BG implement three anatomically distinct gating loops —
-    (1) Sensorium loop: limbic/beta-associated, no trajectory generation, gates what enters
-    latent state from the environment, probably reticular thalamus / limbic BG substrate.
-    (2) Thought loop: associative/theta-associated, hippocampal trajectory generation lives
-    here, BG gate which thought-trajectories are maintained in working memory, mediodorsal
-    thalamus prevents bleed-back into sensorium. DMN = this loop in unconstrained mode
-    (no sensorium input; hippocampal-mPFC episodic projection free-running).
-    (3) Action commitment loop: sensorimotor, E3 complex. E3 has back-projections into the
-    thought loop (suppressing trajectories that fail commitment criteria) and forward
-    projections into the motor loop. Not merely an action gate.
+    (1) Sensorium loop: limbic/beta-associated, gates what the system attends to —
+    selecting not only from environmental input but from ongoing sensorimotor loops for
+    E3 complex attention. No trajectory generation. Reticular thalamus / limbic BG substrate.
+    Control plane E1/E2 update gates (precision/salience routing for world model updates)
+    are SEPARATE mechanisms from this BG sensorium gate, operating on a different axis
+    (model update eligibility vs attentional selection for thought).
+    (2) Thought loop: associative/theta-associated, mediodorsal thalamus prevents bleed-back
+    into sensorium. The E3 complex operates here. The hippocampus provides an affectively-
+    weighted map of viable trajectories (shaped by the residue field) and proposes paths by
+    navigating this terrain — not by running transition predictions. E2 provides fast local
+    transition checks (cerebellum-like: state + action → next_state). E1 provides long-horizon
+    world model context. E3 is a large complex: hippocampal map + trajectory proposal +
+    tactical evaluation + commitment gating + back-projections suppressing candidates that
+    fail criteria. DMN = thought loop free-running unconstrained (no sensorium input;
+    hippocampal-mPFC episodic future projection in rest/prospective mode).
+    (3) Action commitment loop: sensorimotor, E3 commit boundary. Gates motor execution.
+    Automaticity gradient: if post-commit metrics improve, the task migrates to the
+    sensorimotor loop — less sensorium BG gate overhead for expert performance. Harm
+    residue re-elevates automated patterns for deliberate E3 oversight.
+    NOTE ON E2: E2 is a cerebellum-like fast transition model (state + action → next_state),
+    NOT a trajectory generator. Current ree-v1-minimal E2FastPredictor.generate_candidates()
+    is performing hippocampal trajectory-proposal work under an incorrect label. Future
+    refactoring will separate E2 (fast transition model, sensorimotor loop) from a dedicated
+    hippocampal module (part of E3 complex, trajectory proposal and affective terrain map).
     Loops share thalamic substrate (mediodorsal and VL thalamus; reticular nucleus of
-    thalamus as inter-loop routing switch) and computational elements (hippocampus, residue
-    field) but are functionally distinct. Structural re-use maximised via thalamic gating.
+    thalamus as inter-loop routing switch) and computational elements (residue field spans
+    all loops). Structural re-use maximised via thalamic gating.
     REE implications: current E3-only gating model conflates all three operations at action
     time. Three-gate model requires gating at three pipeline stages: before LatentStack.encode
-    (sensorium), within E2 trajectory generation (thought), and at E3 commit (action).
-    E3 as complex needs a back-projection path to E2 not present in ree-v1-minimal.
+    (sensorium loop), within E3 complex tactical evaluation using the hippocampal map (thought
+    loop), and at E3 commit boundary (action loop). E3 as complex needs a feedback path
+    suppressing thought-loop trajectory candidates — not present in ree-v1-minimal.
     MECH-057 scope revision pending — see MECH-057 evidence_quality_note.
     Relevant literature: O'Reilly & Frank 2006 (PBWM), Hazy/Frank/O'Reilly 2007,
     Aron et al. 2007 (STN hyperdirect), Brittain & Brown 2014 (beta oscillations),

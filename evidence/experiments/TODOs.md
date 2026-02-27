@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-25T20:08:01.120819Z`
+Generated: `2026-02-27T08:45:05.936445Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -53,14 +53,16 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (4 FAIL run(s), latest `2026-02-15T213702Z_claim-probe-mech-057_seed1003_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech057:attribution_loop_not_differentiated` (2 FAIL run(s), latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`).
+- [ ] Investigate signature `mech057:gating_loop_not_differentiated` (2 FAIL run(s), latest `20260226T222404_claim_probe_mech_057_ree_v1_minimal`).
 - [ ] Investigate signature `mech057:action_prediction_gap` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 - [ ] Investigate signature `mech057:consequence_model_drift` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
-- [ ] Investigate signature `mech057:lineage_integrity_drop` (1 FAIL run(s), latest `exp_0025_20260225T191852357612Z`).
 
 ## claim_probe_mech_058
 
 - [ ] Investigate signature `mech058:anchor_separation_collapse` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech058:ema_drift_under_shift` (3 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech058:latent_stability_criterion_not_met_at_v1_minimal_scale` (1 FAIL run(s), latest `20260226T205244_claim_probe_mech_058_ree_v1_minimal`).
 
 ## claim_probe_mech_059
 
