@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-02-27_q019_oreilly_frank_2006",
+  "timestamp_utc": "2026-02-27T12:00:00Z",
+  "claim_ids_tested": [
+    "Q-019"
+  ],
+  "source": {
+    "title": "Making working memory work: a computational model of learning in the prefrontal cortex and basal ganglia",
+    "authors": [
+      "O'Reilly RC",
+      "Frank MJ"
+    ],
+    "year": 2006,
+    "venue": "Neural Computation",
+    "doi": "10.1162/089976606775093909",
+    "pmid": "16378516"
+  },
+  "evidence_class": "lit:computational_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The PBWM model independently motivates a multi-gate BG architecture with functionally distinct input gate (sensorium), maintenance gate (thought loop), and output gate (action commitment), all implemented via the canonical striatum-SNr-thalamus-PFC disinhibition loop. Strong mapping fidelity to Q-019 sensorium and commitment gates; moderate transfer risk as this is a computational model not direct anatomy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "prefrontal_cortex",
+    "working_memory",
+    "PBWM",
+    "gating",
+    "three_gate_support",
+    "dopamine",
+    "Go_NoGo"
+  ],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia perform dynamic gating of PFC working memory via dopamine-trained Go/NoGo competition; two gate types operate: input gating (what enters active PFC maintenance) and output gating (which maintained representation drives downstream action selection).",
+    "ree_translation": "Input gating = sensorium gate (BG selects which sensory/perceptual representations enter the processing loop); PFC stripe maintenance = thought loop gate (multiple independently-gated WM slots enable E3 complex operations); output gating = action commitment gate (BG releases maintained representation to drive motor/action execution).",
+    "mapping_caveat": "PBWM treats all gates as instances of the same canonical circuit form; REE adds distinct oscillatory control planes (beta vs theta) and anatomical specificity. This paper does not address the hyperdirect STN pathway or oscillatory signatures. Transfer risk: computational model, not direct empirical anatomy.",
+    "source_context": "Neural Computation, 2006. Foundational PBWM paper establishing BG as working memory gating controller."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (foundational, widely cited). High mapping fidelity for three-gate functional separation. Moderate transfer risk from computational model to biological implementation."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-02-27_q019_brittain_brown_2013",
+  "timestamp_utc": "2026-02-27T12:15:00Z",
+  "claim_ids_tested": [
+    "Q-019"
+  ],
+  "source": {
+    "title": "Oscillations and the basal ganglia: motor control and beyond",
+    "authors": [
+      "Brittain JS",
+      "Brown P"
+    ],
+    "year": 2013,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2013.05.084",
+    "pmid": "23711535",
+    "notes": "Original plan cited PMID 25035364 (Trends Neurosci title 'Oscillating to a halt') which could not be confirmed in PubMed. Using confirmed Brittain & Brown (2013) NeuroImage review covering the same thesis. A related 2014 paper (Brittain, Sharott & Brown, Eur J Neurosci, PMID 24890470) also cited for completeness."
+  },
+  "evidence_class": "lit:neuroscience_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Beta oscillations as a context-sensitive dynamic gate across BG circuit functions provides direct oscillatory grounding for distinct gate timing. Functional dissociation of beta roles (sensorium admission, cognitive hold, action inhibition) supports separate loop gates. STN hyperdirect stop signal via beta resynchronization maps to action commitment gate. Moderate transfer risk as oscillatory interpretation is contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "beta_oscillations",
+    "STN",
+    "hyperdirect_pathway",
+    "action_commitment_gate",
+    "sensorium_gate",
+    "oscillatory_gating",
+    "Parkinsons"
+  ],
+  "mapping": {
+    "source_claim_statement": "Beta oscillations in cortico-basal ganglia circuits function as an inverted-U dynamic gate: beta synchrony promotes the current state at the expense of novel action selection. STN beta bursts via the hyperdirect pathway implement a global stop signal during motor conflict. Cue-driven beta suppression in the striatum enables new encoding. Beta desynchronization is necessary for voluntary action initiation.",
+    "ree_translation": "Sensorium gate (beta-band selector): cue-driven beta suppression = mechanism for opening the sensorium loop to admit new environmental content for E3 attention. Thought loop gate (theta): when beta is suppressed, theta/gamma replaces it for cognitive processing — consistent with thought loop operating in a different oscillatory register. Action commitment gate: STN beta burst via hyperdirect pathway = neurophysiological implementation of the commit boundary halt signal, preventing irreversible action during conflict.",
+    "mapping_caveat": "Beta functional role is complex and contested; the inverted-U model is a simplification. The specific frequency ranges and their loop assignments require additional empirical grounding. Transfer risk: review paper, oscillatory interpretation not universally accepted.",
+    "source_context": "NeuroImage, 2013. Review of beta oscillation function across BG circuit domains. Primary Brittain & Brown review covering the thesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality (review by Brown lab, key oscillation research group). Good mapping fidelity for oscillatory gate mechanics. Moderate transfer risk from oscillatory interpretation to specific loop assignment."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-02-27T15:08:08.175494Z`
+Generated: `2026-02-27T16:31:41.937802Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -33,6 +33,7 @@ Generated: `2026-02-27T15:08:08.175494Z`
 | `targeted_review_q_009` | [`2026-02-15_q009_lit-0050_completion`](targeted_review_q_009/entries/2026-02-15_q009_lit-0050_completion/record.json) | 1 | [`summary`](targeted_review_q_009/entries/2026-02-15_q009_lit-0050_completion/summary.md) |
 | `targeted_review_q_010` | [`2026-02-15_q010_lit-0052_completion`](targeted_review_q_010/entries/2026-02-15_q010_lit-0052_completion/record.json) | 1 | [`summary`](targeted_review_q_010/entries/2026-02-15_q010_lit-0052_completion/summary.md) |
 | `targeted_review_q_011` | [`2026-02-15_q011_lit-0026_completion`](targeted_review_q_011/entries/2026-02-15_q011_lit-0026_completion/record.json) | 4 | [`summary`](targeted_review_q_011/entries/2026-02-15_q011_lit-0026_completion/summary.md) |
+| `targeted_review_q_019` | [`2026-02-27_q019_crick_1984`](targeted_review_q_019/entries/2026-02-27_q019_crick_1984/record.json) | 6 | [`summary`](targeted_review_q_019/entries/2026-02-27_q019_crick_1984/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-02-15_mech056_lit-0014_completion`](targeted_review_v3_hippocampal_rollout/entries/2026-02-15_mech056_lit-0014_completion/record.json) | 11 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-02-15_mech056_lit-0014_completion/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |

@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-02-27_q019_buckner_2008",
+  "timestamp_utc": "2026-02-27T12:20:00Z",
+  "claim_ids_tested": [
+    "Q-019"
+  ],
+  "source": {
+    "title": "The brain's default network: anatomy, function, and relevance to disease",
+    "authors": [
+      "Buckner RL",
+      "Andrews-Hanna JR",
+      "Schacter DL"
+    ],
+    "year": 2008,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1196/annals.1440.011",
+    "pmid": "18400922"
+  },
+  "evidence_class": "lit:neuroscience_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Provides anatomical grounding for the 'thought loop' substrate (default network = internal simulation system), and the functional anticorrelation between default network and externally-directed attentional systems supports the loop separation requirement. However, the paper does not address BG gating mechanisms directly, and the mapping to Q-019's three-gate architecture requires a bridging claim (default network is what the thought loop gate regulates). Indirect support; not a direct BG gating paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "default_network",
+    "thought_loop",
+    "internal_simulation",
+    "hippocampus",
+    "DMN",
+    "anticorrelation",
+    "three_gate_support_indirect"
+  ],
+  "mapping": {
+    "source_claim_statement": "The default network (medial temporal lobe subsystem + medial prefrontal subsystem + posterior cingulate integration hubs) is active during internal simulation, autobiographical memory, and prospective planning. It is strongly anticorrelated with externally-directed attentional networks and minimally connected to primary sensory/motor cortices.",
+    "ree_translation": "Default network = anatomical substrate of the thought loop (E3 complex's domain of internally-driven simulation, trajectory planning, and affective weighting). Medial temporal lobe subsystem = hippocampal map function within E3. When sensorium gate opens (salient external cue), it suppresses default network — consistent with sensorium gate deactivating the thought loop. When action commitment gate fires, default network also deactivates as agent transitions from simulation to committed action.",
+    "mapping_caveat": "Paper does not address BG gating mechanisms. The claim that default network = thought loop content, regulated by BG gates, requires a bridging step not provided in this paper. Evidence direction marked 'mixed' because the paper supports the existence of the thought-loop substrate but does not speak to its gating by BG loops. High transfer risk from default network function to BG gate architecture.",
+    "source_context": "Ann N Y Acad Sci, 2008. Landmark review of default network anatomy and function."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Very high source quality (landmark paper, widely cited). Moderate mapping fidelity — strong for thought-loop content, weak for direct BG gating. Moderate-high transfer risk from default network to gating architecture."
+  }
+}

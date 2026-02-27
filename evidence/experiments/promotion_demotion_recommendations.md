@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-27T15:08:08.175494Z`
+Generated: `2026-02-27T16:31:41.937802Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -37,6 +37,7 @@ Use this as the human-in-the-loop review queue.
 | `Q-015` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-016` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-017` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
+| `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 
 ## Decision Details
 
@@ -543,3 +544,18 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-02-25T16:51:50.648196Z`
 - Last selected option: hybridize
 - Last rationale: Reaffirmed Q-017 as hybridized: retain REE orthogonal control-axis framing while using external priors only through interface-level guardrails; resolve via scoped axis-ablation follow-ups.
+
+### Q-019
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.875, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`

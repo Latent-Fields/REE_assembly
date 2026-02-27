@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-02-27_q019_aron_2007",
+  "timestamp_utc": "2026-02-27T12:10:00Z",
+  "claim_ids_tested": [
+    "Q-019"
+  ],
+  "source": {
+    "title": "Triangulating a cognitive control network using diffusion-weighted magnetic resonance imaging (MRI) and functional MRI",
+    "authors": [
+      "Aron AR",
+      "Behrens TE",
+      "Smith S",
+      "Frank MJ",
+      "Poldrack RA"
+    ],
+    "year": 2007,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0519-07.2007",
+    "pmid": "17409238",
+    "pmcid": "PMC6672420"
+  },
+  "evidence_class": "lit:empirical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Provides the strongest anatomical evidence for a dedicated BG circuit serving the action commitment gate function. The IFC-STN hyperdirect pathway is anatomically validated (DWI tractography, 7-9/10 subjects) and functionally distinct from the canonical striato-pallidal Go pathway. The key architectural point: the commit gate uses a different BG pathway (STN-based) than the thought-loop gate (SNr-based), supporting anatomical separability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "subthalamic_nucleus",
+    "hyperdirect_pathway",
+    "action_commitment_gate",
+    "stop_signal",
+    "IFC",
+    "preSMA",
+    "DWI_tractography",
+    "empirical"
+  ],
+  "mapping": {
+    "source_claim_statement": "Right IFC connects directly to STN via a white matter tract (hyperdirect pathway) bypassing the striatum. IFC-STN activation correlates with stop-signal reaction time; preSMA specifically activates with conflict-induced slowing. STN excites GPi, suppressing thalamocortical motor output — implementing a global action halt.",
+    "ree_translation": "IFC-STN hyperdirect pathway = anatomical substrate of the action commitment gate. STN→GPi suppression = mechanism by which the gate arrests irreversible motor commitment. preSMA conflict detection = pre-commit error channel signaling (conflict before commitment recruits the gate). Key REE implication: action commitment gate uses STN-based hyperdirect circuit, anatomically separable from SNr-based cognitive BG loops.",
+    "mapping_caveat": "Paper focuses on the motor/action domain; does not address sensorium or thought-loop gates. The STN-based commit gate pathway is architecturally distinct from the SNr-based circuit in O'Reilly/Frank PBWM — this distinction matters for REE implementation. Transfer risk: human fMRI/DWI, but anatomy is direct.",
+    "source_context": "Journal of Neuroscience, 2007. Empirical study combining DWI tractography and fMRI to identify and validate the IFC-STN-preSMA network."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (empirical, DWI anatomical validation). High mapping fidelity for action commitment gate specifically. Low transfer risk — direct human neuroscience with anatomical confirmation."
+  }
+}

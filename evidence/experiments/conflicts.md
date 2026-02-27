@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-02-27T15:08:08.175494Z`
+Generated: `2026-02-27T16:31:41.937802Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -444,7 +444,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-017
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=59, weakens=40, conflict_ratio=0.808, overall_confidence=0.73
+- Evidence breakdown: supports=59, weakens=40, conflict_ratio=0.808, overall_confidence=0.729
 - Recent entries:
   - `2026-02-21T15:14:42Z` `experimental` `claim_probe_q_017` direction=`supports` confidence=0.75
   - `2026-02-21T15:14:42Z` `experimental` `control_axis_ablation` direction=`supports` confidence=0.75
