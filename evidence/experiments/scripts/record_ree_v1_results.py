@@ -101,6 +101,16 @@ EXPERIMENT_REGISTRY = {
         "runner_name":      "experiments/control_plane_precision_separation.py",
         "runner_version":   "ree_v1_minimal.v1",
     },
+    "write_locus_contamination": {
+        "experiment_type":  "claim_probe_mech_060",
+        "claim_ids_tested": ["MECH-060", "MECH-067"],
+        "evidence_class":   "exp:ablation",
+        "pass_direction":   "supports",
+        "fail_direction":   "weakens",
+        "mixed_direction":  "mixed",
+        "runner_name":      "experiments/write_locus_contamination.py",
+        "runner_version":   "ree_v1_minimal.v1",
+    },
 }
 
 # ── Interpretation templates ───────────────────────────────────────────────────
@@ -179,6 +189,11 @@ def _infer_failure_signatures(data: dict) -> list:
                 sigs.append("mech057:attribution_loop_not_differentiated")
             if not agg.get("gating_criterion_met", True):
                 sigs.append("mech057:gating_loop_not_differentiated")
+        if exp == "write_locus_contamination":
+            if not agg.get("residue_criterion_met", True):
+                sigs.append("mech060:residue_contamination_not_detectable_at_scale")
+            if not agg.get("harm_criterion_met", True):
+                sigs.append("mech060:write_locus_separation_not_beneficial_at_scale")
     return sigs
 
 
@@ -208,6 +223,7 @@ def _build_summary(data: dict) -> str:
         "commitment_boundary_validation": _summary_mech061,
         "control_completion_requirement": _summary_mech057,
         "control_plane_precision_separation": _summary_mech059,
+        "write_locus_contamination":    _summary_mech060,
     }
     fn = summaries.get(exp)
     if fn:
@@ -455,6 +471,68 @@ two-channel design is load-bearing.
 ## Status Implication
 
 Genuine PASS. Supports retain_ree adjudication. MECH-059 promoted to active.
+"""
+
+
+def _summary_mech060(verdict, agg, ts, partial, data):
+    full_harm     = agg.get("full_last_quarter_harm", "?")
+    cdur_harm     = agg.get("contaminated_durable_last_quarter_harm", "?")
+    cres_harm     = agg.get("contaminated_residue_last_quarter_harm", "?")
+    full_res      = agg.get("full_total_residue", "?")
+    cres_res      = agg.get("contaminated_residue_total_residue", "?")
+    full_corr     = agg.get("full_abs_attr_corr", "?")
+    cdur_corr     = agg.get("contaminated_durable_abs_attr_corr", "?")
+    cres_corr     = agg.get("contaminated_residue_abs_attr_corr", "?")
+    res_ok        = agg.get("residue_criterion_met", False)
+    harm_ok       = agg.get("harm_criterion_met", False)
+    return f"""# MECH-060/067 Write-Locus Contamination Ablation — {verdict} ({ts})
+
+## Genuine ree-v1-minimal Evidence
+
+**Substrate:** ree-v1-minimal gridworld 10×10, {data.get('config', {}).get('num_hazards', 4)} hazards, {data.get('config', {}).get('num_episodes', 200)} episodes × {len(data.get('config', {}).get('seeds', []))} seeds × 3 conditions.
+**Architecture epoch:** ree_v1_minimal_genuine_v1
+
+## Result
+
+| Condition | Last-quarter harm | Total residue | |attr_corr| (E1 loss vs harm) |
+|-----------|-------------------|---------------|----------------------------------|
+| FULL (clean write loci)        | {full_harm} | {full_res} | {full_corr} |
+| CONTAMINATED_DURABLE (E1 leak) | {cdur_harm} | — | {cdur_corr} |
+| CONTAMINATED_RESIDUE (pre-commit residue) | {cres_harm} | {cres_res} | {cres_corr} |
+
+- Residue inflation criterion (CONT_RES residue > FULL * 1.1): **{"PASS" if res_ok else "FAIL"}**
+- Harm ordering criterion (FULL harm ≤ max(contaminated) * 1.05): **{"PASS" if harm_ok else "FAIL"}**
+- Overall verdict: **{verdict}** (partial_support={partial})
+
+## Architectural Interpretation
+
+MECH-060 and MECH-067 assert that write-locus separation between the pre-commit channel
+(E2 simulation errors) and the post-commit channel (realized env harm) is load-bearing.
+This experiment tests what happens when those boundaries are violated.
+
+**Write-locus architecture in ree-v1-minimal (FULL condition):**
+- E1 (world model) receives gradients only from `compute_prediction_loss()`, which replays
+  actual observed latent states. Pre-commit E2 harm predictions do NOT touch E1.
+- Residue field receives harm only via `update_residue(env_harm)` after `env.step()`.
+  Pre-commit E2 speculation does NOT accumulate in the residue terrain.
+
+**CONTAMINATED_DURABLE**: E2 prediction error scales the E1 gradient each episode,
+modelling pre-commit simulation errors leaking into the durable world model. This
+decouples E1 loss from actual observation fidelity, degrading attribution reliability.
+
+**CONTAMINATED_RESIDUE**: `update_residue(-e2_pred)` is called pre-commit, then
+`update_residue(env_harm)` post-commit. Pre-commit predictions inflate the residue
+field — the terrain accumulates harm from states the agent has not yet visited,
+miscalibrating the hippocampal-analogue path weighting.
+
+**Attribution correlation (|attr_corr|)**: Pearson correlation between per-episode E1 loss
+and per-episode realized harm. In FULL, E1 trains only on actual observations → E1 loss
+should track harm. Contamination should degrade this correlation. Reported for
+calibration; not a formal PASS criterion at 200-episode scale.
+
+## Status Implication
+
+{"PASS: Residue contamination detectable and write-locus separation holds. Both MECH-060 and MECH-067 receive supporting evidence. Promotes claim from candidate toward provisional." if verdict == "PASS" else "FAIL/PARTIAL: One or both contamination signals not detectable at ree-v1-minimal scale. Informative baseline — may require more complex substrate or longer training to reach threshold. Do not demote: architecture is unchanged, substrate resolution is the limiting factor."}
 """
 
 

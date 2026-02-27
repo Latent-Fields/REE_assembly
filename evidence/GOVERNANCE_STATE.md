@@ -73,7 +73,7 @@ larger synthetic entry counts and should be treated with caution.
 
 | EXQ | EVB | Claim(s) | Status | Notes |
 |-----|-----|----------|--------|-------|
-| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | `needs_script` | Write-locus contamination ablation (FULL / CONTAMINATED_DURABLE / CONTAMINATED_RESIDUE). Script at `ree-v1-minimal/experiments/write_locus_contamination.py`. ~22.5 min estimated. |
+| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | `pending` | Write-locus contamination ablation (FULL / CONTAMINATED_DURABLE / CONTAMINATED_RESIDUE). Script: `ree-v1-minimal/experiments/write_locus_contamination.py`. PASS criteria: residue inflation (CONT_RES > FULL × 1.1) + harm ordering. ~22.5 min estimated. |
 
 ---
 
