@@ -1,0 +1,118 @@
+{
+  "experiment": "control_completion_requirement",
+  "claim": "MECH-057",
+  "evb_id": "EVB-0042",
+  "run_timestamp": "2026-02-26T22:24:04.671552+00:00",
+  "config": {
+    "num_episodes": 200,
+    "max_steps": 100,
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "grid_size": 10,
+    "num_hazards": 4,
+    "e1_lr": 0.0001,
+    "policy_lr": 0.001,
+    "degradation_threshold": 1.1,
+    "conditions": [
+      "FULL",
+      "NO_ATTRIBUTION",
+      "NO_GATING"
+    ]
+  },
+  "verdict": "FAIL",
+  "partial_support": false,
+  "aggregate": {
+    "full_harm_last_quarter": 0.8793,
+    "no_attribution_harm_last_quarter": 0.896,
+    "no_gating_harm_last_quarter": 0.9187,
+    "degradation_threshold": 1.1,
+    "attribution_criterion_met": false,
+    "gating_criterion_met": false
+  },
+  "per_run": [
+    {
+      "condition": "FULL",
+      "seed": 7,
+      "first_quarter_harm": 1.014,
+      "last_quarter_harm": 0.886,
+      "mean_e1_loss": 0.002285,
+      "mean_trajectory_residue_cost": 18.096243,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_ATTRIBUTION",
+      "seed": 7,
+      "first_quarter_harm": 0.848,
+      "last_quarter_harm": 0.934,
+      "mean_e1_loss": 0.00228,
+      "mean_trajectory_residue_cost": 0.810466,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_GATING",
+      "seed": 7,
+      "first_quarter_harm": 0.902,
+      "last_quarter_harm": 0.918,
+      "mean_e1_loss": 0.00231,
+      "mean_trajectory_residue_cost": 17.503115,
+      "episode_count": 200
+    },
+    {
+      "condition": "FULL",
+      "seed": 42,
+      "first_quarter_harm": 0.916,
+      "last_quarter_harm": 0.888,
+      "mean_e1_loss": 0.001904,
+      "mean_trajectory_residue_cost": 27.768363,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_ATTRIBUTION",
+      "seed": 42,
+      "first_quarter_harm": 1.028,
+      "last_quarter_harm": 0.878,
+      "mean_e1_loss": 0.001912,
+      "mean_trajectory_residue_cost": 0.707555,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_GATING",
+      "seed": 42,
+      "first_quarter_harm": 0.94,
+      "last_quarter_harm": 0.882,
+      "mean_e1_loss": 0.001888,
+      "mean_trajectory_residue_cost": 28.512316,
+      "episode_count": 200
+    },
+    {
+      "condition": "FULL",
+      "seed": 99,
+      "first_quarter_harm": 0.888,
+      "last_quarter_harm": 0.864,
+      "mean_e1_loss": 0.003192,
+      "mean_trajectory_residue_cost": 16.365673,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_ATTRIBUTION",
+      "seed": 99,
+      "first_quarter_harm": 0.834,
+      "last_quarter_harm": 0.876,
+      "mean_e1_loss": 0.003155,
+      "mean_trajectory_residue_cost": 0.734589,
+      "episode_count": 200
+    },
+    {
+      "condition": "NO_GATING",
+      "seed": 99,
+      "first_quarter_harm": 0.868,
+      "last_quarter_harm": 0.956,
+      "mean_e1_loss": 0.003161,
+      "mean_trajectory_residue_cost": 16.524542,
+      "episode_count": 200
+    }
+  ]
+}

@@ -1530,7 +1530,26 @@
   adjudicated_at_utc: 2026-02-25T14:59:46.253616Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
-  evidence_quality_note: "All prior experimental evidence (10 runs, claim_probe_mech_057 experiment type) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). Confidence 0.525 is unreliable. Genuine ree-v1-minimal experiments required."
+  evidence_quality_note: |
+    Prior 10 synthetic runs (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid.
+    Genuine ree-v1-minimal experiment completed 2026-02-26 (EVB-0042, control_completion_requirement): FAIL
+    (informative baseline — effect direction correct, magnitude sub-threshold).
+    FULL last-Q harm 0.879 | NO_ATTRIBUTION 0.896 (+1.9%) | NO_GATING 0.919 (+4.5%).
+    Degradation threshold 1.1 (10%): neither ablation met it (1.019x and 1.046x respectively).
+    Effect ordering is architecturally correct: FULL < NO_ATTRIBUTION < NO_GATING — completion gating
+    matters more than attribution at this scale (4.5% vs 1.9%), consistent with theory.
+    INTERPRETATION: NOT architecture falsification. Two compounding substrate limitations:
+    (1) Grid world is too simple to require multi-step action completion — each step is its own
+    atomic action, so there is no meaningful "action in progress" state for the gating mechanism
+    to protect. The mechanism is most load-bearing when actions span multiple sub-steps or when
+    long-horizon plans require protection from premature precision updates during execution.
+    (2) ree-v1-minimal's flat policy gradient does not accumulate attribution errors across
+    action sequences, so the attribution channel (FULL vs NO_ATTRIBUTION delta = 1.9%) has minimal
+    signal to propagate. Both effects require richer substrate to manifest.
+    Remains candidate (hybridize). Genuine re-test requires: multi-step action substrate, or
+    sequential decision tasks with non-atomic action execution (e.g. navigation sub-goals).
+    The FAIL is an informative baseline: it constrains the minimum substrate complexity
+    needed to detect the mechanism, not the mechanism's existence.
   depends_on:
     - ARC-015
     - ARC-005
