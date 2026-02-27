@@ -2465,6 +2465,27 @@ def _write_planning_outputs(
             if is_applicable(entry):
                 entries_by_claim[claim_key].append(entry)
 
+    # ── Pre-load pinned items to prevent auto-generation collision ────────────────
+    # Read the existing backlog BEFORE the auto-generation loop so pinned claim_ids
+    # can be skipped during auto-generation. This preserves their rich content
+    # (title, description, papers_to_extract, acceptance_criteria, etc.) and
+    # their original backlog_id (e.g. EVB-PINNED-Q019) without any merge logic.
+    _early_backlog_path = planning_root / "evidence_backlog.v1.json"
+    _pinned_claim_ids: set[str] = set()
+    _preloaded_pinned_items: list[dict[str, Any]] = []
+    if _early_backlog_path.exists():
+        try:
+            _early_doc = json.loads(_early_backlog_path.read_text(encoding="utf-8"))
+            for _pit in _early_doc.get("items", []):
+                if isinstance(_pit, dict) and _pit.get("pinned", False):
+                    _pcid = str(_pit.get("claim_id", "")).strip()
+                    if _pcid:
+                        _pinned_claim_ids.add(_pcid)
+                        _preloaded_pinned_items.append(dict(_pit))
+        except Exception:
+            pass  # Missing or corrupt backlog — no pinned items to protect
+    # ── end pre-load ─────────────────────────────────────────────────────────────
+
     backlog_items: list[dict[str, Any]] = []
     architecture_items: list[dict[str, Any]] = []
     for claim_id in claim_ids:
@@ -2472,6 +2493,8 @@ def _write_planning_outputs(
         current_status = str(registry_meta.get("status", "unknown"))
         if _is_inactive_claim_status(current_status):
             continue
+        if claim_id in _pinned_claim_ids:
+            continue  # Pinned backlog entry governs this claim; skip auto-generation
         claim_type = str(registry_meta.get("claim_type", "unknown"))
         claim_entries = entries_by_claim.get(claim_id, [])
         claim_meta = _summarize_claim_entries(claim_entries, generated_at_dt) if claim_entries else None
@@ -2985,31 +3008,22 @@ def _write_planning_outputs(
             }
         )
 
-    # ── Backlog merge: preserve user_notes and pinned items ────────────────────
-    # Read the existing backlog so we can (a) carry forward any user_notes the
-    # user added to auto-generated items, and (b) re-inject items the user
-    # pinned manually (pinned: true) that the auto-generator would otherwise drop.
+    # ── Backlog merge: carry forward user_notes; append pre-loaded pinned items ──
+    # Pinned items were excluded from auto-generation above so there is no collision.
+    # We still carry forward any user_notes the user added to auto-generated items.
     existing_backlog_path = planning_root / "evidence_backlog.v1.json"
-    _existing_user_notes: dict[str, str] = {}      # claim_id -> user_notes string
-    _pinned_items: list[dict[str, Any]] = []        # items with pinned: true not auto-covered
+    _existing_user_notes: dict[str, str] = {}
     if existing_backlog_path.exists():
         try:
             _existing_doc = json.loads(existing_backlog_path.read_text(encoding="utf-8"))
-            _auto_claim_ids = {str(item.get("claim_id", "")) for item in backlog_items}
             for _item in _existing_doc.get("items", []):
                 if not isinstance(_item, dict):
                     continue
                 _cid = str(_item.get("claim_id", "")).strip()
-                # Carry forward user_notes for any claim_id in the generated set
                 if _cid and "user_notes" in _item and _item["user_notes"]:
                     _existing_user_notes[_cid] = str(_item["user_notes"])
-                # Re-inject pinned items whose claim_id was NOT auto-generated
-                if _item.get("pinned", False) and _cid not in _auto_claim_ids:
-                    _pinned_copy = dict(_item)
-                    _pinned_copy.setdefault("priority", "medium")
-                    _pinned_items.append(_pinned_copy)
         except Exception:
-            pass  # Corrupt or missing backlog — start fresh, no merge
+            pass  # Corrupt or missing backlog — skip user_notes restoration
 
     # Restore preserved user_notes onto auto-generated items
     for item in backlog_items:
@@ -3017,10 +3031,9 @@ def _write_planning_outputs(
         if _cid in _existing_user_notes:
             item["user_notes"] = _existing_user_notes[_cid]
 
-    # Append pinned items (they'll sort after standard items of equal priority
-    # because they carry the pinned flag but no urgency signals from this run)
-    backlog_items.extend(_pinned_items)
-    # ── end merge ───────────────────────────────────────────────────────────────
+    # Append pre-loaded pinned items — rich content and original backlog_id intact
+    backlog_items.extend(_preloaded_pinned_items)
+    # ── end merge ────────────────────────────────────────────────────────────────
 
     backlog_items.sort(
         key=lambda item: (
@@ -3028,8 +3041,12 @@ def _write_planning_outputs(
             _backlog_urgency_rank(item),
         )
     )
-    for idx, item in enumerate(backlog_items, start=1):
-        item["backlog_id"] = f"EVB-{idx:04d}"
+    _auto_idx = 1
+    for item in backlog_items:
+        if not item.get("pinned", False):
+            item["backlog_id"] = f"EVB-{_auto_idx:04d}"
+            _auto_idx += 1
+        # Pinned items retain their original backlog_id (e.g. EVB-PINNED-Q019)
 
     architecture_items.sort(
         key=lambda item: (

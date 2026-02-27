@@ -1,7 +1,7 @@
 {
   "criteria_version": "planning_criteria/v1",
   "evidence_scope": "current_epoch_applicable,epoch=ree_hybrid_guardrails_v1",
-  "generated_at_utc": "2026-02-27T12:11:28.089954Z",
+  "generated_at_utc": "2026-02-27T12:20:14.545668Z",
   "items": [
     {
       "adjudication_context": {
@@ -2766,6 +2766,34 @@
       "status": "open"
     },
     {
+      "acceptance_criteria": [
+        "Each paper mapped to: supports three-gate / supports single-gate / mixed / insufficient evidence.",
+        "Evidence direction written into claim_evidence for Q-019.",
+        "Confidence score updated based on aggregate literature direction."
+      ],
+      "backlog_id": "EVB-PINNED-Q019",
+      "claim_id": "Q-019",
+      "description": "Extract evidence from six key papers to assess whether basal ganglia implement three distinct gating loops (sensorium/theta-thought/action-commitment) or a single action gate with three criteria. Papers: O'Reilly & Frank 2006 (PBWM), Hazy/Frank/O'Reilly 2007, Aron et al. 2007 (STN hyperdirect), Brittain & Brown 2014 (beta oscillations), Buckner et al. 2008 (DMN), Crick 1984 / Zikopoulos & Barbas (reticular nucleus thalamus).",
+      "evidence_needed": [
+        "literature"
+      ],
+      "evidence_type": "literature",
+      "papers_to_extract": [
+        "O'Reilly & Frank (2006) Making working memory work \u2014 PBWM model, BG gates PFC WM via Go/NoGo",
+        "Hazy, Frank, O'Reilly (2007) Towards an executive without a homunculus \u2014 three-loop BG hierarchy",
+        "Aron et al. (2007) Triangulating a cognitive control network \u2014 STN hyperdirect, beta suppression",
+        "Brittain & Brown (2014) Oscillating to a halt \u2014 beta as hold signal, STN beta and status quo",
+        "Buckner et al. (2008) The brain's default network \u2014 mPFC-hippocampal axis, DMN suppression by task",
+        "Crick (1984) / Zikopoulos & Barbas \u2014 reticular nucleus as inter-loop thalamic gating switch"
+      ],
+      "pinned": true,
+      "priority": "medium",
+      "status": "open",
+      "status_reason": "Registered 2026-02-27. No literature extracted yet.",
+      "title": "Three-Gate BG Architecture: Literature Extraction (Q-019)",
+      "user_notes": "Pinned: survives backlog regeneration. Do not auto-delete."
+    },
+    {
       "adjudication_context": {
         "allowed_conflict_outcomes": [
           "retain_ree",
@@ -2830,34 +2858,6 @@
         }
       },
       "status": "open"
-    },
-    {
-      "acceptance_criteria": [
-        "Each paper mapped to: supports three-gate / supports single-gate / mixed / insufficient evidence.",
-        "Evidence direction written into claim_evidence for Q-019.",
-        "Confidence score updated based on aggregate literature direction."
-      ],
-      "backlog_id": "EVB-PINNED-Q019",
-      "claim_id": "Q-019",
-      "description": "Extract evidence from six key papers to assess whether basal ganglia implement three distinct gating loops (sensorium/theta-thought/action-commitment) or a single action gate with three criteria. Papers: O'Reilly & Frank 2006 (PBWM), Hazy/Frank/O'Reilly 2007, Aron et al. 2007 (STN hyperdirect), Brittain & Brown 2014 (beta oscillations), Buckner et al. 2008 (DMN), Crick 1984 / Zikopoulos & Barbas (reticular nucleus thalamus).",
-      "evidence_needed": [
-        "literature"
-      ],
-      "evidence_type": "literature",
-      "papers_to_extract": [
-        "O'Reilly & Frank (2006) Making working memory work \u2014 PBWM model, BG gates PFC WM via Go/NoGo",
-        "Hazy, Frank, O'Reilly (2007) Towards an executive without a homunculus \u2014 three-loop BG hierarchy",
-        "Aron et al. (2007) Triangulating a cognitive control network \u2014 STN hyperdirect, beta suppression",
-        "Brittain & Brown (2014) Oscillating to a halt \u2014 beta as hold signal, STN beta and status quo",
-        "Buckner et al. (2008) The brain's default network \u2014 mPFC-hippocampal axis, DMN suppression by task",
-        "Crick (1984) / Zikopoulos & Barbas \u2014 reticular nucleus as inter-loop thalamic gating switch"
-      ],
-      "pinned": true,
-      "priority": "medium",
-      "status": "open",
-      "status_reason": "Registered 2026-02-27. No literature extracted yet.",
-      "title": "Three-Gate BG Architecture: Literature Extraction (Q-019)",
-      "user_notes": "Pinned: survives backlog regeneration. Do not auto-delete."
     }
   ],
   "schema_version": "evidence_backlog/v1",
