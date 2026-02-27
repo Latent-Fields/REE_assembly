@@ -1568,6 +1568,14 @@
     sequential decision tasks with non-atomic action execution (e.g. navigation sub-goals).
     The FAIL is an informative baseline: it constrains the minimum substrate complexity
     needed to detect the mechanism, not the mechanism's existence.
+    SCOPE REVISION PENDING (Q-019, 2026-02-27): The three-gate BG architecture hypothesis
+    raises the possibility that "control completion" operates in two distinct loops, not one.
+    The thought loop may gate trajectory completion (hippocampal sequence completion before
+    a trajectory is eligible for promotion to action consideration), independently of the
+    action loop gate (motor completion before new precision updates are admitted). MECH-057
+    is currently scoped to the action loop only. If Q-019 literature extraction supports the
+    three-gate model, MECH-057 may need to be split: MECH-057a (action-loop completion gate)
+    and MECH-057b (thought-loop trajectory promotion gate).
   depends_on:
     - ARC-015
     - ARC-005
@@ -2166,3 +2174,40 @@
     - docs/invariants.md
     - docs/architecture/sleep.md
     - docs/architecture/agency_responsibility_flow.md
+# Three-gate BG gating architecture — registered 2026-02-27
+- id: Q-019
+  claim_type: open_question
+  subject: basal_ganglia.three_gate_vs_single_gate_architecture
+  polarity: open
+  status: open
+  evidence_quality_note: |
+    Open architectural question arising 2026-02-27. Two competing models:
+    (A) Single-gate: BG gate one action endpoint, evaluating three criteria
+    simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment).
+    (B) Three-gate: BG implement three anatomically distinct gating loops —
+    (1) Sensorium loop: limbic/beta-associated, no trajectory generation, gates what enters
+    latent state from the environment, probably reticular thalamus / limbic BG substrate.
+    (2) Thought loop: associative/theta-associated, hippocampal trajectory generation lives
+    here, BG gate which thought-trajectories are maintained in working memory, mediodorsal
+    thalamus prevents bleed-back into sensorium. DMN = this loop in unconstrained mode
+    (no sensorium input; hippocampal-mPFC episodic projection free-running).
+    (3) Action commitment loop: sensorimotor, E3 complex. E3 has back-projections into the
+    thought loop (suppressing trajectories that fail commitment criteria) and forward
+    projections into the motor loop. Not merely an action gate.
+    Loops share thalamic substrate (mediodorsal and VL thalamus; reticular nucleus of
+    thalamus as inter-loop routing switch) and computational elements (hippocampus, residue
+    field) but are functionally distinct. Structural re-use maximised via thalamic gating.
+    REE implications: current E3-only gating model conflates all three operations at action
+    time. Three-gate model requires gating at three pipeline stages: before LatentStack.encode
+    (sensorium), within E2 trajectory generation (thought), and at E3 commit (action).
+    E3 as complex needs a back-projection path to E2 not present in ree-v1-minimal.
+    MECH-057 scope revision pending — see MECH-057 evidence_quality_note.
+    Relevant literature: O'Reilly & Frank 2006 (PBWM), Hazy/Frank/O'Reilly 2007,
+    Aron et al. 2007 (STN hyperdirect), Brittain & Brown 2014 (beta oscillations),
+    Buckner et al. 2008 (DMN), Crick 1984 / Zikopoulos & Barbas (reticular nucleus).
+  depends_on:
+    - MECH-057
+    - MECH-059
+    - MECH-061
+  source:
+    - docs/thoughts/2026-02-27_three_gate_bg_architecture.md

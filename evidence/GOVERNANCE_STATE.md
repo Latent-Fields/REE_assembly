@@ -134,3 +134,62 @@ or falls back to `current_architecture_epoch` from planning_criteria. Genuine EX
 now store `architecture_epoch: ree_v1_minimal_genuine_v1` at the top level (fixed 2026-02-27).
 The contamination filter in `_genuine_run_count()` also accepts the `_ree_v1_minimal` run_id
 suffix as a fallback for resilience.
+
+---
+
+## Three-Gate BG Architecture Hypothesis (Q-019)
+
+*Registered 2026-02-27. Status: open architectural hypothesis. Formal claim: Q-019.*
+
+### The Hypothesis
+
+The basal ganglia may implement **three functionally distinct gating loops**, not a single
+action gate with three evaluation criteria:
+
+| Loop | Biological substrate | Oscillatory signature | Function |
+|------|---------------------|-----------------------|----------|
+| **Sensorium gate** | Limbic loop (nucleus accumbens → VTA/VP → MD thal → vmPFC) | Beta (~15–30 Hz): high beta = suppress change, beta desync precedes new percept | Gates what enters L-space from the environment. No trajectory generation. |
+| **Thought gate** | Associative loop (caudate → GPi/SNr → MD thal → DLPFC) | Theta (~4–8 Hz): theta phase slots organise WM capacity | Gates which hippocampal trajectories are maintained in working memory. Trajectory generation lives here. |
+| **Action gate** | Sensorimotor loop (putamen → GPi/SNr → VL thal → motor cortex) | Beta desynchronisation precedes movement | Gates action execution. E3 commitment boundary. |
+
+**DMN relationship**: The thought loop running unconstrained (no sensorium input, no
+action pressure) is the functional correlate of the Default Mode Network — hippocampal-mPFC
+episodic future projection free-running in rest/prospective mode. Task onset = sensorium gate
+opens, DMN activity suppresses.
+
+**Structural re-use**: The loops are not fully separate hardware. The reticular nucleus of
+the thalamus acts as an inter-loop routing switch, preventing thought-loop activity from
+bleeding back into sensorium processing. Shared elements: hippocampus (contributes to
+thought loop trajectory generation), residue field (spans loops — harm accumulated wherever
+it occurs).
+
+### REE Pipeline Implications
+
+Current ree-v1-minimal implements the **single-gate model** — E3 applies all gating at
+action selection time. If the three-gate model is correct:
+
+```
+env.step() → [SENSORIUM GATE] → LatentStack.encode() →
+             [THOUGHT GATE]   → E2.generate_candidates() →
+             [ACTION GATE]    → E3.select() → action
+```
+
+**E3 as complex**: E3 would need back-projections into the thought loop — suppressing
+trajectory candidates that fail commitment criteria *before* they are fully evaluated, not
+only at final selection. This feedback path does not exist in current ree-v1-minimal.
+
+**MECH-057 scope**: "Control completion" may operate in both the thought loop (trajectory
+sequence completion before promotion to action consideration) and the action loop (motor
+completion before new precision updates). Currently MECH-057 is scoped to action loop only.
+See MECH-057 `evidence_quality_note` for scope-revision flag.
+
+### Literature to Extract (EVB-new, pinned, Q-019)
+
+| Paper | Key claim |
+|-------|-----------|
+| O'Reilly & Frank (2006) "Making working memory work" | BG Go/NoGo gates what enters PFC WM; theta-organised slots |
+| Hazy, Frank, O'Reilly (2007) "Towards an executive without a homunculus" | Three-loop BG hierarchy, anatomical separation |
+| Aron et al. (2007) "Triangulating a cognitive control network" | STN hyperdirect pathway, beta as fast broad suppression |
+| Brittain & Brown (2014) "Oscillating to a halt" | Beta = "hold/status quo" signal; STN beta and action suppression |
+| Buckner et al. (2008) "The brain's default network" | mPFC-hippocampal axis; DMN suppression by task onset |
+| Crick (1984) / Zikopoulos & Barbas | Reticular nucleus as attentional gating switch between thalamic channels |
