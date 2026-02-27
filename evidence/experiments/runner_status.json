@@ -45,7 +45,7 @@
       "backlog_id": "EVB-0040",
       "claim_id": "MECH-058",
       "title": "E1/E2 Timescale Ablation",
-      "description": "Ablates the E1 (LSTM slow predictor) versus E2 (fast rollout generator) timescale separation. Tests whether the two-speed architecture improves latent stability compared to a single-speed baseline on ree-v1-minimal.",
+      "description": "Ablates the E1 (LSTM slow predictor) versus E2 (fast transition predictor, cerebellum-like) timescale separation. Tests whether the two-speed architecture improves latent stability compared to a single-speed baseline on ree-v1-minimal.",
       "result": "FAIL",
       "result_summary": "SAME-TIMESCALE last-Q harm: 0.887 | Performance criterion (harm <=)?   YES | MECH-058 verdict: FAIL",
       "completed_at": "2026-02-26T21:37:43.869842+00:00",

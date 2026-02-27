@@ -4,6 +4,12 @@ Processed in:
 - `docs/architecture/e3.md` (MECH-061, MECH-062, Q-015, Q-016)
 - `docs/architecture/control_plane.md` (MECH-063, Q-017)
 
+**Correction note (2026-02-27)**: References in this document to "E2 trajectory generation"
+(line ~274) reflect the earlier single-gate model. In the current architecture (see Q-019):
+E2 is a cerebellum-like fast transition model (state + action → next_state), NOT a trajectory
+generator. Trajectory generation is hippocampal — the hippocampus is part of the E3 complex,
+not a component of E2.
+
 ---
 
 ## Thought intake draft for `REE_assembly`: **Commit gating, pre/post-commit error separation, and control-plane axes (anchored by missed-dose phenomenology)**

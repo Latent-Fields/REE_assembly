@@ -160,9 +160,12 @@ Relation to E1 (deep recurrent predictor)
 	•	No overwrite of perceptual state occurs
 
 Relation to E2 (fast forward predictors)
-	•	E2 generates candidate trajectories
+	•	E2 is a cerebellum-like fast transition model (state + action → next_state), NOT a trajectory generator
+	•	E2 provides fast local transition checks that the hippocampus uses when evaluating candidate paths
+	•	Hippocampus proposes trajectories by navigating the affectively-weighted terrain map — E2 does not generate them
 	•	Hippocampal traces constrain which trajectories feel “familiar” or “self-consistent”
 	•	No trajectory is privileged as optimal
+	[Note 2026-02-27: The framing “E2 generates candidate trajectories” is an earlier approximation. In the current architecture, hippocampus (part of E3 complex) generates trajectory proposals; E2 provides fast transition predictions as a service to that process.]
 
 Relation to E3 (trajectory selection)
 	•	E3 commits to trajectories
