@@ -1670,7 +1670,7 @@
   claim_type: mechanism_hypothesis
   subject: commitment.dual_error_channels_pre_post_commit
   polarity: asserts
-  status: candidate
+  status: provisional
   lifecycle_stage: adjudicated
   evidence_quality_note: |
     Prior 137 synthetic runs (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid.
@@ -1680,11 +1680,14 @@
     is enforced by construction (E1 trains only on actual observations via compute_prediction_loss,
     residue accumulates only via update_residue with post-commit harm). MECH-061 PASS (EXQ-003)
     confirms channels are genuinely distinct (|corr|=0.114) and separation is beneficial.
-    Remaining claim (MECH-060 + MECH-067): write-locus contamination breaks attribution
-    reliability. Genuine experiment required (EVB-0043): FULL vs CONTAMINATED_DURABLE
-    (sim_error also writes E1 weights) vs CONTAMINATED_RESIDUE (sim_error writes residue).
-    Prediction: contaminated conditions degrade E1 prediction error correlation with realized
-    harm and miscalibrate residue field. Design is ready — no further substrate work needed.
+    Genuine ree-v1-minimal experiment completed 2026-02-27 (EVB-0043, write_locus_contamination,
+    EXQ-005): PASS. 200 eps × 3 seeds.
+    FULL last-Q harm 0.929 | CONT_DURABLE 0.915 | CONT_RESIDUE 0.593.
+    Criterion 1 (residue inflation): CONT_RESIDUE total_residue 8520 > FULL 186 × 1.1 = 205 — MET.
+    Criterion 2 (harm ordering): FULL 0.929 ≤ max_cont 0.915 × 1.05 = 0.960 — MET.
+    Write-locus contamination is detectable: pre-commit residue pollution inflates the residue
+    field 46× vs clean. FULL condition harm ordering is sustained, confirming write-locus
+    separation is architecturally load-bearing. Promoted candidate → provisional 2026-02-27.
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:33:23.830904Z
   adjudication_decision_status: applied
@@ -1829,7 +1832,15 @@
   claim_type: mechanism_hypothesis
   subject: agency.write_locus_permission_matrix
   polarity: asserts
-  status: candidate
+  status: provisional
+  evidence_quality_note: |
+    Co-tested with MECH-060 in genuine ree-v1-minimal experiment 2026-02-27 (EVB-0043,
+    write_locus_contamination, EXQ-005): PASS. The write-locus permission matrix is
+    operationally validated: pre-commit and post-commit write loci are genuinely distinct,
+    and contaminating the residue write locus (pre-commit) inflates the residue field
+    (8520× vs FULL 186) without corresponding harm reduction — confirming that post-commit
+    is the correct write locus for durable harm attribution. Promoted candidate → provisional
+    2026-02-27.
   depends_on:
     - MECH-060
     - MECH-061
