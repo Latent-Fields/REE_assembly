@@ -1664,9 +1664,19 @@
   polarity: asserts
   status: candidate
   lifecycle_stage: adjudicated
-  pending_design: true
-  pending_design_note: "Pure REE design required: implement explicit pre-commit (simulation) and post-commit (realized) error routing within REE control plane, without JEPA substrate proxy. Depends on ARC-003 architecture decisions."
-  evidence_quality_note: "All prior experimental evidence (137 runs, commit_dual_error_channels experiment type) originated from ree-v2/ree-experiments-lab synthetic scaffolding (archived 2026-02-26). All runs used ree-v2-qualification-harness with toy_env_runner even when labelled toyenv_internal_minimal. Genuine ree-v1-minimal design + experiments required."
+  evidence_quality_note: |
+    Prior 137 synthetic runs (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid.
+    pending_design cleared 2026-02-27: both channels exist natively in ree-v1-minimal —
+    sim_error = E2 harm_predictions on selected trajectory (pre-commit, before env.step),
+    realized_error = env harm returned by env.step (post-commit). Write-locus separation
+    is enforced by construction (E1 trains only on actual observations via compute_prediction_loss,
+    residue accumulates only via update_residue with post-commit harm). MECH-061 PASS (EXQ-003)
+    confirms channels are genuinely distinct (|corr|=0.114) and separation is beneficial.
+    Remaining claim (MECH-060 + MECH-067): write-locus contamination breaks attribution
+    reliability. Genuine experiment required (EVB-0043): FULL vs CONTAMINATED_DURABLE
+    (sim_error also writes E1 weights) vs CONTAMINATED_RESIDUE (sim_error writes residue).
+    Prediction: contaminated conditions degrade E1 prediction error correlation with realized
+    harm and miscalibrate residue field. Design is ready — no further substrate work needed.
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:33:23.830904Z
   adjudication_decision_status: applied
