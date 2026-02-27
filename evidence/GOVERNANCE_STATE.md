@@ -118,10 +118,10 @@ Items with `pinned: true` are preserved across regeneration. Items from the ree-
 
 | Claim | Decision | Status | Notes |
 |-------|----------|--------|-------|
-| Q-012 | demote_to_candidate | `pending_user` | Recommendation changed from prior `retain_ree`; needs fresh review |
+| Q-012 | do_not_act_synthetic_basis | `resolved` | All 8 experimental entries are synthetic (_toyenv_internal_minimal). The 4:4 split is synthetic noise. Do NOT demote. Retain candidate pending genuine ree-v1-minimal runs. evidence_quality_note added to claims.yaml. |
 | MECH-040 | collect_genuine_evidence | `pending_user` | Demotion recommendation was stale (synthetic data); wait for genuine run |
 | MECH-046 | collect_genuine_evidence | `pending_user` | Same as MECH-040 |
-| Q-015 | hold | `pending_user` | Prior demotion recommendation superseded by MECH-061 PASS (EXQ-003) |
+| Q-015 | no_action_required | `resolved` | Resolved by MECH-061 PASS (EXQ-003): boundary token minimal contract verified. Q-015 remains active. No further action needed. |
 
 ---
 

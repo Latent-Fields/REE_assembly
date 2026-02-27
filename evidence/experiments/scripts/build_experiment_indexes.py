@@ -987,6 +987,13 @@ def _summarize_claim_entries(
         "mixed": 0,
         "unknown": 0,
     }
+    genuine_exp_direction_counts: dict[str, int] = {
+        "supports": 0,
+        "weakens": 0,
+        "mixed": 0,
+        "unknown": 0,
+    }
+    genuine_exp_count = 0
     evidence_class_counts: dict[str, int] = {}
     source_counts: dict[str, int] = {"experimental": 0, "literature": 0}
 
@@ -996,6 +1003,12 @@ def _summarize_claim_entries(
     for entry in ordered_entries:
         direction = str(entry.get("evidence_direction", "unknown"))
         direction_counts[direction] = direction_counts.get(direction, 0) + 1
+
+        if _is_genuine_experimental_entry(entry):
+            genuine_exp_direction_counts[direction] = (
+                genuine_exp_direction_counts.get(direction, 0) + 1
+            )
+            genuine_exp_count += 1
 
         evidence_class = str(entry.get("evidence_class", "unclassified"))
         evidence_class_counts[evidence_class] = evidence_class_counts.get(evidence_class, 0) + 1
@@ -1019,6 +1032,8 @@ def _summarize_claim_entries(
         "latest_run_id": str(latest.get("run_id", "")),
         "latest_timestamp_utc": str(latest.get("timestamp_utc", "")),
         "direction_counts": direction_counts,
+        "genuine_exp_direction_counts": genuine_exp_direction_counts,
+        "genuine_exp_count": genuine_exp_count,
         "evidence_class_counts": evidence_class_counts,
         "source_counts": source_counts,
         "experimental_confidence": exp_conf,
@@ -1538,6 +1553,24 @@ def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
         ):
             count += 1
     return count
+
+
+def _is_genuine_experimental_entry(entry: dict[str, Any]) -> bool:
+    """Return True iff this entry is a genuine ree-v1-minimal experimental run.
+
+    Synthetic entries (ree-v2 / ree-experiments-lab) are identified by
+    run_id ending with '_toyenv_internal_minimal'. Genuine entries end with
+    '_ree_v1_minimal' or carry architecture_epoch='ree_v1_minimal_genuine_v1'.
+    Literature entries (source_type != 'experimental') always return False —
+    they are handled separately and are never synthetic.
+    """
+    if str(entry.get("source_type", "")) != "experimental":
+        return False
+    run_id = str(entry.get("run_id", ""))
+    return (
+        entry.get("architecture_epoch") == "ree_v1_minimal_genuine_v1"
+        or run_id.endswith("_ree_v1_minimal")
+    )
 
 
 def _recommendation_for_claim(
@@ -2530,6 +2563,7 @@ def _write_planning_outputs(
             signals["evidence_stage"] = stage_info
         overall_conf = 0.0
         exp_count = 0
+        genuine_exp_count = 0
         lit_count = 0
         conflict_ratio = 0.0
         entries_total = 0
@@ -2551,6 +2585,13 @@ def _write_planning_outputs(
 
         signature_counts: Counter[str] = Counter()
         for entry in claim_entries:
+            # Only collect failure signatures from genuine experimental entries or literature.
+            # Synthetic experimental entries (_toyenv_internal_minimal) produce invalid counts.
+            if (
+                str(entry.get("source_type", "")) == "experimental"
+                and not _is_genuine_experimental_entry(entry)
+            ):
+                continue
             for sig in entry.get("failure_signatures", []):
                 token = str(sig).strip()
                 if token:
@@ -2568,6 +2609,7 @@ def _write_planning_outputs(
             entry
             for entry in claim_entries
             if str(entry.get("source_type", "")) == "experimental"
+            and _is_genuine_experimental_entry(entry)
         ]
         exp_entries.sort(key=lambda x: (str(x.get("timestamp_utc", "")), str(x.get("run_id", ""))))
         recent_exp_entries = exp_entries[-saturation_recent_window:]
@@ -2657,6 +2699,7 @@ def _write_planning_outputs(
             overall_conf = float(claim_meta.get("overall_confidence", 0.0))
             source_counts = claim_meta.get("source_counts", {})
             exp_count = int(source_counts.get("experimental", 0))
+            genuine_exp_count = int(claim_meta.get("genuine_exp_count", 0))
             lit_count = int(source_counts.get("literature", 0))
             entries_total = int(claim_meta.get("entries_total", 0))
             experimental_confidence = float(claim_meta.get("experimental_confidence", 0.0))
@@ -2666,7 +2709,14 @@ def _write_planning_outputs(
             supports_count = int(direction_counts.get("supports", 0))
             weakens_count = int(direction_counts.get("weakens", 0))
             mixed_count = int(direction_counts.get("mixed", 0))
-            conflict_ratio = _direction_conflict_ratio(direction_counts)
+            # Compute conflict_ratio from genuine experimental + literature only.
+            # Synthetic experimental entries inflate conflict signals spuriously.
+            _genuine_dirs = claim_meta.get("genuine_exp_direction_counts", {})
+            _combined_dirs: dict[str, int] = {
+                k: int(_genuine_dirs.get(k, 0)) + int(lit_direction_counts.get(k, 0))
+                for k in ("supports", "weakens", "mixed", "unknown")
+            }
+            conflict_ratio = _direction_conflict_ratio(_combined_dirs)
 
             signals.update(
                 {
@@ -2738,7 +2788,7 @@ def _write_planning_outputs(
             and conflict_ratio >= external_precedence_conflict_ratio
             and entries_total >= external_precedence_min_total_entries
             and lit_count >= external_precedence_min_lit_entries
-            and exp_count >= external_precedence_min_exp_entries
+            and genuine_exp_count >= external_precedence_min_exp_entries
             and len(recurring_signatures) >= external_precedence_min_recurring
             and confidence_delta_lit_minus_exp >= external_precedence_min_conf_delta
         ):
@@ -2762,7 +2812,7 @@ def _write_planning_outputs(
 
         if (
             conflict_ratio >= saturation_conflict_ratio
-            and exp_count >= saturation_min_exp_entries
+            and genuine_exp_count >= saturation_min_exp_entries
             and len(recurring_signatures) >= consider_min_distinct_sigs
             and len(recent_exp_entries) >= saturation_min_recent_entries
             and len(unique_signature_sets) <= saturation_max_signature_sets
@@ -2908,6 +2958,16 @@ def _write_planning_outputs(
             continue
 
         priority = _priority_from_reasons(reasons)
+        # Downgrade from high → medium when ALL escalation signals came from synthetic
+        # experimental entries. Genuine-only filtering should prevent most false alarms,
+        # but this acts as a safety net for residual cases.
+        if (
+            priority == "high"
+            and genuine_exp_count == 0
+            and "mandatory_decision_checkpoint" not in reasons
+        ):
+            priority = "medium"
+            _add_reason("synthetic_signals_only")
         if not evidence_needed and not (
             saturation_guard_engaged or escalate_architecture_decision
         ):
