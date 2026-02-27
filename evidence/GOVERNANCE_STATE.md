@@ -39,6 +39,7 @@ The only valid experimental substrate is **ree-v1-minimal** (run_id suffix: `_re
 | EXQ-002 | EVB-0040 | MECH-058 | E1/E2 Timescale Ablation | **FAIL** (substrate resolution) | 2026-02-26T21:37Z |
 | EXQ-003 | EVB-0041 | MECH-061 | Commitment Boundary Token Reclassification | **PASS** | 2026-02-26T22:24Z |
 | EXQ-004 | EVB-0042 | MECH-057 | Control Completion Requirement | **FAIL** (informative baseline) | 2026-02-26T23:24Z |
+| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | **PASS** | Write-Locus Contamination | 2026-02-27T10:33Z |
 
 ### Genuine Run Counts per Claim
 
@@ -48,7 +49,9 @@ The only valid experimental substrate is **ree-v1-minimal** (run_id suffix: `_re
 | MECH-057 | 2 | 12 | Partially — genuine FAIL informative |
 | MECH-058 | 2 | 156 | Partially — genuine FAIL (substrate limit) |
 | MECH-059 | 2 | 164 | Partially — genuine PASS dominates |
+| MECH-060 | 2 | 0 | **Yes** — genuine PASS (2 runs: smoke FAIL @5 eps, full PASS @200 eps) |
 | MECH-061 | 2 | 10 | Partially — genuine PASS dominates |
+| MECH-067 | 2 | 0 | **Yes** — genuine PASS (co-tested with MECH-060 in EXQ-005) |
 | All other claims | 0 | varies | **Unreliable — all synthetic** |
 
 Claims with 2 genuine runs have directionally meaningful signal but remain statistically
@@ -66,14 +69,14 @@ larger synthetic entry counts and should be treated with caution.
 | MECH-061 | candidate | **active** (adjudicated) | EXQ-003 PASS + commitment boundary confirmed |
 | MECH-058 | candidate | candidate (unchanged) | EXQ-002 FAIL — substrate resolution issue |
 | MECH-057 | candidate | candidate (unchanged) | EXQ-004 FAIL — informative baseline, redesign needed |
+| MECH-060 | candidate | **provisional** | EXQ-005 PASS — write-locus separation confirmed (residue inflation 8520×, harm ordering met) |
+| MECH-067 | candidate | **provisional** | EXQ-005 PASS — write-locus permission matrix confirmed (co-tested with MECH-060) |
 
 ---
 
 ## Pending Genuine Experimentation
 
-| EXQ | EVB | Claim(s) | Status | Notes |
-|-----|-----|----------|--------|-------|
-| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | `pending` | Write-locus contamination ablation (FULL / CONTAMINATED_DURABLE / CONTAMINATED_RESIDUE). Script: `ree-v1-minimal/experiments/write_locus_contamination.py`. PASS criteria: residue inflation (CONT_RES > FULL × 1.1) + harm ordering. ~22.5 min estimated. |
+*No experiments currently pending. Queue is empty.*
 
 ---
 

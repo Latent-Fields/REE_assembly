@@ -12,17 +12,19 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260227T085822_claim_probe_mech_060_ree_v1_minimal` at `2026-02-27T08:58:22Z` signatures: mech060:write_locus_separation_not_beneficial_at_scale
 - `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
 - `2026-02-21T150649Z_claim-probe-mech-060_seed29_single_error_stream_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
-- `2026-02-21T150649Z_claim-probe-mech-060_seed11_single_error_stream_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech060:postcommit_channel_contamination, mech060:attribution_reliability_break, mech060:commitment_reversal_spike
 
 Recurring signatures:
 - `mech060:postcommit_channel_contamination` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`
 - `mech060:attribution_reliability_break` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`
 - `mech060:commitment_reversal_spike` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`
+- `mech060:write_locus_separation_not_beneficial_at_scale` occurred in 1 FAIL run(s); latest `20260227T085822_claim_probe_mech_060_ree_v1_minimal`
 
 Suggested design TODOs:
 - [ ] Investigate signature `mech060:postcommit_channel_contamination` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:attribution_reliability_break` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:commitment_reversal_spike` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:write_locus_separation_not_beneficial_at_scale` (1 FAIL run(s), latest `20260227T085822_claim_probe_mech_060_ree_v1_minimal`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

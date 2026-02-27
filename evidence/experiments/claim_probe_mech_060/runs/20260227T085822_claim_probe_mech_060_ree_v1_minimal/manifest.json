@@ -1,0 +1,41 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_060",
+  "run_id": "20260227T085822_claim_probe_mech_060_ree_v1_minimal",
+  "status": "FAIL",
+  "timestamp_utc": "2026-02-27T08:58:22Z",
+  "architecture_epoch": "ree_v1_minimal_genuine_v1",
+  "source_repo": {
+    "name": "ree-v1-minimal",
+    "commit": "6def50532368cfde75f0eaf65dd36757d13639dd",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "experiments/write_locus_contamination.py",
+    "version": "ree_v1_minimal.v1"
+  },
+  "scenario": {
+    "name": "write_locus_contamination",
+    "architecture_epoch": "ree_v1_minimal_genuine_v1",
+    "evb_id": "EVB-0043",
+    "seeds": [
+      7
+    ],
+    "num_episodes": 5
+  },
+  "claim_ids_tested": [
+    "MECH-060",
+    "MECH-067"
+  ],
+  "evidence_class": "exp:ablation",
+  "evidence_direction": "mixed",
+  "failure_signatures": [
+    "mech060:write_locus_separation_not_beneficial_at_scale"
+  ],
+  "partial_support": true,
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md",
+    "source_json": "write_locus_contamination_source.json"
+  }
+}

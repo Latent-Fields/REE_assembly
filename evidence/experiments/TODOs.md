@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-02-27T08:45:05.936445Z`
+Generated: `2026-02-27T11:20:10.726064Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -74,6 +74,7 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 - [ ] Investigate signature `mech060:postcommit_channel_contamination` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:attribution_reliability_break` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:commitment_reversal_spike` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-060_seed47_single_error_stream_toyenv_internal_minimal`).
+- [ ] Investigate signature `mech060:write_locus_separation_not_beneficial_at_scale` (1 FAIL run(s), latest `20260227T085822_claim_probe_mech_060_ree_v1_minimal`).
 
 ## claim_probe_mech_061
 

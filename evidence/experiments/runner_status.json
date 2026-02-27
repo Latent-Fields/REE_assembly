@@ -2,24 +2,23 @@
   "schema_version": "v1",
   "runner_pid": null,
   "runner_started_at": "2026-02-26T20:14:29.786684+00:00",
-  "last_updated": "2026-02-26T23:24:51.993576+00:00",
+  "last_updated": "2026-02-27T10:33:02.000000+00:00",
   "idle": true,
   "current": null,
-  "queue": [
+  "queue": [],
+  "completed": [
     {
       "queue_id": "EXQ-005",
       "backlog_id": "EVB-0043",
       "claim_id": "MECH-060",
       "title": "Write-Locus Contamination (MECH-060 / MECH-067)",
       "description": "Tests whether write-locus separation between pre-commit (sim_error) and post-commit (realized_error) channels is load-bearing for attribution reliability. Three conditions: FULL, CONTAMINATED_DURABLE, CONTAMINATED_RESIDUE.",
-      "estimated_minutes": 22.5,
-      "script": "experiments/write_locus_contamination.py",
-      "run_command": "python experiments/write_locus_contamination.py --episodes 200 --seeds 7 42 99",
-      "status": "pending",
-      "status_reason": "Script written 2026-02-27. Ready to run: cd ree-v1-minimal && python experiments/write_locus_contamination.py"
-    }
-  ],
-  "completed": [
+      "result": "PASS",
+      "result_summary": "FULL last-Q harm: 0.929 | CONT_DURABLE last-Q harm: 0.915 | CONT_RESIDUE last-Q harm: 0.593 | residue inflation: 8520x | MECH-060/067 verdict: PASS",
+      "completed_at": "2026-02-27T10:33:02Z",
+      "output_file": "ree-v1-minimal/evidence/experiments/write_locus_contamination/write_locus_contamination_20260227T103302.json"
+    },
+
     {
       "queue_id": "EXQ-000",
       "backlog_id": "EVB-0037",
