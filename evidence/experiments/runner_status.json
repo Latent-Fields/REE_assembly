@@ -1,32 +1,76 @@
 {
   "schema_version": "v1",
   "runner_pid": null,
-  "runner_started_at": "2026-02-26T20:14:29.786684+00:00",
-  "last_updated": "2026-02-27T10:33:02.000000+00:00",
+  "runner_started_at": "2026-02-28T05:23:18.254629+00:00",
+  "last_updated": "2026-02-28T07:08:33.180935+00:00",
   "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "EXQ-006",
-      "backlog_id": "EVB-0005",
-      "claim_id": "MECH-058",
-      "title": "E1/E2 Associative vs Transition Knowledge (MultiRoomGrid)",
-      "description": "Tests the orthogonality of E1 (associative engine) vs E2 (transition model) using MultiRoomGrid with 4 hazard-density quadrants. Four conditions: FULL, E1_FROZEN, E2_FROZEN, SAME_RATE. PASS: FULL < both frozen conditions AND <= SAME_RATE*1.10.",
-      "script": "experiments/e1_e2_associative_transition.py",
+      "queue_id": "EXQ-008",
+      "backlog_id": "EVB-0036",
+      "claim_id": "MECH-063",
+      "title": "E3 Candidate Count Ablation",
+      "description": "Tests whether E3 trajectory selection over multiple candidates is load-bearing. SINGLE (n=1, no selection), STANDARD (n=32, default), EXPANDED (n=128). PASS: STANDARD < SINGLE AND EXPANDED <= STANDARD*1.10.",
+      "estimated_minutes": 22.5,
       "priority": "high",
       "status": "pending",
-      "added_at": "2026-02-27T12:30:00Z"
+      "status_reason": "Script written 2026-02-28."
     },
     {
-      "queue_id": "EXQ-007",
-      "backlog_id": "EVB-0033",
-      "claim_id": "MECH-057",
-      "title": "Multi-Step Control Completion Gating",
-      "description": "Richer MECH-057 substrate: macro-actions spanning 4 sub-steps. GATED (updates suppressed mid-macro) vs UNGATED (updates every sub-step) vs NO_MACRO (atomic baseline).",
-      "script": "experiments/multistep_control_completion.py",
+      "queue_id": "EXQ-009",
+      "backlog_id": "EVB-0032",
+      "claim_id": "MECH-062",
+      "title": "Residue Routing Weight Sensitivity",
+      "description": "Tests whether rho_residue (E3 residue weight) is load-bearing. RHO_ZERO (0.0), RHO_LOW (0.1), RHO_STANDARD (0.5), RHO_HIGH (2.0). PASS: RHO_STANDARD < RHO_ZERO AND RHO_HIGH <= RHO_ZERO*1.20.",
+      "estimated_minutes": 30.0,
       "priority": "high",
       "status": "pending",
-      "added_at": "2026-02-27T12:30:00Z"
+      "status_reason": "Script written 2026-02-28."
+    },
+    {
+      "queue_id": "EXQ-010",
+      "backlog_id": "EVB-0037",
+      "claim_id": "MECH-059",
+      "title": "Control Plane Precision Separation (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-000 (PASS). Adds seeds 13,77,123,256,314,999 for tighter confidence.",
+      "estimated_minutes": 30.0,
+      "priority": "low",
+      "status": "pending",
+      "status_reason": "Low-priority confidence accumulation re-run."
+    },
+    {
+      "queue_id": "EXQ-011",
+      "backlog_id": "EVB-0039",
+      "claim_id": "MECH-056",
+      "title": "Residue Trajectory Placement (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-001 (PASS). Adds seeds 13,77,123,256,314,999.",
+      "estimated_minutes": 30.0,
+      "priority": "low",
+      "status": "pending",
+      "status_reason": "Low-priority confidence accumulation re-run."
+    },
+    {
+      "queue_id": "EXQ-012",
+      "backlog_id": "EVB-0041",
+      "claim_id": "MECH-061",
+      "title": "Commitment Boundary Token Reclassification (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-003 (PASS). Adds seeds 13,77,123,256,314,999.",
+      "estimated_minutes": 30.0,
+      "priority": "low",
+      "status": "pending",
+      "status_reason": "Low-priority confidence accumulation re-run."
+    },
+    {
+      "queue_id": "EXQ-013",
+      "backlog_id": "EVB-0043",
+      "claim_id": "MECH-060",
+      "title": "Write-Locus Contamination (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-005 (PASS). Adds seeds 13,77,123,256,314,999.",
+      "estimated_minutes": 45.0,
+      "priority": "low",
+      "status": "pending",
+      "status_reason": "Low-priority confidence accumulation re-run."
     }
   ],
   "completed": [
@@ -41,7 +85,6 @@
       "completed_at": "2026-02-27T10:33:02Z",
       "output_file": "ree-v1-minimal/evidence/experiments/write_locus_contamination/write_locus_contamination_20260227T103302.json"
     },
-
     {
       "queue_id": "EXQ-000",
       "backlog_id": "EVB-0037",
@@ -96,6 +139,28 @@
       "result_summary": "NO_ATTRIBUTION last-Q harm: 0.896  (\u2191 1.9%) | NO_GATING      last-Q harm: 0.919  (\u2191 4.5%) | MECH-057 verdict: FAIL",
       "completed_at": "2026-02-26T23:24:51.991644+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/control_completion_requirement/control_completion_requirement_20260226T232451.json"
+    },
+    {
+      "queue_id": "EXQ-006",
+      "backlog_id": "EVB-0005",
+      "claim_id": "MECH-058",
+      "title": "E1/E2 Associative vs Transition Knowledge (MultiRoomGrid)",
+      "description": "Tests the orthogonality of E1 (associative engine, register of what IS) vs E2 (transition model, how things change) using a multi-room environment where quadrant hazard density creates room-type associations (E1 territory) orthogonal to action-transition physics (E2 territory). Four conditions: FULL, E1_FROZEN, E2_FROZEN, SAME_RATE. PASS: FULL < both frozen conditions AND <= SAME_RATE*1.10.",
+      "result": "FAIL",
+      "result_summary": "E2_FROZEN  last-Q harm: 1.1100 | SAME_RATE  last-Q harm: 1.1100 | MECH-058 / EXQ-006 verdict: FAIL",
+      "completed_at": "2026-02-28T06:02:29.391187+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/e1_e2_associative_transition/e1_e2_associative_transition_20260228T060228.json"
+    },
+    {
+      "queue_id": "EXQ-007",
+      "backlog_id": "EVB-0033",
+      "claim_id": "MECH-057",
+      "title": "Multi-Step Control Completion Gating",
+      "description": "Provides the richer MECH-057 substrate that EXQ-004 lacked: macro-actions spanning MACRO_LENGTH=4 sub-steps. Tests whether suppressing precision updates during committed macro-action execution (GATED) reduces harm vs mid-sequence disruption (UNGATED) and atomic-action baseline (NO_MACRO).",
+      "result": "FAIL",
+      "result_summary": "UNGATED  last-Q harm: 0.7720 | NO_MACRO last-Q harm: 0.5287 | MECH-057 / EXQ-007 verdict: FAIL",
+      "completed_at": "2026-02-28T07:08:33.180229+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/multistep_control_completion/multistep_control_completion_20260228T070832.json"
     }
   ]
 }

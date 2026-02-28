@@ -97,7 +97,9 @@ def start_runner() -> dict:
 
     log_fh = open(RUNNER_LOG, "a")
     _runner_proc = subprocess.Popen(
-        [sys.executable, str(RUNNER_SCRIPT), "--status-file", str(STATUS_FILE)],
+        [sys.executable, str(RUNNER_SCRIPT),
+         "--status-file", str(STATUS_FILE),
+         "--loop", "--loop-interval", "60"],
         stdout=log_fh,
         stderr=log_fh,
         cwd=str(RUNNER_SCRIPT.parent),
