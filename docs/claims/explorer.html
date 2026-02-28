@@ -1764,7 +1764,10 @@
   <header>
     <h1>REE Claims Explorer</h1>
     <div class="subtitle">Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</div>
-    <div class="subtitle" style="margin-top:6px;">Auto-updates require a local server (not file://). Run: <code>python3 -m http.server</code> from repo root.</div>
+    <div class="subtitle" style="margin-top:6px;">Auto-updates require a local server (not <code>file://</code>). From repo root:<br>
+      &nbsp;&nbsp;Option 1: <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; python3 -m http.server</code><br>
+      &nbsp;&nbsp;Option 2 (prevent sleep): <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code>
+    </div>
     <div class="subtitle" id="refreshStatus" style="margin-top:6px;">Last refreshed: --</div>
     <div id="stats" class="stats"></div>
     <div id="designStateBar" class="design-state-bar"></div>
