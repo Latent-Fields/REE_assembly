@@ -1758,6 +1758,18 @@
       padding: 10px 14px; margin: 12px auto; max-width: 540px; text-align: left;
     }
     .exp-refresh-note { font-size: 11px; color: var(--muted); margin-top: 20px; text-align: right; }
+    .exp-version-chip {
+      font-size: 10px; font-weight: 700; padding: 1px 6px;
+      border-radius: 10px; white-space: nowrap;
+      background: var(--bg-2); color: var(--muted); border: 1px solid var(--border);
+    }
+    .exp-version-chip.v1 { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
+    .exp-version-chip.v2 { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+    .exp-version-subhead {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted);
+      margin: 16px 0 8px 0; padding-left: 2px;
+    }
   </style>
 </head>
 <body>
@@ -7051,6 +7063,46 @@ END CONFLICT RESOLUTION`;
       return `${Math.floor(secs / 60)}m ${Math.round(secs % 60)}s`;
     }
 
+    function inferVersion(item) {
+      if (item.ree_version) {
+        const v = item.ree_version.toLowerCase();
+        if (v.includes('v1')) return 'v1';
+        if (v.includes('v2')) return 'v2';
+        return v;
+      }
+      const path = item.output_file || '';
+      if (path.includes('ree-v1-minimal') || path.includes('ree_v1')) return 'v1';
+      if (path.includes('ree-v2') || path.includes('ree_v2')) return 'v2';
+      return 'unknown';
+    }
+
+    function versionChipHtml(version) {
+      const label = version === 'unknown' ? '?' : version.toUpperCase();
+      const cls = version === 'unknown' ? '' : version;
+      return `<span class="exp-version-chip ${cls}">REE&nbsp;${escapeHtml(label)}</span>`;
+    }
+
+    function versionLabel(v) {
+      if (v === 'unknown') return 'Unknown Version';
+      return `REE ${v.toUpperCase()}`;
+    }
+
+    function groupByVersion(items) {
+      const groups = {};
+      items.forEach(item => {
+        const v = inferVersion(item);
+        if (!groups[v]) groups[v] = [];
+        groups[v].push(item);
+      });
+      return groups;
+    }
+
+    function versionRenderOrder(groups) {
+      const order = ['v1', 'v2', 'unknown'];
+      const extra = Object.keys(groups).filter(v => !order.includes(v)).sort();
+      return [...order, ...extra].filter(v => groups[v] && groups[v].length > 0);
+    }
+
     function expBadgeHtml(status, result) {
       const s = (result || status || '').toLowerCase();
       let cls = 'pending', label = status || 'pending';
@@ -7080,6 +7132,7 @@ END CONFLICT RESOLUTION`;
             <span class="exp-claim-chip">${escapeHtml(cur.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(cur.title || '')}</span>
             ${expBadgeHtml('running')}
+            ${versionChipHtml(inferVersion(cur))}
           </div>
           <div class="exp-desc">${escapeHtml(cur.description || '')}</div>
           <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
@@ -7101,6 +7154,7 @@ END CONFLICT RESOLUTION`;
             <span class="exp-claim-chip">${escapeHtml(qi.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(qi.title || '')}</span>
             ${expBadgeHtml(qi.status)}
+            ${versionChipHtml(inferVersion(qi))}
             <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
@@ -7116,6 +7170,7 @@ END CONFLICT RESOLUTION`;
             <span class="exp-claim-chip">${escapeHtml(c.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(c.title || '')}</span>
             ${expBadgeHtml('', c.result)}
+            ${versionChipHtml(inferVersion(c))}
           </div>
           <div class="exp-desc">${escapeHtml(c.description || '')}</div>
           ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
@@ -7192,14 +7247,27 @@ END CONFLICT RESOLUTION`;
       // ── Queue ──
       if (queue.length > 0) {
         html += `<div class="exp-section"><div class="exp-section-title">Queue &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
-        html += queue.map(expQueueItemHtml).join('');
+        const queueGroups = groupByVersion(queue);
+        const queueVersions = versionRenderOrder(queueGroups);
+        if (queueVersions.length > 1) {
+          queueVersions.forEach(v => {
+            html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${queueGroups[v].length}</div>`;
+            html += queueGroups[v].map(expQueueItemHtml).join('');
+          });
+        } else {
+          html += queue.map(expQueueItemHtml).join('');
+        }
         html += '</div>';
       }
 
       // ── Completed ──
       if (completed.length > 0) {
         html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${completed.length}</div>`;
-        html += completed.map(expCompletedHtml).join('');
+        const completedGroups = groupByVersion(completed);
+        versionRenderOrder(completedGroups).forEach(v => {
+          html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${completedGroups[v].length}</div>`;
+          html += completedGroups[v].map(expCompletedHtml).join('');
+        });
         html += '</div>';
       }
 

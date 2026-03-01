@@ -1,78 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-02-28T05:23:18.254629+00:00",
-  "last_updated": "2026-02-28T07:08:33.180935+00:00",
+  "runner_pid": 19614,
+  "runner_started_at": "2026-02-28T14:31:28.252168+00:00",
+  "last_updated": "2026-03-01T12:42:07.871186+00:00",
   "idle": true,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "EXQ-008",
-      "backlog_id": "EVB-0036",
-      "claim_id": "MECH-063",
-      "title": "E3 Candidate Count Ablation",
-      "description": "Tests whether E3 trajectory selection over multiple candidates is load-bearing. SINGLE (n=1, no selection), STANDARD (n=32, default), EXPANDED (n=128). PASS: STANDARD < SINGLE AND EXPANDED <= STANDARD*1.10.",
-      "estimated_minutes": 22.5,
-      "priority": "high",
-      "status": "pending",
-      "status_reason": "Script written 2026-02-28."
-    },
-    {
-      "queue_id": "EXQ-009",
-      "backlog_id": "EVB-0032",
-      "claim_id": "MECH-062",
-      "title": "Residue Routing Weight Sensitivity",
-      "description": "Tests whether rho_residue (E3 residue weight) is load-bearing. RHO_ZERO (0.0), RHO_LOW (0.1), RHO_STANDARD (0.5), RHO_HIGH (2.0). PASS: RHO_STANDARD < RHO_ZERO AND RHO_HIGH <= RHO_ZERO*1.20.",
-      "estimated_minutes": 30.0,
-      "priority": "high",
-      "status": "pending",
-      "status_reason": "Script written 2026-02-28."
-    },
-    {
-      "queue_id": "EXQ-010",
-      "backlog_id": "EVB-0037",
-      "claim_id": "MECH-059",
-      "title": "Control Plane Precision Separation (extended seeds)",
-      "description": "Extended-seed re-run of EXQ-000 (PASS). Adds seeds 13,77,123,256,314,999 for tighter confidence.",
-      "estimated_minutes": 30.0,
-      "priority": "low",
-      "status": "pending",
-      "status_reason": "Low-priority confidence accumulation re-run."
-    },
-    {
-      "queue_id": "EXQ-011",
-      "backlog_id": "EVB-0039",
-      "claim_id": "MECH-056",
-      "title": "Residue Trajectory Placement (extended seeds)",
-      "description": "Extended-seed re-run of EXQ-001 (PASS). Adds seeds 13,77,123,256,314,999.",
-      "estimated_minutes": 30.0,
-      "priority": "low",
-      "status": "pending",
-      "status_reason": "Low-priority confidence accumulation re-run."
-    },
-    {
-      "queue_id": "EXQ-012",
-      "backlog_id": "EVB-0041",
-      "claim_id": "MECH-061",
-      "title": "Commitment Boundary Token Reclassification (extended seeds)",
-      "description": "Extended-seed re-run of EXQ-003 (PASS). Adds seeds 13,77,123,256,314,999.",
-      "estimated_minutes": 30.0,
-      "priority": "low",
-      "status": "pending",
-      "status_reason": "Low-priority confidence accumulation re-run."
-    },
-    {
-      "queue_id": "EXQ-013",
-      "backlog_id": "EVB-0043",
-      "claim_id": "MECH-060",
-      "title": "Write-Locus Contamination (extended seeds)",
-      "description": "Extended-seed re-run of EXQ-005 (PASS). Adds seeds 13,77,123,256,314,999.",
-      "estimated_minutes": 45.0,
-      "priority": "low",
-      "status": "pending",
-      "status_reason": "Low-priority confidence accumulation re-run."
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -161,6 +94,72 @@
       "result_summary": "UNGATED  last-Q harm: 0.7720 | NO_MACRO last-Q harm: 0.5287 | MECH-057 / EXQ-007 verdict: FAIL",
       "completed_at": "2026-02-28T07:08:33.180229+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/multistep_control_completion/multistep_control_completion_20260228T070832.json"
+    },
+    {
+      "queue_id": "EXQ-008",
+      "backlog_id": "EVB-0036",
+      "claim_id": "MECH-063",
+      "title": "E3 Candidate Count Ablation",
+      "description": "Tests whether the number of E2 trajectory candidates available to E3 is load-bearing for harm avoidance. Three conditions: SINGLE (1 candidate, no real selection), STANDARD (32, default), EXPANDED (128, wider search). PASS: STANDARD < SINGLE (selection matters) AND EXPANDED <= STANDARD*1.10 (no collapse at high counts).",
+      "result": "PASS",
+      "result_summary": "STANDARD (n=32)  last-Q harm: 0.854 | EXPANDED (n=128) last-Q harm: 0.836 | MECH-063 verdict: PASS",
+      "completed_at": "2026-02-28T16:29:23.662262+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/candidate_count_ablation/candidate_count_ablation_20260228T162923.json"
+    },
+    {
+      "queue_id": "EXQ-009",
+      "backlog_id": "EVB-0032",
+      "claim_id": "MECH-062",
+      "title": "Residue Routing Weight Sensitivity",
+      "description": "Tests whether the E3 residue routing weight (rho_residue) is load-bearing. Four conditions: RHO_ZERO (rho=0, agent is ethically amnesic), RHO_LOW (0.1), RHO_STANDARD (0.5, default), RHO_HIGH (2.0). PASS: RHO_STANDARD < RHO_ZERO (residue routing helps) AND RHO_HIGH <= RHO_ZERO*1.20 (high weight doesn't catastrophically destabilise).",
+      "result": "PASS",
+      "result_summary": "RHO_HIGH     (rho=2.0) last-Q harm: 0.749 | MECH-062 verdict: PASS | (RHO_ZERO) degrades harm avoidance vs the standard setting,",
+      "completed_at": "2026-02-28T17:59:55.491452+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/residue_weight_sensitivity/residue_weight_sensitivity_20260228T175954.json"
+    },
+    {
+      "queue_id": "EXQ-010",
+      "backlog_id": "EVB-0037",
+      "claim_id": "MECH-059",
+      "title": "Control Plane Precision Separation (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-000 (MECH-059 PASS). Adds seeds 13, 77, 123, 256, 314, 999 for tighter confidence intervals. Same MERGED vs SEPARATED conditions. Contributes to P1 evidence accumulation for the precision channel separation claim.",
+      "result": "PASS",
+      "result_summary": "Signals independent (corr < 0.3)?  YES  (0.045) | Separation neutral or beneficial?   YES | MECH-059 verdict: PASS",
+      "completed_at": "2026-02-28T19:11:01.310118+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260228T191100.json"
+    },
+    {
+      "queue_id": "EXQ-011",
+      "backlog_id": "EVB-0039",
+      "claim_id": "MECH-056",
+      "title": "Residue Trajectory Placement (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-001 (MECH-056 PASS). Adds seeds 13, 77, 123, 256, 314, 999. TRAJECTORY-WIDE vs ENDPOINT-ONLY conditions. Builds replication depth for the residue placement claim.",
+      "result": "PASS",
+      "result_summary": "TRAJECTORY-WIDE  last-Q harm: 0.804 | ENDPOINT-ONLY    last-Q harm: 0.936 | MECH-056 verdict: PASS",
+      "completed_at": "2026-02-28T20:32:44.501875+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/residue_trajectory_placement/residue_trajectory_placement_20260228T203243.json"
+    },
+    {
+      "queue_id": "EXQ-012",
+      "backlog_id": "EVB-0041",
+      "claim_id": "MECH-061",
+      "title": "Commitment Boundary Token Reclassification (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-003 (MECH-061 PASS). Adds seeds 13, 77, 123, 256, 314, 999. PRE_COMMIT vs POST_COMMIT channel correlation conditions. Tightens confidence on commit boundary separation.",
+      "result": "PASS",
+      "result_summary": "Distinct signals (|corr| < 0.7)?   YES  (0.214) | MECH-061 verdict: PASS | Pre-commit (E2) predictions and post-commit (env) harm signals carry",
+      "completed_at": "2026-02-28T22:00:36.277613+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/commitment_boundary_validation/commitment_boundary_validation_20260228T220035.json"
+    },
+    {
+      "queue_id": "EXQ-013",
+      "backlog_id": "EVB-0043",
+      "claim_id": "MECH-060",
+      "title": "Write-Locus Contamination (extended seeds)",
+      "description": "Extended-seed re-run of EXQ-005 (MECH-060 PASS). Adds seeds 13, 77, 123, 256, 314, 999. FULL vs CONTAMINATED_DURABLE vs CONTAMINATED_RESIDUE. Builds replication depth on the write-locus separation result.",
+      "result": "PASS",
+      "result_summary": "Criterion 2 (harm ordering):      YES  (full=0.836 <= max_cont=0.873*1.05=0.916?) | MECH-060/067 verdict: PASS | as good for harm reduction as contaminated conditions.",
+      "completed_at": "2026-03-01T00:16:53.551294+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/write_locus_contamination/write_locus_contamination_20260301T001652.json"
     }
   ]
 }
