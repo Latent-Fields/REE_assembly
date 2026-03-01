@@ -289,3 +289,51 @@ E1 and E2 are not simply parallel systems with orthogonal outputs. They are co-c
 **Implication for EXQ-006:** The E1_FROZEN condition breaks not only E1's associative learning but also the E1→E2 prior conditioning. The E2_FROZEN condition breaks not only transition predictions but also the temporal scaffolding that would train E1. Results should be interpreted at the system level (harm reduction) rather than as clean isolation of individual components.
 
 **Action:** Update `docs/architecture/e2.md` to capture mutual constitution. Add E2→E1 autotrain as a future architectural item. Update MECH-058 claim scope if EXQ-006 yields clean results.
+
+### SD-003: E2 as self-attribution substrate — isolatability requirement not captured
+
+**Filed:** 2026-02-28
+**Priority:** high (V2 design requirement)
+**Blocking:** V2 entry criteria, any experiment testing self-attribution or counterfactual reasoning
+
+E2 as a pure transition model `f(z_t, a_t) → z_{t+1}` is not merely a predictive
+sub-component — it is the architectural substrate for:
+
+1. **Counterfactual self-attribution**: "what would have happened if I had acted
+   differently?" requires running E2 forward with a counterfactual action. This is
+   the mechanism by which the system distinguishes agent-caused from
+   environment-caused transitions — the foundation of self-modelling.
+
+2. **Self-modelling**: the agent's causal footprint in the world is precisely what
+   E2 encodes. Without an isolatable E2, there is no clean substrate for the agent
+   to model its own contribution to observed outcomes.
+
+3. **Attribution reliability extension**: MECH-060/067 (write-locus contamination,
+   PASS) confirmed that harm attribution requires clean signal separation between
+   pre-commit and post-commit channels. E2 provides the action-conditioned baseline
+   for that separation. Counterfactual E2 queries extend this to retrospective
+   attribution across completed action sequences.
+
+**Why V1 cannot test this:**
+- SD-001 conflates E2 with hippocampal trajectory generation — E2 is not isolatable
+  as a pure transition model in the current codebase
+- V1 environment (stateless hazard grid) has no persistent agent causal footprint —
+  there is no regime where agent-caused and environment-caused transitions need to be
+  disambiguated, so the self-attribution signal cannot arise
+- Counterfactual querying requires E2 to be a clean forward model callable with an
+  arbitrary action; currently it is entangled with trajectory selection logic in E3
+
+**V2 entry requirement (added):**
+E2 must be implemented as an isolatable pure transition model before self-attribution
+experiments can be designed. Counterfactual E2 querying (`e2.forward(z, a_counterfactual)`)
+must be architecturally possible and independently testable. The environment used for
+V2 qualification must include persistent agent causal footprint — actions at step N
+should affect the landscape at step N+k in ways that require disambiguation from
+independent environment change.
+
+**Interpretation caution for V1 evidence:**
+Any V1 claim that touches agent contribution to outcomes (MECH-057 control completion,
+MECH-058 E1/E2 roles, MECH-063 candidate selection) should be interpreted with the
+caveat that self-attribution capability was not testable on this substrate. The
+behavioural verdicts stand; the mechanistic interpretation of *why* they hold or fail
+is incomplete without an isolatable E2.
