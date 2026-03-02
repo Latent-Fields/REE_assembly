@@ -468,8 +468,11 @@
 
     .triple-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
+    }
+    @media (max-width: 900px) {
+      .triple-grid { grid-template-columns: 1fr; }
     }
 
     .triple-card {
@@ -622,6 +625,12 @@
       text-anchor: middle;
       dominant-baseline: central;
     }
+
+    /* Confidence-based node tint overlays */
+    .triple-confidence-overlay { pointer-events: none; stroke: none !important; }
+    .triple-confidence-high { fill: rgba(43, 111, 114, 0.15); }
+    .triple-confidence-med  { fill: rgba(182, 121, 35, 0.12); }
+    .triple-confidence-low  { fill: rgba(140, 47, 47, 0.08); }
 
     .triple-edge-marker {
       pointer-events: none;
@@ -793,6 +802,75 @@
       justify-self: end;
       font-size: 12px;
       padding: 4px 8px;
+    }
+
+    /* Confidence chip in inspector claims list */
+    .claim-confidence-chip {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 10px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .claim-conf-high { background: #dff2ef; color: #2b6f72; }
+    .claim-conf-med  { background: #fff5de; color: #b67923; }
+    .claim-conf-low  { background: #fbecec; color: #8c2f2f; }
+
+    /* Version inspector note */
+    .triple-version-note {
+      background: #e8f2f2;
+      border-left: 3px solid #2b6f72;
+      padding: 4px 8px;
+      font-size: 12px;
+      margin: 4px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Version selector bar */
+    .triple-version-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .triple-version-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-right: 2px;
+    }
+    .triple-ver-btn, .triple-ver-mode-btn {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .triple-ver-btn.active   { background: #2b6f72; color: #fff; border-color: #2b6f72; }
+    .triple-ver-mode-btn.active { background: #e8f2f2; color: #2b6f72; border-color: #2b6f72; }
+    .triple-version-sep { color: var(--border); font-size: 14px; }
+
+    /* Version dimming / highlighting on SVG nodes */
+    .triple-version-dim {
+      opacity: 0.18;
+      filter: grayscale(1) brightness(1.3);
+      transition: opacity 0.35s ease, filter 0.35s ease;
+    }
+    .triple-version-new {
+      transition: all 0.35s ease;
+    }
+    .triple-version-new rect {
+      stroke: #2b6f72 !important;
+      stroke-width: 2.5px !important;
+    }
+    .triple-version-changed rect {
+      stroke: #b67923 !important;
+      stroke-width: 2px !important;
+      stroke-dasharray: 4 2;
     }
 
     .governance-wrap {
@@ -2036,6 +2114,15 @@
               </div>
             </div>
           </div>
+          <div class="triple-version-bar" id="tripleVersionBar">
+            <span class="triple-version-label">Version view:</span>
+            <button class="triple-ver-btn active" data-ver="all">All Versions</button>
+            <button class="triple-ver-btn" data-ver="v1">V1</button>
+            <button class="triple-ver-btn" data-ver="v2">V2</button>
+            <span class="triple-version-sep">|</span>
+            <button class="triple-ver-mode-btn active" data-mode="full" title="Show all elements present in this version">Full</button>
+            <button class="triple-ver-mode-btn" data-mode="exclusive" title="Show only elements introduced in this version">Exclusive</button>
+          </div>
           <div class="triple-grid">
             <div class="triple-card">
               <div class="triple-card-head">
@@ -2185,6 +2272,7 @@
     const GOVERNANCE_BACKLOG_URL = '../../evidence/planning/evidence_backlog.v1.json';
     const GOVERNANCE_PROPOSALS_URL = '../../evidence/planning/experiment_proposals.v1.json';
     const RUNNER_STATUS_URL = '../../evidence/experiments/runner_status.json';
+    const VERSION_MANIFEST_URL = '../architecture/version_manifest.json';
     const REFRESH_MS = 60000;
     const EXP_REFRESH_MS = 10000;
 
@@ -2686,6 +2774,9 @@ END CONFLICT RESOLUTION`;
     let tripleLatestEpoch = '';
     let tripleViewModel = null;
     let tripleTooltipHideTimer = null;
+    let tripleVersionManifest = null;
+    let tripleSelectedVersion = 'all';  // 'all' | 'v1' | 'v2' | ...
+    let tripleVersionMode = 'full';     // 'full' | 'exclusive'
 
     function showError(message) {
       els.errorBanner.textContent = message;
@@ -4768,6 +4859,7 @@ END CONFLICT RESOLUTION`;
         type: claim.type || '',
         status: claim.status || '',
         location: claim.location || '',
+        overall_confidence: typeof claim.overall_confidence === 'number' ? claim.overall_confidence : null,
       };
     }
 
@@ -5279,13 +5371,19 @@ END CONFLICT RESOLUTION`;
         } else if (claimId) {
           titleHtml = `<a href="#triple-claim-${escapeHtml(claimId)}"><code>${escapeHtml(claimId)}</code> — ${escapeHtml(entry.title || claimId)}</a>`;
         }
+        // Confidence chip for claims mode
+        const conf = typeof entry.overall_confidence === 'number' ? entry.overall_confidence : null;
+        const confChip = (conf !== null && mode === 'claims') ? (() => {
+          const c = conf >= 0.7 ? 'claim-conf-high' : conf >= 0.4 ? 'claim-conf-med' : 'claim-conf-low';
+          return `<span class="claim-confidence-chip ${c}">${(conf * 100).toFixed(0)}%</span>`;
+        })() : '';
         const detail = normalizeSpace(entry.detail || '');
         const source = normalizeSpace(entry.source || '');
         const href = normalizeSpace(entry.href || '');
         const hrefHtml = href ? `<div class="meta"><a href="${escapeHtml(href)}" target="_blank" rel="noopener">source</a></div>` : '';
         return `
           <li class="inspector-item" id="triple-${mode}-${stableId}">
-            <div>${titleHtml}</div>
+            <div>${titleHtml}${confChip}</div>
             ${detail ? `<div class="meta">${escapeHtml(detail)}</div>` : ''}
             ${source ? `<div class="meta">source: ${escapeHtml(source)}</div>` : ''}
             ${hrefHtml}
@@ -5332,13 +5430,24 @@ END CONFLICT RESOLUTION`;
       if (!payload || !payload.item || !payload.item.__anno || !els.detailContent) return;
       const anno = payload.item.__anno;
       const counts = payload.kind === 'edge' ? tripleEdgeCounts(anno) : tripleNodeCounts(anno);
-      const claims = payload.kind === 'edge' ? (anno.supportingClaims || []) : (anno.relatedClaims || []);
+      const claims = (payload.kind === 'edge' ? (anno.supportingClaims || []) : (anno.relatedClaims || []))
+        .slice()
+        .sort((a, b) => (b.overall_confidence || 0) - (a.overall_confidence || 0));
       const conflicts = anno.conflicts || [];
       const needs = payload.kind === 'edge' ? (anno.openQuestions || []) : (anno.needsStructure || []);
       const epoch = normalizeSpace(anno.epoch || tripleLatestEpoch || '');
       const title = payload.kind === 'edge'
         ? `${payload.item.from} -> ${payload.item.to}${payload.item.label ? ` (${payload.item.label})` : ''}`
         : (payload.item.label || payload.item.id);
+
+      // Version change note (if version manifest loaded and version is selected)
+      const versionNoteHtml = (() => {
+        if (tripleSelectedVersion === 'all' || !tripleVersionManifest) return '';
+        const nodeId = payload.item.id;
+        const vmEntry = tripleVersionManifest.nodes && tripleVersionManifest.nodes[nodeId];
+        if (!vmEntry || !vmEntry.change_note) return '';
+        return `<div class="triple-version-note">⚡ ${escapeHtml(vmEntry.change_note)}</div>`;
+      })();
 
       const tabs = [
         { id: 'claims', label: `Claims (${claims.length})`, items: claims, mode: 'claims', required: true },
@@ -5366,6 +5475,7 @@ END CONFLICT RESOLUTION`;
           <div class="meta">${escapeHtml(payload.specLabel || payload.specId)} • ${escapeHtml(payload.kind)} • epoch ${escapeHtml(epoch || 'n/a')}</div>
           <div><strong>${escapeHtml(title)}</strong></div>
           <div class="meta">claims ${counts.claims} • conflicts ${counts.conflicts} • needs ${counts.needs} • evidence ${escapeHtml(evidenceLabel)}</div>
+          ${versionNoteHtml}
           <div class="inspector-tabs">${tabsHtml}</div>
           ${panesHtml}
         </div>
@@ -5539,6 +5649,75 @@ END CONFLICT RESOLUTION`;
       svg.appendChild(marker);
     }
 
+    function applyTripleNodeConfidenceColor(nodeElement, evidenceStrength, isSequence) {
+      if (typeof evidenceStrength !== 'number') return;
+      const cls = evidenceStrength >= 0.7 ? 'triple-confidence-high'
+        : evidenceStrength >= 0.4 ? 'triple-confidence-med'
+        : 'triple-confidence-low';
+      const targetRect = isSequence ? nodeElement : nodeElement.querySelector('rect');
+      if (!targetRect) return;
+      const overlay = targetRect.cloneNode(false);
+      overlay.removeAttribute('id');
+      overlay.removeAttribute('class');
+      overlay.classList.add('triple-confidence-overlay', cls);
+      overlay.setAttribute('pointer-events', 'none');
+      targetRect.parentNode.insertBefore(overlay, targetRect.nextSibling);
+    }
+
+    function tripleNodeVersionClass(nodeId) {
+      if (tripleSelectedVersion === 'all' || !tripleVersionManifest) return 'normal';
+      const entry = (tripleVersionManifest.nodes || {})[nodeId];
+      if (!entry) return 'normal';
+      if (tripleVersionMode === 'exclusive') {
+        return entry.introduced === tripleSelectedVersion ? 'version-new' : 'version-dim';
+      }
+      // full mode: show all elements present in this version
+      return Array.isArray(entry.present) && entry.present.includes(tripleSelectedVersion) ? 'normal' : 'version-dim';
+    }
+
+    function tripleNodeVersionChangedClass(nodeId) {
+      if (tripleSelectedVersion === 'all' || !tripleVersionManifest) return false;
+      const entry = (tripleVersionManifest.nodes || {})[nodeId];
+      if (!entry) return false;
+      return Array.isArray(entry.changed_in) && entry.changed_in.includes(tripleSelectedVersion);
+    }
+
+    function applyTripleVersionClasses() {
+      TRIPLE_VIEW_SPECS.forEach(spec => {
+        const container = document.getElementById(spec.bodyId);
+        if (!container) return;
+        const svg = container.querySelector('svg');
+        if (!svg) return;
+        const vmSpec = tripleViewModel && tripleViewModel.diagrams ? tripleViewModel.diagrams[spec.id] : null;
+        if (!vmSpec) return;
+
+        const isSequence = spec.id === 'episode';
+
+        if (isSequence) {
+          // Sequence diagram: actors are rect.actor.actor-top
+          svg.querySelectorAll('rect.actor.actor-top[name]').forEach(rect => {
+            const nodeId = rect.getAttribute('name');
+            rect.classList.remove('triple-version-dim', 'triple-version-new', 'triple-version-changed');
+            const vcls = tripleNodeVersionClass(nodeId);
+            if (vcls !== 'normal') rect.classList.add(`triple-${vcls}`);
+            else if (tripleNodeVersionChangedClass(nodeId)) rect.classList.add('triple-version-changed');
+          });
+        } else {
+          // Flowchart: g.node elements
+          svg.querySelectorAll('g.node[id^="flowchart-"]').forEach(nodeEl => {
+            const id = nodeEl.getAttribute('id') || '';
+            const match = id.match(/^flowchart-([A-Za-z0-9_]+)-\d+$/);
+            if (!match) return;
+            const nodeId = match[1];
+            nodeEl.classList.remove('triple-version-dim', 'triple-version-new', 'triple-version-changed');
+            const vcls = tripleNodeVersionClass(nodeId);
+            if (vcls !== 'normal') nodeEl.classList.add(`triple-${vcls}`);
+            else if (tripleNodeVersionChangedClass(nodeId)) nodeEl.classList.add('triple-version-changed');
+          });
+        }
+      });
+    }
+
     function annotateFlowchartTriple(spec, svg, vmSpec) {
       const nodesById = new Map();
       svg.querySelectorAll('g.node[id^="flowchart-"]').forEach(nodeEl => {
@@ -5554,6 +5733,7 @@ END CONFLICT RESOLUTION`;
         const targets = nodesById.get(node.id) || [];
         targets.forEach(target => {
           addTripleNodeBadges(target, tripleNodeCounts(node.__anno), false);
+          applyTripleNodeConfidenceColor(target, node.__anno.evidenceStrength, false);
           registerTripleTarget(target, {
             specId: spec.id,
             specLabel: spec.label,
@@ -5591,7 +5771,15 @@ END CONFLICT RESOLUTION`;
         if (counts.conflicts > 0) target.classList.add('triple-edge-conflict');
         if (counts.needs > 0) target.classList.add('triple-edge-open');
         addTripleEdgeMarker(svg, target, counts, false);
-        registerTripleTarget(target, {
+        // Wide transparent hit area so the thin SVG path is easy to click
+        const hitArea = target.cloneNode(false);
+        hitArea.removeAttribute('id');
+        hitArea.style.strokeWidth = '12px';
+        hitArea.style.stroke = 'transparent';
+        hitArea.style.fill = 'none';
+        hitArea.setAttribute('pointer-events', 'stroke');
+        target.parentNode.insertBefore(hitArea, target.nextSibling);
+        registerTripleTarget(hitArea, {
           specId: spec.id,
           specLabel: spec.label,
           kind: 'edge',
@@ -5612,6 +5800,7 @@ END CONFLICT RESOLUTION`;
         const actor = topActors.get(node.id);
         if (!actor) return;
         addTripleNodeBadges(actor, tripleNodeCounts(node.__anno), true);
+        applyTripleNodeConfidenceColor(actor, node.__anno.evidenceStrength, true);
         registerTripleTarget(actor, {
           specId: spec.id,
           specLabel: spec.label,
@@ -5630,7 +5819,15 @@ END CONFLICT RESOLUTION`;
         if (counts.conflicts > 0) line.classList.add('triple-edge-conflict');
         if (counts.needs > 0) line.classList.add('triple-edge-open');
         addTripleEdgeMarker(svg, line, counts, true);
-        registerTripleTarget(line, {
+        // Wide transparent hit area so the thin SVG line is easy to click
+        const hitArea = line.cloneNode(false);
+        hitArea.removeAttribute('id');
+        hitArea.style.strokeWidth = '12px';
+        hitArea.style.stroke = 'transparent';
+        hitArea.style.fill = 'none';
+        hitArea.setAttribute('pointer-events', 'stroke');
+        line.parentNode.insertBefore(hitArea, line.nextSibling);
+        registerTripleTarget(hitArea, {
           specId: spec.id,
           specLabel: spec.label,
           kind: 'edge',
@@ -5858,6 +6055,7 @@ END CONFLICT RESOLUTION`;
       if (tripleViewLoaded && !forceReload) {
         const vm = refreshTripleViewModel();
         applyTripleAnnotationsAll();
+        applyTripleVersionClasses();
         els.tripleStatus.textContent = vm && vm.latestEpoch
           ? `Triple-view diagrams loaded • epoch ${vm.latestEpoch}.`
           : 'Triple-view diagrams loaded.';
@@ -5866,12 +6064,20 @@ END CONFLICT RESOLUTION`;
 
       tripleViewLoading = true;
       els.tripleStatus.textContent = 'Loading triple-view diagrams...';
+      // Load version manifest (best-effort — non-fatal if missing)
+      if (!tripleVersionManifest) {
+        try {
+          const vmText = await fetch(VERSION_MANIFEST_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : null);
+          if (vmText) tripleVersionManifest = vmText;
+        } catch (_) { /* version manifest optional */ }
+      }
       const results = await Promise.all(TRIPLE_VIEW_SPECS.map(loadTripleDiagram));
       const svgCount = results.filter(r => r.mode === 'svg').length;
       const mmdCount = results.filter(r => r.mode === 'mmd').length;
       const errorCount = results.filter(r => r.mode === 'error' || r.mode === 'missing-container').length;
       const vm = refreshTripleViewModel();
       applyTripleAnnotationsAll();
+      applyTripleVersionClasses();
       const loadedAt = new Date().toLocaleTimeString();
       els.tripleStatus.textContent =
         `Loaded ${svgCount}/${TRIPLE_VIEW_SPECS.length} SVGs` +
@@ -7450,6 +7656,24 @@ END CONFLICT RESOLUTION`;
         els.tripleReloadBtn.addEventListener('click', () => {
           tripleViewLoaded = false;
           renderTripleView(true);
+        });
+      }
+      // Version selector bar
+      const tripleVersionBar = document.getElementById('tripleVersionBar');
+      if (tripleVersionBar) {
+        tripleVersionBar.querySelectorAll('.triple-ver-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            tripleSelectedVersion = btn.getAttribute('data-ver') || 'all';
+            tripleVersionBar.querySelectorAll('.triple-ver-btn').forEach(b => b.classList.toggle('active', b === btn));
+            applyTripleVersionClasses();
+          });
+        });
+        tripleVersionBar.querySelectorAll('.triple-ver-mode-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            tripleVersionMode = btn.getAttribute('data-mode') || 'full';
+            tripleVersionBar.querySelectorAll('.triple-ver-mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+            applyTripleVersionClasses();
+          });
         });
       }
       if (els.mapEpochOnly) {

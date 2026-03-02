@@ -1,0 +1,129 @@
+{
+  "schema_version": "version_manifest/v1",
+  "description": "Maps architectural node IDs (as used in MMD/SVG files) to the versions they are present in, when they were introduced, and any changes across versions. Used by the triple-view version selector in explorer.html.",
+  "versions": ["v1", "v2"],
+  "nodes": {
+    "WORLD": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: environment is CausalGridWorld (causal attribution tracking) vs GridWorld in V1"
+    },
+    "EXT": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "BND": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "SUB": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "E1": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: receives post-commit outcome replays from LRN via HPC (separated from E2 planning path)"
+    },
+    "E2": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: pure f(z,a)→z' fast forward predictor; hippocampal planning and rollout separated into HPC (SD-001 fix)"
+    },
+    "HPC": {
+      "present": ["v2"],
+      "introduced": "v2",
+      "change_note": "V2 new: HippocampalSystems (rollout and provenance) separated from E2 — resolves SD-001 E2/hippocampal conflation"
+    },
+    "RC": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "ERR": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "CP": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: control plane precision updates (MECH-059) operate on separate timescale from E3 policy decisions"
+    },
+    "THAL": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "NM": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "CCM": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "E3": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: receives rollout candidates from HPC (separated from E2); commitment boundary validated (MECH-061)"
+    },
+    "CAL": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "F1": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "F2": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "F3": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "F4": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "G1": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "G2": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "G3": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "GPS": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "ACT": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "LRN": {
+      "present": ["v1", "v2"],
+      "introduced": "v1",
+      "changed_in": ["v2"],
+      "change_note": "V2: post-commit learning now feeds outcome traces to HPC for replay (MECH-061 commitment boundary)"
+    },
+    "VER": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    },
+    "STORES": {
+      "present": ["v1", "v2"],
+      "introduced": "v1"
+    }
+  },
+  "edges": {}
+}
