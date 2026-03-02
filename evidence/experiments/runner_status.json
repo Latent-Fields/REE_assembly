@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 19614,
-  "runner_started_at": "2026-02-28T14:31:28.252168+00:00",
-  "last_updated": "2026-03-01T12:42:07.871186+00:00",
+  "runner_pid": 1954,
+  "runner_started_at": "2026-03-01T21:30:09.658917+00:00",
+  "last_updated": "2026-03-02T20:29:33.608256+00:00",
   "idle": true,
   "current": null,
   "queue": [],
@@ -160,6 +160,17 @@
       "result_summary": "Criterion 2 (harm ordering):      YES  (full=0.836 <= max_cont=0.873*1.05=0.916?) | MECH-060/067 verdict: PASS | as good for harm reduction as contaminated conditions.",
       "completed_at": "2026-03-01T00:16:53.551294+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/experiments/write_locus_contamination/write_locus_contamination_20260301T001652.json"
+    },
+    {
+      "queue_id": "EXQ-014",
+      "backlog_id": "EVB-0037",
+      "claim_id": "MECH-059",
+      "title": "Control Plane Precision Separation \u2014 V2 Parity",
+      "description": "Parity check #1. Replicates V1 EXQ-013 PASS result on REE-v2 substrate (CausalGridWorld). Tests whether separating slow-timescale E1 precision updates from fast-timescale E3 policy decisions reduces hazard collision rates compared to a merged control plane. Closes SD-001 parity gap for MECH-059.",
+      "result": "PASS",
+      "result_summary": "Signals independent (corr < 0.3)?  YES  (0.130) | Separation neutral or beneficial?   YES | MECH-059 verdict: PASS",
+      "completed_at": "2026-03-01T19:41:43.513030+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260301T194143.json"
     }
   ]
 }
