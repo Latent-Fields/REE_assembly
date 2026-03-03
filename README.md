@@ -4,7 +4,9 @@
 It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
 Implementation code and stress testing run in companion repositories, then feed evidence back here.
 
-**Human start:** `docs/roadmap.md`  
+**Quickest orientation:** launch `python3 -m http.server` from repo root, then open [`http://localhost:8000/docs/claims/explorer.html`](http://localhost:8000/docs/claims/explorer.html) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
+
+**Human start:** `docs/roadmap.md`
 **Agent-maintenance start:** `docs/README.md`
 
 ## If You Are New (Read In This Order)
@@ -50,18 +52,6 @@ Commit semantics are continuous-stream, not stop-and-wait:
 - Pre-commit and post-commit streams may both run continuously.
 - The **commit boundary** is an authority boundary: irreversible dispatch and/or privilege-bearing durable-write eligibility for a `commit_id`.
 - If interruption happens after irreversible dispatch, a **new superseding commit** is required; accountability lineage is extended, not erased.
-
-## Explorer And Triple View
-
-- Launch local docs server from repo root:
-
-```bash
-python3 -m http.server
-```
-
-- Open `http://localhost:8000/docs/claims/explorer.html`.
-- Use `View -> Triple View` for synchronized static/dataflow/episode diagrams with claim/conflict overlays.
-- Use `View -> Governance` for decision inbox, dispatch context, and cycle checkpoints.
 
 ## Ecosystem Map (How Repositories Work Together)
 
@@ -138,7 +128,8 @@ Weekly cadence (current policy):
 - `docs/` - canonical REE documentation and operating procedure.
 - `docs/claims/` - claim registry (`claims.yaml`) and human index (`claim_index.md`).
 - `docs/conflicts/` - documented conflicts and forks.
-- `docs/thoughts/` - raw thought intake before canonical extraction.
+- `docs/thoughts/` - raw thought intake before canonical extraction (filename convention: `YYYY-MM-DD_<topic>.md`).
+- `docs/notes/` - synthesis audits, evidence maps, wiring notes, and language policy. Post-processing material that has been reviewed but is not yet promoted to canonical architecture docs. Distinct from `docs/thoughts/` (unprocessed intake) and `docs/architecture/` (canonical).
 - `docs/processed/legacy_tree/` - immutable preserved legacy sources.
 - `evidence/experiments/` - experiment-pack ingestion boundary and contract artifacts.
 - `evidence/literature/` - structured literature evidence linked to claims.

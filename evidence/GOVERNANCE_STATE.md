@@ -1,6 +1,7 @@
 # Governance State
 
 Generated: `2026-02-27`
+Last updated: `2026-03-02` — ingested EXQ-006 through EXQ-013 (runner.log, 2026-02-28 to 2026-03-01).
 Maintained: manually, updated after each governance cycle or major corpus change.
 
 This file provides an honest snapshot of the current evidence corpus state so that
@@ -26,7 +27,7 @@ confidence scores.
 
 ---
 
-## Genuine Evidence Corpus (as of 2026-02-27)
+## Genuine Evidence Corpus (as of 2026-03-02)
 
 The only valid experimental substrate is **ree-v1-minimal** (run_id suffix: `_ree_v1_minimal`).
 
@@ -39,24 +40,37 @@ The only valid experimental substrate is **ree-v1-minimal** (run_id suffix: `_re
 | EXQ-002 | EVB-0040 | MECH-058 | E1/E2 Timescale Ablation | **FAIL** (substrate resolution) | 2026-02-26T21:37Z |
 | EXQ-003 | EVB-0041 | MECH-061 | Commitment Boundary Token Reclassification | **PASS** | 2026-02-26T22:24Z |
 | EXQ-004 | EVB-0042 | MECH-057 | Control Completion Requirement | **FAIL** (informative baseline) | 2026-02-26T23:24Z |
-| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | **PASS** | Write-Locus Contamination | 2026-02-27T10:33Z |
+| EXQ-005 | EVB-0043 | MECH-060, MECH-067 | Write-Locus Contamination | **PASS** | 2026-02-27T10:33Z |
+| EXQ-006 | — | MECH-058 | E1/E2 Associative vs Transition (MultiRoomGrid) | **FAIL** (substrate, SD-001) | 2026-02-28T06:02Z |
+| EXQ-007 | — | MECH-057 | Multi-Step Control Completion Gating | **FAIL** (informative baseline) | 2026-02-28T07:08Z |
+| EXQ-008 | EVB-0036 | MECH-063 | E3 Candidate Count Ablation | **PASS** | 2026-02-28T16:29Z |
+| EXQ-009 | EVB-0032 | MECH-062 | Residue Routing Weight Sensitivity | **PASS** | 2026-02-28T17:59Z |
+| EXQ-010 | EVB-0037 | MECH-059 | Control Plane Precision Separation (extended seeds) | **PASS** | 2026-02-28T19:11Z |
+| EXQ-011 | EVB-0039 | MECH-056 | Residue Trajectory Placement (extended seeds) | **PASS** | 2026-02-28T20:32Z |
+| EXQ-012 | EVB-0041 | MECH-061 | Commitment Boundary Token Reclassification (extended seeds) | **PASS** | 2026-02-28T22:00Z |
+| EXQ-013 | EVB-0043 | MECH-060, MECH-067 | Write-Locus Contamination (extended seeds) | **PASS** | 2026-03-01T00:16Z |
+
+Notes: EXQ-006 and EXQ-007 were run as standalone experiments without backlog EVB registration (EVB shown as —). EXQ-010 through EXQ-013 are extended-seed reruns of earlier PASS experiments for confidence accumulation.
 
 ### Genuine Run Counts per Claim
 
 | Claim | Genuine Runs | Synthetic Runs | Reliable? |
 |-------|-------------|----------------|-----------|
-| MECH-056 | 2 | 163 | Partially — genuine PASS dominates |
-| MECH-057 | 2 | 12 | Partially — genuine FAIL informative |
-| MECH-058 | 2 | 156 | Partially — genuine FAIL (substrate limit) |
-| MECH-059 | 2 | 164 | Partially — genuine PASS dominates |
-| MECH-060 | 2 | 0 | **Yes** — genuine PASS (2 runs: smoke FAIL @5 eps, full PASS @200 eps) |
-| MECH-061 | 2 | 10 | Partially — genuine PASS dominates |
-| MECH-067 | 2 | 0 | **Yes** — genuine PASS (co-tested with MECH-060 in EXQ-005) |
+| MECH-056 | 4 | 163 | **Yes** — 4 genuine PASS runs (EXQ-001, EXQ-011); residue placement confirmed |
+| MECH-057 | 4 | 12 | Partially — 4 genuine FAIL runs (EXQ-004, EXQ-007); informative baseline, redesign needed (SD-001) |
+| MECH-058 | 4 | 156 | Partially — 4 genuine FAIL runs (EXQ-002, EXQ-006); substrate limit confirmed across two environments |
+| MECH-059 | 4 | 164 | **Yes** — 4 genuine PASS runs (EXQ-000, EXQ-010); precision separation robust |
+| MECH-060 | 4 | 0 | **Yes** — 4 genuine PASS runs (EXQ-005, EXQ-013); write-locus separation confirmed |
+| MECH-061 | 4 | 10 | **Yes** — 4 genuine PASS runs (EXQ-003, EXQ-012); commitment boundary robust |
+| MECH-062 | 2 | 0 | **Yes** — 2 genuine PASS runs (EXQ-009); residue routing weight confirmed |
+| MECH-063 | 2 | varies | **Yes** — 2 genuine PASS runs (EXQ-008); first genuine evidence confirming provisional status |
+| MECH-067 | 4 | 0 | **Yes** — 4 genuine PASS runs (EXQ-005, EXQ-013; co-tested with MECH-060) |
 | All other claims | 0 | varies | **Unreliable — all synthetic** |
 
-Claims with 2 genuine runs have directionally meaningful signal but remain statistically
-thin. The overall_confidence figures in `claim_evidence.v1.json` are dominated by the
-larger synthetic entry counts and should be treated with caution.
+Claims with 4 genuine runs now have statistically meaningful signal. Claims with 2 genuine
+runs are directionally meaningful but remain statistically thin. The overall_confidence
+figures in `claim_evidence.v1.json` are dominated by synthetic entry counts and should be
+treated with caution for zero-genuine-run claims.
 
 ---
 
@@ -71,12 +85,23 @@ larger synthetic entry counts and should be treated with caution.
 | MECH-057 | candidate | candidate (unchanged) | EXQ-004 FAIL — informative baseline, redesign needed |
 | MECH-060 | candidate | **provisional** | EXQ-005 PASS — write-locus separation confirmed (residue inflation 8520×, harm ordering met) |
 | MECH-067 | candidate | **provisional** | EXQ-005 PASS — write-locus permission matrix confirmed (co-tested with MECH-060) |
+| MECH-058 | candidate | candidate (unchanged) | EXQ-006 FAIL — substrate limit confirmed in second environment (MultiRoomGrid); SD-001 applies |
+| MECH-057 | candidate | candidate (unchanged) | EXQ-007 FAIL — multi-step gating baseline; substrate debt still blocks clean isolation |
+| MECH-063 | provisional | **provisional** (confirmed) | EXQ-008 PASS — first genuine evidence; candidate-count ablation confirms selection from multiple candidates is load-bearing |
+| MECH-062 | stable | **stable** (confirmed) | EXQ-009 PASS — residue routing weight sensitivity confirmed on genuine substrate |
+| MECH-059 | active | **active** (extended) | EXQ-010 PASS — precision separation robust across extended seed set |
+| MECH-056 | provisional | **provisional** (extended) | EXQ-011 PASS — residue placement robust across extended seed set |
+| MECH-061 | active | **active** (extended) | EXQ-012 PASS — commitment boundary robust across extended seed set |
+| MECH-060 | provisional | **provisional** (extended) | EXQ-013 PASS — write-locus separation robust across extended seed set |
+| MECH-067 | provisional | **provisional** (extended) | EXQ-013 PASS — permission matrix robust across extended seed set (co-tested with MECH-060) |
 
 ---
 
 ## Pending Genuine Experimentation
 
-*No experiments currently pending. Queue is empty.*
+*All queued experiments complete. Runner queue exhausted after EXQ-013 (2026-03-01T00:16Z).*
+
+EXQ-008 through EXQ-013 ran as part of the same runner session (PID 19614, 13-item queue) on 2026-02-28 to 2026-03-01. Next genuine experiments will be defined during Step 2.0 V2 redesign and dispatched to ree-v2 once the implementation spec is complete.
 
 ---
 

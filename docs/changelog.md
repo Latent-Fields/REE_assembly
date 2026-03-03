@@ -7,6 +7,86 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-03-02: Governance Cycle — Full Experiment Ingestion and Repo Design Improvements
+
+### Overview
+
+Full governance catch-up covering two areas: (1) ingestion of EXQ-006 through EXQ-013 into
+`GOVERNANCE_STATE.md`, which had not been updated since 2026-02-27 despite 8 additional
+genuine experiments completing; and (2) a set of documentation design improvements to
+navigation, structure, and information architecture.
+
+### Experiment Ingestion (EXQ-006 through EXQ-013)
+
+Eight genuine experiments completed between 2026-02-28 and 2026-03-01 were unregistered
+in `GOVERNANCE_STATE.md`. All have now been ingested:
+
+| EXQ | Claim(s) | Result | Notes |
+|-----|----------|--------|-------|
+| EXQ-006 | MECH-058 | FAIL | E1/E2 Associative vs Transition (MultiRoomGrid); substrate limit SD-001 confirmed in 2nd environment |
+| EXQ-007 | MECH-057 | FAIL | Multi-Step Control Completion Gating; substrate debt still blocks clean isolation |
+| EXQ-008 | MECH-063 | PASS | E3 Candidate Count Ablation; first genuine evidence for MECH-063 |
+| EXQ-009 | MECH-062 | PASS | Residue Routing Weight Sensitivity; genuine confirmation of stable claim |
+| EXQ-010 | MECH-059 | PASS | Control Plane Precision Separation (extended seeds); confidence accumulation |
+| EXQ-011 | MECH-056 | PASS | Residue Trajectory Placement (extended seeds); confidence accumulation |
+| EXQ-012 | MECH-061 | PASS | Commitment Boundary Token Reclassification (extended seeds); confidence accumulation |
+| EXQ-013 | MECH-060, MECH-067 | PASS | Write-Locus Contamination (extended seeds); confidence accumulation |
+
+Claims now at 4 genuine runs: MECH-056, MECH-057, MECH-058, MECH-059, MECH-060, MECH-061, MECH-067.
+Claims with first genuine runs: MECH-062 (2 runs, PASS), MECH-063 (2 runs, PASS).
+
+No status changes required in `claims.yaml` — MECH-062 was already `stable` and MECH-063
+already `provisional` from prior adjudication. EXQ-008/009 provide first genuine
+experimental confirmation of those adjudicated statuses.
+
+### What Changed (Experiment Ingestion)
+
+- Updated `evidence/GOVERNANCE_STATE.md`:
+  - Added EXQ-006 through EXQ-013 to completed experiments table
+  - Fixed column order for EXQ-005 row (Experiment and Result were swapped)
+  - Updated genuine run counts for MECH-056 through MECH-063 and MECH-067
+  - Extended "Claims with Reliable Status Changes" to cover all new EXQs
+  - Updated "Pending Genuine Experimentation" (queue exhausted after EXQ-013)
+  - Added "Last updated: 2026-03-02" timestamp
+
+### Governance State Audit
+
+Performed as part of this cycle:
+
+- **Convergence packets**: all 10 inbox packets (2026-02-22 to 2026-02-25) confirmed
+  receipted. No unprocessed intake.
+- **Thoughts**: 51/51 processed as of 2026-02-25 sweep; no new unprocessed files.
+- **Conflicts**: all 4 documented conflicts resolved; no new conflicts detected.
+- **V3 literature**: 25 entries across 3 programs (v3_hippocampal_rollout: 11,
+  v3_prefrontal_control: 7, v3_jepa_mapping_limits: 7) confirmed complete and indexed.
+- **Pending governance decisions**: MECH-040 and MECH-046 remain `pending_user` — awaiting
+  genuine run evidence before demotion/promotion decision.
+- **Roadmap step 2.0**: remains in progress; V2 implementation spec not yet produced.
+
+### Repo Design Improvements
+
+Applied a set of information architecture improvements identified via design critique:
+
+- Updated `README.md`:
+  - Surfaced Explorer link (`docs/claims/explorer.html`) to second paragraph with
+    description of Triple View and Governance modes (previously buried at end of file)
+  - Added `docs/notes/` to Working Structure section with a definition distinguishing it
+    from `docs/thoughts/` and `docs/architecture/`
+  - Added `YYYY-MM-DD_` filename convention note for `docs/thoughts/`
+  - Removed redundant `## Explorer And Triple View` section (content moved to intro)
+- Archived `docs/FINAL_OUTPUT.md`:
+  - Added archive notice pointing to canonical copy at `docs/processed/FINAL_OUTPUT.md`
+  - Created `docs/processed/FINAL_OUTPUT.md` as canonical going-forward home
+  - Original preserved in place per no-deletion policy
+- Fixed filename `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`
+  → copied to `docs/thoughts/2026-02-17_necessary_separations_based_on_considering-prompt_injection.md`
+  with redirect header; original preserved
+- Created `docs/claims/active_claims_summary.yaml` — lightweight summary of 104
+  active/provisional/stable claims (of 155 total) for human-readable reference without
+  requiring tooling to parse `claims.yaml`
+
+---
+
 ## 2026-02-25: Tightened Decoupling Wording (JEPA External, JEPA-Like In REE)
 
 ### Overview

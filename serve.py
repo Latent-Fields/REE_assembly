@@ -34,10 +34,10 @@ from urllib.parse import urlparse
 # ── Paths ────────────────────────────────────────────────────────────────────
 
 SERVE_DIR = Path(__file__).resolve().parent
-RUNNER_SCRIPT = SERVE_DIR.parent / "ree-v1-minimal" / "experiment_runner.py"
+RUNNER_SCRIPT = SERVE_DIR.parent / "ree-v2" / "experiment_runner.py"
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
-RUNNER_PID_FILE = SERVE_DIR.parent / "ree-v1-minimal" / "runner.pid"
+RUNNER_PID_FILE = SERVE_DIR.parent / "ree-v2" / "runner.pid"
 
 DEFAULT_PORT = 8000
 
@@ -198,7 +198,7 @@ def main():
     signal.signal(signal.SIGINT, shutdown)
     signal.signal(signal.SIGTERM, shutdown)
 
-    url = f"http://localhost:{args.port}/docs/claims/explorer.html"
+    url = f"http://localhost:{args.port}/explorer.html"
     print(f"[serve] REE Explorer → {url}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
     print(f"[serve] Runner script: {RUNNER_SCRIPT}", flush=True)

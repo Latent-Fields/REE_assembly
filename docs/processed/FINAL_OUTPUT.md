@@ -1,17 +1,13 @@
-# REE Documentation Refactoring — Final Output (ARCHIVED)
+# REE Documentation Refactoring — Final Output (Archived)
 
-> **Archive notice (2026-03-02):** This file has been relocated to
-> [`docs/processed/FINAL_OUTPUT.md`](processed/FINAL_OUTPUT.md), which is the
-> canonical copy going forward. The content below is preserved in place to
-> honour the repo's no-deletion policy and to keep existing cross-references
-> working. Do not edit this copy; edits should go to the processed/ version.
+> **Moved here 2026-03-02.** Original location: `docs/FINAL_OUTPUT.md` (now contains an archive redirect).
+> This is the canonical copy of IMPL-007 for historical reference.
 
----
 
-**Claim Type:** implementation_note
-**Scope:** Legacy refactoring summary (historical)
-**Depends On:** None
-**Status:** legacy
+**Claim Type:** implementation_note  
+**Scope:** Legacy refactoring summary (historical)  
+**Depends On:** None  
+**Status:** legacy  
 **Claim ID:** IMPL-007
 <a id="impl-007"></a>
 

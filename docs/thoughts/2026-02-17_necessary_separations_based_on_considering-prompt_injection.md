@@ -1,8 +1,3 @@
-> **Filename corrected 2026-03-02:** This file was renamed to
-> `2026-02-17_necessary_separations_based_on_considering-prompt_injection.md`
-> to conform to the `YYYY-MM-DD_` convention. Content is preserved there.
-> This copy is retained for history; do not edit here.
-
 Status: processed
 
 Processed in:

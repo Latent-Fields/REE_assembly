@@ -29,7 +29,7 @@
     }
 
     header {
-      padding: 28px 24px 12px 24px;
+      padding: 12px 24px 0 24px;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.5));
       backdrop-filter: blur(6px);
@@ -38,16 +38,95 @@
       z-index: 5;
     }
 
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
     h1 {
-      margin: 0 0 6px 0;
+      margin: 0;
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
       letter-spacing: 0.4px;
-      font-size: 28px;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .header-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header-info > summary {
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--muted);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .header-info > summary::-webkit-details-marker { display: none; }
+
+    .header-info > summary::after {
+      content: '▸';
+      font-size: 10px;
+      color: var(--muted);
+      transition: transform 0.15s;
+    }
+
+    .header-info[open] > summary::after {
+      transform: rotate(90deg);
+    }
+
+    .header-info-body {
+      padding: 6px 0 4px 0;
     }
 
     .subtitle {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+    }
+
+    /* ── View nav bar ─────────────────────────────────────────────────────── */
+
+    .view-nav {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+      padding: 6px 0 0 0;
+      border-top: 1px solid var(--border);
+      margin: 0 -24px;
+      padding: 0 24px;
+      background: rgba(255,255,255,0.4);
+    }
+
+    .view-btn {
+      border: none;
+      border-bottom: 3px solid transparent;
+      background: transparent;
+      padding: 8px 14px 6px 14px;
+      border-radius: 0;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.1s, border-color 0.1s;
+    }
+
+    .view-btn:hover {
+      color: var(--ink);
+      background: rgba(0,0,0,0.03);
+    }
+
+    .view-btn.primary {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: transparent;
     }
 
     .stats {
@@ -1852,14 +1931,29 @@
 </head>
 <body>
   <header>
-    <h1>REE Claims Explorer</h1>
-    <div class="subtitle">Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</div>
-    <div class="subtitle" style="margin-top:6px;">Auto-updates require a local server (not <code>file://</code>). From repo root:<br>
-      &nbsp;&nbsp;Option 1: <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; python3 -m http.server</code><br>
-      &nbsp;&nbsp;Option 2 (prevent sleep): <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code>
+    <div class="header-top">
+      <h1>REE Claims Explorer</h1>
+      <details class="header-info">
+        <summary>Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</summary>
+        <div class="header-info-body">
+          <div class="subtitle">Auto-updates require a local server (not <code>file://</code>). From repo root:<br>
+            &nbsp;&nbsp;Option 1: <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; python3 -m http.server</code><br>
+            &nbsp;&nbsp;Option 2 (prevent sleep): <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code>
+          </div>
+          <div class="subtitle" id="refreshStatus" style="margin-top:4px;">Last refreshed: --</div>
+        </div>
+      </details>
     </div>
-    <div class="subtitle" id="refreshStatus" style="margin-top:6px;">Last refreshed: --</div>
-    <div id="stats" class="stats"></div>
+    <nav class="view-nav">
+      <button id="listViewBtn" class="view-btn primary">List</button>
+      <button id="graphViewBtn" class="view-btn">Graph</button>
+      <button id="docsViewBtn" class="view-btn">Docs</button>
+      <button id="mapViewBtn" class="view-btn">Map</button>
+      <button id="tripleViewBtn" class="view-btn">Triple View</button>
+      <button id="governanceViewBtn" class="view-btn">Governance</button>
+      <button id="experimentsViewBtn" class="view-btn">Experiments</button>
+    </nav>
+    <div id="stats" class="stats" style="padding: 8px 0 6px 0;"></div>
     <div id="designStateBar" class="design-state-bar"></div>
   </header>
 
@@ -1868,8 +1962,8 @@
 
     <section class="controls">
       <div>
-        <label for="search">Search</label>
-        <input id="search" type="text" placeholder="ID, subject, type..." />
+        <label for="search">Search ID / subject / type</label>
+        <input id="search" type="text" placeholder="e.g. MECH-059, ethics.persistence…" />
       </div>
       <div>
         <label for="typeFilter">Type</label>
@@ -1884,32 +1978,12 @@
         <input id="subjectFilter" type="text" list="subjectList" placeholder="ethics.persistence" />
         <datalist id="subjectList"></datalist>
       </div>
-      <div>
-        <label for="viewToggle">View</label>
-        <div class="buttons">
-          <button id="listViewBtn" class="primary">List</button>
-          <button id="graphViewBtn">Graph</button>
-          <button id="docsViewBtn">Docs</button>
-          <button id="mapViewBtn">Map</button>
-          <button id="tripleViewBtn">Triple View</button>
-          <button id="governanceViewBtn">Governance</button>
-          <button id="experimentsViewBtn">Experiments</button>
-        </div>
-      </div>
-      <div>
-        <label for="includeDeps">Graph Options</label>
-        <div class="buttons">
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;">
-            <input id="includeDeps" type="checkbox" checked />
-            Include dependencies
-          </label>
-        </div>
-      </div>
-      <div>
-        <label>Actions</label>
-        <div class="buttons">
-          <button id="clearFilters" class="ghost">Clear Filters</button>
-        </div>
+      <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:6px;">
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
+          <input id="includeDeps" type="checkbox" checked style="width:auto;" />
+          Include graph deps
+        </label>
+        <button id="clearFilters" class="primary" style="font-size:12px;padding:6px 10px;">✕ Clear Filters</button>
       </div>
     </section>
 
@@ -2131,8 +2205,8 @@
                   <div class="meta">Component atlas (stable interfaces).</div>
                 </div>
                 <div class="triple-links">
-                  <a href="../architecture/architecture_static.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="../architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
+                  <a href="docs/architecture/architecture_static.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="docs/architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2153,8 +2227,8 @@
                   <div class="meta">Stream/signal routing view.</div>
                 </div>
                 <div class="triple-links">
-                  <a href="../architecture/architecture_typed_dataflow.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="../architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
+                  <a href="docs/architecture/architecture_typed_dataflow.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="docs/architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2175,8 +2249,8 @@
                   <div class="meta">Single-tick temporal sequence trace.</div>
                 </div>
                 <div class="triple-links">
-                  <a href="../architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="../architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
+                  <a href="docs/architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
+                  <a href="docs/architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2265,14 +2339,14 @@
       2) Build a per-diagram view-model from current-epoch claims only (respecting active filters).
       3) Attach node/edge annotation metadata as __anno and render subtle SVG cues + inspector links.
     */
-    const CLAIMS_URL = './claims.yaml';
-    const CONFLICT_INDEX_URL = '../conflicts/README.md';
-    const README_URL = '../README.md';
-    const GOVERNANCE_AGENDA_URL = '../../evidence/planning/governance_agenda.v1.json';
-    const GOVERNANCE_BACKLOG_URL = '../../evidence/planning/evidence_backlog.v1.json';
-    const GOVERNANCE_PROPOSALS_URL = '../../evidence/planning/experiment_proposals.v1.json';
-    const RUNNER_STATUS_URL = '../../evidence/experiments/runner_status.json';
-    const VERSION_MANIFEST_URL = '../architecture/version_manifest.json';
+    const CLAIMS_URL = 'docs/claims/claims.yaml';
+    const CONFLICT_INDEX_URL = 'docs/conflicts/README.md';
+    const README_URL = 'docs/README.md';
+    const GOVERNANCE_AGENDA_URL = 'evidence/planning/governance_agenda.v1.json';
+    const GOVERNANCE_BACKLOG_URL = 'evidence/planning/evidence_backlog.v1.json';
+    const GOVERNANCE_PROPOSALS_URL = 'evidence/planning/experiment_proposals.v1.json';
+    const RUNNER_STATUS_URL = 'evidence/experiments/runner_status.json';
+    const VERSION_MANIFEST_URL = 'docs/architecture/version_manifest.json';
     const REFRESH_MS = 60000;
     const EXP_REFRESH_MS = 10000;
 
@@ -2387,92 +2461,92 @@ END CONFLICT RESOLUTION`;
       {
         label: 'Architecture',
         docs: [
-          { title: 'Overview', path: '../architecture/overview.md' },
-          { title: 'E1', path: '../architecture/e1.md' },
-          { title: 'E2', path: '../architecture/e2.md' },
-          { title: 'E3', path: '../architecture/e3.md' },
-          { title: 'L-space', path: '../architecture/l_space.md' },
-          { title: 'Control Plane', path: '../architecture/control_plane.md' },
-          { title: 'Control Plane Signal Map', path: '../architecture/control_plane_signal_map.md' },
-          { title: 'Hook Surface Contract', path: '../architecture/hook_surface_contract.md' },
-          { title: 'Default Mode', path: '../architecture/default_mode.md' },
-          { title: 'Hippocampal Systems', path: '../architecture/hippocampal_systems.md' },
-          { title: 'Hippocampal Braid (legacy)', path: '../architecture/hippocampal_braid.md' },
-          { title: 'Papez Circuit', path: '../architecture/papez_circuit.md' },
-          { title: 'Arcuate Fasciculus', path: '../architecture/arcuate_fasciculus.md' },
-          { title: 'Developmental Curriculum', path: '../architecture/developmental_curriculum.md' },
-          { title: 'Residue Geometry', path: '../architecture/residue_geometry.md' },
-          { title: 'Sensory Stream Tags', path: '../architecture/sensory_stream_tags.md' },
-          { title: 'Temporal Dynamics', path: '../architecture/temporal_dynamics.md' },
-          { title: 'Mode Manager', path: '../architecture/mode_manager.md' },
-          { title: 'Modes of Cognition', path: '../architecture/modes_of_cognition.md' },
-          { title: 'Agency Responsibility Flow', path: '../architecture/agency_responsibility_flow.md' },
-          { title: 'Trajectory Selection', path: '../architecture/trajectory_selection.md' },
-          { title: 'Entities and Binding', path: '../architecture/entities_and_binding.md' },
-          { title: 'Precision Control', path: '../architecture/precision_control.md' },
-          { title: 'Precision Scoping', path: '../architecture/precision_scoping.md' },
-          { title: 'Path Authority and Interrupts', path: '../architecture/path_authority_and_interrupts.md' },
-          { title: 'Astrocyte Regulatory Stack', path: '../architecture/astrocyte_regulatory_stack.md' },
-          { title: 'Serotonin', path: '../architecture/serotonin.md' },
-          { title: 'Language (overview)', path: '../architecture/language.md' },
-          { title: 'Sleep (overview)', path: '../architecture/sleep.md' },
-          { title: 'Social', path: '../architecture/social.md' },
-          { title: 'Why Attention Must Be Fragmented', path: '../architecture/why_attention_must_be_fragmented.md' },
-          { title: 'JEPA E1/E2 Integration Contract', path: '../architecture/jepa_e1e2_integration_contract.md' },
-          { title: 'JEPA-REE Hybrid Diagram Spec', path: '../architecture/jepa_ree_hybrid_diagram_spec.md' },
-          { title: 'REE-v2 Spec', path: '../architecture/ree_v2_spec.md' },
-          { title: 'REE-v2 Repo Bootstrap Spec', path: '../architecture/ree_v2_repo_bootstrap_spec.md' },
-          { title: 'Architecture Triple-View Guide', path: '../architecture/diagram_views.md' },
-          { title: 'Architecture Stream Catalog', path: '../architecture/streams.md' },
-          { title: 'Architecture Routing Table', path: '../architecture/stream_routing.v1.yaml' },
-          { title: 'Architecture Static Diagram Source', path: '../architecture/architecture_static.mmd' },
-          { title: 'Architecture Typed Dataflow Source', path: '../architecture/architecture_typed_dataflow.mmd' },
-          { title: 'Architecture Episode Sequence Source', path: '../architecture/episode_sequence.mmd' },
+          { title: 'Overview', path: 'docs/architecture/overview.md' },
+          { title: 'E1', path: 'docs/architecture/e1.md' },
+          { title: 'E2', path: 'docs/architecture/e2.md' },
+          { title: 'E3', path: 'docs/architecture/e3.md' },
+          { title: 'L-space', path: 'docs/architecture/l_space.md' },
+          { title: 'Control Plane', path: 'docs/architecture/control_plane.md' },
+          { title: 'Control Plane Signal Map', path: 'docs/architecture/control_plane_signal_map.md' },
+          { title: 'Hook Surface Contract', path: 'docs/architecture/hook_surface_contract.md' },
+          { title: 'Default Mode', path: 'docs/architecture/default_mode.md' },
+          { title: 'Hippocampal Systems', path: 'docs/architecture/hippocampal_systems.md' },
+          { title: 'Hippocampal Braid (legacy)', path: 'docs/architecture/hippocampal_braid.md' },
+          { title: 'Papez Circuit', path: 'docs/architecture/papez_circuit.md' },
+          { title: 'Arcuate Fasciculus', path: 'docs/architecture/arcuate_fasciculus.md' },
+          { title: 'Developmental Curriculum', path: 'docs/architecture/developmental_curriculum.md' },
+          { title: 'Residue Geometry', path: 'docs/architecture/residue_geometry.md' },
+          { title: 'Sensory Stream Tags', path: 'docs/architecture/sensory_stream_tags.md' },
+          { title: 'Temporal Dynamics', path: 'docs/architecture/temporal_dynamics.md' },
+          { title: 'Mode Manager', path: 'docs/architecture/mode_manager.md' },
+          { title: 'Modes of Cognition', path: 'docs/architecture/modes_of_cognition.md' },
+          { title: 'Agency Responsibility Flow', path: 'docs/architecture/agency_responsibility_flow.md' },
+          { title: 'Trajectory Selection', path: 'docs/architecture/trajectory_selection.md' },
+          { title: 'Entities and Binding', path: 'docs/architecture/entities_and_binding.md' },
+          { title: 'Precision Control', path: 'docs/architecture/precision_control.md' },
+          { title: 'Precision Scoping', path: 'docs/architecture/precision_scoping.md' },
+          { title: 'Path Authority and Interrupts', path: 'docs/architecture/path_authority_and_interrupts.md' },
+          { title: 'Astrocyte Regulatory Stack', path: 'docs/architecture/astrocyte_regulatory_stack.md' },
+          { title: 'Serotonin', path: 'docs/architecture/serotonin.md' },
+          { title: 'Language (overview)', path: 'docs/architecture/language.md' },
+          { title: 'Sleep (overview)', path: 'docs/architecture/sleep.md' },
+          { title: 'Social', path: 'docs/architecture/social.md' },
+          { title: 'Why Attention Must Be Fragmented', path: 'docs/architecture/why_attention_must_be_fragmented.md' },
+          { title: 'JEPA E1/E2 Integration Contract', path: 'docs/architecture/jepa_e1e2_integration_contract.md' },
+          { title: 'JEPA-REE Hybrid Diagram Spec', path: 'docs/architecture/jepa_ree_hybrid_diagram_spec.md' },
+          { title: 'REE-v2 Spec', path: 'docs/architecture/ree_v2_spec.md' },
+          { title: 'REE-v2 Repo Bootstrap Spec', path: 'docs/architecture/ree_v2_repo_bootstrap_spec.md' },
+          { title: 'Architecture Triple-View Guide', path: 'docs/architecture/diagram_views.md' },
+          { title: 'Architecture Stream Catalog', path: 'docs/architecture/streams.md' },
+          { title: 'Architecture Routing Table', path: 'docs/architecture/stream_routing.v1.yaml' },
+          { title: 'Architecture Static Diagram Source', path: 'docs/architecture/architecture_static.mmd' },
+          { title: 'Architecture Typed Dataflow Source', path: 'docs/architecture/architecture_typed_dataflow.mmd' },
+          { title: 'Architecture Episode Sequence Source', path: 'docs/architecture/episode_sequence.mmd' },
         ],
       },
       {
         label: 'Architecture / Language',
         docs: [
-          { title: 'Emergence and Bootstrapping', path: '../architecture/language/emergence_and_bootstrapping.md' },
-          { title: 'Language and Learning', path: '../architecture/language/language_and_learning.md' },
-          { title: 'Language and Institutions', path: '../architecture/language/language_and_institutions.md' },
-          { title: 'Language Failure Modes', path: '../architecture/language/language_failure_modes.md' },
-          { title: 'Minimal Signalling Channel', path: '../architecture/language/minimal_signalling_channel.md' },
-          { title: 'Trust and Deception', path: '../architecture/language/trust_and_deception.md' },
+          { title: 'Emergence and Bootstrapping', path: 'docs/architecture/language/emergence_and_bootstrapping.md' },
+          { title: 'Language and Learning', path: 'docs/architecture/language/language_and_learning.md' },
+          { title: 'Language and Institutions', path: 'docs/architecture/language/language_and_institutions.md' },
+          { title: 'Language Failure Modes', path: 'docs/architecture/language/language_failure_modes.md' },
+          { title: 'Minimal Signalling Channel', path: 'docs/architecture/language/minimal_signalling_channel.md' },
+          { title: 'Trust and Deception', path: 'docs/architecture/language/trust_and_deception.md' },
         ],
       },
       {
         label: 'Architecture / Sleep',
         docs: [
-          { title: 'Precision Recalibration', path: '../architecture/sleep/precision_recalibration.md' },
-          { title: 'Reality Consolidation', path: '../architecture/sleep/reality_consolidation.md' },
-          { title: 'Residue Integration', path: '../architecture/sleep/residue_integration.md' },
+          { title: 'Precision Recalibration', path: 'docs/architecture/sleep/precision_recalibration.md' },
+          { title: 'Reality Consolidation', path: 'docs/architecture/sleep/reality_consolidation.md' },
+          { title: 'Residue Integration', path: 'docs/architecture/sleep/residue_integration.md' },
         ],
       },
       {
         label: 'Core Docs',
         docs: [
-          { title: 'Invariants', path: '../invariants.md' },
-          { title: 'Glossary', path: '../glossary.md' },
-          { title: 'REE Minimum Spec', path: '../REE_MIN_SPEC.md' },
-          { title: 'REE Overview', path: '../REE_overview.md' },
-          { title: 'REE Failure Modes', path: '../REE_failure_modes.md' },
+          { title: 'Invariants', path: 'docs/invariants.md' },
+          { title: 'Glossary', path: 'docs/glossary.md' },
+          { title: 'REE Minimum Spec', path: 'docs/REE_MIN_SPEC.md' },
+          { title: 'REE Overview', path: 'docs/REE_overview.md' },
+          { title: 'REE Failure Modes', path: 'docs/REE_failure_modes.md' },
         ],
       },
       {
         label: 'Governance / Planning',
         docs: [
-          { title: 'Governance Agenda', path: '../../evidence/planning/GOVERNANCE_AGENDA.md' },
-          { title: 'Architecture Gap Register', path: '../../evidence/planning/ARCHITECTURE_GAP_REGISTER.md' },
-          { title: 'Connectome Literature Pull', path: '../../evidence/planning/CONNECTOME_LITERATURE_PULL.md' },
-          { title: 'Planning README', path: '../../evidence/planning/README.md' },
-          { title: 'Task Inbox', path: '../../evidence/planning/task_inbox.md' },
-          { title: 'Manual Carryover Items', path: '../../evidence/planning/manual_carryover_items.v1.json' },
-          { title: 'Planning Criteria', path: '../../evidence/planning/planning_criteria.v1.yaml' },
-          { title: 'Structure Review (Active)', path: '../../evidence/planning/structure_review/latest/ACTIVE_INDEX.md' },
-          { title: 'Structure Review (Archive)', path: '../../evidence/planning/structure_review/latest/ARCHIVE_INDEX.md' },
-          { title: 'Connectome Pull State', path: '../../evidence/planning/connectome_pull_state.v1.json' },
-          { title: 'Experiment Proposals', path: '../../evidence/planning/experiment_proposals.v1.json' },
+          { title: 'Governance Agenda', path: 'evidence/planning/GOVERNANCE_AGENDA.md' },
+          { title: 'Architecture Gap Register', path: 'evidence/planning/ARCHITECTURE_GAP_REGISTER.md' },
+          { title: 'Connectome Literature Pull', path: 'evidence/planning/CONNECTOME_LITERATURE_PULL.md' },
+          { title: 'Planning README', path: 'evidence/planning/README.md' },
+          { title: 'Task Inbox', path: 'evidence/planning/task_inbox.md' },
+          { title: 'Manual Carryover Items', path: 'evidence/planning/manual_carryover_items.v1.json' },
+          { title: 'Planning Criteria', path: 'evidence/planning/planning_criteria.v1.yaml' },
+          { title: 'Structure Review (Active)', path: 'evidence/planning/structure_review/latest/ACTIVE_INDEX.md' },
+          { title: 'Structure Review (Archive)', path: 'evidence/planning/structure_review/latest/ARCHIVE_INDEX.md' },
+          { title: 'Connectome Pull State', path: 'evidence/planning/connectome_pull_state.v1.json' },
+          { title: 'Experiment Proposals', path: 'evidence/planning/experiment_proposals.v1.json' },
         ],
       },
     ];
@@ -2603,24 +2677,24 @@ END CONFLICT RESOLUTION`;
       {
         id: 'static',
         label: 'Static Structure',
-        svgPath: '../architecture/architecture_static.svg',
-        mmdPath: '../architecture/architecture_static.mmd',
+        svgPath: 'docs/architecture/architecture_static.svg',
+        mmdPath: 'docs/architecture/architecture_static.mmd',
         bodyId: 'tripleStaticBody',
         zoomLabelId: 'tripleStaticZoomLabel',
       },
       {
         id: 'typed',
         label: 'Typed Dataflow',
-        svgPath: '../architecture/architecture_typed_dataflow.svg',
-        mmdPath: '../architecture/architecture_typed_dataflow.mmd',
+        svgPath: 'docs/architecture/architecture_typed_dataflow.svg',
+        mmdPath: 'docs/architecture/architecture_typed_dataflow.mmd',
         bodyId: 'tripleTypedBody',
         zoomLabelId: 'tripleTypedZoomLabel',
       },
       {
         id: 'episode',
         label: 'Episode Trace',
-        svgPath: '../architecture/episode_sequence.svg',
-        mmdPath: '../architecture/episode_sequence.mmd',
+        svgPath: 'docs/architecture/episode_sequence.svg',
+        mmdPath: 'docs/architecture/episode_sequence.mmd',
         bodyId: 'tripleEpisodeBody',
         zoomLabelId: 'tripleEpisodeZoomLabel',
       },
@@ -3578,10 +3652,10 @@ END CONFLICT RESOLUTION`;
       let path = stripRepoAbsolutePrefix(location);
       if (!path) return '';
       if (path.match(/^https?:\/\//)) return path;
-      if (path.startsWith('./') || path.startsWith('../') || path.startsWith('#')) return path;
+      if (path.startsWith('./') || path.startsWith('docs/') || path.startsWith('#')) return path;
       if (path.startsWith('/')) path = path.slice(1);
-      if (path.startsWith('docs/')) return '../' + path.slice(5);
-      return '../../' + path;
+      if (path.startsWith('docs/')) return 'docs/' + path.slice(5);
+      return '' + path;
     }
 
     function checkpointLabel(key) {
