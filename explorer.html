@@ -4487,7 +4487,7 @@ END CONFLICT RESOLUTION`;
       const highBacklogVisible = filterRowsByCurrentEpoch(highBacklogRows, epochMap, epochOnly);
 
       const isPendingDecision = (item) => {
-        const token = String((item && item.decision_status) || '').toLowerCase().trim();
+        const token = stripTicks(String((item && item.decision_status) || '')).toLowerCase().trim();
         return !token || !['applied', 'approved', 'done'].includes(token);
       };
       const claimDecisionRows = decisionItems.filter(isPendingDecision);

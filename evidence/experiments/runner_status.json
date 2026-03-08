@@ -2,50 +2,17 @@
   "schema_version": "v1",
   "runner_pid": null,
   "runner_started_at": "2026-03-07T12:45:10.945166+00:00",
-  "last_updated": "2026-03-07T13:25:05.428864+00:00",
+  "last_updated": "2026-03-08T07:03:32.573907+00:00",
   "idle": true,
   "current": null,
   "queue": [
-    {
-      "queue_id": "EXQ-016",
-      "backlog_id": "EVB-0043",
-      "claim_id": "MECH-060",
-      "title": "Write Locus Contamination \u2014 V2 Parity",
-      "description": "Parity check #3. Replicates V1 PASS result for MECH-060/MECH-067 on REE-v2 substrate. Tests whether contamination is properly attributed to write loci vs residual signal bleed. Three conditions: FULL, CONTAMINATED_DURABLE, CONTAMINATED_RESIDUE. CausalGridWorld's contamination footprint makes this directly testable.",
-      "estimated_minutes": 22.5,
-      "status": "pending",
-      "status_reason": "Script ported from V1 2026-03-01; CausalGridWorld substitution complete",
-      "ree_version": "v2"
-    },
-    {
-      "queue_id": "EXQ-017",
-      "backlog_id": "EVB-0041",
-      "claim_id": "MECH-061",
-      "title": "Commitment Boundary Validation \u2014 V2 Parity",
-      "description": "Parity check #4. Replicates V1 PASS result for MECH-061 on REE-v2 substrate. Tests whether the commit boundary correctly separates pre-commit simulation errors (E2 harm predictions) from post-commit realised errors (actual env harm), and whether keeping them separate is at least as good as blending them into a single signal.",
-      "estimated_minutes": 15.0,
-      "status": "pending",
-      "status_reason": "Script ported from V1 2026-03-01; CausalGridWorld substitution complete",
-      "ree_version": "v2"
-    },
-    {
-      "queue_id": "EXQ-018",
-      "backlog_id": "EVB-0045",
-      "claim_id": "SD-003-prereq",
-      "title": "CausalGridWorld Baseline \u2014 Step 2.3 Environment Validation",
-      "description": "Step 2.3 exit criterion validation. New V2 experiment (no V1 equivalent). Tests that CausalGridWorld produces structurally distinct agent_caused_hazard vs env_caused_hazard transitions, that the baseline REE agent creates a non-trivial contamination footprint, and that agent causal contribution exceeds the 10% threshold. PASS confirms SD-003 substrate is ready.",
-      "estimated_minutes": 1.9,
-      "status": "pending",
-      "status_reason": "Script written 2026-03-01; validates Step 2.3 prerequisites before SD-003 experiments",
-      "ree_version": "v2"
-    },
     {
       "queue_id": "EXQ-019",
       "backlog_id": "EVB-0046",
       "claim_id": "MECH-058",
       "title": "E1/E2 Terrain-Timescale Separation \u2014 V2 Redesign",
       "description": "Ground-up redesign for MECH-058 on REE-v2 substrate. Exploits CausalGridWorld's two natural timescales: slow contamination terrain (E1 domain) vs fast env drift every 5 steps (policy domain). Three conditions: SEPARATED (e1_lr=5e-5, policy_lr=1e-3), COLLAPSED_FAST (both 1e-3), COLLAPSED_SLOW (both 5e-5). New metrics: contamination_avoidance_rate and post_drift_harm_rate directly test whether matched timescale separation yields functional benefit. Addresses V1 failure root cause: V1 GridWorld gave both LRs identical convergence terrain.",
-      "estimated_minutes": 22.5,
+      "estimated_minutes": 0,
       "status": "pending",
       "status_reason": "Script written 2026-03-06; redesign from EXQ-002/EXQ-006 FAIL root-cause analysis",
       "ree_version": "v2"
@@ -56,9 +23,75 @@
       "claim_id": "MECH-057",
       "title": "Attribution Completion Gating \u2014 V2 Redesign",
       "description": "Ground-up redesign for MECH-057 on REE-v2 substrate. Uses CausalGridWorld's info['transition_type'] == 'agent_caused_hazard' as a concrete self-attribution completion signal. Three conditions gate the REINFORCE return signal differently: COMPLETION_GATED (G = -agent_caused_harm only), FREE_REPLAN (G = -total_harm), ATTRIBUTION_BLIND (G = -env_caused_harm only). Tests whether gating the policy update to completed self-attribution events reduces agent-caused harm vs both mixed and attribution-absent baselines. Addresses V1 failure root cause: V1 GridWorld had no 'action in progress' state for gating to exploit.",
-      "estimated_minutes": 22.5,
+      "estimated_minutes": 0,
       "status": "pending",
       "status_reason": "Script written 2026-03-06; redesign from EXQ-004/EXQ-007 FAIL root-cause analysis",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-021",
+      "backlog_id": "EVB-0017",
+      "claim_id": "ARC-018",
+      "title": "Rollout Viability Mapping",
+      "description": "Tests ARC-018: hippocampus.rollout_viability_mapping. Asserts that E1 world-model updating from prediction-reality mismatch builds an internal viability map of trajectory sequences. VIABILITY_MAPPED condition (E1 updates every step) vs VIABILITY_FIXED (E1 frozen; policy gradient still runs). Pass requires: MAPPED slope > FIXED + 0.05 AND MAPPED last-Q harm < FIXED * 0.95.",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0015/ARC-018",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-022",
+      "backlog_id": "EVB-0006",
+      "claim_id": "Q-007",
+      "title": "Valence-Regime Correlation",
+      "description": "Tests Q-007: emotion.universal_expression_channel_mapping. Asserts that internal valence (health) correlates with E3 precision modulation across resource regimes. RESOURCE_RICH (num_resources=10) vs RESOURCE_SPARSE (num_resources=1). Pass requires: RICH Pearson corr(health, precision) > 0.10 AND RICH mean_precision > SPARSE + 0.10.",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0016/Q-007",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-023",
+      "backlog_id": "EVB-0016",
+      "claim_id": "MECH-033",
+      "title": "Kernel Chaining Interface",
+      "description": "Tests MECH-033: hippocampus.kernel_chaining_interface. Asserts that E2 supplies short-horizon forward-prediction kernels and hippocampal systems chain these into explicit multi-step rollouts. WITH_CHAIN (generate_trajectories + E3 select) vs NO_CHAIN (random action; E1 still learns). Pass requires: WITH_CHAIN last-Q harm < NO_CHAIN * 0.90 AND WITH_CHAIN slope > NO_CHAIN slope + 0.05.",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0017/MECH-033",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-024",
+      "backlog_id": "EVB-0009",
+      "claim_id": "ARC-007",
+      "title": "Path Memory Ablation",
+      "description": "Tests ARC-007: hippocampus.path_memory. Asserts that access to prior trajectory information (contamination_view + footprint_density in observation) is load-bearing for contamination avoidance. PATH_MEMORY (full obs) vs PATH_ABLATED (path-memory slice zeroed). Pass requires: MEMORY agent_caused_harm < ABLATED * 0.95 AND MEMORY total_harm <= ABLATED * 1.05.",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0018/ARC-007",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-025",
+      "backlog_id": "EVB-0024",
+      "claim_id": "ARC-016",
+      "title": "Precision Regime Probe",
+      "description": "Tests ARC-016: cognitive_modes.control_plane_regimes. Asserts that distinct E3 precision regimes produce distinct behavioral signatures. HIGH_REGIME (precision_max=2.0, min=1.0) vs LOW_REGIME (precision_max=0.5, min=0.1). Pass requires: |HIGH-LOW| mean precision > 0.30 AND (HIGH commit_rate < LOW - 0.05 OR HIGH last-Q harm < LOW * 0.95).",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0021/ARC-016",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-026",
+      "backlog_id": "EVB-0025",
+      "claim_id": "MECH-025",
+      "title": "Action-Doing Mode Probe",
+      "description": "Tests MECH-025: cognitive_modes.action_doing_mode. Asserts that the system enters a distinct action-doing mode when executing intentions with causal consequences, measurable as an E3 precision lift on agent_caused_hazard steps vs baseline. HIGH_CAUSAL (num_hazards=8) vs LOW_CAUSAL (num_hazards=1). Pass requires: HIGH precision lift > LOW lift + 0.05 AND HIGH harm_reduction_slope > LOW + 0.05.",
+      "estimated_minutes": 0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-07; dispatched EXP-0022/MECH-025",
       "ree_version": "v2"
     }
   ],
@@ -234,10 +267,43 @@
       "claim_id": "MECH-056",
       "title": "Residue Trajectory Placement \u2014 V2 Parity",
       "description": "Parity check #2. Replicates V1 PASS result for MECH-056 on REE-v2 substrate. Tests whether residue accumulates at trajectory positions during rollout (trajectory-wide placement) vs only the final step (endpoint-only). Validates REE invariant that harm sites are precisely localised along the planned path.",
-      "result": "ERROR",
-      "result_summary": "[Errno 2] No such file or directory: '/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runner_status.tmp' -> '/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runner_status.json'",
-      "completed_at": "2026-03-07T12:54:56.650062+00:00",
-      "output_file": ""
+      "result": "PASS",
+      "result_summary": "V2 parity PASS \u2014 trajectory-wide vs endpoint-only on CausalGridWorld substrate",
+      "completed_at": "2026-03-01T22:36:57Z",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/residue_trajectory_placement/residue_trajectory_placement_20260301T223657.json"
+    },
+    {
+      "queue_id": "EXQ-016",
+      "backlog_id": "EVB-0043",
+      "claim_id": "MECH-060",
+      "title": "Write Locus Contamination \u2014 V2 Parity",
+      "description": "Parity check #3. Replicates V1 PASS result for MECH-060/MECH-067 on REE-v2 substrate. Tests whether contamination is properly attributed to write loci vs residual signal bleed. Three conditions: FULL, CONTAMINATED_DURABLE, CONTAMINATED_RESIDUE. CausalGridWorld's contamination footprint makes this directly testable.",
+      "result": "PASS",
+      "result_summary": "V2 parity PASS \u2014 write-locus contamination separation confirmed on CausalGridWorld",
+      "completed_at": "2026-03-02T00:12:56Z",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/write_locus_contamination/write_locus_contamination_20260302T001256.json"
+    },
+    {
+      "queue_id": "EXQ-017",
+      "backlog_id": "EVB-0041",
+      "claim_id": "MECH-061",
+      "title": "Commitment Boundary Validation \u2014 V2 Parity",
+      "description": "Parity check #4. Replicates V1 PASS result for MECH-061 on REE-v2 substrate. Tests whether the commit boundary correctly separates pre-commit simulation errors (E2 harm predictions) from post-commit realised errors (actual env harm), and whether keeping them separate is at least as good as blending them into a single signal.",
+      "result": "PASS",
+      "result_summary": "V2 parity PASS \u2014 commitment boundary validated on CausalGridWorld substrate",
+      "completed_at": "2026-03-02T01:12:07Z",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/commitment_boundary_validation/commitment_boundary_validation_20260302T011207.json"
+    },
+    {
+      "queue_id": "EXQ-018",
+      "backlog_id": "EVB-0045",
+      "claim_id": "SD-003-prereq",
+      "title": "CausalGridWorld Baseline \u2014 Step 2.3 Environment Validation",
+      "description": "Step 2.3 exit criterion validation. New V2 experiment (no V1 equivalent). Tests that CausalGridWorld produces structurally distinct agent_caused_hazard vs env_caused_hazard transitions, that the baseline REE agent creates a non-trivial contamination footprint, and that agent causal contribution exceeds the 10% threshold. PASS confirms SD-003 substrate is ready.",
+      "result": "PASS",
+      "result_summary": "SD-003 substrate verdict: PASS (4/4 criteria met) \u2014 CausalGridWorld ready",
+      "completed_at": "2026-03-02T01:18:45Z",
+      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/causal_grid_world_baseline/causal_grid_world_baseline_20260302T011845.json"
     }
   ]
 }
