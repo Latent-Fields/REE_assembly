@@ -1,6 +1,6 @@
 {
   "schema_version": "ree_v2_cutover_readiness/v2",
-  "generated_at_utc": "2026-02-18T18:46:47.948835Z",
+  "generated_at_utc": "2026-03-06T23:24:33.405282Z",
   "decision": "NO_CUTOVER",
   "routing_change_applied": false,
   "required_claims": [
@@ -13,50 +13,48 @@
     "ree_v2_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "a2387c3a969905ca82bb4fdbce2968b53de87190",
-        "generated_utc": "2026-02-17T22:53:39Z",
-        "week_of_utc": "2026-02-16"
+        "revision": "a5aa2724cb13270a965a80121c888b00f9c16e83",
+        "generated_utc": "2026-02-25T17:15:21Z",
+        "week_of_utc": "2026-02-23"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md",
-        "revision": "d7d8b2546dbc7986f50c179e7b627109abb6bedd",
-        "generated_utc": "2026-02-15T21:38:04Z",
-        "week_of_utc": "2026-02-09"
+        "revision": "e9a1d98566a027d6cff814d2ee915a9ebaa0aec7",
+        "generated_utc": "2026-02-22T20:55:30Z",
+        "week_of_utc": "2026-02-16"
       }
     ],
     "ree_v1_handoff_snapshots": [
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "ca273130d49bd39c94b537cce4059cd9a0db62f7",
-        "generated_utc": "2026-02-14T20:00:00Z",
-        "week_of_utc": "2026-02-09"
+        "revision": "a8ddcfd4d5af25212f35c28043851cb5d8e4754f",
+        "generated_utc": "2026-02-21T15:12:23Z",
+        "week_of_utc": "2026-02-16"
       },
       {
         "handoff_path": "/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md",
-        "revision": "4c16ed05f5967916cabfbc896c71b604cd42a92c",
-        "generated_utc": "2026-02-14T20:00:00Z",
-        "week_of_utc": "2026-02-09"
+        "revision": "9a7fac5385c6fcc75cbf5f02da233447f66a1e24",
+        "generated_utc": "2026-02-21T15:12:23Z",
+        "week_of_utc": "2026-02-16"
       }
     ],
     "ree_lab_handoff_snapshot": {
       "handoff_path": "/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md",
-      "revision": "bede0b35cd2968625be9e23711607cffe004b588",
-      "generated_utc": "2026-02-17T22:52:33.899619Z",
+      "revision": "8c994db1cee57db0a059a68a5d787a753a862d59",
+      "generated_utc": "2026-02-21T13:01:21.523395Z",
       "week_of_utc": "2026-02-09"
     },
     "latest_thursday_ingestion_reports": [
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260217T225349Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-17T22:53:45.429797Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260225T195113Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-25T19:51:10.874283Z",
         "targets": [
-          "ree-v2",
           "ree-experiments-lab",
-          "ree-v1-minimal"
+          "ree-openclaw"
         ],
         "repo_statuses": {
-          "ree-v2": "ok",
           "ree-experiments-lab": "ok",
-          "ree-v1-minimal": "ok"
+          "ree-openclaw": "ok"
         },
         "ingestion_step_statuses": [
           {
@@ -72,17 +70,15 @@
         ]
       },
       {
-        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260217T225327Z_handoff_sync_report.json",
-        "generated_at_utc": "2026-02-17T22:53:23.761857Z",
+        "file_path": "/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260225T185910Z_handoff_sync_report.json",
+        "generated_at_utc": "2026-02-25T18:59:08.448087Z",
         "targets": [
-          "ree-v2",
-          "ree-experiments-lab",
-          "ree-v1-minimal"
+          "ree-v1-minimal",
+          "ree-openclaw"
         ],
         "repo_statuses": {
-          "ree-v2": "ok",
-          "ree-experiments-lab": "ok",
-          "ree-v1-minimal": "ok"
+          "ree-v1-minimal": "ok",
+          "ree-openclaw": "ok"
         },
         "ingestion_step_statuses": [
           {
@@ -111,8 +107,8 @@
           "remote_export_import"
         ],
         "snapshots_checked": [
-          "a2387c3a9699",
-          "d7d8b2546dbc"
+          "a5aa2724cb13",
+          "e9a1d98566a0"
         ],
         "failures": []
       }
@@ -211,86 +207,49 @@
               ],
               "common_seeds": [
                 11,
-                29,
-                47
+                29
               ],
-              "metrics_passing": 1,
+              "metrics_passing": 0,
               "metric_outcomes": {
                 "ledger_edit_detected_count": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 2.857142857142857,
-                      "v1": 0.5,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 3.5,
-                      "v1": 1.0,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 3.5,
-                      "v1": 0.5,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "explanation_policy_divergence_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 2,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.05136393616342857,
-                      "v1": 0.05644672005295201,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.061096543865,
-                      "v1": 0.0599375463650096,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.0602944656775,
-                      "v1": 0.06232965415012026,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "domination_lock_in_events": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 1.0714285714285714,
-                      "v1": 0.5,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 4.0,
-                      "v1": 0.5,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 1.0,
-                      "v1": 0.5,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
@@ -304,9 +263,6 @@
                       "compared": false
                     },
                     "29": {
-                      "compared": false
-                    },
-                    "47": {
                       "compared": false
                     }
                   }
@@ -324,7 +280,11 @@
             "protocol_match_detail": {
               "v2_conditions": [
                 "trajectory_first_ablated",
-                "trajectory_first_enabled"
+                "trajectory_first_enabled",
+                "valence_off_or_neutral_mapping_adaptive",
+                "valence_off_or_neutral_mapping_frozen",
+                "valence_on_mapping_adaptive",
+                "valence_on_mapping_frozen"
               ],
               "v1_conditions": [
                 "trajectory_first_ablated",
@@ -343,8 +303,7 @@
               ],
               "v1_seeds": [
                 11,
-                29,
-                47
+                29
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -369,7 +328,7 @@
             "adjudication_checks": {
               "matched_protocol_evidence": false,
               "ree_v2_ci_gates_pass": true,
-              "ree_v2_metric_improvement_rule": true,
+              "ree_v2_metric_improvement_rule": false,
               "no_contract_drift_signatures": true,
               "no_unaddressed_lab_p0_falsification": true,
               "governance_note_with_rationale_and_rollback_trigger": false
@@ -381,143 +340,82 @@
               ],
               "common_seeds": [
                 11,
-                29,
-                47
+                29
               ],
-              "metrics_passing": 4,
+              "metrics_passing": 0,
               "metric_outcomes": {
                 "latent_prediction_error_mean": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 3,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.05896282341407692,
-                      "v1": 0.16890412606795166,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.0575196728315,
-                      "v1": 0.17451588770232826,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.052265957078000004,
-                      "v1": 0.1705859091157576,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "latent_prediction_error_p95": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 3,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.12229733098023075,
-                      "v1": 0.3000879000328516,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.127642518004,
-                      "v1": 0.2951901144191353,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.11999114748249999,
-                      "v1": 0.3138915209468386,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "latent_rollout_consistency_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 3,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.9942195292138846,
-                      "v1": 0.8060579713522409,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 1.0,
-                      "v1": 0.8291763890885284,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 1.0,
-                      "v1": 0.8271172888995262,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "e1_e2_timescale_separation_ratio": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 2,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 2.449688890913769,
-                      "v1": 1.7487304195719489,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 1.872470403319,
-                      "v1": 1.8428912173826544,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 1.8570125337924999,
-                      "v1": 1.8575702936900753,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "representation_drift_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.06846789365907692,
-                      "v1": 0.033635206340704785,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.1125,
-                      "v1": 0.03284183373412503,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.058333333333500006,
-                      "v1": 0.038613702657828514,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 }
               },
-              "passes_rule": true
+              "passes_rule": false
             },
             "lab_p0_falsification_lines": [],
             "governance_note_checks": {
@@ -548,8 +446,7 @@
               ],
               "v1_seeds": [
                 11,
-                29,
-                47
+                29
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -586,112 +483,63 @@
               ],
               "common_seeds": [
                 11,
-                29,
-                47
+                29
               ],
-              "metrics_passing": 1,
+              "metrics_passing": 0,
               "metric_outcomes": {
                 "latent_prediction_error_mean": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.165195659384,
-                      "v1": 0.14897349655809816,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.16437870712036362,
-                      "v1": 0.15591023229845624,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.159417220022,
-                      "v1": 0.14596679987780067,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "latent_uncertainty_calibration_error": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.10472390324316666,
-                      "v1": 0.10385181059468575,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.11962295776118183,
-                      "v1": 0.09980651254652953,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.12704231420649997,
-                      "v1": 0.11035386856085118,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "precision_input_completeness_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 3,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.9517789774918667,
-                      "v1": 0.9044571764251277,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.9507575757579091,
-                      "v1": 0.8784685583446998,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.95,
-                      "v1": 0.88694631925666,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "uncertainty_coverage_rate": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.7781627350142667,
-                      "v1": 0.7909941523478108,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.6969696969693636,
-                      "v1": 0.7958452439308761,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.708333333333,
-                      "v1": 0.7754694197692142,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 }
@@ -735,8 +583,7 @@
               ],
               "v1_seeds": [
                 11,
-                29,
-                47
+                29
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -773,112 +620,63 @@
               ],
               "common_seeds": [
                 11,
-                29,
-                47
+                29
               ],
-              "metrics_passing": 1,
+              "metrics_passing": 0,
               "metric_outcomes": {
                 "pre_commit_error_signal_to_noise": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 3,
-                  "passes_two_of_three_seed_rule": true,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
+                  "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 5.126099905832969,
-                      "v1": 1.8528726630447703,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 8.614533507897818,
-                      "v1": 1.7562294725481906,
-                      "improved": true
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 8.314245987618909,
-                      "v1": 1.8700028874885959,
-                      "improved": true
+                      "compared": false
                     }
                   }
                 },
                 "post_commit_error_attribution_gain": {
                   "direction": "higher",
-                  "compared_seed_count": 3,
-                  "improved_seed_count": 1,
+                  "compared_seed_count": 0,
+                  "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.30357711233525003,
-                      "v1": 0.2890355460209545,
-                      "improved": true
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.23570255611745453,
-                      "v1": 0.2867889056143319,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.22484239166800002,
-                      "v1": 0.27996737033635777,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "cross_channel_leakage_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.4039081286339375,
-                      "v1": 0.15618686602986032,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.4546430846220909,
-                      "v1": 0.16381519404583966,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.4569640979554091,
-                      "v1": 0.15470014145372074,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 },
                 "commitment_reversal_rate": {
                   "direction": "lower",
-                  "compared_seed_count": 3,
+                  "compared_seed_count": 0,
                   "improved_seed_count": 0,
                   "passes_two_of_three_seed_rule": false,
                   "per_seed": {
                     "11": {
-                      "compared": true,
-                      "v2": 0.23031731448371875,
-                      "v1": 0.12018840896879732,
-                      "improved": false
+                      "compared": false
                     },
                     "29": {
-                      "compared": true,
-                      "v2": 0.20909090909090908,
-                      "v1": 0.11494151502313366,
-                      "improved": false
-                    },
-                    "47": {
-                      "compared": true,
-                      "v2": 0.21363636363654548,
-                      "v1": 0.10448757892747257,
-                      "improved": false
+                      "compared": false
                     }
                   }
                 }
@@ -914,8 +712,7 @@
               ],
               "v1_seeds": [
                 11,
-                29,
-                47
+                29
               ],
               "v2_schema_versions": [
                 "experiment_pack/v1",
@@ -957,86 +754,49 @@
         ],
         "common_seeds": [
           11,
-          29,
-          47
+          29
         ],
-        "metrics_passing": 1,
+        "metrics_passing": 0,
         "metric_outcomes": {
           "ledger_edit_detected_count": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 2.857142857142857,
-                "v1": 0.5,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 3.5,
-                "v1": 1.0,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 3.5,
-                "v1": 0.5,
-                "improved": false
+                "compared": false
               }
             }
           },
           "explanation_policy_divergence_rate": {
             "direction": "lower",
-            "compared_seed_count": 3,
-            "improved_seed_count": 2,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.05136393616342857,
-                "v1": 0.05644672005295201,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.061096543865,
-                "v1": 0.0599375463650096,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.0602944656775,
-                "v1": 0.06232965415012026,
-                "improved": true
+                "compared": false
               }
             }
           },
           "domination_lock_in_events": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 1.0714285714285714,
-                "v1": 0.5,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 4.0,
-                "v1": 0.5,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 1.0,
-                "v1": 0.5,
-                "improved": false
+                "compared": false
               }
             }
           },
@@ -1050,9 +810,6 @@
                 "compared": false
               },
               "29": {
-                "compared": false
-              },
-              "47": {
                 "compared": false
               }
             }
@@ -1070,7 +827,11 @@
       "protocol_match_detail": {
         "v2_conditions": [
           "trajectory_first_ablated",
-          "trajectory_first_enabled"
+          "trajectory_first_enabled",
+          "valence_off_or_neutral_mapping_adaptive",
+          "valence_off_or_neutral_mapping_frozen",
+          "valence_on_mapping_adaptive",
+          "valence_on_mapping_frozen"
         ],
         "v1_conditions": [
           "trajectory_first_ablated",
@@ -1089,8 +850,7 @@
         ],
         "v1_seeds": [
           11,
-          29,
-          47
+          29
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1115,7 +875,7 @@
       "adjudication_checks": {
         "matched_protocol_evidence": false,
         "ree_v2_ci_gates_pass": true,
-        "ree_v2_metric_improvement_rule": true,
+        "ree_v2_metric_improvement_rule": false,
         "no_contract_drift_signatures": true,
         "no_unaddressed_lab_p0_falsification": true,
         "governance_note_with_rationale_and_rollback_trigger": false
@@ -1127,143 +887,82 @@
         ],
         "common_seeds": [
           11,
-          29,
-          47
+          29
         ],
-        "metrics_passing": 4,
+        "metrics_passing": 0,
         "metric_outcomes": {
           "latent_prediction_error_mean": {
             "direction": "lower",
-            "compared_seed_count": 3,
-            "improved_seed_count": 3,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.05896282341407692,
-                "v1": 0.16890412606795166,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.0575196728315,
-                "v1": 0.17451588770232826,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.052265957078000004,
-                "v1": 0.1705859091157576,
-                "improved": true
+                "compared": false
               }
             }
           },
           "latent_prediction_error_p95": {
             "direction": "lower",
-            "compared_seed_count": 3,
-            "improved_seed_count": 3,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.12229733098023075,
-                "v1": 0.3000879000328516,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.127642518004,
-                "v1": 0.2951901144191353,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.11999114748249999,
-                "v1": 0.3138915209468386,
-                "improved": true
+                "compared": false
               }
             }
           },
           "latent_rollout_consistency_rate": {
             "direction": "higher",
-            "compared_seed_count": 3,
-            "improved_seed_count": 3,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.9942195292138846,
-                "v1": 0.8060579713522409,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 1.0,
-                "v1": 0.8291763890885284,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 1.0,
-                "v1": 0.8271172888995262,
-                "improved": true
+                "compared": false
               }
             }
           },
           "e1_e2_timescale_separation_ratio": {
             "direction": "higher",
-            "compared_seed_count": 3,
-            "improved_seed_count": 2,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 2.449688890913769,
-                "v1": 1.7487304195719489,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 1.872470403319,
-                "v1": 1.8428912173826544,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 1.8570125337924999,
-                "v1": 1.8575702936900753,
-                "improved": false
+                "compared": false
               }
             }
           },
           "representation_drift_rate": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.06846789365907692,
-                "v1": 0.033635206340704785,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.1125,
-                "v1": 0.03284183373412503,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.058333333333500006,
-                "v1": 0.038613702657828514,
-                "improved": false
+                "compared": false
               }
             }
           }
         },
-        "passes_rule": true
+        "passes_rule": false
       },
       "lab_p0_falsification_lines": [],
       "governance_note_checks": {
@@ -1294,8 +993,7 @@
         ],
         "v1_seeds": [
           11,
-          29,
-          47
+          29
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1332,112 +1030,63 @@
         ],
         "common_seeds": [
           11,
-          29,
-          47
+          29
         ],
-        "metrics_passing": 1,
+        "metrics_passing": 0,
         "metric_outcomes": {
           "latent_prediction_error_mean": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.165195659384,
-                "v1": 0.14897349655809816,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.16437870712036362,
-                "v1": 0.15591023229845624,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.159417220022,
-                "v1": 0.14596679987780067,
-                "improved": false
+                "compared": false
               }
             }
           },
           "latent_uncertainty_calibration_error": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.10472390324316666,
-                "v1": 0.10385181059468575,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.11962295776118183,
-                "v1": 0.09980651254652953,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.12704231420649997,
-                "v1": 0.11035386856085118,
-                "improved": false
+                "compared": false
               }
             }
           },
           "precision_input_completeness_rate": {
             "direction": "higher",
-            "compared_seed_count": 3,
-            "improved_seed_count": 3,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.9517789774918667,
-                "v1": 0.9044571764251277,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.9507575757579091,
-                "v1": 0.8784685583446998,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.95,
-                "v1": 0.88694631925666,
-                "improved": true
+                "compared": false
               }
             }
           },
           "uncertainty_coverage_rate": {
             "direction": "higher",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.7781627350142667,
-                "v1": 0.7909941523478108,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.6969696969693636,
-                "v1": 0.7958452439308761,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.708333333333,
-                "v1": 0.7754694197692142,
-                "improved": false
+                "compared": false
               }
             }
           }
@@ -1481,8 +1130,7 @@
         ],
         "v1_seeds": [
           11,
-          29,
-          47
+          29
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",
@@ -1519,112 +1167,63 @@
         ],
         "common_seeds": [
           11,
-          29,
-          47
+          29
         ],
-        "metrics_passing": 1,
+        "metrics_passing": 0,
         "metric_outcomes": {
           "pre_commit_error_signal_to_noise": {
             "direction": "higher",
-            "compared_seed_count": 3,
-            "improved_seed_count": 3,
-            "passes_two_of_three_seed_rule": true,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
+            "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 5.126099905832969,
-                "v1": 1.8528726630447703,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 8.614533507897818,
-                "v1": 1.7562294725481906,
-                "improved": true
-              },
-              "47": {
-                "compared": true,
-                "v2": 8.314245987618909,
-                "v1": 1.8700028874885959,
-                "improved": true
+                "compared": false
               }
             }
           },
           "post_commit_error_attribution_gain": {
             "direction": "higher",
-            "compared_seed_count": 3,
-            "improved_seed_count": 1,
+            "compared_seed_count": 0,
+            "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.30357711233525003,
-                "v1": 0.2890355460209545,
-                "improved": true
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.23570255611745453,
-                "v1": 0.2867889056143319,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.22484239166800002,
-                "v1": 0.27996737033635777,
-                "improved": false
+                "compared": false
               }
             }
           },
           "cross_channel_leakage_rate": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.4039081286339375,
-                "v1": 0.15618686602986032,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.4546430846220909,
-                "v1": 0.16381519404583966,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.4569640979554091,
-                "v1": 0.15470014145372074,
-                "improved": false
+                "compared": false
               }
             }
           },
           "commitment_reversal_rate": {
             "direction": "lower",
-            "compared_seed_count": 3,
+            "compared_seed_count": 0,
             "improved_seed_count": 0,
             "passes_two_of_three_seed_rule": false,
             "per_seed": {
               "11": {
-                "compared": true,
-                "v2": 0.23031731448371875,
-                "v1": 0.12018840896879732,
-                "improved": false
+                "compared": false
               },
               "29": {
-                "compared": true,
-                "v2": 0.20909090909090908,
-                "v1": 0.11494151502313366,
-                "improved": false
-              },
-              "47": {
-                "compared": true,
-                "v2": 0.21363636363654548,
-                "v1": 0.10448757892747257,
-                "improved": false
+                "compared": false
               }
             }
           }
@@ -1660,8 +1259,7 @@
         ],
         "v1_seeds": [
           11,
-          29,
-          47
+          29
         ],
         "v2_schema_versions": [
           "experiment_pack/v1",

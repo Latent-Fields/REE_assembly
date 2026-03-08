@@ -43,40 +43,23 @@
     "allowed_conflict_outcomes": [
       "retain_ree",
       "hybridize",
-      "adopt_jepa_structure",
       "retire_ree_claim"
     ],
     "default_conflict_outcome": "retain_ree",
     "cascade_policy": {
       "enabled": true,
       "trigger_outcomes": [
-        "adopt_jepa_structure",
         "retire_ree_claim"
       ],
       "dependency_reopen_status": "candidate",
       "require_followup_proposals": true
     },
-    "temporary_override_mode": {
-      "enabled": true,
-      "mode_id": "jepa_internal_proxy_override",
-      "requirements": [
-        "explicit_proxy_provenance",
-        "calibration_metrics_present",
-        "rollback_trigger_documented"
-      ]
-    },
     "anti_lock_in_gate": {
       "enabled": true,
-      "description": "If matched JEPA evidence repeatedly outperforms REE assumptions, force adjudication rather than schema-preserving tuning."
+      "description": "If external evidence repeatedly outperforms REE assumptions, force adjudication rather than schema-preserving tuning."
     },
     "canonical_boundary_policy": {
       "ree_assembly_role": "REE-first canonical claims/contracts/governance only",
-      "external_integration_playbook_owner": "REE_convergence/sources/jepa",
-      "adopt_jepa_structure_requires": [
-        "convergence_packet_gate_ready",
-        "human_decision_brief_reviewed",
-        "rollback_plan_defined"
-      ],
       "notes": "Hybridization should prefer REE interface contracts over direct source-structure adoption unless escalation criteria are met."
     }
   },

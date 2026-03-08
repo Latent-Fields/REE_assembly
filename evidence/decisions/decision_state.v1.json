@@ -173,12 +173,12 @@
     },
     "Q-012": {
       "actor": "user",
-      "decision_needed": "Model adjudication outcome selection",
+      "decision_needed": "Demotion review: active -> candidate",
       "decision_status": "applied",
-      "rationale": "Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.667; overall_confidence=0.634.",
-      "recommendation": "retain_ree",
-      "selected_option": "retain_ree",
-      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+      "rationale": "User accepted demotion recommendation. Evidence 4:4 supports/weakens split (conflict_ratio=1.0, confidence=0.503); all experimental evidence is synthetic (archived ree-v2 scaffolding). Insufficient signal to hold as active question. Demotion to candidate applied in claims.yaml 2026-02-26. Status reflects candidate pending genuine ree-v1-minimal discriminative experiment.",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "demote_to_candidate",
+      "timestamp_utc": "2026-03-02T00:00:00.000000Z"
     },
     "Q-013": {
       "actor": "user",
@@ -235,7 +235,7 @@
       "timestamp_utc": "2026-02-25T14:21:58.933796Z"
     }
   },
-  "generated_at_utc": "2026-02-27T16:31:41.937802Z",
+  "generated_at_utc": "2026-03-06T23:24:40.946248Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

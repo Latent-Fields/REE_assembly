@@ -1,48 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 51961,
-  "runner_started_at": "2026-03-03T00:21:08.734448+00:00",
-  "last_updated": "2026-03-03T00:50:55.981239+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "EXQ-015",
-    "backlog_id": "EVB-0039",
-    "claim_id": "MECH-056",
-    "title": "Residue Trajectory Placement \u2014 V2 Parity",
-    "description": "Parity check #2. Replicates V1 PASS result for MECH-056 on REE-v2 substrate. Tests whether residue accumulates at trajectory positions during rollout (trajectory-wide placement) vs only the final step (endpoint-only). Validates REE invariant that harm sites are precisely localised along the planned path.",
-    "script": "experiments/residue_trajectory_placement.py",
-    "started_at": "2026-03-03T00:21:08.736899+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ENDPOINT",
-      "runs_done": 3,
-      "runs_total": 6,
-      "episodes_done": 150,
-      "episodes_total": 200,
-      "overall_pct": 62.5
-    },
-    "seconds_elapsed": 1787,
-    "seconds_remaining": 1072,
-    "recent_lines": [
-      "harm 1.254 \u2192 1.264  inter_mass=5.67225",
-      "Seed 42  Condition ENDPOINT-ONLY",
-      "ep  50/200  seed=42  cond=ENDPOINT-ONLY  harm=1.220  inter_mass=0.0000",
-      "ep 100/200  seed=42  cond=ENDPOINT-ONLY  harm=1.210  inter_mass=0.0000",
-      "ep 150/200  seed=42  cond=ENDPOINT-ONLY  harm=1.195  inter_mass=0.0000"
-    ],
-    "ree_version": "v2"
-  },
+  "runner_pid": null,
+  "runner_started_at": "2026-03-07T12:45:10.945166+00:00",
+  "last_updated": "2026-03-07T13:25:05.428864+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
-    {
-      "queue_id": "EXQ-015",
-      "backlog_id": "EVB-0039",
-      "claim_id": "MECH-056",
-      "title": "Residue Trajectory Placement \u2014 V2 Parity",
-      "description": "Parity check #2. Replicates V1 PASS result for MECH-056 on REE-v2 substrate. Tests whether residue accumulates at trajectory positions during rollout (trajectory-wide placement) vs only the final step (endpoint-only). Validates REE invariant that harm sites are precisely localised along the planned path.",
-      "estimated_minutes": 15.0,
-      "status": "running",
-      "status_reason": "Script ported from V1 2026-03-01; CausalGridWorld substitution complete",
-      "ree_version": "v2"
-    },
     {
       "queue_id": "EXQ-016",
       "backlog_id": "EVB-0043",
@@ -74,6 +37,28 @@
       "estimated_minutes": 1.9,
       "status": "pending",
       "status_reason": "Script written 2026-03-01; validates Step 2.3 prerequisites before SD-003 experiments",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-019",
+      "backlog_id": "EVB-0046",
+      "claim_id": "MECH-058",
+      "title": "E1/E2 Terrain-Timescale Separation \u2014 V2 Redesign",
+      "description": "Ground-up redesign for MECH-058 on REE-v2 substrate. Exploits CausalGridWorld's two natural timescales: slow contamination terrain (E1 domain) vs fast env drift every 5 steps (policy domain). Three conditions: SEPARATED (e1_lr=5e-5, policy_lr=1e-3), COLLAPSED_FAST (both 1e-3), COLLAPSED_SLOW (both 5e-5). New metrics: contamination_avoidance_rate and post_drift_harm_rate directly test whether matched timescale separation yields functional benefit. Addresses V1 failure root cause: V1 GridWorld gave both LRs identical convergence terrain.",
+      "estimated_minutes": 22.5,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-06; redesign from EXQ-002/EXQ-006 FAIL root-cause analysis",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-020",
+      "backlog_id": "EVB-0047",
+      "claim_id": "MECH-057",
+      "title": "Attribution Completion Gating \u2014 V2 Redesign",
+      "description": "Ground-up redesign for MECH-057 on REE-v2 substrate. Uses CausalGridWorld's info['transition_type'] == 'agent_caused_hazard' as a concrete self-attribution completion signal. Three conditions gate the REINFORCE return signal differently: COMPLETION_GATED (G = -agent_caused_harm only), FREE_REPLAN (G = -total_harm), ATTRIBUTION_BLIND (G = -env_caused_harm only). Tests whether gating the policy update to completed self-attribution events reduces agent-caused harm vs both mixed and attribution-absent baselines. Addresses V1 failure root cause: V1 GridWorld had no 'action in progress' state for gating to exploit.",
+      "estimated_minutes": 22.5,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-06; redesign from EXQ-004/EXQ-007 FAIL root-cause analysis",
       "ree_version": "v2"
     }
   ],
@@ -242,6 +227,17 @@
       "result_summary": "Signals independent (corr < 0.3)?  YES  (0.130) | Separation neutral or beneficial?   YES | MECH-059 verdict: PASS",
       "completed_at": "2026-03-01T19:41:43.513030+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260301T194143.json"
+    },
+    {
+      "queue_id": "EXQ-015",
+      "backlog_id": "EVB-0039",
+      "claim_id": "MECH-056",
+      "title": "Residue Trajectory Placement \u2014 V2 Parity",
+      "description": "Parity check #2. Replicates V1 PASS result for MECH-056 on REE-v2 substrate. Tests whether residue accumulates at trajectory positions during rollout (trajectory-wide placement) vs only the final step (endpoint-only). Validates REE invariant that harm sites are precisely localised along the planned path.",
+      "result": "ERROR",
+      "result_summary": "[Errno 2] No such file or directory: '/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runner_status.tmp' -> '/Users/dgolden/Documents/GitHub/REE_assembly/evidence/experiments/runner_status.json'",
+      "completed_at": "2026-03-07T12:54:56.650062+00:00",
+      "output_file": ""
     }
   ]
 }

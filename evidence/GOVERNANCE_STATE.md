@@ -270,21 +270,21 @@ Tracked here to prevent knowledge drift and guide future refactoring.
 
 **Filed:** 2026-02-27
 **Priority:** medium
-**Blocking:** architectural redesign of hippocampal module in ree-v1-minimal
+**Status: CLOSED 2026-03-06** — resolved in ree-v2 implementation. Verified by full test suite (22/22 pass).
 
 E2's role in REE architecture is a **fast cerebellum-like transition model**: `f(z_t, a_t) → z_{t+1}`. It should predict what latent state results from taking action `a` from state `z`.
 
-Currently `E2FastPredictor.generate_candidates()` performs **hippocampal trajectory proposal** — enumerating and evaluating multiple full action sequences. This is E3 complex work (hippocampal map navigation) incorrectly housed in E2. Consequences:
+**Resolution (ree-v2):**
+- `E2FastPredictor` is a pure transition model: `predict_next_state(z, a) → z_next`. The `generate_candidates_cem()` method has been removed entirely; `generate_candidates()` only supports `method="random"` (for HippocampalModule use).
+- `HippocampalModule` (new V2 component) handles all CEM-style trajectory proposal via terrain navigation. E2 is passed as a dependency and called only for forward rollouts.
+- Test `test_hippocampal_module_is_distinct_component` and `test_e2_is_pure_transition_model` verify the separation.
 
-- EXQ-006 E2_FROZEN condition tests "no trajectory proposal" rather than "no transition prediction"
-- MECH-058 experiments cannot cleanly separate E2 transition accuracy from E3 trajectory planning
-- Any experiment comparing E1 vs E2 roles is partially conflated
+**Historical notes (for V1 evidence interpretation):**
+- EXQ-006 E2_FROZEN condition tested "no trajectory proposal" rather than "no transition prediction"
+- MECH-058 experiments cannot cleanly separate E2 transition accuracy from E3 trajectory planning on V1 substrate
+- EXQ-006 and EXQ-007 results remain valid as behavioral baselines; mechanistic interpretation is affected but PASS/FAIL verdicts stand
 
-**Future separation needed:**
-- `E2FastPredictor` → pure fast transition: `forward(z, a) → z_next` (action-conditioned MLP, cerebellum-like)
-- `HippocampalModule` (new, part of E3 complex) → trajectory proposal by navigating affective terrain, not by running transition predictions
-
-**Impact on current results:** EXQ-006 and EXQ-007 results remain valid as behavioral baselines. The PASS/FAIL verdicts measure system-level harm reduction; the substrate debt affects mechanistic interpretation only.
+**Impact on current results:** EXQ-006 and EXQ-007 results remain valid as behavioral baselines. The PASS/FAIL verdicts measure system-level harm reduction; the substrate debt affected mechanistic interpretation only.
 
 ### SD-002: E1/E2 relationship — mutually constitutive, not merely orthogonal
 
@@ -313,7 +313,11 @@ E1 and E2 are not simply parallel systems with orthogonal outputs. They are co-c
 
 **Implication for EXQ-006:** The E1_FROZEN condition breaks not only E1's associative learning but also the E1→E2 prior conditioning. The E2_FROZEN condition breaks not only transition predictions but also the temporal scaffolding that would train E1. Results should be interpreted at the system level (harm reduction) rather than as clean isolation of individual components.
 
-**Action:** Update `docs/architecture/e2.md` to capture mutual constitution. Add E2→E1 autotrain as a future architectural item. Update MECH-058 claim scope if EXQ-006 yields clean results.
+**Actions completed (2026-03-06):**
+- `docs/architecture/e2.md` §4 updated to capture mutual constitution (SD-002 confirmed).
+- E2→E1 autotrain pathway noted as V3 aspiration in `docs/architecture/e2.md` §4.
+- E1→HippocampalModule prior wiring **implemented in ree-v2**: `generate_trajectories()` in `agent.py` now passes the E1 prior to `HippocampalModule.propose_trajectories()`, which concatenates `(z_beta, e1_prior, residue_scalar)` to condition the terrain prior's initial action distribution (SD-002 wiring complete).
+- MECH-058 scope note retained pending clean V2 experiment results.
 
 ### SD-003: E2 as self-attribution substrate — isolatability requirement not captured
 
@@ -355,6 +359,13 @@ must be architecturally possible and independently testable. The environment use
 V2 qualification must include persistent agent causal footprint — actions at step N
 should affect the landscape at step N+k in ways that require disambiguation from
 independent environment change.
+
+**Status: CLOSED 2026-03-06** — all V2 substrate requirements met:
+- `E2FastPredictor.forward_counterfactual(z, a_cf)` implemented and tested (test `test_e2_forward_counterfactual_callable` PASS).
+- Causal delta `z_actual_next - z_cf_next` computable and tested (test `test_causal_delta_computable` PASS).
+- `CausalGridWorld` environment fully implemented in `ree_core/environment/causal_grid_world.py` with `contamination_grid`, `footprint_grid`, env-caused hazard drift, and `transition_type` attribution in `info` dict.
+- `step()` info includes `transition_type`: `"agent_caused_hazard"` | `"env_caused_hazard"` | `"resource"` | `"none"` (tested via `test_step_info_has_transition_type` PASS).
+- Next: Step 2.4 experiments (genuine self-attribution runs) to be defined during Step 2.0 redesign.
 
 **Interpretation caution for V1 evidence:**
 Any V1 claim that touches agent contribution to outcomes (MECH-057 control completion,

@@ -1,11 +1,11 @@
 # Thought Sweep Report
 
-Generated: `2026-02-25T20:08:00.802290Z`
+Generated: `2026-03-05T01:09:37.456211Z`
 
 | metric | count |
 |---|---|
-| total thought files | 51 |
-| processed | 51 |
+| total thought files | 52 |
+| processed | 52 |
 | unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
@@ -57,6 +57,7 @@ Generated: `2026-02-25T20:08:00.802290Z`
 - `2026-02-15_commit_indexed_trajectory_module.md` (1 link(s) in `Processed in`)
 - `2026-02-15_hippocampal_backward_shift.md` (1 link(s) in `Processed in`)
 - `2026-02-17_control_plane_update.md` (3 link(s) in `Processed in`)
+- `2026-02-17_necessary_separations_based_on_considering-prompt_injection.md` (5 link(s) in `Processed in`)
 - `2026-02-17_papez_RAG.md` (1 link(s) in `Processed in`)
 - `2026-02-18_commitment_as_layered_eligibility_filters.md` (1 link(s) in `Processed in`)
 - `2026-02-18_new_implementation_openclaw.md` (2 link(s) in `Processed in`)

@@ -87,6 +87,43 @@ def _runner_pid() -> int | None:
     return None
 
 
+# ── Script allowlist ─────────────────────────────────────────────────────────
+
+ALLOWED_SCRIPTS: dict[str, tuple[list[str], int]] = {
+    'governance':        ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/run_governance_cycle.py')], 120),
+    'governance_strict': ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/run_governance_cycle.py'), '--strict-thoughts'], 120),
+    'build_indexes':     ([sys.executable, str(SERVE_DIR / 'evidence/experiments/scripts/build_experiment_indexes.py')], 60),
+    'cutover_check':     ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/check_ree_v2_cutover_readiness.py')], 30),
+    'sync_task_inbox':   ([sys.executable, str(SERVE_DIR / 'evidence/planning/scripts/sync_task_inbox.py')], 30),
+    'thought_sweep':     ([sys.executable, str(SERVE_DIR / 'docs/thoughts/scripts/thought_sweep.py')], 60),
+}
+
+
+def run_script(key: str) -> dict:
+    if key not in ALLOWED_SCRIPTS:
+        return {"status": "error", "message": f"Unknown script key: {key!r}"}
+    cmd, timeout = ALLOWED_SCRIPTS[key]
+    script_path = cmd[1]
+    if not os.path.exists(script_path):
+        return {"status": "error", "message": f"Script not found: {script_path}"}
+    try:
+        result = subprocess.run(
+            cmd, cwd=str(SERVE_DIR),
+            capture_output=True, text=True, timeout=timeout,
+        )
+        print(f"[serve] Ran {key} → exit {result.returncode}", flush=True)
+        return {
+            "status": "ok" if result.returncode == 0 else "error",
+            "returncode": result.returncode,
+            "stdout": result.stdout[-8000:],
+            "stderr": result.stderr[-2000:],
+        }
+    except subprocess.TimeoutExpired:
+        return {"status": "error", "message": f"Timed out after {timeout}s"}
+    except Exception as exc:
+        return {"status": "error", "message": str(exc)}
+
+
 def start_runner() -> dict:
     global _runner_proc
     pid = _runner_pid()
@@ -147,6 +184,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = start_runner()
         elif path == "/api/runner/stop":
             result = stop_runner()
+        elif path == "/api/run":
+            length = int(self.headers.get('Content-Length', 0))
+            body = json.loads(self.rfile.read(length) or b'{}')
+            result = run_script(body.get('script', ''))
         else:
             self.send_response(404)
             self.end_headers()

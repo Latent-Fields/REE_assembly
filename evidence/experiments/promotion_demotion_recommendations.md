@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-02-27T16:31:41.937802Z`
+Generated: `2026-03-06T23:24:40.946248Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -236,7 +236,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.521, conflict_ratio=1, exp_entries=12, lit_entries=0; directions supports=6, weakens=6, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.505, conflict_ratio=1, exp_entries=12, lit_entries=0; directions supports=6, weakens=6, mixed=0, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -254,7 +254,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-058
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.724, conflict_ratio=0.816, exp_entries=94, lit_entries=5; directions supports=58, weakens=40, mixed=1, unknown=0, conflict_ratio=0.816
+- Why this decision is needed: overall_conf=0.714, conflict_ratio=0.816, exp_entries=94, lit_entries=5; directions supports=58, weakens=40, mixed=1, unknown=0, conflict_ratio=0.816
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -441,9 +441,9 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 - Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-02-15T18:46:42.773429Z`
-- Last selected option: retain_ree
-- Last rationale: Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.667; overall_confidence=0.634.
+- Last logged decision: `applied` by `user` at `2026-03-02T00:00:00.000000Z`
+- Last selected option: demote_to_candidate
+- Last rationale: User accepted demotion recommendation. Evidence 4:4 supports/weakens split (conflict_ratio=1.0, confidence=0.503); all experimental evidence is synthetic (archived ree-v2 scaffolding). Insufficient signal to hold as active question. Demotion to candidate applied in claims.yaml 2026-02-26. Status reflects candidate pending genuine ree-v1-minimal discriminative experiment.
 
 ### Q-013
 - Current status: `active`
@@ -548,7 +548,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-019
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.875, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.873, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)

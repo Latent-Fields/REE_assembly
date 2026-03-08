@@ -25,7 +25,7 @@ Recommended producer output path:
 - `ree_assembly_commit`
 - `contract_lock_path`
 - `contract_lock_hash`
-- `schema_version_set` (for example `experiment_pack/v1`, `jepa_adapter_signals/v1`)
+- `schema_version_set` (for example `experiment_pack/v1`, `hook_registry/v1`)
 
 3. CI gates
 - `schema_validation` (`PASS|FAIL`)

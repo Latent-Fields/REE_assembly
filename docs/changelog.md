@@ -7,6 +7,61 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-03-06: V2 Substrate Debt Resolution — SD-001, SD-002, SD-003
+
+### Overview
+
+Completed V2 implementation in `ree-v2` resolving all three registered substrate debts.
+All 22 agent tests pass after changes.
+
+### SD-001 — E2 / HippocampalModule Separation (CLOSED)
+
+Verified that `ree-v2` scaffolding already resolved SD-001:
+- `E2FastPredictor` is a pure transition model; `generate_candidates_cem()` removed.
+- `HippocampalModule` is a distinct V2 component handling CEM-style trajectory proposal.
+- No code changes required; closed SD-001 in `GOVERNANCE_STATE.md` with verification notes.
+
+### SD-002 — E1 Prior Wiring into HippocampalModule (CLOSED)
+
+Implemented the confirmed stub at `agent.py:187` ("not yet wired into HippocampalModule"):
+
+**`ree_core/hippocampal/module.py`:**
+- `terrain_prior` network input expanded from `latent_dim + 1` to `2*latent_dim + 1`
+  (now concatenates `z_beta`, `e1_prior`, and `residue_scalar`).
+- `_get_terrain_action_mean(z_beta, e1_prior=None)` — accepts optional E1 prior; uses
+  zeros as unconditioned fallback when not provided.
+- `propose_trajectories(z_beta, num_candidates=None, e1_prior=None)` — accepts and
+  threads E1 prior through to terrain prior conditioning.
+- `forward()` updated to pass `e1_prior` through.
+
+**`ree_core/agent.py`:**
+- `generate_trajectories()`: `_, _prior = self.e1(z_beta)` → `_, e1_prior = self.e1(z_beta)`
+- `hippocampal.propose_trajectories(...)` now called with `e1_prior=e1_prior`.
+- Docstring and module header updated to reflect SD-002 resolution.
+
+**`docs/architecture/e2.md`:**
+- §4 SD-002 mutual constitution section updated: "does not yet wire it into HippocampalModule"
+  replaced with implementation description and resolution date.
+
+**`evidence/GOVERNANCE_STATE.md`:**
+- SD-002 entry updated with actions-completed note and implementation details.
+
+### SD-003 — CausalGridWorld / E2 Counterfactual Substrate (CLOSED)
+
+Verified that `ree-v2` scaffolding already resolved SD-003:
+- `CausalGridWorld` fully implemented in `ree_core/environment/causal_grid_world.py`:
+  `contamination_grid`, `footprint_grid`, env-caused hazard drift, `transition_type`
+  attribution in `info` dict, contamination/footprint observation channels.
+- `E2FastPredictor.forward_counterfactual(z, a_cf)` implemented and test-verified.
+- Causal delta `z_actual_next - z_cf_next` computable (test confirmed).
+- Closed SD-003 in `GOVERNANCE_STATE.md`; Step 2.4 experiments remain future work.
+
+### Preserved Sources
+
+All changes are incremental additions; no prior formulations deleted or overwritten.
+
+---
+
 ## 2026-03-02: Governance Cycle — Full Experiment Ingestion and Repo Design Improvements
 
 ### Overview

@@ -1927,6 +1927,68 @@
       letter-spacing: 0.08em; color: var(--muted);
       margin: 16px 0 8px 0; padding-left: 2px;
     }
+
+    /* ── Run buttons ──────────────────────────────────────────────────────── */
+
+    .run-btn {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .run-btn:disabled { opacity: 0.55; cursor: default; }
+
+    .run-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      margin-left: 6px;
+    }
+    .run-badge.ok  { background: #e6f4ea; color: #2e7d32; border: 1px solid #a5d6a7; }
+    .run-badge.err { background: #fbeaea; color: #8c2f2f; border: 1px solid #e9a0a0; }
+
+    .run-output {
+      display: none;
+      margin-top: 8px;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: "SF Mono", "Menlo", "Consolas", monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 320px;
+      overflow: auto;
+    }
+    .run-output.visible { display: block; }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .quick-action-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .quick-action-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -2346,6 +2408,7 @@
     const GOVERNANCE_BACKLOG_URL = 'evidence/planning/evidence_backlog.v1.json';
     const GOVERNANCE_PROPOSALS_URL = 'evidence/planning/experiment_proposals.v1.json';
     const RUNNER_STATUS_URL = 'evidence/experiments/runner_status.json';
+    const API_RUN_URL = '/api/run';
     const VERSION_MANIFEST_URL = 'docs/architecture/version_manifest.json';
     const REFRESH_MS = 60000;
     const EXP_REFRESH_MS = 10000;
@@ -3835,18 +3898,45 @@ END CONFLICT RESOLUTION`;
 
     function commandRowsHtml() {
       const rows = [
-        { label: 'Run governance cycle', cmd: CMD_RUN_GOVERNANCE },
-        { label: 'Run strict governance cycle', cmd: CMD_RUN_GOVERNANCE_STRICT },
-        { label: 'Record decision (template)', cmd: CMD_RECORD_DECISION_TEMPLATE },
-        { label: 'Apply decision batch (template)', cmd: CMD_APPLY_DECISION_BATCH_TEMPLATE },
+        { label: 'Run governance cycle',         cmd: CMD_RUN_GOVERNANCE,               scriptKey: 'governance' },
+        { label: 'Run strict governance cycle',  cmd: CMD_RUN_GOVERNANCE_STRICT,        scriptKey: 'governance_strict' },
+        { label: 'Record decision (template)',   cmd: CMD_RECORD_DECISION_TEMPLATE,     scriptKey: null },
+        { label: 'Apply decision batch (template)', cmd: CMD_APPLY_DECISION_BATCH_TEMPLATE, scriptKey: null },
       ];
       return rows.map((row, idx) => `
         <div class="command-row">
           <div class="meta">${escapeHtml(row.label)}</div>
           <code>${escapeHtml(row.cmd)}</code>
-          <button class="ghost" data-copy-cmd="${escapeHtml(row.cmd)}" data-copy-id="cmd-${idx}">Copy Command</button>
+          <div style="display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;">
+            <button class="ghost" data-copy-cmd="${escapeHtml(row.cmd)}" data-copy-id="cmd-${idx}">📋 Copy</button>
+            ${row.scriptKey ? `<button class="run-btn" data-run-script="${escapeHtml(row.scriptKey)}">▶ Run</button>` : ''}
+          </div>
+          <pre class="run-output"></pre>
         </div>
       `).join('');
+    }
+
+    function quickActionsHtml() {
+      const actions = [
+        { label: 'Build Experiment Indexes', key: 'build_indexes' },
+        { label: 'Check V2 Cutover Readiness', key: 'cutover_check' },
+        { label: 'Sync Task Inbox', key: 'sync_task_inbox' },
+        { label: 'Thought Sweep', key: 'thought_sweep' },
+      ];
+      return `
+        <div class="gov-section">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions">
+            ${actions.map(a => `
+              <div class="quick-action-item">
+                <span class="quick-action-label">${escapeHtml(a.label)}</span>
+                <button class="run-btn" data-run-script="${escapeHtml(a.key)}">▶ Run</button>
+                <pre class="run-output"></pre>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
     }
 
     async function copyText(text) {
@@ -3860,6 +3950,57 @@ END CONFLICT RESOLUTION`;
       ta.select();
       document.execCommand('copy');
       ta.remove();
+    }
+
+    async function runScript(key, btn, outputEl) {
+      btn.disabled = true;
+      const origText = btn.textContent;
+      btn.textContent = 'Running…';
+      // Remove any previous badge
+      const prevBadge = btn.parentElement.querySelector('.run-badge');
+      if (prevBadge) prevBadge.remove();
+      outputEl.className = 'run-output';
+      outputEl.textContent = '';
+      try {
+        const resp = await fetch(API_RUN_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ script: key }),
+        });
+        const data = await resp.json();
+        const badge = document.createElement('span');
+        badge.className = `run-badge ${data.status === 'ok' ? 'ok' : 'err'}`;
+        badge.textContent = data.status === 'ok' ? '✓ Done' : '✗ Error';
+        btn.after(badge);
+        const out = [data.stdout, data.stderr].filter(Boolean).join('\n--- stderr ---\n').trim();
+        if (out) {
+          outputEl.textContent = out;
+          outputEl.className = 'run-output visible';
+        } else if (data.message) {
+          outputEl.textContent = data.message;
+          outputEl.className = 'run-output visible';
+        }
+      } catch (err) {
+        const badge = document.createElement('span');
+        badge.className = 'run-badge err';
+        badge.textContent = '✗ Network error';
+        btn.after(badge);
+      }
+      btn.textContent = origText;
+      btn.disabled = false;
+    }
+
+    function wireRunButtons() {
+      if (!els.governanceContent) return;
+      els.governanceContent.querySelectorAll('button[data-run-script]').forEach(btn => {
+        // Avoid double-wiring on re-render
+        if (btn.dataset.runWired) return;
+        btn.dataset.runWired = '1';
+        const key = btn.getAttribute('data-run-script');
+        const outputEl = btn.closest('.command-row, .quick-action-item')
+          ?.querySelector('.run-output') || btn.nextElementSibling;
+        btn.addEventListener('click', () => runScript(key, btn, outputEl));
+      });
     }
 
     function wireGovernanceCommandButtons() {
@@ -4299,6 +4440,7 @@ END CONFLICT RESOLUTION`;
           : 'Agenda unavailable. Run the governance cycle and refresh.';
         els.governanceContent.innerHTML = `
           <div class="gov-empty">${escapeHtml(errorText)}</div>
+          ${quickActionsHtml()}
           <div class="gov-section">
             <h3>Manual Commands</h3>
             <div class="command-list">${commandRowsHtml()}</div>
@@ -4306,6 +4448,7 @@ END CONFLICT RESOLUTION`;
           </div>
         `;
         wireGovernanceCommandButtons();
+        wireRunButtons();
         return;
       }
 
@@ -4603,6 +4746,7 @@ END CONFLICT RESOLUTION`;
       els.governanceContent.innerHTML = `
         ${priorityPane}
         ${cards}
+        ${quickActionsHtml()}
         <div class="gov-section">
           <h3>Manual Commands</h3>
           <div class="command-list">${commandRowsHtml()}</div>
@@ -4611,6 +4755,7 @@ END CONFLICT RESOLUTION`;
         ${checkpointSections}
       `;
       wireGovernanceCommandButtons();
+      wireRunButtons();
       wireGovernanceDecisionInbox();
     }
 
