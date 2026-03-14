@@ -35,7 +35,8 @@ gating, and MECH‑033 specifies the E2‑kernel → hippocampal rollout interfa
 **Claim ID:** ARC-018
 
 The hippocampal system performs **counterfactual trajectory construction** and **post-commitment viability mapping**.
-It is the only place explicit multi-step rollouts exist; E1/E2 supply constraints and short-horizon predictions.
+It is the only place explicit multi-step rollouts exist; E1 supplies associative constraints and perceived-present
+predictions; E2 supplies motor-sensory transition kernels operating over a longer planning horizon than E1.
 
 ---
 
@@ -43,7 +44,7 @@ It is the only place explicit multi-step rollouts exist; E1/E2 supply constraint
 
 1. **Counterfactual rollout (imagination)**  
    - Constructs branching trajectories from the current latent state.  
-   - Uses constraints from E1 and short-horizon predictions from E2.  
+   - Uses associative constraints from E1 and motor-sensory transition kernels from E2 (E2 horizon exceeds E1's associative horizon — E2 predicts action consequences on latent sensory objects, not perceived-present state).
    - Produces candidate futures without ranking or commitment.
 
 2. **Viability path mapping (commitment learning)**  
@@ -116,10 +117,13 @@ Source thought: `docs/thoughts/2026-02-15_commit_indexed_trajectory_module.md`
 **Status:** provisional  
 **Claim ID:** MECH-033
 
-E2 supplies short-horizon forward-prediction kernels (local conditional transitions) rather than multi-step trajectories.
-Hippocampal systems chain these kernels into explicit rollouts, constrained by E1 priors and modulated by control-plane
-parameters (horizon, branching, temperature). This keeps “kernel” and “rollout” distinct while preserving a clean
-handoff from fast prediction to explicit trajectory construction.
+E2 supplies motor-sensory forward-prediction kernels (local conditional transitions on the unified latent space
+`z_gamma`) rather than multi-step trajectories. E2 does not operate on raw sensory streams — it operates at the level
+of coherent latent objects. E2's planning horizon exceeds E1's associative “perceived present” horizon: E2 predicts
+how actions transform latent sensory objects further ahead, while E1 predicts the near-future sensory stream without
+action conditioning. Hippocampal systems chain E2 kernels into explicit rollouts over even longer horizons, constrained
+by E1 priors and modulated by control-plane parameters (horizon, branching, temperature). This keeps “kernel” and
+“rollout” distinct while preserving a clean handoff from motor-sensory prediction to explicit trajectory construction.
 
 ---
 

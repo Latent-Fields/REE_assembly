@@ -2239,3 +2239,77 @@
     - MECH-061
   source:
     - docs/thoughts/2026-02-27_three_gate_bg_architecture.md
+# Registered 2026-03-14 — three-loop learning channel separation (from thought 2026-03-14_three_bg_systems_error_signals.md)
+- id: ARC-021
+  claim_type: architectural_commitment
+  subject: basal_ganglia.three_loop_learning_channel_separation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - Q-019
+    - ARC-004
+    - MECH-058
+    - MECH-033
+  location: docs/architecture/three_loop_learning_channels.md#arc-021
+  source:
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
+    - docs/architecture/three_loop_learning_channels.md
+- id: MECH-069
+  claim_type: mechanism_hypothesis
+  subject: latent_stack.three_loop_error_signal_incommensurability
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-021
+    - MECH-058
+    - MECH-033
+    - ARC-018
+  location: docs/architecture/three_loop_learning_channels.md#mech-069
+  source:
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
+    - docs/architecture/three_loop_learning_channels.md
+- id: MECH-070
+  claim_type: mechanism_hypothesis
+  subject: latent_stack.e2_conceptual_sensorium_motor_model
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-021
+    - MECH-069
+    - MECH-033
+    - ARC-018
+  location: docs/architecture/three_loop_learning_channels.md#mech-070
+  source:
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
+    - docs/architecture/three_loop_learning_channels.md
+- id: MECH-071
+  claim_type: mechanism_hypothesis
+  subject: e2.harm_prediction_calibration_asymmetry
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-070
+  location: docs/architecture/sd_003_experiment_design.md#mech-071
+  source:
+    - docs/architecture/sd_003_experiment_design.md
+  notes: >
+    After training, E2.predict_harm(z_t, a_actual) is better calibrated before
+    agent_caused_hazard transitions than env_caused_hazard transitions.
+    Discriminability relies on contamination_view encoding in z_gamma (visible
+    to E2 for agent-caused; absent for env-placed hazards). EXQ-027 tests this.
+- id: MECH-072
+  claim_type: mechanism_hypothesis
+  subject: residue.foreseeable_harm_gating_reduces_false_attribution
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-071
+    - MECH-060
+  location: docs/architecture/sd_003_experiment_design.md#mech-072
+  source:
+    - docs/architecture/sd_003_experiment_design.md
+  notes: >
+    Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
+    reduces false attribution rate (residue at env-caused events / total residue)
+    versus naive accumulation at all harm events, without degrading harm avoidance.
+    EXQ-028 tests this.

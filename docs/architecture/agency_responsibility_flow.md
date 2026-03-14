@@ -118,13 +118,16 @@ encoder) should be treated as a stability requirement rather than an optimizatio
 Interpretation guard:
 
 - E1 and E2 are functional roles over a partially shared JEPA-like representational reference layer, not a claim of total module isolation.
-- E2-like behavior maps to fast online predictor adaptation and short-horizon rollout support.
-- E1-like behavior maps to slow anchor continuity and long-horizon representational stability.
+- E2-like behavior maps to fast online predictor adaptation and motor-sensory rollout support. E2 operates on the
+  unified latent space (z_gamma, where coherent objects form) and predicts action consequences over a planning horizon
+  that exceeds E1's associative horizon — E2 predicts further ahead, not shorter.
+- E1-like behavior maps to slow anchor continuity and associative representational stability; E1 predicts the
+  "perceived present" by projecting the sensory latent stream forward a short distance without action conditioning.
 
 Proposed role in REE terms:
 
-- fast predictor updates support E2-like short-horizon adaptation,
-- slow anchor updates preserve E1-like representational continuity,
+- fast predictor updates support E2-like motor-sensory adaptation (longer planning horizon than E1's associative anchor),
+- slow anchor updates preserve E1-like representational continuity (associative perceived-present predictions),
 - asymmetric update rates and typed interfaces prevent timescale collapse even when representation references are shared.
 - this separation requirement is functional/contractual (rate + routing + write boundaries), not anatomical.
 
