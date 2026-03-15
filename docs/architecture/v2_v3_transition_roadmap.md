@@ -102,6 +102,24 @@ world_delta = ||E2_world(z_world, a_actual) - E2_world(z_world, a_cf)||
 ```
 This requires z_world to exist as a separate channel. In V2 there is only z_gamma.
 
+### 5. Valenced Hippocampal Map Geometry (Q-020)
+The NC-01–NC-09 cluster (registered 2026-03-15) raises the question of whether valence is
+intrinsic to hippocampal map geometry (MECH-073) or externally applied by a downstream
+comparator (ARC-007 strict). V2 cannot resolve this because:
+- V2's HippocampalModule does not have enough geometric richness for rollout weights to
+  reflect map-geometry valence separately from E3 scoring
+- z_gamma conflation means any apparent valence-in-rollouts could be an E2 artifact
+
+**Key insight (2026-03-15):** the Q-020 conflict may dissolve under SD-005. Once z_gamma is
+split into z_self and z_world:
+- z_self (E2 domain): ARC-007's "no value computation" constraint applies cleanly
+- z_world (E3/Hippocampus/ResidueField domain): this space is inherently value-laden via the
+  residue field — MECH-073 may simply be re-stating ARC-013 applied to z_world specifically
+If this is right, Q-020 is not a genuine conflict but an artifact of the unsplit z_gamma — the
+hippocampal map *is* z_world, which *is* the residue field's domain. Valence lives in z_world
+structure, not in hippocampal computation. ARC-007 is vindicated and MECH-073 is reframed.
+This hypothesis cannot be confirmed until SD-005 exists.
+
 ---
 
 ## V2 "Done" Criteria — Transition Triggers
@@ -154,6 +172,10 @@ z_world to exist (SD-005). They should be designed and implemented together.
 - [ ] ResidueField operates over z_world, not z_gamma
 - [ ] Three separate optimizers with three separate error signals (currently true in V2, cleaner in V3)
 - [ ] CausalGridWorld extended (or replaced) with explicit self/world observation channels
+- [ ] **Q-020 adjudication complete before finalising HippocampalModule architecture** — whether
+  rollout proposals arrive at E3 pre-weighted by map geometry (MECH-073) or neutral (ARC-007
+  strict) determines the E3 input contract. See also: HippocampalModule amygdala write
+  interface (MECH-074) should not be designed until Q-020 is resolved.
 
 ---
 
@@ -190,6 +212,37 @@ These experiments cannot be run in V2 and should be designed during the V3 archi
 - Replace foreseeable-harm gating (V2 EXQ-028) with world_delta gating
 - Pass: world_delta gating achieves near-ORACLE false attribution rate
 
+### V3-EXQ-006 — Intrinsic Map Valence vs External Comparator (Q-020 core test)
+*Claim target: MECH-073 vs ARC-007; prerequisite: SD-005*
+- With z_world separated, test whether rollout proposals from HippocampalModule arrive at E3
+  with value-correlated sampling frequencies *before* E3 scores them
+- Design: compare rollout proposal distribution from HippocampalModule under (a) normal
+  operation and (b) E3 scoring signals zeroed — if proposal distribution is value-flat in
+  condition (b), ARC-007 strict holds; if still value-skewed, MECH-073 is confirmed
+- Pass (MECH-073): proposal distribution is significantly value-skewed under zeroed E3 scoring
+- Pass (ARC-007): proposal distribution is value-flat under zeroed E3 scoring; E3 introduces
+  the weighting
+
+### V3-EXQ-007 — Amygdala Write Operations Affect Map Geometry (MECH-074)
+*Claim target: MECH-074, prerequisite: SD-005, Q-020 adjudication*
+- Test whether ablating amygdala-analogue write access to the HippocampalModule during
+  encoding flattens the value-skew in rollout proposals
+- Pass: ablation reduces rollout value-correlation toward chance; confirms MECH-074 role (a)
+  (encoding modulation as the write mechanism for map valence)
+- This experiment also discriminates MECH-074 from MECH-075: if BG threshold-setting ablation
+  (not amygdala write) flattens proposals, MECH-075 is the proximate cause
+
+### V3-EXQ-008 — SD-005 Dissolves Q-020 (z_world = residue domain test)
+*Claim target: Q-020 resolution via z_self/z_world split*
+- With z_world separated, confirm that HippocampalModule rollout weights correlate with
+  ResidueField curvature over z_world — i.e., the "valence" in rollouts is the residue field
+  expressed through map geometry, not a separate value signal computed by the hippocampus
+- Pass: rollout proposal weights ≈ function(ResidueField(z_world)) — valence is residue
+  geometry, ARC-007 is not violated, MECH-073 is reframed as a consequence of ARC-013 on
+  z_world
+- Fail: rollout weights deviate from ResidueField predictions — hippocampus has independent
+  value signal requiring MECH-073 full form and ARC-007 revision
+
 ---
 
 ## What Should Be Known Before V3 Design Starts
@@ -208,6 +261,12 @@ After EXQ-028 completes, we need clarity on:
 4. **Root cause of persistent FAILs** (MECH-058, MECH-033, ARC-018, ARC-007)
    → clarifies whether they're SD-004 failures, SD-005 failures, or claim failures
 
+5. **Q-020 provisional direction** (from theoretical analysis, before V3 experiments)
+   → the SD-005 dissolution hypothesis (z_world = residue domain, ARC-007 still valid)
+   should be evaluated during V3 architecture design, before HippocampalModule interface
+   is specified. Q-020 adjudication determines whether the E3 input contract includes a
+   pre-weighted rollout signal or a neutral proposal set.
+
 This evidence base is what the governance cycle after EXQ-028 should adjudicate.
 
 ---
@@ -216,12 +275,19 @@ This evidence base is what the governance cycle after EXQ-028 should adjudicate.
 
 ```
 V2 can show:     structural separation, qualitative BG loops, approximate attribution
-V2 cannot show:  self/world moral ontology, action-object planning, full attribution
+V2 cannot show:  self/world moral ontology, action-object planning, full attribution,
+                 intrinsic map valence (Q-020)
 
 V3 enables:      clean motor-sensory vs world-consequence isolation (SD-005)
                  compressed world-effect planning at longer horizons (SD-004)
                  proper residue field grounded in world_delta, not z_gamma (SD-005)
                  full causal self-attribution (SD-003 V3)
+                 Q-020 resolution: SD-005 z_world split likely dissolves the conflict,
+                   confirming residue field = map valence, ARC-007 intact (V3-EXQ-008)
+
+Design gate:     Q-020 adjudication required before HippocampalModule architecture
+                 is finalised — the E3 input contract differs between MECH-073 and
+                 ARC-007 strict. SD-005 design and Q-020 resolution should proceed together.
 
 Transition:      after EXQ-028 + governance cycle, before further self-attribution experiments
 ```

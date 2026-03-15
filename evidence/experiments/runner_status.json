@@ -1,30 +1,45 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-03-07T12:45:10.945166+00:00",
-  "last_updated": "2026-03-08T07:03:32.573907+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [
-    {
-      "queue_id": "EXQ-019",
-      "backlog_id": "EVB-0046",
-      "claim_id": "MECH-058",
-      "title": "E1/E2 Terrain-Timescale Separation \u2014 V2 Redesign",
-      "description": "Ground-up redesign for MECH-058 on REE-v2 substrate. Exploits CausalGridWorld's two natural timescales: slow contamination terrain (E1 domain) vs fast env drift every 5 steps (policy domain). Three conditions: SEPARATED (e1_lr=5e-5, policy_lr=1e-3), COLLAPSED_FAST (both 1e-3), COLLAPSED_SLOW (both 5e-5). New metrics: contamination_avoidance_rate and post_drift_harm_rate directly test whether matched timescale separation yields functional benefit. Addresses V1 failure root cause: V1 GridWorld gave both LRs identical convergence terrain.",
-      "estimated_minutes": 0,
-      "status": "pending",
-      "status_reason": "Script written 2026-03-06; redesign from EXQ-002/EXQ-006 FAIL root-cause analysis",
-      "ree_version": "v2"
+  "runner_pid": 43060,
+  "runner_started_at": "2026-03-15T09:49:31.753041+00:00",
+  "last_updated": "2026-03-15T12:12:45.031607+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "EXQ-020",
+    "backlog_id": "EVB-0047",
+    "claim_id": "MECH-057",
+    "title": "Attribution Completion Gating \u2014 V2 Redesign",
+    "description": "Ground-up redesign for MECH-057 on REE-v2 substrate. Uses CausalGridWorld's info['transition_type'] == 'agent_caused_hazard' as a concrete self-attribution completion signal. Three conditions gate the REINFORCE return signal differently: COMPLETION_GATED (G = -agent_caused_harm only), FREE_REPLAN (G = -total_harm), ATTRIBUTION_BLIND (G = -env_caused_harm only). Tests whether gating the policy update to completed self-attribution events reduces agent-caused harm vs both mixed and attribution-absent baselines. Addresses V1 failure root cause: V1 GridWorld had no 'action in progress' state for gating to exploit.",
+    "script": "experiments/attribution_completion_gating.py",
+    "started_at": "2026-03-15T09:49:31.754635+00:00",
+    "progress": {
+      "run_label": "Seed 99 / COMPLETION_GATED",
+      "runs_done": 0,
+      "runs_total": 9,
+      "episodes_done": 150,
+      "episodes_total": 200,
+      "overall_pct": 8.3
     },
+    "seconds_elapsed": 8593,
+    "seconds_remaining": 94940,
+    "recent_lines": [
+      "agent_harm 0.928 -> 0.872  total 1.248 -> 1.212",
+      "Seed 99  Condition COMPLETION_GATED",
+      "ep  50/200  seed=99  cond=COMPLETION_GATED  agent_harm=0.680  total_harm=1.205",
+      "ep 100/200  seed=99  cond=COMPLETION_GATED  agent_harm=0.620  total_harm=1.245",
+      "ep 150/200  seed=99  cond=COMPLETION_GATED  agent_harm=0.880  total_harm=1.205"
+    ],
+    "ree_version": "v2"
+  },
+  "queue": [
     {
       "queue_id": "EXQ-020",
       "backlog_id": "EVB-0047",
       "claim_id": "MECH-057",
       "title": "Attribution Completion Gating \u2014 V2 Redesign",
       "description": "Ground-up redesign for MECH-057 on REE-v2 substrate. Uses CausalGridWorld's info['transition_type'] == 'agent_caused_hazard' as a concrete self-attribution completion signal. Three conditions gate the REINFORCE return signal differently: COMPLETION_GATED (G = -agent_caused_harm only), FREE_REPLAN (G = -total_harm), ATTRIBUTION_BLIND (G = -env_caused_harm only). Tests whether gating the policy update to completed self-attribution events reduces agent-caused harm vs both mixed and attribution-absent baselines. Addresses V1 failure root cause: V1 GridWorld had no 'action in progress' state for gating to exploit.",
-      "estimated_minutes": 0,
-      "status": "pending",
+      "estimated_minutes": 180.0,
+      "status": "running",
       "status_reason": "Script written 2026-03-06; redesign from EXQ-004/EXQ-007 FAIL root-cause analysis",
       "ree_version": "v2"
     },
@@ -34,7 +49,7 @@
       "claim_id": "ARC-018",
       "title": "Rollout Viability Mapping",
       "description": "Tests ARC-018: hippocampus.rollout_viability_mapping. Asserts that E1 world-model updating from prediction-reality mismatch builds an internal viability map of trajectory sequences. VIABILITY_MAPPED condition (E1 updates every step) vs VIABILITY_FIXED (E1 frozen; policy gradient still runs). Pass requires: MAPPED slope > FIXED + 0.05 AND MAPPED last-Q harm < FIXED * 0.95.",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0015/ARC-018",
       "ree_version": "v2"
@@ -45,7 +60,7 @@
       "claim_id": "Q-007",
       "title": "Valence-Regime Correlation",
       "description": "Tests Q-007: emotion.universal_expression_channel_mapping. Asserts that internal valence (health) correlates with E3 precision modulation across resource regimes. RESOURCE_RICH (num_resources=10) vs RESOURCE_SPARSE (num_resources=1). Pass requires: RICH Pearson corr(health, precision) > 0.10 AND RICH mean_precision > SPARSE + 0.10.",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0016/Q-007",
       "ree_version": "v2"
@@ -56,7 +71,7 @@
       "claim_id": "MECH-033",
       "title": "Kernel Chaining Interface",
       "description": "Tests MECH-033: hippocampus.kernel_chaining_interface. Asserts that E2 supplies short-horizon forward-prediction kernels and hippocampal systems chain these into explicit multi-step rollouts. WITH_CHAIN (generate_trajectories + E3 select) vs NO_CHAIN (random action; E1 still learns). Pass requires: WITH_CHAIN last-Q harm < NO_CHAIN * 0.90 AND WITH_CHAIN slope > NO_CHAIN slope + 0.05.",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0017/MECH-033",
       "ree_version": "v2"
@@ -67,7 +82,7 @@
       "claim_id": "ARC-007",
       "title": "Path Memory Ablation",
       "description": "Tests ARC-007: hippocampus.path_memory. Asserts that access to prior trajectory information (contamination_view + footprint_density in observation) is load-bearing for contamination avoidance. PATH_MEMORY (full obs) vs PATH_ABLATED (path-memory slice zeroed). Pass requires: MEMORY agent_caused_harm < ABLATED * 0.95 AND MEMORY total_harm <= ABLATED * 1.05.",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0018/ARC-007",
       "ree_version": "v2"
@@ -78,7 +93,7 @@
       "claim_id": "ARC-016",
       "title": "Precision Regime Probe",
       "description": "Tests ARC-016: cognitive_modes.control_plane_regimes. Asserts that distinct E3 precision regimes produce distinct behavioral signatures. HIGH_REGIME (precision_max=2.0, min=1.0) vs LOW_REGIME (precision_max=0.5, min=0.1). Pass requires: |HIGH-LOW| mean precision > 0.30 AND (HIGH commit_rate < LOW - 0.05 OR HIGH last-Q harm < LOW * 0.95).",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0021/ARC-016",
       "ree_version": "v2"
@@ -89,9 +104,31 @@
       "claim_id": "MECH-025",
       "title": "Action-Doing Mode Probe",
       "description": "Tests MECH-025: cognitive_modes.action_doing_mode. Asserts that the system enters a distinct action-doing mode when executing intentions with causal consequences, measurable as an E3 precision lift on agent_caused_hazard steps vs baseline. HIGH_CAUSAL (num_hazards=8) vs LOW_CAUSAL (num_hazards=1). Pass requires: HIGH precision lift > LOW lift + 0.05 AND HIGH harm_reduction_slope > LOW + 0.05.",
-      "estimated_minutes": 0,
+      "estimated_minutes": 120.0,
       "status": "pending",
       "status_reason": "Script written 2026-03-07; dispatched EXP-0022/MECH-025",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-027",
+      "backlog_id": "EVB-0046",
+      "claim_id": "MECH-071",
+      "title": "E2 Attribution Calibration",
+      "description": "Tests MECH-071: does trained E2.predict_harm(z_t, a_actual) calibrate higher before agent_caused_hazard transitions than env_caused_hazard transitions? Two conditions: TRAINED (200 warmup episodes) vs RANDOM (untrained E2 control). Pass: TRAINED calibration_gap > 0.05 AND |RANDOM gap| < 0.10. Prerequisite for EXQ-028 (selective residue attribution).",
+      "estimated_minutes": 150.0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-14; SD-003 substrate validated (pending EXQ-018)",
+      "ree_version": "v2"
+    },
+    {
+      "queue_id": "EXQ-028",
+      "backlog_id": "EVB-0047",
+      "claim_id": "MECH-072",
+      "title": "Selective Residue Attribution",
+      "description": "Tests MECH-072: does gating residue accumulation on E2 harm foreseeability (predict_harm > 0.3) reduce false attribution rate vs naive accumulation? Three conditions: NAIVE (all harm), FORESEEABLE (E2-gated), ORACLE (ground truth). Pass: false_attribution_rate[FORESEEABLE] < false_attribution_rate[NAIVE] AND final_harm[FORESEEABLE] <= final_harm[NAIVE] * 1.05. ORACLE provides interpretive upper bound.",
+      "estimated_minutes": 270.0,
+      "status": "pending",
+      "status_reason": "Script written 2026-03-14; depends on EXQ-027 calibration result",
       "ree_version": "v2"
     }
   ],
@@ -257,9 +294,9 @@
       "title": "Control Plane Precision Separation \u2014 V2 Parity",
       "description": "Parity check #1. Replicates V1 EXQ-013 PASS result on REE-v2 substrate (CausalGridWorld). Tests whether separating slow-timescale E1 precision updates from fast-timescale E3 policy decisions reduces hazard collision rates compared to a merged control plane. Closes SD-001 parity gap for MECH-059.",
       "result": "PASS",
-      "result_summary": "Signals independent (corr < 0.3)?  YES  (0.130) | Separation neutral or beneficial?   YES | MECH-059 verdict: PASS",
-      "completed_at": "2026-03-01T19:41:43.513030+00:00",
-      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260301T194143.json"
+      "result_summary": "Signals independent (corr < 0.3)?  YES  (0.122) | Separation neutral or beneficial?   YES | MECH-059 verdict: PASS",
+      "completed_at": "2026-03-14T22:09:18.319959+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/control_plane_precision_separation/control_plane_precision_separation_20260314T220917.json"
     },
     {
       "queue_id": "EXQ-015",
@@ -268,9 +305,9 @@
       "title": "Residue Trajectory Placement \u2014 V2 Parity",
       "description": "Parity check #2. Replicates V1 PASS result for MECH-056 on REE-v2 substrate. Tests whether residue accumulates at trajectory positions during rollout (trajectory-wide placement) vs only the final step (endpoint-only). Validates REE invariant that harm sites are precisely localised along the planned path.",
       "result": "PASS",
-      "result_summary": "V2 parity PASS \u2014 trajectory-wide vs endpoint-only on CausalGridWorld substrate",
-      "completed_at": "2026-03-01T22:36:57Z",
-      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/residue_trajectory_placement/residue_trajectory_placement_20260301T223657.json"
+      "result_summary": "TRAJECTORY-WIDE  last-Q harm: 1.249 | ENDPOINT-ONLY    last-Q harm: 1.227 | MECH-056 verdict: PASS",
+      "completed_at": "2026-03-14T23:57:22.759999+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/residue_trajectory_placement/residue_trajectory_placement_20260314T235722.json"
     },
     {
       "queue_id": "EXQ-016",
@@ -279,9 +316,9 @@
       "title": "Write Locus Contamination \u2014 V2 Parity",
       "description": "Parity check #3. Replicates V1 PASS result for MECH-060/MECH-067 on REE-v2 substrate. Tests whether contamination is properly attributed to write loci vs residual signal bleed. Three conditions: FULL, CONTAMINATED_DURABLE, CONTAMINATED_RESIDUE. CausalGridWorld's contamination footprint makes this directly testable.",
       "result": "PASS",
-      "result_summary": "V2 parity PASS \u2014 write-locus contamination separation confirmed on CausalGridWorld",
-      "completed_at": "2026-03-02T00:12:56Z",
-      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/write_locus_contamination/write_locus_contamination_20260302T001256.json"
+      "result_summary": "CONT_RESIDUE   last-Q harm: 1.2087  |attr_corr|: 0.1591  residue: 2535.5296 | Criterion 2 (harm ordering):      YES  (full=1.245 <= max_cont=1.224*1.05?) | MECH-060/067 verdict: PASS",
+      "completed_at": "2026-03-15T02:40:33.066024+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/write_locus_contamination/write_locus_contamination_20260315T024032.json"
     },
     {
       "queue_id": "EXQ-017",
@@ -290,9 +327,9 @@
       "title": "Commitment Boundary Validation \u2014 V2 Parity",
       "description": "Parity check #4. Replicates V1 PASS result for MECH-061 on REE-v2 substrate. Tests whether the commit boundary correctly separates pre-commit simulation errors (E2 harm predictions) from post-commit realised errors (actual env harm), and whether keeping them separate is at least as good as blending them into a single signal.",
       "result": "PASS",
-      "result_summary": "V2 parity PASS \u2014 commitment boundary validated on CausalGridWorld substrate",
-      "completed_at": "2026-03-02T01:12:07Z",
-      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/commitment_boundary_validation/commitment_boundary_validation_20260302T011207.json"
+      "result_summary": "|pre_post_corr| WITH-BOUNDARY (mean): 0.072 | Distinct signals (|corr| < 0.7)?   YES  (0.072) | MECH-061 verdict: PASS",
+      "completed_at": "2026-03-15T04:44:39.523607+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/commitment_boundary_validation/commitment_boundary_validation_20260315T044438.json"
     },
     {
       "queue_id": "EXQ-018",
@@ -301,9 +338,20 @@
       "title": "CausalGridWorld Baseline \u2014 Step 2.3 Environment Validation",
       "description": "Step 2.3 exit criterion validation. New V2 experiment (no V1 equivalent). Tests that CausalGridWorld produces structurally distinct agent_caused_hazard vs env_caused_hazard transitions, that the baseline REE agent creates a non-trivial contamination footprint, and that agent causal contribution exceeds the 10% threshold. PASS confirms SD-003 substrate is ready.",
       "result": "PASS",
-      "result_summary": "SD-003 substrate verdict: PASS (4/4 criteria met) \u2014 CausalGridWorld ready",
-      "completed_at": "2026-03-02T01:18:45Z",
-      "output_file": "/Users/dgolden/Documents/GitHub/ree-v2/evidence/experiments/causal_grid_world_baseline/causal_grid_world_baseline_20260302T011845.json"
+      "result_summary": "agent_caused_harm_count_total: 343 | env_caused_harm_count_total:   96 | SD-003 substrate verdict: PASS  (4/4 criteria met)",
+      "completed_at": "2026-03-15T04:59:28.329642+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/causal_grid_world_baseline/causal_grid_world_baseline_20260315T045927.json"
+    },
+    {
+      "queue_id": "EXQ-019",
+      "backlog_id": "EVB-0046",
+      "claim_id": "MECH-058",
+      "title": "E1/E2 Terrain-Timescale Separation \u2014 V2 Redesign",
+      "description": "Ground-up redesign for MECH-058 on REE-v2 substrate. Exploits CausalGridWorld's two natural timescales: slow contamination terrain (E1 domain) vs fast env drift every 5 steps (policy domain). Three conditions: SEPARATED (e1_lr=5e-5, policy_lr=1e-3), COLLAPSED_FAST (both 1e-3), COLLAPSED_SLOW (both 5e-5). New metrics: contamination_avoidance_rate and post_drift_harm_rate directly test whether matched timescale separation yields functional benefit. Addresses V1 failure root cause: V1 GridWorld gave both LRs identical convergence terrain.",
+      "result": "FAIL",
+      "result_summary": "Crit 2  drift harm SEP=0.123  CS=0.116  delta=+0.008  (need <-0.02)  MISSED | Crit 3  harm       SEP=1.232  <= 1.238*1.1=1.362  MET | Criteria met: 1/3  ->  MECH-058 verdict: FAIL",
+      "completed_at": "2026-03-15T08:02:16.681031+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/experiments/e1_e2_terrain_timescale/e1_e2_terrain_timescale_20260315T080215.json"
     }
   ]
 }

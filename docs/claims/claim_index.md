@@ -63,6 +63,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [ARC-018](../architecture/hippocampal_systems.md#arc-018) Hippocampus generates explicit rollouts and post-commitment viability mapping.
 - [ARC-019](../architecture/developmental_curriculum.md#arc-019) REE requires staged developmental training with explicit curriculum gates.
 - [ARC-020](../architecture/sleep.md#arc-020) Offline consolidation is protected by typed authority/write boundaries and cannot bypass commit-path governance.
+- [ARC-021](../architecture/three_loop_learning_channels.md#arc-021) Three BG-like cortico-striatal loops require distinct learning channels.
+- [ARC-022](../architecture/valenced_hippocampal_map.md#arc-022) ⚠ Hierarchical effect-object abstraction pipeline (E1→E2→DMN-regime→Goal/Avoid→Hippocampus). **Conflict with ARC-007 and ARC-014 — pending adjudication (Q-020).**
 
 ---
 
@@ -134,6 +136,19 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-065](../architecture/control_plane_signal_map.md#mech-065) Reality-coherence conflict lane should modulate loop precision and commitment thresholds before execution lock-in.
 - [MECH-066](../architecture/agency_responsibility_flow.md#mech-066) Pre-commit and post-commit channels may share representations but must stay strictly separated at durable write boundaries.
 - [MECH-067](../architecture/agency_responsibility_flow.md#mech-067) A machine-checkable phase/store/actor permission matrix is required to enforce commit-boundary write rules.
+- [MECH-068](../architecture/compact_consolidation_principle.md#mech-068) Consolidation selectivity: E3 selectivity lives in the consolidation operator, not in E1 feature basis.
+- [MECH-069](../architecture/three_loop_learning_channels.md#mech-069) Sensory prediction error, motor-sensory error, and harm/goal error are incommensurable.
+- [MECH-070](../architecture/three_loop_learning_channels.md#mech-070) E2 is a conceptual-sensorium motor model with planning horizon exceeding E1.
+- [MECH-071](../architecture/sd_003_experiment_design.md#mech-071) E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions.
+- [MECH-072](../architecture/sd_003_experiment_design.md#mech-072) Foreseeable-harm gating on residue accumulation reduces false attribution without degrading harm avoidance.
+- [MECH-073](../architecture/valenced_hippocampal_map.md#mech-073) ⚠ Valence is intrinsic to hippocampal map geometry, not applied downstream. **Conflict with ARC-007 — pending adjudication (Q-020).**
+- [MECH-074](../architecture/valenced_hippocampal_map.md#mech-074) Amygdala as read/write head for valenced hippocampal map: encoding modulation, retrieval bias, pre-cortical priming, triggered remapping.
+- [MECH-075](../architecture/valenced_hippocampal_map.md#mech-075) Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics, not external value comparison.
+- [MECH-076](../architecture/valenced_hippocampal_map.md#mech-076) Residue is structural deformation of hippocampal map topology (CA3 dendritic retraction, DG neurogenesis, palimpsest reconsolidation).
+- [MECH-077](../architecture/valenced_hippocampal_map.md#mech-077) Therapeutic change = hippocampal remapping; modalities operate at different levels (CBT/OFC, EMDR/reconsolidation, psychodynamic/relational, psychedelic/attractor-flattening).
+- [MECH-078](../architecture/valenced_hippocampal_map.md#mech-078) Amygdala bootstraps novel valence for unmapped hippocampal territory; anxiety disorders = systematic over-valencing of novel regions.
+- [MECH-079](../architecture/valenced_hippocampal_map.md#mech-079) Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry; identity change = map phase transition.
+- [MECH-080](../architecture/valenced_hippocampal_map.md#mech-080) Rollout truncation set-points as psychiatric individual differences substrate: ADHD = truncation-biased; anxiety = extension-biased; OCD = attractor lock-in.
 
 ---
 
@@ -157,6 +172,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [Q-016](../architecture/e3.md#q-016) What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?
 - [Q-017](../architecture/control_plane.md#q-017) What is the minimal orthogonal control-axis subset that preserves observed regime separations?
 - [Q-018](../architecture/control_plane_signal_map.md#q-018) What RC-conflict threshold/hysteresis calibration blocks authority spoofing without chronic over-suppression?
+- [Q-019](../architecture/hippocampal_systems.md#q-019) *(registered 2026-02-27)* Three-gate vs single-gate BG architecture: three anatomically distinct loops (sensorium/thought/action-commitment) vs one gating endpoint?
+- [Q-020](../architecture/valenced_hippocampal_map.md#q-020) ⚠ Does ARC-007's "no value computation" constraint survive MECH-073 (valence intrinsic to hippocampal map)? **Pivotal for NC-01 through NC-09 cluster integration. Pending Daniel's adjudication.**
 
 ---
 

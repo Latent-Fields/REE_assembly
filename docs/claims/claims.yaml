@@ -1594,36 +1594,27 @@
   claim_type: mechanism_hypothesis
   subject: latent_stack.e1_e2_timescale_separation
   polarity: asserts
-  status: candidate
-  lifecycle_stage: adjudicated
+  status: retired
+  lifecycle_stage: superseded
+  superseded_by: MECH-069
+  superseded_at_utc: 2026-03-15T00:00:00Z
+  supersession_note: |
+    MECH-058 framed the E1/E2 distinction as a *timescale* difference (learning rate separation).
+    This framing was a stepping stone but is now understood to be incorrect.
+    The deeper and more precise claim is MECH-069: E1, E2, and E3 train on *incommensurable error
+    signals* (sensory prediction error / motor-sensory error / harm+goal error). These are not
+    merely different timescales — they are functionally distinct domains that cannot be merged
+    without misattributing credit. EXQ-019 (V2 redesign, 2026-03-15) FAILED: learning-rate
+    separation produced no benefit, as expected — the test was asking the wrong question.
+    Testing LR ablation cannot reveal functional-domain incommensurability. MECH-069 supersedes
+    this claim and can only be properly tested in V3 with the z_self/z_world latent split (SD-005).
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-25T16:00:13.142266Z
   adjudication_decision_status: applied
-  adjudication_recommendation: retain_ree
-  adjudication_mode: external_precedence_allowed
-  allowed_conflict_outcomes:
-    - retain_ree
-    - hybridize
-    - adopt_jepa_structure
-    - retire_ree_claim
-  cascade_on_outcomes:
-    - adopt_jepa_structure
-    - retire_ree_claim
-  dependency_reopen_status: candidate
   evidence_quality_note: |
-    Prior 156 synthetic entries (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid.
-    Genuine ree-v1-minimal experiment completed 2026-02-26 (EVB-0040, e1_e2_timescale_ablation): FAIL
-    (partial support — performance criterion MET, stability criterion NOT MET).
-    SEPARATED harm 0.865 vs SAME-TIMESCALE harm 0.887 — performance criterion passed (separation
-    does not degrade harm). Stability criterion failed: SEPARATED latent std 0.00910 vs
-    SAME-TIMESCALE 0.00887 — difference <3%, within noise bounds.
-    INTERPRETATION: NOT architecture falsification. ree-v1-minimal's grid world is too simple to
-    stress the latent representation — both timescales converge to similar stability because the
-    environment is predictable enough to saturate under either lr. The FAIL reflects substrate
-    resolution, not claim invalidity. E1 loss differential IS consistent with the hypothesis
-    (slower lr → higher unresolved prediction error per step, confirming distinct timescale operation).
-    Re-test required on substrate with richer latent dynamics before concluding on MECH-058.
-    Remains candidate. Performance criterion passing is positive: no regression from separation.
+    V1 EXQ-002 (e1_e2_timescale_ablation): FAIL. V2 EXQ-019 (terrain_timescale, 2026-03-15): FAIL.
+    Both FAILs consistent with supersession: the test was ill-posed. LR separation ≠ functional
+    domain separation. See MECH-069 for the correct claim.
   depends_on:
     - ARC-001
     - ARC-002
@@ -2248,7 +2239,7 @@
   depends_on:
     - Q-019
     - ARC-004
-    - MECH-058
+    - MECH-069
     - MECH-033
   location: docs/architecture/three_loop_learning_channels.md#arc-021
   source:
@@ -2259,9 +2250,15 @@
   subject: latent_stack.three_loop_error_signal_incommensurability
   polarity: asserts
   status: candidate
+  supersedes: MECH-058
+  supersedes_note: |
+    MECH-058 framed the E1/E2 distinction as timescale separation (LR difference). MECH-069
+    identifies the deeper claim: the three loops operate on incommensurable error signals
+    (sensory prediction / motor-sensory / harm+goal) that cannot be merged without misattributing
+    credit. This is a functional-domain distinction, not a speed distinction.
+    Cannot be properly tested until V3 z_self/z_world split (SD-005) is implemented.
   depends_on:
     - ARC-021
-    - MECH-058
     - MECH-033
     - ARC-018
   location: docs/architecture/three_loop_learning_channels.md#mech-069
@@ -2313,3 +2310,205 @@
     reduces false attribution rate (residue at env-caused events / total residue)
     versus naive accumulation at all harm events, without degrading harm avoidance.
     EXQ-028 tests this.
+# Registered 2026-03-15 — NC-01 through NC-09 valenced hippocampal map cluster
+# ⚠ ARC-022 and MECH-073 conflict with ARC-007 (hippocampal valence constraint) — pending adjudication via Q-020
+- id: ARC-022
+  claim_type: architectural_commitment
+  subject: architecture.hierarchical_effect_object_pipeline
+  polarity: asserts
+  status: candidate
+  conflict_with:
+    - ARC-007
+    - ARC-014
+  conflict_note: |
+    ARC-007 constrains hippocampus to "no value computation"; ARC-022 calls it a "valenced
+    cognitive map" at the pipeline's terminus. ARC-014 defines DMN as an operating mode;
+    ARC-022 treats it as a pipeline layer. Resolution options: (A) revise ARC-007 to
+    distinguish "compute new value" (denied) from "embody geometrically-encoded prior value"
+    (permitted); (B) reject MECH-073 and treat NC-01 as external neuroscience model only.
+    Pending Q-020 adjudication.
+  depends_on:
+    - ARC-001
+    - ARC-002
+    - ARC-007
+    - ARC-014
+    - ARC-021
+    - MECH-070
+  location: docs/architecture/valenced_hippocampal_map.md#arc-022
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+- id: MECH-073
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.intrinsic_map_valence
+  polarity: asserts
+  status: candidate
+  conflict_with:
+    - ARC-007
+  conflict_note: |
+    ARC-007 design constraint: "No value computation. Its function is orthogonal to valuation
+    and control." MECH-073 asserts valence is intrinsic to hippocampal map geometry and that
+    rollouts are inherently valenced simulations. Direct contradiction. Pending Q-020.
+  depends_on:
+    - ARC-007
+    - ARC-013
+    - MECH-035
+  location: docs/architecture/valenced_hippocampal_map.md#mech-073
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+- id: MECH-074
+  claim_type: mechanism_hypothesis
+  subject: amygdala.hippocampal_map_readwrite_head
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-046
+    - MECH-073
+    - ARC-007
+    - ARC-013
+  location: docs/architecture/valenced_hippocampal_map.md#mech-074
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    Extends MECH-046 (amygdala as mode prior updater) with four read/write roles on the
+    hippocampal map: (a) encoding modulation via BLA projections; (b) retrieval biasing
+    toward threat-relevant regions under arousal; (c) rapid pre-cortical priming via fast
+    subcortical route; (d) triggered remapping on prediction error spike. The fast
+    subcortical priming role is not present in MECH-046.
+- id: MECH-075
+  claim_type: mechanism_hypothesis
+  subject: basal_ganglia.dopaminergic_attractor_threshold_setting
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - Q-019
+    - ARC-021
+    - MECH-043
+    - MECH-073
+  location: docs/architecture/valenced_hippocampal_map.md#mech-075
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    BG perform gain/threshold setting on attractor dynamics in the valenced hippocampal
+    system via dopaminergic tone (VTA/SNc) and striatal competitive inhibition, not external
+    value comparison. Extends MECH-043 (dopamine-like precision-weighting) with attractor-
+    basin threshold framing specific to the hippocampal planning context. Supports three-loop
+    architecture of ARC-021 with a mechanism for how each loop's gate operates.
+- id: MECH-076
+  claim_type: mechanism_hypothesis
+  subject: residue.hippocampal_map_structural_deformation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-013
+    - MECH-056
+    - MECH-073
+  location: docs/architecture/valenced_hippocampal_map.md#mech-076
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    Residue (ARC-013 curvature field) is instantiated as structural deformation of
+    hippocampal map topology: CA3 dendritic retraction under stress, reduced DG neurogenesis,
+    palimpsest traces from incomplete reconsolidation. Not a separate inhibitory layer — the
+    terrain itself is deformed. Compatible with MECH-056 (trajectory-first placement): basin
+    distortion acts as trajectory-level pressure without requiring a representational filter
+    layered on perception.
+- id: MECH-077
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.therapeutic_remapping
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-013
+    - MECH-076
+    - MECH-018
+    - MECH-073
+  location: docs/architecture/valenced_hippocampal_map.md#mech-077
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    New domain claim. Therapeutic change = hippocampal remapping. Modalities: CBT operates
+    on OFC/vmPFC read of existing map; EMDR operates via reconsolidation under low arousal
+    (REE analogue: offline consolidation with arousal suppressed, MECH-018); psychodynamic
+    therapy = slow relational geometry restructuring over many consolidation cycles; psychedelic-
+    assisted = transient attractor flattening enabling large-scale map restructuring.
+- id: MECH-078
+  claim_type: mechanism_hypothesis
+  subject: amygdala.novel_territory_valence_bootstrap
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-046
+    - MECH-074
+    - MECH-073
+  location: docs/architecture/valenced_hippocampal_map.md#mech-078
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    Amygdala provides bootstrap valence for unmapped hippocampal territory via fast subcortical
+    priming (MECH-074 role 3), then writes initial valence into map through consolidation.
+    Anxiety disorders may reflect systematic over-valencing of novel/unmapped territory as
+    aversive. Positive feedback loop with MECH-040 volatility channel. Extends MECH-046.
+- id: MECH-079
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.map_geometry_selfhood
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-007
+    - ARC-013
+    - MECH-024
+    - MECH-073
+  location: docs/architecture/valenced_hippocampal_map.md#mech-079
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry:
+    same topology → similar rollouts → similar commitments → subjective identity persistence.
+    Extends MECH-024 (selfhood/personality/ethics converge structurally) with specific
+    substrate. Identity-level change = phase transition in map geometry (discontinuous
+    restructuring of attractor basin profile). Co-constituted with INV-006: ethical history
+    is structurally encoded in map geometry.
+- id: MECH-080
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.rollout_truncation_psychiatric_individual_differences
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-018
+    - MECH-027
+    - ARC-014
+    - MECH-075
+  location: docs/architecture/valenced_hippocampal_map.md#mech-080
+  source:
+    - docs/architecture/valenced_hippocampal_map.md
+  notes: >
+    Rollout sampling depth and truncation set-points as substrate for psychiatric individual
+    differences. ADHD = truncation-biased (BG urgency threshold too low, premature commitment);
+    anxiety = extension-biased (uncertainty chronically elevated, BG threshold too high,
+    suppressed commitment); OCD = attractor lock-in (abnormally deep basin, MECH-076, normal
+    signals cannot trigger basin exit). Extends MECH-027 (pathological modes = mis-tuned
+    control-plane regimes) and ARC-014 failure modes with unified rollout-parameter account.
+- id: Q-020
+  claim_type: open_question
+  subject: hippocampal.arc007_valence_constraint_survival
+  polarity: open
+  status: open
+  conflict_note: |
+    Pivotal adjudication question for NC-01 through NC-09 cluster integration into canonical
+    REE. Two resolution paths:
+    (A) Revise ARC-007 to distinguish "hippocampus does not compute new value" (still denied)
+    from "hippocampus embodies geometrically-encoded prior value via amygdala write operations
+    and residue-field shaping" (permitted under MECH-073). Preserves INV-014.
+    (B) Reject MECH-073; treat NC-01/NC-02 as external neuroscience model that inspires but
+    does not enter canonical architecture. ARC-022, MECH-073 demoted to rejected. MECH-074
+    through MECH-080 survive independently (most do not require MECH-073 to be valid).
+    Note: MECH-074 through MECH-080 have partial independence from MECH-073 — see individual
+    conflict notes. Q-019 resolution evidence may inform this question.
+  depends_on:
+    - ARC-007
+    - MECH-073
+    - ARC-022
+    - Q-019
+  location: docs/architecture/valenced_hippocampal_map.md#q-020
+  source:
+    - docs/architecture/valenced_hippocampal_map.md

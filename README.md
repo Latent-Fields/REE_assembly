@@ -4,7 +4,7 @@
 It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
 Implementation code and stress testing run in companion repositories, then feed evidence back here.
 
-**Quickest orientation:** launch `python3 -m http.server` from repo root, then open [`http://localhost:8000/docs/claims/explorer.html`](http://localhost:8000/docs/claims/explorer.html) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
+**Quickest orientation:** run `caffeinate -i python3 serve.py` from repo root, then open [`http://localhost:8000/explorer`](http://localhost:8000/explorer) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
 
 **Human start:** `docs/roadmap.md`
 **Agent-maintenance start:** `docs/README.md`

@@ -6,8 +6,8 @@ Replaces `python3 -m http.server` with a server that also manages the
 experiment runner process via a small HTTP API.
 
 Usage:
-    cd ~/Documents/GitHub/REE_assembly
-    python3 serve.py                  # http://localhost:8000
+    cd ~/Documents/GitHub/REE_Working/REE_assembly
+    caffeinate -i python3 serve.py    # http://localhost:8000/explorer
     python3 serve.py --port 9000
 
 API (POST, called by the Experiments tab in the explorer):
@@ -178,6 +178,15 @@ def stop_runner() -> dict:
 
 class Handler(http.server.SimpleHTTPRequestHandler):
 
+    def do_GET(self):
+        # Short URL: /explorer → /explorer.html
+        if urlparse(self.path).path == "/explorer":
+            self.send_response(302)
+            self.send_header("Location", "/explorer.html")
+            self.end_headers()
+            return
+        super().do_GET()
+
     def do_POST(self):
         path = urlparse(self.path).path
         if path == "/api/runner/start":
@@ -239,7 +248,7 @@ def main():
     signal.signal(signal.SIGINT, shutdown)
     signal.signal(signal.SIGTERM, shutdown)
 
-    url = f"http://localhost:{args.port}/explorer.html"
+    url = f"http://localhost:{args.port}/explorer"
     print(f"[serve] REE Explorer → {url}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
     print(f"[serve] Runner script: {RUNNER_SCRIPT}", flush=True)

@@ -636,19 +636,19 @@ def main() -> int:
     parser.add_argument(
         "--ree-v2-repo",
         type=Path,
-        default=Path("/Users/dgolden/Documents/GitHub/ree-v2"),
+        default=Path(__file__).resolve().parents[4] / "ree-v2",
         help="Path to ree-v2 repository.",
     )
     parser.add_argument(
         "--ree-v1-repo",
         type=Path,
-        default=Path("/Users/dgolden/Documents/GitHub/ree-v1-minimal"),
+        default=Path(__file__).resolve().parents[4] / "ree-v1-minimal",
         help="Path to ree-v1-minimal repository.",
     )
     parser.add_argument(
         "--ree-lab-repo",
         type=Path,
-        default=Path("/Users/dgolden/Documents/GitHub/ree-experiments-lab"),
+        default=Path(__file__).resolve().parents[4] / "ree-experiments-lab",
         help="Path to ree-experiments-lab repository.",
     )
     parser.add_argument(

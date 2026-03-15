@@ -1999,8 +1999,8 @@
         <summary>Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</summary>
         <div class="header-info-body">
           <div class="subtitle">Auto-updates require a local server (not <code>file://</code>). From repo root:<br>
-            &nbsp;&nbsp;Option 1: <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; python3 -m http.server</code><br>
-            &nbsp;&nbsp;Option 2 (prevent sleep): <code>cd ~/Documents/GitHub/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code>
+            <code>cd ~/Documents/GitHub/REE_Working/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code><br>
+            Then open: <code>http://localhost:8000/explorer</code>
           </div>
           <div class="subtitle" id="refreshStatus" style="margin-top:4px;">Last refreshed: --</div>
         </div>
@@ -7480,12 +7480,23 @@ END CONFLICT RESOLUTION`;
     function fmtMinutes(mins) {
       if (mins < 1) return '<1 min';
       if (mins < 60) return `~${Math.round(mins)} min`;
-      return `~${(mins / 60).toFixed(1)} hr`;
+      const hrs = mins / 60;
+      if (hrs < 24) return `~${hrs.toFixed(1)} hr`;
+      const days = Math.floor(hrs / 24);
+      const remHrs = (hrs % 24).toFixed(1);
+      return `~${days}d ${remHrs}hr`;
     }
 
     function fmtSeconds(secs) {
       if (secs < 60) return `${Math.round(secs)}s`;
-      return `${Math.floor(secs / 60)}m ${Math.round(secs % 60)}s`;
+      if (secs < 3600) return `${Math.floor(secs / 60)}m ${Math.round(secs % 60)}s`;
+      const hrs = Math.floor(secs / 3600);
+      const mins = Math.floor((secs % 3600) / 60);
+      const s = Math.round(secs % 60);
+      if (hrs < 24) return `${hrs}h ${mins}m ${s}s`;
+      const days = Math.floor(hrs / 24);
+      const remHrs = hrs % 24;
+      return `${days}d ${remHrs}h ${mins}m ${s}s`;
     }
 
     function inferVersion(item) {
@@ -7523,7 +7534,7 @@ END CONFLICT RESOLUTION`;
     }
 
     function versionRenderOrder(groups) {
-      const order = ['v1', 'v2', 'unknown'];
+      const order = ['v2', 'v1', 'unknown'];
       const extra = Object.keys(groups).filter(v => !order.includes(v)).sort();
       return [...order, ...extra].filter(v => groups[v] && groups[v].length > 0);
     }
@@ -7641,15 +7652,14 @@ END CONFLICT RESOLUTION`;
             <div style="flex:1;min-width:260px">
               <div style="font-size:13px;margin-bottom:10px">Status: ${statusDot}</div>
               <div class="exp-desc" style="margin:0;line-height:1.9">
-                <strong>First time setup</strong> — use this instead of <code>python3&nbsp;-m&nbsp;http.server</code>:<br>
-                <code>cd ~/Documents/GitHub/REE_assembly</code><br>
-                <code>python3 serve.py</code><br>
+                <strong>Start server</strong>:<br>
+                <code>cd ~/Documents/GitHub/REE_Working/REE_assembly</code><br>
+                <code>caffeinate -i python3 serve.py</code><br>
                 <span style="color:var(--muted);margin-top:4px;display:block">
                   Experiments run detached in background &mdash; log saved to
                   <code>runner.log</code> in REE_assembly.<br>
                   Each experiment takes ~15&nbsp;min on M2&nbsp;Air&nbsp;8&nbsp;GB.
-                  Queue runs sequentially to stay within memory.<br>
-                  For long runs, prevent sleep: <code>caffeinate -i python3 serve.py</code>
+                  Queue runs sequentially to stay within memory.
                 </span>
               </div>
             </div>
@@ -8044,10 +8054,10 @@ END CONFLICT RESOLUTION`;
       if (isFile) {
         showErrorHtml(
           'Opened via <code>file://</code>. This page needs a local server to read repo files.<br><br>' +
-          'Steps:<br>' +
-          '<pre>cd <repo-root>\npython3 -m http.server</pre>' +
+          'In Terminal:<br>' +
+          '<pre>cd ~/Documents/GitHub/REE_Working/REE_assembly\ncaffeinate -i python3 serve.py</pre>' +
           'Then open:<br>' +
-          '<pre>http://localhost:8000/docs/claims/explorer.html</pre>'
+          '<pre>http://localhost:8000/explorer</pre>'
         );
         return;
       } else {
