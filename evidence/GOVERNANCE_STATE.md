@@ -99,9 +99,32 @@ treated with caution for zero-genuine-run claims.
 
 ## Pending Genuine Experimentation
 
-*All queued experiments complete. Runner queue exhausted after EXQ-013 (2026-03-01T00:16Z).*
+*V2 experiment series underway. EXQ-014 through EXQ-019 completed 2026-03-01 to 2026-03-15.*
+*EXQ-020 and later queued in ree-v2/experiment_queue.json.*
 
-EXQ-008 through EXQ-013 ran as part of the same runner session (PID 19614, 13-item queue) on 2026-02-28 to 2026-03-01. Next genuine experiments will be defined during Step 2.0 V2 redesign and dispatched to ree-v2 once the implementation spec is complete.
+### V2 Genuine Experiments
+
+| EXQ | Claim(s) | Experiment | Result | Completed |
+|-----|----------|------------|--------|-----------|
+| EXQ-014 | MECH-059 | Control Plane Precision Separation — V2 Parity | **PASS** | 2026-03-14 |
+| EXQ-015 | MECH-056 | Residue Trajectory Placement — V2 Parity | **PASS** | 2026-03-14 |
+| EXQ-016 | MECH-060 | Write Locus Contamination — V2 Parity | **PASS** | 2026-03-15 |
+| EXQ-017 | MECH-061 | Commitment Boundary Validation — V2 Parity | **PASS** | 2026-03-15 |
+| EXQ-018 | SD-003-prereq | CausalGridWorld Baseline (Step 2.3 exit criteria) | **PASS** | 2026-03-15 |
+| EXQ-019 | MECH-058 | E1/E2 Terrain Timescale | **FAIL** (expected — MECH-058 superseded by MECH-069) | 2026-03-15 |
+| EXQ-020 | MECH-057a | Action-Loop Completion Gate (V2 multi-step substrate) | **QUEUED** | pending |
+
+**EXQ-020 notes:**
+- Substrate: CausalGridWorld with `subgoal_mode=True` (3-waypoint committed sequences).
+  This removes the substrate limitation that caused EXQ-004, EXQ-007, and EXQ-016
+  (attribution_completion_gating) to fail. The gate now has an "action in progress"
+  state to protect.
+- Smoke run (5 episodes, seed 7): directionally PASS but not statistically valid.
+- Full run: 5 seeds × 250 episodes × 3 conditions — queued in experiment_queue.json.
+- Script: `ree-v2/experiments/action_loop_completion_gate.py`
+- Profile: `evidence/experiments/claim_probe_mech_057a/experiment.md`
+
+EXQ-008 through EXQ-013 ran as part of the same runner session (PID 19614, 13-item queue) on 2026-02-28 to 2026-03-01. V2 parity experiments EXQ-014 through EXQ-019 ran on 2026-03-01 to 2026-03-15.
 
 ---
 

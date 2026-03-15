@@ -1037,21 +1037,42 @@
   claim_type: architectural_commitment
   subject: hippocampus.rollout_viability_mapping
   polarity: asserts
-  status: provisional
+  status: candidate
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
+  v3_pending: true
+  v3_pending_reason: |
+    Requires SD-004 (action objects as E2 latent) and SD-005 (z_self/z_world split).
+    Cannot be properly tested until V3 substrate exists.
+  reframe_note: |
+    Original framing (2026-02-09) incorrectly attributed viability mapping to E1 prediction
+    error (SELF_SENSORY mismatch). V2 EXQ-021 FAIL (2026-03-08, 2026-03-15) confirmed this
+    framing is wrong: E1 prediction error has no advantage over a frozen E1 for harm navigation.
+    Corrected framing (2026-03-15): hippocampus builds viability map indexed by E2 action-object
+    coordinates, updated by E3 harm/goal error. E1 provides perceptual context to E2 only.
+    E2's latent space is action consequences (action objects), not sensory state transitions.
+    The map lives in hippocampal geometry, not in E1.
+  evidence_quality_note: |
+    V2 experiment EXQ-021 (rollout_viability_mapping, EVB-0017) FAIL — run twice (2026-03-08,
+    2026-03-15), consistent result. VIABILITY_MAPPED (E1 updating) shows no advantage over
+    VIABILITY_FIXED (frozen E1) in harm navigation; FIXED outperforms MAPPED in 2/3 seeds.
+    This is a conceptual failure of the original claim framing, not a substrate or tuning issue.
+    The corrected claim (hippocampus + E3 error + E2 action-object space) is V3-pending and
+    has no experimental evidence in the current corpus.
   depends_on:
     - ARC-007
     - ARC-003
     - ARC-002
     - ARC-001
+    - ARC-021
   location: docs/architecture/hippocampal_systems.md#arc-018
   source:
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
 - id: ARC-019
   claim_type: architectural_commitment
   subject: developmental.curriculum_stages
@@ -1538,9 +1559,12 @@
     - docs/architecture/residue_geometry.md
     - docs/thoughts/2026-02-12_TRAJECTORY-RESIDUE-VS-REPRESENTATIONAL-DISTORTION.md
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
-- id: MECH-057
+# MECH-057 split 2026-03-15: action-loop and thought-loop gates are distinct mechanisms
+# requiring different substrates and different V-phase targets. MECH-057a retains the V1/V2
+# evidence and is V2-testable with multi-step substrate. MECH-057b is explicitly V3-scoped.
+- id: MECH-057a
   claim_type: mechanism_hypothesis
-  subject: agentic_extension.control_completion_requirement
+  subject: agentic_extension.action_loop_completion_gate
   polarity: asserts
   status: candidate
   lifecycle_stage: adjudicated
@@ -1556,33 +1580,27 @@
     Degradation threshold 1.1 (10%): neither ablation met it (1.019x and 1.046x respectively).
     Effect ordering is architecturally correct: FULL < NO_ATTRIBUTION < NO_GATING — completion gating
     matters more than attribution at this scale (4.5% vs 1.9%), consistent with theory.
-    INTERPRETATION: NOT architecture falsification. Two compounding substrate limitations:
-    (1) Grid world is too simple to require multi-step action completion — each step is its own
-    atomic action, so there is no meaningful "action in progress" state for the gating mechanism
-    to protect. The mechanism is most load-bearing when actions span multiple sub-steps or when
-    long-horizon plans require protection from premature precision updates during execution.
-    (2) ree-v1-minimal's flat policy gradient does not accumulate attribution errors across
-    action sequences, so the attribution channel (FULL vs NO_ATTRIBUTION delta = 1.9%) has minimal
-    signal to propagate. Both effects require richer substrate to manifest.
-    Remains candidate (hybridize). Genuine re-test requires: multi-step action substrate, or
-    sequential decision tasks with non-atomic action execution (e.g. navigation sub-goals).
-    The FAIL is an informative baseline: it constrains the minimum substrate complexity
-    needed to detect the mechanism, not the mechanism's existence.
-    SCOPE REVISION PENDING (Q-019, 2026-02-27): The three-gate BG architecture hypothesis
-    raises the possibility that "control completion" operates in two distinct loops, not one.
-    The thought loop may gate trajectory completion (hippocampal sequence completion before
-    a trajectory is eligible for promotion to action consideration), independently of the
-    action loop gate (motor completion before new precision updates are admitted). MECH-057
-    is currently scoped to the action loop only. If Q-019 literature extraction supports the
-    three-gate model, MECH-057 may need to be split: MECH-057a (action-loop completion gate)
-    and MECH-057b (thought-loop trajectory promotion gate).
+    V2 re-test (Attribution Completion Gating — V2 Redesign, 2026-03-15): FAIL.
+    V2 substrate still uses single-step grid actions — atomic action structure persists in
+    base CausalGridWorld. The action-loop gate has no "action in progress" state to protect.
+    INTERPRETATION: all prior FAILs are substrate-limited, not architecture falsifications.
+    SCOPE REVISION RESOLVED (2026-03-15): MECH-057 split into MECH-057a (this claim, action loop)
+    and MECH-057b (thought-loop trajectory promotion gate, V3-scoped). The two gates are
+    mechanistically distinct and require different substrates.
+    SUBSTRATE FIX IMPLEMENTED (2026-03-15): CausalGridWorld extended with subgoal_mode=True
+    (3-waypoint committed sequences W0→W1→W2; entity type 6; timeout=20 steps).
+    REEAgent updated: action_loop_gate_enabled flag + sequence_in_progress routing in
+    generate_trajectories(); update_residue(owned=bool) for attribution ablation.
+    EXQ-020 designed and smoke-tested 2026-03-15 (directionally PASS at 5 eps / 1 seed).
+    Full run (5 seeds × 250 episodes × 3 conditions) queued in ree-v2/experiment_queue.json.
+    Will update to provisional on EXQ-020 PASS.
   depends_on:
     - ARC-015
     - ARC-005
     - ARC-003
     - ARC-004
     - INV-012
-  location: docs/architecture/agency_responsibility_flow.md#mech-057
+  location: docs/architecture/agency_responsibility_flow.md#mech-057a
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
     - docs/thoughts/2026-02-13_subjective_experience_pre_post_commit.md
@@ -1590,6 +1608,34 @@
 # Reframed 2026-02-26 — removed JEPA framing. Subject renamed to REE-native formulation.
 # Prior evidence (156 entries) was generated by synthetic repos (ree-v2, ree-experiments-lab,
 # archived 2026-02-26) and is invalid. Claim reset for genuine ree-v1-minimal experiments.
+# Split from MECH-057 2026-03-15 — scope revision resolved.
+- id: MECH-057b
+  claim_type: mechanism_hypothesis
+  subject: agentic_extension.thought_loop_trajectory_promotion_gate
+  polarity: asserts
+  status: candidate
+  lifecycle_stage: candidate
+  implementation_phase: v3
+  evidence_quality_note: |
+    No genuine experiments. This claim is explicitly V3-scoped.
+    The thought-loop trajectory promotion gate requires HippocampalModule to implement a
+    feedback path that suppresses trajectory candidates from being promoted to E3 consideration
+    before hippocampal sequence completion is verified. This path is not present in V1 or V2.
+    V3 primary scope: full HippocampalModule trajectory promotion policy and E3 complex
+    commitment gate (per V2 spec Step 2.5 exit criteria and V3 control completion focus).
+    Split from MECH-057 2026-03-15 — see MECH-057a for action-loop evidence and V1/V2 history.
+  depends_on:
+    - ARC-015
+    - ARC-005
+    - ARC-003
+    - ARC-004
+    - INV-012
+    - Q-019
+    - ARC-020
+  location: docs/architecture/agency_responsibility_flow.md#mech-057b
+  source:
+    - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
+    - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
 - id: MECH-058
   claim_type: mechanism_hypothesis
   subject: latent_stack.e1_e2_timescale_separation
