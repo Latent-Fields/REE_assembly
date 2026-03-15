@@ -159,6 +159,7 @@ V3 requires both SD-004 and SD-005 to be implemented together — they co-evolve
 |---|---|---|
 | **SD-004** | E2 → `f(z_t, a_t) → (z_{t+1}, o_t)` (action objects); Hippocampus navigates action-object space | Longer planning horizon; compressed world-effect encoding |
 | **SD-005** | z_gamma → z_self + z_world; E2 on z_self; E3/Hippocampus on z_world | Clean motor-sensory vs world-consequence separation; correct residue substrate |
+| **SD-006** | Asynchronous multi-rate loop execution: E1/E2/E3 run at characteristic heartbeat rates (ARC-023), not synchronous single-timestep | Required for heartbeat architecture (ARC-023), cross-frequency coupling (MECH-089), beta-gated policy propagation (MECH-090), phase reset (MECH-091), SWR replay (MECH-092), z_beta rate modulation (MECH-093) |
 
 These interact: action objects (SD-004) encode `z_world_t → z_world_{t+1}`, which requires
 z_world to exist (SD-005). They should be designed and implemented together.
@@ -171,6 +172,7 @@ z_world to exist (SD-005). They should be designed and implemented together.
 - [ ] HippocampalModule navigates action-object space, not raw z_world
 - [ ] ResidueField operates over z_world, not z_gamma
 - [ ] Three separate optimizers with three separate error signals (currently true in V2, cleaner in V3)
+- [ ] **SD-006: Asynchronous multi-rate execution** — E1/E2/E3 run at different characteristic rates with thalamic-pacemaker-equivalent timing. Options: separate threads (GIL risk), time-multiplexed with explicit rate parameters, or hierarchical temporal abstraction (HTA — recommended: aligns with representational grain boundaries). Must co-design with SD-004/SD-005 because temporal grain boundaries should align with representational abstraction levels.
 - [ ] CausalGridWorld extended (or replaced) with explicit self/world observation channels
 - [ ] **Q-020 adjudication complete before finalising HippocampalModule architecture** — whether
   rollout proposals arrive at E3 pre-weighted by map geometry (MECH-073) or neutral (ARC-007
@@ -284,6 +286,9 @@ V3 enables:      clean motor-sensory vs world-consequence isolation (SD-005)
                  full causal self-attribution (SD-003 V3)
                  Q-020 resolution: SD-005 z_world split likely dissolves the conflict,
                    confirming residue field = map valence, ARC-007 intact (V3-EXQ-008)
+                 heartbeat architecture: characteristic per-loop update rates, beta-gated
+                   policy propagation, phase reset, SWR replay, z_beta rate modulation
+                   (SD-006, ARC-023, MECH-089–MECH-093)
 
 Design gate:     Q-020 adjudication required before HippocampalModule architecture
                  is finalised — the E3 input contract differs between MECH-073 and

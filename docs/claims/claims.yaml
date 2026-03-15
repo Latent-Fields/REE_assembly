@@ -948,10 +948,27 @@
   subject: emotion.universal_expression_channel_mapping
   polarity: asserts
   status: active
+  v3_pending: true
+  v3_pending_reason: |
+    Requires correct three-channel E1/E2/E3 separation (SD-005, ARC-021). z_beta must receive
+    clean E3 harm/goal error; E3 precision must be meaningfully distinct from E1/E2 activity.
+    Neither holds in V2. Even with dynamic precision implemented, V2 channel contamination
+    would make the valence-precision correlation uninterpretable.
+  evidence_quality_note: |
+    V2 experiment EXQ-024 (valence_regime_correlation, EVB-0006) FAIL — run twice (2026-03-08,
+    2026-03-15), consistent result. Proximate failure: E3 precision hardcoded at 0.5 (no dynamic
+    precision channel implemented), making the correlation mathematically impossible to observe.
+    Fundamental blocker: V2 lacks correct E1/E2/E3 representation — z_beta receives mixed signals
+    from conflated learning channels. Fixing precision alone would not produce valid results.
+    Proxy problem: experiment used health/energy (external environment state) as valence signal;
+    correct test requires z_beta valence dimension (internal affective representation) correlated
+    with E3 precision. No valid evidence in current corpus.
   depends_on:
     - ARC-005
+    - ARC-021
     - MECH-039
     - MECH-040
+    - MECH-069
   location: docs/architecture/control_plane.md#q-007
   source:
     - docs/architecture/control_plane.md
@@ -1106,11 +1123,26 @@
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
   polarity: asserts
-  status: provisional
+  status: candidate
+  v3_pending: true
+  v3_pending_reason: |
+    Requires (1) dynamic E3 precision (same gap as Q-007) and (2) self-attribution via SD-003
+    (agent must internally distinguish agent-caused vs environment-caused events, not read a
+    ground-truth label). SD-003 requires E2 action-object latent (SD-004). Both are V3 prerequisites.
+  evidence_quality_note: |
+    V2 experiment EXQ-026 (action_doing_mode_probe, EVB-0025) FAIL — 1 run (2026-03-08).
+    Proximate failure: action_precision_lift = 0.0 across all seeds/conditions — E3 precision
+    hardcoded, no dynamic channel (same root cause as Q-007). Fundamental blocker: action-doing
+    mode requires self-attribution (SD-003) — the agent must detect it is the causal source, not
+    read an external transition_type label. SD-003 requires E2 action-object latent (SD-004).
+    Slope criterion: HIGH_CAUSAL (0.0211) vs LOW_CAUSAL (0.0174) — right direction, 0.0037 gap,
+    well short of 0.05 margin; likely policy gradient density effect, not action-doing mode signal.
+    No valid evidence in current corpus.
   depends_on:
     - ARC-016
     - ARC-005
     - ARC-015
+    - ARC-021
     - INV-012
   location: docs/architecture/modes_of_cognition.md#mech-025
   source:
@@ -1207,17 +1239,31 @@
   claim_type: mechanism_hypothesis
   subject: hippocampus.kernel_chaining_interface
   polarity: asserts
-  status: provisional
+  status: candidate
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
+  v3_pending: true
+  v3_pending_reason: |
+    Requires SD-004 (action objects as E2 latent). The kernel → rollout handoff is only
+    load-bearing when E2 kernels are action-consequence objects, not sensory state transitions.
+    In V2, generate_trajectories() chains z_gamma sensory predictions — the wrong primitive.
+    Inherits ARC-018 prerequisite: hippocampal rollout coordinates must be action-object space.
+  evidence_quality_note: |
+    V2 experiment EXQ-022 (kernel_chaining_interface, EVB-0016) FAIL — run twice (2026-03-08,
+    2026-03-15), consistent result. WITH_CHAIN (full E2→hippocampus→E3 pipeline) only 1.8%
+    better than NO_CHAIN (random action selection); random agent improves faster on slope.
+    Root cause: V2 E2 produces z_gamma sensory transitions, not action-consequence objects.
+    Chaining sensory predictions into rollouts provides negligible signal to E3 — the interface
+    exists but passes the wrong type across it. Structural failure, not a tuning issue.
   depends_on:
     - ARC-018
     - ARC-002
     - ARC-001
     - ARC-005
+    - ARC-021
   location: docs/architecture/hippocampal_systems.md#mech-033
   source:
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
@@ -1594,12 +1640,24 @@
     EXQ-020 designed and smoke-tested 2026-03-15 (directionally PASS at 5 eps / 1 seed).
     Full run (5 seeds × 250 episodes × 3 conditions) queued in ree-v2/experiment_queue.json.
     Will update to provisional on EXQ-020 PASS.
+    CLAIM REFRAMING (2026-03-15): Heartbeat architecture analysis (ARC-023, MECH-090)
+    reveals the experiment modelled E3 as updating only at completion (binary gate), not
+    as beta-gated propagation within a continuous update stream. The correct mechanism is:
+    completion events are the principal policy-update opportunities (beta drops, E3 model
+    propagates to action selection) within an otherwise continuous E3 internal update stream.
+    The V2 FAIL pattern (ATTRIBUTION_BLIND comparable to COMPLETION_GATED) is consistent
+    with this reframing: continuous updating without any beta gate is closer to correct
+    architecture than episodic gating. Subject updated to reflect: completion events as
+    policy-propagation gates, not as exclusive E3 update triggers. Full test requires
+    ARC-023 + MECH-090 (V3 substrate, SD-006).
   depends_on:
     - ARC-015
     - ARC-005
     - ARC-003
     - ARC-004
     - INV-012
+    - ARC-023
+    - MECH-090
   location: docs/architecture/agency_responsibility_flow.md#mech-057a
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
@@ -2761,4 +2819,136 @@
     Extends MECH-027 (pathological modes) and MECH-080 (rollout truncation profiles) to
     PTSD/depression/psychosis and grounds all profiles in four-plane hierarchy. Generates
     intervention-order predictions (MECH-087): address upstream plane failures before
+# Registered 2026-03-15 — control plane heartbeat architecture cluster
+# Source: conversation developing heartbeat model from MECH-057a FAIL analysis
+- id: ARC-023
+  claim_type: architectural_commitment
+  subject: basal_ganglia.three_loop_thalamic_heartbeat
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-021
+    - MECH-069
+  location: docs/architecture/control_plane_heartbeat.md#arc-023
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Each BG-like cortico-striatal loop has a characteristic thalamic heartbeat rate:
+    E1 at sensory frame rate (continuous); E2 at motor command rate; E3 at deliberation
+    rate (slowest). Thalamic substrate: MD → E3 complex, VL → E2 motor pathway,
+    sensory relay nuclei → E1. TRN acts as inter-loop routing switch. Coherence
+    mechanism: thalamic clock prevents loop drift under indeterminate processing latency.
+    Completion events are high-salience updates within the continuous stream, not the
+    exclusive trigger. V1/V2 substrates use synchronous single-timestep updates and
+    cannot test this claim (SD-006 required for V3).
+- id: MECH-089
+  claim_type: mechanism_hypothesis
+  subject: thalamus.cross_frequency_coupling_inter_loop_integration
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-023
+    - ARC-021
+  location: docs/architecture/control_plane_heartbeat.md#mech-089
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Cross-frequency coupling (theta-gamma nesting) packages fast E1 updates for
+    slow E3 consumption. Gamma cycles (E1-rate) nest within theta cycles (E3-rate);
+    each theta cycle integrates ~5-7 gamma sub-cycles into a rolling summary that
+    E3 samples at its heartbeat rate. E3 never receives raw E1 prediction error —
+    only theta-cycle-averaged context. This defines the minimum temporal resolution
+    for E3 harm attribution (cannot attribute finer-grained than one E3 heartbeat cycle).
+    Thalamic relay performs the cross-rate integration. Analogous to theta-gamma coupling
+    in hippocampal-prefrontal circuits.
+- id: MECH-090
+  claim_type: mechanism_hypothesis
+  subject: basal_ganglia.beta_oscillation_policy_output_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-023
+    - ARC-021
+    - MECH-057a
+  location: docs/architecture/control_plane_heartbeat.md#mech-090
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Beta oscillations (~13-30 Hz, STN/striatum) gate propagation of E3 model updates
+    to action selection — NOT E3 internal model updating. During committed action sequence:
+    beta elevated → E3 updates internally (heartbeat continues) but do not change action
+    selection. At completion or hyperdirect stop-change signal: beta drops → E3 model
+    state propagates → policy can change. Reframes MECH-057a: completion events are the
+    principal policy-update opportunities within an otherwise beta-gated continuous E3
+    stream, not the exclusive E3 update trigger. Hyperdirect pathway (cortex→STN→GPi)
+    provides fast interrupt for urgent stop-change without waiting for completion.
+    Explains MECH-057a FAIL: experiment modelled binary gate (E3 blind until completion),
+    not beta-gated propagation within continuous stream.
+- id: MECH-091
+  claim_type: mechanism_hypothesis
+  subject: basal_ganglia.salient_event_phase_reset
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-023
+    - MECH-090
+  location: docs/architecture/control_plane_heartbeat.md#mech-091
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    High-salience events (action completion, unexpected harm, commitment boundary crossing)
+    phase-reset the E3 heartbeat oscillator — reorganise timing of subsequent cycles, not
+    only boost signal amplitude. Phase reset ensures updated harm estimates from the salient
+    event enter E3 at the start of a fresh cycle (no mid-cycle integration artefacts).
+    In multi-step plans (W0→W1→W2) each waypoint completion phase-resets E3's clock,
+    ensuring harm estimates from each sub-plan are fully integrated before the next begins.
+    Neural basis: P300 event-related potential and its theta/alpha oscillatory substrate.
+- id: MECH-092
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.swr_equivalent_replay_during_heartbeat
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-023
+    - ARC-018
+    - ARC-022
+  location: docs/architecture/control_plane_heartbeat.md#mech-092
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    During quiescent E3 heartbeat cycles (no new completion event or salient update),
+    hippocampal module performs SWR-equivalent replay: replaying compressed recent
+    trajectory experience (~10-20× faster than real-time) to consolidate viability map.
+    Internally generated by CA3-equivalent recurrent dynamics, not requiring external input.
+    V2 ARC-018 FAIL is partly explained by absence of any replay mechanism — map updates
+    only at each discrete step, no quiescent consolidation phase. ARC-018 may be testable
+    in V3 via explicitly modelled quiescent replay phases. Connects to sleep consolidation
+    docs (docs/architecture/sleep/) as the within-session equivalent of sleep replay.
+- id: MECH-093
+  claim_type: mechanism_hypothesis
+  subject: affective.z_beta_e3_heartbeat_rate_modulation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-023
+    - MECH-069
+    - MECH-059
+  location: docs/architecture/control_plane_heartbeat.md#mech-093
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    z_beta (affective latent) modulates E3 heartbeat frequency: high harm salience →
+    faster E3 updates (finer temporal harm attribution); routine operation → slower
+    E3 updates (more stable policy). Distinct from precision-weighting (MECH-059):
+    precision-weighting scales how much each update matters; rate modulation scales
+    how often updates occur. Corresponds to NA arousal axis in four-plane hierarchy
+    (MECH-087): NA modulates perceptual sampling (MECH-084) and, via z_beta, E3
+    heartbeat rate. Predicted: sustained high harm salience → more reactive policy;
+    routine conditions → increased policy stability.
     downstream optimisation.
