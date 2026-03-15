@@ -116,6 +116,8 @@ Sharp-wave ripples in biological hippocampus occur during quiescent periods (res
 
 **Connection to sleep architecture:** The sleep docs (`docs/architecture/sleep/`) describe offline consolidation. MECH-092 is the within-session, intra-action equivalent — the same replay machinery operating on shorter timescales during E3 heartbeat quiescence, not only during sleep.
 
+**Connection to DMN (ARC-014):** Quiescent E3 heartbeat cycles are the micro-timescale version of DMN operation. Full DMN (ARC-014) operates at minutes-to-hours timescale during task-disengagement; MECH-092 operates at seconds timescale during inter-action gaps. Same machinery, different scale. Both are safe with respect to φ(z) because all internally-generated replay carries the hypothesis tag (MECH-094), which categorically blocks the post-commit error channel and prevents residue accumulation from simulated content.
+
 ---
 
 <a id="mech-093"></a>

@@ -128,6 +128,8 @@ Replay outputs are hypotheses.
 They only become commitments if:
 	•	E3 later selects a trajectory during task-engaged mode
 
+**Micro-quiescence replay (MECH-092):** The same replay mechanism operates at shorter timescales during quiescent E3 heartbeat cycles — brief inter-action gaps within an otherwise active session. This is the within-session, intra-action equivalent of full DMN replay: same hippocampal SWR-equivalent machinery, operating at seconds rather than minutes. Viability map consolidation via micro-quiescence replay is safe because all internally-generated replay carries the hypothesis tag (MECH-094), blocking φ(z) writes regardless of timescale.
+
 ⸻
 
 <a id="mech-029"></a>
@@ -192,9 +194,19 @@ It may not directly modify z_S.
 	2.	No forced commitment
 It may not trigger E3 collapse.
 	3.	No residue update
-Ethical curvature must remain unchanged.
+Ethical curvature φ(z) must remain unchanged. Implemented via the hypothesis tag (MECH-094):
+internally generated trajectories are categorically routed away from the φ(z) write pathway.
+During DMN, only the pre-commit simulation error channel is active (MECH-060); the post-commit
+realized-outcome channel — which drives residue accumulation — is suppressed. The qualitatively
+different affective texture of imagination vs. real experience is the phenomenological signature
+of this suppression: the absence of the full somatic post-commit signal. φ(z) is read during
+imagination (producing attenuated aversive affect), but not written to.
+Pathological failure: loss of the hypothesis tag (PTSD flashback, psychosis) opens the
+post-commit channel during replay, accumulating residue from simulated content (MECH-076).
+The damage in rumination is tag loss, not excessive vividness.
 	4.	Hypothesis tagging
-Generated trajectories must be explicitly non-committal.
+Generated trajectories must be explicitly non-committal (implements INV-011, INV-019).
+The tag is categorical, not a precision parameter — route separation is primary, attenuation secondary.
 
 These constraints preserve safety, corrigibility, and identity.
 
@@ -241,7 +253,12 @@ None noted in preserved sources.
 - ARC-007
 - ARC-013
 - INV-011
+- INV-019
 - MECH-029
+- MECH-060
+- MECH-076
+- MECH-092
+- MECH-094
 
 ## References / Source Fragments
 

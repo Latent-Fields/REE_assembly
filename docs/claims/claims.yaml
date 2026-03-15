@@ -2819,6 +2819,41 @@
     Extends MECH-027 (pathological modes) and MECH-080 (rollout truncation profiles) to
     PTSD/depression/psychosis and grounds all profiles in four-plane hierarchy. Generates
     intervention-order predictions (MECH-087): address upstream plane failures before
+# Registered 2026-03-15 — imagination / residue write gate cluster
+# Source: phenomenological analysis of imagination vs experience distinction
+- id: MECH-094
+  claim_type: mechanism_hypothesis
+  subject: default_mode.hypothesis_tag_residue_write_gate
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-014
+    - INV-011
+    - INV-019
+    - MECH-060
+    - MECH-029
+  location: docs/architecture/default_mode.md#mech-094
+  source:
+    - docs/architecture/default_mode.md
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    The hypothesis tag — marking internally generated trajectories as non-committal —
+    is the primary mechanism implementing ARC-014 constraint 3 (no residue update
+    during Default Mode). The tag is categorical, not a precision attenuation parameter:
+    it routes simulation signals away from the φ(z) write pathway entirely. Attenuation
+    of φ(z) readout during imagination is a secondary effect; route separation is primary.
+    Mechanism: during DMN/simulation, only the pre-commit error channel (MECH-060) is
+    active; the post-commit realized-outcome channel — which drives residue accumulation
+    — is suppressed. The qualitatively different affective texture of imagination vs.
+    real experience is the phenomenological signature of this channel suppression: the
+    absence of the full somatic/post-commit signal. Implements INV-011 (imagination without
+    belief update) and INV-019 (rehearsal/durable-update separation) at the mechanism
+    level. Pathological failure: when the hypothesis tag is lost (PTSD flashback,
+    psychosis), the post-commit channel opens during what is structurally a replay event,
+    and φ(z) begins accumulating residue from simulated/replayed content — the mechanism
+    of MECH-076 (map structural deformation). The damage in rumination is tag loss, not
+    excessive vividness. Simulation-driven viability map updates (MECH-092) are safe
+    precisely because replay carries the hypothesis tag throughout.
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
 - id: ARC-023
@@ -2915,8 +2950,10 @@
   implementation_phase: v3
   depends_on:
     - ARC-023
+    - ARC-014
     - ARC-018
     - ARC-022
+    - MECH-094
   location: docs/architecture/control_plane_heartbeat.md#mech-092
   source:
     - docs/architecture/control_plane_heartbeat.md
@@ -2929,6 +2966,10 @@
     only at each discrete step, no quiescent consolidation phase. ARC-018 may be testable
     in V3 via explicitly modelled quiescent replay phases. Connects to sleep consolidation
     docs (docs/architecture/sleep/) as the within-session equivalent of sleep replay.
+    Safe because replay carries the hypothesis tag (MECH-094) throughout: viability map
+    consolidation updates the cognitive map of φ(z) without writing to φ(z) itself.
+    This is the micro-quiescence analogue of ARC-014 (DMN): same replay machinery,
+    operating at inter-action timescales rather than full task-disengagement timescales.
 - id: MECH-093
   claim_type: mechanism_hypothesis
   subject: affective.z_beta_e3_heartbeat_rate_modulation
