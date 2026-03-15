@@ -16,59 +16,72 @@
 ---
 
 <a id="mech-083"></a>
-## Acetylcholine as Meta-Level Plasticity Gate (MECH-083)
+## Acetylcholine as Meta-Level Plasticity Gain (MECH-083)
 
 **Claim Type:** mechanism_hypothesis
-**Scope:** ACh as the meta-level control plane governing whether current experience updates the hippocampal map
+**Scope:** ACh as the meta-level control plane governing the plasticity gain on bottom-up input — how much current experience modifies the hippocampal map
 **Depends On:** ARC-005, ARC-007, ARC-018, INV-019, INV-024
 **Status:** candidate
 **Claim ID:** MECH-083
 **New domain:** no prior counterpart in REE claim registry for ACh-specific function
 
-Acetylcholine functions as the meta-level control plane, gating whether current experience updates the hippocampal map or is interpreted through it — the encoding/retrieval mode switch.
+> **Framing note (2026-03-15):** The encoding/retrieval binary switch framing (high ACh = write; low ACh = retrieve) is likely too discrete. A more accurate characterisation is that ACh modulates the *plasticity gain* on bottom-up input: a continuous parameter controlling how strongly incoming sensory evidence modifies map geometry vs. how strongly existing map attractors dominate the interpretation. This preserves the core claim (ACh governs durable write vs. read-through) while capturing the graded nature of the mechanism. The distinction between ACh (plasticity gain: how much this experience updates the map) and NA (attentional snap: whether the system orients to bottom-up surprise right now) is noted below.
 
-**Mechanism:** ACh switches the hippocampus between two operating modes:
-- **High ACh (encoding mode):** new representations are written into the hippocampal map; synaptic plasticity in CA3 and dentate gyrus is enabled; current experience modifies map geometry.
-- **Low ACh (retrieval mode):** existing map geometry dominates; pattern completion draws on stored attractors; current experience is interpreted through the prior map rather than modifying it.
+Acetylcholine functions as the meta-level control plane, governing the plasticity gain on bottom-up data — specifically, how strongly current sensory experience modifies the hippocampal map geometry rather than being interpreted through existing attractors.
 
-**Meta-level position:** ACh sits above the other three neuromodulatory planes (MECH-084 through MECH-086) because it determines whether operations at those planes leave a lasting trace in the map. Dopamine (MECH-086) can set gain on attractor selection, serotonin (MECH-085) can modulate basin depth, and noradrenaline (MECH-084) can alter perceptual sampling — but if ACh signals retrieval mode, none of these operations will be consolidated into durable map updates.
+**Mechanism:** ACh modulates a continuous plasticity gain parameter:
+- **High ACh (high plasticity gain):** bottom-up input has high weight in updating map geometry; synaptic plasticity in CA3 and dentate gyrus is facilitated; current experience can reshape attractor basin structure. Corresponds approximately to "encoding mode."
+- **Low ACh (low plasticity gain):** existing attractor structure dominates; bottom-up input is interpreted through prior map geometry rather than modifying it; pattern completion from stored attractors suppresses novel encoding. Corresponds approximately to "retrieval mode."
 
-**Relationship to INV-019 and INV-024:** INV-019 states that rehearsal traversal and irreversible durable write must remain separated. INV-024 states offline consolidation and online commitment must remain isolated at responsibility-bearing write loci. ACh is the biological implementation of this separation: encoding mode opens the write path; retrieval mode closes it. ACh gating is therefore the functional instantiation of INV-019/INV-024 at the hippocampal level.
+The key characterisation is *gain on bottom-up data for learning purposes*, not a discrete mode switch. This is distinct from NA's role (MECH-084): NA controls whether the system *attends* to bottom-up surprise (orienting, moment-to-moment sampling); ACh controls whether that attended input *leaves a lasting trace* in the map.
+
+**ACh vs NA — the key distinction:**
+- **ACh (plasticity gain):** *does this input modify the map?* Slow-moving; relevant for the consolidation timescale. High ACh = experience teaches the system.
+- **NA (attentional snap):** *does the system snap to this input right now?* Fast-moving; relevant for the moment-to-moment sampling timescale. High NA = system orients toward unexpected bottom-up signals.
+- Both increase the *influence* of bottom-up data, but at different timescales and via different mechanisms. High NA + low ACh = attentional snap to surprise without map update (aroused but not learning). High ACh + low NA = steady map updating from the ambient sensory stream without strong orienting responses.
+
+**Meta-level position:** ACh sits above the other three neuromodulatory planes (MECH-084 through MECH-086) because it determines whether operations at those planes leave a lasting trace in the map. Dopamine (MECH-086) can set gain on attractor selection, serotonin (MECH-085) can modulate basin depth, and noradrenaline (MECH-084) can snap attention to bottom-up signals — but if ACh is low, none of these operations will produce durable map updates.
+
+**Relationship to INV-019 and INV-024:** INV-019 states that rehearsal traversal and irreversible durable write must remain separated. INV-024 states offline consolidation and online commitment must remain isolated at responsibility-bearing write loci. ACh modulates the plasticity gain that governs this separation: low ACh = traversal without durable write; high ACh = traversal with write. ACh is the functional instantiation of the durable-write gate at the hippocampal level.
 
 **Failure modes:**
-- **Insufficient ACh gating:** failure to switch appropriately between encoding and retrieval. The map keeps updating from a stuck rollout — each retrieval re-encodes the retrieved pattern, strengthening existing attractors. This may be relevant to **OCD** (complements MECH-080's attractor-lock description) and to certain memory consolidation failures where novel experience overwrites rather than enriches existing map structure.
-- **Chronic encoding mode:** map instability — every retrieval triggers re-encoding, preventing stable map geometry from forming.
-- **Chronic retrieval mode:** learning failure — new experience consistently routed through existing attractors, producing perceptual confirmation bias (related to MECH-082's account of E1 perceptual bias).
+- **Insufficient ACh gating:** plasticity gain inappropriately elevated during retrieval. The map updates from a stuck rollout each time it is traversed — potentially relevant to **OCD** (complements MECH-080) and to certain rumination patterns where replaying a memory reinforces rather than integrates it.
+- **Chronically high ACh:** map instability — every traversal re-encodes, preventing stable geometry from forming.
+- **Chronically low ACh:** learning failure — bottom-up input never updates the map; new experience is always routed through existing attractors, producing chronic confirmation bias (related to MECH-082).
 
-**Relationship to existing claims:** ARC-005 (control plane) and MECH-019 (control plane shapes modes) describe the general control-plane architecture. MECH-083 instantiates one specific axis of that architecture (the encoding/retrieval switch) with ACh as its neuromodulatory carrier, complementing the dopamine (MECH-043), noradrenaline (MECH-005), and serotonin (MECH-006) analogues already registered.
+**Relationship to existing claims:** MECH-083 instantiates one specific axis of ARC-005's control plane — the plasticity gain — with ACh as its neuromodulatory carrier, complementing the dopamine (MECH-043), noradrenaline (MECH-005/MECH-084), and serotonin (MECH-006) analogues already registered.
 
 ---
 
 <a id="mech-084"></a>
-## Noradrenaline as E1/E2 Bottom-Up/Top-Down Ratio Modulator (MECH-084)
+## Noradrenaline as Attentional Snap and E1/E2 Sampling Ratio Modulator (MECH-084)
 
 **Claim Type:** mechanism_hypothesis
-**Scope:** NA as the perceptual-sampling control plane modulating the bottom-up/top-down weight ratio at the E1/E2 interface
+**Scope:** NA as the perceptual-sampling control plane — fast attentional orienting to bottom-up surprise and modulation of the bottom-up/top-down weight ratio at the E1/E2 interface
 **Depends On:** ARC-001, ARC-002, MECH-005, MECH-081, ARC-005
 **Status:** candidate
 **Claim ID:** MECH-084
 **Extends:** MECH-005 (noradrenaline path authority and interruptibility)
 
-Noradrenaline modulates the bottom-up / top-down ratio at the E1/E2 prediction interface. This extends MECH-005 (which covers NA's role in path authority and commitment pressure) with the specific E1/E2 interface mechanism.
+Noradrenaline provides the *attentional snap* — the fast, moment-to-moment orienting signal that determines whether the system turns toward unexpected bottom-up input. This is distinct from ACh (MECH-083), which governs whether that input then updates the map. Together they control two separable aspects of how bottom-up data is handled: NA determines *whether and how strongly the system orients*; ACh determines *whether that orientation leaves a trace*.
 
 **Mechanism:**
-- **High NA:** reduces E2's constraining influence on E1 (the sufficiency constraint, MECH-081). E1 is forced to engage in broader, less-directed sensory sampling — attending to the full sensory stream regardless of E2's prediction space. This is the *explore signal at the perceptual level*, upstream of the planning/rollout system.
-- **Low NA:** E2's constraint dominates; E1 samples selectively for dimensions that are discriminative for E2's current predictions. Perceptual processing is more efficient but also more confirmatory.
+- **High NA (orienting / surprise signal):** reduces E2's constraining influence on E1 (MECH-081 sufficiency constraint). E1 is driven by the bottom-up stream rather than by E2's predictions — the system snaps to unexpected sensory signals regardless of what E2 predicted. This is the *perceptual-level explore signal*, upstream of the planning/rollout system.
+- **Low NA:** E2's top-down constraint dominates; E1 samples selectively for dimensions discriminative for E2's current predictions. Processing is efficient but confirmatory — the system does not easily snap to bottom-up surprises that fall outside E2's prediction space.
 
-**Relationship to MECH-005:** MECH-005 defines NA's role as modulating path authority and commitment pressure. MECH-084 adds the upstream account: before commitment is even on the table, NA is determining how much E1's sensory processing is shaped by E2's current model vs. driven by raw bottom-up signals.
+**The NA/ACh distinction in practice:**
+- High NA snaps the system's *current attention* to a bottom-up signal. Whether that signal then rewires the map depends on ACh.
+- High NA + low ACh: strong orienting to surprise, no durable map update. Aroused, vigilant, not learning.
+- High NA + high ACh: strong orienting to surprise, and the surprise is written into the map. Maximum new learning from unexpected input.
+- Low NA + high ACh: steady ambient updating of the map without strong orienting — gradual learning from the background stream.
+- Low NA + low ACh: processing dominated by prior predictions and existing map; neither orienting nor learning from bottom-up data.
+
+**Relationship to MECH-005:** MECH-005 defines NA's role in path authority and commitment pressure (downstream effects). MECH-084 adds the upstream account: before commitment, NA is determining how much E1's sensory processing is shaped by E2's model vs. driven by raw bottom-up signals.
 
 **Clinical anchors:**
-- **Too little NA:** perceptual confirmation bias — the world confirms existing maps (E2 dominates E1 sampling). Related to MECH-082 (perceptual bias as downstream of E2 distortion).
-- **Too much NA:** sensory flooding — E2 constraint collapses; E1 samples broadly without coherent object formation. Incoherent sensory input overwhelms hippocampal map coherence.
-- **PTSD hypervigilance:** tonic NA elevation broadly expands bottom-up sampling, reducing E2's ability to filter the sensory stream. This makes the system sensitive to all unexpected signals, consistent with the hyperarousal phenotype.
-- **Dissociation:** complex NA dysregulation may produce episodic failure of E1/E2 integration, with perceptual experience temporarily de-coupled from E2 predictions.
-
-**Complementarity with MECH-083 (ACh):** ACh determines whether E1/E2 processing leaves a map update; NA determines *how much bottom-up input reaches the system in the first place*. Both are necessary: high NA without ACh encoding mode = sensory flooding without map update; low NA with ACh encoding mode = efficient confirmation-biased processing leaves a deep (but distorted) map imprint.
+- **Too little NA:** perceptual confirmation bias — E2 dominates E1; the world confirms existing maps (related to MECH-082).
+- **Too much NA (tonic):** pervasive attentional snap to all bottom-up signals, including noise — reduces E2's filtering capacity. PTSD hypervigilance is the archetypal presentation.
+- **Too much NA (phasic, dysregulated):** episodic decoupling of E1 from E2 predictions — perceptual experience temporarily runs on bottom-up noise without E2 scaffolding. Candidate mechanism for certain dissociative episodes.
 
 ---
 
@@ -91,7 +104,13 @@ Serotonin operates on the geometry of the hippocampal landscape over which rollo
 
 3. **Aversive attractor basin depth:** serotonin modulates the steepness of threat-related attractor walls in the hippocampal map. This directly explains anxiolytic effects of SSRIs: increased serotonergic tone reduces the gravitational pull of aversive representations, making the system less trapped by fear-consistent rollout loops.
 
-**Relationship to MECH-006 (serotonin as representational collapse control):** MECH-006 frames serotonin as controlling representational exclusivity and collapse pressure across representational depths (ρ). MECH-085 frames it as map geometry parameter operating at the hippocampal terrain level. A possible reconciliation: MECH-006's "learning depth" (DepthOfRevision ∝ (1-σ)) is related to MECH-085's "temporal depth of rollouts" — both concern how far forward/deep the system's representations extend and update. However, MECH-006 contains an explicit prohibition ("serotonin does not select temporal depth τ") that is in direct tension with MECH-085's first claim. **Pending Daniel's adjudication.**
+**Relationship to MECH-006 (serotonin as representational collapse control):** MECH-006 frames serotonin as controlling representational exclusivity and collapse pressure across representational depths (ρ). MECH-085 frames it as map geometry parameter operating at the hippocampal terrain level. A possible reconciliation: MECH-006's "learning depth" (DepthOfRevision ∝ (1-σ)) is related to MECH-085's "temporal depth of rollouts" — both concern how far forward/deep the system's representations extend and update. However, MECH-006 contains an explicit prohibition ("serotonin does not select temporal depth τ") that is in direct tension with MECH-085's first claim.
+
+**Raphe nucleus / receptor-subtype framing (candidate reconciliation path, 2026-03-15):** The multiple raphe nuclei and the diversity of serotonin receptor subtypes (5-HT1A, 2A, 2C, 3, 4, 6, 7, etc.) mean serotonin likely re-uses the same motif — *modulating resolution pressure / exclusivity* — at different hierarchical levels via different receptor populations and projection targets. Under this framing, MECH-006 and MECH-085 describe the *same serotonergic motif applied at different levels*:
+- MECH-006 (dorsal raphe → prefrontal/cortical): serotonin modulates representational collapse/exclusivity at the cognitive-narrative level (ρ-depth exclusivity).
+- MECH-085 (median raphe → hippocampal CA1/DG): the same motif applied to hippocampal terrain — modulating how exclusive and deep attractor basins are, and how far rollouts extend before collapsing.
+
+If this reconciliation is adopted, MECH-006's "does NOT select temporal depth τ" should be read as "does not select global τ at the E-stack level" (which remains correct), while MECH-085's rollout-depth claim refers to hippocampal-terrain-level depth — a different construct. This would resolve the apparent conflict without requiring either claim to be retracted, only annotated with level specificity. **Literature pull required to confirm raphe projection specificity and receptor-subtype distribution before this reconciliation can be accepted. Pending adjudication.**
 
 **Relationship to MECH-076 (residue as map deformation):** MECH-085 and MECH-076 are complementary accounts of map geometry. MECH-076 describes how structural damage (stress, trauma) creates persistent deformation. MECH-085 describes how serotonin dynamically modulates the functional parameters of that geometry (basin steepness, rollout depth). Both operate on the same substrate.
 

@@ -2559,7 +2559,7 @@
 # ⚠ MECH-085 conflicts with MECH-006 (serotonin temporal depth prohibition) — pending Daniel's adjudication
 - id: MECH-083
   claim_type: mechanism_hypothesis
-  subject: acetylcholine.meta_level_plasticity_gate
+  subject: acetylcholine.meta_level_plasticity_gain
   polarity: asserts
   status: candidate
   depends_on:
@@ -2572,16 +2572,19 @@
   source:
     - docs/architecture/neuromodulatory_control_planes.md
   notes: >
-    ACh is the meta-level control plane: switches hippocampus between encoding mode (map
-    updates permitted) and retrieval mode (current experience interpreted through existing
-    map). Sits above all other neuromodulatory planes because it determines whether their
-    effects leave a lasting map trace. Failure modes: OCD-relevant (encoding mode failure
-    deepens stuck rollout attractors); chronic encoding = map instability; chronic retrieval
-    = learning failure / perceptual confirmation bias. Functionally instantiates INV-019/INV-024
-    (rehearsal vs durable write separation) at the hippocampal level.
+    ACh is the meta-level control plane: modulates plasticity gain on bottom-up input —
+    how strongly current sensory experience modifies the hippocampal map (high ACh) vs.
+    how strongly existing attractors dominate interpretation (low ACh). NOT a binary switch
+    but a continuous gain parameter. Distinct from NA: ACh governs whether attended input
+    leaves a lasting map trace (learning timescale); NA governs whether the system orients
+    to bottom-up surprise right now (moment-to-moment). Meta-level because it determines
+    whether other planes' effects consolidate durably. Failure: OCD-relevant (high ACh
+    during retrieval deepens stuck attractors); chronic high = map instability; chronic low
+    = learning failure / confirmation bias. Functionally instantiates INV-019/INV-024
+    (rehearsal vs durable write separation) at hippocampal level.
 - id: MECH-084
   claim_type: mechanism_hypothesis
-  subject: noradrenaline.e1_e2_bottom_up_top_down_ratio
+  subject: noradrenaline.attentional_snap_and_e1_e2_sampling_ratio
   polarity: asserts
   status: candidate
   depends_on:
@@ -2594,13 +2597,15 @@
   source:
     - docs/architecture/neuromodulatory_control_planes.md
   notes: >
-    NA modulates the bottom-up/top-down weight ratio at the E1/E2 interface. High NA reduces
-    E2's constraining influence on E1 (MECH-081 sufficiency constraint), forcing broader
-    sensory sampling — the explore signal at the perceptual level. Too little: perceptual
-    confirmation bias (E2 dominates E1). Too much: sensory flooding (coherent object formation
-    fails). PTSD hypervigilance = tonic NA elevation. Dissociation = episodic E1/E2 decoupling.
-    Extends MECH-005 (path authority/interruptibility) with the upstream E1/E2 interface
-    mechanism that MECH-005 does not cover.
+    NA provides the attentional snap: fast moment-to-moment orienting to bottom-up surprise.
+    High NA reduces E2's constraining influence on E1 (MECH-081), snapping current attention
+    to unexpected sensory signals. Distinct from ACh (MECH-083): NA = does the system orient
+    to this input now? ACh = does that orientation leave a lasting map trace? Together:
+    high NA + high ACh = maximum new learning from unexpected input; high NA + low ACh =
+    aroused/vigilant but not learning; low NA + high ACh = steady ambient updating.
+    Too little: perceptual confirmation bias (E2 dominates). Too much tonic: pervasive snap
+    to noise (PTSD hypervigilance). Too much phasic/dysregulated: episodic E1/E2 decoupling
+    (candidate dissociation mechanism). Extends MECH-005 with upstream E1/E2 interface account.
 - id: MECH-085
   claim_type: mechanism_hypothesis
   subject: serotonin.hippocampal_map_geometry_parameter
@@ -2611,11 +2616,14 @@
   conflict_note: |
     MECH-006 explicitly states serotonin "does NOT select temporal depth (τ)."
     MECH-085 claims serotonin controls temporal depth of rollouts and modulates aversive
-    attractor basin depth. These are materially different functional accounts at different
-    levels (cognitive-narrative collapse vs hippocampal terrain geometry). Possible reconciliation:
-    MECH-006's "DepthOfRevision ∝ (1-σ)" and MECH-085's rollout depth may be the same
-    phenomenon at different levels. But the explicit prohibition in MECH-006 ("does NOT select
-    temporal depth τ") creates direct conflict with MECH-085 claim 1. Pending Daniel's adjudication.
+    attractor basin depth. Candidate reconciliation (raphe/receptor-subtype framing): multiple
+    raphe nuclei and receptor subtypes mean serotonin may re-use the same motif (modulating
+    resolution pressure/exclusivity) at different hierarchical levels. MECH-006 (dorsal raphe
+    → cortical): cognitive-narrative collapse/exclusivity. MECH-085 (median raphe → hippocampal
+    CA1/DG): same motif as attractor basin depth and rollout depth. If accepted, MECH-006's
+    "no temporal depth τ" holds for the E-stack level; MECH-085's rollout depth is a distinct
+    hippocampal-terrain construct. Literature pull required (raphe projection specificity,
+    receptor-subtype distribution) before reconciliation can be accepted. Pending adjudication.
   depends_on:
     - MECH-006
     - MECH-073
