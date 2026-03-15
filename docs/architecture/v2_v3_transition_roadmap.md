@@ -89,6 +89,9 @@ planning horizon because CEM must operate at full latent dimensionality.
 
 **Symptom to watch:** If ARC-018 (rollout viability mapping) continues to FAIL, the V2
 hippocampal map is not navigating effectively — this is an SD-004 substrate problem.
+ARC-007 (path memory ablation) also fails for the same reason: the V2 proxy (26-element
+obs-vector slice) cannot represent structured path memory — a proper hippocampal module
+navigating action-object space (SD-004) is required before ARC-007 is testable.
 
 ### 3. Three-Loop Credit Isolation (ARC-021 full form)
 V2 can show the three components exist but cannot show that mixing their error signals is
@@ -101,6 +104,20 @@ The V3 SD-003 would compute:
 world_delta = ||E2_world(z_world, a_actual) - E2_world(z_world, a_cf)||
 ```
 This requires z_world to exist as a separate channel. In V2 there is only z_gamma.
+
+### 6. Dynamic Precision Regime and Behavioral Mode Switching (ARC-016)
+V2 precision is hardcoded (0.5). ARC-016 requires precision to be dynamically calibrated
+from E3's own prediction error and to gate commitment in a way that produces distinct
+behavioral outcomes. The V2 experiment (precision_regime_probe) showed that even with
+100% commit rate vs 0% commit rate, harm is identical — meaning commitment is not connected
+to action-selection in a way that changes outcomes. Two distinct V3 requirements:
+- **E3-derived dynamic precision**: precision must be computed from E3 prediction error,
+  not externally imposed; must vary as the agent's confidence in harm predictions varies
+- **End-to-end behavioral circuit**: precision → commitment threshold → action selection →
+  harm must be genuinely wired; different precision regimes must produce measurably
+  different harm profiles. Note: MECH-059 (structural separation of precision from PE)
+  PASSED in V2, confirming the channels exist; ARC-016 requires those channels to produce
+  behaviorally distinct operating modes — the wiring gap is in the commitment→behavior link.
 
 ### 5. Valenced Hippocampal Map Geometry (Q-020)
 The NC-01–NC-09 cluster (registered 2026-03-15) raises the question of whether valence is
@@ -173,6 +190,8 @@ z_world to exist (SD-005). They should be designed and implemented together.
 - [ ] ResidueField operates over z_world, not z_gamma
 - [ ] Three separate optimizers with three separate error signals (currently true in V2, cleaner in V3)
 - [ ] **SD-006: Asynchronous multi-rate execution** — E1/E2/E3 run at different characteristic rates with thalamic-pacemaker-equivalent timing. Options: separate threads (GIL risk), time-multiplexed with explicit rate parameters, or hierarchical temporal abstraction (HTA — recommended: aligns with representational grain boundaries). Must co-design with SD-004/SD-005 because temporal grain boundaries should align with representational abstraction levels.
+- [ ] **E3-derived dynamic precision**: precision computed from E3 prediction error, not hardcoded; varies with E3 confidence in harm predictions (required for ARC-016)
+- [ ] **Precision→commitment→behavior circuit**: commitment gating must produce measurably different action-selection and harm profiles across precision regimes — end-to-end wiring, not just structural separation (required for ARC-016)
 - [ ] CausalGridWorld extended (or replaced) with explicit self/world observation channels
 - [ ] **Q-020 adjudication complete before finalising HippocampalModule architecture** — whether
   rollout proposals arrive at E3 pre-weighted by map geometry (MECH-073) or neutral (ARC-007
@@ -233,6 +252,23 @@ These experiments cannot be run in V2 and should be designed during the V3 archi
   (encoding modulation as the write mechanism for map valence)
 - This experiment also discriminates MECH-074 from MECH-075: if BG threshold-setting ablation
   (not amygdala write) flattens proposals, MECH-075 is the proximate cause
+
+### V3-EXQ-009 — Path Memory Ablation with Proper HippocampalModule (ARC-007)
+*Claim target: ARC-007, prerequisite: SD-004*
+- Ablate hippocampal path memory in a V3 substrate where HippocampalModule navigates
+  action-object space, not a raw obs-vector proxy
+- Pass: PATH_MEMORY agent harm significantly lower than PATH_ABLATED (≥ 5% reduction,
+  consistent across seeds)
+- This re-tests the V2 experiment with a substrate capable of representing the claim
+
+### V3-EXQ-010 — Dynamic Precision Regime Behavioral Distinction (ARC-016)
+*Claim target: ARC-016, prerequisites: E3-derived dynamic precision, commitment→behavior circuit*
+- Run HIGH_PRECISION and LOW_PRECISION conditions where precision is E3-derived
+  (from prediction error variance), not externally imposed
+- Pass: HIGH_PRECISION → lower harm and more committed action sequences;
+  LOW_PRECISION → more exploratory, higher harm tolerance, behaviorally distinct
+- Confirms that MECH-059's structural separation (precision ≠ PE) produces the
+  behavioral regime switching that ARC-016 asserts
 
 ### V3-EXQ-008 — SD-005 Dissolves Q-020 (z_world = residue domain test)
 *Claim target: Q-020 resolution via z_self/z_world split*

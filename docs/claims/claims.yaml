@@ -254,9 +254,19 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
+  v3_pending: true
+  evidence_quality_note: |
+    V2 EXQ (path_memory_ablation, 2026-03-08): FAIL (partial_support=true, 1/2 criteria).
+    PATH_MEMORY vs PATH_ABLATED agent harm: 0.896 vs 0.912 — sub-threshold difference.
+    Proxy representation was a 26-element obs-vector slice [252, 278] standing in for
+    hippocampal path memory. This is too crude to test the architectural claim: proper
+    ARC-007 path memory requires a functioning HippocampalModule navigating a structured
+    path space (SD-004). The ablation test cannot distinguish "path memory doesn't help"
+    from "the proxy is too weak to carry meaningful path information." V3 required.
   depends_on:
     - ARC-004
     - ARC-003
+    - ARC-018
   location: docs/architecture/hippocampal_systems.md#arc-007
   source:
     - docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md
@@ -1026,8 +1036,26 @@
   subject: cognitive_modes.control_plane_regimes
   polarity: asserts
   status: provisional
+  v3_pending: true
+  evidence_quality_note: |
+    V2 EXQ (precision_regime_probe, 2026-03-08): FAIL (partial_support=true, 1/2 criteria).
+    Criterion 1 met: precision gap achieved (1.697, easily). Criterion 2 failed: behavioral
+    distinction absent — HIGH_REGIME (commit_rate=1.0) and LOW_REGIME (commit_rate=0.0) produce
+    identical harm (1.233 vs 1.218). Root cause: precision is externally imposed (not E3-derived),
+    and the commitment-to-action circuit is not connected to harm outcomes in V2. Even with
+    radically different commit rates, harm is identical — meaning commitment is not gating
+    behavior in a way that matters for the outcome metric. Two V3 requirements exposed:
+    (1) E3-derived dynamic precision calibrated from prediction error (not hardcoded 0.5);
+    (2) commitment gating must actually change action-selection in a way that affects harm —
+    the precision→commitment→behavior→harm circuit must be genuinely wired end-to-end.
+    Note: MECH-059 (precision/PE structural separation) PASSED in V2, confirming the channels
+    exist as distinct signals. ARC-016 is a stronger claim: that those channels produce
+    behaviorally distinct operating modes. The structural separation is necessary but
+    not sufficient for ARC-016.
   depends_on:
     - ARC-005
+    - MECH-059
+    - ARC-021
   location: docs/architecture/modes_of_cognition.md#arc-016
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
