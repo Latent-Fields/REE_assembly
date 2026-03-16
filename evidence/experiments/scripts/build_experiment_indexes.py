@@ -1180,14 +1180,18 @@ def _write_todos(base_dir: Path, todos_by_experiment: dict[str, list[str]], gene
 
 
 def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
-    """Parse claim id/status/type from docs/claims/claims.yaml.
+    """Parse claim id/status/type/v3_pending/implementation_phase from docs/claims/claims.yaml.
 
     This parser intentionally handles the repository's simple YAML pattern and avoids non-stdlib deps.
+    v3_pending and implementation_phase == "v3" both signal that the claim cannot be meaningfully
+    tested until the V3 substrate exists — governance recommendations are suppressed for these.
     """
     registry: dict[str, dict[str, str]] = {}
     current_id: str | None = None
     current_status: str | None = None
     current_type: str | None = None
+    current_v3_pending: bool = False
+    current_impl_phase: str | None = None
 
     if not path.exists():
         return registry
@@ -1199,10 +1203,14 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                 registry[current_id] = {
                     "status": current_status or "unknown",
                     "claim_type": current_type or "unknown",
+                    "v3_pending": str(current_v3_pending),
+                    "implementation_phase": current_impl_phase or "",
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
             current_type = None
+            current_v3_pending = False
+            current_impl_phase = None
             continue
 
         if current_id and line.startswith("  status:"):
@@ -1213,10 +1221,21 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_type = line.split(":", 1)[1].strip()
             continue
 
+        if current_id and line.startswith("  v3_pending:"):
+            val = line.split(":", 1)[1].strip().lower()
+            current_v3_pending = val in ("true", "yes", "1")
+            continue
+
+        if current_id and line.startswith("  implementation_phase:"):
+            current_impl_phase = line.split(":", 1)[1].strip()
+            continue
+
     if current_id:
         registry[current_id] = {
             "status": current_status or "unknown",
             "claim_type": current_type or "unknown",
+            "v3_pending": str(current_v3_pending),
+            "implementation_phase": current_impl_phase or "",
         }
     return registry
 
@@ -1538,6 +1557,7 @@ def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
     - run_id ending with "_ree_v1_minimal" (V1 naming convention), OR
     - run_id ending with "_v2" (V2 bridge script naming convention: real ree_core + CausalGridWorld,
       post-2026-03-01, tagged with architecture_epoch="ree_hybrid_guardrails_v1")
+    - run_id ending with "_v3" (V3 run packs, future)
 
     Synthetic pre-contamination runs end with "_toyenv_internal_minimal" and have
     no architecture_epoch — these are excluded.
@@ -1554,19 +1574,21 @@ def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
             epoch == "ree_v1_minimal_genuine_v1"
             or run_id.endswith("_ree_v1_minimal")
             or run_id.endswith("_v2")
+            or run_id.endswith("_v3")
         ):
             count += 1
     return count
 
 
 def _is_genuine_experimental_entry(entry: dict[str, Any]) -> bool:
-    """Return True iff this entry is a genuine experimental run (V1 or V2).
+    """Return True iff this entry is a genuine experimental run (V1, V2, or V3).
 
     Synthetic pre-contamination entries (ree-v2 / ree-experiments-lab) are
     identified by run_id ending with '_toyenv_internal_minimal' and have no
     architecture_epoch. Genuine entries carry:
     - architecture_epoch == "ree_v1_minimal_genuine_v1" or run_id ending "_ree_v1_minimal" (V1), OR
-    - run_id ending "_v2" (real ree_core + CausalGridWorld, V2; architecture_epoch="ree_hybrid_guardrails_v1").
+    - run_id ending "_v2" (real ree_core + CausalGridWorld, V2; architecture_epoch="ree_hybrid_guardrails_v1"), OR
+    - run_id ending "_v3" (future V3 substrate runs).
     Literature entries (source_type != 'experimental') always return False.
     """
     if str(entry.get("source_type", "")) != "experimental":
@@ -1577,6 +1599,7 @@ def _is_genuine_experimental_entry(entry: dict[str, Any]) -> bool:
         epoch == "ree_v1_minimal_genuine_v1"
         or run_id.endswith("_ree_v1_minimal")
         or run_id.endswith("_v2")
+        or run_id.endswith("_v3")
     )
 
 
@@ -1632,6 +1655,37 @@ def _recommendation_for_claim(
             "decision_status": str(criteria.get("decision_status_default", "pending_user")),
         }
     # ── end contamination guard ──────────────────────────────────────────────
+
+    # ── V3-pending gate ──────────────────────────────────────────────────────
+    # Claims flagged v3_pending or implementation_phase="v3" cannot be
+    # meaningfully tested on current substrate. Suppress promotion/demotion
+    # recommendations and surface the hold reason explicitly.
+    _v3_pending = str(registry_meta.get("v3_pending", "False")).lower() in ("true", "yes", "1") if registry_meta else False
+    _impl_phase = str(registry_meta.get("implementation_phase", "")).strip().lower() if registry_meta else ""
+    if _v3_pending or _impl_phase == "v3":
+        return {
+            "claim_id": claim_id,
+            "current_status": current_status,
+            "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+            "recommendation": "hold_pending_v3_substrate",
+            "rationale": (
+                f"Claim is flagged v3_pending or implementation_phase=v3. "
+                f"Current V2 substrate cannot produce valid evidence for this claim. "
+                f"No promotion or demotion should be applied until V3 experiments complete."
+            ),
+            "options": [
+                "Wait for V3 substrate implementation (correct path).",
+                "Mark as legacy/deferred if claim is being superseded.",
+                "Demote to candidate to acknowledge insufficient evidence.",
+            ],
+            "discussion_prompts": [
+                "Which uncertainty source dominates: model variance, threshold choice, or claim scope?",
+                "What single additional experiment or literature extraction would most reduce uncertainty?",
+                "If this decision is wrong, what downstream architecture risk is largest?",
+            ],
+            "decision_status": str(criteria.get("decision_status_default", "pending_user")),
+        }
+    # ── end V3-pending gate ──────────────────────────────────────────────────
 
     thresholds = criteria.get("thresholds", {})
     t_candidate = thresholds.get("candidate_to_provisional", {})
