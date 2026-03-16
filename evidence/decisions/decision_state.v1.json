@@ -11,21 +11,39 @@
     },
     "ARC-007": {
       "actor": "user",
-      "decision_needed": "Model adjudication outcome selection",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "Applied anti-lock-in dispatch recommendation: hybridize; basis=high_conflict; conflict_ratio=0.857; overall_confidence=0.58.",
-      "recommendation": "hybridize",
-      "selected_option": "hybridize",
-      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+      "rationale": "User confirmed hold. Path memory ablation PASS (EXQ-024) is real but v3_pending gate applies; ARC-007 requires proper HippocampalModule (SD-004) before conclusive V3 testing.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.360735Z"
+    },
+    "ARC-016": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Precision regime probe FAIL (EXQ-025) is substrate-limited: V3 needs E3-derived dynamic precision and end-to-end commitment\u2192behavior wiring.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361120Z"
     },
     "ARC-018": {
       "actor": "user",
-      "decision_needed": "Model adjudication outcome selection",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.6; overall_confidence=0.639.",
-      "recommendation": "retain_ree",
-      "selected_option": "retain_ree",
-      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+      "rationale": "User confirmed hold. Rollout viability mapping FAIL (EXQ-021) is substrate-limited: requires SD-004 HippocampalModule for proper map backbone.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361124Z"
+    },
+    "ARC-023": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361127Z"
     },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
@@ -36,14 +54,23 @@
       "selected_option": "Approve all gate-ready convergence packets for cycle 2026-02-25",
       "timestamp_utc": "2026-02-25T14:21:58.933692Z"
     },
+    "MECH-025": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Action-doing mode probe FAIL (EXQ-026): V2 substrate lacks the multi-rate loop and heartbeat architecture required to instantiate distinct action-doing mode.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361130Z"
+    },
     "MECH-033": {
       "actor": "user",
-      "decision_needed": "Model adjudication outcome selection",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.6; overall_confidence=0.637.",
-      "recommendation": "retain_ree",
-      "selected_option": "retain_ree",
-      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+      "rationale": "User confirmed hold. Kernel chaining FAIL (EXQ-023): V2 E2 is a transition model only; proper kernel chaining requires SD-004 action objects as hippocampal map backbone.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361133Z"
     },
     "MECH-040": {
       "actor": "user",
@@ -153,6 +180,69 @@
       "selected_option": "promote_to_provisional",
       "timestamp_utc": "2026-02-15T20:51:27.090007Z"
     },
+    "MECH-071": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. E2 attribution calibration FAIL (EXQ-027): E2 cannot discriminate agent vs env harm in z_gamma. Requires SD-005 z_self/z_world latent split in V3.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361137Z"
+    },
+    "MECH-072": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Selective residue attribution FAIL (EXQ-028): directly depends on MECH-071 which failed; both require V3 z_self/z_world split (SD-005).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361139Z"
+    },
+    "MECH-089": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Theta-gamma nesting for E1\u2192E3 packaging. V3-scoped heartbeat cluster claim; no V2 oscillatory substrate.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361142Z"
+    },
+    "MECH-090": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Beta gating of E3\u2192action_selection propagation. V3-scoped heartbeat cluster claim.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361144Z"
+    },
+    "MECH-091": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Salient event phase-reset of E3 heartbeat clock. V3-scoped heartbeat cluster claim.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361147Z"
+    },
+    "MECH-092": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Quiescent heartbeat \u2192 hippocampal SWR-equivalent replay (micro-DMN). V3-scoped heartbeat cluster claim.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361150Z"
+    },
+    "MECH-093": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. z_beta modulates E3 heartbeat frequency. V3-scoped heartbeat cluster claim.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361152Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -161,6 +251,15 @@
       "recommendation": "retain_open_question_with_prototype_first",
       "selected_option": "retain_open_question_with_prototype_first",
       "timestamp_utc": "2026-02-25T16:51:50.794689Z"
+    },
+    "Q-007": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User confirmed hold. Valence-regime correlation FAIL (EXQ-022): V2 lacks proper affective z_beta channel tied to resource valence. V3 universal expression channel test required.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-16T18:20:19.361155Z"
     },
     "Q-011": {
       "actor": "user",
@@ -225,6 +324,15 @@
       "selected_option": "hybridize",
       "timestamp_utc": "2026-02-25T16:51:50.648196Z"
     },
+    "Q-019": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "User confirmed: narrow Q-019 into testable V3 sub-questions targeting the BG three-gate vs single-gate distinction. ARC-021 direction (three distinct loops with incommensurable errors) is the working hypothesis; V3 experiment design should isolate each loop independently before testing full three-gate interaction.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-03-16T18:20:19.361158Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -235,7 +343,7 @@
       "timestamp_utc": "2026-02-25T14:21:58.933796Z"
     }
   },
-  "generated_at_utc": "2026-03-16T17:55:14.890011Z",
+  "generated_at_utc": "2026-03-16T18:20:20.018937Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

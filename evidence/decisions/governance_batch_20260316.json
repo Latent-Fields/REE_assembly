@@ -1,0 +1,139 @@
+{
+  "items": [
+    {
+      "claim_id": "ARC-007",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Path memory ablation PASS (EXQ-024) is real but v3_pending gate applies; ARC-007 requires proper HippocampalModule (SD-004) before conclusive V3 testing.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "ARC-016",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Precision regime probe FAIL (EXQ-025) is substrate-limited: V3 needs E3-derived dynamic precision and end-to-end commitment→behavior wiring.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "ARC-018",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Rollout viability mapping FAIL (EXQ-021) is substrate-limited: requires SD-004 HippocampalModule for proper map backbone.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "ARC-023",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-025",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Action-doing mode probe FAIL (EXQ-026): V2 substrate lacks the multi-rate loop and heartbeat architecture required to instantiate distinct action-doing mode.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-033",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Kernel chaining FAIL (EXQ-023): V2 E2 is a transition model only; proper kernel chaining requires SD-004 action objects as hippocampal map backbone.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-071",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. E2 attribution calibration FAIL (EXQ-027): E2 cannot discriminate agent vs env harm in z_gamma. Requires SD-005 z_self/z_world latent split in V3.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-072",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Selective residue attribution FAIL (EXQ-028): directly depends on MECH-071 which failed; both require V3 z_self/z_world split (SD-005).",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-089",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Theta-gamma nesting for E1→E3 packaging. V3-scoped heartbeat cluster claim; no V2 oscillatory substrate.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-090",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Beta gating of E3→action_selection propagation. V3-scoped heartbeat cluster claim.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-091",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Salient event phase-reset of E3 heartbeat clock. V3-scoped heartbeat cluster claim.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-092",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Quiescent heartbeat → hippocampal SWR-equivalent replay (micro-DMN). V3-scoped heartbeat cluster claim.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "MECH-093",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. z_beta modulates E3 heartbeat frequency. V3-scoped heartbeat cluster claim.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "Q-007",
+      "recommendation": "hold_pending_v3_substrate",
+      "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "rationale": "User confirmed hold. Valence-regime correlation FAIL (EXQ-022): V2 lacks proper affective z_beta channel tied to resource valence. V3 universal expression channel test required.",
+      "actor": "user"
+    },
+    {
+      "claim_id": "Q-019",
+      "recommendation": "narrow_open_question",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "rationale": "User confirmed: narrow Q-019 into testable V3 sub-questions targeting the BG three-gate vs single-gate distinction. ARC-021 direction (three distinct loops with incommensurable errors) is the working hypothesis; V3 experiment design should isolate each loop independently before testing full three-gate interaction.",
+      "actor": "user"
+    }
+  ]
+}
