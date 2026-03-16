@@ -503,10 +503,18 @@ It provides the mechanism by which the Self:
 ## Open Questions
 
 <a id="q-007"></a>
-**Q-007 — Universal emotion/expression ↔ control‑channel mapping**  
+**Q-007 — Universal emotion/expression ↔ control‑channel mapping**
 Do universal‑looking expressions (e.g., victory/pride displays) correspond to **stable multi‑channel control regimes**
 in REE, and if so which combinations of arousal, readiness, precision, valence, and social coupling best align with
 observed universals? This remains an evidence‑constrained hypothesis, not an architectural primitive.
+
+> **V3 pending (2026-03-15):** V2 experiment EXQ-024 FAIL (run twice, consistent). Proximate failure:
+> E3 precision hardcoded at 0.5 — no dynamic precision channel. Fundamental blocker: V2 lacks correct
+> E1/E2/E3 channel separation (ARC-021, MECH-069); z_beta receives mixed signals from conflated learning
+> channels, making any valence-precision correlation uninterpretable even if precision were made dynamic.
+> Correct test requires: (1) z_beta updated by clean E3 harm/goal error, (2) E3 precision read from
+> z_beta dynamically, (3) correlation measured against z_beta valence dimension directly, not
+> health/energy proxy. Blocked until V3 three-channel substrate.
 
 <a id="q-008"></a>
 **Q-008 — Valence vectors vs μ/κ stability overlays (legacy)**  

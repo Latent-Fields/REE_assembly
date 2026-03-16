@@ -28,15 +28,25 @@ gating, and MECH‑033 specifies the E2‑kernel → hippocampal rollout interfa
 <a id="arc-018"></a>
 ## Hippocampal Rollouts and Viability Mapping (ARC-018)
 
-**Claim Type:** architectural_commitment  
-**Scope:** Explicit multi-step rollouts and post-commitment viability mapping  
-**Depends On:** ARC-007, ARC-003, ARC-002, ARC-001  
-**Status:** provisional  
+**Claim Type:** architectural_commitment
+**Scope:** Explicit multi-step rollouts and post-commitment viability mapping
+**Depends On:** ARC-007, ARC-003, ARC-002, ARC-001, ARC-021
+**Status:** candidate (demoted from provisional 2026-03-15 — see reframe note)
 **Claim ID:** ARC-018
+**V3 Pending:** requires SD-004 (action objects as E2 latent) and SD-005 (z_self/z_world split)
+
+> **Reframe note (2026-03-15):** The original framing attributed viability mapping to E1 prediction error
+> (SELF_SENSORY mismatch). V2 EXQ-021 FAIL (run twice, consistent) showed E1 prediction error confers
+> no navigation advantage over a frozen E1. This is a conceptual failure of the original framing.
+> Corrected framing: the hippocampus builds the viability map indexed by **E2 action-object coordinates**,
+> updated by **E3 harm/goal error**. E1 provides perceptual context to E2 only — it does not build or
+> write to the viability map. E2's latent space is action consequences (action objects), not sensory
+> state transitions. The map lives in hippocampal geometry.
 
 The hippocampal system performs **counterfactual trajectory construction** and **post-commitment viability mapping**.
 It is the only place explicit multi-step rollouts exist; E1 supplies associative constraints and perceived-present
-predictions; E2 supplies motor-sensory transition kernels operating over a longer planning horizon than E1.
+predictions as context; E2 supplies action-object forward predictions (what actions do, not what states look like)
+over a longer planning horizon than E1; E3 provides the harm/goal error signal that labels the viability map.
 
 ---
 
@@ -47,11 +57,20 @@ predictions; E2 supplies motor-sensory transition kernels operating over a longe
    - Uses associative constraints from E1 and motor-sensory transition kernels from E2 (E2 horizon exceeds E1's associative horizon — E2 predicts action consequences on latent sensory objects, not perceived-present state).
    - Produces candidate futures without ranking or commitment.
 
-2. **Viability path mapping (commitment learning)**  
-   - Triggered after an action is executed.  
-   - Uses predicted vs observed `SELF_SENSORY` mismatch plus resulting WORLD/HOMEOSTASIS/HARM changes.  
-   - Updates a viability map of action-space under commitment: which sequences are stable, fragile, or path-closing.  
-   - This is not reward learning; it is learned affordance geometry under real execution.
+2. **Viability path mapping (commitment learning)**
+   - Triggered after an action is executed.
+   - **E3 harm/goal error** (not E1 SELF_SENSORY mismatch) is the learning signal that updates the map.
+   - The map is indexed by **E2 action-object coordinates**: E2 predicts action consequences
+     (`f(a_t, context) → action_consequences`); the hippocampus labels those consequence-coordinates
+     with viability scores derived from E3's evaluation of committed outcomes.
+   - E1's prediction error is irrelevant to viability map updates — E1 only provides perceptual context
+     that E2 uses to condition its action-consequence predictions.
+   - Updates a viability map of action-object space under commitment: which action sequences are
+     stable, fragile, or path-closing.
+   - This is not reward learning; it is learned affordance geometry under real execution, indexed in
+     action-consequence space.
+   - **V3 pending:** properly testing this requires SD-004 (E2 latent = action objects) and SD-005
+     (z_self/z_world split). V2 cannot provide the correct E2 action-object coordinate space.
 
 ---
 
@@ -111,19 +130,27 @@ Source thought: `docs/thoughts/2026-02-15_commit_indexed_trajectory_module.md`
 <a id="mech-033"></a>
 ## E2 Kernel → Hippocampal Rollout Interface (MECH-033)
 
-**Claim Type:** mechanism_hypothesis  
-**Scope:** How E2 forward-prediction kernels seed hippocampal rollouts  
-**Depends On:** ARC-018, ARC-002, ARC-001, ARC-005  
-**Status:** provisional  
+**Claim Type:** mechanism_hypothesis
+**Scope:** How E2 forward-prediction kernels seed hippocampal rollouts
+**Depends On:** ARC-018, ARC-002, ARC-001, ARC-005, ARC-021
+**Status:** candidate (demoted from provisional 2026-03-15 — see V3 pending note)
 **Claim ID:** MECH-033
+**V3 Pending:** requires SD-004 (action objects as E2 latent)
 
-E2 supplies motor-sensory forward-prediction kernels (local conditional transitions on the unified latent space
-`z_gamma`) rather than multi-step trajectories. E2 does not operate on raw sensory streams — it operates at the level
-of coherent latent objects. E2's planning horizon exceeds E1's associative “perceived present” horizon: E2 predicts
-how actions transform latent sensory objects further ahead, while E1 predicts the near-future sensory stream without
-action conditioning. Hippocampal systems chain E2 kernels into explicit rollouts over even longer horizons, constrained
-by E1 priors and modulated by control-plane parameters (horizon, branching, temperature). This keeps “kernel” and
-“rollout” distinct while preserving a clean handoff from motor-sensory prediction to explicit trajectory construction.
+> **V3 pending (2026-03-15):** V2 experiment EXQ-022 FAIL (run twice, consistent). WITH_CHAIN
+> (full E2→hippocampus→E3 pipeline) only 1.8% better than random action selection; random agent
+> improves faster on slope. Root cause: V2 E2 produces z_gamma sensory state transitions, not
+> action-consequence objects. Chaining sensory predictions provides negligible signal to E3 —
+> the interface exists but passes the wrong type across it. The kernel → rollout handoff is only
+> load-bearing when E2 kernels are action-consequence objects (SD-004). Inherits ARC-018
+> prerequisite: hippocampal rollout coordinates must be action-object space, not sensory space.
+
+E2 supplies action-consequence forward-prediction kernels (`f(a_t, context) → action_consequences`)
+rather than multi-step trajectories. E2 does not operate on raw sensory streams — it operates at the level
+of action objects: what actions do, given perceptual context from E1. Hippocampal systems chain E2 kernels
+into explicit rollouts over longer horizons, constrained by E1 priors and modulated by control-plane
+parameters (horizon, branching, temperature). This keeps “kernel” and “rollout” distinct while preserving
+a clean handoff from action-consequence prediction to explicit trajectory construction in action-object space.
 
 ---
 

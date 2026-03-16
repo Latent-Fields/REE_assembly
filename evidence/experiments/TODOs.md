@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-03-16T06:10:45.907441Z`
+Generated: `2026-03-16T06:29:04.910148Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -103,6 +103,10 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 ## claim_probe_mech_071
 
 - [ ] Investigate signature `v2_verdict_fail:causal_attribution_calibration` (1 FAIL run(s), latest `20260315T183757_causal_attribution_calibration_v2`).
+
+## claim_probe_mech_072
+
+- [ ] Investigate signature `v2_verdict_fail:selective_residue_attribution` (1 FAIL run(s), latest `20260315T205715_selective_residue_attribution_v2`).
 
 ## claim_probe_q_001
 
