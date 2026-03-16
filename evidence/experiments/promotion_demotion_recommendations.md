@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-16T05:59:19.134210Z`
+Generated: `2026-03-16T06:10:45.907441Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -126,6 +126,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: overall_conf=0.87, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Evidence quality note: Open architectural question arising 2026-02-27. Two competing models: (A) Single-gate: BG gate one action endpoint, evaluating three criteria simultaneously (sensorium readiness, thought/trajectory readiness, motor commitment). (B) Three-gate: BG implement three anatomically distinct gating loops — (1) Sensorium loop: limbic/beta-associated, gates what the system attends to — selecting not only fr…
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)

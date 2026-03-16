@@ -38,6 +38,7 @@ RUNNER_SCRIPT = SERVE_DIR.parent / "ree-v2" / "experiment_runner.py"
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
 RUNNER_PID_FILE = SERVE_DIR.parent / "ree-v2" / "runner.pid"
+V2_EVIDENCE_DIR = SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments"
 
 DEFAULT_PORT = 8000
 
@@ -124,6 +125,31 @@ def run_script(key: str) -> dict:
         return {"status": "error", "message": str(exc)}
 
 
+def scan_evidence_runs() -> dict:
+    """Scan ree-v2 evidence/experiments for actual run counts on disk."""
+    result = {}
+    if not V2_EVIDENCE_DIR.exists():
+        return result
+    for exp_dir in sorted(V2_EVIDENCE_DIR.iterdir()):
+        if not exp_dir.is_dir():
+            continue
+        files = sorted(exp_dir.glob("*.json"))
+        if not files:
+            continue
+        latest = {}
+        try:
+            latest = json.loads(files[-1].read_text())
+        except Exception:
+            pass
+        result[exp_dir.name] = {
+            "run_count": len(files),
+            "latest_verdict": latest.get("verdict"),
+            "latest_timestamp": latest.get("run_timestamp"),
+            "claim_id": latest.get("claim"),
+        }
+    return result
+
+
 def start_runner() -> dict:
     global _runner_proc
     pid = _runner_pid()
@@ -179,11 +205,21 @@ def stop_runner() -> dict:
 class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
+        path = urlparse(self.path).path
         # Short URL: /explorer → /explorer.html
-        if urlparse(self.path).path == "/explorer":
+        if path == "/explorer":
             self.send_response(302)
             self.send_header("Location", "/explorer.html")
             self.end_headers()
+            return
+        if path == "/api/evidence/runs":
+            body = json.dumps(scan_evidence_runs()).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
             return
         super().do_GET()
 

@@ -7582,8 +7582,20 @@ END CONFLICT RESOLUTION`;
         </div>`;
     }
 
-    function expQueueItemHtml(qi) {
+    function expQueueItemHtml(qi, ev) {
       const s = (qi.status || 'pending').toLowerCase().replace('_', '-');
+      const priorHtml = ev && ev.run_count > 0
+        ? (() => {
+            const v = (ev.latest_verdict || '').toLowerCase();
+            const badge = v === 'pass' ? 'pass' : v === 'fail' ? 'fail' : '';
+            const ts = ev.latest_timestamp ? ev.latest_timestamp.replace('T', ' ').slice(0, 16) + ' UTC' : '';
+            return `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">
+              Previously run ${ev.run_count}× on disk
+              ${badge ? `&mdash; latest <span class="exp-result-badge ${badge}">${badge.toUpperCase()}</span>` : ''}
+              ${ts ? `&mdash; ${escapeHtml(ts)}` : ''}
+            </div>`;
+          })()
+        : '';
       return `
         <div class="exp-card ${s}">
           <div class="exp-card-header">
@@ -7595,11 +7607,23 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
           ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
+          ${priorHtml}
         </div>`;
     }
 
     function expCompletedHtml(c) {
       const resultClass = (c.result || '').toLowerCase();
+      const runCountHtml = c.total_run_count > 1
+        ? `<span style="font-size:11px;color:var(--muted);margin-left:6px">${c.total_run_count} runs on disk</span>`
+        : '';
+      const evidenceOnlyNote = c.evidence_only
+        ? `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">Evidence on disk &mdash; not yet in runner log</div>`
+        : '';
+      const completedLine = !c.evidence_only && c.completed_at
+        ? `<div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at.replace('T', ' ').replace('Z', ' UTC')}</div>`
+        : c.evidence_only && c.completed_at
+        ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC</div>`
+        : '';
       return `
         <div class="exp-card ${resultClass}">
           <div class="exp-card-header">
@@ -7607,10 +7631,12 @@ END CONFLICT RESOLUTION`;
             <span class="exp-title">${escapeHtml(c.title || '')}</span>
             ${expBadgeHtml('', c.result)}
             ${versionChipHtml(inferVersion(c))}
+            ${runCountHtml}
           </div>
           <div class="exp-desc">${escapeHtml(c.description || '')}</div>
           ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
-          <div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at ? c.completed_at.replace('T', ' ').replace('Z', ' UTC') : ''}</div>
+          ${evidenceOnlyNote}
+          ${completedLine}
         </div>`;
     }
 
@@ -7632,6 +7658,21 @@ END CONFLICT RESOLUTION`;
         const resp = await fetch(RUNNER_STATUS_URL + '?t=' + Date.now());
         if (resp.ok) status = await resp.json();
       } catch (_) {}
+
+      let evidenceRuns = {};
+      try {
+        const er = await fetch('/api/evidence/runs?t=' + Date.now());
+        if (er.ok) evidenceRuns = await er.json();
+      } catch (_) {}
+
+      // Build a map from script basename → evidence run info
+      // Key: experiment dir name (e.g. "rollout_viability_mapping")
+      // Also build a map from claim_id → evidence info for queue cross-referencing
+      const evidenceByScript = evidenceRuns; // already keyed by dir name
+      const evidenceByClaimId = {};
+      Object.values(evidenceRuns).forEach(e => {
+        if (e.claim_id) evidenceByClaimId[e.claim_id] = e;
+      });
 
       const isRunning = !!(status && !status.idle && status.runner_pid);
       const cur = status && status.current;
@@ -7684,21 +7725,57 @@ END CONFLICT RESOLUTION`;
         html += `<div class="exp-section"><div class="exp-section-title">Queue &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
         const queueGroups = groupByVersion(queue);
         const queueVersions = versionRenderOrder(queueGroups);
+        const queueItemWithEvidence = qi => {
+          const scriptName = (qi.script || '').replace(/^.*\//, '').replace(/\.py$/, '');
+          const ev = evidenceByScript[scriptName] || evidenceByClaimId[qi.claim_id] || null;
+          return expQueueItemHtml(qi, ev);
+        };
         if (queueVersions.length > 1) {
           queueVersions.forEach(v => {
             html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${queueGroups[v].length}</div>`;
-            html += queueGroups[v].map(expQueueItemHtml).join('');
+            html += queueGroups[v].map(queueItemWithEvidence).join('');
           });
         } else {
-          html += queue.map(expQueueItemHtml).join('');
+          html += queue.map(queueItemWithEvidence).join('');
         }
         html += '</div>';
       }
 
       // ── Completed ──
-      if (completed.length > 0) {
-        html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${completed.length}</div>`;
-        const completedGroups = groupByVersion(completed);
+      // Show all runs; annotate each with total on-disk run count for that experiment
+      if (completed.length > 0 || Object.keys(evidenceByScript).length > 0) {
+        const completedScriptNames = new Set(
+          completed.map(c => (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '')).filter(Boolean)
+        );
+        const completedAnnotated = completed.map(c => {
+          const scriptName = (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+          const ev = evidenceByScript[scriptName] || evidenceByClaimId[c.claim_id] || null;
+          return { ...c, total_run_count: ev ? ev.run_count : null };
+        });
+
+        // Add evidence-on-disk items not tracked in runner_status completed
+        const evidenceOnlyItems = Object.entries(evidenceByScript)
+          .filter(([scriptName]) => !completedScriptNames.has(scriptName))
+          .map(([scriptName, ev]) => {
+            const queueMatch = queue.find(qi =>
+              (qi.script || '').replace(/^.*\//, '').replace(/\.py$/, '') === scriptName ||
+              qi.claim_id === ev.claim_id
+            );
+            return {
+              claim_id: ev.claim_id || '',
+              title: queueMatch ? queueMatch.title : scriptName.replace(/_/g, ' '),
+              description: queueMatch ? queueMatch.description : '',
+              result: ev.latest_verdict,
+              completed_at: ev.latest_timestamp,
+              total_run_count: ev.run_count,
+              output_file: `ree-v2/evidence/experiments/${scriptName}/`,
+              evidence_only: true,
+            };
+          });
+
+        const allCompleted = [...completedAnnotated, ...evidenceOnlyItems];
+        html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${allCompleted.length}</div>`;
+        const completedGroups = groupByVersion(allCompleted);
         versionRenderOrder(completedGroups).forEach(v => {
           html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${completedGroups[v].length}</div>`;
           html += completedGroups[v].map(expCompletedHtml).join('');

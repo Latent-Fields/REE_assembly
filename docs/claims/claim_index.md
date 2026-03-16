@@ -125,7 +125,8 @@ Dependency edges are conceptual prerequisites and must stay acyclic; runtime fee
 - [MECH-054](../architecture/control_plane.md#mech-054) Signed harm/benefit prediction‑error precision channels remain distinct.
 - [MECH-055](../architecture/control_plane.md#mech-055) Affective channel separation keeps hedonic tone, valence, and signed PE distinct.
 - [MECH-056](../architecture/residue_geometry.md#mech-056) Residue should constrain trajectories before distorting core representations.
-- [MECH-057](../architecture/agency_responsibility_flow.md#mech-057) Agentic latent-predictive models require control-plane completion and self-attribution loops.
+- [MECH-057a](../architecture/agency_responsibility_flow.md#mech-057a) Action-loop completion gate: committed action sequences suppress new precision updates until execution completes. *(V2-testable with multi-step substrate; V1/V2 FAILs are substrate-limited)*
+- [MECH-057b](../architecture/agency_responsibility_flow.md#mech-057b) Thought-loop trajectory promotion gate: hippocampal sequence completion must be verified before candidates are eligible for E3 selection. *(V3-scoped — requires HippocampalModule promotion policy not present in V2)*
 - [MECH-058](../architecture/agency_responsibility_flow.md#mech-058) Slow target-anchor dynamics stabilize JEPA-like-referenced E1/E2 representation via functional rate separation.
 - [MECH-059](../architecture/agency_responsibility_flow.md#mech-059) Confidence channel (uncertainty-derived precision) must remain distinct from residual error for precision routing.
 - [MECH-060](../architecture/agency_responsibility_flow.md#mech-060) Umbrella commit-boundary separation principle with explicit phase control-variation map: pre-commit simulation and post-commit realized-error channels stay responsibility-distinct via write-boundary enforcement (MECH-061/062/066/067).

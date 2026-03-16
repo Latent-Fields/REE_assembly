@@ -1192,12 +1192,25 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_type: str | None = None
     current_v3_pending: bool = False
     current_impl_phase: str | None = None
+    current_eq_note: str | None = None
+    current_defer_until: str | None = None
+    _collecting_eq_note: bool = False  # True while reading a block-scalar evidence_quality_note
 
     if not path.exists():
         return registry
 
     lines = path.read_text(encoding="utf-8").splitlines()
     for line in lines:
+        # ── Collect continuation lines for block-scalar evidence_quality_note ──
+        if _collecting_eq_note:
+            # Block ends when line is not indented deeper than the field (4+ spaces for sub-field)
+            if line.startswith("    "):
+                current_eq_note = (current_eq_note or "") + " " + line.strip()
+                continue
+            else:
+                _collecting_eq_note = False
+                # Fall through to process this non-continuation line normally
+
         if line.startswith("- id:"):
             if current_id:
                 registry[current_id] = {
@@ -1205,12 +1218,17 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "claim_type": current_type or "unknown",
                     "v3_pending": str(current_v3_pending),
                     "implementation_phase": current_impl_phase or "",
+                    "evidence_quality_note": (current_eq_note or "").strip(),
+                    "defer_promotion_until": current_defer_until or "",
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
             current_type = None
             current_v3_pending = False
             current_impl_phase = None
+            current_eq_note = None
+            current_defer_until = None
+            _collecting_eq_note = False
             continue
 
         if current_id and line.startswith("  status:"):
@@ -1230,18 +1248,34 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_impl_phase = line.split(":", 1)[1].strip()
             continue
 
+        if current_id and line.startswith("  evidence_quality_note:"):
+            rest = line.split(":", 1)[1].strip().strip("\"'")
+            if rest == "|":
+                # YAML block scalar — content is on the following indented lines
+                current_eq_note = ""
+                _collecting_eq_note = True
+            else:
+                current_eq_note = rest
+            continue
+
+        if current_id and line.startswith("  defer_promotion_until:"):
+            current_defer_until = line.split(":", 1)[1].strip().strip("\"'")
+            continue
+
     if current_id:
         registry[current_id] = {
             "status": current_status or "unknown",
             "claim_type": current_type or "unknown",
             "v3_pending": str(current_v3_pending),
             "implementation_phase": current_impl_phase or "",
+            "evidence_quality_note": (current_eq_note or "").strip(),
+            "defer_promotion_until": current_defer_until or "",
         }
     return registry
 
 
 def _is_inactive_claim_status(status: str) -> bool:
-    return str(status).strip().lower() in {"legacy"}
+    return str(status).strip().lower() in {"legacy", "superseded", "retired", "applied"}
 
 
 def _default_decision_criteria() -> dict[str, Any]:
@@ -1753,6 +1787,20 @@ def _recommendation_for_claim(
         decision_needed = "Question narrowing review"
         recommendation = "narrow_open_question"
 
+    # ── defer_promotion_until gate ───────────────────────────────────────────
+    # If the claim has a defer_promotion_until field set, intercept any
+    # promotion recommendation and replace it with defer_promotion.
+    # Demotion is still allowed — the defer only blocks upward movement.
+    _defer_until = str(registry_meta.get("defer_promotion_until", "")).strip() if registry_meta else ""
+    if _defer_until and recommendation.startswith("promote_"):
+        recommendation = "defer_promotion"
+        decision_needed = f"Promotion deferred until: {_defer_until}"
+    # ── end defer_promotion_until gate ───────────────────────────────────────
+
+    # evidence_quality_note is returned as a separate field so the writer can
+    # emit it as its own bullet (not concatenated into the rationale line).
+    _eq_note = str(registry_meta.get("evidence_quality_note", "")).strip() if registry_meta else ""
+
     option_set = {
         "promote_to_provisional": [
             "Promote now (faster convergence, risk premature lock-in)",
@@ -1789,6 +1837,11 @@ def _recommendation_for_claim(
             "Request additional evidence anyway (higher confidence, extra cost)",
             "Force a status vote now (faster decision, weak evidential basis)",
         ],
+        "defer_promotion": [
+            "Wait for the planned action specified in defer_promotion_until (correct path).",
+            "Override defer and promote now if architectural decision has been made (document rationale).",
+            "Reassess defer condition — may have been resolved already.",
+        ],
     }
 
     discussion_prompts = [
@@ -1803,6 +1856,7 @@ def _recommendation_for_claim(
         "decision_needed": decision_needed,
         "recommendation": recommendation,
         "rationale": rationale,
+        "evidence_quality_note": _eq_note,
         "options": option_set.get(recommendation, option_set["hold"]),
         "discussion_prompts": discussion_prompts,
         "decision_status": str(criteria.get("decision_status_default", "pending_user")),
@@ -1945,6 +1999,11 @@ def _write_promotion_demotion_recommendations(
                 "- Why this decision is needed: "
                 + f"{rec['rationale']}; directions supports={supports}, weakens={weakens}, mixed={mixed}, unknown={unknown}, conflict_ratio={_fmt_number(conflict_ratio)}"
             )
+            _eq = rec.get("evidence_quality_note", "")
+            if _eq:
+                # Truncate very long notes to ~400 chars for readability in the recommendations file
+                _eq_display = _eq[:400] + "…" if len(_eq) > 400 else _eq
+                lines.append(f"- Evidence quality note: {_eq_display}")
             lines.append(f"- Recommendation: `{rec['recommendation']}`")
             if rec.get("synthetic_data_flag"):
                 lines.append(
