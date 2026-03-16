@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-03-16T06:29:04.910148Z`
+Generated: `2026-03-16T17:55:14.890011Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -18,7 +18,7 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_arc_016
 
-- [ ] Investigate signature `v2_verdict_fail:precision_regime_probe` (1 FAIL run(s), latest `20260308T123428_precision_regime_probe_v2`).
+- [ ] Investigate signature `v2_verdict_fail:precision_regime_probe` (2 FAIL run(s), latest `20260316T081406_precision_regime_probe_v2`).
 
 ## claim_probe_arc_018
 
@@ -34,7 +34,7 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 ## claim_probe_mech_025
 
-- [ ] Investigate signature `v2_verdict_fail:action_doing_mode_probe` (1 FAIL run(s), latest `20260308T132031_action_doing_mode_probe_v2`).
+- [ ] Investigate signature `v2_verdict_fail:action_doing_mode_probe` (2 FAIL run(s), latest `20260316T100752_action_doing_mode_probe_v2`).
 
 ## claim_probe_mech_033
 

@@ -12,11 +12,12 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260316T100752_action_doing_mode_probe_v2` at `2026-03-16T10:07:52.444539+00:00` signatures: v2_verdict_fail:action_doing_mode_probe
 - `20260308T132031_action_doing_mode_probe_v2` at `2026-03-08T13:20:31.377993+00:00` signatures: v2_verdict_fail:action_doing_mode_probe
 
 Recurring signatures:
-- `v2_verdict_fail:action_doing_mode_probe` occurred in 1 FAIL run(s); latest `20260308T132031_action_doing_mode_probe_v2`
+- `v2_verdict_fail:action_doing_mode_probe` occurred in 2 FAIL run(s); latest `20260316T100752_action_doing_mode_probe_v2`
 
 Suggested design TODOs:
-- [ ] Investigate signature `v2_verdict_fail:action_doing_mode_probe` (1 FAIL run(s), latest `20260308T132031_action_doing_mode_probe_v2`).
+- [ ] Investigate signature `v2_verdict_fail:action_doing_mode_probe` (2 FAIL run(s), latest `20260316T100752_action_doing_mode_probe_v2`).
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

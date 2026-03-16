@@ -259,47 +259,34 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.611, lit_conf=0.737",
+      "confidence_rationale": "exp=14 entry(s), lit=1 entry(s), exp_conf=0.653, lit_conf=0.737",
       "direction_counts": {
         "mixed": 0,
-        "supports": 9,
+        "supports": 10,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 14,
+      "entries_total": 15,
       "evidence_class_counts": {
         "exp:exploratory_simulation": 4,
-        "exp:simulation": 9,
+        "exp:simulation": 10,
         "lit:neuroscience_experiment": 1
       },
-      "experimental_confidence": 0.611,
+      "experimental_confidence": 0.653,
       "fail_runs": 5,
-      "genuine_exp_count": 1,
+      "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "20260308T114644_path_memory_ablation_v2",
-      "latest_timestamp_utc": "2026-03-08T11:46:44.792784+00:00",
+      "latest_run_id": "20260316T061908_path_memory_ablation_v2",
+      "latest_timestamp_utc": "2026-03-16T06:19:08.594368+00:00",
       "literature_confidence": 0.737,
-      "overall_confidence": 0.642,
-      "pass_runs": 8,
+      "overall_confidence": 0.674,
+      "pass_runs": 9,
       "recent_entries": [
-        {
-          "claim_id": "ARC-007",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "claim_probe_arc_007",
-          "failure_signatures": [],
-          "run_id": "2026-02-15T211031Z_claim-probe-arc-007_seed11_trajectory_first_enabled_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-15T21:10:31Z"
-        },
         {
           "claim_id": "ARC-007",
           "confidence": 0.75,
@@ -356,58 +343,59 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-08T11:46:44.792784+00:00"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_arc_007",
+          "failure_signatures": [],
+          "run_id": "20260316T061908_path_memory_ablation_v2",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-16T06:19:08.594368+00:00"
         }
       ],
-      "runs_total": 14,
+      "runs_total": 15,
       "source_counts": {
-        "experimental": 13,
+        "experimental": 14,
         "literature": 1
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.757, lit_conf=0.876",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.824, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 1,
+        "exp:simulation": 2,
         "lit:connectome_gradient_continuous_landscape": 1,
         "lit:intrinsic_network_competition": 1,
         "lit:metastate_hierarchical_dynamics": 1,
         "lit:network_switching_salience_control": 1
       },
-      "experimental_confidence": 0.757,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.824,
+      "fail_runs": 2,
+      "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "latest_run_id": "20260308T123428_precision_regime_probe_v2",
-      "latest_timestamp_utc": "2026-03-08T12:34:28.042879+00:00",
+      "latest_run_id": "20260316T081406_precision_regime_probe_v2",
+      "latest_timestamp_utc": "2026-03-16T08:14:06.998592+00:00",
       "literature_confidence": 0.876,
-      "overall_confidence": 0.846,
+      "overall_confidence": 0.855,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "claim_id": "ARC-016",
-          "confidence": 0.82,
-          "confidence_rationale": "Strong network-switching evidence supports mode-transition control routing, though it does not directly specify REE stream contracts.",
-          "evidence_class": "lit:network_switching_salience_control",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_016",
-          "failure_signatures": [],
-          "run_id": "2026-02-21_arc016_rfIC_network_switching_pnas2008",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-21T17:08:00Z"
-        },
         {
           "claim_id": "ARC-016",
           "confidence": 0.77,
@@ -464,16 +452,32 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-08T12:34:28.042879+00:00"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_arc_016",
+          "failure_signatures": [
+            "v2_verdict_fail:precision_regime_probe"
+          ],
+          "run_id": "20260316T081406_precision_regime_probe_v2",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-16T08:14:06.998592+00:00"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 2,
         "literature": 4
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=10 entry(s), lit=6 entry(s), exp_conf=0.523, lit_conf=0.796",
+      "confidence_rationale": "exp=10 entry(s), lit=6 entry(s), exp_conf=0.522, lit_conf=0.796",
       "direction_counts": {
         "mixed": 0,
         "supports": 10,
@@ -487,7 +491,7 @@
         "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.523,
+      "experimental_confidence": 0.522,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -773,49 +777,36 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.757, lit_conf=0.879",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.824, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 1,
+        "exp:simulation": 2,
         "lit:basal_ganglia_action_release": 1,
         "lit:goal_directed_dmn_control_coupling": 1,
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.757,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.824,
+      "fail_runs": 2,
+      "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "latest_run_id": "20260308T132031_action_doing_mode_probe_v2",
-      "latest_timestamp_utc": "2026-03-08T13:20:31.377993+00:00",
+      "latest_run_id": "20260316T100752_action_doing_mode_probe_v2",
+      "latest_timestamp_utc": "2026-03-16T10:07:52.444539+00:00",
       "literature_confidence": 0.879,
-      "overall_confidence": 0.849,
+      "overall_confidence": 0.857,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "claim_id": "MECH-025",
-          "confidence": 0.81,
-          "confidence_rationale": "Directly measures deliberation-to-commitment transitions in action circuits, aligning with MECH-025 action-mode commitment framing.",
-          "evidence_class": "lit:sensorimotor_commitment_dynamics",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_025",
-          "failure_signatures": [],
-          "run_id": "2026-02-21_mech025_dynamic_commitment_pmd_m1_neuron2014",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-21T17:12:00Z"
-        },
         {
           "claim_id": "MECH-025",
           "confidence": 0.79,
@@ -872,11 +863,27 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-08T13:20:31.377993+00:00"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-025",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_mech_025",
+          "failure_signatures": [
+            "v2_verdict_fail:action_doing_mode_probe"
+          ],
+          "run_id": "20260316T100752_action_doing_mode_probe_v2",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-16T10:07:52.444539+00:00"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 2,
         "literature": 4
       }
     },
@@ -1949,7 +1956,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.702, lit_conf=0.84",
+      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.701, lit_conf=0.84",
       "direction_counts": {
         "mixed": 65,
         "supports": 78,
@@ -1963,7 +1970,7 @@
         "exp:simulation": 147,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.702,
+      "experimental_confidence": 0.701,
       "fail_runs": 70,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1975,7 +1982,7 @@
       "latest_run_id": "20260314T202143_control_plane_precision_separation_v2",
       "latest_timestamp_utc": "2026-03-14T20:21:43.211016+00:00",
       "literature_confidence": 0.84,
-      "overall_confidence": 0.771,
+      "overall_confidence": 0.77,
       "pass_runs": 97,
       "recent_entries": [
         {
@@ -2171,7 +2178,7 @@
       }
     },
     "MECH-061": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.695, lit_conf=0.745",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.694, lit_conf=0.744",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -2187,7 +2194,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.695,
+      "experimental_confidence": 0.694,
       "fail_runs": 4,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2198,8 +2205,8 @@
       },
       "latest_run_id": "20260315T024049_commitment_boundary_validation_v2",
       "latest_timestamp_utc": "2026-03-15T02:40:49.515478+00:00",
-      "literature_confidence": 0.745,
-      "overall_confidence": 0.715,
+      "literature_confidence": 0.744,
+      "overall_confidence": 0.714,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -3031,7 +3038,7 @@
       }
     },
     "MECH-900": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.756, lit_conf=0.712",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.755, lit_conf=0.712",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -3043,7 +3050,7 @@
         "exp:exploratory_simulation": 2,
         "lit:methodology_reproducibility": 1
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.755,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3741,7 +3748,7 @@
       }
     },
     "Q-007": {
-      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.627, lit_conf=0.452",
+      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.626, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -3754,7 +3761,7 @@
         "exp:simulation": 9,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.627,
+      "experimental_confidence": 0.626,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4168,7 +4175,7 @@
       }
     },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.305, lit_conf=0.845",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.305, lit_conf=0.844",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -4192,8 +4199,8 @@
       },
       "latest_run_id": "2026-02-15_q011_lit-0026_completion",
       "latest_timestamp_utc": "2026-02-15T16:06:00Z",
-      "literature_confidence": 0.845,
-      "overall_confidence": 0.629,
+      "literature_confidence": 0.844,
+      "overall_confidence": 0.628,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -4275,7 +4282,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.461, lit_conf=0.787",
+      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.461, lit_conf=0.786",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -4299,7 +4306,7 @@
       },
       "latest_run_id": "2026-02-15T213633Z_claim-probe-q-012_seed1002_trajectory_first_enabled_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T21:36:33Z",
-      "literature_confidence": 0.787,
+      "literature_confidence": 0.786,
       "overall_confidence": 0.624,
       "pass_runs": 4,
       "recent_entries": [
@@ -4598,7 +4605,7 @@
       }
     },
     "Q-015": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.511, lit_conf=0.745",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.511, lit_conf=0.744",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4623,8 +4630,8 @@
       },
       "latest_run_id": "exp_0010_20260215T213710798125Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.798125Z",
-      "literature_confidence": 0.745,
-      "overall_confidence": 0.605,
+      "literature_confidence": 0.744,
+      "overall_confidence": 0.604,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -24507,6 +24514,52 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_007",
+      "failure_signatures": [],
+      "run_id": "20260316T061908_path_memory_ablation_v2",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-16T06:19:08.594368+00:00"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_arc_016",
+      "failure_signatures": [
+        "v2_verdict_fail:precision_regime_probe"
+      ],
+      "run_id": "20260316T081406_precision_regime_probe_v2",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-16T08:14:06.998592+00:00"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-025",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_025",
+      "failure_signatures": [
+        "v2_verdict_fail:action_doing_mode_probe"
+      ],
+      "run_id": "20260316T100752_action_doing_mode_probe_v2",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-16T10:07:52.444539+00:00"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-023",
       "confidence": 0.72,
       "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
@@ -24646,7 +24699,7 @@
       "timestamp_utc": "2026-03-16T12:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-16T14:40:12.800916Z",
+  "generated_at_utc": "2026-03-16T17:55:14.890011Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

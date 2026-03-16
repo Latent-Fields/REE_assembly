@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_arc_007
 
-Generated: `2026-03-16T06:29:04.910148Z`
+Generated: `2026-03-16T17:55:14.890011Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-16T06:29:04.910148Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260316T061908_path_memory_ablation_v2` | `2026-03-16T06:19:08.594368+00:00` | PASS | fatal_error_count=0 | fatal_error_count:+0 | - | - | [`summary`](runs/20260316T061908_path_memory_ablation_v2/summary.md) / [`manifest`](runs/20260316T061908_path_memory_ablation_v2/manifest.json) / [`metrics`](runs/20260316T061908_path_memory_ablation_v2/metrics.json) |
 | `20260308T114644_path_memory_ablation_v2` | `2026-03-08T11:46:44.792784+00:00` | **FAIL** | fatal_error_count=0 | - | - | - | [`summary`](runs/20260308T114644_path_memory_ablation_v2/summary.md) / [`manifest`](runs/20260308T114644_path_memory_ablation_v2/manifest.json) / [`metrics`](runs/20260308T114644_path_memory_ablation_v2/metrics.json) |
 | `exp_0011_20260215T213710856170Z` | `2026-02-15T21:37:10.856170Z` | PASS | - | - | - | - | [`summary`](runs/exp_0011_20260215T213710856170Z/summary.md) / [`manifest`](runs/exp_0011_20260215T213710856170Z/manifest.json) / [`metrics`](runs/exp_0011_20260215T213710856170Z/metrics.json) |
 | `exp_0007_20260215T213657544367Z` | `2026-02-15T21:36:57.544367Z` | PASS | - | - | - | - | [`summary`](runs/exp_0007_20260215T213657544367Z/summary.md) / [`manifest`](runs/exp_0007_20260215T213657544367Z/manifest.json) / [`metrics`](runs/exp_0007_20260215T213657544367Z/metrics.json) |
