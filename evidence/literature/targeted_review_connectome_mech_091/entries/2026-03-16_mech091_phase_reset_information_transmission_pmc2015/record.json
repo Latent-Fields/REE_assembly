@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_091",
+  "entry_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
+  "timestamp_utc": "2026-03-16T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-091"
+  ],
+  "source": {
+    "title": "Phase-resetting as a tool of information transmission",
+    "authors": [
+      "Andreas K. Engel",
+      "Christian K. Gerloff",
+      "Claus C. Hilgetag",
+      "Guido Nolte"
+    ],
+    "year": 2013,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2012.12.008",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4375052/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "phase-reset",
+    "theta-oscillations",
+    "thalamocortical",
+    "salient-events",
+    "P300",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Salient or unexpected stimuli trigger phase-alignment of ongoing neural oscillations (phase reset) rather than simply adding a new signal; thalamocortical circuits act as phase detectors, forcing oscillator alignment; this is the basis of event-related potentials including P300.",
+    "ree_translation": "MECH-091: High-salience events (action sequence completion, unexpected harm, commitment boundary crossing) reset the phase of E3's heartbeat oscillator. The thalamic substrate (MD thalamus for E3, per ARC-023) acts as the phase-reset mediator — ensuring the next E3 heartbeat cycle starts from a coherent reference state aligned with the salient event. This prevents partial-integration artefacts from mid-cycle updates.",
+    "mapping_caveat": "The reviewed literature focuses on alpha and theta oscillations in sensory/cognitive contexts; direct evidence for phase-reset at the completion-of-action-sequence level in BG-thalamo-cortical circuits is more limited. The thalamic phase-reset mechanism is plausible but the specific E3-heartbeat timing implications require empirical validation.",
+    "source_context": "Review of oscillatory phase-reset in human EEG and animal LFP; oddball and oddball-like task paradigms; thalamocortical oscillator model."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Good source; mapping is indirect (sensory context → action-completion context); phase-reset mechanism is general but the specific heartbeat-clock application is novel inference."
+  }
+}

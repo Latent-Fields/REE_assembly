@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-03-16_mech090_beta_status_quo_jneurosci2019",
+  "timestamp_utc": "2026-03-16T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-090"
+  ],
+  "source": {
+    "title": "Beta Oscillations in Working Memory, Executive Control of Movement and Thought, and Sensorimotor Function",
+    "authors": [
+      "Mark Helfrich",
+      "Robert T. Knight"
+    ],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1163-19.2019",
+    "url": "https://www.jneurosci.org/content/39/42/8231"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct support for beta as a 'maintain current state' / status-quo signal in basal ganglia-cortical circuits; evidence that beta gates propagation to action selection rather than internal model updating; the hyperdirect pathway as fast interrupt mechanism is well evidenced. Main caveat: most direct evidence is from pathological states (Parkinson's) or motor cortex; PFC/E3-equivalent is more inferential.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "beta-oscillations",
+    "basal-ganglia",
+    "STN",
+    "action-selection",
+    "hyperdirect-pathway",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Beta band oscillations (~13-30 Hz) in the basal ganglia and prefrontal cortex signal a 'maintain current state / status quo' that opposes both movement initiation and cognitive updating; elevated prefrontal beta during working memory delay prevents distractor interference; the hyperdirect cortex-STN pathway propagates high-beta to enforce rapid braking.",
+    "ree_translation": "MECH-090: Beta elevated during committed action sequence → E3 policy-output to action selection is gated/held. E3 continues internal model updating (heartbeat continues) but update does not propagate. At sequence completion or stop-change: beta drops → E3 state propagates to action selector. Hyperdirect pathway (cortex → STN) implements the fast interrupt for mid-sequence emergency stop.",
+    "mapping_caveat": "Most direct STN beta evidence is from Parkinson's disease populations where beta is pathologically amplified; whether the same gating principle operates in healthy agentic action sequences requires caution. PFC delay-period beta is more directly relevant to E3 but the propagation-gating distinction (internal vs output) is not always explicitly tested.",
+    "source_context": "Review of beta oscillations in human EEG/LFP, PD patients, and primate recordings; motor, working memory, and cognitive control paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "High source quality; the status-quo framing is well-established; transfer risk is moderate given PD population bias in STN data."
+  }
+}

@@ -48,7 +48,7 @@
       }
     },
     "ARC-003": {
-      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.526, lit_conf=0.818",
+      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.525, lit_conf=0.818",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -62,7 +62,7 @@
         "lit:computational_neuroscience_empirical": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.526,
+      "experimental_confidence": 0.525,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -74,7 +74,7 @@
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
       "literature_confidence": 0.818,
-      "overall_confidence": 0.672,
+      "overall_confidence": 0.671,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -158,7 +158,7 @@
       }
     },
     "ARC-005": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.762, lit_conf=0.818",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.761, lit_conf=0.818",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -171,7 +171,7 @@
         "lit:computational_neuroscience_empirical": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -183,7 +183,7 @@
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
       "literature_confidence": 0.818,
-      "overall_confidence": 0.796,
+      "overall_confidence": 0.795,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -259,7 +259,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.612, lit_conf=0.737",
+      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.611, lit_conf=0.737",
       "direction_counts": {
         "mixed": 0,
         "supports": 9,
@@ -272,7 +272,7 @@
         "exp:simulation": 9,
         "lit:neuroscience_experiment": 1
       },
-      "experimental_confidence": 0.612,
+      "experimental_confidence": 0.611,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -284,7 +284,7 @@
       "latest_run_id": "20260308T114644_path_memory_ablation_v2",
       "latest_timestamp_utc": "2026-03-08T11:46:44.792784+00:00",
       "literature_confidence": 0.737,
-      "overall_confidence": 0.643,
+      "overall_confidence": 0.642,
       "pass_runs": 8,
       "recent_entries": [
         {
@@ -365,7 +365,7 @@
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.758, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.757, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -380,7 +380,7 @@
         "lit:metastate_hierarchical_dynamics": 1,
         "lit:network_switching_salience_control": 1
       },
-      "experimental_confidence": 0.758,
+      "experimental_confidence": 0.757,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -392,7 +392,7 @@
       "latest_run_id": "20260308T123428_precision_regime_probe_v2",
       "latest_timestamp_utc": "2026-03-08T12:34:28.042879+00:00",
       "literature_confidence": 0.876,
-      "overall_confidence": 0.847,
+      "overall_confidence": 0.846,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -582,8 +582,56 @@
         "literature": 6
       }
     },
+    "ARC-023": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_circuit_study": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.71,
+      "overall_confidence": 0.71,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-023",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
+          "evidence_class": "lit:connectome_circuit_study",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "IMPL-022": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.762, lit_conf=0.654",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.761, lit_conf=0.654",
       "direction_counts": {
         "mixed": 2,
         "supports": 0,
@@ -595,7 +643,7 @@
         "exp:ablation": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 2,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -725,7 +773,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.758, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.757, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -740,7 +788,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.758,
+      "experimental_confidence": 0.757,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1015,7 +1063,7 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=11 entry(s), lit=6 entry(s), exp_conf=0.565, lit_conf=0.791",
+      "confidence_rationale": "exp=11 entry(s), lit=6 entry(s), exp_conf=0.564, lit_conf=0.791",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -1029,7 +1077,7 @@
         "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.565,
+      "experimental_confidence": 0.564,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1041,7 +1089,7 @@
       "latest_run_id": "20260315T165927_kernel_chaining_interface_v2",
       "latest_timestamp_utc": "2026-03-15T16:59:27.955457+00:00",
       "literature_confidence": 0.791,
-      "overall_confidence": 0.678,
+      "overall_confidence": 0.677,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -1125,7 +1173,7 @@
       }
     },
     "MECH-040": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.512, lit_conf=0.797",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.511, lit_conf=0.797",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1138,7 +1186,7 @@
         "exp:simulation": 8,
         "lit:neuroscience_theory": 2
       },
-      "experimental_confidence": 0.512,
+      "experimental_confidence": 0.511,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1150,7 +1198,7 @@
       "latest_run_id": "exp_0008_20260215T213710679868Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.679868Z",
       "literature_confidence": 0.797,
-      "overall_confidence": 0.626,
+      "overall_confidence": 0.625,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -1231,7 +1279,7 @@
       }
     },
     "MECH-046": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.512, lit_conf=0.772",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.511, lit_conf=0.772",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1244,7 +1292,7 @@
         "exp:simulation": 8,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.512,
+      "experimental_confidence": 0.511,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1256,7 +1304,7 @@
       "latest_run_id": "exp_0009_20260215T213710739916Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.739916Z",
       "literature_confidence": 0.772,
-      "overall_confidence": 0.616,
+      "overall_confidence": 0.615,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -1337,7 +1385,7 @@
       }
     },
     "MECH-053": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.762, lit_conf=0.772",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.761, lit_conf=0.772",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1350,7 +1398,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1362,7 +1410,7 @@
       "latest_run_id": "2026-02-15T175234Z_claim-probe-mech-053_seed29_full_axis_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T17:52:34Z",
       "literature_confidence": 0.772,
-      "overall_confidence": 0.767,
+      "overall_confidence": 0.766,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1425,7 +1473,7 @@
       }
     },
     "MECH-054": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.762, lit_conf=0.78",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.761, lit_conf=0.78",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1438,7 +1486,7 @@
         "lit:neuroscience_review": 1,
         "lit:systems_neuroscience": 1
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1450,7 +1498,7 @@
       "latest_run_id": "2026-02-15_mech054_lhb_negative_reward_signal_nature2007",
       "latest_timestamp_utc": "2026-02-15T20:54:20Z",
       "literature_confidence": 0.78,
-      "overall_confidence": 0.771,
+      "overall_confidence": 0.77,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1513,14 +1561,14 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=166 entry(s), lit=9 entry(s), exp_conf=0.716, lit_conf=0.866",
+      "confidence_rationale": "exp=166 entry(s), lit=10 entry(s), exp_conf=0.715, lit_conf=0.878",
       "direction_counts": {
         "mixed": 8,
-        "supports": 53,
+        "supports": 54,
         "unknown": 0,
         "weakens": 114
       },
-      "entries_total": 175,
+      "entries_total": 176,
       "evidence_class_counts": {
         "exp:ablation": 2,
         "exp:exploratory_simulation": 7,
@@ -1529,11 +1577,12 @@
         "lit:computational_neuroscience_model": 3,
         "lit:connectome_behavioral_dissociation": 1,
         "lit:connectome_computational_bridge": 1,
+        "lit:connectome_mechanistic_review": 1,
         "lit:connectome_neuromodulatory_gating": 1,
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.716,
+      "experimental_confidence": 0.715,
       "fail_runs": 123,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1542,25 +1591,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "20260314T220919_residue_trajectory_placement_v2",
-      "latest_timestamp_utc": "2026-03-14T22:09:19.450396+00:00",
-      "literature_confidence": 0.866,
-      "overall_confidence": 0.791,
+      "latest_run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.878,
+      "overall_confidence": 0.796,
       "pass_runs": 43,
       "recent_entries": [
-        {
-          "claim_id": "MECH-056",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:runtime",
-          "evidence_direction": "supports",
-          "experiment_type": "runtime_authority_commit_boundary",
-          "failure_signatures": [],
-          "run_id": "runtime_authority_commit_boundary_seed11_20260225T195039888432Z",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-02-25T19:50:39.888432Z"
-        },
         {
           "claim_id": "MECH-056",
           "confidence": 0.75,
@@ -1615,16 +1651,30 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-14T22:09:19.450396+00:00"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-056",
+          "confidence": 0.85,
+          "confidence_rationale": "Canonical, high-quality review with direct evidence for SWR during quiescent offline states, CA3 recurrent dynamics as internal generator, compressed sequence replay, and consolidation function. Directly maps onto MECH-092 (quiescent E3 heartbeat \u2192 hippocampal replay). Strong source; mapping is structurally faithful.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_092",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
         }
       ],
-      "runs_total": 175,
+      "runs_total": 176,
       "source_counts": {
         "experimental": 166,
-        "literature": 9
+        "literature": 10
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=15 entry(s), lit=7 entry(s), exp_conf=0.613, lit_conf=0.841",
+      "confidence_rationale": "exp=15 entry(s), lit=7 entry(s), exp_conf=0.612, lit_conf=0.841",
       "direction_counts": {
         "mixed": 3,
         "supports": 10,
@@ -1639,7 +1689,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.613,
+      "experimental_confidence": 0.612,
       "fail_runs": 9,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1738,7 +1788,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.774, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -1749,7 +1799,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.774,
+      "experimental_confidence": 0.773,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1761,7 +1811,7 @@
       "latest_run_id": "20260315T174543_action_loop_completion_gate_v2",
       "latest_timestamp_utc": "2026-03-15T17:45:43.730022+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.774,
+      "overall_confidence": 0.773,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1786,7 +1836,7 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=159 entry(s), lit=9 entry(s), exp_conf=0.562, lit_conf=0.868",
+      "confidence_rationale": "exp=159 entry(s), lit=9 entry(s), exp_conf=0.561, lit_conf=0.868",
       "direction_counts": {
         "mixed": 3,
         "supports": 93,
@@ -1804,7 +1854,7 @@
         "lit:ml_jepa_target_stability": 1,
         "lit:ml_target_anchor_timescale": 1
       },
-      "experimental_confidence": 0.562,
+      "experimental_confidence": 0.561,
       "fail_runs": 67,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1899,7 +1949,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.702, lit_conf=0.841",
+      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.702, lit_conf=0.84",
       "direction_counts": {
         "mixed": 65,
         "supports": 78,
@@ -1924,7 +1974,7 @@
       },
       "latest_run_id": "20260314T202143_control_plane_precision_separation_v2",
       "latest_timestamp_utc": "2026-03-14T20:21:43.211016+00:00",
-      "literature_confidence": 0.841,
+      "literature_confidence": 0.84,
       "overall_confidence": 0.771,
       "pass_runs": 97,
       "recent_entries": [
@@ -2006,7 +2056,7 @@
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=172 entry(s), lit=13 entry(s), exp_conf=0.566, lit_conf=0.854",
+      "confidence_rationale": "exp=172 entry(s), lit=13 entry(s), exp_conf=0.565, lit_conf=0.854",
       "direction_counts": {
         "mixed": 5,
         "supports": 103,
@@ -2028,7 +2078,7 @@
         "lit:neuroscience_experiment": 5,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.566,
+      "experimental_confidence": 0.565,
       "fail_runs": 72,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2040,7 +2090,7 @@
       "latest_run_id": "20260314T235933_write_locus_contamination_v2",
       "latest_timestamp_utc": "2026-03-14T23:59:33.224038+00:00",
       "literature_confidence": 0.854,
-      "overall_confidence": 0.71,
+      "overall_confidence": 0.709,
       "pass_runs": 100,
       "recent_entries": [
         {
@@ -2228,7 +2278,7 @@
       }
     },
     "MECH-062": {
-      "confidence_rationale": "exp=44 entry(s), lit=2 entry(s), exp_conf=0.918, lit_conf=0.792",
+      "confidence_rationale": "exp=44 entry(s), lit=2 entry(s), exp_conf=0.917, lit_conf=0.792",
       "direction_counts": {
         "mixed": 12,
         "supports": 34,
@@ -2241,7 +2291,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.918,
+      "experimental_confidence": 0.917,
       "fail_runs": 12,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2253,7 +2303,7 @@
       "latest_run_id": "2026-02-21T151442Z_claim-probe-mech-062_seed71_veto_lattice_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-21T15:14:42Z",
       "literature_confidence": 0.792,
-      "overall_confidence": 0.868,
+      "overall_confidence": 0.867,
       "pass_runs": 32,
       "recent_entries": [
         {
@@ -2331,7 +2381,7 @@
       }
     },
     "MECH-063": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.762, lit_conf=0.792",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.761, lit_conf=0.792",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -2344,7 +2394,7 @@
         "lit:computational_neuroscience_theory": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2356,7 +2406,7 @@
       "latest_run_id": "2026-02-15T175237Z_claim-probe-mech-063_seed29_full_axis_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T17:52:37Z",
       "literature_confidence": 0.792,
-      "overall_confidence": 0.777,
+      "overall_confidence": 0.776,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -2419,7 +2469,7 @@
       }
     },
     "MECH-067": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.775, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.774, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -2430,7 +2480,7 @@
       "evidence_class_counts": {
         "exp:ablation": 2
       },
-      "experimental_confidence": 0.775,
+      "experimental_confidence": 0.774,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2442,7 +2492,7 @@
       "latest_run_id": "20260227T091355_claim_probe_mech_060_ree_v1_minimal",
       "latest_timestamp_utc": "2026-02-27T09:13:55Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.775,
+      "overall_confidence": 0.774,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -2529,8 +2579,104 @@
         "literature": 1
       }
     },
+    "MECH-069": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.725",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_predictive_coding": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.725,
+      "overall_confidence": 0.725,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-069",
+          "confidence": 0.75,
+          "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams \u2014 directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
+          "evidence_class": "lit:connectome_predictive_coding",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_005",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-070": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.725",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_predictive_coding": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.725,
+      "overall_confidence": 0.725,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-070",
+          "confidence": 0.75,
+          "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams \u2014 directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
+          "evidence_class": "lit:connectome_predictive_coding",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_005",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "MECH-071": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.774, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -2541,7 +2687,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.774,
+      "experimental_confidence": 0.773,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2553,7 +2699,7 @@
       "latest_run_id": "20260315T183757_causal_attribution_calibration_v2",
       "latest_timestamp_utc": "2026-03-15T18:37:57.097148+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.774,
+      "overall_confidence": 0.773,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2580,7 +2726,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.774, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -2591,7 +2737,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.774,
+      "experimental_confidence": 0.773,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2603,7 +2749,7 @@
       "latest_run_id": "20260315T205715_selective_residue_attribution_v2",
       "latest_timestamp_utc": "2026-03-15T20:57:15.002247+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.774,
+      "overall_confidence": 0.773,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2627,6 +2773,261 @@
       "source_counts": {
         "experimental": 1,
         "literature": 0
+      }
+    },
+    "MECH-089": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.785",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:connectome_circuit_study": 1,
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_mech089_lisman_jensen_theta_gamma_neuron2013",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.72,
+          "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
+          "evidence_class": "lit:connectome_circuit_study",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_023",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical review directly demonstrating that distinct representations nest within gamma subcycles of a theta cycle in hippocampal-prefrontal circuits \u2014 the precise packaging mechanism MECH-089 requires. High source quality; mapping to REE's ThetaBuffer is straightforward; main transfer risk is species/scale.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_089",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech089_lisman_jensen_theta_gamma_neuron2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-090": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.74",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_mech090_beta_status_quo_jneurosci2019",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.74,
+      "overall_confidence": 0.74,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct support for beta as a 'maintain current state' / status-quo signal in basal ganglia-cortical circuits; evidence that beta gates propagation to action selection rather than internal model updating; the hyperdirect pathway as fast interrupt mechanism is well evidenced. Main caveat: most direct evidence is from pathological states (Parkinson's) or motor cortex; PFC/E3-equivalent is more inferential.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_090",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech090_beta_status_quo_jneurosci2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-091": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.69",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.69,
+      "overall_confidence": 0.69,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-091",
+          "confidence": 0.68,
+          "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_091",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-092": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.775",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.775,
+      "overall_confidence": 0.775,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.85,
+          "confidence_rationale": "Canonical, high-quality review with direct evidence for SWR during quiescent offline states, CA3 recurrent dynamics as internal generator, compressed sequence replay, and consolidation function. Directly maps onto MECH-092 (quiescent E3 heartbeat \u2192 hippocampal replay). Strong source; mapping is structurally faithful.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_092",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-093": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-16_mech093_na_oscillation_rate_modulation_tcs2022",
+      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "literature_confidence": 0.71,
+      "overall_confidence": 0.71,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-093",
+          "confidence": 0.72,
+          "confidence_rationale": "Strong evidence that NE (locus coeruleus) modulates both frequency and amplitude of cortical oscillations; elevated NE shifts thalamic pacemakers from burst-firing (slow oscillations) to tonic single-spike mode (faster, information-transmitting oscillations). Maps onto MECH-093 z_beta/arousal \u2192 E3 heartbeat rate modulation. Caveat: NE modulation acts on multiple oscillatory bands and the specific E3 heartbeat-rate-control distinction (vs precision-weighting) is a REE architectural choice not directly evidenced.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_093",
+          "failure_signatures": [],
+          "run_id": "2026-03-16_mech093_na_oscillation_rate_modulation_tcs2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-16T12:00:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "MECH-900": {
@@ -2704,7 +3105,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -2717,7 +3118,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2729,7 +3130,7 @@
       "latest_run_id": "exp_0018_20260215T213711149303Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.149303Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -2810,7 +3211,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -2823,7 +3224,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2835,7 +3236,7 @@
       "latest_run_id": "exp_0019_20260215T213711209047Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.209047Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -2916,7 +3317,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -2929,7 +3330,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2941,7 +3342,7 @@
       "latest_run_id": "exp_0020_20260215T213711269582Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.269582Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3022,7 +3423,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3035,7 +3436,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3047,7 +3448,7 @@
       "latest_run_id": "exp_0021_20260215T213711331429Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.331429Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3128,7 +3529,7 @@
       }
     },
     "Q-005": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3141,7 +3542,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3153,7 +3554,7 @@
       "latest_run_id": "exp_0022_20260215T213711393596Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.393596Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3234,7 +3635,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3247,7 +3648,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3259,7 +3660,7 @@
       "latest_run_id": "exp_0023_20260215T213711453369Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.453369Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3449,7 +3850,7 @@
       }
     },
     "Q-008": {
-      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.539, lit_conf=0.452",
+      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.538, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3462,7 +3863,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.539,
+      "experimental_confidence": 0.538,
       "fail_runs": 5,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3555,7 +3956,7 @@
       }
     },
     "Q-009": {
-      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.541, lit_conf=0.452",
+      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.54, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3568,7 +3969,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.541,
+      "experimental_confidence": 0.54,
       "fail_runs": 5,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3580,7 +3981,7 @@
       "latest_run_id": "exp_0015_20260217T180028221014Z",
       "latest_timestamp_utc": "2026-02-17T18:00:28.221014Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.519,
+      "overall_confidence": 0.518,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3661,7 +4062,7 @@
       }
     },
     "Q-010": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.585, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.584, lit_conf=0.452",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3674,7 +4075,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.585,
+      "experimental_confidence": 0.584,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3686,7 +4087,7 @@
       "latest_run_id": "exp_0027_20260215T213711687120Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.687120Z",
       "literature_confidence": 0.452,
-      "overall_confidence": 0.552,
+      "overall_confidence": 0.551,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3767,7 +4168,7 @@
       }
     },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.306, lit_conf=0.845",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.305, lit_conf=0.845",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -3780,7 +4181,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.306,
+      "experimental_confidence": 0.305,
       "fail_runs": 1,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3874,7 +4275,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.462, lit_conf=0.787",
+      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.461, lit_conf=0.787",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -3887,7 +4288,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.462,
+      "experimental_confidence": 0.461,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3899,7 +4300,7 @@
       "latest_run_id": "2026-02-15T213633Z_claim-probe-q-012_seed1002_trajectory_first_enabled_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T21:36:33Z",
       "literature_confidence": 0.787,
-      "overall_confidence": 0.625,
+      "overall_confidence": 0.624,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -3983,7 +4384,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.657, lit_conf=0.654",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.656, lit_conf=0.654",
       "direction_counts": {
         "mixed": 2,
         "supports": 9,
@@ -3997,7 +4398,7 @@
         "exp:simulation": 8,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.657,
+      "experimental_confidence": 0.656,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4009,7 +4410,7 @@
       "latest_run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
       "latest_timestamp_utc": "2026-02-25T19:50:39.901451Z",
       "literature_confidence": 0.654,
-      "overall_confidence": 0.656,
+      "overall_confidence": 0.655,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -4090,7 +4491,7 @@
       }
     },
     "Q-014": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.657, lit_conf=0.654",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.656, lit_conf=0.654",
       "direction_counts": {
         "mixed": 2,
         "supports": 9,
@@ -4104,7 +4505,7 @@
         "exp:simulation": 8,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.657,
+      "experimental_confidence": 0.656,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4116,7 +4517,7 @@
       "latest_run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
       "latest_timestamp_utc": "2026-02-25T19:50:39.901451Z",
       "literature_confidence": 0.654,
-      "overall_confidence": 0.656,
+      "overall_confidence": 0.655,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -4197,7 +4598,7 @@
       }
     },
     "Q-015": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.512, lit_conf=0.745",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.511, lit_conf=0.745",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4211,7 +4612,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.512,
+      "experimental_confidence": 0.511,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4304,7 +4705,7 @@
       }
     },
     "Q-016": {
-      "confidence_rationale": "exp=113 entry(s), lit=2 entry(s), exp_conf=0.917, lit_conf=0.792",
+      "confidence_rationale": "exp=113 entry(s), lit=2 entry(s), exp_conf=0.916, lit_conf=0.792",
       "direction_counts": {
         "mixed": 36,
         "supports": 79,
@@ -4317,7 +4718,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.917,
+      "experimental_confidence": 0.916,
       "fail_runs": 36,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4329,7 +4730,7 @@
       "latest_run_id": "2026-02-21T151443Z_tri-loop-arbitration-policy_seed71_veto_lattice_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-21T15:14:43Z",
       "literature_confidence": 0.792,
-      "overall_confidence": 0.867,
+      "overall_confidence": 0.866,
       "pass_runs": 77,
       "recent_entries": [
         {
@@ -4621,7 +5022,7 @@
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.772, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -4632,7 +5033,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.773,
+      "experimental_confidence": 0.772,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4644,7 +5045,7 @@
       "latest_run_id": "20260315T044440_causal_grid_world_baseline_v2",
       "latest_timestamp_utc": "2026-03-15T04:44:40.670153+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.773,
+      "overall_confidence": 0.772,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -24103,9 +24504,149 @@
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-03-15T20:57:15.002247+00:00"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-023",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
+      "evidence_class": "lit:connectome_circuit_study",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-056",
+      "confidence": 0.85,
+      "confidence_rationale": "Canonical, high-quality review with direct evidence for SWR during quiescent offline states, CA3 recurrent dynamics as internal generator, compressed sequence replay, and consolidation function. Directly maps onto MECH-092 (quiescent E3 heartbeat \u2192 hippocampal replay). Strong source; mapping is structurally faithful.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_092",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-069",
+      "confidence": 0.75,
+      "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams \u2014 directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
+      "evidence_class": "lit:connectome_predictive_coding",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_005",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-070",
+      "confidence": 0.75,
+      "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams \u2014 directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
+      "evidence_class": "lit:connectome_predictive_coding",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_005",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.72,
+      "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
+      "evidence_class": "lit:connectome_circuit_study",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_023",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical review directly demonstrating that distinct representations nest within gamma subcycles of a theta cycle in hippocampal-prefrontal circuits \u2014 the precise packaging mechanism MECH-089 requires. High source quality; mapping to REE's ThetaBuffer is straightforward; main transfer risk is species/scale.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_089",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech089_lisman_jensen_theta_gamma_neuron2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct support for beta as a 'maintain current state' / status-quo signal in basal ganglia-cortical circuits; evidence that beta gates propagation to action selection rather than internal model updating; the hyperdirect pathway as fast interrupt mechanism is well evidenced. Main caveat: most direct evidence is from pathological states (Parkinson's) or motor cortex; PFC/E3-equivalent is more inferential.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_090",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech090_beta_status_quo_jneurosci2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-091",
+      "confidence": 0.68,
+      "confidence_rationale": "Good mechanistic support for phase reset as a general neural mechanism triggered by salient/unexpected stimuli; thalamocortical neurons identified as key phase-reset substrate. Confidence tempered because the review covers general phase-reset mechanisms, and the specific link to basal ganglia-thalamo-E3 heartbeat reset (MECH-091) requires additional inference.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_091",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech091_phase_reset_information_transmission_pmc2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.85,
+      "confidence_rationale": "Canonical, high-quality review with direct evidence for SWR during quiescent offline states, CA3 recurrent dynamics as internal generator, compressed sequence replay, and consolidation function. Directly maps onto MECH-092 (quiescent E3 heartbeat \u2192 hippocampal replay). Strong source; mapping is structurally faithful.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_092",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-093",
+      "confidence": 0.72,
+      "confidence_rationale": "Strong evidence that NE (locus coeruleus) modulates both frequency and amplitude of cortical oscillations; elevated NE shifts thalamic pacemakers from burst-firing (slow oscillations) to tonic single-spike mode (faster, information-transmitting oscillations). Maps onto MECH-093 z_beta/arousal \u2192 E3 heartbeat rate modulation. Caveat: NE modulation acts on multiple oscillatory bands and the specific E3 heartbeat-rate-control distinction (vs precision-weighting) is a REE architectural choice not directly evidenced.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_093",
+      "failure_signatures": [],
+      "run_id": "2026-03-16_mech093_na_oscillation_rate_modulation_tcs2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-16T12:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-16T06:29:04.910148Z",
+  "generated_at_utc": "2026-03-16T14:40:12.800916Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

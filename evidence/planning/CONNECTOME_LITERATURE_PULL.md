@@ -1,11 +1,11 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-02-25T20:08:01.546210Z`
-Cycle: `2026-02-25`
+Generated: `2026-03-16T14:39:47.641368Z`
+Cycle: `2026-03-16`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
-Active queue items: `6`. Completed items tracked: `3`.
+Active queue items: `6`. Completed items tracked: `0`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
@@ -22,7 +22,7 @@ Active queue items: `6`. Completed items tracked: `3`.
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for ARC-016.
 - Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
-- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 1 upstream claim(s): `ARC-005`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
+- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
 - Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
 - Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
 - Research questions:
@@ -42,7 +42,7 @@ Active queue items: `6`. Completed items tracked: `3`.
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for MECH-025.
 - Claim description: MECH-025 is a mechanism hypothesis about cognitive modes / action doing.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 5 upstream claim(s): `ARC-016`, `ARC-005`, `ARC-015`, `ARC-021`, `INV-012`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/modes_of_cognition.md#mech-025`.
 - Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
 - Connectome focus: Test action-mode enaction signatures against DMN suppression and commitment-linked precision routing.
 - Research questions:
@@ -82,7 +82,7 @@ Active queue items: `6`. Completed items tracked: `3`.
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for MECH-029.
 - Claim description: MECH-029 is a mechanism hypothesis about default mode / reflective ethics.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-014`, `ARC-005`, `ARC-007`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/default_mode.md#mech-029`.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 3 upstream claim(s): `ARC-014`, `ARC-005`, `ARC-007`. It currently influences 1 downstream claim(s): `MECH-094`. Primary anchor: `docs/architecture/default_mode.md#mech-029`.
 - Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
 - Connectome focus: Test DMN-like reflective replay constraints against action-network suppression and hippocampal-cortical coupling.
 - Research questions:
@@ -135,16 +135,6 @@ Active queue items: `6`. Completed items tracked: `3`.
   - `TRK-03` Disconfirming evidence for explicit mode manager dynamics; query stems: `continuous control model cognitive state dynamics evidence`, `noisy manifold transitions versus discrete states`
 - Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
 - Manual-seed adjudication: required=True, adjudicated=False.
-
-## Completed Pulls
-
-These claims currently satisfy completion criteria and are excluded from the active queue unless reopened.
-
-| pull_id | claim_id | status_reason | conflict_ratio |
-|---|---|---|---:|
-| `CPULL-0007` | `MECH-058` | clarification_criteria_met | 0.816 |
-| `CPULL-0008` | `Q-017` | clarification_criteria_met | 0.808 |
-| `CPULL-0009` | `MECH-060` | clarification_criteria_met | 0.8 |
 
 ## Copy/Paste Prompt
 

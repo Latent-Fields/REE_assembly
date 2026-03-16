@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_005",
+  "entry_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
+  "timestamp_utc": "2026-03-16T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-069",
+    "MECH-070"
+  ],
+  "source": {
+    "title": "Active interoceptive inference and the emotional brain",
+    "authors": [
+      "Karl J. Friston",
+      "Thomas FitzGerald",
+      "Francesco Rigoli",
+      "Philipp Schwartenbeck",
+      "Giovanni Pezzulo"
+    ],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0007",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5062097/"
+  },
+  "evidence_class": "connectome_predictive_coding",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams — directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "predictive-coding",
+    "active-inference",
+    "interoception",
+    "exteroception",
+    "z_self",
+    "z_world",
+    "self-world-split",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain maintains distinct generative models for interoceptive (internal body state) and exteroceptive (external world state) signals; these generate separate prediction error streams that are not interchangeable; autonomic reflexes minimize interoceptive prediction error while allostatic behaviour minimizes exteroceptive prediction error; emotion arises from interoceptive inference contextualized by exteroceptive cues.",
+    "ree_translation": "SD-005 self/world latent split: z_self (E2 domain, proprioceptive/interoceptive, motor-sensory prediction error) and z_world (E3 domain, exteroceptive, harm/goal prediction error) correspond directly to the interoceptive vs exteroceptive generative model split. MECH-069: the incommensurability of error signals across three BG loops is grounded in the structural distinction between interoceptive and exteroceptive prediction error channels, which cannot be collapsed without misattributing credit.",
+    "mapping_caveat": "Friston's active inference framework is a normative model, not a direct biological mechanism report. The specific claim that these two streams are separately implemented in identifiable brain regions (insula for interoception, prefrontal/parietal for exteroception) has empirical support, but the specific latent dimension split proposed in SD-005 (z_self vs z_world as separate encoder heads) is a REE architectural instantiation, not directly stated in the source.",
+    "source_context": "Formal free-energy/active-inference framework; human autonomic, interoceptive, and emotional processing literature synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.33,
+    "notes": "Normative framework with strong empirical grounding; mapping to SD-005 latent split is structurally faithful; the encoder-architecture specifics are REE implementation choices not directly evidenced."
+  }
+}

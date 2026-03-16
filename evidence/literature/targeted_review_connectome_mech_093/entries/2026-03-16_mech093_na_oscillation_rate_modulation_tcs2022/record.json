@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_093",
+  "entry_id": "2026-03-16_mech093_na_oscillation_rate_modulation_tcs2022",
+  "timestamp_utc": "2026-03-16T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-093"
+  ],
+  "source": {
+    "title": "Noradrenergic modulation of rhythmic neural activity shapes selective attention",
+    "authors": [
+      "Martin J. Dahl",
+      "Mara Mather",
+      "Markus Werkle-Bergner"
+    ],
+    "year": 2022,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2021.10.009",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1364661321002643"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong evidence that NE (locus coeruleus) modulates both frequency and amplitude of cortical oscillations; elevated NE shifts thalamic pacemakers from burst-firing (slow oscillations) to tonic single-spike mode (faster, information-transmitting oscillations). Maps onto MECH-093 z_beta/arousal → E3 heartbeat rate modulation. Caveat: NE modulation acts on multiple oscillatory bands and the specific E3 heartbeat-rate-control distinction (vs precision-weighting) is a REE architectural choice not directly evidenced.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "norepinephrine",
+    "locus-coeruleus",
+    "arousal",
+    "oscillation-frequency",
+    "thalamus",
+    "z_beta",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Locus coeruleus-norepinephrine (LC-NE) activity modulates the frequency and synchrony of thalamocortical oscillations: elevated NE shifts thalamic neurons from slow burst-firing (low arousal, low oscillation frequency) to faster tonic single-spike mode (high arousal, higher oscillation frequency), enabling more reliable and higher-rate information transmission.",
+    "ree_translation": "MECH-093: z_beta (the REE affective latent, mapping primarily to LC-NE arousal axis) modulates E3 heartbeat frequency, not only E3 prediction error precision-weighting (MECH-059). High z_beta → elevated NE-equivalent signal → thalamic pacemaker (MD thalamus for E3) shifts toward faster update rate. Low z_beta → slower, energy-efficient E3 update regime. This distinguishes rate-control (MECH-093) from gain-control (MECH-059).",
+    "mapping_caveat": "The NE → oscillation frequency pathway operates primarily on thalamocortical alpha/theta bands, not specifically on a deliberative 'E3 heartbeat' band. The mapping requires assuming that E3's deliberation rate corresponds to a thalamocortically-paced oscillation sensitive to LC-NE arousal — a plausible but indirect inference. Also: NE modulates multiple brain systems simultaneously; the specific E3-rate effect is a subset of a broader arousal effect.",
+    "source_context": "Review of human EEG, pupillometry, and pharmacological NE manipulation studies; attention and cognitive control tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Good source; NE → oscillation frequency principle is well-supported; REE-specific mapping (E3 heartbeat rate as the target) is architectural inference, not directly testable from this literature alone."
+  }
+}

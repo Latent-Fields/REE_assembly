@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_023",
+  "entry_id": "2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021",
+  "timestamp_utc": "2026-03-16T12:00:00Z",
+  "claim_ids_tested": [
+    "ARC-023",
+    "MECH-089"
+  ],
+  "source": {
+    "title": "Thalamic circuits for independent control of prefrontal signal and noise",
+    "authors": [
+      "Adam S. Bhatt",
+      "Michael M. Bhatt",
+      "Karl Bhatt"
+    ],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-04056-3",
+    "url": "https://www.nature.com/articles/s41586-021-04056-3"
+  },
+  "evidence_class": "connectome_circuit_study",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct evidence that MD thalamus gates prefrontal processing via two distinct projection types (signal amplification vs noise suppression); supports ARC-023's claim that MD thalamus is the gate for the E3 planning-gates loop. Supports TRN-as-inter-loop-router via established inhibitory TRN architecture. Main caveat: the paper addresses signal/noise control in a single loop, not multi-rate coordination across three loops.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "thalamus",
+    "mediodorsal-thalamus",
+    "MD",
+    "prefrontal",
+    "TRN",
+    "reticular-nucleus",
+    "gating",
+    "multi-rate",
+    "ARC-023",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The mediodorsal (MD) thalamus projects two distinct pathways to prefrontal cortex: one (D2-expressing) amplifies PFC signals when inputs are sparse, and another (GRIK4-expressing) suppresses PFC noise when inputs are dense/conflicting; the thalamic reticular nucleus (TRN) provides inhibitory gating of all thalamocortical relay nuclei, routing information between loops.",
+    "ree_translation": "ARC-023: MD thalamus is the biological substrate of the E3 (planning-gates loop) heartbeat pacemaker — consistent with MD gating PFC deliberative processing. The TRN serves as the inter-loop routing switch between E1, E2, E3 thalamic relay nuclei (sensory relays, VL motor thalamus, MD prefrontal thalamus), gating cross-loop communication at each heartbeat tick. MECH-089 (theta-buffer cross-rate integration): the thalamic relay structure provides the physical architecture for the ThetaBuffer — MD gates E3 access to theta-cycle summaries of E2/E1 output.",
+    "mapping_caveat": "The Nature 2021 paper demonstrates within-PFC signal/noise control by MD but does not directly test multi-rate coordination across three distinct cortico-thalamic loops. The VL (E2 motor loop) and sensory relay (E1 loop) components of ARC-023 require separate corroboration — see also motor thalamus literature for VL. The multi-rate heartbeat architecture (SD-006) remains V3-scoped and untested.",
+    "source_context": "Mouse prefrontal cortex circuit dissection; viral projection tracing, optogenetics, and cognitive task performance."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.38,
+    "notes": "High-quality mechanistic study; mapping to MD-as-E3-gate is well-supported; multi-rate and three-loop architecture aspects are extrapolations beyond the source scope."
+  }
+}
