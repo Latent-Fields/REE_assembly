@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-16T14:40:12.800916Z`
+Generated: `2026-03-16T17:55:14.890011Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -16,6 +16,8 @@ Use this as the human-in-the-loop review queue.
 | `ARC-023` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-025` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-033` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-071` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-089` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-090` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
@@ -29,7 +31,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-007
 - Current status: `active`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -48,7 +50,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-016
 - Current status: `provisional`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=2, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -97,7 +99,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-025
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=2, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -127,6 +129,36 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-02-15T18:46:42.773429Z`
 - Last selected option: retain_ree
 - Last rationale: Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.6; overall_confidence=0.637.
+
+### MECH-071
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### MECH-072
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending or implementation_phase=v3. Current V2 substrate cannot produce valid evidence for this claim. No promotion or demotion should be applied until V3 experiments complete.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### MECH-089
 - Current status: `candidate`

@@ -2416,11 +2416,18 @@
   subject: e2.harm_prediction_calibration_asymmetry
   polarity: asserts
   status: candidate
+  v3_pending: true
+  implementation_phase: v3
   depends_on:
     - MECH-070
   location: docs/architecture/sd_003_experiment_design.md#mech-071
   source:
     - docs/architecture/sd_003_experiment_design.md
+  evidence_quality_note: |
+    EXQ-027 FAIL: E2.predict_harm had only indirect, noisy supervision — architecturally
+    wrong. E3 is the harm evaluator. SD-003 must be a joint E2-dynamics + E3-harm-evaluation
+    pipeline. Cannot be tested until V3 z_self/z_world split (SD-005) and joint SD-003
+    pipeline are implemented.
   notes: >
     After training, E2.predict_harm(z_t, a_actual) is better calibrated before
     agent_caused_hazard transitions than env_caused_hazard transitions.
@@ -2431,12 +2438,18 @@
   subject: residue.foreseeable_harm_gating_reduces_false_attribution
   polarity: asserts
   status: candidate
+  v3_pending: true
+  implementation_phase: v3
   depends_on:
     - MECH-071
     - MECH-060
   location: docs/architecture/sd_003_experiment_design.md#mech-072
   source:
     - docs/architecture/sd_003_experiment_design.md
+  evidence_quality_note: |
+    EXQ-028 FAIL: Same root cause as EXQ-027. Foreseeable-harm gating depends on E2
+    discriminating agent-caused from env-caused harm — impossible without z_self/z_world
+    split (SD-005) and joint SD-003 pipeline. Cannot be tested until V3.
   notes: >
     Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
     reduces false attribution rate (residue at env-caused events / total residue)

@@ -7,14 +7,13 @@
 
 ## Current Queue Snapshot
 
-- High-priority proposals: `35`
-- Total proposals this cycle: `46`
+- High-priority proposals: `0`
+- Total proposals this cycle: `58`
 
 | target_repo | total | experimental | literature_review |
 |---|---:|---:|---:|
-| `REE_assembly` | 20 | 0 | 20 |
-| `ree-experiments-lab` | 15 | 15 | 0 |
-| `ree-v2` | 11 | 11 | 0 |
+| `REE_assembly` | 30 | 0 | 30 |
+| `ree-v2` | 28 | 28 | 0 |
 
 ## What Approval Means
 

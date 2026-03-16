@@ -5,49 +5,28 @@ Cycle: `2026-02-25`
 ## Mechanism / Claim Context
 
 - Claim type: `mechanism hypothesis`
-- Current claim status: `candidate`
+- Current claim status: `provisional`
 - Subject: commitment / dual error channels pre post commit
 - Architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`
 - Upstream dependencies: `ARC-003`, `ARC-005`, `ARC-015`, `INV-012`, `MECH-057`
-- Downstream dependents: `IMPL-023`, `INV-019`, `MECH-056`, `MECH-061`, `MECH-066`, `MECH-067`
+- Downstream dependents: `IMPL-023`, `INV-019`, `MECH-056`, `MECH-061`, `MECH-066`, `MECH-067`, `MECH-072`, `MECH-094`
 
 ## How It Functions In The Architecture
 
-- ## Dual error channels map to pre-commit and post-commit learning (MECH-060)
-- REE should maintain two explicit error channels and a phase-scoped control-plane variation contract around E3
-- commitment:
-- - pre-commit simulation error: from uncommitted rollouts/counterfactuals, used for gating/search,
-- - post-commit realized error: from executed committed trajectories, used for responsibility attribution and durable
+- Substrate requirement: this mechanism only becomes load-bearing when actions span multiple sub-steps. Single-step
+- atomic grid actions provide no "action in progress" state for the gate to protect. V1 and V2 FAILs are
+- substrate-limited; genuine re-test requires multi-step committed action sequences.
+- V3 complement: MECH-057b provides the corresponding gate at the thought-loop level — trajectory candidates must
+- complete hippocampal sequence evaluation before they are eligible for promotion to action consideration.
 
 ## Decision Lanes
-
-### Promotion / Conflict Lane
-
-- Decision needed: Conflict resolution before promotion
-- Recommendation: `hold_candidate_resolve_conflict`
-- Decision status: `applied`
-- Why this lane is open: overall_conf=0.733, conflict_ratio=0.8, exp_entries=96, lit_entries=5; directions supports=60, weakens=40, mixed=1, unknown=0, conflict_ratio=0.8
-- Options:
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
 
 ### Architecture Structure Lane
 
 - Lane recommendation: `escalate_architecture_decision`
-- Structure pressure recommendation: `escalate_architecture_decision`
-- Conflict ratio: `0.8`; overall confidence: `0.733`
-- Trigger signals: external_precedence_pressure, high_conflict_ratio, recurring_failure_signatures
-- Recurring failure signatures:
-  - `mech060:postcommit_channel_contamination` (36)
-  - `mech060:attribution_reliability_break` (36)
-  - `mech060:commitment_reversal_spike` (36)
 
 ## Evidence Snapshot
 
-- Conflict report window: supports=60, weakens=40, conflict_ratio=0.8, entries_considered=101.
-- Dossier direction mix: supports=101, weakens=77, mixed=4, unknown=0.
-- Source counts: experimental=96, literature=5.
 - Latest decision state: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, timestamp=`2026-02-25T16:35:40.759224Z`.
 - Recent decision history:
   - 2026-02-15T20:58:38.602475Z: status=`applied`, recommendation=`hold_candidate_resolve_conflict`, decision_needed=Conflict resolution before promotion
@@ -56,16 +35,13 @@ Cycle: `2026-02-25`
 
 ## Human Decision Prompt
 
-- Architecture adjudication outcome to select now: `retain_ree`, `hybridize`, `adopt_jepa_structure`, `retire_ree_claim`
-- Promotion/conflict lane decision to resolve now: Conflict resolution before promotion
+- Architecture adjudication outcome to select now: `retain_ree`, `hybridize`, `retire_ree_claim`
 - Interpret metric semantics using: `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`.
 
 ## Source Paths
 
 - Claim registry: `docs/claims/claims.yaml`
 - Architecture anchor: `docs/architecture/agency_responsibility_flow.md#mech-060`
-- Promotion queue: `evidence/experiments/promotion_demotion_recommendations.md`
-- Conflict report: `evidence/experiments/conflicts.md`
 - Structure dossier: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-25/MECH-060/DOSSIER.md`
 - Structure dossier JSON: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/structure_review/2026-02-25/MECH-060/dossier.v1.json`
 - Decision state: `evidence/decisions/decision_state.v1.json`
