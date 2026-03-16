@@ -1,6 +1,6 @@
 # Experiment-Driven TODO Queue
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 Auto-generated from FAIL signatures in Experiment Pack runs.
 
@@ -14,11 +14,17 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T181023Z_claim-probe-arc-007_seed29_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `v2_verdict_fail:path_memory_ablation` (1 FAIL run(s), latest `20260308T114644_path_memory_ablation_v2`).
+
+## claim_probe_arc_016
+
+- [ ] Investigate signature `v2_verdict_fail:precision_regime_probe` (1 FAIL run(s), latest `20260308T123428_precision_regime_probe_v2`).
 
 ## claim_probe_arc_018
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213637Z_claim-probe-arc-018_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213637Z_claim-probe-arc-018_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `v2_verdict_fail:rollout_viability_mapping` (1 FAIL run(s), latest `20260315T125844_rollout_viability_mapping_v2`).
 
 ## claim_probe_impl_022
 
@@ -26,10 +32,15 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 - [ ] Investigate signature `mech060:attribution_reliability_break` (2 FAIL run(s), latest `2026-02-15T175229Z_claim-probe-impl-022_seed29_single_error_stream_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech060:commitment_reversal_spike` (2 FAIL run(s), latest `2026-02-15T175229Z_claim-probe-impl-022_seed29_single_error_stream_toyenv_internal_minimal`).
 
+## claim_probe_mech_025
+
+- [ ] Investigate signature `v2_verdict_fail:action_doing_mode_probe` (1 FAIL run(s), latest `20260308T132031_action_doing_mode_probe_v2`).
+
 ## claim_probe_mech_033
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213638Z_claim-probe-mech-033_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213638Z_claim-probe-mech-033_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `v2_verdict_fail:kernel_chaining_interface` (1 FAIL run(s), latest `20260315T165927_kernel_chaining_interface_v2`).
 
 ## claim_probe_mech_040
 
@@ -63,6 +74,7 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 - [ ] Investigate signature `mech058:anchor_separation_collapse` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech058:ema_drift_under_shift` (3 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-058_seed29_ema_anchor_off_toyenv_internal_minimal`).
 - [ ] Investigate signature `mech058:latent_stability_criterion_not_met_at_v1_minimal_scale` (1 FAIL run(s), latest `20260226T205244_claim_probe_mech_058_ree_v1_minimal`).
+- [ ] Investigate signature `v2_verdict_fail:e1_e2_terrain_timescale` (1 FAIL run(s), latest `20260315T045933_e1_e2_terrain_timescale_v2`).
 
 ## claim_probe_mech_059
 
@@ -87,6 +99,10 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 - [ ] Investigate signature `q016:tri_loop_alignment_break` (12 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-062_seed47_weighted_merge_toyenv_internal_minimal`).
 - [ ] Investigate signature `q016:tri_loop_override_spike` (3 FAIL run(s), latest `2026-02-21T150649Z_claim-probe-mech-062_seed29_weighted_merge_toyenv_internal_minimal`).
 - [ ] Investigate signature `q016:tri_loop_conflict_spike` (1 FAIL run(s), latest `2026-02-17T225311Z_claim-probe-mech-062_seed89_weighted_merge_toyenv_internal_minimal`).
+
+## claim_probe_mech_071
+
+- [ ] Investigate signature `v2_verdict_fail:causal_attribution_calibration` (1 FAIL run(s), latest `20260315T183757_causal_attribution_calibration_v2`).
 
 ## claim_probe_q_001
 
@@ -122,6 +138,7 @@ Auto-generated from FAIL signatures in Experiment Pack runs.
 
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
 - [ ] Investigate signature `domination_lock_in` (3 FAIL run(s), latest `2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).
+- [ ] Investigate signature `v2_verdict_fail:valence_regime_correlation` (1 FAIL run(s), latest `20260315T150155_valence_regime_correlation_v2`).
 
 ## claim_probe_q_008
 

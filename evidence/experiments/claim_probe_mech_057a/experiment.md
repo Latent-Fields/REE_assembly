@@ -177,3 +177,7 @@ for a valid verdict. Full run queued as EXQ-020.
 - Prior FAILs: EXQ-004 (EVB-0042), EXQ-007, V2 re-run — all substrate-limited
 - Effect direction confirmed in V1: FULL < NO_ATTRIBUTION < NO_GATING
 - EXQ-020 is the first test with correct substrate for MECH-057a
+
+<!-- AUTO-DESIGN-IMPLICATIONS:START -->
+No recent FAIL runs. Keep monitoring key stop metrics.
+<!-- AUTO-DESIGN-IMPLICATIONS:END -->

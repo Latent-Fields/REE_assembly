@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_056
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-06T23:24:40.946248Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260314T220919_residue_trajectory_placement_v2` | `2026-03-14T22:09:19.450396+00:00` | PASS | fatal_error_count=0 | - | - | - | [`summary`](runs/20260314T220919_residue_trajectory_placement_v2/summary.md) / [`manifest`](runs/20260314T220919_residue_trajectory_placement_v2/manifest.json) / [`metrics`](runs/20260314T220919_residue_trajectory_placement_v2/metrics.json) |
 | `20260226T201431_claim_probe_mech_056_ree_v1_minimal` | `2026-02-26T20:14:31Z` | PASS | - | - | - | - | [`summary`](runs/20260226T201431_claim_probe_mech_056_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T201431_claim_probe_mech_056_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T201431_claim_probe_mech_056_ree_v1_minimal/metrics.json) |
 | `20260226T194240_claim_probe_mech_056_ree_v1_minimal` | `2026-02-26T19:42:40Z` | **FAIL** | - | - | - | - | [`summary`](runs/20260226T194240_claim_probe_mech_056_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T194240_claim_probe_mech_056_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T194240_claim_probe_mech_056_ree_v1_minimal/metrics.json) |
 | `2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal` | `2026-02-22T20:37:15Z` | **FAIL** | fatal_error_count=0<br>latent_prediction_error_mean=0.027432<br>latent_prediction_error_p95=0.074253<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:-0.000538<br>latent_prediction_error_p95:+0.011076<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-22T203715Z_claim-probe-mech-056_seed47_valence_off_or_neutral_mapping_frozen_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |

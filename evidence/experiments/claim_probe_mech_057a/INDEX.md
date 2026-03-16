@@ -1,9 +1,12 @@
-# EXQ-020 — Action-Loop Completion Gate (MECH-057a)
+# Experiment Index: claim_probe_mech_057a
 
-| run_id | status | timestamp | verdict | notes |
-|--------|--------|-----------|---------|-------|
-| `action_loop_completion_gate_20260315T174718` | smoke_run | 2026-03-15T17:47:18Z | PASS (5 eps, 1 seed — NOT VALID) | Smoke run only; full run pending |
+Generated: `2026-03-16T05:50:38.640589Z`
 
-**Full run:** queued as EXQ-020 in `ree-v2/experiment_queue.json`. 5 seeds × 250 episodes × 3 conditions. Runner will write results to `ree-v2/evidence/experiments/action_loop_completion_gate/`.
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
 
-See [experiment profile](./experiment.md) for design, substrate, and pass criteria.
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `20260315T174543_action_loop_completion_gate_v2` | `2026-03-15T17:45:43.730022+00:00` | PASS | fatal_error_count=0<br>full_harm_last_quarter=1<br>no_gate_harm_last_quarter=1.8<br>no_attribution_harm_last_quarter=1.2<br>no_gate_vs_full_ratio=1.8<br>no_attribution_vs_full_ratio=1.2 | - | - | - | [`summary`](runs/20260315T174543_action_loop_completion_gate_v2/summary.md) / [`manifest`](runs/20260315T174543_action_loop_completion_gate_v2/manifest.json) / [`metrics`](runs/20260315T174543_action_loop_completion_gate_v2/metrics.json) |

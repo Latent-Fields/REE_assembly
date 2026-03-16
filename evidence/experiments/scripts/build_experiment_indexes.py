@@ -1531,14 +1531,16 @@ def _write_decision_state(
 
 
 def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
-    """Count experiment entries for claim_id that come from genuine ree-v1-minimal runs.
+    """Count experiment entries for claim_id that come from genuine experimental runs.
 
     Genuine runs are identified by either:
-    - architecture_epoch == "ree_v1_minimal_genuine_v1" (explicit epoch tag), OR
-    - run_id ending with "_ree_v1_minimal" (naming convention used by record_ree_v1_results.py)
+    - architecture_epoch == "ree_v1_minimal_genuine_v1" (V1 substrate), OR
+    - run_id ending with "_ree_v1_minimal" (V1 naming convention), OR
+    - run_id ending with "_v2" (V2 bridge script naming convention: real ree_core + CausalGridWorld,
+      post-2026-03-01, tagged with architecture_epoch="ree_hybrid_guardrails_v1")
 
-    This is distinct from synthetic ree-v2 runs whose run_ids end with
-    "_toyenv_internal_minimal".
+    Synthetic pre-contamination runs end with "_toyenv_internal_minimal" and have
+    no architecture_epoch — these are excluded.
     """
     count = 0
     for entry in matrix.get("entries", []):
@@ -1547,29 +1549,34 @@ def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
         if entry.get("source_type") != "experimental":
             continue
         run_id = str(entry.get("run_id", ""))
+        epoch = entry.get("architecture_epoch", "")
         if (
-            entry.get("architecture_epoch") == "ree_v1_minimal_genuine_v1"
+            epoch == "ree_v1_minimal_genuine_v1"
             or run_id.endswith("_ree_v1_minimal")
+            or run_id.endswith("_v2")
         ):
             count += 1
     return count
 
 
 def _is_genuine_experimental_entry(entry: dict[str, Any]) -> bool:
-    """Return True iff this entry is a genuine ree-v1-minimal experimental run.
+    """Return True iff this entry is a genuine experimental run (V1 or V2).
 
-    Synthetic entries (ree-v2 / ree-experiments-lab) are identified by
-    run_id ending with '_toyenv_internal_minimal'. Genuine entries end with
-    '_ree_v1_minimal' or carry architecture_epoch='ree_v1_minimal_genuine_v1'.
-    Literature entries (source_type != 'experimental') always return False —
-    they are handled separately and are never synthetic.
+    Synthetic pre-contamination entries (ree-v2 / ree-experiments-lab) are
+    identified by run_id ending with '_toyenv_internal_minimal' and have no
+    architecture_epoch. Genuine entries carry:
+    - architecture_epoch == "ree_v1_minimal_genuine_v1" or run_id ending "_ree_v1_minimal" (V1), OR
+    - run_id ending "_v2" (real ree_core + CausalGridWorld, V2; architecture_epoch="ree_hybrid_guardrails_v1").
+    Literature entries (source_type != 'experimental') always return False.
     """
     if str(entry.get("source_type", "")) != "experimental":
         return False
     run_id = str(entry.get("run_id", ""))
+    epoch = entry.get("architecture_epoch", "")
     return (
-        entry.get("architecture_epoch") == "ree_v1_minimal_genuine_v1"
+        epoch == "ree_v1_minimal_genuine_v1"
         or run_id.endswith("_ree_v1_minimal")
+        or run_id.endswith("_v2")
     )
 
 

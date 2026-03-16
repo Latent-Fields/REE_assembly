@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -12,16 +12,14 @@ Use this as the human-in-the-loop review queue.
 |---|---|---|---|---|
 | `ARC-003` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `ARC-005` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
-| `ARC-007` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
-| `ARC-018` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
+| `ARC-018` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `IMPL-022` | `stable` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
-| `MECH-033` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
+| `MECH-025` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-033` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-040` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `MECH-046` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `MECH-053` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `MECH-054` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
-| `MECH-057` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-058` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-062` | `stable` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `MECH-063` | `provisional` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-001` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
@@ -30,7 +28,6 @@ Use this as the human-in-the-loop review queue.
 | `Q-004` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-005` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-006` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
-| `Q-007` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-012` | `candidate` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-013` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `Q-014` | `active` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
@@ -77,36 +74,15 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 
-### ARC-007
-- Current status: `active`
-- Decision needed: Genuine evidence required before any status change
-- Why this decision is needed: All experimental evidence for ARC-007 is from synthetic substrates (ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: 0. Total synthetic exp entries: 12. Confidence scores and conflict ratios are unreliable. Collect ≥1 genuine experimental run on ree-v1-minimal before treating this claim as a promotion or demotion candidate.; directions supports=8, weakens=4, mixed=0, unknown=0, conflict_ratio=0.667
-- Recommendation: `collect_genuine_evidence`
-- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates (ree-v2 / ree-experiments-lab). Confidence scores unreliable. Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate.
-- Options (pros/cons):
-  - Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).
-  - Demote to legacy and re-open when genuine evidence is available.
-  - Keep current status and suppress recommendations until genuine run completes.
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-02-15T18:46:42.773429Z`
-- Last selected option: hybridize
-- Last rationale: Applied anti-lock-in dispatch recommendation: hybridize; basis=high_conflict; conflict_ratio=0.857; overall_confidence=0.58.
-
 ### ARC-018
-- Current status: `provisional`
-- Decision needed: Genuine evidence required before any status change
-- Why this decision is needed: All experimental evidence for ARC-018 is from synthetic substrates (ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: 0. Total synthetic exp entries: 9. Confidence scores and conflict ratios are unreliable. Collect ≥1 genuine experimental run on ree-v1-minimal before treating this claim as a promotion or demotion candidate.; directions supports=6, weakens=4, mixed=0, unknown=0, conflict_ratio=0.8
-- Recommendation: `collect_genuine_evidence`
-- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates (ree-v2 / ree-experiments-lab). Confidence scores unreliable. Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate.
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
+- Why this decision is needed: overall_conf=0.569, conflict_ratio=0.909, exp_entries=10, lit_entries=1; directions supports=6, weakens=5, mixed=0, unknown=0, conflict_ratio=0.909
+- Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
-  - Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).
-  - Demote to legacy and re-open when genuine evidence is available.
-  - Keep current status and suppress recommendations until genuine run completes.
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
 - Discussion scope with Codex:
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
@@ -133,16 +109,30 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 
-### MECH-033
-- Current status: `provisional`
-- Decision needed: Genuine evidence required before any status change
-- Why this decision is needed: All experimental evidence for MECH-033 is from synthetic substrates (ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: 0. Total synthetic exp entries: 10. Confidence scores and conflict ratios are unreliable. Collect ≥1 genuine experimental run on ree-v1-minimal before treating this claim as a promotion or demotion candidate.; directions supports=7, weakens=4, mixed=0, unknown=0, conflict_ratio=0.727
-- Recommendation: `collect_genuine_evidence`
-- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates (ree-v2 / ree-experiments-lab). Confidence scores unreliable. Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate.
+### MECH-025
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
+- Why this decision is needed: overall_conf=0.849, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
-  - Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).
-  - Demote to legacy and re-open when genuine evidence is available.
-  - Keep current status and suppress recommendations until genuine run completes.
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### MECH-033
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
+- Why this decision is needed: overall_conf=0.6, conflict_ratio=0.833, exp_entries=11, lit_entries=1; directions supports=7, weakens=5, mixed=0, unknown=0, conflict_ratio=0.833
+- Recommendation: `hold_candidate_resolve_conflict`
+- Options (pros/cons):
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
 - Discussion scope with Codex:
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
@@ -232,42 +222,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-02-15T20:51:27.090007Z`
 - Last selected option: promote_to_provisional
 - Last rationale: Applied approved promotion decision from governance queue.
-
-### MECH-057
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.505, conflict_ratio=1, exp_entries=12, lit_entries=0; directions supports=6, weakens=6, mixed=0, unknown=0, conflict_ratio=1
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-02-25T16:39:07.535473Z`
-- Last selected option: hold_candidate_resolve_conflict
-- Last rationale: Applied conflict-lane hold after architecture adjudication (hybridize); keep candidate while reducing uncertainty with targeted probes.
-
-### MECH-058
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.714, conflict_ratio=0.816, exp_entries=94, lit_entries=5; directions supports=58, weakens=40, mixed=1, unknown=0, conflict_ratio=0.816
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-02-25T16:39:07.573674Z`
-- Last selected option: hold_candidate_resolve_conflict
-- Last rationale: Applied conflict-lane hold after architecture adjudication (hybridize); maintain candidate status while anchor-separation conflict signatures are worked down.
 
 ### MECH-062
 - Current status: `stable`
@@ -409,22 +363,6 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: retain_open_question_with_prototype_first
 - Last rationale: Keep Q-006 open while prioritizing prototype assembly; ethics-development adjudication is deferred until richer integrated behavior is observable.
 
-### Q-007
-- Current status: `active`
-- Decision needed: Genuine evidence required before any status change
-- Why this decision is needed: All experimental evidence for Q-007 is from synthetic substrates (ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: 0. Total synthetic exp entries: 12. Confidence scores and conflict ratios are unreliable. Collect ≥1 genuine experimental run on ree-v1-minimal before treating this claim as a promotion or demotion candidate.; directions supports=8, weakens=4, mixed=0, unknown=1, conflict_ratio=0.667
-- Recommendation: `collect_genuine_evidence`
-- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates (ree-v2 / ree-experiments-lab). Confidence scores unreliable. Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate.
-- Options (pros/cons):
-  - Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).
-  - Demote to legacy and re-open when genuine evidence is available.
-  - Keep current status and suppress recommendations until genuine run completes.
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
 ### Q-012
 - Current status: `candidate`
 - Decision needed: Genuine evidence required before any status change
@@ -548,7 +486,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-019
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: overall_conf=0.873, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.87, conflict_ratio=0, exp_entries=0, lit_entries=6; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)

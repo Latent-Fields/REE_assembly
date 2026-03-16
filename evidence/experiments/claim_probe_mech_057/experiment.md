@@ -126,9 +126,9 @@ Required metadata for stage-aware governance:
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260315T094933_attribution_completion_gating_v2` at `2026-03-15T09:49:33.165765+00:00` signatures: v2_verdict_fail:attribution_completion_gating
 - `20260226T222404_claim_probe_mech_057_ree_v1_minimal` at `2026-02-26T22:24:04Z` signatures: mech057:attribution_loop_not_differentiated, mech057:gating_loop_not_differentiated
 - `20260226T194415_claim_probe_mech_057_ree_v1_minimal` at `2026-02-26T19:44:15Z` signatures: mech057:attribution_loop_not_differentiated, mech057:gating_loop_not_differentiated
-- `exp_0025_20260225T191852357612Z` at `2026-02-25T19:18:52.357612Z` signatures: mech057:action_prediction_gap, mech057:consequence_model_drift, mech057:lineage_integrity_drop
 
 Recurring signatures:
 - `ledger_editing` occurred in 4 FAIL run(s); latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`
@@ -138,6 +138,7 @@ Recurring signatures:
 - `mech057:action_prediction_gap` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
 - `mech057:consequence_model_drift` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
 - `mech057:lineage_integrity_drop` occurred in 1 FAIL run(s); latest `exp_0025_20260225T191852357612Z`
+- `v2_verdict_fail:attribution_completion_gating` occurred in 1 FAIL run(s); latest `20260315T094933_attribution_completion_gating_v2`
 
 Suggested design TODOs:
 - [ ] Investigate signature `ledger_editing` (4 FAIL run(s), latest `2026-02-15T213650Z_claim-probe-mech-057_seed1002_trajectory_first_enabled_toyenv_internal_minimal`).

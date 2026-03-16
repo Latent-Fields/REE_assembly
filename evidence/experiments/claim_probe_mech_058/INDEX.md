@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_058
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-06T23:24:40.946248Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260315T045933_e1_e2_terrain_timescale_v2` | `2026-03-15T04:59:33.847875+00:00` | **FAIL** | fatal_error_count=0 | - | - | - | [`summary`](runs/20260315T045933_e1_e2_terrain_timescale_v2/summary.md) / [`manifest`](runs/20260315T045933_e1_e2_terrain_timescale_v2/manifest.json) / [`metrics`](runs/20260315T045933_e1_e2_terrain_timescale_v2/metrics.json) |
 | `20260226T205244_claim_probe_mech_058_ree_v1_minimal` | `2026-02-26T20:52:44Z` | **FAIL** | - | - | - | - | [`summary`](runs/20260226T205244_claim_probe_mech_058_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T205244_claim_probe_mech_058_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T205244_claim_probe_mech_058_ree_v1_minimal/metrics.json) |
 | `20260226T194316_claim_probe_mech_058_ree_v1_minimal` | `2026-02-26T19:43:16Z` | PASS | - | - | - | - | [`summary`](runs/20260226T194316_claim_probe_mech_058_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T194316_claim_probe_mech_058_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T194316_claim_probe_mech_058_ree_v1_minimal/metrics.json) |
 | `2026-02-21T151442Z_claim-probe-mech-058_seed71_ema_anchor_on_toyenv_internal_minimal` | `2026-02-21T15:14:42Z` | PASS | fatal_error_count=0<br>latent_prediction_error_mean=0.064135<br>latent_prediction_error_p95=0.134361<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:+0.005749<br>latent_prediction_error_p95:+0.012216<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-21T151442Z_claim-probe-mech-058_seed71_ema_anchor_on_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-21T151442Z_claim-probe-mech-058_seed71_ema_anchor_on_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-21T151442Z_claim-probe-mech-058_seed71_ema_anchor_on_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-21T151442Z_claim-probe-mech-058_seed71_ema_anchor_on_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |

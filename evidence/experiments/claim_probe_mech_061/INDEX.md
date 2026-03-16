@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_061
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-06T23:24:40.946248Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260315T024049_commitment_boundary_validation_v2` | `2026-03-15T02:40:49.515478+00:00` | PASS | fatal_error_count=0 | - | - | - | [`summary`](runs/20260315T024049_commitment_boundary_validation_v2/summary.md) / [`manifest`](runs/20260315T024049_commitment_boundary_validation_v2/manifest.json) / [`metrics`](runs/20260315T024049_commitment_boundary_validation_v2/metrics.json) |
 | `20260226T213745_claim_probe_mech_061_ree_v1_minimal` | `2026-02-26T21:37:45Z` | PASS | - | - | - | - | [`summary`](runs/20260226T213745_claim_probe_mech_061_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T213745_claim_probe_mech_061_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T213745_claim_probe_mech_061_ree_v1_minimal/metrics.json) |
 | `20260226T194350_claim_probe_mech_061_ree_v1_minimal` | `2026-02-26T19:43:50Z` | PASS | - | - | - | - | [`summary`](runs/20260226T194350_claim_probe_mech_061_ree_v1_minimal/summary.md) / [`manifest`](runs/20260226T194350_claim_probe_mech_061_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260226T194350_claim_probe_mech_061_ree_v1_minimal/metrics.json) |
 | `exp_0005_20260215T213657425679Z` | `2026-02-15T21:36:57.425679Z` | PASS | - | - | - | - | [`summary`](runs/exp_0005_20260215T213657425679Z/summary.md) / [`manifest`](runs/exp_0005_20260215T213657425679Z/manifest.json) / [`metrics`](runs/exp_0005_20260215T213657425679Z/metrics.json) |

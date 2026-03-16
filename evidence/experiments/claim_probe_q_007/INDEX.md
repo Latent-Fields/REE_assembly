@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_q_007
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-06T23:24:40.946248Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260315T150155_valence_regime_correlation_v2` | `2026-03-15T15:01:55.006956+00:00` | **FAIL** | fatal_error_count=0 | - | - | - | [`summary`](runs/20260315T150155_valence_regime_correlation_v2/summary.md) / [`manifest`](runs/20260315T150155_valence_regime_correlation_v2/manifest.json) / [`metrics`](runs/20260315T150155_valence_regime_correlation_v2/metrics.json) |
 | `exp_0015_20260217T225221918220Z` | `2026-02-17T22:52:21.918220Z` | PASS | - | - | - | - | [`summary`](runs/exp_0015_20260217T225221918220Z/summary.md) / [`manifest`](runs/exp_0015_20260217T225221918220Z/manifest.json) / [`metrics`](runs/exp_0015_20260217T225221918220Z/metrics.json) |
 | `exp_0024_20260215T213711511831Z` | `2026-02-15T21:37:11.511831Z` | PASS | - | - | - | - | [`summary`](runs/exp_0024_20260215T213711511831Z/summary.md) / [`manifest`](runs/exp_0024_20260215T213711511831Z/manifest.json) / [`metrics`](runs/exp_0024_20260215T213711511831Z/metrics.json) |
 | `2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal` | `2026-02-15T21:36:46Z` | **FAIL** | fatal_error_count=0<br>latent_prediction_error_mean=0.030469<br>latent_prediction_error_p95=0.074466<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:+0.002967<br>latent_prediction_error_p95:+0.003601<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-15T213646Z_claim-probe-q-007_seed1002_trajectory_first_enabled_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |

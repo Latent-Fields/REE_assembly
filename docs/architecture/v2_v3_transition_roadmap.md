@@ -19,21 +19,21 @@ This document defines:
 
 | ID | Claim | Status |
 |---|---|---|
-| EXQ-014 | MECH-059 V2 parity | running |
-| EXQ-015 | MECH-056 V2 parity | pending |
-| EXQ-016 | MECH-060 V2 parity | pending |
-| EXQ-017 | MECH-061 V2 parity | pending |
-| EXQ-018 | SD-003 prereq (CausalGridWorld baseline) | pending |
-| EXQ-019 | MECH-033 kernel chaining | pending |
-| EXQ-020 | ARC-007 path memory ablation | pending |
-| EXQ-021 | ARC-018 rollout viability | pending |
-| EXQ-022 | Q-007 valence correlation | pending |
-| EXQ-023 | MECH-058 E1/E2 terrain timescale | pending |
-| EXQ-024 | MECH-057 attribution completion gating | pending |
-| EXQ-025 | MECH-057 attribution completion gating v2 | pending |
-| EXQ-026 | MECH-025 action-doing mode probe | pending |
-| EXQ-027 | MECH-071 E2 attribution calibration (SD-003) | pending |
-| EXQ-028 | MECH-072 selective residue attribution (SD-003) | pending |
+| EXQ-014 | MECH-059 V2 parity | **PASS** |
+| EXQ-015 | MECH-056 V2 parity | **PASS** |
+| EXQ-016 | MECH-060 V2 parity | **PASS** |
+| EXQ-017 | MECH-061 V2 parity | **PASS** |
+| EXQ-018 | SD-003 prereq (CausalGridWorld baseline) | **PASS** |
+| EXQ-019 | MECH-033 kernel chaining | **FAIL** |
+| EXQ-020 | ARC-007 path memory ablation | **FAIL** |
+| EXQ-021 | ARC-018 rollout viability | **FAIL** |
+| EXQ-022 | Q-007 valence correlation | **FAIL** |
+| EXQ-023 | MECH-058 E1/E2 terrain timescale | **FAIL** |
+| EXQ-024 | MECH-057a action-loop completion gate | **PASS** (heartbeat reframing; see MECH-090) |
+| EXQ-025 | MECH-057 attribution completion gating | **FAIL** |
+| EXQ-026 | MECH-025 action-doing mode probe | **FAIL** |
+| EXQ-027 | MECH-071 E2 attribution calibration (SD-003) | **FAIL** (wrong module; E3 should predict harm) |
+| EXQ-028 | MECH-072 selective residue attribution (SD-003) | running (predicted FAIL, same root cause) |
 
 **V2 experiment series closes after EXQ-028.** At that point, do a governance cycle then
 assess whether to continue V2 or pause for V3 design.
@@ -104,6 +104,20 @@ The V3 SD-003 would compute:
 world_delta = ||E2_world(z_world, a_actual) - E2_world(z_world, a_cf)||
 ```
 This requires z_world to exist as a separate channel. In V2 there is only z_gamma.
+
+**EXQ-027 architectural finding (2026-03-16):** The V2 SD-003 experiment (EXQ-027) placed
+`predict_harm` on E2 directly. This is architecturally wrong per MECH-069: harm prediction
+is E3's domain (trains on harm/goal error), not E2's (trains on motor-sensory error). E2's
+`predict_harm` head received only indirect, noisy supervision — explaining the near-zero
+calibration_gap (-0.004) across all seeds, indistinguishable from untrained RANDOM condition.
+
+**Consequence for V3 SD-003 design:** Attribution is a joint E2+E3 computation:
+1. E2 provides dynamics: `z_{t+1}_actual = E2(z_world, a_actual)` and `z_{t+1}_cf = E2(z_world, a_cf)`
+2. E3 evaluates harm of each projected state: `harm_actual = E3(z_{t+1}_actual)`, `harm_cf = E3(z_{t+1}_cf)`
+3. Causal signature = `harm_actual − harm_cf`
+
+V3-EXQ-002 should be redesigned accordingly — it must test the E2+E3 joint pipeline,
+not `E2.predict_harm` alone.
 
 ### 6. Dynamic Precision Regime and Behavioral Mode Switching (ARC-016)
 V2 precision is hardcoded (0.5). ARC-016 requires precision to be dynamically calibrated

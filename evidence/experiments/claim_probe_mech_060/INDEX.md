@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_060
 
-Generated: `2026-03-06T23:24:40.946248Z`
+Generated: `2026-03-16T05:50:38.640589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-06T23:24:40.946248Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260314T235933_write_locus_contamination_v2` | `2026-03-14T23:59:33.224038+00:00` | PASS | fatal_error_count=0 | - | - | - | [`summary`](runs/20260314T235933_write_locus_contamination_v2/summary.md) / [`manifest`](runs/20260314T235933_write_locus_contamination_v2/manifest.json) / [`metrics`](runs/20260314T235933_write_locus_contamination_v2/metrics.json) |
 | `20260227T091355_claim_probe_mech_060_ree_v1_minimal` | `2026-02-27T09:13:55Z` | PASS | - | - | - | - | [`summary`](runs/20260227T091355_claim_probe_mech_060_ree_v1_minimal/summary.md) / [`manifest`](runs/20260227T091355_claim_probe_mech_060_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260227T091355_claim_probe_mech_060_ree_v1_minimal/metrics.json) |
 | `20260227T085822_claim_probe_mech_060_ree_v1_minimal` | `2026-02-27T08:58:22Z` | **FAIL** | - | - | - | - | [`summary`](runs/20260227T085822_claim_probe_mech_060_ree_v1_minimal/summary.md) / [`manifest`](runs/20260227T085822_claim_probe_mech_060_ree_v1_minimal/manifest.json) / [`metrics`](runs/20260227T085822_claim_probe_mech_060_ree_v1_minimal/metrics.json) |
 | `2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal` | `2026-02-21T15:14:42Z` | PASS | fatal_error_count=0<br>latent_prediction_error_mean=0.180832<br>latent_prediction_error_p95=0.412178<br>latent_residual_coverage_rate=1<br>precision_input_completeness_rate=1<br>commit_boundary_join_coverage_rate=1 | fatal_error_count:+0<br>latent_prediction_error_mean:-0.002438<br>latent_prediction_error_p95:-0.03712<br>latent_residual_coverage_rate:+0<br>precision_input_completeness_rate:+0<br>commit_boundary_join_coverage_rate:+0 | - | PASS | [`summary`](runs/2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal/summary.md) / [`manifest`](runs/2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal/manifest.json) / [`metrics`](runs/2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal/metrics.json) / [`adapter`](runs/2026-02-21T151442Z_claim-probe-mech-060_seed71_pre_post_split_streams_toyenv_internal_minimal/jepa_adapter_signals.v1.json) |
