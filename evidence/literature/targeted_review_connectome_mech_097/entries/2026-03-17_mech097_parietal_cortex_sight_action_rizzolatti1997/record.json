@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_097",
+  "entry_id": "2026-03-17_mech097_parietal_cortex_sight_action_rizzolatti1997",
+  "timestamp_utc": "2026-03-17T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-097"
+  ],
+  "source": {
+    "title": "Parietal cortex: from sight to action",
+    "authors": [
+      "G. Rizzolatti",
+      "L. Fogassi",
+      "V. Gallese"
+    ],
+    "year": 1997,
+    "venue": "Current Opinion in Neurobiology",
+    "volume": 7,
+    "issue": 4,
+    "pages": "562-567",
+    "doi": "10.1016/s0959-4388(97)80037-2",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9287198/"
+  },
+  "evidence_class": "connectome_predictive_coding",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Rizzolatti et al. (1997) characterise peripersonal space (PPS) as a dynamically updated near-body region with distinct neural processing in premotor area F4 and parietal area 7b/VIP. PPS neurons respond to stimuli within reaching distance, encode objects in body-part-centered (egocentric) coordinates, and gate motor responses to near-body events. This directly grounds MECH-097: the commit boundary coincides with the PPS boundary, where z_self (body-centered) and z_world (allocentric) first interact. In CausalGridWorld, contamination occurs exactly at this boundary — the agent's foot contacts the cell. PPS is dynamically updated (scales with tool use, motor reach, attentional state), consistent with z_beta modulating commitment thresholds (ARC-016).",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "peripersonal-space",
+    "parietal",
+    "premotor",
+    "commit-boundary",
+    "z_self",
+    "z_world",
+    "action-space",
+    "egocentric",
+    "sd-005",
+    "arc-016",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Parietal areas (7b, VIP) and premotor area F4 contain neurons that respond to visual, tactile, and somatosensory stimuli within a dynamically defined near-body region — peripersonal space (PPS). PPS neurons encode object positions in body-part-centered coordinates (head-centered, arm-centered) rather than external allocentric coordinates. The PPS boundary is not fixed: it scales with tool use (extends to tool tip), motor reach, and attentional focus. Objects entering PPS trigger different neural processing from objects outside it. This near-body region is where action-execution and sensory-consequence interact: the locus at which motor commands produce world-directed effects.",
+    "ree_translation": "MECH-097: the commit boundary is architecturally grounded in PPS — the dynamically maintained spatial region where z_self (body-state, motor-sensory, E2's domain) and z_world (external environment, E3's domain) first interact. Actions that cross the PPS boundary (agent foot contacting cell, hand contacting object) constitute the class of events that generate z_self→z_world causal transitions and thereby moral residue. In CausalGridWorld, the contamination event is precisely a PPS-boundary crossing: the agent's positional state (z_self) intersects the cell's state (z_world). PPS is dynamically modulated (scales with attentional state, motor context) — in REE terms, this means the commit locus is a z_beta-modulated threshold, not a fixed spatial constant. This connects MECH-097 to ARC-016 (dynamic precision gating of commitment): z_beta affects both E3 heartbeat rate (MECH-093) and the effective reach of the PPS boundary (MECH-097), providing a unified affective modulation of commitment sensitivity.",
+    "mapping_caveat": "Rizzolatti et al. characterise PPS in terms of neural encoding in macaque premotor and parietal cortex. The mapping to a latent-space commit boundary is a REE architectural inference. The specific claim that PPS boundary crossing generates moral residue is not in the source — the source establishes PPS as the action-execution/sensory-consequence interface; the moral-residue application is REE-specific. CausalGridWorld's contamination events are a simplified proxy for PPS boundary crossing.",
+    "source_context": "Review of macaque single-unit recording studies in premotor area F4 and parietal area 7b/VIP; introduces the peripersonal space concept as distinct from extrapersonal space; connects to mirror neuron system (F5) for action observation. Basis for subsequent human neuroimaging literature on PPS and body ownership."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "High source quality — foundational PPS paper with robust single-unit evidence. Mapping fidelity is moderate: PPS as commit locus is structurally plausible but is an inferential step beyond the source. Transfer risk is higher than MECH-095/096 because the moral-residue application requires two mappings (PPS → commit boundary, commit boundary → residue trigger) that are both REE-specific."
+  }
+}

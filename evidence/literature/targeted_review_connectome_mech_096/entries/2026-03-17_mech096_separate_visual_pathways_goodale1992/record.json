@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_096",
+  "entry_id": "2026-03-17_mech096_separate_visual_pathways_goodale1992",
+  "timestamp_utc": "2026-03-17T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-096"
+  ],
+  "source": {
+    "title": "Separate visual pathways for perception and action",
+    "authors": [
+      "Melvyn A. Goodale",
+      "A. David Milner"
+    ],
+    "year": 1992,
+    "venue": "Trends in Neurosciences",
+    "volume": 15,
+    "pages": "20-25",
+    "doi": "10.1016/0166-2236(92)90344-8",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/1374953/"
+  },
+  "evidence_class": "connectome_predictive_coding",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Goodale & Milner (1992) is the canonical paper establishing the dorsal/ventral visual stream distinction. The dorsal stream (V1→MT→posterior parietal cortex) processes spatial location, egocentric coordinates, and action-relevant information at high temporal resolution. The ventral stream (V1→V4→inferotemporal cortex) processes object identity, allocentric relationships, and sustained perceptual representations. This anatomical distinction directly grounds MECH-096: the observation encoder requires two output heads corresponding to these streams, not a single encoder with a learned routing gate. A learned gate is insufficient because the two streams process structurally different information at different temporal resolutions — collapsing them degrades the z_self/z_world split back toward z_gamma conflation.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "dorsal-stream",
+    "ventral-stream",
+    "z_self",
+    "z_world",
+    "encoder-routing",
+    "egocentric",
+    "allocentric",
+    "visual-cortex",
+    "sd-005",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The primate visual system contains two anatomically distinct processing streams diverging from primary visual cortex. The dorsal stream (V1→MT→posterior parietal cortex) is specialized for processing visuospatial information in egocentric coordinates for the purpose of action guidance — 'where/how'. The ventral stream (V1→V4→inferotemporal cortex) is specialized for processing object identity, shape, and colour for recognition and perceptual representation — 'what'. These streams process different aspects of the visual scene, operate at different temporal scales (dorsal: fast, transient; ventral: slower, sustained), and remain anatomically separate throughout the cortical hierarchy. Patient DF (visual form agnosia) can grasp objects she cannot recognize, demonstrating functional dissociation.",
+    "ree_translation": "MECH-096: the observation encoder must implement a dorsal-equivalent head (egocentric, action-relevant, high temporal resolution → z_self) and a ventral-equivalent head (allocentric, object-identity, sustained → z_world). These cannot be replaced by a single encoder with a learned routing gate because: (1) they process structurally different input features at different temporal scales; (2) end-to-end training with a single encoder will re-merge them toward z_gamma conflation under gradient pressure; (3) the biological evidence shows these streams remain anatomically distinct throughout the cortical hierarchy — their separation is structural, not learned. SD-005's design sketch ('encoder routes to appropriate stream') must be specified as two separate encoder heads to be anatomically faithful.",
+    "mapping_caveat": "Goodale & Milner's distinction was developed for primate visual processing. REE operates on arbitrary observation spaces (not necessarily visual). The structural principle — that egocentric/action-relevant and allocentric/identity-relevant features require separate processing channels — generalises beyond vision, but the specific temporal resolution differences and anatomical separation may not directly transfer to all modalities. The 'two heads' requirement is a structural inference, not directly stated in the source.",
+    "source_context": "Foundational review reinterpreting the Ungerleider & Mishkin (1982) 'what/where' distinction as 'what/how'; incorporates lesion evidence, single-unit recording, and the landmark patient DF case. Became the canonical framework for action-oriented vs perceptual visual processing."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Extremely high source quality — canonical result with decades of replication. Mapping fidelity is good: the egocentric/allocentric split maps cleanly to z_self/z_world. Transfer risk is moderate because REE's observation space is not exclusively visual and the temporal resolution claim requires generalisation beyond the visual domain."
+  }
+}

@@ -3033,4 +3033,81 @@
     (MECH-087): NA modulates perceptual sampling (MECH-084) and, via z_beta, E3
     heartbeat rate. Predicted: sustained high harm salience → more reactive policy;
     routine conditions → increased policy stability.
+# Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
+# Source: neuroanatomical review of self/world latent split missing pieces
+- id: MECH-095
+  claim_type: mechanism_hypothesis
+  subject: tpj.agency_detection_comparator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - MECH-069
+    - ARC-021
+  location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  source:
+    - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  notes: >
+    At the z_self/z_world interface, an explicit agency-detection comparator
+    (TPJ-equivalent) must compare efference-copy-predicted z_self change with
+    observed z_self change. When predicted and observed z_self changes match,
+    state change is self-caused (no residue). When they diverge, cause is
+    attributed to z_world (potential residue). This is the architectural mechanism
+    for SD-003 counterfactual attribution: self_delta and world_delta are only
+    cleanly separable if this comparator exists. Without it, SD-003's causal_delta
+    conflates proprioceptive self-effects with world-directed footprint.
+    Neural basis: temporoparietal junction (TPJ) computes forward-model prediction
+    vs sensory outcome mismatch for agency attribution. Blakemore et al. (2002).
+- id: MECH-096
+  claim_type: mechanism_hypothesis
+  subject: observation_encoder.dual_stream_routing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - MECH-069
+  location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  source:
+    - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  notes: >
+    The observation encoder must implement two anatomically motivated output heads,
+    not a single encoder with a learned routing gate. Dorsal-equivalent head:
+    egocentric, action-relevant, high temporal resolution → z_self.
+    Ventral-equivalent head: allocentric, object-identity, sustained representation
+    → z_world. The two streams process structurally different information at
+    different temporal resolutions and must remain architecturally distinct or
+    the z_self/z_world split degrades back toward z_gamma conflation during
+    end-to-end training. SD-005's "encoder routes to appropriate stream" phrase
+    underspecifies this requirement.
+    Neural basis: Goodale & Milner (1992) dorsal/ventral visual stream distinction.
+- id: MECH-097
+  claim_type: mechanism_hypothesis
+  subject: peripersonal_space.commit_locus
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - MECH-091
+    - ARC-016
+  location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  source:
+    - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  notes: >
+    The commit boundary coincides with the agent's peripersonal space (PPS)
+    boundary: the dynamically-maintained near-body region where self-directed
+    and world-directed action consequences first interact. Actions crossing
+    this boundary (stepping onto a cell, contacting an object) constitute the
+    class of z_self→z_world causal transitions that generate moral residue.
+    In CausalGridWorld, contamination events occur exactly at this boundary:
+    the agent's foot (z_self) makes contact with the cell (z_world).
+    The PPS boundary is dynamically updated (scales with motor reach,
+    attentional state) — this means the commit locus is not a fixed spatial
+    threshold but a modulated one, consistent with z_beta affecting commitment
+    thresholds (ARC-016). Without a PPS representation, the architecture has
+    no spatial grounding for where self ends and world begins.
+    Neural basis: Rizzolatti, Fogassi & Gallese (1997) premotor/parietal
+    peripersonal space representation.
     downstream optimisation.

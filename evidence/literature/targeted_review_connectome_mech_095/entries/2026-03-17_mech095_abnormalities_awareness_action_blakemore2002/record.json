@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_095",
+  "entry_id": "2026-03-17_mech095_abnormalities_awareness_action_blakemore2002",
+  "timestamp_utc": "2026-03-17T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-095"
+  ],
+  "source": {
+    "title": "Abnormalities in the awareness of action",
+    "authors": [
+      "Sarah-Jayne Blakemore",
+      "Daniel M. Wolpert",
+      "Christopher D. Frith"
+    ],
+    "year": 2002,
+    "venue": "Trends in Cognitive Sciences",
+    "volume": 6,
+    "issue": 6,
+    "pages": "237-242",
+    "doi": "10.1016/s1364-6613(02)01907-1",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12039604/"
+  },
+  "evidence_class": "connectome_predictive_coding",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Blakemore et al. provide a detailed forward-model account of agency detection: the sense of agency arises from comparing the predicted sensory consequences of a motor command (efference copy via internal forward model) with the actual sensory feedback. When prediction matches outcome, the movement is experienced as self-caused; when they diverge, the cause is attributed externally. The temporoparietal junction (TPJ) is identified as the critical comparator locus. This directly grounds MECH-095: the TPJ-equivalent comparator between efference-copy-predicted z_self change and observed z_self change is the mechanism by which SD-003 counterfactual attribution can cleanly separate self_delta from world_delta.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "agency-detection",
+    "tpj",
+    "efference-copy",
+    "self-world-split",
+    "z_self",
+    "z_world",
+    "forward-model",
+    "sd-003",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The sense of agency is produced by a comparator mechanism: a forward model predicts the sensory consequences of a motor command (via efference copy); if the prediction matches the actual sensory feedback, the movement is self-caused; if they diverge, the cause is attributed to an external agent. The temporoparietal junction is the neural substrate for this comparison. Failure of this mechanism (as in schizophrenic delusions of control) produces misattribution of self-generated actions to external agents.",
+    "ree_translation": "MECH-095: the TPJ-equivalent comparator between efference-copy-predicted z_self_{t+1} and observed z_self_{t+1} is the required architectural mechanism for self/world attribution at the z_self/z_world interface. When the forward model prediction (E2's z_self_{t+1} estimate) matches observed z_self_{t+1}, the state change is self-caused — no residue. When they diverge, the divergence magnitude and direction indicate world-caused contribution — residue candidate. SD-003's causal_delta (||E2(z, a_actual) - E2(z, a_cf)||) is an approximation of this comparison, but requires MECH-095 to be properly interpretable: without separating z_self from z_world, the delta conflates proprioceptive self-effects with world-directed footprint.",
+    "mapping_caveat": "Blakemore et al. focus on the comparator as an account of the phenomenological sense of agency, not directly on moral residue attribution. The mapping from 'sense of agency' to 'residue attribution trigger' is a REE design choice. The TPJ localization claim is well-supported but the specific implementation as a latent-space comparator is REE-specific.",
+    "source_context": "Review integrating cerebellar forward-model literature (Wolpert et al.) with neuropsychological evidence from schizophrenia (passivity phenomena, delusions of control) and experimental tickling studies. Proposes that all agency phenomena derive from a single forward-model comparator mechanism."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "High-quality review with strong empirical grounding; comparator mechanism is well-evidenced via multiple convergent sources; mapping to MECH-095 latent-space comparator is structurally faithful; transfer risk is low because the computational abstraction (predicted vs observed state comparison) maps cleanly to the latent space operation."
+  }
+}

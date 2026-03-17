@@ -141,3 +141,85 @@ An agent that causes contamination has high world-change. Currently both look th
 to the residue field if harm_signal is the same magnitude.
 
 The self/world split would ground the residue field in the right causal substrate.
+
+---
+
+## Missing Pieces (registered 2026-03-17)
+
+A neuroanatomical review of the SD-005 design against known cortical architecture identified
+four gaps. Three are registered as candidate claims (v3); one is a design constraint only.
+
+### 1. TPJ Agency-Detection Comparator (MECH-095)
+
+Separating z_self from z_world is necessary but not sufficient for SD-003 attribution.
+A comparator mechanism is also required: at the z_self/z_world interface, the
+efference-copy-predicted z_self change must be compared against the observed z_self change.
+Match → self-caused (no residue). Mismatch → world-contributed cause (residue candidate).
+
+Neural basis: temporoparietal junction (TPJ) computes forward-model prediction vs sensory
+outcome mismatch for agency attribution. Blakemore, Wolpert & Frith (2002): the sense of
+agency arises from exactly this comparator; failure produces schizophrenic passivity
+phenomena (self-generated actions experienced as externally caused).
+
+SD-003's causal_delta `||E2(z, a_actual) - E2(z, a_cf)||` approximates the counterfactual
+mode of this comparator. Without MECH-095, the delta conflates proprioceptive self-effects
+with world-directed footprint — the V2 EXQ-027/028 failure mechanism.
+
+Literature: `evidence/literature/targeted_review_connectome_mech_095/`
+
+### 2. Dual-Stream Observation Encoder (MECH-096)
+
+SD-005's phrase "observation encoder routes sensory channels to the appropriate stream"
+underspecifies the required architecture. A single encoder with a learned routing gate
+will re-merge z_self and z_world toward z_gamma conflation under end-to-end gradient
+pressure. The encoder must implement two architecturally separate output heads:
+
+- **Dorsal-equivalent head** → z_self: egocentric, action-relevant, high temporal resolution
+- **Ventral-equivalent head** → z_world: allocentric, object-identity, sustained representation
+
+Neural basis: Goodale & Milner (1992) dorsal/ventral visual stream distinction. The dorsal
+stream (V1→MT→PPC) and ventral stream (V1→V4→IT) remain anatomically separate throughout
+the cortical hierarchy — their separation is an architectural commitment, not a learned
+emergent property. Patient DF (visual form agnosia) demonstrates functional dissociation:
+she cannot recognize objects she can accurately grasp.
+
+The two-head requirement is not specific to visual modalities: the structural principle
+(egocentric/action-relevant and allocentric/identity-relevant processing must be
+architecturally separate) generalises to arbitrary observation spaces.
+
+Literature: `evidence/literature/targeted_review_connectome_mech_096/`
+
+### 3. Peripersonal Space as Commit Locus (MECH-097)
+
+SD-005 lacks spatial grounding for where self ends and world begins. Without a
+peripersonal space (PPS) representation, the encoder has no principled basis for
+routing observations to z_self vs z_world — the routing decision degenerates to a
+fixed threshold or heuristic.
+
+PPS is the dynamically maintained near-body region where motor-action execution meets
+world-directed consequence. In CausalGridWorld, contamination occurs exactly at the
+PPS boundary: agent position (z_self) contacts cell state (z_world). PPS is not fixed:
+it scales with motor reach, tool use, and attentional state — in REE terms, z_beta
+modulates the effective PPS boundary, consistent with ARC-016 (z_beta-gated commitment
+precision) and MECH-093 (z_beta modulates E3 heartbeat rate).
+
+Neural basis: Rizzolatti, Fogassi & Gallese (1997) — premotor F4 and parietal 7b/VIP
+encode near-body space in body-part-centered egocentric coordinates.
+
+Literature: `evidence/literature/targeted_review_connectome_mech_097/`
+
+### 4. Temporal Asymmetry in Update Dynamics (design constraint — no separate claim)
+
+z_self and z_world operate on structurally different consolidation timescales:
+
+- z_self: cerebellar forward model updates ~100ms (online, continuous)
+- z_world: hippocampal SWR-equivalent consolidation during quiescent cycles (MECH-092)
+
+SD-005 treats them as symmetric latent splits. V3 implementation must not apply
+symmetric update dynamics: z_self requires fast online updating (motor-sensory loop
+frequency); z_world requires replay-based consolidation (MECH-092 quiescent cycles).
+Applying the same update schedule to both would either over-update z_world (instability)
+or under-update z_self (motor error accumulation).
+
+No separate claim registered — too underspecified for a testable mechanism candidate
+at this stage. Revisit when V3 encoder architecture is designed.
