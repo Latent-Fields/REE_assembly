@@ -2309,6 +2309,161 @@
     - docs/invariants.md
     - docs/architecture/sleep.md
     - docs/architecture/agency_responsibility_flow.md
+
+# Five foundational axioms — registered 2026-03-18
+- id: INV-025
+  claim_type: invariant
+  subject: epistemology.irreducible_uncertainty
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-025
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 1: "You can never be sure." Epistemic uncertainty is irreducible
+    and structural — not a limitation to be overcome but a feature of being
+    a finite agent in a real world. No agent can achieve certainty about its
+    perceptions, predictions, or the causal consequences of its actions.
+    Architectural consequence: the entire precision architecture (ARC-016,
+    INV-008, INV-009) follows from this axiom. Pre-commit simulation
+    (INV-011), commitment gates (INV-012), and precision-weighted prediction
+    error are necessary responses to irreducible uncertainty. A fully certain
+    agent needs no commitment boundary.
+
+- id: INV-026
+  claim_type: invariant
+  subject: self.existence
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-026
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 2: "I am." The agent exists as a distinct locus of experience,
+    action, and responsibility. Without a self there is no causal agency,
+    no commitment, no harm attribution, no accountability. The self is not
+    an emergent computational convenience — it is a foundational axiom from
+    which agency and ethics follow.
+    Architectural consequence: z_self encoder (SD-005), the self/world split
+    (z_self as E2 domain), the hypothesis tag that marks internally-generated
+    content as distinct from world-received content (MECH-094), and the
+    commitment boundary that makes actions attributable to an agent (INV-012).
+    Also grounds the asymptotic unknowability of death: death is the limit of
+    the harm gradient at which "I am" ceases — real (INV-027 makes it
+    possible), but unknowable from within experience (ARC-024).
+
+- id: INV-027
+  claim_type: invariant
+  subject: world.existence
+  polarity: asserts
+  status: active
+  depends_on: []
+  location: docs/invariants.md#inv-027
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 3: "The world exists." There is a real world independent of the
+    agent's model of it. The world can surprise the agent. World states are
+    not constructions — they have causal power that predictions can get wrong.
+    Architectural consequence: z_world encoder, prediction error channels (E1,
+    E2, E3), the residue field (which accumulates what actually happened, not
+    what was predicted), and post-commit trace persistence (INV-004, INV-006).
+    Also grounds ARC-024: because the world exists independently, it can
+    generate harm gradients that precede and predict harm events — the world
+    is structured, not random, so proxy signals are real and informative.
+
+- id: INV-028
+  claim_type: invariant
+  subject: ethics.shared_world
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-026
+    - INV-027
+  location: docs/invariants.md#inv-028
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 4: "Others share this world." Other agents exist and inhabit the
+    same world (INV-027). They are not simulations or projections of the
+    self (INV-026). Their harm and benefit are real by exactly the same
+    grounds as the agent's own — because they are selves (INV-026) in the
+    same world (INV-027).
+    Architectural consequence: harm via mirror modeling (INV-005) and ethical
+    emergence from self-other symmetry (INV-001). Ethics is not an overlay
+    because when another self is represented using the same predictive
+    machinery as the self (INV-026), their harm generates the same error
+    signal structure as own-harm. The self-other distinction is a routing
+    difference within the same architecture, not a different architecture.
+
+- id: INV-029
+  claim_type: invariant
+  subject: ethics.love_exists
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-026
+    - INV-028
+  location: docs/invariants.md#inv-029
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 5: "Love exists." Genuine connection, care, and the pull toward
+    union with others is a real phenomenon — not an overlay, not reducible
+    to self-interest, not a computational strategy. Love is the asymptotic
+    limit of the benefit gradient (ARC-024): every benefit signal (warmth,
+    connection, belonging, joy) is a proxy pointing toward a complete union
+    with another that is real (grounded in INV-028) but unknowable in its
+    ultimate form.
+    The unknowability is structural: complete union with another would
+    approach the dissolution of the individuation that INV-026 asserts.
+    Both selves cannot be fully present AND fully unified — the limit is
+    asymptotically real but unreachable while both agents persist as
+    distinct loci. Love can be approached in understanding and in experience;
+    it cannot be fully known.
+    Architectural consequence: grounds the benefit gradient direction
+    (ARC-024), explains why harm-to-others matters (INV-028 applied to a
+    being with a benefit manifold), and completes the ethical architecture.
+    Ethics emerges from constraint (INV-015) applied to agents for whom
+    love is real.
+
+# Proxy-gradient consequence of the five axioms — registered 2026-03-18
+- id: ARC-024
+  claim_type: architecture_hypothesis
+  subject: world.harm_benefit_asymptotic_proxy_structure
+  polarity: asserts
+  status: active
+  implementation_phase: v3
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+  location: docs/architecture/five_axioms_foundations.md
+  notes: >
+    Because the world exists (INV-027) and the self exists (INV-026), death
+    is the asymptotic limit of the harm manifold — the world can end the self,
+    but death cannot be experienced from within the agent's perspective because
+    experiencing it would violate "I am" (INV-026). Every harm signal is a
+    proxy gradient pointing toward this unknowable endpoint.
+    Because love exists (INV-029) and others share this world (INV-028),
+    unconditional love/union is the asymptotic limit of the benefit manifold —
+    real but unknowable in its complete form while both selves persist.
+    Architectural consequence for the simulated environment: the world MUST
+    generate observable proxy-gradient fields around harm/benefit sources.
+    Continuous, spatially distributed harm/benefit signals that precede and
+    predict contact events are not a convenience — they are the correct model
+    of how harm and benefit actually work. A world that generates binary harm
+    signals only at contact cannot test E3.harm_eval gradient learning, cannot
+    provide E2.world_forward with action-conditional training signal, and
+    cannot support the SD-003 attribution pipeline.
+    Implementation: CausalGridWorldV2 adds hazard_field and resource_field
+    gradient arrays to the observation, with continuous harm signal proportional
+    to proximity. See ree-v3/ree_core/environment/causal_grid_world.py.
+
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
   claim_type: open_question
