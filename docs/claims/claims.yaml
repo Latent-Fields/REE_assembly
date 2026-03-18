@@ -3319,3 +3319,30 @@
     to 30% per step. Both SD-008 and SD-009 are co-prerequisites.
     Test: V3-EXQ-020 (event auxiliary loss alone), V3-EXQ-022 (combined with
     lstsq reafference), V3-EXQ-023 (SD-008 + SD-009 combined in alpha=0.9 run).
+
+- id: MECH-101
+  claim_type: mechanism_hypothesis
+  subject: encoder.reafference_world_context_required
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-098
+    - SD-007
+  location: docs/architecture/sd_004_sd_005_encoder_codesign.md#sd-007
+  source:
+    - evidence/experiments/  # V3-EXQ-027 R²=0.027 failure analysis
+  notes: >
+    The SD-007 ReafferencePredictor must take z_world_raw_prev as input
+    (not z_self_prev). In local-view environments, Δz_world_raw from
+    locomotion includes cell content entering the field of view, which
+    depends on current world state (available in z_world_raw_prev) but
+    not on body proprioception (z_self). V3-EXQ-027 measured R²=0.027
+    with (z_self, a) inputs — near-zero because newly-revealed cell
+    content dominates the delta and is inaccessible from body state alone.
+    Biological basis: MSTd receives full visual optic flow (scene
+    content-dependent) + vestibular + efference copy, NOT body state +
+    efference copy. The optic flow encodes scene content; z_self encodes
+    body position only. Fix: ReafferencePredictor(z_world_raw_prev, a)
+    → Δz_world_loco. z_world_raw_prev is stored in LatentState and
+    available in encode() as prev_state.z_world_raw.

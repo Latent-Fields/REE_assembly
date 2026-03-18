@@ -102,12 +102,24 @@ obs_t → SplitEncoder → z_world_raw (raw egocentric world encoding)
 
 E2_self(z_self_{t-1}, a_{t-1}) → z_self_predicted_t   [efference copy]
 
-ReafferencePredictor(z_self_{t-1}, a_{t-1}) → Δz_world_loco  [expected perspective shift]
+ReafferencePredictor(z_world_raw_{t-1}, a_{t-1}) → Δz_world_loco  [expected perspective shift]
 
 z_world_corrected = z_world_raw - Δz_world_loco
 
 EMA: z_world ← α_world · z_world_corrected + (1-α_world) · z_world_prev
 ```
+
+**MECH-101 — Input must be z_world_raw_{t-1} (NOT z_self_{t-1}):** In a local-view
+environment, the perspective shift Δz_world_raw from locomotion includes the content of
+newly-revealed cells as they enter the field of view. This content is unknowable from body
+state (z_self encodes position/health/energy only) but is fully available in z_world_raw_{t-1}
+(which encodes what was visible at the previous position). V3-EXQ-027 confirmed this
+empirically: R²=0.027 with (z_self, a) inputs versus the target Δz_world_raw, because
+cell content variation dominates the delta and is inaccessible from z_self.
+
+Biological grounding: MSTd receives full visual optic flow (scene content-dependent) + vestibular
++ efference copy — NOT body state + efference copy. The optic flow carries scene content;
+z_self is equivalent to vestibular + body proprioception only.
 
 **Training signal:** Trained exclusively on empty-space steps (`transition_type == "none"`)
 where the only source of z_world change is the perspective shift from locomotion. This gives
@@ -115,8 +127,10 @@ clean, uncontaminated targets for fitting the expected reafference component.
 
 ```
 target_Δz_world = z_world_raw_t - z_world_raw_{t-1}   (on empty-space steps only)
-L_reaf = ||ReafferencePredictor(z_self_{t-1}, a_{t-1}) - target_Δz_world||²
+L_reaf = ||ReafferencePredictor(z_world_raw_{t-1}, a_{t-1}) - target_Δz_world||²
 ```
+
+`z_world_raw_{t-1}` is available as `LatentState.z_world_raw` (stored every step in encode()).
 
 Trained either as a learned MLP (online gradient, adds parameters) or via lstsq fit
 (offline, zero additional parameters; EXQ-021 validates this approach).
@@ -129,6 +143,7 @@ Trained either as a learned MLP (online gradient, adds parameters) or via lstsq 
 ### Evidence Targets (EXQ-016, EXQ-021)
 
 - EXQ-016 (bug-affected): R²_test = 0.118 (insufficient; root causes: alpha=0.3 EMA + C3 metric bug)
+- EXQ-027 (MECH-101 fix, z_self → z_world_raw_prev inputs): Expected R²_test > 0.20
 - EXQ-021 (lstsq, bug-fixed): Expected R²_test > 0.25; calibration_gap > 0.05
 
 ### Implementation Contract
@@ -136,10 +151,13 @@ Trained either as a learned MLP (online gradient, adds parameters) or via lstsq 
 When `LatentStackConfig.reafference_action_dim > 0`:
 - `LatentStack.encode()` accepts `prev_action: Optional[torch.Tensor]`
 - When `prev_action` is not None and `prev_state` is available:
-  - Apply `z_world_corrected = z_world_raw - ReafferencePredictor(z_self_prev, a_prev)`
+  - Retrieve `z_world_raw_prev = prev_state.z_world_raw` (falls back to `prev_state.z_world`)
+  - Apply `z_world_corrected = z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev)`
   - Store `z_world_raw` in `LatentState` for diagnostic use
 - When `prev_action` is None (first step, or SD-007 disabled): `z_world_corrected = z_world_raw`
 - `REEAgent.sense()` accepts optional `prev_action` parameter and passes it to `encode()`
+- **Training data contract**: reaf_data tuples must be `(z_world_raw_prev, a, Δz_world_raw)`,
+  NOT `(z_self_prev, a, Δz_world_raw)`. See MECH-101.
 
 ---
 
