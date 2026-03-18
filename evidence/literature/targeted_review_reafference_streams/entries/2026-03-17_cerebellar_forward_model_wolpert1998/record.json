@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reafference_streams",
+  "entry_id": "2026-03-17_cerebellar_forward_model_wolpert1998",
+  "timestamp_utc": "2026-03-17T21:00:00Z",
+  "claim_ids_tested": [
+    "MECH-098",
+    "MECH-095"
+  ],
+  "source": {
+    "title": "Internal models in the cerebellum",
+    "authors": [
+      "Daniel M. Wolpert",
+      "Mitsuo Kawato"
+    ],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "volume": 2,
+    "issue": 9,
+    "pages": "338-347",
+    "doi": "10.1016/S1364-6613(98)01221-2",
+    "url": "https://www.cell.com/trends/cognitive-sciences/abstract/S1364-6613(98)01221-2"
+  },
+  "evidence_class": "neuroscience_theory_with_empirical_grounding",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Foundational framework paper establishing cerebellar forward models for efference copy prediction. Grounded in cerebellar anatomy (pontocerebellar pathway receives efference copies; dentate→VL thalamus→motor/premotor closes the loop). Confirmed reafference reduction for self-generated stimulation in subsequent TMS and fMRI work. Directly supports MECH-098 requirement for E2_self prediction to feed E2_world via reafference cancellation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "cerebellum",
+    "forward_model",
+    "efference_copy",
+    "reafference",
+    "MOSAIC",
+    "motor_control",
+    "self_generated_movement"
+  ]
+}

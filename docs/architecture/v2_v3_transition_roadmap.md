@@ -206,6 +206,7 @@ z_world to exist (SD-005). They should be designed and implemented together.
 - [ ] **SD-006: Asynchronous multi-rate execution** — E1/E2/E3 run at different characteristic rates with thalamic-pacemaker-equivalent timing. Options: separate threads (GIL risk), time-multiplexed with explicit rate parameters, or hierarchical temporal abstraction (HTA — recommended: aligns with representational grain boundaries). Must co-design with SD-004/SD-005 because temporal grain boundaries should align with representational abstraction levels.
 - [ ] **E3-derived dynamic precision**: precision computed from E3 prediction error, not hardcoded; varies with E3 confidence in harm predictions (required for ARC-016)
 - [ ] **Precision→commitment→behavior circuit**: commitment gating must produce measurably different action-selection and harm profiles across precision regimes — end-to-end wiring, not just structural separation (required for ARC-016)
+- [ ] **TPJ comparator (MECH-095) wired**: efference-copy prediction vs sensory reafference mismatch at z_self/z_world interface; outputs agency_signal and residue_flag; modulated by z_beta via PPS (MECH-097)
 - [ ] CausalGridWorld extended (or replaced) with explicit self/world observation channels
 - [ ] **Q-020 adjudication complete before finalising HippocampalModule architecture** — whether
   rollout proposals arrive at E3 pre-weighted by map geometry (MECH-073) or neutral (ARC-007
@@ -225,10 +226,13 @@ These experiments cannot be run in V2 and should be designed during the V3 archi
 - Pass: each component predicts its own channel significantly better than the other
 
 ### V3-EXQ-002 — Full Self-Attribution (SD-003 V3)
-*Claim target: MECH-071 V3 form, SD-005*
-- Compute `world_delta = ||E2_world(z_world, a_actual) - E2_world(z_world, a_cf)||`
-- Test discrimination: world_delta higher for agent_caused than env_caused
-- Compare against V2 EXQ-027 calibration_gap — V3 should show stronger discrimination
+*Claim target: MECH-071 V3 form, MECH-095, SD-005*
+- Requires: TPJ comparator (MECH-095) + dual-stream encoder (MECH-096) wired
+- Compute `world_delta = ||z_world_{t+1}(a_actual) - z_world_{t+1}(a_cf)||` (E2+E3 joint pipeline)
+- Compute TPJ `agency_signal` per step; confirm residue_flag route aligns with ground-truth agent-caused transitions
+- Test discrimination: world_delta + agency_signal higher for agent_caused than env_caused
+- Compare against V2 EXQ-027 calibration_gap (0.027) — predicted V3 gap: 0.15+ (see tpj_agency_comparator.md §6)
+- Pass: calibration_gap > 0.05 (required); > 0.15 (confirms clean z_world signal)
 
 ### V3-EXQ-003 — Action Object Planning Horizon Extension (SD-004)
 *Claim target: MECH-070 stronger form*

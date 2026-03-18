@@ -3,7 +3,7 @@
 REE Claims Explorer Server
 
 Replaces `python3 -m http.server` with a server that also manages the
-experiment runner process via a small HTTP API.
+experiment runner processes (V2 and V3) via a small HTTP API.
 
 Usage:
     cd ~/Documents/GitHub/REE_Working/REE_assembly
@@ -11,14 +11,19 @@ Usage:
     python3 serve.py --port 9000
 
 API (POST, called by the Experiments tab in the explorer):
-    /api/runner/start  — launch experiment_runner.py in background
-    /api/runner/stop   — send SIGTERM to the runner process
+    /api/runner/start          — start V3 runner (default)
+    /api/runner/stop           — stop whichever runner is running
+    /api/runner/v3/start       — start V3 runner
+    /api/runner/v3/stop        — stop V3 runner
+    /api/runner/v2/start       — start V2 runner
+    /api/runner/v2/stop        — stop V2 runner
+    /api/runner/status         — JSON status of both runners
 
-The runner writes progress to evidence/experiments/runner_status.json,
+The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
-Output from the runner is appended to runner.log in this directory.
+Output from runners is appended to runner.log in this directory.
 
-Stop the server: Ctrl+C  (also stops the runner if it was started here)
+Stop the server: Ctrl+C  (also stops any runners started here)
 """
 
 import argparse
@@ -34,18 +39,41 @@ from urllib.parse import urlparse
 # ── Paths ────────────────────────────────────────────────────────────────────
 
 SERVE_DIR = Path(__file__).resolve().parent
-RUNNER_SCRIPT = SERVE_DIR.parent / "ree-v2" / "experiment_runner.py"
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
-RUNNER_PID_FILE = SERVE_DIR.parent / "ree-v2" / "runner.pid"
-V2_EVIDENCE_DIR = SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments"
+
+# V3 uses /opt/local/bin/python3 (has torch 2.10.0); V2 uses system python
+V3_PYTHON = "/opt/local/bin/python3"
+V2_PYTHON = "/opt/local/bin/python3"
+
+# Runner configs keyed by substrate version
+RUNNERS = {
+    "v3": {
+        "script": SERVE_DIR.parent / "ree-v3" / "experiment_runner.py",
+        "pid_file": SERVE_DIR.parent / "ree-v3" / "runner.pid",
+        "queue_file": SERVE_DIR.parent / "ree-v3" / "experiment_queue.json",
+        "evidence_dir": SERVE_DIR.parent / "ree-v3" / "evidence" / "experiments",
+        "python": V3_PYTHON,
+        "label": "V3 (ree-v3)",
+    },
+    "v2": {
+        "script": SERVE_DIR.parent / "ree-v2" / "experiment_runner.py",
+        "pid_file": SERVE_DIR.parent / "ree-v2" / "runner.pid",
+        "queue_file": SERVE_DIR.parent / "ree-v2" / "experiment_queue.json",
+        "evidence_dir": SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments",
+        "python": V2_PYTHON,
+        "label": "V2 (ree-v2)",
+    },
+}
 
 DEFAULT_PORT = 8000
 
 # ── Process state (module-level, single-threaded server) ─────────────────────
 
-_runner_proc = None   # subprocess.Popen, set when we launched it
-_runner_ext_pid = None  # int PID of a runner we didn't launch (detected at startup)
+# Track launched processes per substrate: {"v3": Popen, "v2": Popen}
+_runner_procs: dict[str, subprocess.Popen | None] = {"v3": None, "v2": None}
+# Track externally-detected PIDs per substrate
+_runner_ext_pids: dict[str, int | None] = {"v3": None, "v2": None}
 
 
 def _proc_alive(pid: int) -> bool:
@@ -57,25 +85,46 @@ def _proc_alive(pid: int) -> bool:
         return False
 
 
-def _detect_existing_runner():
-    """On startup, check for a runner started in a previous server session."""
-    global _runner_ext_pid
-    if RUNNER_PID_FILE.exists():
+def _detect_existing_runners():
+    """On startup, check for runners started in a previous server session."""
+    for ver, cfg in RUNNERS.items():
+        pid_file = cfg["pid_file"]
+        if pid_file.exists():
+            try:
+                pid = int(pid_file.read_text().strip())
+                if _proc_alive(pid):
+                    _runner_ext_pids[ver] = pid
+                    print(f"[serve] Detected existing {cfg['label']} runner PID {pid}", flush=True)
+            except (ValueError, OSError):
+                pass
+
+
+def _runner_pid(ver: str) -> int | None:
+    """Return the PID of the running runner for a given substrate, or None."""
+    proc = _runner_procs.get(ver)
+    if proc is not None and proc.poll() is None:
+        return proc.pid
+    ext = _runner_ext_pids.get(ver)
+    if ext and _proc_alive(ext):
+        return ext
+    # Fallback: check PID file
+    pid_file = RUNNERS[ver]["pid_file"]
+    if pid_file.exists():
         try:
-            pid = int(RUNNER_PID_FILE.read_text().strip())
+            pid = int(pid_file.read_text().strip())
             if _proc_alive(pid):
-                _runner_ext_pid = pid
-                print(f"[serve] Detected existing runner PID {pid}", flush=True)
+                return pid
         except (ValueError, OSError):
             pass
+    return None
 
 
-def _runner_pid() -> int | None:
-    """Return the PID of the running runner, or None."""
-    if _runner_proc is not None and _runner_proc.poll() is None:
-        return _runner_proc.pid
-    if _runner_ext_pid and _proc_alive(_runner_ext_pid):
-        return _runner_ext_pid
+def _any_runner_pid() -> int | None:
+    """Return PID of any running runner (for legacy /api/runner/stop)."""
+    for ver in ["v3", "v2"]:
+        pid = _runner_pid(ver)
+        if pid:
+            return pid
     # Final fallback: status file
     if STATUS_FILE.exists():
         try:
@@ -126,78 +175,146 @@ def run_script(key: str) -> dict:
 
 
 def scan_evidence_runs() -> dict:
-    """Scan ree-v2 evidence/experiments for actual run counts on disk."""
+    """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
-    if not V2_EVIDENCE_DIR.exists():
-        return result
-    for exp_dir in sorted(V2_EVIDENCE_DIR.iterdir()):
-        if not exp_dir.is_dir():
+    for ver, cfg in RUNNERS.items():
+        ev_dir = cfg["evidence_dir"]
+        if not ev_dir.exists():
             continue
-        files = sorted(exp_dir.glob("*.json"))
-        if not files:
+        for exp_dir in sorted(ev_dir.iterdir()):
+            if not exp_dir.is_dir():
+                continue
+            files = sorted(exp_dir.glob("*.json"))
+            if not files:
+                continue
+            latest = {}
+            try:
+                latest = json.loads(files[-1].read_text())
+            except Exception:
+                pass
+            result[exp_dir.name] = {
+                "run_count": len(files),
+                "latest_verdict": latest.get("verdict"),
+                "latest_timestamp": latest.get("run_timestamp"),
+                "claim_id": latest.get("claim"),
+                "substrate": ver,
+            }
+    return result
+
+
+def start_runner(ver: str = "v3") -> dict:
+    if ver not in RUNNERS:
+        return {"status": "error", "message": f"Unknown substrate: {ver}"}
+
+    cfg = RUNNERS[ver]
+    pid = _runner_pid(ver)
+    if pid:
+        return {"status": "already_running", "pid": pid, "substrate": ver}
+    if not cfg["script"].exists():
+        return {"status": "error", "message": f"Runner script not found: {cfg['script']}"}
+
+    python_exe = cfg["python"]
+    if not os.path.exists(python_exe):
+        python_exe = sys.executable  # fallback
+
+    log_fh = open(RUNNER_LOG, "a")
+    proc = subprocess.Popen(
+        [python_exe, str(cfg["script"]),
+         "--status-file", str(STATUS_FILE)],
+        stdout=log_fh,
+        stderr=log_fh,
+        cwd=str(cfg["script"].parent),
+    )
+    _runner_procs[ver] = proc
+    print(f"[serve] {cfg['label']} runner started (PID {proc.pid})", flush=True)
+    return {"status": "started", "pid": proc.pid, "substrate": ver}
+
+
+def stop_runner(ver: str | None = None) -> dict:
+    """Stop a specific runner (ver='v3'/'v2') or any running runner (ver=None)."""
+    versions_to_try = [ver] if ver else ["v3", "v2"]
+
+    for v in versions_to_try:
+        if v not in RUNNERS:
             continue
-        latest = {}
-        try:
-            latest = json.loads(files[-1].read_text())
-        except Exception:
-            pass
-        result[exp_dir.name] = {
-            "run_count": len(files),
-            "latest_verdict": latest.get("verdict"),
-            "latest_timestamp": latest.get("run_timestamp"),
-            "claim_id": latest.get("claim"),
+        cfg = RUNNERS[v]
+
+        # Try the subprocess we launched
+        proc = _runner_procs.get(v)
+        if proc is not None and proc.poll() is None:
+            pid = proc.pid
+            proc.terminate()
+            try:
+                proc.wait(timeout=6)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+            _runner_procs[v] = None
+            print(f"[serve] {cfg['label']} runner stopped (PID {pid})", flush=True)
+            return {"status": "stopped", "pid": pid, "substrate": v}
+
+        # Try a runner started outside this server session
+        target_pid = _runner_ext_pids.get(v) or _runner_pid(v)
+        if target_pid:
+            try:
+                os.kill(target_pid, signal.SIGTERM)
+                _runner_ext_pids[v] = None
+                print(f"[serve] {cfg['label']} runner stopped via signal (PID {target_pid})", flush=True)
+                return {"status": "stopped", "pid": target_pid, "substrate": v}
+            except (ProcessLookupError, PermissionError) as e:
+                return {"status": "error", "message": str(e)}
+
+    return {"status": "not_running"}
+
+
+def runner_status() -> dict:
+    """Return status of all runners."""
+    result = {}
+    for ver in RUNNERS:
+        pid = _runner_pid(ver)
+        result[ver] = {
+            "running": pid is not None,
+            "pid": pid,
+            "label": RUNNERS[ver]["label"],
         }
     return result
 
 
-def start_runner() -> dict:
-    global _runner_proc
-    pid = _runner_pid()
-    if pid:
-        return {"status": "already_running", "pid": pid}
-    if not RUNNER_SCRIPT.exists():
-        return {"status": "error", "message": f"Runner script not found: {RUNNER_SCRIPT}"}
+def read_queue(ver: str) -> dict:
+    """Read experiment_queue.json for a substrate, cross-referencing completed items."""
+    if ver not in RUNNERS:
+        return {"error": f"Unknown substrate: {ver}"}
+    qf = RUNNERS[ver]["queue_file"]
+    if not qf.exists():
+        return {"items": [], "ver": ver}
+    try:
+        data = json.loads(qf.read_text())
+    except Exception:
+        return {"items": [], "ver": ver}
 
-    log_fh = open(RUNNER_LOG, "a")
-    _runner_proc = subprocess.Popen(
-        [sys.executable, str(RUNNER_SCRIPT),
-         "--status-file", str(STATUS_FILE),
-         "--loop", "--loop-interval", "60"],
-        stdout=log_fh,
-        stderr=log_fh,
-        cwd=str(RUNNER_SCRIPT.parent),
-    )
-    print(f"[serve] Runner started (PID {_runner_proc.pid})", flush=True)
-    return {"status": "started", "pid": _runner_proc.pid}
-
-
-def stop_runner() -> dict:
-    global _runner_proc, _runner_ext_pid
-
-    # Try the subprocess we launched
-    if _runner_proc is not None and _runner_proc.poll() is None:
-        pid = _runner_proc.pid
-        _runner_proc.terminate()
+    # Get completed queue_ids from runner_status.json
+    completed_ids = set()
+    if STATUS_FILE.exists():
         try:
-            _runner_proc.wait(timeout=6)
-        except subprocess.TimeoutExpired:
-            _runner_proc.kill()
-        _runner_proc = None
-        print(f"[serve] Runner stopped (PID {pid})", flush=True)
-        return {"status": "stopped", "pid": pid}
+            status = json.loads(STATUS_FILE.read_text())
+            for c in status.get("completed", []):
+                completed_ids.add(c.get("queue_id"))
+        except Exception:
+            pass
 
-    # Try a runner started outside this server session
-    target_pid = _runner_ext_pid or _runner_pid()
-    if target_pid:
-        try:
-            os.kill(target_pid, signal.SIGTERM)
-            _runner_ext_pid = None
-            print(f"[serve] Runner stopped via signal (PID {target_pid})", flush=True)
-            return {"status": "stopped", "pid": target_pid}
-        except (ProcessLookupError, PermissionError) as e:
-            return {"status": "error", "message": str(e)}
-
-    return {"status": "not_running"}
+    # Annotate each item with whether it's already completed
+    items = []
+    for item in data.get("items", []):
+        qid = item.get("queue_id", "")
+        items.append({
+            "queue_id": qid,
+            "claim_id": item.get("claim_id", ""),
+            "title": item.get("title", ""),
+            "description": item.get("description", ""),
+            "status": "completed" if qid in completed_ids else item.get("status", "pending"),
+            "script": item.get("script", ""),
+            "ree_version": ver,
+        })
+    return {"items": items, "ver": ver}
 
 
 # ── HTTP handler ─────────────────────────────────────────────────────────────
@@ -214,21 +331,39 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/evidence/runs":
             body = json.dumps(scan_evidence_runs()).encode()
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
-            self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
+            self._json_response(body)
+            return
+        if path == "/api/runner/status":
+            body = json.dumps(runner_status()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/queue/v3":
+            body = json.dumps(read_queue("v3")).encode()
+            self._json_response(body)
+            return
+        if path == "/api/queue/v2":
+            body = json.dumps(read_queue("v2")).encode()
+            self._json_response(body)
             return
         super().do_GET()
 
     def do_POST(self):
         path = urlparse(self.path).path
-        if path == "/api/runner/start":
-            result = start_runner()
+
+        # Versioned runner endpoints
+        if path == "/api/runner/v3/start":
+            result = start_runner("v3")
+        elif path == "/api/runner/v3/stop":
+            result = stop_runner("v3")
+        elif path == "/api/runner/v2/start":
+            result = start_runner("v2")
+        elif path == "/api/runner/v2/stop":
+            result = stop_runner("v2")
+        # Legacy endpoints (default to V3)
+        elif path == "/api/runner/start":
+            result = start_runner("v3")
         elif path == "/api/runner/stop":
-            result = stop_runner()
+            result = stop_runner()  # stop any
         elif path == "/api/run":
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')
@@ -239,7 +374,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
 
         body = json.dumps(result).encode()
-        self.send_response(200)
+        self._json_response(body)
+
+    def end_headers(self):
+        """Add no-cache headers to all responses so the browser always gets fresh content."""
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+        super().end_headers()
+
+    def _json_response(self, body: bytes, status: int = 200):
+        self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Content-Length", str(len(body)))
@@ -247,14 +392,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_OPTIONS(self):
-        # Handle CORS preflight (not normally needed on localhost)
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
         self.end_headers()
 
     def log_message(self, fmt, *args):
-        # Only log API requests; suppress noisy static-file entries
         if "/api/" in (self.path or ""):
             super().log_message(fmt, *args)
 
@@ -267,18 +410,17 @@ def main():
                         help=f"Port to listen on (default: {DEFAULT_PORT})")
     args = parser.parse_args()
 
-    _detect_existing_runner()
+    _detect_existing_runners()
     os.chdir(SERVE_DIR)
 
     server = http.server.HTTPServer(("0.0.0.0", args.port), Handler)
 
     def shutdown(sig, frame):
         print("\n[serve] Shutting down.", flush=True)
-        if _runner_proc and _runner_proc.poll() is None:
-            print("[serve] Stopping runner process.", flush=True)
-            _runner_proc.terminate()
-        # server.shutdown() deadlocks when called from the main thread's signal
-        # handler while serve_forever() is also on the main thread — use sys.exit.
+        for ver, proc in _runner_procs.items():
+            if proc and proc.poll() is None:
+                print(f"[serve] Stopping {RUNNERS[ver]['label']} runner.", flush=True)
+                proc.terminate()
         sys.exit(0)
 
     signal.signal(signal.SIGINT, shutdown)
@@ -287,7 +429,9 @@ def main():
     url = f"http://localhost:{args.port}/explorer"
     print(f"[serve] REE Explorer → {url}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
-    print(f"[serve] Runner script: {RUNNER_SCRIPT}", flush=True)
+    for ver, cfg in RUNNERS.items():
+        exists = "✓" if cfg["script"].exists() else "✗"
+        print(f"[serve] {cfg['label']} runner: {cfg['script']} [{exists}]", flush=True)
     print(f"[serve] Runner log:    {RUNNER_LOG}", flush=True)
     print(f"[serve] Ctrl+C to stop", flush=True)
     print(flush=True)

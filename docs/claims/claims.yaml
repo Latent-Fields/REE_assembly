@@ -2367,7 +2367,12 @@
   claim_type: architectural_commitment
   subject: basal_ganglia.three_loop_learning_channel_separation
   polarity: asserts
-  status: candidate
+  status: provisional
+  status_note: |
+    Promoted candidate → provisional 2026-03-17. SD-003 experiment series (V3-EXQ-007–010)
+    showed attribution mechanism produces correct-direction signal only when environment
+    provides sufficient per-step variation — consistent with three distinct error channels
+    requiring separate learning pathways. Dense hazards (EXQ-010, gap=+0.027) strongest signal.
   depends_on:
     - Q-019
     - ARC-004
@@ -2381,7 +2386,12 @@
   claim_type: mechanism_hypothesis
   subject: latent_stack.three_loop_error_signal_incommensurability
   polarity: asserts
-  status: candidate
+  status: provisional
+  status_note: |
+    Promoted candidate → provisional 2026-03-17. V3-EXQ-009 (wider E2) showed capacity increase
+    caused overfitting not better attribution — the E2 motor-sensory channel cannot learn harm
+    attribution regardless of capacity. This is exactly what incommensurability predicts: harm
+    signal must flow through a separate E3 channel, not be forced through E2.
   supersedes: MECH-058
   supersedes_note: |
     MECH-058 framed the E1/E2 distinction as timescale separation (LR difference). MECH-069
@@ -2389,10 +2399,15 @@
     (sensory prediction / motor-sensory / harm+goal) that cannot be merged without misattributing
     credit. This is a functional-domain distinction, not a speed distinction.
     Cannot be properly tested until V3 z_self/z_world split (SD-005) is implemented.
+    Anatomical grounding (added 2026-03-17): the three error channels are incommensurable
+    partly because they correspond to three anatomically distinct white matter pathways
+    (dorsal SLF / ventral occipitotemporal / lateral STS stream). See MECH-099 and
+    evidence/literature/targeted_review_reafference_streams/ (Haak & Beckmann 2018).
   depends_on:
     - ARC-021
     - MECH-033
     - ARC-018
+    - MECH-099
   location: docs/architecture/three_loop_learning_channels.md#mech-069
   source:
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
@@ -2867,6 +2882,7 @@
   subject: default_mode.hypothesis_tag_residue_write_gate
   polarity: asserts
   status: candidate
+  claim_level: functional
   depends_on:
     - ARC-014
     - INV-011
@@ -2903,6 +2919,14 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: mixed
+  functional_restatement: >
+    Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
+    motor-command rate, E3 deliberation rate (slowest). An update-rate management
+    mechanism prevents loop drift under variable processing latency. The functional
+    requirement is rate-separated asynchronous updates regardless of substrate; the
+    biological substrate is thalamic pacemaking, which is not required for the ANN
+    implementation.
   depends_on:
     - ARC-021
     - MECH-069
@@ -2920,10 +2944,19 @@
     cannot test this claim (SD-006 required for V3).
 - id: MECH-089
   claim_type: mechanism_hypothesis
-  subject: thalamus.cross_frequency_coupling_inter_loop_integration
+  subject: multirate.fast_to_slow_temporal_batching
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    Fast loop outputs are temporally batched before slow loops sample them. E3 receives
+    integrated summaries of recent E1 activity rather than raw frame-by-frame prediction
+    errors. E3's minimum harm attribution resolution equals its own update window size —
+    it cannot attribute finer-grained than one E3 update cycle. In an ANN substrate this
+    is implemented as a rolling aggregation over E1 outputs before E3 sampling, not as
+    oscillatory coupling. The biological mechanism (theta-gamma CFC) is one implementation
+    of this functional requirement; it is not required in the ANN substrate.
   depends_on:
     - ARC-023
     - ARC-021
@@ -2941,10 +2974,19 @@
     in hippocampal-prefrontal circuits.
 - id: MECH-090
   claim_type: mechanism_hypothesis
-  subject: basal_ganglia.beta_oscillation_policy_output_gate
+  subject: control_plane.commitment_gated_policy_output
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    During committed action sequences, E3 continues updating its internal model but
+    propagation of updated model state to action selection is gated. The gate opens at
+    completion events or urgent interrupts. An urgent interrupt pathway can force an early
+    gate-open without waiting for sequence completion. In an ANN substrate, this is
+    implemented as a commitment-gated routing variable decoupling E3 forward pass from
+    policy output — not as beta oscillation power. The biological mechanism (beta in
+    STN/striatum) is one implementation; it is not required in the ANN substrate.
   depends_on:
     - ARC-023
     - ARC-021
@@ -2965,10 +3007,19 @@
     not beta-gated propagation within continuous stream.
 - id: MECH-091
   claim_type: mechanism_hypothesis
-  subject: basal_ganglia.salient_event_phase_reset
+  subject: control_plane.salient_event_cycle_resync
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
+    update window to start fresh rather than continuing mid-cycle. This ensures harm
+    estimates from one sub-plan are fully integrated before the next planning window opens,
+    preventing partial integration artefacts. In an ANN substrate, implemented as an
+    explicit cycle-boundary marker triggered by salient events — not as oscillatory phase
+    reset. The biological mechanism (thalamic-driven phase reset of theta/alpha oscillations,
+    P300 substrate) is one implementation; it is not required in the ANN substrate.
   depends_on:
     - ARC-023
     - MECH-090
@@ -2985,10 +3036,20 @@
     Neural basis: P300 event-related potential and its theta/alpha oscillatory substrate.
 - id: MECH-092
   claim_type: mechanism_hypothesis
-  subject: hippocampal.swr_equivalent_replay_during_heartbeat
+  subject: hippocampal.quiescent_offline_replay
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: mixed
+  functional_restatement: >
+    During quiescent periods between active E3 updates, the hippocampal module performs
+    offline replay of compressed recent trajectory experience to consolidate the viability
+    map. This offline batch consolidation supplements online map updates and integrates
+    experiences that occurred too fast for real-time E3 processing. This is standard
+    experience replay — implementable in any substrate. The SWR mechanism (internally
+    generated CA3 recurrent dynamics) is the biological substrate; the functional
+    requirement is offline batch consolidation during idle periods, not the oscillatory
+    mechanism.
   depends_on:
     - ARC-023
     - ARC-014
@@ -3013,10 +3074,11 @@
     operating at inter-action timescales rather than full task-disengagement timescales.
 - id: MECH-093
   claim_type: mechanism_hypothesis
-  subject: affective.z_beta_e3_heartbeat_rate_modulation
+  subject: affective.z_beta_e3_update_rate_modulation
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  claim_level: functional
   depends_on:
     - ARC-023
     - MECH-069
@@ -3059,6 +3121,14 @@
     conflates proprioceptive self-effects with world-directed footprint.
     Neural basis: temporoparietal junction (TPJ) computes forward-model prediction
     vs sensory outcome mismatch for agency attribution. Blakemore et al. (2002).
+    Additional grounding (2026-03-17): TPJ sits at the terminus of the lateral/third
+    visual stream (MT→MST/FST→posterior STS→TPJ), which is specialised for dynamic
+    motion and biological motion detection (Haak & Beckmann 2018; Pitcher &
+    Ungerleider 2021). MSTd congruent/incongruent neurons (Gu et al. 2008) provide
+    the upstream causal inference that feeds this stream: congruent=reafference,
+    incongruent=exafference/world-change. The efference copy reaches parietal via
+    SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
+    Literature: evidence/literature/targeted_review_reafference_streams/.
 - id: MECH-096
   claim_type: mechanism_hypothesis
   subject: observation_encoder.dual_stream_routing
@@ -3082,6 +3152,14 @@
     end-to-end training. SD-005's "encoder routes to appropriate stream" phrase
     underspecifies this requirement.
     Neural basis: Goodale & Milner (1992) dorsal/ventral visual stream distinction.
+    Update (2026-03-17): classical two-stream model is insufficient. HCP connectome
+    data (Haak & Beckmann 2018, n=470) confirms a THIRD lateral stream
+    (MT→MST/FST→posterior STS) specialised for dynamic motion and agency.
+    This stream terminates near TPJ and is distinct from both dorsal and ventral
+    at the white-matter-tract level. MECH-096 subject should be updated to
+    three-stream encoder: dorsal head (→z_self), ventral head (→z_world content),
+    lateral head (→agency/harm signal to E3). See MECH-099.
+    Literature: evidence/literature/targeted_review_reafference_streams/.
 - id: MECH-097
   claim_type: mechanism_hypothesis
   subject: peripersonal_space.commit_locus
@@ -3109,5 +3187,135 @@
     thresholds (ARC-016). Without a PPS representation, the architecture has
     no spatial grounding for where self ends and world begins.
     Neural basis: Rizzolatti, Fogassi & Gallese (1997) premotor/parietal
-    peripersonal space representation.
+    peripersonal space representation. VIP (ventral intraparietal area)
+    confirmed as anatomical site via HCP tractography (Rolls et al. 2023,
+    evidence/literature/targeted_review_reafference_streams/).
     downstream optimisation.
+# Registered 2026-03-17 — reafference cancellation and three-stream architecture
+- id: MECH-098
+  claim_type: mechanism_hypothesis
+  subject: encoder.reafference_cancellation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - MECH-095
+    - MECH-096
+  location: docs/thoughts/2026-03-17_three_stream_reafference.md
+  source:
+    - docs/thoughts/2026-03-17_three_stream_reafference.md
+  notes: >
+    The observation encoder must use its z_self prediction (efference copy
+    from E2_self) to cancel expected perspective-shift components from
+    z_world before E2_world operates. When the agent moves, the egocentric
+    view shifts — this is a reafferent change fully predictable from the
+    motor command. Only the residual after perspective-shift subtraction
+    represents genuine world-state change. Without this cancellation,
+    E2_world learns the identity shortcut (view shifted = world stable)
+    rather than learning action-conditional world dynamics. The cancellation
+    belongs at encoder level (before E2), not inside E2 itself.
+    Biological basis: Area MSTd (Gu et al. 2008, Nature Neuroscience
+    11:1201–1210) contains congruent neurons (visual/vestibular aligned =
+    reafference, world stable) and incongruent neurons (opposite = exafference,
+    genuine world change). MSTd receives visual optic flow, vestibular, AND
+    efference copy from premotor simultaneously — implementing exactly this
+    decomposition at the early sensory processing stage. Cerebellar forward
+    model (Wolpert & Kawato 1998) generates the predicted reafference;
+    premotor→PPC pathway via SLF (Rolls et al. 2023) delivers efference copy
+    to the parietal encoder stage.
+    SD-003 consequence: after reafference cancellation, causal_sig =
+    E3(z_world_residual_actual) - E3(z_world_residual_cf) will be sharp
+    because only genuine world-content change contributes to the signal.
+    The current SD-003 plateau at gap=0.027 (spurious BCE artifact) and
+    collapse to 0.0007 (regression, EXQ-012) both result from the absence
+    of this cancellation step.
+    Literature: evidence/literature/targeted_review_reafference_streams/
+    (Gu 2008, Wolpert & Kawato 1998, Rolls 2023).
+    EXQ-016 root-cause analysis (2026-03-18): V3-EXQ-016 tested a z-space
+    ReafferencePredictor (SGD MLP, 200 steps) and achieved R2_test=0.118 vs
+    the EXQ-014 lstsq benchmark of R2=0.333. Root causes: (1) encoder EMA
+    alpha=0.3 means Δz_world is a blended multi-step signal — a single-step
+    linear predictor from (z_self_t, a_t) cannot reconstruct it without the
+    full EMA history; (2) C3 metric bug — the correction was applied to both
+    endpoints of the delta, causing cancellation (dz_corrected = dz_raw to
+    machine epsilon). SD-008 (fix alpha_world >= 0.9) is prerequisite for
+    MECH-098 to be testable: with alpha_world=0.3 the reafference signal is
+    too diluted for any single-step predictor. EXQ-021 retests with lstsq
+    and fixed C3 metric. EXQ-023 retests with alpha_world=0.9.
+- id: MECH-099
+  claim_type: mechanism_hypothesis
+  subject: visual_streams.three_pathway_architecture
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-017
+    - MECH-069
+    - MECH-096
+  location: docs/thoughts/2026-03-17_three_stream_reafference.md
+  source:
+    - docs/thoughts/2026-03-17_three_stream_reafference.md
+  notes: >
+    The visual processing hierarchy comprises three anatomically distinct
+    pathways, not two (dorsal/ventral). Confirmed by Haak & Beckmann (2018,
+    Cortex 98:73–83) from HCP resting-state data (n=470) with data-driven
+    triple dissociation across 22 visual areas:
+    (1) Dorsal (IPS/occipitoparietal): spatial processing, self-motion,
+        visually guided action. Maps to z_self / SELF_SENSORY stream.
+    (2) Ventral (VO/PHC): object identity, content. Maps to z_world /
+        WORLD stream.
+    (3) Lateral/third (MT→MST/FST→posterior STS): dynamic motion,
+        biological motion, social/agency detection. Terminates near TPJ.
+        Maps to the agency-detection channel (MECH-095 / E3 harm stream).
+    These three pathways use anatomically distinct white matter tracts:
+    SLF I/II/III for dorsal; ventral occipitotemporal white matter for
+    ventral; a separate lateral pathway into STS for the third stream.
+    This provides structural anatomical grounding for MECH-069
+    (incommensurability of error signals): the three learning channels
+    are incommensurable partly because they run on physically distinct
+    hardware. Collapsing them violates the biological architecture.
+    MECH-096 (dual-stream encoder) must be updated to MECH-099-compliant
+    three-stream encoder: dorsal head (→z_self), ventral head (→z_world
+    content), lateral head (→agency/harm signal for E3).
+    Literature: evidence/literature/targeted_review_reafference_streams/
+    (Haak & Beckmann 2018, Pitcher & Ungerleider 2021).
+# Registered 2026-03-18 — EMA root-cause analysis and encoder supervision gap
+- id: MECH-100
+  claim_type: mechanism_hypothesis
+  subject: encoder.event_contrastive_supervision
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - SD-009
+  location: CLAUDE.md
+  source:
+    - evidence/experiments/ (V3-EXQ-013 event selectivity failure)
+  notes: >
+    The world encoder (z_world branch of SplitEncoder) requires an explicit
+    event-type cross-entropy auxiliary loss during training. Standard
+    reconstruction and E1-prediction losses are invariant to harm-relevance:
+    they reward accurate decoding of all observation channels equally, giving
+    the encoder no gradient signal to distinguish hazard-present from
+    hazard-absent world states. As a result, z_world ends up representing
+    general perspective-dominated content (90% variance explained by
+    locomotion; EXQ-014 R2=0.333) with near-zero event selectivity
+    (EXQ-013: Δz_world(env_hazard)≈Δz_world(empty), margin≈0.002).
+    The fix (SD-009): add a small event classifier head (Linear(world_dim,3))
+    whose cross-entropy loss backpropagates through z_world during training.
+    Labels: 0=none (empty locomotion), 1=env_caused_hazard, 2=agent_caused_hazard.
+    This forces z_world to carry event-discriminative information, providing a
+    stronger gradient for E2_world and E3 harm evaluation to exploit.
+    Biological grounding: the ventral stream (MECH-099 stream 2) is trained by
+    object-recognition supervision in development — not just reconstruction.
+    Predictive coding alone does not produce object-discriminative ventral
+    stream representations without categorical top-down signals (Murray et al.
+    2004, TICS 8:56–61). The event classifier is the minimal stand-in for
+    such categorical supervision.
+    Interaction with SD-008: the event contrastive loss will be ineffective
+    if alpha_world=0.3, since the EMA smoothing dilutes the event contribution
+    to 30% per step. Both SD-008 and SD-009 are co-prerequisites.
+    Test: V3-EXQ-020 (event auxiliary loss alone), V3-EXQ-022 (combined with
+    lstsq reafference), V3-EXQ-023 (SD-008 + SD-009 combined in alpha=0.9 run).

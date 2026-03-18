@@ -12,13 +12,28 @@ This document covers six related claims: ARC-023 (multi-rate heartbeat architect
 
 ---
 
+## Substrate Note: Functional vs. Mechanistic Claims
+
+Several claims in this cluster are inspired by spiking neural network (SNN) phenomena — theta-gamma coupling, beta oscillations, sharp-wave ripples, phase reset — that do not exist natively in the ANN substrate used for REE testing (LSTMs, MLPs). This matters because:
+
+- **Mechanistic claims** (`claim_level: mechanistic`) depend on the oscillatory/spiking mechanism itself. They cannot be directly tested in an ANN substrate. Testing them in an ANN produces null results *by construction*, not because the claim is false.
+- **Functional claims** (`claim_level: functional`) describe the computational role that an oscillatory mechanism serves. These translate directly to ANN substrates.
+- **Mixed claims** (`claim_level: mixed`) have a testable functional core and a mechanistic biological substrate that is not required for ANN testing.
+
+Each claim below is tagged with its `claim_level` in claims.yaml. For mechanistic and mixed claims, a **Functional analog** section describes what would actually be tested in an ANN substrate. When designing V3 experiments, target the functional analog unless the V3 substrate explicitly implements the oscillatory mechanism via SD-006 + HTA.
+
+---
+
 <a id="arc-023"></a>
-## Each BG loop has a characteristic thalamic heartbeat rate (ARC-023)
+## Three loops operate at distinct update rates (ARC-023)
 
 **Claim Type:** architectural_commitment
 **Subject:** basal_ganglia.three_loop_thalamic_heartbeat
+**Claim Level:** mixed
 **Status:** candidate
 **Claim ID:** ARC-023
+
+**Functional analog:** Three loops have distinct update rates — E1 continuous, E2 motor-command rate, E3 deliberation rate — governed by a rate-management mechanism that prevents loop drift under variable processing latency. The biological substrate (thalamic pacemaking) is not required for the ANN implementation.
 
 The REE architecture requires three distinct periodic update channels, one per learning loop, each driven by thalamic pacemaking:
 
@@ -35,14 +50,19 @@ The REE architecture requires three distinct periodic update channels, one per l
 ---
 
 <a id="mech-089"></a>
-## Cross-frequency coupling packages fast updates for slow loops (MECH-089)
+## Fast loop outputs are temporally batched before slow loops sample them (MECH-089)
 
 **Claim Type:** mechanism_hypothesis
-**Subject:** thalamus.cross_frequency_coupling_inter_loop_integration
+**Subject:** multirate.fast_to_slow_temporal_batching
+**Claim Level:** mechanistic
 **Status:** candidate
 **Claim ID:** MECH-089
 
-Three loops running at different rates cannot simply broadcast to each other — fast updates would overwhelm slow loops, and slow update windows would underrepresent fast events. The mechanism that resolves this is cross-frequency coupling: fast oscillations (E1-rate, gamma-band equivalent) nest *within* slow oscillation cycles (E3-rate, theta-band equivalent). E1's continuous sensory updates are temporally integrated into a rolling summary over each theta cycle, and E3 samples that summary at its own heartbeat rate rather than receiving raw E1 output.
+**Functional analog:** E1 outputs are aggregated over a rolling window before E3 samples them. E3 receives temporally batched summaries of recent E1 activity, not raw frame-by-frame prediction errors. E3's minimum harm attribution resolution equals its own update window size. In an ANN, this is a rolling aggregation layer between E1 and E3 — no oscillations required. The biological mechanism (theta-gamma CFC) is one implementation of this requirement.
+
+**Biological mechanism (SNN-specific):**
+
+Three loops running at different rates cannot simply broadcast to each other — fast updates would overwhelm slow loops, and slow update windows would underrepresent fast events. The biological mechanism that resolves this is cross-frequency coupling: fast oscillations (E1-rate, gamma-band equivalent) nest *within* slow oscillation cycles (E3-rate, theta-band equivalent). E1's continuous sensory updates are temporally integrated into a rolling summary over each theta cycle, and E3 samples that summary at its own heartbeat rate rather than receiving raw E1 output.
 
 In neuroscience: theta-gamma coupling is well-established in hippocampal-prefrontal circuits. Each theta cycle (~125ms) contains ~5-7 gamma sub-cycles; each gamma sub-cycle can carry a distinct sensory or motor-consequence representation. The thalamic relay performs the cross-rate integration.
 
@@ -51,14 +71,17 @@ In neuroscience: theta-gamma coupling is well-established in hippocampal-prefron
 ---
 
 <a id="mech-090"></a>
-## Beta oscillations gate E3 policy-output, not E3 internal updating (MECH-090)
+## E3 internal updating is decoupled from policy-output propagation during committed sequences (MECH-090)
 
 **Claim Type:** mechanism_hypothesis
-**Subject:** basal_ganglia.beta_oscillation_policy_output_gate
+**Subject:** control_plane.commitment_gated_policy_output
+**Claim Level:** mechanistic
 **Status:** candidate
 **Claim ID:** MECH-090
 
-Beta oscillations (~13–30 Hz) in the subthalamic nucleus (STN) and striatum encode a "maintain current state" signal. The critical distinction: beta gates *propagation of E3 model updates to action selection*, not E3's internal model updating.
+**Functional analog:** During committed action sequences, E3 continues updating its internal model, but a commitment gate blocks those updates from propagating to action selection. The gate opens at completion events or urgent interrupts. In an ANN, this is a routing variable conditioned on commitment state — not beta oscillation power. The biological mechanism (beta in STN/striatum) is one implementation of this gating requirement.
+
+**Biological mechanism (SNN-specific):** Beta oscillations (~13–30 Hz) in the subthalamic nucleus (STN) and striatum encode a "maintain current state" signal. The critical distinction: beta gates *propagation of E3 model updates to action selection*, not E3's internal model updating.
 
 During a committed action sequence:
 - E3 continues updating its harm estimates internally (heartbeat continues)
@@ -79,14 +102,17 @@ At completion or on a stop-change signal (hyperdirect pathway: cortex → STN �
 ---
 
 <a id="mech-091"></a>
-## Salient events phase-reset the E3 heartbeat clock (MECH-091)
+## Salient events resynchronize the E3 update cycle (MECH-091)
 
 **Claim Type:** mechanism_hypothesis
-**Subject:** basal_ganglia.salient_event_phase_reset
+**Subject:** control_plane.salient_event_cycle_resync
+**Claim Level:** mechanistic
 **Status:** candidate
 **Claim ID:** MECH-091
 
-When a high-salience event occurs — action sequence completion, unexpected harm, commitment boundary crossing — it does not merely boost E3 update signal amplitude. It *resets the phase* of the E3 heartbeat oscillator, ensuring the next heartbeat cycle starts from a coherent reference state.
+**Functional analog:** Salient events trigger an explicit cycle-boundary marker that causes E3's next update window to start fresh rather than continuing mid-cycle. This prevents partial integration artefacts: harm estimates from one sub-plan are fully integrated before the next planning window opens. In an ANN, implemented as an event-triggered window reset — not oscillatory phase reset. The biological mechanism (thalamic-driven phase reset of theta/alpha oscillations, P300 substrate) is one implementation.
+
+**Biological mechanism (SNN-specific):** When a high-salience event occurs — action sequence completion, unexpected harm, commitment boundary crossing — it does not merely boost E3 update signal amplitude. It *resets the phase* of the E3 heartbeat oscillator, ensuring the next heartbeat cycle starts from a coherent reference state.
 
 Phase reset ensures that the updated harm estimates from the salient event enter the E3 stream at the beginning of a fresh cycle, not mid-cycle (which would produce partial integration artefacts). It is the mechanism by which completion events *reorganize the timing* of subsequent updates, not just inject a stronger signal.
 
@@ -97,14 +123,17 @@ In neuroscience: unexpected stimuli cause phase reset in theta and alpha oscilla
 ---
 
 <a id="mech-092"></a>
-## Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay (MECH-092)
+## Quiescent periods trigger offline replay for viability map consolidation (MECH-092)
 
 **Claim Type:** mechanism_hypothesis
-**Subject:** hippocampal.swr_equivalent_replay_during_heartbeat
+**Subject:** hippocampal.quiescent_offline_replay
+**Claim Level:** mixed
 **Status:** candidate
 **Claim ID:** MECH-092
 
-During quiescent E3 heartbeat cycles — periods when no new completion event or salient update is incoming — the hippocampal module performs *replay*: replaying compressed representations of recent trajectory experience to consolidate the viability map. This is the SWR (sharp-wave ripple) equivalent in the REE architecture.
+**Functional analog:** During quiescent periods between active E3 updates, the hippocampal module performs offline batch replay of compressed recent trajectory experience to consolidate the viability map. This is standard experience replay — implementable in any substrate. The SWR mechanism is not required; the functional requirement is offline consolidation during idle periods.
+
+**Biological mechanism (SNN-specific):** During quiescent E3 heartbeat cycles — periods when no new completion event or salient update is incoming — the hippocampal module performs *replay*: replaying compressed representations of recent trajectory experience to consolidate the viability map. This is the SWR (sharp-wave ripple) equivalent in the REE architecture.
 
 Sharp-wave ripples in biological hippocampus occur during quiescent periods (rest, inter-trial intervals, slow-wave sleep) and replay compressed sequences (~10–20× faster than real time) for consolidation. They do not require external input — they are internally generated by CA3 recurrent dynamics.
 
@@ -121,10 +150,11 @@ Sharp-wave ripples in biological hippocampus occur during quiescent periods (res
 ---
 
 <a id="mech-093"></a>
-## z_beta modulates E3 heartbeat frequency (MECH-093)
+## z_beta modulates E3 update rate (MECH-093)
 
 **Claim Type:** mechanism_hypothesis
-**Subject:** affective.z_beta_e3_heartbeat_rate_modulation
+**Subject:** affective.z_beta_e3_update_rate_modulation
+**Claim Level:** functional
 **Status:** candidate
 **Claim ID:** MECH-093
 
@@ -160,4 +190,4 @@ V3 must implement genuinely asynchronous multi-rate execution. Options:
 
 **Recommendation for V3:** HTA (option 3) co-designed with SD-004 (action objects) and SD-005 (z_self/z_world split). The temporal grain boundaries should align with the representational boundaries: E1 raw sensory → E2 action-object → E3 trajectory/harm are already distinct abstraction levels; each level's update rate should match its abstraction grain.
 
-**Experiment implication:** Until SD-006 is implemented, any experiment testing ARC-023, MECH-089, MECH-090, MECH-091, MECH-092, or MECH-093 will produce null results by construction (the mechanism doesn't exist in the substrate). These claims are V3-scoped.
+**Experiment implication:** Until SD-006 is implemented, any experiment targeting the *biological mechanism* of ARC-023, MECH-089, MECH-090, MECH-091, MECH-092, or MECH-093 will produce null results by construction. However, experiments can target the *functional analog* of mixed and mechanistic claims without SD-006 — the functional requirement (rate separation, temporal batching, commitment gating, cycle resync, offline replay) is implementable in the current synchronous ANN substrate as a simplified proxy. These functional-analog experiments are a valid V3 pre-test before full SD-006 async execution is in place.

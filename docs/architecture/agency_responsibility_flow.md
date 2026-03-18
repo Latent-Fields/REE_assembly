@@ -49,6 +49,8 @@ it acquires:
 - counterfactual sensitivity (“if I did otherwise, the world would differ”),
 - morally shaped learning (“some interventions are constrained”).
 
+**MECH-095 implementation note (V3):** The “compare predicted versus observed reafference” step above is operationalised by the TPJ agency-detection comparator (MECH-095). It sits at the z_self/z_world interface (SD-005), compares E2's efference-copy prediction of `z_self_{t+1}` against the dorsal-encoder observed `z_self_{t+1}`, and outputs an `agency_signal` that routes state change to self-caused (no residue) or world-contributed (residue candidate). Without MECH-095, the reafference comparison conflates proprioceptive self-effects with world-directed footprint — the V2 SD-003 failure mechanism. See `docs/architecture/tpj_agency_comparator.md`.
+
 This creates an internal responsibility flow. Responsibility attaches where action meets prediction error.
 
 ---
@@ -402,6 +404,7 @@ responsibility boundaries, or social modelability. This remains an open empirica
 - MECH-023
 - MECH-024
 - MECH-057a
+- MECH-095 (TPJ comparator — operationalises ARC-015 reafference comparison step, V3)
 - MECH-057b
 - MECH-058
 - MECH-059

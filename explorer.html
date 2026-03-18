@@ -1922,6 +1922,7 @@
     }
     .exp-version-chip.v1 { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
     .exp-version-chip.v2 { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+    .exp-version-chip.v3 { background: #e3f2fd; color: #1565c0; border-color: #90caf9; }
     .exp-version-subhead {
       font-size: 10px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.08em; color: var(--muted);
@@ -7502,13 +7503,19 @@ END CONFLICT RESOLUTION`;
     function inferVersion(item) {
       if (item.ree_version) {
         const v = item.ree_version.toLowerCase();
-        if (v.includes('v1')) return 'v1';
+        if (v.includes('v3')) return 'v3';
         if (v.includes('v2')) return 'v2';
+        if (v.includes('v1')) return 'v1';
         return v;
       }
-      const path = item.output_file || '';
-      if (path.includes('ree-v1-minimal') || path.includes('ree_v1')) return 'v1';
+      const path = item.output_file || item.script || item.queue_id || '';
+      if (path.includes('ree-v1-minimal') || path.includes('ree_v1') || /\bv1[-_]/i.test(path)) return 'v1';
+      if (path.includes('ree-v3') || path.includes('ree_v3') || /V3-EXQ/i.test(path)) return 'v3';
       if (path.includes('ree-v2') || path.includes('ree_v2')) return 'v2';
+      const qid = item.queue_id || '';
+      if (/^V3-/i.test(qid)) return 'v3';
+      if (/^V1-/i.test(qid)) return 'v1';
+      if (/^EXQ-/.test(qid)) return 'v2';
       return 'unknown';
     }
 
@@ -7534,7 +7541,7 @@ END CONFLICT RESOLUTION`;
     }
 
     function versionRenderOrder(groups) {
-      const order = ['v2', 'v1', 'unknown'];
+      const order = ['v3', 'v2', 'v1', 'unknown'];
       const extra = Object.keys(groups).filter(v => !order.includes(v)).sort();
       return [...order, ...extra].filter(v => groups[v] && groups[v].length > 0);
     }
@@ -7565,6 +7572,7 @@ END CONFLICT RESOLUTION`;
       return `
         <div class="exp-card running">
           <div class="exp-card-header">
+            ${cur.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(cur.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(cur.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(cur.title || '')}</span>
             ${expBadgeHtml('running')}
@@ -7599,6 +7607,7 @@ END CONFLICT RESOLUTION`;
       return `
         <div class="exp-card ${s}">
           <div class="exp-card-header">
+            ${qi.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(qi.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(qi.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(qi.title || '')}</span>
             ${expBadgeHtml(qi.status)}
@@ -7627,6 +7636,7 @@ END CONFLICT RESOLUTION`;
       return `
         <div class="exp-card ${resultClass}">
           <div class="exp-card-header">
+            ${c.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(c.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(c.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(c.title || '')}</span>
             ${expBadgeHtml('', c.result)}
@@ -7665,6 +7675,18 @@ END CONFLICT RESOLUTION`;
         if (er.ok) evidenceRuns = await er.json();
       } catch (_) {}
 
+      // Fetch queue files directly (independent of runner state)
+      let queueFromFiles = [];
+      for (const ver of ['v3', 'v2']) {
+        try {
+          const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
+          if (qr.ok) {
+            const qd = await qr.json();
+            (qd.items || []).forEach(qi => { if (qi.status !== 'completed') queueFromFiles.push(qi); });
+          }
+        } catch (_) {}
+      }
+
       // Build a map from script basename → evidence run info
       // Key: experiment dir name (e.g. "rollout_viability_mapping")
       // Also build a map from claim_id → evidence info for queue cross-referencing
@@ -7676,7 +7698,8 @@ END CONFLICT RESOLUTION`;
 
       const isRunning = !!(status && !status.idle && status.runner_pid);
       const cur = status && status.current;
-      const queue = (status && status.queue) || [];
+      // Use queue from files (always up-to-date) rather than runner_status.json
+      const queue = queueFromFiles;
       const completed = [...((status && status.completed) || [])].reverse();
       const lastUpdated = status && status.last_updated
         ? status.last_updated.replace('T', ' ').replace('Z', ' UTC') : '';
@@ -7689,25 +7712,45 @@ END CONFLICT RESOLUTION`;
       let html = `
         <div class="exp-section">
           <div class="exp-section-title">Runner Control</div>
-          <div class="exp-card" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
-            <div style="flex:1;min-width:260px">
-              <div style="font-size:13px;margin-bottom:10px">Status: ${statusDot}</div>
-              <div class="exp-desc" style="margin:0;line-height:1.9">
-                <strong>Start server</strong>:<br>
-                <code>cd ~/Documents/GitHub/REE_Working/REE_assembly</code><br>
-                <code>caffeinate -i python3 serve.py</code><br>
-                <span style="color:var(--muted);margin-top:4px;display:block">
-                  Experiments run detached in background &mdash; log saved to
-                  <code>runner.log</code> in REE_assembly.<br>
-                  Each experiment takes ~15&nbsp;min on M2&nbsp;Air&nbsp;8&nbsp;GB.
-                  Queue runs sequentially to stay within memory.
-                </span>
+          <div class="exp-card">
+            <div style="display:flex;gap:20px;flex-wrap:wrap">
+
+              <!-- V3 Runner -->
+              <div style="flex:1;min-width:220px;padding:10px 14px;background:#f7fafa;border:1px solid #c8dfe0;border-radius:6px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+                  <span style="font-weight:600;font-size:13px;color:var(--accent)">V3 Runner</span>
+                  <span id="v3StatusDot" style="font-size:12px"></span>
+                </div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
+                  ree-v3 &bull; reads <code>ree-v3/experiment_queue.json</code>
+                </div>
+                <div style="display:flex;gap:6px">
+                  <button id="v3StartBtn" style="flex:1;font-size:12px;padding:6px 0">&#9654; Start</button>
+                  <button id="v3StopBtn" class="ghost" style="flex:1;font-size:12px;padding:6px 0">&#9632; Stop</button>
+                </div>
+                <div id="v3CtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px;margin-top:4px"></div>
               </div>
+
+              <!-- V2 Runner -->
+              <div style="flex:1;min-width:220px;padding:10px 14px;background:#fdf8f5;border:1px solid #e0cfc4;border-radius:6px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+                  <span style="font-weight:600;font-size:13px;color:var(--accent-2)">V2 Runner</span>
+                  <span id="v2StatusDot" style="font-size:12px"></span>
+                </div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
+                  ree-v2 &bull; reads <code>ree-v2/experiment_queue.json</code>
+                </div>
+                <div style="display:flex;gap:6px">
+                  <button id="v2StartBtn" style="flex:1;font-size:12px;padding:6px 0">&#9654; Start</button>
+                  <button id="v2StopBtn" class="ghost" style="flex:1;font-size:12px;padding:6px 0">&#9632; Stop</button>
+                </div>
+                <div id="v2CtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px;margin-top:4px"></div>
+              </div>
+
             </div>
-            <div style="display:flex;flex-direction:column;gap:8px;min-width:150px;align-items:stretch">
-              <button id="expStartBtn" ${isRunning ? 'disabled' : ''}>&#9654; Start Runner</button>
-              <button id="expStopBtn" class="ghost" ${!isRunning ? 'disabled' : ''}>&#9632; Stop Runner</button>
-              <div id="expCtrlMsg" style="font-size:11px;color:var(--muted);min-height:16px"></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5">
+              Runners execute experiments sequentially. Log: <code>REE_assembly/runner.log</code>.
+              Queue runs within 8&nbsp;GB memory on M2&nbsp;Air.
             </div>
           </div>
         </div>`;
@@ -7720,9 +7763,9 @@ END CONFLICT RESOLUTION`;
           <div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div></div>`;
       }
 
-      // ── Queue ──
+      // ── Queue (always shown) ──
+      html += `<div class="exp-section"><div class="exp-section-title">Queue${queue.length > 0 ? ` &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}` : ''}</div>`;
       if (queue.length > 0) {
-        html += `<div class="exp-section"><div class="exp-section-title">Queue &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}</div>`;
         const queueGroups = groupByVersion(queue);
         const queueVersions = versionRenderOrder(queueGroups);
         const queueItemWithEvidence = qi => {
@@ -7738,8 +7781,10 @@ END CONFLICT RESOLUTION`;
         } else {
           html += queue.map(queueItemWithEvidence).join('');
         }
-        html += '</div>';
+      } else {
+        html += `<div class="exp-card"><div class="exp-desc" style="color:var(--muted);text-align:center;padding:12px 0">No experiments queued</div></div>`;
       }
+      html += '</div>';
 
       // ── Completed ──
       // Show all runs; annotate each with total on-disk run count for that experiment
@@ -7763,6 +7808,7 @@ END CONFLICT RESOLUTION`;
             );
             return {
               claim_id: ev.claim_id || '',
+              queue_id: queueMatch ? queueMatch.queue_id : '',
               title: queueMatch ? queueMatch.title : scriptName.replace(/_/g, ' '),
               description: queueMatch ? queueMatch.description : '',
               result: ev.latest_verdict,
@@ -7786,36 +7832,62 @@ END CONFLICT RESOLUTION`;
       html += `<div class="exp-refresh-note">Refreshes every ${EXP_REFRESH_MS / 1000}s${lastUpdated ? ` &mdash; last updated ${escapeHtml(lastUpdated)}` : ''}</div>`;
       els.expContent.innerHTML = html;
 
-      // Wire buttons (after innerHTML set)
-      const startBtn = document.getElementById('expStartBtn');
-      const stopBtn  = document.getElementById('expStopBtn');
-      const ctrlMsg  = document.getElementById('expCtrlMsg');
+      // Wire runner buttons (after innerHTML set)
+      // Fetch live runner status from serve.py to set button states
+      let runnerInfo = {};
+      try {
+        const rs = await fetch('/api/runner/status?t=' + Date.now());
+        if (rs.ok) runnerInfo = await rs.json();
+      } catch (_) {}
 
-      if (startBtn) {
-        startBtn.addEventListener('click', async () => {
-          startBtn.disabled = true;
-          startBtn.textContent = 'Starting\u2026';
-          const r = await callRunnerAPI('/api/runner/start');
-          if (ctrlMsg) ctrlMsg.textContent =
-            r.status === 'started'         ? `Started (PID ${r.pid})` :
-            r.status === 'already_running' ? `Already running (PID ${r.pid})` :
-            r.message || r.status;
-          setTimeout(() => renderExperiments(), 800);
-        });
+      // Helper: wire start/stop for a substrate version
+      function wireRunnerButtons(ver) {
+        const startBtn = document.getElementById(ver + 'StartBtn');
+        const stopBtn  = document.getElementById(ver + 'StopBtn');
+        const ctrlMsg  = document.getElementById(ver + 'CtrlMsg');
+        const dotEl    = document.getElementById(ver + 'StatusDot');
+
+        const info = runnerInfo[ver] || {};
+        const running = !!info.running;
+
+        // Update status dot
+        if (dotEl) {
+          dotEl.innerHTML = running
+            ? `<span style="color:#2e7d32;font-weight:600">&#9679; Running${info.pid ? ' (PID ' + info.pid + ')' : ''}</span>`
+            : `<span style="color:var(--muted)">&#9675; Idle</span>`;
+        }
+
+        if (startBtn) {
+          startBtn.disabled = running;
+          startBtn.addEventListener('click', async () => {
+            startBtn.disabled = true;
+            startBtn.textContent = 'Starting\u2026';
+            const r = await callRunnerAPI('/api/runner/' + ver + '/start');
+            if (ctrlMsg) ctrlMsg.textContent =
+              r.status === 'started'         ? `Started (PID ${r.pid})` :
+              r.status === 'already_running' ? `Already running (PID ${r.pid})` :
+              r.message || r.status;
+            setTimeout(() => renderExperiments(), 800);
+          });
+        }
+
+        if (stopBtn) {
+          stopBtn.disabled = !running;
+          stopBtn.addEventListener('click', async () => {
+            stopBtn.disabled = true;
+            stopBtn.textContent = 'Stopping\u2026';
+            const r = await callRunnerAPI('/api/runner/' + ver + '/stop');
+            if (ctrlMsg) ctrlMsg.textContent =
+              r.status === 'stopped'     ? 'Stopped.' :
+              r.status === 'not_running' ? 'Was not running.' :
+              r.message || r.status;
+            setTimeout(() => renderExperiments(), 800);
+          });
+        }
       }
 
-      if (stopBtn) {
-        stopBtn.addEventListener('click', async () => {
-          stopBtn.disabled = true;
-          stopBtn.textContent = 'Stopping\u2026';
-          const r = await callRunnerAPI('/api/runner/stop');
-          if (ctrlMsg) ctrlMsg.textContent =
-            r.status === 'stopped'     ? 'Runner stopped.' :
-            r.status === 'not_running' ? 'Runner was not running.' :
-            r.message || r.status;
-          setTimeout(() => renderExperiments(), 800);
-        });
-      }
+      wireRunnerButtons('v3');
+      wireRunnerButtons('v2');
     }
 
     // ── End Experiment Runner dashboard ─────────────────────────────────────
@@ -8132,9 +8204,9 @@ END CONFLICT RESOLUTION`;
         showErrorHtml(
           'Opened via <code>file://</code>. This page needs a local server to read repo files.<br><br>' +
           'In Terminal:<br>' +
-          '<pre>cd ~/Documents/GitHub/REE_Working/REE_assembly\ncaffeinate -i python3 serve.py</pre>' +
+          '<pre style="user-select:all">cd ~/Documents/GitHub/REE_Working/REE_assembly && caffeinate -i python3 serve.py</pre>' +
           'Then open:<br>' +
-          '<pre>http://localhost:8000/explorer</pre>'
+          '<pre style="user-select:all">http://localhost:8000/explorer</pre>'
         );
         return;
       } else {

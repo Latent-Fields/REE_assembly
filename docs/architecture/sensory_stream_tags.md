@@ -139,9 +139,33 @@ None noted in preserved sources.
 - MECH-064
 - MECH-065
 
+## Three-Stream Biological Mapping (added 2026-03-17)
+
+HCP connectome analysis (Haak & Beckmann 2018, Cortex 98:73–83, n=470) confirmed three
+anatomically distinct visual pathways — not the classical two. These map directly onto
+ARC-017 stream tags:
+
+| Biological stream | White matter | REE stream tag | Engine |
+|---|---|---|---|
+| Dorsal (IPS/occipitoparietal) | SLF I/II | `SELF_SENSORY` | E2 (z_self) |
+| Ventral (VO/PHC) | Ventral occipitotemporal | `WORLD` | E1/E3 (z_world content) |
+| Lateral/third (MT→MST→STS) | Lateral STS pathway | `AGENCY` / `HARM` | E3 harm channel |
+
+Key implication: the `SELF_SENSORY` tag (reafferent consequences of own motor output)
+corresponds to the dorsal stream + efference copy pathway (premotor → PPC via SLF,
+confirmed by Rolls et al. 2023 HCP 7T tractography). The lateral/third stream — specialised
+for dynamic motion and biological motion — terminates near TPJ and feeds the agency/harm
+detection channel (MECH-095, MECH-099) rather than the world-content representation.
+
+This anatomically grounds MECH-069 (incommensurability): the three error signals are
+incommensurable in part because they run on physically distinct hardware with distinct
+white matter tracts. See `docs/thoughts/2026-03-17_three_stream_reafference.md` and
+`evidence/literature/targeted_review_reafference_streams/`.
+
 ## References / Source Fragments
 
 - `docs/thoughts/2026-02-08_sensory_stream_tags.md`
 - `docs/thoughts/2026-02-09_valence_vector.md`
 - `docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md`
 - `docs/thoughts/2026-02-17_control_plane_update.md`
+- `docs/thoughts/2026-03-17_three_stream_reafference.md`
