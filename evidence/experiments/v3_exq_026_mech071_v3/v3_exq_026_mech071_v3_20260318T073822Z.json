@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "warmup_harm_events": 2.0,
+    "warmup_agent_hazard": 0.0,
+    "warmup_env_hazard": 2.0,
+    "mean_harm_score_none": 0.511859729886055,
+    "mean_harm_score_env_hazard": 0.0,
+    "mean_harm_score_agent_hazard": 0.0,
+    "calibration_gap": -0.511859729886055,
+    "env_gap": -0.511859729886055,
+    "harm_pred_std": 0.00039637667941860855,
+    "n_none_steps": 8.0,
+    "n_env_hazard_steps": 0.0,
+    "n_agent_hazard_steps": 0.0,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-026 \u2014 MECH-071 V3: E3.harm_eval Calibration Gap\n\n**Status:** FAIL\n**Claim:** MECH-071 V3 redesign (harm_eval belongs on E3, not E2)\n**alpha_world:** 0.9  (SD-008: must be >= 0.9 for event sensitivity)\n**alpha_self:** 0.3\n**Warmup:** 3 eps (random policy, 12\u00d712, 15 hazards, drift)\n**Eval:** 1 eps\n**Seed:** 0\n\n## Motivation\n\nV3 redesign of MECH-071: harm evaluation lives on E3 (harm_eval_head), NOT on E2.\nV2 approach (EXQ-027: E2.predict_harm calibration_gap \u2248 0.0007) failed because:\n1. z_gamma (unified) dominated by perspective shift (SD-003 identity shortcut)\n2. alpha=0.3 suppressed all event responses to ~30%\n\nThis test checks whether E3.harm_eval(z_world) can distinguish world states\ncorresponding to agent-caused hazard vs normal locomotion. Uses alpha_world=0.9\nso z_world responds sharply to events (SD-008 prerequisite).\n\n## E3 harm_eval Scores by Event Type\n\n| Event Type | mean E3.harm_eval | n_steps |\n|---|---|---|\n| none (locomotion) | 0.5119 | 8 |\n| env_caused_hazard | 0.0000 | 0 |\n| agent_caused_hazard | 0.0000 | 0 |\n\n- **calibration_gap** (agent - none): **-0.5119**\n- **env_gap** (env - none): **-0.5119**\n- harm_pred_std: 0.0004\n\n## Training Summary\n\n- warmup_harm: 2\n- agent_hazard events: 0\n- env_hazard events: 2\n- benefit: 0\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: calibration_gap > 0.05 (agent-caused > none) | FAIL | -0.5119 |\n| C2: env_gap > 0.01 (env-caused > none) | FAIL | -0.5119 |\n| C3: harm_pred_std > 0.01 (not collapsed) | FAIL | 0.0004 |\n| C4: n_agent_hazard_steps >= 5 | FAIL | 0 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 1/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: calibration_gap=-0.5119 <= 0.05\n- C2 FAIL: env_gap=-0.5119 <= 0.01\n- C3 FAIL: harm_pred_std=0.0004 <= 0.01 (collapsed)\n- C4 FAIL: n_agent_hazard_steps=0 < 5\n",
+  "claim_ids": [
+    "MECH-071",
+    "SD-003",
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_026_mech071_v3",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260318T073822Z",
+  "claim": "MECH-071",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_026_mech071_v3_20260318T073822Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

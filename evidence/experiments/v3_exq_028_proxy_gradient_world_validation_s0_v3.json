@@ -1,0 +1,44 @@
+{
+  "run_id": "v3_exq_028_proxy_gradient_world_validation_s0_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "queue_id": "V3-EXQ-028",
+  "claim_id": "ARC-024",
+  "timestamp": "2026-03-18T18:55:45.706079+00:00",
+  "seed": 0,
+  "config": {
+    "size": 12,
+    "num_hazards": 4,
+    "num_resources": 5,
+    "harm_scale": 0.02,
+    "proximity_scale": 0.05,
+    "field_decay": 0.5,
+    "episodes": 200,
+    "steps": 200
+  },
+  "metrics": {
+    "mean_dz_world_none": 1.938437471835641e-05,
+    "mean_dz_world_hazard_approach": 0.04640838638071365,
+    "mean_dz_world_benefit_approach": 0.0,
+    "mean_dz_world_env_caused_hazard": 0.06920663115321374,
+    "exposure_approach": 0.02965397708799491,
+    "exposure_none": 0.020872073075350328,
+    "n_hazard_approach": 3334,
+    "n_benefit_approach": 0,
+    "n_none": 320,
+    "total_steps": 3902,
+    "transition_counts": {
+      "hazard_approach": 3334,
+      "resource": 83,
+      "none": 320,
+      "agent_caused_hazard": 116,
+      "env_caused_hazard": 49
+    }
+  },
+  "criteria": {
+    "C1_gradient_dominance": true,
+    "C2_gradient_magnitude": true,
+    "C3_benefit_gradient": null,
+    "C4_ema_accumulation": true
+  },
+  "final_verdict": "PASS"
+}

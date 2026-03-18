@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "world_forward_r2": 0.09687405824661255,
+    "mean_delta_none": 0.0,
+    "mean_delta_approach": 0.1808543638991458,
+    "mean_delta_env_hazard": 0.229245126247406,
+    "mean_delta_agent_hazard": 0.14665904082357883,
+    "mean_causal_sig_none": 0.0,
+    "mean_causal_sig_approach": 0.00014928773957855848,
+    "mean_causal_sig_env_hazard": 0.0022699907422065735,
+    "mean_causal_sig_agent_hazard": 0.0012215077877044678,
+    "attribution_gap": -0.002120703002628015,
+    "n_approach_eval": 49.0,
+    "n_env_hazard_eval": 1.0,
+    "n_agent_hazard_eval": 1.0,
+    "n_none_eval": 0.0,
+    "train_approach_events": 70.0,
+    "train_contact_events": 6.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-030 \u2014 SD-003 Full Attribution on CausalGridWorldV2\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-024, MECH-071\n**World:** CausalGridWorldV2 (proximity_scale=0.05)\n**alpha_world:** 0.9  (SD-008)\n**Seed:** 0\n\n## What This Tests\n\nThe complete SD-003 attribution pipeline on a gradient world:\n  z_world_actual = E2.world_forward(z_world, a_actual)\n  z_world_cf     = E2.world_forward(z_world, a_cf)\n  causal_sig     = E3(z_world_actual) - E3(z_world_cf)\n\nDoes E2 predict action-conditional futures near hazards? Does the causal\nsignature distinguish agent-caused approach from environment-caused hazard?\n\nEXQ-029 confirmed E3 detects gradients. This tests whether E2 models them.\n\n## Attribution Results\n\n| Transition | world_delta | causal_sig | n |\n|---|---|---|---|\n| none (locomotion)    | 0.0000 | 0.0000 | 0 |\n| hazard_approach      | 0.1809 | 0.0001 | 49 |\n| env_caused_hazard    | 0.2292 | 0.0023 | 1 |\n| agent_caused_hazard  | 0.1467 | 0.0012 | 1 |\n\n- **world_forward R\u00b2**: 0.0969  (PASS > 0.05)\n- **attribution_gap** (approach - env): -0.0021  (PASS > 0)\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: delta_approach > delta_none (action-conditional near hazard) | FAIL | 0.1809 vs 0.0000 |\n| C2: attribution_gap > 0 (agent > env attribution) | FAIL | -0.0021 |\n| C3: causal_sig_approach > 0.02 (positive attribution signal) | FAIL | 0.0001 |\n| C4: world_forward_r2 > 0.05 (E2 learned world dynamics) | PASS | 0.0969 |\n| C5: n_approach >= 50 | FAIL | 49 |\n\nCriteria met: 1/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: delta_approach(0.1809) <= delta_none(0.0000) or n_approach=49 < 50\n- C2 FAIL: attribution_gap=-0.0021 <= 0\n- C3 FAIL: causal_sig_approach=0.0001 <= 0.02\n- C5 FAIL: n_approach=49 < 50\n",
+  "claim_ids": [
+    "SD-003",
+    "ARC-024",
+    "MECH-071"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_030_sd003_full_attribution",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260318T193452Z",
+  "claim": "SD-003",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_030_sd003_full_attribution_20260318T193452Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

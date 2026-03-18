@@ -2443,6 +2443,15 @@
     - INV-028
     - INV-029
   location: docs/architecture/five_axioms_foundations.md
+  evidence_quality_note: |
+    EXQ-028 PASS (2026-03-18): Gradient dominance confirmed with random policy on
+    CausalGridWorldV2. mean_dz_world_hazard_approach >> mean_dz_world_none. World
+    generates observable signals before contact events.
+    EXQ-029 PASS (2026-03-18): E3.harm_eval learned graded danger model on gradient world.
+    none=0.373, approach=0.612, contact=0.666. 10× improvement over old world (EXQ-027).
+    E3 extends harm model backward along causal chain from contact to approach. Direct
+    computational instantiation of the philosophical derivation in
+    Philosophy/notes/2026-03-18_love_once_means_love_all.md.
   notes: >
     Because the world exists (INV-027) and the self exists (INV-026), death
     is the asymptotic limit of the harm manifold — the world can end the self,
@@ -2715,26 +2724,36 @@
     - docs/architecture/three_loop_learning_channels.md
 - id: MECH-071
   claim_type: mechanism_hypothesis
-  subject: e2.harm_prediction_calibration_asymmetry
+  subject: e3.harm_eval_calibration_gradient_asymmetry
   polarity: asserts
-  status: candidate
-  v3_pending: true
+  status: provisional
   implementation_phase: v3
   depends_on:
     - MECH-070
+    - ARC-024
   location: docs/architecture/sd_003_experiment_design.md#mech-071
   source:
     - docs/architecture/sd_003_experiment_design.md
   evidence_quality_note: |
-    EXQ-027 FAIL: E2.predict_harm had only indirect, noisy supervision — architecturally
-    wrong. E3 is the harm evaluator. SD-003 must be a joint E2-dynamics + E3-harm-evaluation
-    pipeline. Cannot be tested until V3 z_self/z_world split (SD-005) and joint SD-003
-    pipeline are implemented.
+    EXQ-026 PASS (2026-03-18): E3.harm_eval calibration gap confirmed on CausalGridWorldV2
+    without proxy fields. calibration_gap=0.037 > 0.03 threshold. harm_pred_std=0.069.
+    PASS 5/5 criteria.
+    EXQ-029 PASS (2026-03-18): Much stronger confirmation on CausalGridWorldV2 with proxy
+    gradient fields (ARC-024). calibration_gap_approach=0.239, calibration_gap_contact=0.209,
+    reafference_r2=0.408. E3 learned graded danger model: none=0.373, approach=0.612,
+    contact=0.666. Promoted from candidate → provisional. v3_pending cleared.
+    Subject corrected: was e2.harm_prediction_calibration_asymmetry — E2 is NOT the harm
+    evaluator. E3.harm_eval is the correct locus. EXQ-027 FAIL was the diagnostic that
+    forced this architectural correction.
   notes: >
-    After training, E2.predict_harm(z_t, a_actual) is better calibrated before
-    agent_caused_hazard transitions than env_caused_hazard transitions.
-    Discriminability relies on contamination_view encoding in z_gamma (visible
-    to E2 for agent-caused; absent for env-placed hazards). EXQ-027 tests this.
+    After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
+    and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
+    E3 learns a graded danger model from z_world: approach to hazard increases harm_eval
+    score continuously as proximity increases, not only at contact events.
+    This is the gradient-sensing structure that ARC-024 predicts: the agent learns to
+    detect harm gradients (approach → contact) rather than binary harm endpoints.
+    Discriminability relies on z_world encoding proximity via hazard_field channels
+    (CausalGridWorldV2) and SD-007 reafference correction removing self-motion contamination.
 - id: MECH-072
   claim_type: mechanism_hypothesis
   subject: residue.foreseeable_harm_gating_reduces_false_attribution

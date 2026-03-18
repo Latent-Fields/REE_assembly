@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "reafference_r2": 0.407939076423645,
+    "calibration_gap_approach": 0.2389953916740617,
+    "calibration_gap_contact": 0.2087569250632032,
+    "harm_pred_std": 0.20316778123378754,
+    "mean_score_none": 0.37297767850727137,
+    "mean_score_approach": 0.6119730701813331,
+    "mean_score_env_contact": 0.6661300980127774,
+    "mean_score_agent_contact": 0.49733910912817175,
+    "n_none_eval": 101.0,
+    "n_approach_eval": 832.0,
+    "n_env_hazard_eval": 13.0,
+    "n_agent_hazard_eval": 33.0,
+    "train_approach_events": 8125.0,
+    "train_contact_events": 463.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0
+  },
+  "summary_markdown": "# V3-EXQ-029 \u2014 SD-003 on CausalGridWorldV2: Proxy-Gradient World\n\n**Status:** PASS\n**Claims:** SD-003, SD-007, ARC-024, MECH-071\n**World:** CausalGridWorldV2 (use_proxy_fields=True, proximity_scale=0.05)\n**SD-007 (MECH-101):** ReafferencePredictor(z_world_raw_prev[32] + a[5] \u2192 32)\n**alpha_world:** 0.9  (SD-008)\n**Seed:** 0\n\n## Motivation (ARC-024)\n\nHarm/benefit signals are proxies along gradients toward asymptotic limits. A world\ngenerating harm only at contact models the endpoint, not the gradient. CausalGridWorldV2\ngenerates observable gradient fields preceding contact events:\n- hazard_field_view (25 channels) in world_obs: visible proximity to hazards\n- harm_exposure (EMA) in body_obs: accumulated nociceptive history\n- harm_signal at approach steps: continuous gradient signal before contact\n\nHYPOTHESIS: E3.harm_eval trained on gradient-world data fires at approach, not just contact.\n\n## Key Metrics\n\n| Transition Type | mean E3.harm_eval | n |\n|---|---|---|\n| none (locomotion)        | 0.3730 | 101 |\n| hazard_approach (NEW)    | 0.6120 | 832 |\n| env_caused_hazard        | 0.6661 | 13 |\n| agent_caused_hazard      | 0.4973 | 33 |\n\n- **gap_approach** (approach - none): **0.2390**  (PASS > 0.08)\n- **gap_contact** (contact - none):   **0.2088**  (PASS > 0.05)\n- reafference_r2: **0.4079**  (PASS > 0.10)\n- harm_pred_std: 0.2032\n\n## Training Counts\n\n- approach events: 8125\n- contact events:  463\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_approach > 0.08 (E3 detects approach) | PASS | 0.2390 |\n| C2: gap_contact > 0.05 (E3 still detects contact) | PASS | 0.2088 |\n| C3: reafference_r2 > 0.10 | PASS | 0.4079 |\n| C4: harm_pred_std > 0.01 | PASS | 0.2032 |\n| C5: n_hazard_approach >= 30 | PASS | 832 |\n\nCriteria met: 5/5 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "SD-003",
+    "SD-007",
+    "ARC-024",
+    "MECH-071"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_029_sd003_proxy_gradient_world",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260318T185600Z",
+  "claim": "SD-003",
+  "verdict": "PASS",
+  "run_id": "v3_exq_029_sd003_proxy_gradient_world_20260318T185600Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

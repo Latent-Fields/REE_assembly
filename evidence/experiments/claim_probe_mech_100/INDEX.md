@@ -1,0 +1,13 @@
+# Experiment Index: claim_probe_mech_100
+
+Generated: `2026-03-18T19:52:25.887781Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3` | `2026-03-18T18:03:01Z` | **FAIL** | fatal_error_count=0<br>warmup_harm_events=55227<br>warmup_benefit_events=2114<br>event_classification_acc=0.692<br>calibration_gap=0.000002<br>mean_causal_sig_near_hazard=0.000002 | fatal_error_count:+0<br>warmup_harm_events:+0<br>warmup_benefit_events:+0<br>event_classification_acc:+0<br>calibration_gap:-0.00041<br>mean_causal_sig_near_hazard:-0.001457 | - | - | [`summary`](runs/20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3/summary.md) / [`manifest`](runs/20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3/manifest.json) / [`metrics`](runs/20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3/metrics.json) |
+| `20260318T083631Z_v3_exq_020_event_contrastive_v3` | `2026-03-18T08:36:31Z` | **FAIL** | fatal_error_count=0<br>warmup_harm_events=55227<br>warmup_benefit_events=2114<br>event_classification_acc=0.692<br>calibration_gap=0.000411<br>mean_causal_sig_near_hazard=0.001459 | - | - | - | [`summary`](runs/20260318T083631Z_v3_exq_020_event_contrastive_v3/summary.md) / [`manifest`](runs/20260318T083631Z_v3_exq_020_event_contrastive_v3/manifest.json) / [`metrics`](runs/20260318T083631Z_v3_exq_020_event_contrastive_v3/metrics.json) |

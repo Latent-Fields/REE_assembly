@@ -1,4 +1,4 @@
-# Experiment: claim_probe_sd_003
+# Experiment: claim_probe_mech_100
 
 ## What it tests
 
@@ -12,9 +12,8 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `20260318T031737Z_v3_exq_024_e2w_1step_loss_v3` at `2026-03-18T03:17:37Z` signatures: none
-- `20260318T031643Z_v3_exq_025_e2w_action_divergence_v3` at `2026-03-18T03:16:43Z` signatures: none
-- `20260317T211107Z_v3_exq_012_sd003_net_eval_v3` at `2026-03-17T21:11:07Z` signatures: none
+- `20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3` at `2026-03-18T18:03:01Z` signatures: none
+- `20260318T083631Z_v3_exq_020_event_contrastive_v3` at `2026-03-18T08:36:31Z` signatures: none
 
 Recurring signatures:
 
