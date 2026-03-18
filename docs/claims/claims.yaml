@@ -2464,6 +2464,138 @@
     gradient arrays to the observation, with continuous harm signal proportional
     to proximity. See ree-v3/ree_core/environment/causal_grid_world.py.
 
+# Foundational definitions extracted from Philosophy repo — registered 2026-03-18
+- id: INV-030
+  claim_type: invariant
+  subject: cognition.viability_definition
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-025
+    - INV-027
+  location: docs/invariants.md#inv-030
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Cognition is defined as the maintenance of coherent input-output behaviour
+    across time without catastrophic failure under permanent uncertainty.
+    This definition is deliberately non-truth-seeking. Real cognitive systems —
+    biological, artificial, institutional — operate under permanent uncertainty,
+    partial observability, and delayed feedback. Under these conditions,
+    cognition cannot be characterised as the acquisition of truth but as
+    viability: the capacity to persist coherently without catastrophic failure.
+    Follows from INV-025 (certainty is unavailable) and INV-027 (the world
+    exists and can surprise the agent). A fully certain agent in a transparent
+    world could in principle be truth-seeking; a finite agent in a real world
+    cannot. Viability is what remains when truth-access is structurally denied.
+    Architectural consequence: no REE component optimises toward ground truth.
+    E1/E2 predictions are evaluated for temporal coherence and survivability
+    under action, not correspondence to reality. E3 selects trajectories that
+    preserve long-horizon viability, not accuracy.
+
+- id: INV-031
+  claim_type: invariant
+  subject: epistemology.functional_persistence_replaces_truth
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-025
+    - INV-027
+    - INV-030
+  location: docs/invariants.md#inv-031
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    REE explicitly rejects privileged latent world states. Internal structures
+    are not representations of reality — they are tools for viable engagement
+    with it. Truth is replaced by functional persistence under intervention.
+    A trajectory or internal model persists if and only if it demonstrates
+    temporal survivability: internal coherence across time, compatibility with
+    incoming signals, preservation of future predictability, and viability
+    under interaction with other agents.
+    Action serves as the primary epistemic probe. Perturbation — acting on
+    the world and observing the outcome — reveals which trajectories remain
+    coherent under intervention. This is the only epistemic test available
+    to a finite agent under permanent uncertainty (INV-025) in a real world
+    (INV-027) that can surprise it.
+    Consequence: prediction errors may be tolerated when absorbing them
+    preserves long-horizon viability. A framework that must minimise
+    prediction error at every step cannot do this. REE replaces minimisation
+    with constrained trajectory selection under the viability criterion
+    (INV-030).
+
+- id: ARC-025
+  claim_type: architecture_hypothesis
+  subject: architecture.three_engine_irreducibility
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-030
+  location: docs/architecture/five_axioms_foundations.md
+  notes: >
+    Three functional constraints are necessary and sufficient for viable
+    cognition. Neither two nor four constraints can satisfy all five axioms
+    simultaneously.
+    Two-constraint failures (any pair from E1/E2/E3):
+      E1 + E2 without E3: coherent extrapolation without commitment.
+        Produces analysis without action; temporal depth without decisiveness.
+        Axiom III (self-persistence / viability) violated — the system cannot
+        commit to futures that affect the self.
+      E1 + E3 without E2: impulsive commitment without temporal depth.
+        Produces reactive decisions without long-horizon integration.
+        Axiom III violated again — consequences beyond the immediate step
+        are not modelled.
+      E2 + E3 without E1: brittle rigidity without responsiveness.
+        Produces internally coherent plans that cannot update to rapid
+        signal change. Axiom I (epistemic humility / you can never be sure)
+        violated — the system cannot revise fast enough.
+    Four-constraint redundancy: any decomposition of the triad produces
+    functions already captured by E1/E2/E3. Additional constraints add
+    complexity without new axiomatic coverage. The three-way tension between
+    speed (E1), depth (E2), and commitment (E3) is irreducible.
+    Architectural consequence: the three functional roles must remain
+    distinct and in sustained interaction. Collapsing any two into one
+    produces a recognisable failure mode. This is the architectural basis
+    of the separation of E1/E2/E3 as distinct training targets with
+    incommensurable error signals (MECH-069, ARC-021).
+
+- id: MECH-102
+  claim_type: mechanism_hypothesis
+  subject: ethics.violence_as_terminal_error_correction
+  polarity: asserts
+  status: active
+  depends_on:
+    - INV-029
+    - INV-028
+    - INV-030
+  location: docs/architecture/five_axioms_foundations.md
+  notes: >
+    Violence is terminal error correction: maximal-energy intervention
+    selected when low-energy coherent coordination pathways have been
+    exhausted or are no longer available.
+    This characterisation follows from INV-029 (love as the structural
+    bias toward futures that preserve coordination). The default trajectory
+    selection under love favours repair, exchange, and arbitration — the
+    low-energy pathways that keep future coordination possible. Violence
+    is not selected when low-energy pathways remain viable.
+    Violence emerges when: (a) low-energy coordination pathways have been
+    destroyed or are unavailable, (b) the agent's model projects that
+    no coherent future is reachable without a high-energy corrective
+    intervention, or (c) the commitment architecture has failed such that
+    the agent cannot model consequences beyond the immediate step (ARC-025
+    two-constraint failure).
+    This mechanism is scale-invariant. It applies at the level of
+    individual behaviour, institutional action, and civilizational
+    dynamics. In each case the structural signature is the same:
+    escalation to violence is preceded by collapse of accessible
+    low-energy coordination pathways, not by an absence of ethical
+    constraint.
+    Consequence for alignment: systems that destroy or narrow the space
+    of available low-energy coordination pathways — through coercion,
+    monopolisation of arbitration, or systematic elimination of repair
+    options — predictably produce violence as a downstream consequence,
+    regardless of the ethical framing applied to their actions.
+
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
   claim_type: open_question

@@ -417,6 +417,38 @@ This axiom completes the ethical architecture. Ethics emerges from constraint (I
 
 ---
 
+## Foundational Definitions
+
+<a id="inv-030"></a>
+### INV-030: Cognition Is Viability, Not Truth-Seeking
+
+**Subject:** cognition.viability_definition
+**Polarity:** asserts
+**Claim:** Cognition is defined as the maintenance of coherent input-output behaviour across time without catastrophic failure under permanent uncertainty — not as the acquisition of truth, accurate representation, or optimisation toward a fixed target.
+
+Real cognitive systems operate under permanent uncertainty, partial observability, and delayed feedback. Under these conditions, truth-seeking is not a viable organising principle. Viability is what remains when truth-access is structurally denied (INV-025) and the world retains the power to surprise (INV-027).
+
+**Architectural consequence:** No REE component optimises toward ground truth. E1/E2 predictions are evaluated for temporal coherence and survivability under action. E3 selects trajectories that preserve long-horizon viability, not accuracy. Prediction errors may be tolerated when absorbing them preserves viability.
+
+**Depends on:** INV-025, INV-027
+
+---
+
+<a id="inv-031"></a>
+### INV-031: Truth Is Replaced by Functional Persistence Under Intervention
+
+**Subject:** epistemology.functional_persistence_replaces_truth
+**Polarity:** asserts
+**Claim:** Internal structures in REE are not representations of reality — they are tools for viable engagement with it. A trajectory or internal model persists if and only if it demonstrates temporal survivability: internal coherence across time, compatibility with incoming signals, preservation of future predictability, and viability under interaction with other agents.
+
+Action serves as the primary epistemic probe. Perturbation — acting on the world and observing the outcome — reveals which trajectories remain coherent under intervention. This is the only epistemic test available to a finite agent under permanent uncertainty in a real world that can surprise it.
+
+**Architectural consequence:** The commitment gate (INV-012) is not a truth gate — it is a viability gate. Commitment releases an action whose consequences will test the trajectory against the world. The residue field accumulates what actually happened (INV-004), not what was predicted.
+
+**Depends on:** INV-025, INV-027, INV-030
+
+---
+
 ## Interpretation
 
 These invariants collectively assert that:
