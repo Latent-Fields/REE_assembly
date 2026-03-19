@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_056
 
-Generated: `2026-03-19T21:38:00.328852Z`
+Generated: `2026-03-19T22:13:03.482052Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

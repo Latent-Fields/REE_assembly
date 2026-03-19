@@ -3722,3 +3722,84 @@
     body position only. Fix: ReafferencePredictor(z_world_raw_prev, a)
     → Δz_world_loco. z_world_raw_prev is stored in LatentState and
     available in encode() as prev_state.z_world_raw.
+
+- id: MECH-103
+  claim_type: mechanism_hypothesis
+  subject: e1.multimodal_exteroception_fusion
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-017
+    - ARC-004
+  location: docs/architecture/sensory_stream_tags.md#mech-103
+  source:
+    - docs/thoughts/2026-03-19_sensory_stream_e3_decomposition.md
+  notes: >
+    Different exteroceptive modalities (vision, audition, somatosensory/touch)
+    each contribute differently to E1's shared world latent (z_S / z_world).
+    Multi-source convergence produces more accurate and robust world
+    representations than single-modality input because each modality carries
+    complementary structure: vision (object identity, spatial layout), audition
+    (events, temporal cues, off-screen dynamics), somatosensory (surface
+    properties, contact). Each modality has its own encoder pathway into the
+    shared latent, contributing precision-weighted evidence. Grounds the WORLD
+    stream tag's "modality fusion may occur upstream" in a concrete mechanism.
+    Biological basis: superior temporal sulcus (STS) multisensory convergence;
+    MST integrates optic flow with vestibular and auditory input; cross-modal
+    ventral stream binding (Murray et al. 2004).
+
+- id: ARC-027
+  claim_type: architectural_commitment
+  subject: harm_stream.parallel_thalamic_pathway
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-017
+    - ARC-003
+  location: docs/architecture/sensory_stream_tags.md#arc-027
+  source:
+    - docs/architecture/sensory_stream_tags.md
+  evidence_quality_note: |
+    EXQ-027b PASS (2026-03-19): Reafference diagnostic confirms SD-007 hurts E3
+    calibration when applied to z_world (correction_delta=-0.045, harm_pred_std
+    drops from 0.108 to 0.008). Over-correction explained by applying reafference
+    to a fused stream that includes the nociceptive signal. If z_harm were separate,
+    reafference correction to z_world would not strip the harm signal.
+    EXQ-044 FAIL (2026-03-19): SD-003 attribution collapsed again (world_forward_r2=0.0,
+    all causal_sig ≈ 2.7e-5, E3 harm_eval=0.5 uniform). Sequential training fix was
+    insufficient because the comparison is being made in z_world, which conflates
+    nociceptive and exteroceptive content. Attribution needs to operate on the harm
+    stream specifically, not the mixed world latent.
+    EXQ-045 FAIL (2026-03-19): MECH-102 advantage ladder reversed (none=0.067 >
+    approach=0.049 > contact=0.044). Ethical advantage is highest in safe states
+    because action-space divergence is largest before hazard contact. Consistent
+    with the harm-stream architecture: maximum ethical leverage is in the approach
+    gradient, not at contact — which requires the harm stream to be available
+    during trajectory planning, not only at contact events.
+    EXQ-047 FAIL (2026-03-19): SD-005 split latent improves attribution by 82%
+    (0.034 vs 0.019) but calibration gain (21%) falls below 5pp threshold. Split
+    along z_self/z_world axis is insufficient — nociception needs to be a third
+    separate stream, not subsumed in z_world.
+    All four experiments converge: the current architecture fuses nociceptive content
+    into z_world and this conflation is the root cause of SD-003/SD-007/MECH-102
+    failures. ARC-027 implementation is prerequisite for SD-003 to work.
+  notes: >
+    The HARM stream must be implemented as a parallel sensory pathway with its
+    own sensory input and training signal, not derived from z_world or E1
+    processing. It receives direct thalamic input (fast, coarse threat detection
+    — the "low road") feeding the amygdala-equivalent harm-detection system
+    before cortical world-model processing occurs. Consequences: (1) harm_eval
+    is an input to E3, not a head inside E3; (2) SD-007 reafference correction
+    applies at the HARM stream level, not at z_world — EXQ-027b over-correction
+    is explained by applying reafference to the wrong signal; (3) SD-003
+    attribution compares HARM stream against E2 counterfactual rollout, not
+    internally within E3; (4) EXQ-043/044 calibration collapses are explained:
+    training a sensory detection system through a planning pipeline is
+    architecturally incorrect. Biological basis: spinothalamic tract provides
+    fast nociceptive input direct to amygdala (VPM/Po → amygdala) in parallel
+    with slower cortical route (thalamus → S1 → insula → amygdala). LeDoux
+    (1996) "low road" — amygdala rapid threat response depends on direct pathway,
+    anatomically distinct from cortical world-model processing.
+    Note: previously misregistered as ARC-025 (ID collision with
+    architecture.three_engine_irreducibility). Corrected to ARC-027 (2026-03-19).
