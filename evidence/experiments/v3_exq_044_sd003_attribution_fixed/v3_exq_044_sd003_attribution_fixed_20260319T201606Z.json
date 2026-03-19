@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "causal_sig_none": 2.7959097329105805e-05,
+    "causal_sig_approach": 2.2584987136526105e-05,
+    "causal_sig_contact": 2.139222388146155e-05,
+    "causal_sig_gap_approach": -5.3741101925797005e-06,
+    "causal_sig_gap_contact": -1.1927632550645533e-06,
+    "calibration_gap_approach": -0.00011949359241636426,
+    "mean_harm_eval_approach": 0.5002267759223029,
+    "mean_harm_eval_none": 0.5003462695147193,
+    "n_approach_eval": 424.0,
+    "n_contact_eval": 17.0,
+    "n_none_eval": 19559.0,
+    "terrain_loss_initial": 0.2235783240137108,
+    "terrain_loss_final": 1.4779790126471693e-05,
+    "world_forward_r2": 0.0,
+    "e3_tick_total": 8125.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-044 \u2014 SD-003 Trajectory Attribution (Fixed Sequential Training)\n\n**Status:** FAIL\n**Claims:** SD-003, MECH-102\n**World:** CausalGridWorldV2 (body=12, world=250)\n**alpha_world:** 0.9 (SD-008)  |  **Seed:** 0\n**Predecessors:** EXQ-041 PASS (ThetaBuffer), EXQ-042 PASS (terrain training)\n**Fixes:** EXQ-043 FAIL (E3 calibration collapse from simultaneous training)\n\n## Design: Sequential Training Phases\n\n**EXQ-043 failure mechanism:** Terrain_prior training shifts data distribution seen by\nE3.harm_eval \u2014 agent navigates toward objectives through hazard gradients, making\napproach states dominate harm_buf_pos. E3 collapses to uniform-high output.\n\n**Fix:** Three sequential phases with no cross-contamination:\n\n| Phase | Episodes | What trains | Policy |\n|---|---|---|---|\n| P1: Terrain | 400 | terrain_prior + E2.world_forward + E1 | E3-guided |\n| P2: E3 calib | 200 | E3.harm_eval only | Random (balanced) |\n| P3: Eval | 100 | Frozen | E3-guided |\n\n## Terrain Training (Phase 1)\n\n| Phase | terrain_loss |\n|---|---|\n| Initial (first 100 eps) | 0.2236 |\n| Final (last 100 eps) | 0.0000 |\n\n## Attribution Results (Phase 3)\n\n| Transition Type | causal_sig | n |\n|---|---|---|\n| none | 0.0000 | 19559 |\n| approach | 0.0000 | 424 |\n| contact | 0.0000 | 17 |\n\napproach \u2212 none gap: -0.0000\ncontact \u2212 approach gap: -0.0000\n\n## E3 Calibration (Phase 3)\n\n| Type | mean harm_eval |\n|---|---|\n| none | 0.5003 |\n| approach | 0.5002 |\ncalibration_gap_approach: -0.0001\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: causal_sig_approach > causal_sig_none | FAIL | 0.0000 vs 0.0000 |\n| C2: causal_sig_contact > causal_sig_approach (MECH-102) | FAIL | 0.0000 vs 0.0000 |\n| C3: causal_sig_approach > 0.001 | FAIL | 0.0000 |\n| C4: cal_gap_approach > 0.03 (E3 calibrated) | FAIL | -0.0001 |\n| C5: n_approach_eval >= 30 | PASS | 424 |\n| C6: mean_harm_eval_none < 0.1 (calibration gate) | FAIL | 0.5003 |\n\nCriteria met: 1/6 \u2192 **FAIL**\n\n## Failure Notes\n\n- C6 FAIL (calibration gate): mean_harm_eval_none=0.5003 >= 0.1. E3 collapsed again \u2014 trajectory attribution results are INVALID. Check Phase 2 calibration balance.\n- C1 FAIL: causal_sig_approach=0.0000 <= causal_sig_none=0.0000\n- C2 FAIL: causal_sig_contact=0.0000 <= causal_sig_approach=0.0000 (MECH-102 escalation absent)\n- C3 FAIL: causal_sig_approach=0.0000 <= 0.001 (trajectory scores don't diverge near hazards)\n- C4 FAIL: cal_gap_approach=-0.0001 <= 0.03 (E3 not calibrated)\n",
+  "claim_ids": [
+    "SD-003",
+    "MECH-102"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_044_sd003_attribution_fixed",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T201606Z",
+  "claim": "SD-003",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_044_sd003_attribution_fixed_20260319T201606Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

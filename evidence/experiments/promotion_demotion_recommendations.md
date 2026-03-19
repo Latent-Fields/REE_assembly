@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-19T19:53:37.608156Z`
+Generated: `2026-03-19T21:38:00.328852Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -13,7 +13,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-007` | `active` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-018` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-023` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-024` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `ARC-024` | `provisional` | Demotion review: provisional -> candidate | `demote_to_candidate` | `applied` |
 | `MECH-025` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-033` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -85,23 +85,23 @@ Use this as the human-in-the-loop review queue.
 - Last rationale: User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.
 
 ### ARC-024
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
+- Current status: `provisional`
+- Decision needed: Demotion review: provisional -> candidate
 - Why this decision is needed: overall_conf=0.509, conflict_ratio=1, exp_entries=10, lit_entries=0; directions supports=2, weakens=2, mixed=6, unknown=0, conflict_ratio=1
-- Evidence quality note: EXQ-028 PASS (2026-03-18): Gradient dominance confirmed with random policy on CausalGridWorldV2. mean_dz_world_hazard_approach >> mean_dz_world_none. World generates observable signals before contact events. EXQ-029 PASS (2026-03-18): E3.harm_eval learned graded danger model on gradient world. none=0.373, approach=0.612, contact=0.666. 10× improvement over old world (EXQ-027). E3 extends harm mode…
-- Recommendation: `hold_candidate_resolve_conflict`
+- Evidence quality note: EXQ-028 PASS (2026-03-18): Gradient dominance confirmed with random policy on CausalGridWorldV2. mean_dz_world_hazard_approach >> mean_dz_world_none. World generates observable signals before contact events. Direct confirmation that the simulated world must and does produce proxy-gradient fields. EXQ-029 PASS (2026-03-18): E3.harm_eval learned graded danger model on gradient world. none=0.373, app…
+- Recommendation: `demote_to_candidate`
 - Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
+  - Demote now (reduces false certainty, destabilizes current roadmap references)
+  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
+  - Split into subclaims (isolates conflict, increases registry complexity)
 - Discussion scope with Codex:
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-03-19T19:54:00Z`
-- Last selected option: Hold at candidate — resolve conflict first
-- Last rationale: Post-demotion: EXQ-033 weakens proxy-gradient claim but some supporting V3 evidence present. Hold at candidate pending targeted experiment to resolve conflict.
+- Last logged decision: `applied` by `user` at `2026-03-19T20:35:00Z`
+- Last selected option: Hold at provisional — split resolved conflict scope
+- Last rationale: Governance 2026-03-19: ARC-024 split. Claim was spanning two layers — philosophical/foundational (death/love as asymptotic limits, derived from INV-025-029) and behavioral/capability-expansion prediction (love expands under intelligence). The demotion trigger was correct insofar as the behavioral layer needs more work, but the philosophical layer is architecturally well-supported by EXQ-028/029. Resolved by: splitting behavioral prediction to ARC-026 (candidate, v3); retaining ARC-024 at provisional (not demoting to candidate). Conflict experiment pool reflects ARC-026 scope. No demotion applied.
 
 ### MECH-025
 - Current status: `candidate`

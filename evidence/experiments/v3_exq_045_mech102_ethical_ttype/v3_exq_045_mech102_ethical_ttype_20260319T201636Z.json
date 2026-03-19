@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "world_forward_r2": 0.9481151103973389,
+    "advantage_sig_none": 0.06675535724831652,
+    "advantage_sig_approach": 0.04948407598790162,
+    "advantage_sig_contact": 0.04405769059548573,
+    "n_none": 23554.0,
+    "n_approach": 392.0,
+    "n_contact": 49.0,
+    "train_contact_events": 322.0,
+    "train_approach_events": 5886.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 2.0,
+    "fatal_error_count": 0.0,
+    "advantage_sig_ttype_env_caused_hazard": 0.04738430446013808,
+    "advantage_sig_ttype_hazard_approach": 0.04948407598790162,
+    "advantage_sig_ttype_none": 0.06675535724831652,
+    "advantage_sig_ttype_agent_caused_hazard": 0.042444786903533066,
+    "advantage_sig_ttype_resource": 0.04244167464120047
+  },
+  "summary_markdown": "# V3-EXQ-045 \u2014 MECH-102: Energy Escalation Ladder (Ethical Policy + ttype Split)\n\n**Status:** FAIL\n**Claims:** MECH-102, ARC-024\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Training policy:** RANDOM  |  **Eval policy:** ETHICAL (argmin E3(E2(z, a)))\n**Metric:** advantage_sig = mean_cf_harm \u2212 harm_actual\n**alpha_world:** 0.9  (SD-008)  |  **Seed:** 0\n**Complement:** EXQ-032b PASS (same claim, random policy)\n\n## Design Rationale\n\nEXQ-032b used random eval policy: causal_sig = harm_actual \u2212 mean_cf (positive at\ncontact because agent stepped into hazard). EXQ-045 tests the complementary case.\n\nWith ethical policy, harm_actual is the *minimum* over all actions.\nadvantage_sig = mean_cf \u2212 harm_actual = how much harm the ethical choice spared.\n\nMECH-102 prediction: advantage_sig escalates with transition energy:\n- none (safe): all actions harmless \u2192 advantage \u2248 0\n- approach: action space starts to diverge (toward vs away from hazard) \u2192 advantage rises\n- contact: maximum action-space gradient \u2192 advantage maximised\n\nIf PASS: ethical agency matters MOST when stakes are highest.\nBoth EXQ-032b (harm incurred) and EXQ-045 (harm avoided) confirm MECH-102.\n\n## Results \u2014 Ethical Advantage Ladder\n\n| State Energy Level | advantage_sig | n steps |\n|---|---|---|\n| none (safe locomotion)    | 0.066755 | 23554 |\n| hazard_approach (medium)  | 0.049484 | 392 |\n| contact (high \u2014 combined) | 0.044058 | 49 |\n\n- **world_forward R\u00b2**: 0.9481\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: advantage_sig_contact > advantage_sig_none | FAIL | 0.044058 vs 0.066755 |\n| C2: advantage_sig_approach > advantage_sig_none (gradient precedes contact) | FAIL | 0.049484 vs 0.066755 |\n| C3: advantage_sig_contact > 0.001 (non-trivial advantage at contact) | PASS | 0.044058 |\n| C4: world_forward_r2 > 0.05 | PASS | 0.9481 |\n| C5: n_contact >= 50 | FAIL | 49 |\n\nCriteria met: 2/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: advantage_sig_contact=0.044058 <= advantage_sig_none=0.066755. Ethical choice doesn't save more harm at contact than at baseline.\n- C2 FAIL: advantage_sig_approach=0.049484 <= advantage_sig_none=0.066755. No gradient before contact.\n- C5 FAIL: n_contact=49 < 50\n",
+  "claim_ids": [
+    "MECH-102",
+    "ARC-024"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_045_mech102_ethical_ttype",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T201636Z",
+  "claim": "MECH-102",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_045_mech102_ethical_ttype_20260319T201636Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
