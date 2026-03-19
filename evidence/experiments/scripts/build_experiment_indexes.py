@@ -1691,22 +1691,31 @@ def _recommendation_for_claim(
     # ── end contamination guard ──────────────────────────────────────────────
 
     # ── V3-pending gate ──────────────────────────────────────────────────────
-    # Claims flagged v3_pending or implementation_phase="v3" cannot be
-    # meaningfully tested on current substrate. Suppress promotion/demotion
-    # recommendations and surface the hold reason explicitly.
+    # v3_pending: true → unconditional hold (explicit manual gate, cleared by
+    #   hand once V3 experiments for that specific claim have run).
+    # implementation_phase: v3 → hold only if NO V3 runs exist yet for this
+    #   claim; once V3 evidence arrives the claim graduates to normal evaluation.
     _v3_pending = str(registry_meta.get("v3_pending", "False")).lower() in ("true", "yes", "1") if registry_meta else False
     _impl_phase = str(registry_meta.get("implementation_phase", "")).strip().lower() if registry_meta else ""
-    if _v3_pending or _impl_phase == "v3":
+    _v3_run_ct = sum(
+        1 for e in (matrix or {}).get("entries", [])
+        if str(e.get("claim_id", "")) == claim_id
+        and str(e.get("run_id", "")).endswith("_v3")
+    ) if matrix is not None else 0
+    if _v3_pending or (_impl_phase == "v3" and _v3_run_ct == 0):
+        _hold_reason = (
+            "Claim is flagged v3_pending (explicit manual gate). "
+            "No promotion or demotion should be applied until this flag is cleared."
+        ) if _v3_pending else (
+            f"Claim has implementation_phase=v3 but no V3 experimental runs yet. "
+            f"No promotion or demotion should be applied until V3 experiments complete."
+        )
         return {
             "claim_id": claim_id,
             "current_status": current_status,
             "decision_needed": "Hold — V3 substrate required before meaningful evidence can be collected",
             "recommendation": "hold_pending_v3_substrate",
-            "rationale": (
-                f"Claim is flagged v3_pending or implementation_phase=v3. "
-                f"Current V2 substrate cannot produce valid evidence for this claim. "
-                f"No promotion or demotion should be applied until V3 experiments complete."
-            ),
+            "rationale": _hold_reason,
             "options": [
                 "Wait for V3 substrate implementation (correct path).",
                 "Mark as legacy/deferred if claim is being superseded.",

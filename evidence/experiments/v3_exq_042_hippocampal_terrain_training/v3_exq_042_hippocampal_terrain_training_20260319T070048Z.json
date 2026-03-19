@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "terrain_loss_initial": 311.2741394042969,
+    "terrain_loss_final": 311.2741394042969,
+    "terrain_learned": 0.0,
+    "hippo_mean_residue": NaN,
+    "random_mean_residue": 0.3947139382362366,
+    "hippo_quality_gap": NaN,
+    "calibration_gap_approach": -0.0013686418533325195,
+    "calibration_gap_contact": -0.48250703811645507,
+    "mean_harm_eval_approach": 0.48113839626312255,
+    "mean_harm_eval_none": 0.48250703811645507,
+    "n_approach_eval": 5.0,
+    "world_forward_r2": 0.0,
+    "e3_tick_total": 1.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-042 \u2014 Hippocampal Terrain Training\n\n**Status:** FAIL\n**Claims:** SD-004, ARC-007, MECH-089\n**World:** CausalGridWorldV2 (body=12, world=250)\n**alpha_world:** 0.9 (SD-008)  |  **Seed:** 0\n**Prerequisite:** EXQ-041 PASS (ThetaBuffer stabilises E3 calibration)\n\n## Motivation\n\nEXQ-041 left terrain_prior frozen. In the full pipeline, HippocampalModule\nproposes via CEM guided by terrain_prior, but an untrained terrain_prior produces\nuninformed proposals (equivalent to random sampling).\n\nThis experiment adds terrain_prior training via E3 behavioral cloning. After E3\nselects a trajectory, we teach terrain_prior to predict that trajectory's\naction-object sequence, conditioned on (theta_z_world, e1_prior, residue_val).\n\nterrain_prior should learn: from this world state + residue terrain, E3 prefers\nthese kinds of action objects. Over episodes, proposals become terrain-informed.\n\nARC-007 STRICT (Q-020): proposals scored by residue field only \u2014 no independent\nhippocampal value head. The terrain_prior guides CEM sampling; E3 introduces all\nweighting via J(\u03b6) = F(\u03b6) + \u03bbM(\u03b6) + \u03c1\u03a6_R(\u03b6).\n\n## Results\n\n### Terrain_prior Learning\n| Phase | terrain_loss |\n|---|---|\n| Initial (first 100 eps) | 311.2741 |\n| Final (last 100 eps) | 311.2741 |\n| Reduction | 0.0% |\n\n### Hippocampal vs Random Proposal Quality\n| Proposal type | mean residue score |\n|---|---|\n| Hippocampal (terrain-guided) | nan |\n| Random | 0.394714 |\n| Quality gap (random - hippo) | nan |\n\nPositive quality gap = hippocampal proposals navigate to lower-residue regions.\n\n### E3 Calibration (MECH-089 stability check)\n| Type | mean harm_eval | n |\n|---|---|---|\n| none | 0.4825 | 5 |\n| approach | 0.4811 | 5 |\n| contact | 0.0000 | 0 |\n**calibration_gap_approach:** -0.0014\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: terrain_loss reduced >= 30% | FAIL | 311.2741\u2192311.2741 |\n| C2: hippo_quality_gap > 0 | FAIL | nan |\n| C3: cal_gap_approach > 0.03 | FAIL | -0.0014 |\n| C4: n_approach_eval >= 30 | FAIL | 5 |\n| C5: world_forward R\u00b2 > 0.05 | FAIL | 0.0000 |\n\nCriteria met: 0/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: terrain_loss not sufficiently reduced (initial=311.2741  final=311.2741, threshold=70% reduction). terrain_prior not learning E3's preferences.\n- C2 FAIL: hippo_quality_gap=nan <= 0 (hippo=nan  random=0.394714). Hippocampal proposals not terrain-informed.\n- C3 FAIL: cal_gap_approach=-0.0014 <= 0.03\n- C4 FAIL: n_approach_eval=5 < 30\n- C5 FAIL: world_forward_r2=0.0000 <= 0.05\n",
+  "claim_ids": [
+    "SD-004",
+    "ARC-007",
+    "MECH-089"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_042_hippocampal_terrain_training",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T070048Z",
+  "claim": "SD-004",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_042_hippocampal_terrain_training_20260319T070048Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

@@ -12,9 +12,9 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `20260318T031737Z_v3_exq_024_e2w_1step_loss_v3` at `2026-03-18T03:17:37Z` signatures: none
-- `20260318T031643Z_v3_exq_025_e2w_action_divergence_v3` at `2026-03-18T03:16:43Z` signatures: none
-- `20260317T211107Z_v3_exq_012_sd003_net_eval_v3` at `2026-03-17T21:11:07Z` signatures: none
+- `20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3` at `2026-03-19T10:43:27Z` signatures: none
+- `20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3` at `2026-03-19T06:06:18Z` signatures: none
+- `20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3` at `2026-03-19T05:49:38Z` signatures: none
 
 Recurring signatures:
 

@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3` at `2026-03-19T06:16:23Z` signatures: none
 - `20260316T081406_precision_regime_probe_v2` at `2026-03-16T08:14:06.998592+00:00` signatures: v2_verdict_fail:precision_regime_probe
 - `20260308T123428_precision_regime_probe_v2` at `2026-03-08T12:34:28.042879+00:00` signatures: v2_verdict_fail:precision_regime_probe
 

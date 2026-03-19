@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "fatal_error_count": 0.0,
+    "body_obs_dim": 12.0,
+    "world_obs_dim": 250.0,
+    "stable_mean_running_variance": 0.009011183787548557,
+    "stable_mean_precision": 10365.02110503649,
+    "stable_commit_rate": 0.9051724137931034,
+    "stable_n_commit_decisions": 116.0,
+    "stable_mean_prediction_error": 8.504915966323542e-05,
+    "perturbed_mean_running_variance": 0.049045805996803984,
+    "perturbed_mean_precision": 1544.9340754535901,
+    "perturbed_commit_rate": 0.5,
+    "perturbed_n_commit_decisions": 26.0,
+    "perturbed_mean_prediction_error": 0.00015840209103807506,
+    "recovery_mean_running_variance": 0.014402675735823241,
+    "recovery_commit_rate": 0.8493150684931506,
+    "running_variance_diff_perturbed_minus_stable": 0.040034622209255424,
+    "precision_diff_stable_minus_perturbed": 8820.0870295829,
+    "commit_rate_diff_stable_minus_perturbed": 0.4051724137931034,
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 5.0
+  },
+  "summary_markdown": "# V3-EXQ-031 \u2014 ARC-016 Dynamic Precision Test on CausalGridWorldV2 (Gradient World)\n\n**Status:** PASS\n**World type:** CausalGridWorldV2 (use_proxy_fields=True) \u2014 body_obs_dim=12, world_obs_dim=250\n**Training:** 1000 eps (stable: num_hazards=3, drift_interval=100, drift_prob=0.0)\n**Eval stable:** 50 eps | **Eval perturbed:** 50 eps (num_hazards=20, drift_interval=1, drift_prob=1.0)\n**Recovery:** 30 eps\n**Seed:** 0 | **alpha_world:** 0.9 (SD-008) | **proximity_scale:** 0.05\n\n## Motivation (ARC-016 on Gradient World)\n\nEXQ-018 validated ARC-016 on the original CausalGridWorld (sparse occupancy, body_obs=10,\nworld_obs=200). EXQ-031 re-tests on CausalGridWorldV2, which adds proxy-gradient fields:\n- hazard_field_view (25ch, decay=0.5): continuous proximity gradient toward hazards\n- resource_field_view (25ch): continuous gradient toward resources\n- harm_exposure, benefit_exposure: EMA interoceptive channels in body_state\n\nThese gradient channels provide richer signal for E2.world_forward: when hazards drift\n(perturbed env), field values shift smoothly over many timesteps, producing larger and\nmore structured prediction errors compared to sparse occupancy changes. The ARC-016\nvariance signal should be amplified.\n\n**Separate world_forward optimizer (MECH-069):** E2.world_transition and\nE2.world_action_encoder use a dedicated Adam(lr=1e-3) optimizer, isolated from main\nagent updates. This keeps world-model training from interfering with the E1/E2-self\ntraining signal \u2014 an architectural requirement given incommensurable error channels.\n\n**Architecture:** precision = 1 / (running_variance + \u03b5); committed = running_variance < commit_threshold\n\n## Phase Results\n\n| Phase | mean_var | mean_precision | commit_rate | n_decisions | mean_pred_err |\n|---|---|---|---|---|---|\n| Training (stable) | 0.0005 | 12926.039 | 0.995 | 2309 | 0.00010 |\n| Eval stable | 0.0090 | 10365.021 | 0.905 | 116 | 0.00009 |\n| Eval perturbed | 0.0490 | 1544.934 | 0.500 | 26 | 0.00016 |\n| Recovery | 0.0144 | 7827.790 | 0.849 | 73 | 0.00009 |\n\n**Key differences:**\n- running_variance: perturbed - stable = 0.0400\n- precision: stable - perturbed = 8820.0870\n- commit_rate: stable - perturbed = 0.4052\n\n## Comparison to EXQ-018 (original CausalGridWorld)\n\nGradient world amplified variance gap: 0.0400 vs EXQ-018 baseline ~0.0011 (+0.0389). Prediction confirmed: continuous field channels drive larger E2 prediction errors.\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: var_diff > 0.001 (calibrated from EXQ-018: stable\u22480.0027, perturbed\u22480.0038) | PASS | 0.0400 |\n| C2: precision_stable > precision_perturbed | PASS | 8820.0870 |\n| C3: commit_rate_stable > commit_rate_perturbed | PASS | 0.4052 |\n| C4: n_stable_decisions >= 20 | PASS | 116 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 5/5 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "ARC-016"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_031_arc016_gradient_world",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260318T201853Z",
+  "claim": "ARC-016",
+  "verdict": "PASS",
+  "run_id": "v3_exq_031_arc016_gradient_world_20260318T201853Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

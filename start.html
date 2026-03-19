@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REE Explorer — Start</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --ink: #1f2328;
+      --muted: #5b5f66;
+      --accent: #2b6f72;
+      --accent-2: #b45a2a;
+      --card: #ffffff;
+      --border: #d8d0c3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Gill Sans", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px;
+    }
+    .container {
+      max-width: 640px;
+      width: 100%;
+    }
+    h1 {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      font-size: 26px;
+      margin: 0 0 6px 0;
+      letter-spacing: 0.4px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .step-num {
+      background: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .step-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .cmd-block {
+      position: relative;
+      margin: 6px 0;
+    }
+    .cmd-block pre {
+      background: #f7f4ee;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 10px 40px 10px 12px;
+      margin: 0;
+      font-family: "SF Mono", "Fira Code", "Menlo", monospace;
+      font-size: 12.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+      cursor: pointer;
+      user-select: all;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.15s;
+    }
+    .copy-btn:hover { opacity: 1; }
+    .copy-btn.copied {
+      background: #e8f5e9;
+      border-color: #a5d6a7;
+    }
+    .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 4px;
+    }
+    .label-v3 { background: #e0f2f1; color: var(--accent); }
+    .label-v2 { background: #fbe9e7; color: var(--accent-2); }
+    .open-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 22px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.15s;
+    }
+    .open-link:hover { background: #1e5456; }
+    .open-link-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+    .status-check {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .dot-ok { background: #2e7d32; }
+    .dot-err { background: #c62828; }
+    .dot-wait { background: #f9a825; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>REE Claims Explorer</h1>
+    <div class="subtitle">Start the server, then open the explorer.</div>
+
+    <!-- Step 1: Server -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Start the explorer server</div>
+      </div>
+      <div class="step-desc">
+        Open Terminal and paste this command. Keep the terminal open.
+      </div>
+      <div class="cmd-block">
+        <pre id="cmdServer">cd ~/Documents/GitHub/REE_Working/REE_assembly && caffeinate -i python3 serve.py</pre>
+        <button class="copy-btn" data-target="cmdServer">Copy</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Open -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Open the explorer</div>
+      </div>
+      <div class="step-desc">
+        Once the server is running (you'll see <code>[serve] REE Explorer → http://localhost:8000/explorer</code> in Terminal):
+      </div>
+      <a class="open-link" href="http://localhost:8000/explorer" id="openLink">Open Explorer</a>
+      <div id="serverStatus" class="status-check"></div>
+      <div class="open-link-note">
+        This link only works after step 1. Start experiment runners from the
+        <strong>Experiments</strong> tab using the V3/V2 Start buttons.
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div style="color:var(--muted);font-size:12px;line-height:1.6">
+      <strong>Quick reference</strong><br>
+      Server serves from: <code>~/Documents/GitHub/REE_Working/REE_assembly</code><br>
+      V3 queue: <code>ree-v3/experiment_queue.json</code><br>
+      V2 queue: <code>ree-v2/experiment_queue.json</code><br>
+      Runner status: <code>REE_assembly/evidence/experiments/runner_status.json</code><br>
+      Runner log: <code>REE_assembly/runner.log</code><br>
+      Python (V3): <code>/opt/local/bin/python3</code> (torch 2.10.0)
+    </div>
+  </div>
+
+  <script>
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const targetId = btn.getAttribute('data-target');
+        const pre = document.getElementById(targetId);
+        if (!pre) return;
+        const text = pre.textContent.trim();
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            // Fallback for file:// protocol where clipboard API is blocked
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        } catch {
+          btn.textContent = 'Failed';
+          setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        }
+      });
+    });
+
+    // Check if server is reachable
+    async function checkServer() {
+      const el = document.getElementById('serverStatus');
+      try {
+        const resp = await fetch('http://localhost:8000/explorer.html', { method: 'HEAD', mode: 'no-cors' });
+        el.innerHTML = '<span class="status-dot dot-ok"></span> Server appears to be running';
+      } catch {
+        el.innerHTML = '<span class="status-dot dot-err"></span> Server not detected — run step 1 first';
+      }
+    }
+    // Check on load and periodically
+    checkServer();
+    setInterval(checkServer, 5000);
+  </script>
+</body>
+</html>

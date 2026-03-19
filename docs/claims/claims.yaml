@@ -1036,7 +1036,6 @@
   subject: cognitive_modes.control_plane_regimes
   polarity: asserts
   status: provisional
-  v3_pending: true
   evidence_quality_note: |
     V2 EXQ (precision_regime_probe, 2026-03-08): FAIL (partial_support=true, 1/2 criteria).
     Criterion 1 met: precision gap achieved (1.697, easily). Criterion 2 failed: behavioral
@@ -2537,10 +2536,18 @@
   claim_type: architecture_hypothesis
   subject: architecture.three_engine_irreducibility
   polarity: asserts
-  status: active
+  status: provisional
   depends_on:
     - INV-030
   location: docs/architecture/five_axioms_foundations.md
+  evidence_quality_note: |
+    EXQ-034 PASS (2026-03-19): Direct irreducibility ablation. Three conditions
+    (full, e3_ablated, e2_ablated) on CausalGridWorldV2, same warmup + eval.
+    E3 ablation: cal_gap_approach collapses 0.192 → 0.000 (constant harm_eval=0.5).
+    E2 ablation: attribution_gap collapses 0.034 → 0.000 (no counterfactual signal).
+    Full system holds both simultaneously. Neither engine substitutes for the other.
+    wf_r2 stable across conditions (0.947) confirming E2 world-forward unaffected by
+    harm_eval ablation. PASS 5/5. Promoted active → provisional.
   notes: >
     Three functional constraints are necessary and sufficient for viable
     cognition. Neither two nor four constraints can satisfy all five axioms
@@ -2604,6 +2611,19 @@
     monopolisation of arbitration, or systematic elimination of repair
     options — predictably produce violence as a downstream consequence,
     regardless of the ethical framing applied to their actions.
+  evidence_quality_note: |
+    EXQ-032b PASS (2026-03-19): Energy escalation ladder confirmed via ttype split.
+    Random policy + CausalGridWorldV2. causal_sig by state energy:
+      none (safe locomotion): -0.032
+      hazard_approach (medium): +0.006
+      contact (high, agent+env combined): +0.017
+    Actions are progressively more consequential as the agent enters higher-energy
+    interaction states. wf_r2=0.948. PASS 5/5.
+    Note: EXQ-032 and EXQ-032c both FAIL — harm_exposure EMA operationalization
+    does not work at harm_scale=0.02 (contact too rare for EMA to accumulate).
+    The ttype-split operationalization (EXQ-032b) is the correct test for MECH-102.
+    EXQ-036 (multi-step attribution) will test whether k=5 rollout sharpens the
+    agent_caused vs env_caused contact-type distinction.
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019

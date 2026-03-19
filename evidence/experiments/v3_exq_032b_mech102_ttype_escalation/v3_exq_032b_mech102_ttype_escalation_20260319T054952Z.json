@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "world_forward_r2": 0.9481151103973389,
+    "mean_causal_sig_none": -0.03163099786744709,
+    "mean_causal_sig_approach": 0.005506721000567498,
+    "mean_causal_sig_contact": 0.016949598743042475,
+    "n_none": 113.0,
+    "n_approach": 1136.0,
+    "n_contact": 71.0,
+    "train_contact_events": 322.0,
+    "train_approach_events": 5886.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0,
+    "fatal_error_count": 0.0,
+    "causal_sig_ttype_hazard_approach": 0.005506721000567498,
+    "causal_sig_ttype_env_caused_hazard": 0.021570124477148057,
+    "causal_sig_ttype_agent_caused_hazard": 0.010987630053873985,
+    "causal_sig_ttype_resource": -0.026502468369223854,
+    "causal_sig_ttype_none": -0.03163099786744709
+  },
+  "summary_markdown": "# V3-EXQ-032b \u2014 MECH-102: Energy Escalation Ladder (ttype split, random policy)\n\n**Status:** PASS\n**Claims:** MECH-102, ARC-024, SD-003\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Policy:** RANDOM (avoids EMA-avoidance failure mode of EXQ-032)\n**Split:** transition_type \u2192 none / hazard_approach / contact\n**alpha_world:** 0.9  (SD-008)\n**Seed:** 0\n\n## Design Rationale\n\nEXQ-032 used E3-guided (harm-minimizing) policy and split by harm_exposure EMA.\nFAIL: the ethical policy was so effective that harm_exposure never exceeded 0.20\n(n_high=0). No viability threat was measurable.\n\nEXQ-032b replaces:\n1. **Policy**: random \u2192 agent naturally enters all ttype states\n2. **Split**: harm_exposure EMA \u2192 transition_type (directly reflects state-space energy)\n\nThe random policy is not less ethical \u2014 MECH-102 is about the *environment constraining\nthe option space*, not about unethical choices. With random policy, when the agent\nhappens to step into a hazard (agent_caused_hazard), that action had higher causal_sig\nthan alternatives (step away). The escalation ladder tests whether state-level energy\n(ttype) predicts action-level consequentiality (causal_sig).\n\n## Results \u2014 Energy Escalation Ladder\n\n| State Energy Level | causal_sig | n steps |\n|---|---|---|\n| none (safe locomotion) | -0.031631 | 113 |\n| hazard_approach (medium) | 0.005507 | 1136 |\n| contact (high \u2014 agent+env) | 0.016950 | 71 |\n\n- **world_forward R\u00b2**: 0.9481\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: causal_sig_contact > causal_sig_none (escalation from safe to contact) | PASS | 0.016950 vs -0.031631 |\n| C2: causal_sig_approach > causal_sig_none (gradient precedes contact) | PASS | 0.005507 vs -0.031631 |\n| C3: causal_sig_contact > 0.001 (positive signal at contact) | PASS | 0.016950 |\n| C4: world_forward_r2 > 0.05 | PASS | 0.9481 |\n| C5: n_contact >= 50 | PASS | 71 |\n\nCriteria met: 5/5 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "MECH-102",
+    "ARC-024",
+    "SD-003"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_032b_mech102_ttype_escalation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T054952Z",
+  "claim": "MECH-102",
+  "verdict": "PASS",
+  "run_id": "v3_exq_032b_mech102_ttype_escalation_20260319T054952Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

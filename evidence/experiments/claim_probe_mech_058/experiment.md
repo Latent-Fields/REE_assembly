@@ -12,9 +12,9 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260317T232028Z_v3_exq_019_timescale_v3_v3` at `2026-03-17T23:20:28Z` signatures: none
 - `20260315T045933_e1_e2_terrain_timescale_v2` at `2026-03-15T04:59:33.847875+00:00` signatures: v2_verdict_fail:e1_e2_terrain_timescale
 - `20260226T205244_claim_probe_mech_058_ree_v1_minimal` at `2026-02-26T20:52:44Z` signatures: mech058:latent_stability_criterion_not_met_at_v1_minimal_scale
-- `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal` at `2026-02-21T15:06:49Z` signatures: mech058:anchor_separation_collapse
 
 Recurring signatures:
 - `mech058:anchor_separation_collapse` occurred in 12 FAIL run(s); latest `2026-02-21T150649Z_claim-probe-mech-058_seed47_ema_anchor_off_toyenv_internal_minimal`

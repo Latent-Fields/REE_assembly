@@ -1,10 +1,32 @@
-# Git Workflow
+# REE_assembly
 
-Always follow the standard GitHub flow:
-1. Create a feature branch (`git checkout -b <descriptive-name>`)
-2. Make changes and commit
-3. Push the branch (`git push origin <branch-name>`)
-4. Create a pull request (`gh pr create`)
-5. Do NOT push directly to `master`
+## Git Workflow
 
-Keep branch names short and descriptive (e.g. `fix/training-loop-timeout`, `feat/new-experiment-type`).
+Push directly to `master`: `git push origin HEAD:master`
+
+Do NOT create feature branches or pull requests.
+
+## Multi-Session Coordination
+
+See `REE_Working/CLAUDE.md` for the session startup protocol.
+Check `REE_Working/WORKSPACE_STATE.md` before editing `docs/claims/claims.yaml`.
+
+## Governance Pipeline
+
+From repo root, after experiments complete:
+```
+python scripts/sync_v3_results.py      # (or sync_v2_results.py for V2)
+python scripts/build_experiment_indexes.py
+```
+This updates `evidence/planning/promotion_demotion_recommendations.md`.
+
+## Experiment Result Tagging
+
+- `run_id` must end `_v2` (V2 runs) or `_v3` (V3 runs)
+- `architecture_epoch` must be `"ree_hybrid_guardrails_v1"`
+- Results go to `evidence/experiments/`
+
+## V3-Pending Gate
+
+Claims with `v3_pending: true` or `implementation_phase: v3` in claims.yaml get
+`hold_pending_v3_substrate` recommendations — do not promote until V3 evidence arrives.

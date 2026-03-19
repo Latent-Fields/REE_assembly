@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "fix2_cal_gap_raw": 0.16237792009072094,
+    "fix2_cal_gap_sig": 0.03793813577255056,
+    "fix2_mean_harm_approach_raw": 0.5671121912667884,
+    "fix2_mean_harm_none_raw": 0.4047342711760674,
+    "fix2_wf_r2": 0.9459612369537354,
+    "obsonly_cal_gap_raw": 0.127341419439162,
+    "obsonly_cal_gap_sig": 0.02968340309184614,
+    "obsonly_mean_harm_approach_raw": 0.56341624258026,
+    "obsonly_mean_harm_none_raw": 0.436074823141098,
+    "obsonly_wf_r2": 0.9472927451133728,
+    "sign_inversion_detected": 0.0,
+    "cal_gap_difference_b_minus_a": -0.035036500651558944,
+    "n_approach_obsonly": 775.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0
+  },
+  "summary_markdown": "# V3-EXQ-037 \u2014 MECH-069 Sign Investigation (EXQ-035 Follow-up)\n\n**Status:** PASS\n**Claims:** MECH-069, SD-003\n**World:** CausalGridWorldV2 (proximity_scale=0.05)\n**alpha_world:** 0.9  (SD-008)\n**Seed:** 0\n**Predecessor:** EXQ-035 (FAIL \u2014 calibration_gap_separated=-0.028 < 0)\n\n## Problem Statement\n\nEXQ-035 found negative calibration_gap for BOTH separated and merged conditions.\nE3.harm_eval scores hazard_approach LOWER than none \u2014 backwards from expectation.\nEXQ-026 (obs-only E3 training, simpler setup) got calibration_gap=+0.0375 (PASS).\nHypothesis: Fix 2 (E3 trained on E2-predicted states) causes sign inversion.\n\n## SUB-A Results (Fix2 \u2014 E3 on observed + E2-predicted)\n\n| Transition | mean harm_eval (raw) | mean harm_eval (sigmoid) |\n|---|---|---|\n| none         | 0.4047 | 0.5997 |\n| hazard_approach | 0.5671 | 0.6377 |\n| env_caused_hazard | 0.6022 | 0.6457 |\n| agent_caused_hazard | 0.5267 | 0.6284 |\n\n- **cal_gap_raw**: 0.1624\n- **cal_gap_sig**: 0.0379\n- **wf_r2**: 0.9460\n\n## SUB-B Results (ObsOnly \u2014 E3 on observed states only, as in EXQ-026)\n\n| Transition | mean harm_eval (raw) | mean harm_eval (sigmoid) |\n|---|---|---|\n| none         | 0.4361 | 0.6072 |\n| hazard_approach | 0.5634 | 0.6369 |\n| env_caused_hazard | 0.5537 | 0.6345 |\n| agent_caused_hazard | 0.5442 | 0.6325 |\n\n- **cal_gap_raw**: 0.1273\n- **cal_gap_sig**: 0.0297\n- **wf_r2**: 0.9473\n\n## Diagnostic\n\n**Sign inversion detected (Fix2<0 and ObsOnly>0):** NO\n**cal_gap difference (ObsOnly \u2212 Fix2):** -0.0350\n\n## PASS Criteria (SUB-B must show correct sign)\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: SUB-B cal_gap_raw > 0 (correct sign) | PASS | 0.1273 |\n| C2: SUB-B cal_gap_raw > 0.01 (above noise floor) | PASS | 0.1273 |\n| C3: harm_approach > harm_none (correct ordering) | PASS | 0.5634 vs 0.4361 |\n| C4: wf_r2_obsonly > 0.05 | PASS | 0.9473 |\n| C5: n_approach_obsonly >= 30 | PASS | 775 |\n\nCriteria met: 5/5 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "MECH-069",
+    "SD-003"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_037_mech069_sign_debug",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T060643Z",
+  "claim": "MECH-069",
+  "verdict": "PASS",
+  "run_id": "v3_exq_037_mech069_sign_debug_20260319T060643Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

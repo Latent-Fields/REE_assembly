@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "calibration_gap_approach": -0.0013682544231414795,
+    "calibration_gap_contact": -0.48250612020492556,
+    "mean_harm_eval_approach": 0.4811378657817841,
+    "mean_harm_eval_contact": 0.0,
+    "mean_harm_eval_none": 0.48250612020492556,
+    "n_approach_eval": 5.0,
+    "n_contact_eval": 0.0,
+    "n_none_eval": 5.0,
+    "e3_tick_total": 1.0,
+    "world_forward_r2": 0.0,
+    "running_variance_final": 0.3185035972271103,
+    "alpha_world": 0.9,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-041 \u2014 Full Pipeline Smoke Test: ThetaBuffer E3 Calibration\n\n**Status:** FAIL\n**Claims:** MECH-089, ARC-016, MECH-071\n**World:** CausalGridWorldV2 (body=12, world=250)\n**alpha_world:** 0.9 (SD-008)  |  **Seed:** 0\n**Predecessors:** EXQ-026 PASS (harm_eval on raw z_world), EXQ-037 PASS (sign inversion diagnosed)\n\n## Motivation\n\nFirst experiment to exercise the complete agent pipeline. All prior V3 experiments\ncalled `agent.sense()` then `agent.e3.harm_eval(raw_z_world)` directly, bypassing:\n- **ThetaBuffer** (MECH-089): E3 should receive theta-cycle averages, not raw z_world\n- **HippocampalModule**: terrain-informed trajectory proposals (not random)\n- **MultiRateClock**: E3 fires at its own rate, not every step\n\nEXQ-037 showed sign inversion under Fix2 training. Hypothesis: the inversion was\na distributional artifact of raw z_world \u2260 E2-predicted z_world. ThetaBuffer.summary()\naverages z_world over the last 10 steps, smoothing\nthe distribution. E3 trained on theta-averaged z_world should be stable.\n\nterrain_prior is FROZEN at random init \u2014 this experiment isolates the ThetaBuffer\neffect. EXQ-042 adds terrain_prior training.\n\n## Results\n\n| Transition Type | mean harm_eval | n |\n|---|---|---|\n| none | 0.4825 | 5 |\n| approach | 0.4811 | 5 |\n| contact | 0.0000 | 0 |\n\n**calibration_gap_approach:** -0.0014  (approach \u2212 none)\n**calibration_gap_contact:**  -0.4825  (contact \u2212 none)\n\n## Pipeline Verification\n\n- E3 tick total: 1  (clock functional: True)\n- world_forward R\u00b2: 0.0000\n- final running_variance: 0.3185\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: cal_gap_approach > 0 (no sign inversion) | FAIL | -0.0014 |\n| C2: cal_gap_approach > 0.03 (meaningful) | FAIL | -0.0014 |\n| C3: n_approach_eval >= 30 | FAIL | 5 |\n| C4: e3_tick_count > 0 | PASS | 1 |\n| C5: world_forward R\u00b2 > 0.05 | FAIL | 0.0000 |\n\nCriteria met: 1/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: cal_gap_approach=-0.0014 <= 0 (sign inversion PERSISTS even with ThetaBuffer \u2014 deeper problem, V4 signal)\n- C2 FAIL: cal_gap_approach=-0.0014 <= 0.03\n- C3 FAIL: n_approach_eval=5 < 30\n- C5 FAIL: world_forward_r2=0.0000 <= 0.05\n",
+  "claim_ids": [
+    "MECH-089",
+    "ARC-016",
+    "MECH-071"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_041_full_pipeline_smoke_test",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T070039Z",
+  "claim": "MECH-089",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_041_full_pipeline_smoke_test_20260319T070039Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

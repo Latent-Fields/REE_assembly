@@ -48,7 +48,7 @@
       }
     },
     "ARC-003": {
-      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.52, lit_conf=0.818",
+      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.518, lit_conf=0.817",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -62,7 +62,7 @@
         "lit:computational_neuroscience_empirical": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.52,
+      "experimental_confidence": 0.518,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -73,8 +73,8 @@
       },
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
-      "literature_confidence": 0.818,
-      "overall_confidence": 0.669,
+      "literature_confidence": 0.817,
+      "overall_confidence": 0.667,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -158,7 +158,7 @@
       }
     },
     "ARC-005": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.756, lit_conf=0.818",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.754, lit_conf=0.817",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -171,7 +171,7 @@
         "lit:computational_neuroscience_empirical": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.754,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -182,8 +182,8 @@
       },
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
-      "literature_confidence": 0.818,
-      "overall_confidence": 0.793,
+      "literature_confidence": 0.817,
+      "overall_confidence": 0.792,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -259,49 +259,34 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=14 entry(s), lit=1 entry(s), exp_conf=0.648, lit_conf=0.736",
+      "confidence_rationale": "exp=15 entry(s), lit=1 entry(s), exp_conf=0.674, lit_conf=0.736",
       "direction_counts": {
         "mixed": 0,
-        "supports": 10,
+        "supports": 11,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 15,
+      "entries_total": 16,
       "evidence_class_counts": {
         "exp:exploratory_simulation": 4,
-        "exp:simulation": 10,
+        "exp:simulation": 11,
         "lit:neuroscience_experiment": 1
       },
-      "experimental_confidence": 0.648,
+      "experimental_confidence": 0.674,
       "fail_runs": 5,
-      "genuine_exp_count": 2,
+      "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "20260316T061908_path_memory_ablation_v2",
-      "latest_timestamp_utc": "2026-03-16T06:19:08.594368+00:00",
+      "latest_run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "latest_timestamp_utc": "2026-03-19T09:05:29Z",
       "literature_confidence": 0.736,
-      "overall_confidence": 0.67,
-      "pass_runs": 9,
+      "overall_confidence": 0.69,
+      "pass_runs": 10,
       "recent_entries": [
-        {
-          "claim_id": "ARC-007",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_arc_007",
-          "failure_signatures": [
-            "ledger_editing"
-          ],
-          "run_id": "2026-02-15T213601Z_claim-probe-arc-007_seed1001_trajectory_first_enabled_toyenv_internal_minimal",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-02-15T21:36:01Z"
-        },
         {
           "claim_id": "ARC-007",
           "confidence": 0.75,
@@ -357,105 +342,59 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-16T06:19:08.594368+00:00"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_sd_004",
+          "failure_signatures": [],
+          "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T09:05:29Z"
         }
       ],
-      "runs_total": 15,
+      "runs_total": 16,
       "source_counts": {
-        "experimental": 14,
+        "experimental": 15,
         "literature": 1
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=5 entry(s), lit=4 entry(s), exp_conf=0.795, lit_conf=0.876",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.574, lit_conf=0.875",
       "direction_counts": {
         "mixed": 1,
-        "supports": 4,
+        "supports": 7,
         "unknown": 0,
-        "weakens": 4
+        "weakens": 5
       },
-      "entries_total": 9,
+      "entries_total": 13,
       "evidence_class_counts": {
-        "exp:simulation": 5,
+        "exp:simulation": 9,
         "lit:connectome_gradient_continuous_landscape": 1,
         "lit:intrinsic_network_competition": 1,
         "lit:metastate_hierarchical_dynamics": 1,
         "lit:network_switching_salience_control": 1
       },
-      "experimental_confidence": 0.795,
-      "fail_runs": 4,
-      "genuine_exp_count": 5,
+      "experimental_confidence": 0.574,
+      "fail_runs": 5,
+      "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 4,
         "unknown": 0,
-        "weakens": 4
+        "weakens": 5
       },
-      "latest_run_id": "20260318T173419Z_v3_exq_018_arc016_dynamic_precision_v3",
-      "latest_timestamp_utc": "2026-03-18T17:34:19Z",
-      "literature_confidence": 0.876,
-      "overall_confidence": 0.836,
-      "pass_runs": 1,
+      "latest_run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+      "latest_timestamp_utc": "2026-03-19T07:55:21Z",
+      "literature_confidence": 0.875,
+      "overall_confidence": 0.724,
+      "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_arc_016",
-          "failure_signatures": [
-            "v2_verdict_fail:precision_regime_probe"
-          ],
-          "run_id": "20260308T123428_precision_regime_probe_v2",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-08T12:34:28.042879+00:00"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_arc_016",
-          "failure_signatures": [
-            "v2_verdict_fail:precision_regime_probe"
-          ],
-          "run_id": "20260316T081406_precision_regime_probe_v2",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-16T08:14:06.998592+00:00"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_008",
-          "failure_signatures": [],
-          "run_id": "20260318T025820Z_v3_exq_023_sd008_alpha_world_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-18T02:58:20Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_003",
-          "failure_signatures": [],
-          "run_id": "20260318T031737Z_v3_exq_024_e2w_1step_loss_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-18T03:17:37Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-016",
@@ -469,11 +408,67 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-18T17:34:19Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_arc_016",
+          "failure_signatures": [],
+          "run_id": "20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-18T20:17:24Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_arc_016",
+          "failure_signatures": [],
+          "run_id": "20260318T201853Z_v3_exq_031_arc016_gradient_world_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-18T20:18:53Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_arc_016",
+          "failure_signatures": [],
+          "run_id": "20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:16:23Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_089",
+          "failure_signatures": [],
+          "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T07:55:21Z"
         }
       ],
-      "runs_total": 9,
+      "runs_total": 13,
       "source_counts": {
-        "experimental": 5,
+        "experimental": 9,
         "literature": 4
       }
     },
@@ -526,7 +521,7 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=10 entry(s), lit=6 entry(s), exp_conf=0.518, lit_conf=0.796",
+      "confidence_rationale": "exp=10 entry(s), lit=6 entry(s), exp_conf=0.516, lit_conf=0.795",
       "direction_counts": {
         "mixed": 0,
         "supports": 10,
@@ -540,7 +535,7 @@
         "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.518,
+      "experimental_confidence": 0.516,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -551,8 +546,8 @@
       },
       "latest_run_id": "20260315T125844_rollout_viability_mapping_v2",
       "latest_timestamp_utc": "2026-03-15T12:58:44.288398+00:00",
-      "literature_confidence": 0.796,
-      "overall_confidence": 0.657,
+      "literature_confidence": 0.795,
+      "overall_confidence": 0.656,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -636,7 +631,7 @@
       }
     },
     "ARC-021": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.808, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.806, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -647,7 +642,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.808,
+      "experimental_confidence": 0.806,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -659,7 +654,7 @@
       "latest_run_id": "20260316T232412Z_v3_exq_004_arc021_incommensurability_v3",
       "latest_timestamp_utc": "2026-03-16T23:24:12Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.808,
+      "overall_confidence": 0.806,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -745,8 +740,160 @@
         "literature": 1
       }
     },
+    "ARC-024": {
+      "confidence_rationale": "exp=10 entry(s), lit=0 entry(s), exp_conf=0.509, lit_conf=0",
+      "direction_counts": {
+        "mixed": 6,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 2
+      },
+      "entries_total": 10,
+      "evidence_class_counts": {
+        "exp:simulation": 10
+      },
+      "experimental_confidence": 0.509,
+      "fail_runs": 8,
+      "genuine_exp_count": 10,
+      "genuine_exp_direction_counts": {
+        "mixed": 6,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 2
+      },
+      "latest_run_id": "20260319T060720Z_v3_exq_039_training_progression_v3",
+      "latest_timestamp_utc": "2026-03-19T06:07:20Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.509,
+      "pass_runs": 2,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T05:49:38Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_102",
+          "failure_signatures": [],
+          "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T05:49:52Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_mech_102",
+          "failure_signatures": [],
+          "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T05:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:06:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_mech_071",
+          "failure_signatures": [],
+          "run_id": "20260319T060720Z_v3_exq_039_training_progression_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:07:20Z"
+        }
+      ],
+      "runs_total": 10,
+      "source_counts": {
+        "experimental": 10,
+        "literature": 0
+      }
+    },
+    "ARC-025": {
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "exp:simulation": 1
+      },
+      "experimental_confidence": 0.773,
+      "fail_runs": 0,
+      "genuine_exp_count": 1,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+      "latest_timestamp_utc": "2026-03-18T20:25:55Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.773,
+      "pass_runs": 1,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-025",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_arc_025",
+          "failure_signatures": [],
+          "run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-18T20:25:55Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 1,
+        "literature": 0
+      }
+    },
     "IMPL-022": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.756, lit_conf=0.654",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.754, lit_conf=0.653",
       "direction_counts": {
         "mixed": 2,
         "supports": 0,
@@ -758,7 +905,7 @@
         "exp:ablation": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.754,
       "fail_runs": 2,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -769,8 +916,8 @@
       },
       "latest_run_id": "2026-02-15T175229Z_claim-probe-impl-022_seed29_single_error_stream_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T17:52:29Z",
-      "literature_confidence": 0.654,
-      "overall_confidence": 0.705,
+      "literature_confidence": 0.653,
+      "overall_confidence": 0.704,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -887,8 +1034,56 @@
         "literature": 1
       }
     },
+    "INV-029": {
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.478, lit_conf=0",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "exp:simulation": 1
+      },
+      "experimental_confidence": 0.478,
+      "fail_runs": 1,
+      "genuine_exp_count": 1,
+      "genuine_exp_direction_counts": {
+        "mixed": 1,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "20260318T202510Z_v3_exq_033_training_depth_calibration_v3",
+      "latest_timestamp_utc": "2026-03-18T20:25:10Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.478,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-029",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_arc_024",
+          "failure_signatures": [],
+          "run_id": "20260318T202510Z_v3_exq_033_training_depth_calibration_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T20:25:10Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 1,
+        "literature": 0
+      }
+    },
     "MECH-025": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.82, lit_conf=0.878",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.817, lit_conf=0.878",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -903,7 +1098,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.82,
+      "experimental_confidence": 0.817,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -915,7 +1110,7 @@
       "latest_run_id": "20260316T100752_action_doing_mode_probe_v2",
       "latest_timestamp_utc": "2026-03-16T10:07:52.444539+00:00",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.855,
+      "overall_confidence": 0.854,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1181,7 +1376,7 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=11 entry(s), lit=6 entry(s), exp_conf=0.559, lit_conf=0.791",
+      "confidence_rationale": "exp=11 entry(s), lit=6 entry(s), exp_conf=0.557, lit_conf=0.79",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -1195,7 +1390,7 @@
         "lit:computational_neuroscience_model": 3,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.559,
+      "experimental_confidence": 0.557,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1206,8 +1401,8 @@
       },
       "latest_run_id": "20260315T165927_kernel_chaining_interface_v2",
       "latest_timestamp_utc": "2026-03-15T16:59:27.955457+00:00",
-      "literature_confidence": 0.791,
-      "overall_confidence": 0.675,
+      "literature_confidence": 0.79,
+      "overall_confidence": 0.674,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -1291,7 +1486,7 @@
       }
     },
     "MECH-040": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.506, lit_conf=0.796",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.504, lit_conf=0.796",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1304,7 +1499,7 @@
         "exp:simulation": 8,
         "lit:neuroscience_theory": 2
       },
-      "experimental_confidence": 0.506,
+      "experimental_confidence": 0.504,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1316,7 +1511,7 @@
       "latest_run_id": "exp_0008_20260215T213710679868Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.679868Z",
       "literature_confidence": 0.796,
-      "overall_confidence": 0.622,
+      "overall_confidence": 0.621,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -1397,7 +1592,7 @@
       }
     },
     "MECH-046": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.506, lit_conf=0.771",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.504, lit_conf=0.771",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -1410,7 +1605,7 @@
         "exp:simulation": 8,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.506,
+      "experimental_confidence": 0.504,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1422,7 +1617,7 @@
       "latest_run_id": "exp_0009_20260215T213710739916Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.739916Z",
       "literature_confidence": 0.771,
-      "overall_confidence": 0.612,
+      "overall_confidence": 0.611,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -1503,7 +1698,7 @@
       }
     },
     "MECH-053": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.756, lit_conf=0.771",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.754, lit_conf=0.771",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1516,7 +1711,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.754,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1528,7 +1723,7 @@
       "latest_run_id": "2026-02-15T175234Z_claim-probe-mech-053_seed29_full_axis_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T17:52:34Z",
       "literature_confidence": 0.771,
-      "overall_confidence": 0.764,
+      "overall_confidence": 0.762,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1591,7 +1786,7 @@
       }
     },
     "MECH-054": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.756, lit_conf=0.779",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.754, lit_conf=0.779",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1604,7 +1799,7 @@
         "lit:neuroscience_review": 1,
         "lit:systems_neuroscience": 1
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.754,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -1616,7 +1811,7 @@
       "latest_run_id": "2026-02-15_mech054_lhb_negative_reward_signal_nature2007",
       "latest_timestamp_utc": "2026-02-15T20:54:20Z",
       "literature_confidence": 0.779,
-      "overall_confidence": 0.768,
+      "overall_confidence": 0.766,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1679,7 +1874,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=166 entry(s), lit=10 entry(s), exp_conf=0.71, lit_conf=0.878",
+      "confidence_rationale": "exp=166 entry(s), lit=10 entry(s), exp_conf=0.708, lit_conf=0.878",
       "direction_counts": {
         "mixed": 8,
         "supports": 54,
@@ -1700,7 +1895,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.71,
+      "experimental_confidence": 0.708,
       "fail_runs": 123,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1712,7 +1907,7 @@
       "latest_run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
       "latest_timestamp_utc": "2026-03-16T12:00:00Z",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.794,
+      "overall_confidence": 0.793,
       "pass_runs": 43,
       "recent_entries": [
         {
@@ -1792,7 +1987,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=15 entry(s), lit=7 entry(s), exp_conf=0.607, lit_conf=0.841",
+      "confidence_rationale": "exp=15 entry(s), lit=7 entry(s), exp_conf=0.605, lit_conf=0.84",
       "direction_counts": {
         "mixed": 3,
         "supports": 10,
@@ -1807,7 +2002,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.607,
+      "experimental_confidence": 0.605,
       "fail_runs": 9,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1818,8 +2013,8 @@
       },
       "latest_run_id": "20260315T094933_attribution_completion_gating_v2",
       "latest_timestamp_utc": "2026-03-15T09:49:33.165765+00:00",
-      "literature_confidence": 0.841,
-      "overall_confidence": 0.724,
+      "literature_confidence": 0.84,
+      "overall_confidence": 0.723,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -1906,7 +2101,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.768, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.766, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -1917,7 +2112,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.768,
+      "experimental_confidence": 0.766,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1929,7 +2124,7 @@
       "latest_run_id": "20260315T174543_action_loop_completion_gate_v2",
       "latest_timestamp_utc": "2026-03-15T17:45:43.730022+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.768,
+      "overall_confidence": 0.766,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1954,7 +2149,7 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=160 entry(s), lit=9 entry(s), exp_conf=0.562, lit_conf=0.868",
+      "confidence_rationale": "exp=160 entry(s), lit=9 entry(s), exp_conf=0.56, lit_conf=0.867",
       "direction_counts": {
         "mixed": 4,
         "supports": 93,
@@ -1972,7 +2167,7 @@
         "lit:ml_jepa_target_stability": 1,
         "lit:ml_target_anchor_timescale": 1
       },
-      "experimental_confidence": 0.562,
+      "experimental_confidence": 0.56,
       "fail_runs": 68,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1983,8 +2178,8 @@
       },
       "latest_run_id": "20260317T232028Z_v3_exq_019_timescale_v3_v3",
       "latest_timestamp_utc": "2026-03-17T23:20:28Z",
-      "literature_confidence": 0.868,
-      "overall_confidence": 0.715,
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.714,
       "pass_runs": 92,
       "recent_entries": [
         {
@@ -2068,7 +2263,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.697, lit_conf=0.84",
+      "confidence_rationale": "exp=167 entry(s), lit=6 entry(s), exp_conf=0.695, lit_conf=0.84",
       "direction_counts": {
         "mixed": 65,
         "supports": 78,
@@ -2082,7 +2277,7 @@
         "exp:simulation": 147,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.697,
+      "experimental_confidence": 0.695,
       "fail_runs": 70,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2175,7 +2370,7 @@
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=172 entry(s), lit=13 entry(s), exp_conf=0.56, lit_conf=0.853",
+      "confidence_rationale": "exp=172 entry(s), lit=13 entry(s), exp_conf=0.558, lit_conf=0.853",
       "direction_counts": {
         "mixed": 5,
         "supports": 103,
@@ -2197,7 +2392,7 @@
         "lit:neuroscience_experiment": 5,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.56,
+      "experimental_confidence": 0.558,
       "fail_runs": 72,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2209,7 +2404,7 @@
       "latest_run_id": "20260314T235933_write_locus_contamination_v2",
       "latest_timestamp_utc": "2026-03-14T23:59:33.224038+00:00",
       "literature_confidence": 0.853,
-      "overall_confidence": 0.707,
+      "overall_confidence": 0.706,
       "pass_runs": 100,
       "recent_entries": [
         {
@@ -2290,7 +2485,7 @@
       }
     },
     "MECH-061": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.69, lit_conf=0.744",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.688, lit_conf=0.744",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -2306,7 +2501,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.69,
+      "experimental_confidence": 0.688,
       "fail_runs": 4,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -2318,7 +2513,7 @@
       "latest_run_id": "20260315T024049_commitment_boundary_validation_v2",
       "latest_timestamp_utc": "2026-03-15T02:40:49.515478+00:00",
       "literature_confidence": 0.744,
-      "overall_confidence": 0.712,
+      "overall_confidence": 0.71,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -2397,7 +2592,7 @@
       }
     },
     "MECH-062": {
-      "confidence_rationale": "exp=44 entry(s), lit=2 entry(s), exp_conf=0.912, lit_conf=0.791",
+      "confidence_rationale": "exp=44 entry(s), lit=2 entry(s), exp_conf=0.91, lit_conf=0.791",
       "direction_counts": {
         "mixed": 12,
         "supports": 34,
@@ -2410,7 +2605,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.912,
+      "experimental_confidence": 0.91,
       "fail_runs": 12,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2422,7 +2617,7 @@
       "latest_run_id": "2026-02-21T151442Z_claim-probe-mech-062_seed71_veto_lattice_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-21T15:14:42Z",
       "literature_confidence": 0.791,
-      "overall_confidence": 0.864,
+      "overall_confidence": 0.862,
       "pass_runs": 32,
       "recent_entries": [
         {
@@ -2500,7 +2695,7 @@
       }
     },
     "MECH-063": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.756, lit_conf=0.791",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.754, lit_conf=0.791",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -2513,7 +2708,7 @@
         "lit:computational_neuroscience_theory": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.754,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -2525,7 +2720,7 @@
       "latest_run_id": "2026-02-15T175237Z_claim-probe-mech-063_seed29_full_axis_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T17:52:37Z",
       "literature_confidence": 0.791,
-      "overall_confidence": 0.774,
+      "overall_confidence": 0.772,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -2588,7 +2783,7 @@
       }
     },
     "MECH-067": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.769, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.767, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -2599,7 +2794,7 @@
       "evidence_class_counts": {
         "exp:ablation": 2
       },
-      "experimental_confidence": 0.769,
+      "experimental_confidence": 0.767,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2611,7 +2806,7 @@
       "latest_run_id": "20260227T091355_claim_probe_mech_060_ree_v1_minimal",
       "latest_timestamp_utc": "2026-02-27T09:13:55Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.769,
+      "overall_confidence": 0.767,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -2699,48 +2894,34 @@
       }
     },
     "MECH-069": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.808, lit_conf=0.802",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.911, lit_conf=0.802",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 3,
+        "mixed": 2,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 2,
+        "exp:simulation": 4,
         "lit:connectome_analysis": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.808,
-      "fail_runs": 1,
-      "genuine_exp_count": 2,
+      "experimental_confidence": 0.911,
+      "fail_runs": 2,
+      "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
-        "supports": 1,
+        "mixed": 2,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-17_three_streams_haak2018",
-      "latest_timestamp_utc": "2026-03-17T21:00:00Z",
+      "latest_run_id": "20260319T060643Z_v3_exq_037_mech069_sign_debug_v3",
+      "latest_timestamp_utc": "2026-03-19T06:06:43Z",
       "literature_confidence": 0.802,
-      "overall_confidence": 0.805,
-      "pass_runs": 1,
+      "overall_confidence": 0.867,
+      "pass_runs": 2,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-069",
-          "confidence": 0.75,
-          "confidence_rationale": "Friston et al. provide formal predictive coding architecture for distinct interoceptive (body/self) vs exteroceptive (world) generative models, with separate prediction error streams \u2014 directly supporting the z_self/z_world split in SD-005. Also supports MECH-069 (incommensurable error signals): the paper explicitly treats interoceptive and exteroceptive prediction errors as structurally distinct, not reducible to each other.",
-          "evidence_class": "lit:connectome_predictive_coding",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_005",
-          "failure_signatures": [],
-          "run_id": "2026-03-16_sd005_active_interoceptive_inference_friston2016",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-16T12:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-069",
@@ -2782,11 +2963,39 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-17T21:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-069",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_mech_069",
+          "failure_signatures": [],
+          "run_id": "20260318T202626Z_v3_exq_035_mech069_optimizer_merge_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T20:26:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-069",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_069",
+          "failure_signatures": [],
+          "run_id": "20260319T060643Z_v3_exq_037_mech069_sign_debug_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T06:06:43Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 6,
       "source_counts": {
-        "experimental": 2,
+        "experimental": 4,
         "literature": 2
       }
     },
@@ -2839,57 +3048,111 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.768, lit_conf=0",
+      "confidence_rationale": "exp=12 entry(s), lit=0 entry(s), exp_conf=0.779, lit_conf=0",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 0,
+        "mixed": 7,
+        "supports": 4,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 1,
+      "entries_total": 12,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 12
       },
-      "experimental_confidence": 0.768,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.779,
+      "fail_runs": 8,
+      "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
-        "mixed": 0,
-        "supports": 0,
+        "mixed": 7,
+        "supports": 4,
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "20260315T183757_causal_attribution_calibration_v2",
-      "latest_timestamp_utc": "2026-03-15T18:37:57.097148+00:00",
+      "latest_run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+      "latest_timestamp_utc": "2026-03-19T07:55:21Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.768,
-      "pass_runs": 0,
+      "overall_confidence": 0.779,
+      "pass_runs": 4,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-071",
           "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_mech_071",
-          "failure_signatures": [
-            "v2_verdict_fail:causal_attribution_calibration"
-          ],
-          "run_id": "20260315T183757_causal_attribution_calibration_v2",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_arc_025",
+          "failure_signatures": [],
+          "run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-18T20:25:55Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-03-15T18:37:57.097148+00:00"
+          "timestamp_utc": "2026-03-19T05:49:38Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:06:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_mech_071",
+          "failure_signatures": [],
+          "run_id": "20260319T060720Z_v3_exq_039_training_progression_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:07:20Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_089",
+          "failure_signatures": [],
+          "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T07:55:21Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 12,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 12,
         "literature": 0
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.768, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.766, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -2900,7 +3163,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.768,
+      "experimental_confidence": 0.766,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2912,7 +3175,7 @@
       "latest_run_id": "20260315T205715_selective_residue_attribution_v2",
       "latest_timestamp_utc": "2026-03-15T20:57:15.002247+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.768,
+      "overall_confidence": 0.766,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2939,32 +3202,33 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.784",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.824, lit_conf=0.784",
       "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "exp:simulation": 2,
+        "lit:connectome_circuit_study": 1,
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.824,
+      "fail_runs": 0,
+      "genuine_exp_count": 2,
+      "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
-      "evidence_class_counts": {
-        "lit:connectome_circuit_study": 1,
-        "lit:connectome_mechanistic_review": 1
-      },
-      "experimental_confidence": 0.0,
-      "fail_runs": 0,
-      "genuine_exp_count": 0,
-      "genuine_exp_direction_counts": {
-        "mixed": 0,
-        "supports": 0,
-        "unknown": 0,
-        "weakens": 0
-      },
-      "latest_run_id": "2026-03-16_mech089_lisman_jensen_theta_gamma_neuron2013",
-      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "latest_run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "latest_timestamp_utc": "2026-03-19T09:05:29Z",
       "literature_confidence": 0.784,
-      "overall_confidence": 0.784,
-      "pass_runs": 0,
+      "overall_confidence": 0.804,
+      "pass_runs": 2,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -2993,11 +3257,39 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-16T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_089",
+          "failure_signatures": [],
+          "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T07:55:21Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-089",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_sd_004",
+          "failure_signatures": [],
+          "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T09:05:29Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 4,
       "source_counts": {
-        "experimental": 0,
+        "experimental": 2,
         "literature": 2
       }
     },
@@ -3146,30 +3438,31 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.709",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.774, lit_conf=0.709",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
-        "weakens": 0
+        "weakens": 1
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
+        "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.0,
-      "fail_runs": 0,
-      "genuine_exp_count": 0,
+      "experimental_confidence": 0.774,
+      "fail_runs": 1,
+      "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 0
+        "weakens": 1
       },
-      "latest_run_id": "2026-03-16_mech093_na_oscillation_rate_modulation_tcs2022",
-      "latest_timestamp_utc": "2026-03-16T12:00:00Z",
+      "latest_run_id": "20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3",
+      "latest_timestamp_utc": "2026-03-19T06:16:23Z",
       "literature_confidence": 0.709,
-      "overall_confidence": 0.709,
+      "overall_confidence": 0.742,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3185,16 +3478,30 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-16T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-093",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_arc_016",
+          "failure_signatures": [],
+          "run_id": "20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:16:23Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
-        "experimental": 0,
+        "experimental": 1,
         "literature": 1
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.478, lit_conf=0.91",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.476, lit_conf=0.91",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -3209,7 +3516,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.478,
+      "experimental_confidence": 0.476,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3221,7 +3528,7 @@
       "latest_run_id": "2026-03-17_mstd_reafference_gu2008",
       "latest_timestamp_utc": "2026-03-17T21:00:00Z",
       "literature_confidence": 0.91,
-      "overall_confidence": 0.802,
+      "overall_confidence": 0.801,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3365,7 +3672,7 @@
       }
     },
     "MECH-097": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.709",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -3387,8 +3694,8 @@
       },
       "latest_run_id": "2026-03-17_mech097_parietal_cortex_sight_action_rizzolatti1997",
       "latest_timestamp_utc": "2026-03-17T12:00:00Z",
-      "literature_confidence": 0.71,
-      "overall_confidence": 0.71,
+      "literature_confidence": 0.709,
+      "overall_confidence": 0.709,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3413,49 +3720,35 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.791, lit_conf=0.866",
+      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.785, lit_conf=0.866",
       "direction_counts": {
-        "mixed": 1,
+        "mixed": 2,
         "supports": 4,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 9,
+      "entries_total": 10,
       "evidence_class_counts": {
-        "exp:simulation": 6,
+        "exp:simulation": 7,
         "lit:connectome_analysis": 1,
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.791,
-      "fail_runs": 5,
-      "genuine_exp_count": 6,
+      "experimental_confidence": 0.785,
+      "fail_runs": 6,
+      "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 2,
         "supports": 1,
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3",
-      "latest_timestamp_utc": "2026-03-18T18:03:01Z",
+      "latest_run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+      "latest_timestamp_utc": "2026-03-18T18:03:16Z",
       "literature_confidence": 0.866,
-      "overall_confidence": 0.829,
+      "overall_confidence": 0.825,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-098",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_007",
-          "failure_signatures": [],
-          "run_id": "20260317T231919Z_v3_exq_016_sd007_reafference_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-17T23:19:19Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-098",
@@ -3511,16 +3804,30 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-18T18:03:01Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-098",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T18:03:16Z"
         }
       ],
-      "runs_total": 9,
+      "runs_total": 10,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 7,
         "literature": 3
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.81, lit_conf=0.876",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.808, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -3533,7 +3840,7 @@
         "lit:connectome_analysis": 2,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.81,
+      "experimental_confidence": 0.808,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -3545,7 +3852,7 @@
       "latest_run_id": "20260317T232006Z_v3_exq_017_combined_lateral_reafference_v3",
       "latest_timestamp_utc": "2026-03-17T23:20:06Z",
       "literature_confidence": 0.876,
-      "overall_confidence": 0.85,
+      "overall_confidence": 0.849,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3626,7 +3933,7 @@
       }
     },
     "MECH-100": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.812, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.81, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -3637,7 +3944,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.812,
+      "experimental_confidence": 0.81,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -3649,7 +3956,7 @@
       "latest_run_id": "20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3",
       "latest_timestamp_utc": "2026-03-18T18:03:01Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.812,
+      "overall_confidence": 0.81,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3687,8 +3994,98 @@
         "literature": 0
       }
     },
+    "MECH-102": {
+      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.618, lit_conf=0",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 2
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "exp:simulation": 4
+      },
+      "experimental_confidence": 0.618,
+      "fail_runs": 3,
+      "genuine_exp_count": 4,
+      "genuine_exp_direction_counts": {
+        "mixed": 1,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 2
+      },
+      "latest_run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
+      "latest_timestamp_utc": "2026-03-19T10:43:27Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.618,
+      "pass_runs": 1,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_mech_102",
+          "failure_signatures": [],
+          "run_id": "20260318T201910Z_v3_exq_032_mech102_energy_escalation_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T20:19:10Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_102",
+          "failure_signatures": [],
+          "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T05:49:52Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_type": "claim_probe_mech_102",
+          "failure_signatures": [],
+          "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T05:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T10:43:27Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 4,
+        "literature": 0
+      }
+    },
     "MECH-900": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.751, lit_conf=0.712",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.748, lit_conf=0.711",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -3700,7 +4097,7 @@
         "exp:exploratory_simulation": 2,
         "lit:methodology_reproducibility": 1
       },
-      "experimental_confidence": 0.751,
+      "experimental_confidence": 0.748,
       "fail_runs": 0,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3711,8 +4108,8 @@
       },
       "latest_run_id": "2026-02-15_mech900_reproducible_computational_science_science2011",
       "latest_timestamp_utc": "2026-02-15T15:00:00Z",
-      "literature_confidence": 0.712,
-      "overall_confidence": 0.738,
+      "literature_confidence": 0.711,
+      "overall_confidence": 0.736,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -3762,7 +4159,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3775,7 +4172,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3786,8 +4183,8 @@
       },
       "latest_run_id": "exp_0018_20260215T213711149303Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.149303Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3868,7 +4265,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3881,7 +4278,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3892,8 +4289,8 @@
       },
       "latest_run_id": "exp_0019_20260215T213711209047Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.209047Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -3974,7 +4371,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -3987,7 +4384,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -3998,8 +4395,8 @@
       },
       "latest_run_id": "exp_0020_20260215T213711269582Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.269582Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4080,7 +4477,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4093,7 +4490,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4104,8 +4501,8 @@
       },
       "latest_run_id": "exp_0021_20260215T213711331429Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.331429Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4186,7 +4583,7 @@
       }
     },
     "Q-005": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4199,7 +4596,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4210,8 +4607,8 @@
       },
       "latest_run_id": "exp_0022_20260215T213711393596Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.393596Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4292,7 +4689,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4305,7 +4702,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4316,8 +4713,8 @@
       },
       "latest_run_id": "exp_0023_20260215T213711453369Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.453369Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4398,7 +4795,7 @@
       }
     },
     "Q-007": {
-      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.622, lit_conf=0.452",
+      "confidence_rationale": "exp=13 entry(s), lit=1 entry(s), exp_conf=0.62, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -4411,7 +4808,7 @@
         "exp:simulation": 9,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.622,
+      "experimental_confidence": 0.62,
       "fail_runs": 5,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4422,8 +4819,8 @@
       },
       "latest_run_id": "20260315T150155_valence_regime_correlation_v2",
       "latest_timestamp_utc": "2026-03-15T15:01:55.006956+00:00",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.58,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.578,
       "pass_runs": 8,
       "recent_entries": [
         {
@@ -4507,7 +4904,7 @@
       }
     },
     "Q-008": {
-      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.533, lit_conf=0.452",
+      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.531, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4520,7 +4917,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.533,
+      "experimental_confidence": 0.531,
       "fail_runs": 5,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4531,8 +4928,8 @@
       },
       "latest_run_id": "exp_0015_20260216T150514802604Z",
       "latest_timestamp_utc": "2026-02-16T15:05:14.802604Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.513,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.511,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4613,7 +5010,7 @@
       }
     },
     "Q-009": {
-      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.535, lit_conf=0.452",
+      "confidence_rationale": "exp=12 entry(s), lit=1 entry(s), exp_conf=0.533, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4626,7 +5023,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.535,
+      "experimental_confidence": 0.533,
       "fail_runs": 5,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4637,8 +5034,8 @@
       },
       "latest_run_id": "exp_0015_20260217T180028221014Z",
       "latest_timestamp_utc": "2026-02-17T18:00:28.221014Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.514,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.513,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4719,7 +5116,7 @@
       }
     },
     "Q-010": {
-      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.579, lit_conf=0.452",
+      "confidence_rationale": "exp=11 entry(s), lit=1 entry(s), exp_conf=0.577, lit_conf=0.451",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -4732,7 +5129,7 @@
         "exp:simulation": 8,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.579,
+      "experimental_confidence": 0.577,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4743,8 +5140,8 @@
       },
       "latest_run_id": "exp_0027_20260215T213711687120Z",
       "latest_timestamp_utc": "2026-02-15T21:37:11.687120Z",
-      "literature_confidence": 0.452,
-      "overall_confidence": 0.547,
+      "literature_confidence": 0.451,
+      "overall_confidence": 0.545,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -4825,7 +5222,7 @@
       }
     },
     "Q-011": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.3, lit_conf=0.844",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.298, lit_conf=0.844",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -4838,7 +5235,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_experiment": 3
       },
-      "experimental_confidence": 0.3,
+      "experimental_confidence": 0.298,
       "fail_runs": 1,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4932,7 +5329,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.456, lit_conf=0.786",
+      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.454, lit_conf=0.786",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -4945,7 +5342,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.456,
+      "experimental_confidence": 0.454,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -4957,7 +5354,7 @@
       "latest_run_id": "2026-02-15T213633Z_claim-probe-q-012_seed1002_trajectory_first_enabled_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-15T21:36:33Z",
       "literature_confidence": 0.786,
-      "overall_confidence": 0.621,
+      "overall_confidence": 0.62,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -5041,7 +5438,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.651, lit_conf=0.654",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.649, lit_conf=0.653",
       "direction_counts": {
         "mixed": 2,
         "supports": 9,
@@ -5055,7 +5452,7 @@
         "exp:simulation": 8,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.651,
+      "experimental_confidence": 0.649,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -5066,8 +5463,8 @@
       },
       "latest_run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
       "latest_timestamp_utc": "2026-02-25T19:50:39.901451Z",
-      "literature_confidence": 0.654,
-      "overall_confidence": 0.652,
+      "literature_confidence": 0.653,
+      "overall_confidence": 0.651,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -5148,7 +5545,7 @@
       }
     },
     "Q-014": {
-      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.651, lit_conf=0.654",
+      "confidence_rationale": "exp=13 entry(s), lit=2 entry(s), exp_conf=0.649, lit_conf=0.653",
       "direction_counts": {
         "mixed": 2,
         "supports": 9,
@@ -5162,7 +5559,7 @@
         "exp:simulation": 8,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.651,
+      "experimental_confidence": 0.649,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -5173,8 +5570,8 @@
       },
       "latest_run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
       "latest_timestamp_utc": "2026-02-25T19:50:39.901451Z",
-      "literature_confidence": 0.654,
-      "overall_confidence": 0.652,
+      "literature_confidence": 0.653,
+      "overall_confidence": 0.651,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -5255,7 +5652,7 @@
       }
     },
     "Q-015": {
-      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.506, lit_conf=0.744",
+      "confidence_rationale": "exp=9 entry(s), lit=2 entry(s), exp_conf=0.504, lit_conf=0.744",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -5269,7 +5666,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.506,
+      "experimental_confidence": 0.504,
       "fail_runs": 4,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -5281,7 +5678,7 @@
       "latest_run_id": "exp_0010_20260215T213710798125Z",
       "latest_timestamp_utc": "2026-02-15T21:37:10.798125Z",
       "literature_confidence": 0.744,
-      "overall_confidence": 0.601,
+      "overall_confidence": 0.6,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -5362,7 +5759,7 @@
       }
     },
     "Q-016": {
-      "confidence_rationale": "exp=113 entry(s), lit=2 entry(s), exp_conf=0.911, lit_conf=0.791",
+      "confidence_rationale": "exp=113 entry(s), lit=2 entry(s), exp_conf=0.909, lit_conf=0.791",
       "direction_counts": {
         "mixed": 36,
         "supports": 79,
@@ -5375,7 +5772,7 @@
         "lit:computational_neuroscience_model": 1,
         "lit:neuroscience_review": 1
       },
-      "experimental_confidence": 0.911,
+      "experimental_confidence": 0.909,
       "fail_runs": 36,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -5387,7 +5784,7 @@
       "latest_run_id": "2026-02-21T151443Z_tri-loop-arbitration-policy_seed71_veto_lattice_toyenv_internal_minimal",
       "latest_timestamp_utc": "2026-02-21T15:14:43Z",
       "literature_confidence": 0.791,
-      "overall_confidence": 0.863,
+      "overall_confidence": 0.862,
       "pass_runs": 77,
       "recent_entries": [
         {
@@ -5465,7 +5862,7 @@
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=120 entry(s), lit=8 entry(s), exp_conf=0.531, lit_conf=0.88",
+      "confidence_rationale": "exp=120 entry(s), lit=8 entry(s), exp_conf=0.529, lit_conf=0.88",
       "direction_counts": {
         "mixed": 1,
         "supports": 74,
@@ -5484,7 +5881,7 @@
         "lit:connectome_precision_axis_constraint": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.531,
+      "experimental_confidence": 0.529,
       "fail_runs": 53,
       "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
@@ -5496,7 +5893,7 @@
       "latest_run_id": "runtime_authority_commit_boundary_seed29_20260225T195039901451Z",
       "latest_timestamp_utc": "2026-02-25T19:50:39.901451Z",
       "literature_confidence": 0.88,
-      "overall_confidence": 0.706,
+      "overall_confidence": 0.705,
       "pass_runs": 67,
       "recent_entries": [
         {
@@ -5572,7 +5969,7 @@
       }
     },
     "Q-019": {
-      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.87",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.869",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -5597,8 +5994,8 @@
       },
       "latest_run_id": "2026-02-27_q019_crick_1984",
       "latest_timestamp_utc": "2026-02-27T12:25:00Z",
-      "literature_confidence": 0.87,
-      "overall_confidence": 0.87,
+      "literature_confidence": 0.869,
+      "overall_confidence": 0.869,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5679,45 +6076,45 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=16 entry(s), lit=0 entry(s), exp_conf=0.959, lit_conf=0",
+      "confidence_rationale": "exp=30 entry(s), lit=0 entry(s), exp_conf=0.614, lit_conf=0",
       "direction_counts": {
-        "mixed": 10,
-        "supports": 0,
+        "mixed": 17,
+        "supports": 5,
         "unknown": 0,
-        "weakens": 6
+        "weakens": 8
       },
-      "entries_total": 16,
+      "entries_total": 30,
       "evidence_class_counts": {
-        "exp:simulation": 16
+        "exp:simulation": 30
       },
-      "experimental_confidence": 0.959,
-      "fail_runs": 16,
-      "genuine_exp_count": 16,
+      "experimental_confidence": 0.614,
+      "fail_runs": 25,
+      "genuine_exp_count": 30,
       "genuine_exp_direction_counts": {
-        "mixed": 10,
-        "supports": 0,
+        "mixed": 17,
+        "supports": 5,
         "unknown": 0,
-        "weakens": 6
+        "weakens": 8
       },
-      "latest_run_id": "20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3",
-      "latest_timestamp_utc": "2026-03-18T18:03:01Z",
+      "latest_run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
+      "latest_timestamp_utc": "2026-03-19T10:43:27Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.959,
-      "pass_runs": 0,
+      "overall_confidence": 0.614,
+      "pass_runs": 5,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "claim_probe_sd_007",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_102",
           "failure_signatures": [],
-          "run_id": "20260318T025909Z_v3_exq_021_lstsq_reafference_v3",
+          "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
           "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-18T02:59:09Z"
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T05:49:52Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -5726,26 +6123,12 @@
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_003",
+          "experiment_type": "claim_probe_mech_102",
           "failure_signatures": [],
-          "run_id": "20260318T031643Z_v3_exq_025_e2w_action_divergence_v3",
+          "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-03-18T03:16:43Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-003",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_003",
-          "failure_signatures": [],
-          "run_id": "20260318T031737Z_v3_exq_024_e2w_1step_loss_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-18T03:17:37Z"
+          "timestamp_utc": "2026-03-19T05:50:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -5754,36 +6137,50 @@
           "confidence_rationale": "mixed direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "mixed",
-          "experiment_type": "claim_probe_mech_100",
+          "experiment_type": "claim_probe_sd_003",
           "failure_signatures": [],
-          "run_id": "20260318T083631Z_v3_exq_020_event_contrastive_v3",
+          "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-03-18T08:36:31Z"
+          "timestamp_utc": "2026-03-19T06:06:18Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-003",
           "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_mech_100",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_mech_069",
           "failure_signatures": [],
-          "run_id": "20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3",
+          "run_id": "20260319T060643Z_v3_exq_037_mech069_sign_debug_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T06:06:43Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
           "source_type": "experimental",
           "status": "FAIL",
-          "timestamp_utc": "2026-03-18T18:03:01Z"
+          "timestamp_utc": "2026-03-19T10:43:27Z"
         }
       ],
-      "runs_total": 16,
+      "runs_total": 30,
       "source_counts": {
-        "experimental": 16,
+        "experimental": 30,
         "literature": 0
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.767, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.765, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -5794,7 +6191,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.767,
+      "experimental_confidence": 0.765,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5806,7 +6203,7 @@
       "latest_run_id": "20260315T044440_causal_grid_world_baseline_v2",
       "latest_timestamp_utc": "2026-03-15T04:44:40.670153+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.767,
+      "overall_confidence": 0.765,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -5831,31 +6228,31 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.771, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.824, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 2
       },
-      "experimental_confidence": 0.771,
+      "experimental_confidence": 0.824,
       "fail_runs": 0,
-      "genuine_exp_count": 1,
+      "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "20260316T214554Z_v3_exq_003_sd004_action_objects_v3",
-      "latest_timestamp_utc": "2026-03-16T21:45:54Z",
+      "latest_run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "latest_timestamp_utc": "2026-03-19T09:05:29Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.771,
-      "pass_runs": 1,
+      "overall_confidence": 0.824,
+      "pass_runs": 2,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -5870,55 +6267,55 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-16T21:45:54Z"
-        }
-      ],
-      "runs_total": 1,
-      "source_counts": {
-        "experimental": 1,
-        "literature": 0
-      }
-    },
-    "SD-005": {
-      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.461, lit_conf=0",
-      "direction_counts": {
-        "mixed": 2,
-        "supports": 1,
-        "unknown": 0,
-        "weakens": 1
-      },
-      "entries_total": 4,
-      "evidence_class_counts": {
-        "exp:simulation": 4
-      },
-      "experimental_confidence": 0.461,
-      "fail_runs": 3,
-      "genuine_exp_count": 4,
-      "genuine_exp_direction_counts": {
-        "mixed": 2,
-        "supports": 1,
-        "unknown": 0,
-        "weakens": 1
-      },
-      "latest_run_id": "20260317T225109Z_v3_exq_013_sd005_strict_v3",
-      "latest_timestamp_utc": "2026-03-17T22:51:09Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.461,
-      "pass_runs": 1,
-      "recent_entries": [
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-005",
+          "claim_id": "SD-004",
           "confidence": 0.75,
           "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "supports",
-          "experiment_type": "claim_probe_sd_005",
+          "experiment_type": "claim_probe_sd_004",
           "failure_signatures": [],
-          "run_id": "20260316T185114Z_v3_exq_001_z_separation_v3",
+          "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-03-16T18:51:14Z"
-        },
+          "timestamp_utc": "2026-03-19T09:05:29Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 2,
+        "literature": 0
+      }
+    },
+    "SD-005": {
+      "confidence_rationale": "exp=6 entry(s), lit=0 entry(s), exp_conf=0.74, lit_conf=0",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 1
+      },
+      "entries_total": 6,
+      "evidence_class_counts": {
+        "exp:simulation": 6
+      },
+      "experimental_confidence": 0.74,
+      "fail_runs": 3,
+      "genuine_exp_count": 6,
+      "genuine_exp_direction_counts": {
+        "mixed": 2,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 1
+      },
+      "latest_run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
+      "latest_timestamp_utc": "2026-03-19T07:03:57Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.74,
+      "pass_runs": 3,
+      "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-005",
@@ -5960,69 +6357,69 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-17T22:51:09Z"
-        }
-      ],
-      "runs_total": 4,
-      "source_counts": {
-        "experimental": 4,
-        "literature": 0
-      }
-    },
-    "SD-007": {
-      "confidence_rationale": "exp=5 entry(s), lit=0 entry(s), exp_conf=0.745, lit_conf=0",
-      "direction_counts": {
-        "mixed": 1,
-        "supports": 1,
-        "unknown": 0,
-        "weakens": 3
-      },
-      "entries_total": 5,
-      "evidence_class_counts": {
-        "exp:simulation": 5
-      },
-      "experimental_confidence": 0.745,
-      "fail_runs": 4,
-      "genuine_exp_count": 5,
-      "genuine_exp_direction_counts": {
-        "mixed": 1,
-        "supports": 1,
-        "unknown": 0,
-        "weakens": 3
-      },
-      "latest_run_id": "20260318T180301Z_v3_exq_022_combined_contrastive_lstsq_v3",
-      "latest_timestamp_utc": "2026-03-18T18:03:01Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.745,
-      "pass_runs": 1,
-      "recent_entries": [
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-007",
+          "claim_id": "SD-005",
           "confidence": 0.75,
           "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "supports",
-          "experiment_type": "claim_probe_sd_007",
+          "experiment_type": "claim_probe_mech_071",
           "failure_signatures": [],
-          "run_id": "20260317T225132Z_v3_exq_014_perspective_shift_calibration_v3",
+          "run_id": "20260318T173429Z_v3_exq_026_mech071_v3_v3",
           "source_type": "experimental",
           "status": "PASS",
-          "timestamp_utc": "2026-03-17T22:51:32Z"
+          "timestamp_utc": "2026-03-18T17:34:29Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-007",
+          "claim_id": "SD-005",
           "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_sd_007",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_sd_005",
           "failure_signatures": [],
-          "run_id": "20260317T231919Z_v3_exq_016_sd007_reafference_v3",
+          "run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
           "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-17T23:19:19Z"
-        },
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T07:03:57Z"
+        }
+      ],
+      "runs_total": 6,
+      "source_counts": {
+        "experimental": 6,
+        "literature": 0
+      }
+    },
+    "SD-007": {
+      "confidence_rationale": "exp=7 entry(s), lit=0 entry(s), exp_conf=0.606, lit_conf=0",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 3
+      },
+      "entries_total": 7,
+      "evidence_class_counts": {
+        "exp:simulation": 7
+      },
+      "experimental_confidence": 0.606,
+      "fail_runs": 5,
+      "genuine_exp_count": 7,
+      "genuine_exp_direction_counts": {
+        "mixed": 2,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 3
+      },
+      "latest_run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+      "latest_timestamp_utc": "2026-03-18T20:17:40Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.606,
+      "pass_runs": 2,
+      "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-007",
@@ -6064,40 +6461,68 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-18T18:03:01Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-007",
+          "confidence": 0.5,
+          "confidence_rationale": "mixed direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "mixed",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T18:03:16Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-007",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_sd_003",
+          "failure_signatures": [],
+          "run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-18T20:17:40Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 7,
       "source_counts": {
-        "experimental": 5,
+        "experimental": 7,
         "literature": 0
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.873, lit_conf=0",
+      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.699, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
-        "supports": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 3,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "exp:simulation": 3
+        "exp:simulation": 4
       },
-      "experimental_confidence": 0.873,
+      "experimental_confidence": 0.699,
       "fail_runs": 3,
-      "genuine_exp_count": 3,
+      "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "20260318T031737Z_v3_exq_024_e2w_1step_loss_v3",
-      "latest_timestamp_utc": "2026-03-18T03:17:37Z",
+      "latest_run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
+      "latest_timestamp_utc": "2026-03-19T07:03:57Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.873,
-      "pass_runs": 0,
+      "overall_confidence": 0.699,
+      "pass_runs": 1,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -6140,16 +6565,30 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-18T03:17:37Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-008",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "claim_probe_sd_005",
+          "failure_signatures": [],
+          "run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-03-19T07:03:57Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 4,
       "source_counts": {
-        "experimental": 3,
+        "experimental": 4,
         "literature": 0
       }
     },
     "SD-009": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.479, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.477, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -6160,7 +6599,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.479,
+      "experimental_confidence": 0.477,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -6172,7 +6611,7 @@
       "latest_run_id": "20260318T083631Z_v3_exq_020_event_contrastive_v3",
       "latest_timestamp_utc": "2026-03-18T08:36:31Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.479,
+      "overall_confidence": 0.477,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -26660,6 +27099,48 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_071",
+      "failure_signatures": [],
+      "run_id": "20260318T173429Z_v3_exq_026_mech071_v3_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T17:34:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_071",
+      "failure_signatures": [],
+      "run_id": "20260318T173429Z_v3_exq_026_mech071_v3_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T17:34:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-005",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_071",
+      "failure_signatures": [],
+      "run_id": "20260318T173429Z_v3_exq_026_mech071_v3_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T17:34:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-098",
       "confidence": 0.75,
       "confidence_rationale": "FAIL with weakening direction",
@@ -26713,9 +27194,779 @@
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-03-18T18:03:01Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T18:03:16Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-098",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T18:03:16Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T18:03:16Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-007",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T180316Z_v3_exq_027_sd003_v3_reafference_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T18:03:16Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T193617Z_v3_exq_030_sd003_full_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T19:36:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T193617Z_v3_exq_030_sd003_full_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T19:36:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T193617Z_v3_exq_030_sd003_full_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T19:36:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_016",
+      "failure_signatures": [],
+      "run_id": "20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:17:24Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:17:40Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:17:40Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:17:40Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-007",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201740Z_v3_exq_029_sd003_proxy_gradient_world_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:17:40Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201757Z_v3_exq_030b_sd003_full_attribution_v2_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:17:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201757Z_v3_exq_030b_sd003_full_attribution_v2_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:17:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260318T201757Z_v3_exq_030b_sd003_full_attribution_v2_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:17:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_016",
+      "failure_signatures": [],
+      "run_id": "20260318T201853Z_v3_exq_031_arc016_gradient_world_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:18:53Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260318T201910Z_v3_exq_032_mech102_energy_escalation_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:19:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260318T201910Z_v3_exq_032_mech102_energy_escalation_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:19:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260318T201910Z_v3_exq_032_mech102_energy_escalation_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:19:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_arc_024",
+      "failure_signatures": [],
+      "run_id": "20260318T202510Z_v3_exq_033_training_depth_calibration_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:25:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-029",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_arc_024",
+      "failure_signatures": [],
+      "run_id": "20260318T202510Z_v3_exq_033_training_depth_calibration_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:25:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_arc_024",
+      "failure_signatures": [],
+      "run_id": "20260318T202510Z_v3_exq_033_training_depth_calibration_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:25:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-025",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_025",
+      "failure_signatures": [],
+      "run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:25:55Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_025",
+      "failure_signatures": [],
+      "run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:25:55Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_arc_025",
+      "failure_signatures": [],
+      "run_id": "20260318T202555Z_v3_exq_034_arc025_engine_ablation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-18T20:25:55Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-069",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_mech_069",
+      "failure_signatures": [],
+      "run_id": "20260318T202626Z_v3_exq_035_mech069_optimizer_merge_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:26:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_mech_069",
+      "failure_signatures": [],
+      "run_id": "20260318T202626Z_v3_exq_035_mech069_optimizer_merge_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:26:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:49:38Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:49:38Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:49:38Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T05:49:52Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T05:49:52Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T054952Z_v3_exq_032b_mech102_ttype_escalation_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T05:49:52Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_mech_102",
+      "failure_signatures": [],
+      "run_id": "20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T05:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:06:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:06:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:06:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-069",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_069",
+      "failure_signatures": [],
+      "run_id": "20260319T060643Z_v3_exq_037_mech069_sign_debug_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T06:06:43Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_069",
+      "failure_signatures": [],
+      "run_id": "20260319T060643Z_v3_exq_037_mech069_sign_debug_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T06:06:43Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_mech_071",
+      "failure_signatures": [],
+      "run_id": "20260319T060720Z_v3_exq_039_training_progression_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:07:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_mech_071",
+      "failure_signatures": [],
+      "run_id": "20260319T060720Z_v3_exq_039_training_progression_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:07:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_arc_016",
+      "failure_signatures": [],
+      "run_id": "20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:16:23Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-093",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "experiment_type": "claim_probe_arc_016",
+      "failure_signatures": [],
+      "run_id": "20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:16:23Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-005",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_005",
+      "failure_signatures": [],
+      "run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T07:03:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-008",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_005",
+      "failure_signatures": [],
+      "run_id": "20260319T070357Z_v3_exq_040_z_separation_alpha09_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T07:03:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_089",
+      "failure_signatures": [],
+      "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T07:55:21Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_089",
+      "failure_signatures": [],
+      "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T07:55:21Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_mech_089",
+      "failure_signatures": [],
+      "run_id": "20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T07:55:21Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_004",
+      "failure_signatures": [],
+      "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T09:05:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-089",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_004",
+      "failure_signatures": [],
+      "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T09:05:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "experiment_type": "claim_probe_sd_004",
+      "failure_signatures": [],
+      "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-03-19T09:05:29Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T10:43:27Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.5,
+      "confidence_rationale": "mixed direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "mixed",
+      "experiment_type": "claim_probe_sd_003",
+      "failure_signatures": [],
+      "run_id": "20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T10:43:27Z"
     }
   ],
-  "generated_at_utc": "2026-03-18T19:52:25.887781Z",
+  "generated_at_utc": "2026-03-19T19:20:40.828819Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": []

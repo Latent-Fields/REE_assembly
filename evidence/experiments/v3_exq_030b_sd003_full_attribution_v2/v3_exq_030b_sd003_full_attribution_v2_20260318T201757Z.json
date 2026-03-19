@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "world_forward_r2": 0.9664512872695923,
+    "mean_delta_none": 0.2566141084900924,
+    "mean_delta_approach": 0.26101165762766193,
+    "mean_delta_env_hazard": 0.2573319097980857,
+    "mean_delta_agent_hazard": 0.2672219017986208,
+    "mean_causal_sig_none": -0.07025486390505518,
+    "mean_causal_sig_approach": 0.003148671745743279,
+    "mean_causal_sig_env_hazard": 0.0010982483625411987,
+    "mean_causal_sig_agent_hazard": -0.007940202252939343,
+    "attribution_gap": 0.0020504233832020803,
+    "n_approach_eval": 817.0,
+    "n_env_hazard_eval": 20.0,
+    "n_agent_hazard_eval": 32.0,
+    "n_none_eval": 70.0,
+    "train_approach_events": 8118.0,
+    "train_contact_events": 449.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-030b \u2014 SD-003 Full Attribution Pipeline v2 on CausalGridWorldV2\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-024, MECH-071\n**World:** CausalGridWorldV2 (proximity_scale=0.05)\n**alpha_world:** 0.9  (SD-008)\n**Seed:** 1\n**Predecessor:** EXQ-030 (3/5 FAIL \u2014 C1 wrong criterion, C3 threshold too high)\n\n## Fixes Applied\n\n**Fix 1 \u2014 C1 (raw delta) dropped:**\nEXQ-030 showed delta_approach=0.214 \u2248 delta_none=0.216. Raw counterfactual divergence\n||E2(z,a) - E2(z,a_cf)|| is dominated by the 175-ch local_view portion of z_world and is\nuniform across all transition types. Not informative. Criterion removed.\n\n**Fix 2 \u2014 E3 trained on E2-predicted states:**\nEXQ-030 C3 failure: E3 trained on observed z_world only \u2192 distribution mismatch with\nE2-predicted z_world at eval \u2192 harm_eval scores compressed. Fix: at each E3 training step,\naugment observed harm_buf batches with E2.world_forward(z_world_pos, a_rand) \u2192 label=1\nand E2.world_forward(z_world_neg, a_rand) \u2192 label=0. Teaches E3 to evaluate E2-output space.\n\n## Attribution Results\n\n| Transition | world_delta | causal_sig | n |\n|---|---|---|---|\n| none (locomotion)    | 0.2566 | -0.070255 | 70 |\n| hazard_approach      | 0.2610 | 0.003149 | 817 |\n| env_caused_hazard    | 0.2573 | 0.001098 | 20 |\n| agent_caused_hazard  | 0.2672 | -0.007940 | 32 |\n\n- **world_forward R\u00b2**: 0.9665  (PASS > 0.05)\n- **attribution_gap** (approach \u2212 env): 0.002050  (PASS > 0)\n\n## PASS Criteria (Revised)\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: attribution_gap > 0 (agent approach > env attribution) | PASS | 0.002050 |\n| C2: causal_sig_approach > causal_sig_none (approach > baseline) | PASS | 0.003149 vs -0.070255 |\n| C3: causal_sig_approach > 0.005 (minimum attribution signal) | FAIL | 0.003149 |\n| C4: world_forward_r2 > 0.05 (E2 learned world dynamics) | PASS | 0.9665 |\n| C5: n_approach >= 50 (sufficient approach events) | PASS | 817 |\n\nCriteria met: 4/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C3 FAIL: causal_sig_approach=0.003149 <= 0.005\n",
+  "claim_ids": [
+    "SD-003",
+    "ARC-024",
+    "MECH-071"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_030b_sd003_full_attribution_v2",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260318T201757Z",
+  "claim": "SD-003",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_030b_sd003_full_attribution_v2_20260318T201757Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

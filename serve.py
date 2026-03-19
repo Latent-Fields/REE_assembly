@@ -42,9 +42,22 @@ SERVE_DIR = Path(__file__).resolve().parent
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
 
-# V3 uses /opt/local/bin/python3 (has torch 2.10.0); V2 uses system python
-V3_PYTHON = "/opt/local/bin/python3"
-V2_PYTHON = "/opt/local/bin/python3"
+# Python executable — prefer REE_PYTHON env var, then known torch-capable paths
+def _default_python() -> str:
+    if env := os.environ.get("REE_PYTHON"):
+        return env
+    for p in (
+        "/opt/local/bin/python3",           # macOS MacPorts
+        "/opt/homebrew/bin/python3",        # macOS Homebrew
+        "/home/ree/.venv/ree/bin/python3",  # Linux venv (see remote_setup.sh)
+    ):
+        if os.path.exists(p):
+            return p
+    return sys.executable
+
+_DEFAULT_PYTHON = _default_python()
+V3_PYTHON = _DEFAULT_PYTHON
+V2_PYTHON = _DEFAULT_PYTHON
 
 # Runner configs keyed by substrate version
 RUNNERS = {
@@ -408,7 +421,14 @@ def main():
     parser = argparse.ArgumentParser(description="REE Claims Explorer Server")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT,
                         help=f"Port to listen on (default: {DEFAULT_PORT})")
+    parser.add_argument("--python", type=str, default=None,
+                        help="Python executable to use for runners "
+                             "(default: auto-detect via REE_PYTHON env or known paths)")
     args = parser.parse_args()
+
+    if args.python:
+        for cfg in RUNNERS.values():
+            cfg["python"] = args.python
 
     _detect_existing_runners()
     os.chdir(SERVE_DIR)
@@ -432,6 +452,7 @@ def main():
     for ver, cfg in RUNNERS.items():
         exists = "✓" if cfg["script"].exists() else "✗"
         print(f"[serve] {cfg['label']} runner: {cfg['script']} [{exists}]", flush=True)
+        print(f"[serve] {cfg['label']} python:  {cfg['python']}", flush=True)
     print(f"[serve] Runner log:    {RUNNER_LOG}", flush=True)
     print(f"[serve] Ctrl+C to stop", flush=True)
     print(flush=True)
