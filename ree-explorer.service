@@ -1,0 +1,31 @@
+# REE Claims Explorer — systemd service
+#
+# Installed by remote_setup.sh (substitutes {{USER}}, {{VENV}}, {{WORKSPACE}}).
+# Manual install:
+#   sed -e "s|{{USER}}|$USER|g" \
+#       -e "s|{{VENV}}|$HOME/.venv/ree|g" \
+#       -e "s|{{WORKSPACE}}|$HOME/Documents/GitHub/REE_Working|g" \
+#       ree-explorer.service | sudo tee /etc/systemd/system/ree-explorer.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now ree-explorer
+#
+# Access: http://localhost:8000/explorer (or http://<tailscale-ip>:8000/explorer)
+# Logs:   journalctl -u ree-explorer -f
+# Stop:   sudo systemctl stop ree-explorer
+
+[Unit]
+Description=REE Claims Explorer Server
+After=network.target
+
+[Service]
+Type=simple
+User={{USER}}
+WorkingDirectory={{WORKSPACE}}/REE_assembly
+ExecStart={{VENV}}/bin/python3 {{WORKSPACE}}/REE_assembly/serve.py
+Environment=REE_PYTHON={{VENV}}/bin/python3
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

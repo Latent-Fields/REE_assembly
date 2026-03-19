@@ -1,0 +1,34 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_060",
+  "run_id": "20260314T235933_write_locus_contamination_v2",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-14T23:59:33.224038+00:00",
+  "architecture_epoch": "ree_v2",
+  "source_repo": {
+    "name": "ree-v2",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v2-causal-gridworld-runner",
+    "version": "v2"
+  },
+  "scenario": {
+    "name": "write_locus_contamination",
+    "condition": "multi_seed_aggregate",
+    "substrate": "ree-v2",
+    "evb_id": "EVB-0043"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "failure_signatures": [],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  }
+}

@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-19T19:20:40.828819Z`
+Generated: `2026-03-19T19:53:37.608156Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -13,21 +13,18 @@ Use this as the human-in-the-loop review queue.
 | `ARC-007` | `active` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-018` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-023` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-024` | `active` | Demotion review: active -> candidate | `demote_to_candidate` | `pending_user` |
+| `ARC-024` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-025` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-033` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-069` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `pending_user` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-089` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
 | `MECH-090` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-092` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-096` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-097` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
-| `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
-| `MECH-100` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
+| `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `Q-007` | `active` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 
@@ -88,20 +85,23 @@ Use this as the human-in-the-loop review queue.
 - Last rationale: User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.
 
 ### ARC-024
-- Current status: `active`
-- Decision needed: Demotion review: active -> candidate
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
 - Why this decision is needed: overall_conf=0.509, conflict_ratio=1, exp_entries=10, lit_entries=0; directions supports=2, weakens=2, mixed=6, unknown=0, conflict_ratio=1
 - Evidence quality note: EXQ-028 PASS (2026-03-18): Gradient dominance confirmed with random policy on CausalGridWorldV2. mean_dz_world_hazard_approach >> mean_dz_world_none. World generates observable signals before contact events. EXQ-029 PASS (2026-03-18): E3.harm_eval learned graded danger model on gradient world. none=0.373, approach=0.612, contact=0.666. 10× improvement over old world (EXQ-027). E3 extends harm mode…
-- Recommendation: `demote_to_candidate`
+- Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
-  - Demote now (reduces false certainty, destabilizes current roadmap references)
-  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
-  - Split into subclaims (isolates conflict, increases registry complexity)
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
 - Discussion scope with Codex:
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-19T19:54:00Z`
+- Last selected option: Hold at candidate — resolve conflict first
+- Last rationale: Post-demotion: EXQ-033 weakens proxy-gradient claim but some supporting V3 evidence present. Hold at candidate pending targeted experiment to resolve conflict.
 
 ### MECH-025
 - Current status: `candidate`
@@ -139,21 +139,6 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: User confirmed hold. Kernel chaining FAIL (EXQ-023): V2 E2 is a transition model only; proper kernel chaining requires SD-004 action objects as hippocampal map backbone.
 
-### MECH-069
-- Current status: `provisional`
-- Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.867, conflict_ratio=0, exp_entries=4, lit_entries=2; directions supports=4, weakens=0, mixed=2, unknown=0, conflict_ratio=0
-- Recommendation: `promote_to_stable`
-- Options (pros/cons):
-  - Promote now (clear canonical status, risk under-tested edge cases)
-  - Hold pending stress-test replication (better stress confidence, slower closure)
-  - Split claim scope before promotion (clearer boundaries, added doc work)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-
 ### MECH-072
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
@@ -171,25 +156,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361139Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: User confirmed hold. Selective residue attribution FAIL (EXQ-028): directly depends on MECH-071 which failed; both require V3 z_self/z_world split (SD-005).
-
-### MECH-089
-- Current status: `candidate`
-- Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.804, conflict_ratio=0, exp_entries=2, lit_entries=2; directions supports=4, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Recommendation: `promote_to_provisional`
-- Options (pros/cons):
-  - Promote now (faster convergence, risk premature lock-in)
-  - Hold until one additional confirming run (better robustness, slower progress)
-  - Hold and request targeted literature triangulation (better external grounding, extra delay)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361142Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: User confirmed hold. Theta-gamma nesting for E1→E3 packaging. V3-scoped heartbeat cluster claim; no V2 oscillatory substrate.
 
 ### MECH-090
 - Current status: `candidate`
@@ -258,11 +224,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361152Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: User confirmed hold. z_beta modulates E3 heartbeat frequency. V3-scoped heartbeat cluster claim.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-19T19:52:00Z`
+- Last selected option: Hold at candidate — resolve conflict first
+- Last rationale: User confirmed hold for conflict resolution. z_beta modulates E3 heartbeat frequency — conflicting V3 evidence. Hold at candidate until targeted experiment resolves.
 
 ### MECH-096
 - Current status: `candidate`
@@ -313,11 +278,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-17T22:29:07.468717Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: Confirmed hold. New MECH registered 2026-03-17 as part of three-stream reafference architecture (SD-007). V3 substrate (reafference predictor, lateral encoder head) required before experimental evidence can be collected. EXQ-013 through EXQ-016 will provide this substrate.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-19T19:52:00Z`
+- Last selected option: Hold at candidate — resolve conflict first
+- Last rationale: User confirmed hold for conflict resolution. Reafference cancellation lstsq vs EMA — 4:4 evidence tie. Hold at candidate until SD-008/009 experiments clarify.
 
 ### MECH-099
 - Current status: `candidate`
@@ -332,26 +296,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-17T22:29:07.504152Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: Confirmed hold. New MECH registered 2026-03-17 as part of three-stream reafference architecture (SD-007). V3 substrate (reafference predictor, lateral encoder head) required before experimental evidence can be collected. EXQ-013 through EXQ-016 will provide this substrate.
-
-### MECH-100
-- Current status: `candidate`
-- Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.81, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=0, weakens=1, mixed=1, unknown=0, conflict_ratio=0
-- Recommendation: `promote_to_provisional`
-- Options (pros/cons):
-  - Promote now (faster convergence, risk premature lock-in)
-  - Hold until one additional confirming run (better robustness, slower progress)
-  - Hold and request targeted literature triangulation (better external grounding, extra delay)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-19T19:52:00Z`
+- Last selected option: Hold at candidate — resolve conflict first
+- Last rationale: User confirmed hold for conflict resolution. Three-pathway visual stream — conflicting V3 reafference evidence. Hold at candidate pending resolution.
 
 ### Q-007
 - Current status: `active`

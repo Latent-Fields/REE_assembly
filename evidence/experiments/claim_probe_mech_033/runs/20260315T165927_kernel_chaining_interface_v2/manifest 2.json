@@ -1,0 +1,36 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_mech_033",
+  "run_id": "20260315T165927_kernel_chaining_interface_v2",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-15T16:59:27.955457+00:00",
+  "architecture_epoch": "ree_v2",
+  "source_repo": {
+    "name": "ree-v2",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v2-causal-gridworld-runner",
+    "version": "v2"
+  },
+  "scenario": {
+    "name": "kernel_chaining_interface",
+    "condition": "multi_seed_aggregate",
+    "substrate": "ree-v2",
+    "evb_id": "EVB-0016"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-033"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "failure_signatures": [
+    "v2_verdict_fail:kernel_chaining_interface"
+  ],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  }
+}

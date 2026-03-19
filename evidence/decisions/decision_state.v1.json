@@ -45,6 +45,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-03-16T18:20:19.361127Z"
     },
+    "ARC-024": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Post-demotion: EXQ-033 weakens proxy-gradient claim but some supporting V3 evidence present. Hold at candidate pending targeted experiment to resolve conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold at candidate \u2014 resolve conflict first",
+      "timestamp_utc": "2026-03-19T19:54:00Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -180,6 +189,15 @@
       "selected_option": "promote_to_provisional",
       "timestamp_utc": "2026-02-15T20:51:27.090007Z"
     },
+    "MECH-069": {
+      "actor": "user",
+      "decision_needed": "Promotion review: provisional -> stable",
+      "decision_status": "applied",
+      "rationale": "User confirmed. Multiple V3 PASS runs (EXQ-005, EXQ-035, EXQ-037) confirm three-loop error signal incommensurability. Promoted provisional \u2192 stable.",
+      "recommendation": "promote_to_stable",
+      "selected_option": "Promote to stable",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
+    },
     "MECH-071": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -200,12 +218,12 @@
     },
     "MECH-089": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Promotion review: candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Theta-gamma nesting for E1\u2192E3 packaging. V3-scoped heartbeat cluster claim; no V2 oscillatory substrate.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361142Z"
+      "rationale": "User confirmed. EXQ-041 full pipeline smoke test supports theta-gamma temporal batching. V3 substrate now running. Prior hold lifted. Promoted candidate \u2192 provisional.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote to provisional",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
     },
     "MECH-090": {
       "actor": "user",
@@ -236,12 +254,12 @@
     },
     "MECH-093": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. z_beta modulates E3 heartbeat frequency. V3-scoped heartbeat cluster claim.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361152Z"
+      "rationale": "User confirmed hold for conflict resolution. z_beta modulates E3 heartbeat frequency \u2014 conflicting V3 evidence. Hold at candidate until targeted experiment resolves.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold at candidate \u2014 resolve conflict first",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
     },
     "MECH-095": {
       "actor": "user",
@@ -272,21 +290,30 @@
     },
     "MECH-098": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Confirmed hold. New MECH registered 2026-03-17 as part of three-stream reafference architecture (SD-007). V3 substrate (reafference predictor, lateral encoder head) required before experimental evidence can be collected. EXQ-013 through EXQ-016 will provide this substrate.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-17T22:29:07.468717Z"
+      "rationale": "User confirmed hold for conflict resolution. Reafference cancellation lstsq vs EMA \u2014 4:4 evidence tie. Hold at candidate until SD-008/009 experiments clarify.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold at candidate \u2014 resolve conflict first",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
     },
     "MECH-099": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Confirmed hold. New MECH registered 2026-03-17 as part of three-stream reafference architecture (SD-007). V3 substrate (reafference predictor, lateral encoder head) required before experimental evidence can be collected. EXQ-013 through EXQ-016 will provide this substrate.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-17T22:29:07.504152Z"
+      "rationale": "User confirmed hold for conflict resolution. Three-pathway visual stream \u2014 conflicting V3 reafference evidence. Hold at candidate pending resolution.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold at candidate \u2014 resolve conflict first",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
+    },
+    "MECH-100": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "User confirmed. V3 evidence crosses provisional threshold. Event-contrastive CE auxiliary loss required for z_world encoder discrimination. Promoted candidate \u2192 provisional.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote to provisional",
+      "timestamp_utc": "2026-03-19T19:52:00Z"
     },
     "Q-006": {
       "actor": "user",
@@ -388,7 +415,7 @@
       "timestamp_utc": "2026-02-25T14:21:58.933796Z"
     }
   },
-  "generated_at_utc": "2026-03-19T19:20:40.828819Z",
+  "generated_at_utc": "2026-03-19T19:53:37.608156Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

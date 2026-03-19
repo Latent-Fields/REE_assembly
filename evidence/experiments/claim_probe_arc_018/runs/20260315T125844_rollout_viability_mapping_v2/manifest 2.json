@@ -1,0 +1,36 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "experiment_type": "claim_probe_arc_018",
+  "run_id": "20260315T125844_rollout_viability_mapping_v2",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-15T12:58:44.288398+00:00",
+  "architecture_epoch": "ree_v2",
+  "source_repo": {
+    "name": "ree-v2",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v2-causal-gridworld-runner",
+    "version": "v2"
+  },
+  "scenario": {
+    "name": "rollout_viability_mapping",
+    "condition": "multi_seed_aggregate",
+    "substrate": "ree-v2",
+    "evb_id": "EVB-0017"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-018"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "failure_signatures": [
+    "v2_verdict_fail:rollout_viability_mapping"
+  ],
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  }
+}

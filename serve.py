@@ -31,6 +31,7 @@ import http.server
 import json
 import os
 import signal
+import socket
 import subprocess
 import sys
 from pathlib import Path
@@ -231,9 +232,14 @@ def start_runner(ver: str = "v3") -> dict:
         python_exe = sys.executable  # fallback
 
     log_fh = open(RUNNER_LOG, "a")
+    cmd = [python_exe, str(cfg["script"]),
+           "--status-file", str(STATUS_FILE),
+           "--machine", socket.gethostname()]
+    if cfg.get("auto_sync"):
+        cmd.append("--auto-sync")
+    # STUB: future config could set per-runner flags from a machines.json config file
     proc = subprocess.Popen(
-        [python_exe, str(cfg["script"]),
-         "--status-file", str(STATUS_FILE)],
+        cmd,
         stdout=log_fh,
         stderr=log_fh,
         cwd=str(cfg["script"].parent),
@@ -350,6 +356,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(runner_status()).encode()
             self._json_response(body)
             return
+        # STUB /api/machines — future endpoint returning status of all known machines
+        # (hostnames, last-seen, queue assignments, GPU info from machines.json config)
         if path == "/api/queue/v3":
             body = json.dumps(read_queue("v3")).encode()
             self._json_response(body)
