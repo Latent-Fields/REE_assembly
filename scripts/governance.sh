@@ -35,6 +35,9 @@ else
   echo "--- Step 1/4: Skipping V2 sync (V3 mode) ---"
 fi
 
+echo "--- Step 1b: Syncing V3 flat JSON results to run-pack format ---"
+"$PYTHON" evidence/experiments/scripts/sync_v3_results.py
+
 echo "--- Step 2/4: Building experiment indexes ---"
 "$PYTHON" evidence/experiments/scripts/build_experiment_indexes.py
 
