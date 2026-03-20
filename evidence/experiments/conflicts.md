@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-20T18:19:23.954393Z`
+Generated: `2026-03-20T19:49:40.943571Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -11,7 +11,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-016` | directional, mixed_evidence | 4 | 5 | 0.889 | `20260320T172009Z_v3_exq_018_arc016_dynamic_precision_v3` | 10 |
 | `ARC-018` | directional | 1 | 1 | 1 | `20260320T073809Z_v3_exq_053_arc018_rollout_viability_v3` | 2 |
 | `ARC-024` | directional, mixed_evidence | 2 | 3 | 0.8 | `20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3` | 11 |
-| `MECH-033` | directional | 1 | 1 | 1 | `20260320T094747Z_v3_exq_055_mech033_kernel_chaining_v3` | 2 |
+| `MECH-033` | directional | 2 | 1 | 0.667 | `20260320T191345Z_v3_exq_055_mech033_kernel_chaining_v3` | 3 |
 | `MECH-071` | directional, mixed_evidence | 4 | 1 | 0.4 | `20260319T075521Z_v3_exq_041_full_pipeline_smoke_test_v3` | 12 |
 | `MECH-090` | directional, source_disagreement | 1 | 1 | 1 | `20260320T051926Z_v3_exq_049_mech090_beta_gate_v3` | 2 |
 | `MECH-093` | directional, source_disagreement | 1 | 1 | 1 | `20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3` | 2 |
@@ -41,7 +41,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-016
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, overall_confidence=0.724
+- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, overall_confidence=0.723
 - Recent entries:
   - `2026-03-18T20:17:24Z` `experimental` `claim_probe_arc_016` direction=`supports` confidence=0.75
   - `2026-03-18T20:18:53Z` `experimental` `claim_probe_arc_016` direction=`supports` confidence=0.75
@@ -84,10 +84,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-033
 - Conflict types: directional
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, overall_confidence=0.695
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.709
 - Recent entries:
   - `2026-03-15T16:59:27.955457+00:00` `experimental` `claim_probe_mech_033` direction=`weakens` confidence=0.75
   - `2026-03-20T09:47:47Z` `experimental` `claim_probe_mech_033` direction=`supports` confidence=0.75
+  - `2026-03-20T19:13:45Z` `experimental` `claim_probe_mech_033` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `v2_verdict_fail:kernel_chaining_interface` (1)
 - Suggested resolution actions:

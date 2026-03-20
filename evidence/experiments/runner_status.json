@@ -1,11 +1,56 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-03-20T14:39:59.827048+00:00",
-  "last_updated": "2026-03-20T19:13:45.794251+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "runner_pid": 45753,
+  "runner_started_at": "2026-03-20T19:26:27.593547+00:00",
+  "last_updated": "2026-03-20T19:50:16.503536+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-058b",
+    "backlog_id": "",
+    "claim_id": "ARC-027",
+    "title": "ARC-027 / SD-010: Harm Stream Calibration \u2014 z_harm vs z_world calibration gap",
+    "description": "Validates SD-010 harm stream produces calibrated signal that persists through reafference correction. Trains HarmEncoder(harm_obs\u2192z_harm) and baseline z_world harm_eval in parallel. PASS: C1 cal_gap_z_harm_approach>0, C2 >0.03, C3 n_approach>=30, C4 world_forward_r2>0.05, C5 z_harm better than z_world baseline.",
+    "script": "experiments/v3_exq_058_arc027_harm_stream_calibration.py",
+    "started_at": "2026-03-20T19:34:35.151187+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 550,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 941,
+    "seconds_remaining": 4400,
+    "recent_lines": [
+      "[EXQ-056] Training 500 eps \u2014 harm stream enabled (use_harm_stream=True)"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-058b",
+      "backlog_id": "",
+      "claim_id": "ARC-027",
+      "title": "ARC-027 / SD-010: Harm Stream Calibration \u2014 z_harm vs z_world calibration gap",
+      "description": "Validates SD-010 harm stream produces calibrated signal that persists through reafference correction. Trains HarmEncoder(harm_obs\u2192z_harm) and baseline z_world harm_eval in parallel. PASS: C1 cal_gap_z_harm_approach>0, C2 >0.03, C3 n_approach>=30, C4 world_forward_r2>0.05, C5 z_harm better than z_world baseline.",
+      "estimated_minutes": 73.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-059b",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 / MECH-057b / MECH-090: Beta Gate with Fixed Commit Threshold (0.40)",
+      "description": "Replication of EXQ-048 with corrected commit_threshold=0.40 (was 0.003 \u2014 25000x below actual running_variance ~0.33). Tests: C1 committed_step_count>=10 (ARC-016 fires), C2 committed_and_elevated>0 (MECH-090), C3 hold_rate>0.3 (MECH-057b), C4 gate_release_events>0, C5 cal_gap_approach>0.",
+      "estimated_minutes": 60.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1402,6 +1447,78 @@
       "started_at": "2026-03-20T18:05:45.774841+00:00",
       "completed_at": "2026-03-20T19:13:45.792493+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_055_mech033_kernel_chaining/v3_exq_055_mech033_kernel_chaining_20260320T191345Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-056c",
+      "backlog_id": "",
+      "claim_id": "SD-010",
+      "title": "SD-010 Harm Stream Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-056a. Fixes: (1) Sigmoid removed from harm_eval_z_harm_head; (2) normalized label harm_obs[12] used for both training and eval; (3) event-stratified replay buffer ensures balanced none/approach/contact in each training batch. PASS: C1 r_z_harm>0.30, C2 r_z_harm>r_z_world+0.10, C3 z_harm_variance_across_event_types>0.01, C4 n_contact>=30.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-20T19:26:27.596472+00:00",
+      "completed_at": "2026-03-20T19:26:30.540566+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-058c",
+      "backlog_id": "",
+      "claim_id": "SD-003",
+      "title": "SD-010/SD-003 Attribution Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-058a. Same three fixes as EXQ-056c. Three-phase: terrain 400 \u2192 E3 calibration 200 (stratified) \u2192 eval 100. PASS: C1 causal_sig_approach>0.001, C2 calibration_gap>0.05, C3 mean_harm_eval_none<0.2, C4 causal_sig_contact>causal_sig_approach, C5 n_approach_eval>=30.",
+      "result": "FAIL",
+      "result_summary": "causal_sig_contact: 0.10377473160624504 | calibration_gap_approach: 0.03958602362425623 | mean_harm_eval_none: 0.6305312009958121",
+      "started_at": "2026-03-20T19:26:30.542750+00:00",
+      "completed_at": "2026-03-20T19:26:45.244739+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_058c_sd010_sd003_attribution_fixed/v3_exq_058c_sd010_sd003_attribution_fixed_20260320T192644Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-059c",
+      "backlog_id": "",
+      "claim_id": "MECH-102",
+      "title": "SD-010/MECH-102 Advantage Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-059a. Same three fixes as EXQ-056c. 700 warmup eps to get n_contact>=30. Ethical policy uses argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z,a)))). PASS: C1 advantage_sig_contact>advantage_sig_none, C2 advantage_sig_contact>0.001, C3 world_forward_r2>0.05, C4 n_contact>=30.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-20T19:26:45.248124+00:00",
+      "completed_at": "2026-03-20T19:26:47.240514+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-018b",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 Relative Threshold \u2014 calibrated from training baseline variance",
+      "description": "Rewrite of EXQ-018. Replaces absolute commit_threshold with relative: threshold = 2.0 \u00d7 training_baseline_variance, calibrated from final 100 training episodes (sleep recalibration). More extreme environments: stable=2 hazards/drift_prob=0.0, perturbed=25 hazards/drift_prob=1.0. C1 criterion: var_diff > 0.5 \u00d7 training_baseline_variance (relative). PASS: C0 baseline_var>0, C1 relative var_diff, C2 precision_stable>precision_perturbed, C3 commit_rate_stable>commit_rate_perturbed, C4 n_decisions>=20.",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-03-20T19:26:47.242238+00:00",
+      "completed_at": "2026-03-20T19:33:40.473624+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_018b_arc016_relative_threshold/v3_exq_018b_arc016_relative_threshold_20260320T193340Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-058a",
+      "backlog_id": "",
+      "claim_id": "SD-003",
+      "title": "SD-010: SD-003 Attribution Recovery (EXQ-043/044 retest) \u2014 causal_sig via z_harm",
+      "description": "Direct retest of EXQ-043/044 with SD-010. CF pipeline: z_harm_cf=harm_enc(harm_bridge(E2.world_forward(z_world,a_cf))). Three phases: terrain 400 + calibration 200 + eval 100. PASS: C1 causal_sig_approach>0.001, C2 calibration_gap_approach>0.05, C3 mean_harm_eval_none<0.2, C4 causal_sig_contact>causal_sig_approach, C5 n_approach_eval>=30.",
+      "result": "FAIL",
+      "result_summary": "causal_sig_contact: 0.0837298675558784 | calibration_gap_approach: 0.2042211512908036 | mean_harm_eval_none: 0.3292693515054204",
+      "started_at": "2026-03-20T19:33:40.476627+00:00",
+      "completed_at": "2026-03-20T19:33:55.373599+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_058_sd010_sd003_attribution/v3_exq_058_sd010_sd003_attribution_20260320T193355Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-059a",
+      "backlog_id": "",
+      "claim_id": "MECH-102",
+      "title": "SD-010: MECH-102 Advantage Signal (EXQ-045 retest) \u2014 ethical policy via z_harm",
+      "description": "Direct retest of EXQ-045 with SD-010. Ethical policy: argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z_world,a)))). advantage_sig = mean_cf_harm_z_harm - harm_actual_z_harm. PASS: C1 advantage_sig_contact>advantage_sig_none, C2 advantage_sig_contact>0.001, C3 world_forward_r2>0.05, C4 n_contact>=50.",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-03-20T19:33:55.375813+00:00",
+      "completed_at": "2026-03-20T19:34:35.148666+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_059_sd010_mech102_advantage/v3_exq_059_sd010_mech102_advantage_20260320T193434Z.json"
     }
   ]
 }
