@@ -1,51 +1,96 @@
 {
   "schema_version": "v1",
-  "runner_pid": 45753,
-  "runner_started_at": "2026-03-20T19:26:27.593547+00:00",
-  "last_updated": "2026-03-20T19:50:16.503536+00:00",
+  "runner_pid": 62097,
+  "runner_started_at": "2026-03-20T21:23:18.975225+00:00",
+  "last_updated": "2026-03-20T22:41:06.743582+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-058b",
+    "queue_id": "V3-EXQ-049b",
     "backlog_id": "",
-    "claim_id": "ARC-027",
-    "title": "ARC-027 / SD-010: Harm Stream Calibration \u2014 z_harm vs z_world calibration gap",
-    "description": "Validates SD-010 harm stream produces calibrated signal that persists through reafference correction. Trains HarmEncoder(harm_obs\u2192z_harm) and baseline z_world harm_eval in parallel. PASS: C1 cal_gap_z_harm_approach>0, C2 >0.03, C3 n_approach>=30, C4 world_forward_r2>0.05, C5 z_harm better than z_world baseline.",
-    "script": "experiments/v3_exq_058_arc027_harm_stream_calibration.py",
-    "started_at": "2026-03-20T19:34:35.151187+00:00",
+    "claim_id": "MECH-090",
+    "title": "MECH-090 BetaGate Fixed \u2014 routes through agent.select_action()",
+    "description": "Rewrite of EXQ-049. Same fix as EXQ-048b. PASS: C1 committed_hold_concordance>0.6, C2 uncommitted_release_concordance>0.5, C3 hold_count>0, C4 propagation_count>0.",
+    "script": "experiments/v3_exq_049b_mech090_beta_gate_fixed.py",
+    "started_at": "2026-03-20T22:31:20.688362+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
       "episodes_done": 0,
-      "episodes_total": 550,
+      "episodes_total": 130,
       "overall_pct": 0.0
     },
-    "seconds_elapsed": 941,
-    "seconds_remaining": 4400,
+    "seconds_elapsed": 586,
+    "seconds_remaining": 1040,
     "recent_lines": [
-      "[EXQ-056] Training 500 eps \u2014 harm stream enabled (use_harm_stream=True)"
+      "[V3-EXQ-049b] MECH-090: Beta-Gated Policy Propagation (Fixed)",
+      "warmup=400  eval=50  alpha_world=0.9"
     ],
     "ree_version": "v3"
   },
   "queue": [
     {
-      "queue_id": "V3-EXQ-058b",
+      "queue_id": "V3-EXQ-056c",
       "backlog_id": "",
-      "claim_id": "ARC-027",
-      "title": "ARC-027 / SD-010: Harm Stream Calibration \u2014 z_harm vs z_world calibration gap",
-      "description": "Validates SD-010 harm stream produces calibrated signal that persists through reafference correction. Trains HarmEncoder(harm_obs\u2192z_harm) and baseline z_world harm_eval in parallel. PASS: C1 cal_gap_z_harm_approach>0, C2 >0.03, C3 n_approach>=30, C4 world_forward_r2>0.05, C5 z_harm better than z_world baseline.",
-      "estimated_minutes": 73.3,
+      "claim_id": "SD-010",
+      "title": "SD-010 Harm Stream Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-056a. Fixes: (1) Sigmoid removed from harm_eval_z_harm_head; (2) normalized label harm_obs[12] for both training and eval; (3) event-stratified replay buffer. PASS: C1 r_z_harm>0.30, C2 r_z_harm>r_z_world+0.10, C3 z_harm_variance_across_event_types>0.01, C4 n_contact>=30.",
+      "estimated_minutes": 17.3,
+      "status": "error",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-059c",
+      "backlog_id": "",
+      "claim_id": "MECH-102",
+      "title": "SD-010/MECH-102 Advantage Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-059a. 700 warmup eps, stratified training, C4 relaxed to n_contact>=30. Ethical policy: argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z,a)))). PASS: C1 advantage_sig_contact>advantage_sig_none, C2 advantage_sig_contact>0.001, C3 world_forward_r2>0.05, C4 n_contact>=30.",
+      "estimated_minutes": 17.3,
+      "status": "error",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-049b",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 BetaGate Fixed \u2014 routes through agent.select_action()",
+      "description": "Rewrite of EXQ-049. Same fix as EXQ-048b. PASS: C1 committed_hold_concordance>0.6, C2 uncommitted_release_concordance>0.5, C3 hold_count>0, C4 propagation_count>0.",
+      "estimated_minutes": 17.3,
       "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-059b",
+      "queue_id": "V3-EXQ-052b",
       "backlog_id": "",
-      "claim_id": "ARC-016",
-      "title": "ARC-016 / MECH-057b / MECH-090: Beta Gate with Fixed Commit Threshold (0.40)",
-      "description": "Replication of EXQ-048 with corrected commit_threshold=0.40 (was 0.003 \u2014 25000x below actual running_variance ~0.33). Tests: C1 committed_step_count>=10 (ARC-016 fires), C2 committed_and_elevated>0 (MECH-090), C3 hold_rate>0.3 (MECH-057b), C4 gate_release_events>0, C5 cal_gap_approach>0.",
-      "estimated_minutes": 60.0,
+      "claim_id": "SD-006",
+      "title": "SD-006 Multirate Fixed \u2014 correct ThetaBuffer counter",
+      "description": "Rewrite of EXQ-052. Fix: len(agent.theta_buffer) instead of len(agent.theta_buffer._buffer). Bug: _buffer attribute does not exist; AttributeError silently caught, max_theta_buffer_size=0. All other metrics (cal_gap=0.846, e3_tick_ratio=0.109) already pass.",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-050b",
+      "backlog_id": "",
+      "claim_id": "MECH-025",
+      "title": "MECH-025 Doing Mode \u2014 relative threshold calibration",
+      "description": "Rewrite of EXQ-050. Calibrates commit_threshold = 2.0 x training_baseline_variance so agent enters both committed and uncommitted modes. Prerequisite: EXQ-018b establishes relative threshold works. PASS: doing_mode_delta>0.002, uncommitted_step_count>=10.",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-051b",
+      "backlog_id": "",
+      "claim_id": "Q-007",
+      "title": "Q-007 z_beta Volatility Injection \u2014 NE/LC analog via running_variance input",
+      "description": "Fix for Q-007 architectural gap (EXQ-051 FAIL). Injects E3._running_variance as scalar into beta_encoder via LatentStackConfig.volatility_signal_dim=1. Two conditions: stable (fixed hazard positions) vs volatile (randomised each episode), same mean hazard count. Yu & Dayan 2005 (PMID 15944135): NE encodes unexpected uncertainty = running_variance spike. With injection: volatile agent should have higher z_beta norm (C1), Pearson r(rv,z_beta)>0.3 (C2), and z_beta rises within 20 eps after stable\u2192volatile transfer (C3).",
+      "estimated_minutes": 17.3,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -1449,42 +1494,6 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_055_mech033_kernel_chaining/v3_exq_055_mech033_kernel_chaining_20260320T191345Z.json"
     },
     {
-      "queue_id": "V3-EXQ-056c",
-      "backlog_id": "",
-      "claim_id": "SD-010",
-      "title": "SD-010 Harm Stream Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
-      "description": "Rewrite of EXQ-056a. Fixes: (1) Sigmoid removed from harm_eval_z_harm_head; (2) normalized label harm_obs[12] used for both training and eval; (3) event-stratified replay buffer ensures balanced none/approach/contact in each training batch. PASS: C1 r_z_harm>0.30, C2 r_z_harm>r_z_world+0.10, C3 z_harm_variance_across_event_types>0.01, C4 n_contact>=30.",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-20T19:26:27.596472+00:00",
-      "completed_at": "2026-03-20T19:26:30.540566+00:00",
-      "output_file": ""
-    },
-    {
-      "queue_id": "V3-EXQ-058c",
-      "backlog_id": "",
-      "claim_id": "SD-003",
-      "title": "SD-010/SD-003 Attribution Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
-      "description": "Rewrite of EXQ-058a. Same three fixes as EXQ-056c. Three-phase: terrain 400 \u2192 E3 calibration 200 (stratified) \u2192 eval 100. PASS: C1 causal_sig_approach>0.001, C2 calibration_gap>0.05, C3 mean_harm_eval_none<0.2, C4 causal_sig_contact>causal_sig_approach, C5 n_approach_eval>=30.",
-      "result": "FAIL",
-      "result_summary": "causal_sig_contact: 0.10377473160624504 | calibration_gap_approach: 0.03958602362425623 | mean_harm_eval_none: 0.6305312009958121",
-      "started_at": "2026-03-20T19:26:30.542750+00:00",
-      "completed_at": "2026-03-20T19:26:45.244739+00:00",
-      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_058c_sd010_sd003_attribution_fixed/v3_exq_058c_sd010_sd003_attribution_fixed_20260320T192644Z.json"
-    },
-    {
-      "queue_id": "V3-EXQ-059c",
-      "backlog_id": "",
-      "claim_id": "MECH-102",
-      "title": "SD-010/MECH-102 Advantage Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
-      "description": "Rewrite of EXQ-059a. Same three fixes as EXQ-056c. 700 warmup eps to get n_contact>=30. Ethical policy uses argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z,a)))). PASS: C1 advantage_sig_contact>advantage_sig_none, C2 advantage_sig_contact>0.001, C3 world_forward_r2>0.05, C4 n_contact>=30.",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-20T19:26:45.248124+00:00",
-      "completed_at": "2026-03-20T19:26:47.240514+00:00",
-      "output_file": ""
-    },
-    {
       "queue_id": "V3-EXQ-018b",
       "backlog_id": "",
       "claim_id": "ARC-016",
@@ -1519,6 +1528,54 @@
       "started_at": "2026-03-20T19:33:55.375813+00:00",
       "completed_at": "2026-03-20T19:34:35.148666+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_059_sd010_mech102_advantage/v3_exq_059_sd010_mech102_advantage_20260320T193434Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-058b",
+      "backlog_id": "",
+      "claim_id": "ARC-027",
+      "title": "ARC-027 / SD-010: Harm Stream Calibration \u2014 z_harm vs z_world calibration gap",
+      "description": "Validates SD-010 harm stream produces calibrated signal that persists through reafference correction. Trains HarmEncoder(harm_obs\u2192z_harm) and baseline z_world harm_eval in parallel. PASS: C1 cal_gap_z_harm_approach>0, C2 >0.03, C3 n_approach>=30, C4 world_forward_r2>0.05, C5 z_harm better than z_world baseline.",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-056] PASS (5/5 criteria) | cal_gap z_harm (approach):  0.7122 | [EXQ-056] Result written to v3_exq_058_arc027_harm_stream_calibration_20260320T200725Z.json",
+      "started_at": "2026-03-20T19:34:35.151187+00:00",
+      "completed_at": "2026-03-20T20:07:25.827259+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-059b",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 / MECH-057b / MECH-090: Beta Gate with Fixed Commit Threshold (0.40)",
+      "description": "Replication of EXQ-048 with corrected commit_threshold=0.40 (was 0.003 \u2014 25000x below actual running_variance ~0.33). Tests: C1 committed_step_count>=10 (ARC-016 fires), C2 committed_and_elevated>0 (MECH-090), C3 hold_rate>0.3 (MECH-057b), C4 gate_release_events>0, C5 cal_gap_approach>0.",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-057] FAIL (2/5 criteria)",
+      "started_at": "2026-03-20T20:07:25.832240+00:00",
+      "completed_at": "2026-03-20T20:49:11.489917+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-058c",
+      "backlog_id": "",
+      "claim_id": "SD-003",
+      "title": "SD-010/SD-003 Attribution Fixed \u2014 normalized labels, no sigmoid, stratified calibration",
+      "description": "Rewrite of EXQ-058a. Three-phase: terrain 400 \u2192 E3 calibration 200 (stratified) \u2192 eval 100. PASS: C1 causal_sig_approach>0.001, C2 calibration_gap>0.05, C3 mean_harm_eval_none<0.2, C4 causal_sig_contact>causal_sig_approach, C5 n_approach_eval>=30.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_approach: 0.03565131690879486 | mean_harm_eval_none: 0.6287008858644045 | mean_harm_eval_approach: 0.6643522027731994",
+      "started_at": "2026-03-20T21:23:22.242662+00:00",
+      "completed_at": "2026-03-20T21:23:35.437992+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_058c_sd010_sd003_attribution_fixed/v3_exq_058c_sd010_sd003_attribution_fixed_20260320T212335Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-048b",
+      "backlog_id": "",
+      "claim_id": "MECH-057b",
+      "title": "MECH-057b BetaGate Fixed \u2014 routes through agent.select_action()",
+      "description": "Rewrite of EXQ-048. Fix: call agent.select_action(candidates, ticks) instead of agent.e3.select() directly. Bug: previous script bypassed beta_gate wiring in agent.select_action() \u2014 gate never exercised, hold_count=0. PASS: C1 committed_steps>=10, C2 hold_rate_during_committed>0.5, C3 propagation_count>0, C4 cal_gap>0.",
+      "result": "FAIL",
+      "result_summary": "C2 FAIL: hold_rate_during_committed=0.000 <= 0.5 | Status: FAIL | calibration_gap_approach: 0.9647184354293008",
+      "started_at": "2026-03-20T21:23:36.938744+00:00",
+      "completed_at": "2026-03-20T22:31:20.682084+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_048b_mech057b_completion_gate_fixed/v3_exq_048b_mech057b_completion_gate_fixed_20260320T223120Z.json"
     }
   ]
 }

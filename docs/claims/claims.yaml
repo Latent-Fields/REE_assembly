@@ -1886,8 +1886,9 @@
     loop that EXQ-059b's eval phase does not exercise. C3 (elevation detectable) and
     C4 (propagation to policy) cannot be verified without running_variance > 0.
     Root cause: _running_variance update and BetaGate elevation are in separate code paths
-    that must both be triggered for the gating circuit to function. EXQ-048b must
-    explicitly call the variance-update step before threshold comparison.
+    that must both be triggered for the gating circuit to function. Fix: call
+    agent.e3.update_after_execution(z_world_t, harm_prev<0) each step so _running_variance
+    evolves during training. EXQ-048c implements this fix.
   depends_on:
     - ARC-015
     - ARC-005
@@ -3633,7 +3634,8 @@
     _running_variance to be populated, which only happens in the E3 training-loop path,
     not the inference path called during eval. C3 (beta elevated during committed sequence)
     and C4 (propagation blocked) untestable until variance accumulation is wired into
-    the inference path. See MECH-057b for root-cause analysis and EXQ-048b fix plan.
+    the inference path. See MECH-057b for root-cause analysis. Fix: EXQ-049c calls
+    agent.e3.update_after_execution(z_world_t, harm_prev<0) each step.
   depends_on:
     - ARC-023
     - ARC-021

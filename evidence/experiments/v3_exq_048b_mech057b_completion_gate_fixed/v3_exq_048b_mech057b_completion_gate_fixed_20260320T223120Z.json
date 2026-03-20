@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "committed_step_count": 0.0,
+    "uncommitted_step_count": 10000.0,
+    "committed_and_elevated": 0.0,
+    "committed_and_propagated": 0.0,
+    "hold_rate_during_committed": 0.0,
+    "gate_release_events": 0.0,
+    "hold_count_total": 0.0,
+    "propagation_count_total": 10350.0,
+    "calibration_gap_approach": 0.9647184354293008,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-048b -- MECH-057b: Trajectory Completion Gate (Fixed)\n\n**Status:** FAIL\n**Claims:** MECH-057b, MECH-090\n**Fix:** Routes through agent.select_action() instead of agent.e3.select() directly\n**Prerequisite:** EXQ-042 PASS (HippocampalModule terrain prior functional)\n**alpha_world:** 0.9\n**Warmup:** 400 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Root Cause of EXQ-048 FAIL\n\nEXQ-048 called `agent.e3.select()` directly and set `agent._last_action` manually,\nbypassing `agent.select_action()`. The `select_action()` method is the only code\npath that calls `beta_gate.elevate()` and `beta_gate.propagate()`. As a result,\n`gate.is_elevated` was always False and `hold_count=0` in EXQ-048, regardless of\ncommitment state. This was an experiment instrumentation error, not a mechanism failure.\n\n## Motivation\n\nMECH-057b: BetaGate should hold policy output during committed action execution,\nand release at completion (E3 tick boundary where a new trajectory is selected).\nThis tests whether the gate behaves correctly: elevated during sequences, released\nwhen sequences complete.\n\nCommitted state read from: agent.e3._committed_trajectory is not None\nGate state read from: agent.beta_gate.is_elevated, agent.beta_gate.get_state()\n\n## Beta Gate State During Eval\n\n| Metric | Value |\n|--------|-------|\n| committed_step_count | 0 |\n| uncommitted_step_count | 10000 |\n| hold_rate_during_committed | 0.000 |\n| gate_release_events | 0 |\n| hold_count_total (all steps) | 0 |\n| propagation_count_total | 10350 |\n| calibration_gap_approach | 0.9647 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: committed_step_count >= 10 (agent commits) | FAIL | 0 |\n| C2: hold_rate_during_committed > 0.5 (gate holds) | FAIL | 0.000 |\n| C3: propagation_count > 0 (gate releases) | PASS | 10350 |\n| C4: calibration_gap_approach > 0 (E3 functional) | PASS | 0.9647 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: committed_step_count=0 < 10\n- C2 FAIL: hold_rate_during_committed=0.000 <= 0.5\n",
+  "claim_ids": [
+    "MECH-057b",
+    "MECH-090"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_048b_mech057b_completion_gate_fixed",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T223120Z",
+  "claim": "MECH-057b",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_048b_mech057b_completion_gate_fixed_20260320T223120Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
