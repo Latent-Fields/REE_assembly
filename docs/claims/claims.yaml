@@ -1081,7 +1081,7 @@
   claim_type: architectural_commitment
   subject: hippocampus.rollout_viability_mapping
   polarity: asserts
-  status: candidate
+  status: active
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
@@ -1267,18 +1267,13 @@
   claim_type: mechanism_hypothesis
   subject: hippocampus.kernel_chaining_interface
   polarity: asserts
-  status: candidate
+  status: active
   lifecycle_stage: adjudicated
   adjudication_outcome: retain_ree
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
-  v3_pending: true
-  v3_pending_reason: |
-    Requires SD-004 (action objects as E2 latent). The kernel → rollout handoff is only
-    load-bearing when E2 kernels are action-consequence objects, not sensory state transitions.
-    In V2, generate_trajectories() chains z_gamma sensory predictions — the wrong primitive.
-    Inherits ARC-018 prerequisite: hippocampal rollout coordinates must be action-object space.
+  v3_pending: false
   evidence_quality_note: |
     V2 experiment EXQ-022 (kernel_chaining_interface, EVB-0016) FAIL — run twice (2026-03-08,
     2026-03-15), consistent result. WITH_CHAIN (full E2→hippocampus→E3 pipeline) only 1.8%
@@ -1286,6 +1281,10 @@
     Root cause: V2 E2 produces z_gamma sensory transitions, not action-consequence objects.
     Chaining sensory predictions into rollouts provides negligible signal to E3 — the interface
     exists but passes the wrong type across it. Structural failure, not a tuning issue.
+    V3 EXQ-055 PASS (2026-03-20): action-object chaining vs self-only vs random — AO reduces
+    harm 67× vs self-only (harm_ao=0.00147 vs harm_self=0.0684), cal_gap_ao=0.734 vs
+    cal_gap_self=0.021. All 5 criteria met. V3 z_world action-object E2 is the correct primitive.
+    v3_pending cleared 2026-03-20.
   depends_on:
     - ARC-018
     - ARC-002
@@ -2839,9 +2838,15 @@
   source:
     - docs/architecture/sd_003_experiment_design.md
   evidence_quality_note: |
-    EXQ-028 FAIL: Same root cause as EXQ-027. Foreseeable-harm gating depends on E2
+    EXQ-028 FAIL (V2): Same root cause as EXQ-027. Foreseeable-harm gating depends on E2
     discriminating agent-caused from env-caused harm — impossible without z_self/z_world
-    split (SD-005) and joint SD-003 pipeline. Cannot be tested until V3.
+    split (SD-005) and joint SD-003 pipeline.
+    V3 EXQ-054 FAIL (2026-03-20): world_delta_agent=0.01776 ≈ world_delta_env=0.01806 (1.7%
+    difference, below C3 threshold). C4 FAIL: calibration_gap_approach=0. E2 cannot
+    discriminate agent vs environment dynamics without SD-005 z_self/z_world split — z_gamma
+    conflates both. Partial signal: false attribution dropped 62% (34→13 events) showing the
+    gate threshold captures some structure, but C3/C4 require SD-005 to pass.
+    v3_pending and implementation_phase:v3 retained — requires SD-005 before meaningful test.
   notes: >
     Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
     reduces false attribution rate (residue at env-caused events / total residue)

@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_033
 
-Generated: `2026-03-20T08:00:16.446871Z`
+Generated: `2026-03-20T14:17:09.356751Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-20T08:00:16.446871Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260320T094747Z_v3_exq_055_mech033_kernel_chaining_v3` | `2026-03-20T09:47:47Z` | PASS | fatal_error_count=0 | fatal_error_count:+0 | - | - | [`summary`](runs/20260320T094747Z_v3_exq_055_mech033_kernel_chaining_v3/summary.md) / [`manifest`](runs/20260320T094747Z_v3_exq_055_mech033_kernel_chaining_v3/manifest.json) / [`metrics`](runs/20260320T094747Z_v3_exq_055_mech033_kernel_chaining_v3/metrics.json) |
 | `20260315T165927_kernel_chaining_interface_v2` | `2026-03-15T16:59:27.955457+00:00` | **FAIL** | fatal_error_count=0 | - | - | - | [`summary`](runs/20260315T165927_kernel_chaining_interface_v2/summary.md) / [`manifest`](runs/20260315T165927_kernel_chaining_interface_v2/manifest.json) / [`metrics`](runs/20260315T165927_kernel_chaining_interface_v2/metrics.json) |
 | `exp_0014_20260215T213723404871Z` | `2026-02-15T21:37:23.404871Z` | PASS | - | - | - | - | [`summary`](runs/exp_0014_20260215T213723404871Z/summary.md) / [`manifest`](runs/exp_0014_20260215T213723404871Z/manifest.json) / [`metrics`](runs/exp_0014_20260215T213723404871Z/metrics.json) |
 | `exp_0013_20260215T213710977612Z` | `2026-02-15T21:37:10.977612Z` | PASS | - | - | - | - | [`summary`](runs/exp_0013_20260215T213710977612Z/summary.md) / [`manifest`](runs/exp_0013_20260215T213710977612Z/manifest.json) / [`metrics`](runs/exp_0013_20260215T213710977612Z/metrics.json) |

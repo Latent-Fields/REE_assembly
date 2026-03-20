@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260320T082932Z_v3_exq_054_mech072_world_delta_gating_v3` at `2026-03-20T08:29:32Z` signatures: none
 - `20260315T205715_selective_residue_attribution_v2` at `2026-03-15T20:57:15.002247+00:00` signatures: v2_verdict_fail:selective_residue_attribution
 
 Recurring signatures:
