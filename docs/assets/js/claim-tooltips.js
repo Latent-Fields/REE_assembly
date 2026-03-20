@@ -40,16 +40,17 @@
 
   // ── Build tooltip HTML ─────────────────────────────────────────────────────
   function buildTooltipHTML(id, claim) {
-    const { domain, topic } = formatSubject(claim.subject);
+    const { domain } = formatSubject(claim.subject);
     const typeLabel = TYPE_LABEL[claim.type] || claim.type.replace(/_/g, ' ');
     const statusClass = 's-' + (claim.status || 'unknown').replace(/[^a-z]/g, '');
+    const title = claim.title || '';
 
     return `
       <div class="ct-header">
         <span class="ct-id">${id}</span>
         <span class="ct-type">${typeLabel}</span>
       </div>
-      <div class="ct-topic">${topic}</div>
+      ${title ? `<div class="ct-title">${title}</div>` : ''}
       <div class="ct-meta">${domain}<span class="ct-status ${statusClass}">${claim.status || '?'}</span></div>
     `.trim();
   }
@@ -91,6 +92,12 @@
     hideTimer = setTimeout(() => { tooltip.style.display = 'none'; }, 80);
   }
 
+  function hideTooltipNow() {
+    clearTimeout(hideTimer);
+    tooltip.style.display = 'none';
+    tooltip.dataset.activeId = '';
+  }
+
   // ── Text node replacement ──────────────────────────────────────────────────
   function processTextNode(node) {
     const text = node.nodeValue;
@@ -113,6 +120,15 @@
       if (claims[match[0]]) {
         span.addEventListener('mouseenter', () => showTooltip(span));
         span.addEventListener('mouseleave', hideTooltip);
+        span.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (tooltip.style.display === 'block' && tooltip.dataset.activeId === match[0]) {
+            hideTooltipNow();
+          } else {
+            tooltip.dataset.activeId = match[0];
+            showTooltip(span);
+          }
+        });
       }
       frag.appendChild(span);
       last = CLAIM_RE.lastIndex;
@@ -159,6 +175,13 @@
     // Target the main content area only (avoid nav/sidebar re-processing)
     const main = document.querySelector('main, article, .main-content, #main-content, body');
     walkAndReplace(main || document.body);
+
+    // Tap anywhere outside a claim-ref to dismiss on mobile
+    document.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('claim-ref')) {
+        hideTooltipNow();
+      }
+    });
   }
 
   // Fetch claim data then initialise once DOM is ready

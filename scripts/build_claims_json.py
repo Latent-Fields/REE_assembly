@@ -38,6 +38,7 @@ def main():
             "type": claim.get("claim_type", ""),
             "subject": claim.get("subject", ""),
             "status": claim.get("status", ""),
+            "title": claim.get("title", ""),
         }
 
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)

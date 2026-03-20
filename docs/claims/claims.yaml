@@ -1,4 +1,5 @@
 - id: INV-001
+  title: "No explicit ethics module or moral scoring layer."
   claim_type: invariant
   subject: ethics.emergence
   polarity: denies
@@ -9,6 +10,7 @@
     - docs/processed/legacy_tree/docs/invariants.md
     - docs/processed/legacy_tree/README.md
 - id: INV-002
+  title: "Coherence includes temporal/phase binding, not just static metrics."
   claim_type: invariant
   subject: coherence.definition
   polarity: asserts
@@ -18,6 +20,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-003
+  title: "Language emerges as functional self-representation, not a bolt-on."
   claim_type: invariant
   subject: language.emergence
   polarity: asserts
@@ -27,6 +30,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-004
+  title: "Post-commit consequence traces are persistent, not resettable."
   claim_type: invariant
   subject: consequence.persistence
   polarity: asserts
@@ -36,6 +40,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-005
+  title: "Harm to others contributes via mirror modelling, not symbolic rules."
   claim_type: invariant
   subject: ethics.mechanism
   polarity: asserts
@@ -45,6 +50,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-006
+  title: "Post-commit consequence traces cannot be erased, only integrated."
   claim_type: invariant
   subject: consequence.non_erasability
   polarity: denies
@@ -54,6 +60,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-007
+  title: "Language cannot override embodied harm sensing."
   claim_type: invariant
   subject: language.constraint
   polarity: denies
@@ -63,6 +70,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-008
+  title: "Precision is routed and depth-specific, not global."
   claim_type: invariant
   subject: precision.routing
   polarity: asserts
@@ -72,6 +80,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-009
+  title: "Attention is precision modulation, not symbolic control."
   claim_type: invariant
   subject: attention.mechanism
   polarity: asserts
@@ -81,6 +90,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-010
+  title: "Offline integration exists and is required."
   claim_type: invariant
   subject: sleep.necessity
   polarity: asserts
@@ -90,6 +100,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-011
+  title: "Imagination must be possible without belief update."
   claim_type: invariant
   subject: default_mode.safety
   polarity: asserts
@@ -99,6 +110,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-012
+  title: "Responsibility arises through commitment, not prediction alone."
   claim_type: invariant
   subject: commitment.epistemology
   polarity: asserts
@@ -108,6 +120,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-013
+  title: "Cognition is predictive, iterative, and multi-timescale."
   claim_type: invariant
   subject: cognition.structure
   polarity: asserts
@@ -117,6 +130,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-014
+  title: "Representation and regulation are strictly separated."
   claim_type: invariant
   subject: architecture.separation
   polarity: asserts
@@ -126,6 +140,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-015
+  title: "Ethics emerges from constraint, not optimisation."
   claim_type: invariant
   subject: ethics.emergence_mechanism
   polarity: asserts
@@ -135,6 +150,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-016
+  title: "Stability is prioritized over maximal performance."
   claim_type: invariant
   subject: design.priority
   polarity: asserts
@@ -144,6 +160,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: INV-017
+  title: "Runaway behavior is a control failure, not representational."
   claim_type: invariant
   subject: failure.classification
   polarity: asserts
@@ -153,6 +170,7 @@
   source:
     - docs/processed/legacy_tree/docs/invariants.md
 - id: ARC-001
+  title: "E1 is the persistent predictive substrate."
   claim_type: architectural_commitment
   subject: E1.persistent_predictive_substrate
   polarity: asserts
@@ -166,6 +184,7 @@
     - docs/processed/legacy_tree/docs/architecture/e1.md
     - docs/processed/legacy_tree/architecture/E1.md
 - id: ARC-002
+  title: "E2 is the fast forward predictor of affordances."
   claim_type: architectural_commitment
   subject: E2.fast_forward_predictor
   polarity: asserts
@@ -182,6 +201,7 @@
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
 - id: ARC-003
+  title: "E3 selects and commits trajectories."
   claim_type: architectural_commitment
   subject: E3.trajectory_commitment
   polarity: asserts
@@ -205,6 +225,7 @@
     - docs/thoughts/2026-02-24_prefrontal_primitives.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: ARC-004
+  title: "L-space is a multi-timescale latent stack."
   claim_type: architectural_commitment
   subject: L_space.latent_stack
   polarity: asserts
@@ -217,6 +238,7 @@
     - docs/processed/legacy_tree/docs/architecture/l_space.md
     - docs/processed/legacy_tree/architecture/latent_stack.md
 - id: ARC-005
+  title: "Control plane routes precision and modes."
   claim_type: architectural_commitment
   subject: control_plane.precision_routing
   polarity: asserts
@@ -233,6 +255,7 @@
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
     - docs/thoughts/2026-02-09_empathy.md
 - id: ARC-006
+  title: "Entities are sparse, persistent, bindable structures."
   claim_type: architectural_commitment
   subject: entities.binding
   polarity: asserts
@@ -245,6 +268,7 @@
     - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
     - docs/processed/legacy_tree/DANIEL_README.md
 - id: ARC-007
+  title: "Hippocampal systems store and replay paths through residue-field terrain."
   claim_type: architectural_commitment
   subject: hippocampus.path_memory
   polarity: asserts
@@ -274,6 +298,7 @@
     - docs/processed/legacy_tree/docs/architecture/hippocampal_systems.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: ARC-008
+  title: "Commitment eligibility is gated by tau, rho, and phi."
   claim_type: architectural_commitment
   subject: temporal.depth_phase_gating
   polarity: asserts
@@ -288,6 +313,7 @@
     - docs/processed/legacy_tree/architecture/depth_phase_spec.md
     - docs/processed/legacy_tree/docs/architecture/temporal_dynamics.md
 - id: IMPL-001
+  title: "Glossary of canonical REE terms."
   claim_type: implementation_note
   subject: repo.glossary
   polarity: asserts
@@ -297,6 +323,7 @@
   source:
     - docs/processed/legacy_tree/docs/glossary.md
 - id: Q-001
+  title: "What mechanisms produce entity emergence and binding?"
   claim_type: open_question
   subject: entities.emergence_mechanism
   polarity: asserts
@@ -307,6 +334,7 @@
   source:
     - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
 - id: ARC-009
+  title: "Language is a symbolic mediation and coordination layer."
   claim_type: architectural_commitment
   subject: language.symbolic_mediation
   polarity: asserts
@@ -326,6 +354,7 @@
     - docs/thoughts/2026-02-09_language.md
     - docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md
 - id: ARC-010
+  title: "Social cognition uses mirror modelling and coupling."
   claim_type: architectural_commitment
   subject: social.mirror_modelling
   polarity: asserts
@@ -344,6 +373,7 @@
     - docs/thoughts/2026-02-09_empathy.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: ARC-011
+  title: "Offline integration (sleep) is required for stability."
   claim_type: architectural_commitment
   subject: sleep.offline_integration
   polarity: asserts
@@ -358,6 +388,7 @@
     - docs/processed/legacy_tree/architecture/sleep/sleep_contract.md
     - docs/processed/legacy_tree/docs/architecture/sleep.md
 - id: ARC-012
+  title: "E3 does not require an explicit ethical cost term."
   claim_type: architectural_commitment
   subject: ethics.no_explicit_cost_term
   polarity: asserts
@@ -371,6 +402,7 @@
   source:
     - docs/processed/legacy_tree/REE_CORE.md
 - id: MECH-001
+  title: "Astrocyte-aware regulatory stack mediates control-plane precision routing."
   claim_type: mechanism_hypothesis
   subject: control_plane.astrocyte_regulatory_stack
   polarity: asserts
@@ -390,6 +422,7 @@
     - docs/processed/legacy_tree/architecture/astrocyte_aware_regulatory_stack/references.md
     - docs/processed/legacy_tree/docs/architecture/astrocyte_regulatory_stack.md
 - id: Q-002
+  title: "What is the appropriate spatial resolution for R(x,t)?"
   claim_type: open_question
   subject: astrocyte.R_field_resolution
   polarity: asserts
@@ -400,6 +433,7 @@
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
 - id: Q-003
+  title: "Should R(x,t) be scalar or vector?"
   claim_type: open_question
   subject: astrocyte.R_field_dimensionality
   polarity: asserts
@@ -410,6 +444,7 @@
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
 - id: Q-004
+  title: "How to calibrate tau_R relative to E1/E2?"
   claim_type: open_question
   subject: astrocyte.tau_R_calibration
   polarity: asserts
@@ -420,6 +455,7 @@
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
 - id: Q-005
+  title: "Can sleep anneal or reset R(x,t)?"
   claim_type: open_question
   subject: astrocyte.sleep_annealing
   polarity: asserts
@@ -430,6 +466,7 @@
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
 - id: ARC-013
+  title: "Residue is persistent latent-space curvature; hippocampal paths form a cognitive map."
   claim_type: architectural_commitment
   subject: residue.geometry
   polarity: asserts
@@ -444,6 +481,7 @@
     - docs/processed/legacy_tree/architecture/residue_geometry.md
     - docs/thoughts/2026-02-08_residue_paths_cognitive_map.md
 - id: ARC-014
+  title: "Default Mode enables safe imagination without commitment."
   claim_type: architectural_commitment
   subject: default_mode.internal_generative
   polarity: asserts
@@ -459,6 +497,7 @@
     - docs/processed/legacy_tree/docs/architecture/default_mode.md
     - docs/processed/legacy_tree/architecture/Default_mode.md
 - id: IMPL-002
+  title: "Repository metadata and contribution process."
   claim_type: implementation_note
   subject: repo.meta
   polarity: asserts
@@ -473,6 +512,7 @@
     - docs/processed/legacy_tree/.github/ISSUE_TEMPLATE/discussion.yml
     - docs/processed/legacy_tree/src/placeholder.md
 - id: IMPL-003
+  title: "Minimum instantiation specification."
   claim_type: implementation_note
   subject: spec.minimum
   polarity: asserts
@@ -489,6 +529,7 @@
   source:
     - docs/processed/legacy_tree/docs/REE_MIN_SPEC.md
 - id: IMPL-004
+  title: "Legacy REE overview summary."
   claim_type: implementation_note
   subject: overview.legacy
   polarity: asserts
@@ -507,6 +548,7 @@
   source:
     - docs/processed/legacy_tree/docs/REE_overview.md
 - id: IMPL-005
+  title: "Failure mode taxonomy."
   claim_type: implementation_note
   subject: failure_modes
   polarity: asserts
@@ -525,6 +567,7 @@
     - docs/thoughts/FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md
     - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
 - id: IMPL-006
+  title: "Legacy migration mapping."
   claim_type: implementation_note
   subject: migration.legacy
   polarity: asserts
@@ -534,6 +577,7 @@
   source:
     - docs/processed/legacy_tree/docs/MIGRATION.md
 - id: IMPL-007
+  title: "Legacy refactor final output summary."
   claim_type: implementation_note
   subject: refactor.final_output.legacy
   polarity: asserts
@@ -543,6 +587,7 @@
   source:
     - docs/processed/legacy_tree/docs/FINAL_OUTPUT.md
 - id: IMPL-008
+  title: "Program phases, repository roles, and phase-gate criteria."
   claim_type: implementation_note
   subject: roadmap.program_phases
   polarity: records
@@ -553,6 +598,7 @@
     - docs/roadmap.md
     - docs/processed/legacy_tree/roadmap.md
 - id: IMPL-009
+  title: "Wiring notes and cross-reference summary."
   claim_type: implementation_note
   subject: wiring.notes.legacy
   polarity: asserts
@@ -562,6 +608,7 @@
   source:
     - docs/processed/legacy_tree/WIRING_NOTES.md
 - id: IMPL-010
+  title: "Android world environment contract."
   claim_type: implementation_note
   subject: examples.android_world
   polarity: asserts
@@ -572,6 +619,7 @@
   source:
     - docs/processed/legacy_tree/examples/android_world/environment.md
 - id: IMPL-011
+  title: "Toy world environment contract."
   claim_type: implementation_note
   subject: examples.toy_world
   polarity: asserts
@@ -582,6 +630,7 @@
   source:
     - docs/processed/legacy_tree/examples/toy_world/environment.md
 - id: IMPL-012
+  title: "Toy world scoring functions."
   claim_type: implementation_note
   subject: examples.toy_world_scoring
   polarity: asserts
@@ -592,6 +641,7 @@
   source:
     - docs/processed/legacy_tree/examples/toy_world/scoring_functions.md
 - id: IMPL-013
+  title: "Documentation operating procedure and prompts."
   claim_type: implementation_note
   subject: docs.readme
   polarity: asserts
@@ -601,6 +651,7 @@
   source:
     - docs/processed/legacy_tree/docs/README.md
 - id: IMPL-014
+  title: "Documentation change history."
   claim_type: implementation_note
   subject: docs.changelog
   polarity: asserts
@@ -610,6 +661,7 @@
   source:
     - docs/processed/legacy_tree/docs/changelog.md
 - id: IMPL-015
+  title: "Legacy architecture overview."
   claim_type: implementation_note
   subject: architecture.overview.legacy
   polarity: asserts
@@ -619,6 +671,7 @@
   source:
     - docs/processed/legacy_tree/architecture/README_architecture.md
 - id: IMPL-016
+  title: "Trajectory selection detail for E3."
   claim_type: implementation_note
   subject: trajectory.selection.detail
   polarity: asserts
@@ -632,6 +685,7 @@
     - docs/processed/legacy_tree/architecture/trajectory_selection.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
 - id: MECH-002
+  title: "Precision control analogues shape cognitive regimes."
   claim_type: mechanism_hypothesis
   subject: precision.control_analogues
   polarity: asserts
@@ -644,6 +698,7 @@
   source:
     - docs/processed/legacy_tree/architecture/precision_control.md
 - id: MECH-003
+  title: "Precision must be tau-scoped with lossy projections."
   claim_type: mechanism_hypothesis
   subject: precision.tau_scoping
   polarity: asserts
@@ -655,6 +710,7 @@
   source:
     - docs/processed/legacy_tree/architecture/precision_scoping.md
 - id: MECH-004
+  title: "Signal-to-knob wiring map for control plane."
   claim_type: mechanism_hypothesis
   subject: control_plane.signal_map
   polarity: asserts
@@ -672,6 +728,7 @@
     - docs/thoughts/2026-02-17_control_plane_update.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: MECH-005
+  title: "Path authority and interruptibility via norepinephrine-like control."
   claim_type: mechanism_hypothesis
   subject: control_plane.path_authority
   polarity: asserts
@@ -684,6 +741,7 @@
   source:
     - docs/processed/legacy_tree/architecture/path_authority_and_interrupts.md
 - id: MECH-006
+  title: "Serotonin-like modulation governs representational collapse."
   claim_type: mechanism_hypothesis
   subject: control_plane.serotonin_collapse
   polarity: asserts
@@ -695,6 +753,7 @@
   source:
     - docs/processed/legacy_tree/architecture/serotonin.md
 - id: MECH-007
+  title: "Attention must be fragmented across control axes."
   claim_type: mechanism_hypothesis
   subject: attention.fragmentation
   polarity: asserts
@@ -706,6 +765,7 @@
   source:
     - docs/processed/legacy_tree/architecture/why_attention_must_be_fragmented.md
 - id: MECH-008
+  title: "Legacy mechanism: superseded by AA/PCM and control-channel mode framing."
   claim_type: mechanism_hypothesis
   subject: control_plane.mode_management
   polarity: asserts
@@ -717,6 +777,7 @@
   source:
     - docs/processed/legacy_tree/mode_manager.md
 - id: MECH-010
+  title: "Language emergence and bootstrapping dynamics."
   claim_type: mechanism_hypothesis
   subject: language.emergence_bootstrapping
   polarity: asserts
@@ -729,6 +790,7 @@
     - docs/processed/legacy_tree/architecture/language/emergence_and_bootstrapping.md
     - docs/thoughts/2026-02-09_language.md
 - id: MECH-011
+  title: "Language and learning dynamics."
   claim_type: mechanism_hypothesis
   subject: language.and_learning
   polarity: asserts
@@ -740,6 +802,7 @@
   source:
     - docs/processed/legacy_tree/architecture/language/language_and_learning.md
 - id: MECH-012
+  title: "Language and institutions interplay."
   claim_type: mechanism_hypothesis
   subject: language.and_institutions
   polarity: asserts
@@ -751,6 +814,7 @@
   source:
     - docs/processed/legacy_tree/architecture/language/language_and_institutions.md
 - id: MECH-013
+  title: "Language failure modes and pathologies."
   claim_type: mechanism_hypothesis
   subject: language.failure_modes
   polarity: asserts
@@ -762,6 +826,7 @@
   source:
     - docs/processed/legacy_tree/architecture/language/language_failure_modes.md
 - id: MECH-014
+  title: "Minimal signalling channel requirements."
   claim_type: mechanism_hypothesis
   subject: language.minimal_signalling_channel
   polarity: asserts
@@ -773,6 +838,7 @@
   source:
     - docs/processed/legacy_tree/architecture/language/minimal_signalling_channel.md
 - id: MECH-015
+  title: "Trust and deception dynamics."
   claim_type: mechanism_hypothesis
   subject: language.trust_and_deception
   polarity: asserts
@@ -784,6 +850,7 @@
   source:
     - docs/processed/legacy_tree/architecture/language/trust_and_deception.md
 - id: MECH-016
+  title: "Precision recalibration during sleep."
   claim_type: mechanism_hypothesis
   subject: sleep.precision_recalibration
   polarity: asserts
@@ -795,6 +862,7 @@
   source:
     - docs/processed/legacy_tree/architecture/sleep/precision_recalibration.md
 - id: MECH-017
+  title: "Reality consolidation during sleep."
   claim_type: mechanism_hypothesis
   subject: sleep.reality_consolidation
   polarity: asserts
@@ -806,6 +874,7 @@
   source:
     - docs/processed/legacy_tree/architecture/sleep/reality_consolidation.md
 - id: MECH-018
+  title: "Residue integration during sleep."
   claim_type: mechanism_hypothesis
   subject: sleep.residue_integration
   polarity: asserts
@@ -817,6 +886,7 @@
   source:
     - docs/processed/legacy_tree/architecture/sleep/residue_integration.md
 - id: IMPL-017
+  title: "Conflict index and resolution entry point."
   claim_type: implementation_note
   subject: conflicts.index
   polarity: asserts
@@ -833,6 +903,7 @@
     - docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md
     - docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md
 - id: IMPL-018
+  title: "Claim index and navigation."
   claim_type: implementation_note
   subject: claims.index
   polarity: asserts
@@ -842,6 +913,7 @@
   source:
     - docs/processed/legacy_tree/docs/claims/claim_index.md
 - id: IMPL-019
+  title: "Self-first, social-later developmental testing order heuristic."
   claim_type: implementation_note
   subject: developmental_ordering.self_first_social_later
   polarity: asserts
@@ -856,6 +928,7 @@
   source:
     - docs/thoughts/DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md
 - id: INV-018
+  title: "Agency is required; passive predictors are not REE."
   claim_type: invariant
   subject: agency.requirement
   polarity: asserts
@@ -865,6 +938,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: ARC-015
+  title: "Self-impact attribution and responsibility flow are required."
   claim_type: architectural_commitment
   subject: agency.self_impact_attribution
   polarity: asserts
@@ -881,6 +955,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-019
+  title: "Control plane shapes modes of cognition, not discrete choices."
   claim_type: mechanism_hypothesis
   subject: control_plane.mode_shaping
   polarity: asserts
@@ -891,6 +966,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-020
+  title: "Legacy mechanism: superseded by control-plane mode framing."
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.emergent
   polarity: asserts
@@ -901,6 +977,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-021
+  title: "Subjective now is a control surface across temporal horizons."
   claim_type: mechanism_hypothesis
   subject: temporal.now_construction
   polarity: asserts
@@ -912,6 +989,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-022
+  title: "Hippocampal systems inject hypotheses gated by control plane."
   claim_type: mechanism_hypothesis
   subject: hippocampal.hypothesis_injection
   polarity: asserts
@@ -923,6 +1001,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-023
+  title: "Responsibility is geometric and path-dependent."
   claim_type: mechanism_hypothesis
   subject: responsibility.geometry
   polarity: asserts
@@ -934,6 +1013,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-024
+  title: "Selfhood, personality, and ethics converge structurally."
   claim_type: mechanism_hypothesis
   subject: selfhood_personality_ethics.convergence
   polarity: asserts
@@ -944,6 +1024,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: Q-006
+  title: "Is ethics developmental rather than additive?"
   claim_type: open_question
   subject: ethics.developmental
   polarity: asserts
@@ -954,6 +1035,7 @@
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: Q-007
+  title: "Do universal expressions map to stable control-channel regimes?"
   claim_type: open_question
   subject: emotion.universal_expression_channel_mapping
   polarity: asserts
@@ -1005,6 +1087,7 @@
   source:
     - docs/architecture/control_plane.md
 - id: Q-008
+  title: "Legacy: resolved in favor of valence/mu-kappa separation with calibration follow-up."
   claim_type: open_question
   subject: valence_vs_mu_kappa_overlays
   polarity: asserts
@@ -1017,6 +1100,7 @@
   source:
     - docs/architecture/control_plane.md
 - id: Q-009
+  title: "Legacy: resolved via bounded care-override policy with hard catastrophic other-harm veto."
   claim_type: open_question
   subject: care_weights_override_other_harm_veto
   polarity: asserts
@@ -1029,6 +1113,7 @@
   source:
     - docs/architecture/social.md
 - id: Q-010
+  title: "Legacy: separation question resolved into MECH-055."
   claim_type: open_question
   subject: hedonic_valence_signed_pe_separation
   polarity: asserts
@@ -1041,6 +1126,7 @@
   source:
     - docs/architecture/control_plane.md
 - id: Q-011
+  title: "Legacy: resolved by placing diversity-floor control in pre-commit/offline sampling."
   claim_type: open_question
   subject: hippocampus.minimum_rollout_entropy_floor
   polarity: asserts
@@ -1054,6 +1140,7 @@
     - docs/architecture/hippocampal_systems.md
     - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
 - id: ARC-016
+  title: "Modes are control-plane regimes applied to shared predictive machinery."
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
   polarity: asserts
@@ -1090,6 +1177,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: ARC-017
+  title: "Minimal stream tags with typed exteroception and explicit reality-coherence lane."
   claim_type: architectural_commitment
   subject: sensory_stream_tags.minimal_set
   polarity: asserts
@@ -1109,6 +1197,7 @@
     - docs/thoughts/2026-02-17_control_plane_update.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: ARC-018
+  title: "Hippocampus generates explicit rollouts and post-commitment viability mapping."
   claim_type: architectural_commitment
   subject: hippocampus.rollout_viability_mapping
   polarity: asserts
@@ -1150,6 +1239,7 @@
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
 - id: ARC-019
+  title: "REE requires staged developmental training with explicit curriculum gates."
   claim_type: architectural_commitment
   subject: developmental.curriculum_stages
   polarity: asserts
@@ -1164,6 +1254,7 @@
   source:
     - docs/architecture/developmental_curriculum.md
 - id: ARC-020
+  title: "Offline consolidation is protected by typed authority/write boundaries."
   claim_type: architectural_commitment
   subject: sleep.protected_offline_consolidation_boundary
   polarity: asserts
@@ -1179,6 +1270,7 @@
     - docs/architecture/agency_responsibility_flow.md
     - docs/invariants.md
 - id: MECH-025
+  title: "Action mode prioritizes short-horizon, high-precision, responsibility-linked control."
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing
   polarity: asserts
@@ -1207,6 +1299,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-026
+  title: "Ready vigilance primes restraint under high sensitivity without action."
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.ready_vigilance
   polarity: asserts
@@ -1218,6 +1311,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-027
+  title: "Pathological modes reflect mis-tuned control-plane regimes."
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.pathological_regimes
   polarity: asserts
@@ -1230,6 +1324,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-028
+  title: "Ethical behavior depends on mode transitions and learning preservation."
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.ethical_transitions
   polarity: asserts
@@ -1243,6 +1338,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-029
+  title: "Reflective/DMN mode supports moral simulation via gated replay."
   claim_type: mechanism_hypothesis
   subject: default_mode.reflective_ethics
   polarity: asserts
@@ -1255,6 +1351,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-030
+  title: "Sleep modes consolidate learning and ethical residue across regimes."
   claim_type: mechanism_hypothesis
   subject: sleep.modes_consolidation
   polarity: asserts
@@ -1269,6 +1366,7 @@
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
     - docs/thoughts/2026-02-23_some_subjective_experience_mapping.md
 - id: MECH-031
+  title: "Derived social tags and empathy coupling via control-plane knobs."
   claim_type: mechanism_hypothesis
   subject: social.other_selflike_empathy_coupling
   polarity: asserts
@@ -1284,6 +1382,7 @@
   source:
     - docs/thoughts/2026-02-09_empathy.md
 - id: MECH-032
+  title: "OTHER_SELFLIKE detection is biased toward high recall to avoid empathy false negatives."
   claim_type: mechanism_hypothesis
   subject: social.other_selflike_high_recall_bias
   polarity: asserts
@@ -1295,6 +1394,7 @@
   source:
     - docs/architecture/social.md
 - id: MECH-033
+  title: "E2 forward-prediction kernels seed hippocampal rollouts."
   claim_type: mechanism_hypothesis
   subject: hippocampus.kernel_chaining_interface
   polarity: asserts
@@ -1326,6 +1426,7 @@
   source:
     - docs/thoughts/2026-02-09_e2_hpc_interface.md
 - id: MECH-034
+  title: "Viability mapping updates are distinct from residue curvature updates."
   claim_type: mechanism_hypothesis
   subject: residue.viability_vs_curvature_updates
   polarity: asserts
@@ -1337,6 +1438,7 @@
   source:
     - docs/thoughts/2026-02-09_viability_mapping_vs_residue.md
 - id: MECH-035
+  title: "VALENCE is vector-valued and ranked without scalar collapse."
   claim_type: mechanism_hypothesis
   subject: valence.vector_ranking
   polarity: asserts
@@ -1349,6 +1451,7 @@
   source:
     - docs/thoughts/2026-02-09_valence_vector.md
 - id: MECH-036
+  title: "Other-harm triggers veto only under high-certainty catastrophic outcomes."
   claim_type: mechanism_hypothesis
   subject: social.other_harm_veto_threshold
   polarity: asserts
@@ -1361,6 +1464,7 @@
   source:
     - docs/thoughts/2026-02-09_other_harm_gating.md
 - id: MECH-037
+  title: "Papez-like loop provides provenance gating and reality filtering."
   claim_type: mechanism_hypothesis
   subject: provenance.papez_like_reality_filtering
   polarity: asserts
@@ -1374,6 +1478,7 @@
   source:
     - docs/thoughts/2026-02-09_papez_circuit_reality_filtering.md
 - id: MECH-038
+  title: "Arcuate-like sequence-to-motor channel nudges language emergence."
   claim_type: mechanism_hypothesis
   subject: language.arcuate_fasciculus_nudges
   polarity: asserts
@@ -1387,6 +1492,7 @@
   source:
     - docs/thoughts/2026-02-09_arcuate_fasciculus_language_nudges.md
 - id: MECH-039
+  title: "Modes are stable regions in control-channel space, not separate modules."
   claim_type: mechanism_hypothesis
   subject: control_plane.channel_mode_landscape
   polarity: asserts
@@ -1399,6 +1505,7 @@
   source:
     - docs/architecture/control_plane.md
 - id: MECH-040
+  title: "Safety baseline and volatility are distinct control channels for arousal/readiness."
   claim_type: mechanism_hypothesis
   subject: control_plane.safety_baseline_volatility
   polarity: asserts
@@ -1425,6 +1532,7 @@
   source:
     - docs/architecture/control_plane.md
 - id: MECH-041
+  title: "Affective expression broadcasts control-plane regime to reduce social prediction load."
   claim_type: mechanism_hypothesis
   subject: social.affective_expression_mode_broadcast
   polarity: asserts
@@ -1438,6 +1546,7 @@
   source:
     - docs/thoughts/2026-02-10_affective_expression_mode_broadcast.md
 - id: MECH-042
+  title: "Telemetry exposure channels report internal control-plane state for diagnostics."
   claim_type: mechanism_hypothesis
   subject: control_plane.telemetry_exposure_channels
   polarity: asserts
@@ -1450,6 +1559,7 @@
   source:
     - docs/thoughts/2026-02-10_control_plane_telemetry.md
 - id: MECH-043
+  title: "Dopamine-like modulation of precision-weighting for unsigned prediction errors."
   claim_type: mechanism_hypothesis
   subject: precision.dopamine_weighting
   polarity: asserts
@@ -1462,6 +1572,7 @@
   source:
     - docs/thoughts/2026-02-10_dopamine_precision_weighting.md
 - id: MECH-044
+  title: "Hippocampal systems participate in relational binding and comparison."
   claim_type: mechanism_hypothesis
   subject: entities.hippocampal_relational_binding
   polarity: asserts
@@ -1474,6 +1585,7 @@
   source:
     - docs/thoughts/2026-02-10_hippocampal_relational_binding.md
 - id: MECH-045
+  title: "Object-file-like buffers provide minimal entity persistence across time."
   claim_type: mechanism_hypothesis
   subject: entities.object_file_persistence
   polarity: asserts
@@ -1486,6 +1598,7 @@
   source:
     - docs/thoughts/2026-02-10_object_file_persistence.md
 - id: MECH-046
+  title: "Amygdala analogue updates control-plane mode priors from fast salience classification."
   claim_type: mechanism_hypothesis
   subject: control_plane.amygdala_mode_priors
   polarity: asserts
@@ -1511,6 +1624,7 @@
   source:
     - docs/thoughts/2026-02-11_amygdala.md
 - id: MECH-047
+  title: "Pre-commitment mode manager commits with hysteresis and switching costs."
   claim_type: mechanism_hypothesis
   subject: control_plane.precommitment_mode_manager
   polarity: asserts
@@ -1523,6 +1637,7 @@
     - docs/thoughts/2026-02-11_amygdala.md
     - docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md
 - id: MECH-048
+  title: "mu/kappa stability overlays modulate mode entropy and switching pressure."
   claim_type: mechanism_hypothesis
   subject: control_plane.mu_kappa_stability_overlays
   polarity: asserts
@@ -1535,6 +1650,7 @@
     - docs/thoughts/2026-02-11_opioid_receptors.md
     - docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md
 - id: MECH-049
+  title: "Temporal phase compartmentalisation preserves ethical constraint independence."
   claim_type: mechanism_hypothesis
   subject: temporal.phase_compartmentalisation
   polarity: asserts
@@ -1547,6 +1663,7 @@
   source:
     - docs/thoughts/2026-02-11_phase_separation.md
 - id: MECH-050
+  title: "Functional locality supports attribution without requiring anatomical columns."
   claim_type: mechanism_hypothesis
   subject: entities.functional_locality_without_columns
   polarity: asserts
@@ -1558,6 +1675,7 @@
   source:
     - docs/thoughts/2026-02-11_columns.md
 - id: MECH-051
+  title: "Oxytocin/vasopressin analogues modulate relational topology and mode priors."
   claim_type: mechanism_hypothesis
   subject: social.relational_topology_modulation
   polarity: asserts
@@ -1570,6 +1688,7 @@
   source:
     - docs/thoughts/2026-02-11_oxytocin_vasopressin.md
 - id: MECH-052
+  title: "Prolactin analogue stabilises care-investment persistence."
   claim_type: mechanism_hypothesis
   subject: social.care_investment_persistence
   polarity: asserts
@@ -1583,6 +1702,7 @@
     - docs/thoughts/2026-02-11_prolactin.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: MECH-053
+  title: "Habenula-like aversive PE gate suppresses commitment under negative spikes."
   claim_type: mechanism_hypothesis
   subject: control_plane.habenula_aversive_gate
   polarity: asserts
@@ -1595,6 +1715,7 @@
   source:
     - docs/thoughts/2026-02-11_habenula_signed_pe.md
 - id: MECH-054
+  title: "Signed harm/benefit prediction-error precision channels remain distinct."
   claim_type: mechanism_hypothesis
   subject: precision.signed_harm_benefit
   polarity: asserts
@@ -1608,6 +1729,7 @@
   source:
     - docs/thoughts/2026-02-11_habenula_signed_pe.md
 - id: MECH-055
+  title: "Affective channel separation keeps hedonic tone, valence, and signed PE distinct."
   claim_type: mechanism_hypothesis
   subject: affect.channel_separation
   polarity: asserts
@@ -1622,6 +1744,7 @@
     - docs/architecture/control_plane.md
 # JEPA flags removed 2026-02-26 — residue trajectory placement is REE-native.
 - id: MECH-056
+  title: "Residue should constrain trajectories before distorting core representations."
   claim_type: mechanism_hypothesis
   subject: residue.trajectory_first_placement
   polarity: asserts
@@ -1667,6 +1790,7 @@
 # requiring different substrates and different V-phase targets. MECH-057a retains the V1/V2
 # evidence and is V2-testable with multi-step substrate. MECH-057b is explicitly V3-scoped.
 - id: MECH-057a
+  title: "Committed action sequences suppress new precision updates until execution completes."
   claim_type: mechanism_hypothesis
   subject: agentic_extension.action_loop_completion_gate
   polarity: asserts
@@ -1726,6 +1850,7 @@
 # archived 2026-02-26) and is invalid. Claim reset for genuine ree-v1-minimal experiments.
 # Split from MECH-057 2026-03-15 — scope revision resolved.
 - id: MECH-057b
+  title: "Hippocampal sequence completion must be verified before candidates are eligible for E3 selection."
   claim_type: mechanism_hypothesis
   subject: agentic_extension.thought_loop_trajectory_promotion_gate
   polarity: asserts
@@ -1758,6 +1883,7 @@
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
 - id: MECH-058
+  title: "Slow target-anchor dynamics stabilize E1/E2 representations via functional rate separation."
   claim_type: mechanism_hypothesis
   subject: latent_stack.e1_e2_timescale_separation
   polarity: asserts
@@ -1793,6 +1919,7 @@
     - docs/architecture/agency_responsibility_flow.md
 # Promoted 2026-02-26 — retain_ree adjudication was applied 2026-02-15
 - id: MECH-059
+  title: "Confidence channel (uncertainty-derived precision) must remain distinct from residual error."
   claim_type: mechanism_hypothesis
   subject: precision.confidence_channel_separate_from_prediction_error
   polarity: asserts
@@ -1825,6 +1952,7 @@
 # JEPA flags removed 2026-02-26 — dual error channel concept is REE-native.
 # pending_design: requires pure REE implementation without JEPA substrate proxy.
 - id: MECH-060
+  title: "Pre-commit simulation and post-commit realized-error channels must stay responsibility-distinct via write-boundary enforcement."
   claim_type: mechanism_hypothesis
   subject: commitment.dual_error_channels_pre_post_commit
   polarity: asserts
@@ -1874,6 +2002,7 @@
     - docs/thoughts/2026-02-24_determinism_action_gating_boundary.md
 # Promoted 2026-02-26 — retain_ree adjudication was applied 2026-02-15
 - id: MECH-061
+  title: "Commit-boundary token reclassifies pre-commit vs post-commit error routing."
   claim_type: mechanism_hypothesis
   subject: commitment.boundary_token_error_reclassification
   polarity: asserts
@@ -1905,6 +2034,7 @@
     - docs/thoughts/2026-02-24_determinism_action_gating_boundary.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: MECH-062
+  title: "E3 uses coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility layer."
   claim_type: mechanism_hypothesis
   subject: commitment.tri_loop_gate_coordination
   polarity: asserts
@@ -1923,6 +2053,7 @@
     - docs/thoughts/2026-02-24_prefrontal_primitives.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: MECH-063
+  title: "Control plane retains orthogonal tonic/phasic axes rather than collapsing into one scalar."
   claim_type: mechanism_hypothesis
   subject: control_plane.orthogonal_axes_tonic_phasic
   polarity: asserts
@@ -1940,6 +2071,7 @@
     - docs/thoughts/2026-02-13_subjective_experience_pre_post_commit.md
     - docs/thoughts/2026-02-23_some_subjective_experience_mapping.md
 - id: MECH-064
+  title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis
   subject: control_plane.typed_authority_control_store_separation
   polarity: asserts
@@ -1956,6 +2088,7 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: MECH-065
+  title: "Reality-coherence conflict lane modulates loop precision and commitment thresholds before execution lock-in."
   claim_type: mechanism_hypothesis
   subject: control_plane.reality_coherence_conflict_lane
   polarity: asserts
@@ -1973,6 +2106,7 @@
     - docs/thoughts/2026-02-17_control_plane_update.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: MECH-066
+  title: "Pre-commit and post-commit channels may share representations but must stay separated at durable write boundaries."
   claim_type: mechanism_hypothesis
   subject: agency.boundary_conditioned_channel_separation
   polarity: asserts
@@ -1987,6 +2121,7 @@
     - docs/architecture/agency_responsibility_flow.md
     - docs/invariants.md
 - id: MECH-067
+  title: "A machine-checkable phase/store/actor permission matrix is required to enforce commit-boundary write rules."
   claim_type: mechanism_hypothesis
   subject: agency.write_locus_permission_matrix
   polarity: asserts
@@ -2010,6 +2145,7 @@
     - docs/architecture/agency_responsibility_flow.md
     - docs/architecture/control_plane_signal_map.md
 - id: MECH-068
+  title: "Consolidation selectivity lives in the consolidation operator, not in E1 feature basis."
   claim_type: mechanism_hypothesis
   subject: representation.consolidation_selectivity
   polarity: asserts
@@ -2028,6 +2164,7 @@
 # Demoted 2026-02-26 — accepted governance recommendation. Evidence 4:4 split (conflict_ratio 1.0,
 # confidence 0.503). Insufficient signal to hold as active question. Needs discriminative experiment.
 - id: Q-012
+  title: "Can latent predictive world models stay agentically stable without explicit REE-like control constraints?"
   claim_type: open_question
   subject: latent_predictive_models.control_completion_falsifiability
   polarity: asks
@@ -2047,6 +2184,7 @@
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
 - id: Q-013
+  title: "Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?"
   claim_type: open_question
   subject: uncertainty.deterministic_vs_stochastic_jepa_calibration
   polarity: asks
@@ -2065,6 +2203,7 @@
   source:
     - docs/architecture/agency_responsibility_flow.md
 - id: Q-014
+  title: "Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?"
   claim_type: open_question
   subject: invariance.ethical_relevance_blind_spot_risk
   polarity: asks
@@ -2084,6 +2223,7 @@
   source:
     - docs/architecture/agency_responsibility_flow.md
 - id: Q-015
+  title: "What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?"
   claim_type: open_question
   subject: commitment.boundary_token_minimal_contract
   polarity: asks
@@ -2114,6 +2254,7 @@
     - docs/architecture/e3.md
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
 - id: Q-016
+  title: "What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?"
   claim_type: open_question
   subject: commitment.tri_loop_conflict_arbitration_policy
   polarity: asks
@@ -2127,6 +2268,7 @@
     - docs/architecture/e3.md
     - docs/thoughts/2026-02-15_basal_ganglia.md
 - id: Q-017
+  title: "What is the minimal orthogonal control-axis subset that preserves observed regime separations?"
   claim_type: open_question
   subject: control_plane.minimal_orthogonal_axis_set
   polarity: asks
@@ -2146,6 +2288,7 @@
     - docs/architecture/control_plane.md
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
 - id: Q-018
+  title: "What RC-conflict threshold calibration blocks authority spoofing without chronic over-suppression?"
   claim_type: open_question
   subject: control_plane.reality_conflict_hysteresis_calibration
   polarity: asks
@@ -2159,6 +2302,7 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/17-02-26_necessary_separations_based_on_considering-prompt_injection.md
 - id: IMPL-020
+  title: "Formal JEPA/REE terminology alignment glossary for interoperability."
   claim_type: implementation_note
   subject: terminology.jepa_ree_alignment_glossary
   polarity: records
@@ -2171,6 +2315,7 @@
     - docs/glossary.md
     - docs/thoughts/2026-02-13_jepa_ree_formal_alignment_glossary.md
 - id: IMPL-021
+  title: "Hybrid JEPA/REE architecture diagram contract and rendering checklist."
   claim_type: implementation_note
   subject: diagrams.jepa_ree_hybrid_architecture_contract
   polarity: records
@@ -2185,6 +2330,7 @@
     - docs/architecture/jepa_ree_hybrid_diagram_spec.md
 # JEPA flags removed 2026-02-26 — historical record only (JEPA decoupled).
 - id: IMPL-022
+  title: "JEPA-like E1/E2 representation-reference contract (inputs, outputs, knobs, failure gates)."
   claim_type: implementation_note
   subject: integration.jepa_like_e1e2_representation_reference_contract
   polarity: records
@@ -2207,6 +2353,7 @@
   source:
     - docs/architecture/jepa_e1e2_integration_contract.md
 - id: IMPL-023
+  title: "REE-v2 representation-interface-first spec and phase gate."
   claim_type: implementation_note
   subject: roadmap.ree_v2_representation_interface_spec
   polarity: records
@@ -2227,6 +2374,7 @@
     - docs/architecture/ree_v2_spec.md
     - docs/roadmap.md
 - id: IMPL-024
+  title: "v2 REE-first canonical wording policy with JEPA interface translation."
   claim_type: implementation_note
   subject: terminology.v2_ree_first_canonical_jepa_interface_translation_policy
   polarity: records
@@ -2239,6 +2387,7 @@
   source:
     - docs/notes/jepa_language_policy.md
 - id: IMPL-025
+  title: "Cross-version hook surface contract and registry."
   claim_type: implementation_note
   subject: interfaces.cross_version_hook_surface_contract
   polarity: records
@@ -2254,6 +2403,7 @@
     - docs/architecture/hook_surface_contract.md
     - docs/architecture/hook_registry.v1.json
 - id: INV-019
+  title: "Rehearsal traversal and irreversible durable write must remain separated."
   claim_type: invariant
   subject: meta.selection_compression_boundary
   polarity: asserts
@@ -2268,6 +2418,7 @@
     - docs/invariants.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
 - id: INV-020
+  title: "Constraint stores are authority-stratified from direct observational/symbolic writes."
   claim_type: invariant
   subject: meta.authority_stratification_boundary
   polarity: asserts
@@ -2283,6 +2434,7 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
 - id: INV-021
+  title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
   subject: meta.commit_boundary_irreversibility
   polarity: asserts
@@ -2299,6 +2451,7 @@
     - docs/thoughts/2026-02-24_determinism_action_gating_boundary.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
 - id: INV-022
+  title: "Trust/precision allocation must remain heterogeneous, not a single scalar."
   claim_type: invariant
   subject: meta.heterogeneous_trust_allocation
   polarity: asserts
@@ -2314,6 +2467,7 @@
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
 - id: INV-023
+  title: "Protected offline recalibration/integration regimes are structurally required."
   claim_type: invariant
   subject: meta.offline_reweighting_requirement
   polarity: asserts
@@ -2330,6 +2484,7 @@
     - docs/architecture/sleep.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
 - id: INV-024
+  title: "Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci."
   claim_type: invariant
   subject: meta.offline_online_update_locus_isolation
   polarity: asserts
@@ -2347,6 +2502,7 @@
 
 # Five foundational axioms — registered 2026-03-18
 - id: INV-025
+  title: "Irreducible uncertainty is an epistemological constraint that cannot be engineered away."
   claim_type: invariant
   subject: epistemology.irreducible_uncertainty
   polarity: asserts
@@ -2367,6 +2523,7 @@
     agent needs no commitment boundary.
 
 - id: INV-026
+  title: "A self is an operational prerequisite for responsible agency."
   claim_type: invariant
   subject: self.existence
   polarity: asserts
@@ -2390,6 +2547,7 @@
     possible), but unknowable from within experience (ARC-024).
 
 - id: INV-027
+  title: "An external world is a structural prerequisite for grounded representation."
   claim_type: invariant
   subject: world.existence
   polarity: asserts
@@ -2410,6 +2568,7 @@
     is structured, not random, so proxy signals are real and informative.
 
 - id: INV-028
+  title: "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space."
   claim_type: invariant
   subject: ethics.shared_world
   polarity: asserts
@@ -2434,6 +2593,7 @@
     difference within the same architecture, not a different architecture.
 
 - id: INV-029
+  title: "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment."
   claim_type: invariant
   subject: ethics.love_exists
   polarity: asserts
@@ -2466,6 +2626,7 @@
 
 # Proxy-gradient consequence of the five axioms — registered 2026-03-18
 - id: ARC-024
+  title: "Harm and benefit signals have asymptotic proxy structure in world latent space."
   claim_type: architecture_hypothesis
   subject: world.harm_benefit_asymptotic_proxy_structure
   polarity: asserts
@@ -2522,6 +2683,7 @@
 
 # Foundational definitions extracted from Philosophy repo — registered 2026-03-18
 - id: INV-030
+  title: "Viability is defined relative to the agent's continuity in a shared world, not as a scalar reward."
   claim_type: invariant
   subject: cognition.viability_definition
   polarity: asserts
@@ -2550,6 +2712,7 @@
     preserve long-horizon viability, not accuracy.
 
 - id: INV-031
+  title: "Functional persistence in a shared world, not abstract truth, is the operational goal of cognition."
   claim_type: invariant
   subject: epistemology.functional_persistence_replaces_truth
   polarity: asserts
@@ -2581,6 +2744,7 @@
     (INV-030).
 
 - id: ARC-025
+  title: "Three-engine (E1/E2/E3) architecture is irreducible; no engine can be collapsed into another."
   claim_type: architecture_hypothesis
   subject: architecture.three_engine_irreducibility
   polarity: asserts
@@ -2624,6 +2788,7 @@
     incommensurable error signals (MECH-069, ARC-021).
 
 - id: ARC-026
+  title: "Love as long-horizon care investment expands under intelligence rather than being crowded out."
   claim_type: architecture_hypothesis
   subject: ethics.love_expands_under_intelligence
   polarity: asserts
@@ -2662,6 +2827,7 @@
     foundational invariant structure from which this prediction is drawn.
 
 - id: MECH-102
+  title: "Violence is a terminal error-correction mechanism triggered only when all other channels fail."
   claim_type: mechanism_hypothesis
   subject: ethics.violence_as_terminal_error_correction
   polarity: asserts
@@ -2713,6 +2879,7 @@
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
+  title: "Three-gate vs single-gate BG architecture: are the three cortico-striatal loops anatomically distinct or convergent?"
   claim_type: open_question
   subject: basal_ganglia.three_gate_vs_single_gate_architecture
   polarity: open
@@ -2766,6 +2933,7 @@
     - docs/thoughts/2026-02-27_three_gate_bg_architecture.md
 # Registered 2026-03-14 — three-loop learning channel separation (from thought 2026-03-14_three_bg_systems_error_signals.md)
 - id: ARC-021
+  title: "Three BG-like cortico-striatal loops require distinct learning channels."
   claim_type: architectural_commitment
   subject: basal_ganglia.three_loop_learning_channel_separation
   polarity: asserts
@@ -2785,6 +2953,7 @@
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
     - docs/architecture/three_loop_learning_channels.md
 - id: MECH-069
+  title: "Sensory prediction error, motor-sensory error, and harm/goal error are incommensurable and cannot be collapsed."
   claim_type: mechanism_hypothesis
   subject: latent_stack.three_loop_error_signal_incommensurability
   polarity: asserts
@@ -2815,6 +2984,7 @@
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
     - docs/architecture/three_loop_learning_channels.md
 - id: MECH-070
+  title: "E2 is a conceptual-sensorium motor model with a planning horizon that exceeds E1."
   claim_type: mechanism_hypothesis
   subject: latent_stack.e2_conceptual_sensorium_motor_model
   polarity: asserts
@@ -2829,6 +2999,7 @@
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
     - docs/architecture/three_loop_learning_channels.md
 - id: MECH-071
+  title: "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions."
   claim_type: mechanism_hypothesis
   subject: e3.harm_eval_calibration_gradient_asymmetry
   polarity: asserts
@@ -2861,6 +3032,7 @@
     Discriminability relies on z_world encoding proximity via hazard_field channels
     (CausalGridWorldV2) and SD-007 reafference correction removing self-motion contamination.
 - id: MECH-072
+  title: "Foreseeable-harm gating on residue accumulation reduces false attribution without degrading harm avoidance."
   claim_type: mechanism_hypothesis
   subject: residue.foreseeable_harm_gating_reduces_false_attribution
   polarity: asserts
@@ -2899,6 +3071,7 @@
 # Registered 2026-03-15 — NC-01 through NC-09 valenced hippocampal map cluster
 # ⚠ ARC-022 and MECH-073 conflict with ARC-007 (hippocampal valence constraint) — pending adjudication via Q-020
 - id: ARC-022
+  title: "Hierarchical effect-object abstraction pipeline (E1→E2→DMN→Goal/Avoid→Hippocampus) — conflict with ARC-007/ARC-014, pending adjudication."
   claim_type: architectural_commitment
   subject: architecture.hierarchical_effect_object_pipeline
   polarity: asserts
@@ -2924,6 +3097,7 @@
   source:
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-073
+  title: "Valence is intrinsic to hippocampal map geometry, not applied downstream — conflict with ARC-007, pending adjudication."
   claim_type: mechanism_hypothesis
   subject: hippocampal.intrinsic_map_valence
   polarity: asserts
@@ -2942,6 +3116,7 @@
   source:
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-074
+  title: "Amygdala functions as read/write head for valenced hippocampal map."
   claim_type: mechanism_hypothesis
   subject: amygdala.hippocampal_map_readwrite_head
   polarity: asserts
@@ -2961,6 +3136,7 @@
     subcortical route; (d) triggered remapping on prediction error spike. The fast
     subcortical priming role is not present in MECH-046.
 - id: MECH-075
+  title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
   subject: basal_ganglia.dopaminergic_attractor_threshold_setting
   polarity: asserts
@@ -2980,6 +3156,7 @@
     basin threshold framing specific to the hippocampal planning context. Supports three-loop
     architecture of ARC-021 with a mechanism for how each loop's gate operates.
 - id: MECH-076
+  title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
   subject: residue.hippocampal_map_structural_deformation
   polarity: asserts
@@ -2999,6 +3176,7 @@
     distortion acts as trajectory-level pressure without requiring a representational filter
     layered on perception.
 - id: MECH-077
+  title: "Therapeutic change equals hippocampal remapping, with modalities operating at different levels."
   claim_type: mechanism_hypothesis
   subject: hippocampal.therapeutic_remapping
   polarity: asserts
@@ -3018,6 +3196,7 @@
     therapy = slow relational geometry restructuring over many consolidation cycles; psychedelic-
     assisted = transient attractor flattening enabling large-scale map restructuring.
 - id: MECH-078
+  title: "Amygdala bootstraps novel valence for unmapped hippocampal territory; anxiety disorders are systematic over-valencing."
   claim_type: mechanism_hypothesis
   subject: amygdala.novel_territory_valence_bootstrap
   polarity: asserts
@@ -3035,6 +3214,7 @@
     Anxiety disorders may reflect systematic over-valencing of novel/unmapped territory as
     aversive. Positive feedback loop with MECH-040 volatility channel. Extends MECH-046.
 - id: MECH-079
+  title: "Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry."
   claim_type: mechanism_hypothesis
   subject: hippocampal.map_geometry_selfhood
   polarity: asserts
@@ -3055,6 +3235,7 @@
     restructuring of attractor basin profile). Co-constituted with INV-006: ethical history
     is structurally encoded in map geometry.
 - id: MECH-080
+  title: "Rollout truncation set-points as psychiatric individual differences substrate (ADHD/anxiety/OCD)."
   claim_type: mechanism_hypothesis
   subject: hippocampal.rollout_truncation_psychiatric_individual_differences
   polarity: asserts
@@ -3075,6 +3256,7 @@
     signals cannot trigger basin exit). Extends MECH-027 (pathological modes = mis-tuned
     control-plane regimes) and ARC-014 failure modes with unified rollout-parameter account.
 - id: Q-020
+  title: "Does ARC-007's no-value-computation constraint survive MECH-073 (valence intrinsic to hippocampal map)?"
   claim_type: open_question
   subject: hippocampal.arc007_valence_constraint_survival
   polarity: open
@@ -3100,6 +3282,7 @@
     - docs/architecture/valenced_hippocampal_map.md
 # Registered 2026-03-15 — NC-02 through NC-03 E1/E2 constraint propagation cluster
 - id: MECH-081
+  title: "E2 sufficiency constraint reduces E1 effective dimensionality target."
   claim_type: mechanism_hypothesis
   subject: e1_e2.e2_sufficiency_constraint_reduces_e1_dimensionality
   polarity: asserts
@@ -3120,6 +3303,7 @@
     Extends ARC-001/ARC-002/MECH-033: E2 is both a consumer of E1 representations and an
     active shaper of what E1 must produce.
 - id: MECH-082
+  title: "Hippocampal map distortion propagates through E2 to bias E1 attentional sampling without explicit E1 retraining."
   claim_type: mechanism_hypothesis
   subject: e1_e2.top_down_perceptual_bias_propagation
   polarity: asserts
@@ -3144,6 +3328,7 @@
 # Registered 2026-03-15 — NC-11 through NC-16 four-plane neuromodulatory control cluster
 # ⚠ MECH-085 conflicts with MECH-006 (serotonin temporal depth prohibition) — pending Daniel's adjudication
 - id: MECH-083
+  title: "Acetylcholine as meta-level plasticity gain governing durable-write vs read-through."
   claim_type: mechanism_hypothesis
   subject: acetylcholine.meta_level_plasticity_gain
   polarity: asserts
@@ -3169,6 +3354,7 @@
     = learning failure / confirmation bias. Functionally instantiates INV-019/INV-024
     (rehearsal vs durable write separation) at hippocampal level.
 - id: MECH-084
+  title: "Noradrenaline as attentional snap and E1/E2 sampling ratio modulator."
   claim_type: mechanism_hypothesis
   subject: noradrenaline.attentional_snap_and_e1_e2_sampling_ratio
   polarity: asserts
@@ -3193,6 +3379,7 @@
     to noise (PTSD hypervigilance). Too much phasic/dysregulated: episodic E1/E2 decoupling
     (candidate dissociation mechanism). Extends MECH-005 with upstream E1/E2 interface account.
 - id: MECH-085
+  title: "Serotonin as hippocampal map geometry parameter (rollout depth, distal value weighting) — conflict with MECH-006, pending adjudication."
   claim_type: mechanism_hypothesis
   subject: serotonin.hippocampal_map_geometry_parameter
   polarity: asserts
@@ -3228,6 +3415,7 @@
     mood neuromodulator. Conflict with MECH-006 requires adjudication before promotion
     beyond candidate.
 - id: MECH-086
+  title: "Dopamine as trajectory selection gain plane operating downstream of landscape, state, and encoding gate."
   claim_type: mechanism_hypothesis
   subject: dopamine.trajectory_selection_gain_plane
   polarity: asserts
@@ -3250,6 +3438,7 @@
     salience. Extends MECH-043 (unsigned PE precision-weighting) and MECH-075 (BG attractor
     threshold) with the hierarchical-constraint claim and explicit four-plane positioning.
 - id: MECH-087
+  title: "Hierarchical ordering of four neuromodulatory control planes: ACh → NA → 5-HT → DA."
   claim_type: mechanism_hypothesis
   subject: neuromodulation.four_plane_hierarchical_ordering
   polarity: asserts
@@ -3275,6 +3464,7 @@
     with hierarchical asymmetry: axes are ordered, not merely orthogonal. Testable: degrading
     5-HT axis produces trajectory pathology not rescued by DA augmentation.
 - id: MECH-088
+  title: "Psychiatric conditions as four-plane neuromodulatory control failures."
   claim_type: mechanism_hypothesis
   subject: neuromodulation.psychiatric_conditions_four_plane_failures
   polarity: asserts
@@ -3304,6 +3494,7 @@
 # Registered 2026-03-15 — imagination / residue write gate cluster
 # Source: phenomenological analysis of imagination vs experience distinction
 - id: MECH-094
+  title: "Hypothesis tag is a categorical write gate separating simulation from committed residue updates; tag loss is the PTSD mechanism."
   claim_type: mechanism_hypothesis
   subject: default_mode.hypothesis_tag_residue_write_gate
   polarity: asserts
@@ -3340,6 +3531,7 @@
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
 - id: ARC-023
+  title: "Three BG-like loops operate at characteristic thalamic heartbeat rates."
   claim_type: architectural_commitment
   subject: basal_ganglia.three_loop_thalamic_heartbeat
   polarity: asserts
@@ -3369,6 +3561,7 @@
     exclusive trigger. V1/V2 substrates use synchronous single-timestep updates and
     cannot test this claim (SD-006 required for V3).
 - id: MECH-089
+  title: "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging)."
   claim_type: mechanism_hypothesis
   subject: multirate.fast_to_slow_temporal_batching
   polarity: asserts
@@ -3399,6 +3592,7 @@
     Thalamic relay performs the cross-rate integration. Analogous to theta-gamma coupling
     in hippocampal-prefrontal circuits.
 - id: MECH-090
+  title: "Beta oscillations gate E3-to-action-selection propagation, not E3 internal updating."
   claim_type: mechanism_hypothesis
   subject: control_plane.commitment_gated_policy_output
   polarity: asserts
@@ -3435,6 +3629,7 @@
     Explains MECH-057a FAIL: experiment modelled binary gate (E3 blind until completion),
     not beta-gated propagation within continuous stream.
 - id: MECH-091
+  title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis
   subject: control_plane.salient_event_cycle_resync
   polarity: asserts
@@ -3464,6 +3659,7 @@
     ensuring harm estimates from each sub-plan are fully integrated before the next begins.
     Neural basis: P300 event-related potential and its theta/alpha oscillatory substrate.
 - id: MECH-092
+  title: "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation."
   claim_type: mechanism_hypothesis
   subject: hippocampal.quiescent_offline_replay
   polarity: asserts
@@ -3502,6 +3698,7 @@
     This is the micro-quiescence analogue of ARC-014 (DMN): same replay machinery,
     operating at inter-action timescales rather than full task-disengagement timescales.
 - id: MECH-093
+  title: "z_beta modulates E3 heartbeat frequency, distinct from precision-weighting."
   claim_type: mechanism_hypothesis
   subject: affective.z_beta_e3_update_rate_modulation
   polarity: asserts
@@ -3527,6 +3724,7 @@
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
+  title: "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change."
   claim_type: mechanism_hypothesis
   subject: tpj.agency_detection_comparator
   polarity: asserts
@@ -3559,6 +3757,7 @@
     SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
     Literature: evidence/literature/targeted_review_reafference_streams/.
 - id: MECH-096
+  title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
   claim_type: mechanism_hypothesis
   subject: observation_encoder.dual_stream_routing
   polarity: asserts
@@ -3590,6 +3789,7 @@
     lateral head (→agency/harm signal to E3). See MECH-099.
     Literature: evidence/literature/targeted_review_reafference_streams/.
 - id: MECH-097
+  title: "Peripersonal space geometry defines the commit locus — the spatial boundary of committed action."
   claim_type: mechanism_hypothesis
   subject: peripersonal_space.commit_locus
   polarity: asserts
@@ -3622,6 +3822,7 @@
     downstream optimisation.
 # Registered 2026-03-17 — reafference cancellation and three-stream architecture
 - id: MECH-098
+  title: "Reafference cancellation: z_world subtracts predicted self-caused sensory change to isolate external events."
   claim_type: mechanism_hypothesis
   subject: encoder.reafference_cancellation
   polarity: asserts
@@ -3680,6 +3881,7 @@
     correct approach. All future reafference experiments use the neural
     predictor exclusively.
 - id: MECH-099
+  title: "Visual streams use a three-pathway architecture (ventral/dorsal/frontal) for object, action, and executive routing."
   claim_type: mechanism_hypothesis
   subject: visual_streams.three_pathway_architecture
   polarity: asserts
@@ -3718,6 +3920,7 @@
     (Haak & Beckmann 2018, Pitcher & Ungerleider 2021).
 # Registered 2026-03-18 — EMA root-cause analysis and encoder supervision gap
 - id: MECH-100
+  title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
   claim_type: mechanism_hypothesis
   subject: encoder.event_contrastive_supervision
   polarity: asserts
@@ -3763,6 +3966,7 @@
     C1 retest pending SD-010 fix (EXQ-056c).
 
 - id: MECH-101
+  title: "z_world encoding requires reafference context to correctly attribute external vs self-caused change."
   claim_type: mechanism_hypothesis
   subject: encoder.reafference_world_context_required
   polarity: asserts
@@ -3790,6 +3994,7 @@
     available in encode() as prev_state.z_world_raw.
 
 - id: MECH-103
+  title: "E1 performs multimodal exteroceptive fusion across sensory modalities before feeding E2."
   claim_type: mechanism_hypothesis
   subject: e1.multimodal_exteroception_fusion
   polarity: asserts
@@ -3815,6 +4020,7 @@
     ventral stream binding (Murray et al. 2004).
 
 - id: ARC-027
+  title: "Harm stream runs as a parallel thalamic pathway independent of world latent space."
   claim_type: architectural_commitment
   subject: harm_stream.parallel_thalamic_pathway
   polarity: asserts
@@ -3873,6 +4079,7 @@
 # ── Design Decisions (SD) ────────────────────────────────────────────────────
 
 - id: SD-001
+  title: "CEM-based trajectory search belongs in HippocampalModule, not E2."
   claim_type: design_decision
   subject: hippocampal_module.cem_trajectory_search_placement
   polarity: asserts
@@ -3884,6 +4091,7 @@
   location: docs/architecture/hippocampal_systems.md
 
 - id: SD-002
+  title: "E1 associative prior must be wired into HippocampalModule for terrain-informed rollout search."
   claim_type: design_decision
   subject: hippocampal_module.e1_associative_prior_wiring
   polarity: asserts
@@ -3895,6 +4103,7 @@
   location: docs/architecture/hippocampal_systems.md
 
 - id: SD-003
+  title: "Self-attribution via counterfactual E2: causal signature = E2(z_t, a_actual) minus E2(z_t, a_counterfactual)."
   claim_type: design_decision
   subject: self_attribution.counterfactual_e2_pipeline
   polarity: asserts
@@ -3909,6 +4118,7 @@
   location: docs/architecture/sd_003_experiment_design.md
 
 - id: SD-004
+  title: "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories."
   claim_type: design_decision
   subject: hippocampal_module.action_object_map_backbone
   polarity: asserts
@@ -3922,6 +4132,7 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-005
+  title: "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain)."
   claim_type: design_decision
   subject: latent_stack.self_world_latent_split
   polarity: asserts
@@ -3943,6 +4154,7 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-006
+  title: "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep."
   claim_type: design_decision
   subject: control_plane.async_multirate_execution
   polarity: asserts
@@ -3961,6 +4173,7 @@
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: SD-007
+  title: "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change."
   claim_type: design_decision
   subject: encoder.perspective_corrected_world_latent
   polarity: asserts
@@ -3976,6 +4189,7 @@
   location: docs/architecture/sensory_stream_tags.md
 
 - id: SD-008
+  title: "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness."
   claim_type: design_decision
   subject: encoder.z_world_alpha_correction
   polarity: asserts
@@ -3991,6 +4205,7 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-009
+  title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
   claim_type: design_decision
   subject: encoder.event_contrastive_supervision
   polarity: asserts
@@ -4004,6 +4219,7 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-010
+  title: "HARM stream is a dedicated sensory pathway separate from z_world processing."
   claim_type: design_decision
   subject: harm_stream.nociceptive_separation
   polarity: asserts
