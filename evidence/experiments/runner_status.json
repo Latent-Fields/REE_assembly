@@ -1,11 +1,71 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-03-20T14:19:01.931862+00:00",
-  "last_updated": "2026-03-20T14:19:01.934634+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "runner_pid": 36535,
+  "runner_started_at": "2026-03-20T14:39:59.827048+00:00",
+  "last_updated": "2026-03-20T17:19:20.242940+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-018-s1",
+    "backlog_id": "",
+    "claim_id": "ARC-016",
+    "title": "ARC-016 Dynamic Precision \u2014 Seed 1 (independent validation)",
+    "description": "Seed-1 repeat of EXQ-018 PASS. EXQ-018 thresholds were calibrated from run-3 measurements then confirmed in run-4 \u2014 weak evidence pattern. Seed-1 provides independent confirmation that var_diff>0.001, prec_diff>0, commit_diff>0 are not seed-specific.",
+    "script": "experiments/v3_exq_018_arc016_dynamic_precision.py",
+    "started_at": "2026-03-20T17:11:34.403596+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 950,
+      "episodes_total": 1130,
+      "overall_pct": 84.1
+    },
+    "seconds_elapsed": 466,
+    "seconds_remaining": 88,
+    "recent_lines": [
+      "[train] ep 750/1000  var=0.0025  prec=392.725  commits=14147/14148  harm=35978",
+      "[train] ep 800/1000  var=0.0012  prec=836.663  commits=15100/15101  harm=38383",
+      "[train] ep 850/1000  var=0.0016  prec=629.315  commits=16044/16045  harm=40798",
+      "[train] ep 900/1000  var=0.0035  prec=284.072  commits=17010/17011  harm=43126",
+      "[train] ep 950/1000  var=0.0020  prec=492.019  commits=17928/17929  harm=45476"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-018-s1",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 Dynamic Precision \u2014 Seed 1 (independent validation)",
+      "description": "Seed-1 repeat of EXQ-018 PASS. EXQ-018 thresholds were calibrated from run-3 measurements then confirmed in run-4 \u2014 weak evidence pattern. Seed-1 provides independent confirmation that var_diff>0.001, prec_diff>0, commit_diff>0 are not seed-specific.",
+      "estimated_minutes": 6.4,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-054",
+      "backlog_id": "",
+      "claim_id": "MECH-072",
+      "title": "MECH-072 World-Delta Residue Gating \u2014 reduces false attribution rate",
+      "description": "Prerequisite: EXQ-042 PASS, EXQ-029 PASS. V2 FAIL (E2.predict_harm wrong module). V3: gate residue on world_delta = ||E2.world_forward(z_world,a_actual) - E2.world_forward(z_world,a_cf)||. Sequential: P1 terrain+E2 (400 eps, E3 frozen), P2 E3 calibration (200 eps), P3 eval (100 eps). Three modes: NAIVE (all harm), WORLD_DELTA (gated), ORACLE (ground truth). PASS: C1 false_attr_delta < false_attr_naive, C2 harm not worse, C3 world_delta_agent > world_delta_env, C4 cal_gap>0, C5 wf_r2>0.05.",
+      "estimated_minutes": 51.4,
+      "status": "completed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-055",
+      "backlog_id": "",
+      "claim_id": "MECH-033",
+      "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
+      "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
+      "estimated_minutes": 78.2,
+      "status": "completed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1234,6 +1294,138 @@
       "started_at": "2026-03-20T06:23:30.933185+00:00",
       "completed_at": "2026-03-20T07:38:10.487815+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_053_arc018_rollout_viability/v3_exq_053_arc018_rollout_viability_20260320T073809Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-046",
+      "backlog_id": "",
+      "claim_id": "ARC-007",
+      "title": "ARC-007 Path Memory Ablation (Proper) \u2014 residue field zeroing degrades hippocampal proposals",
+      "description": "Prerequisite: EXQ-042 PASS. Tests ARC-007 STRICT (Q-020): hippocampal proposals are value-flat, relying entirely on residue field geometry. Protocol: P1 train (600 eps), P2 eval intact, P3 ablate (zero residue field via monkeypatch), P4 eval ablated, P5 restore, P6 eval restored. PASS: C1 hippo_quality_gap_intact>0, C2 ablated<=intact*0.5, C3 restored>=ablated, C4 cal_gap_approach>0.03, C5 no errors.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-20T14:39:59.829036+00:00",
+      "completed_at": "2026-03-20T15:53:28.700394+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-056",
+      "backlog_id": "",
+      "claim_id": "SD-010",
+      "title": "SD-010 Harm Stream Baseline \u2014 z_harm vs z_world hazard proximity discrimination",
+      "description": "Constructive validation of SD-010. HarmEncoder(harm_obs\u2192z_harm) trained with direct MSE supervision on hazard_field_at_agent proximity labels. Comparison: Pearson R(z_harm, hazard_label) vs Pearson R(z_world, hazard_label). PASS: C1 R_z_harm>0.30, C2 R_z_harm>R_z_world+0.10, C3 z_harm_variance_across_event_types>0.01, C4 n_contact>=30.",
+      "result": "FAIL",
+      "result_summary": "harm_eval_z_harm_mean_env_caused_hazard: 0.6933822316281936 | harm_eval_z_harm_mean_agent_caused_hazard: 0.6164391131504722 | harm_eval_z_harm_mean_resource: 0.5966011142730713",
+      "started_at": "2026-03-20T15:53:28.701765+00:00",
+      "completed_at": "2026-03-20T15:53:39.118070+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_056_sd010_harm_stream_baseline/v3_exq_056_sd010_harm_stream_baseline_20260320T155338Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-057",
+      "backlog_id": "",
+      "claim_id": "SD-010",
+      "title": "SD-010 Reafference Isolation \u2014 z_harm survives reafference correction (EXQ-027b retest)",
+      "description": "Direct retest of EXQ-027b with SD-010. z_harm from HarmEncoder(harm_obs) is architecturally separate from z_world and never enters the reafference pipeline. Tests: calibration_gap_z_harm>0.03 (same threshold as EXQ-027b), harm_pred_std_z_harm>0.01, reafference_r2_z_world>0.10, n_agent_hazard_steps>=5, identity_test_pass==1.0.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-20T15:53:39.120079+00:00",
+      "completed_at": "2026-03-20T15:53:40.558153+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-058",
+      "backlog_id": "",
+      "claim_id": "SD-003",
+      "title": "SD-010: SD-003 Attribution Recovery (EXQ-043/044 retest) \u2014 causal_sig via z_harm",
+      "description": "Direct retest of EXQ-043/044 with SD-010. CF pipeline: z_harm_cf=harm_enc(harm_bridge(E2.world_forward(z_world,a_cf))). Three phases: terrain 400 + calibration 200 + eval 100. PASS: C1 causal_sig_approach>0.001, C2 calibration_gap_approach>0.05, C3 mean_harm_eval_none<0.2, C4 causal_sig_contact>causal_sig_approach, C5 n_approach_eval>=30.",
+      "result": "FAIL",
+      "result_summary": "causal_sig_contact: 0.059832581281661974 | calibration_gap_approach: 0.17362457957948518 | mean_harm_eval_none: 0.3650911832397634",
+      "started_at": "2026-03-20T15:53:40.559290+00:00",
+      "completed_at": "2026-03-20T15:53:54.893406+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_058_sd010_sd003_attribution/v3_exq_058_sd010_sd003_attribution_20260320T155354Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-059",
+      "backlog_id": "",
+      "claim_id": "MECH-102",
+      "title": "SD-010: MECH-102 Advantage Signal (EXQ-045 retest) \u2014 ethical policy via z_harm",
+      "description": "Direct retest of EXQ-045 with SD-010. Ethical policy: argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z_world,a)))). advantage_sig = mean_cf_harm_z_harm - harm_actual_z_harm. PASS: C1 advantage_sig_contact>advantage_sig_none, C2 advantage_sig_contact>0.001, C3 world_forward_r2>0.05, C4 n_contact>=50.",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-03-20T15:53:54.895140+00:00",
+      "completed_at": "2026-03-20T15:54:29.784888+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_059_sd010_mech102_advantage/v3_exq_059_sd010_mech102_advantage_20260320T155429Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-018",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 Dynamic Precision Commitment Test (hazard_harm=0.02, alpha_world=0.9)",
+      "description": "FIXED 2026-03-18 (run 4): Calibrated thresholds from run 3 measurements (stable_var\u22480.0027, perturbed_var\u22480.0038). C1 threshold 0.02\u21920.001 (original assumed 10\u00d7 higher variance than trained E2 achieves). E3Config.commitment_threshold 0.02\u21920.003 (sits between stable/perturbed \u2192 real commit rate differential). (Prior fixes: e2w_loss training, alpha_world=0.9, variance-space formula, extreme env contrast.) PASS: var_diff>0.001 AND prec_diff>0 AND commit_diff>0.",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-03-20T15:54:29.786418+00:00",
+      "completed_at": "2026-03-20T16:00:53.568945+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_018_arc016_dynamic_precision/v3_exq_018_arc016_dynamic_precision_20260320T160053Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-020",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: -0.005261121374188049 | mean_causal_sig_near_hazard: -0.017738802866502243 | mean_causal_sig_safe: -0.012477681492314194",
+      "started_at": "2026-03-20T16:00:53.572657+00:00",
+      "completed_at": "2026-03-20T16:14:44.132604+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260320T161443Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-020-s1",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Encoder Loss \u2014 Seed 1",
+      "description": "Repeat of EXQ-020 with seed=1 for robustness.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.016035386033807747 | mean_causal_sig_near_hazard: -0.05483533584823211 | mean_causal_sig_safe: -0.07087072188203986",
+      "started_at": "2026-03-20T16:14:44.134439+00:00",
+      "completed_at": "2026-03-20T16:31:03.580995+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260320T163102Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-020b",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Loss \u2014 Strong \u03bb=2.0 (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. EXQ-020 variant with \u03bb_event=2.0 (4\u00d7 stronger contrastive signal). If EXQ-020 achieves classification accuracy but not calibration_gap, tests whether stronger CE loss helps. Risk: forgetting of E1/E2 reconstruction.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.0 | mean_causal_sig_near_hazard: 0.0 | mean_causal_sig_safe: 0.0",
+      "started_at": "2026-03-20T16:31:03.583403+00:00",
+      "completed_at": "2026-03-20T16:51:50.321775+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260320T165149Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-022",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Combined Event-Contrastive + lstsq Reafference (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED 2026-03-18 (run 2): MECH-101 fix \u2014 lstsq reafference features changed from [z_self, a, 1] to [z_world_prev, a, 1]. Run 1 achieved R\u00b2=-4.12 (amplification) due to scale mismatch: z_self~0.3 vs dz_world~13 \u2192 catastrophic coefficients. z_world_prev and dz_world are on the same scale. Combines contrastive CE loss (EXQ-020) and lstsq reafference. Tests whether combination produces calibration_gap>0.05.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.0 | mean_causal_sig_near_hazard: 0.0 | mean_causal_sig_safe: 0.0",
+      "started_at": "2026-03-20T16:51:50.325904+00:00",
+      "completed_at": "2026-03-20T17:11:31.360018+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_022_combined_contrastive_lstsq/v3_exq_022_combined_contrastive_lstsq_20260320T171130Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-028",
+      "backlog_id": "",
+      "claim_id": "ARC-024",
+      "title": "CausalGridWorldV2 Proxy-Gradient Field Validation",
+      "description": "Prerequisite for EXQ-029. Tests ARC-024: does CausalGridWorldV2 generate observable harm/benefit gradient signals before contact events? Inverts EXQ-006 failure condition: mean_dz_world_hazard_approach > mean_dz_world_none. Random policy, no agent training. PASS: C1 gradient_dominance (approach > none), C2 gradient_magnitude > 0.02, C4 ema_accumulation (harm_exposure higher at approach than none).",
+      "result": "PASS",
+      "result_summary": "C2 (gradient_magnitude):  hazard_approach_dz(0.0464) > 0.02               \u2192 PASS | C4 (ema_accumulation):    exposure_approach(0.0297) > exposure_none(0.0209)  \u2192 PASS | Final verdict: PASS",
+      "started_at": "2026-03-20T17:11:31.363880+00:00",
+      "completed_at": "2026-03-20T17:11:34.401334+00:00",
+      "output_file": ""
     }
   ]
 }

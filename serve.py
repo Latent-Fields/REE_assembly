@@ -299,7 +299,7 @@ def runner_status() -> dict:
 
 
 def read_queue(ver: str) -> dict:
-    """Read experiment_queue.json for a substrate, cross-referencing completed items."""
+    """Read experiment_queue.json for a substrate. Queue file is authoritative for status."""
     if ver not in RUNNERS:
         return {"error": f"Unknown substrate: {ver}"}
     qf = RUNNERS[ver]["queue_file"]
@@ -310,17 +310,6 @@ def read_queue(ver: str) -> dict:
     except Exception:
         return {"items": [], "ver": ver}
 
-    # Get completed queue_ids from runner_status.json
-    completed_ids = set()
-    if STATUS_FILE.exists():
-        try:
-            status = json.loads(STATUS_FILE.read_text())
-            for c in status.get("completed", []):
-                completed_ids.add(c.get("queue_id"))
-        except Exception:
-            pass
-
-    # Annotate each item with whether it's already completed
     items = []
     for item in data.get("items", []):
         qid = item.get("queue_id", "")
@@ -329,7 +318,7 @@ def read_queue(ver: str) -> dict:
             "claim_id": item.get("claim_id", ""),
             "title": item.get("title", ""),
             "description": item.get("description", ""),
-            "status": "completed" if qid in completed_ids else item.get("status", "pending"),
+            "status": item.get("status", "pending"),
             "script": item.get("script", ""),
             "ree_version": ver,
         })
