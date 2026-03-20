@@ -973,6 +973,15 @@
     Proxy problem: experiment used health/energy (external environment state) as valence signal;
     correct test requires z_beta valence dimension (internal affective representation) correlated
     with E3 precision. No valid evidence in current corpus.
+    EXQ-051 FAIL (2026-03-20): Pearson r(z_beta, running_variance) = -0.033 (volatile),
+    -0.029 (stable). Root cause: architectural gap — z_beta is computed as
+    beta_encoder(cat(z_self, z_world)) with no pathway from E3's running_variance.
+    Volatile environments change hazard positions but not sensory statistics (z_beta_norm
+    ≈ 0.72 in both conditions). For Q-007 to be testable, running_variance must be
+    explicitly input to beta_encoder (top-down from E3 to z_beta), creating the proposed
+    correlation mechanistically. This is an architectural addition — not a threshold or
+    calibration issue. Required change: add running_variance as a scalar input to the
+    beta_encoder, or add a separate precision-modulation pathway.
   depends_on:
     - ARC-005
     - ARC-021
@@ -1718,6 +1727,11 @@
     V3 primary scope: full HippocampalModule trajectory promotion policy and E3 complex
     commitment gate (per V2 spec Step 2.5 exit criteria and V3 control completion focus).
     Split from MECH-057 2026-03-15 — see MECH-057a for action-loop evidence and V1/V2 history.
+    EXQ-048 FAIL (2026-03-20): Implementation bug — experiment bypassed agent.select_action(),
+    calling agent.e3.select() directly. beta_gate.elevate()/propagate() were never called.
+    Gate always showed is_elevated=False, hold_count=0. Root cause: not a mechanism failure,
+    purely an experiment instrumentation error. EXQ-048b fixes this by routing through
+    agent.select_action().
   depends_on:
     - ARC-015
     - ARC-005
@@ -3386,6 +3400,9 @@
     implemented as a commitment-gated routing variable decoupling E3 forward pass from
     policy output — not as beta oscillation power. The biological mechanism (beta in
     STN/striatum) is one implementation; it is not required in the ANN substrate.
+  evidence_quality_note: |
+    EXQ-049 FAIL (2026-03-20): Same bug as EXQ-048 — agent.select_action() bypassed,
+    gate never exercised. EXQ-049b fixes this.
   depends_on:
     - ARC-023
     - ARC-021
@@ -3900,6 +3917,15 @@
     z_gamma split into z_self (E2 domain: motor-sensory, proprioceptive) and
     z_world (E3/Hippocampus/ResidueField domain: causal footprint, residue,
     moral attribution). SD-005 and SD-004 must be co-designed.
+  evidence_quality_note: |
+    EXQ-047 (2026-03-20): Split provides 82% attribution improvement (gap: 0.035 split vs
+    0.019 unified) and meaningful calibration gain (0.1915 vs 0.1577), but calibration
+    improvement (3.4pp) falls below 5pp C1 threshold → FAIL 4/5. C1 failure is partly
+    attributable to nociceptive contamination in z_world: both split and unified z_world
+    conditions still carry harm proximity signals that conflate calibration metrics. True
+    calibration advantage of split should increase once SD-010 (separate z_harm) removes
+    nociceptive contamination. Attribution advantage (82%) is real and unambiguous. SD-005
+    split is prerequisite for clean SD-010 implementation.
   depends_on: []
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
@@ -3912,6 +3938,12 @@
     E1, E2, E3 run at characteristic rates rather than lockstep (phase 1:
     time-multiplexed). Asynchronous multi-rate execution reflects distinct
     biological loop timescales (theta/gamma/beta bands). See ARC-023.
+  evidence_quality_note: |
+    EXQ-052 FAIL (2026-03-20): C3 failure was a diagnostic bug — experiment tracked
+    len(agent.theta_buffer._buffer) where correct attribute is _z_world_buffer;
+    AttributeError silently caught, max_theta_buffer_size=0 always. All other criteria
+    passed: E3 functional at 9× slower rate (cal_gap=0.846), e3_tick_ratio=0.109 ≈ 1/9.
+    EXQ-052b fixes the counter. Functionally, multi-rate execution is working.
   depends_on: [ARC-023]
   location: docs/architecture/control_plane_heartbeat.md
 
