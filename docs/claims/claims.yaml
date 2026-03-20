@@ -974,14 +974,27 @@
     correct test requires z_beta valence dimension (internal affective representation) correlated
     with E3 precision. No valid evidence in current corpus.
     EXQ-051 FAIL (2026-03-20): Pearson r(z_beta, running_variance) = -0.033 (volatile),
-    -0.029 (stable). Root cause: architectural gap — z_beta is computed as
+    -0.029 (stable). Root cause confirmed — architectural gap: z_beta is computed as
     beta_encoder(cat(z_self, z_world)) with no pathway from E3's running_variance.
     Volatile environments change hazard positions but not sensory statistics (z_beta_norm
-    ≈ 0.72 in both conditions). For Q-007 to be testable, running_variance must be
-    explicitly input to beta_encoder (top-down from E3 to z_beta), creating the proposed
-    correlation mechanistically. This is an architectural addition — not a threshold or
-    calibration issue. Required change: add running_variance as a scalar input to the
-    beta_encoder, or add a separate precision-modulation pathway.
+    ≈ 0.72 in both conditions). Not a threshold or calibration issue.
+    Literature pull (2026-03-20): gap is well-grounded in neuromodulatory literature.
+    Yu & Dayan 2005 (PMID 15944135, Neuron): LC-NE encodes unexpected uncertainty —
+    running mismatch between predicted and actual variance. Not a sensory-content signal;
+    NE rises when the harm-prediction distribution itself has changed. Running_variance
+    in E3 is the direct REE computational analog. Payzan-LeNormand et al. 2013 (PMID
+    24312028): LC-NE drives exploration and prior resetting under high prediction-error
+    variance. Mathys HGF model: affective state maps to log-volatility estimate (μ₃,
+    second level), not first-level prediction error. Barrett/Seth interoceptive inference:
+    arousal = magnitude of interoceptive prediction error, NOT exteroceptive sensory content.
+    Fix roadmap (2026-03-20):
+      Option A (EXQ-051b, immediate): LatentStackConfig.volatility_signal_dim=1 injects
+        E3._running_variance as scalar into beta_encoder. Tests whether z_beta shows
+        condition difference and Pearson r(rv, z_beta) > 0.3.
+      Option C (post SD-010, long-term): z_beta driven from harm_history — harm stream
+        as REE's interoceptive/allostatic channel (Barrett arousal = |interoceptive PE|).
+        running_harm_variance becomes μ₃ analog. Requires SD-010 first.
+    EXQ-051b queued 2026-03-20 (V3-EXQ-051b).
   depends_on:
     - ARC-005
     - ARC-021
