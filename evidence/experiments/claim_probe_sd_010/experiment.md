@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260320T155338Z_v3_exq_056_sd010_harm_stream_baseline_v3` at `2026-03-20T15:53:38Z` signatures: none
 - `20260320T062233Z_v3_exq_056_sd010_harm_stream_baseline_v3` at `2026-03-20T06:22:33Z` signatures: none
 
 Recurring signatures:

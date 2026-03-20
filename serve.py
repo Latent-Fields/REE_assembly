@@ -18,6 +18,8 @@ API (POST, called by the Experiments tab in the explorer):
     /api/runner/v2/start       — start V2 runner
     /api/runner/v2/stop        — stop V2 runner
     /api/runner/status         — JSON status of both runners
+    /api/review/tracker        — GET: reviewed/discussed state from review_tracker.json
+    /api/review/discuss        — POST {dir_name, discussed}: toggle discussed_experiment_dirs
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -42,6 +44,7 @@ from urllib.parse import urlparse
 SERVE_DIR = Path(__file__).resolve().parent
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
+REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
 
 # Python executable — prefer REE_PYTHON env var, then known torch-capable paths
 def _default_python() -> str:
@@ -186,6 +189,16 @@ def run_script(key: str) -> dict:
         return {"status": "error", "message": f"Timed out after {timeout}s"}
     except Exception as exc:
         return {"status": "error", "message": str(exc)}
+
+
+def load_review_tracker() -> dict:
+    if REVIEW_TRACKER_FILE.exists():
+        return json.loads(REVIEW_TRACKER_FILE.read_text())
+    return {"schema_version": "review_tracker/v1", "reviewed_run_ids": [], "discussed_experiment_dirs": []}
+
+
+def save_review_tracker(data: dict) -> None:
+    REVIEW_TRACKER_FILE.write_text(json.dumps(data, indent=2) + "\n")
 
 
 def scan_evidence_runs() -> dict:
@@ -355,6 +368,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(read_queue("v2")).encode()
             self._json_response(body)
             return
+        if path == "/api/review/tracker":
+            data = load_review_tracker()
+            body = json.dumps({
+                "discussed_experiment_dirs": data.get("discussed_experiment_dirs", []),
+                "reviewed_run_ids": data.get("reviewed_run_ids", []),
+                "last_review_utc": data.get("last_review_utc", ""),
+            }).encode()
+            self._json_response(body)
+            return
         super().do_GET()
 
     def do_POST(self):
@@ -378,6 +400,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')
             result = run_script(body.get('script', ''))
+        elif path == "/api/review/discuss":
+            length = int(self.headers.get("Content-Length", 0))
+            payload = json.loads(self.rfile.read(length) or b"{}")
+            dir_name = payload.get("dir_name", "").strip()
+            discussed = bool(payload.get("discussed", True))
+            if dir_name:
+                data = load_review_tracker()
+                dirs = data.setdefault("discussed_experiment_dirs", [])
+                if discussed and dir_name not in dirs:
+                    dirs.append(dir_name)
+                elif not discussed and dir_name in dirs:
+                    dirs.remove(dir_name)
+                save_review_tracker(data)
+                result = {"status": "ok", "discussed_experiment_dirs": dirs}
+            else:
+                result = {"status": "error", "message": "missing dir_name"}
         else:
             self.send_response(404)
             self.end_headers()

@@ -1890,6 +1890,13 @@
     .exp-badge.improved  { background: #e8f5e9; color: #1565c0; }
     .exp-badge.error     { background: #fce4ec; color: #c62828; }
     .exp-badge.pending   { background: #fff8e1; color: #f57f17; }
+    .exp-badge.discussed { background: #e8f5e9; color: #2e7d32; font-weight: 500; }
+    .exp-discuss-btn {
+      font-size: 11px; padding: 2px 8px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--bg-2);
+      color: var(--muted); cursor: pointer; line-height: 1.5;
+    }
+    .exp-discuss-btn:hover { background: var(--border); }
     .exp-badge.needs-script { background: var(--bg-2); color: var(--muted); }
     .exp-progress-bar {
       height: 5px; background: var(--border); border-radius: 3px;
@@ -7620,7 +7627,7 @@ END CONFLICT RESOLUTION`;
         </div>`;
     }
 
-    function expCompletedHtml(c) {
+    function expCompletedHtml(c, discussedDirs = new Set()) {
       const resultClass = (c.result || '').toLowerCase();
       const runCountHtml = c.total_run_count > 1
         ? `<span style="font-size:11px;color:var(--muted);margin-left:6px">${c.total_run_count} runs on disk</span>`
@@ -7633,6 +7640,13 @@ END CONFLICT RESOLUTION`;
         : c.evidence_only && c.completed_at
         ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC</div>`
         : '';
+      const dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+      const isDiscussed = dirName && discussedDirs.has(dirName);
+      const discussWidget = dirName
+        ? isDiscussed
+          ? `<span class="exp-badge discussed">&#10003;&nbsp;discussed</span>`
+          : `<button class="exp-discuss-btn" data-dir="${escapeHtml(dirName)}">Mark discussed</button>`
+        : '';
       return `
         <div class="exp-card ${resultClass}">
           <div class="exp-card-header">
@@ -7642,6 +7656,7 @@ END CONFLICT RESOLUTION`;
             ${expBadgeHtml('', c.result)}
             ${versionChipHtml(inferVersion(c))}
             ${runCountHtml}
+            ${discussWidget}
           </div>
           <div class="exp-desc">${escapeHtml(c.description || '')}</div>
           ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
@@ -7673,6 +7688,15 @@ END CONFLICT RESOLUTION`;
       try {
         const er = await fetch('/api/evidence/runs?t=' + Date.now());
         if (er.ok) evidenceRuns = await er.json();
+      } catch (_) {}
+
+      let discussedDirs = new Set();
+      try {
+        const dr = await fetch('/api/review/tracker?t=' + Date.now());
+        if (dr.ok) {
+          const dt = await dr.json();
+          discussedDirs = new Set(dt.discussed_experiment_dirs || []);
+        }
       } catch (_) {}
 
       // Fetch queue files directly (independent of runner state)
@@ -7795,7 +7819,7 @@ END CONFLICT RESOLUTION`;
         const completedAnnotated = completed.map(c => {
           const scriptName = (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
           const ev = evidenceByScript[scriptName] || evidenceByClaimId[c.claim_id] || null;
-          return { ...c, total_run_count: ev ? ev.run_count : null };
+          return { ...c, script_name: scriptName, total_run_count: ev ? ev.run_count : null };
         });
 
         // Add evidence-on-disk items not tracked in runner_status completed
@@ -7815,6 +7839,7 @@ END CONFLICT RESOLUTION`;
               completed_at: ev.latest_timestamp,
               total_run_count: ev.run_count,
               output_file: `ree-v2/evidence/experiments/${scriptName}/`,
+              script_name: scriptName,
               evidence_only: true,
             };
           });
@@ -7824,13 +7849,29 @@ END CONFLICT RESOLUTION`;
         const completedGroups = groupByVersion(allCompleted);
         versionRenderOrder(completedGroups).forEach(v => {
           html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${completedGroups[v].length}</div>`;
-          html += completedGroups[v].map(expCompletedHtml).join('');
+          html += completedGroups[v].map(c => expCompletedHtml(c, discussedDirs)).join('');
         });
         html += '</div>';
       }
 
       html += `<div class="exp-refresh-note">Refreshes every ${EXP_REFRESH_MS / 1000}s${lastUpdated ? ` &mdash; last updated ${escapeHtml(lastUpdated)}` : ''}</div>`;
       els.expContent.innerHTML = html;
+
+      // Wire discuss buttons
+      els.expContent.querySelectorAll('.exp-discuss-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const dirName = btn.dataset.dir;
+          btn.disabled = true;
+          try {
+            await fetch('/api/review/discuss', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ dir_name: dirName, discussed: true }),
+            });
+          } catch (_) {}
+          renderExperiments();
+        });
+      });
 
       // Wire runner buttons (after innerHTML set)
       // Fetch live runner status from serve.py to set button states

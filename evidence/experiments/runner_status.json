@@ -2,58 +2,36 @@
   "schema_version": "v1",
   "runner_pid": 36535,
   "runner_started_at": "2026-03-20T14:39:59.827048+00:00",
-  "last_updated": "2026-03-20T17:19:20.242940+00:00",
+  "last_updated": "2026-03-20T19:00:15.334955+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-018-s1",
+    "queue_id": "V3-EXQ-055",
     "backlog_id": "",
-    "claim_id": "ARC-016",
-    "title": "ARC-016 Dynamic Precision \u2014 Seed 1 (independent validation)",
-    "description": "Seed-1 repeat of EXQ-018 PASS. EXQ-018 thresholds were calibrated from run-3 measurements then confirmed in run-4 \u2014 weak evidence pattern. Seed-1 provides independent confirmation that var_diff>0.001, prec_diff>0, commit_diff>0 are not seed-specific.",
-    "script": "experiments/v3_exq_018_arc016_dynamic_precision.py",
-    "started_at": "2026-03-20T17:11:34.403596+00:00",
+    "claim_id": "MECH-033",
+    "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
+    "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
+    "script": "experiments/v3_exq_055_mech033_kernel_chaining.py",
+    "started_at": "2026-03-20T18:05:45.774841+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 950,
-      "episodes_total": 1130,
-      "overall_pct": 84.1
+      "runs_total": 3,
+      "episodes_done": 500,
+      "episodes_total": 750,
+      "overall_pct": 22.2
     },
-    "seconds_elapsed": 466,
-    "seconds_remaining": 88,
+    "seconds_elapsed": 3270,
+    "seconds_remaining": 11458,
     "recent_lines": [
-      "[train] ep 750/1000  var=0.0025  prec=392.725  commits=14147/14148  harm=35978",
-      "[train] ep 800/1000  var=0.0012  prec=836.663  commits=15100/15101  harm=38383",
-      "[train] ep 850/1000  var=0.0016  prec=629.315  commits=16044/16045  harm=40798",
-      "[train] ep 900/1000  var=0.0035  prec=284.072  commits=17010/17011  harm=43126",
-      "[train] ep 950/1000  var=0.0020  prec=492.019  commits=17928/17929  harm=45476"
+      "ep 100/600  e3_ticks=2032",
+      "ep 200/600  e3_ticks=4043",
+      "ep 300/600  e3_ticks=6158",
+      "ep 400/600  e3_ticks=8189",
+      "ep 500/600  e3_ticks=10115"
     ],
     "ree_version": "v3"
   },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-018-s1",
-      "backlog_id": "",
-      "claim_id": "ARC-016",
-      "title": "ARC-016 Dynamic Precision \u2014 Seed 1 (independent validation)",
-      "description": "Seed-1 repeat of EXQ-018 PASS. EXQ-018 thresholds were calibrated from run-3 measurements then confirmed in run-4 \u2014 weak evidence pattern. Seed-1 provides independent confirmation that var_diff>0.001, prec_diff>0, commit_diff>0 are not seed-specific.",
-      "estimated_minutes": 6.4,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-054",
-      "backlog_id": "",
-      "claim_id": "MECH-072",
-      "title": "MECH-072 World-Delta Residue Gating \u2014 reduces false attribution rate",
-      "description": "Prerequisite: EXQ-042 PASS, EXQ-029 PASS. V2 FAIL (E2.predict_harm wrong module). V3: gate residue on world_delta = ||E2.world_forward(z_world,a_actual) - E2.world_forward(z_world,a_cf)||. Sequential: P1 terrain+E2 (400 eps, E3 frozen), P2 E3 calibration (200 eps), P3 eval (100 eps). Three modes: NAIVE (all harm), WORLD_DELTA (gated), ORACLE (ground truth). PASS: C1 false_attr_delta < false_attr_naive, C2 harm not worse, C3 world_delta_agent > world_delta_env, C4 cal_gap>0, C5 wf_r2>0.05.",
-      "estimated_minutes": 51.4,
-      "status": "completed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-055",
       "backlog_id": "",
@@ -61,7 +39,7 @@
       "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
       "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
       "estimated_minutes": 78.2,
-      "status": "completed",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1426,6 +1404,30 @@
       "started_at": "2026-03-20T17:11:31.363880+00:00",
       "completed_at": "2026-03-20T17:11:34.401334+00:00",
       "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-018-s1",
+      "backlog_id": "",
+      "claim_id": "ARC-016",
+      "title": "ARC-016 Dynamic Precision \u2014 Seed 1 (independent validation)",
+      "description": "Seed-1 repeat of EXQ-018 PASS. EXQ-018 thresholds were calibrated from run-3 measurements then confirmed in run-4 \u2014 weak evidence pattern. Seed-1 provides independent confirmation that var_diff>0.001, prec_diff>0, commit_diff>0 are not seed-specific.",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-03-20T17:11:34.403596+00:00",
+      "completed_at": "2026-03-20T17:20:09.971619+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_018_arc016_dynamic_precision/v3_exq_018_arc016_dynamic_precision_20260320T172009Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-054",
+      "backlog_id": "",
+      "claim_id": "MECH-072",
+      "title": "MECH-072 World-Delta Residue Gating \u2014 reduces false attribution rate",
+      "description": "Prerequisite: EXQ-042 PASS, EXQ-029 PASS. V2 FAIL (E2.predict_harm wrong module). V3: gate residue on world_delta = ||E2.world_forward(z_world,a_actual) - E2.world_forward(z_world,a_cf)||. Sequential: P1 terrain+E2 (400 eps, E3 frozen), P2 E3 calibration (200 eps), P3 eval (100 eps). Three modes: NAIVE (all harm), WORLD_DELTA (gated), ORACLE (ground truth). PASS: C1 false_attr_delta < false_attr_naive, C2 harm not worse, C3 world_delta_agent > world_delta_env, C4 cal_gap>0, C5 wf_r2>0.05.",
+      "result": "FAIL",
+      "result_summary": "total_harm_events: 102.000000 | calibration_gap_approach: 0.000000",
+      "started_at": "2026-03-20T17:20:09.974134+00:00",
+      "completed_at": "2026-03-20T18:05:45.772804+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_054_mech072_world_delta_gating/v3_exq_054_mech072_world_delta_gating_20260320T180545Z.json"
     }
   ]
 }

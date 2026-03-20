@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_arc_016
 
-Generated: `2026-03-20T14:17:09.356751Z`
+Generated: `2026-03-20T18:19:23.954393Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-20T14:17:09.356751Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260320T172009Z_v3_exq_018_arc016_dynamic_precision_v3` | `2026-03-20T17:20:09Z` | **FAIL** | fatal_error_count=0<br>criteria_met=4<br>crit1_pass=0<br>crit2_pass=1<br>crit3_pass=1<br>crit4_pass=1 | fatal_error_count:+0<br>criteria_met:+3<br>crit1_pass:+0<br>crit2_pass:+1<br>crit3_pass:+1<br>crit4_pass:+1 | - | - | [`summary`](runs/20260320T172009Z_v3_exq_018_arc016_dynamic_precision_v3/summary.md) / [`manifest`](runs/20260320T172009Z_v3_exq_018_arc016_dynamic_precision_v3/manifest.json) / [`metrics`](runs/20260320T172009Z_v3_exq_018_arc016_dynamic_precision_v3/metrics.json) |
 | `20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3` | `2026-03-19T06:16:23Z` | **FAIL** | fatal_error_count=0<br>criteria_met=1<br>crit1_pass=0<br>crit2_pass=0<br>crit3_pass=0<br>crit4_pass=0 | fatal_error_count:+0<br>criteria_met:-4<br>crit1_pass:-1<br>crit2_pass:-1<br>crit3_pass:-1<br>crit4_pass:-1 | - | - | [`summary`](runs/20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3/summary.md) / [`manifest`](runs/20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3/manifest.json) / [`metrics`](runs/20260319T061623Z_v3_exq_038_arc016_precision_sweep_v3/metrics.json) |
 | `20260318T201853Z_v3_exq_031_arc016_gradient_world_v3` | `2026-03-18T20:18:53Z` | PASS | fatal_error_count=0<br>criteria_met=5<br>crit1_pass=1<br>crit2_pass=1<br>crit3_pass=1<br>crit4_pass=1 | fatal_error_count:+0<br>criteria_met:+0<br>crit1_pass:+0<br>crit2_pass:+0<br>crit3_pass:+0<br>crit4_pass:+0 | - | - | [`summary`](runs/20260318T201853Z_v3_exq_031_arc016_gradient_world_v3/summary.md) / [`manifest`](runs/20260318T201853Z_v3_exq_031_arc016_gradient_world_v3/manifest.json) / [`metrics`](runs/20260318T201853Z_v3_exq_031_arc016_gradient_world_v3/metrics.json) |
 | `20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3` | `2026-03-18T20:17:24Z` | PASS | fatal_error_count=0<br>criteria_met=5<br>crit1_pass=1<br>crit2_pass=1<br>crit3_pass=1<br>crit4_pass=1 | fatal_error_count:+0<br>criteria_met:+0<br>crit1_pass:+0<br>crit2_pass:+0<br>crit3_pass:+0<br>crit4_pass:+0 | - | - | [`summary`](runs/20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3/summary.md) / [`manifest`](runs/20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3/manifest.json) / [`metrics`](runs/20260318T201724Z_v3_exq_018_arc016_dynamic_precision_v3/metrics.json) |

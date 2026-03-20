@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_mech_102
 
-Generated: `2026-03-20T14:17:09.356751Z`
+Generated: `2026-03-20T18:19:23.954393Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-20T14:17:09.356751Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260320T155429Z_v3_exq_059_sd010_mech102_advantage_v3` | `2026-03-20T15:54:29Z` | **FAIL** | fatal_error_count=0<br>alpha_world=0.9<br>world_forward_r2=0.946984<br>crit1_pass=0<br>crit2_pass=1<br>crit3_pass=1 | fatal_error_count:+0<br>alpha_world:+0<br>world_forward_r2:+0.002975<br>crit1_pass:-1<br>crit2_pass:+1<br>crit3_pass:+0 | - | - | [`summary`](runs/20260320T155429Z_v3_exq_059_sd010_mech102_advantage_v3/summary.md) / [`manifest`](runs/20260320T155429Z_v3_exq_059_sd010_mech102_advantage_v3/manifest.json) / [`metrics`](runs/20260320T155429Z_v3_exq_059_sd010_mech102_advantage_v3/metrics.json) |
 | `20260320T062330Z_v3_exq_059_sd010_mech102_advantage_v3` | `2026-03-20T06:23:30Z` | **FAIL** | fatal_error_count=0<br>alpha_world=0.9<br>world_forward_r2=0.944009<br>crit1_pass=1<br>crit2_pass=0<br>crit3_pass=1 | fatal_error_count:+0<br>alpha_world:+0<br>world_forward_r2:-0.004106<br>crit1_pass:+1<br>crit2_pass:+0<br>crit3_pass:+0 | - | - | [`summary`](runs/20260320T062330Z_v3_exq_059_sd010_mech102_advantage_v3/summary.md) / [`manifest`](runs/20260320T062330Z_v3_exq_059_sd010_mech102_advantage_v3/manifest.json) / [`metrics`](runs/20260320T062330Z_v3_exq_059_sd010_mech102_advantage_v3/metrics.json) |
 | `20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3` | `2026-03-19T20:16:36Z` | **FAIL** | fatal_error_count=0<br>alpha_world=0.9<br>world_forward_r2=0.948115<br>crit1_pass=0<br>crit2_pass=0<br>crit3_pass=1 | fatal_error_count:+0<br>alpha_world:+0<br>world_forward_r2:+0.029615<br>crit1_pass:-1<br>crit2_pass:+0<br>crit3_pass:+1 | - | - | [`summary`](runs/20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3/summary.md) / [`manifest`](runs/20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3/manifest.json) / [`metrics`](runs/20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3/metrics.json) |
 | `20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3` | `2026-03-19T05:50:00Z` | **FAIL** | fatal_error_count=0<br>alpha_world=0.9<br>world_forward_r2=0.9185<br>crit1_pass=1<br>crit2_pass=0<br>crit3_pass=0 | fatal_error_count:+0<br>alpha_world:+0<br>world_forward_r2:-0.029615<br>crit1_pass:+0<br>crit2_pass:-1<br>crit3_pass:-1 | - | - | [`summary`](runs/20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3/summary.md) / [`manifest`](runs/20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3/manifest.json) / [`metrics`](runs/20260319T055000Z_v3_exq_032c_mech102_dense_grid_v3/metrics.json) |
