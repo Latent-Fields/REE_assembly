@@ -1,0 +1,45 @@
+title: REE — Reflective-Ethical Engine
+description: >-
+  Architecture, claims governance, and experiment evidence for the
+  Reflective-Ethical Engine — a cognitive architecture specification
+  for agents that must act under uncertainty while affecting others.
+
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+
+url: "https://latent-fields.github.io"
+baseurl: "/REE_assembly"
+
+# Exclude internal working files from the public site
+exclude:
+  - README.md
+  - thoughts/
+  - notes/
+  - processed/
+
+# Navigation
+nav_sort: case_sensitive
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+
+# Top-right links
+aux_links:
+  "GitHub":
+    - "https://github.com/Latent-Fields/REE_assembly"
+aux_links_new_tab: true
+
+# Footer
+footer_content: >-
+  REE is developed by Daniel Golden (Latent Fields).
+  <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/LICENSE">Apache 2.0</a>.
+
+color_scheme: light
+
+# Kramdown settings
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
