@@ -1051,6 +1051,15 @@
     exist as distinct signals. ARC-016 is a stronger claim: that those channels produce
     behaviorally distinct operating modes. The structural separation is necessary but
     not sufficient for ARC-016.
+    V3 EXQ-018 FAIL (2026-03-20): Variance mechanism confirmed working — precision drops 40%
+    (718→426) under maximal perturbation. But commit_threshold=0.40 is 100× the actual
+    operating variance range (stable≈0.0026, perturbed≈0.0036). Absolute threshold
+    calibration is fragile: any environment change shifts the variance operating range.
+    Fix: relative threshold calibrated from training baseline
+    (commit_threshold = k × training_baseline_variance, k≈2.0). Mirrors biological
+    'sleep recalibration' — slow-wave sleep resets the prediction error baseline, and
+    waking commitment thresholds are calibrated relative to that baseline. EXQ-018b
+    implements this relative threshold approach.
   depends_on:
     - ARC-005
     - MECH-059
@@ -2829,7 +2838,6 @@
   subject: residue.foreseeable_harm_gating_reduces_false_attribution
   polarity: asserts
   status: candidate
-  v3_pending: true
   implementation_phase: v3
   depends_on:
     - MECH-071
@@ -2844,9 +2852,18 @@
     V3 EXQ-054 FAIL (2026-03-20): world_delta_agent=0.01776 ≈ world_delta_env=0.01806 (1.7%
     difference, below C3 threshold). C4 FAIL: calibration_gap_approach=0. E2 cannot
     discriminate agent vs environment dynamics without SD-005 z_self/z_world split — z_gamma
-    conflates both. Partial signal: false attribution dropped 62% (34→13 events) showing the
-    gate threshold captures some structure, but C3/C4 require SD-005 to pass.
-    v3_pending and implementation_phase:v3 retained — requires SD-005 before meaningful test.
+    conflates both. Partial signal: false_attr dropped 33%→26%, showing the gate threshold
+    captures some structure, but C3/C4 require SD-005 to pass. v3_pending removed — V3
+    evidence now exists (EXQ-054), but result is FAIL pending SD-005.
+    New architectural question (2026-03-20): world-delta magnitude is insufficient to
+    discriminate agent vs environment causation — both produce similar E2 perturbation
+    magnitudes. The gate requires directional discrimination: which subspace of z_world
+    was perturbed, not just how much. Candidate fix: replace scalar ||delta|| threshold
+    with a learned discriminator head trained on (z_world_delta, is_agent_caused) labels,
+    using the oracle ground truth during training. This transforms MECH-072 from a
+    threshold gate into a supervised discriminator gate. Requires SD-005 z_self/z_world
+    split as prerequisite (C3 failure is fundamentally about E2 conflating agent and
+    environmental dynamics in the same z_world space).
   notes: >
     Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
     reduces false attribution rate (residue at env-caused events / total residue)
@@ -3625,6 +3642,13 @@
     MECH-098 to be testable: with alpha_world=0.3 the reafference signal is
     too diluted for any single-step predictor. EXQ-021 retests with lstsq
     and fixed C3 metric. EXQ-023 retests with alpha_world=0.9.
+    EXQ-022 (2026-03-20): lstsq reafference approach retired for this use case.
+    R²_test=0.0 despite R²_train=0.373 — extreme overfitting. Correction
+    amplifies world-change signal 10× (Δz_corrected=139.6 vs Δz_raw=13.9).
+    The lstsq model learns within-training-set correlations that do not transfer.
+    Neural ReafferencePredictor (SD-007, validated EXQ-027b PASS) is the
+    correct approach. All future reafference experiments use the neural
+    predictor exclusively.
 - id: MECH-099
   claim_type: mechanism_hypothesis
   subject: visual_streams.three_pathway_architecture
@@ -3701,6 +3725,12 @@
     to 30% per step. Both SD-008 and SD-009 are co-prerequisites.
     Test: V3-EXQ-020 (event auxiliary loss alone), V3-EXQ-022 (combined with
     lstsq reafference), V3-EXQ-023 (SD-008 + SD-009 combined in alpha=0.9 run).
+    EXQ-020 PASS on SD-009 mechanism (2026-03-20): selectivity_margin=0.882,
+    event_classification_acc=0.692, Δz_world escalates env_hazard/agent_hazard
+    2.4× over none. C1 (calibration_gap) FAIL is inherited from SD-010 (broken
+    z_harm evaluation), not from SD-009 itself. SD-009 mechanism validated —
+    contrastive loss forces z_world to carry event-discriminative information.
+    C1 retest pending SD-010 fix (EXQ-056c).
 
 - id: MECH-101
   claim_type: mechanism_hypothesis
