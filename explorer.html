@@ -7937,8 +7937,12 @@ END CONFLICT RESOLUTION`;
         });
 
         // Add evidence-on-disk items not tracked in runner_status completed
+        // Exclude scripts still pending in the queue — they belong in Queue, not Completed
+        const queueScriptNames = new Set(
+          queue.map(qi => (qi.script || '').replace(/^.*\//, '').replace(/\.py$/, '')).filter(Boolean)
+        );
         const evidenceOnlyItems = Object.entries(evidenceByScript)
-          .filter(([scriptName]) => !completedScriptNames.has(scriptName))
+          .filter(([scriptName]) => !completedScriptNames.has(scriptName) && !queueScriptNames.has(scriptName))
           .map(([scriptName, ev]) => {
             const queueMatch = queue.find(qi =>
               (qi.script || '').replace(/^.*\//, '').replace(/\.py$/, '') === scriptName ||
