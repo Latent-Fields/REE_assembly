@@ -9,7 +9,26 @@
 
 ---
 
-## Status Snapshot (2026-02-28)
+## Status Snapshot (2026-03-20)
+
+- **V2 complete.** All three hard-stop criteria triggered after EXQ-028. Governance cycle
+  run 2026-03-19: 7 decisions applied, V3-pending gate lifted, ARC-024 and SD-010
+  registered.
+- **V3 active.** 73 experiments run (through EXQ-059). Substrate SDs 004/005/006/007
+  implemented. EXQ-030b PASS validated V3-form SD-003 attribution pipeline
+  (attribution_gap=0.035, world_forward_r2=0.947). Current focus: SD-010 implementation
+  (harm stream separation) to unblock ~10 pending FAILs.
+- **Q-020 adjudicated:** ARC-007 strict (2026-03-16). HippocampalModule generates
+  value-flat proposals; terrain sensitivity is a consequence of navigating
+  residue-shaped z_world, not a separate hippocampal value signal.
+- **17 pending FAILs** awaiting review (generated 2026-03-20). Root cause cluster:
+  fused z_world containing harm signal → SD-010 substrate debt.
+- `REE_assembly` is the canonical governance + specification repo. Current V3 roadmap
+  is in §REE-v3 below; `v2_v3_transition_roadmap.md` is now historical.
+
+---
+
+## Status Snapshot (2026-02-28) — archived
 
 - `REE_assembly` is the canonical governance + specification repo.
 - `ree-v1-minimal` has served as the qualification harness: 8 genuine experiments
@@ -64,9 +83,12 @@ architecture failures.
 
 ---
 
-### REE-v2 (current phase)
+### REE-v2 ✓ (completed purpose: V2 qualification)
 
-#### Step 2.0 — V2 Redesign ← **current step**
+**V2 series closed after EXQ-028 (2026-03-19).** All three hard-stop criteria met.
+Governance cycle completed 2026-03-19.
+
+#### Step 2.0 — V2 Redesign ✓
 
 **Primary role:** Produce an updated V2 specification that incorporates V1 learning.
 The original V2 spec (representation-interface contract) remains in scope, but the
@@ -92,11 +114,12 @@ to make future self-attribution and self-modelling experiments possible.
 - This roadmap updated with Step 2.1–2.5 refined based on redesign output
 - GOVERNANCE_STATE.md SD-003 entry complete ✓ (done 2026-02-28)
 
-**Post-step action:** Revise Steps 2.1–2.5 scope based on what the redesign reveals.
+**Outcome:** ✓ Complete. V2 spec produced (`docs/architecture/ree_v2_spec.md`). SD-001/002/003
+addressed in design. Steps 2.1–2.5 scoped.
 
 ---
 
-#### Step 2.1 — E2 Separation (SD-001 resolution)
+#### Step 2.1 — E2 Separation (SD-001 resolution) ✓
 
 **Primary role:** Refactor E2 into a pure fast transition model. Create HippocampalModule
 as a distinct component of the E3 complex. Close SD-001.
@@ -118,9 +141,12 @@ as a distinct component of the E3 complex. Close SD-001.
 - Existing EXQ PASS results replicated on refactored substrate (parity check)
 - Roadmap updated with any discoveries
 
+**Outcome:** ✓ Complete. E2 is a pure fast transition MLP on z_self. HippocampalModule
+created as distinct E3 component. SD-001 closed.
+
 ---
 
-#### Step 2.2 — Representation Interface Contract
+#### Step 2.2 — Representation Interface Contract ✓
 
 **Primary role:** Lock stable representation-interface contract for sensing adapters
 and E1/E2 latent prediction. This is the original primary V2 role, now sequenced after
@@ -143,9 +169,12 @@ E2 separation.
 - No unresolved adapter contract drift
 - Roadmap updated with any discoveries
 
+**Outcome:** ✓ Complete. MECH-059 PASS confirmed E1 precision and E3 confidence are
+structurally independent. Representation interface stable.
+
 ---
 
-#### Step 2.3 — Persistent Causal Environment
+#### Step 2.3 — Persistent Causal Environment ✓
 
 **Primary role:** Upgrade the environment substrate so that persistent agent causal
 footprint is present — actions at step N affect the landscape at step N+k in ways
@@ -166,9 +195,12 @@ prerequisite for SD-003 experiments.
 - Baseline experiments confirm agent-caused / environment-caused distinguishability
 - Roadmap updated with any discoveries
 
+**Outcome:** ✓ Complete. CausalGridWorld implemented with persistent agent causal
+footprint. EXQ-018 PASS confirmed agent-caused/environment-caused distinguishability.
+
 ---
 
-#### Step 2.4 — Self-Attribution Substrate
+#### Step 2.4 — Self-Attribution Substrate ✓ (V2 partial; V3 form validated)
 
 **Primary role:** Implement and test counterfactual E2 querying for self-modelling.
 First genuine experiments on self-attribution claims. Close SD-003.
@@ -184,9 +216,15 @@ First genuine experiments on self-attribution claims. Close SD-003.
 - E2 counterfactual querying demonstrated experimentally
 - Roadmap updated with any discoveries
 
+**Outcome:** ✓ Partial / hard stop. EXQ-027 FAIL triggered V2 hard stop: E2 cannot
+discriminate agent-caused harm in z_gamma; SD-005 substrate required. V2
+self-attribution experiments concluded. V3-form SD-003 validated at EXQ-030b PASS
+(2026-03-18): attribution_gap=0.035, world_forward_r2=0.947. Full SD-003 achieved on
+V3 substrate with z_world separation.
+
 ---
 
-#### Step 2.5 — V2 Qualification
+#### Step 2.5 — V2 Qualification ✓
 
 **Primary role:** Genuine experiment coverage across core V2 claims. Sufficient evidence
 to make V3 entry decision.
@@ -198,26 +236,63 @@ to make V3 entry decision.
 - **Roadmap updated with V1+V2 learnings before V3 begins**
 - V3 entry decision made explicitly
 
+**Outcome:** ✓ Complete. V2 series closed after EXQ-028. 15 genuine V2 experiments
+(EXQ-014–028): 5 structural-separation PASSes, 9 FAILs (all substrate-limited by
+z_gamma conflation or SD-004 absence). Governance cycle 2026-03-19: 7 decisions
+applied. V3 entry formally made.
+
 ---
 
-### REE-v3 (next phase after V2: control completion)
+### REE-v3 ← **current phase** (control completion + full attribution)
 
-**Primary role:** Add and iterate control-plane, hippocampal functions, and E3
-commitment/accountability on top of the V2 representation interface and self-attribution
-substrate.
+**Primary role:** Implement full attribution pipeline, control-plane heartbeat architecture,
+and E3 commitment/accountability on the z_self/z_world split substrate (SD-004/005).
+
+#### Step 3.0 — V3 Substrate Implementation ✓
+
+SD-004 (E2 action objects; HippocampalModule navigates action-object space O), SD-005
+(z_gamma → z_self + z_world split), SD-006 (asynchronous multi-rate heartbeat,
+time-multiplexed phase 1), SD-007 (ReafferencePredictor for perspective-corrected
+z_world). Q-020 adjudicated: ARC-007 strict (2026-03-16). CausalGridWorld extended
+to V3 environment. EXQ-030b PASS: SD-003 attribution pipeline validated.
+
+#### Step 3.1 — Substrate Debt Resolution ← **current step**
 
 **In-scope:**
-- Control-plane arbitration and precision routing
-- Hippocampal rollout generation + post-commit map/model updates
-- Pre-commit vs post-commit error-channel separation and accountability hooks
-- Commitment gating and conflict-resolution policies
-- MECH-057 (control completion) retested on richer substrate with genuine commitment pressure
+- SD-008: alpha_world ≥ 0.9 in LatentStackConfig (default 0.3 suppresses event responses)
+- SD-009: event-contrastive CE auxiliary loss for z_world encoder (MECH-100)
+- SD-010: harm stream separation — CausalGridWorldV2 with separate harm_obs channel,
+  dedicated HarmEncoder → z_harm, E3 takes z_harm as primary input; unblocks ~10 pending FAILs
+
+**Exit criteria:**
+- SD-008/SD-009 validated at scale (z_world event selectivity confirmed)
+- SD-010 implemented and EXQ-056/058/059 re-run on new substrate (validation)
+- 17 pending FAILs from 2026-03-20 batch reviewed; attribution FAIL cluster resolved
+
+#### Step 3.2 — V3 Claim Qualification
+
+**In-scope:**
+- ARC-016: E3-derived dynamic precision + end-to-end commitment→behavior behavioral distinction
+- MECH-025: action-doing mode probe on V3 substrate
+- MECH-057b: completion gate retest
+- Q-007: valence-precision interaction
+- SD-006: multi-rate loop validation at scale (ARC-023, MECH-089–093)
+- MECH-090: beta-gated policy propagation
+- ARC-024: harm attribution with SD-010 substrate
+- Full V3-EXQ series (V3-EXQ-001 through V3-EXQ-010 as designed in transition roadmap)
+
+**Exit criteria:**
+- Governance confidence above provisional thresholds for core V3 control claims
+- V3-pending claims adjudicated (ARC-007, ARC-016, ARC-018, MECH-025, MECH-033, Q-007)
+- **Roadmap updated with V1+V2+V3 learnings before V4 begins**
+
+#### Step 3.3 — V3 Governance Cycle and V4 Entry Decision
 
 **Exit criteria to start V4:**
 - Robust separation of exploratory simulation vs committed learning
 - Stable behaviour under adversarial trajectory pressure
 - Governance confidence above provisional thresholds for core control claims
-- **Roadmap updated with V1+V2+V3 learnings before V4 begins**
+- V4 entry decision made explicitly
 
 ---
 
@@ -250,44 +325,40 @@ Added from V1 learning:
 ## Repository Roles
 
 - `REE_assembly`: canonical claims, architecture docs, evidence matrix, governance outputs.
-- `ree-v2`: primary qualification lane for V2 representation-interface profiles and
-  acceptance gates.
-- `ree-experiments-lab`: stress/adversarial/replication experiments and falsification
-  pressure.
-- `ree-v1-minimal`: legacy baseline/reference harness. Transitional parity checks until
-  V2 coverage is complete. No new mechanism development.
+- `ree-v3`: **primary qualification lane** for V3 experiments and claim coverage. Default
+  branch: `main`. Results go to `REE_assembly/evidence/experiments/`.
+- `ree-v2`: transitional reference. V2 series complete (EXQ-014–028). No new experiments.
+- `ree-v1-minimal`: legacy baseline/reference harness. No new mechanism development.
+- `ree-experiments-lab`: **ARCHIVED** 2026-02-26. Synthetic scaffolding only; do not use.
 
 ---
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: 2.0 — V2 Redesign**
+**Current step: 3.1 — Substrate Debt Resolution**
 
-1. Complete EXQ-008 (candidate count ablation) and EXQ-009 (residue routing weight) to
-   close out V1 evidence on MECH-063 and MECH-062. Results inform V2 redesign.
-2. Produce V2 implementation spec document: subsystem boundaries, SD-001/002/003
-   addressed in design, required metrics, failure gates.
-3. Revise V2 entry criteria in this roadmap once implementation spec is complete (above
-   revision is preliminary; spec may refine further).
-4. Run targeted literature program for V3-critical systems:
-   - hippocampal replay/planning/map-update mechanisms,
-   - prefrontal control/arbitration/commitment mechanisms,
-   - JEPA-like latent-to-hippocampal mapping constraints.
-5. Route resulting evidence into backlog/proposals and governance decisions.
-
-**Deferred pending Step 2.0 completion:**
-- EXQ-010 through EXQ-013 (extended-seed reruns of PASS claims): low-priority
-  confidence accumulation; do not block V2 redesign work.
+1. **Implement SD-010** (harm stream separation): CausalGridWorldV2 with separate
+   `harm_obs` channel, dedicated HarmEncoder → z_harm, E3 wired to z_harm as primary
+   input. Re-queue EXQ-056/058/059 on new substrate.
+2. **Review 17 pending FAILs** (generated 2026-03-20). Prioritise SD-010 cluster
+   (EXQ-044/045/047/056/058/059) and structural mechanism FAILs (EXQ-048/049/050/051/052).
+   Update `review_tracker.json` and re-run `generate_pending_review.py`.
+3. **SD-008 validation at scale**: confirm alpha_world ≥ 0.9 in LatentStackConfig
+   default; run targeted z_world event-selectivity experiment if not yet done.
+4. **SD-009**: design and queue event-contrastive CE auxiliary loss experiment (MECH-100).
 
 ---
 
 ## Open Questions
 
-- Should the persistent-causal-footprint environment (Step 2.3) be built in-repo or
-  sourced from an existing environment library?
-- What minimum genuine-run threshold triggers promotion from provisional to active for
-  V2 claims? (V1 threshold was informally 2 genuine runs; V2 should define this
-  explicitly in the Step 2.0 spec.)
+- **SD-010 HarmEncoder architecture**: should z_harm be a separate stream alongside
+  z_world and z_self, or should it route through z_world after SD-010? The `l_space.md`
+  architecture suggests a four-stream model (z_self, z_world, z_beta, z_harm).
+- **ARC-016 E3-derived precision**: EXQ-038 FAIL — root cause (precision invariance)
+  needs analysis before designing the next precision-regime experiment.
+- **SD-006 phase 2**: time-multiplexed multi-rate is phase 1; true asynchronous
+  execution (thread-based or event-loop) is still open. HTA (hierarchical temporal
+  abstraction) is the recommended direction but not yet designed.
 
 ---
 
@@ -295,6 +366,8 @@ Added from V1 learning:
 
 - IMPL-008, IMPL-020, IMPL-021, IMPL-022
 - MECH-057, MECH-058, MECH-059, MECH-060, MECH-063
+- ARC-024, MECH-069, MECH-070, MECH-089, MECH-090, MECH-100, MECH-101, MECH-102
+- SD-010 (harm stream separation)
 
 ## References
 

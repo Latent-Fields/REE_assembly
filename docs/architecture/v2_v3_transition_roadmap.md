@@ -33,10 +33,11 @@ This document defines:
 | EXQ-025 | MECH-057 attribution completion gating | **FAIL** |
 | EXQ-026 | MECH-025 action-doing mode probe | **FAIL** |
 | EXQ-027 | MECH-071 E2 attribution calibration (SD-003) | **FAIL** (wrong module; E3 should predict harm) |
-| EXQ-028 | MECH-072 selective residue attribution (SD-003) | running (predicted FAIL, same root cause) |
+| EXQ-028 | MECH-072 selective residue attribution (SD-003) | **FAIL** confirmed — MECH-072 requires SD-005 substrate (same root cause as EXQ-027) |
 
-**V2 experiment series closes after EXQ-028.** At that point, do a governance cycle then
-assess whether to continue V2 or pause for V3 design.
+**V2 experiment series closed after EXQ-028.** All three hard-stop criteria triggered.
+Governance cycle completed 2026-03-19: 7 decisions applied, V3-pending gate lifted,
+ARC-024 and SD-010 registered. V3 transition executed.
 
 ---
 
@@ -155,6 +156,9 @@ This hypothesis cannot be confirmed until SD-005 exists.
 
 ## V2 "Done" Criteria — Transition Triggers
 
+> **All three hard stops triggered. V2→V3 transition executed (2026-03-19).** This
+> section is historical. Active V3 roadmap in `docs/roadmap.md` §REE-v3.
+
 **The V2 series is complete when EXQ-028 finishes.** At that point, evaluate:
 
 ### Hard stops (any one of these → pause for V3 design):
@@ -196,22 +200,27 @@ These interact: action objects (SD-004) encode `z_world_t → z_world_{t+1}`, wh
 z_world to exist (SD-005). They should be designed and implemented together.
 
 **V3 substrate checklist:**
-- [ ] Observation encoder routes sensory channels: body-state → z_self, world → z_world
-- [ ] E2 operates on z_self: `f(z_self_t, a_t) → z_self_{t+1}`
-- [ ] E2 also produces action objects: `f(z_world_t, a_t) → (z_world_{t+1}, o_t)` where `o_t`
-  is the world-effect action object
-- [ ] HippocampalModule navigates action-object space, not raw z_world
-- [ ] ResidueField operates over z_world, not z_gamma
-- [ ] Three separate optimizers with three separate error signals (currently true in V2, cleaner in V3)
-- [ ] **SD-006: Asynchronous multi-rate execution** — E1/E2/E3 run at different characteristic rates with thalamic-pacemaker-equivalent timing. Options: separate threads (GIL risk), time-multiplexed with explicit rate parameters, or hierarchical temporal abstraction (HTA — recommended: aligns with representational grain boundaries). Must co-design with SD-004/SD-005 because temporal grain boundaries should align with representational abstraction levels.
-- [ ] **E3-derived dynamic precision**: precision computed from E3 prediction error, not hardcoded; varies with E3 confidence in harm predictions (required for ARC-016)
-- [ ] **Precision→commitment→behavior circuit**: commitment gating must produce measurably different action-selection and harm profiles across precision regimes — end-to-end wiring, not just structural separation (required for ARC-016)
-- [ ] **TPJ comparator (MECH-095) wired**: efference-copy prediction vs sensory reafference mismatch at z_self/z_world interface; outputs agency_signal and residue_flag; modulated by z_beta via PPS (MECH-097)
-- [ ] CausalGridWorld extended (or replaced) with explicit self/world observation channels
-- [ ] **Q-020 adjudication complete before finalising HippocampalModule architecture** — whether
-  rollout proposals arrive at E3 pre-weighted by map geometry (MECH-073) or neutral (ARC-007
-  strict) determines the E3 input contract. See also: HippocampalModule amygdala write
-  interface (MECH-074) should not be designed until Q-020 is resolved.
+- [x] Observation encoder routes sensory channels: body-state → z_self, world → z_world (SD-005 ✓)
+- [x] E2 operates on z_self: `f(z_self_t, a_t) → z_self_{t+1}` (SD-004/005 ✓)
+- [x] E2 also produces action objects: `f(z_world_t, a_t) → (z_world_{t+1}, o_t)` (SD-004 ✓)
+- [x] HippocampalModule navigates action-object space, not raw z_world (SD-004 ✓)
+- [x] ResidueField operates over z_world, not z_gamma (SD-005 ✓)
+- [x] Three separate optimizers with three separate error signals (✓)
+- [x] **SD-006: Asynchronous multi-rate execution** — time-multiplexed phase 1 implemented (✓).
+  HTA phase 2 pending.
+- [x] **ReafferencePredictor (SD-007)** — perspective-corrected z_world; MSTd-like efference
+  copy subtraction. Implemented 2026-03-18 (MECH-098, MECH-101). ✓
+- [x] CausalGridWorld extended with explicit self/world observation channels (✓)
+- [x] **Q-020 adjudication complete** — ARC-007 strict (2026-03-16): HippocampalModule generates
+  value-flat proposals; terrain sensitivity is residue geometry expressed through z_world. ✓
+- [ ] **SD-010: Harm stream separation** — CausalGridWorldV2 emitting `harm_obs` separately
+  from `world_obs`; dedicated HarmEncoder → z_harm; E3.harm_eval takes z_harm as primary
+  input; SD-007 reafference restricted to z_world only. Registered 2026-03-19. Not yet
+  implemented. Unblocks ~10 pending FAILs.
+- [ ] **E3-derived dynamic precision**: precision computed from E3 prediction error, not
+  hardcoded (required for ARC-016). EXQ-038 FAIL — root cause under analysis.
+- [ ] **Precision→commitment→behavior circuit**: end-to-end wiring required (ARC-016).
+- [ ] **TPJ comparator (MECH-095) wired**: agency_signal and residue_flag outputs.
 
 ---
 
@@ -303,27 +312,36 @@ These experiments cannot be run in V2 and should be designed during the V3 archi
 
 ## What Should Be Known Before V3 Design Starts
 
+> **This section is now historical** — questions answered by the governance cycle
+> (2026-03-19). Annotations added for reference.
+
 After EXQ-028 completes, we need clarity on:
 
 1. **Which parity claims survive at V2 substrate** (EXQ-014–017)
-   → determines which V3 architectural changes don't regress proven behaviour
+   → **RESOLVED:** EXQ-014–017 all PASS. MECH-059/056/060/061 confirmed on V2 substrate.
+   These structural-separation results transfer to V3 and define the regression baseline.
 
 2. **Whether E2 can discriminate at all in z_gamma** (EXQ-027)
-   → determines how urgently SD-005 is needed; informs V3 priority ordering
+   → **RESOLVED:** EXQ-027 FAIL (calibration_gap = -0.004). E2 cannot discriminate
+   agent-caused harm in z_gamma — SD-005 is urgently needed. V3-form SD-003 subsequently
+   validated at EXQ-030b PASS (attribution_gap=0.035, world_forward_r2=0.947) on V3
+   substrate with z_world separation.
 
 3. **Whether residue gating is useful at all** (EXQ-028)
-   → if ORACLE barely beats NAIVE, the attribution problem may be less important than expected
+   → **RESOLVED:** EXQ-028 FAIL. MECH-072 requires SD-005. Hard stop criterion 3 triggered.
+   Attribution problem remains important but requires clean z_world (SD-010 also needed).
 
 4. **Root cause of persistent FAILs** (MECH-058, MECH-033, ARC-018, ARC-007)
-   → clarifies whether they're SD-004 failures, SD-005 failures, or claim failures
+   → **RESOLVED:** All substrate-limited. MECH-058 → SD-005 needed; MECH-033/ARC-018/
+   ARC-007 → SD-004 (action-object space) needed. All now retestable on V3 substrate.
 
 5. **Q-020 provisional direction** (from theoretical analysis, before V3 experiments)
-   → the SD-005 dissolution hypothesis (z_world = residue domain, ARC-007 still valid)
-   should be evaluated during V3 architecture design, before HippocampalModule interface
-   is specified. Q-020 adjudication determines whether the E3 input contract includes a
-   pre-weighted rollout signal or a neutral proposal set.
+   → **RESOLVED:** ARC-007 strict adjudicated 2026-03-16. HippocampalModule generates
+   value-flat proposals; valence in rollouts is residue geometry expressed through z_world,
+   not an independent hippocampal value signal. MECH-073 reframed as ARC-013 applied to
+   z_world specifically. HippocampalModule architecture finalised on this basis.
 
-This evidence base is what the governance cycle after EXQ-028 should adjudicate.
+This evidence base was adjudicated in the governance cycle 2026-03-19.
 
 ---
 
@@ -345,8 +363,14 @@ V3 enables:      clean motor-sensory vs world-consequence isolation (SD-005)
                    (SD-006, ARC-023, MECH-089–MECH-093)
 
 Design gate:     Q-020 adjudication required before HippocampalModule architecture
-                 is finalised — the E3 input contract differs between MECH-073 and
-                 ARC-007 strict. SD-005 design and Q-020 resolution should proceed together.
+                 is finalised → DONE: ARC-007 strict (2026-03-16). E3 input contract
+                 confirmed: value-flat proposal set from HippocampalModule.
 
-Transition:      after EXQ-028 + governance cycle, before further self-attribution experiments
+Transition:      EXECUTED 2026-03-19. Governance cycle complete. V3 active.
+                 Next substrate debt: SD-010 (harm stream separation).
 ```
+
+---
+
+*This document is historical. V2→V3 transition is complete. Active V3 roadmap in
+`docs/roadmap.md` §REE-v3 (Step 3.1 current).*
