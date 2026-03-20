@@ -369,9 +369,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._json_response(body)
             return
         if path == "/api/review/tracker":
+            import re as _re
             data = load_review_tracker()
+            # Derive experiment dir names from reviewed_run_ids so that previously
+            # reviewed runs show as "discussed" in the explorer without a migration.
+            # run_id formats: "20260316T061908_path_memory_ablation_v2"
+            #                 "20260320T155338Z_v3_exq_056_sd010_harm_stream_baseline_v3"
+            #                 "2026-02-13T224000Z_commit-dual-error-channels_seed11_..."
+            reviewed_dirs = set()
+            for run_id in data.get("reviewed_run_ids", []):
+                # Strip leading timestamp (digits, T, Z, colon, hyphen, dot)
+                name = _re.sub(r'^[\dTZ:.\-]+_', '', run_id)
+                # Strip trailing _v1/_v2/_v3
+                name = _re.sub(r'_v[123]$', '', name)
+                # Strip trailing _seed\d+ and further suffixes
+                name = _re.sub(r'_seed\d+.*$', '', name)
+                name = _re.sub(r'_s\d+_.*$', '', name)
+                # Normalize hyphens to underscores
+                name = name.replace('-', '_')
+                if name:
+                    reviewed_dirs.add(name)
+            # Merge explicit discussed list with reviewed-derived dirs
+            discussed = list(set(data.get("discussed_experiment_dirs", [])) | reviewed_dirs)
             body = json.dumps({
-                "discussed_experiment_dirs": data.get("discussed_experiment_dirs", []),
+                "discussed_experiment_dirs": discussed,
                 "reviewed_run_ids": data.get("reviewed_run_ids", []),
                 "last_review_utc": data.get("last_review_utc", ""),
             }).encode()
