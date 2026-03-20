@@ -1087,10 +1087,7 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
-  v3_pending: true
-  v3_pending_reason: |
-    Requires SD-004 (action objects as E2 latent) and SD-005 (z_self/z_world split).
-    Cannot be properly tested until V3 substrate exists.
+  v3_pending: false
   reframe_note: |
     Original framing (2026-02-09) incorrectly attributed viability mapping to E1 prediction
     error (SELF_SENSORY mismatch). V2 EXQ-021 FAIL (2026-03-08, 2026-03-15) confirmed this
@@ -1104,8 +1101,12 @@
     2026-03-15), consistent result. VIABILITY_MAPPED (E1 updating) shows no advantage over
     VIABILITY_FIXED (frozen E1) in harm navigation; FIXED outperforms MAPPED in 2/3 seeds.
     This is a conceptual failure of the original claim framing, not a substrate or tuning issue.
-    The corrected claim (hippocampus + E3 error + E2 action-object space) is V3-pending and
-    has no experimental evidence in the current corpus.
+    V3 EXQ-042 PASS (2026-03-19): terrain_prior learns E3 preferences, hippo_quality_gap=0.393,
+    terrain_loss→0. V3 EXQ-053 PASS (2026-03-20): terrain-guided navigation produces 50×
+    less harm than random (harm_per_step 0.00147 vs 0.0724, viability_advantage=0.071, 5/5
+    criteria). SD-004 and SD-005 prerequisites implemented in V3 substrate.
+    v3_pending cleared 2026-03-20. Outstanding: EXQ-046 (ARC-007 ablation) will confirm
+    the action-object indexing mechanism specifically contributes.
   depends_on:
     - ARC-007
     - ARC-003

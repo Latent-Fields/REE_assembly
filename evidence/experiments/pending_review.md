@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-03-20T07:54:39Z`  
+Generated: `2026-03-20T08:00:16Z`  
 Last review: `2026-03-20T07:54:35.595606+00:00`  
-Pending: **17** run(s) — 0 PASS, 17 FAIL
+Pending: **18** run(s) — 1 PASS, 17 FAIL
 
 ## FAIL (action required)
 
@@ -25,6 +25,12 @@ Pending: **17** run(s) — 0 PASS, 17 FAIL
 | `20260320T062233Z_v3_exq_056_sd010_harm_stream_baseline_v3` | 2026-03-20T06:22 | ARC-027, SD-010 | — |
 | `20260320T062250Z_v3_exq_058_sd010_sd003_attribution_v3` | 2026-03-20T06:22 | SD-003, SD-010 | — |
 | `20260320T062330Z_v3_exq_059_sd010_mech102_advantage_v3` | 2026-03-20T06:23 | MECH-102, SD-010 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `20260320T073809Z_v3_exq_053_arc018_rollout_viability_v3` | 2026-03-20T07:38 | ARC-018 |
 
 ---
 
