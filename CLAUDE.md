@@ -13,18 +13,33 @@ Check `REE_Working/WORKSPACE_STATE.md` before editing `docs/claims/claims.yaml`.
 
 ## Governance Pipeline
 
-From repo root, after experiments complete:
+Run `scripts/governance.sh` from repo root — it runs all steps in order:
 ```
-python scripts/sync_v3_results.py      # (or sync_v2_results.py for V2)
-python scripts/build_experiment_indexes.py
-python scripts/generate_pending_review.py   # updates evidence/experiments/pending_review.md
+bash scripts/governance.sh          # V3 (default)
+bash scripts/governance.sh --v2     # V2 (also syncs from ree-v2/)
 ```
-This updates `evidence/planning/promotion_demotion_recommendations.md` and `evidence/experiments/pending_review.md`.
 
-After any changes to `docs/claims/claims.yaml`, also run:
+Or manually, from repo root:
+
+**V3 pipeline** (V3 results write directly to `evidence/experiments/` — no sync step):
 ```
-python scripts/build_claims_json.py    # rebuilds docs/assets/data/claims.json for hover tooltips
+python evidence/experiments/scripts/build_experiment_indexes.py
+python scripts/generate_pending_review.py
 ```
+
+**V2 pipeline** (syncs from `../ree-v2/evidence/experiments/` first):
+```
+python evidence/experiments/scripts/sync_v2_results.py
+python evidence/experiments/scripts/build_experiment_indexes.py
+python scripts/generate_pending_review.py
+```
+
+**After editing `docs/claims/claims.yaml`** (governance decisions, new claims, status updates):
+```
+python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json for site tooltips
+```
+
+`governance.sh` runs `build_claims_json.py` automatically as its final step.
 
 ## Experiment Result Tagging
 

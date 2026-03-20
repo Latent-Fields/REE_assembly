@@ -3839,3 +3839,137 @@
     anatomically distinct from cortical world-model processing.
     Note: previously misregistered as ARC-025 (ID collision with
     architecture.three_engine_irreducibility). Corrected to ARC-027 (2026-03-19).
+
+# ── Design Decisions (SD) ────────────────────────────────────────────────────
+
+- id: SD-001
+  claim_type: design_decision
+  subject: hippocampal_module.cem_trajectory_search_placement
+  polarity: asserts
+  status: resolved
+  status_note: >
+    CEM-based trajectory search was misplaced in E2. Resolved V2: CEM moved to
+    HippocampalModule. E2 is now a pure transition model f(z_t, a_t) → z_{t+1}.
+  depends_on: []
+  location: docs/architecture/hippocampal_systems.md
+
+- id: SD-002
+  claim_type: design_decision
+  subject: hippocampal_module.e1_associative_prior_wiring
+  polarity: asserts
+  status: resolved
+  status_note: >
+    E1 associative prior must be wired into HippocampalModule terrain search
+    (E1→HippocampalModule mutual constitution). Resolved 2026-03-06.
+  depends_on: [SD-001]
+  location: docs/architecture/hippocampal_systems.md
+
+- id: SD-003
+  claim_type: design_decision
+  subject: self_attribution.counterfactual_e2_pipeline
+  polarity: asserts
+  status: validated
+  status_note: >
+    Self-attribution via counterfactual E2: causal_sig = E3(z_world_actual) -
+    E3(z_world_cf), where z_world_cf = E2.world_forward(z_world, a_cf).
+    Validated EXQ-030b PASS: world_forward_r2=0.947, attribution_gap=0.035,
+    correct sign structure. E3 must be trained on E2-predicted z_world states
+    to avoid distribution mismatch at eval.
+  depends_on: [SD-005, SD-007, SD-008, MECH-071]
+  location: docs/architecture/sd_003_experiment_design.md
+
+- id: SD-004
+  claim_type: design_decision
+  subject: hippocampal_module.action_object_map_backbone
+  polarity: asserts
+  status: implemented
+  status_note: >
+    E2 produces compressed action-object representations; HippocampalModule
+    navigates action-object space O rather than raw z_world. Enables planning
+    horizons far beyond raw state space. SD-004 and SD-005 must be co-designed:
+    action objects require z_world to exist.
+  depends_on: [SD-005]
+  location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+
+- id: SD-005
+  claim_type: design_decision
+  subject: latent_stack.self_world_latent_split
+  polarity: asserts
+  status: implemented
+  status_note: >
+    z_gamma split into z_self (E2 domain: motor-sensory, proprioceptive) and
+    z_world (E3/Hippocampus/ResidueField domain: causal footprint, residue,
+    moral attribution). SD-005 and SD-004 must be co-designed.
+  depends_on: []
+  location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+
+- id: SD-006
+  claim_type: design_decision
+  subject: control_plane.async_multirate_execution
+  polarity: asserts
+  status: implemented
+  status_note: >
+    E1, E2, E3 run at characteristic rates rather than lockstep (phase 1:
+    time-multiplexed). Asynchronous multi-rate execution reflects distinct
+    biological loop timescales (theta/gamma/beta bands). See ARC-023.
+  depends_on: [ARC-023]
+  location: docs/architecture/control_plane_heartbeat.md
+
+- id: SD-007
+  claim_type: design_decision
+  subject: encoder.perspective_corrected_world_latent
+  polarity: asserts
+  status: implemented
+  status_note: >
+    ReafferencePredictor in ree_core/latent/stack.py: z_world_corrected =
+    z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev). Input must
+    be z_world_raw_prev (not z_self_prev): cell content entering view dominates
+    Δz_world_raw and is inaccessible from body state alone (EXQ-027 run 1
+    R²=0.027 with z_self inputs). Biological basis: MSTd receives optic flow
+    plus efference copy.
+  depends_on: [SD-005]
+  location: docs/architecture/sensory_stream_tags.md
+
+- id: SD-008
+  claim_type: design_decision
+  subject: encoder.z_world_alpha_correction
+  polarity: asserts
+  status: candidate
+  status_note: >
+    LatentStack.encode() EMA alpha for z_world must be >= 0.9 (not 0.3).
+    At 0.3, z_world is a ~3-step weighted average suppressing event responses
+    to 30%, trivialising E2_world prediction (MSE invariant to env perturbation)
+    and preventing ARC-016 precision from firing. alpha_self may remain low.
+    Evidence: EXQ-013 (selectivity≈0), EXQ-018 (precision invariant), EXQ-019
+    (z_self more autocorrelated than z_world — backwards).
+  depends_on: [SD-005]
+  location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+
+- id: SD-009
+  claim_type: design_decision
+  subject: encoder.event_contrastive_supervision
+  polarity: asserts
+  status: candidate
+  status_note: >
+    z_world encoder requires event-type cross-entropy auxiliary loss during
+    training (MECH-100). Reconstruction and E1-prediction losses are invariant
+    to harm-relevance; only supervised event discrimination forces z_world to
+    represent hazard-vs-empty distinctions. See EXQ-020.
+  depends_on: [SD-005]
+  location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+
+- id: SD-010
+  claim_type: design_decision
+  subject: harm_stream.nociceptive_separation
+  polarity: asserts
+  status: candidate
+  status_note: >
+    The HARM stream (ARC-027) must be a separate sensory pathway independent
+    of z_world: dedicated HarmEncoder(harm_obs → z_harm), not subject to
+    reafference correction. E3.harm_eval takes z_harm as primary input.
+    SD-003 attribution operates on harm stream output not full world latent.
+    Resolves EXQ-027b over-correction, EXQ-043/044 calibration collapse, and
+    EXQ-047 SD-005 calibration shortfall — all converge on fused z_world as
+    root cause. Depends on ARC-027 implementation.
+  depends_on: [SD-005, SD-007, ARC-027]
+  location: docs/architecture/sensory_stream_tags.md
