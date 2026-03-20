@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "harm_eval_pearson_r_z_harm": 0.14826852358200865,
+    "harm_eval_pearson_r_z_world": 0.04720670101198766,
+    "r_delta_z_harm_minus_z_world": 0.101061822570021,
+    "z_harm_variance_across_event_types": 2.807654946242405e-14,
+    "n_contact_steps": 57.0,
+    "n_approach_steps": 1203.0,
+    "n_none_steps": 128.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0,
+    "fatal_error_count": 0.0,
+    "harm_eval_z_harm_mean_hazard_approach": 0.9999998971411117,
+    "harm_eval_z_harm_mean_none": 0.999999719671905,
+    "harm_eval_z_harm_mean_env_caused_hazard": 0.9999999649384442,
+    "harm_eval_z_harm_mean_agent_caused_hazard": 0.999999533528867,
+    "harm_eval_z_harm_mean_resource": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-056 \u2014 SD-010 Harm Stream Baseline\n\n**Status:** FAIL\n**Claims:** SD-010, ARC-027\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Training:** 400 eps random  |  **Eval:** 100 eps random\n**Metric:** Pearson R (harm_eval vs hazard_field_at_agent proximity label)\n**alpha_world:** 0.9  (SD-008)  |  **Seed:** 0\n\n## Question\n\nDoes HarmEncoder(harm_obs \u2192 z_harm) produce a harm estimate that correlates\nwith actual hazard proximity better than the fused z_world encoder?\n\nSD-010 hypothesis: separating nociceptive signals (hazard proximity) from the\nexteroceptive world model (layout, content, perspective) enables the harm stream\nto carry a cleaner hazard-proximity signal, uncontaminated by reafference correction\nand world-model identity shortcuts.\n\n## Results \u2014 Pearson R\n\n| Source | Pearson R (vs hazard_label) |\n|---|---|\n| HarmEncoder \u2192 z_harm (SD-010) | 0.1483 |\n| z_world encoder (baseline)    | 0.0472 |\n| Difference (SD-010 advantage) | 0.1011 |\n\n**z_harm variance across event types:** 0.000000\n**n_contact_steps:** 57\n\n## harm_eval_z_harm by transition type\n\n| Type | Mean harm_eval_z_harm |\n|---|---|\n| agent_caused_hazard | 1.0000 |\n| env_caused_hazard | 1.0000 |\n| hazard_approach | 1.0000 |\n| none | 1.0000 |\n| resource | 1.0000 |\n\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_eval_pearson_r_z_harm > 0.30 | FAIL | 0.1483 |\n| C2: R_z_harm > R_z_world + 0.10 (SD-010 adds value) | PASS | 0.1483 vs 0.0472+0.10 |\n| C3: z_harm_variance_across_event_types > 0.01 | FAIL | 0.000000 |\n| C4: n_contact_steps >= 30 (sufficient eval data) | PASS | 57 |\n\nCriteria met: 2/4 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: harm_eval_pearson_r_z_harm=0.1483 <= 0.30. HarmEncoder cannot discriminate hazard proximity.\n- C3 FAIL: z_harm_var_across_event_types=0.000000 <= 0.01. z_harm does not vary across event types \u2014 signal collapsed.\n",
+  "claim_ids": [
+    "SD-010",
+    "ARC-027"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_056_sd010_harm_stream_baseline",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T062233Z",
+  "claim": "SD-010",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_056_sd010_harm_stream_baseline_20260320T062233Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

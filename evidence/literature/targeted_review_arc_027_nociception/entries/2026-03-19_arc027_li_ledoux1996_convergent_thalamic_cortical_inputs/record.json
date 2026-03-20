@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_027_nociception",
+  "entry_id": "2026-03-19_arc027_li_ledoux1996_convergent_thalamic_cortical_inputs",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["ARC-027"],
+  "source": {
+    "title": "Convergent but temporally separated inputs to lateral amygdala neurons from the auditory thalamus and auditory cortex use different postsynaptic receptors: in vivo intracellular and extracellular recordings in fear conditioning pathways",
+    "authors": ["Li XF", "Stutzmann GE", "LeDoux JE"],
+    "year": 1996,
+    "venue": "Learning & Memory",
+    "doi": "10.1101/lm.3.2-3.229",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10456093/"
+  },
+  "evidence_class": "connectome_fear_circuit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Li et al. demonstrate that the thalamic (low-road) and cortical (high-road) inputs to the lateral amygdala are not only parallel but mechanistically distinct: the thalamic pathway engages NMDA receptors in addition to AMPA, while the cortical pathway uses only AMPA. This means the two streams carry qualitatively different computational properties — the thalamic route can integrate signals over time via NMDA's voltage-dependent gating. For ARC-027, this deepens the case: the HARM stream (thalamic route) is not just anatomically parallel to E1 but uses a different synaptic mechanism, consistent with it being a distinct sensory channel with its own processing logic rather than a copy of the cortical signal.",
+  "summary_path": "summary.md",
+  "tags": [
+    "low-road", "thalamo-amygdala", "NMDA", "AMPA", "parallel-pathway",
+    "arc-027", "harm-stream", "lateral-amygdala", "receptor-mechanism", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Individual lateral amygdala neurons receive convergent inputs from auditory thalamus (fast, ~12ms latency) and auditory cortex (slow, ~22ms latency). Thalamic transmission requires both AMPA and NMDA receptors; cortical transmission uses only AMPA. NMDA involvement gives the thalamic synapse temporal integration capacity and Hebbian plasticity properties not present in the cortical synapse.",
+    "ree_translation": "ARC-027: the parallel nature of the HARM stream is not merely anatomical redundancy — the thalamic route has distinct computational properties (NMDA-mediated temporal integration) vs the cortical/E1 route (AMPA-only, faster but less integrative). In REE implementation terms, this implies the harm-detection module should have its own feature integration capacity, not simply receive z_world after E1 processing. The NMDA-like temporal integration at the thalamo-amygdala synapse parallels a separate learned harm-detector that accumulates evidence over time rather than responding to instantaneous world-state.",
+    "mapping_caveat": "This paper focuses on auditory fear conditioning machinery. The nociceptive analog would involve the spinothalamic tract → VPM/Po → lateral amygdala synapse, which has not been directly tested for differential receptor use in this study. The receptor mechanism claim is well-established for the auditory circuit; the generalization to nociception is plausible but not directly evidenced here.",
+    "source_context": "In vivo intracellular and extracellular recording study. Uses iontophoretic application of NMDA antagonist APV and AMPA antagonist CNQX. Key finding: MK-801 (systemic NMDA blocker) selectively disrupts thalamic but not cortical pathway input to lateral amygdala cells."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "High quality electrophysiology study. Mapping to ARC-027 is strong for the 'mechanistically distinct parallel channels' claim. Higher transfer risk than Romanski & LeDoux 1992 because the receptor-mechanism argument requires bridging from auditory to nociceptive circuits."
+  }
+}

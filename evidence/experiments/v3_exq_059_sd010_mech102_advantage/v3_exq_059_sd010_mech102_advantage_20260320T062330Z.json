@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "world_forward_r2": 0.9440092444419861,
+    "advantage_sig_none": 1.2036934182519364e-07,
+    "advantage_sig_approach": 9.261752179969949e-08,
+    "advantage_sig_contact": 2.101577561477135e-07,
+    "n_none": 26230.0,
+    "n_approach": 427.0,
+    "n_contact": 58.0,
+    "train_contact_events": 322.0,
+    "train_approach_events": 5886.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0,
+    "advantage_sig_ttype_env_caused_hazard": 2.158099207384833e-08,
+    "advantage_sig_ttype_hazard_approach": 9.261752179969949e-08,
+    "advantage_sig_ttype_resource": 1.6047404362605168e-08,
+    "advantage_sig_ttype_none": 1.2036934182519364e-07,
+    "advantage_sig_ttype_agent_caused_hazard": 3.9873452022157864e-07
+  },
+  "summary_markdown": "# V3-EXQ-059 \u2014 SD-010: MECH-102 Advantage Signal\n\n**Status:** FAIL\n**Claims:** MECH-102, SD-010\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Retests:** EXQ-045 (advantage_sig threshold 0.001)\n**Training policy:** RANDOM  |  **Eval policy:** ETHICAL (argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z,a)))))\n**alpha_world:** 0.9  (SD-008)  |  **Seed:** 0\n\n## Context\n\nEXQ-045 FAILED: advantage_sig not meaningful at hazard contact. Root cause: z_world\nharm_eval was contaminated by world-model correlates \u2014 ethical policy was optimising\nagainst noise rather than true hazard proximity.\n\nSD-010 fix: ethical policy now uses a clean harm signal. Pipeline:\n  1. E2.world_forward(z_world, a) \u2192 z_world_cf\n  2. harm_bridge(z_world_cf) \u2192 harm_obs_approx\n  3. harm_enc(harm_obs_approx) \u2192 z_harm_cf\n  4. harm_eval_z_harm(z_harm_cf) \u2192 harm scalar\n\nMECH-102 prediction: advantage_sig escalates with proximity energy.\nadvantage_sig = mean_cf_harm - harm_actual = how much harm the ethical agent spared.\n\n## Results \u2014 Ethical Advantage Ladder (SD-010)\n\n| State Energy Level | advantage_sig | n steps |\n|---|---|---|\n| none (safe locomotion)    | 0.000000 | 26230 |\n| hazard_approach (medium)  | 0.000000 | 427 |\n| contact (high \u2014 combined) | 0.000000 | 58 |\n\n- **world_forward R\u00b2**: 0.9440\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: advantage_sig_contact > advantage_sig_none | PASS | 0.000000 vs 0.000000 |\n| C2: advantage_sig_contact > 0.001 | FAIL | 0.000000 |\n| C3: world_forward_r2 > 0.05 | PASS | 0.9440 |\n| C4: n_contact >= 50 | PASS | 58 |\n\nCriteria met: 3/4 \u2192 **FAIL**\n\n## Failure Notes\n\n- C2 FAIL: advantage_sig_contact=0.000000 <= 0.001. Harm avoided by ethical policy is trivially small at contact steps.\n",
+  "claim_ids": [
+    "MECH-102",
+    "SD-010"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_059_sd010_mech102_advantage",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T062330Z",
+  "claim": "MECH-102",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_059_sd010_mech102_advantage_20260320T062330Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

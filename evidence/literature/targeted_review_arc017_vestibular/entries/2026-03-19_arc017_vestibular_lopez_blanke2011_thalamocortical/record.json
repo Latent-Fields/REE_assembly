@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc017_vestibular",
+  "entry_id": "2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["ARC-017"],
+  "source": {
+    "title": "The thalamocortical vestibular system in animals and humans",
+    "authors": ["Lopez C", "Blanke O"],
+    "year": 2011,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/j.brainresrev.2010.12.002",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21223979/"
+  },
+  "evidence_class": "review_vestibular_anatomy",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Lopez & Blanke provide the comprehensive anatomical and functional account of the thalamocortical vestibular system needed to ground ARC-017's VESTIBULAR stream tag. Key findings: (1) multiple thalamic nuclei relay vestibular signals (ventroposterior complex, ventroanterior-ventrolateral complex, intralaminar, posterior nuclear group) — these contain multisensory neurons integrating vestibular, proprioceptive, and visual signals; (2) the parieto-insular vestibular cortex (PIVC) is the core vestibular cortical region, with additional projections to somatosensory cortex (areas 2v, 3av), intraparietal sulcus, posterior parietal cortex (area 7), MST, frontal cortex, and hippocampus; (3) vestibular signals influence self-motion perception, spatial navigation, internal models of gravity, and bodily self-consciousness. This directly grounds the VESTIBULAR stream as distinct from both SELF_SENSORY/proprioception (joint/muscle state) and WORLD (exteroceptive content), with its own thalamo-cortical relay to parietal and MST areas that inform z_self's spatial frame.",
+  "summary_path": "summary.md",
+  "tags": [
+    "vestibular", "thalamus", "parietal", "PIVC", "MST", "self-motion",
+    "arc-017", "VESTIBULAR-stream", "z_self", "spatial-frame", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The vestibular system transmits signals about 3D head rotations and translations via vestibular nuclei → multiple thalamic nuclei (ventroposterior, ventroanterior-ventrolateral, intralaminar, posterior group) → vestibular cortex. The core vestibular cortical area is PIVC (parieto-insular), with further projections to somatosensory cortex, intraparietal sulcus, posterior parietal (area 7), MST, frontal cortex, and hippocampus. Thalamic neurons are multisensory, integrating vestibular with proprioceptive and visual signals. Vestibular projections influence self-motion perception, spatial navigation, internal models of gravity, and bodily self-consciousness.",
+    "ree_translation": "ARC-017 VESTIBULAR stream: the vestibular system has a dedicated thalamocortical pathway (otolith/semicircular canals → vestibular nuclei → thalamus → PIVC/parietal/MST) that is anatomically and functionally distinct from both the proprioceptive pathway (muscle spindles → dorsal horn → thalamus → S1) and the exteroceptive WORLD pathway (visual/auditory → sensory cortex). In REE terms, VESTIBULAR feeds z_self's spatial orientation component via the parietal/MST projections, grounding the egocentric frame used by E2. The hippocampal projection is consistent with vestibular signals contributing to the spatial map (ARC-007) — self-motion signals are needed for path integration in the hippocampal map. The multisensory nature of thalamic vestibular neurons (integrating vestibular + proprioceptive + visual) indicates that VESTIBULAR already participates in early fusion with proprioception (SELF_SENSORY) and some visual flow (part of WORLD) before reaching cortex.",
+    "mapping_caveat": "Review covers thalamocortical anatomy comprehensively but focuses on the biological system. The REE VESTIBULAR tag is a functional abstraction — the exact mapping from biological PIVC to z_self encoding is REE-specific. The multisensory nature of thalamic vestibular processing means the stream is not purely vestibular even at the thalamic level, which complicates the 'separate stream' claim somewhat.",
+    "source_context": "Comprehensive review integrating animal electrophysiology and neuroanatomy with human neuroimaging and clinical neurology. Compares PIVC localization across species and reviews evidence for vestibular contributions to spatial cognition, out-of-body experiences, and bodily self-consciousness. Includes discussion of the vestibulo-cerebellar system and descending vestibulospinal pathways."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Authoritative comprehensive review by leading vestibular cognition researchers (Blanke lab). Mapping fidelity is strong for the dedicated-thalamocortical-pathway and parietal/MST projection claims. Low transfer risk — the anatomical claims translate directly to the VESTIBULAR stream tag rationale."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_103_multisensory",
+  "entry_id": "2026-03-19_mech103_venezia_2017_sts_streams",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["MECH-103"],
+  "source": {
+    "title": "Auditory, Visual and Audiovisual Speech Processing Streams in Superior Temporal Sulcus",
+    "authors": ["Venezia JH", "Vaden KI", "Rong F", "Maddox D", "Saberi K", "Hickok G"],
+    "year": 2017,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2017.00174",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28439236/"
+  },
+  "evidence_class": "fmri_multisensory_streams",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Venezia et al. demonstrate a functional anterior-posterior gradient within STS: auditory speech produces largest BOLD in anterior STS, visual speech in posterior STS, and audiovisual (multisensory) stimuli in mid-STS. This spatial organisation shows that different exteroceptive modalities are processed via distinct streams that converge at a shared integration zone. The mid-STS preferentially responds to multisensory stimulation and speech over non-speech — consistent with MECH-103's claim that different modalities contribute differently to E1's world latent via their own encoder pathways. The gradient from modality-specific (posterior/anterior) to multimodal (mid) maps onto a multi-pathway encoder architecture converging on a shared latent.",
+  "summary_path": "summary.md",
+  "tags": [
+    "multisensory", "STS", "anterior-posterior-gradient", "audiovisual",
+    "mech-103", "E1", "world-latent", "encoder-streams", "fMRI", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "STS shows an anterior-posterior functional gradient: auditory speech representations are elaborated in anterior STS, visual speech representations in posterior STS, and multisensory integration occurs in mid-STS. Mid-STS preferentially responds to multisensory over unimodal stimuli and to speech over non-speech. Visual regions in posterior STS distinguish visual speech from nonspeech at an abstract level beyond low-level motion.",
+    "ree_translation": "MECH-103: the different exteroceptive modalities (auditory, visual) have distinct processing streams within the convergence zone before arriving at the shared world latent. In E1 terms, this supports having modality-specific encoder heads that process each stream to an intermediate representation before fusion — not a single encoder applied to concatenated raw inputs. The anterior-posterior gradient suggests the encoder pathways have their own elaboration before convergence, consistent with each modality carrying complementary rather than redundant information.",
+    "mapping_caveat": "fMRI has limited temporal resolution — the stream organization is spatial rather than temporal here. The gradient finding is robust across multiple analyses but the mechanism of integration (how the streams are weighted and combined) is not directly measured. The speech-specific framing means transfer to general exteroceptive multimodal fusion (e.g. visual + somatosensory) requires additional evidence.",
+    "source_context": "Block fMRI design with 20 participants. Uses whole-brain, linear mixed effects, and PCA analyses. Findings align with Hickok & Poeppel's dual-stream model while extending it with a distinct multisensory mid-STS zone. Key finding: a single subregion in posterior STS responds to visual speech at an abstract level (independent of low-level kinematics), suggesting feature-level rather than raw-signal integration."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Solid fMRI study. Mapping is strong for the distinct-encoder-streams-converging-on-shared-latent claim. Moderate transfer risk — speech perception specific, and fMRI spatial resolution limits mechanistic claims."
+  }
+}

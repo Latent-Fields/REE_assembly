@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_q_007
 
-Generated: `2026-03-19T22:13:03.482052Z`
+Generated: `2026-03-20T08:00:16.446871Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,6 +9,7 @@ Generated: `2026-03-19T22:13:03.482052Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `20260320T032058Z_v3_exq_051_q007_valence_precision_v3` | `2026-03-20T03:20:58Z` | **FAIL** | fatal_error_count=0 | fatal_error_count:+0 | - | - | [`summary`](runs/20260320T032058Z_v3_exq_051_q007_valence_precision_v3/summary.md) / [`manifest`](runs/20260320T032058Z_v3_exq_051_q007_valence_precision_v3/manifest.json) / [`metrics`](runs/20260320T032058Z_v3_exq_051_q007_valence_precision_v3/metrics.json) |
 | `20260315T150155_valence_regime_correlation_v2` | `2026-03-15T15:01:55.006956+00:00` | **FAIL** | fatal_error_count=0 | - | - | - | [`summary`](runs/20260315T150155_valence_regime_correlation_v2/summary.md) / [`manifest`](runs/20260315T150155_valence_regime_correlation_v2/manifest.json) / [`metrics`](runs/20260315T150155_valence_regime_correlation_v2/metrics.json) |
 | `exp_0015_20260217T225221918220Z` | `2026-02-17T22:52:21.918220Z` | PASS | - | - | - | - | [`summary`](runs/exp_0015_20260217T225221918220Z/summary.md) / [`manifest`](runs/exp_0015_20260217T225221918220Z/manifest.json) / [`metrics`](runs/exp_0015_20260217T225221918220Z/metrics.json) |
 | `exp_0024_20260215T213711511831Z` | `2026-02-15T21:37:11.511831Z` | PASS | - | - | - | - | [`summary`](runs/exp_0024_20260215T213711511831Z/summary.md) / [`manifest`](runs/exp_0024_20260215T213711511831Z/manifest.json) / [`metrics`](runs/exp_0024_20260215T213711511831Z/metrics.json) |

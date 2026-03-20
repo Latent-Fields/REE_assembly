@@ -17,8 +17,9 @@ From repo root, after experiments complete:
 ```
 python scripts/sync_v3_results.py      # (or sync_v2_results.py for V2)
 python scripts/build_experiment_indexes.py
+python scripts/generate_pending_review.py   # updates evidence/experiments/pending_review.md
 ```
-This updates `evidence/planning/promotion_demotion_recommendations.md`.
+This updates `evidence/planning/promotion_demotion_recommendations.md` and `evidence/experiments/pending_review.md`.
 
 ## Experiment Result Tagging
 

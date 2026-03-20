@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "e1_tick_total": 63438.0,
+    "e3_tick_total": 6917.0,
+    "e3_tick_ratio": 0.10903559380812762,
+    "max_theta_buffer_size": 0.0,
+    "calibration_gap_approach": 0.8463436049614036,
+    "n_approach_steps": 3165.0,
+    "fatal_error_count": 0.0,
+    "e2_steps_per_tick": 3.0,
+    "e3_steps_per_tick": 10.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-052 \u2014 SD-006: Multi-Rate Execution Validation\n\n**Status:** FAIL\n**Claims:** SD-006, MECH-089\n**Prerequisite:** EXQ-041 PASS (ThetaBuffer at default rates)\n**Rate config:** E1=1 (every step), E2=3, E3=9\n**alpha_world:** 0.9\n**Training:** 400 eps\n**Seed:** 0\n\n## Motivation\n\nSD-006 Phase 1: time-multiplexed multi-rate execution. E3 runs every 9 steps,\nreceiving theta-averaged z_world from ThetaBuffer (MECH-089). This tests whether\nE3 remains functional (calibration_gap > 0) at 9\u00d7 slower rate than E1.\n\n## Multi-Rate Results\n\n| Metric | Separated (e3_rate=9) |\n|--------|-----------------------|\n| e1_tick_total | 63438 |\n| e3_tick_total | 6917 |\n| e3_tick_ratio | 0.109 |\n| max_theta_buffer_size | 0 |\n| calibration_gap_approach | 0.8463 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: cal_gap_approach > 0 (E3 functional at slow rate) | PASS | 0.8463 |\n| C2: e3_tick_ratio < 0.3 (E3 runs much less than E1) | PASS | 0.109 |\n| C3: max_theta_buffer_size >= 3 (buffer fills) | FAIL | 0 |\n| C4: e3_tick_count >= 10 (E3 fires) | PASS | 6917 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 4/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C3 FAIL: max_theta_buffer_size=0 < 3\n",
+  "claim_ids": [
+    "SD-006",
+    "MECH-089"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_052_sd006_multirate_validation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T042636Z",
+  "claim": "SD-006",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_052_sd006_multirate_validation_20260320T042636Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

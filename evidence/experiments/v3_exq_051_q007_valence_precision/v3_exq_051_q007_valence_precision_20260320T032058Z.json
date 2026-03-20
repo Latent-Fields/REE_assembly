@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "pearson_r_stable": -0.028541527688503265,
+    "pearson_r_volatile": -0.03293886408209801,
+    "mean_z_beta_stable": 0.7193246277722445,
+    "mean_z_beta_volatile": 0.7194853611488523,
+    "mean_running_var_stable": 0.00138651120801499,
+    "mean_running_var_volatile": 0.0013701991013337354,
+    "n_pairs_stable": 6875.0,
+    "n_pairs_volatile": 6959.0,
+    "e3_tick_stable": 6875.0,
+    "e3_tick_volatile": 6959.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-051 \u2014 Q-007: Valence-Precision Correlation (V3)\n\n**Status:** FAIL\n**Claim:** Q-007 \u2014 z_beta (valence) correlates with E3-derived precision\n**alpha_world:** 0.9  (SD-008)\n**Training:** 400 eps per condition (stable drift=0.02, volatile drift=0.5)\n**Seed:** 0\n\n## Motivation\n\nQ-007 V2 FAIL: z_beta mixed into z_gamma (no SD-005 split) + hardcoded precision.\nV3: z_beta is isolated in shared stack; E3 precision derives from prediction error variance.\n\n## Valence-Precision Correlation\n\n| Condition | pearson_r | mean z_beta norm | mean running_var | n_pairs |\n|-----------|-----------|-----------------|-----------------|---------|\n| Stable (drift=0.02) | -0.0285 | 0.7193 | 0.00139 | 6875 |\n| Volatile (drift=0.5) | -0.0329 | 0.7195 | 0.00137 | 6959 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: pearson_r_volatile > 0.05 (positive correlation) | FAIL | -0.0329 |\n| C2: z_beta_volatile > z_beta_stable (arousal up) | PASS | 0.7195 vs 0.7193 |\n| C3: running_var_volatile > running_var_stable (less certain) | FAIL | 0.00137 vs 0.00139 |\n| C4: n_pairs >= 50 per condition | PASS | stable=6875  volatile=6959 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 3/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: pearson_r_volatile=-0.0329 <= 0.05\n- C3 FAIL: mean_running_var_volatile=0.00137 <= stable=0.00139\n",
+  "claim_ids": [
+    "Q-007"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_051_q007_valence_precision",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T032058Z",
+  "claim": "Q-007",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_051_q007_valence_precision_20260320T032058Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

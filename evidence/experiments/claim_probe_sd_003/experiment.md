@@ -12,9 +12,9 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `20260320T062250Z_v3_exq_058_sd010_sd003_attribution_v3` at `2026-03-20T06:22:50Z` signatures: none
+- `20260319T201606Z_v3_exq_044_sd003_attribution_fixed_v3` at `2026-03-19T20:16:06Z` signatures: none
 - `20260319T104327Z_v3_exq_043_sd003_trajectory_attribution_v3` at `2026-03-19T10:43:27Z` signatures: none
-- `20260319T060618Z_v3_exq_036_sd003_multistep_attribution_v3` at `2026-03-19T06:06:18Z` signatures: none
-- `20260319T054938Z_v3_exq_030c_sd003_attribution_largescale_v3` at `2026-03-19T05:49:38Z` signatures: none
 
 Recurring signatures:
 

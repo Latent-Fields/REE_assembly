@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "alpha_world": 0.9,
+    "world_forward_r2": 0.9436593055725098,
+    "causal_sig_none": -0.029615328420292252,
+    "causal_sig_approach": 0.005713936024519544,
+    "causal_sig_contact": 0.021581785462119363,
+    "calibration_gap_approach": 0.05996599633578509,
+    "mean_harm_eval_none": 0.4871615206653422,
+    "n_approach_eval": 1193.0,
+    "n_contact_eval": 55.0,
+    "n_none_eval": 110.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-058 \u2014 SD-010: SD-003 Attribution Recovery\n\n**Status:** FAIL\n**Claims:** SD-003, SD-010\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Retests:** EXQ-043/044 (causal_sig threshold 0.001)\n**Protocol:** Three-phase (terrain 400 \u2192 calibration 200 \u2192 eval 100)\n**alpha_world:** 0.9  |  **Seed:** 0\n\n## Context\n\nEXQ-043/044 FAILED: causal_sig \u2248 0.0004 (threshold 0.001). Root cause: harm_eval(z_world)\ncollapsed as terrain training matured \u2014 approach states dominated harm_buf, E3 predicted\nharm\u22481 for all states, causal_sig \u2192 0.\n\nSD-010 fix: z_harm from HarmEncoder(harm_obs) is isolated from terrain-correlated z_world\nfeatures. CF pipeline: z_harm_cf = harm_enc(harm_bridge(E2.world_forward(z_world, a_cf))).\n\n## Results \u2014 SD-003 Attribution\n\n| Transition type | causal_sig |\n|---|---|\n| none (safe locomotion) | -0.029615 |\n| hazard_approach        | 0.005714 |\n| contact (combined)     | 0.021582 |\n\n- **world_forward R\u00b2**: 0.9437\n- **calibration_gap_approach**: 0.0600\n- **mean_harm_eval_none**: 0.4872  (collapse guard: < 0.2 required)\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: causal_sig_approach > 0.001 | PASS | 0.005714 |\n| C2: calibration_gap_approach > 0.05 | PASS | 0.0600 |\n| C3: mean_harm_eval_none < 0.2 (no collapse) | FAIL | 0.4872 |\n| C4: causal_sig_contact > causal_sig_approach (MECH-102) | PASS | 0.021582 vs 0.005714 |\n| C5: n_approach_eval >= 30 | PASS | 1193 |\n\nCriteria met: 4/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C3 FAIL: mean_harm_eval_none=0.4872 >= 0.2. E3 predicting harm everywhere \u2014 collapse still occurring.\n",
+  "claim_ids": [
+    "SD-003",
+    "SD-010"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_058_sd010_sd003_attribution",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T062250Z",
+  "claim": "SD-003",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_058_sd010_sd003_attribution_20260320T062250Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

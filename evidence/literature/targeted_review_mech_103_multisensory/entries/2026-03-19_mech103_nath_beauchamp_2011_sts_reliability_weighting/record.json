@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_103_multisensory",
+  "entry_id": "2026-03-19_mech103_nath_beauchamp_2011_sts_reliability_weighting",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["MECH-103"],
+  "source": {
+    "title": "Dynamic changes in superior temporal sulcus connectivity during perception of noisy audiovisual speech",
+    "authors": ["Nath AR", "Beauchamp MS"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4853-10.2011",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21289179/"
+  },
+  "evidence_class": "fmri_connectivity_reliability",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Nath & Beauchamp demonstrate that STS functional connectivity with auditory cortex increases when auditory input is more reliable (less noisy), while connectivity with visual cortex increases when visual input is more reliable — and these changes occur even with rapidly fluctuating reliability. This is the neural correlate of precision-weighted multisensory integration. For MECH-103, this is the key piece: different exteroceptive modalities do not simply sum their contributions to E1's world latent — they contribute with weights proportional to their current reliability. This is exactly the precision-gating mechanism described in MECH-103. The dynamic nature (changes word-by-word) confirms this is an active, online weighting process rather than a fixed architecture.",
+  "summary_path": "summary.md",
+  "tags": [
+    "multisensory", "STS", "reliability-weighting", "precision", "dynamic",
+    "mech-103", "E1", "world-latent", "precision-gating", "fMRI", "connectivity", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "STS functional connectivity with auditory cortex increases when auditory input is more reliable, and with visual cortex when visual input is more reliable. These connectivity changes track reliability dynamically, even when reliability fluctuates word-by-word. Behavioral perception is biased toward the more reliable modality in a matching pattern.",
+    "ree_translation": "MECH-103: the fusion of exteroceptive modalities in E1's world latent is precision-weighted — each modality contributes according to its current reliability, not with fixed weights. This is a core property of the WORLD stream: z_world reflects not just what each modality signals but how reliably each modality is signalling at any given moment. In implementation terms, E1's multi-stream encoder should include modality-specific precision signals that dynamically gate each modality's contribution to z_world. This connects MECH-103 to INV-008 (precision routing) at the exteroceptive input stage.",
+    "mapping_caveat": "fMRI connectivity is a proxy for neural communication, not a direct measure of weighting. The reliability manipulation is word-by-word noise variation — the time scale of precision changes in REE may differ. The speech-specific paradigm means we are extrapolating the precision-weighting principle to general exteroception.",
+    "source_context": "Five fMRI experiments in 34 healthy participants. Reliability manipulated by varying signal-to-noise ratio of auditory speech. Key methodological strength: rapid reliability changes (word-by-word) allow dissociation of dynamic weighting from slow adaptation effects. Behavioral experiment confirms perceptual weighting tracks reliability changes, providing validation of the neural connectivity measure."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Strong study for the precision-weighted fusion claim — this is the most direct evidence for the dynamic reliability-weighting aspect of MECH-103. Moderate source quality (fMRI connectivity not direct measurement). Transfer risk is low for the general principle."
+  }
+}

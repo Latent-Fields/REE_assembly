@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_103_multisensory",
+  "entry_id": "2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["MECH-103"],
+  "source": {
+    "title": "Stereoelectroencephalography Reveals Neural Signatures of Multisensory Integration in the Human Superior Temporal Sulcus during Audiovisual Speech Perception",
+    "authors": ["Zhang Y", "Magnotti JF", "Zhang X", "Wang Z", "Yu Y", "Davis KA", "Sheth SA", "Isaac Chen H", "Yoshor D", "Beauchamp MS"],
+    "year": 2025,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1037-25.2025",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40930977/"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Zhang et al. use direct intracranial sEEG recordings (42 patients, n=42 electrodes in STS/STG) to demonstrate that STS responses to audiovisual speech are 40% faster in latency and 18% larger in amplitude than auditory-only responses. Crucially, a subpopulation concentrated in mid-posterior STS responds to both auditory (71ms latency) and visual (109ms latency) speech — demonstrating that the STS integrates modality-specific inputs that arrive at different times. This directly grounds MECH-103: different exteroceptive modalities contribute to E1's world latent via convergent pathways with different temporal profiles and amplitudes. The precision-weighted fusion aspect (more reliable modality contributes more) is consistent with the STS acting as a reliability-sensitive integrator.",
+  "summary_path": "summary.md",
+  "tags": [
+    "multisensory", "STS", "audiovisual", "sEEG", "temporal-convergence",
+    "mech-103", "E1", "world-latent", "modality-fusion", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The superior temporal sulcus (STS) contains neurons responding to both auditory and visual speech with different latencies (71ms auditory, 109ms visual). Audiovisual integration in STS produces 40% faster response latency and 18% larger amplitude than auditory-only. STS plays the lead role in audiovisual integration while STG handles auditory-only — a parallel-pathway model where modality-specific streams converge at STS.",
+    "ree_translation": "MECH-103: different exteroceptive modalities (auditory, visual) arrive at E1's world-latent integration zone (STS-equivalent) at different times and with different signal strengths. E1's world latent is not formed by a single modality — it is the product of convergent encoder pathways with distinct temporal dynamics. The STS's role as a reliability-weighted integration hub corresponds to E1's precision-weighted fusion of multimodal exteroceptive inputs into z_world. This also implies that E1's encoder architecture for the WORLD stream should accommodate modality-specific pathways converging at a shared latent, rather than a single monolithic encoder.",
+    "mapping_caveat": "Study focuses on speech perception specifically (audiovisual speech integration). MECH-103's claim is broader — covering any exteroceptive modalities (including somatosensory). The STS-as-convergence-zone principle generalises beyond speech, but the quantitative parameters (40% faster, 18% larger) are speech-specific. Also: direct intracranial recording is very high quality but sample is epilepsy patients undergoing pre-surgical evaluation.",
+    "source_context": "Most recent (2025) and methodologically strongest study in the set — direct neural recording with sEEG provides temporal resolution unavailable from fMRI. 42 patients with electrodes in temporal cortex. Replicates and extends prior Beauchamp lab fMRI work. Importantly shows STS responses are *faster* than STG for audiovisual stimuli — suggesting parallel processing, not serial."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Very high source quality — direct intracranial recordings, large sample, recent. Mapping fidelity strong for the convergence-at-shared-latent claim. Transfer risk is low: the multisensory convergence principle generalizes well beyond speech."
+  }
+}

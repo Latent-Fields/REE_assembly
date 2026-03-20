@@ -1,10 +1,12 @@
 # Literature Evidence Index
 
-Generated: `2026-03-19T22:13:03.482052Z`
+Generated: `2026-03-20T08:00:16.446871Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
+| `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
+| `targeted_review_arc_027_nociception` | [`2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/record.json) | 3 | [`summary`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-02-21_arc016_principal_gradient_continuum_pnas2016`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/record.json) | 4 | [`summary`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/summary.md) |
 | `targeted_review_connectome_arc_023` | [`2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/record.json) | 1 | [`summary`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/summary.md) |
 | `targeted_review_connectome_mech_025` | [`2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/summary.md) |
@@ -31,6 +33,7 @@ Generated: `2026-03-19T22:13:03.482052Z`
 | `targeted_review_mech_061` | [`2026-02-15_mech061_agency_comparator_review_nrn2017`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/record.json) | 2 | [`summary`](targeted_review_mech_061/entries/2026-02-15_mech061_agency_comparator_review_nrn2017/summary.md) |
 | `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
 | `targeted_review_mech_063` | [`2026-02-15_q017_lit-0032_completion`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/record.json) | 5 | [`summary`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/summary.md) |
+| `targeted_review_mech_103_multisensory` | [`2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/record.json) | 3 | [`summary`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_q_001` | [`2026-02-15_q001_lit-0034_completion`](targeted_review_q_001/entries/2026-02-15_q001_lit-0034_completion/record.json) | 1 | [`summary`](targeted_review_q_001/entries/2026-02-15_q001_lit-0034_completion/summary.md) |
 | `targeted_review_q_002` | [`2026-02-15_q002_lit-0036_completion`](targeted_review_q_002/entries/2026-02-15_q002_lit-0036_completion/record.json) | 1 | [`summary`](targeted_review_q_002/entries/2026-02-15_q002_lit-0036_completion/summary.md) |

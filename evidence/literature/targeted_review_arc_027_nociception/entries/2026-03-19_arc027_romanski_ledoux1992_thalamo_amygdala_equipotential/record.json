@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_027_nociception",
+  "entry_id": "2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["ARC-027"],
+  "source": {
+    "title": "Equipotentiality of thalamo-amygdala and thalamo-cortico-amygdala circuits in auditory fear conditioning",
+    "authors": ["Romanski LM", "LeDoux JE"],
+    "year": 1992,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.12-11-04501.1992",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/1331362/"
+  },
+  "evidence_class": "connectome_fear_circuit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Romanski & LeDoux provide the definitive experimental demonstration of the parallel low-road/high-road architecture. Selective lesions show that either the thalamo-amygdala pathway alone OR the thalamo-cortico-amygdala pathway alone is sufficient for fear conditioning; only destroying both disrupts conditioning. This directly grounds ARC-027's claim that the HARM stream operates via a parallel thalamic pathway that bypasses cortical (E1) processing: the sensory signal reaches the amygdala-equivalent independently of the cortical route. The experiment was conducted with auditory stimuli but the same circuit architecture applies to nociceptive/threat signals via the spinothalamic tract feeding posterior thalamic nuclei (VPM/Po) which project directly to the lateral amygdala.",
+  "summary_path": "summary.md",
+  "tags": [
+    "low-road", "thalamo-amygdala", "fear-conditioning", "parallel-pathway",
+    "arc-027", "harm-stream", "amygdala", "thalamus", "cortex-bypass", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Either the thalamo-amygdala projection (fast, coarse sensory signal direct to lateral amygdala) or the thalamo-cortico-amygdala projection (slower, more refined signal via sensory cortex) is individually sufficient for fear conditioning. Both must be destroyed to disrupt conditioning. The two pathways are equipotential and parallel — they carry the same stimulus information via different routes and timescales.",
+    "ree_translation": "ARC-027: the HARM stream must be implemented as a parallel pathway with its own thalamic input that bypasses E1 (cortical) processing. The biological substrate — demonstrated here for auditory fear — generalises to nociception via the spinothalamic → posterior thalamic → lateral amygdala route. In REE terms: harm detection does not depend on z_world being formed by E1; it operates on a dedicated channel that converges with E3 at the commitment gate. This is why treating harm_eval as a head on z_world fails: E1 processes the WORLD stream (thalamo-cortico pathway), but the HARM stream takes the thalamo-amygdala route in parallel.",
+    "mapping_caveat": "The original experiment used auditory conditioned stimuli, not nociception directly. The nociceptive low-road is anatomically distinct (spinothalamic → VPM/Po → lateral amygdala vs auditory thalamus → lateral amygdala) but follows the same architectural logic. Transfer to REE's digital substrate requires treating 'harm input features' as a separate channel, not re-using E1's world model outputs.",
+    "source_context": "Classic 1992 paper establishing the low-road/high-road framework experimentally. Uses selective lesion methodology with simultaneous cardiovascular and freezing behavioral readouts. Foundational to LeDoux's fear circuit work and directly cited in 'The Emotional Brain' (LeDoux 1996)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Landmark paper with very high source quality. Mapping fidelity is strong — the parallel pathway architecture is the direct claim. Transfer risk is modest: experiment uses auditory CS not nociception, but the posterior thalamic → amygdala nociceptive pathway is well-established by other work (e.g. Bernard & Besson, Gauriau & Bernard)."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_causal_sig_committed": -0.0059239108901684425,
+    "mean_causal_sig_uncommitted": 0.0,
+    "doing_mode_delta": -0.0059239108901684425,
+    "committed_step_count": 7694.0,
+    "uncommitted_step_count": 0.0,
+    "harm_pred_std": 0.21686452627182007,
+    "world_forward_r2": 0.9151783585548401,
+    "e3_tick_total": 8610.0,
+    "total_harm_train": 3879.0,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-050 \u2014 MECH-025: Action-Doing Mode Probe\n\n**Status:** FAIL\n**Claim:** MECH-025 \u2014 action-doing mode produces distinct internal signature\n**Prerequisite:** EXQ-030b PASS (SD-003 attribution pipeline functional)\n**alpha_world:** 0.9\n**Warmup:** 500 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Motivation\n\nMECH-025 (V2 FAIL): agent in doing mode should show a distinct internal signature.\nV3 fix: SD-003 attribution now works (EXQ-030b PASS). During committed action\nexecution, the causal signature E3(E2(z,a_actual)) - E3(E2(z,a_cf)) should be\nhigher than during free exploration (uncommitted steps).\n\n## Causal Signature by Mode\n\n| Mode | mean causal_sig | n_steps |\n|------|----------------|---------|\n| Committed (doing) | -0.0059 | 7694 |\n| Uncommitted (exploring) | 0.0000 | 0 |\n\n- **doing_mode_delta**: -0.0059  (committed - uncommitted)\n- world_forward_r2: 0.9152\n- harm_pred_std: 0.2169\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: doing_mode_delta > 0.002 (committed has higher causal sig) | FAIL | -0.0059 |\n| C2: committed_step_count >= 10 (doing mode entered) | PASS | 7694 |\n| C3: world_forward_r2 > 0.05 (E2 functional) | PASS | 0.9152 |\n| C4: harm_pred_std > 0.01 (E3 not collapsed) | PASS | 0.2169 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 4/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: doing_mode_delta=-0.0059 <= 0.002\n",
+  "claim_ids": [
+    "MECH-025"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_050_mech025_doing_mode_probe",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260319T233641Z",
+  "claim": "MECH-025",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_050_mech025_doing_mode_probe_20260319T233641Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

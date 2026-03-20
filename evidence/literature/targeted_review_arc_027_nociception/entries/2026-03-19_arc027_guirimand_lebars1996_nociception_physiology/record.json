@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_027_nociception",
+  "entry_id": "2026-03-19_arc027_guirimand_lebars1996_nociception_physiology",
+  "timestamp_utc": "2026-03-19T20:00:00Z",
+  "claim_ids_tested": ["ARC-027"],
+  "source": {
+    "title": "Physiology of nociception",
+    "authors": ["Guirimand F", "Le Bars D"],
+    "year": 1996,
+    "venue": "Annales françaises d'anesthésie et de réanimation",
+    "doi": "10.1016/S0750-7658(96)89477-9",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9180983/"
+  },
+  "evidence_class": "review_nociception_anatomy",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Guirimand & Le Bars provide a comprehensive account of nociceptive anatomy that directly grounds ARC-027's claim about the HARM stream having its own dedicated sensory pathway. Key relevant points: (1) unmyelinated C fibres and fine myelinated Aδ fibres are the dedicated nociceptive afferents — not general sensory fibres; (2) ascending pathways run in the spinothalamic and spinoreticular tracts with relays at multiple supraspinal sites including parabrachial area, PAG, and critically the amygdala and hypothalamus as motivational/neuroendocrine targets; (3) the cingulate, insular and somatosensory cortices also receive nociceptive information — but via a secondary relay, not as the primary pathway. This maps directly to ARC-027: nociception has dedicated peripheral afferents, dedicated spinal pathways, and amygdala/hypothalamic projections that constitute the harm-detection substrate, with cortical processing as a secondary layer.",
+  "summary_path": "summary.md",
+  "tags": [
+    "nociception", "spinothalamic", "C-fibres", "A-delta", "amygdala",
+    "arc-027", "harm-stream", "ascending-pathways", "dedicated-afferents", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Nociception is mediated by dedicated peripheral afferents (unmyelinated C fibres and fine myelinated Aδ fibres), ascending via spinothalamic and spinoreticular tracts, with supraspinal relays at reticular formation, parabrachial area, PAG, thalamic sites, and direct projections to the amygdala and hypothalamus for motivational and neuroendocrine responses. Cortical nociceptive information arrives at cingulate, insular, and somatosensory cortices — but as a downstream layer above the subcortical harm-detection substrates.",
+    "ree_translation": "ARC-027: nociception is not a property of general sensory processing — it is a dedicated afferent system with its own peripheral fibres, spinal pathways, and subcortical (amygdala/hypothalamic) targets. In REE terms, the HARM stream cannot be derived from z_world (which represents E1's cortical sensory processing) because nociception reaches the harm-detection substrate (amygdala-equivalent) before cortical processing occurs. The descending pain-modulation pathways (from PAG, raphe nucleus) are the biological analog of ARC-027's top-down modulation of the HARM stream — commitment state and context can gate harm signal transmission, consistent with the hypothesis tag mechanism (MECH-094).",
+    "mapping_caveat": "This is a general review of nociception physiology, not specifically focused on the thalamo-amygdala direct projection. The amygdala and hypothalamic targets are mentioned as motivational targets but the direct posterior-thalamus → amygdala pathway is not the primary focus. Useful for establishing the dedicated-afferent and spinothalamic-pathway claims but less specific than Romanski & LeDoux 1992 for the parallel-pathway architectural claim.",
+    "source_context": "Comprehensive review covering peripheral nociceptors, spinal dorsal horn (laminae, neurotransmitters including substance P, glutamate, opioids), ascending pathways, supraspinal sites, and descending inhibitory controls. Covers both segmental and diffuse noxious inhibitory controls (DNIC)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Solid comprehensive review though published in a French anesthesia journal (English abstract). Source quality is good for anatomy; mapping fidelity is moderate — it establishes the dedicated-pathway claim well but is less direct than Romanski & LeDoux on the parallel-architecture point. Low transfer risk for the anatomical claims."
+  }
+}
