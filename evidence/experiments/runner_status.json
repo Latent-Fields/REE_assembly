@@ -1,49 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 36535,
+  "runner_pid": null,
   "runner_started_at": "2026-03-20T14:39:59.827048+00:00",
-  "last_updated": "2026-03-20T19:00:15.334955+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-055",
-    "backlog_id": "",
-    "claim_id": "MECH-033",
-    "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
-    "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
-    "script": "experiments/v3_exq_055_mech033_kernel_chaining.py",
-    "started_at": "2026-03-20T18:05:45.774841+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 3,
-      "episodes_done": 500,
-      "episodes_total": 750,
-      "overall_pct": 22.2
-    },
-    "seconds_elapsed": 3270,
-    "seconds_remaining": 11458,
-    "recent_lines": [
-      "ep 100/600  e3_ticks=2032",
-      "ep 200/600  e3_ticks=4043",
-      "ep 300/600  e3_ticks=6158",
-      "ep 400/600  e3_ticks=8189",
-      "ep 500/600  e3_ticks=10115"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-055",
-      "backlog_id": "",
-      "claim_id": "MECH-033",
-      "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
-      "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
-      "estimated_minutes": 78.2,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "last_updated": "2026-03-20T19:13:45.794251+00:00",
+  "idle": true,
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1428,6 +1390,18 @@
       "started_at": "2026-03-20T17:20:09.974134+00:00",
       "completed_at": "2026-03-20T18:05:45.772804+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_054_mech072_world_delta_gating/v3_exq_054_mech072_world_delta_gating_20260320T180545Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-055",
+      "backlog_id": "",
+      "claim_id": "MECH-033",
+      "title": "MECH-033 Kernel Chaining Interface \u2014 action-object space CEM beats sensory-space CEM",
+      "description": "Prerequisite: EXQ-042 PASS. V2 FAIL (chained z_gamma sensory predictions, 1.8% improvement). V3: E2 supplies action-object kernels (SD-004), HippocampalModule chains via CEM in O-space. Trains full pipeline (600 eps), evals three conditions: AO_CHAIN (hippocampal CEM in action-object space), SELF_CHAIN (CEM in z_self space, same compute budget), RANDOM (uniform actions). PASS: C1 ao<random*0.85, C2 ao<self, C3 contact_ao<contact_random, C4 cal_gap>0.03, C5 wf_r2>0.05.",
+      "result": "PASS",
+      "result_summary": "harm_per_step_ao: 0.001467 | harm_per_step_self: 0.068427 | harm_per_step_random: 0.075401",
+      "started_at": "2026-03-20T18:05:45.774841+00:00",
+      "completed_at": "2026-03-20T19:13:45.792493+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_055_mech033_kernel_chaining/v3_exq_055_mech033_kernel_chaining_20260320T191345Z.json"
     }
   ]
 }

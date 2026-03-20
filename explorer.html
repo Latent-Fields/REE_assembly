@@ -567,14 +567,18 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
       flex-wrap: wrap;
     }
 
     .triple-card-head h3 {
       margin: 0;
-      font-size: 16px;
+      font-size: 17px;
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .triple-links {
@@ -640,7 +644,7 @@
       border-radius: 8px;
       background: #fff;
       min-height: 200px;
-      max-height: 520px;
+      max-height: 600px;
       overflow: auto;
       padding: 8px;
       position: relative;
@@ -950,6 +954,79 @@
       stroke: #b67923 !important;
       stroke-width: 2px !important;
       stroke-dasharray: 4 2;
+    }
+
+    /* Per-card fullscreen */
+    .triple-card-fullscreen-btn {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1;
+      padding: 3px 7px;
+      cursor: pointer;
+      margin-left: 4px;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .triple-card-fullscreen-btn:hover {
+      background: #f0f4f4;
+      color: var(--ink);
+    }
+    .triple-card.triple-fullscreen-active {
+      position: fixed;
+      top: 2.5vh;
+      left: 2.5vw;
+      width: 95vw;
+      height: 95vh;
+      z-index: 1000;
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fff;
+      padding: 14px;
+    }
+    .triple-card.triple-fullscreen-active .triple-body {
+      flex: 1 1 auto;
+      max-height: none;
+      overflow: auto;
+    }
+    .triple-fullscreen-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 999;
+    }
+    .triple-fullscreen-backdrop.active {
+      display: block;
+    }
+
+    /* Hint icon replacing inline hint text */
+    .triple-hint-icon {
+      font-size: 14px;
+      color: var(--muted);
+      cursor: default;
+      user-select: none;
+      line-height: 1;
+    }
+    .triple-hint-icon:focus-visible {
+      outline: 1px dotted var(--muted);
+      border-radius: 2px;
+    }
+
+    /* Diagram count badge in toolbar */
+    .triple-count-badge {
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: #f8f5ef;
+      white-space: nowrap;
     }
 
     .governance-wrap {
@@ -2233,7 +2310,9 @@
         <div id="tripleViewWrap" class="panel triple-view-wrap">
           <div class="triple-toolbar">
             <div class="meta" id="tripleStatus">Triple-view diagrams are not loaded.</div>
-            <div class="buttons">
+            <div class="buttons" style="display:flex;align-items:center;gap:8px;">
+              <span class="triple-count-badge">3 diagrams</span>
+              <button id="tripleCollapseBtn" type="button" title="Collapse diagrams">&#9662; Collapse</button>
               <button id="tripleReloadBtn" type="button">Reload Diagrams</button>
             </div>
           </div>
@@ -2259,10 +2338,11 @@
             </div>
           </div>
           <div class="triple-version-bar" id="tripleVersionBar">
-            <span class="triple-version-label">Version view:</span>
+            <span class="triple-version-label">Version:</span>
             <button class="triple-ver-btn active" data-ver="all">All Versions</button>
             <button class="triple-ver-btn" data-ver="v1">V1</button>
             <button class="triple-ver-btn" data-ver="v2">V2</button>
+            <button class="triple-ver-btn" data-ver="v3">V3</button>
             <span class="triple-version-sep">|</span>
             <button class="triple-ver-mode-btn active" data-mode="full" title="Show all elements present in this version">Full</button>
             <button class="triple-ver-mode-btn" data-mode="exclusive" title="Show only elements introduced in this version">Exclusive</button>
@@ -2274,9 +2354,12 @@
                   <h3>1. Static Structure</h3>
                   <div class="meta">Component atlas (stable interfaces).</div>
                 </div>
-                <div class="triple-links">
-                  <a href="docs/architecture/architecture_static.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="docs/architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div class="triple-links">
+                    <a href="docs/architecture/architecture_static.svg" target="_blank" rel="noopener">SVG</a>
+                    <a href="docs/architecture/architecture_static.mmd" target="_blank" rel="noopener">MMD</a>
+                  </div>
+                  <button type="button" class="triple-card-fullscreen-btn" data-triple-fullscreen="static" title="Fullscreen">&#x26F6;</button>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2284,7 +2367,7 @@
                 <button type="button" data-triple-zoom-in="static" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="static" title="Reset zoom">Reset</button>
                 <span id="tripleStaticZoomLabel" class="zoom-value">100%</span>
-                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
               </div>
               <div id="tripleStaticBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2296,9 +2379,12 @@
                   <h3>2. Typed Dataflow</h3>
                   <div class="meta">Stream/signal routing view.</div>
                 </div>
-                <div class="triple-links">
-                  <a href="docs/architecture/architecture_typed_dataflow.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="docs/architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div class="triple-links">
+                    <a href="docs/architecture/architecture_typed_dataflow.svg" target="_blank" rel="noopener">SVG</a>
+                    <a href="docs/architecture/architecture_typed_dataflow.mmd" target="_blank" rel="noopener">MMD</a>
+                  </div>
+                  <button type="button" class="triple-card-fullscreen-btn" data-triple-fullscreen="typed" title="Fullscreen">&#x26F6;</button>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2306,7 +2392,7 @@
                 <button type="button" data-triple-zoom-in="typed" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="typed" title="Reset zoom">Reset</button>
                 <span id="tripleTypedZoomLabel" class="zoom-value">100%</span>
-                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
               </div>
               <div id="tripleTypedBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2318,9 +2404,12 @@
                   <h3>3. Episode Trace</h3>
                   <div class="meta">Single-tick temporal sequence trace.</div>
                 </div>
-                <div class="triple-links">
-                  <a href="docs/architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
-                  <a href="docs/architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <div class="triple-links">
+                    <a href="docs/architecture/episode_sequence.svg" target="_blank" rel="noopener">SVG</a>
+                    <a href="docs/architecture/episode_sequence.mmd" target="_blank" rel="noopener">MMD</a>
+                  </div>
+                  <button type="button" class="triple-card-fullscreen-btn" data-triple-fullscreen="episode" title="Fullscreen">&#x26F6;</button>
                 </div>
               </div>
               <div class="triple-controls">
@@ -2328,7 +2417,7 @@
                 <button type="button" data-triple-zoom-in="episode" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="episode" title="Reset zoom">Reset</button>
                 <span id="tripleEpisodeZoomLabel" class="zoom-value">100%</span>
-                <span class="hint">Scroll to pan. Ctrl/Cmd + wheel to zoom.</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
               </div>
               <div id="tripleEpisodeBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2336,6 +2425,7 @@
             </div>
           </div>
           <div id="tripleTooltip" class="triple-tooltip" role="dialog" aria-live="polite"></div>
+          <div id="tripleFullscreenBackdrop" class="triple-fullscreen-backdrop"></div>
         </div>
       </div>
       <div class="panel detail" id="detailPanel">
@@ -6174,6 +6264,30 @@ END CONFLICT RESOLUTION`;
       });
     }
 
+    // --- Fullscreen card helpers ---
+    let tripleFullscreenActive = null;
+
+    function openTripleFullscreen(specId) {
+      if (tripleFullscreenActive) closeTripleFullscreen();
+      const spec = TRIPLE_VIEW_SPECS.find(s => s.id === specId);
+      const body = spec && document.getElementById(spec.bodyId);
+      const card = body && body.closest('.triple-card');
+      if (!card) return;
+      card.classList.add('triple-fullscreen-active');
+      document.getElementById('tripleFullscreenBackdrop')?.classList.add('active');
+      tripleFullscreenActive = specId;
+    }
+
+    function closeTripleFullscreen() {
+      if (!tripleFullscreenActive) return;
+      const spec = TRIPLE_VIEW_SPECS.find(s => s.id === tripleFullscreenActive);
+      const body = spec && document.getElementById(spec.bodyId);
+      const card = body && body.closest('.triple-card');
+      card?.classList.remove('triple-fullscreen-active');
+      document.getElementById('tripleFullscreenBackdrop')?.classList.remove('active');
+      tripleFullscreenActive = null;
+    }
+
     function configureTripleSvg(spec, container) {
       if (!container) return;
       const svg = container.querySelector('svg');
@@ -8095,6 +8209,33 @@ END CONFLICT RESOLUTION`;
           });
         });
       }
+
+      // Fullscreen card bindings
+      document.querySelectorAll('[data-triple-fullscreen]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const id = btn.getAttribute('data-triple-fullscreen');
+          if (tripleFullscreenActive === id) { closeTripleFullscreen(); } else { openTripleFullscreen(id); }
+        });
+      });
+      document.getElementById('tripleFullscreenBackdrop')?.addEventListener('click', () => closeTripleFullscreen());
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && tripleFullscreenActive) { closeTripleFullscreen(); e.stopPropagation(); }
+      });
+
+      // Collapse/expand grid
+      const tripleCollapseBtn = document.getElementById('tripleCollapseBtn');
+      const tripleGrid = document.querySelector('#tripleViewWrap .triple-grid');
+      let tripleGridCollapsed = false;
+      if (tripleCollapseBtn && tripleGrid) {
+        tripleCollapseBtn.addEventListener('click', () => {
+          tripleGridCollapsed = !tripleGridCollapsed;
+          tripleGrid.style.display = tripleGridCollapsed ? 'none' : '';
+          tripleCollapseBtn.innerHTML = tripleGridCollapsed ? '&#9656; Expand' : '&#9662; Collapse';
+          tripleCollapseBtn.title = tripleGridCollapsed ? 'Expand diagrams' : 'Collapse diagrams';
+        });
+      }
+
       if (els.mapEpochOnly) {
         els.mapEpochOnly.addEventListener('change', () => {
           renderMap();

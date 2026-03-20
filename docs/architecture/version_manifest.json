@@ -1,128 +1,139 @@
 {
   "schema_version": "version_manifest/v1",
   "description": "Maps architectural node IDs (as used in MMD/SVG files) to the versions they are present in, when they were introduced, and any changes across versions. Used by the triple-view version selector in explorer.html.",
-  "versions": ["v1", "v2"],
+  "versions": ["v1", "v2", "v3"],
   "nodes": {
     "WORLD": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
       "changed_in": ["v2"],
       "change_note": "V2: environment is CausalGridWorld (causal attribution tracking) vs GridWorld in V1"
     },
     "EXT": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "BND": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "SUB": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "E1": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
-      "changed_in": ["v2"],
-      "change_note": "V2: receives post-commit outcome replays from LRN via HPC (separated from E2 planning path)"
+      "changed_in": ["v2", "v3"],
+      "change_note": "V2: receives post-commit outcome replays from LRN via HPC (separated from E2 planning path). V3: alpha_world fix (SD-008, must be >=0.9); receives z_self/z_world split outputs (SD-005)"
     },
     "E2": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
-      "changed_in": ["v2"],
-      "change_note": "V2: pure f(z,a)→z' fast forward predictor; hippocampal planning and rollout separated into HPC (SD-001 fix)"
+      "changed_in": ["v2", "v3"],
+      "change_note": "V2: pure f(z,a)->z' fast forward predictor; hippocampal planning and rollout separated into HPC (SD-001 fix). V3: operates exclusively on z_self (SD-005); rollout_horizon architecture formalized"
     },
     "HPC": {
-      "present": ["v2"],
+      "present": ["v2", "v3"],
       "introduced": "v2",
-      "change_note": "V2 new: HippocampalSystems (rollout and provenance) separated from E2 — resolves SD-001 E2/hippocampal conflation"
+      "changed_in": ["v3"],
+      "change_note": "V2 new: HippocampalSystems (rollout and provenance) separated from E2 — resolves SD-001 E2/hippocampal conflation. V3: SD-004 action objects as map backbone; longer planning horizons"
     },
     "RC": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "ERR": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "CP": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
-      "changed_in": ["v2"],
-      "change_note": "V2: control plane precision updates (MECH-059) operate on separate timescale from E3 policy decisions"
+      "changed_in": ["v2", "v3"],
+      "change_note": "V2: control plane precision updates (MECH-059) operate on separate timescale from E3 policy decisions. V3: SD-006 async multi-rate loop execution; ARC-023 characteristic thalamic heartbeat rates"
     },
     "THAL": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "NM": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "CCM": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "E3": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
-      "changed_in": ["v2"],
-      "change_note": "V2: receives rollout candidates from HPC (separated from E2); commitment boundary validated (MECH-061)"
+      "changed_in": ["v2", "v3"],
+      "change_note": "V2: receives rollout candidates from HPC (separated from E2); commitment boundary validated (MECH-061). V3: z_world as primary domain (SD-005); SD-003 counterfactual attribution; ARC-016 dynamic precision; hypothesis tag (MECH-094)"
     },
     "CAL": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "F1": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "F2": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "F3": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "F4": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "G1": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "G2": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "G3": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "GPS": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "ACT": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "LRN": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1",
-      "changed_in": ["v2"],
-      "change_note": "V2: post-commit learning now feeds outcome traces to HPC for replay (MECH-061 commitment boundary)"
+      "changed_in": ["v2", "v3"],
+      "change_note": "V2: post-commit learning now feeds outcome traces to HPC for replay (MECH-061 commitment boundary). V3: ARC-021 three-loop separation — sensory, motor-sensory, and harm/goal error channels are incommensurable (MECH-069)"
     },
     "VER": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
     },
     "STORES": {
-      "present": ["v1", "v2"],
+      "present": ["v1", "v2", "v3"],
       "introduced": "v1"
+    },
+    "Z_SELF": {
+      "present": ["v3"],
+      "introduced": "v3",
+      "change_note": "V3 new: z_self — proprioceptive/motor-sensory latent (E2 domain). SD-005 split of z_gamma. Separates agent's causal footprint from world-directed residue."
+    },
+    "Z_WORLD": {
+      "present": ["v3"],
+      "introduced": "v3",
+      "change_note": "V3 new: z_world — world-directed causal/residue latent (E3/HPC domain). SD-005 split of z_gamma. alpha_world must be >=0.9 (SD-008/MECH-100). Supports SD-003 counterfactual attribution."
     }
   },
   "edges": {}
