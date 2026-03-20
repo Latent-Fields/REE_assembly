@@ -1,0 +1,79 @@
+<!-- Claim ID hover tooltips -->
+<style>
+  /* Claim reference spans */
+  .claim-ref {
+    border-bottom: 1px dotted #888;
+    cursor: help;
+    white-space: nowrap;
+  }
+
+  /* Floating tooltip card */
+  #claim-tooltip {
+    position: fixed;
+    z-index: 9999;
+    display: none;
+    max-width: 320px;
+    padding: 8px 12px 8px 14px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    pointer-events: none;
+  }
+
+  /* Left-border colour by claim type */
+  #claim-tooltip[data-type="invariant"]                { border-left: 4px solid #3b82f6; }
+  #claim-tooltip[data-type="architectural_commitment"] { border-left: 4px solid #16a34a; }
+  #claim-tooltip[data-type="mechanism_hypothesis"]     { border-left: 4px solid #ea580c; }
+  #claim-tooltip[data-type="open_question"]            { border-left: 4px solid #9333ea; }
+  #claim-tooltip[data-type="implementation_note"]      { border-left: 4px solid #6b7280; }
+  #claim-tooltip[data-type="design_decision"]          { border-left: 4px solid #0891b2; }
+
+  /* Tooltip internals */
+  #claim-tooltip .ct-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+  #claim-tooltip .ct-id {
+    font-weight: 700;
+    font-family: monospace;
+    font-size: 0.88rem;
+  }
+  #claim-tooltip .ct-type {
+    font-size: 0.74rem;
+    color: #666;
+    white-space: nowrap;
+  }
+  #claim-tooltip .ct-topic {
+    font-size: 0.84rem;
+    color: #111;
+    margin-bottom: 2px;
+  }
+  #claim-tooltip .ct-meta {
+    font-size: 0.76rem;
+    color: #888;
+  }
+  #claim-tooltip .ct-status {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    background: #f0f0f0;
+    color: #444;
+    margin-left: 4px;
+  }
+  #claim-tooltip .ct-status.s-active     { background: #dcfce7; color: #166534; }
+  #claim-tooltip .ct-status.s-stable     { background: #dcfce7; color: #166534; }
+  #claim-tooltip .ct-status.s-provisional{ background: #fef9c3; color: #854d0e; }
+  #claim-tooltip .ct-status.s-candidate  { background: #fff7ed; color: #9a3412; }
+  #claim-tooltip .ct-status.s-held       { background: #f1f5f9; color: #475569; }
+  #claim-tooltip .ct-status.s-open       { background: #ede9fe; color: #5b21b6; }
+  #claim-tooltip .ct-status.s-deprecated { background: #fee2e2; color: #991b1b; }
+</style>
+
+<script src="{{ '/assets/js/claim-tooltips.js' | relative_url }}" defer></script>

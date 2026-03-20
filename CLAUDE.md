@@ -21,6 +21,11 @@ python scripts/generate_pending_review.py   # updates evidence/experiments/pendi
 ```
 This updates `evidence/planning/promotion_demotion_recommendations.md` and `evidence/experiments/pending_review.md`.
 
+After any changes to `docs/claims/claims.yaml`, also run:
+```
+python scripts/build_claims_json.py    # rebuilds docs/assets/data/claims.json for hover tooltips
+```
+
 ## Experiment Result Tagging
 
 - `run_id` must end `_v2` (V2 runs) or `_v3` (V3 runs)
