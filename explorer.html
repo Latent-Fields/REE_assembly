@@ -1983,6 +1983,10 @@
       height: 100%; background: var(--accent);
       transition: width 0.4s ease; border-radius: 3px;
     }
+    .exp-progress-fill.overrun {
+      background: #b67923;
+      width: 100% !important;
+    }
     .exp-progress-label { font-size: 11px; color: var(--muted); display: flex; gap: 16px; }
     .exp-output {
       font-family: ui-monospace, "SF Mono", Consolas, monospace;
@@ -7681,7 +7685,9 @@ END CONFLICT RESOLUTION`;
 
     function expCurrentHtml(cur) {
       const p = cur.progress || {};
-      const pct = Math.min(100, p.overall_pct || 0);
+      const rawPct = p.overall_pct || 0;
+      const overrun = rawPct > 100;
+      const pct = overrun ? 100 : rawPct;
       const runLabel = p.run_label || '';
       const runsDone = p.runs_done || 0;
       const runsTotal = p.runs_total || '?';
@@ -7690,6 +7696,12 @@ END CONFLICT RESOLUTION`;
       const elapsed = cur.seconds_elapsed || 0;
       const remaining = cur.seconds_remaining || 0;
       const lines = (cur.recent_lines || []).join('\n');
+      const pctLabel = overrun
+        ? `ep ${epDone} (est. was ${epTotal})`
+        : `${pct.toFixed(1)}% complete`;
+      const remainingHtml = overrun
+        ? `<span style="color:#b67923">overrun &mdash; est. was ${epTotal} ep</span>`
+        : `<span>Remaining: ~${fmtSeconds(remaining)}</span>`;
       return `
         <div class="exp-card running">
           <div class="exp-card-header">
@@ -7700,12 +7712,12 @@ END CONFLICT RESOLUTION`;
             ${versionChipHtml(inferVersion(cur))}
           </div>
           <div class="exp-desc">${escapeHtml(cur.description || '')}</div>
-          <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
+          <div class="exp-progress-bar"><div class="exp-progress-fill${overrun ? ' overrun' : ''}" style="width:${pct}%"></div></div>
           <div class="exp-progress-label">
-            <span>${pct.toFixed(1)}% complete</span>
+            <span>${pctLabel}</span>
             <span>Done ${runsDone}/${runsTotal} &mdash; ${runLabel} &mdash; ep ${epDone}/${epTotal}</span>
             <span>Elapsed: ${fmtSeconds(elapsed)}</span>
-            <span>Remaining: ~${fmtSeconds(remaining)}</span>
+            ${remainingHtml}
           </div>
           ${lines ? `<div class="exp-output">${escapeHtml(lines)}</div>` : ''}
         </div>`;
