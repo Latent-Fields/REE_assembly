@@ -1169,6 +1169,15 @@
     'sleep recalibration' — slow-wave sleep resets the prediction error baseline, and
     waking commitment thresholds are calibrated relative to that baseline. EXQ-018b
     implements this relative threshold approach.
+    V3 EXQ-018b PASS (2026-03-20, 5/5 criteria): Relative threshold confirmed working.
+    commit_threshold = 2 × training_baseline_variance. Stable env: commit_rate=0.90,
+    precision≈718; perturbed env: commit_rate=0.50, precision≈426. 40% precision drop
+    produces 40-point commit-rate drop — proportional, not binary. Biological parallel
+    confirmed: the threshold adapts to the agent's own prediction error baseline so
+    environmental noise does not shift it. Circuit is end-to-end: E3-derived variance →
+    commit_threshold comparison → BetaGate → action_selection. ARC-016 core mechanism
+    validated; remaining V3 question is whether the committed/uncommitted behavioral
+    distinction produces measurable harm differences in richer environments.
   depends_on:
     - ARC-005
     - MECH-059
@@ -1870,6 +1879,15 @@
     Gate always showed is_elevated=False, hold_count=0. Root cause: not a mechanism failure,
     purely an experiment instrumentation error. EXQ-048b fixes this by routing through
     agent.select_action().
+    EXQ-059b FAIL (2026-03-20, 2/5 criteria): Fixed instrumentation (routes through
+    select_action()), but mean_running_variance=0.000 (to 14 d.p.) — E3._running_variance
+    is never populated through the select_action() call path. The variance tracker used
+    for commit_threshold comparison is updated internally in agent.e3 during a training
+    loop that EXQ-059b's eval phase does not exercise. C3 (elevation detectable) and
+    C4 (propagation to policy) cannot be verified without running_variance > 0.
+    Root cause: _running_variance update and BetaGate elevation are in separate code paths
+    that must both be triggered for the gating circuit to function. EXQ-048b must
+    explicitly call the variance-update step before threshold comparison.
   depends_on:
     - ARC-015
     - ARC-005
@@ -3610,6 +3628,12 @@
   evidence_quality_note: |
     EXQ-049 FAIL (2026-03-20): Same bug as EXQ-048 — agent.select_action() bypassed,
     gate never exercised. EXQ-049b fixes this.
+    EXQ-059b FAIL (2026-03-20, 2/5 criteria): Same finding as MECH-057b — routing through
+    select_action() restored but mean_running_variance=0.000. BetaGate elevation requires
+    _running_variance to be populated, which only happens in the E3 training-loop path,
+    not the inference path called during eval. C3 (beta elevated during committed sequence)
+    and C4 (propagation blocked) untestable until variance accumulation is wired into
+    the inference path. See MECH-057b for root-cause analysis and EXQ-048b fix plan.
   depends_on:
     - ARC-023
     - ARC-021
@@ -4024,7 +4048,7 @@
   claim_type: architectural_commitment
   subject: harm_stream.parallel_thalamic_pathway
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on:
     - ARC-017
@@ -4056,6 +4080,15 @@
     All four experiments converge: the current architecture fuses nociceptive content
     into z_world and this conflation is the root cause of SD-003/SD-007/MECH-102
     failures. ARC-027 implementation is prerequisite for SD-003 to work.
+    EXQ-058b ARC-027 PASS (2026-03-20, 5/5 criteria): Foundational V3 validation.
+    HarmEncoder (2-layer MLP, harm_obs → z_harm, trained with direct MSE supervision
+    on hazard/resource proximity labels) achieves: mean_harm_none=0.014,
+    mean_harm_approach=0.726, mean_harm_contact=0.987; Pearson_r=0.973 (threshold 0.85);
+    calibration_gap=0.712 (threshold 0.40); harm_pred_std=0.417 (not collapsed; threshold
+    0.05). Separate pathway confirmed: z_harm is learned from harm_obs alone, not from
+    z_world; the encoder generalises across event types with strong rank ordering.
+    This is the first clean demonstration that the harm stream architecture works when
+    architecturally isolated. Prerequisite validation for SD-003 + SD-010 joint tests.
   notes: >
     The HARM stream must be implemented as a parallel sensory pathway with its
     own sensory input and training signal, not derived from z_world or E1
@@ -4232,5 +4265,23 @@
     Resolves EXQ-027b over-correction, EXQ-043/044 calibration collapse, and
     EXQ-047 SD-005 calibration shortfall — all converge on fused z_world as
     root cause. Depends on ARC-027 implementation.
+  evidence_quality_note: |
+    EXQ-058b ARC-027 PASS (2026-03-20, 5/5 criteria): Foundational validation of the
+    separate harm pathway. HarmEncoder trained with direct MSE supervision on hazard/
+    resource proximity labels achieves Pearson_r=0.973, calibration_gap=0.712,
+    harm_pred_std=0.417. mean_harm_none=0.014 vs mean_harm_contact=0.987 — clean
+    rank ordering across all event types. First V3 experiment showing z_harm can be
+    learned without fusing into z_world. Confirms ARC-027 architectural separation
+    is implementable; prerequisite for SD-003 + SD-010 joint pipeline tests.
+    EXQ-056 FAIL (2026-03-20): Baseline HarmEncoder collapsed (z_harm=1.0 for all
+    types, variance=0 to 14 d.p.). Root cause: HarmEncoder received saturated or
+    constant harm_obs input; architecture was correct but input was not. EXQ-058b
+    fixed by adding direct MSE supervision on proximity labels as the training signal.
+    EXQ-058c post-fix FAIL (2026-03-20, 3/5 criteria): SD-003 + SD-010 joint test.
+    calibration_gap=0.036 (threshold 0.05 not met); mean_harm_none=0.629 elevated
+    because dense hazard environment ensures agent is nearly always near a hazard,
+    inflating the "none" label harm estimate. C1/C2 fail; C3 (world_forward_r2=0.944)
+    PASS; causal_sig_approach PASS but collapse guard fails. Dense environment
+    calibration remains an open design issue.
   depends_on: [SD-005, SD-007, ARC-027]
   location: docs/architecture/sensory_stream_tags.md
