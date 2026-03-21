@@ -1,23 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 83331,
-  "runner_started_at": "2026-03-21T06:08:29.284920+00:00",
-  "last_updated": "2026-03-21T23:19:49.512419+00:00",
-  "idle": true,
+  "runner_pid": 22269,
+  "runner_started_at": "2026-03-21T23:23:43.945948+00:00",
+  "last_updated": "2026-03-21T23:23:47.631900+00:00",
+  "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-051b",
-      "backlog_id": "",
-      "claim_id": "Q-007",
-      "title": "Q-007 z_beta Volatility Injection \u2014 NE/LC analog via running_variance input",
-      "description": "Fix for Q-007 architectural gap (EXQ-051 FAIL). Injects E3._running_variance as scalar into beta_encoder via LatentStackConfig.volatility_signal_dim=1. Two conditions: stable (fixed hazard positions) vs volatile (randomised each episode), same mean hazard count. Yu & Dayan 2005 (PMID 15944135): NE encodes unexpected uncertainty = running_variance spike. With injection: volatile agent should have higher z_beta norm (C1), Pearson r(rv,z_beta)>0.3 (C2), and z_beta rises within 20 eps after stable\u2192volatile transfer (C3).",
-      "estimated_minutes": 17.3,
-      "status": "error",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1594,6 +1582,32 @@
       "started_at": "2026-03-21T18:05:18.131373+00:00",
       "completed_at": "2026-03-21T19:14:20.339378+00:00",
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_061_mech104_volatility_jitter/v3_exq_061_mech104_volatility_jitter_20260321T191419Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-047b",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 + SD-010 Joint \u2014 split vs unified latent with clean harm stream",
+      "description": "Re-test of SD-005 latent split (z_self vs z_world) now that SD-010 is confirmed. Both conditions have HarmEncoder (harm_obs \u2192 z_harm) active, removing nociceptive content from z_world gradient path. EXQ-047 C1 failure was diagnosed as nociceptive contamination \u2014 this experiment tests if calibration gap now exceeds 5pp. Claims: SD-005, MECH-069. C1: wf_r2_split > wf_r2_unified + 0.05. C2: attr_gap_split > attr_gap_unified + 0.01. C3: harm_pearson > 0.50. C4: wf_r2_split > 0.30. C5: n_approach >= 50.",
+      "result": "FAIL",
+      "result_summary": "causal_sig_none_unified: 0.0006 | harm_eval_pearson_r_split: 0.9999 | harm_eval_pearson_r_unified: 0.9999",
+      "started_at": "",
+      "completed_at": "2026-03-21T19:15:58.449424+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local"
+    },
+    {
+      "queue_id": "V3-EXQ-051b",
+      "backlog_id": "",
+      "claim_id": "Q-007",
+      "title": "Q-007 z_beta Volatility Injection \u2014 NE/LC analog via running_variance input",
+      "description": "Fix for Q-007 architectural gap (EXQ-051 FAIL). Injects E3._running_variance as scalar into beta_encoder via LatentStackConfig.volatility_signal_dim=1. Two conditions: stable (fixed hazard positions) vs volatile (randomised each episode), same mean hazard count. Yu & Dayan 2005 (PMID 15944135): NE encodes unexpected uncertainty = running_variance spike. With injection: volatile agent should have higher z_beta norm (C1), Pearson r(rv,z_beta)>0.3 (C2), and z_beta rises within 20 eps after stable\u2192volatile transfer (C3).",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-21T23:23:46.198570+00:00",
+      "completed_at": "2026-03-21T23:23:47.631647+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local"
     }
   ]
 }
