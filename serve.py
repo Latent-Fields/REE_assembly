@@ -76,6 +76,7 @@ RUNNERS = {
         "evidence_dir": SERVE_DIR.parent / "ree-v3" / "evidence" / "experiments",
         "python": V3_PYTHON,
         "label": "V3 (ree-v3)",
+        "auto_sync": True,
     },
     "v2": {
         "script": SERVE_DIR.parent / "ree-v2" / "experiment_runner.py",
@@ -84,6 +85,7 @@ RUNNERS = {
         "evidence_dir": SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments",
         "python": V2_PYTHON,
         "label": "V2 (ree-v2)",
+        "auto_sync": True,
     },
 }
 
