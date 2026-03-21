@@ -206,6 +206,25 @@ layout: null
   .cmd-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
   hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .section-divider { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .reg-form { display: grid; gap: 0.75rem; margin-top: 0.75rem; }
+  .reg-field { display: flex; flex-direction: column; gap: 0.3rem; }
+  .reg-field label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .reg-field input {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); font-size: 0.88rem; padding: 0.45rem 0.7rem; width: 100%;
+    transition: border-color 0.15s;
+  }
+  .reg-field input:focus { outline: none; border-color: var(--accent); }
+  .reg-field .field-note { font-size: 0.75rem; color: var(--muted); }
+  .reg-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .gen-btn {
+    background: rgba(108,142,245,0.15); border: 1px solid var(--accent); color: var(--accent);
+    padding: 0.5rem 1.4rem; border-radius: 7px; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .gen-btn:hover { background: rgba(108,142,245,0.28); }
+  #reg-output { margin-top: 1rem; display: none; }
+  #reg-output .output-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
 </style>
 </head>
 <body>
@@ -278,6 +297,55 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Machine registration -->
+  <div class="card">
+    <h2>🖧 Register Your Machine</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">This creates a small JSON file so the project can track your machine's compute contribution correctly. Fill in the fields below, then run the generated commands from inside <code>REE_assembly/</code>.</p>
+    <div class="reg-form">
+      <div class="reg-two-col">
+        <div class="reg-field">
+          <label>Machine name <span style="color:var(--muted)">(no spaces)</span></label>
+          <input type="text" id="reg-machine-name" placeholder="e.g. Daniel-PC" />
+          <span class="field-note">Must match the <code>--machine</code> flag you use when starting the runner.</span>
+        </div>
+        <div class="reg-field">
+          <label>Your name</label>
+          <input type="text" id="reg-owner" placeholder="e.g. Daniel Golden" />
+        </div>
+      </div>
+      <div class="reg-field">
+        <label>Display name</label>
+        <input type="text" id="reg-display-name" placeholder="e.g. CyberPower PC (i5-8600K + RTX 2060 Super)" />
+      </div>
+      <div class="reg-field">
+        <label>Hardware description</label>
+        <input type="text" id="reg-hardware" placeholder="e.g. i5-8600K OC 4.3GHz, RTX 2060 Super 8GB, 8GB DDR4" />
+        <span class="field-note">CPU, GPU, RAM in one line.</span>
+      </div>
+      <div class="reg-two-col">
+        <div class="reg-field">
+          <label>CPU watts under load</label>
+          <input type="number" id="reg-tdp" placeholder="e.g. 65" min="1" max="500" />
+          <span class="field-note">Check your CPU spec sheet or HWiNFO.</span>
+        </div>
+        <div class="reg-field">
+          <label>GPU watts under load (0 if none)</label>
+          <input type="number" id="reg-gpu-watts" placeholder="e.g. 175" min="0" max="600" />
+          <span class="field-note">GPU-Z → Board Power Draw, or GPU spec sheet.</span>
+        </div>
+      </div>
+      <div><button class="gen-btn" onclick="generateMachineReg()">Generate registration commands</button></div>
+    </div>
+    <div id="reg-output">
+      <div class="output-label" style="margin-top:1rem">1. Save the JSON file (run from inside <code>REE_assembly/</code>)</div>
+      <div class="code-block" id="reg-save-cmd" style="white-space:pre"></div>
+      <div class="output-label" style="margin-top:0.75rem">2. Commit and push</div>
+      <div class="code-block" id="reg-git-cmd" style="white-space:pre"></div>
+      <div class="output-label" style="margin-top:0.75rem">3. Start the runner using your machine name (from inside <code>ree-v3/</code>)</div>
+      <div class="code-block" id="reg-runner-cmd" style="white-space:pre"></div>
     </div>
   </div>
 
@@ -705,6 +773,54 @@ function switchDiagTab(id) {
   if (btn) btn.classList.add('active');
   const content = document.getElementById(id);
   if (content) content.classList.add('active');
+}
+
+function generateMachineReg() {
+  const machineName = (document.getElementById('reg-machine-name').value || '').trim().replace(/[^A-Za-z0-9\-\.]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  const owner       = (document.getElementById('reg-owner').value || '').trim();
+  const displayName = (document.getElementById('reg-display-name').value || '').trim();
+  const hardware    = (document.getElementById('reg-hardware').value || '').trim();
+  const tdp         = parseInt(document.getElementById('reg-tdp').value, 10) || 0;
+  const gpuWatts    = parseInt(document.getElementById('reg-gpu-watts').value, 10) || 0;
+  if (!machineName || !owner || !displayName || !hardware) {
+    alert('Please fill in: machine name, your name, display name, and hardware description.');
+    return;
+  }
+  const payload = { machine_name: machineName, display_name: displayName, owner, hardware, tdp_watts: tdp, gpu_watts: gpuWatts };
+  const jsonStr = JSON.stringify(payload, null, 2);
+  const filename = `contributors/machines/${machineName}.json`;
+  const isWindows = /Win/.test(navigator.platform || navigator.userAgent);
+  let saveCmd, gitCmd, runnerCmd;
+  if (isWindows) {
+    const esc = jsonStr.replace(/'/g, "''");
+    saveCmd   = `# PowerShell — run from inside REE_assembly\\\n'${esc}' | Out-File -FilePath "${filename.replace(/\//g,'\\')}" -Encoding utf8`;
+    gitCmd    = `git add "${filename.replace(/\//g,'\\')}"
+git commit -m "register machine: ${machineName}"
+git push origin HEAD:master`;
+    runnerCmd = `# PowerShell — run from inside ree-v3\\
+$proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine ${machineName}" -PassThru -NoNewWindow
+$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal`;
+  } else {
+    const esc = jsonStr.replace(/'/g, "'\\''");
+    saveCmd   = `# run from inside REE_assembly/\nmkdir -p contributors/machines\necho '${esc}' > ${filename}`;
+    gitCmd    = `git add ${filename}\ngit commit -m "register machine: ${machineName}"\ngit push origin HEAD:master`;
+    runnerCmd = `# run from inside ree-v3/\nnice -n 10 python3 experiment_runner.py --auto-sync --loop --machine ${machineName}`;
+  }
+  function setCmd(id, text) {
+    const el = document.getElementById(id);
+    el.innerHTML = '';
+    el.appendChild(document.createTextNode(text));
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn'; btn.textContent = 'copy';
+    btn.onclick = function() { copyCode(this); };
+    el.appendChild(btn);
+  }
+  const outDiv = document.getElementById('reg-output');
+  outDiv.style.display = 'block';
+  setCmd('reg-save-cmd', saveCmd);
+  setCmd('reg-git-cmd', gitCmd);
+  setCmd('reg-runner-cmd', runnerCmd);
+  outDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function switchTab(id) {

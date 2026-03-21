@@ -54,6 +54,26 @@ MACHINE_REGISTRY = {
     },
 }
 
+
+def load_machine_registry() -> dict:
+    """Load machine registry from contributors/machines/*.json.
+
+    File-based entries override the hardcoded MACHINE_REGISTRY for the same key.
+    The hardcoded dict remains as a fallback for machines without a JSON file.
+    """
+    machines_dir = ROOT / "contributors" / "machines"
+    merged = dict(MACHINE_REGISTRY)
+    if machines_dir.is_dir():
+        for path in sorted(machines_dir.glob("*.json")):
+            try:
+                data = json.loads(path.read_text())
+                name = data.get("machine_name") or path.stem
+                merged[name] = {k: v for k, v in data.items() if k != "machine_name"}
+            except Exception as e:
+                print(f"  Warning: could not read {path.name}: {e}")
+    return merged
+
+
 # ── Cost model ─────────────────────────────────────────────────────────────────
 ELECTRICITY_RATE_EUR = 0.27        # Irish residential (per kWh)
 ELECTRICITY_CURRENCY = "EUR"
@@ -107,10 +127,11 @@ def estimate_run_hours(item: dict) -> float:
 def collect_compute() -> dict:
     """Collect compute data from runner_status.json and experiment manifests."""
     machines: dict = {}
+    registry = load_machine_registry()
 
     def add_run(hostname: str, hours: float, completed_at: str, queue_id: str):
         if hostname not in machines:
-            reg = MACHINE_REGISTRY.get(hostname, {})
+            reg = registry.get(hostname, {})
             machines[hostname] = {
                 "display_name": reg.get("display_name", hostname),
                 "owner": reg.get("owner", "Unknown"),
@@ -143,9 +164,7 @@ def collect_compute() -> dict:
             completed_at = entry.get("completed_at", "")
             if not is_genuine_run(run_id, completed_at):
                 continue
-            # runner_status completed[] entries don't carry hostname; attribute to
-            # "DLAPTOP-4.local" (the primary machine) as default for historical runs
-            hostname = entry.get("machine", "DLAPTOP-4.local")
+            hostname = entry.get("completed_by") or entry.get("machine", "DLAPTOP-4.local")
             hours = estimate_run_hours(entry)
             add_run(hostname, hours, completed_at, run_id)
 
