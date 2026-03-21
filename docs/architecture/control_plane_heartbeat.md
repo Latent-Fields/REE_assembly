@@ -8,7 +8,18 @@
 
 The three cortico-striatal-like learning loops of REE (E1/sensorium, E2/action-enacting, E3/planning-gates) do not update their control planes only at completion events. Each loop has a characteristic *heartbeat* — a periodic update rate driven by thalamic pacemaking — that maintains coherence under indeterminate processing latency. Completion events are high-salience signals *within* this continuous stream, not the exclusive trigger for control plane updates.
 
-This document covers six related claims: ARC-023 (multi-rate heartbeat architecture), MECH-089 (cross-frequency coupling), MECH-090 (beta as policy-output gate), MECH-091 (phase reset on salient events), MECH-092 (SWR-equivalent replay), and MECH-093 (z_beta modulates heartbeat rate).
+This document covers the heartbeat cluster (ARC-023, MECH-089–093) and the respiratory oscillator cluster (MECH-107–110), registered 2026-03-21.
+
+**Three-oscillator control-plane hierarchy (slow to fast):**
+
+| Oscillator | Rate | Voluntary? | Function |
+|---|---|---|---|
+| Respiratory sweep | ~0.2 Hz | Semi-voluntary | Periodic sweep of pre-commit rollouts + DMN for viability/abandonment |
+| E3 heartbeat | ~0.5–2 Hz (z_beta-modulated) | Involuntary | E3 harm-estimate refresh rate; arousal gating |
+| Neural theta/beta | ~4–30 Hz | Involuntary | Sensory batching (MECH-089); commitment propagation gating (MECH-090) |
+| Quiescent replay | Sub-task idle | Involuntary | Offline viability map consolidation (MECH-092) |
+
+The respiratory sweep clock is the only one with a genuine top-down voluntary handle (MECH-109). The E3 heartbeat clock governs arousal-modulated refresh rate (MECH-093) — it is NOT the plan-sweep clock. These are distinct mechanisms at distinct timescales.
 
 ---
 
@@ -191,3 +202,88 @@ V3 must implement genuinely asynchronous multi-rate execution. Options:
 **Recommendation for V3:** HTA (option 3) co-designed with SD-004 (action objects) and SD-005 (z_self/z_world split). The temporal grain boundaries should align with the representational boundaries: E1 raw sensory → E2 action-object → E3 trajectory/harm are already distinct abstraction levels; each level's update rate should match its abstraction grain.
 
 **Experiment implication:** Until SD-006 is implemented, any experiment targeting the *biological mechanism* of ARC-023, MECH-089, MECH-090, MECH-091, MECH-092, or MECH-093 will produce null results by construction. However, experiments can target the *functional analog* of mixed and mechanistic claims without SD-006 — the functional requirement (rate separation, temporal batching, commitment gating, cycle resync, offline replay) is implementable in the current synchronous ANN substrate as a simplified proxy. These functional-analog experiments are a valid V3 pre-test before full SD-006 async execution is in place.
+
+---
+
+## Section 4: Respiratory Oscillator Cluster
+
+**Registered:** 2026-03-21
+**Source:** Cross-species behavioural observation — dogs exhibit a swift exhalation precisely when abandoning a behavioural plan; humans sigh in functionally identical contexts. Cross-species convergence removes "cultural artifact" as an objection.
+
+### Overview
+
+The heartbeat cluster (MECH-089–093) treats all control-plane oscillators as involuntary pacemakers. The respiratory oscillator cluster identifies a fourth clock — the ~0.2 Hz respiratory rhythm — that has a qualitatively different property: it is **semi-voluntary**. An agent can deliberately sigh, slow breathing, or hold breath. This makes respiration the natural oscillator for the **plan-sweep layer** — the periodic review of pre-commit hippocampal rollouts and DMN simulations for viability and abandonment.
+
+The key distinction from the heartbeat (MECH-093):
+- **E3 heartbeat** → arousal-level gating of E3 *refresh rate* (how often harm estimates update). Governed by z_beta (involuntary, thalamic).
+- **Respiratory sweep** → periodic sweep of pre-commit rollouts for *trajectory abandonment*. Semi-voluntary. Operates at ~0.2 Hz, spanning several E3 heartbeat cycles.
+
+---
+
+### MECH-107 — Exhalation as E3 trajectory-abandonment signal {#mech-107}
+
+**Claim:** Each exhalation sweeps active pre-commit hippocampal rollouts for viability; failing trajectories are abandoned and the hypothesis tag cleared.
+
+**Mechanism:** Vagal afference from lung stretch receptors during exhalation modulates brainstem–thalamic–prefrontal circuits. In REE terms: each exhalation is the physiological instantiation of the hypothesis-tag clear (MECH-094) — the body enacting what the planning system has decided. Trajectory abandoned → write gate cleared → next deliberation cycle opens.
+
+**Cross-species evidence:** Dogs exhibit a swift, audible exhalation when breaking off a behavioural approach. Humans sigh in the same contexts. This conserved pattern across species with very different cortical architectures grounds the claim as mechanistic (brainstem-level) rather than cultural.
+
+**Predicted test:** Exhalation rate during deliberation tasks correlates positively with plan-abandonment rate; committed trajectory persistence correlates with respiratory slowing.
+
+**Depends on:** MECH-094, MECH-091, ARC-023
+
+---
+
+### MECH-108 — Respiratory rhythm as E3 plan-sweep oscillator {#mech-108}
+
+**Claim:** The ~0.2 Hz respiratory cycle is the clock governing periodic sweeps of pre-commit hippocampal rollouts and DMN simulations — a third control-plane oscillator distinct from heartbeat and theta/beta.
+
+**Three-oscillator summary:**
+
+1. **Respiratory** (~0.2 Hz, semi-voluntary) — viability sweep / plan abandonment
+2. **E3 heartbeat** (~0.5–2 Hz z_beta-modulated, involuntary) — harm-estimate refresh
+3. **Theta/beta** (~4–30 Hz, involuntary) — sensory batching (MECH-089), commitment gate (MECH-090)
+
+The respiratory clock spans several E3 heartbeat cycles: plan abandonment is a coarser deliberation-level decision, not a within-heartbeat event.
+
+**ANN implementation:** A configurable `plan_sweep_hz` parameter (~0.2 Hz relative simulation time) that triggers a pre-commit rollout viability check and hypothesis-tag clear on each cycle. Orthogonal to the E3 heartbeat rate parameter.
+
+**Depends on:** ARC-023, MECH-107, MECH-092, MECH-093
+
+---
+
+### MECH-109 — Voluntary respiratory modulation as deliberate E3 plan-sweep gate {#mech-109}
+
+**Claim:** Breathing is the only control-plane oscillator with a genuine top-down voluntary handle. Deliberate sigh = forced single-cycle abandonment sweep. Breath-hold = plan-sweep suppression.
+
+**Predicted failure mode — anxious breath-holding:** Under high-stakes deliberation, agents frequently hold their breath. This suppresses the plan-sweep clock at exactly the moment the planning system is most loaded and most needs to sweep non-viable trajectories. The failure is self-compounding: suppressed sweeps prevent abandonment of unworkable plans → increased deliberative load → increased anxiety → sustained breath-hold. This coincides with the agent needing more oxygen (high arousal, high metabolic demand), creating a somatic conflict between gas-exchange requirement and plan-sweep function.
+
+**Clinical implication:** "Taking a deep breath" restores not only vagal tone (the standard account) but specifically restores the plan-abandonment sweep cycle. The instruction to breathe deliberately is mechanistically a plan-sweep restoration command.
+
+**Contrast with other clocks:**
+- Heartbeat: cannot be voluntarily commanded (only modulated indirectly via arousal or vagal tone)
+- Theta/beta: wholly involuntary
+- Respiratory: directly commandable — unique locus of deliberate planning-clock intervention
+
+**Depends on:** MECH-108, MECH-091, MECH-107
+
+---
+
+### MECH-110 — Laughter as rapid hypothesis-tag cycling, with V5-scoped social synchronisation {#mech-110}
+
+**Claim:** Laughter (repeated forced exhalations) is rapid repeated oscillation through threat-hypothesis activation → safe-resolution → tag-clear. This predicts incongruity + resolution as the necessary structure of humour.
+
+**Mechanism:**
+- Each forced exhalation = one plan-sweep cycle (MECH-107)
+- Laughter frequency (3–7 exhalations/second) is a high-frequency override of the background ~0.2 Hz respiratory clock
+- This override is tolerated because the threat is found absent on every sweep: rapid safe-confirmation cycling
+- The pleasure of laughter = affective signature of rapid repeated threat-non-confirmation (iterated tag-clear relief)
+
+**Predictions:**
+1. Humour requires (a) initial threat/incongruity activation — hypothesis tag written — and (b) fast safe-resolution — sweep clears tag. Without (a): no laughter. Without (b): distress rather than laughter. This matches incongruity-resolution theories independently.
+2. Stronger initial threat activation → more intense laughter when safely resolved (explains gallows humour, dark comedy).
+3. Ambiguous punchline (incomplete resolution) → nervous laughter or discomfort — tag-clear is partial, residue persists.
+
+**Social synchronisation (V5-scoped):** Group laughter is shared respiratory phase-reset synchronising E3 plan-sweep clocks across agents, functioning as a distributed "threat absent" signal. Contagious laughter is clock entrainment. The evolution of social laughter may be grounded in this synchronisation function in addition to — or prior to — pure affiliation signalling. This extension requires a multi-agent substrate and is scoped to V5 (V4 = sleep systems).
+
+**Depends on:** MECH-107, MECH-094, MECH-091, MECH-108

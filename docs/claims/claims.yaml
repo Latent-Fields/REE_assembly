@@ -3820,6 +3820,12 @@
     (MECH-087): NA modulates perceptual sampling (MECH-084) and, via z_beta, E3
     heartbeat rate. Predicted: sustained high harm salience → more reactive policy;
     routine conditions → increased policy stability.
+    Scope clarification: MECH-093 governs E3 heartbeat frequency (arousal-modulated
+    thalamic pacemaking) — it does NOT govern the respiratory plan-sweep clock (MECH-112).
+    Heartbeat = arousal-level gating of E3 refresh rate; respiratory rhythm = periodic
+    sweep of pre-commit hippocampal rollouts and DMN simulations for trajectory
+    abandonment. These are distinct clocks at distinct timescales operating on distinct
+    planning functions.
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
@@ -4566,3 +4572,176 @@
     at contact events), consistent with approach-gradient leverage predicted by MECH-102.
   depends_on: [SD-005, SD-007, ARC-027]
   location: docs/architecture/sensory_stream_tags.md
+
+# Registered 2026-03-21 — Respiratory oscillator cluster
+# Source: cross-species behavioural observation (dog + human exhalation on plan abandonment)
+# Proposed by: Daniel Golden
+
+- id: MECH-107
+  title: "Exhalation is the physiological instantiation of E3 trajectory-abandonment — each exhale sweeps pre-commit rollouts for viability and clears the hypothesis tag."
+  claim_type: mechanism_hypothesis
+  subject: respiratory.exhalation_trajectory_abandonment
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: functional
+  functional_restatement: >
+    Each exhalation event triggers a sweep of currently active pre-commit hippocampal
+    rollouts and DMN simulations for viability. Trajectories failing the sweep are
+    abandoned and the hypothesis tag (MECH-094) cleared, opening the next deliberation
+    cycle. In an ANN substrate, implemented as an explicit plan-sweep trigger fired at
+    respiratory cadence, not as respiratory muscle activity. The biological mechanism
+    (vagal afference from lung stretch receptors modulating brainstem–thalamic–prefrontal
+    circuits) is the proposed substrate; the functional requirement is a periodic
+    viability sweep co-occurring with the exhalation phase.
+  depends_on:
+    - MECH-094
+    - MECH-091
+    - ARC-023
+  location: docs/architecture/control_plane_heartbeat.md#mech-107
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Cross-species convergence: dogs exhibit a swift, audible exhalation precisely when
+    abandoning a behavioural plan (e.g., approaching then breaking off); humans sigh in
+    functionally identical contexts. Cross-species presence removes "cultural artifact"
+    as an objection — this is an evolutionarily conserved mechanism for plan-state
+    management, not learned behaviour. Each exhalation is the physiological instantiation
+    of the hypothesis-tag clear described in MECH-094: the body enacts what the planning
+    system has decided (trajectory abandoned → write gate cleared → new deliberation
+    cycle opens). Predicts: exhalation rate during deliberation tasks should correlate
+    positively with plan-abandonment rate and negatively with committed-trajectory
+    persistence.
+
+- id: MECH-108
+  title: "Respiratory rhythm (~0.2 Hz) is E3's plan-sweep oscillator — a third control-plane clock governing periodic sweeps of pre-commit hippocampal rollouts and DMN simulations."
+  claim_type: mechanism_hypothesis
+  subject: respiratory.breath_rate_plan_sweep_clock
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: functional
+  functional_restatement: >
+    The ~0.2 Hz respiratory cycle gates periodic sweeps of pre-commit hippocampal
+    rollouts and DMN simulations for viability and abandonment. This is a third
+    oscillator in the control-plane cluster, distinct from (a) heartbeat (~1 Hz,
+    involuntary, arousal-level gating of E3 refresh rate — MECH-093) and (b) neural
+    theta/beta (~4–30 Hz, sensory batching and commitment propagation — MECH-089,
+    MECH-090). Semi-voluntary: top-down modulation is possible; cannot be fully stopped.
+    That semi-voluntary property is exactly right for the planning layer — it is where
+    deliberate top-down intervention in the planning cycle is possible. In an ANN
+    substrate, implemented as a configurable sweep-clock parameter operating at ~0.2 Hz
+    relative simulation time, orthogonal to the E3 heartbeat parameter.
+  depends_on:
+    - ARC-023
+    - MECH-107
+    - MECH-092
+    - MECH-093
+  location: docs/architecture/control_plane_heartbeat.md#mech-108
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Three-oscillator control-plane hierarchy (slow to fast):
+    (1) Respiratory plan-sweep (~0.2 Hz, semi-voluntary) — sweeps pre-commit rollouts
+        for viability/abandonment; governed by exhalation events (MECH-107).
+    (2) E3 heartbeat (involuntary thalamic pacemaking, ~0.5–2 Hz depending on z_beta
+        arousal, MECH-093) — governs E3 refresh rate and harm attribution resolution.
+    (3) Neural theta/beta (~4–30 Hz, MECH-089, MECH-090) — sensory batching and
+        commitment propagation gating.
+    Quiescent replay (MECH-092) operates below all three, during genuine idle periods
+    between tasks. The respiratory sweep clock sits above the E3 heartbeat: each
+    respiratory cycle spans several E3 heartbeat cycles, making the sweep a coarser
+    temporal grain than the per-heartbeat harm estimate. This matches the behavioural
+    observation: plan abandonment is not a within-heartbeat decision but a deliberate
+    cycle-level decision that overrides prior trajectory commitments.
+
+- id: MECH-109
+  title: "Voluntary respiratory modulation provides the one top-down deliberate handle on the E3 plan-sweep clock; breath-hold is a predicted failure mode suppressing plan abandonment under anxious concentration."
+  claim_type: mechanism_hypothesis
+  subject: respiratory.voluntary_breath_control_planning_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: functional
+  functional_restatement: >
+    Breathing is the only control-plane oscillator with a genuine top-down voluntary
+    handle: the agent can deliberately sigh (force a plan-sweep cycle), slow breathing
+    (reduce sweep rate), or hold breath (suppress plan sweeps entirely). This voluntary
+    controllability — absent from heartbeat and from neural theta/beta — is structurally
+    appropriate for the planning layer because deliberate plan abandonment requires an
+    agent-initiated trigger. In an ANN substrate, the "voluntary respiratory modulation"
+    is an explicit external trigger API that forces a plan-sweep cycle on demand,
+    independently of the background respiratory cadence.
+  depends_on:
+    - MECH-108
+    - MECH-091
+    - MECH-107
+  location: docs/architecture/control_plane_heartbeat.md#mech-109
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Predicted failure mode: anxious breath-holding. Under high-stakes deliberation,
+    agents (human and animal) frequently hold their breath. This suppresses the
+    respiratory plan-sweep clock (MECH-108) at exactly the moment the planning system
+    is under maximal load and most needs plan-abandonment sweep capacity. The failure
+    is self-compounding: suppressed sweeps prevent abandonment of non-viable trajectories,
+    increasing deliberative load, increasing anxiety, sustaining the breath-hold.
+    This also coincides with the agent needing more oxygen (high metabolic demand from
+    high arousal), creating a somatic conflict between gas-exchange need and plan-sweep
+    suppression. Clinical implication: deliberate breathing (respiratory rate restoration)
+    is not merely calming through vagal activation but specifically restores the
+    plan-abandonment sweep cycle. "Taking a deep breath" is mechanistically plan-sweep
+    restoration. Voluntary sigh = deliberately forced single-cycle abandonment sweep.
+    Contrast: heartbeat cannot be voluntarily overridden (modulated indirectly by arousal
+    and vagal tone, not directly commanded); neural theta/beta are wholly involuntary.
+    Respiratory rate is the unique locus of deliberate top-down planning-clock intervention.
+
+- id: MECH-110
+  title: "Laughter is rapid repeated hypothesis-tag cycling — threat activation followed immediately by safe-resolution — predicting incongruity+resolution as the necessary structure of humour."
+  claim_type: mechanism_hypothesis
+  subject: respiratory.laughter_rapid_tag_cycling
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: functional
+  functional_restatement: >
+    Laughter consists of repeated forced exhalations, each constituting one plan-sweep
+    cycle (MECH-107). A laughter episode is therefore rapid repeated oscillation through:
+    threat-hypothesis activation (E3 writes a harm-evaluation trajectory tag) → sweep →
+    safe-resolution (sweep finds no genuine harm → tag cleared via exhalation). The
+    pleasure of laughter is the affective signature of rapid repeated threat-non-confirmation.
+    This predicts that humour requires (1) an initial threat/incongruity activation
+    (hypothesis tag written) and (2) a fast safe-resolution (sweep clears tag). Without
+    the initial activation, no laughter; without fast resolution, distress rather than
+    laughter. This matches incongruity-resolution theories of humour independently.
+    Social extension (V5-scoped): synchronised group laughter is a shared respiratory
+    phase-reset signal synchronising E3 plan-sweep clocks across agents, functioning as
+    a joint "threat absent" signal. Contagious laughter is clock entrainment across agents.
+  depends_on:
+    - MECH-107
+    - MECH-094
+    - MECH-091
+    - MECH-108
+  location: docs/architecture/control_plane_heartbeat.md#mech-110
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Each forced exhalation in laughter is a rapid hypothesis-tag clear (MECH-107).
+    The density of exhalations in laughter (typically 3–7 per second) far exceeds the
+    resting respiratory rate (~0.2 Hz), indicating that laughter is a deliberate
+    high-frequency override of the background plan-sweep clock. This high-frequency
+    override is tolerated because each tag-clear is immediately followed by re-activation
+    and re-clearing: the threat level perceived to be genuinely zero. The repeated cycling
+    is itself the mechanism of pleasure — not a single resolution but the kinetic experience
+    of rapid iterated safe-confirmation. Distinguishes: (a) single exhalation/sigh =
+    plan abandonment under genuine uncertainty; (b) laughter = rapid safe-confirmation
+    cycling where genuine threat is absent. Predicts: humour that initially activates a
+    stronger threat tag should produce more intense laughter when resolved safely (gallows
+    humour, dark comedy). Predicts: incomplete resolution (ambiguous punchline) produces
+    nervous laughter or discomfort rather than clean laughter — the tag-clear is partial
+    and the residue persists.
+    Social synchronisation (V5-scoped): group laughter as joint respiratory entrainment
+    synchronises E3 plan-sweep clocks across agents, functioning as a distributed "nothing
+    to fear" signal. Contagious laughter is clock entrainment. Social laughter evolution
+    may be grounded in this synchronisation function rather than (or in addition to) pure
+    affiliation signalling.
