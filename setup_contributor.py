@@ -325,6 +325,44 @@ else:
 
 
 # ---------------------------------------------------------------------------
+# Step 9 — Generate experiment monitor launcher
+# ---------------------------------------------------------------------------
+
+section("Step 9 — Experiment monitor launcher")
+
+if IS_WIN:
+    launcher_path = parent / "start_monitor.bat"
+    launcher_content = (
+        f'@echo off\n'
+        f'echo Starting REE Experiment Monitor on http://localhost:8001 ...\n'
+        f'start "" "http://localhost:8001/REE_assembly/contributor_status.html"\n'
+        f'cd /d "{parent}"\n'
+        f'py -3.12 -m http.server 8001\n'
+        f'pause\n'
+    )
+else:
+    launcher_path = parent / "start_monitor.command"
+    launcher_content = (
+        f'#!/bin/bash\n'
+        f'cd "{parent}"\n'
+        f'echo "Starting REE Experiment Monitor on http://localhost:8001 ..."\n'
+        f'sleep 1 && open "http://localhost:8001/REE_assembly/contributor_status.html" &\n'
+        f'python3 -m http.server 8001\n'
+    )
+
+launcher_path.write_text(launcher_content, encoding="utf-8")
+if not IS_WIN:
+    import stat
+    launcher_path.chmod(launcher_path.stat().st_mode | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH)
+
+ok(f"Created launcher: {launcher_path}")
+if IS_WIN:
+    info("Double-click start_monitor.bat to open the experiment monitor in your browser.")
+else:
+    info("Double-click start_monitor.command to open the experiment monitor in your browser.")
+
+
+# ---------------------------------------------------------------------------
 # Done — print runner command
 # ---------------------------------------------------------------------------
 
@@ -344,6 +382,7 @@ print(f"  From inside: {ree_v3_dir}")
 print()
 info("Leave the runner terminal open. It will pick up queued experiments automatically.")
 info("Results sync to REE_assembly and appear in the project explorer.")
+info(f"Monitor experiments: double-click {launcher_path.name} in {parent}")
 print()
 print(f"{YELLOW}  Note: setup_contributor.py is experimental. If anything went wrong above,")
 print(f"  follow the manual steps at:")
