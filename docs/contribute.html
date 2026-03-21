@@ -362,12 +362,12 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>PyTorch installed and CUDA visible</p>
-        <div class="code-block">python -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> — if False, update NVIDIA drivers. If ImportError, run the pip install from step 3 above.</div>
+        <div class="code-block">py -3.12 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> — if False, update NVIDIA drivers. If ModuleNotFoundError, run the pip install from step 3 above using <code>py -3.12 -m pip</code>.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>GPU name</p>
-        <div class="code-block">python -c "import torch; print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block">py -3.12 -c "import torch; print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: your GPU model name (e.g. <code>NVIDIA GeForce GTX 1050 Ti</code>)</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
@@ -377,7 +377,7 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>REE_assembly repo is a sibling of ree-v3 (required for result sync)</p>
-        <div class="code-block">python -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block">py -3.12 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>REE_assembly: OK</code> — if missing, run <code>git clone https://github.com/Latent-Fields/REE_assembly.git</code> in the parent folder</div>
       </div></div>
     </div>
