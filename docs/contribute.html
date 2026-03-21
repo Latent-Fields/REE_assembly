@@ -481,7 +481,7 @@ WantedBy=default.target
         <div class="step-body">
           <p>Verify your GPU is visible to PyTorch (run in PowerShell):</p>
           <div class="code-block">
-python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button>
+py -3.12 -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button>
           </div>
           <div class="cmd-note">Must print <code>True</code> and your GPU name. If <code>False</code>, update NVIDIA drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>.</div>
         </div>
