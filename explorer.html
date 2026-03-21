@@ -1948,6 +1948,7 @@
     .exp-card.running { border-color: var(--accent); background: rgba(43,111,114,0.04); }
     .exp-card.pass { border-left: 3px solid #2e7d32; }
     .exp-card.fail { border-left: 3px solid #c0392b; }
+    .exp-card.failed { border-left: 4px solid #c0392b; background: rgba(192,57,43,0.06); border-color: #e8b4b0; }
     .exp-card.improved { border-left: 3px solid #1565c0; }
     .exp-card.needs-script { opacity: 0.65; }
     .exp-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
@@ -1964,6 +1965,7 @@
     .exp-badge.running   { background: #e3f2fd; color: #1565c0; }
     .exp-badge.pass      { background: #e8f5e9; color: #2e7d32; }
     .exp-badge.fail      { background: #fff3e0; color: #e65100; }
+    .exp-badge.failed    { background: #fde8e6; color: #c0392b; font-weight: 700; }
     .exp-badge.improved  { background: #e8f5e9; color: #1565c0; }
     .exp-badge.error     { background: #fce4ec; color: #c62828; }
     .exp-badge.pending   { background: #fff8e1; color: #f57f17; }
@@ -7677,6 +7679,7 @@ END CONFLICT RESOLUTION`;
       if (s === 'running')           { cls = 'running';      label = 'Running'; }
       else if (s === 'pass')         { cls = 'pass';         label = 'PASS'; }
       else if (s === 'fail')         { cls = 'fail';         label = 'FAIL'; }
+      else if (s === 'failed')       { cls = 'failed';       label = 'FAILED'; }
       else if (s === 'improved')     { cls = 'improved';     label = 'IMPROVED'; }
       else if (s === 'error')        { cls = 'error';        label = 'ERROR'; }
       else if (s === 'needs_script') { cls = 'needs-script'; label = 'Needs script'; }
@@ -7737,6 +7740,12 @@ END CONFLICT RESOLUTION`;
             </div>`;
           })()
         : '';
+      const failureHtml = s === 'failed' && qi.failure_reason
+        ? `<div class="exp-result-summary" style="color:#c0392b;font-style:normal;margin-top:6px">
+            &#9888; ${escapeHtml(qi.failure_reason)}
+            ${qi.failed_at ? `<span style="color:var(--muted);font-weight:normal"> &mdash; ${qi.failed_at.replace('T',' ').replace('Z',' UTC').slice(0,19)} UTC</span>` : ''}
+           </div>`
+        : '';
       return `
         <div class="exp-card ${s}">
           <div class="exp-card-header">
@@ -7749,6 +7758,7 @@ END CONFLICT RESOLUTION`;
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
           ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
+          ${failureHtml}
           ${priorHtml}
         </div>`;
     }
