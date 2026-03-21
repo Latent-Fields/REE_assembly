@@ -41,6 +41,18 @@ python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json fo
 
 `governance.sh` runs `build_claims_json.py` automatically as its final step.
 
+## Experiment Review Protocol
+
+After each governance/experiment discussion session:
+
+1. **Check** `evidence/experiments/pending_review.md` at session start — flag to user before other work.
+2. **Discuss** each pending result with the user (claim implications, PASS/FAIL interpretation, next steps).
+3. **Mark reviewed** — add run IDs to `reviewed_run_ids` in `evidence/experiments/review_tracker.json`, update `last_review_utc`.
+4. **Confirm cleared** — re-run `python scripts/generate_pending_review.py` and verify 0 pending before closing the session.
+5. **Mark proposals executed** — any `experiment_proposals.v1.json` entry whose claim now has evidence should be set `status: "executed"`. The pipeline does NOT do this automatically.
+
+> The pipeline generates `pending_review.md` automatically, but marking runs reviewed is always manual. Step 4 (confirm cleared) is the enforcement gate — do not skip it.
+
 ## Experiment Result Tagging
 
 - `run_id` must end `_v2` (V2 runs) or `_v3` (V3 runs)
