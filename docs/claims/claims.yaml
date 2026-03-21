@@ -1178,6 +1178,14 @@
     commit_threshold comparison → BetaGate → action_selection. ARC-016 core mechanism
     validated; remaining V3 question is whether the committed/uncommitted behavioral
     distinction produces measurable harm differences in richer environments.
+    EXQ-060 PASS (2026-03-21, 4/5, two identical runs — runner claim race): Committed-
+    condition BetaGate behavior confirmed. committed_step_count=5980, hold_rate_during_
+    committed=0.936, calibration_gap_approach=0.930. mean_running_variance=2.76e-6 (well
+    below commit_threshold=0.40 after training). C4 FAIL: propagation_count=0 because
+    trained agent is always committed — gate never releases in single-agent eval design.
+    Uncommitted condition requires two-condition design (EXQ-049e pattern). This run
+    confirms the committed→elevated circuit but does not yet test committed vs uncommitted
+    behavioral distinction end-to-end.
   depends_on:
     - ARC-005
     - MECH-059
@@ -1866,6 +1874,24 @@
   status: candidate
   lifecycle_stage: candidate
   implementation_phase: v3
+  literature_evidence: |
+    Pfeiffer & Foster (2013) PMID 23594744 [DOI: 10.1038/nature12112]:
+    Hippocampal place-cell sequences depict future paths to remembered goals before
+    goal-directed navigation. Sequences are generated, checked for goal-reach
+    plausibility, then emitted — this is the planning/candidacy gate in action.
+    The mechanism confirms that trajectory candidacy is decided in hippocampus before
+    proposals reach downstream planning stages. Central reference for MECH-057b.
+    Diba & Buzsáki (2007) PMID 17828259 [DOI: 10.1038/nn1961]:
+    Forward and reverse hippocampal place-cell sequences during sharp-wave ripples.
+    Forward sequences are anticipatory (planning); reverse sequences are evaluative
+    (completion verification). The switch from reverse to forward replay at run start
+    is a completion marker — the previous sequence ran to its end and was evaluated.
+    Supports the idea that sequence completion is a discrete detectable event.
+    Lansink et al. (2009) PMID 19688032 [DOI: 10.1371/journal.pbio.1000173]:
+    Hippocampus leads ventral striatum in joint replay. Place cells fire before
+    reward-correlated striatal cells. Directionality confirmed: hippocampal completion
+    signals propagate forward to BG, not the reverse. Establishes the anatomical
+    direction of the candidacy→propagation gate coupling (see MECH-105, ARC-028).
   evidence_quality_note: |
     No genuine experiments. This claim is explicitly V3-scoped.
     The thought-loop trajectory promotion gate requires HippocampalModule to implement a
@@ -1889,6 +1915,10 @@
     that must both be triggered for the gating circuit to function. Fix: call
     agent.e3.update_after_execution(z_world_t, harm_prev<0) each step so _running_variance
     evolves during training. EXQ-048c implements this fix.
+    Note: MECH-057b (hippocampal candidacy gate) is architecturally distinct from MECH-090
+    (BG beta propagation gate). EXQ-048/059 series tests the BG gate. A separate experiment
+    is needed to test the hippocampal candidacy gate specifically. The coupling between the
+    two gates is ARC-028, mediated by MECH-105.
   depends_on:
     - ARC-015
     - ARC-005
@@ -2895,6 +2925,11 @@
     The ttype-split operationalization (EXQ-032b) is the correct test for MECH-102.
     EXQ-036 (multi-step attribution) will test whether k=5 rollout sharpens the
     agent_caused vs env_caused contact-type distinction.
+    EXQ-059c PASS (2026-03-21, 4/5): Contact rate reduction ~10× confirmed via SD-010
+    harm stream pipeline. Harm signal available during trajectory planning produces
+    measurable approach-gradient avoidance, consistent with the violence-as-terminal-
+    error-correction framing: maximum ethical leverage is in the approach gradient
+    before contact, not at contact itself. Corroborates EXQ-032b energy ladder.
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
@@ -3584,7 +3619,7 @@
   claim_type: mechanism_hypothesis
   subject: multirate.fast_to_slow_temporal_batching
   polarity: asserts
-  status: provisional
+  status: active
   implementation_phase: v3
   claim_level: mechanistic
   functional_restatement: >
@@ -3595,6 +3630,13 @@
     is implemented as a rolling aggregation over E1 outputs before E3 sampling, not as
     oscillatory coupling. The biological mechanism (theta-gamma CFC) is one implementation
     of this functional requirement; it is not required in the ANN substrate.
+  evidence_quality_note: |
+    EXQ-052b PASS (2026-03-21, 5/5): ThetaBuffer confirmed filling with E1 outputs and
+    batching them before E3 sampling. max_theta_buffer_size correctly recorded via
+    _z_world_buffer attribute. E3 functional at ~1/9 the step rate (e3_tick_ratio ≈ 0.109),
+    cal_gap=0.846. Demonstrates that temporal batching of fast-loop outputs before slow-loop
+    sampling is structurally in place and metrically verifiable. Single PASS sufficient to
+    elevate from provisional to active — mechanism is implemented and measurable.
   depends_on:
     - ARC-023
     - ARC-021
@@ -3636,6 +3678,37 @@
     and C4 (propagation blocked) untestable until variance accumulation is wired into
     the inference path. See MECH-057b for root-cause analysis. Fix: EXQ-049c calls
     agent.e3.update_after_execution(z_world_t, harm_prev<0) each step.
+    EXQ-049b/c FAIL (2026-03-21): Chicken-and-egg deadlock — post_action_update() guards
+    update_running_variance() behind _committed_trajectory is not None, but trajectory only
+    set when committed, which requires variance < threshold. Variance frozen at 0.5 > 0.40.
+    EXQ-049d FAIL (2026-03-21): Deadlock fixed by calling update_running_variance(wf_err)
+    directly after world_forward loss. Committed condition PASS: hold_concordance=1.0,
+    hold_count=10347. But over-correction: variance collapsed to 2.5e-6, agent permanently
+    committed, n_uncommitted_steps=0 — C2 (uncommitted_release_concordance) has no data.
+    Root cause: single-agent eval conflates training and eval conditions. Fix: two-condition
+    design (EXQ-049e) — compare trained agent (low variance, committed, gate elevated)
+    against untrained/reset agent (high variance, uncommitted, gate released). C1 (gate
+    elevates when committed) is confirmed. C2 awaits EXQ-049e.
+  literature_evidence: |
+    Jenkinson & Brown (2011) PMID 22018805 [DOI: 10.1016/j.tins.2011.09.003]:
+    "Beta oscillations provide a measure of the likelihood that a new voluntary action
+    will need to be actuated." Elevated beta = stay the course. Beta is predictive
+    (modulated by dopamine in anticipation of whether action change is needed) not
+    reactive. Loss of dopamine (Parkinson's) annuls prospective action resourcing.
+    This is the clearest literature statement of MECH-090: beta gate signals status
+    quo maintenance, release signals openness to policy update.
+    Frank (2005) PMID 15701239 [DOI: 10.1162/0898929052880093]:
+    Dynamic dopamine modulation in BG: D1 (direct/Go) and D2 (indirect/NoGo) are
+    differentially modulated by phasic dopamine. Phasic dopamine during reward
+    potentiates D1 (facilitates commitment); dopamine dip relieves D2 suppression
+    (enables de-commitment). This is the mechanistic basis for MECH-106 hysteresis.
+    Frank, Seeberger & O'Reilly (2004) PMID 15528409 [DOI: 10.1126/science.1102941]:
+    "By carrot or by stick": Go/NoGo learning asymmetry dopamine-dependent. Confirms
+    the direct/indirect pathway architecture and asymmetric commitment modulation.
+    Redgrave, Prescott & Gurney (1999) PMID 10362291 [DOI: 10.1016/s0306-4522(98)00319-4]:
+    BG as centralized selection mechanism: winner-takes-all via lateral inhibition in
+    striatum resolves competition for access to motor and cognitive resources. Grounds
+    the single-selection (not graded) nature of the commitment gate.
   depends_on:
     - ARC-023
     - ARC-021
@@ -4045,12 +4118,202 @@
     MST integrates optic flow with vestibular and auditory input; cross-modal
     ventral stream binding (Murray et al. 2004).
 
+- id: MECH-104
+  title: "Unexpected harm events spike commitment uncertainty (LC-NE volatility interrupt), enabling de-commitment."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.volatility_interrupt
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    When actual harm substantially exceeds predicted harm (prediction error surprise),
+    the commitment uncertainty estimate (running_variance) receives an upward impulse
+    proportional to surprise magnitude, enabling de-commitment from a currently active
+    trajectory. Without this mechanism, world_forward training drives running_variance
+    to near-zero, permanently locking the agent in committed state regardless of
+    environmental change. In an ANN substrate this is implemented as a surprise-gated
+    upward push to running_variance when |actual_harm - predicted_harm| exceeds a
+    threshold. V3 approximation: Gaussian jitter (noise floor ε) added to the EMA
+    so running_variance cannot fully collapse, allowing the committed→uncommitted
+    transition to remain testable. The biological mechanism (LC phasic firing on
+    unexpected outcomes, NE release increasing neural gain and driving exploration)
+    is the reference implementation. See Yu & Dayan (2005) PMID 15944135.
+  depends_on:
+    - MECH-090
+    - ARC-016
+    - Q-007
+  location: docs/architecture/control_plane_heartbeat.md#mech-104
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    The locus coeruleus (LC) fires phasically on unexpected, behaviourally significant
+    outcomes. NE release increases neural gain and drives exploration, reducing the
+    effective commitment bias. This is Yu & Dayan (2005)'s unexpected uncertainty
+    signal — distinct from expected uncertainty (routine variance tracked by the EMA),
+    unexpected uncertainty is triggered by structural environmental change that the
+    running average could not anticipate. Two V3 implementation routes: (1) jitter
+    approximation — add small Gaussian noise floor ε to running_variance EMA update,
+    preventing collapse to zero and making within-episode de-commitment testable; and
+    (2) full wiring — harm_surprise = |harm_eval(z_harm) - actual_harm|; if
+    harm_surprise > surprise_threshold, _running_variance += surprise_coeff × harm_surprise.
+    Route (1) is sufficient for MECH-090/104 experiments. Route (2) is the proper
+    mechanistic implementation for later V3 phases. Biological reference: Yu & Dayan
+    (2005) Uncertainty, neuromodulation, and attention. Neuron 46(5):681-92.
+    PMID 15944135. [DOI: 10.1016/j.neuron.2005.04.014]
+
+- id: MECH-105
+  title: "Hippocampal sequence completion drives BG beta release via subiculum-NAc-VTA dopaminergic loop."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.hippocampal_bg_coupling_dopaminergic
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    When the hippocampal module signals sequence completion (MECH-057b gate opens),
+    this signal propagates to the BG beta gate (MECH-090) via a dopaminergic coupling
+    loop: subiculum → nucleus accumbens → ventral pallidum → VTA → phasic dopamine
+    release → D1 pathway potentiation → beta drop → gate release. This is the
+    mechanistic bridge connecting the trajectory candidacy gate (hippocampal level)
+    to the policy propagation gate (BG level). Without this coupling, the two gates
+    are architecturally independent and sequence completion in HippocampalModule
+    cannot trigger policy update in BetaGate. In an ANN substrate, the coupling is
+    implemented as a completion signal from HippocampalModule to BetaGate mediated
+    by a dopamine-analog variable modulating the commit threshold. The biological
+    mechanism (subiculum→NAc→VP→VTA) is the reference.
+  depends_on:
+    - MECH-057b
+    - MECH-090
+    - ARC-023
+    - ARC-021
+  location: docs/architecture/control_plane_heartbeat.md#mech-105
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  literature_evidence: |
+    Lisman & Grace (2005) PMID 15924857 [DOI: 10.1016/j.neuron.2005.05.002]:
+    Hippocampal-VTA loop: subiculum → NAc → ventral pallidum → VTA → dopamine
+    release. Novel/completion events drive VTA via this pathway; upward arm is
+    dopamine-enhanced hippocampal LTP. This is the precise anatomical substrate
+    for hippocampal-to-BG completion signaling.
+    Lansink et al. (2009) PMID 19688032 [DOI: 10.1371/journal.pbio.1000173]:
+    Hippocampus leads ventral striatum in joint replay — hippocampal place cells
+    fire before reward-correlated striatal cells. Directionality confirmed:
+    completion signals originate in hippocampus and propagate forward to BG.
+    Pennartz et al. (2011) PMID 21889806 [DOI: 10.1016/j.tins.2011.08.001]:
+    Hippocampal-striatal axis: ventral striatum integrates hippocampal episodic
+    content with value signals to generate goal-directed motivational predictions.
+    Establishes functional as well as anatomical link.
+  notes: >
+    This claim resolves the architectural orphan problem: MECH-057b and MECH-090
+    are separately claimed but lack an explicit coupling mechanism. The subiculum→
+    NAc→VP→VTA loop is the missing link. In the V3 implementation, HippocampalModule
+    must emit a completion signal received by BetaGate or E3Selector to trigger gate
+    release. This coupling is currently absent and is a prerequisite for MECH-057b
+    completion events to actually trigger MECH-090 gate release. Required changes:
+    (1) HippocampalModule.generate_trajectories() emits completion signal on
+    trajectory goal-reach or planned-length completion; (2) BetaGate or E3Selector
+    receives this signal and calls gate.release(); (3) coupling is mediated by a
+    dopamine-analog variable (see MECH-106). Without ARC-028 wiring, this claim
+    cannot be tested experimentally.
+
+- id: MECH-106
+  title: "Commitment threshold is asymmetrically modulated by outcome valence: positive outcomes lower it, negative outcomes raise it."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.commitment_hysteresis_outcome_valence
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: mechanistic
+  functional_restatement: >
+    The threshold governing entry into and exit from committed states is asymmetric:
+    positive outcomes (low harm, successful trajectory completion) lower the commit
+    threshold via D1 pathway potentiation, making it easier to commit again.
+    Negative outcomes (harm contact, large prediction error) raise the threshold via
+    D2 pathway activation, making it harder to commit and easier to break from an
+    active commitment. This asymmetric hysteresis prevents pathological flip-flopping
+    (committed state is sticky through minor perturbations) while ensuring genuine
+    harm events can force de-commitment. In an ANN substrate, the hysteresis is a
+    slowly-updating outcome-valence bias on the commit threshold:
+    commit_threshold_effective = commit_threshold_base × (1 + valence_bias), where
+    valence_bias increases after harm and decreases after successful completion.
+    The biological mechanism (phasic dopamine modulating D1/D2 balance in striatum)
+    is the reference.
+  depends_on:
+    - MECH-090
+    - ARC-016
+    - MECH-104
+    - MECH-105
+  location: docs/architecture/control_plane_heartbeat.md#mech-106
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  literature_evidence: |
+    Frank (2005) PMID 15701239 [DOI: 10.1162/0898929052880093]:
+    Dynamic dopamine modulation in BG: D1 (direct/Go) potentiated by positive
+    phasic dopamine — lowers threshold for action facilitation (commit). D2
+    (indirect/NoGo) relieved by dopamine dip — raises suppression signal
+    (de-commit). Asymmetric dynamic range explains over-commitment (Parkinson's
+    off medication) and under-commitment (dopamine overdose in intact striatum).
+    Frank, Seeberger & O'Reilly (2004) PMID 15528409 [DOI: 10.1126/science.1102941]:
+    "By carrot or by stick": Go/NoGo learning asymmetry is dopamine-dependent.
+    Parkinson's patients off medication learn better from negative outcomes (D2
+    dominant); on medication the reverse (D1 dominant). Confirms asymmetric
+    modulation of commitment direction by outcome valence.
+    Jenkinson & Brown (2011) PMID 22018805 [DOI: 10.1016/j.tins.2011.09.003]:
+    Beta oscillations are predictive — modulated by net dopamine levels at cortical
+    BG inputs in response to salient cues. Loss of dopamine (Parkinson's) annuls
+    the prospective resourcing of actions. Connects outcome-valence dopaminergic
+    modulation to the beta gate mechanism (MECH-090).
+  notes: >
+    Commitment hysteresis is the BG-level mechanism preventing pathological
+    state-switching. Without it, any variance fluctuation across the threshold
+    produces an immediate state change. The dopaminergic asymmetry means successful
+    sequences build commitment momentum (threshold lowers, harder to de-commit
+    prematurely) while harm events build release momentum (threshold raises, easier
+    to de-commit). This is slower-timescale than running_variance — it is a
+    motivational bias rather than a prediction-error signal. Distinct from MECH-104
+    (volatility interrupt, fast) and running_variance (medium), this is the slow
+    dopaminergic modulation that sets the operating point. Relevant to MECH-025
+    (action doing mode) because that mode requires low threshold + committed state,
+    which the dopamine system builds through accumulated successful sequences.
+    V3 implementation: valence_bias updated at each E3 tick via a slow EMA on
+    outcome valence signal (harm_t vs predicted_harm_t).
+
+- id: ARC-028
+  title: "HippocampalModule must emit a trajectory completion signal wired to BetaGate to couple the candidacy and propagation gates."
+  claim_type: architectural_commitment
+  subject: control_plane.hippocampal_betagate_coupling_wiring
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-057b
+    - MECH-090
+    - MECH-105
+    - ARC-023
+  location: docs/architecture/control_plane_heartbeat.md#arc-028
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    MECH-057b (hippocampal candidacy gate) and MECH-090 (BG beta propagation gate)
+    are currently architecturally independent in V3. ARC-028 commits to coupling
+    them: HippocampalModule must emit an explicit trajectory completion signal
+    received by BetaGate (or the commit_threshold mechanism) to trigger gate release.
+    Without this wiring, sequence completion in HippocampalModule has no downstream
+    effect on BetaGate and the two gates cannot be tested as a unified circuit.
+    Required implementation changes: (1) HippocampalModule.generate_trajectories()
+    emits a completion signal when a trajectory reaches its goal or planned length;
+    (2) E3Selector or BetaGate receives this and calls beta_gate.release(); (3) the
+    coupling is mediated by a dopamine-analog variable (see MECH-105, MECH-106) for
+    proper hysteresis. Biological basis: subiculum → NAc → VP → VTA → dopamine
+    → BG beta release (Lisman & Grace 2005, PMID 15924857).
+
 - id: ARC-027
   title: "Harm stream runs as a parallel thalamic pathway independent of world latent space."
   claim_type: architectural_commitment
   subject: harm_stream.parallel_thalamic_pathway
   polarity: asserts
-  status: provisional
+  status: active
   implementation_phase: v3
   depends_on:
     - ARC-017
@@ -4091,6 +4354,10 @@
     z_world; the encoder generalises across event types with strong rank ordering.
     This is the first clean demonstration that the harm stream architecture works when
     architecturally isolated. Prerequisite validation for SD-003 + SD-010 joint tests.
+    EXQ-056c SD-010 PASS (2026-03-21, 4/5): HarmEncoder retest with reafference isolation
+    confirmed. Pearson r_z_harm=0.914 (threshold 0.85). Harm stream produces clean proximity
+    signal distinct from z_world, not subject to reafference correction. Confirms
+    architectural separation is robust across experimental variations.
   notes: >
     The HARM stream must be implemented as a parallel sensory pathway with its
     own sensory input and training signal, not derived from z_world or E1
@@ -4204,6 +4471,10 @@
     AttributeError silently caught, max_theta_buffer_size=0 always. All other criteria
     passed: E3 functional at 9× slower rate (cal_gap=0.846), e3_tick_ratio=0.109 ≈ 1/9.
     EXQ-052b fixes the counter. Functionally, multi-rate execution is working.
+    EXQ-052b PASS (2026-03-21, 5/5): ThetaBuffer attribute fix confirmed. max_theta_buffer_size
+    correctly tracked via _z_world_buffer. Multi-rate execution fully functional: E3 runs at
+    ~1/9 the step rate of E1, theta buffer fills and batches E1 outputs before each E3 sample.
+    All five criteria met. SD-006 implementation validated end-to-end.
   depends_on: [ARC-023]
   location: docs/architecture/control_plane_heartbeat.md
 
@@ -4258,7 +4529,7 @@
   claim_type: design_decision
   subject: harm_stream.nociceptive_separation
   polarity: asserts
-  status: candidate
+  status: implemented
   status_note: >
     The HARM stream (ARC-027) must be a separate sensory pathway independent
     of z_world: dedicated HarmEncoder(harm_obs → z_harm), not subject to
@@ -4285,5 +4556,13 @@
     inflating the "none" label harm estimate. C1/C2 fail; C3 (world_forward_r2=0.944)
     PASS; causal_sig_approach PASS but collapse guard fails. Dense environment
     calibration remains an open design issue.
+    EXQ-056c PASS (2026-03-21, 4/5): SD-010 reafference isolation retest. Pearson
+    r_z_harm=0.914. HarmEncoder correctly trained on harm_obs alone, not subject to
+    reafference correction applied to z_world. Clean separation confirmed under varied
+    experimental conditions.
+    EXQ-059c PASS (2026-03-21, 4/5): MECH-102 via SD-010 pipeline. contact_rate_reduction
+    of ~10× confirmed — agent proximity-avoiding behaviour measurably different with
+    functional harm stream. Harm signal accessible during trajectory planning (not only
+    at contact events), consistent with approach-gradient leverage predicted by MECH-102.
   depends_on: [SD-005, SD-007, ARC-027]
   location: docs/architecture/sensory_stream_tags.md

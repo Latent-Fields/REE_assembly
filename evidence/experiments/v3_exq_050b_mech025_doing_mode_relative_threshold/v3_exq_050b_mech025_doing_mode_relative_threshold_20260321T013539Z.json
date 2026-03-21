@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_causal_sig_committed": -0.004473057010859919,
+    "mean_causal_sig_uncommitted": 0.005213320255279541,
+    "doing_mode_delta": -0.00968637726613946,
+    "committed_step_count": 7859.0,
+    "uncommitted_step_count": 8.0,
+    "harm_pred_std": 0.1833292692899704,
+    "world_forward_r2": 0.9372788667678833,
+    "mean_training_variance": 0.5,
+    "calibrated_threshold": 1.0,
+    "e3_tick_total": 8526.0,
+    "total_harm_train": 4262.0,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-050b -- MECH-025: Action-Doing Mode Probe (Relative Threshold)\n\n**Status:** FAIL\n**Claim:** MECH-025 -- action-doing mode produces distinct internal signature\n**Prerequisite:** EXQ-030b PASS (SD-003 attribution pipeline functional), EXQ-018b (relative threshold)\n**Key change:** commit_threshold = 2.0 x mean_training_variance (calibrated, not absolute)\n**alpha_world:** 0.9\n**Warmup:** 500 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Threshold Calibration\n\nTraining baseline variance samples were collected from the last 100 training episodes.\nThe calibrated threshold ensures the agent enters both committed and uncommitted modes.\n\n| Parameter | Value |\n|-----------|-------|\n| mean_training_variance | 0.500000 |\n| calibrated_threshold (2x) | 1.000000 |\n\n## Motivation\n\nMECH-025 (V2 FAIL): agent in doing mode should show a distinct internal signature.\nV3 fix: SD-003 attribution now works (EXQ-030b PASS). During committed action\nexecution, the causal signature E3(E2(z,a_actual)) - E3(E2(z,a_cf)) should be\nhigher than during free exploration (uncommitted steps).\n\nCommitted state read from: agent.e3._committed_trajectory is not None\n\n## Causal Signature by Mode\n\n| Mode | mean causal_sig | n_steps |\n|------|----------------|---------|\n| Committed (doing) | -0.0045 | 7859 |\n| Uncommitted (exploring) | 0.0052 | 8 |\n\n- **doing_mode_delta**: -0.0097  (committed - uncommitted)\n- world_forward_r2: 0.9373\n- harm_pred_std: 0.1833\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: doing_mode_delta > 0.002 (committed has higher causal sig) | FAIL | -0.0097 |\n| C2: uncommitted_step_count >= 10 (uncommitted mode entered) | FAIL | 8 |\n| C3: world_forward_r2 > 0.05 (E2 functional) | PASS | 0.9373 |\n| C4: harm_pred_std > 0.01 (E3 not collapsed) | PASS | 0.1833 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: doing_mode_delta=-0.0097 <= 0.002\n- C2 FAIL: uncommitted_step_count=8 < 10\n",
+  "claim_ids": [
+    "MECH-025"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_050b_mech025_doing_mode_relative_threshold",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260321T013539Z",
+  "claim": "MECH-025",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_050b_mech025_doing_mode_relative_threshold_20260321T013539Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

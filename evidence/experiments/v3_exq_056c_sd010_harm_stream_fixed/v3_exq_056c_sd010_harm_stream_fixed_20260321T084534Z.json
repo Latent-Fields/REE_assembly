@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "alpha_world": 0.9,
+    "harm_eval_pearson_r_z_harm": 0.9136674645523338,
+    "harm_eval_pearson_r_z_world": 0.41692138434285536,
+    "r_delta_z_harm_minus_z_world": 0.49674608020947847,
+    "z_harm_variance_across_event_types": 0.008051166452105352,
+    "mean_harm_eval_z_harm_contact": 0.6699394687558665,
+    "mean_harm_eval_z_harm_none": 0.5471965387570772,
+    "ordinal_gap_contact_minus_none": 0.12274292999878933,
+    "n_contact_steps": 66.0,
+    "n_approach_steps": 1162.0,
+    "n_none_steps": 139.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 4.0,
+    "fatal_error_count": 0.0,
+    "harm_eval_z_harm_mean_hazard_approach": 0.6179461374545466,
+    "harm_eval_z_harm_mean_resource": 0.6271807002393823,
+    "harm_eval_z_harm_mean_none": 0.5471965387570772,
+    "harm_eval_z_harm_mean_agent_caused_hazard": 0.5418963889990535,
+    "harm_eval_z_harm_mean_env_caused_hazard": 0.7642870012082552
+  },
+  "summary_markdown": "# V3-EXQ-056c \u2014 SD-010 Harm Stream Fixed\n\n**Status:** PASS\n**Claims:** SD-010, ARC-027\n**World:** CausalGridWorldV2 (6 hazards, 3 resources)\n**Training:** 500 eps random  |  **Eval:** 100 eps random\n**Metric:** Pearson R (harm_eval vs harm_obs[12] normalized label)\n**alpha_world:** 0.9  (SD-008)  |  **Seed:** 0\n\n## Fixes vs EXQ-056\n\n1. **Label normalization**: harm_obs[12] (normalized center of hazard_field_view, \u2208 [0,1])\n   used for both training and eval. Raw hazard_field_at_agent was unbounded (>1), saturating\n   the Sigmoid head to 1.0 for all inputs.\n2. **Sigmoid removed**: harm_eval_z_harm_head is now a linear regression head. MSE with\n   [0,1] labels constrains outputs naturally.\n3. **Event-stratified replay buffer**: Separate circular buffers for none/approach/contact.\n   Each training batch samples equally from all non-empty buckets \u2014 prevents 85%\n   approach-dominated batches from collapsing the gradient.\n\n## Question\n\nDoes HarmEncoder(harm_obs \u2192 z_harm) produce a harm estimate that correlates\nwith actual hazard proximity better than the fused z_world encoder?\n\n## Results \u2014 Pearson R\n\n| Source | Pearson R (vs harm_obs[12]) |\n|---|---|\n| HarmEncoder \u2192 z_harm (SD-010) | 0.9137 |\n| z_world encoder (baseline)    | 0.4169 |\n| Difference (SD-010 advantage) | 0.4967 |\n\n**z_harm variance across event types:** 0.008051\n**n_contact_steps:** 66\n\n## harm_eval_z_harm by transition type\n\n| Type | Mean harm_eval_z_harm |\n|---|---|\n| agent_caused_hazard | 0.5419 |\n| env_caused_hazard | 0.7643 |\n| hazard_approach | 0.6179 |\n| none | 0.5472 |\n| resource | 0.6272 |\n\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_eval_pearson_r_z_harm > 0.30 | PASS | 0.9137 |\n| C2: R_z_harm > R_z_world + 0.10 (SD-010 adds value) | PASS | 0.9137 vs 0.4169+0.10 |\n| C3: mean_zh_contact > mean_zh_none + 0.05 (ordinal sep.) | PASS | 0.6699 vs 0.5472+0.05 (gap=0.1227) |\n| C4: n_contact_steps >= 30 (sufficient eval data) | PASS | 66 |\n\nCriteria met: 4/4 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "SD-010",
+    "ARC-027"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_056c_sd010_harm_stream_fixed",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260321T084534Z",
+  "claim": "SD-010",
+  "verdict": "PASS",
+  "run_id": "v3_exq_056c_sd010_harm_stream_fixed_20260321T084534Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

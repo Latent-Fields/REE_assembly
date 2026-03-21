@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "committed_elevated_count": 0.0,
+    "committed_not_elevated": 0.0,
+    "uncommitted_elevated": 0.0,
+    "uncommitted_not_elevated": 10000.0,
+    "committed_hold_concordance": 0.0,
+    "uncommitted_release_concordance": 1.0,
+    "hold_count": 0.0,
+    "propagation_count": 10350.0,
+    "n_committed_steps": 0.0,
+    "n_uncommitted_steps": 10000.0,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-049b -- MECH-090: Beta-Gated Policy Propagation (Fixed)\n\n**Status:** FAIL\n**Claim:** MECH-090 -- beta gate holds E3 policy output during committed action\n**Fix:** Routes through agent.select_action() instead of agent.e3.select() directly\n**alpha_world:** 0.9\n**Warmup:** 400 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Root Cause of EXQ-049 FAIL\n\nSame bug as EXQ-048: `agent.e3.select()` called directly, bypassing\n`agent.select_action()`. The `select_action()` method is the only code path that\ncalls `beta_gate.elevate()` and `beta_gate.propagate()`. Gate was never exercised.\n\n## Motivation\n\nMECH-090: When the agent is committed to a trajectory, BetaGate.is_elevated = True\nand propagate() returns None (policy output held). When uncommitted, gate releases.\nThis measures the concordance between commitment state and gate state.\n\nCommitted state read from: agent.e3._committed_trajectory is not None\nGate state read from: agent.beta_gate.is_elevated, agent.beta_gate.get_state()\n\n## Beta Gate Concordance\n\n| State | Count | Rate |\n|-------|-------|------|\n| committed + gate elevated (correct hold) | 0 | 0.000 |\n| committed + gate NOT elevated (unexpected) | 0 | 1.000 |\n| uncommitted + NOT elevated (correct release) | 10000 | 1.000 |\n| uncommitted + gate elevated (unexpected) | 0 | 0.000 |\n\n- hold_count (total gate holds): 0\n- propagation_count (total gate releases): 10350\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: committed_hold_concordance > 0.6 | FAIL | 0.000 |\n| C2: uncommitted_release_concordance > 0.5 | PASS | 1.000 |\n| C3: hold_count > 0 (gate holds) | FAIL | 0 |\n| C4: propagation_count > 0 (gate releases) | PASS | 10350 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: committed_hold_concordance=0.000 <= 0.6\n- C3 FAIL: hold_count=0 == 0\n",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_049b_mech090_beta_gate_fixed",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260320T234005Z",
+  "claim": "MECH-090",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_049b_mech090_beta_gate_fixed_20260320T234005Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

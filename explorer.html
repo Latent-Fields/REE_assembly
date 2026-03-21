@@ -115,6 +115,7 @@
       font-size: 13px;
       color: var(--muted);
       font-weight: 500;
+      white-space: nowrap;
       transition: color 0.1s, border-color 0.1s;
     }
 
@@ -447,16 +448,44 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 8px;
-      overflow: auto;
+      overflow: hidden;
       max-height: 520px;
       position: relative;
       min-height: 260px;
       max-width: 100%;
+      cursor: grab;
+      user-select: none;
     }
+
+    .graph-panel.dragging { cursor: grabbing; }
 
     .graph-panel svg {
       display: block;
+      transform-origin: 0 0;
+      will-change: transform;
     }
+
+    .graph-zoom-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin: 4px 0 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .graph-zoom-bar button {
+      font-size: 13px;
+      padding: 3px 9px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .graph-zoom-bar button:hover { background: var(--hover); }
+    .graph-zoom-bar .graph-zoom-level { font-size: 12px; color: var(--muted); min-width: 38px; text-align: center; }
 
     .graph-controls {
       display: flex;
@@ -1007,11 +1036,16 @@
 
     /* Hint icon replacing inline hint text */
     .triple-hint-icon {
-      font-size: 14px;
+      font-size: 11px;
       color: var(--muted);
       cursor: default;
       user-select: none;
       line-height: 1;
+      background: rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 6px;
+      white-space: nowrap;
     }
     .triple-hint-icon:focus-visible {
       outline: 1px dotted var(--muted);
@@ -1217,6 +1251,36 @@
       margin: 0 0 8px 0;
       font-size: 15px;
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gov-section h3::before {
+      content: '▾';
+      font-size: 11px;
+      color: var(--muted);
+      display: inline-block;
+      width: 12px;
+      transition: transform 0.15s;
+    }
+
+    .gov-section.collapsed h3::before { transform: rotate(-90deg); }
+    .gov-section.collapsed .gov-section-body { display: none; }
+
+    .gov-conflict-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      background: #e8542a;
+      color: #fff;
+      border-radius: 10px;
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: middle;
+      line-height: 1.5;
     }
 
     .gov-table {
@@ -1935,6 +1999,15 @@
 
     /* ── Experiment Runner view ── */
     .exp-wrap { padding: 20px 24px; max-width: 860px; }
+    .contrib-wrap { padding: 20px 24px; max-width: 900px; }
+    .contrib-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+    .contrib-stat { background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; min-width: 110px; }
+    .contrib-stat-val { font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+    .contrib-stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .contrib-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+    .contrib-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 4px 8px; border-bottom: 1px solid var(--border); }
+    .contrib-table td { padding: 6px 8px; border-bottom: 1px solid var(--bg-2); vertical-align: top; }
+    .contrib-table tr:last-child td { border-bottom: none; }
     .exp-section { margin-bottom: 28px; }
     .exp-section-title {
       font-size: 11px; font-weight: 700; text-transform: uppercase;
@@ -2104,8 +2177,9 @@
       <button id="docsViewBtn" class="view-btn">Docs</button>
       <button id="mapViewBtn" class="view-btn">Map</button>
       <button id="tripleViewBtn" class="view-btn">Triple View</button>
-      <button id="governanceViewBtn" class="view-btn">Governance</button>
+      <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments</button>
+      <button id="contribViewBtn" class="view-btn">Contributors</button>
     </nav>
     <div id="stats" class="stats" style="padding: 8px 0 6px 0;"></div>
     <div id="designStateBar" class="design-state-bar"></div>
@@ -2136,6 +2210,10 @@
         <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
           <input id="includeDeps" type="checkbox" checked style="width:auto;" />
           Include graph deps
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);" title="Show only claims with v3_pending=true or implementation_phase=v3">
+          <input id="v3PendingFilter" type="checkbox" style="width:auto;" />
+          V3 Pending only
         </label>
         <button id="clearFilters" class="primary" style="font-size:12px;padding:6px 10px;">✕ Clear Filters</button>
       </div>
@@ -2236,6 +2314,13 @@
               </div>
             </div>
           </div>
+          <div class="graph-zoom-bar">
+            <button id="graphZoomIn" title="Zoom in (Ctrl+Scroll)">＋</button>
+            <button id="graphZoomOut" title="Zoom out">－</button>
+            <button id="graphZoomReset" title="Reset zoom and pan">⌂ Reset</button>
+            <span class="graph-zoom-level" id="graphZoomLevel">100%</span>
+            <button id="graphExportSvg" title="Save graph as SVG file">↓ SVG</button>
+          </div>
           <div class="graph-panel" id="graphPanel"></div>
           <div class="graph-tooltip" id="graphTooltip"></div>
         </div>
@@ -2302,7 +2387,10 @@
           <div id="mapGrid" class="map-grid"></div>
         </div>
         <div id="governanceWrap" class="panel governance-wrap">
-          <div class="meta" id="governanceMeta">Governance cycle dashboard</div>
+          <div class="meta" id="governanceMeta" style="display:flex;align-items:center;justify-content:space-between">
+            <span>Governance cycle dashboard</span>
+            <button onclick="document.getElementById('draftGeneratorSection').scrollIntoView({behavior:'smooth'})" style="font-size:11px;padding:3px 9px;background:rgba(108,142,245,0.1);border:1px solid rgba(108,142,245,0.3);color:var(--accent);border-radius:5px;cursor:pointer" title="Jump to Draft Generator below">✏ Draft Decision ↓</button>
+          </div>
           <div class="gov-toolbar">
             <label title="Filter claim-centric governance tables to claims with current-epoch applicable evidence.">
               <input type="checkbox" id="govEpochOnly" checked />
@@ -2310,6 +2398,9 @@
             </label>
           </div>
           <div id="governanceContent" class="gov-empty">Loading governance agenda...</div>
+        </div>
+        <div id="contribWrap" class="panel contrib-wrap" style="display:none">
+          <div id="contribContent"><p style="color:var(--muted);font-size:13px">Loading contributor data…</p></div>
         </div>
         <div id="expWrap" class="exp-wrap" style="display:none">
           <div id="expContent"></div>
@@ -2374,7 +2465,7 @@
                 <button type="button" data-triple-zoom-in="static" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="static" title="Reset zoom">Reset</button>
                 <span id="tripleStaticZoomLabel" class="zoom-value">100%</span>
-                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">Scroll=pan · Ctrl+Scroll=zoom</span>
               </div>
               <div id="tripleStaticBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2399,7 +2490,7 @@
                 <button type="button" data-triple-zoom-in="typed" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="typed" title="Reset zoom">Reset</button>
                 <span id="tripleTypedZoomLabel" class="zoom-value">100%</span>
-                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">Scroll=pan · Ctrl+Scroll=zoom</span>
               </div>
               <div id="tripleTypedBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2424,7 +2515,7 @@
                 <button type="button" data-triple-zoom-in="episode" title="Zoom in">+</button>
                 <button type="button" data-triple-zoom-reset="episode" title="Reset zoom">Reset</button>
                 <span id="tripleEpisodeZoomLabel" class="zoom-value">100%</span>
-                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">&#9432;</span>
+                <span class="triple-hint-icon" tabindex="0" title="Scroll to pan. Hold Ctrl or Cmd and scroll to zoom.">Scroll=pan · Ctrl+Scroll=zoom</span>
               </div>
               <div id="tripleEpisodeBody" class="triple-body">
                 <div class="meta">Not loaded.</div>
@@ -2456,7 +2547,7 @@
       </div>
     </section>
 
-    <section class="drafts">
+    <section class="drafts" id="draftGeneratorSection">
       <div class="panel">
         <h2 style="margin-top:0; font-family: Iowan Old Style, Palatino, serif;">Draft Generator</h2>
         <div class="draft-tabs">
@@ -2935,6 +3026,9 @@ END CONFLICT RESOLUTION`;
       tripleViewBtn: document.getElementById('tripleViewBtn'),
       governanceViewBtn: document.getElementById('governanceViewBtn'),
       experimentsViewBtn: document.getElementById('experimentsViewBtn'),
+      contribViewBtn: document.getElementById('contribViewBtn'),
+      contribWrap: document.getElementById('contribWrap'),
+      contribContent: document.getElementById('contribContent'),
       expWrap: document.getElementById('expWrap'),
       expContent: document.getElementById('expContent'),
       tripleStatus: document.getElementById('tripleStatus'),
@@ -2945,6 +3039,7 @@ END CONFLICT RESOLUTION`;
       mapGovernanceOnly: document.getElementById('mapGovernanceOnly'),
       govEpochOnly: document.getElementById('govEpochOnly'),
       includeDeps: document.getElementById('includeDeps'),
+      v3PendingFilter: document.getElementById('v3PendingFilter'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
       designStateBar: document.getElementById('designStateBar'),
@@ -3011,6 +3106,9 @@ END CONFLICT RESOLUTION`;
     let tripleViewLoaded = false;
     let tripleViewLoading = false;
     const tripleZoomState = new Map();
+    let graphZoom = { scale: 1, tx: 0, ty: 0 };
+    let graphDrag = { active: false, lastX: 0, lastY: 0 };
+    let filterRestoredFromStorage = false;
     const tripleDiagramModel = new Map();
     const tripleInteractiveIndex = new Map();
     let tripleLatestEpoch = '';
@@ -3751,8 +3849,19 @@ END CONFLICT RESOLUTION`;
           if (lens === 'governance_heat') {
             const b = document.createElement('span');
             b.className = 'map-badge';
-            b.textContent = `${Math.round(entry.pressure)}`;
-            b.title = `Governance pressure score: ${entry.pressure.toFixed(2)}`;
+            b.textContent = `${entry.pressure.toFixed(1)}`;
+            const signals = governanceAgenda && (governanceAgenda.signals || {});
+            const inDecision = signals.decision_claims && signals.decision_claims.includes(c.id);
+            const inCreative = signals.creative_claims && signals.creative_claims.includes(c.id);
+            const inConflict = signals.conflict_claims && signals.conflict_claims.includes(c.id);
+            b.title = [
+              `Pressure: ${entry.pressure.toFixed(2)}`,
+              `Formula: decision×2.0 + creative×1.6 + conflict×1.4 + conflict_ratio×1.5 + stale_bonus×0.6`,
+              inDecision ? '✓ In decision queue (+2.0)' : '',
+              inCreative ? '✓ Creative/design signal (+1.6)' : '',
+              inConflict ? '✓ Conflict queue (+1.4)' : '',
+              `Click chip to select claim`,
+            ].filter(Boolean).join('\n');
             badges.appendChild(b);
           }
           if (badges.childNodes.length) chip.appendChild(badges);
@@ -4527,9 +4636,38 @@ END CONFLICT RESOLUTION`;
       }
       governanceLoadedAt = new Date().toISOString();
       governanceLoading = false;
+      updateGovConflictBadge();
       if (currentView === 'governance') renderGovernance();
       if (currentView === 'map') renderMap();
       refreshTripleAnnotationsFromCurrentFilters();
+    }
+
+    function updateGovConflictBadge() {
+      const badge = document.getElementById('govConflictBadge');
+      if (!badge || !governanceAgenda) return;
+      const agenda = governanceAgenda;
+      let conflictCount = 0;
+      let decisionCount = 0;
+      try {
+        const items = agenda.items || agenda.governance_items || [];
+        items.forEach(item => {
+          const rec = (item.recommendation || item.decision_needed || '').toLowerCase();
+          if (rec.includes('conflict') || rec.includes('resolve')) conflictCount++;
+          if (item.decision_needed || item.decision_status === 'pending_user') decisionCount++;
+        });
+        // Also count from agenda signals if present
+        const signals = agenda.signals || {};
+        if (signals.conflict_claims) conflictCount = Math.max(conflictCount, (signals.conflict_claims || []).length);
+        if (signals.decision_claims) decisionCount = Math.max(decisionCount, (signals.decision_claims || []).length);
+      } catch (_) {}
+      const total = conflictCount + decisionCount;
+      if (total > 0) {
+        badge.textContent = total;
+        badge.title = `${conflictCount} conflict(s), ${decisionCount} decision(s) pending`;
+        badge.style.display = '';
+      } else {
+        badge.style.display = 'none';
+      }
     }
 
     function renderGovernance() {
@@ -4862,6 +5000,7 @@ END CONFLICT RESOLUTION`;
       wireGovernanceCommandButtons();
       wireRunButtons();
       wireGovernanceDecisionInbox();
+      wireGovAccordion();
     }
 
     function populateDocSelect(filterText) {
@@ -5559,6 +5698,13 @@ END CONFLICT RESOLUTION`;
         container.scrollLeft = Math.max(0, focusX * nextScale - container.clientWidth / 2);
         container.scrollTop = Math.max(0, focusY * nextScale - container.clientHeight / 2);
       }
+
+      // Persist zoom+scroll state
+      try {
+        const persisted = JSON.parse(localStorage.getItem('ree_explorer.triple_zoom.v1') || '{}');
+        persisted[spec.id] = { scale: nextScale, scrollLeft: container.scrollLeft, scrollTop: container.scrollTop };
+        localStorage.setItem('ree_explorer.triple_zoom.v1', JSON.stringify(persisted));
+      } catch (_) {}
     }
 
     function tripleNodeCounts(anno) {
@@ -6307,7 +6453,15 @@ END CONFLICT RESOLUTION`;
       }
 
       const previous = tripleZoomState.get(spec.id);
-      const initialScale = previous && typeof previous.scale === 'number' ? previous.scale : 1;
+      let initialScale = previous && typeof previous.scale === 'number' ? previous.scale : 1;
+      let savedScroll = null;
+      try {
+        const persisted = JSON.parse(localStorage.getItem('ree_explorer.triple_zoom.v1') || '{}');
+        if (persisted[spec.id]) {
+          if (typeof persisted[spec.id].scale === 'number') initialScale = persisted[spec.id].scale;
+          savedScroll = { left: persisted[spec.id].scrollLeft || 0, top: persisted[spec.id].scrollTop || 0 };
+        }
+      } catch (_) {}
       tripleZoomState.set(spec.id, {
         container,
         svg,
@@ -6320,6 +6474,12 @@ END CONFLICT RESOLUTION`;
       attachTriplePanHandlers(spec, container);
       setTripleControlState(spec, true);
       setTripleZoom(spec, initialScale, false);
+      if (savedScroll) {
+        requestAnimationFrame(() => {
+          container.scrollLeft = savedScroll.left;
+          container.scrollTop = savedScroll.top;
+        });
+      }
     }
 
     function renderTripleSourceFallback(spec, container, mmdText, reason) {
@@ -6344,7 +6504,17 @@ END CONFLICT RESOLUTION`;
       container.innerHTML = '';
       const note = document.createElement('div');
       note.className = 'meta';
-      note.textContent = `${spec.label}: unable to load SVG or Mermaid source (${errorText}).`;
+      note.textContent = `${spec.label}: unable to load SVG or Mermaid source (${errorText}). `;
+      const retryBtn = document.createElement('button');
+      retryBtn.textContent = '↺ Retry';
+      retryBtn.style.cssText = 'font-size:12px;padding:2px 8px;cursor:pointer;margin-left:6px;';
+      retryBtn.addEventListener('click', async () => {
+        retryBtn.disabled = true;
+        retryBtn.textContent = 'Retrying…';
+        await loadTripleDiagram(spec);
+        applyTripleAnnotationsAll();
+      });
+      note.appendChild(retryBtn);
       container.appendChild(note);
       container.classList.remove('zoomable', 'dragging');
       tripleZoomState.delete(spec.id);
@@ -6613,11 +6783,13 @@ END CONFLICT RESOLUTION`;
       const type = els.typeFilter.value;
       const status = els.statusFilter.value;
       const subjectTerm = (els.subjectFilter.value || '').trim().toLowerCase();
+      const v3Only = els.v3PendingFilter && els.v3PendingFilter.checked;
 
       return allClaims.filter(c => {
         if (type && c.type !== type) return false;
         if (status && c.status !== status) return false;
         if (subjectTerm && !c.subject.toLowerCase().includes(subjectTerm)) return false;
+        if (v3Only && !c.v3_pending && c.implementation_phase !== 'v3') return false;
         if (term) {
           const hay = `${c.id} ${c.subject} ${c.type} ${c.status}`.toLowerCase();
           if (!hay.includes(term)) return false;
@@ -6642,8 +6814,9 @@ END CONFLICT RESOLUTION`;
         tr.dataset.id = c.id;
         if (selectedId === c.id) tr.classList.add('selected');
         const conflicts = conflictsMap[c.id] || [];
+        const eqnTitle = c.evidence_quality_note ? ` title="${c.evidence_quality_note.replace(/"/g, '&quot;')}"` : '';
         tr.innerHTML = `
-          <td class="status-${c.status}"><span class="badge">${c.id}</span></td>
+          <td class="status-${c.status}"${eqnTitle}><span class="badge">${c.id}</span>${c.evidence_quality_note ? ' <span style="font-size:10px;color:var(--muted)" title="Evidence quality note — hover for details">⚠</span>' : ''}</td>
           <td><span class="badge type-${c.type}">${c.type}</span></td>
           <td>${c.status}</td>
           <td>${c.subject || '-'}</td>
@@ -7463,6 +7636,7 @@ END CONFLICT RESOLUTION`;
         els.graphPanel.appendChild(tooltipNode);
       }
       els.graphPanel.insertAdjacentHTML('beforeend', svgParts.join('\\n'));
+      applyGraphZoom();
 
       els.graphPanel.querySelectorAll('.node').forEach(node => {
         node.addEventListener('click', () => {
@@ -7534,7 +7708,8 @@ END CONFLICT RESOLUTION`;
       if (els.mapWrap) els.mapWrap.style.display = 'none';
       if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'none';
       if (els.governanceWrap) els.governanceWrap.style.display = 'none';
-      if (els.expWrap) els.expWrap.style.display = 'none';
+      if (els.expWrap) { els.expWrap.style.display = 'none'; els.expWrap.style.gridColumn = ''; }
+      if (els.contribWrap) els.contribWrap.style.display = 'none';
       stopExpRefresh();
       hideTripleTooltip();
     }
@@ -7580,10 +7755,17 @@ END CONFLICT RESOLUTION`;
       }
 
       if (view === 'experiments') {
-        if (els.expWrap) els.expWrap.style.display = 'block';
+        if (els.expWrap) { els.expWrap.style.display = 'block'; els.expWrap.style.gridColumn = '1 / -1'; }
         setPrimaryViewButton(els.experimentsViewBtn);
         renderExperiments();
         startExpRefresh();
+        return;
+      }
+
+      if (view === 'contributors') {
+        if (els.contribWrap) els.contribWrap.style.display = 'block';
+        setPrimaryViewButton(els.contribViewBtn);
+        renderContributors();
         return;
       }
 
@@ -7604,6 +7786,152 @@ END CONFLICT RESOLUTION`;
 
     function stopExpRefresh() {
       if (expRefreshTimer) { clearInterval(expRefreshTimer); expRefreshTimer = null; }
+    }
+
+    // ── Contributors dashboard ───────────────────────────────────────────────
+
+    async function renderContributors() {
+      if (!els.contribContent) return;
+      let d;
+      try {
+        const r = await fetch('/api/contributions?t=' + Date.now());
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        d = await r.json();
+      } catch (e) {
+        els.contribContent.innerHTML = `<p style="color:var(--error);font-size:13px">
+          Could not load contributions data: ${e.message}.<br>
+          Run <code>python3 contributors/build_contributions.py</code> from REE_assembly root,
+          or run a full <code>bash scripts/governance.sh</code>.</p>`;
+        return;
+      }
+
+      const fmt = (n, dec=1) => n == null ? '?' : Number(n).toFixed(dec);
+      const pct = (n) => n == null ? '?' : Math.round(n * 100) + '%';
+
+      // ── Compute section ──────────────────────────────────────────────────
+      const comp = d.compute || {};
+      const totals = comp.totals || {};
+      const cm = comp.cost_model || {};
+      const machines = comp.machines || {};
+      const machineRows = Object.entries(machines).map(([hostname, m]) => {
+        const totalW = (m.tdp_watts || 0) + (m.gpu_watts || 0);
+        return `<tr>
+          <td style="font-weight:600">${m.display_name || hostname}</td>
+          <td>${m.owner || '—'}</td>
+          <td>${m.hardware || '—'}</td>
+          <td style="text-align:right">${fmt(m.total_cpu_hours, 1)}h</td>
+          <td style="text-align:right">${m.total_experiments || 0}</td>
+          <td style="text-align:right">${totalW}W</td>
+          <td style="text-align:right">€${fmt(m.estimated_electricity_cost_eur, 2)}</td>
+          <td style="text-align:right">$${fmt(m.estimated_cloud_equivalent_cost_usd, 2)}</td>
+        </tr>`;
+      }).join('');
+
+      // ── Decisions section ────────────────────────────────────────────────
+      const dec = d.decisions || {};
+      const decContribs = dec.contributors || {};
+      const decLocked = dec.governance_authority || null;
+      const decLegitimate = dec.legitimate_decisions != null ? dec.legitimate_decisions : dec.total_governance_decisions;
+      const decRows = Object.entries(decContribs).map(([name, dc]) => {
+        const invalid = dc.validity_note ? ' <span style="color:var(--error);font-size:11px">(invalid)</span>' : '';
+        const countStr = dc.validity_note ? `<span style="color:var(--muted);text-decoration:line-through">${dc.decisions}</span>` : dc.decisions;
+        const propStr = dc.validity_note ? '<span style="color:var(--muted)">0%</span>' : pct(dc.proportion);
+        return `<tr>
+          <td style="font-weight:600">${name}${invalid}</td>
+          <td style="text-align:right">${countStr}</td>
+          <td style="text-align:right">${propStr}</td>
+          ${dc.validity_note ? `<td style="font-size:11px;color:var(--error)">${dc.validity_note}</td>` : `<td style="font-size:11px;color:var(--muted)">${dc.note || '—'}</td>`}
+        </tr>`;
+      }).join('');
+
+      // ── Coding section ───────────────────────────────────────────────────
+      const coding = d.coding || {};
+      const declared = coding.declared_estimates || {};
+      const gitContribs = coding.contributors || {};
+
+      const barRow = (label, proportion, note, isGit) => {
+        const p = proportion == null ? 0 : proportion;
+        const pctVal = Math.round(p * 100);
+        const barW = Math.max(2, pctVal);
+        const barColor = label.includes('Claude') ? 'var(--accent)' :
+                         label.includes('ChatGPT') || label.includes('Codex') ? '#b45a2a' : 'var(--muted)';
+        return `<div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+            <span style="font-size:13px;font-weight:600">${label}</span>
+            <span style="font-size:13px;color:var(--muted)">${proportion == null ? 'not set' : pctVal + '%'}</span>
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden">
+            <div style="width:${barW}%;height:100%;background:${barColor};border-radius:4px;transition:width 0.3s"></div>
+          </div>
+          ${note ? `<div style="font-size:11px;color:var(--muted);margin-top:3px">${note}</div>` : ''}
+        </div>`;
+      };
+
+      const declaredBars = Object.entries(declared).map(([name, dc]) =>
+        barRow(name, dc.proportion, dc.note, false)
+      ).join('');
+
+      const gitBars = Object.entries(gitContribs).map(([name, gc]) =>
+        barRow(name, gc.proportion_by_commits, `${gc.commits} commits`, true)
+      ).join('');
+
+      // ── Intellectual direction ───────────────────────────────────────────
+      const intDir = d.intellectual_direction || {};
+      const intContribs = intDir.contributors || {};
+      const scopeItems = Object.entries(intContribs).map(([name, ic]) => {
+        const scope = (ic.scope || []).map(s => `<li style="margin-bottom:4px">${s}</li>`).join('');
+        return `<div style="margin-bottom:8px">
+          <div style="font-weight:600;font-size:13px">${name} — ${pct(ic.proportion)}</div>
+          <ul style="margin:6px 0 0 16px;font-size:12px;color:var(--muted)">${scope}</ul>
+        </div>`;
+      }).join('');
+
+      // ── Assemble panel ───────────────────────────────────────────────────
+      const updatedAt = d.last_updated ? d.last_updated.slice(0, 10) : '?';
+      els.contribContent.innerHTML = `
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px">
+          <h2 style="font-size:15px;font-weight:700;color:var(--ink)">Project Contributors</h2>
+          <span style="font-size:11px;color:var(--muted)">Last rebuilt: ${updatedAt} · <a href="/contribute" style="color:var(--accent)">Setup page ↗</a></span>
+        </div>
+
+        <div class="contrib-section-title">Compute</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px">
+          <div class="contrib-stat"><div class="contrib-stat-val">${fmt(totals.cpu_hours, 1)}h</div><div class="contrib-stat-lbl">CPU-hours</div></div>
+          <div class="contrib-stat"><div class="contrib-stat-val">${totals.experiments || 0}</div><div class="contrib-stat-lbl">Experiments run</div></div>
+          <div class="contrib-stat"><div class="contrib-stat-val">€${fmt(Object.values(machines).reduce((s,m)=>s+(m.estimated_electricity_cost_eur||0),0), 2)}</div><div class="contrib-stat-lbl">Electricity (${cm.electricity_rate_currency || 'EUR'})</div></div>
+          <div class="contrib-stat"><div class="contrib-stat-val">$${fmt(Object.values(machines).reduce((s,m)=>s+(m.estimated_cloud_equivalent_cost_usd||0),0), 2)}</div><div class="contrib-stat-lbl">Cloud equiv (${cm.cloud_instance || 'AWS'})</div></div>
+        </div>
+        <table class="contrib-table">
+          <thead><tr><th>Machine</th><th>Owner</th><th>Hardware</th><th>CPU-hrs</th><th>Experiments</th><th>TDP</th><th>Elec.</th><th>Cloud</th></tr></thead>
+          <tbody>${machineRows || '<tr><td colspan="8" style="color:var(--muted)">No machine data yet</td></tr>'}</tbody>
+        </table>
+
+        <div class="contrib-section-title" style="margin-top:20px">Governance Decisions</div>
+        ${decLocked ? `<div style="background:rgba(180,90,42,0.08);border:1px solid rgba(180,90,42,0.3);border-radius:6px;padding:7px 11px;font-size:12px;color:#c47a3a;margin-bottom:8px">🔒 ${decLocked}</div>` : ''}
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Legitimate decisions: <strong style="color:var(--ink)">${decLegitimate}</strong> of ${dec.total_governance_decisions || '?'} logged entries. Source: decision_log.v1.jsonl.</div>
+        <table class="contrib-table">
+          <thead><tr><th>Contributor</th><th>Decisions</th><th>Proportion</th><th>Notes</th></tr></thead>
+          <tbody>${decRows || '<tr><td colspan="4" style="color:var(--muted)">No decision data</td></tr>'}</tbody>
+        </table>
+
+        <div class="contrib-section-title" style="margin-top:20px">Coding Attribution</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px">
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:10px">Declared estimates</div>
+            ${declaredBars || '<p style="font-size:12px;color:var(--muted)">Not yet declared — edit declared_estimates in contributors/contributions.json</p>'}
+            <div style="font-size:11px;color:var(--muted);margin-top:6px;font-style:italic">${coding._note || ''}</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:10px">Git analysis (by commits)</div>
+            ${gitBars}
+            <div style="font-size:11px;color:var(--muted);margin-top:6px;font-style:italic">${coding.notes || ''}</div>
+          </div>
+        </div>
+
+        <div class="contrib-section-title" style="margin-top:20px">Intellectual Direction</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px">${intDir.note || ''}</div>
+        ${scopeItems || '<p style="font-size:12px;color:var(--muted)">No intellectual direction data</p>'}
+      `;
     }
 
     function fmtMinutes(mins) {
@@ -7756,6 +8084,8 @@ END CONFLICT RESOLUTION`;
             ${expBadgeHtml(qi.status)}
             ${versionChipHtml(inferVersion(qi))}
             <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
+            ${qi.machine_affinity && qi.machine_affinity !== 'any' ? `<span class="exp-timing" title="Machine affinity">🖥 ${escapeHtml(qi.machine_affinity)}</span>` : ''}
+            ${qi.claimed_by && qi.claimed_by.machine ? `<span class="exp-timing" style="color:var(--accent)" title="Currently claimed by">⚙ ${escapeHtml(qi.claimed_by.machine)}</span>` : ''}
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
           ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
@@ -8182,13 +8512,199 @@ END CONFLICT RESOLUTION`;
       URL.revokeObjectURL(url);
     }
 
+    // ── Graph pan/zoom helpers ─────────────────────────────────────────────
+
+    function applyGraphZoom() {
+      const svg = els.graphPanel && els.graphPanel.querySelector('svg');
+      if (!svg) return;
+      svg.style.transform = `translate(${graphZoom.tx}px,${graphZoom.ty}px) scale(${graphZoom.scale})`;
+      const lvl = document.getElementById('graphZoomLevel');
+      if (lvl) lvl.textContent = Math.round(graphZoom.scale * 100) + '%';
+      try { localStorage.setItem('ree_explorer.graph_zoom.v1', JSON.stringify(graphZoom)); } catch (_) {}
+    }
+
+    function setGraphZoom(scale, cx, cy) {
+      const panel = els.graphPanel;
+      if (!panel) return;
+      const oldScale = graphZoom.scale;
+      const newScale = Math.max(0.2, Math.min(4, scale));
+      if (cx != null && cy != null) {
+        // zoom toward cursor: adjust tx/ty so point under cursor stays fixed
+        const rect = panel.getBoundingClientRect();
+        const px = cx - rect.left; // cursor relative to panel
+        const py = cy - rect.top;
+        graphZoom.tx = px - (px - graphZoom.tx) * (newScale / oldScale);
+        graphZoom.ty = py - (py - graphZoom.ty) * (newScale / oldScale);
+      }
+      graphZoom.scale = newScale;
+      applyGraphZoom();
+    }
+
+    function wireGraphZoomPan() {
+      const panel = els.graphPanel;
+      if (!panel) return;
+
+      // Restore saved zoom state
+      try {
+        const saved = JSON.parse(localStorage.getItem('ree_explorer.graph_zoom.v1') || 'null');
+        if (saved && typeof saved.scale === 'number') {
+          graphZoom.scale = saved.scale;
+          graphZoom.tx = saved.tx || 0;
+          graphZoom.ty = saved.ty || 0;
+        }
+      } catch (_) {}
+
+      panel.addEventListener('wheel', (e) => {
+        if (!e.ctrlKey && !e.metaKey) return; // plain scroll: allow normal scroll, only zoom with Ctrl
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        setGraphZoom(graphZoom.scale * delta, e.clientX, e.clientY);
+      }, { passive: false });
+
+      panel.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        graphDrag.active = true;
+        graphDrag.lastX = e.clientX;
+        graphDrag.lastY = e.clientY;
+        panel.classList.add('dragging');
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!graphDrag.active) return;
+        graphZoom.tx += e.clientX - graphDrag.lastX;
+        graphZoom.ty += e.clientY - graphDrag.lastY;
+        graphDrag.lastX = e.clientX;
+        graphDrag.lastY = e.clientY;
+        applyGraphZoom();
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!graphDrag.active) return;
+        graphDrag.active = false;
+        if (els.graphPanel) els.graphPanel.classList.remove('dragging');
+      });
+
+      const zoomIn = document.getElementById('graphZoomIn');
+      const zoomOut = document.getElementById('graphZoomOut');
+      const zoomReset = document.getElementById('graphZoomReset');
+      const exportBtn = document.getElementById('graphExportSvg');
+
+      if (zoomIn) zoomIn.addEventListener('click', () => setGraphZoom(graphZoom.scale * 1.2));
+      if (zoomOut) zoomOut.addEventListener('click', () => setGraphZoom(graphZoom.scale / 1.2));
+      if (zoomReset) zoomReset.addEventListener('click', () => {
+        graphZoom = { scale: 1, tx: 0, ty: 0 };
+        applyGraphZoom();
+      });
+      if (exportBtn) exportBtn.addEventListener('click', () => {
+        const svg = els.graphPanel && els.graphPanel.querySelector('svg');
+        if (!svg) return;
+        // Export at natural scale (reset transform for export)
+        const prevTransform = svg.style.transform;
+        svg.style.transform = '';
+        const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+        svg.style.transform = prevTransform;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'ree_graph.svg';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    // ── Governance section accordion ──────────────────────────────────────
+
+    function wireGovAccordion() {
+      const GOV_COLLAPSE_KEY = 'ree_explorer.gov_sections_collapsed.v1';
+      let collapsedSections;
+      try { collapsedSections = new Set(JSON.parse(localStorage.getItem(GOV_COLLAPSE_KEY) || '[]')); }
+      catch (_) { collapsedSections = new Set(); }
+
+      function saveCollapsed() {
+        try { localStorage.setItem(GOV_COLLAPSE_KEY, JSON.stringify([...collapsedSections])); } catch (_) {}
+      }
+
+      document.querySelectorAll('.gov-section').forEach((section, idx) => {
+        const h3 = section.querySelector('h3');
+        if (!h3) return;
+        const sectionId = section.id || ('gov-auto-' + idx);
+        if (!section.id) section.id = sectionId;
+
+        // Wrap content after h3 in a collapsible body div
+        const children = Array.from(section.childNodes).filter(n => n !== h3);
+        const body = document.createElement('div');
+        body.className = 'gov-section-body';
+        children.forEach(c => body.appendChild(c));
+        section.appendChild(body);
+
+        if (collapsedSections.has(sectionId)) section.classList.add('collapsed');
+
+        h3.addEventListener('click', () => {
+          const collapsed = section.classList.toggle('collapsed');
+          if (collapsed) collapsedSections.add(sectionId);
+          else collapsedSections.delete(sectionId);
+          saveCollapsed();
+        });
+      });
+    }
+
+    // ── Draft input autosave ──────────────────────────────────────────────
+
+    function initDraftAutosave() {
+      const DRAFT_AUTOSAVE_KEY = 'ree_explorer.draft_inputs.v1';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(DRAFT_AUTOSAVE_KEY) || '{}'); } catch (_) { return {}; }
+      }
+      function save(key, val) {
+        try {
+          const d = load(); d[key] = val;
+          localStorage.setItem(DRAFT_AUTOSAVE_KEY, JSON.stringify(d));
+        } catch (_) {}
+      }
+      const saved = load();
+      const thoughtInput = document.getElementById('thoughtInput');
+      const conflictRefs = document.getElementById('conflictRefs');
+      const conflictDecision = document.getElementById('conflictDecision');
+      if (thoughtInput) { if (saved.thoughtInput) thoughtInput.value = saved.thoughtInput; thoughtInput.addEventListener('input', () => save('thoughtInput', thoughtInput.value)); }
+      if (conflictRefs) { if (saved.conflictRefs) conflictRefs.value = saved.conflictRefs; conflictRefs.addEventListener('input', () => save('conflictRefs', conflictRefs.value)); }
+      if (conflictDecision) { if (saved.conflictDecision) conflictDecision.value = saved.conflictDecision; conflictDecision.addEventListener('input', () => save('conflictDecision', conflictDecision.value)); }
+    }
+
+    // ── Filter state localStorage ──────────────────────────────────────────
+
+    function saveFilterStateToStorage() {
+      try {
+        const state = {
+          search: els.search.value,
+          type: els.typeFilter.value,
+          status: els.statusFilter.value,
+          subject: els.subjectFilter.value,
+          v3Pending: els.v3PendingFilter ? els.v3PendingFilter.checked : false,
+        };
+        localStorage.setItem('ree_explorer.filters.v1', JSON.stringify(state));
+      } catch (_) {}
+    }
+
+    function loadFilterStateFromStorage() {
+      try {
+        const raw = localStorage.getItem('ree_explorer.filters.v1');
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        if (typeof state.search === 'string') els.search.value = state.search;
+        if (state.type && Array.from(els.typeFilter.options).some(o => o.value === state.type)) els.typeFilter.value = state.type;
+        if (state.status && Array.from(els.statusFilter.options).some(o => o.value === state.status)) els.statusFilter.value = state.status;
+        if (typeof state.subject === 'string') els.subjectFilter.value = state.subject;
+        if (els.v3PendingFilter && state.v3Pending) els.v3PendingFilter.checked = true;
+      } catch (_) {}
+    }
+
     function wireEvents() {
       ['input', 'change'].forEach(evt => {
-        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
-        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
-        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
-        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); });
+        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
+        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
+        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
+        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); refreshTripleAnnotationsFromCurrentFilters(); saveFilterStateToStorage(); });
         els.includeDeps.addEventListener(evt, () => renderGraph());
+        if (els.v3PendingFilter) els.v3PendingFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
       });
 
 
@@ -8197,6 +8713,8 @@ END CONFLICT RESOLUTION`;
         els.typeFilter.value = '';
         els.statusFilter.value = '';
         els.subjectFilter.value = '';
+        if (els.v3PendingFilter) els.v3PendingFilter.checked = false;
+        saveFilterStateToStorage();
         renderTable();
         renderGraph();
         renderMap();
@@ -8219,6 +8737,9 @@ END CONFLICT RESOLUTION`;
       }
       if (els.experimentsViewBtn) {
         els.experimentsViewBtn.addEventListener('click', () => setView('experiments'));
+      }
+      if (els.contribViewBtn) {
+        els.contribViewBtn.addEventListener('click', () => setView('contributors'));
       }
       if (els.tripleReloadBtn) {
         els.tripleReloadBtn.addEventListener('click', () => {
@@ -8258,16 +8779,24 @@ END CONFLICT RESOLUTION`;
         if (e.key === 'Escape' && tripleFullscreenActive) { closeTripleFullscreen(); e.stopPropagation(); }
       });
 
-      // Collapse/expand grid
+      // Collapse/expand grid (with localStorage persistence)
       const tripleCollapseBtn = document.getElementById('tripleCollapseBtn');
       const tripleGrid = document.querySelector('#tripleViewWrap .triple-grid');
-      let tripleGridCollapsed = false;
+      let tripleGridCollapsed = localStorage.getItem('ree_explorer.triple_collapsed.v1') === '1';
+      function applyTripleCollapse() {
+        if (!tripleGrid) return;
+        tripleGrid.style.display = tripleGridCollapsed ? 'none' : '';
+        if (tripleCollapseBtn) {
+          tripleCollapseBtn.innerHTML = tripleGridCollapsed ? '&#9656; Expand' : '&#9662; Collapse';
+          tripleCollapseBtn.title = tripleGridCollapsed ? 'Expand diagrams' : 'Collapse diagrams';
+        }
+      }
+      applyTripleCollapse(); // restore on load
       if (tripleCollapseBtn && tripleGrid) {
         tripleCollapseBtn.addEventListener('click', () => {
           tripleGridCollapsed = !tripleGridCollapsed;
-          tripleGrid.style.display = tripleGridCollapsed ? 'none' : '';
-          tripleCollapseBtn.innerHTML = tripleGridCollapsed ? '&#9656; Expand' : '&#9662; Collapse';
-          tripleCollapseBtn.title = tripleGridCollapsed ? 'Expand diagrams' : 'Collapse diagrams';
+          try { localStorage.setItem('ree_explorer.triple_collapsed.v1', tripleGridCollapsed ? '1' : '0'); } catch (_) {}
+          applyTripleCollapse();
         });
       }
 
@@ -8396,7 +8925,12 @@ END CONFLICT RESOLUTION`;
       buildStats();
       populateFilters();
       renderPickers();
-      restoreFilterState(filterState);
+      if (!filterRestoredFromStorage) {
+        loadFilterStateFromStorage(); // restore from localStorage on first load (options now populated)
+        filterRestoredFromStorage = true;
+      } else {
+        restoreFilterState(filterState); // subsequent refreshes: preserve in-memory state
+      }
       renderTable();
       setView(previousView || 'experiments');
       renderMap();
@@ -8434,9 +8968,11 @@ END CONFLICT RESOLUTION`;
         initDraftTabs();
         setupDraftActions();
         wireEvents();
+        wireGraphZoomPan();
         bindTripleControls();
         initLegendToggles();
         updateWorksetUI();
+        initDraftAutosave();
         initialized = true;
       }
 

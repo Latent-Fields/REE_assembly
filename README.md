@@ -39,6 +39,21 @@ If you are operating Codex/automation against this repo, also read `docs/README.
   - `sources/jepa/evidence_anchors.md`
 - Canonical updates in this repo are packet-first via convergence intake and explicit adjudication.
 
+## Contribute Compute
+
+Members of the Latent-Fields organisation can donate idle machine time to run REE experiments.
+
+**Setup page:** [`contribute.html`](https://latent-fields.github.io/REE_assembly/contribute.html)
+— auto-detects your hardware, generates OS-specific setup commands (low CPU priority by default).
+
+**Contribution ledger:** [`contributors/contributions.json`](contributors/contributions.json)
+— tracks compute hours, governance decision authorship, and coding attribution across all contributors.
+Rebuilt automatically each governance cycle (`bash scripts/governance.sh`).
+
+To request Latent-Fields org membership: <https://github.com/orgs/Latent-Fields/teams>
+
+---
+
 ## Architecture Snapshot (Plain Language)
 
 - **E1**: slower, long-horizon predictive integration.

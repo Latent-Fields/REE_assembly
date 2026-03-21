@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "committed_elevated_count": 10000.0,
+    "committed_not_elevated": 0.0,
+    "uncommitted_elevated": 0.0,
+    "uncommitted_not_elevated": 0.0,
+    "committed_hold_concordance": 1.0,
+    "uncommitted_release_concordance": 0.0,
+    "hold_count": 10347.0,
+    "propagation_count": 3.0,
+    "n_committed_steps": 10000.0,
+    "n_uncommitted_steps": 0.0,
+    "mean_running_variance": 2.5441495584987e-06,
+    "final_running_variance": 2.5441495584987e-06,
+    "mean_committed_fraction_train": 0.9997375,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-049d -- MECH-090: Beta-Gated Policy Propagation (chicken-and-egg fix)\n\n**Status:** FAIL\n**Claim:** MECH-090 -- beta gate holds E3 policy output during committed action\n**Fix 1:** Direct update_running_variance(wf_err) after world_forward loss \u2014 breaks _committed_trajectory deadlock\n**Fix 2:** is_committed = _running_variance < commit_threshold (not _committed_trajectory probe)\n**Prior attempts:** EXQ-049/049b (gate not wired), EXQ-049c (post_action_update still stuck in deadlock)\n**alpha_world:** 0.9\n**Warmup:** 400 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Root Cause Chain\n\n1. **EXQ-049**: `agent.e3.select()` bypassed \u2192 gate never wired\n2. **EXQ-049b**: gate wired, `post_action_update` missing \u2192 variance frozen\n3. **EXQ-049c**: `post_action_update` called, but its own `_committed_trajectory` guard\n   re-creates the deadlock \u2014 variance still never moves\n4. **EXQ-049d**: `update_running_variance(wf_err)` called directly \u2192 deadlock broken\n\n## Training Diagnostics\n\n| Metric | Value |\n|--------|-------|\n| final_running_variance (post-train) | 0.0000 |\n| mean_committed_fraction (train) | 1.000 |\n| commit_threshold | 0.400 |\n\n## Beta Gate Concordance\n\n| State | Count | Rate |\n|-------|-------|------|\n| committed + gate elevated (correct hold) | 10000 | 1.000 |\n| committed + gate NOT elevated (unexpected) | 0 | 0.000 |\n| uncommitted + NOT elevated (correct release) | 0 | 0.000 |\n| uncommitted + gate elevated (unexpected) | 0 | 1.000 |\n\n- hold_count (total gate holds): 10347\n- propagation_count (total gate releases): 3\n- mean_running_variance (eval): 0.0000\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: committed_hold_concordance > 0.6 | PASS | 1.000 |\n| C2: uncommitted_release_concordance > 0.5 | FAIL | 0.000 |\n| C3: hold_count > 0 (gate holds) | PASS | 10347 |\n| C4: propagation_count > 0 (gate releases) | PASS | 3 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Failure Notes\n\n- C2 FAIL: uncommitted_release_concordance=0.000 <= 0.5\n",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_049d_mech090_beta_gate_v3",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260321T122131Z",
+  "claim": "MECH-090",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_049d_mech090_beta_gate_v3_20260321T122131Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

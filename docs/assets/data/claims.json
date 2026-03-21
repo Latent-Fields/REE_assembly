@@ -156,9 +156,15 @@
     "type": "architecture_hypothesis"
   },
   "ARC-027": {
-    "status": "provisional",
+    "status": "active",
     "subject": "harm_stream.parallel_thalamic_pathway",
     "title": "Harm stream runs as a parallel thalamic pathway independent of world latent space.",
+    "type": "architectural_commitment"
+  },
+  "ARC-028": {
+    "status": "candidate",
+    "subject": "control_plane.hippocampal_betagate_coupling_wiring",
+    "title": "HippocampalModule must emit a trajectory completion signal wired to BetaGate to couple the candidacy and propagation gates.",
     "type": "architectural_commitment"
   },
   "IMPL-001": {
@@ -1026,7 +1032,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-089": {
-    "status": "provisional",
+    "status": "active",
     "subject": "multirate.fast_to_slow_temporal_batching",
     "title": "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging).",
     "type": "mechanism_hypothesis"
@@ -1113,6 +1119,24 @@
     "status": "candidate",
     "subject": "e1.multimodal_exteroception_fusion",
     "title": "E1 performs multimodal exteroceptive fusion across sensory modalities before feeding E2.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-104": {
+    "status": "candidate",
+    "subject": "control_plane.volatility_interrupt",
+    "title": "Unexpected harm events spike commitment uncertainty (LC-NE volatility interrupt), enabling de-commitment.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-105": {
+    "status": "candidate",
+    "subject": "control_plane.hippocampal_bg_coupling_dopaminergic",
+    "title": "Hippocampal sequence completion drives BG beta release via subiculum-NAc-VTA dopaminergic loop.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-106": {
+    "status": "candidate",
+    "subject": "control_plane.commitment_hysteresis_outcome_valence",
+    "title": "Commitment threshold is asymmetrically modulated by outcome valence: positive outcomes lower it, negative outcomes raise it.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
@@ -1290,7 +1314,7 @@
     "type": "design_decision"
   },
   "SD-010": {
-    "status": "candidate",
+    "status": "implemented",
     "subject": "harm_stream.nociceptive_separation",
     "title": "HARM stream is a dedicated sensory pathway separate from z_world processing.",
     "type": "design_decision"

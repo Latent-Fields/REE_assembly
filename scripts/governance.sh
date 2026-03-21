@@ -44,8 +44,11 @@ echo "--- Step 2/4: Building experiment indexes ---"
 echo "--- Step 3/4: Generating pending review list ---"
 "$PYTHON" scripts/generate_pending_review.py
 
-echo "--- Step 4/4: Rebuilding claims.json for site tooltips ---"
+echo "--- Step 4/5: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
+
+echo "--- Step 5/5: Rebuilding contributor ledger ---"
+"$PYTHON" contributors/build_contributions.py
 
 echo ""
 echo "Done. Check evidence/experiments/pending_review.md for experiments awaiting review."

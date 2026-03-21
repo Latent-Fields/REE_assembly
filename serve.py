@@ -46,6 +46,7 @@ SERVE_DIR = Path(__file__).resolve().parent
 STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
 RUNNER_LOG = SERVE_DIR / "runner.log"
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
+CONTRIBUTIONS_FILE = SERVE_DIR / "contributors" / "contributions.json"
 
 # Python executable — prefer REE_PYTHON env var, then known torch-capable paths
 def _default_python() -> str:
@@ -449,6 +450,35 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if path == "/api/queue/v2":
             body = json.dumps(read_queue("v2")).encode()
             self._json_response(body)
+            return
+        if path == "/api/contributions":
+            if CONTRIBUTIONS_FILE.exists():
+                body = CONTRIBUTIONS_FILE.read_bytes()
+            else:
+                body = json.dumps({"error": "contributions.json not yet generated — run contributors/build_contributions.py"}).encode()
+            self._json_response(body)
+            return
+        if path in ("/setup", "/contributors/setup.html"):
+            setup_page = SERVE_DIR / "contributors" / "setup.html"
+            if setup_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(setup_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
+            return
+        if path in ("/contribute", "/contribute.html"):
+            contribute_page = SERVE_DIR / "docs" / "contribute.html"
+            if contribute_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(contribute_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         if path == "/api/review/tracker":
             data = load_review_tracker()

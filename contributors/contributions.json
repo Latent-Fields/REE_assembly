@@ -1,0 +1,117 @@
+{
+  "schema_version": "contributions/v1",
+  "last_updated": "2026-03-21T16:58:17Z",
+  "compute": {
+    "cost_model": {
+      "electricity_kwh_rate": 0.27,
+      "electricity_rate_currency": "EUR",
+      "cloud_instance": "AWS t3.medium",
+      "cloud_usd_per_hour": 0.0416,
+      "notes": "Irish residential electricity rate. Cloud equivalent = AWS t3.medium on-demand. Compute hours are wall-clock hours on the contributing machine. Electricity cost uses measured or estimated TDP under load."
+    },
+    "machines": {
+      "DLAPTOP-4.local": {
+        "display_name": "Daniel's MacBook Air (M2)",
+        "owner": "Daniel Golden",
+        "hardware": "Apple M2 Air 8GB",
+        "tdp_watts": 15,
+        "gpu_watts": 0,
+        "total_cpu_hours": 64.583,
+        "total_experiments": 129,
+        "first_run": "2026-02-27T10:33:02Z",
+        "last_run": "2026-03-21T13:12:12.790548+00:00",
+        "estimated_electricity_cost_eur": 0.2616,
+        "estimated_cloud_equivalent_cost_usd": 2.6867
+      }
+    },
+    "totals": {
+      "cpu_hours": 64.583,
+      "experiments": 129
+    }
+  },
+  "decisions": {
+    "total_governance_decisions": 98,
+    "contributors": {
+      "user": {
+        "actor_id": "user",
+        "decisions": 85,
+        "proportion": 0.8673
+      },
+      "Daniel Golden": {
+        "actor_id": "dgolden",
+        "decisions": 7,
+        "proportion": 0.0714
+      },
+      "codex": {
+        "actor_id": "codex",
+        "decisions": 6,
+        "proportion": 0.0612
+      }
+    },
+    "source": "evidence/decisions/decision_log.v1.jsonl"
+  },
+  "coding": {
+    "baseline_method": "git_co_authorship",
+    "baseline_date": "2026-03-21",
+    "total_lines_analyzed": 897069,
+    "total_commits_analyzed": 490,
+    "contributors": {
+      "Claude (Anthropic)": {
+        "lines_added": 169025,
+        "commits": 182,
+        "proportion_by_lines": 0.1884,
+        "proportion_by_commits": 0.3714,
+        "basis": "git_history_co_authorship"
+      },
+      "Codex (OpenAI)": {
+        "lines_added": 0,
+        "commits": 3,
+        "proportion_by_lines": 0.0,
+        "proportion_by_commits": 0.0061,
+        "basis": "git_history_co_authorship"
+      },
+      "Daniel Golden": {
+        "lines_added": 728044,
+        "commits": 305,
+        "proportion_by_lines": 0.8116,
+        "proportion_by_commits": 0.6224,
+        "basis": "git_history_co_authorship"
+      }
+    },
+    "notes": "Proportions are based on git commit co-authorship markers. 'proportion_by_lines' is biased toward repos with large auto-generated data files (e.g. ree-v2 synthetic experiment JSONs). 'proportion_by_commits' is a more stable signal for intellectual contribution. Codex involvement was brief (early literature adjudication phase).",
+    "_note": "git_analysis cannot detect ChatGPT/Codex contributions without co-authorship markers. Fill in 'declared_estimates' with your honest assessment and it will be preserved across governance rebuilds. Use 'basis': 'declared' for human estimates.",
+    "declared_estimates": {
+      "Claude (Anthropic)": {
+        "proportion": 0.37,
+        "basis": "declared",
+        "note": "Based on git co-authorship markers \u2014 most reliable signal available"
+      },
+      "ChatGPT / Codex (OpenAI)": {
+        "proportion": 0.6,
+        "basis": "declared",
+        "note": "Estimated from unattributed commits. ChatGPT does not add co-authorship markers so git_analysis misattributes these to Daniel."
+      },
+      "Daniel Golden (human)": {
+        "proportion": 0.03,
+        "basis": "declared",
+        "note": "Direct code authorship is approximately zero. Daniel provided all intellectual direction, research architecture, and governance decisions, but wrote negligible code directly."
+      }
+    }
+  },
+  "intellectual_direction": {
+    "note": "Code authorship and intellectual direction are distinct contributions. This section records direction, architecture, and decision-making \u2014 the primary human contribution to this project.",
+    "contributors": {
+      "Daniel Golden": {
+        "proportion": 1.0,
+        "scope": [
+          "All research architecture and theoretical framework (REE axioms, claim structure, E1/E2/E3 design)",
+          "All legitimate governance decisions (98 in decision_log.v1.jsonl). Note: 6 entries attributed to 'codex' actor were made by Codex against explicit instructions, operating on synthetic data later ruled contaminated \u2014 these are not considered valid governance decisions.",
+          "All experimental design and interpretation",
+          "All prompts and direction given to AI coding tools",
+          "Selection, curation, and approval of all code and claims",
+          "Domain expertise: psychiatry, neuroscience, philosophy of mind"
+        ]
+      }
+    }
+  }
+}
