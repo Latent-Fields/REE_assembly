@@ -37,6 +37,8 @@ import signal
 import socket
 import subprocess
 import sys
+import threading
+import time
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -323,7 +325,8 @@ def start_runner(ver: str = "v3") -> dict:
     log_fh = open(RUNNER_LOG, "a")
     cmd = [python_exe, str(cfg["script"]),
            "--status-file", str(STATUS_FILE),
-           "--machine", socket.gethostname()]
+           "--machine", socket.gethostname(),
+           "--loop"]  # Keep polling for new experiments after queue exhaustion
     if cfg.get("auto_sync"):
         cmd.append("--auto-sync")
     # STUB: future config could set per-runner flags from a machines.json config file
@@ -642,6 +645,26 @@ def main():
     print(f"[serve] Runner log:    {RUNNER_LOG}", flush=True)
     print(f"[serve] Ctrl+C to stop", flush=True)
     print(flush=True)
+
+    def _auto_pull():
+        """Background thread: pull REE_assembly and ree-v3 every 5 minutes."""
+        repos = [SERVE_DIR, SERVE_DIR.parent / "ree-v3"]
+        while True:
+            time.sleep(300)
+            for repo in repos:
+                if not (repo / ".git").is_dir():
+                    continue
+                result = subprocess.run(
+                    ["git", "-C", str(repo), "pull", "--ff-only"],
+                    capture_output=True, text=True, timeout=30,
+                )
+                if result.returncode == 0 and "Already up to date" not in result.stdout:
+                    print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
+                elif result.returncode != 0:
+                    print(f"[serve] git pull {repo.name} failed: {result.stderr.strip()}", flush=True)
+
+    threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
+    print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)
 
     server.serve_forever()
 
