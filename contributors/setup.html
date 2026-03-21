@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0; url=https://latent-fields.github.io/REE_assembly/contribute.html">
+<title>Contribute Compute — Latent-Fields REE (Reflective Ethical Engine)</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d2e;
+    --surface2: #242740;
+    --border: #2e3250;
+    --accent: #6c8ef5;
+    --accent2: #a78bfa;
+    --green: #34d399;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --code-bg: #0d1117;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 2.5rem; }
+  header h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  header h1 span { color: var(--accent); }
+  header p { color: var(--muted); font-size: 0.95rem; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .card h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hardware-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .hw-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.8rem 1rem;
+  }
+  .hw-item .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .hw-item .value { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-top: 0.15rem; }
+  .tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .tier-light { background: rgba(251,191,36,0.12); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+  .tier-standard { background: rgba(108,142,245,0.12); color: var(--accent); border: 1px solid rgba(108,142,245,0.3); }
+  .tier-heavy { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+  .estimate-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+  .estimate-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  .estimate-chip .elabel { color: var(--muted); font-size: 0.75rem; }
+  .estimate-chip .evalue { color: var(--text); font-weight: 600; }
+  .tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tab-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active { background: rgba(108,142,245,0.15); border-color: var(--accent); color: var(--accent); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    border-radius: 50%;
+    background: rgba(108,142,245,0.2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.15rem;
+  }
+  .step-body { flex: 1; }
+  .step-body p { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.8rem 1rem;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.82rem;
+    color: #c9d1d9;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-block .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .code-block .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+  .code-block .copy-btn.copied { color: var(--green); border-color: var(--green); }
+  .note-box {
+    background: rgba(251,191,36,0.06);
+    border: 1px solid rgba(251,191,36,0.2);
+    border-radius: 7px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: #d4ad5a;
+    margin-top: 0.75rem;
+  }
+  .note-box strong { color: var(--yellow); }
+  .good-box {
+    background: rgba(52,211,153,0.06);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 7px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: #6ee7b7;
+    margin-top: 0.75rem;
+  }
+  .links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(108,142,245,0.1);
+    border: 1px solid rgba(108,142,245,0.3);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+  }
+  .link-btn:hover { background: rgba(108,142,245,0.2); }
+  .priority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.25);
+    color: var(--green);
+    border-radius: 5px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .cmd-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .section-divider { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Contribute Compute to <span>REE</span></h1>
+    <p>Help advance the Reflective Ethical Engine — run experiments on your machine in the background</p>
+  </header>
+
+  <!-- Hardware detection -->
+  <div class="card">
+    <h2>🖥 Your Hardware</h2>
+    <div class="hardware-grid">
+      <div class="hw-item">
+        <div class="label">CPU Cores</div>
+        <div class="value" id="hw-cores">—</div>
+      </div>
+      <div class="hw-item">
+        <div class="label">RAM</div>
+        <div class="value" id="hw-ram" title="Exact value unavailable in Safari/Firefox — Chrome shows this">—</div>
+      </div>
+      <div class="hw-item">
+        <div class="label">OS</div>
+        <div class="value" id="hw-os">—</div>
+      </div>
+      <div class="hw-item">
+        <div class="label">Connection</div>
+        <div class="value" id="hw-net">—</div>
+      </div>
+    </div>
+    <div id="tier-display"></div>
+    <div class="section-divider" style="margin-top:1rem">Estimated contribution per 10 hours of runner time</div>
+    <div class="estimate-row" id="estimates"></div>
+    <div class="note-box">
+      <strong>Low priority by default.</strong> All generated commands use OS-level background priority
+      (<code>nice -n 10</code> on Unix, <code>BELOWNORMAL</code> on Windows). The runner won't noticeably
+      affect your normal work. You can stop it any time.
+    </div>
+  </div>
+
+  <!-- Prerequisites -->
+  <div class="card">
+    <h2>📋 Before You Start</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <p>Request membership of the <strong>Latent-Fields</strong> GitHub organisation to access the private repos.</p>
+        <div class="links">
+          <a class="link-btn" href="https://github.com/orgs/Latent-Fields/teams" target="_blank">↗ Request Latent-Fields membership</a>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <p>You need <strong>Python 3.10+</strong> with <strong>PyTorch 2.x</strong>, and <strong>Git</strong>.</p>
+        <div id="python-check-note"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <p>Clone the experiment substrate repository (you need org membership first):</p>
+        <div class="code-block">
+git clone https://github.com/Latent-Fields/ree-v3.git
+cd ree-v3
+pip install torch numpy --index-url https://download.pytorch.org/whl/cu121
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagnostic checks -->
+  <div class="card">
+    <h2>🔍 Verify Your Setup</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Run these checks after installing Python, Git, and PyTorch — before starting the runner. Each has an expected output so you know if something is wrong.</p>
+    <div class="tabs" id="diag-tabs">
+      <button class="tab-btn active" onclick="switchDiagTab('diag-mac')">macOS</button>
+      <button class="tab-btn" onclick="switchDiagTab('diag-linux')">Linux</button>
+      <button class="tab-btn" onclick="switchDiagTab('diag-windows')">Windows</button>
+    </div>
+
+    <!-- macOS diagnostics -->
+    <div class="tab-content active" id="diag-mac">
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Python version (must be 3.10+)</p>
+        <div class="code-block">/opt/local/bin/python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Python 3.10.x</code> or higher</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git version</p>
+        <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>git version 2.x.x</code></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>PyTorch installed and version</p>
+        <div class="code-block">/opt/local/bin/python3 -c "import torch; print(torch.__version__)"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>2.x.x</code> — if ImportError, run <code>pip install torch numpy</code></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>GitHub push auth (dry run — no changes made)</p>
+        <div class="code-block">cd ree-v3 && git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Everything up-to-date</code> or <code>Would set...</code> — any auth error means credentials need setup</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>REE_assembly repo is a sibling of ree-v3 (required for result sync)</p>
+        <div class="code-block">/opt/local/bin/python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>REE_assembly: OK</code></div>
+      </div></div>
+    </div>
+
+    <!-- Linux diagnostics -->
+    <div class="tab-content" id="diag-linux">
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Python version (must be 3.10+)</p>
+        <div class="code-block">python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Python 3.10.x</code> or higher</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git version</p>
+        <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>git version 2.x.x</code></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>PyTorch + CUDA</p>
+        <div class="code-block">python3 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> (False = CPU only, which is slower but works)</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>GitHub push auth (dry run)</p>
+        <div class="code-block">cd ree-v3 && git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Everything up-to-date</code> — auth error means run <code>gh auth login</code></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>REE_assembly sibling check</p>
+        <div class="code-block">python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>REE_assembly: OK</code></div>
+      </div></div>
+    </div>
+
+    <!-- Windows diagnostics -->
+    <div class="tab-content" id="diag-windows">
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Python version (must be 3.10+)</p>
+        <div class="code-block">python --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Python 3.10.x</code> or higher — if not found, install from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> and tick "Add to PATH"</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git version</p>
+        <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>git version 2.x.x.windows.x</code> — if not found, install from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>PyTorch installed and CUDA visible</p>
+        <div class="code-block">python -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> — if False, update NVIDIA drivers. If ImportError, run the pip install from step 3 above.</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>GPU name</p>
+        <div class="code-block">python -c "import torch; print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: your GPU model name (e.g. <code>NVIDIA GeForce GTX 1050 Ti</code>)</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>GitHub push auth — run from inside the <code>ree-v3\</code> folder (dry run, no changes)</p>
+        <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Everything up-to-date</code> or a dry-run push summary. If it opens a browser login, complete that — it stores credentials for future pushes.</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>REE_assembly repo is a sibling of ree-v3 (required for result sync)</p>
+        <div class="code-block">python -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>REE_assembly: OK</code> — if missing, run <code>git clone https://github.com/Latent-Fields/REE_assembly.git</code> in the parent folder</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- OS-specific setup -->
+  <div class="card">
+    <h2>⚙️ Start the Runner
+      <span class="priority-badge">✓ Low priority</span>
+    </h2>
+    <div class="tabs" id="os-tabs">
+      <button class="tab-btn active" onclick="switchTab('mac')">macOS</button>
+      <button class="tab-btn" onclick="switchTab('linux')">Linux</button>
+      <button class="tab-btn" onclick="switchTab('windows')">Windows</button>
+    </div>
+
+    <!-- macOS -->
+    <div class="tab-content active" id="tab-mac">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>From inside the <code>ree-v3/</code> directory, start the runner at low CPU priority:</p>
+          <div class="code-block">
+nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">
+            <code>nice -n 10</code> limits CPU scheduling priority. If your Python isn't at that path, use
+            <code>nice -n 10 python3 experiment_runner.py --auto-sync --loop</code>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>To keep it running after you close Terminal, use <code>caffeinate</code> + <code>nohup</code>:</p>
+          <div class="code-block">
+nohup nice -n 10 /opt/local/bin/python3 experiment_runner.py --auto-sync --loop &gt; runner.log 2&gt;&amp;1 &amp;
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>To stop it:</p>
+          <div class="code-block">
+pkill -f experiment_runner.py
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linux -->
+    <div class="tab-content" id="tab-linux">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Start at low priority from inside <code>ree-v3/</code>:</p>
+          <div class="code-block">
+nice -n 10 python3 experiment_runner.py --auto-sync --loop
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Optional: run as a systemd user unit for persistence across sessions. Save as
+          <code>~/.config/systemd/user/ree-runner.service</code>:</p>
+          <div class="code-block">
+[Unit]
+Description=REE Experiment Runner
+After=network.target
+
+[Service]
+WorkingDirectory=%h/ree-v3
+ExecStart=/usr/bin/python3 experiment_runner.py --auto-sync --loop
+Nice=10
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note" style="margin-top:0.5rem">
+            Enable: <code>systemctl --user enable --now ree-runner</code>
+            &nbsp;|&nbsp; Stop: <code>systemctl --user stop ree-runner</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Windows -->
+    <div class="tab-content" id="tab-windows">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p>Verify your GPU is visible to PyTorch (run in PowerShell):</p>
+          <div class="code-block">
+python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">Must print <code>True</code> and your GPU name. If <code>False</code>, update NVIDIA drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>Navigate to <code>ree-v3\</code> and start the runner at below-normal priority. Replace <code>my-machine-name</code> with a short stable name for this PC (e.g. <code>cyberpower</code>) — used for multi-machine experiment routing:</p>
+          <div class="code-block">
+$proc = Start-Process python -ArgumentList "experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
+$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>To run in the background and log output:</p>
+          <div class="code-block">
+$proc = Start-Process python `
+  -ArgumentList "experiment_runner.py --auto-sync --loop --machine my-machine-name" `
+  -RedirectStandardOutput runner.log `
+  -RedirectStandardError runner_err.log `
+  -PassThru -WindowStyle Hidden
+$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
+Write-Host "Runner started, PID $($proc.Id)"
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>To stop it (use Ctrl+C in the PowerShell window, or):</p>
+          <div class="code-block">
+Get-Process python | Where-Object {$_.MainWindowTitle -eq "" } | Stop-Process
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="note-box">
+        <strong>GPU note:</strong> If your machine has a CUDA GPU, PyTorch will use it automatically.
+        For a GTX 1050 Ti or similar 4GB card, experiments will run faster than CPU-only.
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="card">
+    <h2>🔄 How Multi-Machine Coordination Works</h2>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p>The runner reads from a shared experiment queue on GitHub. Before starting each experiment,
+        it writes a <em>claim</em> and pushes to GitHub — whichever machine pushes first runs the experiment.
+        This prevents duplicate work without any central server.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p>Results are pushed back to GitHub automatically. The project maintainer reviews results
+        and updates the claims registry.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p>Claims older than 6 hours are treated as stale (machine went offline) and become
+        available for other machines.</p>
+      </div>
+    </div>
+    <div class="good-box">
+      Your contribution is tracked in <code>contributors/contributions.json</code> — compute hours,
+      experiment count, and estimated cost (electricity + cloud-equivalent). This is updated each
+      governance cycle.
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="card">
+    <h2>🔗 Links</h2>
+    <div class="links">
+      <a class="link-btn" href="https://github.com/Latent-Fields/REE_assembly" target="_blank">↗ REE_assembly (governance)</a>
+      <a class="link-btn" href="https://github.com/Latent-Fields/ree-v3" target="_blank">↗ ree-v3 (experiment substrate)</a>
+      <a class="link-btn" href="../contributors/contributions.json" target="_blank">↗ contributions.json</a>
+    </div>
+    <p style="color:var(--muted);font-size:0.83rem;margin-top:0.9rem">
+      If you have serve.py running on port 8000 on the same network, the full
+      <a href="http://localhost:8000/explorer" style="color:var(--accent)">REE Explorer</a> is available
+      for live experiment monitoring.
+    </p>
+  </div>
+
+</div>
+
+<script>
+// ── Hardware detection ──────────────────────────────────────────────────────
+
+function detectHardware() {
+  const cores = navigator.hardwareConcurrency || null;
+  // navigator.deviceMemory is Chrome/Edge only; Safari returns undefined
+  const ramGB = (typeof navigator.deviceMemory !== 'undefined' && navigator.deviceMemory)
+                ? navigator.deviceMemory : null;
+  const conn = navigator.connection;
+  const netType = conn ? (conn.effectiveType || conn.type || '?') : '?';
+
+  // OS detection
+  const ua = navigator.userAgent;
+  const platform = navigator.platform || '';
+  let os = 'Unknown';
+  if (/Mac/.test(platform) || /Mac/.test(ua)) os = 'macOS';
+  else if (/Win/.test(platform) || /Win/.test(ua)) os = 'Windows';
+  else if (/Linux/.test(platform) || /Linux/.test(ua)) os = 'Linux';
+  else if (/Android/.test(ua)) os = 'Android';
+  else if (/iPhone|iPad/.test(ua)) os = 'iOS';
+
+  document.getElementById('hw-cores').textContent = cores != null ? cores : '?';
+  document.getElementById('hw-ram').textContent = ramGB != null ? ramGB + ' GB'
+    : (os === 'macOS' ? '≥8 GB (Safari)' : '? GB');
+  document.getElementById('hw-os').textContent = os;
+  document.getElementById('hw-net').textContent = netType;
+
+  // Tier classification
+  // For Safari/Firefox where deviceMemory is unavailable, assume ≥8GB on macOS
+  // (all modern Apple Silicon Macs ship with at least 8GB)
+  const effectiveRam = ramGB != null ? ramGB : (os === 'macOS' ? 8 : 4);
+  let tier = 'light';
+  if (cores >= 8 && effectiveRam >= 8) tier = 'standard';
+  if (cores >= 12 || effectiveRam >= 16) tier = 'heavy';
+
+  const tierEl = document.getElementById('tier-display');
+  const tierLabels = {
+    light: ['Light', 'tier-light', '⚡', 'Suitable for smaller experiments. Contributes meaningfully but may skip memory-heavy runs.'],
+    standard: ['Standard', 'tier-standard', '✦', 'Good all-round contributor tier. Can run most REE experiments.'],
+    heavy: ['Heavy', 'tier-heavy', '🔥', 'Excellent contributor tier. Runs all experiments including multi-seed batches.'],
+  };
+  const [label, cls, icon, desc] = tierLabels[tier];
+  tierEl.innerHTML = `<span class="tier-badge ${cls}">${icon} ${label} tier</span>
+    <span style="color:var(--muted);font-size:0.85rem">${desc}</span>`;
+
+  // Estimate compute per 10 hours
+  const tdpWatts = tier === 'heavy' ? 65 : (tier === 'standard' ? 20 : 10); // rough CPU TDP
+  const kwhPer10h = tdpWatts * 10 / 1000;
+  const eur027 = kwhPer10h * 0.27;
+  const cloudHours = 10 * 0.0416; // AWS t3.medium on-demand
+
+  document.getElementById('estimates').innerHTML = `
+    <div class="estimate-chip">
+      <div class="elabel">CPU-hours</div>
+      <div class="evalue">~${cores ? Math.round(cores * 8) : '?'} core-hours</div>
+    </div>
+    <div class="estimate-chip">
+      <div class="elabel">Electricity (~${tdpWatts}W)</div>
+      <div class="evalue">~${kwhPer10h.toFixed(2)} kWh · €${eur027.toFixed(2)}</div>
+    </div>
+    <div class="estimate-chip">
+      <div class="elabel">Cloud equiv (AWS t3.med)</div>
+      <div class="evalue">~$${cloudHours.toFixed(2)}</div>
+    </div>`;
+
+  // Auto-select OS tab (runner + diagnostics)
+  if (os === 'Windows') { switchTab('windows'); switchDiagTab('diag-windows'); }
+  else if (os === 'Linux') { switchTab('linux'); switchDiagTab('diag-linux'); }
+  else { switchTab('mac'); switchDiagTab('diag-mac'); }
+
+  // Python path note
+  const pyNote = document.getElementById('python-check-note');
+  if (os === 'macOS') {
+    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">On macOS, <code>/opt/local/bin/python3</code> (MacPorts) has torch pre-installed.
+      Or use <code>pip install torch</code> in your preferred environment.</div>`;
+  } else if (os === 'Windows') {
+    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">Install from <a href="https://www.python.org" style="color:var(--accent)">python.org</a>,
+      then: <code>pip install torch numpy --index-url https://download.pytorch.org/whl/cu121</code>
+      (CUDA 12.1 — works with GTX 10xx/16xx/20xx/30xx series)</div>
+      <div class="cmd-note" style="margin-top:0.3rem">Also need Git: <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com/download/win</a> — required for <code>--auto-sync</code>.</div>`;
+  } else {
+    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem"><code>sudo apt install python3 python3-pip</code>, then <code>pip3 install torch</code></div>`;
+  }
+}
+
+// ── Tab switching ────────────────────────────────────────────────────────────
+
+function switchDiagTab(id) {
+  document.querySelectorAll('#diag-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  ['diag-mac','diag-linux','diag-windows'].forEach(c => {
+    const el = document.getElementById(c);
+    if (el) el.classList.remove('active');
+  });
+  const btn = document.querySelector(`#diag-tabs .tab-btn[onclick="switchDiagTab('${id}')"]`);
+  if (btn) btn.classList.add('active');
+  const content = document.getElementById(id);
+  if (content) content.classList.add('active');
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  const btn = document.querySelector(`.tab-btn[onclick="switchTab('${id}')"]`);
+  if (btn) btn.classList.add('active');
+  const content = document.getElementById('tab-' + id);
+  if (content) content.classList.add('active');
+}
+
+// ── Copy to clipboard ────────────────────────────────────────────────────────
+
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  // Get text without the button text
+  const text = block.childNodes[0].textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    btn.textContent = 'error';
+    setTimeout(() => { btn.textContent = 'copy'; }, 2000);
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+detectHardware();
+</script>
+</body>
+</html>
