@@ -8102,10 +8102,11 @@ END CONFLICT RESOLUTION`;
       const evidenceOnlyNote = c.evidence_only
         ? `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">Evidence on disk &mdash; not yet in runner log</div>`
         : '';
+      const completedByStr = c.completed_by ? ` &mdash; run by <strong>${escapeHtml(c.completed_by)}</strong>` : '';
       const completedLine = !c.evidence_only && c.completed_at
-        ? `<div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at.replace('T', ' ').replace('Z', ' UTC')}</div>`
+        ? `<div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at.replace('T', ' ').replace('Z', ' UTC')}${completedByStr}</div>`
         : c.evidence_only && c.completed_at
-        ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC</div>`
+        ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC${completedByStr}</div>`
         : '';
       const dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
       const isDiscussed = dirName && discussedDirs.has(dirName);

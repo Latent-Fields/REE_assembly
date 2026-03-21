@@ -45,6 +45,13 @@ MACHINE_REGISTRY = {
         "tdp_watts": 65,      # i5-8600K under load
         "gpu_watts": 75,      # GTX 1050 Ti under load
     },
+    "Daniel-PC": {
+        "display_name": "CyberPower PC (i5-8600K + RTX 2060 Super)",
+        "owner": "Daniel Golden",
+        "hardware": "i5-8600K OC 4.3GHz, RTX 2060 Super 8GB, 8GB DDR4",
+        "tdp_watts": 65,      # i5-8600K under load
+        "gpu_watts": 175,     # RTX 2060 Super under load
+    },
 }
 
 # ── Cost model ─────────────────────────────────────────────────────────────────
