@@ -304,6 +304,12 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
         <div class="cmd-note">Expected: <code>git version 2.x.x</code></div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git commit identity (required for experiment claiming — separate from GitHub login)</p>
+        <div class="code-block">git config --global user.name "Your Name"
+git config --global user.email "you@example.com"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Sets your name in commit messages. Run once per machine — GitHub login alone does not set this.</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>PyTorch installed and version</p>
         <div class="code-block">/opt/local/bin/python3 -c "import torch; print(torch.__version__)"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>2.x.x</code> — if ImportError, run <code>pip install torch numpy</code></div>
@@ -333,6 +339,12 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
         <div class="cmd-note">Expected: <code>git version 2.x.x</code></div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git commit identity (required for experiment claiming — separate from GitHub login)</p>
+        <div class="code-block">git config --global user.name "Your Name"
+git config --global user.email "you@example.com"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Sets your name in commit messages. Run once per machine — GitHub login alone does not set this.</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>PyTorch + CUDA</p>
         <div class="code-block">python3 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> (False = CPU only, which is slower but works)</div>
@@ -360,6 +372,12 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
         <p>Git version</p>
         <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>git version 2.x.x.windows.x</code> — if not found, install from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>Git commit identity (required for experiment claiming — separate from GitHub login)</p>
+        <div class="code-block">git config --global user.name "Your Name"
+git config --global user.email "you@example.com"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Sets your name in commit messages. Run once per machine — GitHub login alone does not set this.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>PyTorch installed and CUDA visible</p>
