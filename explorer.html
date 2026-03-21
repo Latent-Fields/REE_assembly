@@ -8044,10 +8044,18 @@ END CONFLICT RESOLUTION`;
             startBtn.disabled = true;
             startBtn.textContent = 'Starting\u2026';
             const r = await callRunnerAPI('/api/runner/' + ver + '/start');
-            if (ctrlMsg) ctrlMsg.textContent =
-              r.status === 'started'         ? `Started (PID ${r.pid})` :
-              r.status === 'already_running' ? `Already running (PID ${r.pid})` :
-              r.message || r.status;
+            if (ctrlMsg) {
+              if (r.error === 'access_denied' && r.action_url) {
+                ctrlMsg.innerHTML = `${r.message} <a href="${r.action_url}" target="_blank" style="color:var(--accent,#0070f3)">${r.action_label || 'Request access'} &rarr;</a>`;
+                ctrlMsg.style.color = '#c00';
+              } else {
+                ctrlMsg.style.color = '';
+                ctrlMsg.textContent =
+                  r.status === 'started'         ? `Started (PID ${r.pid})` :
+                  r.status === 'already_running' ? `Already running (PID ${r.pid})` :
+                  r.message || r.status;
+              }
+            }
             setTimeout(() => renderExperiments(), 800);
           });
         }

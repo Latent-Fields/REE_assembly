@@ -32,6 +32,7 @@ import argparse
 import http.server
 import json
 import os
+import re
 import signal
 import socket
 import subprocess
@@ -84,6 +85,79 @@ RUNNERS = {
 }
 
 DEFAULT_PORT = 8000
+
+# ── GitHub fallback ───────────────────────────────────────────────────────────
+
+ORG = "Latent-Fields"
+ORG_MEMBERSHIP_URL = "https://github.com/orgs/Latent-Fields/teams"
+REPO_NAMES: dict[str, str] = {
+    "v3": "ree-v3",
+    "v2": "ree-v2",
+    "v1": "ree-v1-minimal",
+}
+
+_GIT_ACCESS_DENIED = re.compile(
+    r"Repository not found|Permission denied|403|Authentication failed|could not read Username",
+    re.IGNORECASE,
+)
+
+
+def _ensure_git_file(file_path: Path, repo_dir: Path, repo_name: str, clone_url: str) -> dict | None:
+    """Ensure file_path exists, attempting git pull/clone if missing.
+    Returns None on success, or an error dict on failure."""
+    if file_path.exists():
+        return None
+
+    if (repo_dir / ".git").is_dir():
+        cmd = ["git", "-C", str(repo_dir), "pull", "--ff-only"]
+        action = "pull"
+    else:
+        cmd = ["git", "clone", clone_url, str(repo_dir)]
+        action = "clone"
+
+    print(f"[serve] {file_path.name} missing — attempting git {action} from {clone_url}", flush=True)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+    except subprocess.TimeoutExpired:
+        return {"status": "error", "error": "timeout",
+                "message": f"Git {action} timed out after 60s."}
+
+    stderr_combined = result.stderr + result.stdout
+    if result.returncode != 0 and _GIT_ACCESS_DENIED.search(stderr_combined):
+        return {
+            "status": "error",
+            "error": "access_denied",
+            "message": (
+                f"Cannot access {ORG}/{repo_name} on GitHub. "
+                "Request membership of the Latent-Fields organisation to gain access."
+            ),
+            "action_url": ORG_MEMBERSHIP_URL,
+            "action_label": "Request Latent-Fields membership",
+        }
+    if result.returncode != 0:
+        return {"status": "error", "error": "git_error",
+                "message": f"Git {action} failed: {stderr_combined.strip()[:400]}"}
+    if not file_path.exists():
+        return {"status": "error", "error": "not_found",
+                "message": f"{file_path.name} still missing after git {action}."}
+
+    print(f"[serve] Git {action} succeeded — {file_path.name} restored.", flush=True)
+    return None
+
+
+def _ensure_runner_script(ver: str) -> dict | None:
+    cfg = RUNNERS[ver]
+    script_path = cfg["script"]
+    repo_name = REPO_NAMES[ver]
+    clone_url = f"https://github.com/{ORG}/{repo_name}.git"
+    return _ensure_git_file(script_path, script_path.parent, repo_name, clone_url)
+
+
+def _ensure_explorer() -> dict | None:
+    explorer_path = SERVE_DIR / "explorer.html"
+    clone_url = f"https://github.com/{ORG}/REE_assembly.git"
+    return _ensure_git_file(explorer_path, SERVE_DIR, "REE_assembly", clone_url)
+
 
 # ── Process state (module-level, single-threaded server) ─────────────────────
 
@@ -237,8 +311,9 @@ def start_runner(ver: str = "v3") -> dict:
     pid = _runner_pid(ver)
     if pid:
         return {"status": "already_running", "pid": pid, "substrate": ver}
-    if not cfg["script"].exists():
-        return {"status": "error", "message": f"Runner script not found: {cfg['script']}"}
+    err = _ensure_runner_script(ver)
+    if err:
+        return err
 
     python_exe = cfg["python"]
     if not os.path.exists(python_exe):
@@ -344,6 +419,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
+        # Ensure explorer.html is present; attempt GitHub pull/clone if missing
+        if path in ("/explorer", "/explorer.html"):
+            if not (SERVE_DIR / "explorer.html").exists():
+                err = _ensure_explorer()
+                if err:
+                    self._html_error_page(err)
+                    return
         # Short URL: /explorer → /explorer.html
         if path == "/explorer":
             self.send_response(302)
@@ -369,7 +451,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._json_response(body)
             return
         if path == "/api/review/tracker":
-            import re as _re
             data = load_review_tracker()
             # Derive experiment dir names from reviewed_run_ids so that previously
             # reviewed runs show as "discussed" in the explorer without a migration.
@@ -379,12 +460,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             reviewed_dirs = set()
             for run_id in data.get("reviewed_run_ids", []):
                 # Strip leading timestamp (digits, T, Z, colon, hyphen, dot)
-                name = _re.sub(r'^[\dTZ:.\-]+_', '', run_id)
+                name = re.sub(r'^[\dTZ:.\-]+_', '', run_id)
                 # Strip trailing _v1/_v2/_v3
-                name = _re.sub(r'_v[123]$', '', name)
+                name = re.sub(r'_v[123]$', '', name)
                 # Strip trailing _seed\d+ and further suffixes
-                name = _re.sub(r'_seed\d+.*$', '', name)
-                name = _re.sub(r'_s\d+_.*$', '', name)
+                name = re.sub(r'_seed\d+.*$', '', name)
+                name = re.sub(r'_s\d+_.*$', '', name)
                 # Normalize hyphens to underscores
                 name = name.replace('-', '_')
                 if name:
@@ -456,6 +537,25 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _html_error_page(self, err: dict):
+        message = err.get("message", "An error occurred.")
+        action_url = err.get("action_url", "")
+        action_label = err.get("action_label", "Learn more")
+        link_html = (
+            f'<p><a href="{action_url}" target="_blank">{action_label} &rarr;</a></p>'
+            if action_url else ""
+        )
+        body = f"""<!DOCTYPE html>
+<html><head><title>REE Explorer — Access Error</title>
+<style>body{{font-family:system-ui,sans-serif;max-width:600px;margin:80px auto;padding:0 20px;color:#333}}
+h1{{color:#c00}}a{{color:#0070f3}}</style></head>
+<body><h1>Cannot load REE Explorer</h1><p>{message}</p>{link_html}</body></html>""".encode()
+        self.send_response(503)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
