@@ -8174,7 +8174,7 @@ END CONFLICT RESOLUTION`;
           const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
           if (qr.ok) {
             const qd = await qr.json();
-            (qd.items || []).forEach(qi => { if (qi.status !== 'completed') queueFromFiles.push(qi); });
+            (qd.items || []).forEach(qi => { if (qi.status !== 'completed' && qi.status !== 'failed') queueFromFiles.push(qi); });
           }
         } catch (_) {}
       }
