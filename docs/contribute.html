@@ -298,6 +298,21 @@ pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
         </div>
       </div>
     </div>
+
+    <div class="note-box" style="margin-top:1rem">
+      <strong>⚗ Optional: automated setup script (experimental, not fully tested)</strong><br>
+      Once Python 3.12 and Git are installed (steps 1–2 above), you can run a setup script
+      that handles the rest — cloning, pip install, git identity, CUDA check, and machine
+      registration — in one guided session.<br><br>
+      Download <a href="https://raw.githubusercontent.com/Latent-Fields/REE_assembly/master/setup_contributor.py"
+        style="color:var(--yellow)">setup_contributor.py</a> from the repo, then:
+      <div class="code-block" style="margin-top:0.5rem; font-size:0.82rem">
+        <span id="setup-script-cmd">py -3.12 setup_contributor.py</span>
+        <button class="copy-btn" onclick="copyCode(this)">copy</button>
+      </div>
+      The script will prompt for your details and print the runner start command at the end.
+      If anything goes wrong, continue with the manual steps below.
+    </div>
   </div>
 
   <!-- Machine registration -->
@@ -744,6 +759,14 @@ function detectHardware() {
       ? `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124`
       : `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy --index-url https://download.pytorch.org/whl/cu124`;
     pipBlock.innerHTML = pipCmd + '\n<button class="copy-btn" onclick="copyCode(this)">copy</button>';
+  }
+
+  // Setup script command
+  const setupScriptCmd = document.getElementById('setup-script-cmd');
+  if (setupScriptCmd) {
+    setupScriptCmd.textContent = os === 'Windows'
+      ? 'py -3.12 setup_contributor.py'
+      : 'python3.12 setup_contributor.py';
   }
 
   // Python path note
