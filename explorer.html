@@ -2096,6 +2096,7 @@
           <div class="subtitle" id="refreshStatus" style="margin-top:4px;">Last refreshed: --</div>
         </div>
       </details>
+      <a href="https://www.google.ie" target="_blank" rel="noopener" style="margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Google ↗</a>
     </div>
     <nav class="view-nav">
       <button id="listViewBtn" class="view-btn primary">List</button>
@@ -8397,7 +8398,7 @@ END CONFLICT RESOLUTION`;
       renderPickers();
       restoreFilterState(filterState);
       renderTable();
-      setView(previousView || 'list');
+      setView(previousView || 'experiments');
       renderMap();
 
       if (previousSelection && claimMap.has(previousSelection)) {
