@@ -270,13 +270,10 @@ layout: null
       <div class="step-num">3</div>
       <div class="step-body">
         <p>Clone the experiment substrate repository (you need org membership first):</p>
-        <div class="code-block">
+        <div class="code-block" id="pip-install-block">
 git clone https://github.com/Latent-Fields/ree-v3.git
 cd ree-v3
-# macOS/Linux:
 pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
-# Windows (use py -3.12 to ensure correct Python version):
-py -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
         </div>
       </div>
@@ -652,6 +649,15 @@ function detectHardware() {
   if (os === 'Windows') { switchTab('windows'); switchDiagTab('diag-windows'); }
   else if (os === 'Linux') { switchTab('linux'); switchDiagTab('diag-linux'); }
   else { switchTab('mac'); switchDiagTab('diag-mac'); }
+
+  // OS-specific pip install block
+  const pipBlock = document.getElementById('pip-install-block');
+  if (pipBlock) {
+    const pipCmd = os === 'Windows'
+      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ncd ree-v3\npy -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124`
+      : `git clone https://github.com/Latent-Fields/ree-v3.git\ncd ree-v3\npip install torch numpy --index-url https://download.pytorch.org/whl/cu124`;
+    pipBlock.innerHTML = pipCmd + '\n<button class="copy-btn" onclick="copyCode(this)">copy</button>';
+  }
 
   // Python path note
   const pyNote = document.getElementById('python-check-note');
