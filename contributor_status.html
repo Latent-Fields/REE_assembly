@@ -193,9 +193,14 @@
 
 </div>
 <script>
-// Path to runner_status.json relative to the server root (parent dir of REE_assembly).
-// When served via: python -m http.server 8001  (from REE_Working/)
-const STATUS_URL = 'REE_assembly/evidence/experiments/runner_status.json';
+// runner_status.json can live at two relative paths depending on server root:
+//   short: served from REE_assembly/ (preview panel, or http.server inside REE_assembly)
+//   long:  served from parent REE_Working/ (the contributor launcher)
+const STATUS_PATHS = [
+  'evidence/experiments/runner_status.json',
+  'REE_assembly/evidence/experiments/runner_status.json',
+];
+let STATUS_URL = STATUS_PATHS[0]; // resolved on first successful fetch
 const POLL_MS = 5000;
 
 function esc(s) {
@@ -321,14 +326,20 @@ function renderError(msg) {
 }
 
 async function poll() {
-  try {
-    const r = await fetch(STATUS_URL + '?t=' + Date.now());
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    document.getElementById('error-msg').style.display = 'none';
-    render(await r.json());
-  } catch (e) {
-    renderError('Could not load runner_status.json — is the experiment runner active? (' + e.message + ')');
+  // Try each candidate path; use the first that succeeds (and remember it).
+  for (const path of STATUS_PATHS) {
+    try {
+      const r = await fetch(path + '?t=' + Date.now());
+      if (!r.ok) continue;
+      STATUS_URL = path;          // remember working path for future polls
+      STATUS_PATHS.length = 0;    // stop trying others
+      STATUS_PATHS.push(path);
+      document.getElementById('error-msg').style.display = 'none';
+      render(await r.json());
+      return;
+    } catch (_) { /* try next */ }
   }
+  renderError('Could not load runner_status.json — runner not started yet, or this page was opened directly rather than via the monitor launcher.');
 }
 
 poll();
