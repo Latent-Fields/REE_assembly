@@ -269,9 +269,10 @@ layout: null
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <p>Clone the experiment substrate repository (you need org membership first):</p>
+        <p>Clone both repositories into the same folder (they must be siblings — the runner syncs results to REE_assembly automatically):</p>
         <div class="code-block" id="pip-install-block">
 git clone https://github.com/Latent-Fields/ree-v3.git
+git clone https://github.com/Latent-Fields/REE_assembly.git
 cd ree-v3
 pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
@@ -654,8 +655,8 @@ function detectHardware() {
   const pipBlock = document.getElementById('pip-install-block');
   if (pipBlock) {
     const pipCmd = os === 'Windows'
-      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ncd ree-v3\npy -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124`
-      : `git clone https://github.com/Latent-Fields/ree-v3.git\ncd ree-v3\npip install torch numpy --index-url https://download.pytorch.org/whl/cu124`;
+      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124`
+      : `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy --index-url https://download.pytorch.org/whl/cu124`;
     pipBlock.innerHTML = pipCmd + '\n<button class="copy-btn" onclick="copyCode(this)">copy</button>';
   }
 
