@@ -2,58 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 83331,
   "runner_started_at": "2026-03-21T06:08:29.284920+00:00",
-  "last_updated": "2026-03-21T16:58:31.362336+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-049e",
-    "backlog_id": "",
-    "claim_id": "MECH-090",
-    "title": "MECH-090 BetaGate v4 \u2014 two-condition design (trained vs fresh agent)",
-    "description": "Fixes single-agent limitation of EXQ-049d: trained agent always committed (variance~0), fresh agent always uncommitted (variance=precision_init=0.5>threshold). C1/C3 from trained agent (gate elevates), C2/C4 from fresh agent (gate releases). No artificial variance manipulation needed \u2014 both conditions at stable extremes.",
-    "script": "experiments/v3_exq_049e_mech090_two_condition.py",
-    "started_at": "2026-03-21T16:58:26.350085+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 450,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 5,
-    "seconds_remaining": 3600,
-    "recent_lines": [
-      "alpha_world=0.9  seed=0",
-      "============================================================",
-      "[V3-EXQ-049e] Condition A \u2014 TRAINED (400 episodes)",
-      "============================================================",
-      "precision_init=0.500  commit_threshold=0.400"
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-03-21T23:19:49.512419+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-049e",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 BetaGate v4 \u2014 two-condition design (trained vs fresh agent)",
-      "description": "Fixes single-agent limitation of EXQ-049d: trained agent always committed (variance~0), fresh agent always uncommitted (variance=precision_init=0.5>threshold). C1/C3 from trained agent (gate elevates), C2/C4 from fresh agent (gate releases). No artificial variance manipulation needed \u2014 both conditions at stable extremes.",
-      "estimated_minutes": 60.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-061",
-      "backlog_id": "",
-      "claim_id": "MECH-104",
-      "title": "MECH-104 Volatility Interrupt \u2014 jitter approximation enables de-commitment on surprise harm",
-      "description": "Tests MECH-104 (LC-NE volatility interrupt) V3 approximation. Two conditions: baseline (no spike, confirms variance collapse) vs surprise-spike (adds spike_magnitude=0.05 to running_variance on harm contact). PASS: C1 baseline n_uncommitted=0, C2 spike n_uncommitted>100, C3 variance rises after harm contact, C4 calibration_gap preserved, C5 no fatal errors.",
-      "estimated_minutes": 120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-051b",
       "backlog_id": "",
@@ -61,7 +13,7 @@
       "title": "Q-007 z_beta Volatility Injection \u2014 NE/LC analog via running_variance input",
       "description": "Fix for Q-007 architectural gap (EXQ-051 FAIL). Injects E3._running_variance as scalar into beta_encoder via LatentStackConfig.volatility_signal_dim=1. Two conditions: stable (fixed hazard positions) vs volatile (randomised each episode), same mean hazard count. Yu & Dayan 2005 (PMID 15944135): NE encodes unexpected uncertainty = running_variance spike. With injection: volatile agent should have higher z_beta norm (C1), Pearson r(rv,z_beta)>0.3 (C2), and z_beta rises within 20 eps after stable\u2192volatile transfer (C3).",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "error",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1618,6 +1570,30 @@
       "started_at": "2026-03-21T12:21:32.585457+00:00",
       "completed_at": "2026-03-21T13:12:12.790548+00:00",
       "output_file": "v3_exq_060_arc016_beta_gate_fixed_threshold_20260321T131212Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-049e",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 BetaGate v4 \u2014 two-condition design (trained vs fresh agent)",
+      "description": "Fixes single-agent limitation of EXQ-049d: trained agent always committed (variance~0), fresh agent always uncommitted (variance=precision_init=0.5>threshold). C1/C3 from trained agent (gate elevates), C2/C4 from fresh agent (gate releases). No artificial variance manipulation needed \u2014 both conditions at stable extremes.",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-03-21T16:58:26.350085+00:00",
+      "completed_at": "2026-03-21T18:05:18.117465+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_049e_mech090_two_condition/v3_exq_049e_mech090_two_condition_20260321T180517Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-061",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Volatility Interrupt \u2014 jitter approximation enables de-commitment on surprise harm",
+      "description": "Tests MECH-104 (LC-NE volatility interrupt) V3 approximation. Two conditions: baseline (no spike, confirms variance collapse) vs surprise-spike (adds spike_magnitude=0.05 to running_variance on harm contact). PASS: C1 baseline n_uncommitted=0, C2 spike n_uncommitted>100, C3 variance rises after harm contact, C4 calibration_gap preserved, C5 no fatal errors.",
+      "result": "PASS",
+      "result_summary": "spike_harm_contact_count: 317.0 | spike_mean_variance_before_harm: 8.850001720232687 | spike_mean_variance_after_harm: 8.900001720232687",
+      "started_at": "2026-03-21T18:05:18.131373+00:00",
+      "completed_at": "2026-03-21T19:14:20.339378+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_061_mech104_volatility_jitter/v3_exq_061_mech104_volatility_jitter_20260321T191419Z.json"
     }
   ]
 }

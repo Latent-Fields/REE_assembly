@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-21T16:58:13.287183Z`
+Generated: `2026-03-21T18:49:19.274965Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -220,7 +220,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.83, conflict_ratio=0.5, exp_entries=3, lit_entries=1; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.829, conflict_ratio=0.5, exp_entries=3, lit_entries=1; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -362,7 +362,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-008
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.695, conflict_ratio=0.5, exp_entries=4, lit_entries=0; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.694, conflict_ratio=0.5, exp_entries=4, lit_entries=0; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)

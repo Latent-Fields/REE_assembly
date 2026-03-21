@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "world_forward_r2_split": 0.9480041265487671,
+    "world_forward_r2_unified": 0.9647996425628662,
+    "wf_r2_delta": -0.01679551601409912,
+    "attribution_gap_split": -0.0014955867200264555,
+    "attribution_gap_unified": -0.0006843006284637925,
+    "attr_gap_delta": -0.000811286091562663,
+    "causal_sig_approach_split": -0.00014060465956150964,
+    "causal_sig_approach_unified": -6.254324305816536e-05,
+    "causal_sig_none_split": 0.0013549820604649458,
+    "causal_sig_none_unified": 0.0006217573854056271,
+    "harm_eval_pearson_r_split": 0.9999101674374028,
+    "harm_eval_pearson_r_unified": 0.9999101674374028,
+    "n_approach_split": 801.0,
+    "n_approach_unified": 801.0,
+    "alpha_world": 0.9,
+    "seed": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-047b \u2014 SD-005 + SD-010 Joint Validation\n\n**Status:** FAIL\n**Claims:** SD-005, MECH-069\n**Design:** split (z_self \u2260 z_world) vs unified (z_self = z_world = avg). SD-010 active in BOTH conditions.\n**alpha_world:** 0.9  |  **Warmup:** 500 eps  |  **Eval:** 50 eps  |  **Seed:** 0\n\n## Context\n\nEXQ-047 (SD-005) FAIL: calibration improvement only 3.4pp vs 5pp threshold.\nDiagnosis: nociceptive content in z_world contaminated both conditions equally.\nEXQ-047b retest: SD-010 now confirmed (EXQ-056c/059c PASS). HarmEncoder routes\nharm_obs \u2192 z_harm independently, removing nociception from z_world gradient path.\n\n## Results\n\n| Metric | Split | Unified | Delta |\n|---|---|---|---|\n| world_forward_r2 | 0.9480 | 0.9648 | -0.0168 |\n| attribution_gap | -0.001496 | -0.000684 | -0.000811 |\n| harm_eval_pearson_r (SD-010) | 0.9999 | 0.9999 | \u2014 |\n| n_approach | 801 | 801 | \u2014 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: wf_r2_split > wf_r2_unified + 0.05 (split improves E2 prediction) | FAIL | 0.9480 vs 0.9648 |\n| C2: attr_gap_split > attr_gap_unified + 0.01 (split improves attribution) | FAIL | -0.001496 vs -0.000684 |\n| C3: harm_eval_pearson_r > 0.50 (SD-010 HarmEncoder functional) | PASS | 0.9999 |\n| C4: wf_r2_split > 0.30 (E2 model is learning) | PASS | 0.9480 |\n| C5: n_approach >= 50 (sufficient attribution data) | PASS | 801 |\n\nCriteria met: 3/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: wf_r2_split=0.9480 <= wf_r2_unified=0.9648 + 0.05\n- C2 FAIL: attr_gap_split=-0.001496 <= attr_gap_unified=-0.000684 + 0.01\n",
+  "claim_ids": [
+    "SD-005",
+    "MECH-069"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_047b_sd005_sd010_joint",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260321T191558Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047b_sd005_sd010_joint_20260321T191558Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
