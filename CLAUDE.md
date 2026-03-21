@@ -46,6 +46,17 @@ python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json fo
 - `run_id` must end `_v2` (V2 runs) or `_v3` (V3 runs)
 - `architecture_epoch` must be `"ree_hybrid_guardrails_v1"`
 - Results go to `evidence/experiments/`
+- V3 experiment scripts write `claim_ids` (list) in their flat JSON output.
+  The runner writes `claim_ids_tested` in `runs/**/manifest.json`.
+  The indexer accepts both — no action needed, but use `claim_ids` in new V3 scripts.
+
+## Experiment Proposals
+
+- Proposals live in `evidence/planning/experiment_proposals.v1.json`
+- After experiments run, mark addressed proposals `status: "executed"` — they are
+  not auto-updated by the governance pipeline.
+- The indexer (`build_experiment_indexes.py`) rebuilds `claim_evidence.v1.json`
+  which is the ground truth for what evidence exists per claim.
 
 ## V3-Pending Gate
 

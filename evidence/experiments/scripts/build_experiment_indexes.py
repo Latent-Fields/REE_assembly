@@ -303,7 +303,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         signatures = manifest.get("failure_signatures", [])
         if not isinstance(signatures, list):
             signatures = []
-        claim_ids_raw = manifest.get("claim_ids_tested", [])
+        claim_ids_raw = manifest.get("claim_ids_tested") or manifest.get("claim_ids", [])
         if not isinstance(claim_ids_raw, list):
             claim_ids_raw = []
         claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
@@ -369,7 +369,7 @@ def _scan_literature(
         entry_id = str(record.get("entry_id", entry_dir.name))
         timestamp_raw, timestamp = _parse_timestamp(record.get("timestamp_utc"), record_path)
 
-        claim_ids_raw = record.get("claim_ids_tested", [])
+        claim_ids_raw = record.get("claim_ids_tested") or record.get("claim_ids", [])
         if not isinstance(claim_ids_raw, list):
             claim_ids_raw = []
         claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
