@@ -2778,6 +2778,25 @@
     with constrained trajectory selection under the viability criterion
     (INV-030).
 
+- id: INV-032
+  title: "Moral agency requires both approach and avoidance drives; pure avoidance produces a degenerate risk manager, not an ethical agent."
+  claim_type: invariant
+  subject: agency.approach_avoidance_both_necessary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-029
+    - INV-030
+  location: docs/invariants.md#inv-032
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    An architecture capable only of avoidance cannot care -- it can only refrain. Care
+    (INV-029) requires orientation toward flourishing, not merely absence of harm. Both drives
+    must be structurally represented. This is constitutive of ethical agency, not an optional
+    architectural feature: a system that avoids all harm by doing nothing has satisfied every
+    avoidance criterion while failing as an agent. Registered 2026-03-22.
+
 - id: ARC-025
   title: "Three-engine (E1/E2/E3) architecture is irreducible; no engine can be collapsed into another."
   claim_type: architecture_hypothesis
@@ -3329,6 +3348,42 @@
   location: docs/architecture/valenced_hippocampal_map.md#q-020
   source:
     - docs/architecture/valenced_hippocampal_map.md
+# Registered 2026-03-22 -- approach/avoidance drive symmetry: open question
+- id: Q-021
+  title: "Does training with harm-avoidance signals only, without explicit approach drives, produce behavioral flatness (quiescent degenerate policy)?"
+  claim_type: open_question
+  subject: drive.behavioral_flatness_under_pure_avoidance
+  polarity: open
+  status: open
+  depends_on:
+    - ARC-030
+    - MECH-111
+    - MECH-112
+    - MECH-113
+  location: docs/architecture/approach_avoidance_symmetry.md#q-021
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    Testable prediction of ARC-030. An ablation experiment trains two agents identically
+    except one has approach drives (goal attractor, novelty signal, self-maintenance) and one
+    does not. If ARC-030 is correct, the avoidance-only agent converges to minimal-action
+    behavior measurable as reduced policy entropy and action rate over training. Secondary
+    question: what minimum set of approach signals is sufficient to prevent behavioral collapse?
+    Added to evidence backlog as EVB-0061. Registered 2026-03-22.
+    Clinical analogues (from literature): Schizophrenia negative symptoms (avolition) = impaired
+    wanting with intact liking; reduced reward-seeking with preserved/elevated loss-avoidance;
+    Barch & Dowd 2010 (DOI 10.1093/schbul/sbq068), Culbreth et al. 2023 (DOI
+    10.1017/S0033291722003993). Depression = locked-in avoidant brain; allostatic self-efficacy
+    failure -> learned helplessness; Stephan et al. 2016 (DOI 10.3389/fnhum.2016.00550),
+    Barrett et al. 2016 (DOI 10.1098/rstb.2016.0011). Behavioral flatness is not speculative
+    -- it has documented clinical instantiations. Mechanistic path: pure-avoidance training ->
+    no approach gradient -> quiescent policy (low entropy, low action rate, near-zero goal
+    visits) -- parallels avolition in schizophrenia.
+    Experiment design: two-agent ablation + single-drive variants (MECH-111 only, MECH-112
+    only, MECH-113 only) to identify minimum sufficient approach signal. Metrics: policy
+    entropy, action rate, goal-state visit frequency, harm-state visit frequency.
+    Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
 # Registered 2026-03-15 — NC-02 through NC-03 E1/E2 constraint propagation cluster
 - id: MECH-081
   title: "E2 sufficiency constraint reduces E1 effective dimensionality target."
@@ -4359,6 +4414,51 @@
     would confirm that commitment is not universally good but context-dependent --
     the correct functional prediction of ARC-016's control-plane framing.
 
+- id: ARC-030
+  title: "The three BG-like loops require symmetric Go (approach) and NoGo (avoidance) sub-channels; pure NoGo architecture produces behavioral flatness."
+  claim_type: architecture_hypothesis
+  subject: architecture.approach_avoidance_symmetry
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-021
+    - MECH-069
+    - INV-032
+    - SD-010
+  location: docs/architecture/approach_avoidance_symmetry.md#arc-030
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    The biological BG model motivating ARC-021 has explicit D1 (Go/approach) and D2
+    (NoGo/avoidance) pathways in competition within each loop. REE's current formulation
+    specifies NoGo in architectural detail (nociceptive stream SD-010, agency comparator
+    MECH-095, precision-to-commitment wiring ARC-016) but does not build out Go. Without
+    approach drives, the gradient minimum under harm-avoidance-only training is quiescence:
+    the agent that does nothing accrues no harm signal, no attribution, never crosses a commit
+    boundary, and appears by its own error metrics to be performing optimally. The residue
+    field requires positive attractors alongside harm repellers or the hippocampal planner has
+    no terrain to navigate toward. The appetitive stream (goal-approach MECH-112, novelty
+    MECH-111, self-maintenance MECH-113) must be structurally co-designed with the nociceptive
+    stream (SD-010). Registered 2026-03-22.
+    Literature: Cox et al. 2015 (NeuroImage, DOI 10.1016/j.neuroimage.2014.12.070) -- human
+    PET confirms D1 binding predicts approach learning, D2 binding predicts avoidance learning;
+    "bidirectional modulatory role for striatal dopamine via segregated D1 and D2 pathways."
+    Hikida et al. 2012 (PNAS, DOI 10.1073/pnas.1220358110) -- D1 activation (direct pathway)
+    = reward learning; D2 inactivation (indirect pathway) = aversive learning; pharmacological
+    dissociation confirmed. Bariselli et al. 2018 (Brain Res, DOI 10.1016/j.brainres.2018.10.009)
+    -- CRITICAL: COMPETITIVE MODEL: dMSNs and iMSNs are tuned to the SAME actions and compete
+    to determine behavioral response. NOT two separate action inventories. Both pathways evaluate
+    the same trajectory proposals from hippocampus; the commit threshold (MECH-106, ARC-016) is
+    the competition balance point.
+    Architecture shape: ARC-030 implementation is NOT two parallel pipelines selecting different
+    trajectories. It is dual evaluation of the SAME hippocampal trajectory proposals:
+    harm channel (SD-010/NoGo) and goal channel (MECH-112/Go) evaluate each proposal; the
+    precision-weighted balance determines commitment. MECH-112 and SD-010 are symmetric inputs
+    to the same E3 commitment gate. This extends MECH-106 (commitment threshold modulated by
+    valence) and closes the ARC-016 precision-to-behavior wiring gap.
+    Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
 - id: ARC-027
   title: "Harm stream runs as a parallel thalamic pathway independent of world latent space."
   claim_type: architectural_commitment
@@ -4497,12 +4597,24 @@
   evidence_quality_note: |
     EXQ-047 (2026-03-20): Split provides 82% attribution improvement (gap: 0.035 split vs
     0.019 unified) and meaningful calibration gain (0.1915 vs 0.1577), but calibration
-    improvement (3.4pp) falls below 5pp C1 threshold → FAIL 4/5. C1 failure is partly
+    improvement (3.4pp) falls below 5pp C1 threshold -> FAIL 4/5. C1 failure is partly
     attributable to nociceptive contamination in z_world: both split and unified z_world
     conditions still carry harm proximity signals that conflate calibration metrics. True
     calibration advantage of split should increase once SD-010 (separate z_harm) removes
     nociceptive contamination. Attribution advantage (82%) is real and unambiguous. SD-005
     split is prerequisite for clean SD-010 implementation.
+    EXQ-047d (2026-03-22, x2 runs): DESIGN FAILURE -- not a genuine negative. Probed
+    frozen representations from training with no separation objective. Both z_self and
+    z_world carried nearly equal action information (split_action_dissociation=0.008;
+    need >0.10). Root cause: without adversarial pressure the encoder has no incentive to
+    concentrate action info in z_self and expel it from z_world. The two runs are
+    byte-identical (same seed, deterministic frozen probe) -- 1 effective data point, not
+    2. Evidence direction "weakens" on both runs is a tagging artefact of the design
+    failure; these results should not be counted as genuine disconfirmation of SD-005.
+    EXQ-047e (pending): adversarial gradient-reversal probe. GRL on z_world during
+    fine-tuning forces action info out of z_world while z_self retains it via motor-
+    sensory correlation. Unified condition cannot achieve separation (z_self = z_world).
+    This is the first experiment applying genuine separation training pressure.
   depends_on: []
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
@@ -4799,3 +4911,129 @@
     to fear" signal. Contagious laughter is clock entrainment. Social laughter evolution
     may be grounded in this synchronisation function rather than (or in addition to) pure
     affiliation signalling.
+
+# Registered 2026-03-22 -- approach/avoidance drive symmetry cluster
+- id: MECH-111
+  title: "E1 prediction error surprise at moderate magnitudes generates intrinsic positive valence (curiosity/novelty drive); information-seeking is architecturally grounded."
+  claim_type: mechanism_hypothesis
+  subject: drive.epistemic_value_novelty
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-069
+    - ARC-030
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-111
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    Computational analogue of FEP epistemic value (expected information gain), distinct from
+    pragmatic value (harm reduction). E1 surprise is not only alarming -- at moderate
+    magnitudes it is intrinsically rewarding. Without this, the agent has no intrinsic
+    motivation to encounter novel states; exploration decays to zero under harm-avoidance
+    pressure alone. The architecture needs to distinguish alarm-surprise (high magnitude,
+    harmful context) from curiosity-surprise (moderate magnitude, safe novel context).
+    This distinction may route through z_beta. Registered 2026-03-22.
+    Literature: Ogasawara et al. 2022 (Nat Neurosci, DOI 10.1038/s41593-021-00950-1) --
+    novelty seeking has its own dedicated neural circuit (temporal cortex-zona incerta
+    pathway) DISTINCT from reward dopamine; ZI neurons activate on predictions of novelty
+    before action. Wang et al. 2024 (PLoS Comput Biol, DOI 10.1371/journal.pcbi.1011516) --
+    dopaminergic novelty signals encode VARIANCE of reward distribution (uncertainty), not
+    mean reward; distinct from TD prediction error. Kakade & Dayan 2002 (Neural Netw, DOI
+    10.1016/s0893-6080(02)00048-5) -- dopamine multiplexes exploration bonuses alongside
+    reward prediction error; novelty bonuses lower commit threshold for novel states.
+    Suri et al. 2001 (Neuroscience, DOI 10.1016/s0306-4522(00)00554-6) -- ablating novelty
+    responses impairs planning, not just exploration.
+    Architecture shape: novelty drive is NOT repurposed E1 prediction error; it encodes
+    reward *variance* (uncertainty), needs own latent channel or modulator. Acts on commit
+    threshold (lowering for novel states) rather than through goal attractor channel.
+    Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
+- id: MECH-112
+  title: "E3 requires a structured latent goal representation (positive attractor in z_world or z_goal sub-space) distinct from harm avoidance."
+  claim_type: mechanism_hypothesis
+  subject: drive.goal_state_attractor
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - ARC-007
+    - MECH-069
+    - ARC-030
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-112
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    E3 error signal is specified as harm/goal error (MECH-069) but goal has no structural
+    representation -- subsumed under harm with no latent encoding, no goal encoder, no approach
+    gradient. The hippocampal planner must navigate toward attractors as well as away from
+    repellers. Without goal attractors the residue field is a pure aversion landscape; gradient
+    minimum under learning is quiescence. Goal representation needs its own latent (or
+    sub-component of z_world), its own encoding path, and its own contribution to hippocampal
+    terrain. INV-029 (love as long-horizon care-investment) and ARC-026 cash out architecturally
+    here: coherence and flourishing are positive-valence attractors in z_world space.
+    Registered 2026-03-22.
+    Literature: Barch & Dowd 2010 (Schizophr Bull, DOI 10.1093/schbul/sbq068) -- critical
+    distinction between LIKING (hedonic response at goal receipt) and WANTING (prospective
+    motivational drive toward future states). Schizophrenia negative symptoms = impaired
+    wanting with intact liking. REE may have liking (z_beta valence) but lacks wanting (goal
+    representation). MECH-112 must be prospective and persistent, not a terminal reward signal.
+    Culbreth et al. 2023 (Psychol Med, DOI 10.1017/S0033291722003993) -- reduced reward-
+    seeking correlated with loss-avoidance bias in schizophrenia; rlPFC encodes uncertainty-
+    driven exploration. Hollerman et al. 2000 (Prog Brain Res, DOI 10.1016/S0079-6123(00)26015-9)
+    -- striatum provides neural representation of goal; subgoal representations at multiple
+    trajectory points, not only terminal state. Rusu & Pennartz 2019 (Hippocampus, DOI
+    10.1002/hipo.23167) -- hierarchical BG loops; limbic-affective loop sets goal context
+    for dorsomedial PFC-striatal loop; hippocampal SWR replay for goal consolidation.
+    Architecture shape: MECH-112 = "wanting" system; prospective, persistent goal state in
+    E3 domain; hippocampal terrain becomes attractive near z_goal, not just repulsive near
+    z_harm; subgoal representations needed at multiple trajectory steps.
+    Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
+- id: MECH-113
+  title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
+  claim_type: mechanism_hypothesis
+  subject: drive.homeostatic_self_coherence
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-005
+    - SD-007
+    - INV-030
+    - ARC-030
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-113
+  source:
+    - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    Degradation of z_self stability, prediction fidelity, or reafference loop integrity is
+    undetected by harm-avoidance machinery if no external harm is occurring -- agent can fail
+    silently. A homeostatic coherence signal closes this gap and provides intrinsic motivation
+    for continued self-regulation. Implements INV-030 (viability as binding constraint) at the
+    architectural level. Two framings require separate experimental testing: (1) z_self coherence
+    signal -- monitor z_self statistical properties (entropy, prediction accuracy, drift) and
+    generate a self-maintenance error when coherence degrades below threshold; (2) FEP Markov
+    blanket resistance -- self-maintenance emerges from minimising surprise about self-generated
+    states, framing self-coherence as a prior over blanket states rather than an explicit signal.
+    Both framings are architecturally open; both need testing.
+    pending_design: framing (z_self signal vs. Markov blanket resistance). Registered 2026-03-22.
+    Literature: Seth & Friston 2016 (Phil Trans R Soc B, DOI 10.1098/rstb.2016.0007) --
+    interoceptive inference as inversion of a generative model of internal milieu; sense of
+    self emerges from maintaining the model. Markov blanket framing and z_self coherence signal
+    framing converge: maintaining z_self fidelity IS maintaining the Markov blanket.
+    Petzschner et al. 2021 (Trends Neurosci, DOI 10.1016/j.tins.2020.09.012) -- three levels:
+    homeostatic (reactive), allostatic (predictive setpoint), goal-directed. All three levels
+    correspond to distinct generative models in active inference; may need all three in REE.
+    Stephan et al. 2016 (Front Hum Neurosci, DOI 10.3389/fnhum.2016.00550) -- CRITICAL: a
+    third level beyond the two framings -- ALLOSTATIC SELF-EFFICACY, metacognitive monitoring
+    of the agent's own regulatory capacity. Chronic dyshomeostasis + low self-efficacy =
+    learned helplessness. Direct mechanistic link: MECH-113 failure -> low self-efficacy ->
+    behavioral inhibition -> Q-021 behavioral flatness. Barrett et al. 2016 (Phil Trans R Soc
+    B, DOI 10.1098/rstb.2016.0011) -- depression = locked-in brain insensitive to sensory
+    context = clinical manifestation of MECH-113 failure.
+    Architecture shape: three-level implementation may be needed -- (1) reactive z_self entropy
+    monitoring, (2) allostatic anticipatory setpoint in E1/E2, (3) metacognitive self-efficacy
+    monitoring in E3 linking self-maintenance to commit threshold. Level 3 is the mechanism
+    connecting MECH-113 to Q-021.
+    Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md

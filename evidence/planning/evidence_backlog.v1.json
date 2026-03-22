@@ -4300,6 +4300,38 @@
         }
       },
       "status": "open"
+    },
+    {
+      "backlog_id": "EVB-0061",
+      "claim_id": "Q-021",
+      "evidence_needed": [
+        "experimental",
+        "literature"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Design ablation experiment: train two agents identically, one with approach drives (MECH-111/112/113), one without. Compare policy entropy and action rate over training. Literature pull on curiosity/intrinsic motivation RL and BG Go/NoGo symmetry to shape architectural choices first.",
+      "priority": "medium",
+      "reasons": [
+        "no_evidence_for_open_question",
+        "testable_now",
+        "architectural_prerequisite_for_ARC-030"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "open_question",
+        "conflict_ratio": 0.0,
+        "current_status": "open",
+        "overall_confidence": 0.0,
+        "source_counts": {
+          "experimental": 0,
+          "literature": 0
+        }
+      },
+      "status": "open"
     }
   ],
   "schema_version": "evidence_backlog/v1",
