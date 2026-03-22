@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-22.3 -->
+<!-- EXPLORER_VERSION: 2026-03-22.4 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8316,7 +8316,8 @@ END CONFLICT RESOLUTION`;
               result: ev.latest_verdict,
               completed_at: ev.latest_timestamp,
               total_run_count: ev.run_count,
-              output_file: `ree-v2/evidence/experiments/${scriptName}/`,
+              output_file: `${ev.substrate === 'v3' ? 'ree-v3' : 'ree-v2'}/evidence/experiments/${scriptName}/`,
+              ree_version: ev.substrate || 'unknown',
               script_name: scriptName,
               evidence_only: true,
             };
