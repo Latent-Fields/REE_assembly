@@ -927,7 +927,12 @@ def _compute_claim_confidence(
         exp_counts = Counter(str(e.get("evidence_direction", "unknown")) for e in exp_entries)
         directional = exp_counts.get("supports", 0) + exp_counts.get("weakens", 0)
         if directional:
-            consistency = abs(exp_counts.get("supports", 0) - exp_counts.get("weakens", 0)) / directional
+            # Directional net: +1 = all supports, 0 = balanced conflict, -1 = all weakens.
+            # Map to [0, 1] where 1.0 = fully supporting, 0.5 = balanced, 0.0 = fully weakening.
+            # This prevents "consistent weakening" (supports=0, weakens=N) from producing
+            # high consistency (old formula gave abs(0-N)/N = 1.0 regardless of direction).
+            net = (exp_counts.get("supports", 0) - exp_counts.get("weakens", 0)) / directional
+            consistency = (net + 1.0) / 2.0
         else:
             consistency = 0.4
         volume = min(1.0, len(exp_entries) / 5.0)
@@ -1287,6 +1292,7 @@ def _default_decision_criteria() -> dict[str, Any]:
                 "min_overall_confidence": 0.62,
                 "min_experimental_entries": 2,
                 "max_conflict_ratio": 0.35,
+                "min_supporting_entries": 1,
             },
             "provisional_to_stable": {
                 "min_overall_confidence": 0.80,
@@ -1750,10 +1756,14 @@ def _recommendation_for_claim(
     )
 
     if current_status == "candidate":
+        genuine_exp_supports = int(
+            claim_meta.get("genuine_exp_direction_counts", {}).get("supports", 0)
+        )
         meets_promote = (
             overall_conf >= float(t_candidate.get("min_overall_confidence", 0.62))
             and exp_entries >= int(t_candidate.get("min_experimental_entries", 2))
             and conflict_ratio <= float(t_candidate.get("max_conflict_ratio", 0.35))
+            and genuine_exp_supports >= int(t_candidate.get("min_supporting_entries", 1))
         )
         if meets_promote:
             decision_needed = "Promotion review: candidate -> provisional"
@@ -3509,10 +3519,27 @@ def _write_planning_outputs(
         "criteria_version": str(planning_criteria.get("schema_version", "planning_criteria/v1")),
         "items": backlog_items,
     }
+    # Merge in manually-curated proposals that survive pipeline regeneration.
+    # Read evidence/planning/manual_proposals.v1.json if it exists; append its
+    # items verbatim to the generated list. Manual items must carry:
+    #   proposal_id, claim_id, proposal_type, priority, objective, status
+    manual_proposals_path = planning_root / "manual_proposals.v1.json"
+    if manual_proposals_path.exists():
+        try:
+            manual_doc = json.loads(manual_proposals_path.read_text(encoding="utf-8"))
+            for mp in manual_doc.get("items", []):
+                if isinstance(mp, dict) and mp.get("proposal_id"):
+                    mp_copy = dict(mp)
+                    mp_copy["source"] = "manual"
+                    proposals.append(mp_copy)
+        except Exception:
+            pass  # malformed manual file -- skip silently
+
     proposals_doc = {
         "schema_version": "experiment_proposals/v1",
         "generated_at_utc": generated_at,
         "source_backlog": "evidence/planning/evidence_backlog.v1.json",
+        "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",
         "items": proposals,
     }
     architecture_gap_doc = {

@@ -111,10 +111,13 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
     Includes:
     - ERROR / UNKNOWN entries not already in discussed_dirs
     - Onboarding smoke runs (any result) not already in discussed_dirs or reviewed_run_ids
+    - FAIL / PASS entries whose result file exists on disk but is NOT yet in the index
+      (completed after the last build_experiment_indexes.py run — stale index gap)
 
     Excludes:
     - Entries whose derived dir_name OR queue_id is in discussed_dirs
-    - Entries whose indexed run_id is in reviewed_run_ids (already in sections 1/2)
+    - Entries whose run_id is in reviewed_run_ids
+    - Entries whose run_id IS in indexed_run_ids (already covered by sections 1/2)
     """
     if not RUNNER_STATUS.exists():
         return []
@@ -150,14 +153,43 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
             basename = output_file.replace("\\", "/").split("/")[-1]
             if basename.endswith(".json"):
                 run_id_from_file = basename[:-5]  # strip .json
-        if run_id_from_file and run_id_from_file in reviewed:
-            continue
-        if run_id_from_file and run_id_from_file in indexed_run_ids:
-            # It's in claim_evidence -> will appear in sections 1/2 if not reviewed
+        # Normalise run_id for comparison: output_file stems omit the _v2/_v3 suffix
+        # that indexed run_ids carry. Try both with and without common suffixes.
+        def _in_reviewed_or_indexed(stem: str) -> bool:
+            if not stem:
+                return False
+            for candidate in [stem, stem + "_v3", stem + "_v2"]:
+                if candidate in reviewed or candidate in indexed_run_ids:
+                    return True
+            return False
+
+        if _in_reviewed_or_indexed(run_id_from_file):
+            # Already reviewed, OR it's in claim_evidence and will appear in sections 1/2
             continue
 
-        # Include if: ERROR/UNKNOWN, or smoke run
-        if result in ("ERROR", "UNKNOWN") or is_smoke:
+        # Detect stale-index gap: result file exists on disk but not yet indexed.
+        # This catches FAIL/PASS experiments that completed after the last index build.
+        # We only flag stale if the file exists AND none of its run_id variants are indexed.
+        result_file_path = None
+        if output_file:
+            p = Path(output_file)
+            result_file_path = p if p.is_absolute() else ROOT / output_file
+        # Only flag stale if the result file is inside EVIDENCE_DIR (V3 results).
+        # V2 experiment files live in ree-v2/ — their run_ids are transformed on sync
+        # and don't match the basename, so stale detection would false-fire for all V2 runs.
+        result_file_in_evidence = (
+            result_file_path is not None
+            and result_file_path.exists()
+            and result_file_path.is_relative_to(EVIDENCE_DIR)
+        )
+        stale_index = (
+            result_file_in_evidence
+            and bool(run_id_from_file)
+            and not _in_reviewed_or_indexed(run_id_from_file)
+        )
+
+        # Include if: ERROR/UNKNOWN, smoke run, or stale-index gap (not yet indexed)
+        if result in ("ERROR", "UNKNOWN") or is_smoke or stale_index:
             pending.append({
                 "queue_id": queue_id,
                 "result": result,
@@ -165,6 +197,7 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
                 "dir_name": dir_name,
                 "claimed_at": claimed_at,
                 "is_smoke": is_smoke,
+                "stale_index": bool(stale_index),
             })
 
     # Sort by claimed_at (chronological)
@@ -235,7 +268,12 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
             ]
             for r in runner_undiscussed:
                 script_short = r["script"].split("/")[-1] if r["script"] else "?"
-                note = "smoke run" if r["is_smoke"] else r["result"]
+                if r["is_smoke"]:
+                    note = "smoke run"
+                elif r.get("stale_index"):
+                    note = f"{r['result']} (index stale — run build_experiment_indexes.py)"
+                else:
+                    note = r["result"]
                 lines.append(
                     f"| `{r['queue_id']}` | {r['result']} | `{script_short}` | {note} |"
                 )

@@ -1140,52 +1140,43 @@
     - docs/architecture/hippocampal_systems.md
     - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
 - id: ARC-016
-  title: "Modes are control-plane regimes applied to shared predictive machinery."
+  title: "Modes are control-plane regimes applied to shared predictive machinery: the precision-to-commitment circuit."
   claim_type: architectural_commitment
   subject: cognitive_modes.control_plane_regimes
   polarity: asserts
   status: provisional
+  status_note: |
+    Split 2026-03-22: ARC-016 now covers only the structural/mechanistic circuit
+    (E3-derived variance -> relative threshold -> BetaGate -> action_selection).
+    The behavioral consequence layer (committed vs uncommitted -> measurably distinct
+    harm outcomes) is ARC-029. Provisional status is justified by EXQ-018b PASS 5/5
+    and EXQ-060 PASS 4/5.
   evidence_quality_note: |
+    Scope (post-split 2026-03-22): ARC-016 asserts that operating modes exist as
+    control-plane regimes — specifically that E3-derived prediction variance drives a
+    commitment threshold which gates action-selection via BetaGate. The behavioral
+    consequence of that gating (harm differences between modes) is ARC-029.
     V2 EXQ (precision_regime_probe, 2026-03-08): FAIL (partial_support=true, 1/2 criteria).
     Criterion 1 met: precision gap achieved (1.697, easily). Criterion 2 failed: behavioral
-    distinction absent — HIGH_REGIME (commit_rate=1.0) and LOW_REGIME (commit_rate=0.0) produce
-    identical harm (1.233 vs 1.218). Root cause: precision is externally imposed (not E3-derived),
-    and the commitment-to-action circuit is not connected to harm outcomes in V2. Even with
-    radically different commit rates, harm is identical — meaning commitment is not gating
-    behavior in a way that matters for the outcome metric. Two V3 requirements exposed:
-    (1) E3-derived dynamic precision calibrated from prediction error (not hardcoded 0.5);
-    (2) commitment gating must actually change action-selection in a way that affects harm —
-    the precision→commitment→behavior→harm circuit must be genuinely wired end-to-end.
-    Note: MECH-059 (precision/PE structural separation) PASSED in V2, confirming the channels
-    exist as distinct signals. ARC-016 is a stronger claim: that those channels produce
-    behaviorally distinct operating modes. The structural separation is necessary but
-    not sufficient for ARC-016.
-    V3 EXQ-018 FAIL (2026-03-20): Variance mechanism confirmed working — precision drops 40%
-    (718→426) under maximal perturbation. But commit_threshold=0.40 is 100× the actual
-    operating variance range (stable≈0.0026, perturbed≈0.0036). Absolute threshold
-    calibration is fragile: any environment change shifts the variance operating range.
-    Fix: relative threshold calibrated from training baseline
-    (commit_threshold = k × training_baseline_variance, k≈2.0). Mirrors biological
-    'sleep recalibration' — slow-wave sleep resets the prediction error baseline, and
-    waking commitment thresholds are calibrated relative to that baseline. EXQ-018b
-    implements this relative threshold approach.
+    distinction absent. Root cause: precision was externally imposed (not E3-derived) and
+    commitment-to-action circuit not wired end-to-end in V2. Two V3 requirements exposed:
+    (1) E3-derived dynamic precision calibrated from prediction error;
+    (2) commitment gating must actually change action-selection.
+    Note: MECH-059 (precision/PE structural separation) PASSED in V2, confirming the
+    channels exist as distinct signals. ARC-016 structural separation is necessary but
+    not sufficient for ARC-029 behavioral distinction.
+    V3 EXQ-018 FAIL (2026-03-20): Variance mechanism working but absolute threshold
+    (0.40) was 100x the operating variance range. Fix: relative threshold.
     V3 EXQ-018b PASS (2026-03-20, 5/5 criteria): Relative threshold confirmed working.
-    commit_threshold = 2 × training_baseline_variance. Stable env: commit_rate=0.90,
-    precision≈718; perturbed env: commit_rate=0.50, precision≈426. 40% precision drop
-    produces 40-point commit-rate drop — proportional, not binary. Biological parallel
-    confirmed: the threshold adapts to the agent's own prediction error baseline so
-    environmental noise does not shift it. Circuit is end-to-end: E3-derived variance →
-    commit_threshold comparison → BetaGate → action_selection. ARC-016 core mechanism
-    validated; remaining V3 question is whether the committed/uncommitted behavioral
-    distinction produces measurable harm differences in richer environments.
-    EXQ-060 PASS (2026-03-21, 4/5, two identical runs — runner claim race): Committed-
-    condition BetaGate behavior confirmed. committed_step_count=5980, hold_rate_during_
-    committed=0.936, calibration_gap_approach=0.930. mean_running_variance=2.76e-6 (well
-    below commit_threshold=0.40 after training). C4 FAIL: propagation_count=0 because
-    trained agent is always committed — gate never releases in single-agent eval design.
-    Uncommitted condition requires two-condition design (EXQ-049e pattern). This run
-    confirms the committed→elevated circuit but does not yet test committed vs uncommitted
-    behavioral distinction end-to-end.
+    commit_threshold = 2 x training_baseline_variance. Stable env: commit_rate=0.90,
+    precision=718; perturbed env: commit_rate=0.50, precision=426. 40% precision drop
+    produces proportional 40-point commit-rate drop. Circuit is end-to-end: E3-derived
+    variance -> commit_threshold comparison -> BetaGate -> action_selection.
+    EXQ-060 PASS (2026-03-21, 4/5): Committed-condition BetaGate confirmed.
+    committed_step_count=5980, hold_rate_during_committed=0.936,
+    calibration_gap_approach=0.930. C4 missed (propagation_count=0) because single-agent
+    design keeps agent permanently committed — not a mechanism failure.
+    ARC-016 core circuit is validated. See ARC-029 for the behavioral consequence layer.
   depends_on:
     - ARC-005
     - MECH-059
@@ -1899,26 +1890,21 @@
     before hippocampal sequence completion is verified. This path is not present in V1 or V2.
     V3 primary scope: full HippocampalModule trajectory promotion policy and E3 complex
     commitment gate (per V2 spec Step 2.5 exit criteria and V3 control completion focus).
-    Split from MECH-057 2026-03-15 — see MECH-057a for action-loop evidence and V1/V2 history.
-    EXQ-048 FAIL (2026-03-20): Implementation bug — experiment bypassed agent.select_action(),
-    calling agent.e3.select() directly. beta_gate.elevate()/propagate() were never called.
-    Gate always showed is_elevated=False, hold_count=0. Root cause: not a mechanism failure,
-    purely an experiment instrumentation error. EXQ-048b fixes this by routing through
-    agent.select_action().
-    EXQ-059b FAIL (2026-03-20, 2/5 criteria): Fixed instrumentation (routes through
-    select_action()), but mean_running_variance=0.000 (to 14 d.p.) — E3._running_variance
-    is never populated through the select_action() call path. The variance tracker used
-    for commit_threshold comparison is updated internally in agent.e3 during a training
-    loop that EXQ-059b's eval phase does not exercise. C3 (elevation detectable) and
-    C4 (propagation to policy) cannot be verified without running_variance > 0.
-    Root cause: _running_variance update and BetaGate elevation are in separate code paths
-    that must both be triggered for the gating circuit to function. Fix: call
-    agent.e3.update_after_execution(z_world_t, harm_prev<0) each step so _running_variance
-    evolves during training. EXQ-048c implements this fix.
-    Note: MECH-057b (hippocampal candidacy gate) is architecturally distinct from MECH-090
-    (BG beta propagation gate). EXQ-048/059 series tests the BG gate. A separate experiment
-    is needed to test the hippocampal candidacy gate specifically. The coupling between the
-    two gates is ARC-028, mediated by MECH-105.
+    Split from MECH-057 2026-03-15 -- see MECH-057a for action-loop evidence and V1/V2 history.
+    Tagging correction (2026-03-22): EXQ-048/048b/059/060 were previously tagged as
+    MECH-057b evidence, but all of these experiments tested the BG beta propagation gate
+    (MECH-090), not the hippocampal candidacy gate. The tagging error arose because
+    EXQ-048 was designed for MECH-057b but the implementation bypassed BetaGate entirely
+    (broken instrumentation); subsequent iterations fixed the routing and shifted to testing
+    MECH-090, but carried the MECH-057b tag forward without re-evaluation. All affected
+    result JSONs and manifests have been corrected. MECH-057b has zero genuine experimental
+    evidence. The governance confidence score (0.66) prior to this fix was an artefact of
+    the tagging error.
+    First genuine experiment needed: a dedicated V3 experiment instrumenting
+    HippocampalModule's trajectory emission directly -- measuring whether partial sequences
+    are suppressed vs completed sequences are promoted to E3 evaluation. This requires
+    HippocampalModule trajectory promotion policy to be implemented first (V3 scope).
+    See ARC-028 for the coupling between the hippocampal completion signal and BetaGate.
   depends_on:
     - ARC-015
     - ARC-005
@@ -3091,6 +3077,7 @@
   subject: residue.foreseeable_harm_gating_reduces_false_attribution
   polarity: asserts
   status: candidate
+  v3_pending: true
   implementation_phase: v3
   depends_on:
     - MECH-071
@@ -3109,7 +3096,7 @@
     captures some structure, but C3/C4 require SD-005 to pass. v3_pending removed — V3
     evidence now exists (EXQ-054), but result is FAIL pending SD-005.
     New architectural question (2026-03-20): world-delta magnitude is insufficient to
-    discriminate agent vs environment causation — both produce similar E2 perturbation
+    discriminate agent vs environment causation -- both produce similar E2 perturbation
     magnitudes. The gate requires directional discrimination: which subspace of z_world
     was perturbed, not just how much. Candidate fix: replace scalar ||delta|| threshold
     with a learned discriminator head trained on (z_world_delta, is_agent_caused) labels,
@@ -3117,6 +3104,14 @@
     threshold gate into a supervised discriminator gate. Requires SD-005 z_self/z_world
     split as prerequisite (C3 failure is fundamentally about E2 conflating agent and
     environmental dynamics in the same z_world space).
+    Governance note (2026-03-22): governance algorithm produced a false promote_to_provisional
+    recommendation (conf=0.951) despite 0 genuine supporting experiments. Root cause:
+    consistent-weakening evidence (0 supports, 1 weakens, 4 mixed) produced high
+    consistency score in the old formula. Both algorithm bugs fixed in
+    build_experiment_indexes.py (directional consistency formula + min_supporting_entries
+    gate). v3_pending restored. Hold at candidate until SD-005 + SD-010 implemented.
+    Literature pulls for the discriminator gate design and biological evidence for
+    causation-attribution gating mechanisms needed -- see evidence backlog.
   notes: >
     Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
     reduces false attribution rate (residue at env-caused events / total residue)
@@ -4080,8 +4075,15 @@
   claim_type: mechanism_hypothesis
   subject: encoder.reafference_world_context_required
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
+  status_note: |
+    Promoted candidate -> provisional 2026-03-22.
+    Evidence: 3 supporting experiments, 0 weakening, conflict_ratio=0, conf=0.874.
+    EXQ-027 (R2=0.027 with z_self input) established the failure mode.
+    EXQ-021 PASS confirmed z_world_raw_prev input fixes the predictor.
+    Implemented as SD-007 in ree_core/latent/stack.py.
+    Literature triangulation pending (LIT-0090, LIT-0091) -- not required for provisional.
   depends_on:
     - MECH-098
     - SD-007
@@ -4134,8 +4136,15 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.volatility_interrupt
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
+  status_note: |
+    Promoted candidate -> provisional 2026-03-22.
+    Evidence: conf=0.812, conflict_ratio=0, 1 support (EXQ-049e PASS 5/5), 1 mixed (EXQ-062).
+    Route-1 (jitter noise floor) confirmed: prevents running_variance collapse, enables
+    committed->uncommitted transition. Route-2 (harm_surprise-gated spike) has partial
+    evidence; full wiring experiment pending (EXP-0086). Literature triangulation pending
+    (LIT-0092, LIT-0093) -- not required for provisional.
   claim_level: mechanistic
   functional_restatement: >
     When actual harm substantially exceeds predicted harm (prediction error surprise),
@@ -4318,6 +4327,37 @@
     coupling is mediated by a dopamine-analog variable (see MECH-105, MECH-106) for
     proper hysteresis. Biological basis: subiculum → NAc → VP → VTA → dopamine
     → BG beta release (Lisman & Grace 2005, PMID 15924857).
+
+- id: ARC-029
+  title: "Committed and uncommitted operating modes produce measurably distinct harm outcomes."
+  claim_type: architectural_commitment
+  subject: cognitive_modes.behavioral_consequence_of_commitment
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  status_note: |
+    Split from ARC-016 on 2026-03-22. ARC-016 (provisional) covers the structural
+    circuit (E3-derived variance -> BetaGate). ARC-029 covers the behavioral consequence:
+    that commitment state actually changes harm outcomes in a direction that reflects
+    the functional role of each mode. No experiments yet. See EXP-0085 for the
+    proposed experiment design.
+  depends_on:
+    - ARC-016
+    - MECH-090
+  location: docs/architecture/modes_of_cognition.md#arc-029
+  source:
+    - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
+  notes: >
+    The gate-ablation design (EXP-0085) is the cleanest test: train a single agent
+    normally, then compare (A) normal BetaGate enabled vs (B) BetaGate ablated
+    (always-release). Controls for training quality; isolates only the commitment
+    gate's effect on behavior. Two environment conditions add a second dimension:
+    stable hazard layout (commitment should help: agent holds a safe trajectory)
+    vs volatile layout (hazard moves every N steps: commitment should hurt or be
+    neutral as agent cannot adapt mid-commitment). PASS pattern: harm_committed <
+    harm_ablated in stable env; gap narrows or reverses in volatile env. This
+    would confirm that commitment is not universally good but context-dependent --
+    the correct functional prediction of ARC-016's control-plane framing.
 
 - id: ARC-027
   title: "Harm stream runs as a parallel thalamic pathway independent of world latent space."
@@ -4510,14 +4550,23 @@
   claim_type: design_decision
   subject: encoder.z_world_alpha_correction
   polarity: asserts
-  status: candidate
+  status: provisional
   status_note: >
-    LatentStack.encode() EMA alpha for z_world must be >= 0.9 (not 0.3).
-    At 0.3, z_world is a ~3-step weighted average suppressing event responses
-    to 30%, trivialising E2_world prediction (MSE invariant to env perturbation)
-    and preventing ARC-016 precision from firing. alpha_self may remain low.
-    Evidence: EXQ-013 (selectivity≈0), EXQ-018 (precision invariant), EXQ-019
-    (z_self more autocorrelated than z_world — backwards).
+    Promoted to provisional 2026-03-22. Two uncontested supporting experiments:
+    EXQ-023 (alpha=1.0, event_selectivity_margin=0.084 passed SD-008 criterion;
+    overall experiment failed on unrelated claims — SD-007, ARC-016, SD-003 —
+    which have since been independently validated) and EXQ-040 (PASS 4/4,
+    z-separation alpha=0.9 directly confirmed correct event responsiveness).
+    Zero genuine weakening experiments: EXQ-023 direction corrected from weakens
+    to supports; EXQ-024 and EXQ-025 had SD-008 removed per claim_ids accuracy
+    rule (those experiments ran with alpha=0.9 but tested SD-003 pipeline, not
+    whether alpha value matters). Evidence_direction systematic issue documented
+    as known indexer limitation. Motivation: at alpha=0.3, z_world is a ~3-step
+    weighted average suppressing event responses to 30%, trivialising E2_world
+    prediction (MSE invariant to env perturbation) and preventing ARC-016
+    precision from firing. alpha_self may remain low (body state genuinely
+    autocorrelated). Config: LatentStackConfig.alpha_world (default 0.3 for
+    compat; set 0.9 or 1.0 for correct operation).
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 

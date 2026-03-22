@@ -21,7 +21,6 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
     "SD-003",
-    "SD-008",
     "ARC-016"
   ],
   "evidence_class": "simulation",
@@ -40,5 +39,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "claim_ids_correction_note": "SD-008 removed 2026-03-22: experiment tests SD-003 attribution pipeline, not whether alpha_world value matters. Running with alpha=0.9 does not constitute a test of SD-008. Per claim_ids accuracy rule."
 }

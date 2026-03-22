@@ -62,6 +62,37 @@ After each governance/experiment discussion session:
   The runner writes `claim_ids_tested` in `runs/**/manifest.json`.
   The indexer accepts both — no action needed, but use `claim_ids` in new V3 scripts.
 
+## Known Indexer Limitation: evidence_direction is Per-Experiment, Not Per-Claim
+
+The indexer applies a single `evidence_direction` (supports/weakens/mixed) to **all** claims tagged
+in a multi-claim experiment, derived from the overall PASS/FAIL outcome. This is systematically wrong
+for multi-claim experiments where only some claims' criteria fail.
+
+**Canonical example (2026-03-22):** EXQ-023 tested SD-008, SD-003, MECH-098, ARC-016 together.
+SD-008's criterion (event_selectivity_margin=0.084) **passed**. But SD-007 R² and SD-003 calibration
+failed, making the overall outcome FAIL and marking SD-008 as "weakens" — incorrect.
+
+**Workaround:** When manual review identifies a per-claim direction error, correct the manifest
+`evidence_direction` field directly and add an `evidence_direction_note` explaining the correction.
+Rebuild the index after. This is a manual process — the pipeline does not detect these errors.
+
+**Design gap:** A future indexer version should support `evidence_direction_per_claim` in manifests
+so multi-claim experiments can record independent pass/fail per tagged claim. Not yet implemented.
+
+## claim_ids Accuracy Rule (CRITICAL)
+
+**`claim_ids` must reflect what the experiment actually tests, not what it was originally designed to test.**
+
+This is a scientific accuracy issue, not a tagging detail. The governance algorithm computes confidence scores and conflict ratios directly from these tags — wrong tags corrupt the evidence record.
+
+Rules:
+1. **Do not inherit claim_ids from a prior iteration.** When writing EXQ-Nb to fix EXQ-N, re-evaluate from scratch which claims the new version tests. If the fix changed what is being measured, the claim_ids must change too.
+2. **Do not tag a claim because the experiment was *intended* for it.** Tag only what the experiment directly tests with its actual implementation. Broken instrumentation, mislabelled conditions, or scope-drift during iteration are all reasons to change the tag.
+3. **When architectural distinctions are being refined, err toward fewer tags.** Include a claim ID only if the experiment would produce interpretable signal for that claim specifically. Tagging related-but-distinct claims "for completeness" contaminates both claims' evidence records.
+4. **At script-writing time, state the mechanism under test explicitly** in the docstring and verify that claim_ids matches. The question to answer: "If this experiment PASSes, which claim does that support, and why?"
+
+**Canonical example of the failure mode (2026-03-22):** EXQ-048 was designed for MECH-057b (hippocampal candidacy gate) but had broken instrumentation — BetaGate was never called. EXQ-048b fixed the routing, shifting the mechanism under test to MECH-090 (BG beta propagation gate), but MECH-057b was carried forward in claim_ids. EXQ-059 and EXQ-060 then copied this tag list. Result: MECH-057b accumulated 2 false supports and 3 false mixed entries, producing a spurious confidence score of 0.66 with no genuine evidence. All had to be manually corrected.
+
 ## Experiment Proposals
 
 - Proposals live in `evidence/planning/experiment_proposals.v1.json`

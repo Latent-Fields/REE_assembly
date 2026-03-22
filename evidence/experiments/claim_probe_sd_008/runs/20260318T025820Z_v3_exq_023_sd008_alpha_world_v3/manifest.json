@@ -26,7 +26,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "supports",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -41,5 +41,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Corrected 2026-03-22: SD-008-specific criterion (event_selectivity_margin=0.084) passed. Overall FAIL was due to unrelated criteria (SD-007 R2, ARC-016 precision, SD-003 calibration). Direction changed from weakens to supports per per-claim criterion analysis."
 }

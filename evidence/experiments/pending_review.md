@@ -1,23 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-03-22T13:17:52Z`  
-Last review: `2026-03-22T13:16:47Z`  
-Pending: **3** item(s) -- 2 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-03-22T15:45:39Z`  
+Last review: `2026-03-22T14:10:00Z`  
+Pending: **3** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## PASS (verify & close)
+## FAIL (action required)
 
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_onboard_smoke_Daniel_PC_20260322T114824Z_v3` | 2026-03-22T11:48 | onboarding |
-| `v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3` | 2026-03-22T12:46 | onboarding |
-
-## Needs discussion (ERROR / UNKNOWN / smoke)
-
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
-
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-046b` | ERROR | `?` | ERROR |
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_047d_sd005_info_probe_v2_20260322T132106Z_v3` | 2026-03-22T13:21 | SD-005 | — |
+| `v3_exq_062a_mech104_surprise_gate_committed_only_20260322T134008Z_v3` | 2026-03-22T13:40 | MECH-090, MECH-104 | — |
+| `v3_exq_047d_sd005_info_probe_v2_20260322T134050Z_v3` | 2026-03-22T13:40 | SD-005 | — |
 
 ---
 
