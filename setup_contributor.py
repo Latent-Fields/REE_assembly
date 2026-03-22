@@ -172,6 +172,12 @@ else:
     if IS_WIN or platform.system() == "Linux":
         index_url = "https://download.pytorch.org/whl/cu124"
         info(f"Installing torch with CUDA support (index: {index_url})")
+        # WSL2 note: CUDA works via the Windows NVIDIA driver — do NOT install
+        # nvidia-driver via apt. The Windows driver handles GPU passthrough.
+        if platform.system() == "Linux" and "microsoft" in platform.uname().release.lower():
+            info("WSL2 detected — CUDA uses the Windows NVIDIA driver (already installed).")
+            info("If torch.cuda.is_available() returns False, check: wsl --list --verbose")
+            info("shows VERSION 2, and your Windows NVIDIA driver is up to date.")
         rc, _, stderr = run(
             pip + ["install", "torch", "numpy", "--index-url", index_url],
             capture=False,

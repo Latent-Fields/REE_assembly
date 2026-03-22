@@ -411,6 +411,12 @@ git config --global user.email "you@example.com"<button class="copy-btn" onclick
 
     <!-- Linux diagnostics -->
     <div class="tab-content" id="diag-linux">
+      <div class="note-box" style="margin-bottom:1rem">
+        <strong>Using WSL on Windows?</strong> Follow this Linux tab — everything works the same.
+        One GPU caveat: CUDA in WSL2 goes through the <strong>Windows NVIDIA driver</strong> (already installed).
+        Do <strong>not</strong> run <code>apt install nvidia-driver</code> — it will break GPU access.
+        Also check you are on WSL2, not WSL1: <code>wsl --list --verbose</code> in a Windows terminal should show <code>VERSION 2</code>.
+      </div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>Python version (must be 3.10–3.12)</p>
         <div class="code-block">python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
@@ -536,6 +542,11 @@ pkill -f experiment_runner.py
 
     <!-- Linux -->
     <div class="tab-content" id="tab-linux">
+      <div class="note-box" style="margin-bottom:1rem">
+        <strong>Using WSL on Windows?</strong> Use this tab. Ensure you are on WSL2 (<code>wsl --list --verbose</code> in a Windows terminal → <code>VERSION 2</code>).
+        The Windows NVIDIA driver handles GPU access — do <strong>not</strong> install a Linux NVIDIA driver via apt.
+        systemd units (step 2 below) require WSL2 with systemd enabled; if not set up, just run the runner manually (step 1).
+      </div>
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
