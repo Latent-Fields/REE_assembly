@@ -33,7 +33,8 @@ ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "evidence" / "experiments"
 CLAIM_EVIDENCE = EVIDENCE_DIR / "claim_evidence.v1.json"
 REVIEW_TRACKER = EVIDENCE_DIR / "review_tracker.json"
-RUNNER_STATUS = EVIDENCE_DIR / "runner_status.json"
+RUNNER_STATUS = EVIDENCE_DIR / "runner_status.json"          # legacy monolithic
+RUNNER_STATUS_DIR = EVIDENCE_DIR / "runner_status"           # per-machine split
 OUTPUT = EVIDENCE_DIR / "pending_review.md"
 
 
@@ -119,15 +120,30 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
     - Entries whose run_id is in reviewed_run_ids
     - Entries whose run_id IS in indexed_run_ids (already covered by sections 1/2)
     """
-    if not RUNNER_STATUS.exists():
+    # Read completed entries from per-machine files (preferred) or legacy monolithic
+    all_completed: list[dict] = []
+    if RUNNER_STATUS_DIR.is_dir():
+        for f in sorted(RUNNER_STATUS_DIR.glob("*.json")):
+            try:
+                data = json.loads(f.read_text())
+                all_completed.extend(data.get("completed", []))
+            except Exception:
+                pass
+    elif RUNNER_STATUS.exists():
+        try:
+            with open(RUNNER_STATUS) as f:
+                rs = json.load(f)
+            all_completed = rs.get("completed", [])
+        except Exception:
+            pass
+
+    if not all_completed:
         return []
-    with open(RUNNER_STATUS) as f:
-        rs = json.load(f)
 
     pending = []
     seen_queue_ids: set[str] = set()
 
-    for entry in rs.get("completed", []):
+    for entry in all_completed:
         queue_id = entry.get("queue_id", "")
         result = entry.get("result", "")
         output_file = entry.get("output_file", "") or ""

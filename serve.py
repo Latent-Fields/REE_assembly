@@ -45,7 +45,8 @@ from urllib.parse import urlparse
 # ── Paths ────────────────────────────────────────────────────────────────────
 
 SERVE_DIR = Path(__file__).resolve().parent
-STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"
+STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"  # legacy monolithic
+STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # per-machine split
 RUNNER_LOG = SERVE_DIR / "runner.log"
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
 CONTRIBUTIONS_FILE = SERVE_DIR / "contributors" / "contributions.json"
@@ -280,6 +281,107 @@ def save_review_tracker(data: dict) -> None:
     REVIEW_TRACKER_FILE.write_text(json.dumps(data, indent=2) + "\n")
 
 
+def read_merged_runner_status() -> dict:
+    """Read and merge per-machine runner_status files into a single view.
+
+    Falls back to the old monolithic runner_status.json if the per-machine
+    directory doesn't exist yet (migration period).
+    """
+    machines = {}
+
+    # Read per-machine files
+    if STATUS_DIR.is_dir():
+        for f in sorted(STATUS_DIR.glob("*.json")):
+            try:
+                machines[f.stem] = json.loads(f.read_text())
+            except Exception:
+                pass
+
+    # Fallback: read old monolithic file if no per-machine files found
+    if not machines and STATUS_FILE.exists():
+        try:
+            return json.loads(STATUS_FILE.read_text())
+        except Exception:
+            return {}
+
+    if not machines:
+        return {}
+
+    # Merge
+    all_completed = []
+    seen_queue_ids = set()
+    current_list = []
+    any_running = False
+    latest_update = ""
+    merged_queue = []
+    queue_ids_seen = set()
+
+    for machine_name, data in machines.items():
+        # Completed: deduplicate by queue_id, prefer non-ERROR
+        for c in data.get("completed", []):
+            qid = c.get("queue_id", "")
+            if qid not in seen_queue_ids:
+                seen_queue_ids.add(qid)
+                all_completed.append(c)
+            else:
+                # Replace ERROR with non-ERROR if we have both
+                if c.get("result") != "ERROR":
+                    all_completed = [
+                        (c if x.get("queue_id") == qid else x)
+                        for x in all_completed
+                    ]
+
+        # Current: collect all running experiments
+        cur = data.get("current")
+        if cur:
+            cur["_machine"] = machine_name
+            current_list.append(cur)
+
+        # Running state
+        if not data.get("idle", True) and data.get("runner_pid"):
+            any_running = True
+
+        # Queue: merge, deduplicate
+        for qi in data.get("queue", []):
+            qid = qi.get("queue_id", "")
+            if qid not in queue_ids_seen:
+                queue_ids_seen.add(qid)
+                merged_queue.append(qi)
+
+        # Track latest update
+        lu = data.get("last_updated", "")
+        if lu > latest_update:
+            latest_update = lu
+
+    # Build merged result — same schema as old monolithic file
+    merged = {
+        "schema_version": "v1",
+        "runner_pid": None,  # not meaningful for merged view
+        "last_updated": latest_update,
+        "idle": not any_running,
+        "current": current_list[0] if len(current_list) == 1 else None,
+        "current_all": current_list if len(current_list) > 1 else None,
+        "queue": merged_queue,
+        "completed": all_completed,
+        "machines": {
+            name: {
+                "runner_pid": d.get("runner_pid"),
+                "idle": d.get("idle", True),
+                "last_updated": d.get("last_updated", ""),
+                "current": d.get("current"),
+            }
+            for name, d in machines.items()
+        },
+    }
+
+    # If exactly one machine is running, use its PID for backward compat
+    running_machines = [d for d in machines.values() if not d.get("idle", True) and d.get("runner_pid")]
+    if len(running_machines) == 1:
+        merged["runner_pid"] = running_machines[0]["runner_pid"]
+
+    return merged
+
+
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
@@ -452,6 +554,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/evidence/runs":
             body = json.dumps(scan_evidence_runs()).encode()
+            self._json_response(body)
+            return
+        # Intercept runner_status.json requests -- return merged per-machine view
+        if path == "/evidence/experiments/runner_status.json":
+            body = json.dumps(read_merged_runner_status(), indent=2).encode()
             self._json_response(body)
             return
         if path == "/api/runner/status":
