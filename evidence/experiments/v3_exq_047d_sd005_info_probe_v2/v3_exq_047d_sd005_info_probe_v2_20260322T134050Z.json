@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "split_action_acc_self": 0.847465455532074,
+    "split_action_acc_world": 0.8396313190460205,
+    "split_contact_acc_world": 0.6666666865348816,
+    "split_contact_acc_self": 0.6097561120986938,
+    "split_action_dissociation": 0.007834136486053467,
+    "split_contact_dissociation": 0.056910574436187744,
+    "unified_action_acc_self": 0.8663594722747803,
+    "unified_action_acc_world": 0.8566820025444031,
+    "unified_contact_acc_world": 0.6504064798355103,
+    "unified_contact_acc_self": 0.5853658318519592,
+    "action_self_improvement": -0.0188940167427063,
+    "contact_world_improvement": 0.016260206699371338,
+    "n_contacts_split": 307.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-047d -- SD-005: Latent Information Separation Probe (Design Fix)\n\n**Status:** FAIL\n**Claim:** SD-005 -- z_gamma split into z_self (motor-sensory) and z_world (environmental)\n**Design:** Linear probes on frozen representations -- round-robin action decodability + binary contact probe\n**alpha_world:** 0.9  |  **Warmup:** 500 eps  |  **Eval:** 200 eps  |  **Probe steps:** 500  |  **Seed:** 0\n\n## Design Rationale and Fixes\n\nEXQ-047c used random actions (no decodable signal) and a 3-class event probe dominated\nby 86% majority class (approach). Both split and unified conditions produced bit-for-bit\nidentical probe accuracies because both probes converged to majority-class prediction.\n\nEXQ-047d fixes:\n1. Round-robin action assignment (ep%n_actions = dominant action, 80% compliance)\n   creates systematic action->body_state correlation that z_self should encode.\n2. Binary contact probe (hazard_contact vs not) with balanced class sampling.\n   Contact events are rare but represent salient environmental events requiring\n   genuine proximity knowledge from z_world.\n3. 500 probe steps for convergence beyond majority-class baseline.\n\n## Probe Results\n\n| Probe | Split | Unified | delta |\n|---|---|---|---|\n| Action accuracy <- z_self | 0.847 | 0.866 | -0.019 |\n| Action accuracy <- z_world | 0.840 | 0.857 | -0.017 |\n| Contact accuracy <- z_world | 0.667 | 0.650 | +0.016 |\n| Contact accuracy <- z_self | 0.610 | 0.585 | +0.024 |\n\nAction dissociation (split): +0.008\nContact dissociation (split): +0.057\nContacts collected (split): 307\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: action_self > action_world + 0.10 (z_self more action-selective, split) | FAIL | 0.847 vs 0.840 |\n| C2: contact_world > contact_self + 0.10 (z_world more contact-selective, split) | FAIL | 0.667 vs 0.610 |\n| C3: action_self_split > action_self_unified + 0.05 | FAIL | 0.847 vs 0.866 |\n| C4: contact_world_split > contact_world_unified + 0.05 | FAIL | 0.667 vs 0.650 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: action_acc_self=0.847 not > action_acc_world=0.840 + 0.10 (z_self not more action-selective than z_world)\n- C2 FAIL: contact_acc_world=0.667 not > contact_acc_self=0.610 + 0.10 (z_world not more contact-selective than z_self)\n- C3 FAIL: action_acc_self_split=0.847 not > action_acc_self_unified=0.866 + 0.05\n- C4 FAIL: contact_acc_world_split=0.667 not > contact_acc_world_unified=0.650 + 0.05\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_047d_sd005_info_probe_v2",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260322T134050Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047d_sd005_info_probe_v2_20260322T134050Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
