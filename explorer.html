@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-22.2 -->
+<!-- EXPLORER_VERSION: 2026-03-22.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8323,6 +8323,12 @@ END CONFLICT RESOLUTION`;
           });
 
         const allCompleted = [...completedAnnotated, ...evidenceOnlyItems];
+        // Sort by completion time (most recent first) within each version group
+        allCompleted.sort((a, b) => {
+          const ta = a.completed_at || a.latest_timestamp || '';
+          const tb = b.completed_at || b.latest_timestamp || '';
+          return tb.localeCompare(ta);
+        });
         html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${allCompleted.length}</div>`;
         const completedGroups = groupByVersion(allCompleted);
         versionRenderOrder(completedGroups).forEach(v => {
