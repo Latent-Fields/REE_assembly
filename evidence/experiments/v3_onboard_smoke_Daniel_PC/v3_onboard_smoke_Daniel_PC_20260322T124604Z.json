@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "env_steps_per_second": 854.8,
+    "steps_per_second_cpu": 6.9,
+    "steps_per_second_gpu": 2.2,
+    "gpu_speedup": 0.31,
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 2060 SUPER",
+    "torch_version": "2.6.0+cu124",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "env_only_episodes": 50,
+    "cpu_episodes": 15,
+    "gpu_episodes": 15,
+    "steps_per_episode": 100
+  },
+  "criteria": {
+    "C1_all_blocks_completed": true,
+    "C2_env_sps_gt0": true,
+    "C3_cpu_sps_gt0": true,
+    "C4_cuda_advisory": true
+  },
+  "routing_hint": {
+    "note": "env_steps_per_second governs env-heavy experiment routing; steps_per_second_gpu governs net-heavy routing",
+    "prefer_env_heavy": true,
+    "prefer_net_heavy": false
+  },
+  "run_timestamp": "20260322T124604Z",
+  "run_id": "v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim": "onboarding",
+  "verdict": "PASS"
+}
