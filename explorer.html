@@ -8103,7 +8103,7 @@ END CONFLICT RESOLUTION`;
         ? `<span style="font-size:11px;color:var(--muted);margin-left:6px">${c.total_run_count} runs on disk</span>`
         : '';
       const evidenceOnlyNote = c.evidence_only
-        ? `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">Evidence on disk &mdash; not yet in runner log</div>`
+        ? `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">Evidence on disk</div>`
         : '';
       const completedByStr = c.completed_by ? ` &mdash; run by <strong>${escapeHtml(c.completed_by)}</strong>` : '';
       const completedLine = !c.evidence_only && c.completed_at
