@@ -1,34 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 10088,
-  "runner_started_at": "2026-03-22T11:30:00.898616+00:00",
-  "last_updated": "2026-03-22T11:48:25.200693+00:00",
+  "runner_pid": 55311,
+  "runner_started_at": "2026-03-22T12:01:32.871742+00:00",
+  "last_updated": "2026-03-22T12:01:35.733677+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-062a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "",
-      "description": "MECH-104: Surprise-Gated Volatility Interrupt (committed-only fix). Restricts both interrupt policies to committed steps only, breaking EXQ-062 positive feedback loop.",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-047d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "",
-      "description": "SD-005: Latent Information Separation Probe (design fix). Round-robin action assignment + binary contact probe with balanced sampling + 500 probe steps. Fixes EXQ-047c flaws.",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1703,104 +1680,6 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_047c_sd005_info_probe/v3_exq_047c_sd005_info_probe_20260322T034515Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 23.6
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T10:25:35.486186+00:00",
-      "completed_at": "2026-03-22T10:25:40.686365+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 5.2
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T10:30:52.604850+00:00",
-      "completed_at": "2026-03-22T10:30:58.760203+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 6.2
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-e",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T10:38:17.594098+00:00",
-      "completed_at": "2026-03-22T10:41:35.289381+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 197.7
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-f",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T11:02:52.386910+00:00",
-      "completed_at": "2026-03-22T11:06:38.268397+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 225.9
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-g",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T11:08:46.975397+00:00",
-      "completed_at": "2026-03-22T11:12:32.209810+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 225.2
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-h",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-22T11:30:03.504363+00:00",
-      "completed_at": "2026-03-22T11:33:38.630242+00:00",
-      "output_file": "",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 215.1
-    },
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-i",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "result": "PASS",
-      "result_summary": "[ONBOARD]   status: PASS | Status: PASS",
-      "started_at": "2026-03-22T11:43:57.164375+00:00",
-      "completed_at": "2026-03-22T11:48:25.190023+00:00",
-      "output_file": "C:\\Users\\Daniel\\REE_assembly\\evidence\\experiments\\v3_onboard_smoke_Daniel_PC\\v3_onboard_smoke_Daniel_PC_20260322T114824Z.json",
-      "completed_by": "Daniel-PC",
-      "actual_secs": 268.0
     }
   ]
 }
