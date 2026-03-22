@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate pending_review.md — lists experiment runs not yet reviewed in a session.
+Generate pending_review.md -- lists experiment runs not yet reviewed in a session.
 
 Usage (from REE_assembly root):
     python scripts/generate_pending_review.py
@@ -28,7 +28,7 @@ OUTPUT = EVIDENCE_DIR / "pending_review.md"
 
 def load_reviewed_run_ids() -> set:
     if not REVIEW_TRACKER.exists():
-        print(f"[warn] review_tracker.json not found — all runs treated as pending", file=sys.stderr)
+        print(f"[warn] review_tracker.json not found -- all runs treated as pending", file=sys.stderr)
         return set()
     with open(REVIEW_TRACKER) as f:
         tracker = json.load(f)
@@ -37,7 +37,7 @@ def load_reviewed_run_ids() -> set:
 
 def load_pending_entries(reviewed: set) -> list[dict]:
     if not CLAIM_EVIDENCE.exists():
-        print(f"[error] claim_evidence.v1.json not found — run build_experiment_indexes.py first", file=sys.stderr)
+        print(f"[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first", file=sys.stderr)
         sys.exit(1)
     with open(CLAIM_EVIDENCE) as f:
         data = json.load(f)
@@ -46,7 +46,7 @@ def load_pending_entries(reviewed: set) -> list[dict]:
         if e.get("source_type") == "experimental"
         and e.get("run_id") not in reviewed
     ]
-    # Deduplicate by run_id (multiple claims per run → group them)
+    # Deduplicate by run_id (multiple claims per run -> group them)
     by_run: dict[str, dict] = {}
     for e in entries:
         run_id = e["run_id"]
@@ -74,7 +74,7 @@ def write_pending_review(runs: list[dict], last_review_utc: str) -> None:
         "",
         f"Generated: `{now}`  ",
         f"Last review: `{last_review_utc}`  ",
-        f"Pending: **{len(runs)}** run(s) — {len(passes)} PASS, {len(fails)} FAIL",
+        f"Pending: **{len(runs)}** run(s) -- {len(passes)} PASS, {len(fails)} FAIL",
         "",
     ]
 
@@ -119,7 +119,7 @@ def write_pending_review(runs: list[dict], last_review_utc: str) -> None:
     ]
 
     OUTPUT.write_text("\n".join(lines) + "\n")
-    print(f"Written {OUTPUT.relative_to(ROOT)} — {len(runs)} pending run(s)")
+    print(f"Written {OUTPUT.relative_to(ROOT)} -- {len(runs)} pending run(s)")
 
 
 def main():

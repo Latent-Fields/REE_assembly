@@ -2,12 +2,12 @@
 """
 REE Contributor Setup Script
 -----------------------------
-EXPERIMENTAL — not fully tested on all configurations.
+EXPERIMENTAL -- not fully tested on all configurations.
 If you hit problems, follow the manual steps at:
   https://latent-fields.github.io/REE_assembly/docs/contribute.html
 
 What this script does:
-  1.  Checks Python version (must be 3.10–3.12)
+  1.  Checks Python version (must be 3.10-3.12)
   2.  Checks Git is installed
   3.  Asks where to clone the repos
   4.  Clones ree-v3 and REE_assembly (if not already present)
@@ -20,7 +20,7 @@ What this script does:
 
 Run with Python 3.12 specifically:
   Windows:  py -3.12 setup_contributor.py
-  macOS:    python3.12 setup_contributor.py  (or python3 if 3.10–3.12)
+  macOS:    python3.12 setup_contributor.py  (or python3 if 3.10-3.12)
   Linux:    python3.12 setup_contributor.py
 """
 
@@ -51,11 +51,11 @@ if IS_WIN:
     os.system("")
 
 
-def ok(msg):   print(f"{GREEN}  ✓ {msg}{RESET}")
-def warn(msg): print(f"{YELLOW}  ⚠ {msg}{RESET}")
-def err(msg):  print(f"{RED}  ✗ {msg}{RESET}")
-def info(msg): print(f"{CYAN}  → {msg}{RESET}")
-def section(title): print(f"\n{BOLD}{'─'*60}\n  {title}\n{'─'*60}{RESET}")
+def ok(msg):   print(f"{GREEN}  [OK] {msg}{RESET}")
+def warn(msg): print(f"{YELLOW}  [!] {msg}{RESET}")
+def err(msg):  print(f"{RED}  [X] {msg}{RESET}")
+def info(msg): print(f"{CYAN}  -> {msg}{RESET}")
+def section(title): print(f"\n{BOLD}{'-'*60}\n  {title}\n{'-'*60}{RESET}")
 
 
 def ask(prompt, default=None):
@@ -66,7 +66,7 @@ def ask(prompt, default=None):
             return val
         if default is not None:
             return default
-        print("  (required — please enter a value)")
+        print("  (required -- please enter a value)")
 
 
 def run(cmd, cwd=None, capture=False):
@@ -80,14 +80,14 @@ def run(cmd, cwd=None, capture=False):
 
 
 # ---------------------------------------------------------------------------
-# Step 1 — Python version
+# Step 1 -- Python version
 # ---------------------------------------------------------------------------
 
-section("Step 1 — Python version")
+section("Step 1 -- Python version")
 major, minor = sys.version_info[:2]
 if (major, minor) < (3, 10) or (major, minor) > (3, 12):
     err(f"Python {major}.{minor} detected.")
-    err("PyTorch CUDA builds require Python 3.10–3.12.")
+    err("PyTorch CUDA builds require Python 3.10-3.12.")
     if IS_WIN:
         info("Install Python 3.12 from https://www.python.org (tick 'Add to PATH')")
         info("Then re-run: py -3.12 setup_contributor.py")
@@ -96,10 +96,10 @@ ok(f"Python {sys.version.split()[0]}")
 
 
 # ---------------------------------------------------------------------------
-# Step 2 — Git
+# Step 2 -- Git
 # ---------------------------------------------------------------------------
 
-section("Step 2 — Git")
+section("Step 2 -- Git")
 git_path = shutil.which("git")
 if not git_path:
     err("Git not found in PATH.")
@@ -111,15 +111,15 @@ ok(out.strip())
 
 
 # ---------------------------------------------------------------------------
-# Step 3 — Clone repos
+# Step 3 -- Clone repos
 # ---------------------------------------------------------------------------
 
-section("Step 3 — Clone repos")
+section("Step 3 -- Clone repos")
 print()
 print("  Repos will be cloned as siblings:")
 print("    <parent>/")
-print("    ├── ree-v3/")
-print("    └── REE_assembly/")
+print("    |-- ree-v3/")
+print("    \-- REE_assembly/")
 print()
 
 default_parent = str(Path.home() / "REE_Working")
@@ -138,7 +138,7 @@ for repo in REPOS:
     if dest.is_dir():
         ok(f"{repo} already present at {dest}")
     else:
-        info(f"Cloning {repo}…")
+        info(f"Cloning {repo}...")
         rc, _, stderr = run(
             ["git", "clone", f"https://github.com/{ORG}/{repo}.git"],
             cwd=parent, capture=True,
@@ -157,10 +157,10 @@ ree_asm_dir   = parent / "REE_assembly"
 
 
 # ---------------------------------------------------------------------------
-# Step 4 — Install PyTorch
+# Step 4 -- Install PyTorch
 # ---------------------------------------------------------------------------
 
-section("Step 4 — Install PyTorch + numpy")
+section("Step 4 -- Install PyTorch + numpy")
 
 pip = [sys.executable, "-m", "pip"]
 
@@ -172,10 +172,10 @@ else:
     if IS_WIN or platform.system() == "Linux":
         index_url = "https://download.pytorch.org/whl/cu124"
         info(f"Installing torch with CUDA support (index: {index_url})")
-        # WSL2 note: CUDA works via the Windows NVIDIA driver — do NOT install
+        # WSL2 note: CUDA works via the Windows NVIDIA driver -- do NOT install
         # nvidia-driver via apt. The Windows driver handles GPU passthrough.
         if platform.system() == "Linux" and "microsoft" in platform.uname().release.lower():
-            info("WSL2 detected — CUDA uses the Windows NVIDIA driver (already installed).")
+            info("WSL2 detected -- CUDA uses the Windows NVIDIA driver (already installed).")
             info("If torch.cuda.is_available() returns False, check: wsl --list --verbose")
             info("shows VERSION 2, and your Windows NVIDIA driver is up to date.")
         rc, _, stderr = run(
@@ -183,7 +183,7 @@ else:
             capture=False,
         )
     else:
-        info("macOS detected — installing CPU torch")
+        info("macOS detected -- installing CPU torch")
         rc, _, stderr = run(pip + ["install", "torch", "numpy"], capture=False)
 
     if rc != 0:
@@ -193,10 +193,10 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Step 5 — Git identity
+# Step 5 -- Git identity
 # ---------------------------------------------------------------------------
 
-section("Step 5 — Git commit identity")
+section("Step 5 -- Git commit identity")
 print()
 print("  Your name and email will appear in experiment commit messages.")
 print("  This is separate from your GitHub login and must be set once per machine.")
@@ -225,10 +225,10 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Step 6 — CUDA / GPU check
+# Step 6 -- CUDA / GPU check
 # ---------------------------------------------------------------------------
 
-section("Step 6 — GPU / CUDA check")
+section("Step 6 -- GPU / CUDA check")
 
 rc, out, _ = run(
     [sys.executable, "-c",
@@ -242,17 +242,17 @@ if rc == 0:
             ok(line.strip())
         elif "cuda: False" in line:
             warn(line.strip())
-            warn("CUDA not available — experiments will run on CPU (very slow).")
+            warn("CUDA not available -- experiments will run on CPU (very slow).")
             warn("Update NVIDIA drivers from https://www.nvidia.com if you have a CUDA GPU.")
 else:
-    warn("Could not run CUDA check — torch may not have installed correctly.")
+    warn("Could not run CUDA check -- torch may not have installed correctly.")
 
 
 # ---------------------------------------------------------------------------
-# Step 7 — Machine registration
+# Step 7 -- Machine registration
 # ---------------------------------------------------------------------------
 
-section("Step 7 — Register your machine")
+section("Step 7 -- Register your machine")
 print()
 print("  This creates a small JSON file so compute contributions are tracked correctly.")
 print("  The machine name must match the --machine flag you use when starting the runner.")
@@ -298,10 +298,10 @@ ok(f"Wrote {reg_path}")
 
 
 # ---------------------------------------------------------------------------
-# Step 8 — Commit and push registration
+# Step 8 -- Commit and push registration
 # ---------------------------------------------------------------------------
 
-section("Step 8 — Push machine registration")
+section("Step 8 -- Push machine registration")
 
 run(["git", "add", str(reg_path)], cwd=ree_asm_dir)
 rc_diff, _, _ = run(["git", "diff", "--cached", "--quiet"], cwd=ree_asm_dir, capture=True)
@@ -323,7 +323,7 @@ else:
             cwd=ree_asm_dir, capture=True,
         )
         if rc_push != 0:
-            warn("Push failed — you may need to authenticate with GitHub.")
+            warn("Push failed -- you may need to authenticate with GitHub.")
             warn("Run:  gh auth login  (or complete browser login when prompted by git push)")
             warn("Then: cd REE_assembly && git push origin HEAD:master")
         else:
@@ -331,10 +331,10 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Step 9 — Generate experiment monitor launcher
+# Step 9 -- Generate experiment monitor launcher
 # ---------------------------------------------------------------------------
 
-section("Step 9 — Experiment monitor launcher")
+section("Step 9 -- Experiment monitor launcher")
 
 if IS_WIN:
     launcher_path = parent / "start_monitor.bat"
@@ -369,7 +369,7 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Done — print runner command
+# Done -- print runner command
 # ---------------------------------------------------------------------------
 
 section("Setup complete!")

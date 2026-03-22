@@ -12,8 +12,9 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_038_arc016_precision_sweep_20260322T020909Z_v3` at `2026-03-22T02:09:09Z` signatures: none
+- `v3_exq_038_arc016_precision_sweep_20260322T020822Z_v3` at `2026-03-22T02:08:22Z` signatures: none
 - `v3_exq_038_arc016_precision_sweep_20260319T061623Z_v3` at `2026-03-19T06:16:23Z` signatures: none
-- `v3_exq_038_arc016_precision_sweep_20260319T061350Z_v3` at `2026-03-19T06:13:50Z` signatures: none
 
 Recurring signatures:
 

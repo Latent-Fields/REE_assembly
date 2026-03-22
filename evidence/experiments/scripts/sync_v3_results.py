@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sync_v3_results.py — convert V3 flat JSON result files into run-pack format.
+sync_v3_results.py -- convert V3 flat JSON result files into run-pack format.
 
 V3 experiment scripts write a single flat JSON file per run:
     evidence/experiments/{experiment_type}/{experiment_type}_{timestamp}.json
@@ -26,7 +26,7 @@ from datetime import timezone, datetime
 ROOT = Path(__file__).resolve().parents[4]  # REE_Working root
 EVIDENCE_DIR = Path(__file__).resolve().parents[1]  # REE_assembly/evidence/experiments
 
-# Files to skip — these live in evidence/experiments/ but are not run result files
+# Files to skip -- these live in evidence/experiments/ but are not run result files
 SKIP_NAMES = {
     "runner_status.json",
     "review_tracker.json",
@@ -66,7 +66,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     try:
         data = json.loads(flat_path.read_text(encoding="utf-8"))
     except Exception as exc:
-        print(f"  [skip] {flat_path.name}: read error — {exc}", flush=True)
+        print(f"  [skip] {flat_path.name}: read error -- {exc}", flush=True)
         return ""
 
     if not _is_flat_v3(data):
@@ -79,7 +79,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     # derive experiment_type from the run_id stem instead.
     parent_name = flat_path.parent.name
     if parent_name == EVIDENCE_DIR.name:
-        # File is at top level — derive experiment_type from run_id
+        # File is at top level -- derive experiment_type from run_id
         # run_id format: {experiment_type}_{timestamp}_v3  OR
         #                {timestamp}_{experiment_type}_v3
         # Use the data field if present; otherwise strip trailing timestamp+_v3 suffix
@@ -106,7 +106,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     ts_compact = str(data.get("run_timestamp") or "")
     ts_iso = _parse_timestamp(ts_compact)
 
-    # Gather claim_ids — flat JSON may have claim_ids (list) or claim (single string)
+    # Gather claim_ids -- flat JSON may have claim_ids (list) or claim (single string)
     claim_ids = data.get("claim_ids") or []
     if not claim_ids and data.get("claim"):
         claim_ids = [data["claim"]]
@@ -173,7 +173,7 @@ def main():
     converted = []
     skipped_norun = 0
 
-    # Scan flat JSON files — both at top level and one dir deep
+    # Scan flat JSON files -- both at top level and one dir deep
     # Top-level: evidence/experiments/*.json
     # Sub-level:  evidence/experiments/{exp_type}/*.json
     all_json = sorted(set(EVIDENCE_DIR.glob("*.json")) | set(EVIDENCE_DIR.glob("*/*.json")))

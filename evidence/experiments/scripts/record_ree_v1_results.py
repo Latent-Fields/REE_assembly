@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-record_ree_v1_results.py  —  v1.0.0
+record_ree_v1_results.py  --  v1.0.0
 
 Ingests genuine ree-v1-minimal experiment result JSONs into the REE_assembly
 evidence corpus, bridging the gap between ree-v1-minimal's evidence/ outputs
@@ -13,7 +13,7 @@ For each completed experiment JSON found in ree-v1-minimal, this script:
   4. Writes metrics.json   (schema: experiment_pack_metrics/v1)
   5. Writes summary.md     (intelligent architectural interpretation)
 
-It is idempotent — re-running skips run directories that already exist.
+It is idempotent -- re-running skips run directories that already exist.
 After running this script, execute build_experiment_indexes.py to regenerate
 claim_evidence.v1.json, INDEX.md, and all downstream artefacts.
 
@@ -46,9 +46,9 @@ V1_EVIDENCE  = REE_V1_DIR / "evidence" / "experiments"
 # needed to place the run correctly in REE_assembly and interpret it.
 #
 # evidence_direction:
-#   "supports"  — all criteria met (PASS, no partial support)
-#   "weakens"   — FAIL, no partial support
-#   "mixed"     — PASS/FAIL with partial_support=True (some criteria met)
+#   "supports"  -- all criteria met (PASS, no partial support)
+#   "weakens"   -- FAIL, no partial support
+#   "mixed"     -- PASS/FAIL with partial_support=True (some criteria met)
 
 EXPERIMENT_REGISTRY = {
     "residue_trajectory_placement": {
@@ -241,11 +241,11 @@ def _summary_mech056(verdict, agg, ts, partial, data):
         imp_str = f"{improvement}% improvement"
     except Exception:
         imp_str = "improvement calculated"
-    return f"""# MECH-056 Residue Trajectory Placement — {verdict} ({ts})
+    return f"""# MECH-056 Residue Trajectory Placement -- {verdict} ({ts})
 
 ## Genuine ree-v1-minimal Evidence
 
-**Substrate:** ree-v1-minimal gridworld 10×10, 4 hazards, 200 episodes × 3 seeds × 2 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, 4 hazards, 200 episodes x 3 seeds x 2 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -262,14 +262,14 @@ Harm improvement: **{imp_str}** from spreading residue to intermediate trajector
 ## Architectural Interpretation
 
 This is the structural precondition for the φ(z) terrain concept. MECH-056 asserts that harm
-accumulates at intermediate trajectory positions during rollout — not only post-hoc at the
+accumulates at intermediate trajectory positions during rollout -- not only post-hoc at the
 terminal executed step. The experiment confirms this:
 
 1. **Path-spread criterion met**: intermediate residue mass is non-zero across all seeds,
    confirming residue CAN be localised along the planned path rather than only at endpoints.
 
 2. **Harm-avoidance criterion met**: trajectory-wide accumulation produces lower last-quarter
-   harm than endpoint-only, meaning the spread is functionally useful — the agent learns to
+   harm than endpoint-only, meaning the spread is functionally useful -- the agent learns to
    avoid regions of the latent space associated with harmful intermediate states, not just
    terminal harm.
 
@@ -279,7 +279,7 @@ full path rather than only at goal states.
 
 ## Status Implication
 
-One genuine PASS, no contrary evidence. Supports promotion: candidate → provisional.
+One genuine PASS, no contrary evidence. Supports promotion: candidate -> provisional.
 Re-experimentation on a more complex substrate is the appropriate next step before active.
 """
 
@@ -291,11 +291,11 @@ def _summary_mech058(verdict, agg, ts, partial, data):
     sts_harm  = agg.get("same_timescale_harm_last_quarter", "?")
     stab_ok   = agg.get("stability_criterion_met", False)
     harm_ok   = agg.get("performance_criterion_met", False)
-    return f"""# MECH-058 E1/E2 Timescale Ablation — {verdict} ({ts})
+    return f"""# MECH-058 E1/E2 Timescale Ablation -- {verdict} ({ts})
 
 ## Genuine ree-v1-minimal Evidence (partial support)
 
-**Substrate:** ree-v1-minimal gridworld 10×10, 4 hazards, 200 episodes × 3 seeds × 2 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, 4 hazards, 200 episodes x 3 seeds x 2 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -306,7 +306,7 @@ def _summary_mech058(verdict, agg, ts, partial, data):
 | SAME-TIMESCALE (both lr=1e-3)           | {sts_harm} | {sts_stab} |
 
 - Stability criterion (SEPARATED std < SAME-TIMESCALE std): **{"PASS" if stab_ok else "FAIL"}**
-- Performance criterion (SEPARATED harm ≤ SAME-TIMESCALE × 1.05): **{"PASS" if harm_ok else "FAIL"}**
+- Performance criterion (SEPARATED harm ≤ SAME-TIMESCALE x 1.05): **{"PASS" if harm_ok else "FAIL"}**
 - Overall verdict: **{verdict}** (partial_support={partial})
 
 ## Architectural Interpretation
@@ -314,13 +314,13 @@ def _summary_mech058(verdict, agg, ts, partial, data):
 **This FAIL is NOT architecture falsification.** The interpretation requires care:
 
 1. **Performance criterion passed**: timescale separation did not degrade harm outcomes.
-   SEPARATED harm ({sep_harm}) ≤ SAME-TIMESCALE harm ({sts_harm}) — the slow anchor
+   SEPARATED harm ({sep_harm}) ≤ SAME-TIMESCALE harm ({sts_harm}) -- the slow anchor
    does not hurt performance at this scale.
 
-2. **Stability criterion failed — substrate resolution issue**: the latent stability
+2. **Stability criterion failed -- substrate resolution issue**: the latent stability
    difference between conditions is tiny ({sep_stab} vs {sts_stab}, <3%). ree-v1-minimal's
    grid world is predictable enough that both lr=1e-4 and lr=1e-3 converge to similar
-   representational stability — there is insufficient environmental complexity to stress
+   representational stability -- there is insufficient environmental complexity to stress
    the latent manifold and reveal the anchoring effect of the slow E1 rhythm.
 
    This is the "earn the right to add complexity" result. The heartbeat analogy (slow
@@ -330,14 +330,14 @@ def _summary_mech058(verdict, agg, ts, partial, data):
 3. **E1 loss differential is consistent with the hypothesis**: SEPARATED mean E1 loss is
    notably higher than SAME-TIMESCALE (because at lr=1e-4 the world model updates more
    slowly and accumulates more unresolved prediction error per step). This is expected and
-   confirms E1 IS operating at a different timescale — the latent stability metric simply
+   confirms E1 IS operating at a different timescale -- the latent stability metric simply
    cannot resolve the consequence in this environment.
 
 ## Status Implication
 
 Remains candidate. Add note: stability criterion requires substrate with richer latent
 dynamics. Re-test on a more complex environment before concluding on MECH-058.
-Performance criterion passing is positive signal — no regression from separation.
+Performance criterion passing is positive signal -- no regression from separation.
 """
 
 
@@ -347,11 +347,11 @@ def _summary_mech061(verdict, agg, ts, partial, data):
     corr    = agg.get("mean_abs_pre_post_corr_with_boundary", "?")
     corr_ok = agg.get("distinct_signals_criterion_met", "?")
     harm_ok = agg.get("boundary_helps_criterion_met", "?")
-    return f"""# MECH-061 Commitment Boundary Token Reclassification — {verdict} ({ts})
+    return f"""# MECH-061 Commitment Boundary Token Reclassification -- {verdict} ({ts})
 
 ## Genuine ree-v1-minimal Evidence
 
-**Substrate:** ree-v1-minimal gridworld 10×10, 4 hazards, 200 episodes × 3 seeds × 2 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, 4 hazards, 200 episodes x 3 seeds x 2 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -359,10 +359,10 @@ def _summary_mech061(verdict, agg, ts, partial, data):
 | Condition | Last-quarter harm | Mean |pre_post_corr| |
 |-----------|-------------------|--------------------------|
 | WITH-BOUNDARY (REINFORCE on realized harm only) | {wb_harm} | {corr} |
-| BLENDED (50% E2 pred + 50% realized harm)       | {bl_harm} | — |
+| BLENDED (50% E2 pred + 50% realized harm)       | {bl_harm} | -- |
 
 - Distinct-signals criterion (|corr| < 0.7): **{"PASS" if corr_ok else "FAIL"}**
-- Boundary-helps criterion (WITH-BOUNDARY harm ≤ BLENDED × 1.05): **{"PASS" if harm_ok else "FAIL"}**
+- Boundary-helps criterion (WITH-BOUNDARY harm ≤ BLENDED x 1.05): **{"PASS" if harm_ok else "FAIL"}**
 - Overall verdict: **{verdict}**
 
 ## Architectural Interpretation
@@ -371,11 +371,11 @@ The commit boundary reclassification claim has two separable assertions:
 
 1. **Pre-commit (E2 simulation) and post-commit (env realized) signals are distinct**: the
    very low |corr| ({corr}) confirms that E2 harm predictions carry substantially different
-   information from actual realized harm. The boundary is not redundant — it separates
+   information from actual realized harm. The boundary is not redundant -- it separates
    meaningfully different error signals.
 
 2. **Keeping signals separated is at least as good as blending**: WITH-BOUNDARY harm
-   ({wb_harm}) vs BLENDED ({bl_harm}) — the clean separation enables better or equivalent
+   ({wb_harm}) vs BLENDED ({bl_harm}) -- the clean separation enables better or equivalent
    policy learning.
 
 The pre/post-commit distinction is architecturally real at ree-v1-minimal scale. This
@@ -384,7 +384,7 @@ structural element, not a cosmetic feature.
 
 ## Status Implication
 
-Genuine ree-v1-minimal evidence. If PASS: candidate → provisional. The commitment boundary
+Genuine ree-v1-minimal evidence. If PASS: candidate -> provisional. The commitment boundary
 concept has operational support in the minimal substrate.
 """
 
@@ -395,11 +395,11 @@ def _summary_mech057(verdict, agg, ts, partial, data):
     nogate_harm = agg.get("no_gating_harm_last_quarter", "?")
     attr_ok    = agg.get("attribution_criterion_met", False)
     gate_ok    = agg.get("gating_criterion_met", False)
-    return f"""# MECH-057 Control Completion Requirement — {verdict} ({ts})
+    return f"""# MECH-057 Control Completion Requirement -- {verdict} ({ts})
 
-## Genuine ree-v1-minimal Evidence (P3 — informative baseline)
+## Genuine ree-v1-minimal Evidence (P3 -- informative baseline)
 
-**Substrate:** ree-v1-minimal gridworld 10×10, 4 hazards, 200 episodes × 3 seeds × 3 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, 4 hazards, 200 episodes x 3 seeds x 3 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -410,8 +410,8 @@ def _summary_mech057(verdict, agg, ts, partial, data):
 | NO_ATTRIBUTION  | {noattr_harm} |
 | NO_GATING       | {nogate_harm} |
 
-- Attribution loop criterion (NO_ATTR harm > FULL × 1.10): **{"PASS" if attr_ok else "FAIL"}**
-- Gating loop criterion (NO_GATING harm > FULL × 1.10): **{"PASS" if gate_ok else "FAIL"}**
+- Attribution loop criterion (NO_ATTR harm > FULL x 1.10): **{"PASS" if attr_ok else "FAIL"}**
+- Gating loop criterion (NO_GATING harm > FULL x 1.10): **{"PASS" if gate_ok else "FAIL"}**
 - Overall verdict: **{verdict}**
 
 ## Architectural Interpretation
@@ -427,7 +427,7 @@ is expected and informative rather than damning:
   separating FULL from ablated conditions is not yet achievable. When the substrate is
   extended (more complex environment, richer latent space), this experiment should be repeated.
 
-- The NO_GATING and NO_ATTRIBUTION conditions are correctly implemented — the FAIL reflects
+- The NO_GATING and NO_ATTRIBUTION conditions are correctly implemented -- the FAIL reflects
   substrate insensitivity, not a confounded ablation design.
 
 **Do not interpret as architecture falsification.** MECH-057 needs redesign post-JEPA
@@ -444,11 +444,11 @@ def _summary_mech059(verdict, agg, ts, partial, data):
     corr     = agg.get("mean_abs_corr_dispersion_pe", "?")
     sep_harm = agg.get("separated_last_quarter_harm", "?")
     mrg_harm = agg.get("merged_last_quarter_harm", "?")
-    return f"""# MECH-059 Control Plane Precision Separation — {verdict} ({ts})
+    return f"""# MECH-059 Control Plane Precision Separation -- {verdict} ({ts})
 
 ## Genuine ree-v1-minimal Evidence
 
-**Substrate:** ree-v1-minimal gridworld 10×10, 4 hazards, 200 episodes × 3 seeds × 2 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, 4 hazards, 200 episodes x 3 seeds x 2 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -465,7 +465,7 @@ Overall verdict: **{verdict}**
 
 E3 score dispersion (confidence proxy) and E1 prediction error are statistically independent
 signals (|corr| = {corr}, well below the 0.30 threshold). Routing them separately to
-distinct policy update channels reduces harm compared to merging them — confirming that the
+distinct policy update channels reduces harm compared to merging them -- confirming that the
 two-channel design is load-bearing.
 
 ## Status Implication
@@ -485,11 +485,11 @@ def _summary_mech060(verdict, agg, ts, partial, data):
     cres_corr     = agg.get("contaminated_residue_abs_attr_corr", "?")
     res_ok        = agg.get("residue_criterion_met", False)
     harm_ok       = agg.get("harm_criterion_met", False)
-    return f"""# MECH-060/067 Write-Locus Contamination Ablation — {verdict} ({ts})
+    return f"""# MECH-060/067 Write-Locus Contamination Ablation -- {verdict} ({ts})
 
 ## Genuine ree-v1-minimal Evidence
 
-**Substrate:** ree-v1-minimal gridworld 10×10, {data.get('config', {}).get('num_hazards', 4)} hazards, {data.get('config', {}).get('num_episodes', 200)} episodes × {len(data.get('config', {}).get('seeds', []))} seeds × 3 conditions.
+**Substrate:** ree-v1-minimal gridworld 10x10, {data.get('config', {}).get('num_hazards', 4)} hazards, {data.get('config', {}).get('num_episodes', 200)} episodes x {len(data.get('config', {}).get('seeds', []))} seeds x 3 conditions.
 **Architecture epoch:** ree_v1_minimal_genuine_v1
 
 ## Result
@@ -497,7 +497,7 @@ def _summary_mech060(verdict, agg, ts, partial, data):
 | Condition | Last-quarter harm | Total residue | |attr_corr| (E1 loss vs harm) |
 |-----------|-------------------|---------------|----------------------------------|
 | FULL (clean write loci)        | {full_harm} | {full_res} | {full_corr} |
-| CONTAMINATED_DURABLE (E1 leak) | {cdur_harm} | — | {cdur_corr} |
+| CONTAMINATED_DURABLE (E1 leak) | {cdur_harm} | -- | {cdur_corr} |
 | CONTAMINATED_RESIDUE (pre-commit residue) | {cres_harm} | {cres_res} | {cres_corr} |
 
 - Residue inflation criterion (CONT_RES residue > FULL * 1.1): **{"PASS" if res_ok else "FAIL"}**
@@ -522,17 +522,17 @@ decouples E1 loss from actual observation fidelity, degrading attribution reliab
 
 **CONTAMINATED_RESIDUE**: `update_residue(-e2_pred)` is called pre-commit, then
 `update_residue(env_harm)` post-commit. Pre-commit predictions inflate the residue
-field — the terrain accumulates harm from states the agent has not yet visited,
+field -- the terrain accumulates harm from states the agent has not yet visited,
 miscalibrating the hippocampal-analogue path weighting.
 
 **Attribution correlation (|attr_corr|)**: Pearson correlation between per-episode E1 loss
-and per-episode realized harm. In FULL, E1 trains only on actual observations → E1 loss
+and per-episode realized harm. In FULL, E1 trains only on actual observations -> E1 loss
 should track harm. Contamination should degrade this correlation. Reported for
 calibration; not a formal PASS criterion at 200-episode scale.
 
 ## Status Implication
 
-{"PASS: Residue contamination detectable and write-locus separation holds. Both MECH-060 and MECH-067 receive supporting evidence. Promotes claim from candidate toward provisional." if verdict == "PASS" else "FAIL/PARTIAL: One or both contamination signals not detectable at ree-v1-minimal scale. Informative baseline — may require more complex substrate or longer training to reach threshold. Do not demote: architecture is unchanged, substrate resolution is the limiting factor."}
+{"PASS: Residue contamination detectable and write-locus separation holds. Both MECH-060 and MECH-067 receive supporting evidence. Promotes claim from candidate toward provisional." if verdict == "PASS" else "FAIL/PARTIAL: One or both contamination signals not detectable at ree-v1-minimal scale. Informative baseline -- may require more complex substrate or longer training to reach threshold. Do not demote: architecture is unchanged, substrate resolution is the limiting factor."}
 """
 
 
@@ -578,7 +578,7 @@ def ingest_one(json_path: Path, commit: str, dry_run: bool = False) -> bool:
     exp_name = data.get("experiment", "")
     reg = EXPERIMENT_REGISTRY.get(exp_name)
     if not reg:
-        print(f"  [SKIP] Unknown experiment type: '{exp_name}' — add to EXPERIMENT_REGISTRY")
+        print(f"  [SKIP] Unknown experiment type: '{exp_name}' -- add to EXPERIMENT_REGISTRY")
         return False
 
     ts_raw   = data.get("run_timestamp", data.get("run_timestamp_utc", ""))
@@ -590,10 +590,10 @@ def ingest_one(json_path: Path, commit: str, dry_run: bool = False) -> bool:
         return False
 
     verdict = data.get("verdict", "UNKNOWN")
-    print(f"  [INGEST] {exp_name} → {run_id} ({verdict})")
+    print(f"  [INGEST] {exp_name} -> {run_id} ({verdict})")
 
     if dry_run:
-        print(f"    (dry-run — would create {run_dir})")
+        print(f"    (dry-run -- would create {run_dir})")
         return True
 
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -620,7 +620,7 @@ def ingest_one(json_path: Path, commit: str, dry_run: bool = False) -> bool:
         json.dumps(data, indent=2, ensure_ascii=False) + "\n"
     )
 
-    print(f"    → {run_dir.relative_to(REE_ASSEMBLY)}/")
+    print(f"    -> {run_dir.relative_to(REE_ASSEMBLY)}/")
     print(f"      manifest.json  metrics.json  summary.md  {source_name}")
     return True
 

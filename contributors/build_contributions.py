@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-build_contributions.py — Rebuild contributors/contributions.json
+build_contributions.py -- Rebuild contributors/contributions.json
 
 Reads:
-  - evidence/decisions/decision_log.v1.jsonl  → governance decision counts per actor
-  - evidence/experiments/runner_status.json   → completed run metadata
-  - evidence/experiments/**/manifest.json      → experiment run packs (for episode counts)
-  - ../ree-v3/experiment_queue.json            → queue calibration + estimated_minutes
-  - git log --shortstat across all repos       → coding attribution by lines changed
+  - evidence/decisions/decision_log.v1.jsonl  -> governance decision counts per actor
+  - evidence/experiments/runner_status.json   -> completed run metadata
+  - evidence/experiments/**/manifest.json      -> experiment run packs (for episode counts)
+  - ../ree-v3/experiment_queue.json            -> queue calibration + estimated_minutes
+  - git log --shortstat across all repos       -> coding attribution by lines changed
 
 Writes:
   - contributors/contributions.json
@@ -80,7 +80,7 @@ ELECTRICITY_CURRENCY = "EUR"
 CLOUD_INSTANCE = "AWS t3.medium"
 CLOUD_USD_PER_HOUR = 0.0416        # on-demand price as of 2026
 
-# ── Calibration fallback (ms per episode × condition when no other timing) ────
+# ── Calibration fallback (ms per episode x condition when no other timing) ────
 MS_PER_EPISODE_CONDITION = 8000    # from ree-v3 queue calibration
 SYNTHETIC_EPOCH_CUTOFF = "2026-02-27T00:00:00Z"  # runs before this are synthetic
 
@@ -113,7 +113,7 @@ def estimate_run_hours(item: dict) -> float:
     if "estimated_minutes" in item:
         return item["estimated_minutes"] / 60
 
-    # Fallback: episodes × ms calibration
+    # Fallback: episodes x ms calibration
     episodes = item.get("episodes_per_run", 0)
     conditions = item.get("conditions", 1)
     seeds = item.get("seeds", 1)
@@ -269,9 +269,9 @@ def collect_coding() -> dict:
     """Estimate coding attribution by lines changed, grouped by commit co-authorship.
 
     Strategy:
-    - Commits with 'Co-Authored-By: Claude' → attributed to Claude
-    - Commits with 'Co-Authored-By:.*codex' or branch merge from codex/ → Codex
-    - All other commits → human (Daniel)
+    - Commits with 'Co-Authored-By: Claude' -> attributed to Claude
+    - Commits with 'Co-Authored-By:.*codex' or branch merge from codex/ -> Codex
+    - All other commits -> human (Daniel)
 
     Limitations: git shortstat counts every file (data JSONs, generated files, etc.)
     which inflates human counts for repos with large auto-generated artifacts.
@@ -415,7 +415,7 @@ def main():
 
     out_file = ROOT / "contributors" / "contributions.json"
 
-    # Preserve existing human-edited sections — do not overwrite
+    # Preserve existing human-edited sections -- do not overwrite
     existing_declared = {}
     existing_intellectual_direction = None
     if out_file.exists():

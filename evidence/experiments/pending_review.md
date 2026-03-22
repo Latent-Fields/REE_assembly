@@ -1,10 +1,23 @@
 # Pending Experiment Review
 
-Generated: `2026-03-22T01:16:16Z`  
+Generated: `2026-03-22T03:49:05Z`  
 Last review: `2026-03-22T01:16:12.066110+00:00`  
-Pending: **0** run(s) — 0 PASS, 0 FAIL
+Pending: **5** run(s) — 1 PASS, 4 FAIL
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_038_arc016_precision_sweep_20260322T020822Z_v3` | 2026-03-22T02:08 | ARC-016, MECH-093 | — |
+| `v3_exq_038_arc016_precision_sweep_20260322T020909Z_v3` | 2026-03-22T02:09 | ARC-016, MECH-093 | — |
+| `v3_exq_062_mech104_surprise_gate_20260322T034449Z_v3` | 2026-03-22T03:44 | MECH-090, MECH-104 | — |
+| `v3_exq_047c_sd005_info_probe_20260322T034515Z_v3` | 2026-03-22T03:45 | SD-005 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_057_sd010_reafference_isolation_20260322T014230Z_v3` | 2026-03-22T01:42 | MECH-101, SD-007, SD-010 |
 
 ---
 

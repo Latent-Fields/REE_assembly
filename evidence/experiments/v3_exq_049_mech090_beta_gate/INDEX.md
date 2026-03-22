@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_049_mech090_beta_gate
 
-Generated: `2026-03-22T01:16:01.171461Z`
+Generated: `2026-03-22T03:49:04.946512Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

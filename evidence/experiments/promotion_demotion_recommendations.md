@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-22T01:16:01.171461Z`
+Generated: `2026-03-22T03:49:04.946512Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -25,6 +25,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-101` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
+| `MECH-104` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
 | `Q-007` | `active` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `SD-008` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
@@ -52,7 +53,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-016
 - Current status: `provisional`
 - Decision needed: Demotion review: provisional -> candidate
-- Why this decision is needed: overall_conf=0.522, conflict_ratio=1, exp_entries=19, lit_entries=0; directions supports=9, weakens=9, mixed=1, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.546, conflict_ratio=0.947, exp_entries=21, lit_entries=0; directions supports=9, weakens=10, mixed=2, unknown=0, conflict_ratio=0.947
 - Evidence quality note: V2 EXQ (precision_regime_probe, 2026-03-08): FAIL (partial_support=true, 1/2 criteria). Criterion 1 met: precision gap achieved (1.697, easily). Criterion 2 failed: behavioral distinction absent — HIGH_REGIME (commit_rate=1.0) and LOW_REGIME (commit_rate=0.0) produce identical harm (1.233 vs 1.218). Root cause: precision is externally imposed (not E3-derived), and the commitment-to-action circuit …
 - Recommendation: `demote_to_candidate`
 - Options (pros/cons):
@@ -90,7 +91,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-024
 - Current status: `provisional`
 - Decision needed: Demotion review: provisional -> candidate
-- Why this decision is needed: overall_conf=0.543, conflict_ratio=0.923, exp_entries=25, lit_entries=0; directions supports=6, weakens=7, mixed=12, unknown=0, conflict_ratio=0.923
+- Why this decision is needed: overall_conf=0.542, conflict_ratio=0.923, exp_entries=25, lit_entries=0; directions supports=6, weakens=7, mixed=12, unknown=0, conflict_ratio=0.923
 - Evidence quality note: EXQ-028 PASS (2026-03-18): Gradient dominance confirmed with random policy on CausalGridWorldV2. mean_dz_world_hazard_approach >> mean_dz_world_none. World generates observable signals before contact events. Direct confirmation that the simulated world must and does produce proxy-gradient fields. EXQ-029 PASS (2026-03-18): E3.harm_eval learned graded danger model on gradient world. none=0.373, app…
 - Recommendation: `demote_to_candidate`
 - Options (pros/cons):
@@ -199,7 +200,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.829, conflict_ratio=0.5, exp_entries=3, lit_entries=1; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.905, conflict_ratio=0.4, exp_entries=5, lit_entries=1; directions supports=1, weakens=4, mixed=1, unknown=0, conflict_ratio=0.4
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -253,7 +254,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.793, conflict_ratio=0.857, exp_entries=15, lit_entries=3; directions supports=6, weakens=8, mixed=4, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.792, conflict_ratio=0.857, exp_entries=15, lit_entries=3; directions supports=6, weakens=8, mixed=4, unknown=0, conflict_ratio=0.857
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -271,7 +272,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.847, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.846, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -289,7 +290,22 @@ Use this as the human-in-the-loop review queue.
 ### MECH-101
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.82, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.875, conflict_ratio=0, exp_entries=3, lit_entries=0; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `promote_to_provisional`
+- Options (pros/cons):
+  - Promote now (faster convergence, risk premature lock-in)
+  - Hold until one additional confirming run (better robustness, slower progress)
+  - Hold and request targeted literature triangulation (better external grounding, extra delay)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### MECH-104
+- Current status: `candidate`
+- Decision needed: Promotion review: candidate -> provisional
+- Why this decision is needed: overall_conf=0.812, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
   - Promote now (faster convergence, risk premature lock-in)

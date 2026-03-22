@@ -11,15 +11,15 @@ Usage:
     python3 serve.py --port 9000
 
 API (POST, called by the Experiments tab in the explorer):
-    /api/runner/start          — start V3 runner (default)
-    /api/runner/stop           — stop whichever runner is running
-    /api/runner/v3/start       — start V3 runner
-    /api/runner/v3/stop        — stop V3 runner
-    /api/runner/v2/start       — start V2 runner
-    /api/runner/v2/stop        — stop V2 runner
-    /api/runner/status         — JSON status of both runners
-    /api/review/tracker        — GET: reviewed/discussed state from review_tracker.json
-    /api/review/discuss        — POST {dir_name, discussed}: toggle discussed_experiment_dirs
+    /api/runner/start          -- start V3 runner (default)
+    /api/runner/stop           -- stop whichever runner is running
+    /api/runner/v3/start       -- start V3 runner
+    /api/runner/v3/stop        -- stop V3 runner
+    /api/runner/v2/start       -- start V2 runner
+    /api/runner/v2/stop        -- stop V2 runner
+    /api/runner/status         -- JSON status of both runners
+    /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
+    /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -50,7 +50,7 @@ RUNNER_LOG = SERVE_DIR / "runner.log"
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
 CONTRIBUTIONS_FILE = SERVE_DIR / "contributors" / "contributions.json"
 
-# Python executable — prefer REE_PYTHON env var, then known torch-capable paths
+# Python executable -- prefer REE_PYTHON env var, then known torch-capable paths
 def _default_python() -> str:
     if env := os.environ.get("REE_PYTHON"):
         return env
@@ -120,7 +120,7 @@ def _ensure_git_file(file_path: Path, repo_dir: Path, repo_name: str, clone_url:
         cmd = ["git", "clone", clone_url, str(repo_dir)]
         action = "clone"
 
-    print(f"[serve] {file_path.name} missing — attempting git {action} from {clone_url}", flush=True)
+    print(f"[serve] {file_path.name} missing -- attempting git {action} from {clone_url}", flush=True)
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
     except subprocess.TimeoutExpired:
@@ -146,7 +146,7 @@ def _ensure_git_file(file_path: Path, repo_dir: Path, repo_name: str, clone_url:
         return {"status": "error", "error": "not_found",
                 "message": f"{file_path.name} still missing after git {action}."}
 
-    print(f"[serve] Git {action} succeeded — {file_path.name} restored.", flush=True)
+    print(f"[serve] Git {action} succeeded -- {file_path.name} restored.", flush=True)
     return None
 
 
@@ -257,7 +257,7 @@ def run_script(key: str) -> dict:
             cmd, cwd=str(SERVE_DIR),
             capture_output=True, text=True, timeout=timeout,
         )
-        print(f"[serve] Ran {key} → exit {result.returncode}", flush=True)
+        print(f"[serve] Ran {key} -> exit {result.returncode}", flush=True)
         return {
             "status": "ok" if result.returncode == 0 else "error",
             "returncode": result.returncode,
@@ -432,7 +432,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 if err:
                     self._html_error_page(err)
                     return
-        # Short URL: /explorer → /explorer.html
+        # Short URL: /explorer -> /explorer.html
         if path == "/explorer":
             self.send_response(302)
             self.send_header("Location", "/explorer.html")
@@ -458,7 +458,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(runner_status()).encode()
             self._json_response(body)
             return
-        # STUB /api/machines — future endpoint returning status of all known machines
+        # STUB /api/machines -- future endpoint returning status of all known machines
         # (hostnames, last-seen, queue assignments, GPU info from machines.json config)
         if path == "/api/queue/v3":
             body = json.dumps(read_queue("v3")).encode()
@@ -472,7 +472,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if CONTRIBUTIONS_FILE.exists():
                 body = CONTRIBUTIONS_FILE.read_bytes()
             else:
-                body = json.dumps({"error": "contributions.json not yet generated — run contributors/build_contributions.py"}).encode()
+                body = json.dumps({"error": "contributions.json not yet generated -- run contributors/build_contributions.py"}).encode()
             self._json_response(body)
             return
         if path in ("/setup", "/contributors/setup.html"):
@@ -513,7 +513,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 # Strip trailing _v1/_v2/_v3
                 name = re.sub(r'_v[123]$', '', name)
                 # Strip embedded trailing timestamp (type-first format):
-                # "v3_exq_048b_..._20260320T223120Z" → "v3_exq_048b_..."
+                # "v3_exq_048b_..._20260320T223120Z" -> "v3_exq_048b_..."
                 name = re.sub(r'_\d{8}T\d{6}Z?$', '', name)
                 # Strip trailing _seed\d+ and further suffixes
                 name = re.sub(r'_seed\d+.*$', '', name)
@@ -602,7 +602,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if action_url else ""
         )
         body = f"""<!DOCTYPE html>
-<html><head><title>REE Explorer — Access Error</title>
+<html><head><title>REE Explorer -- Access Error</title>
 <style>body{{font-family:system-ui,sans-serif;max-width:600px;margin:80px auto;padding:0 20px;color:#333}}
 h1{{color:#c00}}a{{color:#0070f3}}</style></head>
 <body><h1>Cannot load REE Explorer</h1><p>{message}</p>{link_html}</body></html>""".encode()
@@ -655,7 +655,7 @@ def main():
     signal.signal(signal.SIGTERM, shutdown)
 
     url = f"http://localhost:{args.port}/explorer"
-    print(f"[serve] REE Explorer → {url}", flush=True)
+    print(f"[serve] REE Explorer -> {url}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
     for ver, cfg in RUNNERS.items():
         exists = "✓" if cfg["script"].exists() else "✗"

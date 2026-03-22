@@ -46,7 +46,7 @@ def main():
         json.dump(output, f, indent=2, sort_keys=True)
         f.write("\n")
 
-    print(f"Written {len(output)} claims → {OUTPUT_JSON}")
+    print(f"Written {len(output)} claims -> {OUTPUT_JSON}")
 
 
 if __name__ == "__main__":
