@@ -1,11 +1,93 @@
 {
   "schema_version": "v1",
-  "runner_pid": 22269,
-  "runner_started_at": "2026-03-21T23:23:43.945948+00:00",
-  "last_updated": "2026-03-21T23:23:47.631900+00:00",
+  "runner_pid": 28157,
+  "runner_started_at": "2026-03-22T01:28:29.699651+00:00",
+  "last_updated": "2026-03-22T01:52:56.997541+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-020c",
+    "backlog_id": "",
+    "claim_id": "MECH-100",
+    "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
+    "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
+    "script": "experiments/v3_exq_020_event_contrastive.py",
+    "started_at": "2026-03-22T01:42:33.653512+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 650,
+      "episodes_total": 1100,
+      "overall_pct": 59.1
+    },
+    "seconds_elapsed": 623,
+    "seconds_remaining": 431,
+    "recent_lines": [
+      "[train] ep 450/1000  harm=24754  ce_loss_mean=0.5153",
+      "[train] ep 500/1000  harm=27440  ce_loss_mean=0.5128",
+      "[train] ep 550/1000  harm=30169  ce_loss_mean=0.5110",
+      "[train] ep 600/1000  harm=32993  ce_loss_mean=0.5154",
+      "[train] ep 650/1000  harm=35746  ce_loss_mean=0.5199"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-020c",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
+      "estimated_minutes": 20.8,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-020c-s1",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Encoder Loss \u2014 Seed 1",
+      "description": "Repeat of EXQ-020 with seed=1 for robustness.",
+      "estimated_minutes": 20.8,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-020d",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Loss \u2014 Strong \u03bb=2.0 (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. EXQ-020 variant with \u03bb_event=2.0 (4\u00d7 stronger contrastive signal). If EXQ-020 achieves classification accuracy but not calibration_gap, tests whether stronger CE loss helps. Risk: forgetting of E1/E2 reconstruction.",
+      "estimated_minutes": 20.8,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-062",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Surprise-Gated Volatility Interrupt \u2014 surprise-proportional de-commitment selectivity",
+      "description": "EXQ-061 (PASS) confirmed jitter mechanism is wired. EXQ-062 tests SELECTIVITY: does surprise-gated spike (|actual-predicted_harm| > threshold) de-commit less often than always-spike? Three conditions on single trained agent: (A) no interrupt \u2014 0 uncommitted steps, (B) always-spike \u2014 frequent de-commitment, (C) surprise-gated \u2014 selective de-commitment. C4: n_uncommitted_C < n_uncommitted_B \u00d7 0.80.",
+      "estimated_minutes": 73.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-047c",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 Latent Information Separation Probe \u2014 z_self action-selective, z_world event-selective",
+      "description": "EXQ-047/047b FAIL via downstream task metrics (R\u00b2/attribution_gap insensitive at CausalGridWorld scale). Reframe: linear probes on frozen representations test information routing directly. SPLIT vs UNIFIED. Probe A: action decodability from z_self vs z_world. Probe B: event-type decodability from z_world vs z_self. PASS: double dissociation (C1/C2) + split more specialised than unified (C3/C4).",
+      "estimated_minutes": 120.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1584,30 +1666,32 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_061_mech104_volatility_jitter/v3_exq_061_mech104_volatility_jitter_20260321T191419Z.json"
     },
     {
-      "queue_id": "V3-EXQ-047b",
+      "queue_id": "V3-EXQ-046b",
       "backlog_id": "",
-      "claim_id": "SD-005",
-      "title": "SD-005 + SD-010 Joint \u2014 split vs unified latent with clean harm stream",
-      "description": "Re-test of SD-005 latent split (z_self vs z_world) now that SD-010 is confirmed. Both conditions have HarmEncoder (harm_obs \u2192 z_harm) active, removing nociceptive content from z_world gradient path. EXQ-047 C1 failure was diagnosed as nociceptive contamination \u2014 this experiment tests if calibration gap now exceeds 5pp. Claims: SD-005, MECH-069. C1: wf_r2_split > wf_r2_unified + 0.05. C2: attr_gap_split > attr_gap_unified + 0.01. C3: harm_pearson > 0.50. C4: wf_r2_split > 0.30. C5: n_approach >= 50.",
-      "result": "FAIL",
-      "result_summary": "causal_sig_none_unified: 0.0006 | harm_eval_pearson_r_split: 0.9999 | harm_eval_pearson_r_unified: 0.9999",
-      "started_at": "",
-      "completed_at": "2026-03-21T19:15:58.449424+00:00",
+      "claim_id": "ARC-007",
+      "title": "ARC-007 Path Memory Ablation (Proper) \u2014 residue field zeroing degrades hippocampal proposals",
+      "description": "Prerequisite: EXQ-042 PASS. Tests ARC-007 STRICT (Q-020): hippocampal proposals are value-flat, relying entirely on residue field geometry. Protocol: P1 train (600 eps), P2 eval intact, P3 ablate (zero residue field via monkeypatch), P4 eval ablated, P5 restore, P6 eval restored. PASS: C1 hippo_quality_gap_intact>0, C2 ablated<=intact*0.5, C3 restored>=ablated, C4 cal_gap_approach>0.03, C5 no errors.",
+      "result": "ERROR",
+      "result_summary": "reentrant call inside <_io.BufferedWriter name='<stdout>'>",
+      "started_at": "2026-03-22T01:28:31.195258+00:00",
+      "completed_at": "2026-03-22T01:42:13.931249+00:00",
       "output_file": "",
-      "completed_by": "DLAPTOP-4.local"
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 822.7
     },
     {
-      "queue_id": "V3-EXQ-051b",
+      "queue_id": "V3-EXQ-057b",
       "backlog_id": "",
-      "claim_id": "Q-007",
-      "title": "Q-007 z_beta Volatility Injection \u2014 NE/LC analog via running_variance input",
-      "description": "Fix for Q-007 architectural gap (EXQ-051 FAIL). Injects E3._running_variance as scalar into beta_encoder via LatentStackConfig.volatility_signal_dim=1. Two conditions: stable (fixed hazard positions) vs volatile (randomised each episode), same mean hazard count. Yu & Dayan 2005 (PMID 15944135): NE encodes unexpected uncertainty = running_variance spike. With injection: volatile agent should have higher z_beta norm (C1), Pearson r(rv,z_beta)>0.3 (C2), and z_beta rises within 20 eps after stable\u2192volatile transfer (C3).",
-      "result": "ERROR",
-      "result_summary": "Non-zero exit code 1",
-      "started_at": "2026-03-21T23:23:46.198570+00:00",
-      "completed_at": "2026-03-21T23:23:47.631647+00:00",
-      "output_file": "",
-      "completed_by": "DLAPTOP-4.local"
+      "claim_id": "SD-010",
+      "title": "SD-010 Reafference Isolation \u2014 z_harm survives reafference correction (EXQ-027b retest)",
+      "description": "Direct retest of EXQ-027b with SD-010. z_harm from HarmEncoder(harm_obs) is architecturally separate from z_world and never enters the reafference pipeline. Tests: calibration_gap_z_harm>0.03 (same threshold as EXQ-027b), harm_pred_std_z_harm>0.01, reafference_r2_z_world>0.10, n_agent_hazard_steps>=5, identity_test_pass==1.0.",
+      "result": "PASS",
+      "result_summary": "mean_harm_eval_none: 0.5445230036182741 | mean_harm_eval_approach: 0.6238095790515064 | mean_harm_eval_contact: 0.6744112846717029",
+      "started_at": "2026-03-22T01:42:16.454687+00:00",
+      "completed_at": "2026-03-22T01:42:31.289477+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_057_sd010_reafference_isolation/v3_exq_057_sd010_reafference_isolation_20260322T014230Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 14.8
     }
   ]
 }

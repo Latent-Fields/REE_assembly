@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- EXPLORER_VERSION: 2026-03-22.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8108,7 +8109,9 @@ END CONFLICT RESOLUTION`;
         : c.evidence_only && c.completed_at
         ? `<div class="exp-timing" style="margin-top:6px">Latest run ${c.completed_at.replace('T', ' ').slice(0, 16)} UTC${completedByStr}</div>`
         : '';
-      const dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+      let dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
+      // Handle bare filenames (no path separator) — strip trailing timestamp + .json
+      if (dirName && dirName.endsWith('.json')) dirName = dirName.replace(/_\d{8}T\d{6}Z?\.json$/, '');
       const isDiscussed = dirName && discussedDirs.has(dirName);
       const discussWidget = dirName
         ? isDiscussed

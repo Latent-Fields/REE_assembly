@@ -438,6 +438,18 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Location", "/explorer.html")
             self.end_headers()
             return
+        # Serve explorer.html with no-cache headers so browser always gets the latest version
+        if path == "/explorer.html":
+            content = (SERVE_DIR / "explorer.html").read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+            self.end_headers()
+            self.wfile.write(content)
+            return
         if path == "/api/evidence/runs":
             body = json.dumps(scan_evidence_runs()).encode()
             self._json_response(body)
