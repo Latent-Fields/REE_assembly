@@ -305,12 +305,13 @@ function render(data) {
     compEl.style.display = '';
     compEl.innerHTML = completed.map(c => {
       const by = c.completed_by ? ` · ${esc(c.completed_by)}` : '';
+      const dur = c.actual_secs > 0 ? ` · ${Math.round(c.actual_secs / 60)} min` : '';
       return `
         <div class="result-row">
           ${badgeHtml(c.result)}
           <span class="badge badge-id">${esc(c.queue_id)}</span>
           <span class="result-title">${esc(c.title)}</span>
-          <span class="result-meta">${fmtDate(c.completed_at)}${by}</span>
+          <span class="result-meta">${fmtDate(c.completed_at)}${dur}${by}</span>
         </div>`;
     }).join('');
   } else {
