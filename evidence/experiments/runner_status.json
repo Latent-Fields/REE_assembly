@@ -1,48 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 28157,
-  "runner_started_at": "2026-03-22T01:28:29.699651+00:00",
-  "last_updated": "2026-03-22T09:27:04.989068+00:00",
-  "idle": true,
-  "current": {
-    "queue_id": "V3-EXQ-046b",
-    "backlog_id": "",
-    "claim_id": "ARC-007",
-    "title": "ARC-007 Path Memory Ablation (Proper) \u2014 residue field zeroing degrades hippocampal proposals",
-    "description": "Prerequisite: EXQ-042 PASS. Tests ARC-007 STRICT (Q-020): hippocampal proposals are value-flat, relying entirely on residue field geometry. Protocol: P1 train (600 eps), P2 eval intact, P3 ablate (zero residue field via monkeypatch), P4 eval ablated, P5 restore, P6 eval restored. PASS: C1 hippo_quality_gap_intact>0, C2 ablated<=intact*0.5, C3 restored>=ablated, C4 cal_gap_approach>0.03, C5 no errors.",
-    "script": "experiments/v3_exq_046_arc007_path_memory_ablation.py",
-    "started_at": "2026-03-22T01:28:31.195258+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 100,
-      "episodes_total": 730,
-      "overall_pct": 13.7
-    },
-    "seconds_elapsed": 28714,
-    "seconds_remaining": 116695,
-    "recent_lines": [
-      "[V3-EXQ-046] ARC-007 Path Memory Ablation",
-      "warmup=600  eval=50  restore=30",
-      "alpha_world=0.9  harm_scale=0.02",
-      "[train] ep 100/600  harm=890  e3_ticks=1544"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "runner_pid": 20216,
+  "runner_started_at": "2026-03-22T10:23:30.136641+00:00",
+  "last_updated": "2026-03-22T10:25:40.686365+00:00",
+  "idle": false,
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1717,6 +1680,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_047c_sd005_info_probe/v3_exq_047c_sd005_info_probe_20260322T034515Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 23.6
+    },
+    {
+      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-22T10:25:35.486186+00:00",
+      "completed_at": "2026-03-22T10:25:40.686365+00:00",
+      "output_file": "",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 5.2
     }
   ]
 }
