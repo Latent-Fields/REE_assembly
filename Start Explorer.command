@@ -26,6 +26,9 @@ echo ""
 caffeinate -i python3 serve.py --port $PORT &
 SERVER_PID=$!
 
+# Ensure server is killed cleanly when terminal closes or Ctrl+C is pressed
+trap 'echo ""; echo "Stopping server..."; kill $SERVER_PID 2>/dev/null; wait $SERVER_PID 2>/dev/null; exit' INT TERM HUP
+
 # Wait for server to be ready (up to 10 seconds)
 echo -n "Waiting for server"
 for i in {1..20}; do

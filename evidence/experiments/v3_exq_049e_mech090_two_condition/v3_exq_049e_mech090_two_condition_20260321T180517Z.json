@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "trained_committed_steps": 10000.0,
+    "trained_uncommitted_steps": 0.0,
+    "trained_committed_hold_concordance": 1.0,
+    "trained_hold_count": 10347.0,
+    "trained_propagation_count": 3.0,
+    "trained_mean_running_variance": 2.5441495584987e-06,
+    "trained_final_variance_pretrain": 2.5441495584987e-06,
+    "trained_mean_committed_frac_train": 0.9997375,
+    "fresh_committed_steps": 0.0,
+    "fresh_uncommitted_steps": 321.0,
+    "fresh_uncommitted_release_concordance": 1.0,
+    "fresh_hold_count": 0.0,
+    "fresh_propagation_count": 50.0,
+    "fresh_mean_running_variance": 0.5,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-049e \u2014 MECH-090: Two-Condition Beta Gate Test\n\n**Status:** PASS\n**Claim:** MECH-090 \u2014 beta gate holds E3 policy output during committed action, releases when uncommitted\n**Design:** Two-condition \u2014 trained agent (C1/C3) vs fresh agent (C2/C4)\n**alpha_world:** 0.9  |  **Warmup:** 400 eps  |  **Eval:** 50 eps/condition  |  **Seed:** 0\n\n## Design Rationale\n\nSingle-agent eval (EXQ-049d) cannot test C2: once trained, the agent is permanently\ncommitted (variance ~0). A fresh agent starts at precision_init=0.5 > commit_threshold=0.40,\nso it is persistently uncommitted without any artificial variance manipulation.\nNo hysteresis is needed: both conditions are at stable extremes of the variance distribution.\n\n## Condition A \u2014 Trained Agent\n\n| Metric | Value |\n|--------|-------|\n| Final running_variance (post-train) | 0.000003 |\n| Mean committed fraction (train) | 1.000 |\n| Committed steps (eval) | 10000 |\n| Uncommitted steps (eval) | 0 |\n| committed_hold_concordance | 1.000 |\n| hold_count | 10347 |\n\n## Condition B \u2014 Fresh Agent\n\n| Metric | Value |\n|--------|-------|\n| precision_init (= running_variance) | 0.500000 |\n| Committed steps (eval) | 0 |\n| Uncommitted steps (eval) | 321 |\n| uncommitted_release_concordance | 1.000 |\n| propagation_count | 50 |\n\n## PASS Criteria\n\n| Criterion | Source | Result | Value |\n|---|---|---|---|\n| C1: trained committed_hold_concordance > 0.6 | Cond A | PASS | 1.000 |\n| C2: fresh uncommitted_release_concordance > 0.5 | Cond B | PASS | 1.000 |\n| C3: trained hold_count > 0 | Cond A | PASS | 10347 |\n| C4: fresh propagation_count > 0 | Cond B | PASS | 50 |\n| C5: No fatal errors | Both | PASS | 0 |\n\nCriteria met: 5/5 \u2192 **PASS**\n\n",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_049e_mech090_two_condition",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260321T180517Z",
+  "claim": "MECH-090",
+  "verdict": "PASS",
+  "run_id": "v3_exq_049e_mech090_two_condition_20260321T180517Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

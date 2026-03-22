@@ -37,6 +37,8 @@ import signal
 import socket
 import subprocess
 import sys
+import threading
+import time
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -74,6 +76,7 @@ RUNNERS = {
         "evidence_dir": SERVE_DIR.parent / "ree-v3" / "evidence" / "experiments",
         "python": V3_PYTHON,
         "label": "V3 (ree-v3)",
+        "auto_sync": True,
     },
     "v2": {
         "script": SERVE_DIR.parent / "ree-v2" / "experiment_runner.py",
@@ -82,6 +85,7 @@ RUNNERS = {
         "evidence_dir": SERVE_DIR.parent / "ree-v2" / "evidence" / "experiments",
         "python": V2_PYTHON,
         "label": "V2 (ree-v2)",
+        "auto_sync": True,
     },
 }
 
@@ -323,7 +327,8 @@ def start_runner(ver: str = "v3") -> dict:
     log_fh = open(RUNNER_LOG, "a")
     cmd = [python_exe, str(cfg["script"]),
            "--status-file", str(STATUS_FILE),
-           "--machine", socket.gethostname()]
+           "--machine", socket.gethostname(),
+           "--loop"]  # Keep polling for new experiments after queue exhaustion
     if cfg.get("auto_sync"):
         cmd.append("--auto-sync")
     # STUB: future config could set per-runner flags from a machines.json config file
@@ -433,6 +438,18 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Location", "/explorer.html")
             self.end_headers()
             return
+        # Serve explorer.html with no-cache headers so browser always gets the latest version
+        if path == "/explorer.html":
+            content = (SERVE_DIR / "explorer.html").read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+            self.end_headers()
+            self.wfile.write(content)
+            return
         if path == "/api/evidence/runs":
             body = json.dumps(scan_evidence_runs()).encode()
             self._json_response(body)
@@ -484,15 +501,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             data = load_review_tracker()
             # Derive experiment dir names from reviewed_run_ids so that previously
             # reviewed runs show as "discussed" in the explorer without a migration.
-            # run_id formats: "20260316T061908_path_memory_ablation_v2"
-            #                 "20260320T155338Z_v3_exq_056_sd010_harm_stream_baseline_v3"
-            #                 "2026-02-13T224000Z_commit-dual-error-channels_seed11_..."
+            # run_id formats:
+            #   "20260316T061908_path_memory_ablation_v2"         (timestamp-first)
+            #   "20260320T155338Z_v3_exq_056_sd010_..._v3"        (timestamp-first V3)
+            #   "v3_exq_048b_mech057b_..._20260320T223120Z_v3"    (type-first V3)
+            #   "2026-02-13T224000Z_commit-dual-error-channels_..." (ISO timestamp-first)
             reviewed_dirs = set()
             for run_id in data.get("reviewed_run_ids", []):
                 # Strip leading timestamp (digits, T, Z, colon, hyphen, dot)
                 name = re.sub(r'^[\dTZ:.\-]+_', '', run_id)
                 # Strip trailing _v1/_v2/_v3
                 name = re.sub(r'_v[123]$', '', name)
+                # Strip embedded trailing timestamp (type-first format):
+                # "v3_exq_048b_..._20260320T223120Z" → "v3_exq_048b_..."
+                name = re.sub(r'_\d{8}T\d{6}Z?$', '', name)
                 # Strip trailing _seed\d+ and further suffixes
                 name = re.sub(r'_seed\d+.*$', '', name)
                 name = re.sub(r'_s\d+_.*$', '', name)
@@ -642,6 +664,26 @@ def main():
     print(f"[serve] Runner log:    {RUNNER_LOG}", flush=True)
     print(f"[serve] Ctrl+C to stop", flush=True)
     print(flush=True)
+
+    def _auto_pull():
+        """Background thread: pull REE_assembly and ree-v3 every 5 minutes."""
+        repos = [SERVE_DIR, SERVE_DIR.parent / "ree-v3"]
+        while True:
+            time.sleep(300)
+            for repo in repos:
+                if not (repo / ".git").is_dir():
+                    continue
+                result = subprocess.run(
+                    ["git", "-C", str(repo), "pull", "--ff-only"],
+                    capture_output=True, text=True, timeout=30,
+                )
+                if result.returncode == 0 and "Already up to date" not in result.stdout:
+                    print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
+                elif result.returncode != 0:
+                    print(f"[serve] git pull {repo.name} failed: {result.stderr.strip()}", flush=True)
+
+    threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
+    print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)
 
     server.serve_forever()
 

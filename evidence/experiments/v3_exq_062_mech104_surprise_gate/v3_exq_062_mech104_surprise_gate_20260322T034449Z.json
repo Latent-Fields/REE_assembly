@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "train_final_variance": 2.5441495584987e-06,
+    "none_n_uncommitted": 0.0,
+    "none_n_committed": 10000.0,
+    "always_n_uncommitted": 1534.0,
+    "always_n_committed": 8466.0,
+    "always_n_spikes": 234.0,
+    "surprise_n_uncommitted": 2303.0,
+    "surprise_n_committed": 7697.0,
+    "surprise_n_spikes": 223.0,
+    "surprise_mean_surprise": 1.046640329614883,
+    "surprise_mean_pred_harm": 0.989565823912086,
+    "surprise_mean_actual_harm": -0.057074505702797075,
+    "selectivity_ratio": 1.501303780964798,
+    "spike_magnitude": 0.05,
+    "surprise_threshold": 0.02,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-062 \u2014 MECH-104: Surprise-Gated Volatility Interrupt\n\n**Status:** FAIL\n**Claims:** MECH-104, MECH-090\n**Design:** Single trained agent; 3 interrupt policies (none / always / surprise-gated)\n**spike_magnitude:** 0.05  |  **surprise_threshold:** 0.02  |  **Warmup:** 400 eps  |  **Eval:** 50 eps  |  **Seed:** 0\n\n## Design Rationale\n\nEXQ-061 (PASS) confirmed the jitter mechanism is wired. EXQ-062 tests *selectivity*:\ndoes the surprise-gated policy de-commit less often than the always-spike policy?\nMECH-104 requires the interrupt to fire on genuine prediction errors, not routine harm.\nC4 operationalises this: surprise-gated must produce <80% of always-spike's de-commitments.\n\n## Training\n\n| Metric | Value |\n|--------|-------|\n| Final running_variance (post-train) | 0.000003 |\n| Committed? (variance < 0.40) | Yes |\n\n## Eval Results\n\n| Condition | Policy | n_uncommitted | n_spikes |\n|---|---|---|---|\n| A | None (baseline) | 0 | \u2014 |\n| B | Always-spike | 1534 | 234 |\n| C | Surprise-gated | 2303 | 223 |\n\nSelectivity ratio (C/B): 1.501\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: n_uncommitted_A == 0 (baseline collapse) | PASS | 0 |\n| C2: n_uncommitted_B > 100 (always-spike works) | PASS | 1534 |\n| C3: n_uncommitted_C > 30 (surprise fires on genuine events) | PASS | 2303 |\n| C4: n_uncommitted_C < n_B \u00d7 0.80 (surprise is more selective) | FAIL | 2303 vs 1227 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 4/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C4 FAIL: n_uncommitted_C=2303 not < 1227 (= n_always \u00d7 0.80) (surprise-gating not more selective than always-spike)\n",
+  "claim_ids": [
+    "MECH-104",
+    "MECH-090"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_062_mech104_surprise_gate",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260322T034449Z",
+  "claim": "MECH-104",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_062_mech104_surprise_gate_20260322T034449Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

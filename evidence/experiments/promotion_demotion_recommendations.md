@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-21T16:58:13.287183Z`
+Generated: `2026-03-22T01:16:01.171461Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -17,7 +17,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-025` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-057b` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-072` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
-| `MECH-090` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-092` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -53,7 +52,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-016
 - Current status: `provisional`
 - Decision needed: Demotion review: provisional -> candidate
-- Why this decision is needed: overall_conf=0.523, conflict_ratio=1, exp_entries=19, lit_entries=0; directions supports=9, weakens=9, mixed=1, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.522, conflict_ratio=1, exp_entries=19, lit_entries=0; directions supports=9, weakens=9, mixed=1, unknown=0, conflict_ratio=1
 - Evidence quality note: V2 EXQ (precision_regime_probe, 2026-03-08): FAIL (partial_support=true, 1/2 criteria). Criterion 1 met: precision gap achieved (1.697, easily). Criterion 2 failed: behavioral distinction absent — HIGH_REGIME (commit_rate=1.0) and LOW_REGIME (commit_rate=0.0) produce identical harm (1.233 vs 1.218). Root cause: precision is externally imposed (not E3-derived), and the commitment-to-action circuit …
 - Recommendation: `demote_to_candidate`
 - Options (pros/cons):
@@ -128,7 +127,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057b
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.662, conflict_ratio=0.667, exp_entries=6, lit_entries=0; directions supports=2, weakens=1, mixed=3, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.661, conflict_ratio=0.667, exp_entries=6, lit_entries=0; directions supports=2, weakens=1, mixed=3, unknown=0, conflict_ratio=0.667
 - Evidence quality note: No genuine experiments. This claim is explicitly V3-scoped. The thought-loop trajectory promotion gate requires HippocampalModule to implement a feedback path that suppresses trajectory candidates from being promoted to E3 consideration before hippocampal sequence completion is verified. This path is not present in V1 or V2. V3 primary scope: full HippocampalModule trajectory promotion policy and …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -144,7 +143,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-072
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.953, conflict_ratio=0, exp_entries=5, lit_entries=0; directions supports=0, weakens=1, mixed=4, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.952, conflict_ratio=0, exp_entries=5, lit_entries=0; directions supports=0, weakens=1, mixed=4, unknown=0, conflict_ratio=0
 - Evidence quality note: EXQ-028 FAIL (V2): Same root cause as EXQ-027. Foreseeable-harm gating depends on E2 discriminating agent-caused from env-caused harm — impossible without z_self/z_world split (SD-005) and joint SD-003 pipeline. V3 EXQ-054 FAIL (2026-03-20): world_delta_agent=0.01776 ≈ world_delta_env=0.01806 (1.7% difference, below C3 threshold). C4 FAIL: calibration_gap_approach=0. E2 cannot discriminate agent v…
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
@@ -160,26 +159,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361139Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: User confirmed hold. Selective residue attribution FAIL (EXQ-028): directly depends on MECH-071 which failed; both require V3 z_self/z_world split (SD-005).
-
-### MECH-090
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.637, conflict_ratio=1, exp_entries=9, lit_entries=1; directions supports=3, weakens=3, mixed=4, unknown=0, conflict_ratio=1
-- Evidence quality note: EXQ-049 FAIL (2026-03-20): Same bug as EXQ-048 — agent.select_action() bypassed, gate never exercised. EXQ-049b fixes this. EXQ-059b FAIL (2026-03-20, 2/5 criteria): Same finding as MECH-057b — routing through select_action() restored but mean_running_variance=0.000. BetaGate elevation requires _running_variance to be populated, which only happens in the E3 training-loop path, not the inference pa…
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361144Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: User confirmed hold. Beta gating of E3→action_selection propagation. V3-scoped heartbeat cluster claim.
 
 ### MECH-091
 - Current status: `candidate`
@@ -220,7 +199,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.83, conflict_ratio=0.5, exp_entries=3, lit_entries=1; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.829, conflict_ratio=0.5, exp_entries=3, lit_entries=1; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -310,7 +289,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-101
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.821, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.82, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
   - Promote now (faster convergence, risk premature lock-in)
@@ -362,7 +341,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-008
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.695, conflict_ratio=0.5, exp_entries=4, lit_entries=0; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.694, conflict_ratio=0.5, exp_entries=4, lit_entries=0; directions supports=1, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
