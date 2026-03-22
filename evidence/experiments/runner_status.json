@@ -1,11 +1,60 @@
 {
   "schema_version": "v1",
-  "runner_pid": 55311,
-  "runner_started_at": "2026-03-22T12:01:32.871742+00:00",
-  "last_updated": "2026-03-22T12:01:35.733677+00:00",
+  "runner_pid": 56162,
+  "runner_started_at": "2026-03-22T12:19:14.898317+00:00",
+  "last_updated": "2026-03-22T12:46:38.373711+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-062a",
+    "backlog_id": "",
+    "claim_id": "MECH-104",
+    "title": "MECH-104 Surprise-Gated Volatility Interrupt (committed-only fix)",
+    "description": "MECH-104: Surprise-Gated Volatility Interrupt (committed-only fix). Restricts both interrupt policies to committed steps only, breaking EXQ-062 positive feedback loop.",
+    "script": "experiments/v3_exq_062a_mech104_surprise_gate_committed_only.py",
+    "started_at": "2026-03-22T12:19:16.321770+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 100,
+      "episodes_total": 100,
+      "overall_pct": 100.0
+    },
+    "seconds_elapsed": 1642,
+    "seconds_remaining": 0,
+    "recent_lines": [
+      "alpha_world=0.9  seed=0",
+      "============================================================",
+      "[V3-EXQ-062a] Training (400 eps)...",
+      "============================================================",
+      "[train] ep 100/400  running_var=0.000002"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-062a",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Surprise-Gated Volatility Interrupt (committed-only fix)",
+      "description": "MECH-104: Surprise-Gated Volatility Interrupt (committed-only fix). Restricts both interrupt policies to committed steps only, breaking EXQ-062 positive feedback loop.",
+      "estimated_minutes": 13.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-047d",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 Latent Information Separation Probe (design fix)",
+      "description": "SD-005: Latent Information Separation Probe (design fix). Round-robin action assignment + binary contact probe with balanced sampling + 500 probe steps. Fixes EXQ-047c flaws.",
+      "estimated_minutes": 26.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
