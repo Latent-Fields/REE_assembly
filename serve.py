@@ -73,7 +73,7 @@ RUNNERS = {
         "script": SERVE_DIR.parent / "ree-v3" / "experiment_runner.py",
         "pid_file": SERVE_DIR.parent / "ree-v3" / "runner.pid",
         "queue_file": SERVE_DIR.parent / "ree-v3" / "experiment_queue.json",
-        "evidence_dir": SERVE_DIR.parent / "ree-v3" / "evidence" / "experiments",
+        "evidence_dir": SERVE_DIR / "evidence" / "experiments",
         "python": V3_PYTHON,
         "label": "V3 (ree-v3)",
         "auto_sync": True,
