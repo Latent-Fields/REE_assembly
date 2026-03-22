@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-22T11:55:32.679241Z`
+Generated: `2026-03-22T13:17:52.236754Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -128,7 +128,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057b
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.661, conflict_ratio=0.667, exp_entries=6, lit_entries=0; directions supports=2, weakens=1, mixed=3, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.66, conflict_ratio=0.667, exp_entries=6, lit_entries=0; directions supports=2, weakens=1, mixed=3, unknown=0, conflict_ratio=0.667
 - Evidence quality note: No genuine experiments. This claim is explicitly V3-scoped. The thought-loop trajectory promotion gate requires HippocampalModule to implement a feedback path that suppresses trajectory candidates from being promoted to E3 consideration before hippocampal sequence completion is verified. This path is not present in V1 or V2. V3 primary scope: full HippocampalModule trajectory promotion policy and …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

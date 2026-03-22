@@ -1,15 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-03-22T13:08:08Z`  
-Last review: `2026-03-22T13:07:41Z`  
+Generated: `2026-03-22T13:17:52Z`  
+Last review: `2026-03-22T13:16:47Z`  
 Pending: **3** item(s) -- 2 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_057_sd010_reafference_isolation_20260322T014230Z_v3` | 2026-03-22T01:42 | MECH-101, SD-007, SD-010 |
 | `v3_onboard_smoke_Daniel_PC_20260322T114824Z_v3` | 2026-03-22T11:48 | onboarding |
+| `v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3` | 2026-03-22T12:46 | onboarding |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
