@@ -2051,6 +2051,7 @@
     }
     .exp-discuss-btn:hover { background: var(--border); }
     .exp-badge.needs-script { background: var(--bg-2); color: var(--muted); }
+    .exp-badge.claimed     { background: #e3f0fb; color: #1565c0; }
     .exp-progress-bar {
       height: 5px; background: var(--border); border-radius: 3px;
       overflow: hidden; margin: 10px 0 4px 0;
@@ -8003,7 +8004,7 @@ END CONFLICT RESOLUTION`;
       return [...order, ...extra].filter(v => groups[v] && groups[v].length > 0);
     }
 
-    function expBadgeHtml(status, result) {
+    function expBadgeHtml(status, result, machine) {
       const s = (result || status || '').toLowerCase();
       let cls = 'pending', label = status || 'pending';
       if (s === 'running')           { cls = 'running';      label = 'Running'; }
@@ -8014,6 +8015,7 @@ END CONFLICT RESOLUTION`;
       else if (s === 'error')        { cls = 'error';        label = 'ERROR'; }
       else if (s === 'unknown')      { cls = 'error';        label = 'UNKNOWN'; }
       else if (s === 'needs_script') { cls = 'needs-script'; label = 'Needs script'; }
+      else if (s === 'claimed')      { cls = 'claimed';      label = machine ? `claimed: ${machine}` : 'claimed'; }
       return `<span class="exp-badge ${cls}">${escapeHtml(label)}</span>`;
     }
 
@@ -8083,11 +8085,10 @@ END CONFLICT RESOLUTION`;
             ${qi.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(qi.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(qi.claim_id || '')}</span>
             <span class="exp-title">${escapeHtml(qi.title || '')}</span>
-            ${expBadgeHtml(qi.status)}
+            ${expBadgeHtml(qi.status, undefined, qi.claimed_by && qi.claimed_by.machine)}
             ${versionChipHtml(inferVersion(qi))}
             <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
             ${qi.machine_affinity && qi.machine_affinity !== 'any' ? `<span class="exp-timing" title="Machine affinity">🖥 ${escapeHtml(qi.machine_affinity)}</span>` : ''}
-            ${qi.claimed_by && qi.claimed_by.machine ? `<span class="exp-timing" style="color:var(--accent)" title="Currently claimed by">⚙ ${escapeHtml(qi.claimed_by.machine)}</span>` : ''}
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
           ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
