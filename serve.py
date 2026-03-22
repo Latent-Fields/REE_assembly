@@ -489,15 +489,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             data = load_review_tracker()
             # Derive experiment dir names from reviewed_run_ids so that previously
             # reviewed runs show as "discussed" in the explorer without a migration.
-            # run_id formats: "20260316T061908_path_memory_ablation_v2"
-            #                 "20260320T155338Z_v3_exq_056_sd010_harm_stream_baseline_v3"
-            #                 "2026-02-13T224000Z_commit-dual-error-channels_seed11_..."
+            # run_id formats:
+            #   "20260316T061908_path_memory_ablation_v2"         (timestamp-first)
+            #   "20260320T155338Z_v3_exq_056_sd010_..._v3"        (timestamp-first V3)
+            #   "v3_exq_048b_mech057b_..._20260320T223120Z_v3"    (type-first V3)
+            #   "2026-02-13T224000Z_commit-dual-error-channels_..." (ISO timestamp-first)
             reviewed_dirs = set()
             for run_id in data.get("reviewed_run_ids", []):
                 # Strip leading timestamp (digits, T, Z, colon, hyphen, dot)
                 name = re.sub(r'^[\dTZ:.\-]+_', '', run_id)
                 # Strip trailing _v1/_v2/_v3
                 name = re.sub(r'_v[123]$', '', name)
+                # Strip embedded trailing timestamp (type-first format):
+                # "v3_exq_048b_..._20260320T223120Z" → "v3_exq_048b_..."
+                name = re.sub(r'_\d{8}T\d{6}Z?$', '', name)
                 # Strip trailing _seed\d+ and further suffixes
                 name = re.sub(r'_seed\d+.*$', '', name)
                 name = re.sub(r'_s\d+_.*$', '', name)
