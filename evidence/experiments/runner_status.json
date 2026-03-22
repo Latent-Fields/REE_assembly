@@ -1,59 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 83331,
-  "runner_started_at": "2026-03-21T06:08:29.284920+00:00",
-  "last_updated": "2026-03-21T16:58:31.362336+00:00",
+  "runner_pid": 15780,
+  "runner_started_at": "2026-03-21T22:26:46.799688+00:00",
+  "last_updated": "2026-03-22T02:46:23.618181+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-049e",
-    "backlog_id": "",
-    "claim_id": "MECH-090",
-    "title": "MECH-090 BetaGate v4 \u2014 two-condition design (trained vs fresh agent)",
-    "description": "Fixes single-agent limitation of EXQ-049d: trained agent always committed (variance~0), fresh agent always uncommitted (variance=precision_init=0.5>threshold). C1/C3 from trained agent (gate elevates), C2/C4 from fresh agent (gate releases). No artificial variance manipulation needed \u2014 both conditions at stable extremes.",
-    "script": "experiments/v3_exq_049e_mech090_two_condition.py",
-    "started_at": "2026-03-21T16:58:26.350085+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 450,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 5,
-    "seconds_remaining": 3600,
-    "recent_lines": [
-      "alpha_world=0.9  seed=0",
-      "============================================================",
-      "[V3-EXQ-049e] Condition A \u2014 TRAINED (400 episodes)",
-      "============================================================",
-      "precision_init=0.500  commit_threshold=0.400"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-049e",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 BetaGate v4 \u2014 two-condition design (trained vs fresh agent)",
-      "description": "Fixes single-agent limitation of EXQ-049d: trained agent always committed (variance~0), fresh agent always uncommitted (variance=precision_init=0.5>threshold). C1/C3 from trained agent (gate elevates), C2/C4 from fresh agent (gate releases). No artificial variance manipulation needed \u2014 both conditions at stable extremes.",
-      "estimated_minutes": 60.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-061",
-      "backlog_id": "",
-      "claim_id": "MECH-104",
-      "title": "MECH-104 Volatility Interrupt \u2014 jitter approximation enables de-commitment on surprise harm",
-      "description": "Tests MECH-104 (LC-NE volatility interrupt) V3 approximation. Two conditions: baseline (no spike, confirms variance collapse) vs surprise-spike (adds spike_magnitude=0.05 to running_variance on harm contact). PASS: C1 baseline n_uncommitted=0, C2 spike n_uncommitted>100, C3 variance rises after harm contact, C4 calibration_gap preserved, C5 no fatal errors.",
-      "estimated_minutes": 120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-051b",
       "backlog_id": "",
@@ -1618,6 +1570,42 @@
       "started_at": "2026-03-21T12:21:32.585457+00:00",
       "completed_at": "2026-03-21T13:12:12.790548+00:00",
       "output_file": "v3_exq_060_arc016_beta_gate_fixed_threshold_20260321T131212Z.json"
+    },
+    {
+      "queue_id": "V3-EXQ-049e",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 Two-Condition Beta Gate \u2014 trained agent (C1) vs fresh agent (C2)",
+      "description": "Two-condition design. Trained agent (400 eps warmup, variance ~0): tests C1 gate elevation during committed. Fresh agent (precision_init=0.5 > threshold): tests C2 gate release during uncommitted. No hysteresis needed \u2014 both conditions at stable variance extremes. Uses direct update_running_variance(wf_err) (EXQ-049d fix). PASS: all of C1 committed_hold_concordance>0.6, C2 uncommitted_release_concordance>0.5, C3 hold_count>0, C4 propagation_count>0, C5 no fatal errors.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-21T22:26:48.187173+00:00",
+      "completed_at": "2026-03-21T22:26:50.883009+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-047b",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 + SD-010 Joint \u2014 split vs unified latent with clean harm stream",
+      "description": "Re-test of SD-005 latent split (z_self vs z_world) now that SD-010 is confirmed. Both conditions have HarmEncoder (harm_obs \u2192 z_harm) active, removing nociceptive content from z_world gradient path. EXQ-047 C1 failure was diagnosed as nociceptive contamination \u2014 this experiment tests if calibration gap now exceeds 5pp. Claims: SD-005, MECH-069. C1: wf_r2_split > wf_r2_unified + 0.05. C2: attr_gap_split > attr_gap_unified + 0.01. C3: harm_pearson > 0.50. C4: wf_r2_split > 0.30. C5: n_approach >= 50.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-21T22:26:52.323904+00:00",
+      "completed_at": "2026-03-21T22:26:54.801096+00:00",
+      "output_file": ""
+    },
+    {
+      "queue_id": "V3-EXQ-061",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Volatility Interrupt \u2014 jitter approximation enables de-commitment on surprise harm",
+      "description": "Tests MECH-104 (LC-NE volatility interrupt) V3 approximation. Two conditions: baseline (no spike, confirms variance collapse) vs surprise-spike (adds spike_magnitude=0.05 to running_variance on harm contact). PASS: C1 baseline n_uncommitted=0, C2 spike n_uncommitted>100, C3 variance rises after harm contact, C4 calibration_gap preserved, C5 no fatal errors.",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-03-21T22:26:56.519436+00:00",
+      "completed_at": "2026-03-22T02:46:23.618181+00:00",
+      "output_file": ""
     }
   ]
 }
