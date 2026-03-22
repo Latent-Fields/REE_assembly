@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_030",
+  "entry_id": "2026-03-22_mech030_hippocampal_replay_diekelmann2010",
+  "timestamp_utc": "2026-03-22T10:00:00Z",
+  "claim_ids_tested": ["MECH-030"],
+  "source": {
+    "title": "The memory function of sleep",
+    "authors": ["Susanne Diekelmann", "Jan Born"],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2762",
+    "url": "https://www.nature.com/articles/nrn2762"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Canonical high-quality review in a premier journal. Directly documents hippocampal-cortical dialogue during NREM SWS as the mechanistic basis of memory consolidation; covers sharp-wave ripple replay, thalamo-cortical sleep spindles, and slow oscillation coordination. Maps cleanly onto MECH-030's core claim that offline consolidation uses hippocampal-cortical replay while suppressing active online processing. Confidence docked slightly because the REE sleep mode is explicitly V4 scope, adding transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "mech030",
+    "connectome",
+    "hippocampus",
+    "replay",
+    "NREM",
+    "sleep-consolidation",
+    "hippocampal-cortical-dialogue",
+    "sharp-wave-ripples",
+    "sleep-spindles",
+    "slow-oscillations",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "During NREM slow-wave sleep, hippocampal sharp-wave ripples reactivate recent experience representations and, coupled with thalamo-cortical sleep spindles nested within cortical slow oscillations, drive transfer of labile hippocampal memories to stable neocortical long-term storage. This active systems consolidation is suppressed during online waking states.",
+    "ree_translation": "MECH-030 requires an offline sleep/consolidation mode in which the system replays recently accumulated trajectory and residue representations via a hippocampal-cortical channel (analog of SWR-driven replay) while commit signals and new action commitments are suppressed. Diekelmann & Born provide the biological substrate for exactly this architecture: (1) replay is internally generated and offline, not driven by new sensory input; (2) the neocortical write phase requires suppression of ongoing processing; (3) consolidation recalibrates which representations survive into long-term storage -- mapping onto MECH-030's precision recalibration and residue contextualisation functions.",
+    "mapping_caveat": "MECH-030 and the REE sleep mode are explicitly V4 scope -- not implemented in V1, V2, or V3 substrates. This mapping is architectural/aspirational: the biological evidence motivates the design, but no REE experiment has yet tested any prediction of MECH-030. Additionally, the biological replay timescale (hours of sleep, multi-night consolidation) is much longer than any computational analog likely to be feasible in REE experiments.",
+    "source_context": "Review covers rodent and human sleep memory research; NREM SWS consolidation of declarative/episodic memory; REM sleep role in procedural and emotional memory; synaptic tagging and capture framework; clinical relevance of sleep disruption on memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.87,
+    "transfer_risk": 0.30,
+    "notes": "Extremely high source quality (NRN review, >7000 citations). Mapping fidelity is high for the structural principle (offline replay, commit suppression, hippocampal-cortical transfer) but the detailed molecular/synaptic mechanisms do not have direct REE analogs. Transfer risk is primarily the V4 scope gap and the timescale mismatch between biological sleep and any computational implementation."
+  }
+}

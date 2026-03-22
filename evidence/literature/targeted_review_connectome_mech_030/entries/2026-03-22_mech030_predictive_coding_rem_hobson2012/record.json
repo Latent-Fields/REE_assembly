@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_030",
+  "entry_id": "2026-03-22_mech030_predictive_coding_rem_hobson2012",
+  "timestamp_utc": "2026-03-22T10:10:00Z",
+  "claim_ids_tested": ["MECH-030"],
+  "source": {
+    "title": "Waking and dreaming consciousness: Neurobiological and functional considerations",
+    "authors": ["J. Allan Hobson", "Karl J. Friston"],
+    "year": 2012,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2012.05.003",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0301008212000919"
+  },
+  "evidence_class": "connectome_theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is a theoretical integration paper (Hobson + Friston) casting REM sleep within active inference / predictive coding. Source quality is good -- both authors are prominent -- but the paper is more theoretical synthesis than primary data review, and the predictive coding interpretation of REM is not universally accepted. The key claim (REM as offline precision recalibration that updates the generative model's priors) maps onto MECH-030's mode boundary recalibration function. Confidence docked for theoretical nature of the source, contested status of the REM-predictive-coding account, and V4 scope gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "mech030",
+    "connectome",
+    "REM",
+    "predictive-coding",
+    "active-inference",
+    "generative-model",
+    "precision-recalibration",
+    "prior-update",
+    "offline-renormalization",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hobson and Friston argue that REM sleep serves as an offline phase in which the brain's generative model updates its prior beliefs -- especially precision-weighted priors -- without the cost of prediction error from sensory input. During REM, brainstem neuromodulatory systems (noradrenergic and serotonergic) are suppressed, reducing precision assigned to sensory prediction errors and allowing the generative model to explore and recalibrate the hyperparameters (precision priors) that would otherwise be locked in by online sensory constraints. This unconstrained model exploration refines the structure of the generative model in ways that waking experience, locked to actual sensory input, cannot.",
+    "ree_translation": "MECH-030 specifies that sleep mode recalibrates mode boundaries -- the precision parameters and prior expectations that determine how the system transitions between operational regimes. Hobson & Friston's predictive coding account of REM provides the clearest existing framework for this function: REM is precisely the state in which hyperparameter (precision prior) recalibration can occur, because sensory constraints are lifted. In REE terms: (1) alpha_k precision priors accumulated during online operation can be recalibrated offline without new evidence forcing them; (2) mode boundary parameters -- which determine when the system transitions between deliberative and committed modes -- can be re-explored without the cost of committing in a live environment; (3) the suppression of noradrenergic and serotonergic tone during REM maps onto the suppression of commit signals required by MECH-030 and ARC-020.",
+    "mapping_caveat": "MECH-030 is explicitly V4 scope -- not implemented in V1, V2, or V3 REE substrates. The Hobson-Friston account is a theoretical synthesis, not a primary mechanistic review; the specific claim that REM updates precision hyperparameters is inferred from the active inference framework applied to known REM neurophysiology, not directly measured. The predictive coding interpretation of REM remains debated. The DOI listed is correct for this Hobson-Friston collaboration, but readers should verify the specific article content, as Hobson and Friston co-authored more than one piece during this period. The REE analog of 'unconstrained prior exploration' requires further architectural specification before it can be experimentally tested.",
+    "source_context": "Theoretical integration paper applying active inference (free energy principle) to sleep and dreaming; covers REM neurophysiology, neuromodulatory gating, the role of REM in creative cognition and psychiatric disorder; proposes REM as prior-update phase complementary to NREM's memory consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.38,
+    "notes": "Source quality good but theoretical; mapping fidelity is high for the precision-recalibration / mode-boundary function because the active inference framing is already the conceptual language of REE; transfer risk elevated by theoretical nature of source, contested REM account, and V4 scope gap. DOI confidence: high, but note the caveat above about verifying specific article."
+  }
+}

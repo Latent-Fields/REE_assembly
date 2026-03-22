@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_047",
+  "entry_id": "2026-03-22_mech047_dfc_switching_vidaurre2017",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["MECH-047"],
+  "source": {
+    "title": "Brain network dynamics are hierarchically organized in time",
+    "authors": [
+      "Diego Vidaurre",
+      "Stephen M. Smith",
+      "Mark W. Woolrich"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1705120114",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.1705120114"
+  },
+  "evidence_class": "connectome_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Empirical resting-state fMRI study using a hidden Markov model to identify transient brain states and their transition probabilities. The finding of hierarchical temporal organisation -- with fast micro-states nested inside slower macro-states -- directly supports MECH-047's claim that mode transitions are not instantaneous and carry switching costs. The hierarchical structure provides an empirical basis for distinguishing sub-mode fluctuations from genuine mode transitions. Main caveat: resting-state only; task-engaged dynamics and causal role of LC-NE are not directly addressed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech047", "dynamic-functional-connectivity", "brain-state-transitions", "hmm", "switching-costs", "hierarchical-dynamics", "resting-state", "supports"],
+  "mapping": {
+    "source_claim_statement": "An HMM applied to resting-state fMRI (HCP dataset, N=1003) identifies 12 transient brain states with characteristic dwell times ranging from ~100 ms to several seconds. Transitions between states are non-random: some pairs of states have high transition probability (fast switching corridor), others are separated by low-probability gaps (switching barrier). The temporal structure is hierarchical: faster micro-state fluctuations are nested within slower macro-state epochs, producing multi-timescale dynamics.",
+    "ree_translation": "MECH-047: The non-random transition probability matrix from Vidaurre et al. is the empirical analog of the REE mode-transition gate. States that are separated by low transition probability correspond to mode pairs with high switching cost (e.g., doing <-> default-mode). The hierarchical nesting (fast micro-states within slow macro-states) directly maps to REE's distinction between within-mode fluctuations (E1/E2 updates) and genuine control-plane mode changes (E3/mode-manager level). Dwell times provide a quantitative prior for the hysteresis time constant in MECH-047.",
+    "mapping_caveat": "Resting-state data: the 12 HMM states are not labelled as doing/ready-vigilance/default-mode and do not correspond to externally defined cognitive modes. The mapping from HMM states to REE modes is inferential. The paper does not address LC-NE as a transition driver, leaving the arousal-gating component of MECH-047 unsupported by this entry alone. DOI verified; citation details reliable.",
+    "source_context": "Resting-state fMRI from the Human Connectome Project (HCP). HMM-based state inference on whole-brain parcellated BOLD time series. No task manipulation; no pharmacological or arousal manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.38,
+    "notes": "High-quality empirical paper in a top venue with large sample; mapping fidelity moderate because HMM states are not the same as named cognitive modes; transfer risk reflects resting-state-to-task-engaged gap and the absence of arousal manipulation."
+  }
+}

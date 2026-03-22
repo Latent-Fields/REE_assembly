@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-03-22_mech090_engel_fries_beta_status_quo_2010",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-090"
+  ],
+  "source": {
+    "title": "Beta-band oscillations -- signalling the status quo?",
+    "authors": [
+      "Andreas K. Engel",
+      "Pascal Fries"
+    ],
+    "year": 2010,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2010.02.014",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0959438810000389"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Influential review directly articulating the 'status quo' function of beta oscillations across motor and cognitive circuits — specifically distinguishing beta as a signal that maintains current state against change, not merely an idle rhythm. High source quality and conceptual precision; the framing directly maps to MECH-090's committed-sequence gating. Main transfer risk: the review argues beta reflects a top-down maintenance signal but does not directly distinguish internal-update blocking from output-propagation blocking, which is the REE-specific claim.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "beta-oscillations",
+    "status-quo",
+    "motor-cortex",
+    "cognitive-control",
+    "output-gating",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Beta oscillations (~13-30 Hz) actively signal 'the status quo' — they maintain the current sensorimotor or cognitive state against disruptive change. Beta is not merely an idle rhythm but a top-down active maintenance signal: elevated during committed states, suppressed when the system must update or initiate change. Beta desynchronization precedes and accompanies voluntary movement; resynchronization marks the end of the action and restoration of the maintained state.",
+    "ree_translation": "MECH-090: Elevated beta during a committed action sequence is an active gate on E3 policy-output propagation — it keeps the current committed plan in force and prevents premature re-planning. The sequence-completion beta resynchronization that Engel & Fries describe as 'restoring the maintained state' maps to the post-sequence beta-drop that allows E3's updated state to propagate to action selection. Beta here is not idling but committed-state maintenance, directly supporting MECH-090's distinction from idle/default rhythm.",
+    "mapping_caveat": "The review focuses primarily on sensorimotor beta and does not explicitly test the internal-model-update vs output-propagation distinction central to MECH-090. The argument that beta is a top-down maintenance signal (not bottom-up idling) supports the committed-sequence framing, but the precise locus of gating (E3 output vs downstream action selection) requires the 2019 Helfrich/Knight review for circuit-level corroboration.",
+    "source_context": "Review of human EEG, MEG, and primate LFP studies; motor cortex, sensorimotor, and prefrontal regions; voluntary movement, cognitive control, and sensory change-detection paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality — canonical framing paper cited broadly for the status-quo interpretation; mapping to committed-sequence gating is conceptually tight; transfer risk is moderate since the output-propagation vs internal-update distinction is not explicitly tested."
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "completed_items": [],
+  "completed_items": ["CPULL-0001", "CPULL-0002", "CPULL-0003", "CPULL-0004"],
   "completion_policy": {
     "manual_claim_ids_adjudicated": [],
     "manual_require_adjudication_for_completion": true,
@@ -120,7 +120,7 @@
           "manual_mode_transition_pull"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_arc_016",
       "target_repo": "REE_assembly"
     },
@@ -232,7 +232,7 @@
           "manual_mode_transition_pull"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_025",
       "target_repo": "REE_assembly"
     },
@@ -344,7 +344,7 @@
           "manual_mode_transition_pull"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_026",
       "target_repo": "REE_assembly"
     },
@@ -456,7 +456,7 @@
           "manual_mode_transition_pull"
         ]
       },
-      "status": "proposed",
+      "status": "completed",
       "suggested_literature_type": "targeted_review_connectome_mech_029",
       "target_repo": "REE_assembly"
     },
@@ -471,20 +471,20 @@
       "claim_id": "MECH-030",
       "completion_status": {
         "clarification_ready": false,
-        "clarification_reason": "awaiting_coverage",
-        "coverage_ready": false,
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
+        "clarification_reason": "manual_seed_adjudication_pending",
+        "coverage_ready": true,
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
         "manual_adjudicated": false,
         "manual_adjudication_required": true,
         "manual_seed": true,
         "min_entries": 4,
         "min_non_support_entries": 1,
         "min_support_entries": 1,
-        "non_support_entries": 0,
+        "non_support_entries": 1,
         "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence",
-        "support_entries": 0
+        "status_reason": "coverage_met_pending_manual_adjudication",
+        "support_entries": 3
       },
       "connectome_focus": "Constrain sleep/offline consolidation mode assumptions with replay, renormalization, and boundary-protection evidence.",
       "manual_seed": true,
@@ -583,20 +583,20 @@
       "claim_id": "MECH-047",
       "completion_status": {
         "clarification_ready": false,
-        "clarification_reason": "awaiting_coverage",
-        "coverage_ready": false,
-        "entries_total": 0,
-        "latest_timestamp_utc": "",
+        "clarification_reason": "manual_seed_adjudication_pending",
+        "coverage_ready": true,
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
         "manual_adjudicated": false,
         "manual_adjudication_required": true,
         "manual_seed": true,
         "min_entries": 4,
         "min_non_support_entries": 1,
         "min_support_entries": 1,
-        "non_support_entries": 0,
+        "non_support_entries": 1,
         "reopen_conflict_ratio": 0.9,
-        "status_reason": "awaiting_connectome_evidence",
-        "support_entries": 0
+        "status_reason": "coverage_met_pending_manual_adjudication",
+        "support_entries": 3
       },
       "connectome_focus": "Evaluate mode-commitment hysteresis and switching-cost hypotheses with state-transition neuroscience evidence.",
       "manual_seed": true,
@@ -693,7 +693,23 @@
         "Results linked to SD-005 and MECH-069 claim_ids_tested."
       ],
       "claim_id": "SD-005",
-      "completion_status": "not_started",
+      "completion_status": {
+        "clarification_ready": false,
+        "clarification_reason": "manual_seed_adjudication_pending",
+        "coverage_ready": true,
+        "entries_total": 4,
+        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
+        "manual_adjudicated": false,
+        "manual_adjudication_required": true,
+        "manual_seed": true,
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "min_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "coverage_met_pending_manual_adjudication",
+        "support_entries": 3
+      },
       "connectome_focus": "motor_self_model_efference_copy",
       "manual_seed": true,
       "objective": "Ground SD-005 (z_self / z_world latent split) in biological efference-copy and self-model literature. Key question: does the brain maintain a dedicated motor-self representation (analogous to z_self) that is computationally separable from world-model representations (z_world)? Collects evidence for the z_self/z_world split architecture and the claim that combining them in a single latent (z_gamma) misattributes causal credit.",
@@ -817,7 +833,24 @@
         "Results linked to MECH-089 and MECH-090 claim_ids_tested."
       ],
       "claim_id": "MECH-090",
-      "completion_status": "not_started",
+      "completion_status": {
+        "clarification_ready": false,
+        "clarification_reason": "manual_seed_adjudication_pending",
+        "coverage_ready": true,
+        "entries_total": 5,
+        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
+        "manual_adjudicated": false,
+        "manual_adjudication_required": true,
+        "manual_seed": true,
+        "min_entries": 4,
+        "min_non_support_entries": 1,
+        "min_support_entries": 1,
+        "non_support_entries": 1,
+        "reopen_conflict_ratio": 0.9,
+        "status_reason": "coverage_met_pending_manual_adjudication",
+        "support_entries": 4,
+        "notes": "Entries split across mech_089 dir (2: Lisman/Jensen, Canolty/Knight) and mech_090 dir (3: beta_status_quo, Engel/Fries, Pfurtscheller/LopesDaSilva)"
+      },
       "connectome_focus": "oscillatory_gating_beta_theta_gamma",
       "manual_seed": true,
       "objective": "Ground MECH-089 (theta-gamma nesting packages E1 updates for E3) and MECH-090 (beta oscillations gate E3 policy propagation during committed sequences) in biological oscillatory gating literature. Key question: do beta oscillations selectively suppress output propagation (not internal updating) during stable motor sequences, and does theta-gamma cross-frequency coupling package sensory/prediction error updates for higher-order evaluation?",
@@ -930,8 +963,8 @@
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "active_queue_items": 8,
-    "completed_items": 0,
+    "active_queue_items": 4,
+    "completed_items": 4,
     "consider_new_structure_items": 0,
     "manual_seed_claim_ids": [
       "ARC-016",

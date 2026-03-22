@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_047",
+  "entry_id": "2026-03-22_mech047_brain_metastability_breakspear2017",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["MECH-047"],
+  "source": {
+    "title": "Dynamic models of large-scale brain activity",
+    "authors": ["Michael Breakspear"],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4497",
+    "url": "https://www.nature.com/articles/nn.4497"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical review articulating metastability as the core operating principle of large-scale brain dynamics: the brain transiently dwells in attractor-like states and transitions between them with characteristic dwell-time distributions. Directly supports MECH-047's claim of mode-commitment hysteresis. Mapping from whole-brain attractor dynamics to REE's three cognitive modes is structurally faithful. Main transfer risks are from network-level dynamics to the discrete mode-manager abstraction and from resting-state to task-engaged circuits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech047", "metastability", "brain-state-transitions", "attractor-dynamics", "hysteresis", "large-scale-networks", "supports"],
+  "mapping": {
+    "source_claim_statement": "The brain operates near a multistable regime where neural activity transiently visits quasi-stable attractor states (metastability). Transitions between states are not instantaneous — the system exhibits dwell times within each state, and crossing to a new attractor requires crossing an energy barrier. This yields history-dependent (hysteretic) dynamics at the network level.",
+    "ree_translation": "MECH-047: The REE control plane mode manager implements cognitive-mode hysteresis by analogy to neural metastability. Once a mode (doing, ready-vigilance, default-mode) is entered, the system dwells in that attractor basin and resists switching until arousal input (modelled as LC-NE; see TRK-LC) supplies sufficient energy to cross the inter-state barrier. The switching cost is the REE model of the energy-barrier cost documented in Breakspear's dynamic models.",
+    "mapping_caveat": "Breakspear's review addresses whole-brain large-scale networks in resting and lightly task-engaged states; the three REE modes do not map one-to-one to the attractor states characterised in the review. The review treats metastability as an emergent network property; in MECH-047 hysteresis is implemented as an explicit control-plane gate, which is a stronger mechanistic claim than the review supports. DOI and citation details are verified; mapping caveat is interpretive, not bibliographic.",
+    "source_context": "Review of computational and biophysical models of large-scale brain dynamics, including Stuart-Landau oscillators, multi-stable mean-field models, and empirical resting-state fMRI dwell-time statistics. Covers both local (cortical column) and whole-brain (connectome-constrained) levels."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.32,
+    "notes": "High-quality canonical review; mapping fidelity is good but not tight because REE's discrete three-mode abstraction is more coarse-grained than the continuous attractor landscapes discussed. Transfer risk reflects the resting-state vs. goal-directed task context and the network-to-control-plane abstraction gap."
+  }
+}

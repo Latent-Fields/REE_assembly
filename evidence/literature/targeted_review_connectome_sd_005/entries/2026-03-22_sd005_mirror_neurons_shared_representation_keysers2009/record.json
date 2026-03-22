@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_005",
+  "entry_id": "2026-03-22_sd005_mirror_neurons_shared_representation_keysers2009",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["SD-005"],
+  "source": {
+    "title": "Expanding the mirror: vicarious activity for actions, emotions, and sensations",
+    "authors": [
+      "Christian Keysers",
+      "Valeria Gazzola"
+    ],
+    "year": 2009,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2009.10.006",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0959438809001585"
+  },
+  "evidence_class": "neuroimaging_mirror_systems",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Keysers and Gazzola review strong evidence that the same cortical regions (premotor cortex, SII/parietal operculum, insula) are active both when an agent performs an action, emotion, or sensation AND when observing another perform the same -- i.e. self and other share neural representations. This directly challenges the clean z_self/z_world split: if the neural substrate for self-action and observed-action are overlapping rather than dissociated, strict computational separation of self and world streams is harder to maintain. Evidence is rated mixed rather than weakens because the overlap is partial and consistent with a competitive rather than fused representation, and because the mirror system primarily concerns action observation/understanding, not world-state modelling per se. The paper is high quality (>700 citations) and the phenomenon is robustly replicated.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["shared_self_world_representation", "partial_overlap_in_z_self_z_world_substrates"],
+  "tags": ["sd005", "z_self", "z_world", "mirror-neurons", "shared-representation", "premotor", "insula", "SII", "mixed", "disconfirming"],
+  "mapping": {
+    "source_claim_statement": "Vicarious (shared) neural representations are observed in premotor cortex (BA 44/6), the secondary somatosensory cortex (SII) / parietal operculum, and the anterior insula for actions, sensations, and emotions respectively. These regions activate both when an individual executes or experiences something themselves and when they observe another person executing or experiencing the same thing. The authors argue this constitutes a 'shared manifold' -- a common neural code for self and other that supports understanding of others' actions, sensations, and emotions by simulating them in one's own motor and sensory systems. The distinction between self-generated and observed events is modulated (not abolished) -- typically involving prefrontal inhibition of the vicarious response during self-execution to prevent confusion -- but the underlying representation is shared.",
+    "ree_translation": "The shared manifold finding challenges the z_self/z_world split in SD-005 at the level of neural substrate. If the same premotor and insula circuits encode both self-generated actions (the z_self candidate region) and observed others' actions (a z_world candidate), then the substrate proposed to carry z_self is not dedicated to self-representation -- it also carries other-representation. In REE terms: if E2's forward model substrate (z_self) is partially shared with E3's harm/goal substrate (z_world), then the latent split is not clean at the biological level and cross-contamination between z_self and z_world updates is architecturally likely. The competitive modulation (prefrontal suppression of vicarious response during action execution) suggests the overlap is managed dynamically rather than being absent -- but this means SD-005 requires a suppression/gating mechanism to maintain the split, not just separate encoder heads.",
+    "mapping_caveat": "The mirror system literature primarily concerns the understanding of other people's actions, emotions, and sensations -- a social cognition function. z_world in SD-005 is predominantly about impersonal world-state modelling (environmental changes, physical consequences, residue-field harm attribution), not other-person simulation specifically. The overlap between self-action and other-action representations may not generalise to the self vs impersonal-world contrast that SD-005 is primarily concerned with. Additionally, the shared representation is modulated (not identical) during self-execution -- the suppression of vicarious activity when acting oneself is consistent with a dynamic gating account rather than permanent fusion. The evidence weakens strong versions of z_self/z_world isolation but is compatible with a gated-separation account where the split is maintained by active suppression rather than anatomical segregation.",
+    "source_context": "Review of fMRI and single-unit recording studies in humans and macaques; social neuroscience / mirror neuron literature; Groningen group (Keysers lab)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.48,
+    "notes": "Source quality is high -- well-replicated phenomena, careful review. Mapping fidelity is moderate: the shared manifold primarily concerns self/other-person overlap, whereas SD-005's split is self/world (including impersonal world). The transfer from social other to impersonal world is an extrapolation. The disconfirming force is genuine but applies most directly to the social-attribution component of z_world, not to its environmental/physical-consequence component. Transfer risk is elevated because conflating 'other person' with 'world state' is conceptually sloppy but commonplace in the literature."
+  }
+}

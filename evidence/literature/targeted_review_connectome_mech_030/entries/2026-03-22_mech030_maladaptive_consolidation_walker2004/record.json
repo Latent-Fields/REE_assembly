@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_030",
+  "entry_id": "2026-03-22_mech030_maladaptive_consolidation_walker2004",
+  "timestamp_utc": "2026-03-22T10:15:00Z",
+  "claim_ids_tested": ["MECH-030"],
+  "source": {
+    "title": "Sleep, Memory, and Plasticity",
+    "authors": ["Matthew P. Walker", "Robert Stickgold"],
+    "year": 2004,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev.psych.56.091103.070307",
+    "url": "https://www.annualreviews.org/doi/10.1146/annurev.psych.56.091103.070307"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Walker & Stickgold is a high-quality Annual Review paper covering sleep and memory consolidation broadly. The mixed direction reflects an important asymmetry: the paper supports the general consolidation function of sleep (alignment with MECH-030's core claim) but also documents failure modes -- maladaptive consolidation and intrusive replay -- that reveal the ARC-020 invariant ('genuine harm must not be erased') is not automatically satisfied by the biological sleep process. PTSD-related evidence shows that offline consolidation can amplify and distort, not just recalibrate, traumatic memory traces. This constitutes a genuine challenge to the REE assumption that sleep mode will reliably enforce the commit boundary and produce constructive recalibration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Offline consolidation can strengthen and distort traumatic memories rather than recalibrating them (PTSD model).",
+    "REM sleep intrusions during NREM can disrupt the orderly hippocampal-cortical transfer, impairing rather than supporting mode boundary recalibration.",
+    "Sleep-dependent consolidation of fear memories may lock in maladaptive action schemas, not just episodic content.",
+    "Fragmented sleep (REM disruption) impairs emotional memory processing, suggesting the offline phase is not robust to partial implementation."
+  ],
+  "tags": [
+    "mech030",
+    "connectome",
+    "sleep-consolidation",
+    "maladaptive-consolidation",
+    "PTSD",
+    "intrusive-replay",
+    "fear-memory",
+    "mode-boundary-distortion",
+    "failure-signature",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep consolidates both declarative and non-declarative memories, with REM and NREM serving complementary roles. However, sleep-dependent consolidation is not uniformly beneficial: fear-conditioned and trauma-associated memories are selectively strengthened by sleep, and REM sleep in particular can potentiate affective memory traces. In PTSD, disrupted sleep architecture (REM intrusions, fragmented SWS) is associated with intrusive re-experiencing and hyperarousal, suggesting a failure mode in which offline consolidation amplifies rather than recalibrates distressing memory content.",
+    "ree_translation": "MECH-030 assumes that the offline sleep mode produces constructive recalibration: spurious residue is reduced, genuine harm is preserved but contextualised, and mode boundaries are restored. Walker & Stickgold's evidence challenges this assumption in two ways: (1) offline consolidation can selectively strengthen affectively charged memories including harmful ones -- the ARC-020 invariant ('genuine harm must not be erased') may be over-satisfied, with harm traces amplified rather than merely preserved; (2) in disrupted sleep states (analog of partial or malformed consolidation cycles), the offline process can distort mode boundaries rather than recalibrate them -- producing the REE failure modes of residue overgeneralisation and rigid policy selection. The PTSD model is the biological failure-case analog: intrusive replay without commit boundary protection produces a system that re-enacts harm scenarios in the offline phase rather than integrating them.",
+    "mapping_caveat": "MECH-030 is explicitly V4 scope -- not implemented in V1, V2, or V3 REE substrates. The PTSD failure mode analogy is architecturally instructive but should be applied carefully: PTSD involves multiple interacting factors (HPA axis dysregulation, hippocampal volume reduction, REM architecture disruption) that do not map neatly onto a single REE design parameter. The failure signatures listed are directional warnings for the V4 design, not precise predictions. Walker & Stickgold (2004) is primarily a consolidation review; the PTSD-specific content is covered more thoroughly in later Walker work (e.g., Walker 2009) and the PTSD sleep literature (Harvey et al., Stickgold et al.).",
+    "source_context": "Annual Review paper covering declarative and non-declarative memory consolidation during sleep; NREM and REM contributions; emotional memory processing; clinical relevance including PTSD, depression, and sleep deprivation effects on learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "High source quality; Annual Review format ensures broad coverage. Mapping fidelity is moderate: the failure signatures are architecturally relevant but the specific PTSD mechanisms do not map one-to-one onto REE design variables. Transfer risk elevated because (1) PTSD is a multi-factor clinical syndrome, not a clean model of offline consolidation failure; (2) the paper is primarily supportive of sleep-memory consolidation and the mixed/failure content requires reading the failure modes as design warnings rather than refutations."
+  }
+}

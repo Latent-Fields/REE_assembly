@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_089",
+  "entry_id": "2026-03-22_mech089_canolty_knight_cfc_2010",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": [
+    "MECH-089"
+  ],
+  "source": {
+    "title": "The functional role of cross-frequency coupling",
+    "authors": [
+      "Ryan T. Canolty",
+      "Robert T. Knight"
+    ],
+    "year": 2010,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2010.09.001",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1364661310001890"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Major review directly addressing the functional role of theta-phase/gamma-amplitude coupling across human cortex, hippocampus, and prefrontal circuits. Provides both the mechanistic account (slow oscillation phase organises fast-oscillation bursts) and the cognitive function (enabling communication across spatial and temporal scales between hierarchically distinct systems). The packaging-for-higher-level-read-out mechanism is explicit and maps cleanly to MECH-089's ThetaBuffer. Slightly higher confidence than Lisman & Jensen (2013) for MECH-089 because this review covers the general cortical case, not just rodent hippocampal spatial coding, reducing species-transfer risk.",
+  "summary_path": "summary.md",
+  "tags": [
+    "connectome",
+    "cross-frequency-coupling",
+    "theta-gamma",
+    "phase-amplitude-coupling",
+    "hippocampus",
+    "prefrontal",
+    "temporal-integration",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Theta-phase to gamma-amplitude coupling (theta-gamma PAC) is observed across the human hippocampus, entorhinal cortex, and prefrontal cortex during memory encoding, working memory, and attentional tasks. The slow oscillation (theta) phase acts as a temporal frame: gamma bursts at preferred theta phases carry task-relevant information, allowing slower hierarchical systems to read out fast local computations in batches. CFC thereby enables communication across circuits operating at incompatible timescales and constitutes a general neural mechanism for hierarchical integration.",
+    "ree_translation": "MECH-089: CFC is the biological substrate of the REE ThetaBuffer. E1 generates fast sensory prediction-error signals at gamma-equivalent rates; CFC bundles these into theta-phase-aligned packets accessible to E3, which operates at a slower deliberation rate. E3 never directly samples raw E1 gamma-rate output — it reads theta-cycle-packaged summaries. The human prefrontal and hippocampal CFC evidence in this review extends the Lisman & Jensen rodent spatial-coding result to the domain most relevant to REE's planning and moral-attribution hierarchy.",
+    "mapping_caveat": "CFC is most reliably measured during memory encoding and sustained attention; whether the same packaging mechanism operates during rapid online prediction-error integration (E1's function) is inferential. The review describes CFC as a communication mechanism but does not directly demonstrate that downstream (slow) systems are computationally blind to fast-oscillation content outside of theta windows — the 'E3 never sees raw E1' claim is stronger than the source directly establishes.",
+    "source_context": "Review of human intracranial EEG, scalp EEG, and rodent LFP; hippocampus, entorhinal cortex, prefrontal cortex, and motor cortex; memory encoding, working memory maintenance, and attentional task paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.22,
+    "notes": "Very high source quality — canonical CFC review with broad empirical coverage across species and task domains; mapping to ThetaBuffer is structurally faithful; lower transfer risk than Lisman & Jensen because human prefrontal CFC is directly reviewed."
+  }
+}

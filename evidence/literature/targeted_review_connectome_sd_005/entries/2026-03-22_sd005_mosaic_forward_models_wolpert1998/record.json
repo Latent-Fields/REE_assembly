@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_005",
+  "entry_id": "2026-03-22_sd005_mosaic_forward_models_wolpert1998",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["SD-005"],
+  "source": {
+    "title": "Multiple paired forward and inverse models for motor control",
+    "authors": [
+      "Daniel M. Wolpert",
+      "Mitsuo Kawato"
+    ],
+    "year": 1998,
+    "venue": "Neural Networks",
+    "doi": "10.1016/S0893-6080(98)00066-5",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0893608098000665"
+  },
+  "evidence_class": "computational_motor_control",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Wolpert and Kawato's MOSAIC model provides a well-established computational account of motor control via modular paired forward and inverse models. The forward model explicitly predicts the sensory consequences of self-generated actions without modelling world state. This is the canonical biological basis for a z_self stream (efference copy + forward prediction) that is computationally separable from a z_world stream. The paper is widely cited and the forward-model mechanism has substantial empirical support in cerebellar and parietal cortex. Confidence limited by the gap between motor control specifics and the broader latent-space architecture of SD-005.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd005", "z_self", "z_world", "efference-copy", "forward-model", "MOSAIC", "motor-control", "self-model", "supports"],
+  "mapping": {
+    "source_claim_statement": "Motor control is implemented via a MOSAIC architecture of multiple paired forward and inverse models. The forward model takes as input an efference copy of the current motor command and the current state estimate, and predicts the next sensory state resulting from self-generated movement. This prediction is used to cancel the reafferent sensory signal (the sensory consequence of self-motion), leaving only exafferent signals (changes due to the world). The forward model is updated on self-motion prediction error; it does not update on world-state changes caused by external events.",
+    "ree_translation": "SD-005 z_self/z_world split: the forward model in MOSAIC is the direct biological antecedent of z_self -- it encodes the predicted sensory consequences of self-action (proprioceptive, motor-sensory) and is updated exclusively by self-generated prediction error, not world-state error. The complementary exafferent signal (what remains after forward-model cancellation) is the biological antecedent of z_world -- it encodes changes in the environment not caused by the agent. MOSAIC demonstrates that the brain already factors the sensory stream into self-caused and world-caused components before any high-level processing. In REE: E2 running forward models on z_self, with z_world receiving only the residual exafferent signal, is not a novel architectural hypothesis -- it mirrors established cerebellar-cortical organisation.",
+    "mapping_caveat": "MOSAIC is a model of low-level motor control (limb movements, reaching), not the higher-level conceptual/intentional latent space that SD-005 addresses. The z_self/z_world split in SD-005 operates at the level of z_gamma (conceptual sensorium), not raw sensory streams. Extrapolating from motor efference copy to a high-level latent split involves a significant abstraction step. Additionally, MOSAIC is a computational model -- it describes a functional architecture inferred from behaviour and lesion data, not direct neural recordings of separate self/world channels.",
+    "source_context": "Computational motor control; cerebellar and parietal cortex; 1990s-era internal models literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Source quality is high -- MOSAIC is a landmark paper with strong empirical grounding and >2000 citations. Mapping fidelity is good at the functional level (self-motion cancellation = z_self separation) but the abstraction from sensorimotor to conceptual-sensorium latent space is a genuine transfer risk. The REE claim is that the same logic applies at the z_gamma level -- plausible but not directly evidenced by MOSAIC."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_005",
+  "entry_id": "2026-03-22_sd005_tpj_agency_attribution_farrer2002",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["SD-005"],
+  "source": {
+    "title": "Experiencing oneself vs another person as being the cause of an action: The neural correlates of the experience of agency",
+    "authors": [
+      "Chantal Farrer",
+      "Chris D. Frith"
+    ],
+    "year": 2002,
+    "venue": "NeuroImage",
+    "doi": "10.1006/nimg.2001.0994",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1053811901909940"
+  },
+  "evidence_class": "neuroimaging_agency",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Farrer and Frith directly dissociate the neural correlates of self-agency attribution from world-state/other-agency monitoring using fMRI. The anterior insula activates for self-caused actions; the right TPJ/inferior parietal cortex activates for other-caused (external) events. This double dissociation provides direct empirical support for separate neural substrates processing self-attribution (z_self domain) vs external-cause attribution (z_world domain). Well-cited study (>700 citations) in a high-quality empirical neuroscience venue. Confidence limited by the fact that the TPJ finding concerns other-person attribution specifically, not general world-state modelling, requiring an inferential step to z_world.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd005", "z_self", "z_world", "TPJ", "insula", "agency", "self-attribution", "parietal", "neuroimaging", "supports"],
+  "mapping": {
+    "source_claim_statement": "Using fMRI during a joystick task where participants either controlled an avatar themselves or watched the avatar move under experimenter control, Farrer and Frith found a double dissociation: (1) the anterior insula was significantly more active when participants were the cause of the action (self-agency condition); (2) the right inferior parietal cortex (temporo-parietal junction, TPJ) was significantly more active when an external agent caused the movement (other-agency condition). The two regions were anti-correlated in their response to self vs other attribution. The authors conclude that the sense of agency is subserved by a dedicated network distinct from the network tracking external causation.",
+    "ree_translation": "SD-005 z_self/z_world split: the anterior insula (interoceptive self-model, visceral agency signal) and right TPJ (external causation attribution, world-state credit assignment) are doubly dissociated in the brain. z_self (E2 domain, agent's causal footprint, self-attribution) and z_world (E3 domain, external residue, harm attribution to non-self causes) map directly onto these two circuits. Critically, the TPJ also mediates moral attribution and harm-cause judgements in subsequent literature (Saxe & Kanwisher 2003, Young et al. 2010) -- making it the plausible neural substrate for z_world's role in E3 harm/goal processing. The double dissociation is the clearest available evidence that the brain treats self-caused and world-caused events in computationally and anatomically separable circuits.",
+    "mapping_caveat": "The Farrer & Frith paradigm contrasts self vs other-person agency -- it does not directly contrast self vs impersonal world-state monitoring. The z_world concept in SD-005 encompasses both other-agent and impersonal environmental causation; the TPJ finding specifically implicates other-person attribution (social cognition / theory of mind overlap). Generalising from other-person attribution to all z_world content is an inferential step. Additionally, this is a 12-subject fMRI study with relatively modest sample size by contemporary standards; replication across many subsequent studies supports the basic dissociation but exact anatomical boundaries vary.",
+    "source_context": "Human fMRI, agency judgement, self vs other attribution task; London/UCL group (Frith lab); foundational agency neuroimaging study."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.35,
+    "notes": "High-quality empirical study with replicated results. Mapping fidelity is strong for the self-attribution (z_self) direction; the z_world direction requires the additional inferential step that TPJ generalises from other-person to all external-cause attribution. This step is supported by the broader TPJ/STS literature but is not directly evidenced by this paper alone."
+  }
+}

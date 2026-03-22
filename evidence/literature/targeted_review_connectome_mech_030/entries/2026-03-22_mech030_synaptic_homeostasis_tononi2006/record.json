@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_030",
+  "entry_id": "2026-03-22_mech030_synaptic_homeostasis_tononi2006",
+  "timestamp_utc": "2026-03-22T10:05:00Z",
+  "claim_ids_tested": ["MECH-030"],
+  "source": {
+    "title": "Sleep function and synaptic homeostasis",
+    "authors": ["Giulio Tononi", "Chiara Cirelli"],
+    "year": 2006,
+    "venue": "Sleep Medicine Reviews",
+    "doi": "10.1016/j.smrv.2005.05.002",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1087079205000523"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Seminal synaptic homeostasis hypothesis (SHY) paper; high source quality and wide replication. The core claim -- that waking net potentiates synapses and sleep globally downscales them to restore SNR -- maps directly onto MECH-030's precision recalibration and mode boundary recalibration functions. Confidence docked because SHY is a population-level homeostatic account, not a selectivity account, and REE needs selective residue recalibration (genuine harm preserved), which SHY does not explicitly address. V4 scope gap adds further transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "mech030",
+    "connectome",
+    "synaptic-homeostasis",
+    "SHY",
+    "sleep-downscaling",
+    "precision-recalibration",
+    "SNR",
+    "slow-wave-activity",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "The Synaptic Homeostasis Hypothesis (SHY) proposes that waking experience leads to net synaptic potentiation across cortical circuits, progressively increasing metabolic cost, reducing signal-to-noise ratio, and saturating plasticity capacity. Slow-wave sleep (SWS) globally downscales synaptic weights -- renormalising them to a baseline from which learning can resume -- as evidenced by the homeostatic relationship between waking slow-wave activity (SWA) and prior wake duration and learning intensity.",
+    "ree_translation": "MECH-030 requires that the offline sleep mode recalibrates precision and reopens option space (per the sleep contract in sleep.md). SHY provides the biological substrate for a global precision renormalization during sleep: the accumulated potentiation from online experience (analog of precision inflation during active engagement) is globally downscaled during SWS, restoring the dynamic range needed for subsequent learning. In REE terms this maps to: (1) recalibrating alpha_k precision gains that have drifted during online operation; (2) compressing overfit residue traces that accumulated during dense online episodes; (3) preventing saturation of the viability map update capacity. The SHY mechanism is the biological precedent for why sleep is architecturally required and cannot be replaced by continuous online renormalization.",
+    "mapping_caveat": "MECH-030 is explicitly V4 scope -- not implemented in V1, V2, or V3 REE substrates. More importantly, SHY proposes non-selective global downscaling, but MECH-030 requires selective recalibration: genuine harm residue must NOT be erased (per ARC-020 invariant), while spurious residue is reduced. SHY does not explain this selectivity -- a tagging or labelling mechanism (analogous to MECH-094's hypothesis tag) would be required to protect genuine harm traces from the global downscale. This is an architectural gap that SHY literature alone does not resolve.",
+    "source_context": "Original SHY paper; covers slow-wave activity as a function of prior waking; molecular evidence for net synaptic upscaling during wake; behavioral performance restoration after sleep; predictions about learning capacity and memory saturation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (widely cited, experimentally supported). Mapping fidelity is moderate: the homeostatic renormalization principle transfers well, but the non-selectivity of SHY conflicts with MECH-030's requirement that genuine harm be preserved. Transfer risk reflects both the V4 scope gap and this selectivity tension."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_047",
+  "entry_id": "2026-03-22_mech047_continuous_manifold_shine2019",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["MECH-047"],
+  "source": {
+    "title": "Human cognition involves the dynamic integration of neural activity and neuromodulatory systems",
+    "authors": [
+      "James M. Shine",
+      "Patrick G. Bissett",
+      "Peter T. Bell",
+      "Oluwasanmi Koyejo",
+      "Joshua H. Balsters",
+      "Krzysztof J. Gorgolewski",
+      "Craig A. Moodie",
+      "Russell A. Poldrack"
+    ],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0312-0",
+    "url": "https://www.nature.com/articles/s41593-018-0312-0"
+  },
+  "evidence_class": "connectome_empirical",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Empirically rigorous task-fMRI paper showing that cognitive transitions are better described as continuous trajectories through a low-dimensional neural manifold than as discrete switches between labelled states. This directly challenges MECH-047's discrete mode-switching architecture and the sharp hysteresis gate. However, the paper also shows that neuromodulator activity (especially LC-NE proxy via pupillometry) predicts position along the manifold, which is partially consistent with MECH-047's arousal-gating component. Net: the continuous manifold finding weakens the discrete-mode assumption; the neuromodulator-position correlation provides partial support for the gating claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "cognitive_mode_transitions_are_continuous_not_discrete",
+    "no_sharp_switching_boundary_identified"
+  ],
+  "tags": ["mech047", "continuous-dynamics", "neural-manifold", "neuromodulation", "pupillometry", "challenge", "mixed"],
+  "mapping": {
+    "source_claim_statement": "Task-fMRI during a cognitive flexibility paradigm reveals that brain network configurations change continuously along a low-dimensional trajectory (2-3 principal dimensions) rather than switching discretely between separable states. Position along this trajectory correlates with pupil-linked arousal (LC-NE proxy). Transitions between task conditions produce smooth traversals of manifold space, not sudden jumps. The authors argue that discrete state labels (e.g., task-on / task-off) are coarse summaries of an underlying continuous process.",
+    "ree_translation": "MECH-047: Shine et al. challenge the discrete three-mode model that MECH-047 presupposes. If neural dynamics are fundamentally continuous, then the REE mode-transition gate is an approximation -- a discretisation of a continuum that may not have sharp boundaries. The failure signature is that there may be no well-defined moment of 'mode entry' at which hysteresis kicks in; instead, hysteresis might be better modelled as a continuous function of position along the arousal/integration manifold. The partial support comes from the finding that pupil-linked arousal predicts manifold position: this is consistent with MECH-047's claim that LC-NE arousal modulates the ease of transitioning, even if the transition is continuous rather than discrete.",
+    "mapping_caveat": "The cognitive flexibility paradigm used by Shine et al. is not directly analogous to the REE three-mode cycle (doing, ready-vigilance, default-mode). Manifold dimensionality reduction may obscure discrete attractors if they exist; the paper cannot rule out metastability within the continuous manifold. The pupillometry LC-NE proxy is indirect. The finding is a challenge at the level of mechanistic framing (discrete vs. continuous) not a falsification of hysteresis per se -- hysteresis is possible in continuous systems too, but the MECH-047 implementation assumes discrete mode labels. DOI verified; citation details accurate.",
+    "source_context": "Task-fMRI (7T, N=30), cognitive flexibility paradigm with switching between task sets. PCA/manifold analysis of whole-brain connectivity matrices. Pupillometry as LC-NE proxy. No pharmacological manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "High-quality empirical paper; the challenge to discrete-mode framing is methodologically sound and directly relevant. Mapping fidelity is moderate because the paper's manifold model and REE's mode-manager operate at different levels of description. The mixed direction reflects genuine ambiguity: continuous dynamics + neuromodulator gating is not inconsistent with REE if the discrete-mode abstraction is understood as a computational-level approximation."
+  }
+}

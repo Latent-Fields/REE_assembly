@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_047",
+  "entry_id": "2026-03-22_mech047_lc_ne_arousal_astonjones2005",
+  "timestamp_utc": "2026-03-22T12:00:00Z",
+  "claim_ids_tested": ["MECH-047"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": [
+      "Gary Aston-Jones",
+      "Jonathan D. Cohen"
+    ],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://www.annualreviews.org/doi/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Canonical and highly cited review (>4000 citations) articulating LC-NE's role in adaptive gain modulation and the phasic/tonic LC firing distinction as a neural mechanism for switching between exploit and explore modes. Directly provides the neuromodulatory substrate for MECH-047's LC-NE arousal transition gate. Mapping to REE's mode-switching threshold is tight: phasic LC bursts = transition-enabling events; tonic LC baseline = background switching probability. Main caveat is that Aston-Jones & Cohen frame switching as exploit/explore rather than the three-mode REE taxonomy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech047", "lc-ne", "norepinephrine", "arousal", "mode-switching", "adaptive-gain", "phasic-tonic", "supports"],
+  "mapping": {
+    "source_claim_statement": "The locus coeruleus (LC) operates in two modes: phasic (brief high-amplitude NE bursts time-locked to task-relevant stimuli) and tonic (elevated baseline NE, decoupled from specific stimuli). Phasic LC activity enhances the signal-to-noise ratio of cortical responses to the current task, facilitating focused exploitation. Tonic LC activity promotes disengagement from current task sets and exploration of alternative behavioural options. Transitions between focused exploitation and exploratory disengagement are gated by shifts in LC mode, which in turn respond to accumulated performance signals and the onset of salient events.",
+    "ree_translation": "MECH-047: The phasic/tonic LC distinction maps directly onto the mode-transition gate in the REE control plane. Phasic LC bursts are the biological correlate of the transition-enabling arousal signal in MECH-047 -- a salient event (unexpected harm, task completion) triggers a brief high-amplitude NE release that transiently lowers the energy barrier between modes, enabling a switch. Tonic LC tone sets the background switching probability: high tonic NE corresponds to a low hysteresis threshold (easier to switch, more exploratory); low tonic NE corresponds to strong mode commitment (doing mode is stable). The exploit/explore framing maps approximately to doing-mode vs. ready-vigilance/default-mode respectively.",
+    "mapping_caveat": "Aston-Jones & Cohen frame LC function as exploit/explore switching, which maps to a two-mode (not three-mode) taxonomy. The REE default-mode (DMN/simulation) is not addressed. The review predates systematic characterisation of the DMN as a cognitive mode; the mapping to ready-vigilance and default-mode is inferential. The specific claim that LC-NE gates the doing <-> ready-vigilance transition is strongly supported; the LC role in gating entry into REE default-mode is more speculative. Cite year and DOI verified.",
+    "source_context": "Review integrating rodent electrophysiology, human pupillometry, computational modelling (Usher-Cohen model), and pharmacological studies. Focused on prefrontal cortex as primary LC target. Exploit/explore task paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Canonical review with very high source quality; mapping to doing/ready-vigilance transition is tight; transfer risk is low for the two-mode exploit/explore claim but higher for the three-mode REE taxonomy. Confidence docked slightly because default-mode LC gating is not addressed."
+  }
+}
