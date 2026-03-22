@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-22.1 -->
+<!-- EXPLORER_VERSION: 2026-03-22.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8012,6 +8012,7 @@ END CONFLICT RESOLUTION`;
       else if (s === 'failed')       { cls = 'failed';       label = 'FAILED'; }
       else if (s === 'improved')     { cls = 'improved';     label = 'IMPROVED'; }
       else if (s === 'error')        { cls = 'error';        label = 'ERROR'; }
+      else if (s === 'unknown')      { cls = 'error';        label = 'UNKNOWN'; }
       else if (s === 'needs_script') { cls = 'needs-script'; label = 'Needs script'; }
       return `<span class="exp-badge ${cls}">${escapeHtml(label)}</span>`;
     }
@@ -8112,6 +8113,8 @@ END CONFLICT RESOLUTION`;
       let dirName = c.script_name || (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
       // Handle bare filenames (no path separator) — strip trailing timestamp + .json
       if (dirName && dirName.endsWith('.json')) dirName = dirName.replace(/_\d{8}T\d{6}Z?\.json$/, '');
+      // Fallback for ERROR/UNKNOWN with no output_file — use queue_id
+      if (!dirName && c.queue_id) dirName = c.queue_id;
       const isDiscussed = dirName && discussedDirs.has(dirName);
       const discussWidget = dirName
         ? isDiscussed
