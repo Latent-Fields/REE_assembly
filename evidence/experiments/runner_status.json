@@ -2,92 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 28157,
   "runner_started_at": "2026-03-22T01:28:29.699651+00:00",
-  "last_updated": "2026-03-22T01:52:56.997541+00:00",
+  "last_updated": "2026-03-22T03:45:15.769071+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-020c",
-    "backlog_id": "",
-    "claim_id": "MECH-100",
-    "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
-    "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
-    "script": "experiments/v3_exq_020_event_contrastive.py",
-    "started_at": "2026-03-22T01:42:33.653512+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 650,
-      "episodes_total": 1100,
-      "overall_pct": 59.1
-    },
-    "seconds_elapsed": 623,
-    "seconds_remaining": 431,
-    "recent_lines": [
-      "[train] ep 450/1000  harm=24754  ce_loss_mean=0.5153",
-      "[train] ep 500/1000  harm=27440  ce_loss_mean=0.5128",
-      "[train] ep 550/1000  harm=30169  ce_loss_mean=0.5110",
-      "[train] ep 600/1000  harm=32993  ce_loss_mean=0.5154",
-      "[train] ep 650/1000  harm=35746  ce_loss_mean=0.5199"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-020c",
-      "backlog_id": "",
-      "claim_id": "MECH-100",
-      "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
-      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
-      "estimated_minutes": 20.8,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-020c-s1",
-      "backlog_id": "",
-      "claim_id": "MECH-100",
-      "title": "Event-Auxiliary Contrastive Encoder Loss \u2014 Seed 1",
-      "description": "Repeat of EXQ-020 with seed=1 for robustness.",
-      "estimated_minutes": 20.8,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-020d",
-      "backlog_id": "",
-      "claim_id": "MECH-100",
-      "title": "Event-Auxiliary Contrastive Loss \u2014 Strong \u03bb=2.0 (hazard_harm=0.02, alpha=0.9)",
-      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. EXQ-020 variant with \u03bb_event=2.0 (4\u00d7 stronger contrastive signal). If EXQ-020 achieves classification accuracy but not calibration_gap, tests whether stronger CE loss helps. Risk: forgetting of E1/E2 reconstruction.",
-      "estimated_minutes": 20.8,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-062",
-      "backlog_id": "",
-      "claim_id": "MECH-104",
-      "title": "MECH-104 Surprise-Gated Volatility Interrupt \u2014 surprise-proportional de-commitment selectivity",
-      "description": "EXQ-061 (PASS) confirmed jitter mechanism is wired. EXQ-062 tests SELECTIVITY: does surprise-gated spike (|actual-predicted_harm| > threshold) de-commit less often than always-spike? Three conditions on single trained agent: (A) no interrupt \u2014 0 uncommitted steps, (B) always-spike \u2014 frequent de-commitment, (C) surprise-gated \u2014 selective de-commitment. C4: n_uncommitted_C < n_uncommitted_B \u00d7 0.80.",
-      "estimated_minutes": 73.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-047c",
-      "backlog_id": "",
-      "claim_id": "SD-005",
-      "title": "SD-005 Latent Information Separation Probe \u2014 z_self action-selective, z_world event-selective",
-      "description": "EXQ-047/047b FAIL via downstream task metrics (R\u00b2/attribution_gap insensitive at CausalGridWorld scale). Reframe: linear probes on frozen representations test information routing directly. SPLIT vs UNIFIED. Probe A: action decodability from z_self vs z_world. Probe B: event-type decodability from z_world vs z_self. PASS: double dissociation (C1/C2) + split more specialised than unified (C3/C4).",
-      "estimated_minutes": 120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1692,6 +1610,76 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_057_sd010_reafference_isolation/v3_exq_057_sd010_reafference_isolation_20260322T014230Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 14.8
+    },
+    {
+      "queue_id": "V3-EXQ-020c",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "MECH-100 Event-Auxiliary Contrastive Encoder Loss (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. Tests SD-009/MECH-100: CE event classifier (Linear(world_dim,3)) backprops through z_world encoder. Labels: 0=none, 1=env_caused_hazard, 2=agent_caused_hazard. \u03bb_event=0.5. PASS C1: calibration_gap>0.05, C2: event_classification_acc>0.5, C3: selectivity_margin>0.005.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: -0.005261121374188049 | mean_causal_sig_near_hazard: -0.017738802866502243 | mean_causal_sig_safe: -0.012477681492314194",
+      "started_at": "2026-03-22T01:42:33.653512+00:00",
+      "completed_at": "2026-03-22T01:58:33.656593+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260322T015832Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 960.0
+    },
+    {
+      "queue_id": "V3-EXQ-020c-s1",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Encoder Loss \u2014 Seed 1",
+      "description": "Repeat of EXQ-020 with seed=1 for robustness.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.016035386033807747 | mean_causal_sig_near_hazard: -0.05483533584823211 | mean_causal_sig_safe: -0.07087072188203986",
+      "started_at": "2026-03-22T01:58:36.260888+00:00",
+      "completed_at": "2026-03-22T02:14:41.453762+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260322T021440Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 965.2
+    },
+    {
+      "queue_id": "V3-EXQ-020d",
+      "backlog_id": "",
+      "claim_id": "MECH-100",
+      "title": "Event-Auxiliary Contrastive Loss \u2014 Strong \u03bb=2.0 (hazard_harm=0.02, alpha=0.9)",
+      "description": "FIXED: hazard_harm=0.02, alpha_world=0.9, warmup=1000. EXQ-020 variant with \u03bb_event=2.0 (4\u00d7 stronger contrastive signal). If EXQ-020 achieves classification accuracy but not calibration_gap, tests whether stronger CE loss helps. Risk: forgetting of E1/E2 reconstruction.",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.0 | mean_causal_sig_near_hazard: 0.0 | mean_causal_sig_safe: 0.0",
+      "started_at": "2026-03-22T02:14:43.616238+00:00",
+      "completed_at": "2026-03-22T02:29:57.000130+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/evidence/experiments/v3_exq_020_event_contrastive/v3_exq_020_event_contrastive_20260322T022956Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 913.4
+    },
+    {
+      "queue_id": "V3-EXQ-062",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Surprise-Gated Volatility Interrupt \u2014 surprise-proportional de-commitment selectivity",
+      "description": "EXQ-061 (PASS) confirmed jitter mechanism is wired. EXQ-062 tests SELECTIVITY: does surprise-gated spike (|actual-predicted_harm| > threshold) de-commit less often than always-spike? Three conditions on single trained agent: (A) no interrupt \u2014 0 uncommitted steps, (B) always-spike \u2014 frequent de-commitment, (C) surprise-gated \u2014 selective de-commitment. C4: n_uncommitted_C < n_uncommitted_B \u00d7 0.80.",
+      "result": "FAIL",
+      "result_summary": "surprise_mean_pred_harm: 0.9896 | surprise_mean_actual_harm: -0.0571",
+      "started_at": "2026-03-22T02:29:59.467950+00:00",
+      "completed_at": "2026-03-22T03:44:50.038813+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_062_mech104_surprise_gate/v3_exq_062_mech104_surprise_gate_20260322T034449Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4490.6
+    },
+    {
+      "queue_id": "V3-EXQ-047c",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 Latent Information Separation Probe \u2014 z_self action-selective, z_world event-selective",
+      "description": "EXQ-047/047b FAIL via downstream task metrics (R\u00b2/attribution_gap insensitive at CausalGridWorld scale). Reframe: linear probes on frozen representations test information routing directly. SPLIT vs UNIFIED. Probe A: action decodability from z_self vs z_world. Probe B: event-type decodability from z_world vs z_self. PASS: double dissociation (C1/C2) + split more specialised than unified (C3/C4).",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL",
+      "started_at": "2026-03-22T03:44:52.200724+00:00",
+      "completed_at": "2026-03-22T03:45:15.767634+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_047c_sd005_info_probe/v3_exq_047c_sd005_info_probe_20260322T034515Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 23.6
     }
   ]
 }
