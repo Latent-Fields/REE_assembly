@@ -12,32 +12,49 @@ Run as step 3 of the governance pipeline:
     python scripts/sync_v3_results.py
     python scripts/build_experiment_indexes.py
     python scripts/generate_pending_review.py
+
+SECTIONS GENERATED:
+  1. FAIL (action required)     -- indexed result files with result != PASS, not yet reviewed
+  2. PASS (verify & close)      -- indexed result files with result == PASS, not yet reviewed
+  3. Needs discussion           -- runner_status completed entries not covered above:
+       a. ERROR / UNKNOWN results (no result file, so not indexed, never in sections 1/2)
+       b. Onboarding smoke runs (any result) -- contain hardware/throughput data needed
+          for experimental design decisions, regardless of PASS/FAIL status
+     Smoke runs are identified by queue_id containing "onboard" or "smoke" (case-insensitive)
+     or script path containing "onboard_smoke".
 """
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime, timezone
-from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "evidence" / "experiments"
 CLAIM_EVIDENCE = EVIDENCE_DIR / "claim_evidence.v1.json"
 REVIEW_TRACKER = EVIDENCE_DIR / "review_tracker.json"
+RUNNER_STATUS = EVIDENCE_DIR / "runner_status.json"
 OUTPUT = EVIDENCE_DIR / "pending_review.md"
 
 
-def load_reviewed_run_ids() -> set:
+def load_tracker() -> tuple[set, set, str]:
+    """Return (reviewed_run_ids, discussed_dirs, last_review_utc)."""
     if not REVIEW_TRACKER.exists():
-        print(f"[warn] review_tracker.json not found -- all runs treated as pending", file=sys.stderr)
-        return set()
+        print("[warn] review_tracker.json not found -- all runs treated as pending", file=sys.stderr)
+        return set(), set(), "unknown"
     with open(REVIEW_TRACKER) as f:
         tracker = json.load(f)
-    return set(tracker.get("reviewed_run_ids", []))
+    reviewed = set(tracker.get("reviewed_run_ids", []))
+    discussed = set(tracker.get("discussed_experiment_dirs", []))
+    last_review = tracker.get("last_review_utc", "unknown")
+    return reviewed, discussed, last_review
 
 
 def load_pending_entries(reviewed: set) -> list[dict]:
+    """Load PASS/FAIL entries from claim_evidence not yet in reviewed_run_ids."""
     if not CLAIM_EVIDENCE.exists():
-        print(f"[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first", file=sys.stderr)
+        print("[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first",
+              file=sys.stderr)
         sys.exit(1)
     with open(CLAIM_EVIDENCE) as f:
         data = json.load(f)
@@ -46,7 +63,6 @@ def load_pending_entries(reviewed: set) -> list[dict]:
         if e.get("source_type") == "experimental"
         and e.get("run_id") not in reviewed
     ]
-    # Deduplicate by run_id (multiple claims per run -> group them)
     by_run: dict[str, dict] = {}
     for e in entries:
         run_id = e["run_id"]
@@ -60,29 +76,131 @@ def load_pending_entries(reviewed: set) -> list[dict]:
             }
         by_run[run_id]["claims"].append(e.get("claim_id", "?"))
         by_run[run_id]["failure_signatures"].extend(e.get("failure_signatures", []))
-    runs = sorted(by_run.values(), key=lambda r: r["timestamp_utc"])
-    return runs
+    return sorted(by_run.values(), key=lambda r: r["timestamp_utc"])
 
 
-def write_pending_review(runs: list[dict], last_review_utc: str) -> None:
+def _is_smoke_run(queue_id: str, script: str) -> bool:
+    """Return True if this entry is an onboarding smoke run."""
+    combined = (queue_id + " " + script).lower()
+    return "onboard" in combined or "smoke" in combined
+
+
+def _derive_dir_name(output_file: str, queue_id: str) -> str:
+    """Derive the experiment directory name from output_file path, same logic as explorer.html."""
+    if not output_file:
+        return queue_id
+    path = output_file.replace("\\", "/")
+    parts = path.split("experiments/")
+    if len(parts) > 1:
+        segment = parts[-1].split("/")[0]
+        if segment.endswith(".json"):
+            segment = re.sub(r"_\d{8}T\d{6}Z?\.json$", "", segment)
+        if segment:
+            return segment
+    # bare filename
+    basename = path.split("/")[-1]
+    if basename.endswith(".json"):
+        basename = re.sub(r"_\d{8}T\d{6}Z?\.json$", "", basename)
+    return basename or queue_id
+
+
+def load_runner_status_undiscussed(reviewed: set, discussed: set,
+                                   indexed_run_ids: set) -> list[dict]:
+    """Load runner_status completed entries that need discussion but are not in sections 1/2.
+
+    Includes:
+    - ERROR / UNKNOWN entries not already in discussed_dirs
+    - Onboarding smoke runs (any result) not already in discussed_dirs or reviewed_run_ids
+
+    Excludes:
+    - Entries whose derived dir_name OR queue_id is in discussed_dirs
+    - Entries whose indexed run_id is in reviewed_run_ids (already in sections 1/2)
+    """
+    if not RUNNER_STATUS.exists():
+        return []
+    with open(RUNNER_STATUS) as f:
+        rs = json.load(f)
+
+    pending = []
+    seen_queue_ids: set[str] = set()
+
+    for entry in rs.get("completed", []):
+        queue_id = entry.get("queue_id", "")
+        result = entry.get("result", "")
+        output_file = entry.get("output_file", "") or ""
+        script = entry.get("script", "") or ""
+        claimed_at = (entry.get("claimed_by") or {}).get("claimed_at", "")
+
+        if queue_id in seen_queue_ids:
+            continue
+        seen_queue_ids.add(queue_id)
+
+        dir_name = _derive_dir_name(output_file, queue_id)
+        is_smoke = _is_smoke_run(queue_id, script)
+
+        # Check if already discussed
+        if dir_name in discussed or queue_id in discussed:
+            continue
+
+        # Check if already covered by sections 1/2 via indexed run_id
+        # (output_file can give us the run_id if we derive it)
+        run_id_from_file = ""
+        if output_file:
+            # run_id is typically the stem without .json
+            basename = output_file.replace("\\", "/").split("/")[-1]
+            if basename.endswith(".json"):
+                run_id_from_file = basename[:-5]  # strip .json
+        if run_id_from_file and run_id_from_file in reviewed:
+            continue
+        if run_id_from_file and run_id_from_file in indexed_run_ids:
+            # It's in claim_evidence -> will appear in sections 1/2 if not reviewed
+            continue
+
+        # Include if: ERROR/UNKNOWN, or smoke run
+        if result in ("ERROR", "UNKNOWN") or is_smoke:
+            pending.append({
+                "queue_id": queue_id,
+                "result": result,
+                "script": script,
+                "dir_name": dir_name,
+                "claimed_at": claimed_at,
+                "is_smoke": is_smoke,
+            })
+
+    # Sort by claimed_at (chronological)
+    return sorted(pending, key=lambda r: r["claimed_at"])
+
+
+def load_indexed_run_ids() -> set:
+    """Return the set of run_ids present in claim_evidence (indexed experiments)."""
+    if not CLAIM_EVIDENCE.exists():
+        return set()
+    with open(CLAIM_EVIDENCE) as f:
+        data = json.load(f)
+    return {e["run_id"] for e in data.get("entries", []) if "run_id" in e}
+
+
+def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
+                         last_review_utc: str) -> None:
     passes = [r for r in runs if r["status"] == "PASS"]
-    fails = [r for r in runs if r["status"] != "PASS"]
+    fails  = [r for r in runs if r["status"] != "PASS"]
 
+    total_pending = len(runs) + len(runner_undiscussed)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
     lines = [
         "# Pending Experiment Review",
         "",
         f"Generated: `{now}`  ",
         f"Last review: `{last_review_utc}`  ",
-        f"Pending: **{len(runs)}** run(s) -- {len(passes)} PASS, {len(fails)} FAIL",
+        f"Pending: **{total_pending}** item(s)"
+        f" -- {len(passes)} PASS, {len(fails)} FAIL,"
+        f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke)",
         "",
     ]
 
-    if not runs:
-        lines += [
-            "All experiments reviewed. Nothing pending.",
-            "",
-        ]
+    if total_pending == 0:
+        lines += ["All experiments reviewed. Nothing pending.", ""]
     else:
         if fails:
             lines += ["## FAIL (action required)", ""]
@@ -105,13 +223,32 @@ def write_pending_review(runs: list[dict], last_review_utc: str) -> None:
                 lines.append(f"| `{r['run_id']}` | {ts} | {claims} |")
             lines.append("")
 
+        if runner_undiscussed:
+            lines += ["## Needs discussion (ERROR / UNKNOWN / smoke)", ""]
+            lines += [
+                "These entries completed in the runner but have no indexed result file "
+                "(ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and "
+                "then added to `discussed_experiment_dirs` in review_tracker.json.",
+                "",
+                "| Queue ID | Result | Script | Notes |",
+                "|----------|--------|--------|-------|",
+            ]
+            for r in runner_undiscussed:
+                script_short = r["script"].split("/")[-1] if r["script"] else "?"
+                note = "smoke run" if r["is_smoke"] else r["result"]
+                lines.append(
+                    f"| `{r['queue_id']}` | {r['result']} | `{script_short}` | {note} |"
+                )
+            lines.append("")
+
     lines += [
         "---",
         "",
         "## How to mark runs as reviewed",
         "",
-        "Add run IDs to `reviewed_run_ids` in `evidence/experiments/review_tracker.json`,",
-        "update `last_review_utc`, then re-run this script to confirm the list clears.",
+        "- PASS/FAIL runs: add run IDs to `reviewed_run_ids` in review_tracker.json",
+        "- ERROR/UNKNOWN/smoke: add queue_id or dir_name to `discussed_experiment_dirs` in review_tracker.json",
+        "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
         "```bash",
         "python scripts/generate_pending_review.py",
@@ -119,18 +256,18 @@ def write_pending_review(runs: list[dict], last_review_utc: str) -> None:
     ]
 
     OUTPUT.write_text("\n".join(lines) + "\n")
-    print(f"Written {OUTPUT.relative_to(ROOT)} -- {len(runs)} pending run(s)")
+    print(
+        f"Written {OUTPUT.relative_to(ROOT)}"
+        f" -- {len(runs)} indexed pending, {len(runner_undiscussed)} runner-only pending"
+    )
 
 
 def main():
-    reviewed = load_reviewed_run_ids()
-    last_review_utc = "unknown"
-    if REVIEW_TRACKER.exists():
-        with open(REVIEW_TRACKER) as f:
-            last_review_utc = json.load(f).get("last_review_utc", "unknown")
-
+    reviewed, discussed, last_review_utc = load_tracker()
+    indexed_run_ids = load_indexed_run_ids()
     runs = load_pending_entries(reviewed)
-    write_pending_review(runs, last_review_utc)
+    runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)
+    write_pending_review(runs, runner_undiscussed, last_review_utc)
 
 
 if __name__ == "__main__":

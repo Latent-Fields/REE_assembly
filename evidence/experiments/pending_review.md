@@ -1,30 +1,31 @@
 # Pending Experiment Review
 
-Generated: `2026-03-22T03:49:05Z`  
-Last review: `2026-03-22T01:16:12.066110+00:00`  
-Pending: **5** run(s) — 1 PASS, 4 FAIL
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_038_arc016_precision_sweep_20260322T020822Z_v3` | 2026-03-22T02:08 | ARC-016, MECH-093 | — |
-| `v3_exq_038_arc016_precision_sweep_20260322T020909Z_v3` | 2026-03-22T02:09 | ARC-016, MECH-093 | — |
-| `v3_exq_062_mech104_surprise_gate_20260322T034449Z_v3` | 2026-03-22T03:44 | MECH-090, MECH-104 | — |
-| `v3_exq_047c_sd005_info_probe_20260322T034515Z_v3` | 2026-03-22T03:45 | SD-005 | — |
+Generated: `2026-03-22T13:08:08Z`  
+Last review: `2026-03-22T13:07:41Z`  
+Pending: **3** item(s) -- 2 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_057_sd010_reafference_isolation_20260322T014230Z_v3` | 2026-03-22T01:42 | MECH-101, SD-007, SD-010 |
+| `v3_onboard_smoke_Daniel_PC_20260322T114824Z_v3` | 2026-03-22T11:48 | onboarding |
+
+## Needs discussion (ERROR / UNKNOWN / smoke)
+
+These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
+
+| Queue ID | Result | Script | Notes |
+|----------|--------|--------|-------|
+| `V3-EXQ-046b` | ERROR | `?` | ERROR |
 
 ---
 
 ## How to mark runs as reviewed
 
-Add run IDs to `reviewed_run_ids` in `evidence/experiments/review_tracker.json`,
-update `last_review_utc`, then re-run this script to confirm the list clears.
+- PASS/FAIL runs: add run IDs to `reviewed_run_ids` in review_tracker.json
+- ERROR/UNKNOWN/smoke: add queue_id or dir_name to `discussed_experiment_dirs` in review_tracker.json
+- Update `last_review_utc`, then re-run this script to confirm the list clears.
 
 ```bash
 python scripts/generate_pending_review.py
