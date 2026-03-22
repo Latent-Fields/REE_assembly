@@ -1,11 +1,34 @@
 {
   "schema_version": "v1",
-  "runner_pid": 55311,
-  "runner_started_at": "2026-03-22T12:01:32.871742+00:00",
-  "last_updated": "2026-03-22T12:01:35.733677+00:00",
+  "runner_pid": 1276,
+  "runner_started_at": "2026-03-22T12:41:33.493866+00:00",
+  "last_updated": "2026-03-22T12:46:05.574103+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-062a",
+      "backlog_id": "",
+      "claim_id": "MECH-104",
+      "title": "MECH-104 Surprise-Gated Volatility Interrupt (committed-only fix)",
+      "description": "MECH-104: Surprise-Gated Volatility Interrupt (committed-only fix). Restricts both interrupt policies to committed steps only, breaking EXQ-062 positive feedback loop.",
+      "estimated_minutes": 13.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-047d",
+      "backlog_id": "",
+      "claim_id": "SD-005",
+      "title": "SD-005 Latent Information Separation Probe (design fix)",
+      "description": "SD-005: Latent Information Separation Probe (design fix). Round-robin action assignment + binary contact probe with balanced sampling + 500 probe steps. Fixes EXQ-047c flaws.",
+      "estimated_minutes": 26.7,
+      "status": "needs_script",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1680,6 +1703,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_047c_sd005_info_probe/v3_exq_047c_sd005_info_probe_20260322T034515Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 23.6
+    },
+    {
+      "queue_id": "V3-ONBOARD-smoke-Daniel-PC-k",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Contributor Onboarding -- Pipeline Smoke Test (Daniel-PC)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[ONBOARD]   status: PASS | Status: PASS",
+      "started_at": "2026-03-22T12:41:36.131513+00:00",
+      "completed_at": "2026-03-22T12:46:05.560804+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_assembly\\evidence\\experiments\\v3_onboard_smoke_Daniel_PC\\v3_onboard_smoke_Daniel_PC_20260322T124604Z.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 269.4
     }
   ]
 }
