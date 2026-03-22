@@ -642,6 +642,48 @@ Get-Process python | Where-Object {$_.MainWindowTitle -eq "" } | Stop-Process
     </div>
   </div>
 
+  <!-- Onboarding smoke test -->
+  <div class="card">
+    <h2>🧪 What Happens First: Onboarding Verification</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">
+      When your machine is registered, a short <strong>pipeline smoke test</strong>
+      is queued specifically for your machine. It will be the first experiment your
+      runner claims — before any scientific experiments.
+    </p>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p><strong>What it does:</strong> runs 25 episodes of the REE training loop
+        (20 warmup + 5 eval, 100 steps each — typically 3–8 minutes depending on
+        your GPU). It verifies that imports work, the environment runs, the agent
+        trains, and results are written and pushed correctly.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p><strong>It also records your machine's throughput</strong> — GPU name,
+        CUDA availability, and steps per second — in the result JSON. This feeds
+        into smarter experiment scheduling over time.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <p><strong>PASS</strong> means the full round trip works: your machine ran
+        an experiment, wrote the result, and pushed it to GitHub. You can confirm
+        this by refreshing the project explorer — the result will appear under
+        <em>Experiments</em> with your machine name. <strong>FAIL</strong> means
+        something needs attention — check the runner terminal output for details.</p>
+      </div>
+    </div>
+    <div class="note-box">
+      The smoke test is assigned to your machine by name (<code>machine_affinity</code>)
+      so no other machine will claim it. After it completes, the runner moves on to
+      the shared scientific experiment queue automatically.
+    </div>
+  </div>
+
   <!-- How it works -->
   <div class="card">
     <h2>🔄 How Multi-Machine Coordination Works</h2>
