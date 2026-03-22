@@ -1,16 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-03-22T15:45:39Z`  
-Last review: `2026-03-22T14:10:00Z`  
-Pending: **3** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-03-22T15:58:53Z`  
+Last review: `2026-03-22T15:58:50Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_047d_sd005_info_probe_v2_20260322T132106Z_v3` | 2026-03-22T13:21 | SD-005 | — |
-| `v3_exq_062a_mech104_surprise_gate_committed_only_20260322T134008Z_v3` | 2026-03-22T13:40 | MECH-090, MECH-104 | — |
-| `v3_exq_047d_sd005_info_probe_v2_20260322T134050Z_v3` | 2026-03-22T13:40 | SD-005 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
