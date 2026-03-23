@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "gap_approach_gradient": 0.19684611846222858,
+    "gap_approach_contact": -0.08813993345151339,
+    "gap_contact_gradient": 0.17383700804564026,
+    "gap_contact_contact": -0.029195857050114182,
+    "delta_approach_gap": 0.28498605191374193,
+    "mean_score_none_gradient": 0.3816707642708951,
+    "mean_score_none_contact": 0.5500767357629595,
+    "mean_score_approach_gradient": 0.5785168827331237,
+    "mean_score_approach_contact": 0.46193680231144607,
+    "n_approach_min": 830.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "proximity_harm_scale": 0.05,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-077 -- ARC-024 Asymptotic Proxy Structure Discriminative Pair\n\n**Status:** PASS\n**Claims:** ARC-024\n**Decision:** retain_ree\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 350 eps  **Eval:** 50 eps\n\n## Pre-Registered Thresholds\n\nC1: gap_approach_GRADIENT > 0.06\nC2: gap_approach_CONTACT  < 0.02\nC3: delta_approach_gap    > 0.04\nC4: gap_contact_GRADIENT  > 0.04\n\n## Results\n\n| Condition | gap_approach | gap_contact | mean_none | mean_approach |\n|-----------|-------------|-------------|-----------|---------------|\n| GRADIENT     | 0.1968 | 0.1738 | 0.3817 | 0.5785 |\n| CONTACT_ONLY | -0.0881 | -0.0292 | 0.5501 | 0.4619 |\n\n**delta_approach_gap (GRADIENT - CONTACT_ONLY): +0.2850**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_approach_GRADIENT > 0.06 | PASS | 0.1968 |\n| C2: gap_approach_CONTACT < 0.02  | PASS | -0.0881 |\n| C3: delta_approach_gap > 0.04    | PASS | 0.2850 |\n| C4: gap_contact_GRADIENT > 0.04  | PASS | 0.1738 |\n\nCriteria met: 4/4 -> **PASS**\n\n## Interpretation\n\nARC-024 SUPPORTED: gradient harm signals before contact enable E3 to learn asymptotic proxy detection. GRADIENT condition shows approach gap 0.1968 vs CONTACT_ONLY -0.0881. z_world encodes the harm gradient; contact-only training does not produce approach sensitivity. Harm signals have asymptotic proxy structure in world latent space as claimed.\n\n## Per-Seed\n\nGRADIENT:\n  seed=42: gap_approach=0.2010 gap_contact=0.1889 n_approach=858 train_approach=5523\n  seed=7: gap_approach=0.1927 gap_contact=0.1587 n_approach=830 train_approach=5689\n\nCONTACT_ONLY:\n  seed=42: gap_approach=-0.0782 gap_contact=-0.0133 n_approach=1758\n  seed=7: gap_approach=-0.0981 gap_contact=-0.0450 n_approach=1673\n\n",
+  "claim_ids": [
+    "ARC-024"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_077_arc024_asymptotic_proxy_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T122109Z",
+  "claim": "ARC-024",
+  "verdict": "PASS",
+  "run_id": "v3_exq_077_arc024_asymptotic_proxy_pair_20260323T122109Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

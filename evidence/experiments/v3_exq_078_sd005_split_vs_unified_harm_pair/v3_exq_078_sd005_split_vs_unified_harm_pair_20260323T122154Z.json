@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "gap_approach_split": 0.19684611846222858,
+    "gap_approach_unified": 0.14746578867303875,
+    "gap_contact_split": 0.17383700804564026,
+    "gap_contact_unified": 0.13183888245456285,
+    "delta_approach_gap": 0.049380329789189825,
+    "delta_contact_gap": 0.041998125591077407,
+    "mean_score_none_split": 0.3816707642708951,
+    "mean_score_none_unified": 0.41237487120816463,
+    "mean_score_approach_split": 0.5785168827331237,
+    "mean_score_approach_unified": 0.5598406598812034,
+    "n_approach_min": 830.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "proximity_harm_scale": 0.05,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-078 -- SD-005 Split vs Unified Latent: Harm Calibration Pair\n\n**Status:** PASS\n**Claims:** SD-005\n**Decision:** retain_ree\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 350 eps  **Eval:** 50 eps\n\n## Pre-Registered Thresholds\n\nC1: delta_approach_gap (SPLIT - UNIFIED) > 0.02\nC2: gap_approach_SPLIT > 0.06\nC3: gap_approach_UNIFIED > 0\n\n## Results\n\n| Condition | gap_approach | gap_contact | mean_none | mean_approach |\n|-----------|-------------|-------------|-----------|---------------|\n| SPLIT   | 0.1968 | 0.1738 | 0.3817 | 0.5785 |\n| UNIFIED | 0.1475 | 0.1318 | 0.4124 | 0.5598 |\n\n**delta_approach_gap (SPLIT - UNIFIED): +0.0494**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: delta_approach_gap > 0.02 | PASS | 0.0494 |\n| C2: gap_approach_SPLIT > 0.06 | PASS | 0.1968 |\n| C3: gap_approach_UNIFIED > 0  | PASS | 0.1475 |\n\nCriteria met: 3/3 -> **PASS**\n\n## Interpretation\n\nSD-005 SUPPORTED: z_self/z_world split improves hazard approach detection. gap_approach_SPLIT=0.1968 vs UNIFIED=0.1475, delta=+0.0494. Separate world-state latent (free of motor/body-state dilution) gives E3 cleaner spatial hazard signal. Consistent with EXQ-047 (3.4pp calibration improvement, 82% attribution improvement).\n\n## Per-Seed\n\nSPLIT:\n  seed=42: gap_approach=0.2010 gap_contact=0.1889 n_approach=858 train_approach=5523\n  seed=7: gap_approach=0.1927 gap_contact=0.1587 n_approach=830 train_approach=5689\n\nUNIFIED:\n  seed=42: gap_approach=0.1428 gap_contact=0.1397 n_approach=858\n  seed=7: gap_approach=0.1521 gap_contact=0.1239 n_approach=830\n\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_078_sd005_split_vs_unified_harm_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T122154Z",
+  "claim": "SD-005",
+  "verdict": "PASS",
+  "run_id": "v3_exq_078_sd005_split_vs_unified_harm_pair_20260323T122154Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
