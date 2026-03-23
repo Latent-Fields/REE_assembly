@@ -293,7 +293,7 @@ layout: null
 git clone https://github.com/Latent-Fields/ree-v3.git
 git clone https://github.com/Latent-Fields/REE_assembly.git
 cd ree-v3
-pip install torch numpy --index-url https://download.pytorch.org/whl/cu124
+pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
         </div>
       </div>
@@ -395,7 +395,7 @@ git config --global user.email "you@example.com"<button class="copy-btn" onclick
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>PyTorch installed and version</p>
         <div class="code-block">/opt/local/bin/python3 -c "import torch; print(torch.__version__)"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>2.x.x</code> — if ImportError, run <code>pip install torch numpy</code></div>
+        <div class="cmd-note">Expected: <code>2.x.x</code> — if ImportError, run <code>pip install torch numpy scipy</code></div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>GitHub push auth (dry run — no changes made)</p>
@@ -809,8 +809,8 @@ function detectHardware() {
   const pipBlock = document.getElementById('pip-install-block');
   if (pipBlock) {
     const pipCmd = os === 'Windows'
-      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124`
-      : `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy --index-url https://download.pytorch.org/whl/cu124`;
+      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`
+      : `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`;
     pipBlock.innerHTML = pipCmd + '\n<button class="copy-btn" onclick="copyCode(this)">copy</button>';
   }
 
@@ -829,7 +829,7 @@ function detectHardware() {
       Or use <code>pip install torch</code> in your preferred environment.</div>`;
   } else if (os === 'Windows') {
     pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">Install <strong>Python 3.12</strong> from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH"). Python 3.13+ will not find PyTorch CUDA builds — use 3.12.
-      Then: <code>py -3.12 -m pip install torch numpy --index-url https://download.pytorch.org/whl/cu124</code>
+      Then: <code>py -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124</code>
       (CUDA 12.4 — works with GTX 10xx/16xx/20xx/30xx series)</div>
       <div class="cmd-note" style="margin-top:0.3rem">Also need Git: <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com/download/win</a> — required for <code>--auto-sync</code>.</div>`;
   } else {
