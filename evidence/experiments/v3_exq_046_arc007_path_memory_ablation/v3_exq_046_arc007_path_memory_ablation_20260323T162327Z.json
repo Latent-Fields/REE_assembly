@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "terrain_loss_initial": 0.2914156166562189,
+    "terrain_loss_final": 3.7137750964062647e-06,
+    "world_forward_r2": 0.9613981246948242,
+    "hippo_quality_gap_intact": -1.6396938742019767,
+    "hippo_quality_gap_ablated": 0.0,
+    "hippo_quality_gap_restored": -1.639616623486985,
+    "ablation_degradation": -1.6396938742019767,
+    "calibration_gap_approach": -6.153578985840236e-05,
+    "mean_hippo_residue_intact": 2.0348108925134523,
+    "mean_random_residue_intact": 0.39511701831147555,
+    "mean_hippo_residue_ablated": 0.0,
+    "mean_random_residue_ablated": 0.0,
+    "e3_tick_total": 10479.0,
+    "total_harm_train": 4707.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-046 \u2014 ARC-007 Path Memory Ablation (Proper)\n\n**Status:** FAIL\n**Claims:** ARC-007, SD-004\n**Prerequisite:** EXQ-042 PASS (terrain prior training validates hippo_quality_gap > 0)\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 600 eps  |  Eval: 50 eps intact/ablated + 30 restored\n**Seed:** 0\n\n## Motivation\n\nV2 ARC-007 FAIL used z_gamma proxy; EXQ-042 validated terrain prior on V3 substrate.\nThis experiment ablates the residue field (path memory) to test whether hippocampal\nnavigation quality degrades without terrain geometry. ARC-007 STRICT (Q-020): if\nablation causes quality collapse, hippocampal module has no independent value head.\n\n## Navigation Quality: Intact vs Ablated vs Restored\n\n| Phase | hippo_quality_gap | calibration_gap_approach |\n|-------|------------------|--------------------------|\n| Intact (trained) | -1.639694 | -0.0001 |\n| Ablated (residue=0) | 0.000000 | -0.0000 |\n| Restored | -1.639617 | 0.0000 |\n\n- **ablation_degradation**: -1.639694\n- world_forward_r2: 0.9614\n- terrain_loss: 0.2914 \u2192 0.0000\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: hippo_quality_gap_intact > 0 | FAIL | -1.639694 |\n| C2: ablated <= intact x 0.5 (ablation degrades \u226550%) | FAIL | 0.000000 vs -0.819847 |\n| C3: restored >= ablated (no further degradation) | FAIL | -1.639617 vs 0.000000 |\n| C4: calibration_gap_approach > 0.03 | FAIL | -0.0001 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 1/5 \u2192 **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: hippo_quality_gap_intact=-1.639694 <= 0\n- C2 FAIL: hippo_quality_gap_ablated=0.000000 > -0.819847 (50% of intact)\n- C3 FAIL: quality_restored=-1.639617 < ablated=0.000000\n- C4 FAIL: calibration_gap_approach=-0.0001 <= 0.03\n",
+  "claim_ids": [
+    "ARC-007",
+    "SD-004"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_046_arc007_path_memory_ablation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T162327Z",
+  "claim": "ARC-007",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
