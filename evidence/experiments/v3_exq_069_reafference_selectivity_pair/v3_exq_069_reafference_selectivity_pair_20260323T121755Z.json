@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "event_selectivity_delta": -0.002127822080141912,
+    "selectivity_margin_on": 0.0034697771649629325,
+    "selectivity_margin_off": 0.005597599245104844,
+    "mean_dz_loco_on": 0.04591726605692817,
+    "mean_dz_loco_off": 0.0421773097919328,
+    "mean_dz_event_on": 0.04938704322189111,
+    "mean_dz_event_off": 0.04777490903703764,
+    "reafference_r2_avg": 0.3389297425746918,
+    "calibration_gap_on": -0.00011466437993307155,
+    "calibration_gap_off": -4.049892914084752e-05,
+    "n_event_steps_min": 45.0,
+    "alpha_world": 0.9,
+    "n_seeds": 2.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-069 -- MECH-098 Reafference Event Selectivity Pair\n\n**Status:** FAIL\n**Claims:** MECH-098\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 30 eps\n\n## Pre-Registered Threshold\n\nC1: event_selectivity_delta >= 0.01\n\n## Results\n\n| Condition | margin | mean_dz_loco | mean_dz_event | cal_gap (info) |\n|-----------|--------|-------------|---------------|----------------|\n| REAFFERENCE_ON  | 0.0035 | 0.0459 | 0.0494 | -0.0001 |\n| REAFFERENCE_OFF | 0.0056 | 0.0422 | 0.0478 | -0.0000 |\n\n**event_selectivity_delta (ON - OFF): -0.0021**\nreafference_r2 (ON, predictor quality): 0.3389\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: selectivity_delta >= 0.01 (core claim) | FAIL | -0.0021 |\n| C2: reafference_r2 > 0.20 (predictor works) | PASS | 0.3389 |\n| C3: margin_OFF > 0 (baseline non-trivial) | PASS | 0.0056 |\n| C4: min event steps >= 10 | PASS | 45 |\n\nCriteria met: 3/4 -> **FAIL**\n\n## Interpretation\n\nMECH-098 NOT SUPPORTED: reafference correction does not improve z_world event selectivity. EXQ-027b over-correction hypothesis extends to selectivity domain. SD-010 (harm stream separation) may be required before MECH-098 can show net benefit.\n\n## Per-Seed\n\nREAFFERENCE_ON:\n  seed=42: margin=0.0033 r2=0.3232 n_event=45\n  seed=7: margin=0.0037 r2=0.3547 n_event=47\nREAFFERENCE_OFF:\n  seed=42: margin=0.0041 n_event=45\n  seed=7: margin=0.0071 n_event=47\n\n## Failure Notes\n\n- C1 FAIL: event_selectivity_delta=-0.0021 < 0.01\n",
+  "claim_ids": [
+    "MECH-098"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_069_reafference_selectivity_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T121755Z",
+  "claim": "MECH-098",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_069_reafference_selectivity_pair_20260323T121755Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
