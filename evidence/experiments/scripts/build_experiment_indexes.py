@@ -1060,7 +1060,20 @@ def _write_claim_evidence_matrix(
     by_experiment: dict[str, list[RunRecord]],
     by_literature: dict[str, list[LiteratureRecord]],
     generated_at: str,
+    planning_criteria: dict[str, Any] | None = None,
+    scoring_exclusions: dict[str, set[str]] | None = None,
 ) -> dict[str, Any]:
+    """Build the claim evidence matrix.
+
+    All entries are included in matrix["entries"] for audit purposes.
+    Only *applicable* and *non-excluded* entries feed into claim confidence scores.
+    Applicability = epoch filter (stale_if_timestamp_before_epoch_start).
+    Exclusions    = per-claim run_ids listed in scoring_exclusions.json (code bugs,
+                    wrong-module tests, invalid instrumentation).
+    """
+    _, is_applicable = _build_applicability_filter(planning_criteria or {})
+    excl: dict[str, set[str]] = scoring_exclusions or {}
+
     exp_runs = [run for exp_runs in by_experiment.values() for run in exp_runs]
     exp_runs.sort(key=lambda r: (r.timestamp, r.experiment_type, r.run_id))
 
@@ -1114,6 +1127,15 @@ def _write_claim_evidence_matrix(
             if run.architecture_epoch:
                 entry["architecture_epoch"] = run.architecture_epoch
             matrix["entries"].append(entry)
+
+            # Epoch-stale or explicitly excluded entries are logged but do not score.
+            if not is_applicable(entry):
+                entry["scoring_excluded"] = "stale_epoch"
+                continue
+            if run.run_id in excl.get(claim_id, set()):
+                entry["scoring_excluded"] = "invalid_run"
+                continue
+
             claim_to_entries[claim_id].append(entry)
 
     for lit in lit_entries:
@@ -1146,6 +1168,8 @@ def _write_claim_evidence_matrix(
             if lit.architecture_epoch:
                 entry["architecture_epoch"] = lit.architecture_epoch
             matrix["entries"].append(entry)
+
+            # Literature entries are not epoch-filtered or excluded for now.
             claim_to_entries[claim_id].append(entry)
 
     now = _parse_timestamp_only(generated_at)
@@ -1482,6 +1506,40 @@ def _load_planning_criteria(path: Path) -> dict[str, Any]:
             for key, value in defaults["model_adjudication"]["anti_lock_in_gate"].items():
                 anti_lock_in.setdefault(key, value)
     return data
+
+
+def _load_scoring_exclusions(path: Path) -> dict[str, set[str]]:
+    """Load per-claim run_id exclusion list from docs/claims/scoring_exclusions.json.
+
+    Returns a dict mapping claim_id -> set of run_ids that should be excluded from
+    confidence scoring (they remain in the full entry log but do not count toward
+    claim confidence or direction counts).
+    """
+    if not path.exists():
+        return {}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    result: dict[str, set[str]] = {}
+    for claim_id, entries in raw.items():
+        if claim_id.startswith("_"):
+            continue  # skip comment/metadata keys
+        if not isinstance(entries, list):
+            continue
+        run_ids: set[str] = set()
+        for item in entries:
+            if isinstance(item, dict):
+                rid = str(item.get("run_id", "")).strip()
+            elif isinstance(item, str):
+                rid = item.strip()
+            else:
+                continue
+            if rid:
+                run_ids.add(rid)
+        if run_ids:
+            result[claim_id] = run_ids
+    return result
 
 
 def _load_decision_log(path: Path) -> list[DecisionLogEntry]:
@@ -3812,6 +3870,7 @@ def main() -> None:
     decision_criteria = _load_decision_criteria(base_dir / "decision_criteria.v1.yaml")
     planning_criteria = _load_planning_criteria(planning_root / "planning_criteria.v1.yaml")
     claim_registry = _load_claim_registry(repo_root / "docs/claims/claims.yaml")
+    scoring_exclusions = _load_scoring_exclusions(repo_root / "docs/claims/scoring_exclusions.json")
     decision_log_entries = _load_decision_log(decision_log_path)
     latest_decisions = _latest_decision_by_claim(decision_log_entries)
     latest_decisions_by_needed = _latest_decision_by_claim_and_needed(decision_log_entries)
@@ -3861,7 +3920,11 @@ def main() -> None:
     _write_literature_index(literature_root, by_literature, generated_at)
     _write_decision_state(decisions_dir, latest_decisions, generated_at)
 
-    matrix = _write_claim_evidence_matrix(base_dir, by_experiment, by_literature, generated_at)
+    matrix = _write_claim_evidence_matrix(
+        base_dir, by_experiment, by_literature, generated_at,
+        planning_criteria=planning_criteria,
+        scoring_exclusions=scoring_exclusions,
+    )
 
     if args.index_only:
         total_runs = sum(len(runs) for runs in by_experiment.values())

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_031_arc016_gradient_world
 
-Generated: `2026-03-23T10:53:35.434482Z`
+Generated: `2026-03-23T16:26:37.786519Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,44 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 2060 SUPER",
+    "torch_version": "2.6.0+cu124",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "world_dims_tested": [
+      32,
+      64,
+      128,
+      256
+    ],
+    "episodes_per_block": 5,
+    "steps_per_episode": 100,
+    "results_by_dim": {
+      "32": {
+        "cpu_sps": 7.0,
+        "gpu_sps": 2.9,
+        "gpu_speedup": 0.411,
+        "gpu_wins": false
+      },
+      "64": {
+        "cpu_sps": 6.2,
+        "gpu_sps": 2.4,
+        "gpu_speedup": 0.388,
+        "gpu_wins": false
+      },
+      "128": {
+        "cpu_sps": 4.8,
+        "gpu_sps": 2.6,
+        "gpu_speedup": 0.547,
+        "gpu_wins": false
+      },
+      "256": {
+        "cpu_sps": 2.0,
+        "gpu_sps": 2.5,
+        "gpu_speedup": 1.249,
+        "gpu_wins": true
+      }
+    },
+    "crossover_dim": 256
+  }
+}

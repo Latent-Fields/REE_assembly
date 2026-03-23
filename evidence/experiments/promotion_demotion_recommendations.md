@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-23T10:53:35.434482Z`
+Generated: `2026-03-23T16:26:37.786519Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -29,7 +29,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-007
 - Current status: `active`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=3, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=6, mixed=0, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -137,7 +137,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.565, conflict_ratio=0.4, exp_entries=5, lit_entries=1; directions supports=1, weakens=4, mixed=1, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: overall_conf=0.564, conflict_ratio=0.4, exp_entries=5, lit_entries=1; directions supports=1, weakens=4, mixed=1, unknown=0, conflict_ratio=0.4
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -191,7 +191,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.77, conflict_ratio=1, exp_entries=15, lit_entries=3; directions supports=7, weakens=7, mixed=4, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.771, conflict_ratio=1, exp_entries=17, lit_entries=3; directions supports=7, weakens=7, mixed=6, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
