@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "pearson_r": 0.5812003506490031,
+    "c1_increase_count": 2.0,
+    "hv_cv_mid": 0.4123083995742486,
+    "commit_rate_low_danger": 1.0,
+    "commit_rate_high_danger": 1.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0,
+    "fatal_error_count": 0.0,
+    "harm_var_mean_0p005": 5.3226012133854124e-05,
+    "harm_var_mean_0p01": 5.453686854797973e-05,
+    "harm_var_mean_0p02": 5.400246670953541e-05,
+    "harm_var_mean_0p05": 5.38650720895255e-05,
+    "harm_var_mean_0p1": 5.472560349130665e-05
+  },
+  "summary_markdown": "# V3-EXQ-088 -- ARC-016: Harm Variance Commit Signal\n\n**Status:** FAIL\n**Claims:** ARC-016\n**Replaces:** EXQ-038 (FAIL: z_world variance indistinguishable across danger levels)\n\n## Architectural Reframe (ARC-016)\n\nOld commit signal: `running_variance < commit_threshold` (z_world prediction error EMA)\nNew commit signal: `var(harm_scores_across_candidates) < commit_threshold`\n\n\"Do I know what harm each trajectory leads to?\" rather than \"Is the world stable?\"\n\nBiological parallel: ACC conflict monitoring fires when response options have similar\npredicted outcomes -- not when the world is quiet, but when the agent's decision is\nconfident (low variance across options -> commit).\n\n## Sweep Results\n\n| hazard_harm | harm_var_mean | commit_rate |\n|-------------|---------------|-------------|\n| 0.005 | 0.000053 | 1.000 |\n| 0.01 | 0.000055 | 1.000 |\n| 0.02 | 0.000054 | 1.000 |\n| 0.05 | 0.000054 | 1.000 |\n| 0.1 | 0.000055 | 1.000 |\n\n- Pearson r(hazard_harm, harm_var_mean): 0.5812\n- harm_var CV at mid level: 0.4123\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: harm_var increases at >= 3 transitions | FAIL | 2/4 |\n| C2: Pearson r > 0.6 | FAIL | 0.5812 |\n| C3: harm_var CV > 0.10 | PASS | 0.4123 |\n| C4: commit_rate[low] > commit_rate[high] | FAIL | 1.000 vs 1.000 |\n| C5: no fatal errors | PASS | - |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: harm_var increases at only 2/4 transitions. harm_var_means: ['0.000053', '0.000055', '0.000054', '0.000054', '0.000055']\n- C2 FAIL: Pearson r=0.581 <= 0.6. Harm variance not scaling with danger.\n- C4 FAIL: commit_rate[low=0.005]=1.000 <= commit_rate[high=0.1]=1.000\n",
+  "claim_ids": [
+    "ARC-016"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_088_arc016_harm_variance_commit",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T184218Z",
+  "claim": "ARC-016",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_088_arc016_harm_variance_commit_20260323T184218Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

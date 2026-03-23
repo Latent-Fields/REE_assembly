@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "r2_self_A_final": 0.0,
+    "r2_self_B_final": 0.0,
+    "r2_world_A_final": 0.6262041330337524,
+    "r2_world_B_final": 0.5250741243362427,
+    "drift_delta": 0.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0,
+    "r2_self_A_t100": 0.0,
+    "r2_self_A_t200": 0.0,
+    "r2_self_A_t300": 0.0,
+    "r2_self_B_t100": 0.0,
+    "r2_self_B_t200": 0.0,
+    "r2_self_B_t300": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-090 -- Adversarial Split Drift Test (Schizophrenic Drift Probe)\n\n**Status:** FAIL\n**Claims:** SD-005\n**World:** CausalGridWorldV2 (4 hazards, env_drift for stress)\n**Protocol:** Condition A (no GRL) vs Condition B (AdversarialSplitHead) x 300 eps\n\n## Motivation\n\nSD-005 creates separate z_self and z_world encoders. Under harm training, backprop can\ngradually make z_self carry harm-predictive information (a z_world property), blurring\nthe self/world boundary. This is a model of \"schizophrenic drift\" -- the efference-copy\ncomparator (MECH-095) relies on z_self being a pure motor-sensory representation.\n\nAdversarialSplitHead uses gradient reversal (Ganin et al. 2016) to prevent this.\n\n## Results\n\n| Condition | R2(z_self->harm) final | R2(z_world->harm) final |\n|-----------|----------------------|------------------------|\n| A: no adversarial | 0.0000 | 0.6262 |\n| B: with adversarial | 0.0000 | 0.5251 |\n\nDrift delta (A - B): 0.0000\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: R2_B < 0.05 (adversarial prevents drift) | PASS | 0.0000 |\n| C2: R2_A > 0.10 (drift does occur without defense) | FAIL | 0.0000 |\n| C3: R2(z_world->harm) > 0.20 both conditions | PASS | A=0.6262 B=0.5251 |\n| C4: drift_delta > 0.05 | FAIL | 0.0000 |\n| C5: no fatal errors | PASS | - |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C2 FAIL: R2_A_final=0.0000 <= 0.10. Drift did not occur without defense -- test may lack statistical power.\n- C4 FAIL: drift_delta=0.0000 <= 0.05. GRL not providing sufficient protection.\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_090_adversarial_split_drift",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T184302Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_090_adversarial_split_drift_20260323T184302Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

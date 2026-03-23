@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "bridge_r2": 0.0,
+    "causal_none": -0.08608463372641463,
+    "causal_approach": 0.003054239081244733,
+    "causal_contact": 0.10945064902305603,
+    "calibration_gap": 0.09672030339721804,
+    "harm_none": 0.5140292620271202,
+    "harm_approach": 0.6107495654243382,
+    "n_approach_eval": 1223.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-087 -- HarmBridge Counterfactual Validation\n\n**Status:** FAIL\n**Claims:** SD-010, SD-003\n**World:** CausalGridWorldV2 (6 hazards, 3 resources, 12x12)\n**Protocol:** Three-phase (terrain 300 -> calib 150 -> eval 100)\n\n## HarmBridge Architecture\n\nHarmBridge is a 2-layer MLP: z_world(32) -> z_harm(32).\nTrained to approximate HarmEncoder(harm_obs) in latent space.\n\nCounterfactual pipeline:\n    z_harm_cf = harm_bridge(E2.world_forward(z_world, a_cf))\n\nThis eliminates the linear z_world -> harm_obs_approx intermediate step used in EXQ-058c,\nworking entirely in latent space.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| HarmBridge alignment R2 | 0.0000 |\n| causal_sig_none | -0.086085 |\n| causal_sig_approach | 0.003054 |\n| causal_sig_contact | 0.109451 |\n| calibration_gap_approach | 0.0967 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: causal_approach > 0.001 | PASS | 0.003054 |\n| C2: cal_gap > 0.05 | PASS | 0.0967 |\n| C3: harm_none < harm_approach * 0.80 | FAIL | 0.5140 < 0.4886 |\n| C4: causal_contact > causal_approach | PASS | 0.109451 vs 0.003054 |\n| C5: bridge_r2 > 0.5 | FAIL | 0.0000 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C3 FAIL: harm_none=0.5140 not < harm_approach*0.80=0.4886\n- C5 FAIL: bridge_r2=0.0000 <= 0.5\n",
+  "claim_ids": [
+    "SD-010",
+    "SD-003"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_087_harm_bridge_validation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T184150Z",
+  "claim": "SD-010",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_087_harm_bridge_validation_20260323T184150Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
