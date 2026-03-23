@@ -2,84 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 1948,
   "runner_started_at": "2026-03-22T17:42:29.464809+00:00",
-  "last_updated": "2026-03-23T14:33:50.773177+00:00",
+  "last_updated": "2026-03-23T14:56:36.056043+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-066",
-      "backlog_id": "",
-      "claim_id": "MECH-089",
-      "title": "MECH-089 Theta Batching -- E3 noise reduced when sampling batched E1 updates",
-      "description": "Two conditions matched seeds: Condition A theta_buffer_size=4 (batched, E3 samples every 4 E1 steps) vs Condition B theta_buffer_size=1 (raw, every step). Measures e3_prediction_error variance. PASS: C1 e3_error_batched < e3_error_raw*0.90, C2 e1_per_e3_batched>=3, C3 harm_pred_std_batched>0.01, C4 harm_pred_std_raw>0.01, C5 no fatal errors.",
-      "estimated_minutes": 80.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-047e",
-      "backlog_id": "",
-      "claim_id": "SD-005",
-      "title": "SD-005 Latent Information Separation -- adversarial GRL fine-tuning probe",
-      "description": "EXQ-047d FAIL (x2, identical): design failure -- no separation training objective. Both z_self and z_world carried equal action info (dissociation=0.008). Fix: Phase 2 adversarial fine-tuning -- gradient-reversal probe on z_world forces action info out of z_world while z_self retains it via motor-sensory loss. Unified condition cannot separate (z_self=z_world). Same probe criteria as 047d: C1 action_self > action_world + 0.10, C2 contact_world > contact_self + 0.10, C3/C4 split > unified + 0.05.",
-      "estimated_minutes": 141.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-069",
-      "backlog_id": "EXP-0001",
-      "claim_id": "MECH-098",
-      "title": "MECH-098 Reafference Event Selectivity Pair -- ON vs OFF discriminative pair",
-      "description": "Discriminative pair: REAFFERENCE_ON (SD-007 enabled) vs REAFFERENCE_OFF (disabled), both alpha_world=0.9, seeds 42 and 7. Primary discriminator (pre-registered): event_selectivity_delta = margin(ON) - margin(OFF) where margin = mean(||delta_z_world|| on event steps) - mean(||delta_z_world|| on loco steps). PASS: C1 delta>=0.01 (MECH-098 core claim), C2 reafference_r2>0.20, C3 margin_OFF>0, C4 min event steps>=10. Decision: retain_ree/hybridize/retire_ree_claim. Addresses EXP-0001/EVB-0001 active_conflict deadline 2026-03-25.",
-      "estimated_minutes": 229.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-072",
-      "backlog_id": "EVB-0061",
-      "claim_id": "Q-021",
-      "title": "Q-021 Behavioral Flatness -- NoGo-only vs Competitive vs Random baseline",
-      "description": "Three conditions: NoGo-only (benefit_eval_enabled=False), Competitive (benefit_eval_enabled=True, ARC-030 Go channel), Random baseline. Environment: CausalGridWorldV2 use_proxy_fields=True. Tests Q-021: does pure-avoidance gradient produce quiescence (resource-visit rate <= random)? PASS (C1) nogo<=random+0.02, (C2) comp>=nogo+0.05, (C3) entropy gap>=0.10, (C4) nogo resource events<=comp*0.80.",
-      "estimated_minutes": 220.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-073",
-      "backlog_id": "",
-      "claim_id": "MECH-111",
-      "title": "MECH-111 Novelty Signal -- E1 error EMA as exploration bonus",
-      "description": "Two conditions: NoveltyOFF (novelty_bonus_weight=0) vs NoveltyON (weight=0.1). E1 prediction error EMA fed back as trajectory scoring bonus. PASS: (C1) entropy gap>=0.10, (C2) novel cell coverage +3 cells, (C3) harm delta<=0.02, (C4) novelty_ema>0 at eval.",
-      "estimated_minutes": 106.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-074",
-      "backlog_id": "",
-      "claim_id": "MECH-112",
-      "title": "MECH-112 Goal Attractor -- benefit_eval_head as prospective goal drive",
-      "description": "Two conditions: NoGoOnly (benefit_eval_enabled=False) vs GoNoGo (enabled, benefit_weight=1.0). Supervised from benefit_exposure (body_state[11], use_proxy_fields=True). PASS: (C1) resource_visit_rate gap>=0.05, (C2) benefit_eval_r2>0.10, (C3) pre_arrival benefit score gap>0.02, (C4) harm delta<=0.03.",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-075",
-      "backlog_id": "",
-      "claim_id": "MECH-113",
-      "title": "MECH-113 Self-Maintenance -- z_self D_eff homeostasis under perturbation",
-      "description": "Two conditions: NoMaintenance (weight=0) vs Maintenance (weight=0.1, D_eff target=1.5). Inject Gaussian noise (sigma=2.0) into z_self at eval start. D_eff=participation ratio from epistemic-mapping. PASS: (C1) maint D_eff ratio<=1.5x, (C2) nomaint D_eff ratio>=2.0x, (C3) gap>=0.5*nomaint_post, (C4) E2 loss not degraded.",
-      "estimated_minutes": 128.0,
-      "status": "pending",
+      "queue_id": "V3-EXQ-079",
+      "backlog_id": "EVB-0006",
+      "claim_id": "MECH-071",
+      "title": "MECH-071 Harm Calibration Discriminative Pair -- SHARP_WORLD vs SMOOTH_WORLD (SD-008)",
+      "description": "",
+      "estimated_minutes": 186.7,
+      "status": "needs_script",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -168,6 +102,20 @@
       "output_file": "C:\\Users\\Daniel\\REE_assembly\\evidence\\experiments\\v3_exq_071_rollout_batched_attribution\\v3_exq_071_rollout_batched_attribution_20260323T143350Z.json",
       "completed_by": "Daniel-PC",
       "actual_secs": 40.0
+    },
+    {
+      "queue_id": "V3-BENCH-scale-001",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GPU/CPU Scale Crossover Benchmark -- world_dim=[32,64,128,256]",
+      "description": "Operational benchmark (not a scientific experiment). Sweeps world_dim=[32,64,128,256] and measures CPU vs GPU training throughput at each scale. Identifies the GPU crossover point on current hardware. Provides baseline data for comparison against Spark hardware when available. Results recorded to evidence/experiments/v3_scale_benchmark/. Not tied to a scientific claim.",
+      "result": "PASS",
+      "result_summary": "Status: PASS",
+      "started_at": "2026-03-23T14:35:12.344511+00:00",
+      "completed_at": "2026-03-23T14:56:36.050538+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_assembly\\evidence\\experiments\\v3_scale_benchmark\\v3_scale_benchmark_20260323T145635Z.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 1283.7
     }
   ]
 }
