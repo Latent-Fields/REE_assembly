@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-23T10:53:35.434482Z",
+  "generated_at_utc": "2026-03-23T09:00:00Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3843,7 +3843,9 @@
       "proposal_type": "experimental",
       "queue_id": "V3-EXQ-063",
       "source": "manual",
-      "status": "proposed"
+      "status": "executed",
+      "executed_run_id": "v3_exq_063_arc029_committed_mode_harm_outcomes_20260322T191716Z_v3",
+      "executed_utc": "2026-03-22"
     },
     {
       "added_utc": "2026-03-22",
@@ -3921,7 +3923,9 @@
       "proposal_type": "experimental",
       "queue_id": "V3-EXQ-064",
       "source": "manual",
-      "status": "proposed"
+      "status": "executed",
+      "executed_run_id": "v3_exq_064_mech104_harm_surprise_spike_20260322T203409Z_v3",
+      "executed_utc": "2026-03-22"
     },
     {
       "added_utc": "2026-03-22",
@@ -3970,6 +3974,69 @@
       "queue_id": "V3-EXQ-065",
       "source": "manual",
       "status": "proposed"
+    },
+    {
+      "proposal_id": "EXP-0089",
+      "claim_id": "MECH-029",
+      "proposal_type": "experimental",
+      "source": "manual",
+      "added_utc": "2026-03-23",
+      "status": "proposed",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Test that uncommitted (default/reflective) state shows higher z_world variance and E3 uncertainty than committed state.",
+      "design": "Two-condition (EXQ-049e pattern): Condition A = trained agent (running_variance <<threshold, fully committed). Condition B = fresh/early-epoch agent (running_variance > threshold, uncommitted). Compare z_world_var and E3 running_var_mean per condition. PASS: uncommitted_z_world_var > committed_z_world_var * 1.1 (C1), uncommitted_e3_var > committed_e3_var * 1.05 (C2), both conditions >= 20 steps (C3).",
+      "why_now": "EXQ-065 FAIL (design-inconclusive): trained agent always committed, uncommitted state never sampled. Two-condition design mirrors EXQ-049e (MECH-090 PASS) and avoids the always-committed trap. MECH-104 jitter (now active) ensures trained agent can still occasionally exit committed mode, providing overlap validation.",
+      "notes": "Root cause of EXQ-065 failure: running_variance ~7.5e-5 post-training, permanently below commit_threshold. Fix: B condition uses checkpoint from epoch 50-100 (pre-convergence) or fresh agent with variance initialised above threshold. MECH-029 status: provisional; experiment required to confirm mechanism at V3 substrate level. Future substrate: wanting/liking/go-no-go signals may provide natural uncommitted windows without artificial init.",
+      "queue_id": "V3-EXQ-077",
+      "target_repo": "ree-v3",
+      "machine_affinity": "any",
+      "estimated_minutes": 60,
+      "min_shared_seeds": 1,
+      "seed_policy": "single",
+      "require_pre_registered_thresholds": true
+    },
+    {
+      "proposal_id": "EXP-0090",
+      "claim_id": "MECH-026",
+      "proposal_type": "experimental",
+      "source": "manual",
+      "added_utc": "2026-03-23",
+      "status": "proposed",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Test that ready vigilance (uncommitted state under threat) shows elevated E3 preparedness relative to uncommitted neutral baseline.",
+      "design": "Two-condition x two-environment: use fresh/early-epoch agent (uncommitted, variance above threshold) in threat vs neutral env. Committed condition (trained agent) provides contrast. PASS: readiness_gap (beta_gate_uncommitted_threat > beta_gate_uncommitted_neutral) > 0.005 (C1); uncommitted_threat_steps >= 20 (C3); threat does not force full commitment (commitment_rate_threat < 0.95, C2).",
+      "why_now": "EXQ-067 FAIL (design-inconclusive): trained agent always committed, uncommitted_threat_steps=0. Same fix as MECH-029 redesign -- fresh agent condition provides the uncommitted state. MECH-026 status: provisional; V3 experiment never successfully measured the claim.",
+      "notes": "Root cause of EXQ-067 failure: same always-committed substrate issue. Fresh agent init resolves this. The key claim is about differential gate elevation under threat WITHIN uncommitted state, not about commitment rate itself. Breath-beat (MECH-108): respiratory rhythm may cyclically provide uncommitted windows in future substrate, removing need for fresh-agent workaround.",
+      "queue_id": "V3-EXQ-078",
+      "target_repo": "ree-v3",
+      "machine_affinity": "any",
+      "estimated_minutes": 75,
+      "min_shared_seeds": 1,
+      "seed_policy": "single",
+      "require_pre_registered_thresholds": true
+    },
+    {
+      "proposal_id": "EXP-0091",
+      "claim_id": "MECH-047",
+      "proposal_type": "experimental",
+      "source": "manual",
+      "added_utc": "2026-03-23",
+      "status": "proposed",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Test that commitment mode persists after incentive removal (hysteresis) by measuring decay latency from a pre-convergence checkpoint.",
+      "design": "Three-phase with pre-convergence checkpoint: Phase A = train agent H on high-hazard env to mid-convergence checkpoint (running_variance ~0.05-0.1, straddling threshold). Phase B = switch env to low-hazard; measure steps until commitment_rate drops to control baseline with 20-step rolling window. Control agent C = train only on low-hazard, eval in same low-hazard. PASS: hysteresis_decay_steps > 20 (C1); beta_gate_H > beta_gate_C * 1.1 at Phase B start (C2); Phase A established commitment (commit_rate > 0.3, C3).",
+      "why_now": "EXQ-068 FAIL (design-inconclusive): both agents had running_variance ~2e-6 at eval, permanently committed regardless of hazard, no mode transition possible. Fix: use mid-training checkpoint where variance is not yet fully collapsed, so de-commitment CAN occur in Phase B when hazard drops. MECH-047 status: provisional; V3 experiment never successfully measured hysteresis.",
+      "notes": "Root cause of EXQ-068 failure: variance collapsed below threshold in both conditions before eval; hysteresis_decay_steps=20 was minimum window value, not real signal. Checkpoint approach: save agent state at epoch where commit_rate first exceeds 0.3 (Phase A establishes mode). MECH-104 jitter ensures de-commitment remains structurally possible. Future substrate: breath-beat cycling (MECH-108) and valence signals may naturally modulate the decay rate, testing the full hysteresis claim without checkpoint injection.",
+      "queue_id": "V3-EXQ-079",
+      "target_repo": "ree-v3",
+      "machine_affinity": "any",
+      "estimated_minutes": 90,
+      "min_shared_seeds": 1,
+      "seed_policy": "single",
+      "require_pre_registered_thresholds": true
     }
   ],
   "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",
