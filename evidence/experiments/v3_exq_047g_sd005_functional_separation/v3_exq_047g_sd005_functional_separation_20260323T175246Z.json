@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "action_acc_self_split": 0.47084765136241913,
+    "action_acc_world_split": 0.3853665441274643,
+    "action_acc_self_unified": 0.5004009306430817,
+    "contact_acc_world_split": 0.9065864980220795,
+    "contact_acc_self_split": 0.9065864980220795,
+    "contact_acc_world_unified": 0.9065864980220795,
+    "action_dissociation_split": 0.08548110723495483,
+    "contact_dissociation_split": 0.0,
+    "n_contact_min": 164.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-047g -- SD-005 Functional Separation Probe\n\n**Status:** FAIL\n**Claims:** SD-005\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Probe:** 20 eps\n**Design note:** Functional cross-decoding probes. No orthogonality constraint.\n\n## Pre-Registered Thresholds\n\nC1: action_dissociation_split (self - world) > 0.10\nC2: contact_dissociation_split (world - self) > 0.05\nC3: action_acc_self_split - unified > 0.03\nC4: contact_acc_world_split - unified > 0.03\nC5: n_contact_probe >= 20\n\n## Results\n\n| Condition | action_self | action_world | contact_world | contact_self |\n|-----------|------------|--------------|---------------|-------------|\n| SPLIT     | 0.471       | 0.385         | 0.907          | 0.907        |\n| UNIFIED   | 0.500       | n/a          | 0.907          | n/a         |\n\n**action_dissociation_split (self - world): +0.085**\n**contact_dissociation_split (world - self): +0.000**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: action dissociation > 0.10 | FAIL | +0.085 |\n| C2: contact dissociation > 0.05 | FAIL | +0.000 |\n| C3: split vs unified action (+0.03) | FAIL | -0.030 |\n| C4: split vs unified contact (+0.03) | FAIL | +0.000 |\n| C5: n_contact_min >= 20 | PASS | 164 |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Per-Seed\n\nSPLIT:\n  seed=42: action_self=0.478 action_world=0.394 contact_world=0.911 contact_self=0.911 n_contact=164\n  seed=7: action_self=0.464 action_world=0.376 contact_world=0.902 contact_self=0.902 n_contact=175\n\nUNIFIED:\n  seed=42: action_self=0.511 action_world=0.533 contact_world=0.911 contact_self=0.911\n  seed=7: action_self=0.490 action_world=0.490 contact_world=0.902 contact_self=0.902\n\n## Failure Notes\n\n- C1 FAIL: action_dissociation_split=+0.085 <= 0.10 (z_self not better motor probe than z_world in split condition)\n- C2 FAIL: contact_dissociation_split=+0.000 <= 0.05 (z_world not better world probe than z_self in split condition)\n- C3 FAIL: split z_self action advantage over unified = -0.030 <= 0.03\n- C4 FAIL: split z_world contact advantage over unified = +0.000 <= 0.03\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_047g_sd005_functional_separation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T175246Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047g_sd005_functional_separation_20260323T175246Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

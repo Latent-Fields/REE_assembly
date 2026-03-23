@@ -27,10 +27,10 @@
   "summary_markdown": "# V3-EXQ-071 -- Rollout-Batched SD-003 Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-024, MECH-071\n**Predecessor:** EXQ-030b PASS (sequential attribution baseline)\n**Warmup:** 150 eps | **Eval:** 30 eps x 3 distractor levels\n**alpha_world:** 0.9 | **world_forward R2:** 0.9452\n\n## Attribution Results by Distractor Level\n\n| n_hazards | batch_sig_approach | seq_sig_approach | rank_corr | batch_gap | n_approach |\n|---|---|---|---|---|---|\n| 2 | -0.000126 | -0.000126 | 1.0000 | +0.001989 | 681 |\n| 4 | +0.000956 | +0.000956 | 1.0000 | +0.005184 | 513 |\n| 6 | +0.001019 | +0.001019 | 1.0000 | +0.012481 | 379 |\n\n\n## Pass Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: batched attribution_gap > 0 (all levels) | PASS |\n| C2: rank_corr(batched, sequential) > 0.90 (all levels) | PASS |\n| C3: batched causal_sig_approach > 0.005 (all levels) | FAIL |\n| C4: world_forward_r2 > 0.05 | PASS (0.9452) |\n| C5: n_approach >= 20 per level | PASS |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Failure Notes\n\n- C3 FAIL n_hazards=2: batch_sig_approach=-0.000126 <= 0.005\n- C3 FAIL n_hazards=4: batch_sig_approach=0.000956 <= 0.005\n- C3 FAIL n_hazards=6: batch_sig_approach=0.001019 <= 0.005\n",
   "claim_ids": [
     "SD-003",
-    "ARC-024",
-    "MECH-071"
+    "ARC-024"
   ],
   "evidence_direction": "mixed",
+  "evidence_direction_note": "MECH-071 removed from claim_ids (2026-03-23 review): this experiment tests SD-003 causal attribution magnitude and ARC-024 distractor-invariant ranking -- not MECH-071 harm calibration asymmetry (agent-caused vs env-caused). C3 failure reflects weak E3 harm_eval magnitude (calibration/sensitivity issue), not mechanism absence. Rank correlations perfect (1.0); absolute scale too small for C3 threshold -- likely requires stronger harm_eval training. SD-003 and ARC-024 direction is mixed (ordinal structure confirmed, absolute magnitude insufficient).",
   "experiment_type": "v3_exq_071_rollout_batched_attribution",
   "fatal_error_count": 0,
   "run_timestamp": "20260323T143350Z",
