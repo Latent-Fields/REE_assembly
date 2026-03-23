@@ -1351,6 +1351,20 @@
   subject: default_mode.reflective_ethics
   polarity: asserts
   status: provisional
+  evidence_quality_note: |
+    EXQ-065 FAIL (2026-03-23): passive observation -- agent stayed locked in
+    committed mode throughout eval (uncommitted_step_count=0). No uncommitted
+    state observed. Threshold (commit_threshold=0.40) never crossed by running_variance.
+    EXQ-080 FAIL (2026-03-23): BreathOscillator active -- C1 PASS (z_world_var_ratio=1.173,
+    sweep > inter), committed_rate=0.0 in both windows, harm_pred_std~=0 (degenerate).
+    The oscillator creates variance differences in z_world (good) but committed_rate=0
+    (threshold calibration issue) and E3 harm_eval output is constant (cannot express
+    window differentiation). REVISIT AFTER z_goal SUBSTRATE IS ACTIVE. Root cause:
+    without a positive goal, the agent has nothing to commit TO. Natural commitment
+    episodes require goal-directed trajectories. EXQ-074b/076 test the wanting/goal
+    substrate; MECH-029 redesign should follow once those confirm z_goal is working.
+    The BreathOscillator mechanism (variance difference C1 PASS) has real signal;
+    it is the commitment detection and E3 harm_eval sensitivity that need work first.
   depends_on:
     - ARC-014
     - ARC-005
@@ -3752,7 +3766,19 @@
     _z_world_buffer attribute. E3 functional at ~1/9 the step rate (e3_tick_ratio ≈ 0.109),
     cal_gap=0.846. Demonstrates that temporal batching of fast-loop outputs before slow-loop
     sampling is structurally in place and metrically verifiable. Single PASS sufficient to
-    elevate from provisional to active — mechanism is implemented and measurable.
+    elevate from provisional to active -- mechanism is implemented and measurable.
+    EXQ-066 FAIL (2026-03-23, 4/5): BACKWARDS RESULT. e3_pred_error_batched=0.009 vs
+    raw=0.004 -- batched E3 error 2.28x WORSE than raw. C1 fails. Interpretation: theta
+    batching with theta_k=4 destroys temporal resolution E3 is using. The environment has
+    meaningful state changes every step; a 4-step average loses that fine-grained signal.
+    Two possible readings: (1) theta_k=4 is too coarse for this environment -- the right
+    batch size may be 1-2 steps, consistent with the user's observation that theta rhythms
+    need to be faster than tactical decision timescales; (2) context-gated batching (only
+    during stable/uncommitted windows, not uniformly) may be needed. The backwards result
+    is scientifically informative: E3 is using step-by-step temporal information, not
+    benefiting from smoothing. Redesign should test context-dependent theta window sizes
+    or shorter theta cycles (theta_k=1 or 2). EXQ-047g queued for SD-005 functional
+    separation test; MECH-089 redesign deferred pending theta_k calibration.
   depends_on:
     - ARC-023
     - ARC-021
@@ -4104,12 +4130,24 @@
     too diluted for any single-step predictor. EXQ-021 retests with lstsq
     and fixed C3 metric. EXQ-023 retests with alpha_world=0.9.
     EXQ-022 (2026-03-20): lstsq reafference approach retired for this use case.
-    R²_test=0.0 despite R²_train=0.373 — extreme overfitting. Correction
-    amplifies world-change signal 10× (Δz_corrected=139.6 vs Δz_raw=13.9).
+    R²_test=0.0 despite R²_train=0.373 -- extreme overfitting. Correction
+    amplifies world-change signal 10x (dz_corrected=139.6 vs dz_raw=13.9).
     The lstsq model learns within-training-set correlations that do not transfer.
     Neural ReafferencePredictor (SD-007, validated EXQ-027b PASS) is the
     correct approach. All future reafference experiments use the neural
     predictor exclusively.
+    EXQ-069 FAIL (2026-03-23): event_selectivity_delta=-0.002 -- reafference OFF
+    is MARGINALLY more selective than ON. EXQ-082 FAIL: delta_approach_gap=-0.104
+    -- reafference ON is WORSE for approach detection. Root cause: predictor quality
+    insufficient. reafference_r2_avg=0.339 (explains only 1/3 of z_world variance
+    from locomotion). Residual correction error subtracts real signal along with
+    noise. Current 2-layer MLP hidden_dim=64 architecture is the bottleneck.
+    Upgrade path: 3-layer MLP with hidden_dim=128 or LSTM predictor. Both are
+    feasible on available hardware (GTX 1050 Ti / RTX 2060 Super -- predictor is
+    tiny relative to full model). R² target >= 0.70 before re-testing MECH-098.
+    Note: the mechanism is architecturally correct (MSTd congruent neuron analog);
+    the failure is engineering (predictor accuracy), not conceptual. Do NOT demote
+    based on EXQ-069/082 alone. Redesign predictor first.
 - id: MECH-099
   title: "Visual streams use a three-pathway architecture (ventral/dorsal/frontal) for object, action, and executive routing."
   claim_type: mechanism_hypothesis
@@ -4732,10 +4770,29 @@
     byte-identical (same seed, deterministic frozen probe) -- 1 effective data point, not
     2. Evidence direction "weakens" on both runs is a tagging artefact of the design
     failure; these results should not be counted as genuine disconfirmation of SD-005.
-    EXQ-047e (pending): adversarial gradient-reversal probe. GRL on z_world during
-    fine-tuning forces action info out of z_world while z_self retains it via motor-
-    sensory correlation. Unified condition cannot achieve separation (z_self = z_world).
-    This is the first experiment applying genuine separation training pressure.
+    EXQ-047e FAIL (2026-03-23, 1/5): adversarial GRL on z_world. action_dissociation=0.055
+    (threshold 0.10 not met). Post-hoc GRL (80 episodes) too brittle; probe/encoder
+    alternating update race is unstable. DESIGN FAILURE -- not a genuine disconfirmation.
+    EXQ-047f FAIL x2 (2026-03-23, 2/5 each): orthogonal split with cosine penalty.
+    action_dissociation=-0.108/-0.065 (NEGATIVE), orth_cos_mean_eval=0.002-0.018 (near zero).
+    DESIGN FAILURE: geometric orthogonality is the WRONG test. Functional specialisation
+    from differential loss routing does NOT require geometric orthogonality -- there are
+    legitimate shared dimensions (top-down z_beta, blurry body-world boundary near hazards).
+    Cosine constraint penalises both channels symmetrically, producing two decorrelated noisy
+    representations rather than two specialised ones.
+    EXQ-078 PASS (2026-03-23, 3/3): behavioural test -- split z_world produces gap_approach
+    0.197 vs unified 0.147 (delta=0.050 > 0.02 threshold). Split IS behaviourally better.
+    This confirms SD-005 benefit at the functional level even though geometric probes failed.
+    EXQ-047g QUEUED (2026-03-23): correct redesign -- functional cross-decoding probes.
+    z_self -> action prediction acc vs z_world -> action prediction acc.
+    z_world -> contact prediction acc vs z_self -> contact prediction acc.
+    400 warmup episodes (differential loss routing, no orthogonality constraint).
+    Long run (~3h Mac). This is the proper test: does differential loss routing produce
+    functionally specialised latents?
+    Architecture note: E2.world_forward(z_world, action) -> z_world_next already implements
+    an efference copy signal. Future architecture direction: use E2 prediction as the
+    primary reafference signal (exafference = z_world_actual - E2(z_world_prev, action)),
+    which would provide a stronger and self-improving separation mechanism. See SD-007 notes.
   depends_on: []
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 

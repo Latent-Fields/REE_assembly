@@ -1,0 +1,62 @@
+{
+  "_note": "Per-claim run exclusions for governance confidence scoring. Entries remain in matrix entries log for audit but do not contribute to claim confidence or direction counts. Reasons: code bugs, wrong module tested, or circular dependency (untestable until prerequisite fixed). Populate after governance pipeline is rebuilt.",
+  "_schema": "claim_id -> list of {run_id, reason}",
+
+  "MECH-071": [
+    {
+      "run_id": "20260315T183757_causal_attribution_calibration_v2",
+      "reason": "Wrong module: V2 experiment tested E2.predict_harm() alone. MECH-071 concerns E3.harm_eval calibration asymmetry. This run predates the correct E3-based experimental design and provides no diagnostic signal for the claim."
+    }
+  ],
+
+  "MECH-072": [
+    {
+      "run_id": "20260315T205715_selective_residue_attribution_v2",
+      "reason": "Wrong module: V2 experiment tested E2 alone, not the E2+E3 joint pipeline required by MECH-072 (foreseeable-harm residue gating). Non-diagnostic FAIL."
+    }
+  ],
+
+  "MECH-090": [
+    {
+      "run_id": "20260319T222723Z_v3_exq_048_mech057b_completion_gate_v3",
+      "reason": "EXQ-048: BetaGate was never called during execution. Routing path bypassed the mechanism under test. FAIL reflects broken instrumentation, not architectural failure."
+    },
+    {
+      "run_id": "v3_exq_048_mech057b_completion_gate_20260319T222723Z_v3",
+      "reason": "EXQ-048: Duplicate entry for the same BetaGate-never-called run. Same reason: broken instrumentation."
+    }
+  ],
+
+  "SD-007": [
+    {
+      "run_id": "20260317T231919Z_v3_exq_016_sd007_reafference_v3",
+      "reason": "EXQ-016: C3 metric bug -- correction computed at trajectory endpoints instead of deltas, cascading to machine-epsilon cancellation. Measurement error invalidates the FAIL; the reafference mechanism was not genuinely tested."
+    }
+  ],
+
+  "MECH-098": [
+    {
+      "run_id": "20260317T231919Z_v3_exq_016_sd007_reafference_v3",
+      "reason": "EXQ-016: C3 metric bug (machine-epsilon cancellation). Also affected by alpha_world=0.3 bug suppressing z_world to 30%. FAIL is non-diagnostic."
+    },
+    {
+      "run_id": "20260317T232006Z_v3_exq_017_combined_lateral_reafference_v3",
+      "reason": "EXQ-017: alpha_world=0.3 bug in LatentStack.encode() -- z_world suppressed to 30% responsiveness. Cannot test reafference correction claim with broken z_world encoding."
+    },
+    {
+      "run_id": "20260318T025909Z_v3_exq_021_lstsq_reafference_v3",
+      "reason": "EXQ-021: alpha_world=0.3 bug still active. lstsq fix attempt on a broken z_world encoder produces no useful signal. FAIL is circular, not a scientific result."
+    }
+  ],
+
+  "SD-009": [
+    {
+      "run_id": "20260318T083631Z_v3_exq_020_event_contrastive_v3",
+      "reason": "EXQ-020: Circular dependency -- ran before SD-008 alpha_world fix. z_world encoding broken (alpha=0.3 EMA suppressed to 30%), so the event contrastive supervision had no usable world signal to learn from. FAIL reflects the prerequisite bug, not the SD-009 mechanism."
+    },
+    {
+      "run_id": "20260320T165149Z_v3_exq_020_event_contrastive_v3",
+      "reason": "EXQ-020 second run: same circular dependency. SD-008 alpha fix (alpha_world=0.9) had not yet been applied at the time of this run."
+    }
+  ]
+}
