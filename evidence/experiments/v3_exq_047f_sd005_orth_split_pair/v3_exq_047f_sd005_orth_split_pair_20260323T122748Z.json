@@ -1,0 +1,42 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "split_action_acc_self": 0.7297297120094299,
+    "split_action_acc_world": 0.837837815284729,
+    "split_contact_acc_world": 0.0,
+    "split_contact_acc_self": 0.0,
+    "split_action_dissociation": -0.10810810327529907,
+    "split_contact_dissociation": 0.0,
+    "unified_action_acc_self": 0.8648648858070374,
+    "unified_action_acc_world": 0.9189189076423645,
+    "unified_contact_acc_world": 0.0,
+    "unified_contact_acc_self": 0.0,
+    "action_self_improvement": -0.13513517379760742,
+    "orth_cos_mean_eval": 0.018150327294617078,
+    "n_seeds": 1.0,
+    "orth_weight": 0.05,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-047f -- SD-005: Orthogonality-Constrained Split vs Unified\n\n**Status:** FAIL\n**Claim:** SD-005 -- z_gamma split into z_self (motor-sensory) and z_world (environmental)\n**Design:** 400-ep orth-constrained training + 100-ep linear probe eval; seeds [42]\n**orth_weight:** 0.05  |  **alpha_world:** 0.9\n\n## EXQ-047e Failure Analysis\n\nEXQ-047e adversarial GRL ran post-hoc for only 80 eps, pushing action info out of\nz_world but not pulling it into z_self. action_dissoc=0.055, contact_dissoc=0.051\n(both below 0.10 threshold). contact_world_improvement=0.000.\n\nEXQ-047f replaces GRL with persistent orthogonality loss L_orth=mean(|cos(z_self,z_world)|)\nbaked into all 400 training episodes. Bidirectional separation pressure applied throughout\nlearning. UNIFIED condition trains normally (no separation possible -- control).\n\n## Probe Results (averaged over seeds [42])\n\n| Probe | Split+Orth | Unified | delta |\n|---|---|---|---|\n| Action accuracy <- z_self  | 0.730 | 0.865 | -0.135 |\n| Action accuracy <- z_world | 0.838 | 0.919 | -0.081 |\n| Contact accuracy <- z_world | 0.000 | 0.000 | +0.000 |\n| Contact accuracy <- z_self | 0.000 | 0.000 | +0.000 |\n\nAction dissociation (split):   -0.108  (target: >0.10)\nContact dissociation (split):  +0.000  (target: >0.05)\nAction improvement vs unified: -0.135  (target: >0.03)\nOrth cosine (eval):            0.018    (target: <0.15)\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: action dissoc > 0.10 | FAIL | -0.108 |\n| C2: contact dissoc > 0.05 | FAIL | 0.000 |\n| C3: action vs unified > 0.03 | FAIL | -0.135 |\n| C4: orth_cos < 0.15 | PASS | 0.018 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 2/5 -> **FAIL**\nDecision: **retire_ree_claim**\n\n## Failure Notes\n\n- C1 FAIL: action dissociation=-0.108 (need >0.10)  [self=0.730, world=0.838]\n- C2 FAIL: contact dissociation=0.000 (need >0.05)  [world=0.000, self=0.000]\n- C3 FAIL: action improvement over unified=-0.135 (need >0.03)\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_047f_sd005_orth_split_pair",
+  "fatal_error_count": 0.0,
+  "decision": "retire_ree_claim",
+  "seeds": [
+    42
+  ],
+  "run_timestamp": "20260323T122748Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047f_sd005_orth_split_pair_20260323T122748Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
