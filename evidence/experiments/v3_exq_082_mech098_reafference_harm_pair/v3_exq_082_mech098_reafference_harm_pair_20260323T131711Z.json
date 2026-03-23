@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_approach_reafference": 0.09242385988200591,
+    "gap_approach_no_reafference": 0.19684611846222858,
+    "gap_contact_reafference": 0.09440462211253048,
+    "gap_contact_no_reafference": 0.17383700804564026,
+    "delta_approach_gap": -0.10442225858022267,
+    "delta_contact_gap": -0.07943238593310978,
+    "mean_score_none_reafference": 0.4453020944746157,
+    "mean_score_none_no_reafference": 0.3816707642708951,
+    "mean_score_approach_reafference": 0.5377259543566216,
+    "mean_score_approach_no_reafference": 0.5785168827331237,
+    "n_approach_min": 830.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "proximity_harm_scale": 0.05,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-082 -- MECH-098 Reafference vs No-Reafference: Harm Calibration Pair\n\n**Status:** FAIL\n**Claims:** MECH-098\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 350 eps  **Eval:** 50 eps\n\n## Pre-Registered Thresholds\n\nC1: delta_approach_gap (REAFFERENCE - NO_REAFFERENCE) > 0.02\nC2: gap_approach_REAFFERENCE > 0.06\nC3: gap_approach_NO_REAFFERENCE > 0\n\n## Results\n\n| Condition | gap_approach | gap_contact | mean_none | mean_approach |\n|-----------|-------------|-------------|-----------|---------------|\n| REAFFERENCE    | 0.0924 | 0.0944 | 0.4453 | 0.5377 |\n| NO_REAFFERENCE | 0.1968 | 0.1738 | 0.3817 | 0.5785 |\n\n**delta_approach_gap (REAFFERENCE - NO_REAFFERENCE): -0.1044**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: delta_approach_gap > 0.02 | FAIL | -0.1044 |\n| C2: gap_approach_REAFFERENCE > 0.06 | PASS | 0.0924 |\n| C3: gap_approach_NO_REAFFERENCE > 0  | PASS | 0.1968 |\n\nCriteria met: 2/3 -> **FAIL**\n\n## Interpretation\n\nMECH-098 NOT SUPPORTED: reafference correction does not improve approach detection (delta=-0.1044, gap_REAFFERENCE=0.0924). Perspective-shift noise may not dominate at this model/task scale, or the implicit E2 training signal is insufficient to train the ReafferencePredictor. Consider explicit predictor training (see EXQ-027b pattern) or larger world_dim for more separation.\n\n## Per-Seed\n\nREAFFERENCE:\n  seed=42: gap_approach=0.0927 gap_contact=0.1006 n_approach=858 train_approach=5523\n  seed=7: gap_approach=0.0921 gap_contact=0.0882 n_approach=830 train_approach=5689\n\nNO_REAFFERENCE:\n  seed=42: gap_approach=0.2010 gap_contact=0.1889 n_approach=858\n  seed=7: gap_approach=0.1927 gap_contact=0.1587 n_approach=830\n\n## Failure Notes\n\n- C1 FAIL: delta_approach_gap=-0.1044 <= 0.02 (reafference correction does not improve approach detection by 2pp)\n",
+  "claim_ids": [
+    "MECH-098"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_082_mech098_reafference_harm_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T131711Z",
+  "claim": "MECH-098",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_082_mech098_reafference_harm_pair_20260323T131711Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
