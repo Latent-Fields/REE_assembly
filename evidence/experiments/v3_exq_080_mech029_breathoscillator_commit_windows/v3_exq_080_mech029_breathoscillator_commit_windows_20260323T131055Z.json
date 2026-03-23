@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_world_var_sweep_A": 3.522482074913569e-05,
+    "z_world_var_inter_A": 3.002996527357027e-05,
+    "z_world_var_ratio_A": 1.1729890603682274,
+    "z_world_var_ratio_B": 0.0,
+    "committed_rate_sweep_A": 0.0,
+    "committed_rate_inter_A": 0.0,
+    "committed_rate_sweep_B": 0.0,
+    "committed_rate_inter_B": 0.0,
+    "harm_pred_std_inter_A": 3.5106590075884014e-05,
+    "n_sweep_steps_A": 40.0,
+    "n_sweep_steps_B": 0.0,
+    "post_train_running_variance": 0.5,
+    "base_commit_threshold": 0.4,
+    "sweep_threshold": 0.30000000000000004,
+    "breath_period": 50.0,
+    "sweep_duration": 5.0,
+    "sweep_amplitude": 0.25,
+    "e3_steps_per_tick": 5.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-080 -- MECH-029 BreathOscillator Uncommitted Windows\n\n**Status:** FAIL\n**Claims:** MECH-029\n**Seed:** 42  **Train:** 100 eps  **Eval:** 2 eps  **Steps/ep:** 200\n**BreathOscillator:** period=50, sweep_dur=5, sweep_amp=0.25, e3_rate=5\n\n## Results\n\n| Metric | Condition A (oscillator) | Condition B (control) |\n|---|---|---|\n| z_world_var[sweep] | 0.00004 | 0.00000 |\n| z_world_var[inter] | 0.00003 | 0.00002 |\n| z_world_var_ratio | 1.1730 | 0.0000 |\n| committed_rate[sweep] | 0.000 | 0.000 |\n| committed_rate[inter] | 0.000 | 0.000 |\n| n_sweep_steps | 40 | 0 |\n| harm_pred_std_inter | 0.0000 | 0.0000 |\n\n**Post-train running_variance: 0.5000** (base_threshold=0.400, sweep_threshold=0.300)\n\n## PASS Criteria\n\n| Criterion | Threshold | Result |\n|---|---|---|\n| C1: z_world_var ratio > 1.05 | 1.05 | PASS |\n| C2: committed_rate[sweep] < inter*0.9 | 0.90 | FAIL |\n| C3: n_sweep_steps >= 20 | 20 | PASS |\n| C4: harm_pred_std_inter > 0.01 | 0.01 | FAIL |\n| C5: no fatal errors | -- | PASS |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-029 PARTIAL: Some uncommitted-window signal present but below threshold. Suggest increasing sweep_amplitude or reducing agent training depth to preserve higher running_variance.\n\n## Failure Notes\n\n- C2 FAIL: committed_rate_sweep=0.000 >= 0.9 * inter=0.000. Agent remained committed during sweep -- variance too low for threshold reduction.\n- C4 FAIL: harm_pred_std_inter=0.00004 <= 0.01. E3 harm head appears collapsed (constant output).\n",
+  "claim_ids": [
+    "MECH-029"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_080_mech029_breathoscillator_commit_windows",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T131055Z",
+  "claim": "MECH-029",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_080_mech029_breathoscillator_commit_windows_20260323T131055Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
