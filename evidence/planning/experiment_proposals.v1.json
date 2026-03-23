@@ -227,14 +227,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "designed",
       "suggested_experiment_type": "v3_exq_026_mech071_v3",
       "target_repo": "ree-experiments-lab",
       "why_now": [
         "active_conflict",
         "directional_conflict_alert",
         "mandatory_decision_checkpoint"
-      ]
+      ],
+      "queue_id_assigned": "V3-EXQ-047f"
     },
     {
       "acceptance_checks": [
@@ -273,7 +274,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "designed",
       "suggested_experiment_type": "claim_probe_sd_003",
       "target_repo": "ree-experiments-lab",
       "why_now": [
@@ -282,7 +283,15 @@
         "insufficient_literature_grounding",
         "mandatory_decision_checkpoint",
         "missing_literature_evidence"
-      ]
+      ],
+      "decision": "retain_ree",
+      "decision_basis": "EXQ-026 PASS (5/5 criteria, calibration_gap=0.037) + EXQ-029 PASS (calibration_gap_approach=0.239, approach/contact/none gradient confirmed). Both are clean single-claim V3 tests on CausalGridWorldV2. MECH-071 promoted to provisional, v3_pending cleared. Active_conflict flags are contamination from multi-claim runs (EXQ-030/033/036 etc.). No new experiment required: existing evidence is decision-grade.",
+      "decision_date_utc": "2026-03-23",
+      "decision_experiments": [
+        "V3-EXQ-026",
+        "V3-EXQ-029"
+      ],
+      "queue_id_assigned": "V3-EXQ-079"
     },
     {
       "acceptance_checks": [
@@ -710,14 +719,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "designed",
       "suggested_experiment_type": "claim_probe_mech_102",
       "target_repo": "ree-v2",
       "why_now": [
         "active_conflict",
         "directional_conflict_alert",
         "missing_literature_evidence"
-      ]
+      ],
+      "queue_id_assigned": "V3-EXQ-081"
     },
     {
       "acceptance_checks": [
