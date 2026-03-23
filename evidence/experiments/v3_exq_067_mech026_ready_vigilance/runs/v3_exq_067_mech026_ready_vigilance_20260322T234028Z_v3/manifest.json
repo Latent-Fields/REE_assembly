@@ -1,0 +1,43 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_067_mech026_ready_vigilance",
+  "run_id": "v3_exq_067_mech026_ready_vigilance_20260322T234028Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-22T23:40:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-026"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_note": "Design-inconclusive: uncommitted_threat_steps=0, uncommitted_neutral_steps=0. Agent is permanently committed post-training (running_variance ~2e-6 << commit_threshold). Readiness gap cannot be measured without any uncommitted steps. C3 (uncommitted_threat_steps >= 20) is structurally impossible given current substrate. Does not constitute evidence for or against MECH-026. Fix direction: pre-convergence eval, forced threshold reset, or awaiting wanting/liking/go-no-go additions that may naturally produce uncommitted-mode windows.",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

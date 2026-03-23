@@ -1,0 +1,36 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "readiness_gap": 0.0,
+    "threat_commitment_rate": 1.0,
+    "neutral_commitment_rate": 1.0,
+    "uncommitted_threat_step_count": 0.0,
+    "uncommitted_neutral_step_count": 0.0,
+    "committed_threat_step_count": 20000.0,
+    "committed_neutral_step_count": 700.0,
+    "mean_beta_uncommitted_threat": 0.0,
+    "mean_beta_uncommitted_neutral": 0.0,
+    "mean_beta_committed_threat": 1.0,
+    "mean_beta_committed_neutral": 1.0,
+    "harm_pred_std": 0.09879939258098602,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-067 -- MECH-026: Ready Vigilance Mode\n\n**Status:** FAIL\n**Claim:** MECH-026 -- ready vigilance is a distinct mode from both neutral baseline and doing mode\n**Design:** Two-condition (threat present vs neutral), matched training protocol\n**alpha_world:** 0.9  |  **Train:** 500 eps  |  **Eval:** 100 eps  |  **Seed:** 0\n\n## Design Rationale\n\nReady vigilance predicts that an agent facing distant-but-present threats shows elevated\npreparedness (beta_gate elevation) *without* committing to action. If threat simply forced\nconstant commitment, doing mode and vigilance would be indistinguishable. C1 tests that\nthe gap exists; C2 tests that vigilance is distinct from doing.\n\n## Condition Comparison\n\n| Metric | Threat (A) | Neutral (B) |\n|--------|-----------|-------------|\n| mean_beta_uncommitted | 0.0000 | 0.0000 |\n| commitment_rate | 1.000 | 1.000 |\n| uncommitted_steps | 0 | 0 |\n| committed_steps | 20000 | 700 |\n| harm_pred_std | 0.0988 | 0.3123 |\n\n**readiness_gap** = +0.0000  (threat.beta_uncommitted - neutral.beta_uncommitted)\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: readiness_gap > 0.005 (vigilance elevates gate) | FAIL | +0.0000 |\n| C2: threat_commit_rate < neutral_commit_rate * 1.5 (not forced-doing) | PASS | 1.000 vs 1.500 |\n| C3: uncommitted_threat_step_count >= 20 | FAIL | 0 |\n| C4: harm_pred_std > 0.01 (E3 not collapsed) | PASS | 0.0988 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: readiness_gap=+0.0000 <= 0.005\n- C3 FAIL: uncommitted_threat_step_count=0 < 20\n",
+  "claim_ids": [
+    "MECH-026"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_067_mech026_ready_vigilance",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260322T234028Z",
+  "claim": "MECH-026",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_067_mech026_ready_vigilance_20260322T234028Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

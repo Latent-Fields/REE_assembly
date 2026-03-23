@@ -76,6 +76,7 @@ class RunRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "simulation"
     evidence_direction: str = "unknown"
+    direction_explicitly_set: bool = False
     architecture_epoch: str = ""
     adapter_signals_path: Path | None = None
     adapter_contract_status: str = "n/a"
@@ -309,6 +310,10 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
         evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
         evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
+        # direction_explicitly_set: True when manifest has an evidence_direction_note,
+        # meaning the direction was a deliberate manual override and should not be
+        # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
+        direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -325,6 +330,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                direction_explicitly_set=direction_explicitly_set,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
             )
@@ -1074,7 +1080,7 @@ def _write_claim_evidence_matrix(
 
     for run in exp_runs:
         inferred_direction = run.evidence_direction
-        if inferred_direction == "unknown":
+        if inferred_direction == "unknown" and not run.direction_explicitly_set:
             inferred_direction = "supports" if run.final_status == "PASS" else "weakens"
 
         entry_confidence, entry_confidence_rationale = _experimental_entry_confidence(run, inferred_direction)

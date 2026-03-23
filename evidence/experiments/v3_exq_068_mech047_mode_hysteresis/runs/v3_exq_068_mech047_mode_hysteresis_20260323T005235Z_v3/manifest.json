@@ -1,0 +1,43 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_068_mech047_mode_hysteresis",
+  "run_id": "v3_exq_068_mech047_mode_hysteresis_20260323T005235Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-23T00:52:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-047"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_note": "Design-inconclusive: both H and C agents show commit_rate=1.0 in eval (running_variance ~8.7e-7 and ~2.2e-6 respectively, both far below commit_threshold). Mode transition from Phase A to Phase B cannot be detected because the agent never escapes committed mode regardless of hazard level. hysteresis_decay_steps=20 is the minimum (not zero) due to rolling window mechanics, not real hysteresis signal. Does not constitute evidence for or against MECH-047. Fix direction: use pre-convergence checkpoints or forced variance injection to produce the mode transition the experiment is designed to measure.",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

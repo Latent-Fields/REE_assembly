@@ -1,0 +1,43 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_065_mech029_default_mode_probe",
+  "run_id": "v3_exq_065_mech029_default_mode_probe_20260323T023328Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-23T02:33:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-029"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_note": "Design-inconclusive: uncommitted_steps=0 throughout eval. Agent trained to running_variance ~7.5e-5 which is below commit_threshold, permanently locking in committed mode. The experiment never sampled uncommitted state -- criteria C1/C2/C3 are untestable. This is a substrate design limitation, not a signal about MECH-029. Fix direction: eval during training (pre-convergence) or artificially reset running_variance above threshold to force mode transitions. Architectural note: wanting/liking/go-no-go gating additions and breath-beat cyclical markers (see MECH-026 breath_beat claims) may provide natural uncommitted-mode windows in future substrate.",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

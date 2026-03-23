@@ -3786,8 +3786,12 @@
     EXQ-049e PASS (2026-03-21, 5/5): Two-condition design resolves the deadlock. Trained agent:
     10,000 committed steps, hold_concordance=1.0, hold_count=10,347, variance=2.5e-6.
     Fresh agent: 321 uncommitted steps, release_concordance=1.0, propagation_count=50.
-    Both conditions at stable extremes — committed gate elevates, uncommitted gate releases.
+    Both conditions at stable extremes -- committed gate elevates, uncommitted gate releases.
     MECH-090 fully confirmed.
+    EXQ-062b PASS (2026-03-22, 5/5): Surprise-gated spike selectivity -- confirms that
+    committed gate can be re-opened by selective interrupt (surprise-gated variance spike)
+    without requiring full de-commitment from all harm contacts. Corroborates the
+    gating architecture -- gate holds during expected harm, opens only on genuine surprise.
   literature_evidence: |
     Jenkinson & Brown (2011) PMID 22018805 [DOI: 10.1016/j.tins.2011.09.003]:
     "Beta oscillations provide a measure of the likelihood that a new voluntary action
@@ -4235,15 +4239,18 @@
   claim_type: mechanism_hypothesis
   subject: control_plane.volatility_interrupt
   polarity: asserts
-  status: provisional
+  status: active
   implementation_phase: v3
   status_note: |
-    Promoted candidate -> provisional 2026-03-22.
-    Evidence: conf=0.812, conflict_ratio=0, 1 support (EXQ-049e PASS 5/5), 1 mixed (EXQ-062).
-    Route-1 (jitter noise floor) confirmed: prevents running_variance collapse, enables
-    committed->uncommitted transition. Route-2 (harm_surprise-gated spike) has partial
-    evidence; full wiring experiment pending (EXP-0086). Literature triangulation pending
-    (LIT-0092, LIT-0093) -- not required for provisional.
+    Promoted provisional -> active 2026-03-23.
+    Evidence: conf=0.964, conflict_ratio=0, 3 supports (EXQ-049e, EXQ-064, EXQ-062b), 2 mixed
+    (EXQ-062, EXQ-062a both criterion-revision iterations, not true weakening signals).
+    Route-1 (jitter noise floor) confirmed (EXQ-049e PASS 5/5, EXQ-061 PASS).
+    Route-2 (harm_surprise-gated spike) confirmed (EXQ-064 PASS 5/5): spike fires selectively
+    on unexpected harm (delta_var_unexpected=0.051) and not on expected harm (delta_var_expected=0.000).
+    EXQ-062b PASS 5/5 confirms spike selectivity (fewer spikes than always-spike condition,
+    higher per-spike impact: 10.7 vs 6.7 uncommitted steps/spike).
+    Both routes independently confirmed. Literature triangulation pending (LIT-0092, LIT-0093).
   claim_level: mechanistic
   functional_restatement: >
     When actual harm substantially exceeds predicted harm (prediction error surprise),
@@ -4432,14 +4439,16 @@
   claim_type: architectural_commitment
   subject: cognitive_modes.behavioral_consequence_of_commitment
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   status_note: |
-    Split from ARC-016 on 2026-03-22. ARC-016 (provisional) covers the structural
-    circuit (E3-derived variance -> BetaGate). ARC-029 covers the behavioral consequence:
-    that commitment state actually changes harm outcomes in a direction that reflects
-    the functional role of each mode. No experiments yet. See EXP-0085 for the
-    proposed experiment design.
+    Promoted candidate -> provisional 2026-03-23.
+    Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
+    EXQ-063 is the gate-ablation 2x2 design described in notes (EXP-0085).
+    harm_gap_stable=0.00041 (gate-active outperforms ablated in stable env),
+    harm_gap_volatile=0.00023 (advantage narrows, ratio=0.559 -- commitment is context-dependent,
+    not universally beneficial). Ablation confirmed complete. Both predicted effects confirmed.
+    Single experiment; more evidence desirable before active promotion.
   depends_on:
     - ARC-016
     - MECH-090

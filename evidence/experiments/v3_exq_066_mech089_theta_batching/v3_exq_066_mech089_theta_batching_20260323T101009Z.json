@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "e3_prediction_error_batched": 0.009099611167078277,
+    "harm_pred_std_batched": 0.2023768573999405,
+    "batch_uniformity": 1.7530973380808274e-06,
+    "e1_per_e3_batched": 3.0,
+    "e3_count_batched": 15000.0,
+    "e1_count_batched": 60000.0,
+    "n_harm_pred_samples_batched": 60000.0,
+    "fatal_errors_batched": 0.0,
+    "e3_prediction_error_raw": 0.00399476545022178,
+    "harm_pred_std_raw": 0.17757870256900787,
+    "batch_uniformity_raw": 0.0,
+    "e1_per_e3_raw": 0.0,
+    "e3_count_raw": 60000.0,
+    "e1_count_raw": 60000.0,
+    "n_harm_pred_samples_raw": 60000.0,
+    "fatal_errors_raw": 0.0,
+    "e3_pred_error_reduction_ratio": 2.277883715694269,
+    "theta_k": 4.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-066 -- MECH-089: Theta-Batching Reduces E3 Prediction Error\n\n**Status:** FAIL\n**Claims:** MECH-089\n**Design:** k=4 (theta buffer size); batched (theta_buffer_size=4, e3_steps=4) vs raw (theta_buffer_size=1, e3_steps=1)\n**alpha_world:** 0.9\n**Training:** 300 episodes x 200 steps\n**Seed:** 0\n\n## Motivation\n\nMECH-089: E3 never sees raw E1 output -- it receives theta-cycle-averaged z_world\nfrom ThetaBuffer. Averaging over k=4 E1 steps should filter within-cycle\nnoise, reducing E3's harm-prediction error variance vs per-step (raw) sampling.\n\nThis experiment isolates the averaging effect by holding all other factors constant\n(same seed, same env, same training dynamics, same alpha_world).\n\n## Results\n\n| Metric | Batched (k=4) | Raw (k=1) |\n|--------|----------------------|-----------|\n| e3_prediction_error_var | 0.00910 | 0.00399 |\n| harm_pred_std | 0.2024 | 0.1776 |\n| batch_uniformity (mean z_world intra-window var) | 0.00000 | 0.00000 |\n| e1_per_e3 | 3.00 | 0.00 |\n| e3_count | 15000 | 60000 |\n| fatal_errors | 0 | 0 |\n\nReduction ratio (batched/raw): 2.2779\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: e3_pred_var_batched < raw*0.90 (>=10% reduction) | FAIL | 0.00910 vs 0.00360 |\n| C2: e1_per_e3_batched >= k-1 = 3 (batching active) | PASS | 3.00 |\n| C3: harm_pred_std_batched > 0.01 (E3 not collapsed) | PASS | 0.2024 |\n| C4: harm_pred_std_raw > 0.01 (E3 not collapsed) | PASS | 0.1776 |\n| C5: No fatal errors | PASS | batched=0 raw=0 |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: e3_pred_var_batched=0.00910 >= raw*0.90=0.00360\n",
+  "claim_ids": [
+    "MECH-089"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_066_mech089_theta_batching",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260323T101009Z",
+  "claim": "MECH-089",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_066_mech089_theta_batching_20260323T101009Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "hysteresis_decay_steps": 20.0,
+    "beta_gate_post_commit_mean": 1.0,
+    "beta_gate_control_mean": 1.0,
+    "commit_rate_post_commit": 1.0,
+    "commit_rate_control": 1.0,
+    "commitment_rate_phase_a": 0.9991423031026253,
+    "phase_a_final_running_var": 2.1989457839501545e-06,
+    "phase_b_final_running_var": 8.719491129291287e-07,
+    "fatal_error_count": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-068 -- MECH-047: Mode Manager Hysteresis\n\n**Status:** FAIL\n**Claim:** MECH-047 -- commitment mode persists after incentive removal (mode hysteresis)\n**Design:** Agent H (Phase A: high-hazard -> Phase B: low-hazard) vs Agent C (low-hazard only)\n**alpha_world:** 0.9  |  **Phase A:** 200 eps  |  **Phase B:** 100 eps  |  **Seed:** 0\n\n## Design Rationale\n\nMemoryless commitment: as soon as hazards are reduced, commitment_rate should drop\nimmediately. Hysteresis predicts a decay lag. We measure this by counting steps until\na 20-step rolling commitment_rate window drops to the control baseline. If hysteresis\nexists, this count exceeds 20.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| Phase A commitment_rate | 0.999 |\n| Phase A final running_variance | 0.000002 |\n| Phase B final running_variance | 0.000001 |\n| Agent H beta_gate_mean (eval) | 1.0000 |\n| Agent C beta_gate_mean (eval) | 1.0000 |\n| Agent H commit_rate (eval) | 1.000 |\n| Agent C commit_rate (eval) | 1.000 |\n| hysteresis_decay_steps | 20 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: hysteresis_decay_steps > 20 | FAIL | 20 |\n| C2: beta_post_commit > beta_control * 1.1 | FAIL | 1.0000 vs 1.1000 |\n| C3: phase_a_commit_rate > 0.3 (commitment established) | PASS | 0.999 |\n| C4: No fatal errors | PASS | 0 |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: hysteresis_decay_steps=20 <= 20\n- C2 FAIL: beta_h_mean=1.0000 <= beta_c_mean*1.1=1.1000\n",
+  "claim_ids": [
+    "MECH-047"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_068_mech047_mode_hysteresis",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260323T005235Z",
+  "claim": "MECH-047",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_068_mech047_mode_hysteresis_20260323T005235Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

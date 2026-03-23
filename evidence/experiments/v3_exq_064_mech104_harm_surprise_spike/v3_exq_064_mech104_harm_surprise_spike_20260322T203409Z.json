@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "a_n_unexpected_harm": 237.0,
+    "a_n_expected_harm": 0.0,
+    "a_n_surprise_spikes": 235.0,
+    "a_delta_var_unexpected": 0.051112659644476977,
+    "a_delta_var_expected": 0.0,
+    "a_var_before_unexpected": 0.13765001477633423,
+    "a_var_after_unexpected": 0.1887626744208112,
+    "a_var_before_expected": 0.0,
+    "a_var_after_expected": 0.0,
+    "a_n_committed_harm": 235.0,
+    "b_n_unexpected_harm": 234.0,
+    "b_n_expected_harm": 0.0,
+    "b_delta_var_unexpected": 0.0,
+    "b_delta_var_expected": 0.0,
+    "b_var_before_unexpected": 2.5441495584987e-06,
+    "b_var_after_unexpected": 2.5441495584987e-06,
+    "train_final_variance": 2.5441495584987e-06,
+    "spike_magnitude": 0.05,
+    "surprise_threshold": 0.02,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-064 -- MECH-104: Harm-Surprise Spike (Route-2 Validation)\n\n**Status:** PASS\n**Claims:** MECH-104\n**Design:** Two-condition -- Condition A: surprise-gated spike (Route-2) vs Condition B: no-spike baseline\n**spike_magnitude:** 0.05  |  **surprise_threshold:** 0.02  |  **Warmup:** 400 eps  |  **Eval:** 50 eps  |  **Seed:** 0\n\n## Design Rationale\n\nRoute-2 MECH-104: the surprise gate fires selectively on UNEXPECTED harm events\n(|actual_harm - predicted_harm| > surprise_threshold). Expected harm does not trigger\na spike because the agent already anticipated it -- no new information, no LC-NE release.\n\nPrior validation:\n- EXQ-049e PASS: Route-1 (jitter noise floor) prevents variance collapse.\n- EXQ-061  PASS: Route-1 (any harm contact) triggers variance spike.\n- EXQ-062b tests SELECTIVITY (fewer spikes than always-gate).\n- This experiment tests the SIGNAL: variance rises specifically on unexpected harm steps.\n\n## Training\n\n| Metric | Value |\n|--------|-------|\n| Final running_variance (post-train) | 0.000003 |\n| Committed? (variance < 0.4000) | Yes |\n\n## Variance Response to Harm Events\n\n| | Condition A (surprise-gated) | Condition B (baseline) |\n|---|---|---|\n| n_unexpected_harm | 237 | 234 |\n| n_expected_harm | 0 | 0 |\n| n_surprise_spikes | 235 | 0 |\n| delta_var_unexpected | 0.051113 | 0.000000 |\n| delta_var_expected | 0.000000 | 0.000000 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: A delta_var_unexpected > 0.005 (spike fires on unexpected) | PASS | 0.051113 |\n| C2: A delta_var_expected < 0.002 (gate selective on expected) | PASS | 0.000000 |\n| C3: B delta_var_unexpected < 0.002 (baseline stays flat) | PASS | 0.000000 |\n| C4: n_unexpected_harm_A >= 10 (sufficient events) | PASS | 237 |\n| C5: No fatal errors | PASS | 0 |\n\nCriteria met: 5/5 -> **PASS**\n\n",
+  "claim_ids": [
+    "MECH-104"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_064_mech104_harm_surprise_spike",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260322T203409Z",
+  "claim": "MECH-104",
+  "verdict": "PASS",
+  "run_id": "v3_exq_064_mech104_harm_surprise_spike_20260322T203409Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
