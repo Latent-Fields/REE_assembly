@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-23T09:30:00Z",
+  "generated_at_utc": "2026-03-23T10:00:00Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3985,7 +3985,7 @@
       "priority": "medium",
       "dispatch_mode": "discriminative_pair",
       "objective": "Test that cyclically-forced uncommitted (default/reflective) windows show higher z_world variance and E3 uncertainty than committed inter-sweep intervals, using a breath-oscillator approach that directly instantiates MECH-108 in current substrate.",
-      "design": "Add BreathOscillator to MultiRateClock: every breath_period steps (e.g., 50 steps = ~0.2 Hz), briefly raise commit_threshold by sweep_amplitude for sweep_duration steps, creating a periodic uncommitted window within a single trained agent. Conditions: (A) oscillator active -- trained agent with periodic sweep forcing, (B) oscillator inactive -- same trained agent, no sweep (control). Within condition A, label steps as sweep-phase (uncommitted) vs inter-sweep (committed). PASS: sweep-phase z_world_var > inter-sweep z_world_var * 1.1 (C1); sweep-phase e3_running_var > inter-sweep * 1.05 (C2); >=20 sweep-phase steps observed (C3); E3 not collapsed outside sweeps: harm_pred_std > 0.01 (C4); no fatal errors (C5). Parameters: breath_period=50, sweep_amplitude=0.1, sweep_duration=5.",
+      "design": "Add BreathOscillator to MultiRateClock: every breath_period steps (e.g., 50 steps = ~0.2 Hz), briefly raise commit_threshold by sweep_amplitude for sweep_duration steps, creating a periodic uncommitted window within a single trained agent. Conditions: (A) oscillator active -- trained agent with periodic sweep forcing, (B) oscillator inactive -- same trained agent, no sweep (control). Within condition A, label steps as sweep-phase (uncommitted) vs inter-sweep (committed). PASS: sweep-phase z_world_var > inter-sweep z_world_var * 1.1 (C1); sweep-phase e3_running_var > inter-sweep * 1.05 (C2); >=20 sweep-phase steps observed (C3); E3 not collapsed outside sweeps: harm_pred_std > 0.01 (C4); no fatal errors (C5). Parameters: breath_period=50, sweep_amplitude=0.1, sweep_duration=20.",
       "why_now": "EXQ-065 design-inconclusive (always committed). Fresh-agent two-condition was the prior fix proposal. Cyclical oscillator is superior: (1) tests dynamics within single trained agent, not static comparison; (2) directly approximates MECH-108 respiratory sweep clock; (3) period/amplitude are falsifiable parameters linking experiment to biology. LIT-0094 will determine physiologically-grounded period/amplitude. Substrate: BreathOscillator extends existing MultiRateClock (heartbeat/clock.py).",
       "notes": "BreathOscillator implementation: add sweep_active flag to MultiRateClock; when True for sweep_duration steps, agent reads elevated commit_threshold (base + sweep_amplitude). Clock.py already has beta-modulated E3 rate (MECH-093) -- same pattern. If LIT-0094 returns clear empirical frequency data, update breath_period to match. Future substrate: wanting/liking Go/NoGo signals and full MECH-108 respiratory rhythm should replace oscillator injection naturally.",
       "queue_id": "V3-EXQ-077",
@@ -3994,7 +3994,8 @@
       "estimated_minutes": 60,
       "min_shared_seeds": 1,
       "seed_policy": "single",
-      "require_pre_registered_thresholds": true
+      "require_pre_registered_thresholds": true,
+      "lit_grounding": "LIT-0094: breath_period=50 confirmed (Zelano 0.16-0.33 Hz -> 30-60 steps). sweep_duration revised 5->20 steps (inhalation phase ~2 sec at 10 Hz simulation). Phase direction: inspiration lowers decision boundary (Braendholt 2025) -- BreathOscillator lowers commit_threshold by sweep_amplitude during sweep window. Dual mechanism confirmed (threshold + valence bias independent); valence channel deferred."
     },
     {
       "proposal_id": "EXP-0090",
@@ -4006,7 +4007,7 @@
       "priority": "medium",
       "dispatch_mode": "discriminative_pair",
       "objective": "Test that during oscillator-forced uncommitted windows, E3 shows elevated preparedness (differential gate elevation) under threat vs neutral conditions -- the core MECH-026 ready vigilance prediction, measured within breath-sweep phases.",
-      "design": "Same BreathOscillator as EXP-0089 (breath_period=50, sweep_amplitude=0.1, sweep_duration=5). Two-environment crossed: threat env (harm sources present, dist 3-5 cells) vs neutral env (no harm sources). Within each env, label steps as sweep-phase (oscillator-forced uncommitted) vs inter-sweep (committed). PASS: readiness_gap (mean_beta_sweep_threat > mean_beta_sweep_neutral) > 0.005 (C1); threat does not force premature exit of sweep-phase: commit_rate_threat_sweep < 0.95 (C2); >=20 sweep steps in threat env (C3); harm_pred_std > 0.01 (C4); no fatal errors (C5). Parameters match EXP-0089 for cross-experiment comparability.",
+      "design": "Same BreathOscillator as EXP-0089 (breath_period=50, sweep_amplitude=0.1, sweep_duration=20). Two-environment crossed: threat env (harm sources present, dist 3-5 cells) vs neutral env (no harm sources). Within each env, label steps as sweep-phase (oscillator-forced uncommitted) vs inter-sweep (committed). PASS: readiness_gap (mean_beta_sweep_threat > mean_beta_sweep_neutral) > 0.005 (C1); threat does not force premature exit of sweep-phase: commit_rate_threat_sweep < 0.95 (C2); >=20 sweep steps in threat env (C3); harm_pred_std > 0.01 (C4); no fatal errors (C5). Parameters match EXP-0089 for cross-experiment comparability.",
       "why_now": "EXQ-067 design-inconclusive (uncommitted_threat_steps=0). Cyclical oscillator creates the uncommitted windows needed to test MECH-026. Shared oscillator infrastructure with EXP-0089 means implementation is a single substrate addition. The oscillator exposes MECH-026 within realistic within-agent dynamics rather than requiring state-matched fresh agents.",
       "notes": "Readiness gap is measured exclusively within sweep-phase steps to avoid conflation with committed-mode threat response (which is a different phenomenon). The claim is about vigilance as an uncommitted-but-primed state -- not about commitment rate under threat. If sweep-phase threat shows elevated beta AND prevents premature re-commitment (C2), that is MECH-026 confirmed. Future: full MECH-108 respiratory rhythm replaces oscillator; MECH-026 then measurable in natural breath-phase uncommitted windows.",
       "queue_id": "V3-EXQ-078",
@@ -4015,7 +4016,8 @@
       "estimated_minutes": 75,
       "min_shared_seeds": 1,
       "seed_policy": "single",
-      "require_pre_registered_thresholds": true
+      "require_pre_registered_thresholds": true,
+      "lit_grounding": "LIT-0094: breath_period=50 confirmed (Zelano 0.16-0.33 Hz -> 30-60 steps). sweep_duration revised 5->20 steps (inhalation phase ~2 sec at 10 Hz simulation). Phase direction: inspiration lowers decision boundary (Braendholt 2025) -- BreathOscillator lowers commit_threshold by sweep_amplitude during sweep window. Dual mechanism confirmed (threshold + valence bias independent); valence channel deferred."
     },
     {
       "proposal_id": "EXP-0091",
@@ -4027,7 +4029,7 @@
       "priority": "medium",
       "dispatch_mode": "discriminative_pair",
       "objective": "Test that after each oscillator-forced sweep release, commitment re-establishes more slowly in high-hazard vs low-hazard environment -- the MECH-047 hysteresis prediction, measured as within-oscillation re-commitment latency across environments.",
-      "design": "Same BreathOscillator (breath_period=50, sweep_amplitude=0.1, sweep_duration=5). Two-environment: high-hazard (drift=0.4, interval=3 -- volatile) vs low-hazard (drift=0.0). Both agents trained to convergence with oscillator active. Measure: commitment_reestablishment_steps = mean steps from sweep-phase end (oscillator off) until running_variance returns below commit_threshold. PASS: high_hazard_reestablishment_steps > low_hazard_reestablishment_steps + epsilon (C1, hysteresis); oscillator produces measurable uncommitted windows in both envs: n_sweep_steps >= 20 (C2); high_hazard_commit_rate > low_hazard_commit_rate (C3, hazard level affects commitment baseline); no fatal errors (C4). Epsilon = 2 steps (conservative hysteresis threshold).",
+      "design": "Same BreathOscillator (breath_period=50, sweep_amplitude=0.1, sweep_duration=20). Two-environment: high-hazard (drift=0.4, interval=3 -- volatile) vs low-hazard (drift=0.0). Both agents trained to convergence with oscillator active. Measure: commitment_reestablishment_steps = mean steps from sweep-phase end (oscillator off) until running_variance returns below commit_threshold. PASS: high_hazard_reestablishment_steps > low_hazard_reestablishment_steps + epsilon (C1, hysteresis); oscillator produces measurable uncommitted windows in both envs: n_sweep_steps >= 20 (C2); high_hazard_commit_rate > low_hazard_commit_rate (C3, hazard level affects commitment baseline); no fatal errors (C4). Epsilon = 2 steps (conservative hysteresis threshold).",
       "why_now": "EXQ-068 design-inconclusive (always committed, no mode transitions). Cyclical oscillator creates the mode transitions needed to measure re-commitment latency each cycle. The hysteresis signal is the difference in recovery time across environments per cycle -- a cleaner test than Phase A/B checkpoint because it repeats within a single episode and provides many measurements rather than one.",
       "notes": "Hysteresis prediction: in high-hazard env, the agent has established stronger commitment priors, so re-commitment after sweep should be faster (stronger pull back to committed). OR: high-hazard makes re-commitment slower because each release reveals more threat signal. The direction is architecturally ambiguous -- LIT-0094 may clarify. Register as bidirectional (PASS on any significant difference). Future substrate: MECH-108 natural breath sweeps + valence signals should modulate the re-commitment rate endogenously, removing need for oscillator injection.",
       "queue_id": "V3-EXQ-079",
@@ -4036,7 +4038,8 @@
       "estimated_minutes": 90,
       "min_shared_seeds": 1,
       "seed_policy": "single",
-      "require_pre_registered_thresholds": true
+      "require_pre_registered_thresholds": true,
+      "lit_grounding": "LIT-0094: breath_period=50 confirmed (Zelano 0.16-0.33 Hz -> 30-60 steps). sweep_duration revised 5->20 steps (inhalation phase ~2 sec at 10 Hz simulation). Phase direction: inspiration lowers decision boundary (Braendholt 2025) -- BreathOscillator lowers commit_threshold by sweep_amplitude during sweep window. Dual mechanism confirmed (threshold + valence bias independent); valence channel deferred."
     },
     {
       "proposal_id": "LIT-0094",
@@ -4044,7 +4047,7 @@
       "proposal_type": "literature_review",
       "source": "manual",
       "added_utc": "2026-03-23",
-      "status": "proposed",
+      "status": "executed",
       "priority": "high",
       "objective": "Identify empirically-grounded parameter values for BreathOscillator (breath_period, sweep_amplitude, sweep_duration) and determine what biological signals cyclically modulate neural precision/commitment thresholds at ~0.2 Hz and slower frequencies.",
       "key_questions": [
@@ -4076,7 +4079,9 @@
       },
       "disconfirming_evidence_required": true,
       "mapping_quality_weighting_required": true,
-      "notes": "This pull directly constrains EXP-0089/090/091 (BreathOscillator parameter values). If respiratory coupling literature provides clear phase/amplitude data, update breath_period and sweep_amplitude to physiologically-grounded values before running experiments. Also check for infraslow (<0.1 Hz) oscillators that might provide slower cycling -- these could be relevant for longer-timescale commitment hysteresis (MECH-047). Particular interest: any evidence that sigh rate or breath-pause frequency predicts behavioural plan-abandonment or decision revision events."
+      "notes": "This pull directly constrains EXP-0089/090/091 (BreathOscillator parameter values). If respiratory coupling literature provides clear phase/amplitude data, update breath_period and sweep_amplitude to physiologically-grounded values before running experiments. Also check for infraslow (<0.1 Hz) oscillators that might provide slower cycling -- these could be relevant for longer-timescale commitment hysteresis (MECH-047). Particular interest: any evidence that sigh rate or breath-pause frequency predicts behavioural plan-abandonment or decision revision events.",
+      "executed_utc": "2026-03-23",
+      "synthesis_file": "evidence/planning/literature_synthesis_2026-03-23_breath_oscillator_respiratory_coupling.md"
     }
   ],
   "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",

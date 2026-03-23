@@ -4888,17 +4888,31 @@
   location: docs/architecture/control_plane_heartbeat.md#mech-107
   source:
     - docs/architecture/control_plane_heartbeat.md
+  evidence_quality_note: |
+    LIT-0094 (2026-03-23): Phase framing partially revised.
+    Zelano 2016 (PMID 27927961): oscillatory power peaks during INHALATION, not exhalation;
+    fear/memory performance 20-30% higher on inhalation. Boyadzhieva 2021 (PMID 34267621):
+    inhalation = bottom-up sensory (feedforward); exhalation = top-down prediction propagation.
+    Revised two-phase framing: inhalation = scan / viability evaluation (peak excitability,
+    lower decision boundary); exhalation = execute abandonment / clear hypothesis tag.
+    The claim captures the exhalation execution side; the scan phase on inhalation is
+    implicit but now documented. Braendholt 2025 (PMID 40424351): inspiration lowers
+    decision boundary (threshold channel) independently of valence bias channel.
+    Vlemincx 2010 (PMID 20536901): sigh rate increases on load-recovery; sighs restore
+    respiratory variability after sustained commitment -- direct behavioral evidence.
   notes: >
     Cross-species convergence: dogs exhibit a swift, audible exhalation precisely when
     abandoning a behavioural plan (e.g., approaching then breaking off); humans sigh in
     functionally identical contexts. Cross-species presence removes "cultural artifact"
-    as an objection — this is an evolutionarily conserved mechanism for plan-state
+    as an objection -- this is an evolutionarily conserved mechanism for plan-state
     management, not learned behaviour. Each exhalation is the physiological instantiation
     of the hypothesis-tag clear described in MECH-094: the body enacts what the planning
-    system has decided (trajectory abandoned → write gate cleared → new deliberation
-    cycle opens). Predicts: exhalation rate during deliberation tasks should correlate
-    positively with plan-abandonment rate and negatively with committed-trajectory
-    persistence.
+    system has decided (trajectory abandoned -> write gate cleared -> new deliberation
+    cycle opens). Two-phase cycle (LIT-0094): inhalation = viability scan (peak neural
+    excitability, reduced decision boundary per Braendholt 2025); exhalation = execute
+    abandonment decision (top-down prediction propagation per Boyadzhieva 2021).
+    Predicts: exhalation rate during deliberation tasks should correlate positively with
+    plan-abandonment rate and negatively with committed-trajectory persistence.
 
 - id: MECH-108
   title: "Respiratory rhythm (~0.2 Hz) is E3's plan-sweep oscillator — a third control-plane clock governing periodic sweeps of pre-commit hippocampal rollouts and DMN simulations."
@@ -4924,23 +4938,33 @@
     - MECH-107
     - MECH-092
     - MECH-093
+    - MECH-104
   location: docs/architecture/control_plane_heartbeat.md#mech-108
   source:
     - docs/architecture/control_plane_heartbeat.md
   notes: >
+    LIT-0094 (2026-03-23): Empirical grounding confirmed.
+    Zelano 2016 (PMID 27927961): human respiratory 0.16-0.33 Hz; system-wide entrainment
+    of piriform cortex, amygdala, hippocampus. Tort 2018 (PMID 29691421): RCOs in all 15
+    brain regions simultaneously including nucleus accumbens and mPFC -- global clock.
+    Yackle 2017 (PMID 28360327): preBotC projects monosynaptically to LC -- respiratory
+    pacemaker is hardwired to NE precision modulation (MECH-104 direct dependency added).
+    Braendholt 2025 (PMID 40424351): inspiration lowers decision boundary AND shifts
+    valence bias -- two independent computational channels, not one scalar.
+    Neuromodulator duality (Lottem 2018 PMID 29520000, Dayan & Yu 2006 PMID 17162459):
+    inter-sweep phase = 5-HT-dominant (persist/commit); sweep phase = NE-ready (interrupt/
+    release). BreathOscillator approximates oscillation between these neuromodulator states.
     Three-oscillator control-plane hierarchy (slow to fast):
-    (1) Respiratory plan-sweep (~0.2 Hz, semi-voluntary) — sweeps pre-commit rollouts
-        for viability/abandonment; governed by exhalation events (MECH-107).
-    (2) E3 heartbeat (involuntary thalamic pacemaking, ~0.5–2 Hz depending on z_beta
-        arousal, MECH-093) — governs E3 refresh rate and harm attribution resolution.
-    (3) Neural theta/beta (~4–30 Hz, MECH-089, MECH-090) — sensory batching and
+    (1) Respiratory plan-sweep (~0.2 Hz, semi-voluntary) -- sweeps pre-commit rollouts
+        for viability/abandonment; inhalation = scan phase, exhalation = execute phase.
+    (2) E3 heartbeat (involuntary thalamic pacemaking, ~0.5-2 Hz depending on z_beta
+        arousal, MECH-093) -- governs E3 refresh rate and harm attribution resolution.
+    (3) Neural theta/beta (~4-30 Hz, MECH-089, MECH-090) -- sensory batching and
         commitment propagation gating.
-    Quiescent replay (MECH-092) operates below all three, during genuine idle periods
-    between tasks. The respiratory sweep clock sits above the E3 heartbeat: each
-    respiratory cycle spans several E3 heartbeat cycles, making the sweep a coarser
-    temporal grain than the per-heartbeat harm estimate. This matches the behavioural
-    observation: plan abandonment is not a within-heartbeat decision but a deliberate
-    cycle-level decision that overrides prior trajectory commitments.
+    Infraslow oscillations (Monto et al. 2008, PMID 18701689, 0.01-0.1 Hz) provide a
+    fourth slower layer -- 55% detection probability modulation by ISF phase. Relevant
+    to long-timescale MECH-047 hysteresis. Not modelled in BreathOscillator but noted.
+    Quiescent replay (MECH-092) operates below all four, during genuine idle periods.
 
 - id: MECH-109
   title: "Voluntary respiratory modulation provides the one top-down deliberate handle on the E3 plan-sweep clock; breath-hold is a predicted failure mode suppressing plan abandonment under anxious concentration."
@@ -4963,6 +4987,17 @@
     - MECH-108
     - MECH-091
     - MECH-107
+  evidence_quality_note: |
+    LIT-0094 (2026-03-23): First direct behavioral evidence.
+    Vlemincx et al. 2010 (PMID 20536901, Psychophysiology): sigh rate increased during
+    and immediately after mental load / sustained attention tasks. Sustained attention
+    compressed total respiratory variability (reduced flexibility). Sighs functioned
+    as resets -- restoring respiratory variability after high-commitment compression.
+    This is direct empirical support: high-commitment states suppress spontaneous
+    plan-sweep cycling (compressed variability); sighs are the voluntary restoration event
+    (reset). Timing: sigh rate elevated on task-offset / load-recovery, matching the
+    prediction that sweep-clock suppression under load is followed by burst of sweeps at
+    release. Consider upgrading to provisional after one targeted sigh-latency experiment.
   location: docs/architecture/control_plane_heartbeat.md#mech-109
   source:
     - docs/architecture/control_plane_heartbeat.md
