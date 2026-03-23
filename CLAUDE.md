@@ -48,6 +48,10 @@ After each governance/experiment discussion session:
 1. **Check** `evidence/experiments/pending_review.md` at session start — flag to user before other work.
 2. **Discuss** each pending result with the user (claim implications, PASS/FAIL interpretation, next steps).
 3. **Mark reviewed** — add run IDs to `reviewed_run_ids` in `evidence/experiments/review_tracker.json`, update `last_review_utc`.
+   - **review_tracker.json is ~1400 lines (~47k tokens). Do NOT read the full file.**
+   - Check `evidence/experiments/review_tracker_summary.md` for coverage state and instructions.
+   - Read only the tail: `Read` with `offset=1385, limit=15` to find the insertion point.
+   - Update `last_review_utc` with a targeted Edit on line 3 only.
 4. **Confirm cleared** — re-run `python scripts/generate_pending_review.py` and verify 0 pending before closing the session.
 5. **Mark proposals executed** — any `experiment_proposals.v1.json` entry whose claim now has evidence should be set `status: "executed"`. The pipeline does NOT do this automatically.
 
