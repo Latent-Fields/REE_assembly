@@ -1369,10 +1369,32 @@
     - ARC-005
     - ARC-007
     - INV-010
+    - MECH-092
+    - MECH-094
+    - MECH-120
+    - MECH-121
+    - MECH-122
+    - MECH-123
   location: docs/architecture/sleep.md#mech-030
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
     - docs/thoughts/2026-02-23_some_subjective_experience_mapping.md
+  notes: >
+    Offline consolidation mode is multi-phase. Four sub-phases are now architecturally
+    specified (all V4 scope): MECH-120 (SWS denoising/attractor flattening, Tononi SHY),
+    MECH-121 (NREM SWR replay and episodic->semantic transfer, Diekelmann), MECH-122
+    (spindles as packaging/gating mechanism), MECH-123 (REM precision prior
+    recalibration, Hobson/Friston). All sub-phases require MECH-094 hypothesis tag as
+    hard prerequisite to prevent harm trace over-amplification (MECH-124).
+    V3 prerequisites for V4 consolidation: MECH-092 quiescent replay validated;
+    MECH-094 hypothesis tag working; D_eff monitoring (MECH-113) with stable setpoint;
+    z_goal representation (MECH-112, 116) validated; multi-rate execution (SD-006, EXQ-052b
+    PASS); ThetaBuffer bidirectional design (currently waking-direction only, MECH-122
+    requires sleep-direction). See docs/architecture/v3_v4_transition_boundary.md.
+    Literature: Tononi & Cirelli 2006 (SHY), Diekelmann & Born 2010 (SWR consolidation),
+    Hobson & Friston 2012 (REM precision recalibration), Walker & Stickgold 2004
+    (maladaptive consolidation / PTSD model -> MECH-124). Evidence confidence: 0.79-0.88.
+    Updated 2026-03-23 to add sub-phase claims.
 - id: MECH-031
   title: "Derived social tags and empathy coupling via control-plane knobs."
   claim_type: mechanism_hypothesis
@@ -5536,3 +5558,237 @@
     Clinical grounding: avolition in schizophrenia, anhedonic depression, amotivation
     syndromes all demonstrate that harm-avoidance systems remain intact while agency
     collapses. REE must avoid this architecture failure mode. Registered 2026-03-23.
+
+- id: MECH-120
+  title: "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio."
+  claim_type: mechanism_hypothesis
+  subject: sleep.sws_denoising_attractor_flattening
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-030
+    - MECH-092
+    - MECH-094
+    - ARC-016
+  location: docs/architecture/sleep/offline_phases.md#mech-120
+  source:
+    - evidence/literature/targeted_review_connectome_mech_030/entries/tononi_cirelli_2006/summary.md
+  notes: >
+    Biological basis: Synaptic Homeostasis Hypothesis (Tononi & Cirelli 2006). Slow
+    wave sleep globally downscales synaptic weights toward a principled baseline,
+    reversing unsupervised Hebbian potentiation from waking. Effect: weak/noisy traces
+    pruned, strong traces sharpened, SNR restored. SWS is the earliest offline sub-phase.
+    REE analog: during the SWS sub-phase of MECH-030, three operations occur:
+    (1) Residue field global decay/normalisation -- residue magnitudes scaled toward
+    baseline, reducing attractor depth for all trajectory biases (prevents any single
+    harm or goal trace from accumulating indefinitely).
+    (2) z_delta recalibration -- the deepest latent (z_delta) is pushed toward a
+    principled low-information prior, resetting the long-horizon world model before
+    NREM replay repopulates it with consolidated content.
+    (3) Low-confidence representation pruning -- traces below a salience threshold
+    are zeroed, freeing representational capacity for consolidation.
+    Critical constraint (Walker 2004): SWS downscaling is non-selective by default.
+    Without MECH-094 hypothesis tag, genuine harm signals are indistinguishable from
+    noise and will be downscaled along with it. MECH-094 is a HARD PREREQUISITE for
+    MECH-120: the tag marks which traces must be protected from SWS normalisation.
+    V3 static setpoints that V4 will make dynamic (see v3_v4_transition_boundary.md):
+    residue field decay rate (currently static per-step), z_delta recalibration
+    magnitude (currently none), SNR pruning threshold (currently absent).
+    V3 must measure these setpoints under normal operation to calibrate V4 dynamics.
+    Registered 2026-03-23. V4 scope.
+
+- id: MECH-121
+  title: "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation."
+  claim_type: mechanism_hypothesis
+  subject: sleep.nrem_swr_replay_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-030
+    - MECH-092
+    - MECH-094
+    - MECH-122
+    - SD-004
+  location: docs/architecture/sleep/offline_phases.md#mech-121
+  source:
+    - evidence/literature/targeted_review_connectome_mech_030/entries/diekelmann_born_2010/summary.md
+  notes: >
+    Biological basis: Diekelmann & Born 2010. During NREM, hippocampal sharp-wave
+    ripples (SWRs) replay recent episodic content in compressed form (~20x compression).
+    SWR replay is coordinated with thalamo-cortical spindles (MECH-122) and cortical
+    slow oscillations (<1 Hz) in a three-way dialogue: slow-oscillation up-state
+    triggers spindle, spindle gates SWR, SWR content travels to neocortex for
+    integration into long-term schematic knowledge.
+    REE analog: MECH-092 (quiescent E3 heartbeat replay, V3) is the functional
+    prerequisite. MECH-121 extends MECH-092 into the full consolidation pipeline:
+    E3/HippocampalModule SWR-equivalent replay (already started in MECH-092) is
+    coordinated with z_theta->z_delta delivery (spindle analog, MECH-122), and
+    E1's LSTM (neocortical analog) integrates the replayed content into its
+    long-horizon schematic world model. The consolidation transfers specific
+    goal-directed episode traces (approach sequences, harm encounters) from E3's
+    episodic buffer to E1's generalised world model.
+    Two important properties of this transfer:
+    (1) Temporal compression: NREM replay is ~20x faster than real-time. In REE
+    terms, E3's SWR replay runs at fast rollout speed without the real-time
+    constraint. This means the MECH-121 phase can consolidate many episodes in a
+    single offline cycle.
+    (2) Semantic abstraction: hippocampus holds episodic traces; neocortex extracts
+    schematic regularities. The consolidation is NOT lossless replay -- it is
+    abstraction. E1 should integrate the invariant patterns across replayed episodes,
+    not store each episode verbatim. This is why E1's goal conditioning (MECH-116)
+    improves with sleep: goal-relevant patterns get abstracted into E1's world model.
+    V3 prerequisite: MECH-092 quiescent replay validated. Balanced replay scheduling
+    (harm AND goal traces, not harm-dominated) must be implemented before MECH-121
+    to prevent MECH-124 consolidation-mediated contraction.
+    Registered 2026-03-23. V4 scope.
+
+- id: MECH-122
+  title: "Thalamo-cortical spindle-equivalent bursts package E3/hippocampal replay content for z_theta delivery AND gate external sensory input, protecting the consolidation episode from interruption."
+  claim_type: mechanism_hypothesis
+  subject: sleep.spindles_packaging_gating
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-030
+    - MECH-089
+    - MECH-121
+    - SD-006
+  location: docs/architecture/sleep/offline_phases.md#mech-122
+  source:
+    - evidence/literature/targeted_review_connectome_mech_030/entries/diekelmann_born_2010/summary.md
+  notes: >
+    Biological basis: Sleep spindles (11-15 Hz thalamo-cortical bursts, 0.5-3 sec
+    duration) during NREM stage 2. Spindles serve two distinct functions:
+    (1) Content packaging: spindles gate hippocampal SWR replay content to neocortex.
+    The spindle burst is the transmission window -- during the spindle up-phase,
+    hippocampal content is packaged into thalamic relay neurons and forwarded to
+    cortex. Without spindles, SWR replay content does not reliably reach neocortex.
+    (2) Sensory gating: spindles suppress thalamocortical relay of external sensory
+    input during the consolidation window. This makes the offline phase robustly
+    offline -- external stimuli cannot interrupt or contaminate the consolidation
+    episode.
+    REE analog:
+    Content packaging: the ThetaBuffer (MECH-089, EXQ-052b PASS) already provides
+    theta-rate packaging of E1 output to E3. MECH-122 extends this: during offline
+    mode, a spindle-equivalent burst mechanism packages E3/hippocampal SWR replay
+    output for z_theta delivery to E1 (the reverse direction of the waking theta
+    channel). The theta channel is bidirectional: waking = E1->E3 (goal context);
+    sleep = E3->E1 (episodic consolidation).
+    Sensory gating: during MECH-122 spindle windows, the sensory input pathway to
+    z_self and z_world encoders is gated closed. New environmental observations are
+    buffered but not processed. This prevents waking-state observations from
+    contaminating the consolidation episode.
+    V3 implication: the ThetaBuffer (already implemented) is the V3 scaffolding for
+    MECH-122. V3 must ensure the ThetaBuffer can run bidirectionally (E1->E3 waking,
+    E3->E1 sleeping). Currently only waking direction implemented.
+    Note: spindle density correlates with overnight memory consolidation performance
+    in humans (Walker 2004). In REE, spindle density is a proxy for consolidation
+    efficiency -- more spindle bursts per offline cycle = more episodic content
+    transferred to E1. This provides a potential diagnostic metric in V4.
+    Registered 2026-03-23. V4 scope.
+
+- id: MECH-123
+  title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
+  claim_type: mechanism_hypothesis
+  subject: sleep.rem_precision_recalibration
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-030
+    - MECH-092
+    - MECH-094
+    - ARC-016
+    - MECH-093
+  location: docs/architecture/sleep/offline_phases.md#mech-123
+  source:
+    - evidence/literature/targeted_review_connectome_mech_030/entries/hobson_friston_2012/summary.md
+  notes: >
+    Biological basis: Hobson & Friston 2012. REM = unconstrained hyperparameter
+    exploration under aminergic suppression. The predictive coding framing: during
+    REM, precision parameters (priors) are recalibrated without being anchored to
+    current sensory evidence. Hallucinatory content = the generative model running
+    unconstrained, testing hypotheses against internally-generated data. Aminergic
+    suppression (NE, 5-HT near zero) = commit gate fully collapsed. Cholinergic
+    dominance = high internal noise, enabling exploration of prior space.
+    REE analog: the REM sub-phase is the precision recalibration phase.
+    (1) z_beta recalibration: z_beta (NE analog, MECH-059) is driven toward a
+    principled low-arousal prior. The precision weights that z_beta modulates
+    (E3 prediction error gains) are reset toward a non-biased baseline before
+    waking resumes.
+    (2) z_delta hyperparameter reset: the deepest latent (z_delta, encoding
+    long-horizon priors) is recalibrated via E1 running without sensory anchoring.
+    E1's LSTM explores its prior distribution unconstrained by current observation.
+    (3) Commit gate fully suppressed: ARC-016 running_variance threshold is
+    effectively infinite during REM -- no commitment can occur. All E3 activity
+    is hypothesis-tagged (MECH-094) and does not accumulate in the residue field.
+    (4) World model hypothesis testing: E1 generates unconstrained world-model
+    trajectories (the REE equivalent of dream content), testing whether the
+    current world model produces coherent self-consistent trajectories. Incoherent
+    predictions reveal model limitations to be addressed on waking.
+    V3 static setpoints to be measured (for V4 dynamic calibration):
+    commitment_threshold baseline (0.40 -- what does normal waking operation look
+    like?), z_beta EMA alpha (0.3 -- what is the natural arousal time constant?),
+    E1 prediction_horizon (20 -- what horizon does E1 naturally explore in REM?).
+    Critical constraint: MECH-094 hypothesis tag is essential. REM-generated
+    trajectories must be tagged as hypothesis, not real-action. If the tag fails
+    during REM, hallucinatory content accumulates in the residue field as if it
+    were real experience -- the psychosis mechanism (MECH-094 notes).
+    Registered 2026-03-23. V4 scope.
+
+- id: MECH-124
+  title: "When harm-trace salience dominates offline replay content, consolidation selectively amplifies harm predictions, progressively contracting option space -- a distinct failure mode from Q-021 behavioral flatness."
+  claim_type: mechanism_hypothesis
+  subject: sleep.consolidation_mediated_option_contraction
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-030
+    - MECH-120
+    - MECH-121
+    - MECH-092
+    - MECH-094
+    - Q-021
+  location: docs/architecture/sleep/offline_phases.md#mech-124
+  source:
+    - evidence/literature/targeted_review_connectome_mech_030/entries/walker_stickgold_2004/summary.md
+  notes: >
+    Biological basis: Walker & Stickgold 2004. Sleep consolidation is not neutral --
+    it amplifies whatever dominates replay content. Fear-conditioned traces are
+    selectively strengthened during REM. In PTSD, REM intrusions re-consolidate
+    the fear trace repeatedly: nightmare replay -> re-consolidation -> stronger fear
+    -> more REM intrusion. Extinction fails because consolidation of the fear trace
+    outpaces extinction of it. The consolidation loop is self-amplifying.
+    REE failure mode (distinct from Q-021):
+    Q-021: behavioral flatness from pure-avoidance TRAINING (no approach signal from
+    the start -- gradient minimum is quiescence). MECH-124: behavioral flatness
+    from consolidation DYNAMICS despite approach signals being present in training.
+    Mechanism: (1) Harm salience > goal salience in residue field -> SWR replay
+    (MECH-121) is dominated by harm traces. (2) Consolidation selectively strengthens
+    dominant replay content -> harm predictions in E1 and E3 amplified. (3) SWS
+    denoising (MECH-120) cannot distinguish goal traces from noise if they are
+    low-salience -> goal representations downscaled. (4) Weakened goal drive (z_goal
+    decay not counteracted by consolidation) -> approach behavior declines. (5) Fewer
+    positive experiences -> even less goal representation -> self-amplifying loop.
+    The loop is broken only by: balanced replay scheduling (MECH-121 must include
+    goal-directed traces proportionally), MECH-094 tag protecting harm traces from
+    over-amplification, and the go mechanism (ARC-030, MECH-112/116/117) providing
+    sufficient approach signal to counteract harm dominance.
+    Clinical analog: PTSD (trauma loop), treatment-resistant depression (learned
+    helplessness + sleep-mediated entrenchment), avolition in schizophrenia where
+    consolidation entrenchment amplifies negative predictions.
+    Distinct from Q-021 but related: Q-021 is the training-time failure (static);
+    MECH-124 is the consolidation-time failure (dynamic, requires sleep architecture).
+    An agent with sufficient approach drives (INV-034) can still fall into MECH-124
+    if its consolidation system is imbalanced. Prevention requires balanced replay
+    content scheduling as an explicit architectural constraint on MECH-121.
+    V3 implication: even before V4 sleep implementation, V3 must ensure that the
+    residue field and goal representation (z_goal) are balanced in salience. If
+    z_goal salience is systematically lower than harm salience, a V4 consolidation
+    system will amplify this imbalance. EXQ-074b and EXQ-076 provide early evidence
+    on whether z_goal can achieve competitive salience with harm traces.
+    Registered 2026-03-23. V4 scope.
