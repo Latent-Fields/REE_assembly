@@ -185,6 +185,12 @@
     "title": "HippocampalModule navigates z_self trajectory space (deliberation sequences) in addition to z_world action-object space O, enabling the agent to plan its own deliberation.",
     "type": "architecture_hypothesis"
   },
+  "ARC-032": {
+    "status": "candidate",
+    "subject": "architecture.theta_frontal_hippocampal_goal",
+    "title": "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation.",
+    "type": "architecture_hypothesis"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -531,6 +537,12 @@
     "status": "candidate",
     "subject": "epistemic.second_order_self_monitoring",
     "title": "REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics.",
+    "type": "invariant"
+  },
+  "INV-034": {
+    "status": "candidate",
+    "subject": "ethical_agency.goal_maintenance_necessary",
+    "title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -1223,6 +1235,30 @@
     "title": "Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff blurs the simulation/real-action boundary at the self-model level.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-116": {
+    "status": "candidate",
+    "subject": "e1.lstm_goal_working_memory",
+    "title": "E1's LSTM hidden state serves as the working memory substrate for goal representation; when conditioned on z_goal_latent, E1 maintains goal context recurrently across steps without requiring ongoing benefit signals.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-117": {
+    "status": "candidate",
+    "subject": "wanting.liking_trajectory_dissociation",
+    "title": "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-118": {
+    "status": "candidate",
+    "subject": "self_maintenance.hopfield_familiarity_signal",
+    "title": "Hopfield-style pattern familiarity of z_self states (stability against stored self-state memories) is a distinct self-maintenance signal from D_eff coherence.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-119": {
+    "status": "candidate",
+    "subject": "self_maintenance.coherent_unfamiliar_pathology",
+    "title": "Low D_eff combined with low Hopfield stability (coherent but unfamiliar self-state) is a distinct pathological regime from high-D_eff dispersion.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1347,6 +1383,12 @@
     "status": "open",
     "subject": "drive.behavioral_flatness_under_pure_avoidance",
     "title": "Does training with harm-avoidance signals only, without explicit approach drives, produce behavioral flatness (quiescent degenerate policy)?",
+    "type": "open_question"
+  },
+  "Q-022": {
+    "status": "open",
+    "subject": "self_maintenance.deff_stability_dissociation",
+    "title": "Can D_eff (z_self participation ratio, coherence) and Hopfield pattern stability (z_self familiarity) dissociate in the REE architecture?",
     "type": "open_question"
   },
   "SD-001": {

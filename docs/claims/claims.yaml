@@ -3407,18 +3407,25 @@
     behavior measurable as reduced policy entropy and action rate over training. Secondary
     question: what minimum set of approach signals is sufficient to prevent behavioral collapse?
     Added to evidence backlog as EVB-0061. Registered 2026-03-22.
-    Clinical analogues (from literature): Schizophrenia negative symptoms (avolition) = impaired
-    wanting with intact liking; reduced reward-seeking with preserved/elevated loss-avoidance;
+    TWO INDEPENDENT PATHWAYS TO BEHAVIORAL FLATNESS (registered 2026-03-23):
+    Pathway A (drive absence -- ARC-030 route): No Go drive -> only avoidance gradient ->
+    quiescent policy is optimal -> behavioral flatness. Tested by EXQ-072.
+    Pathway B (self-incoherence-gated commit suppression -- MECH-113/114 route): Go and NoGo
+    drives both present, but high D_eff -> MECH-114 suppresses commitment -> agent cannot
+    act even when approach drive is active -> behavioral flatness through self-model failure.
+    These pathways are independent and dissociable: an agent can PASS EXQ-072 (Pathway A
+    resolved) but still exhibit flatness under Pathway B if self-model is disrupted. A
+    definitive test of Q-021 requires testing both pathways. Pathway B experiment not yet
+    written; will follow EXQ-075 (MECH-113) if PASS. The two pathways predict different
+    signatures: Pathway A flatness is present even at low D_eff (coherent agent, just no
+    goal drive); Pathway B flatness occurs despite Go drive being present, colocated with
+    high D_eff. Clinical analogues (from literature): Schizophrenia negative symptoms
+    (avolition) = impaired wanting with intact liking -- maps to Pathway A. Dissociative
+    states where action is suppressed despite motivation -- maps more to Pathway B.
     Barch & Dowd 2010 (DOI 10.1093/schbul/sbq068), Culbreth et al. 2023 (DOI
     10.1017/S0033291722003993). Depression = locked-in avoidant brain; allostatic self-efficacy
     failure -> learned helplessness; Stephan et al. 2016 (DOI 10.3389/fnhum.2016.00550),
-    Barrett et al. 2016 (DOI 10.1098/rstb.2016.0011). Behavioral flatness is not speculative
-    -- it has documented clinical instantiations. Mechanistic path: pure-avoidance training ->
-    no approach gradient -> quiescent policy (low entropy, low action rate, near-zero goal
-    visits) -- parallels avolition in schizophrenia.
-    Experiment design: two-agent ablation + single-drive variants (MECH-111 only, MECH-112
-    only, MECH-113 only) to identify minimum sufficient approach signal. Metrics: policy
-    entropy, action rate, goal-state visit frequency, harm-state visit frequency.
+    Barrett et al. 2016 (DOI 10.1098/rstb.2016.0011).
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
 
 # Registered 2026-03-15 — NC-02 through NC-03 E1/E2 constraint propagation cluster
@@ -5100,7 +5107,8 @@
     blanket resistance -- self-maintenance emerges from minimising surprise about self-generated
     states, framing self-coherence as a prior over blanket states rather than an explicit signal.
     Both framings are architecturally open; both need testing.
-    pending_design: framing (z_self signal vs. Markov blanket resistance). Registered 2026-03-22.
+    pending_design: framing (D_eff vs. Hopfield stability vs. Markov blanket resistance --
+    see Q-022 dissociation question). Registered 2026-03-22, updated 2026-03-23.
     Literature: Seth & Friston 2016 (Phil Trans R Soc B, DOI 10.1098/rstb.2016.0007) --
     interoceptive inference as inversion of a generative model of internal milieu; sense of
     self emerges from maintaining the model. Markov blanket framing and z_self coherence signal
@@ -5115,14 +5123,32 @@
     behavioral inhibition -> Q-021 behavioral flatness. Barrett et al. 2016 (Phil Trans R Soc
     B, DOI 10.1098/rstb.2016.0011) -- depression = locked-in brain insensitive to sensory
     context = clinical manifestation of MECH-113 failure.
-    Architecture shape: three-level implementation may be needed -- (1) reactive z_self entropy
-    monitoring, (2) allostatic anticipatory setpoint in E1/E2, (3) metacognitive self-efficacy
-    monitoring in E3 linking self-maintenance to commit threshold. Level 3 is the mechanism
-    connecting MECH-113 to Q-021.
+    Architecture shape: three-level implementation (updated 2026-03-23):
+    Level 1 (reactive): z_self D_eff monitoring + self-maintenance loss. IMPLEMENTED in
+    agent.py (compute_z_self_d_eff, compute_self_maintenance_loss). TESTED by EXQ-075.
+    Level 2 (allostatic anticipatory): E2 monitors predicted z_self D_eff over rollout
+    horizon and generates anticipatory setpoint signal -- "I am heading toward self-model
+    incoherence in N steps." NOT IMPLEMENTED. GATED BY ARC-031 (V4): Level 2 requires
+    hippocampal z_self trajectory navigation to plan deliberation sequences that maintain
+    low D_eff. Do not attempt Level 2 experiments until ARC-031 waking-architecture
+    prerequisites (MECH-113/114 EXQ-075/076 PASS) are met and V4 substrate exists.
+    Level 3 (metacognitive self-efficacy): E3 models its own regulatory capacity; chronic
+    self-incoherence + low regulatory belief = learned helplessness -> Q-021 Pathway B.
+    Level 3 is also V4 scope; partially approximated by MECH-114 D_eff commit gate, but
+    the full metacognitive framing requires richer self-model machinery.
     D_eff framing (epistemic-mapping): D_eff = (sum|z_self|)^2 / sum(z_self^2) -- participation
-    ratio measuring effective dimensionality. Implemented in EXQ-075. Hopfield stability
-    (familiarity of z_self patterns relative to stored LRU memory) is a complementary framing
-    not yet tested experimentally. Both framings are candidates for INV-033 implementation.
+    ratio measuring effective dimensionality. Implemented in EXQ-075.
+    Hopfield stability framing: familiarity of z_self patterns relative to stored LRU memory.
+    NOT tested. Creates dependent claims MECH-116 (familiarity signal) and MECH-117
+    (coherent-but-unfamiliar pathology = low D_eff + low stability, distinct from high D_eff
+    dispersion). See Q-022 (dissociation question: can D_eff and Hopfield stability dissociate?).
+    Markov blanket framing: self-maintenance as minimising surprise about self-generated states
+    (FEP formulation). Unoperationalised as of 2026-03-23. Dissociation question: can an agent
+    have low D_eff (coherent) but high FEP self-surprise (predictable self-model but surprising
+    self-generated states)? If yes, Markov blanket and D_eff framings are testing different
+    things and MECH-113 should eventually be split. Dissociation test registered as EVB-0069.
+    EXQ-075 PASS is necessary but not sufficient for MECH-113: it confirms Level 1 D_eff
+    reactive homeostasis only. Levels 2 and 3 and the Hopfield/Markov framings remain open.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
 
 - id: MECH-114
@@ -5201,3 +5227,303 @@
     of residue accumulation from uncertain-tag events?). Distinct from current
     hypothesis_tag: bool -- may require hypothesis_tag: float [0,1] in a future version.
     Registered 2026-03-23.
+
+- id: MECH-118
+  title: "Hopfield-style pattern familiarity of z_self states (stability against stored self-state memories) is a distinct self-maintenance signal from D_eff coherence."
+  claim_type: mechanism_hypothesis
+  subject: self_maintenance.hopfield_familiarity_signal
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-113
+    - INV-033
+    - SD-005
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-118
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+    - evidence/planning/literature_synthesis_2026-03-23_self_monitoring_dissociation.md
+  notes: >
+    D_eff (MECH-113) measures coherence -- how focused z_self is across its dimensions.
+    MECH-116 adds a complementary signal: familiarity -- whether the current z_self pattern
+    matches any previously stored self-state. Both signals are needed for full self-monitoring
+    because they can dissociate (see Q-022): a focused (low D_eff) self-model can be in an
+    unfamiliar configuration, and a dispersed (high D_eff) self-model can resemble past
+    dispersed states. Biological analog: hippocampal pattern completion (familiarity/recognition)
+    operates independently of representational coherence (binding quality).
+    Literature support: Yonelinas 2001 (PMID 11571028, DOI 10.1098/rstb.2001.0939) canonical
+    dual-process review -- familiarity (signal-detection, perirhinal cortex) and recollection
+    (threshold, hippocampus-dependent) are doubly dissociable. Maps to MECH-116 Hopfield
+    familiarity vs MECH-113 D_eff. Aggleton et al. 2005 (PMID 16154457, DOI
+    10.1016/j.neuropsychologia.2005.01.019): patient KN -- 45% bilateral hippocampal volume
+    loss, near-normal perirhinal cortex; near-normal familiarity, severely impaired recollection.
+    Clearest existence proof that familiarity survives without the hippocampal substrate.
+    Staresina et al. 2012 (PMID 22751037, DOI 10.1038/nn.3154): simultaneous fMRI + intracranial
+    EEG -- familiarity (perirhinal) and recollection (hippocampal) process on distinct time bases,
+    providing a temporal dissociation testable in z_self monitoring timecourses.
+    D_eff and familiarity are orthogonal by construction: Rigotti et al. 2013 (PMID 27534393,
+    DOI 10.1038/nature12160) -- participation ratio measures capacity/ambient dimensionality,
+    not proximity to a stored attractor. High D_eff + no familiar states (novel high-D space)
+    and low D_eff + very familiar states (settled attractor) are both possible.
+    Implementation source: epistemic-mapping repo (dgolden), Epistemic_monitor.py. HopfieldMemory
+    class: 64-slot LRU memory, modern Hopfield network (Ramsauer et al. 2021), attention-based
+    retrieval, stability = max(softmax(beta * similarities)). At each step: store z_self;
+    retrieve similarity to stored set; high stability = familiar self-state.
+    Combined certainty (from epistemic-mapping): 0.4*(1-entropy/10) + 0.3*(1-D_eff/n) +
+    0.3*stability. This multi-framing combined score is a candidate INV-033 implementation
+    that is sensitive to both coherence (D_eff) and familiarity (stability) failure modes.
+    pending_design: integration with REEAgent -- HopfieldMemory would need to be instantiated
+    in agent.py and updated at each z_self step. Memory slots are LRU-managed; window size
+    is a hyperparameter. Registered 2026-03-23.
+
+- id: MECH-119
+  title: "Low D_eff combined with low Hopfield stability (coherent but unfamiliar self-state) is a distinct pathological regime from high-D_eff dispersion."
+  claim_type: mechanism_hypothesis
+  subject: self_maintenance.coherent_unfamiliar_pathology
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-113
+    - MECH-118
+    - Q-022
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-119
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+    - evidence/planning/literature_synthesis_2026-03-23_self_monitoring_dissociation.md
+  notes: >
+    D_eff monitoring alone is insufficient because it cannot detect the coherent-but-unfamiliar
+    regime: an agent with low D_eff (focused self-representation) and low Hopfield stability
+    (no stored self-state resembling current z_self) is in a state that appears confident by
+    D_eff metrics but is epistemically dangerous because the agent has no prior experience to
+    calibrate against. This is the hyperarousal analog: high apparent self-confidence but in
+    uncharted internal territory.
+    Clinical signature: depersonalisation/derealisation with preserved cognitive clarity.
+    The patient can think clearly (coherent self-model, low entropy) but does not recognise
+    their own mental states as familiar (low pattern familiarity). Distinct from confusion
+    (high D_eff, dispersed self-model) and distinct from normal operation (low D_eff, high
+    familiarity). Three regimes form a diagnostic space:
+    (1) Normal: low D_eff, high stability (coherent + familiar)
+    (2) Dispersed: high D_eff, low stability (confused -- classic MECH-113 failure)
+    (3) Hyperarousal: low D_eff, low stability (coherent but in novel territory)
+    Regime 3 is undetectable by D_eff-only monitoring. A self-maintenance system that only
+    penalises high D_eff would miss Regime 3 entirely and might even reward the agent for
+    being "coherent" while it is in a pathological state.
+    Mechanistic consequence: the self-maintenance loss (MECH-113) and the commit gate
+    (MECH-114) should incorporate BOTH D_eff and Hopfield stability to span all three regimes.
+    Clinical literature support: Sierra & David 2011 (PMID 21087873, DOI
+    10.1016/j.concog.2010.10.018) -- depersonalization = increased prefrontal inhibition of
+    insula/limbic. Self-representation structurally intact (low D_eff, coherent), emotional
+    familiarity signal absent (low Hopfield stability), Markov blanket intact. This is the
+    existence proof that Regime 3 (coherent + unfamiliar) occurs clinically. Paul et al. 2019
+    (PMID 31103548, DOI 10.1016/j.bpsc.2019.03.007): reduced EBA-to-DMN connectivity predicts
+    depersonalization in depression -- body familiarity signal (EBA) severed from self-model
+    integrity (DMN). Harricharan et al. 2017 (PMID 28911803, DOI
+    10.1016/j.neuropsychologia.2017.09.010): PTSD dissociative subtype -- self-model tightly
+    organised around threat (low D_eff on danger dimensions, intact blanket) but body
+    familiarity suppressed (perirhinal-interoceptive decoupling). All three framings dissociate
+    simultaneously. Milliere 2017 (PMID 28588463, DOI 10.3389/fnhum.2017.00245): drug-induced
+    ego dissolution -- dissociatives produce "coherent but detached" (low D_eff, low familiarity,
+    disrupted blanket); psychedelics produce high D_eff with novel unfamiliar states; kappa-opioid
+    agonists produce dysphoric unfamiliarity with intact self-location. Three drug classes
+    simultaneously dissociate all three REE self-monitoring framings. Sierra et al. 2002
+    (PMID 11909918, DOI 10.1136/jnnp.72.4.530): lesion analysis -- depersonalization (parietal
+    Markov blanket disruption) and derealization (Hopfield attractor signal stripped of emotional
+    salience) have distinct neural signatures. D_eff of cognitive representations may be intact
+    in both.
+    pending_design: threshold geometry in (D_eff, stability) space; what combined certainty
+    score constitutes the gate condition? The epistemic-mapping combined certainty score
+    is a candidate. Gated by Q-022 (dissociation must be demonstrated experimentally before
+    designing the combined gate). Registered 2026-03-23.
+
+- id: Q-022
+  title: "Can D_eff (z_self participation ratio, coherence) and Hopfield pattern stability (z_self familiarity) dissociate in the REE architecture?"
+  claim_type: open_question
+  subject: self_maintenance.deff_stability_dissociation
+  polarity: open
+  status: open
+  depends_on:
+    - MECH-113
+    - MECH-118
+    - MECH-119
+    - SD-005
+  location: docs/architecture/approach_avoidance_symmetry.md#q-022
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+    - evidence/planning/literature_synthesis_2026-03-23_self_monitoring_dissociation.md
+  notes: >
+    Critical architectural decision question for MECH-113 and the INV-033 implementation.
+    If D_eff and Hopfield stability never dissociate (low D_eff always cooccurs with high
+    stability, high D_eff with low stability), then either metric suffices for MECH-113
+    self-monitoring -- they are converging measures of the same underlying latent quality.
+    If they dissociate, they are measuring different things and MECH-113 must eventually
+    be split into MECH-118 (familiarity) and MECH-113/D_eff (coherence) as separate
+    mechanisms, each with independent experimental support.
+    Dissociation can be tested by inducing the three regimes (see MECH-119):
+    (1) Normal training: expect low D_eff + high stability
+    (2) Noise perturbation (EXQ-075 protocol): expect high D_eff + low stability
+    (3) Structured novel perturbation: perturb z_self into a coherent but never-before-seen
+        configuration (e.g., targeted basis rotation) -- predict low D_eff + low stability
+    If Regime 3 can be induced and is distinguishable from Regime 2 on both metrics, the
+    dissociation is confirmed. This also validates MECH-119.
+    The Markov blanket framing adds a third axis: can an agent have low D_eff, high stability,
+    but high FEP self-surprise (coherent, familiar, but generating surprising self-states)?
+    This three-way dissociation question is registered as EVB-0069. It determines whether
+    D_eff, Hopfield stability, and Markov blanket resistance are measuring the same latent
+    or three independent dimensions of self-model quality.
+    Literature: The three-way dissociation has been confirmed theoretically and empirically
+    in a dedicated literature synthesis (evidence/planning/literature_synthesis_2026-03-23_
+    self_monitoring_dissociation.md). Key findings: Friston 2013 (PMID 23825119) -- Markov
+    blanket is topological/structural, defined on different mathematical objects from D_eff
+    (geometric). Parr et al. 2021 (PMID 34573730) -- memory persistence (Hopfield familiarity)
+    is independent of blanket integrity (current conditional independence). Hipolito et al.
+    2021 (PMID 33607182) -- blanket = connectivity architecture, not representation geometry.
+    Aggleton et al. 2005 (PMID 16154457) -- familiarity survives hippocampal damage
+    (familiarity vs recollection doubly dissociable). Rigotti et al. 2013 (PMID 27534393) --
+    participation ratio measures capacity, not attractor proximity: D_eff and familiarity
+    are orthogonal by construction. Result: Q-022 shifts from "is dissociation possible?" to
+    "does dissociation occur in z_self during CausalGridWorldV2?" (EVB-0069 experiment design).
+    Added to evidence backlog EVB-0069. Registered 2026-03-23.
+
+- id: MECH-116
+  title: "E1's LSTM hidden state serves as the working memory substrate for goal representation; when conditioned on z_goal_latent, E1 maintains goal context recurrently across steps without requiring ongoing benefit signals."
+  claim_type: mechanism_hypothesis
+  subject: e1.lstm_goal_working_memory
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-089
+    - MECH-112
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-116
+  source:
+    - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    E1's LSTM hidden state is the computational analog of DLPFC sustained firing during
+    delay periods and frontal-hippocampal theta coupling during goal-directed navigation.
+    When conditioned on z_goal_latent (MECH-112), E1 incorporates goal context into its
+    recurrent dynamics and maintains this context across steps without the goal needing
+    to be refreshed by ongoing benefit signals -- working memory in the functional sense.
+    Testable prediction: E1 prediction error on goal-approaching trajectory segments is
+    measurably lower when E1 is goal-conditioned vs. unconditioned (E1 predicts better
+    because it knows what it is predicting toward). Non-goal segments are unaffected.
+    Biological grounding: DLPFC neurons sustain elevated firing during delay periods in
+    delayed-response tasks (Fuster & Alexander 1971, Goldman-Rakic 1995). Frontal-
+    hippocampal theta synchronisation (Hyman et al. 2010) is the coupling mechanism:
+    frontal theta signals "navigate toward this goal" to hippocampus. In REE: E1 theta-
+    rate output (via MECH-089 ThetaBuffer) carries the goal context to E3. ARC-032
+    formalises this communication pathway.
+    Implementation: E1 receives z_goal_latent via a goal_input_proj linear layer that
+    projects [z_self, z_world, z_goal] down to 64-dim before the LSTM -- preserving
+    all existing LSTM dimensions while adding goal conditioning. When e1_goal_conditioned
+    is False, z_goal input is omitted (backward compatible).
+    Note on E1 frontal analogy: the frontal lobe also includes OFC (expected value),
+    ACC (goal PE, conflict monitoring), vmPFC (decision value), premotor/SMA (sequence
+    planning). These additional frontal functions may require further E1 specialisation
+    in V4 beyond goal working memory. Registered 2026-03-23. Experiment: EXQ-076.
+
+- id: MECH-117
+  title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
+  claim_type: mechanism_hypothesis
+  subject: wanting.liking_trajectory_dissociation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-112
+    - MECH-116
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-117
+  source:
+    - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    Wanting (incentive salience, Berridge 1996) and liking (hedonic impact) are
+    dissociable at the neural level: wanting is mesolimbic dopamine (NAc core, VTA),
+    liking is mu-opioid (NAc shell hedonic hotspots). Addicts can want drugs they no
+    longer like. Schizophrenia negative symptoms show intact liking with impaired
+    wanting (Barch & Dowd 2010, Culbreth et al. 2023).
+    In REE trajectory scoring: liking (benefit_eval_head) trains on benefit_exposure
+    at receipt; learns "what does z_world look like when benefit is occurring?"; sharp
+    proximity spike near resource cell; redirects rapidly when resource moves.
+    Wanting (z_goal_latent distance): goal_proximity = 1/(1 + MSE(z_world, z_goal));
+    continuous spatial gradient rising as agent approaches goal; persists after resource
+    relocation because z_goal decays slowly (half-life ~140 steps at decay_goal=0.005);
+    incentive salience outlasts hedonic change for O(1/decay_goal) steps.
+    The gradient SHAPE distinguishes them: wanting rises smoothly from 5+ steps away;
+    liking spikes sharply only very near receipt. Resource relocation (L1->L2) at step
+    1500: wanting maintains approach toward L1 for >=25% of next 200 steps; liking
+    redirects to L2 within ~10 steps.
+    Architecture implication: benefit_eval_head is a liking predictor. True wanting
+    requires z_goal_latent. Both signals serve different roles: wanting shapes approach
+    trajectories prospectively; liking calibrates z_goal via benefit_exposure updates.
+    Registered 2026-03-23. Experiment: EXQ-074b.
+
+- id: ARC-032
+  title: "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation."
+  claim_type: architecture_hypothesis
+  subject: architecture.theta_frontal_hippocampal_goal
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-089
+    - MECH-116
+  location: docs/architecture/approach_avoidance_symmetry.md#arc-032
+  source:
+    - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    Frontal-hippocampal theta synchronisation (Hyman et al. 2010, Benchenane et al.
+    2010) is the biological mechanism by which the frontal goal representation is
+    communicated to hippocampal navigation. PFC theta phase-locks to hippocampal theta
+    during goal-directed navigation; without this coupling, hippocampal navigation
+    becomes undirected.
+    In REE: E1 (frontal working memory, MECH-116) maintains z_goal context in its LSTM
+    hidden state. E1 output is theta-packaged via MECH-089 ThetaBuffer before reaching
+    E3 (hippocampal navigator). The theta channel is therefore the goal communication
+    pathway. This is architecturally appropriate: goal context is a slow signal
+    (maintained across many fast steps), consistent with theta-rate delivery.
+    Testable prediction: if E1 output bypasses the theta buffer (direct fast connection),
+    goal maintenance quality degrades -- shorter persistence, noisier goal-proximity
+    scores. The theta packaging provides smoothing that stabilises z_goal influence.
+    Corollary: ARC-032 is why MECH-116 does not require a separate communication channel
+    for goal context -- the existing theta architecture (MECH-089, SD-006, EXQ-052b)
+    provides the right channel. No new wiring needed beyond E1 goal conditioning.
+    Note: ARC-032 is currently tested jointly with MECH-116 in EXQ-076. A separate
+    theta-bypass ablation would be needed to isolate ARC-032 specifically.
+    Registered 2026-03-23. Experiment: EXQ-076 (joint with MECH-116).
+
+- id: INV-034
+  title: "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance."
+  claim_type: invariant
+  subject: ethical_agency.goal_maintenance_necessary
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-032
+    - ARC-030
+    - MECH-112
+    - Q-021
+  location: docs/architecture/approach_avoidance_symmetry.md#inv-034
+  source:
+    - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  notes: >
+    INV-032 established that moral agency requires both approach and avoidance drives;
+    pure avoidance produces a degenerate risk manager. INV-034 sharpens this: the
+    required approach drive must be prospective and persistent (wanting, MECH-112/116),
+    not merely reactive hedonic response (liking). An agent with intact liking but
+    absent wanting is stimulus-response, not goal-directed -- precisely the schizophrenia
+    negative symptom profile: intact pleasure when things happen, absent drive to make
+    things happen (Culbreth et al. 2023).
+    Ethical agency in REE requires: (1) harm-avoidance (SD-010, MECH-095, ARC-016);
+    (2) goal-directed approach (MECH-112, MECH-116, ARC-030). Both are necessary because
+    harm-avoidance alone produces quiescence (Q-021) -- the minimum-action policy that
+    causes no harm because it does nothing. Quiescence is not ethical agency; it is
+    paralysis. The D1/D2 commit threshold (ARC-030) = balance between approach value
+    (D1/wanting) and harm cost (D2). An agent with no D1 signal cannot commit through
+    positive drive; it can only commit by default when harm is absent. This is not
+    decision-making.
+    Note: INV-034 does not claim liking is unnecessary -- liking (benefit_eval_head) is
+    the learning signal that calibrates z_goal (wanting). The claim is about what is
+    necessary for genuine agentive commitment, not about computational signals involved.
+    Clinical grounding: avolition in schizophrenia, anhedonic depression, amotivation
+    syndromes all demonstrate that harm-avoidance systems remain intact while agency
+    collapses. REE must avoid this architecture failure mode. Registered 2026-03-23.
