@@ -1,0 +1,31 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "n_agent_events_goal_present": 889.5,
+    "n_agent_events_goal_absent": 889.5,
+    "calibration_gap_goal_present": 0.1537285735139375,
+    "calibration_gap_goal_absent": 0.1537285735139375,
+    "delta_n_agent_events": 0.0,
+    "delta_calibration_gap": 0.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-085 -- MECH-071 Goal-Directed Harm Calibration\n\n**Status:** FAIL\n**Claims:** MECH-071, INV-034\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 300 eps  **Eval:** 50 eps\n**Design note:** EXQ-079 redesign -- z_goal substrate enables agent-caused events.\n\n## Pre-Registered Thresholds\n\nC1: n_agent_events_goal_present >= 15\nC2: calibration_gap_goal_present > 0.02\nC3: n_agent_events_goal_present > n_agent_events_goal_absent * 1.5\nC4: no fatal errors\n\n## Results\n\n| Condition | n_agent_events | calibration_gap_agent |\n|-----------|---------------|----------------------|\n| GOAL_PRESENT | 889.5 | 0.1537 |\n| GOAL_ABSENT  | 889.5 | 0.1537 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: n_agent_goal >= 15 | PASS | 889.5 |\n| C2: cal_gap_agent > 0.02 | PASS | 0.1537 |\n| C3: goal > base * 1.5 | FAIL | 889.5 vs 889.5 |\n| C4: no fatal errors | PASS | -- |\n\nCriteria met: 3/4 -> **FAIL**\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: n_agent=907 cal_gap=0.1673 train_agent=5389\n  seed=7: n_agent=872 cal_gap=0.1402 train_agent=5479\n\nGOAL_ABSENT:\n  seed=42: n_agent=907 cal_gap=0.1673\n  seed=7: n_agent=872 cal_gap=0.1402\n\n## Failure Notes\n\n- C3 FAIL: goal=889.5 not > base=889.5 * 1.5 (goal condition not reliably increasing agent events)\n",
+  "claim_ids": [
+    "MECH-071",
+    "INV-034"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085_mech071_goal_directed_calibration",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T185618Z",
+  "claim": "MECH-071",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
