@@ -179,6 +179,12 @@
     "title": "The three BG-like loops require symmetric Go (approach) and NoGo (avoidance) sub-channels; pure NoGo architecture produces behavioral flatness.",
     "type": "architecture_hypothesis"
   },
+  "ARC-031": {
+    "status": "candidate",
+    "subject": "hippocampal.z_self_trajectory_navigation",
+    "title": "HippocampalModule navigates z_self trajectory space (deliberation sequences) in addition to z_world action-object space O, enabling the agent to plan its own deliberation.",
+    "type": "architecture_hypothesis"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -519,6 +525,12 @@
     "status": "candidate",
     "subject": "agency.approach_avoidance_both_necessary",
     "title": "Moral agency requires both approach and avoidance drives; pure avoidance produces a degenerate risk manager, not an ethical agent.",
+    "type": "invariant"
+  },
+  "INV-033": {
+    "status": "candidate",
+    "subject": "epistemic.second_order_self_monitoring",
+    "title": "REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -1197,6 +1209,18 @@
     "status": "candidate",
     "subject": "drive.homeostatic_self_coherence",
     "title": "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-114": {
+    "status": "candidate",
+    "subject": "commit_gate.z_self_d_eff_gate",
+    "title": "D_eff (z_self participation ratio) is a necessary co-condition for commitment, alongside world-side running_variance; both must be in range before irreversible action.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-115": {
+    "status": "candidate",
+    "subject": "hypothesis_tag.z_self_coherence_dependency",
+    "title": "Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff blurs the simulation/real-action boundary at the self-model level.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

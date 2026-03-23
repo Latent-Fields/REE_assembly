@@ -2797,6 +2797,43 @@
     architectural feature: a system that avoids all harm by doing nothing has satisfied every
     avoidance criterion while failing as an agent. Registered 2026-03-22.
 
+- id: INV-033
+  title: "REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics."
+  claim_type: invariant
+  subject: epistemic.second_order_self_monitoring
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-030
+    - INV-032
+    - ARC-016
+    - MECH-113
+  location: docs/architecture/approach_avoidance_symmetry.md#inv-033
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+  notes: >
+    REE's first-order error signals (E3 running_variance over z_world, E1 prediction error,
+    E2 motor-sensory error) all track prediction accuracy about external or transitional
+    states. None track the reliability of the self-model itself. Second-order access is
+    the agent knowing how much to trust its own current z_self -- not just what z_self
+    predicts, but whether z_self is in a state coherent enough to be trusted.
+    This is architecturally necessary because: (1) world confidence and self-confidence
+    are dissociable -- accurate world predictions coexist with an incoherent self-model;
+    (2) commitment involves irreversible self-engagement, requiring reliable self-knowledge
+    as a precondition; (3) the hypothesis tag (MECH-094) presupposes a coherent self that
+    can distinguish simulation from real action -- when self-model is dispersed, the tag
+    itself becomes unreliable (MECH-115). This is not an optimization detail: it is
+    constitutive of the ethical architecture. Candidate mechanism: D_eff (participation
+    ratio) monitoring of z_self (MECH-113/MECH-114). Hopfield stability (familiarity of
+    z_self patterns vs stored states) is a complementary framing from epistemic-mapping
+    repo (dgolden): stability = max softmax(beta * similarities) over 64-slot LRU memory.
+    Combined certainty = 0.4*(1-entropy/10) + 0.3*(1-D_eff/hidden_size) + 0.3*stability
+    provides a richer multi-framing implementation. The philosophical grounding is in
+    Daniel's unpublished Synthese paper (Philosophy repo): ethical agency requires the
+    agent to model its own epistemic state as a precondition for responsible action.
+    Knowing one is not sure is not merely useful -- it is required for the hypothesis
+    tag to be meaningful. Registered 2026-03-23.
+
 - id: ARC-025
   title: "Three-engine (E1/E2/E3) architecture is irreducible; no engine can be collapsed into another."
   claim_type: architecture_hypothesis
@@ -4459,6 +4496,52 @@
     valence) and closes the ARC-016 precision-to-behavior wiring gap.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
 
+- id: ARC-031
+  title: "HippocampalModule navigates z_self trajectory space (deliberation sequences) in addition to z_world action-object space O, enabling the agent to plan its own deliberation."
+  claim_type: architecture_hypothesis
+  subject: hippocampal.z_self_trajectory_navigation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - SD-004
+    - MECH-113
+    - MECH-114
+    - MECH-092
+    - ARC-028
+    - INV-033
+  location: docs/architecture/approach_avoidance_symmetry.md#arc-031
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+  notes: >
+    Current HippocampalModule (SD-004 / Q-020 resolved) navigates action-object space O
+    in the z_world domain -- it maps and plans through the external world. ARC-031 extends
+    this to z_self trajectory space: planned sequences of internal self-state transitions
+    constituting deliberation, attention-shifting, or rumination. A z_self trajectory
+    encodes "I will first resolve uncertainty in domain X (shift from high to low D_eff),
+    then attend to Y, then commit." E3 evaluates these trajectories by self-coherence cost,
+    hypothesis-tag integrity cost, and self-maintenance cost -- not harm cost.
+    Biological basis: cognitive map literature shows hippocampal place/grid cells represent
+    not just spatial location but position in any continuous abstract space. Behrens et al.
+    2018 (Neuron, DOI 10.1016/j.neuron.2018.09.040): grid/place cell algorithms map
+    social cognition and conceptual structure -- navigation algorithms apply to abstract
+    "thought space." Schapiro et al. 2017 (J Cogn Neurosci, DOI 10.1162/jocn_a_01111):
+    hippocampal representations encode temporal sequences in abstract domains.
+    Connection to ARC-028 (hippocampal->BG completion coupling): if hippocampus generates
+    both external and deliberation trajectory proposals, the BG completion signal fires on
+    BOTH action completion and deliberation completion. ARC-031 extends the completion
+    coupling to include internal cognitive closure events.
+    MECH-113 D_eff monitoring is the navigation PREREQUISITE: hippocampal self-navigation
+    is only meaningful if z_self is coherent enough to define a stable navigable space.
+    High D_eff = dispersed self-model = no reliable position in z_self space = navigation
+    degenerates. MECH-114 D_eff commit gate must be in place before ARC-031 is testable.
+    MECH-092 offline replay extended to z_self trajectories: during quiescent E3 cycles,
+    consolidation of deliberation sequences (not just world-action sequences) occurs.
+    V4 scope: requires waking architecture (EXQ-072..075) validated before implementation.
+    See also sleep mechanisms (SWR consolidation of place-reward associations -- the
+    self-trajectory analog would be deliberation-outcome associations consolidated in sleep).
+    Registered 2026-03-23.
+
 - id: ARC-027
   title: "Harm stream runs as a parallel thalamic pathway independent of world latent space."
   claim_type: architectural_commitment
@@ -5036,4 +5119,85 @@
     monitoring, (2) allostatic anticipatory setpoint in E1/E2, (3) metacognitive self-efficacy
     monitoring in E3 linking self-maintenance to commit threshold. Level 3 is the mechanism
     connecting MECH-113 to Q-021.
+    D_eff framing (epistemic-mapping): D_eff = (sum|z_self|)^2 / sum(z_self^2) -- participation
+    ratio measuring effective dimensionality. Implemented in EXQ-075. Hopfield stability
+    (familiarity of z_self patterns relative to stored LRU memory) is a complementary framing
+    not yet tested experimentally. Both framings are candidates for INV-033 implementation.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
+- id: MECH-114
+  title: "D_eff (z_self participation ratio) is a necessary co-condition for commitment, alongside world-side running_variance; both must be in range before irreversible action."
+  claim_type: mechanism_hypothesis
+  subject: commit_gate.z_self_d_eff_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-016
+    - MECH-113
+    - INV-033
+    - SD-005
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-114
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+  notes: >
+    Current ARC-016 commit condition: running_variance < commit_threshold (world-side confidence).
+    MECH-114 extends to an AND condition: running_variance < commit_threshold AND
+    d_eff < d_eff_threshold (self-side coherence). These are independent signals -- an agent
+    can have accurate world predictions (low running_variance) while having an incoherent
+    self-model (high D_eff). MECH-114 prevents commitment in this dissociated case.
+    Biological motivation: decision to commit to irreversible action requires both knowledge
+    of what will happen (world confidence) and knowledge of what one is doing (self-coherence).
+    Acting without self-coherence is analogous to acting under dissociation -- the agent
+    cannot be held responsible for an action it did not, in some sense, knowingly perform.
+    Threshold calibration: EXQ-075 provides baseline D_eff values (pre-perturbation ~1.5x
+    target) that can be used to set d_eff_threshold. A reasonable initial value is
+    d_eff_threshold = d_eff_baseline * 1.5 (same as MECH-113 homeostatic target).
+    Implementation: E3TrajectorySelector.select() checks both running_variance and
+    current d_eff before setting committed=True. REEAgent.compute_z_self_d_eff() provides
+    the D_eff value at each step.
+    EXQ-075 is the prerequisite: must confirm D_eff monitoring works before wiring into
+    commit gate. Follow-on experiment: EXQ-076 (MECH-114 D_eff commit gating -- does
+    D_eff gate reduce false commitment under self-model perturbation?).
+    pending_design: threshold value and how to expose d_eff to E3 commit logic (currently
+    computed in REEAgent but not passed to E3TrajectorySelector.select()). Registered 2026-03-23.
+
+- id: MECH-115
+  title: "Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff blurs the simulation/real-action boundary at the self-model level."
+  claim_type: mechanism_hypothesis
+  subject: hypothesis_tag.z_self_coherence_dependency
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-094
+    - MECH-113
+    - MECH-114
+    - INV-033
+  location: docs/architecture/approach_avoidance_symmetry.md#mech-115
+  source:
+    - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
+  notes: >
+    MECH-094 (hypothesis tag = categorical phi(z) write gate) distinguishes simulated from
+    real-action content. The tag is issued by the agent to mark replay/simulation as
+    hypothesis-tagged, preventing residue accumulation from simulated harm.
+    MECH-115 identifies a failure mode distinct from MECH-094 tag LOSS (the severe
+    failure modeled as PTSD/psychosis mechanism): tag DEGRADATION due to self-model
+    incoherence. When z_self is dispersed (high D_eff), the agent cannot reliably
+    distinguish "I am simulating X" from "I am doing X" at the self-model level. The
+    tag is still issued, but its reliability as a separating signal degrades.
+    Mechanistic picture: the hypothesis tag is written by a gate conditioned on z_self
+    state. If z_self is high-D_eff (diffuse across many dimensions), the gate's input
+    representation does not clearly encode the current mode of operation. The tag becomes
+    a noisy signal -- not absent, but unreliable. This is graded, not binary.
+    Clinical analog: dissociative states where the patient performs actions and then
+    reports uncertainty about whether they "really did" those things. Not full psychosis
+    (MECH-094 tag loss), but a softening of the simulation/real boundary.
+    Connection to INV-033: MECH-115 shows WHY second-order self-monitoring (INV-033) is
+    necessary -- without it, MECH-094 cannot reliably perform its core function. The
+    hypothesis tag is not just a write gate; it is a gate that depends on self-coherence.
+    pending_design: how to implement graded tag reliability (precision weighting of tag
+    signal? confidence score appended to hypothesis_tag field? downstream discounting
+    of residue accumulation from uncertain-tag events?). Distinct from current
+    hypothesis_tag: bool -- may require hypothesis_tag: float [0,1] in a future version.
+    Registered 2026-03-23.
