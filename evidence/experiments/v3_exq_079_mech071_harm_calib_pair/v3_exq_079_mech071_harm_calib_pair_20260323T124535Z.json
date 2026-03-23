@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "calibration_gap_sharp": 0.1689174576552226,
+    "calibration_gap_smooth": 0.11234395860161753,
+    "delta_calibration_gap": 0.056573499053605064,
+    "env_gap_sharp": 0.2711481848639361,
+    "env_gap_smooth": 0.19175487265713162,
+    "approach_gap_sharp": 0.23047062281314046,
+    "approach_gap_smooth": 0.15051921342942495,
+    "mean_score_none_sharp": 0.362969239810396,
+    "mean_score_none_smooth": 0.40859904258720925,
+    "mean_score_agent_sharp": 0.5318866974656187,
+    "mean_score_agent_smooth": 0.5209430011888267,
+    "n_agent_min": 35.0,
+    "n_env_min": 16.0,
+    "n_seeds": 2.0,
+    "alpha_world_sharp": 0.9,
+    "alpha_world_smooth": 0.3,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-079 -- MECH-071 Harm Calibration Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-071\n**Decision:** hybridize\n**Seeds:** [42, 7]\n**SHARP_WORLD alpha_world:** 0.9  (SD-008)\n**SMOOTH_WORLD alpha_world:** 0.3  (baseline)\n**Warmup:** 350 eps  **Eval:** 60 eps\n\n## Pre-Registered Thresholds\n\nC1: delta_calibration_gap        > 0.015\nC2: calibration_gap_SHARP        > 0.025\nC3: calibration_gap_SMOOTH       < 0.020\nC4: per-seed SHARP > SMOOTH directionality\n\n## Results\n\n| Condition | calibration_gap | env_gap | approach_gap | mean_none | mean_agent |\n|-----------|----------------|---------|--------------|-----------|------------|\n| SHARP_WORLD  | 0.1689  | 0.2711 | 0.2305 | 0.3630 | 0.5319 |\n| SMOOTH_WORLD | 0.1123 | 0.1918 | 0.1505 | 0.4086 | 0.5209 |\n\n**delta_calibration_gap (SHARP - SMOOTH): +0.0566**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: delta_calibration_gap > 0.015    | PASS | 0.0566 |\n| C2: calibration_gap_SHARP > 0.025    | PASS | 0.1689 |\n| C3: calibration_gap_SMOOTH < 0.020   | FAIL | 0.1123 |\n| C4: per-seed SHARP > SMOOTH           | PASS | [True, True] |\n\nCriteria met: 3/4 -> **FAIL**\n\n## Interpretation\n\nWeak positive: SHARP_WORLD shows higher calibration gap but discriminative margin vs SMOOTH_WORLD is below threshold. SD-008 helps but the mechanism is marginal -- z_world may encode some hazard structure even at alpha=0.3.\n\n## Per-Seed\n\nSHARP_WORLD:\n  seed=42: calibration_gap=0.2176 env_gap=0.3733 approach_gap=0.2745 n_agent=35 n_env=16\n  seed=7: calibration_gap=0.1203 env_gap=0.1690 approach_gap=0.1864 n_agent=37 n_env=20\n\nSMOOTH_WORLD:\n  seed=42: calibration_gap=0.1568 env_gap=0.2741 approach_gap=0.1852\n  seed=7: calibration_gap=0.0679 env_gap=0.1094 approach_gap=0.1158\n\n## Failure Notes\n\n- C3 FAIL: calibration_gap_SMOOTH=0.1123 >= 0.020 (calibration gap unexpectedly large without SD-008 -- confound present)\n",
+  "claim_ids": [
+    "MECH-071"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_079_mech071_harm_calib_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260323T124535Z",
+  "claim": "MECH-071",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_079_mech071_harm_calib_pair_20260323T124535Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
