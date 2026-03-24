@@ -1,6 +1,6 @@
 # Experiment Index: tri_loop_arbitration_policy
 
-Generated: `2026-03-24T15:11:40.856543Z`
+Generated: `2026-03-24T15:33:18.010294Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

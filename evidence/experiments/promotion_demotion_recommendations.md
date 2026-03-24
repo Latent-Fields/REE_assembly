@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-24T15:11:40.856543Z`
+Generated: `2026-03-24T15:33:18.010294Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -17,7 +17,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-092` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-095` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-095` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-096` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-097` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -167,7 +167,7 @@ Use this as the human-in-the-loop review queue.
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-03-24T15:00:00Z`
+- Last logged decision: `applied` by `user` at `2026-03-24T15:33:11.358559Z`
 - Last selected option: Hold at candidate -- resolve conflict first
 - Last rationale: V3 experiment evidence now exists but the conflicting exp entry (EXQ-047i) had two instrumentation bugs: MSE routing loss ~0 (alpha=0.9 EMA suppressed signal) and contact probe majority-class collapse. Its evidence is unreliable. EXQ-092 (047j) fixes both issues and is currently running. Hold at candidate; if EXQ-092 passes, conflict resolves in favor of MECH-095. If 047j fails on clean instrumentation, genuine lit-vs-exp disagreement requiring targeted redesign.
 
