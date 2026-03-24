@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-03-24T16:58:40.699039Z`
+Generated: `2026-03-24T18:07:56.753758Z`
 
 ## Cycle Status
 
@@ -31,12 +31,8 @@ Generated: `2026-03-24T16:58:40.699039Z`
 
 Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`.
 
-1. Thought Intake: 4 unprocessed thought(s).
+1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
-- `2026-03-14_self_world_latent_split_sd003_limitation.md`
-- `2026-03-17_sd003_benefit_signal_gap.md`
-- `2026-03-17_three_stream_reafference.md`
-- `2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md`
 1a. Thought-Adjudication Bridge: 0 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
 2. Conflict Resolution: 17 conflict item(s).
@@ -51,7 +47,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - `MECH-090` (mechanism hypothesis; control plane / commitment gated policy output; see `docs/architecture/control_plane_heartbeat.md#mech-090`); conflict_types=directional, mixed_evidence
 - `MECH-093` (mechanism hypothesis; affective / z beta e3 update rate modulation; see `docs/architecture/control_plane_heartbeat.md#mech-093`); conflict_types=directional, source_disagreement, mixed_evidence
 - `MECH-095` (mechanism hypothesis; tpj / agency detection comparator; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); conflict_types=directional, source_disagreement, mixed_evidence
-3. Architecture-Epoch Applicability: enabled=True; considered=1776; applicable=453; stale=1323; claims_with_stale=40.
+3. Architecture-Epoch Applicability: enabled=True; considered=1779; applicable=456; stale=1323; claims_with_stale=40.
 - context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=184; stale_ratio=0.995
 - `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=174; stale_ratio=0.989
@@ -115,9 +111,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 13. Evidence Dispatch: 28 high-priority proposal(s), 103 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
 - approval state: approved_for_cycle=false; latest_status=`missing`; latest_recommendation=``; latest_timestamp_utc=``
-- REE_assembly: total=50, experimental=0, literature_review=50
-- ree-experiments-lab: total=9, experimental=9, literature_review=0
-- ree-v2: total=35, experimental=35, literature_review=0
-- unknown: total=9, experimental=3, literature_review=0
+- REE_assembly: total=56, experimental=0, literature_review=50
+- ree-v3: total=47, experimental=47, literature_review=0
 14. Maintenance: 1 unlinked evidence run(s), 0 warning(s).
 - context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`

@@ -5990,3 +5990,67 @@
     the specific sub-mechanisms this claim coordinates.
     Registered 2026-03-24. V3 scope.
 
+- id: MECH-126
+  title: "Specific modes of REE state abstraction failure -- overmerge, oversplit, temporal context loss, valence mis-tagging, uncertainty collapse, and narrow representational capacity -- produce behavioral signatures that are structurally analogous to empirically described psychiatric conditions, sharing identifiable circuit-level mechanisms."
+  claim_type: mechanism_hypothesis
+  subject: state_abstraction.failure_modes_psychiatric_analogs
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-035
+    - INV-036
+    - ARC-007
+    - ARC-018
+  location: docs/architecture/state.md
+  source:
+    - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
+    - evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md
+  notes: >
+    Six failure modes identified and grounded in the literature (2026-03-24 pull):
+    (1) Overmerge -> schizophrenia/thought disorder: strongly supported. DG pattern separation
+    failure + CA3 pattern completion excess produces exactly the predicted behavioral signature
+    -- contextually inappropriate responses, intrusion of irrelevant context, source monitoring
+    failure. Evidence: PMID 35853896 (shallow cognitive map hypothesis), PMID 39567329 (Trends
+    Cog Sci 2025 attractor instability), PMID 20810471 (Tamminga hippocampal formation SZ),
+    PMID 17020747 (fronto-hippocampal temporal context monitoring).
+    (2) Valence spreading / attractor basins -> anxiety/PTSD: strongly supported. Hippocampal
+    pattern completion extends threat-tagged zone (GAD). Safety attractor cannot be entered
+    from extinction context in PTSD (deep basin). Evidence: PMID 27794690 (Kaczkurkin PTSD
+    fear generalization fMRI), PMID 31206738 (Lis 2020 generalization review), PMC 7554263
+    (contextual reinstatement MVPA PTSD), PMC 10728304 (vmPFC-hippocampus-amygdala circuit
+    review Frontiers 2023), Lissek et al. Neurosci Biobehav Rev 2021 meta-analysis.
+    (3) Temporal/contextual component loss -> ADHD: well supported. PFC-hippocampal-cerebellar
+    circuits maintain T (temporal position) and C (constraints); dysfunction degrades both,
+    producing appearance-driven impulsive action. Evidence: PMC 11325328 (White/Dalley 2024
+    temporal processing ADHD), PMC 2894421 (Arnsten 2009 PFC in ADHD), PMID 19621976 (Arnsten
+    2009 CNS Drugs), PMID 15071717 and 12424557 (Barkley temporal processing), PMC 3329889
+    (multi-pathway ADHD model).
+    (4) Uncertainty collapse -> mania: theoretically well-grounded, direct empirical evidence
+    developing. Precision dysregulation in active inference (excessive prior precision = U->0)
+    produces overcommitted, over-confident, reduced-exploration action. Evidence: PMID 32860285
+    (Smith/Badcock/Friston 2021 predictive coding clinical), PMID 39828236 (Qela 2025
+    transdiagnostic PC review), PMC 10196365 (computational belief updating in psychotic-like
+    experiences), PMID 29400358 (Huys 2018 computational parameters anhedonia/mood disorders).
+    (5) Narrow representational capacity / negative G tagging -> depression: multiply supported.
+    Reduced state space capacity (synapse loss paper PMID 39569353) is sufficient to produce
+    depression-like behavior without parameter manipulation. Negative learning-rate asymmetry
+    (PMC 5828520 anhedonia review) and inflated path cost estimation (effort learning) are
+    additional mechanisms. Learned helplessness encodes approach as structurally unavailable
+    (PMID 27337390, 26555633).
+    (6) Oversplit -> ASD generalization failure: supported behaviorally, mechanistic account
+    developing. Increased hippocampal pattern separation produces orthogonal representations
+    for structurally similar contexts. Evidence: PMC 7907419 (Pattern Unifies Autism framework),
+    PMC 4573235 (de Marchena 2015 generalization weakness ASD), PMID 27119213 (stimulus
+    overselectivity ASD/DS), DOI 10.1177/1088357620943504 (Kelly/Reed overselectivity ASD).
+    Cross-track convergence: hippocampus is central across all six tracks but in different
+    directions on the pattern separation/completion axis. This axis (DG-CA3 balance) emerges
+    as the primary organizing parameter: too much completion -> overmerge (SZ) + attractor
+    lock (PTSD); too much separation -> oversplit (ASD). ADHD and depression involve
+    orthogonal dimensions (temporal binding, representational capacity/valence).
+    The claim is structural analogy, not identity: REE state components (W, Self, T, G, A, C,
+    U, R) are not identical to empirical constructs, and the mapping does not resolve causal
+    direction. Strongest causal evidence: PMID 39569353 (synapse loss sufficient for depression-
+    like behavior in RL model). Gaps: psychopathy (residue non-propagation) and frontal-damage
+    norm violation (social constraint omission) not covered in this pull.
+    Registered 2026-03-24.
+

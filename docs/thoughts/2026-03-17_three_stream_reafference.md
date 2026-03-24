@@ -1,7 +1,16 @@
+Status: processed
+
+Processed in:
+- docs/claims/claims.yaml (MECH-098 encoder.reafference_cancellation, candidate; MECH-099 visual_streams.three_pathway_architecture, candidate)
+- ree-v3/CLAUDE.md (SD-007 encoder.perspective_corrected_world_latent: IMPLEMENTED 2026-03-18; MECH-101 fix: z_world_raw_prev as reafference input)
+- ree-v3/ree_core/latent/stack.py (ReafferencePredictor implementation; z_world_corrected = z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev))
+
+---
+
 # Three-Stream Architecture and Reafference Cancellation
 
 **Date:** 2026-03-17
-**Status:** registered → MECH-098, MECH-099
+**Status:** processed (registered MECH-098, MECH-099; SD-007 implemented)
 **Connects to:** SD-005, SD-007, MECH-069, MECH-095, MECH-096, ARC-017
 
 ---

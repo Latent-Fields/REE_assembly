@@ -1,7 +1,15 @@
+Status: processed
+
+Processed in:
+- docs/claims/claims.yaml (MECH-095 TPJ agency-detection comparator, candidate; MECH-096 dual-stream observation encoder, candidate; MECH-097 peripersonal space commit locus, candidate)
+- ree-v3/CLAUDE.md (SD-005 implemented: z_gamma split into z_self and z_world; SD-010 nociceptive harm separation)
+
+---
+
 # Self vs World Latent Split — SD-003 Limitation and V3 Direction
 
 **Date:** 2026-03-14
-**Status:** unprocessed
+**Status:** processed
 **Connects to:** SD-003, SD-004, MECH-071, MECH-072, E2, E3, z_gamma
 
 ---

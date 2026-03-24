@@ -1,7 +1,16 @@
+Status: processed
+
+Processed in:
+- docs/claims/claims.yaml (MECH-071 harm eval calibration gradient asymmetry; benefit signal gap motivates signed net_eval regression)
+- ree-v3/CLAUDE.md (SD-010: harm stream nociceptive separation with separate harm_obs + HarmEncoder; benefit signal addressed via HarmBridge training)
+- ree-v3/experiments/v3_exq_085d_mech071_goal_persist.py (EXQ-091: goal-directed calibration implementing benefit signal analysis)
+
+---
+
 # SD-003 Attribution Gap — Benefit Signal Missing from E3 Evaluator
 
 **Date:** 2026-03-17
-**Status:** unprocessed
+**Status:** processed
 **Connects to:** SD-003, MECH-095, MECH-071, V3-EXQ-002 through EXQ-010
 
 ---

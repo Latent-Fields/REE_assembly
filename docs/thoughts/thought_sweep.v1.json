@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-24T16:58:37.611338Z",
+  "generated_at_utc": "2026-03-24T18:07:55.075340Z",
   "records": [
     {
       "file": "17-02-26_necessary_separations_based_on_considering-prompt_injection.md",
@@ -521,9 +521,12 @@
     {
       "file": "2026-03-14_self_world_latent_split_sd003_limitation.md",
       "filename_date": "2026-03-14",
-      "is_processed": false,
-      "processed_in_links": [],
-      "status": "unprocessed"
+      "is_processed": true,
+      "processed_in_links": [
+        "docs/claims/claims.yaml (MECH-095 TPJ agency-detection comparator, candidate; MECH-096 dual-stream observation encoder, candidate; MECH-097 peripersonal space commit locus, candidate)",
+        "ree-v3/CLAUDE.md (SD-005 implemented: z_gamma split into z_self and z_world; SD-010 nociceptive harm separation)"
+      ],
+      "status": "processed"
     },
     {
       "file": "2026-03-14_three_bg_systems_error_signals.md",
@@ -538,23 +541,35 @@
     {
       "file": "2026-03-17_sd003_benefit_signal_gap.md",
       "filename_date": "2026-03-17",
-      "is_processed": false,
-      "processed_in_links": [],
-      "status": "unprocessed"
+      "is_processed": true,
+      "processed_in_links": [
+        "docs/claims/claims.yaml (MECH-071 harm eval calibration gradient asymmetry; benefit signal gap motivates signed net_eval regression)",
+        "ree-v3/CLAUDE.md (SD-010: harm stream nociceptive separation with separate harm_obs + HarmEncoder; benefit signal addressed via HarmBridge training)",
+        "ree-v3/experiments/v3_exq_085d_mech071_goal_persist.py (EXQ-091: goal-directed calibration implementing benefit signal analysis)"
+      ],
+      "status": "processed"
     },
     {
       "file": "2026-03-17_three_stream_reafference.md",
       "filename_date": "2026-03-17",
-      "is_processed": false,
-      "processed_in_links": [],
-      "status": "unprocessed"
+      "is_processed": true,
+      "processed_in_links": [
+        "docs/claims/claims.yaml (MECH-098 encoder.reafference_cancellation, candidate; MECH-099 visual_streams.three_pathway_architecture, candidate)",
+        "ree-v3/CLAUDE.md (SD-007 encoder.perspective_corrected_world_latent: IMPLEMENTED 2026-03-18; MECH-101 fix: z_world_raw_prev as reafference input)",
+        "ree-v3/ree_core/latent/stack.py (ReafferencePredictor implementation; z_world_corrected = z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev))"
+      ],
+      "status": "processed"
     },
     {
       "file": "2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md",
       "filename_date": "2026-03-24",
-      "is_processed": false,
-      "processed_in_links": [],
-      "status": "raw"
+      "is_processed": true,
+      "processed_in_links": [
+        "docs/architecture/e3.md (section 4a: multi-constraint viability selection criterion; MECH-125 reference)",
+        "docs/architecture/hippocampal_systems.md (External Literature Convergence section: Doeller 2010, Constantinescu 2016, Garvert 2017, Behrens 2018, Whittington 2020)",
+        "docs/claims/claims.yaml (MECH-125: coherence.multiconstraint_viability, candidate, v3)"
+      ],
+      "status": "processed"
     },
     {
       "file": "DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md",
@@ -580,9 +595,9 @@
   "root": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/docs/thoughts",
   "schema_version": "thought_sweep/v1",
   "summary": {
-    "processed": 53,
+    "processed": 57,
     "processed_missing_links": 0,
     "total": 57,
-    "unprocessed": 4
+    "unprocessed": 0
   }
 }

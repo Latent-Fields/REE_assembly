@@ -1,6 +1,6 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-03-24T16:58:40.412199Z`
+Generated: `2026-03-24T18:07:56.559871Z`
 Cycle: `2026-03-24`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
@@ -9,7 +9,7 @@ Active queue items: `6`. Completed items tracked: `0`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `ARC-016` | `high` | no | 1 | `targeted_review_connectome_arc_016` |
+| `CPULL-0001` | `ARC-016` | `high` | no | 0.952 | `targeted_review_connectome_arc_016` |
 | `CPULL-0002` | `MECH-025` | `high` | no | 0 | `targeted_review_connectome_mech_025` |
 | `CPULL-0003` | `MECH-026` | `high` | no | 0 | `targeted_review_connectome_mech_026` |
 | `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
@@ -23,7 +23,7 @@ Active queue items: `6`. Completed items tracked: `0`.
 - Objective: Run targeted connectome literature pull for ARC-016.
 - Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
 - REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 14 downstream claim(s): `ARC-029`, `INV-033`, `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`, `MECH-097`, `MECH-104`, `MECH-106`, `MECH-114`, `MECH-120`, `MECH-123`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
-- Evidence pressure: conflict_ratio=1, overall_confidence=0.745, trigger_signals=high_conflict_ratio,manual_mode_transition_pull.
+- Evidence pressure: conflict_ratio=0.952, overall_confidence=0.736, trigger_signals=high_conflict_ratio,manual_mode_transition_pull.
 - Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
 - Research questions:
   - Which large-scale network control findings support regime-like mode organization over shared predictive machinery?
@@ -33,7 +33,7 @@ Active queue items: `6`. Completed items tracked: `0`.
   - `TRK-01` Triple-network and salience-control switching evidence; query stems: `triple network salience switching default mode executive control`, `effective connectivity mode transition salience network`
   - `TRK-02` Connectome gradients and controllability constraints; query stems: `connectome gradient default mode control network transition`, `network controllability cognitive state transitions connectome`
   - `TRK-03` Disconfirming evidence for strict regime separability; query stems: `continuous cognitive state manifold versus discrete modes fMRI`, `dynamic functional connectivity gradual transitions evidence`
-- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=reopened_due_conflict_pressure
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_but_reopened_for_high_conflict
 - Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-025

@@ -1,20 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-03-24T16:58:37.611338Z`
+Generated: `2026-03-24T18:07:55.075340Z`
 
 | metric | count |
 |---|---|
 | total thought files | 57 |
-| processed | 53 |
-| unprocessed | 4 |
+| processed | 57 |
+| unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- `2026-03-14` `2026-03-14_self_world_latent_split_sd003_limitation.md` (status=`unprocessed`)
-- `2026-03-17` `2026-03-17_sd003_benefit_signal_gap.md` (status=`unprocessed`)
-- `2026-03-17` `2026-03-17_three_stream_reafference.md` (status=`unprocessed`)
-- `2026-03-24` `2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md` (status=`raw`)
+- _none_
 
 ## Processed Missing Links
 
@@ -72,6 +69,10 @@ Generated: `2026-03-24T16:58:37.611338Z`
 - `2026-02-24_determinism_action_gating_boundary.md` (3 link(s) in `Processed in`)
 - `2026-02-24_prefrontal_primitives.md` (3 link(s) in `Processed in`)
 - `2026-02-25_task_loop_extraction_and_latent_field_ethics.md` (5 link(s) in `Processed in`)
+- `2026-03-14_self_world_latent_split_sd003_limitation.md` (2 link(s) in `Processed in`)
 - `2026-03-14_three_bg_systems_error_signals.md` (2 link(s) in `Processed in`)
+- `2026-03-17_sd003_benefit_signal_gap.md` (3 link(s) in `Processed in`)
+- `2026-03-17_three_stream_reafference.md` (3 link(s) in `Processed in`)
+- `2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md` (3 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
