@@ -1,21 +1,21 @@
 # Architecture Gap Register
 
-Generated: `2026-03-23T16:26:37.786519Z`
+Generated: `2026-03-24T06:09:36.662245Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
 
 | gap_id | claim_id | status | conflict_ratio | lit_non_support_ratio | confidence_delta_lit_minus_exp | recurring_signatures | consider_new_structure | external_precedence_candidate | recommendation |
 |---|---|---|---|---|---|---|---|---|---|
-| `AGR-0001` | `ARC-024` | `provisional` | 1 | 0 | -0.738 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0002` | `MECH-098` | `candidate` | 1 | 0 | 0.187 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0003` | `SD-007` | `implemented` | 1 | 0 | -0.741 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0004` | `MECH-071` | `provisional` | 0.952 | 0 | -0.749 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0005` | `ARC-016` | `provisional` | 0.947 | 0 | -0.756 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0006` | `SD-005` | `implemented` | 0.824 | 0.333 | 0.158 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0007` | `SD-003` | `validated` | 0.788 | 0 | -0.689 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0008` | `SD-004` | `implemented` | 0.75 | 0 | -0.694 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0009` | `MECH-090` | `active` | 0.727 | 0.333 | -0.121 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0001` | `ARC-016` | `provisional` | 1 | 0 | -0.746 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0002` | `ARC-024` | `provisional` | 1 | 0 | -0.737 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0003` | `MECH-098` | `candidate` | 1 | 0 | 0.188 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0004` | `SD-007` | `implemented` | 1 | 0 | -0.74 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0005` | `MECH-071` | `provisional` | 0.952 | 0 | -0.748 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0006` | `SD-003` | `validated` | 0.788 | 0 | -0.688 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0007` | `SD-004` | `implemented` | 0.75 | 0 | -0.693 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0008` | `MECH-090` | `active` | 0.727 | 0.333 | -0.12 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0009` | `SD-005` | `implemented` | 0.7 | 0.333 | 0.182 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
 ## Consider New Structure Queue
 
