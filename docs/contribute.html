@@ -18,12 +18,21 @@ layout: null
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; padding: 2rem 1rem; }
   .container { max-width: 720px; margin: 0 auto; }
-  header { text-align: center; margin-bottom: 2rem; }
+  header { text-align: center; margin-bottom: 1.75rem; }
   header h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
   header h1 span { color: var(--accent); }
   header p { color: var(--muted); font-size: 0.95rem; }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; margin-bottom: 1.1rem; }
   .card h2 { font-size: 1rem; font-weight: 600; color: var(--accent2); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  /* Trust card */
+  .trust-card { background: rgba(108,142,245,0.04); border: 1px solid rgba(108,142,245,0.2); border-radius: 10px; padding: 1.2rem 1.5rem; margin-bottom: 1.1rem; }
+  .trust-row { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.9rem; }
+  .trust-row:last-child { margin-bottom: 0; }
+  .trust-icon { font-size: 1rem; margin-top: 0.05rem; min-width: 1.2rem; }
+  .trust-row p { color: var(--muted); margin: 0; }
+  .trust-row p a { color: var(--accent); }
+  .trust-row p strong { color: var(--text); }
+  /* Steps */
   .step { display: flex; gap: 1rem; margin-bottom: 1.1rem; align-items: flex-start; }
   .step:last-child { margin-bottom: 0; }
   .step-num { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; background: rgba(108,142,245,0.2); border: 1px solid var(--accent); color: var(--accent); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 0.15rem; }
@@ -31,31 +40,40 @@ layout: null
   .step-body { flex: 1; }
   .step-body p { margin-bottom: 0.5rem; }
   .step-body p:last-child { margin-bottom: 0; }
+  /* Code */
   .code-block { background: var(--code-bg); border: 1px solid var(--border); border-radius: 7px; padding: 0.8rem 1rem; font-family: 'SF Mono','Fira Code','Cascadia Code',monospace; font-size: 0.82rem; color: #c9d1d9; overflow-x: auto; position: relative; white-space: pre; }
   .code-block .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.72rem; cursor: pointer; transition: all 0.15s; }
   .code-block .copy-btn:hover { color: var(--text); border-color: var(--accent); }
   .code-block .copy-btn.copied { color: var(--green); border-color: var(--green); }
   .cmd-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+  /* Boxes */
   .note-box { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); border-radius: 7px; padding: 0.75rem 1rem; font-size: 0.85rem; color: #d4ad5a; margin-top: 0.75rem; }
   .note-box strong { color: var(--yellow); }
   .good-box { background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: 7px; padding: 0.75rem 1rem; font-size: 0.85rem; color: #6ee7b7; margin-top: 0.75rem; }
-  .info-box { background: rgba(108,142,245,0.06); border: 1px solid rgba(108,142,245,0.2); border-radius: 7px; padding: 0.75rem 1rem; font-size: 0.85rem; color: #a5b8f8; margin-top: 0.75rem; }
+  /* Links */
   .links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
   .link-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(108,142,245,0.1); border: 1px solid rgba(108,142,245,0.3); color: var(--accent); text-decoration: none; padding: 0.45rem 1rem; border-radius: 6px; font-size: 0.85rem; transition: all 0.15s; }
   .link-btn:hover { background: rgba(108,142,245,0.2); }
+  /* Platform selector */
   .platform-selector { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
   .platform-selector .plabel { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .platform-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.9rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; }
   .platform-btn:hover { border-color: var(--accent); color: var(--text); }
   .platform-btn.active { background: rgba(108,142,245,0.15); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  /* Two-col start options */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.5rem; }
   .two-col-label { font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
-  .file-option { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.85rem; color: var(--muted); }
+  .file-option { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
   .file-option code { color: var(--text); }
+  /* Compute chip */
+  .compute-chip { display: inline-flex; flex-direction: column; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 0.5rem 0.9rem; font-size: 0.82rem; }
+  .compute-chip .clabel { color: var(--muted); font-size: 0.72rem; }
+  .compute-chip .cvalue { color: var(--text); font-weight: 600; margin-top: 0.1rem; }
+  .chips-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.6rem; }
   /* Details toggle */
   .details-toggle { display: block; width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: 0.65rem 1.2rem; border-radius: 8px; font-size: 0.88rem; cursor: pointer; text-align: center; transition: all 0.15s; margin: 1.5rem 0; }
   .details-toggle:hover { border-color: var(--accent); color: var(--text); }
-  /* Detail zone inner styles */
+  /* Detail zone */
   .tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
   .tab-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; }
   .tab-btn:hover { border-color: var(--accent); color: var(--text); }
@@ -73,7 +91,7 @@ layout: null
   .hw-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 0.7rem 0.9rem; }
   .hw-item .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .hw-item .value { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-top: 0.1rem; }
-  .tier-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .tier-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
   .tier-light { background: rgba(251,191,36,0.12); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
   .tier-standard { background: rgba(108,142,245,0.12); color: var(--accent); border: 1px solid rgba(108,142,245,0.3); }
   .tier-heavy { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
@@ -97,11 +115,50 @@ layout: null
 
 <header>
   <h1>Contribute Compute to <span>REE</span></h1>
-  <p>Run experiments in the background &middot; 4 steps &middot; ~5 minutes</p>
+  <p>Donate spare GPU or CPU time to a public AI safety research project</p>
 </header>
 
-<!-- Platform selector -->
-<div style="display:flex;justify-content:center;margin-bottom:1.5rem">
+<!-- ── Trust block ───────────────────────────────────────────────── -->
+<div class="trust-card">
+  <div class="trust-row">
+    <div class="trust-icon">&#128269;</div>
+    <p><strong>Fully open source &mdash; read the code before running anything.</strong>
+    Every experiment script that will run on your machine is at
+    <a href="https://github.com/Latent-Fields/ree-v3/tree/main/experiments" target="_blank">github.com/Latent-Fields/ree-v3/experiments</a>.
+    No surprises.</p>
+  </div>
+  <div class="trust-row">
+    <div class="trust-icon">&#128196;</div>
+    <p><strong>Results only.</strong> Your machine trains small neural networks and pushes
+    the result JSON to a public GitHub repo. No other data leaves your machine.
+    You can inspect every output file before it's committed.</p>
+  </div>
+  <div class="trust-row">
+    <div class="trust-icon">&#128273;</div>
+    <p><strong>SSH key is read-only and scoped.</strong> The Docker container mounts your
+    key read-only and uses it for one thing: <code>git push</code> to GitHub. It cannot
+    access your filesystem, other keys, or any other service.</p>
+  </div>
+  <div class="trust-row">
+    <div class="trust-icon">&#9889;</div>
+    <p><strong>Low priority &mdash; stop any time.</strong> The runner runs at below-normal
+    CPU priority. <code>docker compose down</code> stops and removes it completely.
+    No background services, no startup entries, no persistence after removal.</p>
+  </div>
+  <div class="trust-row">
+    <div class="trust-icon">&#128100;</div>
+    <p><strong>What this is.</strong> REE is a cognitive architecture research project
+    exploring how AI agents can reason about ethical cost across time &mdash; not a product,
+    not a company. Run by
+    <a href="https://github.com/dgolden1" target="_blank">Daniel Golden</a>, open
+    <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/LICENSE" target="_blank">Apache 2.0</a>.
+    Experiment results feed a
+    <a href="https://latent-fields.github.io/REE_assembly/claims/claim_index.html" target="_blank">public claims registry</a>.</p>
+  </div>
+</div>
+
+<!-- ── Platform selector ─────────────────────────────────────────── -->
+<div style="display:flex;justify-content:center;margin-bottom:1.25rem">
   <div class="platform-selector">
     <span class="plabel">My platform:</span>
     <button class="platform-btn" id="plat-btn-mac"     onclick="switchPlatform('mac')">macOS</button>
@@ -110,40 +167,33 @@ layout: null
   </div>
 </div>
 
-<!-- ── ZONE 1: Quick Start ────────────────────────────────────────── -->
+<!-- ── ZONE 1: Quick Start ───────────────────────────────────────── -->
 <div class="card">
-  <h2>🚀 Quick Start</h2>
+  <h2>&#128640; Get Started</h2>
 
-  <!-- Step 1 -->
+  <!-- Step 1: Clone -->
   <div class="step">
     <div class="step-num">1</div>
     <div class="step-body">
-      <p>Request membership of the <strong>Latent-Fields</strong> GitHub organisation to access the private repos.</p>
-      <div class="links">
-        <a class="link-btn" href="https://github.com/orgs/Latent-Fields/teams" target="_blank">&#8599; Request Latent-Fields membership</a>
+      <p>Clone both repos into the <strong>same folder</strong>. No account needed &mdash; both repos are public.</p>
+      <div class="code-block" style="margin-top:0.5rem">git clone https://github.com/Latent-Fields/REE_assembly.git
+git clone https://github.com/Latent-Fields/ree-v3.git<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+      <div class="cmd-note" style="margin-top:0.5rem">
+        Browse the experiment scripts first if you like:
+        <a href="https://github.com/Latent-Fields/ree-v3/tree/main/experiments" style="color:var(--accent)" target="_blank">ree-v3/experiments/</a>
       </div>
     </div>
   </div>
 
-  <!-- Step 2 -->
+  <!-- Step 2: Start -->
   <div class="step">
     <div class="step-num">2</div>
-    <div class="step-body">
-      <p>Clone both repos into the <strong>same folder</strong>:</p>
-      <div class="code-block" style="margin-top:0.5rem">git clone https://github.com/Latent-Fields/REE_assembly.git
-git clone https://github.com/Latent-Fields/ree-v3.git<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-    </div>
-  </div>
-
-  <!-- Step 3 — platform specific -->
-  <div class="step">
-    <div class="step-num">3</div>
     <div class="step-body">
 
       <!-- Windows -->
       <div id="step3-windows">
-        <p>Start the runner — choose how you prefer:</p>
-        <div class="two-col" style="margin-top:0.5rem">
+        <p>Start the runner &mdash; choose how you prefer:</p>
+        <div class="two-col">
           <div>
             <div class="two-col-label">Terminal (PowerShell)</div>
             <div class="code-block">cd REE_assembly\docker
@@ -155,9 +205,13 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
           </div>
         </div>
         <div class="cmd-note" style="margin-top:0.6rem">
-          Requires <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop</a> (WSL2 backend) + NVIDIA drivers &ge;527.41.
-          No Python install needed &mdash; everything runs inside the container.
-          Your SSH key is mounted read-only for git push.
+          Requires <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop</a>
+          with WSL2 backend. For GPU: NVIDIA drivers &ge;527.41 (Docker handles the rest automatically).
+        </div>
+        <div class="chips-row" id="compute-chips-windows" style="display:none">
+          <div class="compute-chip"><div class="clabel">Estimated per 10 hrs</div><div class="cvalue" id="chip-kwh-w">—</div></div>
+          <div class="compute-chip"><div class="clabel">Electricity cost</div><div class="cvalue" id="chip-eur-w">—</div></div>
+          <div class="compute-chip"><div class="clabel">Cloud equivalent</div><div class="cvalue" id="chip-cloud-w">—</div></div>
         </div>
       </div>
 
@@ -169,39 +223,62 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
         <div class="cmd-note" style="margin-top:0.6rem">
           Requires <a href="https://docs.docker.com/engine/install/" style="color:var(--accent)" target="_blank">Docker Engine</a>
           + <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" style="color:var(--accent)" target="_blank">NVIDIA Container Toolkit</a> for GPU.
-          No Python install needed inside the container.
-          Your SSH key is mounted read-only for git push.
+        </div>
+        <div class="chips-row" id="compute-chips-linux" style="display:none">
+          <div class="compute-chip"><div class="clabel">Estimated per 10 hrs</div><div class="cvalue" id="chip-kwh-l">—</div></div>
+          <div class="compute-chip"><div class="clabel">Electricity cost</div><div class="cvalue" id="chip-eur-l">—</div></div>
+          <div class="compute-chip"><div class="clabel">Cloud equivalent</div><div class="cvalue" id="chip-cloud-l">—</div></div>
         </div>
       </div>
 
       <!-- Mac -->
       <div id="step3-mac" style="display:none">
-        <p>From inside <code>ree-v3/</code>, start the runner at low CPU priority:</p>
+        <p>From inside <code>ree-v3/</code>:</p>
         <div class="code-block" style="margin-top:0.5rem">nice -n 10 python3 experiment_runner.py --auto-sync --loop<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note" style="margin-top:0.5rem">
-          Needs Python 3.10&ndash;3.12 + PyTorch 2.x. MacPorts path: <code>/opt/local/bin/python3</code>.
+          Needs Python 3.10&ndash;3.12 + PyTorch. MacPorts: <code>/opt/local/bin/python3</code>.
           See <em>Setup details</em> below if not installed.
+        </div>
+        <div class="chips-row" id="compute-chips-mac" style="display:none">
+          <div class="compute-chip"><div class="clabel">Estimated per 10 hrs</div><div class="cvalue" id="chip-kwh-m">—</div></div>
+          <div class="compute-chip"><div class="clabel">Electricity cost</div><div class="cvalue" id="chip-eur-m">—</div></div>
+          <div class="compute-chip"><div class="clabel">Cloud equivalent</div><div class="cvalue" id="chip-cloud-m">—</div></div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- Step 4 -->
+  <!-- Step 3: Running -->
   <div class="step">
     <div class="step-num done">&#10003;</div>
     <div class="step-body">
+
       <div id="step4-docker">
-        <p>The runner starts automatically. After ~30 seconds, confirm at:</p>
+        <p>The runner starts automatically inside the container. After ~30 seconds:</p>
         <div class="code-block" style="margin-top:0.4rem">http://localhost:8000/explorer<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note" style="margin-top:0.4rem">You should see runner status <strong>Running</strong> and the current experiment name. That's it &mdash; experiments run in the background.</div>
+        <div class="cmd-note" style="margin-top:0.4rem">
+          You should see runner status <strong>Running</strong> and the current experiment name.
+          That's it &mdash; experiments run in the background, results push to GitHub automatically.
+        </div>
       </div>
+
       <div id="step4-mac" style="display:none">
-        <p>Runner is live. To keep it running after closing Terminal:</p>
+        <p>Runner is live. To keep it running after you close Terminal:</p>
         <div class="code-block" style="margin-top:0.4rem">nohup nice -n 10 python3 experiment_runner.py --auto-sync --loop &gt; runner.log 2&gt;&amp;1 &amp;<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note" style="margin-top:0.4rem">Stop with <code>pkill -f experiment_runner.py</code></div>
+        <div class="cmd-note" style="margin-top:0.4rem">Stop: <code>pkill -f experiment_runner.py</code></div>
       </div>
+
     </div>
+  </div>
+
+  <!-- Push access note -->
+  <div class="note-box" style="margin-top:0.5rem">
+    <strong>To share results with the project</strong> &mdash; the runner needs push access to GitHub.
+    Request write access to the
+    <a href="https://github.com/orgs/Latent-Fields/teams" style="color:var(--yellow)" target="_blank">Latent-Fields org</a>
+    (usually approved within 24 hours). While you wait, the runner works fine locally
+    &mdash; it will retry pushes automatically once access is granted.
   </div>
 
 </div>
@@ -209,7 +286,7 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
 <!-- ── Details toggle ────────────────────────────────────────────── -->
 <button class="details-toggle" id="details-btn" onclick="toggleDetails()">&#9654; Setup details, diagnostics &amp; alternatives</button>
 
-<!-- ── ZONE 2: Details ────────────────────────────────────────────── -->
+<!-- ── ZONE 2: Details ───────────────────────────────────────────── -->
 <div id="details-zone" style="display:none">
 
   <!-- Hardware -->
@@ -225,39 +302,45 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
     <div id="tier-detail" style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem"></div>
   </div>
 
-  <!-- SSH prerequisite -->
+  <!-- SSH -->
   <div class="card">
-    <h2>&#128273; SSH Key (Docker path)</h2>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.75rem">The container pushes experiment results to GitHub via your SSH key. Check it works before starting.</p>
+    <h2>&#128273; SSH Key Setup</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.75rem">
+      The container uses your SSH key to push experiment results to GitHub.
+      It is mounted <strong>read-only</strong> &mdash; the container cannot modify it or use it for anything else.
+    </p>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:0.75rem">Confirm it works:</p>
     <div class="code-block">ssh -T git@github.com<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-    <div class="cmd-note" style="margin-top:0.4rem">Expected: <code>Hi &lt;username&gt;! You've successfully authenticated...</code><br>
-    No SSH key yet? <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" style="color:var(--accent)" target="_blank">Generate one here</a> &mdash; then add it to your GitHub account under Settings &rarr; SSH and GPG keys.</div>
+    <div class="cmd-note" style="margin-top:0.4rem">
+      Expected: <code>Hi &lt;username&gt;! You've successfully authenticated...</code><br>
+      No SSH key yet? <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" style="color:var(--accent)" target="_blank">Generate one here</a>
+      and add it under GitHub Settings &rarr; SSH and GPG keys.
+    </div>
   </div>
 
   <!-- Diagnostics -->
   <div class="card">
     <h2>&#128269; Verify Your Setup</h2>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Run these after setup to confirm everything is working before starting the runner.</p>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Run these after setup to confirm everything works before starting the runner.</p>
     <div class="tabs" id="diag-tabs">
       <button class="tab-btn active" onclick="switchDiagTab('diag-windows')">Windows</button>
       <button class="tab-btn" onclick="switchDiagTab('diag-linux')">Linux</button>
       <button class="tab-btn" onclick="switchDiagTab('diag-mac')">macOS</button>
     </div>
 
-    <!-- Windows -->
     <div class="tab-content active" id="diag-windows">
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-        <p>Docker Desktop installed and daemon running</p>
+        <p>Docker Desktop running</p>
         <div class="code-block">docker info<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: large block of system info. If <code>Cannot connect to the Docker daemon</code>, open Docker Desktop and wait for it to start.</div>
+        <div class="cmd-note">Expected: system info block. If <code>Cannot connect to the Docker daemon</code>, open Docker Desktop and wait for it to start.</div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-        <p>GPU visible inside containers (requires NVIDIA drivers &ge;527.41)</p>
+        <p>GPU visible inside containers (NVIDIA drivers &ge;527.41)</p>
         <div class="code-block">docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: your GPU listed in the nvidia-smi table. If it fails, update NVIDIA drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>.</div>
+        <div class="cmd-note">Expected: GPU listed in nvidia-smi table. If it fails, update drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>. CPU-only is fine too &mdash; experiments just run slower.</div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-        <p>SSH key reaches GitHub (see card above)</p>
+        <p>SSH key reaches GitHub</p>
         <div class="code-block">ssh -T git@github.com<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
       </div></div>
       <details class="mc">
@@ -272,15 +355,10 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
             <div class="code-block">py -3.12 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
             <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code></div>
           </div></div>
-          <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-            <p>Git push auth (dry run, from <code>ree-v3\</code>)</p>
-            <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-          </div></div>
         </div>
       </details>
     </div>
 
-    <!-- Linux -->
     <div class="tab-content" id="diag-linux">
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
         <p>Docker Engine running</p>
@@ -292,7 +370,7 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
         <div class="cmd-note">Not installed? <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" style="color:var(--accent)" target="_blank">Install guide</a>. Then: <code>sudo nvidia-ctk runtime configure --runtime=docker &amp;&amp; sudo systemctl restart docker</code></div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-        <p>GPU visible inside containers</p>
+        <p>GPU accessible in containers</p>
         <div class="code-block">docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
@@ -306,20 +384,15 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
             <p>Python + PyTorch</p>
             <div class="code-block">python3 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
           </div></div>
-          <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-            <p>Git push auth (dry run, from <code>ree-v3/</code>)</p>
-            <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-          </div></div>
         </div>
       </details>
     </div>
 
-    <!-- macOS -->
     <div class="tab-content" id="diag-mac">
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
         <p>Python version (must be 3.10&ndash;3.12)</p>
         <div class="code-block">python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">MacPorts: <code>/opt/local/bin/python3</code>. Python 3.13+ not yet supported by PyTorch CUDA builds.</div>
+        <div class="cmd-note">MacPorts: <code>/opt/local/bin/python3</code>. Python 3.13+ not yet supported by PyTorch builds.</div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
         <p>PyTorch installed</p>
@@ -327,27 +400,31 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
         <div class="cmd-note">If missing: <code>pip install torch numpy scipy</code></div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
-        <p>Git push auth (dry run, from <code>ree-v3/</code>)</p>
+        <p>Git push auth (dry run from <code>ree-v3/</code>)</p>
         <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>Everything up-to-date</code></div>
       </div></div>
       <div class="step"><div class="step-num">&#10003;</div><div class="step-body">
         <p>REE_assembly is a sibling of ree-v3</p>
-        <div class="code-block">python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'MISSING -- clone alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block">python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('OK' if 'REE_assembly' in siblings else 'MISSING -- clone alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
       </div></div>
     </div>
   </div>
 
   <!-- Machine registration -->
   <div class="card">
-    <h2>&#128423; Register Your Machine</h2>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Optional but recommended — lets the project track your contribution accurately. Fill in the fields and run the generated commands from inside <code>REE_assembly/</code>.</p>
+    <h2>&#128423; Register Your Machine <span style="font-size:0.78rem;font-weight:400;color:var(--muted)">(optional)</span></h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">
+      Registers your machine so the project can track your contribution accurately in
+      <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/contributors/contributions.json" style="color:var(--accent)" target="_blank">contributions.json</a>.
+      Fill in the fields and run the generated commands from inside <code>REE_assembly/</code>.
+    </p>
     <div class="reg-form">
       <div class="reg-two-col">
         <div class="reg-field">
           <label>Machine name <span style="color:var(--muted)">(no spaces)</span></label>
           <input type="text" id="reg-machine-name" placeholder="e.g. alice-rtx4090" />
-          <span class="field-note">Matches the machine name set in <code>docker-compose.yml</code> or <code>--machine</code> flag.</span>
+          <span class="field-note">Set as <code>REE_MACHINE_NAME</code> in docker-compose.yml</span>
         </div>
         <div class="reg-field">
           <label>Your name</label>
@@ -375,11 +452,11 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
       <div><button class="gen-btn" onclick="generateMachineReg()">Generate registration commands</button></div>
     </div>
     <div id="reg-output">
-      <div class="output-label" style="margin-top:1rem">1. Save the JSON file (from inside <code>REE_assembly/</code>)</div>
+      <div class="output-label" style="margin-top:1rem">1. Save the JSON (from inside <code>REE_assembly/</code>)</div>
       <div class="code-block" id="reg-save-cmd" style="white-space:pre"></div>
       <div class="output-label" style="margin-top:0.75rem">2. Commit and push</div>
       <div class="code-block" id="reg-git-cmd" style="white-space:pre"></div>
-      <div class="output-label" style="margin-top:0.75rem">3. Update your machine name in docker-compose.yml (or use --machine flag for bare-metal)</div>
+      <div class="output-label" style="margin-top:0.75rem">3. Set your machine name in docker-compose.yml (or --machine flag for bare-metal)</div>
       <div class="code-block" id="reg-runner-cmd" style="white-space:pre"></div>
     </div>
   </div>
@@ -387,36 +464,33 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
   <!-- Alternatives -->
   <div class="card">
     <h2>&#9881;&#65039; Alternative Setups</h2>
-
     <details class="mc" open>
-      <summary><strong>Mac — Docker CPU-only</strong> (alternative to bare-metal)</summary>
+      <summary><strong>Mac &mdash; Docker CPU-only</strong> (alternative to bare-metal)</summary>
       <div class="cb">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Docker on macOS runs in a Linux VM — MPS/GPU is not accessible. Bare-metal is faster. Docker is useful if you prefer not to install Python locally.</p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Docker on macOS runs in a Linux VM &mdash; MPS/GPU is not accessible. Bare-metal is faster. Docker is useful if you prefer not to install Python locally.</p>
         <div class="code-block">export REE_MACHINE_NAME=my-mac-name
 cd REE_assembly/docker
 docker compose -f docker-compose.cpu.yml up -d<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note" style="margin-top:0.4rem">Requires <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop for Mac</a>.</div>
       </div>
     </details>
-
     <details class="mc">
-      <summary><strong>Windows — bare-metal PowerShell</strong> (no Docker)</summary>
+      <summary><strong>Windows &mdash; bare-metal PowerShell</strong> (no Docker)</summary>
       <div class="cb">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Install Python 3.12 from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH") and Git from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a>. Then:</p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Install Python 3.12 from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> and Git from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a>. Then:</p>
         <div class="code-block">py -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="code-block" style="margin-top:0.5rem"># From ree-v3\
 $proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
 $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
       </div>
     </details>
-
     <details class="mc">
-      <summary><strong>Linux — bare-metal + systemd</strong> (no Docker)</summary>
+      <summary><strong>Linux &mdash; bare-metal + systemd</strong> (no Docker)</summary>
       <div class="cb">
         <div class="code-block">pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124
 # From ree-v3/
 nice -n 10 python3 experiment_runner.py --auto-sync --loop<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note" style="margin-top:0.4rem">Persist with a systemd user unit — save as <code>~/.config/systemd/user/ree-runner.service</code>:</div>
+        <div class="cmd-note" style="margin-top:0.4rem">Persist with a systemd user unit &mdash; save as <code>~/.config/systemd/user/ree-runner.service</code>:</div>
         <div class="code-block" style="margin-top:0.4rem">[Unit]
 Description=REE Experiment Runner
 After=network.target
@@ -437,20 +511,20 @@ WantedBy=default.target<button class="copy-btn" onclick="copyCode(this)">copy</b
 
   <!-- How it works -->
   <div class="card">
-    <h2>&#128260; How Multi-Machine Coordination Works</h2>
+    <h2>&#128260; How It Works</h2>
     <div class="step"><div class="step-num">&#8594;</div><div class="step-body">
-      <p>The runner reads from a shared experiment queue on GitHub. Before starting each experiment it writes a <em>claim</em> and pushes — whichever machine pushes first runs that experiment. No central server needed.</p>
+      <p>The runner reads from a shared experiment queue on GitHub. Before starting each experiment it writes a <em>claim</em> and pushes &mdash; whichever machine pushes first runs that experiment. No central server.</p>
     </div></div>
     <div class="step"><div class="step-num">&#8594;</div><div class="step-body">
-      <p>Results are pushed back to GitHub automatically. The project maintainer reviews results and updates the claims registry each governance cycle.</p>
+      <p>Each experiment is a short neural network training run &mdash; typically 3&ndash;30 minutes. The result is a JSON file pushed to a public GitHub repo. The project maintainer reviews results and updates the public claims registry.</p>
     </div></div>
     <div class="step"><div class="step-num">&#8594;</div><div class="step-body">
-      <p>Claims older than 6 hours are treated as stale (machine went offline) and become available for other machines to pick up.</p>
+      <p>Claims older than 6 hours are treated as stale (machine went offline) and return to the queue for other machines to pick up.</p>
     </div></div>
     <div class="good-box">
       Your contribution is tracked in
       <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/contributors/contributions.json" style="color:var(--green)" target="_blank">contributions.json</a>
-      &mdash; compute hours, experiment count, and estimated electricity cost. Updated each governance cycle.
+      &mdash; compute hours, experiment count, and estimated electricity value. Updated each governance cycle.
     </div>
   </div>
 
@@ -458,29 +532,51 @@ WantedBy=default.target<button class="copy-btn" onclick="copyCode(this)">copy</b
   <div class="card">
     <h2>&#128279; Links</h2>
     <div class="links">
-      <a class="link-btn" href="https://github.com/Latent-Fields/REE_assembly" target="_blank">&#8599; REE_assembly</a>
-      <a class="link-btn" href="https://github.com/Latent-Fields/ree-v3" target="_blank">&#8599; ree-v3</a>
+      <a class="link-btn" href="https://github.com/Latent-Fields/ree-v3" target="_blank">&#8599; ree-v3 (experiment code)</a>
+      <a class="link-btn" href="https://github.com/Latent-Fields/REE_assembly" target="_blank">&#8599; REE_assembly (governance)</a>
       <a class="link-btn" href="https://github.com/Latent-Fields/REE_assembly/blob/master/contributors/contributions.json" target="_blank">&#8599; contributions.json</a>
     </div>
     <p style="color:var(--muted);font-size:0.83rem;margin-top:0.9rem">
-      If you have the runner active, the full
+      With the runner active, the full
       <a href="http://localhost:8000/explorer" style="color:var(--accent)">REE Explorer</a>
-      is available at localhost:8000 for live experiment monitoring.
+      is at localhost:8000 for live experiment monitoring.
     </p>
   </div>
 
 </div><!-- /details-zone -->
-
 </div><!-- /container -->
 
 <script>
-// ── OS detection ─────────────────────────────────────────────────────────────
+// ── OS detection ──────────────────────────────────────────────────────────────
 function detectOS() {
-  const ua = navigator.userAgent;
-  const pl = navigator.platform || '';
+  const ua = navigator.userAgent, pl = navigator.platform || '';
   if (/Win/.test(pl) || /Win/.test(ua)) return 'windows';
   if (/Linux/.test(pl) || /Linux/.test(ua)) return 'linux';
   return 'mac';
+}
+
+// ── Compute estimate ──────────────────────────────────────────────────────────
+function computeEstimates() {
+  const cores = navigator.hardwareConcurrency || 4;
+  const ramGB = (typeof navigator.deviceMemory !== 'undefined' && navigator.deviceMemory) ? navigator.deviceMemory : 4;
+  let tier = 'light';
+  if (cores >= 8 && ramGB >= 8) tier = 'standard';
+  if (cores >= 12 || ramGB >= 16) tier = 'heavy';
+  const tdpW   = tier === 'heavy' ? 65 : (tier === 'standard' ? 35 : 15);
+  const kwhPer10h = tdpW * 10 / 1000;
+  const eur    = (kwhPer10h * 0.27).toFixed(2);
+  const cloud  = (10 * 0.0416).toFixed(2);
+  return { kwh: kwhPer10h.toFixed(2), eur, cloud };
+}
+
+function fillChips(suffix) {
+  const e = computeEstimates();
+  const el = id => document.getElementById(id);
+  el('chip-kwh-' + suffix).textContent = e.kwh + ' kWh';
+  el('chip-eur-' + suffix).textContent = '~\u20ac' + e.eur;
+  el('chip-cloud-' + suffix).textContent = '~$' + e.cloud + ' (AWS)';
+  const chips = document.getElementById('compute-chips-' + suffix);
+  if (chips) chips.style.display = '';
 }
 
 // ── Platform switching ────────────────────────────────────────────────────────
@@ -488,31 +584,28 @@ function switchPlatform(platform) {
   ['mac','linux','windows'].forEach(p => {
     const btn = document.getElementById('plat-btn-' + p);
     if (btn) btn.classList.toggle('active', p === platform);
+    const s3 = document.getElementById('step3-' + p);
+    if (s3) s3.style.display = p === platform ? '' : 'none';
   });
-  // Step 3 content
-  ['mac','linux','windows'].forEach(p => {
-    const el = document.getElementById('step3-' + p);
-    if (el) el.style.display = p === platform ? '' : 'none';
-  });
-  // Step 4 content
-  const d4docker = document.getElementById('step4-docker');
-  const d4mac    = document.getElementById('step4-mac');
-  if (d4docker) d4docker.style.display = platform !== 'mac' ? '' : 'none';
-  if (d4mac)    d4mac.style.display    = platform === 'mac' ? '' : 'none';
-  // Sync diag tabs to match
+  const d4d = document.getElementById('step4-docker');
+  const d4m = document.getElementById('step4-mac');
+  if (d4d) d4d.style.display = platform !== 'mac' ? '' : 'none';
+  if (d4m) d4m.style.display = platform === 'mac' ? '' : 'none';
   switchDiagTab('diag-' + platform);
+  // Fill compute chips
+  const sfx = platform === 'windows' ? 'w' : (platform === 'linux' ? 'l' : 'm');
+  fillChips(sfx);
 }
 
 // ── Diagnostics tabs ──────────────────────────────────────────────────────────
 function switchDiagTab(id) {
-  document.querySelectorAll('#diag-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  const labels = { 'diag-windows': 'Windows', 'diag-linux': 'Linux', 'diag-mac': 'macOS' };
+  document.querySelectorAll('#diag-tabs .tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === labels[id]);
+  });
   ['diag-windows','diag-linux','diag-mac'].forEach(c => {
     const el = document.getElementById(c);
     if (el) el.classList.toggle('active', c === id);
-  });
-  const labels = { 'diag-windows': 'Windows', 'diag-linux': 'Linux', 'diag-mac': 'macOS' };
-  document.querySelectorAll('#diag-tabs .tab-btn').forEach(b => {
-    if (b.textContent === labels[id]) b.classList.add('active');
   });
 }
 
@@ -522,13 +615,10 @@ function toggleDetails() {
   const btn  = document.getElementById('details-btn');
   const open = zone.style.display === 'none';
   zone.style.display = open ? '' : 'none';
-  btn.textContent = open
-    ? '\u25BC Setup details, diagnostics & alternatives'
-    : '\u25BA Setup details, diagnostics & alternatives';
+  btn.textContent = (open ? '\u25BC' : '\u25BA') + ' Setup details, diagnostics & alternatives';
   if (open) populateHardware();
 }
 
-// ── Hardware detection (lazy — only when zone opens) ─────────────────────────
 let hardwareDone = false;
 function populateHardware() {
   if (hardwareDone) return;
@@ -536,8 +626,7 @@ function populateHardware() {
   const cores = navigator.hardwareConcurrency || null;
   const ramGB = (typeof navigator.deviceMemory !== 'undefined' && navigator.deviceMemory) ? navigator.deviceMemory : null;
   const conn  = navigator.connection;
-  const ua    = navigator.userAgent;
-  const pl    = navigator.platform || '';
+  const ua = navigator.userAgent, pl = navigator.platform || '';
   let os = 'Unknown';
   if (/Mac/.test(pl) || /Mac/.test(ua)) os = 'macOS';
   else if (/Win/.test(pl) || /Win/.test(ua)) os = 'Windows';
@@ -548,16 +637,16 @@ function populateHardware() {
   document.getElementById('hw-net').textContent   = conn ? (conn.effectiveType || conn.type || '?') : '?';
   const effectiveRam = ramGB != null ? ramGB : (os === 'macOS' ? 8 : 4);
   let tier = 'light';
-  if (cores >= 8 && effectiveRam >= 8) tier = 'standard';
-  if (cores >= 12 || effectiveRam >= 16) tier = 'heavy';
+  if ((cores || 0) >= 8 && effectiveRam >= 8) tier = 'standard';
+  if ((cores || 0) >= 12 || effectiveRam >= 16) tier = 'heavy';
   const tierLabels = {
-    light:    ['Light',    'tier-light',    'Suitable for smaller experiments.'],
-    standard: ['Standard', 'tier-standard', 'Good all-round contributor tier.'],
-    heavy:    ['Heavy',    'tier-heavy',    'Excellent tier — can run all experiments including multi-seed batches.'],
+    light:    ['Light',    'tier-light',    'Suitable for smaller experiments. Contributes meaningfully to the queue.'],
+    standard: ['Standard', 'tier-standard', 'Good all-round contributor tier. Can run most REE experiments.'],
+    heavy:    ['Heavy',    'tier-heavy',    'Excellent tier &mdash; runs all experiments including multi-seed batches.'],
   };
   const [label, cls, desc] = tierLabels[tier];
   document.getElementById('tier-display').innerHTML = `<span class="tier-badge ${cls}">${label} tier</span>`;
-  document.getElementById('tier-detail').textContent = desc;
+  document.getElementById('tier-detail').innerHTML = desc;
 }
 
 // ── Machine registration ──────────────────────────────────────────────────────
@@ -583,12 +672,12 @@ function generateMachineReg() {
     gitCmd    = `git add "${filename.replace(/\//g,'\\')}"
 git commit -m "register machine: ${machineName}"
 git push origin HEAD:master`;
-    runnerCmd = `# In docker-compose.yml, set:\n#   REE_MACHINE_NAME=${machineName}\n# then restart the container:\ndocker compose down && docker compose up -d`;
+    runnerCmd = `# In docker-compose.yml set REE_MACHINE_NAME=${machineName}, then:\ndocker compose down && docker compose up -d`;
   } else {
     const esc = jsonStr.replace(/'/g, "'\\''");
     saveCmd   = `mkdir -p contributors/machines\necho '${esc}' > ${filename}`;
     gitCmd    = `git add ${filename}\ngit commit -m "register machine: ${machineName}"\ngit push origin HEAD:master`;
-    runnerCmd = `# In docker-compose.yml, set:\n#   REE_MACHINE_NAME=${machineName}\n# then restart:\ndocker compose down && docker compose up -d\n\n# Or bare-metal (from ree-v3/):\n# nice -n 10 python3 experiment_runner.py --auto-sync --loop --machine ${machineName}`;
+    runnerCmd = `# In docker-compose.yml set REE_MACHINE_NAME=${machineName}, then:\ndocker compose down && docker compose up -d\n\n# Bare-metal alternative (from ree-v3/):\n# nice -n 10 python3 experiment_runner.py --auto-sync --loop --machine ${machineName}`;
   }
   function setCmd(id, text) {
     const el = document.getElementById(id);

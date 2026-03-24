@@ -61,6 +61,14 @@ The V2 experiment series triggered three hard-stop criteria, formalising the V3 
 
 ---
 
+## Contribute compute
+
+REE experiments run on donated GPU and CPU time. If you have a machine with spare capacity, you can contribute in a few minutes — no account needed to get started, everything is open source.
+
+→ [Contribute compute](contribute.html)
+
+---
+
 ## Philosophical foundations
 
 REE's design is grounded in five axioms about the structure of ethical agency. See [five axioms](architecture/five_axioms_foundations.md) and the associated [unpublished Synthese paper](https://github.com/Latent-Fields/REE_assembly) for the formal argument.
