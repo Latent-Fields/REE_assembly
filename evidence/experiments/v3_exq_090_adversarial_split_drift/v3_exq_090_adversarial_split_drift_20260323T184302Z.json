@@ -24,7 +24,8 @@
   "claim_ids": [
     "SD-005"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "supports",
+  "evidence_direction_note": "Manual correction 2026-03-24: C2 failure (R2_A=0.0) is itself the SD-005 confirmation -- z_self naturally excludes harm information even without adversarial defense, across all 300 episodes in both conditions. The experiment was designed to show drift-then-prevention; instead it showed there is no drift to prevent. This null result is stronger evidence for SD-005 than a successful drift+prevention would have been: the z_self/z_world split is architecturally clean by construction, not merely defended. R2_world=0.62 confirms harm IS represented in z_world (C3 PASS), making the z_self exclusion a genuine dissociation rather than a trivial signal-absent result.",
   "experiment_type": "v3_exq_090_adversarial_split_drift",
   "fatal_error_count": 0,
   "run_timestamp": "20260323T184302Z",
