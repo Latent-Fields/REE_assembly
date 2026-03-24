@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "contact_recall_routed": 0.8322368562221527,
+    "contact_recall_baseline": 0.7746710479259491,
+    "recall_improvement": 0.05756580829620361,
+    "action_dissoc_routed": -0.004238247871398926,
+    "mean_routing_loss": 0.03229879283628434,
+    "n_contact_min": 164.0,
+    "lambda_route": 0.1,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-047j -- MECH-095 TPJ Routing via CE Head\n\n**Status:** FAIL\n**Claims:** MECH-095, SD-005\n**Decision:** hybridize\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**lambda_route:** 0.1\n**Warmup:** 400 eps  **Probe:** 20 eps\n**mean_routing_loss (ROUTED):** 0.0323 (ACTIVE)\n**Bug fixes vs EXQ-047i:**\n  (1) CE routing head replaces MSE-stability loss (was near-zero due to alpha=0.9 EMA).\n  (2) Balanced contact probe (undersampled) replaces majority-class-collapse probe.\n\n## Pre-Registered Thresholds\n\nC1: contact_recall_world_routed > 0.55\nC2: recall improvement (routed - baseline) > 0.04\nC3: action_dissoc_routed > 0 (z_self better than z_world for actions)\nC4: n_contact_probe >= 20\nC5: no fatal errors\n\n## Results\n\n| Condition | contact_recall | action_dissoc | route_loss |\n|-----------|----------------|---------------|------------|\n| ROUTED    | 0.832          | -0.004        | 0.0323     |\n| BASELINE  | 0.775          | --            | --         |\n\n**Recall improvement: +0.058**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: contact_recall_world > 0.55 | PASS | 0.832 |\n| C2: improvement > 0.04 | PASS | +0.058 |\n| C3: action_dissoc > 0 | FAIL | -0.004 |\n| C4: n_contact >= 20 | PASS | 164 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Per-Seed\n\nROUTED:\n  seed=42: contact_recall_world=0.875 contact_recall_self=0.750 action_dissoc=-0.189 route_loss=0.0344 n_contact=164\n  seed=7: contact_recall_world=0.789 contact_recall_self=0.737 action_dissoc=+0.180 route_loss=0.0302 n_contact=175\n\nBASELINE:\n  seed=42: contact_recall_world=0.812 contact_recall_self=0.750 action_dissoc=+0.067 n_contact=164\n  seed=7: contact_recall_world=0.737 contact_recall_self=0.842 action_dissoc=+0.093 n_contact=175\n\n## Failure Notes\n\n- C3 FAIL: action_dissoc_routed=-0.004 <= 0\n",
+  "claim_ids": [
+    "MECH-095",
+    "SD-005"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_047j_tpj_routing_ce",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260324T202313Z",
+  "claim": "MECH-095",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047j_tpj_routing_ce_20260324T202313Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
