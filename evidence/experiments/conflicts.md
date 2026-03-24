@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-24T16:58:39.477172Z`
+Generated: `2026-03-24T17:24:48.726484Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -236,7 +236,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-004
 - Conflict types: directional
-- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, overall_confidence=0.692
+- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, overall_confidence=0.691
 - Recent entries:
   - `2026-03-19T09:05:29Z` `experimental` `claim_probe_sd_004` direction=`supports` confidence=0.75
   - `2026-03-19T09:05:29Z` `experimental` `v3_exq_042_hippocampal_terrain_training` direction=`supports` confidence=0.75

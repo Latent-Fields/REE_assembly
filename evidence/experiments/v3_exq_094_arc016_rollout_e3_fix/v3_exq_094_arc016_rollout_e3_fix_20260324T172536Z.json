@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "pearson_r": -0.32870125137150685,
+    "c1_increase_count": 1.0,
+    "hv_cv_mid": 0.789658319157876,
+    "commit_rate_low_danger": 1.0,
+    "commit_rate_high_danger": 1.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0,
+    "fatal_error_count": 0.0,
+    "harm_var_mean_0p005": 5.528085409939757e-07,
+    "harm_var_mean_0p01": 5.432173726474023e-07,
+    "harm_var_mean_0p02": 5.156995794432586e-07,
+    "harm_var_mean_0p05": 5.946429742005359e-07,
+    "harm_var_mean_0p1": 5.000934878555603e-07
+  },
+  "summary_markdown": "# V3-EXQ-094 -- ARC-016: Harm Variance Commit (Rollout E3 Fix)\n\n**Status:** FAIL\n**Claims:** ARC-016\n**Fixes:** EXQ-088 (E3 harm_eval head not trained on rollout distribution)\n\n## Root Cause Fixed (EXQ-088)\n\nIn EXQ-088, agent.e3.harm_eval_z_harm_head was never trained during warmup.\nstd_params included it, but compute_prediction_loss() + compute_e2_loss() produce\nno gradients through the harm_eval pathway, so the head stayed at random init.\n\nAdditionally: E3 at eval time receives z_harm from harm_bridge(E2.world_forward(z_world, a)),\nbut warmup only had the head see z_harm from HarmEncoder(harm_obs) -- a different\ndistribution. Even if the head had been trained, distribution mismatch would suppress\nthe variance signal.\n\nFix: explicit E3 training step in warmup loop using z_harm_bridge = harm_bridge(z_world).detach()\nas input and the actual harm label as target. E3 now trains on exactly the\ndistribution it encounters at eval time.\n\n## Sweep Results\n\n| hazard_harm | harm_var_mean | commit_rate |\n|-------------|---------------|-------------|\n| 0.005 | 0.000001 | 1.000 |\n| 0.01 | 0.000001 | 1.000 |\n| 0.02 | 0.000001 | 1.000 |\n| 0.05 | 0.000001 | 1.000 |\n| 0.1 | 0.000001 | 1.000 |\n\n- Pearson r(hazard_harm, harm_var_mean): -0.3287\n- harm_var CV at mid level: 0.7897\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: harm_var increases at >= 3 transitions | FAIL | 1/4 |\n| C2: Pearson r > 0.6 | FAIL | -0.3287 |\n| C3: harm_var CV > 0.10 | PASS | 0.7897 |\n| C4: commit_rate[low] > commit_rate[high] | FAIL | 1.000 vs 1.000 |\n| C5: no fatal errors | PASS | - |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: harm_var increases at only 1/4 transitions. harm_var_means: ['0.000001', '0.000001', '0.000001', '0.000001', '0.000001']\n- C2 FAIL: Pearson r=-0.329 <= 0.6. Harm variance not scaling with danger.\n- C4 FAIL: commit_rate[low=0.005]=1.000 <= commit_rate[high=0.1]=1.000\n",
+  "claim_ids": [
+    "ARC-016"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_094_arc016_rollout_e3_fix",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260324T172536Z",
+  "claim": "ARC-016",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_094_arc016_rollout_e3_fix_20260324T172536Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

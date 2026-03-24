@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "bridge_r2": 0.0,
+    "causal_none": -0.016635374869069745,
+    "causal_approach": 0.0648837695760815,
+    "causal_contact": 0.11606533903824656,
+    "calibration_gap": 0.08360199229011456,
+    "harm_none": 0.5649603170733298,
+    "harm_approach": 0.6485623093634444,
+    "n_approach_eval": 1192.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-093 -- HarmBridge Counterfactual Validation (E3 Head Fix)\n\n**Status:** FAIL\n**Claims:** SD-010, SD-003\n**Fixes:** EXQ-087 (E3 harm_eval head never trained)\n**World:** CausalGridWorldV2 (6 hazards, 3 resources, 12x12)\n**Protocol:** Three-phase (terrain 300 -> calib 150 -> eval 100)\n\n## Root Cause Fixed (EXQ-087)\n\nIn EXQ-087, agent.e3.harm_eval_z_harm_head was excluded from opt_harm, so\nloss_he = MSE(harm_eval_z_harm(z_harm), label) computed gradients through the head\nbut never applied them. Phase 2 then re-trained the head from scratch on top of a\nHarmEncoder that had optimised toward a random head output.\n\nFix: opt_harm now includes both harm_enc.parameters() and\nagent.e3.harm_eval_z_harm_head.parameters(). The head and encoder train jointly\nfrom the start of Phase 1.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| HarmBridge alignment R2 | 0.0000 |\n| causal_sig_none | -0.016635 |\n| causal_sig_approach | 0.064884 |\n| causal_sig_contact | 0.116065 |\n| calibration_gap_approach | 0.0836 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: causal_approach > 0.001 | PASS | 0.064884 |\n| C2: cal_gap > 0.05 | PASS | 0.0836 |\n| C3: harm_none < harm_approach * 0.80 | FAIL | 0.5650 < 0.5188 |\n| C4: causal_contact > causal_approach | PASS | 0.116065 vs 0.064884 |\n| C5: bridge_r2 > 0.5 | FAIL | 0.0000 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C3 FAIL: harm_none=0.5650 not < harm_approach*0.80=0.5188\n- C5 FAIL: bridge_r2=0.0000 <= 0.5\n",
+  "claim_ids": [
+    "SD-010",
+    "SD-003"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_093_harm_bridge_e3_fix",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260324T172512Z",
+  "claim": "SD-010",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_093_harm_bridge_e3_fix_20260324T172512Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
