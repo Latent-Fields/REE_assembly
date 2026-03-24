@@ -23,6 +23,7 @@
     "SD-003"
   ],
   "evidence_direction": "mixed",
+  "evidence_direction_note": "E3 head fix is real: causal_approach 0.003 (EXQ-087) -> 0.065 (EXQ-093), 21x improvement. However bridge_r2=0.0 persists across both experiments -- this is architectural, not a training bug. SD-010 separates z_world perp z_harm by design, making HarmBridge(z_world->z_harm) infeasible. SD-003 counterfactual pipeline needs redesign; z_world carries no harm_obs information by construction.",
   "experiment_type": "v3_exq_093_harm_bridge_e3_fix",
   "fatal_error_count": 0,
   "run_timestamp": "20260324T172512Z",

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_058_arc027_harm_stream_calibration
 
-Generated: `2026-03-24T19:24:58.719165Z`
+Generated: `2026-03-24T20:02:50.149064Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

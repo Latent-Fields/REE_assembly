@@ -1,6 +1,6 @@
 # Archived Structure Review Dossier Index
 
-Generated: `2026-03-24T18:07:56.412914Z`
+Generated: `2026-03-24T20:02:50.958971Z`
 Cycle: `2026-03-24`
 
 These dossiers are historical context from prior cycles or non-active dossiers from this cycle.

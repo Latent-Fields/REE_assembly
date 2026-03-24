@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-03-24T18:07:56.753758Z`
+Generated: `2026-03-24T20:02:51.340462Z`
 
 ## Cycle Status
 
@@ -24,12 +24,12 @@ Generated: `2026-03-24T18:07:56.753758Z`
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
 | `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
-| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `all_packets_adjudicated` | `yes` | `no` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
 | `architecture_structure_adjudication` | `HUMAN_ONLY` | `PASS` | `no_action_required` | `n/a` | `no` |
 
-Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`.
+Open decision items: `promotion_demotion_and_conflict_resolution`.
 
 1. Thought Intake: 0 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
@@ -110,7 +110,7 @@ Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
 13. Evidence Dispatch: 28 high-priority proposal(s), 103 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
-- approval state: approved_for_cycle=false; latest_status=`missing`; latest_recommendation=``; latest_timestamp_utc=``
+- approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-03-24T18:30:00Z`
 - REE_assembly: total=56, experimental=0, literature_review=50
 - ree-v3: total=47, experimental=47, literature_review=0
 14. Maintenance: 1 unlinked evidence run(s), 0 warning(s).

@@ -24,6 +24,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "weakens",
+  "evidence_direction_note": "Fix trained E3 on HarmBridge(z_world).detach() outputs, but bridge_r2=0 means those outputs are pure noise (z_world perp z_harm by SD-010 design). Result is worse than EXQ-088 baseline: harm_var 5e-5 -> 5e-7 (100x regression), Pearson r +0.58 -> -0.33, commit_rate collapsed to 1.0 always. ARC-016 needs a viable harm signal before E3 sensitivity can be tested.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,

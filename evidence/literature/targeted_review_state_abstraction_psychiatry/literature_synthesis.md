@@ -931,6 +931,502 @@ disability feature.
 | 6 | PMID 27119213 | Stimulus overselectivity autism/Down/typical (Dube 2016) |
 | 6 | DOI 10.1177/1088357620943504 | Stimulus overselectivity ASD and stereotypy (Kelly/Reed 2021) |
 | 6 | PMID 30165120 | Autism hippocampus pattern separation context (verify) |
+| 7 | PMID 15997022 | Deficient fear conditioning in psychopathy: fMRI (Birbaumer 2005) |
+| 7 | PMID 11704074 | Limbic abnormalities affective processing criminal psychopaths (Kiehl 2001) |
+| 7 | PMID 18281412 | Reduced amygdala response fearful expressions CU-trait children (Marsh 2008) |
+| 7 | PMID 21919563 | Somatic marker perspective immoral and corrupt behavior (Glenn/Raine 2011) |
+| 7 | PMID 14667112 | Psychopathy as a disorder of empathy (Soderstrom 2003) |
+| 7 | PMID 16866595 | Impaired reversal but intact acquisition in psychopathy (Budhani 2006) |
+| 7 | PMID 26359751 | Punishment and psychopathy: fMRI RL in violent ASPD men (Gregory 2015) |
+| 7 | PMID 18458210 | Abnormal vmPFC function CU-trait children reversal learning (Finger 2008) |
+| 7 | PMID 38773992 | Antisocial learning: learning window width model CU traits (Ly 2021) |
+| 7 | PMID 24105343 | Neurobiology of psychopathic traits in youths (Blair 2013) |
+| 7 | PMID 15134853 | Roles of OFC in modulation of antisocial behavior (Blair 2004) |
+| 7 | PMID 8670652 | Failure to respond autonomically to anticipated future outcomes: PFC damage (Bechara 1996) |
+| 8 | PMID 10526345 | Early prefrontal damage: impaired social/moral behavior (Anderson 1999) |
+| 8 | PMID 1791934 | Preserved access social knowledge: frontal lobe damage (Saver/Damasio 1991) |
+| 8 | PMID 4069365 | Severe disturbance higher cognition after bilateral frontal ablation (Eslinger/Damasio 1985) |
+| 8 | PMID 17377536 | Damage to PFC increases utilitarian moral judgements (Koenigs 2007) |
+| 8 | PMID 21810890 | Sensitivity of revised diagnostic criteria for bvFTD (Rascovsky 2011) |
+| 8 | PMID 10430832 | Decision-making in frontotemporal dementia (Rahman 1999) |
+| 8 | PMID 12729486 | Prefrontal lesion impairs theory of mind and empathy (Shamay-Tsoory 2003) |
+| 8 | PMID 16276356 | The human brain's moral circuitry (Moll/Zahn/Grafman 2005 Nat Rev Neurosci) |
+
+---
+
+## Track 7: Psychopathy and Moral Residue Non-Propagation
+
+**Mapping under test:** Failure to propagate aversive residue from prior harmful actions forward
+into future state representations; harm caused does not update path-selection away from similar
+trajectories; no moral continuity across decisions.
+**Psychiatric analog:** Primary psychopathy / antisocial personality with callous-unemotional traits.
+
+---
+
+### Paper 7.1
+
+**Title:** Deficient Fear Conditioning in Psychopathy: A Functional Magnetic Resonance Imaging Study
+**Authors:** Birbaumer N, Veit R, Lotze M, Erb M, Hermann C, Grodd W, Flor H
+**Year:** 2005
+**PMID:** 15997022
+**Journal:** Archives of General Psychiatry, 62(7):799-805
+
+Criminal psychopaths underwent Pavlovian aversive delay conditioning (neutral faces as CS, painful
+pressure as US). Controls showed robust activation in amygdala, OFC, insula, and ACC alongside
+conditioned SCRs. Psychopaths showed zero activation in this limbic-prefrontal circuit and failed
+to produce conditioned SCRs or emotional valence ratings, despite intact contingency awareness
+(they knew which CS preceded the US). The cognitive-emotional dissociation is critical: failure is
+not in perceiving cause-consequence but in generating an aversive affective signal in response to it.
+
+**Relevance:** The mechanism is failure to encode aversive significance of outcomes, not failure of
+declarative knowledge about them. Precisely the residue-generation failure in the REE model: the
+signal that would constitute aversive residue is not produced, so nothing is available to propagate
+forward into future state representation or path selection.
+
+---
+
+### Paper 7.2
+
+**Title:** Limbic Abnormalities in Affective Processing by Criminal Psychopaths as Revealed by fMRI
+**Authors:** Kiehl KA, Smith AM, Hare RD, Mendrek A, Forster BB, Brink J, Liddle PF
+**Year:** 2001
+**PMID:** 11704074
+**Journal:** Biological Psychiatry, 50(9):677-684
+
+Whole-brain fMRI during affective memory task. Criminal psychopaths showed significantly reduced
+activation in amygdala/hippocampal formation, parahippocampal gyrus, ventral striatum, and
+anterior/posterior cingulate when processing emotional vs. neutral stimuli. Simultaneous
+overactivation in bilateral fronto-temporal cortex. The underactivation of paralimbic regions during
+emotional processing means that the emotional valence of an action or outcome is not being encoded
+into memory in the normal way.
+
+**Relevance:** The affective memory trace that would normally bias future behavior is not being
+consolidated. This is the memory-consolidation side of residue non-propagation: the outcome is
+experienced but its affective tag is not stored in retrievable form. The frontal overactivation
+suggests a cognitive override process that does not carry the affective weight of moral-emotional
+memory.
+
+---
+
+### Paper 7.3
+
+**Title:** Reduced Amygdala Response to Fearful Expressions in Children and Adolescents with
+Callous-Unemotional Traits and Disruptive Behavior Disorders
+**Authors:** Marsh AA, Finger EC, Mitchell DG, Reid ME, Sims C, Kosson DS et al.
+**Year:** 2008
+**PMID:** 18281412
+**Journal:** American Journal of Psychiatry, 165(6):712-720
+
+fMRI in children and adolescents (ages 10-17) with disruptive behavior disorders. High CU-trait
+children showed markedly reduced amygdala responses to fearful facial expressions, regardless of
+disruptive behavior severity. CU traits -- not behavior severity -- predicted amygdala
+hyporesponsivity. Establishes the deficit developmentally and localizes it to the amygdala response
+to others' distress cues.
+
+**Relevance:** Others' distress is the primary feedback signal that one's action has caused harm.
+Reduced amygdala response to this signal means that harm-causing actions generate less aversive
+residue. The deficit is present before extensive harmful behavior has occurred, suggesting it is
+a substrate vulnerability rather than a consequence of habituation.
+
+---
+
+### Paper 7.4
+
+**Title:** Impaired Reversal but Intact Acquisition: Probabilistic Response Reversal Deficits in
+Adult Individuals with Psychopathy
+**Authors:** Budhani S, Richell RA, Blair RJR
+**Year:** 2006
+**PMID:** 16866595
+**Journal:** Journal of Abnormal Psychology, 115(3):552-558
+
+Probabilistic reversal learning paradigm (80/20 contingencies). Psychopathic adults showed intact
+initial acquisition -- learned to approach previously rewarded stimuli normally -- but were
+selectively impaired at updating behavior when contingencies reversed (previously rewarded option
+becomes punished). The acquisition/reversal dissociation means the deficit is not in initial
+punishment learning per se, but in using punishment history to override a previously established
+reward-expectancy.
+
+**Relevance:** This is the canonical computational signature of residue non-propagation: prior
+outcome history (punishment) is not used to update future path selection when the environment
+punishes a previously rewarded trajectory. The harmful/costly history does not accumulate into a
+bias against repeating the path.
+
+---
+
+### Paper 7.5
+
+**Title:** Punishment and Psychopathy: A Case-Control Functional MRI Investigation of Reinforcement
+Learning in Violent Antisocial Personality Disordered Men
+**Authors:** Gregory S, Blair RJ, Ffytche D, Simmons A, Kumari V, Hodgins S, Blackwood N
+**Year:** 2015
+**PMID:** 26359751
+**Journal:** Lancet Psychiatry, 2(2):153-160
+
+50 men (12 violent ASPD+psychopathy, 20 violent ASPD without psychopathy, 18 controls) completed
+a probabilistic reversal task during fMRI. Offenders with ASPD+psychopathy showed increased
+posterior cingulate and anterior insula activation to punished errors and decreased superior
+temporal activation. Punishment prediction error signaling was not simply blunted but disorganized:
+punishment signals are processed but misrouted, failing to reach the frontal-striatal circuit that
+updates behavioral policy.
+
+**Relevance:** The RL system for punishment-based updating is pathologically reorganized, not merely
+attenuated. This is the strongest neuroimaging demonstration that the cascade from punishment signal
+to future path selection update is broken in psychopathy+ASPD. The signal exists in some form but
+fails to drive the correct update.
+
+---
+
+### Paper 7.6
+
+**Title:** Abnormal Ventromedial Prefrontal Cortex Function in Children with Psychopathic Traits
+During Reversal Learning
+**Authors:** Finger EC, Marsh AA, Mitchell DG, Reid ME, Sims C, Budhani S et al.
+**Year:** 2008
+**PMID:** 18458210
+**Journal:** Archives of General Psychiatry, 65(5):586-594
+
+Children (ages 10-17) with psychopathic traits plus conduct/ODD showed vmPFC hypoactivation during
+reversal errors, relative to healthy controls and to ADHD children. vmPFC dysfunction was specific
+to the psychopathic trait component, not general disruptive behavior. Distinguishes the deficit from
+ADHD-related attention or inhibition failure.
+
+**Relevance:** Localizes the failure to vmPFC at the interface between received punishment and
+updating of the action-value representation. The vmPFC is where prior punishment history should
+update the expected value of a trajectory; its dysfunction here is precisely the substrate for
+residue non-propagation at the policy-update stage.
+
+---
+
+### Paper 7.7
+
+**Title:** A Somatic Marker Perspective of Immoral and Corrupt Behavior
+**Authors:** Glenn AL, Raine A
+**Year:** 2011
+**PMID:** 21919563
+**Journal:** Frontiers in Psychology, PMC 3445329
+
+Applies the Damasio somatic marker framework directly to immoral behavior. Distinguishes acquired
+sociopathy (vmPFC lesion -- affective tags exist but cannot be routed into decision-making) from
+developmental psychopathy (amygdala never generated robust affective tags in the first place). Both
+produce behavioral non-propagation of moral residue via different mechanism nodes. The paper
+articulates the residue-generation vs. residue-propagation distinction explicitly.
+
+**Relevance:** This is the theoretical framework that integrates the dual mechanism: amygdala
+generation failure (primary psychopathy) and vmPFC propagation failure (acquired sociopathy) are
+distinct failure points in the same cascade, both producing the same behavioral outcome -- moral
+residue does not accumulate to bias future path selection.
+
+---
+
+### Track 7 Summary
+
+**Strongly supported.** The psychopathy literature provides multi-level evidence for a three-node
+failure cascade: (1) amygdala fails to generate robust aversive signals for harm-relevant outcomes
+(Birbaumer 2005, Kiehl 2001, Marsh 2008); (2) aversive signals that do reach the system are not
+encoded into affective memory or are misrouted when attention is engaged in goal pursuit
+(Baskin-Sommers 2011 -- DOI:10.1177/0956797610396227); (3) vmPFC/OFC fails to use whatever
+punishment signal is registered to update future action-value estimates (Budhani 2006, Finger 2008,
+Gregory 2015). The Glenn/Raine (2011) framework explicitly articulates the generation vs.
+propagation distinction that maps onto the REE residue-non-propagation claim.
+
+**Weakened:** Psychopaths are not uniformly punishment-insensitive -- under conditions of focused
+threat attention they can show near-normal responses. Gregory (2015) shows disorganized rather than
+simply absent punishment signaling. The claim is about systematic non-accumulation in normal
+goal-directed contexts, not absolute insensitivity.
+
+**Unresolved:** Whether anticipated regret and counterfactual residue use are specifically impaired
+in psychopathy; most evidence addresses received punishment rather than prospective simulation of
+harmful outcomes. Computational RL characterization (Ly 2021, PMID 38773992) is promising but
+underdeveloped.
+
+---
+
+## Track 8: Frontal Damage and Social/Identity Constraint Omission
+
+**Mapping under test:** The C (constraint) component of state representation is missing social
+norms, role obligations, and identity-consistency requirements. The agent retains an intact world
+model (W), can plan paths (E3 trajectory search functional), and has goal representations (G), but
+the social and identity constraints that would normally gate path selection are absent from the
+state. Result: norm-violating behavior despite adequate perception, planning, and goal representation.
+**Neurological analog:** vmPFC/OFC lesion (acquired sociopathy), behavioral-variant frontotemporal
+dementia (bvFTD), early-onset prefrontal damage.
+
+---
+
+### Paper 8.1
+
+**Title:** Impairment of Social and Moral Behavior Related to Early Damage in Human Prefrontal Cortex
+**Authors:** Anderson SW, Bechara A, Damasio H, Tranel D, Damasio AR
+**Year:** 1999
+**PMID:** 10526345
+**Journal:** Nature Neuroscience, 2(11):1032-1037
+
+Two patients with early-onset vmPFC damage (before 16 months) showed severe deficits in social
+behavior and moral reasoning as adults, despite normal basic cognitive functions (IQ, language,
+perceptual skills, declarative memory). Unlike late-onset vmPFC lesion patients who retain social
+knowledge from pre-lesion experience, early-onset patients failed to acquire social and moral rules
+at all during development. They could not articulate social norms and violated them continuously,
+without apparent distress at violations.
+
+**Relevance:** The early-onset case is a natural experiment in constraint non-acquisition: the C
+component was never populated with social/identity constraints during development because the
+substrate for their acquisition (vmPFC) was absent. Late-onset patients (Saver/Damasio 1991) show
+the complementary dissociation -- they know the constraints but cannot apply them -- establishing
+that knowledge and application are separate functions in two distinct failure modes.
+
+---
+
+### Paper 8.2
+
+**Title:** Preserved Access to Social Knowledge in a Patient with Acquired Sociopathy Due to
+Ventromedial Frontal Damage
+**Authors:** Saver JL, Damasio AR
+**Year:** 1991
+**PMID:** 1791934
+**Journal:** Neuropsychologia, 29(12):1241-1249
+
+Single case study of a patient with acquired vmPFC damage who showed severe post-lesion social
+disinhibition and norm-violating behavior, but retained intact verbal knowledge of social norms,
+moral rules, and appropriate conduct (tested explicitly). He could describe what should be done in
+social scenarios correctly, while behaving in ways that violated those same rules in practice.
+
+**Relevance:** This is the paradigmatic demonstration of the dissociation between social constraint
+knowledge and social constraint application. The C component (constraint set) in this patient's
+verbally accessible knowledge is intact; what is impaired is the routing of those constraints into
+the state representation used for path selection. The patient's behavioral state was not conditioned
+on the constraints he could articulate -- they were not active components of his navigable state.
+
+---
+
+### Paper 8.3
+
+**Title:** Severe Disturbance of Higher Cognition after Bilateral Frontal Lobe Ablation: Patient
+EVR
+**Authors:** Eslinger PJ, Damasio AR
+**Year:** 1985
+**PMID:** 4069365
+**Journal:** Neurology, 35(12):1731-1741
+
+Classic case of patient EVR, who underwent bilateral orbitofrontal ablation for meningioma removal.
+Post-operatively: normal IQ (above average), intact language, intact declarative memory, intact
+abstract reasoning. Despite preserved higher cognition by standard measures, EVR showed catastrophic
+breakdown in personal and social decision-making -- multiple failed marriages, business ventures,
+and daily-life decisions, with apparent inability to apply social and practical constraints in
+real-time decision contexts despite ability to reason about them abstractly.
+
+**Relevance:** EVR demonstrates the classic double dissociation: world model (W) intact, abstract
+reasoning intact, but constraints do not participate in actual path selection. The abstract
+constraint knowledge exists (EVR could describe good choices in social scenarios) but is not
+integrated into the navigable state used by the decision system. This is constraint omission in
+its purest documented form.
+
+---
+
+### Paper 8.4
+
+**Title:** Damage to the Prefrontal Cortex Increases Utilitarian Moral Judgements
+**Authors:** Koenigs M, Young L, Adolphs R, Tranel D, Cushman F, Hauser M, Damasio A
+**Year:** 2007
+**PMID:** 17377536
+**Journal:** Nature, 446(7138):908-911
+
+vmPFC lesion patients, dorsolateral PFC lesion patients, and healthy controls judged a battery of
+moral dilemmas (including "personal" dilemmas where harming one person saves five). vmPFC patients
+showed significantly more utilitarian judgements on personal dilemmas -- they were more willing to
+directly harm one person to produce a greater good -- than both controls and DLPFC patients. DLPFC
+lesions had no effect on moral judgement. vmPFC patients' responses on impersonal dilemmas were
+normal.
+
+**Relevance:** The effect is specific to personal dilemmas -- situations where social and identity
+constraints (not harming someone directly; maintaining role-appropriate behavior) normally override
+pure outcome calculation. vmPFC damage removes the emotional component of these constraints from
+the state, leaving only outcome-based path evaluation. The state is not wrong about the world (W)
+or about goals (G) -- it is missing the constraint (C) that "direct harm to a person is
+categorically prohibited regardless of aggregate outcome."
+
+---
+
+### Paper 8.5
+
+**Title:** Sensitivity of Revised Diagnostic Criteria for the Behavioural Variant of Frontotemporal
+Dementia
+**Authors:** Rascovsky K, Hodges JR, Knopman D et al.
+**Year:** 2011
+**PMID:** 21810890
+**Journal:** Brain, 134(9):2456-2477
+
+International consensus diagnostic criteria for behavioral-variant FTD (bvFTD). Core diagnostic
+features include: disinhibition (impulsive, socially inappropriate behavior), apathy/inertia,
+loss of sympathy/empathy, perseverative/compulsive behaviors, hyperorality, and neuropsychological
+profile showing executive deficits with relative preservation of memory and visuospatial function.
+Neuropathology targets frontal and anterior temporal cortex.
+
+**Relevance:** bvFTD is the clinical syndrome that results from progressive loss of the frontal-
+temporal substrate for social constraint encoding. The defining dissociation -- behavioral
+disinhibition with relatively preserved episodic memory and perception -- maps directly onto the
+REE claim: W (world model via memory/perception) relatively intact; C (social constraints in
+path-selection state) progressively degraded. Patients violate social norms not because they
+cannot perceive the social situation but because the constraints that would gate against the
+violation are no longer components of their navigable state.
+
+---
+
+### Paper 8.6
+
+**Title:** Decision-Making Impairments in a Patient with Lesions of the Frontal Lobes
+(Frontotemporal Dementia: Decision-Making on the Iowa Gambling Task)
+**Authors:** Rahman S, Sahakian BJ, Hodges JR, Rogers RD, Robbins TW
+**Year:** 1999
+**PMID:** 10430832
+**Journal:** Neuropsychologia, 37(10):1185-1192
+
+Patients with FTD showed significantly impaired performance on the Iowa Gambling Task (IGT)
+relative to healthy controls and to Alzheimer's disease patients. FTD patients chose disadvantageous
+decks that yielded high immediate reward but net losses, failing to use accumulated outcome history
+to shift strategy -- even though their declarative memory for recent events was better preserved
+than AD patients'.
+
+**Relevance:** The FTD IGT deficit mirrors the psychopathy IGT deficit at the circuit level, but
+via a different failure mode: not absence of aversive signal generation, but loss of the frontal
+substrate that integrates outcome history and social-practical constraints into future path
+selection. The intact memory but impaired use of accumulated experience is the frontal constraint-
+omission signature: outcomes are experienced and remembered, but do not update the C component
+that should gate against repeating disadvantageous choices.
+
+---
+
+### Paper 8.7
+
+**Title:** Impairment in Cognitive and Affective Empathy in Patients with Brain Lesions: Dissociation
+and Processes
+**Authors:** Shamay-Tsoory SG, Tomer R, Berger BD, Aharon-Peretz J
+**Year:** 2003
+**PMID:** 12729486
+**Journal:** Journal of Clinical and Experimental Neuropsychology, 25(3):324-339
+
+Patients with prefrontal lesions, posterior cortex lesions, and healthy controls were tested on
+cognitive ToM (false-belief tasks) and affective ToM (understanding the emotional states of others
+in context). Prefrontal lesion patients were impaired on both cognitive and affective ToM relative
+to controls; posterior lesion patients were impaired only on cognitive ToM. vmPFC damage
+disproportionately impaired affective ToM -- understanding what others feel, not merely what they
+believe.
+
+**Relevance:** Applying social constraints to path selection requires representing others' emotional
+states and interests as components of the current situation. vmPFC damage that selectively impairs
+affective ToM removes the representation of others' welfare from the state -- precisely the social
+constraint component (C) that would generate violations when absent. An agent that cannot represent
+how others feel cannot have those representations gating its path selection.
+
+---
+
+### Paper 8.8
+
+**Title:** The Human Brain's Involvement in the Moral Domain: Functional Neuroimaging Evidence
+**Authors:** Moll J, Zahn R, de Oliveira-Souza R, Krueger F, Grafman J
+**Year:** 2005
+**PMID:** 16276356
+**Journal:** Nature Reviews Neuroscience, 6(10):799-809
+
+Comprehensive review of neuroimaging evidence for moral cognition. Identifies a network including
+vmPFC, OFC, anterior temporal cortex, and STS as the substrate for moral-emotional processing.
+Crucially, vmPFC integrates emotional representations with social semantic content to produce
+"moral sentiments" -- the affective tags that mark certain actions as prohibited or required
+independent of pure outcome calculation. Damage to this network produces moral disinhibition while
+leaving rational cognition largely intact.
+
+**Relevance:** Provides the circuit-level substrate for the constraint-encoding function mapped onto
+C in the REE state. The vmPFC/OFC moral sentiment system is the biological implementation of the
+social and ethical constraint layer that normally participates in state construction and path-
+selection gating. Its loss is not a loss of world-model content but a loss of the constraint
+overlay that makes certain trajectories unavailable regardless of their outcome profile.
+
+---
+
+### Track 8 Summary
+
+**Strongly supported.** The frontal lesion and bvFTD literature provides converging evidence for
+the social constraint omission failure mode across multiple levels:
+
+- **The knowledge/application dissociation** (Saver/Damasio 1991, EVR / Eslinger/Damasio 1985)
+  demonstrates that social constraint knowledge and social constraint application in path selection
+  are separable functions. Frontal damage selectively impairs the latter while leaving the former
+  largely intact -- the C component as verbally accessible knowledge survives, but C is not active
+  in the navigable state used by the decision system.
+
+- **The developmental acquisition failure** (Anderson 1999) shows that without the vmPFC substrate,
+  social constraints are not acquired at all -- C is never populated, rather than populated but
+  inaccessible.
+
+- **The categorical constraint removal** (Koenigs 2007) shows that vmPFC damage specifically
+  removes the constraints that would gate against certain trajectories regardless of their aggregate
+  outcome profile -- not the world model or goal representations, but the constraints that declare
+  certain paths unavailable.
+
+- **The progressive constraint erosion** (bvFTD -- Rascovsky 2011, Rahman 1999) shows that as
+  frontal cortex degrades, social constraint application progressively fails while episodic memory
+  and world-model perception remain relatively spared -- a natural longitudinal experiment in C
+  component isolation.
+
+- **The affective ToM requirement** (Shamay-Tsoory 2003, Moll 2005) identifies vmPFC as the
+  substrate that represents others' welfare as an active component of the decision state, providing
+  the circuit-level account of why C must include social-relational representations, not just
+  abstract rule lists.
+
+**Weakened:** The dissociation between social disinhibition and intact declarative knowledge is
+strong for behavior, but some patients also show executive function deficits that could independently
+impair constraint application (response inhibition, perseveration). Whether it is specifically
+social constraint omission vs. a general behavioral regulation failure is not fully resolved.
+
+**Unresolved:** The role of identity constraints specifically (as opposed to social norms generally)
+is underexplored in the lesion literature. Most evidence concerns interpersonal moral norms; whether
+identity-consistency constraints (acting in ways consistent with self-concept and values) are
+separately encoded and separately damaged is not well characterized. Functional neuroimaging of
+self-relevant moral emotions (frontopolar cortex; Moll et al. 2007, PMID 17848373) suggests this
+may be a partially distinct substrate, but lesion evidence is limited.
+
+---
+
+## Updated Cross-Track Synthesis
+
+### The Full Failure-Mode Map (Tracks 1-8)
+
+All eight failure modes are now grounded with literature evidence:
+
+| Failure mode | Psychiatric analog | Evidence level | Primary mechanism |
+|---|---|---|---|
+| Overmerge (T1) | Schizophrenia | Strongly supported | DG pattern sep failure + CA3 completion excess |
+| Valence spreading (T2a) | Generalized anxiety | Strongly supported | Hippocampal pattern completion, reduced sep threshold |
+| Attractor basins (T2b) | PTSD | Strongly supported | Safety attractor inaccessible; vmPFC-hippocampal failure |
+| T/C component loss (T3) | ADHD | Well supported | PFC-hippocampal-cerebellar temporal circuit dysfunction |
+| Uncertainty collapse (T4) | Mania | Theoretically grounded | Precision dysregulation in predictive coding |
+| Narrow capacity / neg G (T5) | Depression | Multiply supported | Synapse loss sufficient; negative learning asymmetry |
+| Oversplit (T6) | ASD | Supported behaviorally | Excess hippocampal pattern separation |
+| Residue non-propagation (T7) | Psychopathy | Strongly supported | 3-node cascade: amygdala -> encoding -> vmPFC update |
+| Constraint omission (T8) | Frontal / bvFTD | Strongly supported | vmPFC social constraint encoding and routing |
+
+### Organizing principle
+
+Three organizing axes cover all eight failure modes:
+
+1. **Pattern separation/completion balance (hippocampus):** Governs Tracks 1, 2a, 2b, 6.
+   Too much completion -> overmerge (SZ) and attractor lock (PTSD); spreading (anxiety); too
+   much separation -> oversplit (ASD).
+
+2. **Temporal and constraint binding (PFC-hippocampal network):** Governs Tracks 3, 8.
+   PFC-hippocampal failure removes temporal position and constraint content from the navigable
+   state, producing appearance-driven impulsive action (ADHD) or norm violation despite intact
+   perception (frontal damage).
+
+3. **Valence signal generation and propagation (amygdala-vmPFC cascade):** Governs Tracks 4, 5, 7.
+   Amygdala generates (or fails to generate) valence signals; vmPFC propagates them forward into
+   future path selection or fails to. Mania = precision collapse (excessive confidence in current
+   valence estimate); depression = negative bias or representational capacity failure; psychopathy
+   = generation failure + propagation failure.
+
+All three axes converge on the vmPFC/OFC as a critical integration node across Tracks 3, 7, and 8,
+and on the hippocampus across Tracks 1, 2, 3, and 6. This is consistent with the MECH-126 claim
+that the failure-mode taxonomy maps onto identifiable circuit-level mechanisms, not merely
+behavioral analogies.
 
 ---
 
