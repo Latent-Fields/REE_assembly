@@ -19,8 +19,7 @@ services:
       - REE_GITHUB_USER=dgolden
       # IMPORTANT: set a short stable name for this machine (e.g. "alice-m2mac").
       - REE_MACHINE_NAME=docker-contributor
-      # Uncomment to start V3 runner automatically:
-      # - AUTO_START_RUNNER=true
+      - AUTO_START_RUNNER=true
     volumes:
       - type: bind
         source: ${SSH_KEY_DIR:-~/.ssh}

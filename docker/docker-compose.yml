@@ -42,8 +42,7 @@ services:
       # Used for multi-machine experiment routing and contribution tracking.
       # Runs will be attributed to this name in contributors/contributions.json.
       - REE_MACHINE_NAME=docker-contributor
-      # Uncomment to start V3 runner automatically at container launch:
-      # - AUTO_START_RUNNER=true
+      - AUTO_START_RUNNER=true
     volumes:
       # SSH key for git clone + push (read-only -- container cannot modify your key)
       - type: bind
