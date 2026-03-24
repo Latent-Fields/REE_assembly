@@ -1,4 +1,11 @@
-Status: raw
+Status: processed
+
+Processed in:
+- docs/architecture/e3.md (section 4a: multi-constraint viability selection criterion; MECH-125 reference)
+- docs/architecture/hippocampal_systems.md (External Literature Convergence section: Doeller 2010, Constantinescu 2016, Garvert 2017, Behrens 2018, Whittington 2020)
+- docs/claims/claims.yaml (MECH-125: coherence.multiconstraint_viability, candidate, v3)
+
+---
 
 Source: ChatGPT conversation, 2026-03-24 (user-submitted thought intake)
 Triggered by: Euronews article -- Doeller / Max Planck group, 2026-03-22

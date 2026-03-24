@@ -545,6 +545,18 @@
     "title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.",
     "type": "invariant"
   },
+  "INV-035": {
+    "status": "candidate",
+    "subject": "state.not_raw_perception",
+    "title": "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states.",
+    "type": "invariant"
+  },
+  "INV-036": {
+    "status": "candidate",
+    "subject": "state.functional_requirements",
+    "title": "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1287,6 +1299,12 @@
     "status": "candidate",
     "subject": "sleep.consolidation_mediated_option_contraction",
     "title": "When harm-trace salience dominates offline replay content, consolidation selectively amplifies harm predictions, progressively contracting option space -- a distinct failure mode from Q-021 behavioral flatness.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-125": {
+    "status": "candidate",
+    "subject": "coherence.multiconstraint_viability",
+    "title": "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

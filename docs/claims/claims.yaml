@@ -5651,6 +5651,64 @@
     syndromes all demonstrate that harm-avoidance systems remain intact while agency
     collapses. REE must avoid this architecture failure mode. Registered 2026-03-23.
 
+- id: INV-035
+  title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
+  claim_type: invariant
+  subject: state.not_raw_perception
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-004
+    - ARC-003
+    - ARC-007
+  location: docs/architecture/state.md
+  source:
+    - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
+  notes: >
+    Grounded in the formal state definition ("situation as navigable from here").
+    A state definition that collapses to perceptual embedding silently breaks
+    trajectory evaluation, viability mapping, and ethical reasoning. The same
+    sensory input at a door produces entirely different viable transitions, costs,
+    antigoals, urgency, and commitment structures depending on temporal position
+    (T), active constraints (C), and goal/antigoal relations (G, A). Collapsing
+    these to appearance means the hippocampal rollout cannot distinguish "leaving
+    for work" from "fleeing danger" -- two trajectories with nearly opposite
+    valid next-action sets. This invariant is a design guard against the common
+    shortcut of treating latent perceptual embeddings as sufficient state
+    representations. Registered 2026-03-24.
+
+- id: INV-036
+  title: "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state."
+  claim_type: invariant
+  subject: state.functional_requirements
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-035
+    - ARC-007
+    - ARC-018
+    - ARC-003
+  location: docs/architecture/state.md
+  source:
+    - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
+  notes: >
+    The three functional requirements are the minimum for a representation to
+    participate in hippocampal rollout and E3 path evaluation. (1) Transition
+    prediction: without plausible-next-transition grounding (R component), the
+    hippocampal system cannot chain the state into a rollout. (2) Valence and
+    antigoal tagging (G, A components): without goal-relation and antigoal-relation
+    fields, E3 has no directional signal for path selection -- trajectories cannot
+    be ranked as better or worse relative to any objective. (3) Uncertainty (U
+    component): without structured uncertainty, precision weighting in the
+    control plane has nothing to operate on, and epistemic caution cannot
+    propagate into trajectory evaluation.
+    These three requirements are necessary but not sufficient -- a complete state
+    also requires W, Self, T, and C (world, self, temporal position, constraints).
+    INV-036 specifies the floor below which a representation is definitely not a
+    state; INV-035 specifies that perceptual identity is insufficient for state
+    identity. Together they define the outer boundary of valid state abstraction.
+    Registered 2026-03-24.
+
 - id: MECH-120
   title: "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio."
   claim_type: mechanism_hypothesis
@@ -5884,3 +5942,51 @@
     system will amplify this imbalance. EXQ-074b and EXQ-076 provide early evidence
     on whether z_goal can achieve competitive salience with harm traces.
     Registered 2026-03-23. V4 scope.
+
+- id: MECH-125
+  title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."
+  claim_type: mechanism_hypothesis
+  subject: coherence.multiconstraint_viability
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-112
+    - MECH-113
+    - ARC-018
+    - ARC-003
+    - SD-005
+  location: docs/architecture/e3.md#4a-selection-criterion-multi-constraint-viability-not-reward-maximisation
+  source:
+    - docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md
+  notes: >
+    The selection rule is: lowest-veto + acceptable goal progress, not maximum reward.
+    A trajectory is coherent when it does not produce a veto-level error signal in any
+    major evaluation system simultaneously. This is distinct from reward maximisation:
+    a trajectory can have high immediate reward while failing harm, identity, or resource
+    constraints, producing internal contradiction.
+    Biological correlate: the commit gate (basal ganglia) opens when ACC conflict, insula
+    cost, amygdala threat, goal-distance (MECH-112), and identity checks all fall below
+    veto threshold simultaneously. No single system "chooses" -- commitment emerges from
+    absence of sustained veto.
+    Distinct from MECH-113 (which measures internal latent coherence via D_eff, a
+    single-space metric). MECH-125 is the cross-space selection criterion: the multi-
+    constraint viability check across goal, harm, identity, and resource spaces that
+    determines whether E3 commits to a trajectory at all.
+    The five terms in E3's selection functional J(tau) map to constraint spaces:
+    C(tau) = cross-horizon coherence (identity + prediction consistency),
+    R(tau) = residue/ethical curvature (harm + moral cost),
+    F(tau) = feasibility (resource + physical constraint),
+    I(tau) = epistemic value (exploration benefit, negative constraint),
+    P(tau) = phase-lock (temporal coherence).
+    The ACC + insula complex is the likely biological substrate for the coherence error
+    signal (conflict monitoring + interoceptive cost). Commitment emerges when these
+    signals collectively fall below threshold -- not from a single coherence module.
+    Convergent neuroscience: Behrens et al. (2018) Neuron "What is a cognitive map?"
+    establishes hippocampal-entorhinal system as a general relational geometry engine;
+    Whittington et al. (2020) Cell Tolman-Eichenbaum Machine unifies spatial and
+    relational cognition. REE arrived at the same architecture independently from the
+    design side. See MECH-112 (goal latent) and MECH-113 (D_eff self-coherence) for
+    the specific sub-mechanisms this claim coordinates.
+    Registered 2026-03-24. V3 scope.
+

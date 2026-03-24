@@ -320,6 +320,54 @@ sampling/replay policy and offline recovery, but cannot erase residue geometry, 
 bypass harm gating.
 Resolution note: `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs-residue-persistence.md`
 
+## External Literature Convergence
+
+REE's framing of the hippocampal system as a relational trajectory simulator over an abstract
+navigable latent space converges with a substantial neuroscience research programme that arrived
+at the same picture from experimental evidence.
+
+Key papers supporting ARC-007 and ARC-018:
+
+**Doeller, Barry & Burgess (2010).** "Evidence for grid cells in a human memory network."
+*Nature*, 463, 657-661.
+  First demonstration of grid-cell-like fMRI signals in humans during virtual navigation.
+  Basis of Doeller's 2026 Leibniz Prize. Establishes the spatial cognitive map in humans.
+
+**Constantinescu, O'Reilly & Behrens (2016).** "Organizing conceptual knowledge in humans with
+a gridlike code." *Science*, 352, 1464-1468.
+  Grid cells fire in hexagonal patterns for abstract conceptual space (neck-length x leg-length
+  of schematic birds). First direct evidence that the spatial coding mechanism operates for
+  non-spatial abstract concepts. Watershed for the abstract-map view.
+
+**Garvert, Dolan & Behrens (2017).** "A map of abstract relational knowledge in the human
+hippocampal-entorhinal cortex." *eLife*, 6: e17086.
+  Non-spatial, unconsciously-learned graph structure represented map-like in hippocampus.
+  Supports ARC-018 (relational map indexed by structure, not sensory features).
+
+**Behrens, Muller, Whittington et al. (2018).** "What is a cognitive map? Organizing knowledge
+for flexible behavior." *Neuron*, 100, 490-509.
+  High-profile synthesis. Proposes hippocampal-entorhinal system implements a general relational
+  geometry engine. Abstract-map view enters mainstream neuroscience.
+
+**Whittington, Muller, Mark, Behrens et al. (2020).** "The Tolman-Eichenbaum Machine:
+Unifying space and relational memory through generalization in the hippocampal formation."
+*Cell*, 183, 1249-1263.
+  Computational unification. Spatial cognition = special case of general relational learning.
+  Named to honour Tolman (1948) and Eichenbaum & Cohen (1993). The abstract-map view becomes
+  the leading theoretical framework (~2020 = mainstream).
+
+Note: a 2026-03-22 Euronews article reported this work as a "breakthrough discovery." This was
+prize journalism marking Doeller's 2026 Leibniz Prize, not a new paper. The underlying science
+dates to 2010-2020.
+
+REE did not derive its hippocampal architecture from this literature -- the convergence is
+independent, from the architectural design direction. This constitutes convergent evidence that
+the hippocampal relational-trajectory-simulator framing is correct.
+
+Source: `docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md`
+
+---
+
 ## Related Claims (IDs)
 
 - ARC-007
@@ -339,3 +387,4 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_rollout-entropy-floor-vs
 - `docs/thoughts/2026-02-09_starting_with_sensory_streams.md`
 - `docs/thoughts/2026-02-09_e2_hpc_interface.md`
 - `docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md`
+- `docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md`
