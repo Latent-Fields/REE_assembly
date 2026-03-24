@@ -1,7 +1,7 @@
 # Structure Review Index
 
-Generated: `2026-03-16T14:39:54.176857Z`
-Cycle: `2026-03-16`
+Generated: `2026-03-24T16:58:40.241942Z`
+Cycle: `2026-03-24`
 
 - Active dossiers: `0`
 - Archived dossiers: `79`

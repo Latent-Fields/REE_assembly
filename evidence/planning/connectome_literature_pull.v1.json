@@ -1,5 +1,5 @@
 {
-  "completed_items": ["CPULL-0001", "CPULL-0002", "CPULL-0003", "CPULL-0004"],
+  "completed_items": [],
   "completion_policy": {
     "manual_claim_ids_adjudicated": [],
     "manual_require_adjudication_for_completion": true,
@@ -9,8 +9,8 @@
     "reopen_conflict_ratio": 0.9,
     "state_path": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/planning/connectome_pull_state.v1.json"
   },
-  "cycle_date": "2026-03-16",
-  "generated_at_utc": "2026-03-16T14:39:47.641368Z",
+  "cycle_date": "2026-03-24",
+  "generated_at_utc": "2026-03-24T16:58:40.412199Z",
   "items": [
     {
       "acceptance_checks": [
@@ -23,7 +23,7 @@
       "claim_id": "ARC-016",
       "completion_status": {
         "clarification_ready": false,
-        "clarification_reason": "manual_seed_adjudication_pending",
+        "clarification_reason": "conflict_ratio_above_reopen_threshold",
         "coverage_ready": true,
         "entries_total": 4,
         "latest_timestamp_utc": "2026-02-21T17:11:00Z",
@@ -35,14 +35,14 @@
         "min_support_entries": 1,
         "non_support_entries": 1,
         "reopen_conflict_ratio": 0.9,
-        "status_reason": "coverage_met_pending_manual_adjudication",
+        "status_reason": "reopened_due_conflict_pressure",
         "support_entries": 3
       },
       "connectome_focus": "Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.",
       "manual_seed": true,
       "objective": "Run targeted connectome literature pull for ARC-016.",
       "plain_english_claim_description": "ARC-016 is an architecture commitment about cognitive modes / control plane regimes.",
-      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.",
+      "plain_english_ree_fit_description": "This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 14 downstream claim(s): `ARC-029`, `INV-033`, `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`, `MECH-097`, `MECH-104`, `MECH-106`, `MECH-114`, `MECH-120`, `MECH-123`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.",
       "priority": "high",
       "pull_id": "CPULL-0001",
       "required_record_contract": {
@@ -102,25 +102,26 @@
         }
       ],
       "selection_signals": {
-        "conflict_ratio": 0.0,
+        "conflict_ratio": 1.0,
         "consider_new_structure": false,
         "direction_counts": {
-          "mixed": 1,
-          "supports": 3,
+          "mixed": 3,
+          "supports": 13,
           "unknown": 0,
-          "weakens": 1
+          "weakens": 10
         },
-        "overall_confidence": 0.5,
+        "overall_confidence": 0.745,
         "recurring_failure_signatures": [],
         "source_counts": {
-          "experimental": 1,
+          "experimental": 22,
           "literature": 4
         },
         "trigger_signals": [
+          "high_conflict_ratio",
           "manual_mode_transition_pull"
         ]
       },
-      "status": "completed",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_arc_016",
       "target_repo": "REE_assembly"
     },
@@ -217,22 +218,22 @@
         "conflict_ratio": 0.0,
         "consider_new_structure": false,
         "direction_counts": {
-          "mixed": 1,
+          "mixed": 4,
           "supports": 3,
           "unknown": 0,
-          "weakens": 1
+          "weakens": 2
         },
         "overall_confidence": 0.5,
         "recurring_failure_signatures": [],
         "source_counts": {
-          "experimental": 1,
+          "experimental": 5,
           "literature": 4
         },
         "trigger_signals": [
           "manual_mode_transition_pull"
         ]
       },
-      "status": "completed",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_mech_025",
       "target_repo": "REE_assembly"
     },
@@ -331,20 +332,20 @@
         "direction_counts": {
           "mixed": 1,
           "supports": 3,
-          "unknown": 0,
+          "unknown": 1,
           "weakens": 0
         },
         "overall_confidence": 0.5,
         "recurring_failure_signatures": [],
         "source_counts": {
-          "experimental": 0,
+          "experimental": 1,
           "literature": 4
         },
         "trigger_signals": [
           "manual_mode_transition_pull"
         ]
       },
-      "status": "completed",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_mech_026",
       "target_repo": "REE_assembly"
     },
@@ -441,22 +442,22 @@
         "conflict_ratio": 0.0,
         "consider_new_structure": false,
         "direction_counts": {
-          "mixed": 1,
+          "mixed": 2,
           "supports": 3,
-          "unknown": 0,
+          "unknown": 1,
           "weakens": 0
         },
         "overall_confidence": 0.5,
         "recurring_failure_signatures": [],
         "source_counts": {
-          "experimental": 0,
+          "experimental": 2,
           "literature": 4
         },
         "trigger_signals": [
           "manual_mode_transition_pull"
         ]
       },
-      "status": "completed",
+      "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_mech_029",
       "target_repo": "REE_assembly"
     },
@@ -474,7 +475,7 @@
         "clarification_reason": "manual_seed_adjudication_pending",
         "coverage_ready": true,
         "entries_total": 4,
-        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
+        "latest_timestamp_utc": "2026-03-22T10:15:00Z",
         "manual_adjudicated": false,
         "manual_adjudication_required": true,
         "manual_seed": true,
@@ -490,7 +491,7 @@
       "manual_seed": true,
       "objective": "Run targeted connectome literature pull for MECH-030.",
       "plain_english_claim_description": "MECH-030 is a mechanism hypothesis about sleep / modes consolidation.",
-      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-011`, `ARC-005`, `ARC-007`, `INV-010`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/sleep.md#mech-030`.",
+      "plain_english_ree_fit_description": "This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 10 upstream claim(s): `ARC-011`, `ARC-005`, `ARC-007`, `INV-010`, `MECH-092`, `MECH-094`, `MECH-120`, `MECH-121`, `MECH-122`, `MECH-123`. It currently influences 5 downstream claim(s): `MECH-120`, `MECH-121`, `MECH-122`, `MECH-123`, `MECH-124`. Primary anchor: `docs/architecture/sleep.md#mech-030`.",
       "priority": "high",
       "pull_id": "CPULL-0005",
       "required_record_contract": {
@@ -553,8 +554,8 @@
         "conflict_ratio": 0.0,
         "consider_new_structure": false,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
+          "mixed": 1,
+          "supports": 3,
           "unknown": 0,
           "weakens": 0
         },
@@ -562,7 +563,7 @@
         "recurring_failure_signatures": [],
         "source_counts": {
           "experimental": 0,
-          "literature": 0
+          "literature": 4
         },
         "trigger_signals": [
           "manual_mode_transition_pull"
@@ -586,7 +587,7 @@
         "clarification_reason": "manual_seed_adjudication_pending",
         "coverage_ready": true,
         "entries_total": 4,
-        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
+        "latest_timestamp_utc": "2026-03-22T12:00:00Z",
         "manual_adjudicated": false,
         "manual_adjudication_required": true,
         "manual_seed": true,
@@ -665,16 +666,16 @@
         "conflict_ratio": 0.0,
         "consider_new_structure": false,
         "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
+          "mixed": 1,
+          "supports": 3,
+          "unknown": 1,
           "weakens": 0
         },
         "overall_confidence": 0.5,
         "recurring_failure_signatures": [],
         "source_counts": {
-          "experimental": 0,
-          "literature": 0
+          "experimental": 1,
+          "literature": 4
         },
         "trigger_signals": [
           "manual_mode_transition_pull"
@@ -683,288 +684,12 @@
       "status": "proposed",
       "suggested_literature_type": "targeted_review_connectome_mech_047",
       "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry per search track.",
-        "Include at least 1 disconfirming/mixed source alongside supporting sources.",
-        "Each record includes source_claim_statement, ree_translation, and mapping_caveat.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Results linked to SD-005 and MECH-069 claim_ids_tested."
-      ],
-      "claim_id": "SD-005",
-      "completion_status": {
-        "clarification_ready": false,
-        "clarification_reason": "manual_seed_adjudication_pending",
-        "coverage_ready": true,
-        "entries_total": 4,
-        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
-        "manual_adjudicated": false,
-        "manual_adjudication_required": true,
-        "manual_seed": true,
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "min_support_entries": 1,
-        "non_support_entries": 1,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "coverage_met_pending_manual_adjudication",
-        "support_entries": 3
-      },
-      "connectome_focus": "motor_self_model_efference_copy",
-      "manual_seed": true,
-      "objective": "Ground SD-005 (z_self / z_world latent split) in biological efference-copy and self-model literature. Key question: does the brain maintain a dedicated motor-self representation (analogous to z_self) that is computationally separable from world-model representations (z_world)? Collects evidence for the z_self/z_world split architecture and the claim that combining them in a single latent (z_gamma) misattributes causal credit.",
-      "plain_english_claim_description": "The brain keeps a separate internal model of what the body/self is doing (efference copy, proprioceptive self-model) that is distinct from its model of the external world. These two streams feed different downstream systems.",
-      "plain_english_ree_fit_description": "REE splits z_gamma into z_self (E2 / motor-sensory domain) and z_world (E3 / hippocampus / residue domain). Biological self-model literature should ground this split in known cortical/sub-cortical circuits.",
-      "priority": "high",
-      "pull_id": "CPULL-0007",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "research_questions": [
-        "Is there direct neural evidence for separate self-model and world-model streams (e.g., parietal vs frontal dissociation)?",
-        "Does efference copy / forward model update a self-channel that does NOT update the world model (consistent with z_self isolation)?",
-        "Does MOSAIC (Wolpert & Kawato 1998) provide a computational precedent for the z_self / z_world split?",
-        "Does TPJ lesion / TMS evidence (Blanke, Farrer & Frith) support a dedicated agency-attribution region that operates on a clean world model?",
-        "What is the main disconfirming evidence \u2014 cases where self and world representations are demonstrably fused?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Efference copy and forward motor models",
-          "query_stems": [
-            "efference copy motor control forward model",
-            "von Holst reafference principle sensory prediction",
-            "Sperry efference copy corollary discharge",
-            "MOSAIC modular internal models Wolpert Kawato"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01",
-          "seed_references": [
-            "Sperry (1950) Neural basis of spontaneous optokinetic response",
-            "von Holst & Mittelstaedt (1950) Das Reafferenzprinzip",
-            "Wolpert & Kawato (1998) Multiple paired forward and inverse models"
-          ]
-        },
-        {
-          "focus": "TPJ and agency attribution (self vs other / self vs world)",
-          "query_stems": [
-            "temporoparietal junction agency attribution self-other distinction",
-            "Blanke out-of-body experience body ownership TPJ",
-            "Farrer Frith agency attribution neuroimaging"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02",
-          "seed_references": [
-            "Farrer & Frith (2002) Experiencing oneself vs another person as being the cause of an action",
-            "Blanke et al. (2002) Stimulating illusory own-body perceptions (Nature)"
-          ]
-        },
-        {
-          "focus": "Body schema and proprioceptive self-model (Graziano)",
-          "query_stems": [
-            "body schema cortical representation proprioception Graziano",
-            "premotor cortex body representation multisensory integration",
-            "predictive coding motor efference Adams Shipp Friston"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03",
-          "seed_references": [
-            "Graziano (2006) The organization of behavioral repertoire in motor cortex",
-            "Adams, Shipp & Friston (2013) Predictions not commands: active inference in the motor system"
-          ]
-        },
-        {
-          "focus": "Disconfirming: shared or fused self/world representations",
-          "query_stems": [
-            "shared representations self other simulation embodied cognition",
-            "mirror neuron self world conflation action observation"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-04"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_sd005_self_world_split"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_sd005_self_model",
-      "target_repo": "REE_assembly"
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry per search track.",
-        "Include at least 1 disconfirming/mixed source alongside supporting sources.",
-        "Each record includes source_claim_statement, ree_translation, and mapping_caveat.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Results linked to MECH-089 and MECH-090 claim_ids_tested."
-      ],
-      "claim_id": "MECH-090",
-      "completion_status": {
-        "clarification_ready": false,
-        "clarification_reason": "manual_seed_adjudication_pending",
-        "coverage_ready": true,
-        "entries_total": 5,
-        "latest_timestamp_utc": "2026-03-22T00:00:00Z",
-        "manual_adjudicated": false,
-        "manual_adjudication_required": true,
-        "manual_seed": true,
-        "min_entries": 4,
-        "min_non_support_entries": 1,
-        "min_support_entries": 1,
-        "non_support_entries": 1,
-        "reopen_conflict_ratio": 0.9,
-        "status_reason": "coverage_met_pending_manual_adjudication",
-        "support_entries": 4,
-        "notes": "Entries split across mech_089 dir (2: Lisman/Jensen, Canolty/Knight) and mech_090 dir (3: beta_status_quo, Engel/Fries, Pfurtscheller/LopesDaSilva)"
-      },
-      "connectome_focus": "oscillatory_gating_beta_theta_gamma",
-      "manual_seed": true,
-      "objective": "Ground MECH-089 (theta-gamma nesting packages E1 updates for E3) and MECH-090 (beta oscillations gate E3 policy propagation during committed sequences) in biological oscillatory gating literature. Key question: do beta oscillations selectively suppress output propagation (not internal updating) during stable motor sequences, and does theta-gamma cross-frequency coupling package sensory/prediction error updates for higher-order evaluation?",
-      "plain_english_claim_description": "During a committed movement sequence, beta oscillations rise and suppress the output of the planning system \u2014 not the planning itself \u2014 effectively holding the current plan stable. At sequence completion, beta drops and the updated plan propagates. Separately, theta-gamma nesting batches rapid sensory prediction updates into slower theta-cycle summaries that higher-level systems can read without being overwhelmed by moment-to-moment noise.",
-      "plain_english_ree_fit_description": "MECH-090: beta gate elevates during committed trajectory, blocking E3 output\u2192action; releases when uncommitted. MECH-089: E1 (fast sensorium) updates are theta-batched before E3 samples them. Both mechanisms depend on SD-006 async multi-rate execution.",
-      "priority": "medium",
-      "pull_id": "CPULL-0008",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "research_questions": [
-        "Does beta power specifically suppress motor output during stable sequences, while leaving internal motor cortex computation intact?",
-        "Is there evidence for beta-gated action suppression (vs. beta-gated attention or perception)?",
-        "Does theta-gamma coupling in hippocampus or cortex batch fast updates into theta-cycle packages accessible to slower systems?",
-        "What is the main disconfirming evidence \u2014 alternative roles for beta (idle rhythm, anti-movement) that would undermine the 'output gate' account?",
-        "Do BG-thalamo-cortical loops show characteristic beta vs theta vs gamma signatures consistent with ARC-023 (separate loops at different rates)?"
-      ],
-      "search_tracks": [
-        {
-          "focus": "Beta oscillations as motor output gate",
-          "query_stems": [
-            "beta oscillations motor cortex action suppression output gating",
-            "beta rhythm motor sequence commitment stable behaviour",
-            "corticospinal beta synchrony motor output inhibition",
-            "Engel Fries beta rhythm anti-movement hypothesis"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-01",
-          "seed_references": [
-            "Engel & Fries (2010) Beta-band oscillations \u2014 signalling the status quo",
-            "Jenkinson & Brown (2011) New insights into the relationship between dopamine, beta oscillations and motor function"
-          ]
-        },
-        {
-          "focus": "Theta-gamma cross-frequency coupling and information packaging",
-          "query_stems": [
-            "theta gamma cross-frequency coupling hippocampus memory encoding",
-            "theta oscillation cortical hierarchy predictive coding batching",
-            "gamma burst theta phase sensory prediction error update"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-02",
-          "seed_references": [
-            "Canolty & Knight (2010) The functional role of cross-frequency coupling",
-            "Lisman & Jensen (2013) The theta-gamma neural code"
-          ]
-        },
-        {
-          "focus": "BG-thalamo-cortical loop oscillation signatures",
-          "query_stems": [
-            "basal ganglia thalamus cortex oscillation frequency loops",
-            "cortico-striatal beta theta oscillation motor planning",
-            "thalamic relay oscillation gating multifrequency"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-03"
-        },
-        {
-          "focus": "Disconfirming: beta as idle or attention rhythm rather than output gate",
-          "query_stems": [
-            "beta oscillations sensorimotor idling rhythm evidence",
-            "beta rhythm attention perception non-motor roles"
-          ],
-          "source_preference": "primary",
-          "track_id": "TRK-04"
-        }
-      ],
-      "selection_signals": {
-        "conflict_ratio": 0.0,
-        "consider_new_structure": false,
-        "direction_counts": {
-          "mixed": 0,
-          "supports": 0,
-          "unknown": 0,
-          "weakens": 0
-        },
-        "overall_confidence": 0.5,
-        "recurring_failure_signatures": [],
-        "source_counts": {
-          "experimental": 0,
-          "literature": 0
-        },
-        "trigger_signals": [
-          "manual_mode_mech089_090_oscillatory_gating"
-        ]
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech089_090_oscillatory_gating",
-      "target_repo": "REE_assembly"
     }
   ],
   "schema_version": "connectome_literature_pull/v1",
   "selection": {
-    "active_queue_items": 4,
-    "completed_items": 4,
+    "active_queue_items": 6,
+    "completed_items": 0,
     "consider_new_structure_items": 0,
     "manual_seed_claim_ids": [
       "ARC-016",
@@ -972,13 +697,11 @@
       "MECH-026",
       "MECH-029",
       "MECH-030",
-      "MECH-047",
-      "SD-005",
-      "MECH-090"
+      "MECH-047"
     ],
-    "manual_seed_items": 8,
+    "manual_seed_items": 6,
     "mode": "consider_new_structure_only+manual_seed_claims",
-    "total_selected_items": 8
+    "total_selected_items": 6
   },
   "source": {
     "claim_matrix": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/claim_evidence.v1.json",

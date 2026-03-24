@@ -80,6 +80,8 @@ failed, making the overall outcome FAIL and marking SD-008 as "weakens" — inco
 `evidence_direction` field directly and add an `evidence_direction_note` explaining the correction.
 Rebuild the index after. This is a manual process — the pipeline does not detect these errors.
 
+**Superseded experiments:** When a lettered iteration (EXQ-047j) corrects a bug that invalidated the predecessor's evidence (EXQ-047i), set `evidence_direction: "superseded"` on the old manifest and add an `evidence_direction_note`. The indexer records these entries in the full log but marks them `scoring_excluded: "superseded"` and excludes them from confidence and conflict scoring. See REE_Working/CLAUDE.md "EXQ Versioning and Supersession Policy" for the full workflow.
+
 **Design gap:** A future indexer version should support `evidence_direction_per_claim` in manifests
 so multi-claim experiments can record independent pass/fail per tagged claim. Not yet implemented.
 

@@ -1,7 +1,7 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-03-16T14:39:47.641368Z`
-Cycle: `2026-03-16`
+Generated: `2026-03-24T16:58:40.412199Z`
+Cycle: `2026-03-24`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
@@ -9,7 +9,7 @@ Active queue items: `6`. Completed items tracked: `0`.
 
 | pull_id | claim_id | priority | consider_new_structure | conflict_ratio | suggested_literature_type |
 |---|---|---|---|---:|---|
-| `CPULL-0001` | `ARC-016` | `high` | no | 0 | `targeted_review_connectome_arc_016` |
+| `CPULL-0001` | `ARC-016` | `high` | no | 1 | `targeted_review_connectome_arc_016` |
 | `CPULL-0002` | `MECH-025` | `high` | no | 0 | `targeted_review_connectome_mech_025` |
 | `CPULL-0003` | `MECH-026` | `high` | no | 0 | `targeted_review_connectome_mech_026` |
 | `CPULL-0004` | `MECH-029` | `high` | no | 0 | `targeted_review_connectome_mech_029` |
@@ -22,8 +22,8 @@ Active queue items: `6`. Completed items tracked: `0`.
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for ARC-016.
 - Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
-- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 6 downstream claim(s): `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
-- Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
+- REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 14 downstream claim(s): `ARC-029`, `INV-033`, `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`, `MECH-097`, `MECH-104`, `MECH-106`, `MECH-114`, `MECH-120`, `MECH-123`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
+- Evidence pressure: conflict_ratio=1, overall_confidence=0.745, trigger_signals=high_conflict_ratio,manual_mode_transition_pull.
 - Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
 - Research questions:
   - Which large-scale network control findings support regime-like mode organization over shared predictive machinery?
@@ -33,7 +33,7 @@ Active queue items: `6`. Completed items tracked: `0`.
   - `TRK-01` Triple-network and salience-control switching evidence; query stems: `triple network salience switching default mode executive control`, `effective connectivity mode transition salience network`
   - `TRK-02` Connectome gradients and controllability constraints; query stems: `connectome gradient default mode control network transition`, `network controllability cognitive state transitions connectome`
   - `TRK-03` Disconfirming evidence for strict regime separability; query stems: `continuous cognitive state manifold versus discrete modes fMRI`, `dynamic functional connectivity gradual transitions evidence`
-- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=reopened_due_conflict_pressure
 - Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-025
@@ -102,7 +102,7 @@ Active queue items: `6`. Completed items tracked: `0`.
 - Status: `proposed`
 - Objective: Run targeted connectome literature pull for MECH-030.
 - Claim description: MECH-030 is a mechanism hypothesis about sleep / modes consolidation.
-- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 4 upstream claim(s): `ARC-011`, `ARC-005`, `ARC-007`, `INV-010`. No downstream claims currently list it as a dependency. Primary anchor: `docs/architecture/sleep.md#mech-030`.
+- REE fit: This is in REE's mechanism layer and ties architecture commitments to testable signatures. It depends on 10 upstream claim(s): `ARC-011`, `ARC-005`, `ARC-007`, `INV-010`, `MECH-092`, `MECH-094`, `MECH-120`, `MECH-121`, `MECH-122`, `MECH-123`. It currently influences 5 downstream claim(s): `MECH-120`, `MECH-121`, `MECH-122`, `MECH-123`, `MECH-124`. Primary anchor: `docs/architecture/sleep.md#mech-030`.
 - Evidence pressure: conflict_ratio=0, overall_confidence=0.5, trigger_signals=manual_mode_transition_pull.
 - Connectome focus: Constrain sleep/offline consolidation mode assumptions with replay, renormalization, and boundary-protection evidence.
 - Research questions:
@@ -113,7 +113,7 @@ Active queue items: `6`. Completed items tracked: `0`.
   - `TRK-01` Sleep replay and consolidation pathways; query stems: `sleep replay hippocampal cortical consolidation pathways`, `sleep stage memory consolidation network connectivity`
   - `TRK-02` Precision recalibration and homeostatic renormalization; query stems: `sleep synaptic homeostasis precision recalibration`, `offline neural renormalization predictive processing`
   - `TRK-03` Failure signatures of offline integration; query stems: `sleep disturbance mode switching instability`, `maladaptive consolidation replay bias evidence`
-- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
 - Manual-seed adjudication: required=True, adjudicated=False.
 
 ## MECH-047
@@ -133,7 +133,7 @@ Active queue items: `6`. Completed items tracked: `0`.
   - `TRK-01` State-transition and metastability analyses; query stems: `brain state transition hysteresis metastability`, `dynamic functional connectivity state switching costs`
   - `TRK-02` Salience/LC-NE and transition gating; query stems: `locus coeruleus salience network state transitions`, `arousal modulation cognitive state switching`
   - `TRK-03` Disconfirming evidence for explicit mode manager dynamics; query stems: `continuous control model cognitive state dynamics evidence`, `noisy manifold transitions versus discrete states`
-- Completion check: entries_total=0, support_entries=0, non_support_entries=0, coverage_ready=False, clarification_ready=False, status_reason=awaiting_connectome_evidence
+- Completion check: entries_total=4, support_entries=3, non_support_entries=1, coverage_ready=True, clarification_ready=False, status_reason=coverage_met_pending_manual_adjudication
 - Manual-seed adjudication: required=True, adjudicated=False.
 
 ## Copy/Paste Prompt

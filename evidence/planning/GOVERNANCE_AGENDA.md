@@ -1,6 +1,6 @@
 # Governance Agenda
 
-Generated: `2026-02-25T20:08:01.874224Z`
+Generated: `2026-03-24T16:58:40.699039Z`
 
 ## Cycle Status
 
@@ -24,64 +24,68 @@ Generated: `2026-02-25T20:08:01.874224Z`
 |---|---|---|---|---|---|
 | `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
 | `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
-| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `all_packets_adjudicated` | `yes` | `no` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
-| `architecture_structure_adjudication` | `HUMAN_ONLY` | `FAIL` | `review_structure_dossiers_and_model_adjudication` | `n/a` | `yes` |
+| `architecture_structure_adjudication` | `HUMAN_ONLY` | `PASS` | `no_action_required` | `n/a` | `no` |
 
-Open decision items: `promotion_demotion_and_conflict_resolution`, `architecture_structure_adjudication`.
+Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`.
 
-1. Thought Intake: 0 unprocessed thought(s).
+1. Thought Intake: 4 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
+- `2026-03-14_self_world_latent_split_sd003_limitation.md`
+- `2026-03-17_sd003_benefit_signal_gap.md`
+- `2026-03-17_three_stream_reafference.md`
+- `2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md`
 1a. Thought-Adjudication Bridge: 0 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
-2. Conflict Resolution: 24 conflict item(s).
+2. Conflict Resolution: 17 conflict item(s).
 - context: `evidence/experiments/conflicts.md`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
-- `ARC-003` (architecture commitment; E3 / trajectory commitment; see `docs/architecture/e3.md#arc-003`); conflict_types=directional
 - `ARC-007` (architecture commitment; hippocampus / path memory; see `docs/architecture/hippocampal_systems.md#arc-007`); conflict_types=directional
+- `ARC-016` (architecture commitment; cognitive modes / control plane regimes; see `docs/architecture/modes_of_cognition.md#arc-016`); conflict_types=directional, mixed_evidence
 - `ARC-018` (architecture commitment; hippocampus / rollout viability mapping; see `docs/architecture/hippocampal_systems.md#arc-018`); conflict_types=directional
+- `ARC-024` (architecture_hypothesis; world / harm benefit asymptotic proxy structure; see `docs/architecture/five_axioms_foundations.md`); conflict_types=directional, mixed_evidence
 - `MECH-033` (mechanism hypothesis; hippocampus / kernel chaining interface; see `docs/architecture/hippocampal_systems.md#mech-033`); conflict_types=directional
-- `MECH-040` (mechanism hypothesis; control plane / safety baseline volatility; see `docs/architecture/control_plane.md#mech-040`); conflict_types=directional
-- `MECH-046` (mechanism hypothesis; control plane / amygdala mode priors; see `docs/architecture/control_plane.md#mech-046`); conflict_types=directional
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`); conflict_types=directional, source_disagreement, mixed_evidence
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); conflict_types=directional
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_types=directional, mixed_evidence
-- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`); conflict_types=directional, mixed_evidence
-3. Architecture-Epoch Applicability: enabled=True; considered=1304; applicable=919; stale=385; claims_with_stale=25.
+- `MECH-071` (mechanism hypothesis; e3 / harm eval calibration gradient asymmetry; see `docs/architecture/sd_003_experiment_design.md#mech-071`); conflict_types=directional, mixed_evidence
+- `MECH-089` (mechanism hypothesis; multirate / fast to slow temporal batching; see `docs/architecture/control_plane_heartbeat.md#mech-089`); conflict_types=directional, mixed_evidence
+- `MECH-090` (mechanism hypothesis; control plane / commitment gated policy output; see `docs/architecture/control_plane_heartbeat.md#mech-090`); conflict_types=directional, mixed_evidence
+- `MECH-093` (mechanism hypothesis; affective / z beta e3 update rate modulation; see `docs/architecture/control_plane_heartbeat.md#mech-093`); conflict_types=directional, source_disagreement, mixed_evidence
+- `MECH-095` (mechanism hypothesis; tpj / agency detection comparator; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); conflict_types=directional, source_disagreement, mixed_evidence
+3. Architecture-Epoch Applicability: enabled=True; considered=1776; applicable=453; stale=1323; claims_with_stale=40.
 - context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=81; stale_ratio=0.445
-- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`) stale_entries=67; stale_ratio=0.394
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`) stale_entries=66; stale_ratio=0.4
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=51; stale_ratio=0.297
-- `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`) stale_entries=38; stale_ratio=0.33
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`) stale_entries=28; stale_ratio=0.219
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`) stale_entries=7; stale_ratio=0.368
-- `ARC-018` (architecture commitment; hippocampus / rollout viability mapping; see `docs/architecture/hippocampal_systems.md#arc-018`) stale_entries=5; stale_ratio=0.333
-- `MECH-033` (mechanism hypothesis; hippocampus / kernel chaining interface; see `docs/architecture/hippocampal_systems.md#mech-033`) stale_entries=5; stale_ratio=0.312
-- `MECH-900` (no registry metadata found; see `docs/claims/claims.yaml`) stale_entries=3; stale_ratio=1.0
-4. Governance Decisions: 7 recommendation queue item(s).
+- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=184; stale_ratio=0.995
+- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=174; stale_ratio=0.989
+- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`) stale_entries=172; stale_ratio=0.994
+- `MECH-058` (mechanism hypothesis; latent stack / e1 e2 timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`) stale_entries=167; stale_ratio=0.988
+- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`) stale_entries=128; stale_ratio=1.0
+- `Q-016` (open question; commitment / tri loop conflict arbitration policy; see `docs/architecture/e3.md#q-016`) stale_entries=115; stale_ratio=1.0
+- `MECH-062` (mechanism hypothesis; commitment / tri loop gate coordination; see `docs/architecture/e3.md#mech-062`) stale_entries=46; stale_ratio=1.0
+- `MECH-057` (no registry metadata found; see `docs/claims/claims.yaml`) stale_entries=21; stale_ratio=0.955
+- `MECH-033` (mechanism hypothesis; hippocampus / kernel chaining interface; see `docs/architecture/hippocampal_systems.md#mech-033`) stale_entries=16; stale_ratio=0.762
+- `Q-013` (open question; uncertainty / deterministic vs stochastic jepa calibration; see `docs/architecture/agency_responsibility_flow.md#q-013`) stale_entries=15; stale_ratio=1.0
+4. Governance Decisions: 14 recommendation queue item(s).
 - context: `evidence/experiments/promotion_demotion_recommendations.md`, `evidence/decisions/decision_log.v1.jsonl`
-- `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `MECH-057` (mechanism hypothesis; agentic extension / control completion requirement; see `docs/architecture/agency_responsibility_flow.md#mech-057`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `MECH-059` (mechanism hypothesis; precision / confidence channel separate from prediction error; see `docs/architecture/agency_responsibility_flow.md#mech-059`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `MECH-061` (mechanism hypothesis; commitment / boundary token error reclassification; see `docs/architecture/e3.md#mech-061`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
-- `Q-012` (open question; latent predictive models / control completion falsifiability; see `docs/architecture/agency_responsibility_flow.md#q-012`); decision=Demotion review: active -> candidate; recommendation=`demote_to_candidate`
-5. Human Decision Briefs: 3 claim brief(s).
-- context: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/latest/INDEX.md`, `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`
-- weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/decisions/human_decision_briefs/2026-02-25/WEEKLY_DISPATCH.md`
+- `ARC-007` (architecture commitment; hippocampus / path memory; see `docs/architecture/hippocampal_systems.md#arc-007`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `ARC-023` (architecture commitment; basal ganglia / three loop thalamic heartbeat; see `docs/architecture/control_plane_heartbeat.md#arc-023`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-025` (mechanism hypothesis; cognitive modes / action doing; see `docs/architecture/modes_of_cognition.md#mech-025`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-072` (mechanism hypothesis; residue / foreseeable harm gating reduces false attribution; see `docs/architecture/sd_003_experiment_design.md#mech-072`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-091` (mechanism hypothesis; control plane / salient event cycle resync; see `docs/architecture/control_plane_heartbeat.md#mech-091`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-092` (mechanism hypothesis; hippocampal / quiescent offline replay; see `docs/architecture/control_plane_heartbeat.md#mech-092`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-093` (mechanism hypothesis; affective / z beta e3 update rate modulation; see `docs/architecture/control_plane_heartbeat.md#mech-093`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
+- `MECH-095` (mechanism hypothesis; tpj / agency detection comparator; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); decision=Conflict resolution before promotion; recommendation=`hold_candidate_resolve_conflict`
+- `MECH-096` (mechanism hypothesis; observation encoder / dual stream routing; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+- `MECH-097` (mechanism hypothesis; peripersonal space / commit locus; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
+5. Human Decision Briefs: 0 claim brief(s).
+- context: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/decisions/human_decision_briefs/latest/INDEX.md`, `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`
+- weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/decisions/human_decision_briefs/2026-03-24/WEEKLY_DISPATCH.md`
 6. Manual Carryover: 0 open item(s), 1 total.
 - context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`
-7. Architecture Structure: 3 consider-new-structure item(s), 26 total register item(s).
+7. Architecture Structure: 0 consider-new-structure item(s), 9 total register item(s).
 - context: `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`, `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`
-- backlog mode guards: saturation_holds=1, escalation_required=3
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); conflict_ratio=0.816; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); conflict_ratio=0.808; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); conflict_ratio=0.8; trigger_signals=external_precedence_pressure,high_conflict_ratio,recurring_failure_signatures
-8. Structure Dossiers: 3 active dossier(s), 76 archived dossier(s), 3 active marked consider-new-structure.
+- backlog mode guards: saturation_holds=0, escalation_required=0
+8. Structure Dossiers: 0 active dossier(s), 79 archived dossier(s), 0 active marked consider-new-structure.
 - context: `evidence/planning/structure_review/latest/ACTIVE_INDEX.md`, `evidence/planning/structure_review/latest/ARCHIVE_INDEX.md`
-9. Connectome Literature Pull: 6 queued claim(s), 6 high-priority, 3 completed.
+9. Connectome Literature Pull: 6 queued claim(s), 6 high-priority, 0 completed.
 - context: `evidence/planning/CONNECTOME_LITERATURE_PULL.md`, `evidence/planning/connectome_pull_state.v1.json`
 - `ARC-016` (architecture commitment; cognitive modes / control plane regimes; see `docs/architecture/modes_of_cognition.md#arc-016`); pull_id=`CPULL-0001`
 - `MECH-025` (mechanism hypothesis; cognitive modes / action doing; see `docs/architecture/modes_of_cognition.md#mech-025`); pull_id=`CPULL-0002`
@@ -103,20 +107,17 @@ Open decision items: `promotion_demotion_and_conflict_resolution`, `architecture
 - packet=`CPKT-MUZERO-20260223` source=`muzero` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
 - packet=`CPKT-RAG-20260223` source=`rag` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
 - packet=`CPKT-RT-2-20260223` source=`rt-2` status=`proposed` blast=`interface` gate_ready=true gate_failures=0 impl=`in_progress` probes=1 bench=1 claims=5
-11. Model Adjudication: 3 external-precedence candidate(s), 3 anti-lock-in review item(s).
+11. Model Adjudication: 0 external-precedence candidate(s), 0 anti-lock-in review item(s).
 - context: `evidence/planning/planning_criteria.v1.yaml`, `evidence/planning/ARCHITECTURE_GAP_REGISTER.md`
-- allowed outcomes: retain_ree,hybridize,adopt_jepa_structure,retire_ree_claim
-- temporary override mode: `jepa_internal_proxy_override`
-- `MECH-058` (mechanism hypothesis; jepa substrate / ema target anchor timescale separation; see `docs/architecture/agency_responsibility_flow.md#mech-058`); external_precedence_candidate=yes; delta_lit_minus_exp=0.285
-- `Q-017` (open question; control plane / minimal orthogonal axis set; see `docs/architecture/control_plane.md#q-017`); external_precedence_candidate=yes; delta_lit_minus_exp=0.284
-- `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`); external_precedence_candidate=yes; delta_lit_minus_exp=0.267
+- allowed outcomes: retain_ree,hybridize,retire_ree_claim
 12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
-13. Evidence Dispatch: 35 high-priority proposal(s), 46 total.
+13. Evidence Dispatch: 28 high-priority proposal(s), 103 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
-- approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-02-25T14:21:58.933796Z`
-- REE_assembly: total=20, experimental=0, literature_review=20
-- ree-experiments-lab: total=15, experimental=15, literature_review=0
-- ree-v2: total=11, experimental=11, literature_review=0
-14. Maintenance: 0 unlinked evidence run(s), 0 warning(s).
+- approval state: approved_for_cycle=false; latest_status=`missing`; latest_recommendation=``; latest_timestamp_utc=``
+- REE_assembly: total=50, experimental=0, literature_review=50
+- ree-experiments-lab: total=9, experimental=9, literature_review=0
+- ree-v2: total=35, experimental=35, literature_review=0
+- unknown: total=9, experimental=3, literature_review=0
+14. Maintenance: 1 unlinked evidence run(s), 0 warning(s).
 - context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`
