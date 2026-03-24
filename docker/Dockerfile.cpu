@@ -1,0 +1,44 @@
+# REE Experiment Runner -- CPU/MPS variant
+# For Mac collaborators (Apple Silicon MPS) or machines without NVIDIA GPU.
+# Experiments run on CPU or Apple MPS -- no CUDA required.
+#
+# Build:
+#   docker build -t ree-runner:cpu -f Dockerfile.cpu .
+#
+# Run (quick test):
+#   docker run -p 8000:8000 -v ~/.ssh:/root/.ssh:ro ree-runner:cpu
+#
+# Run via docker-compose (recommended):
+#   docker compose -f docker-compose.cpu.yml up
+
+FROM python:3.11-slim
+
+# System deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        openssh-client \
+        ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python deps -- CPU-only PyTorch
+RUN pip install --no-cache-dir \
+        torch==2.1.0 \
+        torchvision==0.16.0 \
+        --extra-index-url https://download.pytorch.org/whl/cpu
+
+RUN pip install --no-cache-dir \
+        numpy>=1.24.0 \
+        "dataclasses-json>=0.6.0"
+
+ENV PYTHONIOENCODING=utf-8
+ENV PYTHONUNBUFFERED=1
+
+RUN mkdir -p /workspace
+WORKDIR /workspace
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 8000
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,63 @@
+# REE Experiment Runner -- GPU variant (Windows/Linux with NVIDIA GPU)
+#
+# Prerequisites:
+#   Linux:   nvidia-container-toolkit installed
+#            https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html
+#   Windows: Docker Desktop with WSL2 backend + NVIDIA GPU drivers >= 527.41
+#
+# Usage:
+#   1. Build (first time or after Dockerfile changes):
+#        docker compose build
+#
+#   2. Run:
+#        docker compose up
+#        # or in background:
+#        docker compose up -d
+#
+#   3. Open Explorer:
+#        http://localhost:8000/explorer
+#
+#   4. Stop:
+#        docker compose down
+#
+# Required: your SSH key must have read+write access to the REE GitHub repos.
+# The key is mounted read-only -- the container never modifies your local key.
+#
+# To auto-start the V3 runner on container launch (no manual Explorer click needed):
+#   Uncomment AUTO_START_RUNNER below.
+
+services:
+  ree-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ree-runner:gpu
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      # Set to your GitHub username if different from dgolden
+      - REE_GITHUB_USER=dgolden
+      # IMPORTANT: set a short stable name for this machine (e.g. "alice-rtx4090").
+      # Used for multi-machine experiment routing and contribution tracking.
+      # Runs will be attributed to this name in contributors/contributions.json.
+      - REE_MACHINE_NAME=docker-contributor
+      # Uncomment to start V3 runner automatically at container launch:
+      # - AUTO_START_RUNNER=true
+    volumes:
+      # SSH key for git clone + push (read-only -- container cannot modify your key)
+      - type: bind
+        source: ${SSH_KEY_DIR:-~/.ssh}
+        target: /root/.ssh
+        read_only: true
+      # Optional: persist cloned repos across container restarts (speeds up startup)
+      # - type: volume
+      #   source: ree-workspace
+      #   target: /workspace
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+# Uncomment to persist the workspace (repos + results) across restarts:
+# volumes:
+#   ree-workspace:

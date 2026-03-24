@@ -52,6 +52,25 @@ MACHINE_REGISTRY = {
         "tdp_watts": 65,      # i5-8600K under load
         "gpu_watts": 175,     # RTX 2060 Super under load
     },
+    # Fallback for Docker container runs where REE_MACHINE_NAME was not customised.
+    # Contributors should set REE_MACHINE_NAME in docker-compose.yml and add a
+    # corresponding contributors/machines/<name>.json file for accurate TDP tracking.
+    "docker-contributor": {
+        "display_name": "Docker Contributor (generic)",
+        "owner": "Unknown",
+        "hardware": "Docker container (GPU variant)",
+        "tdp_watts": 65,
+        "gpu_watts": 150,
+    },
+    # Catch-all for runs whose runner_status entry is missing the machine field.
+    # These are older entries predating the machine tracking field.
+    "unregistered": {
+        "display_name": "Unregistered machine",
+        "owner": "Unknown",
+        "hardware": "Unknown",
+        "tdp_watts": 15,
+        "gpu_watts": 0,
+    },
 }
 
 
@@ -164,7 +183,7 @@ def collect_compute() -> dict:
             completed_at = entry.get("completed_at", "")
             if not is_genuine_run(run_id, completed_at):
                 continue
-            hostname = entry.get("completed_by") or entry.get("machine", "DLAPTOP-4.local")
+            hostname = entry.get("completed_by") or entry.get("machine") or "unregistered"
             hours = estimate_run_hours(entry)
             add_run(hostname, hours, completed_at, run_id)
 
@@ -181,7 +200,7 @@ def collect_compute() -> dict:
             if item.get("status") not in ("completed", "failed"):
                 continue
             cb = item.get("claimed_by") or {}
-            hostname = cb.get("machine", "DLAPTOP-4.local")
+            hostname = cb.get("machine") or "unregistered"
             completed_at = item.get("failed_at") or item.get("claimed_by", {}).get("claimed_at", "")
             queue_id = item.get("queue_id", "")
             if not completed_at:

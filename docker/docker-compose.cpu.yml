@@ -1,0 +1,31 @@
+# REE Experiment Runner -- CPU/MPS variant
+# For Mac collaborators (Apple Silicon MPS) or machines without NVIDIA GPU.
+#
+# Usage:
+#   docker compose -f docker-compose.cpu.yml build
+#   docker compose -f docker-compose.cpu.yml up
+#
+# Note: experiments run on CPU (or MPS on Apple Silicon via PyTorch).
+# They will be slower than GPU runs -- suitable for lighter experiments
+# or for testing the pipeline before running on a GPU machine.
+
+services:
+  ree-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    image: ree-runner:cpu
+    environment:
+      - REE_GITHUB_USER=dgolden
+      # IMPORTANT: set a short stable name for this machine (e.g. "alice-m2mac").
+      - REE_MACHINE_NAME=docker-contributor
+      # Uncomment to start V3 runner automatically:
+      # - AUTO_START_RUNNER=true
+    volumes:
+      - type: bind
+        source: ${SSH_KEY_DIR:-~/.ssh}
+        target: /root/.ssh
+        read_only: true
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

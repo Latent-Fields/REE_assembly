@@ -429,7 +429,7 @@ def start_runner(ver: str = "v3") -> dict:
     log_fh = open(RUNNER_LOG, "a")
     cmd = [python_exe, str(cfg["script"]),
            "--status-file", str(STATUS_FILE),
-           "--machine", socket.gethostname(),
+           "--machine", os.environ.get("REE_MACHINE_NAME") or socket.gethostname(),
            "--loop"]  # Keep polling for new experiments after queue exhaustion
     if cfg.get("auto_sync"):
         cmd.append("--auto-sync")

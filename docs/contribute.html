@@ -206,6 +206,29 @@ layout: null
   .cmd-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
   hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .section-divider { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .platform-selector { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .platform-selector .plabel { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .platform-btn {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    padding: 0.3rem 0.85rem; border-radius: 20px; cursor: pointer; font-size: 0.82rem;
+    transition: all 0.15s;
+  }
+  .platform-btn:hover { border-color: var(--accent); color: var(--text); }
+  .platform-btn.active { background: rgba(108,142,245,0.15); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  details.manual-collapse { margin-top: 1.1rem; }
+  details.manual-collapse > summary {
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.82rem;
+    padding: 0.35rem 0;
+    user-select: none;
+    list-style: none;
+  }
+  details.manual-collapse > summary::-webkit-details-marker { display: none; }
+  details.manual-collapse > summary::before { content: '▶ '; font-size: 0.7rem; }
+  details.manual-collapse[open] > summary::before { content: '▼ '; }
+  details.manual-collapse > summary:hover { color: var(--text); }
+  details.manual-collapse > .collapse-body { margin-top: 0.75rem; border-left: 2px solid var(--border); padding-left: 1rem; }
   .reg-form { display: grid; gap: 0.75rem; margin-top: 0.75rem; }
   .reg-field { display: flex; flex-direction: column; gap: 0.3rem; }
   .reg-field label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -263,6 +286,12 @@ layout: null
       <strong>Low priority by default.</strong> All generated commands use OS-level background priority
       (<code>nice -n 10</code> on Unix, <code>BELOWNORMAL</code> on Windows). The runner won't noticeably
       affect your normal work. You can stop it any time.
+    </div>
+    <div class="platform-selector">
+      <span class="plabel">Platform:</span>
+      <button class="platform-btn" id="plat-btn-mac" onclick="switchPlatform('mac')">macOS</button>
+      <button class="platform-btn" id="plat-btn-linux" onclick="switchPlatform('linux')">Linux</button>
+      <button class="platform-btn" id="plat-btn-windows" onclick="switchPlatform('windows')">Windows</button>
     </div>
   </div>
 
@@ -369,9 +398,9 @@ pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124
     <h2>🔍 Verify Your Setup</h2>
     <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Run these checks after installing Python, Git, and PyTorch — before starting the runner. Each has an expected output so you know if something is wrong.</p>
     <div class="tabs" id="diag-tabs">
-      <button class="tab-btn active" onclick="switchDiagTab('diag-mac')">macOS</button>
-      <button class="tab-btn" onclick="switchDiagTab('diag-linux')">Linux</button>
-      <button class="tab-btn" onclick="switchDiagTab('diag-windows')">Windows</button>
+      <button class="tab-btn active" onclick="switchPlatform('mac')">macOS</button>
+      <button class="tab-btn" onclick="switchPlatform('linux')">Linux</button>
+      <button class="tab-btn" onclick="switchPlatform('windows')">Windows</button>
     </div>
 
     <!-- macOS diagnostics -->
@@ -404,90 +433,126 @@ git config --global user.email "you@example.com"<button class="copy-btn" onclick
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
         <p>REE_assembly repo is a sibling of ree-v3 (required for result sync)</p>
-        <div class="code-block">/opt/local/bin/python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="code-block">/opt/local/bin/python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING -- clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
         <div class="cmd-note">Expected: <code>REE_assembly: OK</code></div>
       </div></div>
+      <details class="manual-collapse">
+        <summary>Docker CPU-only checks (alternative — no GPU passthrough on Mac)</summary>
+        <div class="collapse-body">
+          <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Docker on macOS runs in a Linux VM — MPS/GPU is not accessible. Use bare-metal (above) for best performance. Docker is useful only if you prefer not to install Python locally.</p>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>Docker Desktop installed and running</p>
+            <div class="code-block">docker --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Docker version 24.x.x</code>. Install from <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">docker.com/products/docker-desktop</a>.</div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>SSH key can reach GitHub (used for git push from inside the container)</p>
+            <div class="code-block">ssh -T git@github.com<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Hi &lt;username&gt;! You've successfully authenticated...</code></div>
+          </div></div>
+        </div>
+      </details>
     </div>
 
     <!-- Linux diagnostics -->
     <div class="tab-content" id="diag-linux">
-      <div class="note-box" style="margin-bottom:1rem">
-        <strong>Using WSL on Windows?</strong> Follow this Linux tab — everything works the same.
-        One GPU caveat: CUDA in WSL2 goes through the <strong>Windows NVIDIA driver</strong> (already installed).
-        Do <strong>not</strong> run <code>apt install nvidia-driver</code> — it will break GPU access.
-        Also check you are on WSL2, not WSL1: <code>wsl --list --verbose</code> in a Windows terminal should show <code>VERSION 2</code>.
-      </div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.9rem">Docker setup — run these checks after installing Docker Engine and NVIDIA Container Toolkit.</p>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Python version (must be 3.10–3.12)</p>
-        <div class="code-block">python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>Python 3.10.x–3.12.x</code> — Python 3.13+ is not yet supported by PyTorch CUDA builds</div>
+        <p>Docker Engine installed and running</p>
+        <div class="code-block">docker --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Docker version 24.x.x</code> or higher. Not installed? <a href="https://docs.docker.com/engine/install/" style="color:var(--accent)" target="_blank">Install Docker Engine</a> for your distro.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Git version</p>
-        <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>git version 2.x.x</code></div>
+        <p>NVIDIA Container Toolkit installed (for GPU passthrough)</p>
+        <div class="code-block">nvidia-ctk --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>NVIDIA Container Toolkit CLI version x.x.x</code>. Not installed? Follow the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" style="color:var(--accent)" target="_blank">NVIDIA Container Toolkit install guide</a>. CPU-only machines can skip this.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Git commit identity (required for experiment claiming — separate from GitHub login)</p>
-        <div class="code-block">git config --global user.name "Your Name"
+        <p>GPU visible inside containers</p>
+        <div class="code-block">docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: your GPU listed in the nvidia-smi table. If it fails: <code>sudo nvidia-ctk runtime configure --runtime=docker &amp;&amp; sudo systemctl restart docker</code></div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>SSH key can reach GitHub (used for git push from inside the container)</p>
+        <div class="code-block">ssh -T git@github.com<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Hi &lt;username&gt;! You've successfully authenticated...</code>. No SSH key? <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" style="color:var(--accent)" target="_blank">Generate one here</a>.</div>
+      </div></div>
+      <details class="manual-collapse">
+        <summary>Manual / bare-metal setup checks (no Docker)</summary>
+        <div class="collapse-body">
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>Python version (must be 3.10–3.12)</p>
+            <div class="code-block">python3 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Python 3.10.x–3.12.x</code> — Python 3.13+ is not yet supported by PyTorch CUDA builds</div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>Git commit identity (required for experiment claiming)</p>
+            <div class="code-block">git config --global user.name "Your Name"
 git config --global user.email "you@example.com"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Sets your name in commit messages. Run once per machine — GitHub login alone does not set this.</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>PyTorch + CUDA</p>
-        <div class="code-block">python3 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> (False = CPU only, which is slower but works)</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>GitHub push auth (dry run)</p>
-        <div class="code-block">cd ree-v3 && git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>Everything up-to-date</code> — auth error means run <code>gh auth login</code></div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>REE_assembly sibling check</p>
-        <div class="code-block">python3 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>REE_assembly: OK</code></div>
-      </div></div>
+            <div class="cmd-note">Sets your name in commit messages. Run once per machine.</div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>PyTorch + CUDA</p>
+            <div class="code-block">python3 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> (False = CPU only, which is slower but works)</div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>GitHub push auth (dry run)</p>
+            <div class="code-block">cd ree-v3 && git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Everything up-to-date</code> — auth error means run <code>gh auth login</code></div>
+          </div></div>
+        </div>
+      </details>
     </div>
 
     <!-- Windows diagnostics -->
     <div class="tab-content" id="diag-windows">
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.9rem">Docker setup — run these checks after installing Docker Desktop.</p>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Python version (must be 3.10–3.12)</p>
-        <div class="code-block">py -3.12 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>Python 3.12.x</code> — Python 3.13+ is not supported by PyTorch CUDA builds. Install 3.12 from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH"). If you already have a newer version, 3.12 will coexist fine — use <code>py -3.12</code> to invoke it.</div>
+        <p>Docker Desktop installed and running</p>
+        <div class="code-block">docker --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Docker version 24.x.x</code> or higher. If not found, install <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)">Docker Desktop for Windows</a> — enable WSL2 backend during setup.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Git version</p>
-        <div class="code-block">git --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>git version 2.x.x.windows.x</code> — if not found, install from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a></div>
+        <p>Docker daemon is reachable</p>
+        <div class="code-block">docker info<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: large block of system info. If <code>Cannot connect to the Docker daemon</code>, open Docker Desktop and wait for it to start.</div>
       </div></div>
       <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>Git commit identity (required for experiment claiming — separate from GitHub login)</p>
-        <div class="code-block">git config --global user.name "Your Name"
+        <p>GPU visible inside containers (requires NVIDIA drivers ≥527.41)</p>
+        <div class="code-block">docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: your GPU listed in the nvidia-smi table. If it fails, update NVIDIA drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>. Docker Desktop handles the Container Toolkit automatically on Windows — no separate install needed.</div>
+      </div></div>
+      <div class="step"><div class="step-num">✓</div><div class="step-body">
+        <p>SSH key can reach GitHub (used for git push from inside the container)</p>
+        <div class="code-block">ssh -T git@github.com<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note">Expected: <code>Hi &lt;username&gt;! You've successfully authenticated...</code>. If not, add your key to GitHub: Settings → SSH and GPG keys. No SSH key yet? <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" style="color:var(--accent)" target="_blank">Generate one here</a>.</div>
+      </div></div>
+      <details class="manual-collapse">
+        <summary>Manual / bare-metal setup checks (no Docker)</summary>
+        <div class="collapse-body">
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>Python version (must be 3.10–3.12)</p>
+            <div class="code-block">py -3.12 --version<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Python 3.12.x</code>. Install from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH").</div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>Git commit identity (required for experiment claiming)</p>
+            <div class="code-block">git config --global user.name "Your Name"
 git config --global user.email "you@example.com"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Sets your name in commit messages. Run once per machine — GitHub login alone does not set this.</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>PyTorch installed and CUDA visible</p>
-        <div class="code-block">py -3.12 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code> — if False, update NVIDIA drivers. If ModuleNotFoundError, run the pip install from step 3 above using <code>py -3.12 -m pip</code>.</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>GPU name</p>
-        <div class="code-block">py -3.12 -c "import torch; print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: your GPU model name (e.g. <code>NVIDIA GeForce GTX 1050 Ti</code>)</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>GitHub push auth — run from inside the <code>ree-v3\</code> folder (dry run, no changes)</p>
-        <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>Everything up-to-date</code> or a dry-run push summary. If it opens a browser login, complete that — it stores credentials for future pushes.</div>
-      </div></div>
-      <div class="step"><div class="step-num">✓</div><div class="step-body">
-        <p>REE_assembly repo is a sibling of ree-v3 (required for result sync)</p>
-        <div class="code-block">py -3.12 -c "import pathlib; siblings=[d.name for d in pathlib.Path('..').iterdir() if d.is_dir()]; print('REE_assembly: OK' if 'REE_assembly' in siblings else 'REE_assembly: MISSING — clone it alongside ree-v3')"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="cmd-note">Expected: <code>REE_assembly: OK</code> — if missing, run <code>git clone https://github.com/Latent-Fields/REE_assembly.git</code> in the parent folder</div>
-      </div></div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>PyTorch installed and CUDA visible</p>
+            <div class="code-block">py -3.12 -c "import torch; print(torch.__version__, '| CUDA:', torch.cuda.is_available())"<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>2.x.x | CUDA: True</code></div>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div class="step-body">
+            <p>GitHub push auth (dry run, from inside <code>ree-v3\</code>)</p>
+            <div class="code-block">git push --dry-run origin HEAD:main<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+            <div class="cmd-note">Expected: <code>Everything up-to-date</code></div>
+          </div></div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -497,9 +562,9 @@ git config --global user.email "you@example.com"<button class="copy-btn" onclick
       <span class="priority-badge">✓ Low priority</span>
     </h2>
     <div class="tabs" id="os-tabs">
-      <button class="tab-btn active" onclick="switchTab('mac')">macOS</button>
-      <button class="tab-btn" onclick="switchTab('linux')">Linux</button>
-      <button class="tab-btn" onclick="switchTab('windows')">Windows</button>
+      <button class="tab-btn active" onclick="switchPlatform('mac')">macOS</button>
+      <button class="tab-btn" onclick="switchPlatform('linux')">Linux</button>
+      <button class="tab-btn" onclick="switchPlatform('windows')">Windows</button>
     </div>
 
     <!-- macOS -->
@@ -538,31 +603,102 @@ pkill -f experiment_runner.py
           </div>
         </div>
       </div>
+      <details class="manual-collapse">
+        <summary>Docker CPU-only (alternative — no GPU passthrough on Mac)</summary>
+        <div class="collapse-body">
+          <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Docker on macOS runs in a Linux VM — MPS/GPU is not accessible inside the container. Bare-metal (above) is faster. Docker is useful only if you prefer not to install Python locally.</p>
+          <div class="step"><div class="step-num">1</div><div class="step-body">
+            <p>Install <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop for Mac</a>, then:</p>
+            <div class="code-block">
+git clone https://github.com/Latent-Fields/REE_assembly.git
+export REE_MACHINE_NAME=my-mac-name
+cd REE_assembly/docker
+docker compose -f docker-compose.cpu.yml up
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+            </div>
+          </div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body">
+            <p>Open <a href="http://localhost:8000/explorer" style="color:var(--accent)">http://localhost:8000/explorer</a> and click <strong>Start V3 Runner</strong>.</p>
+          </div></div>
+        </div>
+      </details>
     </div>
 
     <!-- Linux -->
     <div class="tab-content" id="tab-linux">
-      <div class="note-box" style="margin-bottom:1rem">
-        <strong>Using WSL on Windows?</strong> Use this tab. Ensure you are on WSL2 (<code>wsl --list --verbose</code> in a Windows terminal → <code>VERSION 2</code>).
-        The Windows NVIDIA driver handles GPU access — do <strong>not</strong> install a Linux NVIDIA driver via apt.
-        systemd units (step 2 below) require WSL2 with systemd enabled; if not set up, just run the runner manually (step 1).
-      </div>
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <p>Start at low priority from inside <code>ree-v3/</code>:</p>
-          <div class="code-block">
-nice -n 10 python3 experiment_runner.py --auto-sync --loop
-<button class="copy-btn" onclick="copyCode(this)">copy</button>
-          </div>
+          <p>Install <a href="https://docs.docker.com/engine/install/" style="color:var(--accent)" target="_blank">Docker Engine</a> and the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" style="color:var(--accent)" target="_blank">NVIDIA Container Toolkit</a> if you haven't already.</p>
+          <ul style="color:var(--muted);font-size:0.85rem;margin-top:0.4rem;padding-left:1.2rem">
+            <li>For GPU: run <code>sudo nvidia-ctk runtime configure --runtime=docker &amp;&amp; sudo systemctl restart docker</code> after installing the toolkit</li>
+            <li>CPU-only machines use <code>docker-compose.cpu.yml</code> instead (see collapsible below)</li>
+          </ul>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <p>Optional: run as a systemd user unit for persistence across sessions. Save as
-          <code>~/.config/systemd/user/ree-runner.service</code>:</p>
+          <p>Clone <code>REE_assembly</code> and set a stable machine name for contribution tracking:</p>
           <div class="code-block">
+git clone https://github.com/Latent-Fields/REE_assembly.git
+export REE_MACHINE_NAME=my-machine-name
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">Replace <code>my-machine-name</code> with something like <code>alice-rtx4090</code>. Add to <code>~/.bashrc</code> to persist.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p>From <code>REE_assembly/docker/</code>, start the container:</p>
+          <div class="code-block">
+docker compose up
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">First run pulls the image and clones repos inside the container — a few minutes. Run with <code>-d</code> to detach.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Open the Explorer and start the runner:</p>
+          <div class="code-block">
+http://localhost:8000/explorer
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">Click <strong>Start V3 Runner</strong>. Or add <code>AUTO_START_RUNNER=true</code> to the environment in <code>docker-compose.yml</code> to skip this step.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p>To stop:</p>
+          <div class="code-block">
+docker compose down
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <details class="manual-collapse">
+        <summary>Manual / bare-metal setup (no Docker)</summary>
+        <div class="collapse-body">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <p>Start at low priority from inside <code>ree-v3/</code>:</p>
+              <div class="code-block">
+nice -n 10 python3 experiment_runner.py --auto-sync --loop
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <p>Optional: systemd user unit for persistence. Save as
+              <code>~/.config/systemd/user/ree-runner.service</code>:</p>
+              <div class="code-block">
 [Unit]
 Description=REE Experiment Runner
 After=network.target
@@ -577,13 +713,15 @@ RestartSec=30
 [Install]
 WantedBy=default.target
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
-          </div>
-          <div class="cmd-note" style="margin-top:0.5rem">
-            Enable: <code>systemctl --user enable --now ree-runner</code>
-            &nbsp;|&nbsp; Stop: <code>systemctl --user stop ree-runner</code>
+              </div>
+              <div class="cmd-note" style="margin-top:0.5rem">
+                Enable: <code>systemctl --user enable --now ree-runner</code>
+                &nbsp;|&nbsp; Stop: <code>systemctl --user stop ree-runner</code>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </details>
     </div>
 
     <!-- Windows -->
@@ -591,29 +729,86 @@ WantedBy=default.target
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <p>Verify your GPU is visible to PyTorch (run in PowerShell):</p>
-          <div class="code-block">
-py -3.12 -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button>
-          </div>
-          <div class="cmd-note">Must print <code>True</code> and your GPU name. If <code>False</code>, update NVIDIA drivers from <a href="https://www.nvidia.com/drivers" style="color:var(--accent)">nvidia.com/drivers</a>.</div>
+          <p>Install <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)">Docker Desktop for Windows</a> if you haven't already.</p>
+          <ul style="color:var(--muted);font-size:0.85rem;margin-top:0.4rem;padding-left:1.2rem">
+            <li>Enable the WSL2 backend during install (Docker will prompt you)</li>
+            <li>For GPU: update NVIDIA drivers to ≥527.41 — Docker Desktop on Windows handles GPU passthrough automatically, no Container Toolkit install needed</li>
+          </ul>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <p>Navigate to <code>ree-v3\</code> and start the runner at below-normal priority. Replace <code>my-machine-name</code> with a short stable name for this PC (e.g. <code>cyberpower</code>) — used for multi-machine experiment routing:</p>
+          <p>Clone <code>REE_assembly</code> (contains the Docker files) and set a short stable name for this machine — used for experiment routing and contribution tracking:</p>
           <div class="code-block">
-$proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
-$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
+git clone https://github.com/Latent-Fields/REE_assembly.git
+$env:REE_MACHINE_NAME = "my-machine-name"
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
           </div>
+          <div class="cmd-note">Replace <code>my-machine-name</code> with something like <code>alice-rtx4090</code>. Add to your PowerShell profile to persist across sessions.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <p>To run in the background and log output:</p>
+          <p>From <code>REE_assembly\docker\</code>, start the container:</p>
           <div class="code-block">
+docker compose up
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">First run pulls the image and clones repos — a few minutes. Subsequent starts are instant. Run with <code>-d</code> to detach.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p>Open the Explorer and start the runner:</p>
+          <div class="code-block">
+http://localhost:8000/explorer
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+          <div class="cmd-note">Click <strong>Start V3 Runner</strong> in the Experiments tab. Or add <code>AUTO_START_RUNNER=true</code> to the environment in <code>docker-compose.yml</code> to skip this step entirely.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p>To stop:</p>
+          <div class="code-block">
+docker compose down
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+          </div>
+        </div>
+      </div>
+      <details class="manual-collapse">
+        <summary>Manual / bare-metal setup (PowerShell, no Docker)</summary>
+        <div class="collapse-body">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <p>Verify GPU is visible to PyTorch:</p>
+              <div class="code-block">
+py -3.12 -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"<button class="copy-btn" onclick="copyCode(this)">copy</button>
+              </div>
+              <div class="cmd-note">Must print <code>True</code> and your GPU name. If <code>False</code>, update NVIDIA drivers.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <p>Navigate to <code>ree-v3\</code> and start at below-normal priority. Replace <code>my-machine-name</code> with a short stable ID:</p>
+              <div class="code-block">
+$proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
+$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
+<button class="copy-btn" onclick="copyCode(this)">copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <p>Background + log output:</p>
+              <div class="code-block">
 $proc = Start-Process "py" `
   -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine my-machine-name" `
   -RedirectStandardOutput runner.log `
@@ -622,23 +817,21 @@ $proc = Start-Process "py" `
 $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal
 Write-Host "Runner started, PID $($proc.Id)"
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <p>To stop it (use Ctrl+C in the PowerShell window, or):</p>
-          <div class="code-block">
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <p>Stop:</p>
+              <div class="code-block">
 Get-Process python | Where-Object {$_.MainWindowTitle -eq "" } | Stop-Process
 <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="note-box">
-        <strong>GPU note:</strong> If your machine has a CUDA GPU, PyTorch will use it automatically.
-        For a GTX 1050 Ti or similar 4GB card, experiments will run faster than CPU-only.
-      </div>
+      </details>
     </div>
   </div>
 
@@ -800,55 +993,78 @@ function detectHardware() {
       <div class="evalue">~$${cloudHours.toFixed(2)}</div>
     </div>`;
 
-  // Auto-select OS tab (runner + diagnostics)
-  if (os === 'Windows') { switchTab('windows'); switchDiagTab('diag-windows'); }
-  else if (os === 'Linux') { switchTab('linux'); switchDiagTab('diag-linux'); }
-  else { switchTab('mac'); switchDiagTab('diag-mac'); }
+  // Auto-select platform
+  if (os === 'Windows') switchPlatform('windows');
+  else if (os === 'Linux') switchPlatform('linux');
+  else switchPlatform('mac');
+}
 
-  // OS-specific pip install block
+// ── Platform / tab switching ─────────────────────────────────────────────────
+
+function switchPlatform(platform) {
+  // Update platform selector pill buttons
+  ['mac','linux','windows'].forEach(p => {
+    const btn = document.getElementById('plat-btn-' + p);
+    if (btn) btn.classList.toggle('active', p === platform);
+  });
+
+  // Sync diagnostics tabs
+  const diagIds = ['diag-mac','diag-linux','diag-windows'];
+  const diagTarget = 'diag-' + platform;
+  document.querySelectorAll('#diag-tabs .tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['mac','linux','windows'][i] === platform);
+  });
+  diagIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', id === diagTarget);
+  });
+
+  // Sync runner tabs
+  const runnerIds = ['tab-mac','tab-linux','tab-windows'];
+  const runnerTarget = 'tab-' + platform;
+  document.querySelectorAll('#os-tabs .tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['mac','linux','windows'][i] === platform);
+  });
+  runnerIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', id === runnerTarget);
+  });
+
+  // Update pip install block
   const pipBlock = document.getElementById('pip-install-block');
   if (pipBlock) {
-    const pipCmd = os === 'Windows'
-      ? `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`
-      : `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`;
+    let pipCmd;
+    if (platform === 'windows') {
+      pipCmd = `# Docker path (recommended): no manual install needed -- see "Start the Runner" below\n\n# Manual path:\ngit clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npy -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`;
+    } else if (platform === 'linux') {
+      pipCmd = `# Docker path (recommended): no manual install needed -- see "Start the Runner" below\n\n# Manual path:\ngit clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`;
+    } else {
+      pipCmd = `git clone https://github.com/Latent-Fields/ree-v3.git\ngit clone https://github.com/Latent-Fields/REE_assembly.git\ncd ree-v3\npip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124`;
+    }
     pipBlock.innerHTML = pipCmd + '\n<button class="copy-btn" onclick="copyCode(this)">copy</button>';
   }
 
-  // Setup script command
+  // Update setup script command
   const setupScriptCmd = document.getElementById('setup-script-cmd');
   if (setupScriptCmd) {
-    setupScriptCmd.textContent = os === 'Windows'
+    setupScriptCmd.textContent = platform === 'windows'
       ? 'py -3.12 setup_contributor.py'
       : 'python3.12 setup_contributor.py';
   }
 
-  // Python path note
+  // Update python / prereq note
   const pyNote = document.getElementById('python-check-note');
-  if (os === 'macOS') {
-    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">On macOS, <code>/opt/local/bin/python3</code> (MacPorts) has torch pre-installed.
-      Or use <code>pip install torch</code> in your preferred environment.</div>`;
-  } else if (os === 'Windows') {
-    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">Install <strong>Python 3.12</strong> from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH"). Python 3.13+ will not find PyTorch CUDA builds — use 3.12.
-      Then: <code>py -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124</code>
-      (CUDA 12.4 — works with GTX 10xx/16xx/20xx/30xx series)</div>
-      <div class="cmd-note" style="margin-top:0.3rem">Also need Git: <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com/download/win</a> — required for <code>--auto-sync</code>.</div>`;
-  } else {
-    pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem"><code>sudo apt install python3 python3-pip</code>, then <code>pip3 install torch</code></div>`;
+  if (pyNote) {
+    if (platform === 'mac') {
+      pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem">On macOS, <code>/opt/local/bin/python3</code> (MacPorts) has torch pre-installed. Or use <code>pip install torch</code> in your preferred environment.</div>`;
+    } else if (platform === 'windows') {
+      pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem"><strong style="color:var(--green)">Docker path (recommended):</strong> Install <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)">Docker Desktop for Windows</a> -- no Python, PyTorch, or manual clone needed. NVIDIA GPU passthrough works automatically with drivers &ge;527.41.</div>
+        <div class="cmd-note" style="margin-top:0.3rem"><strong>Manual path:</strong> Install <strong>Python 3.12</strong> from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> (tick "Add to PATH"), then <code>py -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124</code>. Also need Git from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a>.</div>`;
+    } else {
+      pyNote.innerHTML = `<div class="cmd-note" style="margin-top:0.3rem"><strong style="color:var(--green)">Docker path (recommended):</strong> Install <a href="https://docs.docker.com/engine/install/" style="color:var(--accent)" target="_blank">Docker Engine</a> + <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html" style="color:var(--accent)" target="_blank">NVIDIA Container Toolkit</a> -- no Python or PyTorch install needed.</div>
+        <div class="cmd-note" style="margin-top:0.3rem"><strong>Manual path:</strong> <code>sudo apt install python3 python3-pip</code>, then <code>pip3 install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124</code></div>`;
+    }
   }
-}
-
-// ── Tab switching ────────────────────────────────────────────────────────────
-
-function switchDiagTab(id) {
-  document.querySelectorAll('#diag-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-  ['diag-mac','diag-linux','diag-windows'].forEach(c => {
-    const el = document.getElementById(c);
-    if (el) el.classList.remove('active');
-  });
-  const btn = document.querySelector(`#diag-tabs .tab-btn[onclick="switchDiagTab('${id}')"]`);
-  if (btn) btn.classList.add('active');
-  const content = document.getElementById(id);
-  if (content) content.classList.add('active');
 }
 
 function generateMachineReg() {
@@ -873,9 +1089,7 @@ function generateMachineReg() {
     gitCmd    = `git add "${filename.replace(/\//g,'\\')}"
 git commit -m "register machine: ${machineName}"
 git push origin HEAD:master`;
-    runnerCmd = `# PowerShell — run from inside ree-v3\\
-$proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine ${machineName}" -PassThru -NoNewWindow
-$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal`;
+    runnerCmd = `# Docker (recommended) -- edit docker-compose.yml, then:\n# Set REE_MACHINE_NAME=${machineName} in the environment: section\n# then from REE_assembly\\docker\\\ndocker compose up\n# Open http://localhost:8000/explorer -> Start V3 Runner\n\n# Manual (bare-metal) -- from inside ree-v3\\\n# $proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine ${machineName}" -PassThru -NoNewWindow\n# $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal`;
   } else {
     const esc = jsonStr.replace(/'/g, "'\\''");
     saveCmd   = `# run from inside REE_assembly/\nmkdir -p contributors/machines\necho '${esc}' > ${filename}`;
@@ -897,15 +1111,6 @@ $proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal`;
   setCmd('reg-git-cmd', gitCmd);
   setCmd('reg-runner-cmd', runnerCmd);
   outDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-function switchTab(id) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  const btn = document.querySelector(`.tab-btn[onclick="switchTab('${id}')"]`);
-  if (btn) btn.classList.add('active');
-  const content = document.getElementById('tab-' + id);
-  if (content) content.classList.add('active');
 }
 
 // ── Copy to clipboard ────────────────────────────────────────────────────────
