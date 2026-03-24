@@ -516,6 +516,8 @@ def read_queue(ver: str) -> dict:
             "description": item.get("description", ""),
             "status": item.get("status", "pending"),
             "script": item.get("script", ""),
+            "estimated_minutes": item.get("estimated_minutes"),
+            "machine_affinity": item.get("machine_affinity", ""),
             "ree_version": ver,
         })
     return {"items": items, "ver": ver}
