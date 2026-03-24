@@ -191,6 +191,12 @@
     "title": "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation.",
     "type": "architecture_hypothesis"
   },
+  "ARC-033": {
+    "status": "candidate",
+    "subject": "harm_stream.sensory_discriminative_forward_model",
+    "title": "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -1503,6 +1509,12 @@
     "status": "implemented",
     "subject": "harm_stream.nociceptive_separation",
     "title": "HARM stream is a dedicated sensory pathway separate from z_world processing.",
+    "type": "design_decision"
+  },
+  "SD-011": {
+    "status": "candidate",
+    "subject": "harm_stream.dual_nociceptive_streams",
+    "title": "Harm stream separates into sensory-discriminative (z_harm_s: proximity/intensity, Adelta-pathway analog, forward-predictable) and affective-motivational (z_harm_a: accumulated homeostatic deviation, C-fiber/paleospinothalamic analog).",
     "type": "design_decision"
   }
 }

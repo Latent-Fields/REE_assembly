@@ -4721,12 +4721,16 @@
   polarity: asserts
   status: validated
   status_note: >
-    Self-attribution via counterfactual E2: causal_sig = E3(z_world_actual) -
-    E3(z_world_cf), where z_world_cf = E2.world_forward(z_world, a_cf).
-    Validated EXQ-030b PASS: world_forward_r2=0.947, attribution_gap=0.035,
-    correct sign structure. E3 must be trained on E2-predicted z_world states
-    to avoid distribution mismatch at eval.
-  depends_on: [SD-005, SD-007, SD-008, MECH-071]
+    EXQ-030b PASS (2026-03-18): validated on z_world pipeline -- causal_sig =
+    E3(z_world_actual) - E3(z_world_cf), world_forward_r2=0.947, attribution_gap=0.035,
+    correct sign structure. This validation predates SD-010 full wiring (E3 now takes
+    z_harm, not z_world). The E2-counterfactual pipeline architecture is confirmed sound
+    but the target stream has changed. Post-SD-011, the correct pipeline is:
+    z_harm_s_cf = E2_harm_s(z_harm_s, a_cf); causal_sig = E3(z_harm_s_actual) -
+    E3(z_harm_s_cf). EXQ-093/094 confirmed that HarmBridge(z_world -> z_harm) is
+    infeasible (bridge_r2=0 architectural, SD-010 makes z_world perp z_harm).
+    ARC-033 + SD-011 implementation required before SD-003 can be retested.
+  depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033]
   location: docs/architecture/sd_003_experiment_design.md
 
 - id: SD-004
@@ -4916,6 +4920,51 @@
     at contact events), consistent with approach-gradient leverage predicted by MECH-102.
   depends_on: [SD-005, SD-007, ARC-027]
   location: docs/architecture/sensory_stream_tags.md
+
+- id: SD-011
+  title: "Harm stream separates into sensory-discriminative (z_harm_s: proximity/intensity, Adelta-pathway analog, forward-predictable) and affective-motivational (z_harm_a: accumulated homeostatic deviation, C-fiber/paleospinothalamic analog)."
+  claim_type: design_decision
+  subject: harm_stream.dual_nociceptive_streams
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-010, ARC-027]
+  functional_restatement: >
+    The single z_harm vector conflates two functionally distinct nociceptive signals:
+    (1) z_harm_s: immediate proximity/intensity, analogous to the lateral spinothalamic
+    tract (Adelta fibers, VPL -> S1/S2). Tracks stimulus with minimal lag; predictable
+    from action (moving away from hazard reduces proximity predictably). This stream
+    supports a learnable forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next,
+    enabling SD-003 counterfactual attribution within the harm stream.
+    (2) z_harm_a: accumulated homeostatic deviation, analogous to the medial
+    paleospinothalamic tract (C fibers, intralaminar thalamus -> ACC/insula/amygdala).
+    Slower to change; integrative; represents sustained threat urgency and body state.
+    NOT counterfactually modeled -- feeds E3 directly as motivational/urgency signal.
+    ARC-016 harm variance gating operates on z_harm_a (motivational urgency scales with
+    accumulated threat state), not z_harm_s. SD-003 counterfactual attribution operates
+    on z_harm_s (via E2_harm_s forward model), not z_harm_a.
+  evidence_quality_note: |
+    EXQ-093 FAIL + EXQ-094 FAIL (2026-03-24): Both confirmed bridge_r2=0 -- SD-010 makes
+    z_world perp z_harm by architectural design, so HarmBridge(z_world -> z_harm) is
+    infeasible (nothing to learn). EXQ-094 confirmed training E3 on bridge noise produced
+    100x regression in harm_var vs EXQ-088. These experiments collectively demonstrate that
+    the current single-stream z_harm cannot simultaneously serve SD-003 (needs forward
+    model) and ARC-016 (needs sustained motivational signal). Stream separation is the
+    solution confirmed by dual-pathway human nociceptive anatomy.
+    Biological grounding: Melzack & Casey (1968) three-component pain model; Craig (2002,
+    2003, 2009) interoception and insular cortex homeostatic map; Rainville et al. (1997,
+    Science) gold-standard dissociation: hypnotic modulation of unpleasantness modulates
+    ACC but not S1 -- affective and sensory-discriminative components are independent.
+    Keltner et al. (2006) predictability suppresses sensory (S1) activity, not affective
+    (ACC) -- forward model cancellation applies to z_harm_s but not z_harm_a.
+  notes: >
+    Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
+    steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
+    added; HarmEncoder renamed HarmEncoderS. LatentState gains z_harm_a field. E3Selector
+    takes z_harm_s (attribution) and z_harm_a (commit gating) as separate inputs. E2_harm_s
+    forward model is a prerequisite (ARC-033). See thought intake
+    evidence/planning/thought_intake_2026-03-24_dual_nociceptive_streams.md
 
 # Registered 2026-03-21 — Respiratory oscillator cluster
 # Source: cross-species behavioural observation (dog + human exhalation on plan abandonment)
@@ -5613,6 +5662,38 @@
     Note: ARC-032 is currently tested jointly with MECH-116 in EXQ-076. A separate
     theta-bypass ablation would be needed to isolate ARC-032 specifically.
     Registered 2026-03-23. Experiment: EXQ-076 (joint with MECH-116).
+
+- id: ARC-033
+  title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
+  claim_type: architectural_commitment
+  subject: harm_stream.sensory_discriminative_forward_model
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [SD-011, ARC-027, SD-010]
+  functional_restatement: >
+    The SD-003 counterfactual pipeline requires z_harm_cf = E2_harm_s(z_harm_s, a_cf):
+    a forward model on the sensory-discriminative harm stream that predicts how harm
+    proximity changes under counterfactual action. This is distinct from and does not
+    require E2.world_forward -- the harm stream is architecturally independent of z_world
+    (SD-010). The forward model is learnable because z_harm_s (proximity/location) has
+    predictable action-conditional structure: moving away from a hazard reduces proximity.
+    With E2_harm_s, causal_sig = E3(z_harm_s_actual) - E3(z_harm_s_cf) operates entirely
+    within the harm stream with no cross-stream bridge. The EXQ-030b validation of SD-003
+    (world_forward_r2=0.947) confirms the counterfactual pipeline architecture works -- it
+    now needs to be applied to z_harm_s specifically rather than z_world.
+  evidence_quality_note: |
+    EXQ-030b PASS (2026-03-18): SD-003 counterfactual pipeline validated with z_world and
+    E2.world_forward. This confirms the E2-forward-model-as-counterfactual architecture is
+    sound; the same pattern now applies to z_harm_s. EXQ-093 FAIL (bridge_r2=0) and EXQ-094
+    FAIL (100x regression) confirm that z_world -> z_harm bridge is not the path forward.
+  notes: >
+    E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
+    MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
+    z_harm_a (affective stream, SD-011) does NOT need a forward model -- it is not used in
+    counterfactuals. Registered 2026-03-24.
+    See thought intake: evidence/planning/thought_intake_2026-03-24_dual_nociceptive_streams.md
 
 - id: INV-034
   title: "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance."
