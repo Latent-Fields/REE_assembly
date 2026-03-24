@@ -6,6 +6,25 @@
     {
       "run_id": "20260315T183757_causal_attribution_calibration_v2",
       "reason": "Wrong module: V2 experiment tested E2.predict_harm() alone. MECH-071 concerns E3.harm_eval calibration asymmetry. This run predates the correct E3-based experimental design and provides no diagnostic signal for the claim."
+    },
+    {
+      "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T175143Z_v3",
+      "reason": "EXQ-085: z_goal routing bug -- GOAL_PRESENT and GOAL_ABSENT conditions produced literally identical per-seed metrics (seed=42: n_agent=907/907, cal_gap=0.1673/0.1673; seed=7: n_agent=872/872), confirming z_goal has no pathway to policy selection. Implementation wiring gap, not evidence against MECH-071."
+    },
+    {
+      "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3",
+      "reason": "EXQ-085b: Same z_goal routing bug as EXQ-085. Per-seed results identical across conditions -- z_goal latent exists and updates but does not modulate trajectory selection. Implementation gap, not scientific failure."
+    }
+  ],
+
+  "INV-034": [
+    {
+      "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T175143Z_v3",
+      "reason": "EXQ-085: z_goal routing bug (same as MECH-071 exclusion). INV-034 cannot be tested until z_goal is wired to policy selection."
+    },
+    {
+      "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3",
+      "reason": "EXQ-085b: Same z_goal routing bug. Non-diagnostic for INV-034."
     }
   ],
 
