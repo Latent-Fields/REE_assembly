@@ -156,7 +156,9 @@ def _parse_timestamp_only(raw: str) -> datetime:
 
 
 def _normalize_direction(raw: str | None) -> str:
-    allowed = {"supports", "weakens", "mixed", "unknown"}
+    # "superseded" marks a run as invalidated by a corrected iteration -- it is
+    # preserved in the entry log but excluded from scoring (see loop below).
+    allowed = {"supports", "weakens", "mixed", "unknown", "superseded"}
     value = (raw or "unknown").strip().lower()
     return value if value in allowed else "unknown"
 
@@ -1128,12 +1130,16 @@ def _write_claim_evidence_matrix(
                 entry["architecture_epoch"] = run.architecture_epoch
             matrix["entries"].append(entry)
 
-            # Epoch-stale or explicitly excluded entries are logged but do not score.
+            # Epoch-stale, explicitly excluded, or superseded entries are logged
+            # but do not count toward claim confidence or conflict ratios.
             if not is_applicable(entry):
                 entry["scoring_excluded"] = "stale_epoch"
                 continue
             if run.run_id in excl.get(claim_id, set()):
                 entry["scoring_excluded"] = "invalid_run"
+                continue
+            if inferred_direction == "superseded":
+                entry["scoring_excluded"] = "superseded"
                 continue
 
             claim_to_entries[claim_id].append(entry)
