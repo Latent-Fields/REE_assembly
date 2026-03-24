@@ -6151,3 +6151,123 @@
     generation-propagation cascade. vmPFC is the critical integration node across axes 2 and 3.
     Registered 2026-03-24. Literature pull completed 2026-03-24.
 
+- id: MECH-127
+  title: "Counterfactual other-cost-aversion activates cooperative behavior as a motivational surrogate when the direct task-reward pathway is degraded."
+  claim_type: mechanism_hypothesis
+  subject: social.counterfactual_empathic_activation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-031
+    - MECH-032
+    - INV-005
+    - INV-028
+    - INV-034
+  location: docs/architecture/social.md#mech-127
+  source:
+    - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
+    - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
+  notes: >
+    When an agent's direct task-motivation pathway is degraded (deficit state), modeling the
+    anticipated cost to another agent -- other-cost-aversion -- can substitute as an activation
+    mechanism, producing cooperative task-engagement even in the other agent's absence. The
+    activation is counterfactual: it fires on a model of what would happen to the other agent
+    if they took on the task, not on their actual current state. The resulting distress-at-their-
+    struggle provides motivational energy that the depleted direct pathway cannot supply. Behavioral
+    output (task engagement / cooperation) is identical to the direct-pathway output but arrives
+    via a different activation route.
+    Key distinction from MECH-031: MECH-031 describes empathy modulating behavior via
+    OTHER_SELFLIKE tagging and control-plane coupling -- modulation of an existing pathway.
+    MECH-127 describes empathy replacing a degraded pathway -- bypass, not modulation.
+    Implication for MECH-032 (high-recall OTHER_SELFLIKE bias): counterfactual projection
+    requires OTHER_SELFLIKE tagging to function pre-encounter, supporting the bias rationale.
+    Motivating observation: first-person report, 2026-03-24. Registered 2026-03-24.
+
+- id: ARC-034
+  title: "Ethics testing must span nth-order multiagent trajectory distributions; local pairwise probes are insufficient to characterize emergent ethical properties."
+  claim_type: architectural_commitment
+  subject: ethics.test_scope_nth_order
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-001
+    - INV-015
+    - INV-028
+    - MECH-127
+  location: docs/invariants.md#arc-034
+  source:
+    - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
+    - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
+  notes: >
+    A REE system can be locally ethical at every pairwise (n=1) interaction and still produce
+    an ethically problematic emergent collective state at n=k. Conversely, locally depleted
+    agents can produce more ethical emergent behavior at n=k than n=1 predicts (as in the
+    MECH-127 motivating case: direct-pathway analysis predicts reduced helping; nth-order
+    analysis predicts increased helping via counterfactual empathic activation).
+    Ethics tests must therefore include: (1) counterfactual probes -- what activates when the
+    direct pathway is blocked? (2) multi-agent stress tests -- does ethical behavior degrade
+    or amplify under load? (3) cascade mapping -- trace the nth-order activation chain, not
+    just the first-order output.
+    Formally: given agents {A_1...A_n}, local rules theta, threshold parameters {x...x_n},
+    and feedback topology G -- characterize convergence to emergent state q and its ethical
+    properties. This requires descriptive (attractor theory), prescriptive (Lyapunov /
+    potential game), and diagnostic (transfer entropy / perturbation) test types.
+    Does not contradict INV-001 (no explicit ethics module) -- this is a test scope claim,
+    not an architectural claim about where ethics lives. Registered 2026-03-24.
+
+- id: Q-023
+  title: "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?"
+  claim_type: open_question
+  subject: ethics.formal_convergence_characterization
+  polarity: open
+  status: open
+  depends_on:
+    - ARC-034
+    - MECH-127
+    - INV-028
+  location: docs/invariants.md#q-023
+  source:
+    - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
+    - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
+  notes: >
+    Three candidate formal frameworks identified: (1) Lyapunov stability -- prove convergence
+    by finding a function that monotonically decreases toward ethical attractor q; (2) Potential
+    game theory -- if the multiagent system has an exact potential function, all Nash equilibria
+    are derivable and their ethical character is provable; (3) Stochastic stability
+    (Kandori-Mailath-Rob 1993) -- characterize which equilibria survive under noise in repeated
+    interaction. All three apply to the system described in ARC-034.
+    Nearest existing territory: prosocial MARL (shared reward, not counterfactual cost-aversion
+    as bypass) and indirect reciprocity in evolutionary game theory (reputational mechanisms,
+    not counterfactual / depleted-agent bootstrapping). No unified framework confirmed to
+    cover all four features: depleted-agent activation, counterfactual projection, nth-order
+    cascade, convergence proof to ethical attractor. Literature search required to confirm
+    novelty before treating as a potential paper contribution.
+    If the unified framework does not exist: potential paper. Registered 2026-03-24.
+
+- id: Q-024
+  title: "What is the correct formal representation for 'threshold/feedback processes bounded by {x...x_n} reliably reaching emergent state q' -- and are descriptive, prescriptive, and diagnostic variants all needed or does one subsume the others?"
+  claim_type: open_question
+  subject: ethics.trajectory_integral_representation
+  polarity: open
+  status: open
+  depends_on:
+    - Q-023
+    - ARC-034
+  location: docs/invariants.md#q-024
+  source:
+    - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
+    - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
+  notes: >
+    Three test-type variants identified in the 2026-03-24 conversation: (1) Descriptive --
+    characterize what q the system tends toward (attractor theory, ergodic theory, mean field);
+    (2) Prescriptive -- prove a designed system reaches a target q (Lyapunov, potential games,
+    reachability analysis); (3) Diagnostic -- detect when nth-order dynamics diverge from
+    (n-1)th-order predictions (transfer entropy / Granger causality, perturbation theory,
+    sensitivity analysis). The MECH-127 motivating case is a clean diagnostic instance: n=1
+    analysis predicts reduced helping; n=2 analysis via counterfactual empathic activation
+    predicts increased helping.
+    The open question is whether all three are genuinely needed for REE ethics testing or
+    whether the prescriptive framework subsumes the descriptive and diagnostic. The answer
+    likely depends on whether REE ethics properties are amenable to formal proof (prescriptive)
+    or must be empirically characterized (descriptive + diagnostic). Registered 2026-03-24.
+
