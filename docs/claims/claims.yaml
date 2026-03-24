@@ -3150,10 +3150,17 @@
     EXQ-029 PASS (2026-03-18): Much stronger confirmation on CausalGridWorldV2 with proxy
     gradient fields (ARC-024). calibration_gap_approach=0.239, calibration_gap_contact=0.209,
     reafference_r2=0.408. E3 learned graded danger model: none=0.373, approach=0.612,
-    contact=0.666. Promoted from candidate → provisional. v3_pending cleared.
-    Subject corrected: was e2.harm_prediction_calibration_asymmetry — E2 is NOT the harm
+    contact=0.666. Promoted from candidate -> provisional. v3_pending cleared.
+    Subject corrected: was e2.harm_prediction_calibration_asymmetry -- E2 is NOT the harm
     evaluator. E3.harm_eval is the correct locus. EXQ-027 FAIL was the diagnostic that
     forced this architectural correction.
+    EXQ-085 through EXQ-085d (2026-03-23/24): tagged MECH-071/INV-034 but ALL failed at
+    goal-seeding bottleneck (z_goal_norm < 0.1 in every iteration). These do NOT contribute
+    evidence for or against MECH-071's core claim (harm_eval calibration gradient). The
+    mechanism under test (goal-state latent seeded by benefit exposure) was never instantiated
+    because random-walk warmup without homeostatic drive cannot generate goal representations.
+    Non-contributory: hold redesign pending drive/hunger architecture and curriculum schedule.
+    See thought: docs/thoughts/2026-03-24_mech071_goal_latent_non_contributory_evidence.md
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
