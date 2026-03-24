@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "contact_dissoc_routed": 0.0,
+    "contact_dissoc_baseline": 0.0,
+    "routing_improvement": 0.0,
+    "action_dissoc_routed": -0.08350515365600586,
+    "action_dissoc_baseline": 0.08548110723495483,
+    "n_contact_min": 164.0,
+    "lambda_route": 0.1,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-047i -- MECH-095 Supervised TPJ Routing PoC\n\n**Status:** FAIL\n**Claims:** MECH-095, SD-005\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**lambda_route:** 0.1\n**Warmup:** 400 eps  **Probe:** 20 eps\n**Design note:** Supervised routing via transition_type labels. EXQ-089 showed unsupervised E2 mismatch insufficient at 300 eps (gap=0.004, false_attribution=1.0). This PoC tests the routing PRINCIPLE using ground-truth labels.\n\n## Pre-Registered Thresholds\n\nC1: contact_dissociation_routed > 0.05\nC2: routing improvement (routed - baseline) > 0.04\nC3: action_dissociation_routed > 0.05\nC4: n_contact_probe >= 20\nC5: no fatal errors\n\n## Results\n\n| Condition | contact_dissoc | action_dissoc |\n|-----------|---------------|---------------|\n| ROUTED    | +0.000          | -0.084         |\n| BASELINE  | +0.000          | +0.085         |\n\n**Routing improvement: +0.000**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: contact_dissoc_routed > 0.05 | FAIL | +0.000 |\n| C2: improvement > 0.04 | FAIL | +0.000 |\n| C3: action_dissoc_routed > 0.05 | FAIL | -0.084 |\n| C4: n_contact_min >= 20 | PASS | 164 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Per-Seed\n\nROUTED:\n  seed=42: contact_world=0.911 contact_self=0.911 contact_dissoc=+0.000 action_dissoc=-0.100 route_loss=0.0000\n  seed=7: contact_world=0.902 contact_self=0.902 contact_dissoc=+0.000 action_dissoc=-0.067 route_loss=0.0000\n\nBASELINE:\n  seed=42: contact_world=0.911 contact_self=0.911 contact_dissoc=+0.000 action_dissoc=+0.083\n  seed=7: contact_world=0.902 contact_self=0.902 contact_dissoc=+0.000 action_dissoc=+0.088\n\n## Failure Notes\n\n- C1 FAIL: contact_dissoc_routed=+0.000 <= 0.05\n- C2 FAIL: routing improvement=+0.000 <= 0.04 (routed=+0.000 vs baseline=+0.000)\n- C3 FAIL: action_dissoc_routed=-0.084 <= 0.05\n",
+  "claim_ids": [
+    "MECH-095",
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_047i_tpj_routing_poc",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260324T012720Z",
+  "claim": "MECH-095",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_047i_tpj_routing_poc_20260324T012720Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

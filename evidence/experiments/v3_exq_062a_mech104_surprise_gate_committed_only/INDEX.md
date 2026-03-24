@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_062a_mech104_surprise_gate_committed_only
 
-Generated: `2026-03-23T20:00:26.637298Z`
+Generated: `2026-03-24T00:15:18.601026Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
