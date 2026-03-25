@@ -1,4 +1,11 @@
-Status: unprocessed
+Status: processed
+
+Processed in:
+- SD-012 (claims.yaml): environment.homeostatic_drive -- registered 2026-03-25
+- EXQ-085a/b/c/d manifests: evidence_direction set to non_contributory + evidence_direction_note
+- MECH-071 (claims.yaml): evidence_quality_note already updated to record non-contributory status
+- EXQ-085e queued: drive-modulated goal seeding experiment (V3-EXQ-085e)
+- docs/thoughts/2026-03-25_goal_hunger_drive_literature_synthesis.md: full literature synthesis
 
 # MECH-071: Why All Goal-Persist Experiments Are Non-Contributory
 

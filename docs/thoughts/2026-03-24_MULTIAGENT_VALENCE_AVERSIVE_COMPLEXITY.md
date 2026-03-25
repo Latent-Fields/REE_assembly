@@ -1,5 +1,10 @@
 Status: processed
 
+Processed in:
+- MECH-135 (claims.yaml): e1.goal_context_conditioning -- E1 LSTM conditioning on z_goal_latent
+- MECH-136 (claims.yaml): coherence.relational_harm -- harm-to-agent vs harm-to-agency (v4)
+- MECH-137 (claims.yaml): curiosity.agent_novelty_typing -- world-state vs agent-policy novelty (v4)
+
 Source: Design conversation, 2026-03-24 (Claude Code session)
 Triggered by: analysis of axiom coverage gaps (INV-028, INV-029) and question of how
 positive valence control plane signals interact with aversive gradient in multiagent world.

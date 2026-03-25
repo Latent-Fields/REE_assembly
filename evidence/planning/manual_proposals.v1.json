@@ -143,6 +143,72 @@
       "status": "proposed",
       "added_utc": "2026-03-22",
       "notes": "EXQ-023 originally attempted this combined test but failed because SD-007 input was wrong (z_self instead of z_world_raw_prev). All three components are now independently validated. Lower priority than ARC-007, ARC-029, MECH-104 pending experiments."
+    },
+    {
+      "proposal_id": "EXP-0088",
+      "claim_id": "MECH-128",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "estimated_minutes": 90,
+      "machine_affinity": "macbook",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Validate that E1 LSTM goal-conditioning (MECH-128) actually shapes E1's predictive distribution. PASS: E1 prediction error is significantly lower for goal-relevant state transitions than goal-irrelevant ones when z_goal_latent is provided vs withheld (interaction term), demonstrating that goal context modulates prediction rather than being a dormant input.",
+      "design": "Condition A: E1 receives [x_t, z_goal_latent] (goal-conditioned). Condition B: E1 receives [x_t, zero_goal] (goal-ablated). Both conditions trained on the same goal-directed task. PASS criterion: goal-relevant prediction error A < B by margin > 0.05; goal-irrelevant prediction error A ~= B (goal conditioning should not degrade irrelevant predictions). Tests MECH-128 specifically -- not a duplicate of MECH-112 (z_goal existence) since it tests downstream effect on E1, not E3.",
+      "status": "proposed",
+      "added_utc": "2026-03-25",
+      "notes": "BLOCKED on EXQ-091 completion (MECH-112 z_goal validation). Do not queue until EXQ-091 PASS confirmed -- experiment requires a functioning z_goal_latent to condition on."
+    },
+    {
+      "proposal_id": "LIT-0094",
+      "claim_id": "MECH-128",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "medium",
+      "objective": "Ground MECH-128 (E1 goal-context conditioning) in predictive coding and top-down goal modulation literature: Rao & Ballard 1999 (predictive coding, top-down context), Clark 2013 (predictive brains with goal-directed top-down), Friston 2010 (free-energy, goal context in generative models), Botvinick & Plaut 2004 (goal-conditioned recurrent networks for action sequences).",
+      "key_sources": [
+        "Rao & Ballard (1999) - Predictive coding in the visual cortex: a functional interpretation and its application to development (Nature Neuroscience)",
+        "Clark (2013) - Whatever next? Predictive brains, situated agents, and the future of cognitive science (Behavioral and Brain Sciences)",
+        "Friston (2010) - The free-energy principle: a unified brain theory? (Nature Reviews Neuroscience)",
+        "Botvinick & Plaut (2004) - Doing without schema hierarchies: a recurrent connectionist approach to normal and impaired routine sequential action (Psychological Review)"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-03-25"
+    },
+    {
+      "proposal_id": "LIT-0095",
+      "claim_id": "MECH-129",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "low",
+      "objective": "Ground MECH-129 (relational harm: harm-to-agent vs harm-to-agency) in philosophy of harm and AI alignment literature. Hart & Honore on causal obstruction, Thomson on trolley problem harm distinctions, Shue on agency as a protectable interest, Pearlman on goal obstruction as instrumental harm, Hadfield-Menell on other-agent goal inference.",
+      "key_sources": [
+        "Hart & Honore (1959/1985) - Causation in the Law (Clarendon Press) -- causal obstruction of agency as harm",
+        "Thomson (1985) - The trolley problem (Yale Law Journal) -- harm-to-agency distinctions in applied ethics",
+        "Shue (1980) - Basic Rights: Subsistence, Affluence, and U.S. Foreign Policy (Princeton UP) -- agency as a protectable interest",
+        "Pearlman, Uesato & Leike (2019) - Risks from learned optimization in advanced machine learning systems (Alignment Forum) -- goal obstruction as instrumental harm",
+        "Hadfield-Menell, Milli, Abbeel, Russell & Dragan (2016) - Cooperative inverse reinforcement learning (NeurIPS) -- other-agent goal inference as prerequisite for harm-to-agency detection"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-03-25"
+    },
+    {
+      "proposal_id": "LIT-0096",
+      "claim_id": "MECH-130",
+      "proposal_type": "literature",
+      "target_repo": "REE_assembly",
+      "priority": "low",
+      "objective": "Ground MECH-130 (curiosity typing: world-state novelty vs agent-policy novelty) in intrinsic motivation and MARL exploration literature. Schmidhuber compression-based novelty, Oudeyer & Kaplan typology, Pathak ICM, Houthooft VIME, Baker multiagent autocurricula. Key note: absence of world vs agent novelty distinction in the literature may itself be a contribution.",
+      "key_sources": [
+        "Schmidhuber (1991/2010) - Formal theory of creativity and curiosity and beauty (IEEE Transactions on Autonomous Mental Development) -- compression progress as novelty signal",
+        "Oudeyer & Kaplan (2007) - What is intrinsic motivation? A typology of computational approaches (Frontiers in Neurorobotics) -- systematic taxonomy of curiosity signals",
+        "Pathak, Agrawal, Efros & Darrell (2017) - Curiosity-driven exploration by self-supervised prediction (ICML) -- ICM: prediction error as novelty signal",
+        "Houthooft, Chen, Duan, Schulman, De Turck & Abbeel (2016) - VIME: variational information maximizing exploration (NeurIPS) -- information-theoretic novelty",
+        "Baker, Kanitscheider, Martic, Wu, Powell, McGrew & Mordatch (2019) - Emergent tool use from multi-agent autocurricula (ICLR) -- novelty in multi-agent play; agent behavior as perpetual novelty source"
+      ],
+      "status": "proposed",
+      "added_utc": "2026-03-25",
+      "notes": "Survey literature for any existing treatment of world-novelty vs agent-policy-novelty distinction. If absent, this gap is itself a potential contribution -- document in lit review."
     }
   ]
 }

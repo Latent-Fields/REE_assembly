@@ -1,7 +1,7 @@
 # Connectome Literature Pull Queue
 
-Generated: `2026-03-24T20:02:51.124895Z`
-Cycle: `2026-03-24`
+Generated: `2026-03-25T05:24:49.628451Z`
+Cycle: `2026-03-25`
 
 This queue prioritizes connectome/effective-connectivity evidence pulls for claims under architecture pressure.
 
@@ -23,7 +23,7 @@ Active queue items: `6`. Completed items tracked: `0`.
 - Objective: Run targeted connectome literature pull for ARC-016.
 - Claim description: ARC-016 is an architecture commitment about cognitive modes / control plane regimes.
 - REE fit: This is in REE's architecture layer and constrains mechanism choices. It depends on 3 upstream claim(s): `ARC-005`, `MECH-059`, `ARC-021`. It currently influences 14 downstream claim(s): `ARC-029`, `INV-033`, `MECH-025`, `MECH-026`, `MECH-027`, `MECH-028`, `MECH-039`, `MECH-041`, `MECH-097`, `MECH-104`, `MECH-106`, `MECH-114`, `MECH-120`, `MECH-123`. Primary anchor: `docs/architecture/modes_of_cognition.md#arc-016`.
-- Evidence pressure: conflict_ratio=0.952, overall_confidence=0.736, trigger_signals=high_conflict_ratio,manual_mode_transition_pull.
+- Evidence pressure: conflict_ratio=0.952, overall_confidence=0.735, trigger_signals=high_conflict_ratio,manual_mode_transition_pull.
 - Connectome focus: Map control-plane cognitive modes to empirically constrained network-control regimes and transition signatures.
 - Research questions:
   - Which large-scale network control findings support regime-like mode organization over shared predictive machinery?

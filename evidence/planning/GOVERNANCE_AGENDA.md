@@ -1,20 +1,13 @@
 # Governance Agenda
 
-Generated: `2026-03-24T20:02:51.340462Z`
+Generated: `2026-03-25T05:25:01.484908Z`
 
 ## Cycle Status
 
 | step | status | command |
 |---|---|---|
 | `task_inbox_sync` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/sync_task_inbox.py` |
-| `thought_sweep` | `ok` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py` |
-| `adjudication_cascade` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/apply_adjudication_cascade.py --decision-statuses approved,applied` |
-| `evidence_build` | `ok` | `/opt/local/bin/python3 evidence/experiments/scripts/build_experiment_indexes.py` |
-| `thought_adjudication_bridge` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_thought_adjudication_bridge.py` |
-| `structure_review` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_structure_review_dossiers.py` |
-| `human_decision_briefs` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_human_decision_briefs.py` |
-| `connectome_pull` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_connectome_literature_pull.py` |
-| `convergence_intake_queue` | `ok` | `/opt/local/bin/python3 evidence/planning/scripts/build_convergence_intake_queue.py` |
+| `thought_sweep` | `failed` | `/opt/local/bin/python3 docs/thoughts/scripts/thought_sweep.py --check-unprocessed` |
 
 ## Discussion Checkpoints
 
@@ -22,17 +15,19 @@ Generated: `2026-03-24T20:02:51.340462Z`
 
 | work_item | tier | gate_status | recommendation | rollback_ready | decision_needed |
 |---|---|---|---|---|---|
-| `governance_maintenance_pipeline` | `AUTO` | `PASS` | `execute` | `yes` | `no` |
+| `governance_maintenance_pipeline` | `AUTO` | `FAIL` | `investigate_and_rerun` | `yes` | `no` |
 | `adjudication_cascade_application` | `AUTO` | `PASS` | `execute_no_pending_actions` | `yes` | `no` |
-| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `dispatch_already_approved` | `yes` | `no` |
+| `weekly_dispatch_export` | `AUTO_WITH_APPROVAL` | `PASS` | `approve_dispatch` | `yes` | `yes` |
 | `convergence_packet_review_queue` | `AUTO_WITH_APPROVAL` | `PASS` | `all_packets_adjudicated` | `yes` | `no` |
 | `promotion_demotion_and_conflict_resolution` | `HUMAN_ONLY` | `FAIL` | `review_decision_queue_and_conflicts` | `n/a` | `yes` |
 | `architecture_structure_adjudication` | `HUMAN_ONLY` | `PASS` | `no_action_required` | `n/a` | `no` |
 
-Open decision items: `promotion_demotion_and_conflict_resolution`.
+Open decision items: `weekly_dispatch_export`, `promotion_demotion_and_conflict_resolution`.
 
-1. Thought Intake: 0 unprocessed thought(s).
+1. Thought Intake: 2 unprocessed thought(s).
 - context: `docs/thoughts/SWEEP_REPORT.md`, `docs/thoughts/thought_sweep.v1.json`
+- `2026-03-24_empathy_multiagent_ethics.md`
+- `2026-03-24_mech071_goal_latent_non_contributory_evidence.md`
 1a. Thought-Adjudication Bridge: 0 candidate item(s); approved_pending_apply=0.
 - context: `evidence/planning/THOUGHT_ADJUDICATION_BRIDGE.md`, `evidence/planning/thought_adjudication_bridge.v1.json`
 2. Conflict Resolution: 17 conflict item(s).
@@ -47,7 +42,7 @@ Open decision items: `promotion_demotion_and_conflict_resolution`.
 - `MECH-090` (mechanism hypothesis; control plane / commitment gated policy output; see `docs/architecture/control_plane_heartbeat.md#mech-090`); conflict_types=directional, mixed_evidence
 - `MECH-093` (mechanism hypothesis; affective / z beta e3 update rate modulation; see `docs/architecture/control_plane_heartbeat.md#mech-093`); conflict_types=directional, source_disagreement, mixed_evidence
 - `MECH-095` (mechanism hypothesis; tpj / agency detection comparator; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); conflict_types=directional, source_disagreement, mixed_evidence
-3. Architecture-Epoch Applicability: enabled=True; considered=1779; applicable=456; stale=1323; claims_with_stale=40.
+3. Architecture-Epoch Applicability: enabled=True; considered=1783; applicable=460; stale=1323; claims_with_stale=40.
 - context: `evidence/planning/architecture_epoch_applicability.v1.json`, `evidence/planning/planning_criteria.v1.yaml`
 - `MECH-060` (mechanism hypothesis; commitment / dual error channels pre post commit; see `docs/architecture/agency_responsibility_flow.md#mech-060`) stale_entries=184; stale_ratio=0.995
 - `MECH-056` (mechanism hypothesis; residue / trajectory first placement; see `docs/architecture/residue_geometry.md#mech-056`) stale_entries=174; stale_ratio=0.989
@@ -73,7 +68,7 @@ Open decision items: `promotion_demotion_and_conflict_resolution`.
 - `MECH-097` (mechanism hypothesis; peripersonal space / commit locus; see `docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md`); decision=Hold — V3 substrate required before meaningful evidence can be collected; recommendation=`hold_pending_v3_substrate`
 5. Human Decision Briefs: 0 claim brief(s).
 - context: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/decisions/human_decision_briefs/latest/INDEX.md`, `evidence/decisions/HUMAN_DECISION_GLOSSARY.md`
-- weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/decisions/human_decision_briefs/2026-03-24/WEEKLY_DISPATCH.md`
+- weekly dispatch brief: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/decisions/human_decision_briefs/2026-03-25/WEEKLY_DISPATCH.md`
 6. Manual Carryover: 0 open item(s), 1 total.
 - context: `evidence/planning/manual_carryover_items.v1.json`, `evidence/planning/task_inbox.md`
 7. Architecture Structure: 0 consider-new-structure item(s), 9 total register item(s).
@@ -108,10 +103,11 @@ Open decision items: `promotion_demotion_and_conflict_resolution`.
 - allowed outcomes: retain_ree,hybridize,retire_ree_claim
 12. Adjudication Cascade: 0 action(s), 0 claim update(s), 0 dependent reopen(s).
 - context: `evidence/planning/ADJUDICATION_CASCADE_PATCH_QUEUE.md`, `evidence/decisions/adjudication_cascade_state.v1.json`
-13. Evidence Dispatch: 28 high-priority proposal(s), 103 total.
+13. Evidence Dispatch: 28 high-priority proposal(s), 107 total.
 - context: `evidence/planning/experiment_proposals.v1.json`
-- approval state: approved_for_cycle=true; latest_status=`approved`; latest_recommendation=`approve_dispatch`; latest_timestamp_utc=`2026-03-24T18:30:00Z`
-- REE_assembly: total=56, experimental=0, literature_review=50
-- ree-v3: total=47, experimental=47, literature_review=0
-14. Maintenance: 1 unlinked evidence run(s), 0 warning(s).
+- approval state: approved_for_cycle=false; latest_status=`missing`; latest_recommendation=``; latest_timestamp_utc=``
+- REE_assembly: total=58, experimental=0, literature_review=52
+- ree-v3: total=49, experimental=49, literature_review=0
+14. Maintenance: 1 unlinked evidence run(s), 1 warning(s).
 - context: `evidence/experiments/claim_evidence.v1.json`, `evidence/experiments/TODOs.md`
+- Step failed (thought_sweep) returncode=2: Thought sweep: total=60, processed=58, unprocessed=2, processed_missing_links=1

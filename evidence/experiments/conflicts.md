@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-25T06:09:15.172175Z`
+Generated: `2026-03-25T06:16:41.930055Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -105,13 +105,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-071
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=10, conflict_ratio=0.952, overall_confidence=0.759
+- Evidence breakdown: supports=11, weakens=10, conflict_ratio=0.952, overall_confidence=0.758
 - Recent entries:
   - `2026-03-23T14:33:50Z` `experimental` `v3_exq_071_rollout_batched_attribution` direction=`mixed` confidence=0.5
-  - `2026-03-23T17:51:43Z` `experimental` `v3_exq_085_mech071_goal_directed_calibration` direction=`mixed` confidence=0.5
-  - `2026-03-23T18:56:18Z` `experimental` `v3_exq_085_mech071_goal_directed_calibration` direction=`mixed` confidence=0.5
-  - `2026-03-24T01:28:17Z` `experimental` `v3_exq_085c_mech071_curiosity_goal` direction=`mixed` confidence=0.5
-  - `2026-03-24T20:22:10Z` `experimental` `v3_exq_085d_mech071_goal_persist` direction=`mixed` confidence=0.5
+  - `2026-03-23T17:51:43Z` `experimental` `v3_exq_085_mech071_goal_directed_calibration` direction=`unknown` confidence=0.45
+  - `2026-03-23T18:56:18Z` `experimental` `v3_exq_085_mech071_goal_directed_calibration` direction=`unknown` confidence=0.45
+  - `2026-03-24T01:28:17Z` `experimental` `v3_exq_085c_mech071_curiosity_goal` direction=`unknown` confidence=0.45
+  - `2026-03-24T20:22:10Z` `experimental` `v3_exq_085d_mech071_goal_persist` direction=`unknown` confidence=0.45
 - Recurring failure signatures:
   - `v2_verdict_fail:causal_attribution_calibration` (1)
 - Suggested resolution actions:

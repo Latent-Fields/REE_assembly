@@ -1,6 +1,6 @@
 # REE-v2 Cutover Readiness Report
 
-Generated: `2026-03-06T23:24:33.405282Z`
+Generated: `2026-03-25T05:20:48.001577Z`
 
 ## Decision
 
@@ -31,13 +31,13 @@ Generated: `2026-03-06T23:24:33.405282Z`
 - none
 ## Input Snapshots Used
 
-- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `a5aa2724cb13` generated `2026-02-25T17:15:21Z`
-- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `e9a1d98566a0` generated `2026-02-22T20:55:30Z`
-- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `a8ddcfd4d5af` generated `2026-02-21T15:12:23Z`
-- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `9a7fac5385c6` generated `2026-02-21T15:12:23Z`
-- ree-experiments-lab handoff: `/Users/dgolden/Documents/GitHub/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md` @ `8c994db1cee5` generated `2026-02-21T13:01:21.523395Z`
-- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260225T195113Z_handoff_sync_report.json`
-- ingestion report: `/Users/dgolden/Documents/GitHub/REE_assembly/evidence/planning/handoff_sync_reports/20260225T185910Z_handoff_sync_report.json`
+- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `a5aa2724cb13` generated `2026-02-25T17:15:21Z`
+- ree-v2 handoff: `/Users/dgolden/Documents/GitHub/REE_Working/ree-v2/evidence/planning/weekly_handoff/latest.md` @ `e9a1d98566a0` generated `2026-02-22T20:55:30Z`
+- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/REE_Working/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `a8ddcfd4d5af` generated `2026-02-21T15:12:23Z`
+- ree-v1-minimal handoff: `/Users/dgolden/Documents/GitHub/REE_Working/ree-v1-minimal/evidence/planning/weekly_handoff/latest.md` @ `9a7fac5385c6` generated `2026-02-21T15:12:23Z`
+- ree-experiments-lab handoff: `/Users/dgolden/Documents/GitHub/REE_Working/ree-experiments-lab/evidence/planning/weekly_handoff/latest.md` @ `b82d3b301369` generated `2026-02-25T19:18:52.980871Z`
+- ingestion report: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/planning/handoff_sync_reports/20260225T195113Z_handoff_sync_report.json`
+- ingestion report: `/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/planning/handoff_sync_reports/20260225T185910Z_handoff_sync_report.json`
 
 ## Rollback Instructions
 

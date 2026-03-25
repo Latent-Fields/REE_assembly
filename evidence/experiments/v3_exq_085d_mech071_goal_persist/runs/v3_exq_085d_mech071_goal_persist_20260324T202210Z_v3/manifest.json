@@ -24,7 +24,8 @@
     "INV-034"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Goal latent never seeded (z_goal_norm=0.013) -- mechanism under test was never instantiated. Non-contributory to MECH-071. Removing goal_state.reset() per-episode (the 085c fix) was correct but insufficient: z_goal cannot build up because benefit_exposure EMA never reliably crosses threshold without homeostatic drive modulation. Root cause: SD-012 (drive_level not gating GoalState.update). See EXQ-085e.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,

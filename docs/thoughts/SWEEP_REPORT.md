@@ -1,11 +1,11 @@
 # Thought Sweep Report
 
-Generated: `2026-03-24T20:02:49.119889Z`
+Generated: `2026-03-25T06:17:48.328773Z`
 
 | metric | count |
 |---|---|
-| total thought files | 57 |
-| processed | 57 |
+| total thought files | 61 |
+| processed | 61 |
 | unprocessed | 0 |
 | processed missing `Processed in` links | 0 |
 
@@ -74,5 +74,9 @@ Generated: `2026-03-24T20:02:49.119889Z`
 - `2026-03-17_sd003_benefit_signal_gap.md` (3 link(s) in `Processed in`)
 - `2026-03-17_three_stream_reafference.md` (3 link(s) in `Processed in`)
 - `2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATION_CONVERGENCE.md` (3 link(s) in `Processed in`)
+- `2026-03-24_MULTIAGENT_VALENCE_AVERSIVE_COMPLEXITY.md` (3 link(s) in `Processed in`)
+- `2026-03-24_empathy_multiagent_ethics.md` (4 link(s) in `Processed in`)
+- `2026-03-24_mech071_goal_latent_non_contributory_evidence.md` (5 link(s) in `Processed in`)
+- `2026-03-25_goal_hunger_drive_literature_synthesis.md` (2 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

@@ -6282,6 +6282,7 @@
     - INV-015
     - INV-028
     - MECH-127
+    - MECH-129
   location: docs/invariants.md#arc-034
   source:
     - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
@@ -6464,6 +6465,7 @@
     - INV-005
     - MECH-112
     - SD-010
+    - MECH-125
     - MECH-128
   location: docs/architecture/harm.md#mech-129
   source:
@@ -6716,3 +6718,100 @@
     (3) Approach pull activation must precede trajectory generation to produce systematic
     approach-weighted candidates, not just occasionally approach-consistent outputs.
     Registered 2026-03-25.
+
+- id: SD-012
+  title: "Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands drive-scaled benefit signals."
+  claim_type: design_decision
+  subject: environment.homeostatic_drive
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: architectural
+  depends_on: [MECH-071, MECH-112, SD-005]
+  functional_restatement: >
+    CausalGridWorld already tracks agent_energy (decays at energy_decay=0.01/step,
+    restored by resource contact). drive_level = 1.0 - energy is already computable
+    from obs_body[3]. The gap is that GoalState.update() does not use drive_level --
+    benefit_exposure (EMA alpha=0.1 of raw benefit signals) never reliably crosses
+    benefit_threshold during random-walk warmup: a single resource contact produces
+    benefit_exposure ~0.03 (below threshold=0.05), which decays before the next
+    contact. z_goal consequently never seeds. Drive modulation fix:
+    effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level).
+    At drive_level=0.8 (hungry) and drive_weight=2.0, effective_benefit scales to
+    ~2.6x -- comfortably above threshold for moderate benefit contact. At
+    drive_level~0 (sated), effective_benefit ~ benefit_exposure (threshold holds).
+    Resources must also respawn after consumption (resource_respawn_on_consume=True)
+    to enable repeated drive-reduction cycles required for z_goal formation
+    (Balleine & Dickinson 1998: goal-directed learning requires multiple
+    outcome-devaluation cycles, not a single reward encounter).
+  notes: >
+    Neuroscience grounding: Berridge & Robinson (2016) -- wanting (incentive
+    salience) is dissociable from liking; dopamine-mediated wanting scales with
+    drive state. Balleine & Dickinson (1998) -- incentive learning requires
+    current homeostatic state (insular cortex integrates drive with learned
+    cue-outcome association). Schultz et al. (1997) -- PE signals transfer from
+    primary rewards to predictive cues over multiple pairings; goal representations
+    require repeated drive-reduction cycles. Keramati & Gutkin (2014) homeostatic
+    RL -- reward = drive reduction, not raw stimulus value; benefit signal must
+    scale by drive level. Registered 2026-03-25.
+
+- id: MECH-135
+  title: "E1 LSTM hidden state must be conditioned on z_goal_latent for goal-context-shaped trajectory generation."
+  claim_type: mechanism
+  subject: e1.goal_context_conditioning
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on: [MECH-112, ARC-003, SD-005]
+  location: docs/architecture/predictors.md
+  notes: >
+    Without E1 goal-conditioning, E3 evaluates trajectories in a goal-conditioned
+    way (via goal_proximity scoring) while E1 generates them goal-agnostically.
+    This is a type mismatch: E1 produces candidates that are unconstrained by goal
+    context, and E3 then scores them for goal-proximity post-hoc. With conditioning,
+    E1's LSTM hidden state is biased toward goal-approaching trajectories at the
+    generation stage, not just the selection stage. The goal_input_proj linear layer
+    (MECH-116) implements this conditioning; this claim formalises the requirement
+    that E1 generation must be goal-shaped. Identified 2026-03-24 during analysis
+    of multiagent approach-avoidance complexity. Registered 2026-03-25.
+
+- id: MECH-136
+  title: "In a multiagent world, harm must be defined relationally: harm-to-agent and harm-to-agency are distinct signal types."
+  claim_type: mechanism
+  subject: coherence.relational_harm
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on: [INV-028, INV-005, MECH-112, SD-010]
+  location: docs/architecture/social.md
+  notes: >
+    Current harm_bridge (SD-010) captures harm-to-agent only: direct cost from
+    environmental contact or proximity. In a multiagent world, an agent can harm
+    another by obstructing their goal-pursuit (harm-to-agency) without any physical
+    contact or direct cost signal. These require distinct representations because
+    they have different causal structures: harm-to-agent is localised and
+    forward-predictable; harm-to-agency is relational and requires modelling the
+    other agent's goal. Level 3 prerequisite (requires other-agent goal modelling
+    not yet implemented). Identified 2026-03-24 during analysis of multiagent
+    approach-avoidance complexity. Registered 2026-03-25.
+
+- id: MECH-137
+  title: "Curiosity-driven approach must distinguish world-state novelty from agent-policy novelty."
+  claim_type: mechanism
+  subject: curiosity.agent_novelty_typing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on: [MECH-111, INV-028, MECH-095]
+  location: docs/architecture/social.md
+  notes: >
+    MECH-111 curiosity/novelty drive rewards approach toward high-information states.
+    Other agents are perpetually partially unpredictable -- their policy is not fully
+    determined by observable state. Without typing, curiosity creates chronic approach
+    pressure toward the most dangerous entity in the environment (the adversarial
+    agent who maintains surface unpredictability). Novelty must be typed: world-state
+    novelty (safe to approach for information gain) vs agent-policy novelty (requires
+    social modelling before approach is safe). Untyped novelty risks producing
+    oscillatory approach-avoidance or exploitation by adversarial agents. Level 3
+    prerequisite (requires other-agent goal modelling). Identified 2026-03-24 during
+    analysis of multiagent approach-avoidance complexity. Registered 2026-03-25.
