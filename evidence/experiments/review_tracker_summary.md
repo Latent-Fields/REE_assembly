@@ -3,10 +3,10 @@
 > Maintained manually alongside `review_tracker.json`. Update when adding run IDs.
 > Purpose: lets Claude sessions know the tracker state without reading the full 47k-token file.
 
-## Stats (last updated 2026-03-23)
+## Stats (last updated 2026-03-25)
 
-- **Total reviewed run IDs**: ~1135
-- **Last review UTC**: 2026-03-23T18:30:00Z
+- **Total reviewed run IDs**: ~1139
+- **Last review UTC**: 2026-03-25T07:00:00Z
 - **Discussed experiment dirs**: 36 entries (V1/V2 dirs and bare queue IDs not in run_id format)
 
 ## Coverage by experiment series
@@ -16,7 +16,7 @@
 | V1/early synthetic | `2026-02-13T*` | All reviewed |
 | V2 genuine (EXQ-014–028) | `*_v2` | All reviewed |
 | V3 EXQ-001–068 | `v3_exq_0[0-6]*_v3` | All reviewed |
-| V3 EXQ-066–082 | `v3_exq_0[6-8]*_v3` | All reviewed (including 2026-03-23 batch) |
+| V3 EXQ-066–096a | `v3_exq_0[6-9]*_v3` | All reviewed (including 2026-03-25 batch) |
 | V3 onboarding (Daniel-PC) | `v3_onboard_smoke_*` | All reviewed |
 | V3 scale benchmark | `v3_scale_benchmark_*` | Reviewed 2026-03-23 |
 
