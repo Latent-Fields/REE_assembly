@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-25T06:16:41.930055Z`
+Generated: `2026-03-25T06:47:53.043851Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -31,7 +31,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-007
 - Current status: `active`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=6, mixed=1, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=6, mixed=0, unknown=0, conflict_ratio=0.8
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -139,7 +139,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.633, conflict_ratio=0.667, exp_entries=7, lit_entries=1; directions supports=2, weakens=4, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.634, conflict_ratio=0.667, exp_entries=7, lit_entries=1; directions supports=2, weakens=4, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -157,7 +157,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-094
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.812, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.815, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=1, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
   - Promote now (faster convergence, risk premature lock-in)
