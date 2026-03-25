@@ -22,7 +22,6 @@
   "claim_ids_tested": [
     "SD-005",
     "ARC-016",
-    "MECH-094",
     "MECH-090",
     "SD-006",
     "ARC-007",
@@ -31,6 +30,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "supports",
+  "evidence_direction_note": "MECH-094 removed from claim_ids (2026-03-25). C5 (residue_harm_coverage) tests ResidueField accumulation at harm sites but does NOT test MECH-094's hypothesis-tag write gate. hypothesis_tag was hardcoded False throughout -- tag was never varied, never compared tag-on vs tag-off. Residue accumulating during committed (tag=False) episodes is residue-field mechanics (MECH-056/ARC-018 territory), not write-gate isolation. A targeted experiment toggling hypothesis_tag is required for MECH-094 evidence.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
