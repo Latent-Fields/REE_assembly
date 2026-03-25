@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "harm_fwd_r2": 0.0,
+    "causal_none": -0.015783836226309498,
+    "causal_approach": -0.014480914805559504,
+    "causal_contact": -0.011877359632860154,
+    "calibration_gap": 0.0780261601842206,
+    "harm_none": 0.5691059302899145,
+    "harm_approach": 0.6471320904741351,
+    "n_approach_eval": 1192.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-095 -- SD-003 Redesign: HarmForwardModel Counterfactual\n\n**Status:** FAIL\n**Claims:** ARC-033, SD-011, SD-003\n**Supersedes:** EXQ-093/094 (both confirmed bridge_r2=0; bridge approach infeasible)\n**World:** CausalGridWorldV2 (6 hazards, 3 resources, 12x12)\n**Protocol:** Three-phase (terrain 300 -> calib 150 -> eval 100)\n\n## Redesign: HarmForwardModel replaces HarmBridge\n\nHarmBridge (z_world -> z_harm) has bridge_r2=0 by design: SD-010 makes z_world\nperp z_harm. HarmForwardModel operates entirely within the harm stream:\n    z_harm_s_cf = HarmForwardModel(z_harm_s_actual, a_cf)\n    causal_sig = E3(z_harm_s_actual) - E3(z_harm_s_cf)\n\nThis is tractable: z_harm_s (sensory-discriminative, Adelta-pathway analog) encodes\nproximity that changes predictably with movement. ARC-033 validates this approach.\n\n## Results\n\n| Metric | Value | Baseline (EXQ-093/094) |\n|--------|-------|------------------------|\n| HarmForwardModel R2 | 0.0000 | bridge_r2=0.0 (infeasible) |\n| causal_sig_none | -0.015784 | -- |\n| causal_sig_approach | -0.014481 | 0.065 |\n| causal_sig_contact | -0.011877 | 0.116 |\n| calibration_gap_approach | 0.0780 | 0.084 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: harm_fwd_r2 > 0.2 (forward model learns) | FAIL | 0.0000 |\n| C2: causal_approach > 0.001 | FAIL | -0.014481 |\n| C3: causal_contact > causal_approach (MECH-102) | PASS | -0.011877 vs -0.014481 |\n| C4: cal_gap > 0.05 | PASS | 0.0780 |\n| C5: harm_none < harm_approach * 0.90 | PASS | 0.5691 < 0.5824 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: harm_fwd_r2=0.0000 <= 0.2 (forward model not learning harm dynamics)\n- C2 FAIL: causal_approach=-0.014481 <= 0.001\n",
+  "claim_ids": [
+    "ARC-033",
+    "SD-011",
+    "SD-003"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_095_harm_forward_model_sd003",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260325T021349Z",
+  "claim": "ARC-033",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_095_harm_forward_model_sd003_20260325T021349Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
