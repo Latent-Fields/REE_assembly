@@ -2,7 +2,7 @@
 
 `REE_assembly` is the canonical governance and specification repository for the Reflective Ethical Engine (REE).
 It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
-Implementation code and stress testing run in companion repositories, then feed evidence back here.
+Implementation code and stress testing run in companion repositories, then feed evidence back here. For those who would like to see documentationn about the documentation-first decisions strate architecture and learn about the epistemically humble reflective system that might help us see ethical behaviour not coming from restrictions and rules but from https://latent-fields.github.io/REE_assembly/ when finally fully assembled. 
 
 **Quickest orientation:** run `caffeinate -i python3 serve.py` from repo root, then open [`http://localhost:8000/explorer`](http://localhost:8000/explorer) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
 
