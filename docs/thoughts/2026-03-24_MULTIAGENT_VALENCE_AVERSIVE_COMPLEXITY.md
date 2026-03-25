@@ -1,4 +1,4 @@
-Status: raw
+Status: processed
 
 Source: Design conversation, 2026-03-24 (Claude Code session)
 Triggered by: analysis of axiom coverage gaps (INV-028, INV-029) and question of how
