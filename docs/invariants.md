@@ -532,17 +532,23 @@ See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md`
 **Status:** open
 **Claim ID:** Q-023
 
-Can a multiagent REE system with other-cost-aversion primitives (MECH-127) be formally shown to
-converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic
-stability (Kandori-Mailath-Rob 1993)? Nearest existing territory: prosocial MARL (shared reward,
-not counterfactual cost-aversion as bypass) and indirect reciprocity (reputational mechanisms, not
-depleted-agent bootstrapping). Literature search 2026-03-25 confirmed no unified framework covers
-all four features: depleted-agent activation, counterfactual projection, nth-order cascade,
-convergence proof to ethical attractor. If no such framework exists, this is a paper-level
-contribution. Potential game framing may be cleanest if REE social interaction can be cast as an
-ordinal potential game.
+**Updated 2026-03-25:** The base REE social interaction (symmetric coupling, realized states,
+separable harm/benefit) is likely an ordinal potential game (Monderer & Shapley 1996), with
+candidate potential function P(a) = -Σ harm_i + α Σ goal_i + coupling terms. This gives FIP
+convergence to Nash equilibrium for free.
 
-See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md` (literature search section)
+However, MECH-127 (counterfactual other-cost-aversion) breaks the standard framework: the
+depleted agent's utility depends on a counterfactual model of another agent's anticipated state,
+not the actual joint action profile. Asymmetric coupling (MECH-051/052) and MECH-036 veto
+discontinuities further complicate global potential existence.
+
+**This is the interesting result:** the novel mechanism is precisely what breaks the standard
+framework. The paper contribution is: (1) prove base REE is ordinal potential game; (2) show
+MECH-127 requires extension; (3) characterize the extended framework. Candidate extensions:
+pseudo-potential games (Slade 1994) or games with interdependent types (Bergemann & Morris).
+Literature search 2026-03-25: novelty confirmed.
+
+See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md`
 
 ---
 
@@ -553,15 +559,17 @@ See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md` 
 **Status:** open
 **Claim ID:** Q-024
 
-What is the correct formal representation for "threshold/feedback processes bounded by {x...x_n}
-reliably reaching emergent state q" -- and are the descriptive, prescriptive, and diagnostic test
-types (ARC-034) all needed, or does one subsume the others? The MECH-127 motivating case is a
-diagnostic instance: n=1 analysis predicts reduced helping; n=2 counterfactual empathic activation
-predicts increased helping -- inversion. Whether the prescriptive framework (Lyapunov / potential
-game) can subsume the diagnostic requirement, or whether empirical trajectory testing is always
-necessary, depends on whether REE ethics properties are amenable to formal proof. KMR model
-assumptions (finite population, mutation dynamics) need verification against REE architecture
-before adopting stochastic stability as the primary prescriptive tool.
+**Updated 2026-03-25:** All three test types (descriptive, prescriptive, diagnostic) are
+genuinely needed — the prescriptive framework does NOT subsume the others for the full system.
+
+Prescriptive (potential game / Lyapunov) covers the base symmetric-coupling case where FIP
+convergence can be proved. Diagnostic is irreducible for the MECH-127 counterfactual-activation
+case: no convergence proof yet exists for the extended framework (pseudo-potential / interdependent
+types), so empirical trajectory testing is required until Q-023 is resolved. Descriptive remains
+useful for characterizing which attractor the system finds in practice independent of formal proof.
+
+KMR stochastic stability (finite population + mutation dynamics) needs assumption-verification
+against REE architecture before adoption as the primary prescriptive tool.
 
 ---
 

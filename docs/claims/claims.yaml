@@ -6362,19 +6362,27 @@
     - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
     - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
   notes: >
-    Three candidate formal frameworks identified: (1) Lyapunov stability -- prove convergence
-    by finding a function that monotonically decreases toward ethical attractor q; (2) Potential
-    game theory -- if the multiagent system has an exact potential function, all Nash equilibria
-    are derivable and their ethical character is provable; (3) Stochastic stability
-    (Kandori-Mailath-Rob 1993) -- characterize which equilibria survive under noise in repeated
-    interaction. All three apply to the system described in ARC-034.
-    Nearest existing territory: prosocial MARL (shared reward, not counterfactual cost-aversion
-    as bypass) and indirect reciprocity in evolutionary game theory (reputational mechanisms,
-    not counterfactual / depleted-agent bootstrapping). No unified framework confirmed to
-    cover all four features: depleted-agent activation, counterfactual projection, nth-order
-    cascade, convergence proof to ethical attractor. Literature search required to confirm
-    novelty before treating as a potential paper contribution.
-    If the unified framework does not exist: potential paper. Registered 2026-03-24.
+    Potential game analysis (2026-03-25): the base REE social interaction (symmetric coupling,
+    realized states, separable harm/benefit) is likely an ordinal potential game (Monderer &
+    Shapley 1996). Candidate potential function: P(a) = -sum_i harm_i(a) + alpha * sum_i
+    goal_i(a) + coupling_terms. Any agent's unilateral improvement (reduce harm_i or increase
+    goal_i) preserves the sign of change in P -- giving the Finite Improvement Property (FIP)
+    and guaranteed convergence to Nash equilibrium.
+    MECH-127 breaks the standard framework: the depleted agent's utility depends on a
+    counterfactual model of what would happen to agent j, not on the actual joint action
+    profile. Standard ordinal potential games require u_i to be a function of actions only.
+    MECH-036 (veto threshold) introduces piecewise non-smoothness; potential may exist within
+    each regime but not globally. Asymmetric coupling (MECH-051/052) breaks the symmetry
+    required for social welfare sum to serve as potential function.
+    Result: the novel mechanism (MECH-127) is precisely what breaks the standard framework.
+    This is the interesting result for the paper: (1) prove base REE is ordinal potential game;
+    (2) show MECH-127 requires extension; (3) characterize the extended framework.
+    Candidate extensions: pseudo-potential games (Slade 1994 -- potential exists for a
+    modified game where counterfactual terms are held fixed); games with interdependent types
+    (Bergemann & Morris -- utility depends on agent's type/model, not just actions). Either
+    could provide a convergence result for the full MECH-127 case.
+    Literature search 2026-03-25: no existing framework covers all four features. Novelty
+    confirmed. Registered 2026-03-24. Updated 2026-03-25.
 
 - id: Q-024
   title: "What is the correct formal representation for 'threshold/feedback processes bounded by {x...x_n} reliably reaching emergent state q' -- and are descriptive, prescriptive, and diagnostic variants all needed or does one subsume the others?"
@@ -6390,18 +6398,22 @@
     - docs/thoughts/2026-03-24_empathy_multiagent_ethics.md
     - evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md
   notes: >
-    Three test-type variants identified in the 2026-03-24 conversation: (1) Descriptive --
-    characterize what q the system tends toward (attractor theory, ergodic theory, mean field);
-    (2) Prescriptive -- prove a designed system reaches a target q (Lyapunov, potential games,
-    reachability analysis); (3) Diagnostic -- detect when nth-order dynamics diverge from
-    (n-1)th-order predictions (transfer entropy / Granger causality, perturbation theory,
-    sensitivity analysis). The MECH-127 motivating case is a clean diagnostic instance: n=1
-    analysis predicts reduced helping; n=2 analysis via counterfactual empathic activation
-    predicts increased helping.
-    The open question is whether all three are genuinely needed for REE ethics testing or
-    whether the prescriptive framework subsumes the descriptive and diagnostic. The answer
-    likely depends on whether REE ethics properties are amenable to formal proof (prescriptive)
-    or must be empirically characterized (descriptive + diagnostic). Registered 2026-03-24.
+    Three test-type variants: (1) Descriptive -- attractor/ergodic characterization of what
+    q the system tends toward; (2) Prescriptive -- proof that a designed system reaches target
+    q (Lyapunov, potential games, reachability); (3) Diagnostic -- detect when nth-order
+    dynamics diverge from (n-1)th predictions (transfer entropy, perturbation theory).
+    Potential game analysis (2026-03-25) clarifies the relationship between test types: the
+    base REE social interaction likely admits a prescriptive treatment (ordinal potential game,
+    FIP convergence to Nash). But MECH-127 (counterfactual utility) breaks the prescriptive
+    framework -- standard potential games require utility to be a function of actual action
+    profiles, not internal counterfactual models. This means the prescriptive framework does
+    NOT subsume the diagnostic for the full system: MECH-127 cases require empirical trajectory
+    testing (diagnostic) because no convergence proof yet exists for the extended framework.
+    Refined answer: all three test types are genuinely needed. Prescriptive covers the base
+    symmetric-coupling case; diagnostic is irreducible for the counterfactual-activation case
+    until pseudo-potential or interdependent-types extensions are formalized (see Q-023).
+    Descriptive remains useful for characterizing which attractor the system finds in practice.
+    Updated 2026-03-25.
 
 
 - id: MECH-128
