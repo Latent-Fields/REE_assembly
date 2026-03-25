@@ -30,7 +30,8 @@
     "MECH-093"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by V3-EXQ-096a. Two implementation bugs invalidated C5 (residue coverage): wrong stats key 'total_magnitude' (should be 'total_residue') and wrong eval method '.value()' (should be '.evaluate()'). The FAIL was entirely due to these bugs, not scientific failure. EXQ-096a corrected both and PASS 5/5.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
