@@ -6222,6 +6222,50 @@
     Does not contradict INV-001 (no explicit ethics module) -- this is a test scope claim,
     not an architectural claim about where ethics lives. Registered 2026-03-24.
 
+- id: ARC-035
+  title: "vmPFC is the substrate that converts stored affective, normative, and residue content -- prior outcome history, social and identity constraints, learned value associations, and safety memories -- into active components of the navigable state used by E3 during trajectory evaluation."
+  claim_type: architectural_commitment
+  subject: vmPFC.affective_normative_state_preparation
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-007
+    - ARC-013
+    - ARC-003
+    - INV-035
+    - INV-036
+    - MECH-126
+  location: docs/architecture/vmPFC.md#arc-035
+  source:
+    - evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md
+    - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
+  notes: >
+    The core claim is a functional dissociation: information can be stored in the system
+    and declarable in verbal form while remaining inactive as a component of the navigable
+    state used for trajectory evaluation. vmPFC is the substrate that bridges this gap for
+    a specific content class: affective residue from prior outcomes, social and identity
+    constraints, learned safety memories, and goal approach pull.
+    Four failure modes grounded in the MECH-126 literature pull:
+    (1) Residue non-propagation (psychopathy): prior punishment history exists but does not
+    update future trajectory selection -- reversal learning deficit (PMID 16866595 Budhani
+    2006; PMID 26359751 Gregory 2015; PMID 18458210 Finger 2008).
+    (2) Constraint omission (vmPFC lesion / bvFTD): social norms are stored and declarable
+    but not active in path selection -- knowledge/application dissociation (PMID 1791934
+    Saver/Damasio 1991; PMID 4069365 EVR Eslinger/Damasio 1985; PMID 17377536 Koenigs 2007).
+    (3) Safety memory non-activation (PTSD): extinction memory exists but cannot outcompete
+    threat attractor at the state level (PMC 7554263; PMC 10728304).
+    (4) Goal approach pull attenuation (depression): goal representations intact but approach
+    force attenuated -- synapse loss sufficient (PMID 39569353); learning asymmetry (PMC 5828520).
+    Architectural implication: ethics cannot be implemented as a post-hoc scoring filter on
+    generated trajectories. The EVR case demonstrates this: excellent verbal moral reasoning
+    coexisting with continuous norm violation. Post-hoc filter correctness does not produce
+    ethical behavior when the generative state lacks active constraints. Normative content must
+    be active at trajectory generation time, not only available post-hoc.
+    Hippocampus/vmPFC division: hippocampus provides the relational graph structure of the
+    navigable state; vmPFC loads affective and normative content into that graph's nodes at
+    evaluation time. Both are necessary; failure modes are complementary and partially orthogonal.
+    Registered 2026-03-24.
+
 - id: Q-023
   title: "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?"
   claim_type: open_question

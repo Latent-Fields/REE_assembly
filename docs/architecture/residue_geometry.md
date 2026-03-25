@@ -190,6 +190,8 @@ None noted in preserved sources.
 - MECH-034
 - MECH-056
 
+**See also:** [vmPFC](vmPFC.md) — the substrate that converts stored residue into an active anticipatory signal in the navigable state at trajectory evaluation time (ARC-035).
+
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/architecture/residue_geometry.md`

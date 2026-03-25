@@ -2,7 +2,7 @@
 
 **Document type:** Architecture reference (standalone — no single Claim ID; anchors candidate INV/ARC claims pending governance)
 **Depends on:** [L-space](l_space.md), [E3 trajectory selection](e3.md), [hippocampal systems](hippocampal_systems.md), [residue geometry](residue_geometry.md)
-**See also:** [trajectory selection](trajectory_selection.md), [e1.md](e1.md), [e2.md](e2.md)
+**See also:** [trajectory selection](trajectory_selection.md), [e1.md](e1.md), [e2.md](e2.md), [vmPFC](vmPFC.md) (the substrate that prepares affective/normative content for state-readiness — ARC-035)
 
 ---
 

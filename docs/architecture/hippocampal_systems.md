@@ -381,6 +381,8 @@ Source: `docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATI
 
 ## References / Source Fragments
 
+**See also:** [vmPFC](vmPFC.md) — the complementary substrate that loads affective and normative content into hippocampal state-graph nodes at evaluation time. Hippocampus provides graph structure; vmPFC provides what the nodes contain (ARC-035).
+
 - `docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md`
 - `docs/processed/legacy_tree/architecture/Hippocampal_braid.md`
 - `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
