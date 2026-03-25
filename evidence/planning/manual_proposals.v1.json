@@ -157,7 +157,7 @@
       "design": "Condition A: E1 receives [x_t, z_goal_latent] (goal-conditioned). Condition B: E1 receives [x_t, zero_goal] (goal-ablated). Both conditions trained on the same goal-directed task. PASS criterion: goal-relevant prediction error A < B by margin > 0.05; goal-irrelevant prediction error A ~= B (goal conditioning should not degrade irrelevant predictions). Tests MECH-128 specifically -- not a duplicate of MECH-112 (z_goal existence) since it tests downstream effect on E1, not E3.",
       "status": "proposed",
       "added_utc": "2026-03-25",
-      "notes": "BLOCKED on EXQ-091 completion (MECH-112 z_goal validation). Do not queue until EXQ-091 PASS confirmed -- experiment requires a functioning z_goal_latent to condition on."
+      "notes": "BLOCKED on EXQ-074b completion (MECH-112/117 wanting/liking validation, v3_exq_074b_mech112_117_wanting_liking.py). Do not queue until EXQ-074b PASS confirmed -- experiment requires a functioning z_goal_latent to condition on. (Note: EXQ-091 was the V3 queue slot for EXQ-085d, a MECH-071 goal-persist test -- unrelated to MECH-112.)"
     },
     {
       "proposal_id": "LIT-0094",
