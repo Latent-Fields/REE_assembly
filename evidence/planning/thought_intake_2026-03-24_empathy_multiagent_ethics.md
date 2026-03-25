@@ -3,7 +3,7 @@
 **Date:** 2026-03-24
 **Session type:** Design conversation (Claude Code)
 **Raw thought file:** `docs/thoughts/2026-03-24_empathy_multiagent_ethics.md`
-**Output:** Candidate claims flagged below (not yet registered); no architecture docs modified
+**Output:** Claims MECH-127, ARC-034, Q-023, Q-024 registered in claims.yaml (2026-03-25). Lit search completed (2026-03-25). Architecture stubs added to social.md and invariants.md (2026-03-25).
 
 ---
 
@@ -113,9 +113,9 @@ pathway not covered by MECH-031, not a contradiction of it.
 
 ---
 
-## Candidate Claims (to be registered separately in claims.yaml)
+## Candidate Claims (registered 2026-03-25 in claims.yaml)
 
-### Candidate MECH-NEW-A: Counterfactual other-cost-aversion as motivational surrogate
+### MECH-127: Counterfactual other-cost-aversion as motivational surrogate
 
 > When an agent's direct task-motivation pathway is degraded, modeling the anticipated cost to
 > another agent (other-cost-aversion) can substitute as an activation mechanism -- producing
@@ -126,23 +126,22 @@ pathway not covered by MECH-031, not a contradiction of it.
 - **Subject:** social.counterfactual_empathic_activation
 - **Polarity:** asserts
 - **Status:** candidate
-- **Suggested status:** candidate
 - **Related:** INV-005, INV-028, INV-034, MECH-031
 
-### Candidate ARC-NEW-A: Ethics testing requires nth-order multiagent trajectory integration
+### ARC-034: Ethics testing requires nth-order multiagent trajectory integration
 
 > The ethical properties of a REE system cannot be fully characterized by testing local (n=1)
 > pairwise interactions. Tests must span nth-order multiagent trajectory distributions -- including
 > counterfactual activation chains, cascade threshold effects, and emergent collective states --
 > because (n-1)th-level ethical behavior may invert at higher orders.
 
-- **Type:** architectural_commitment (or open_question if framed as a requirement not yet met)
+- **Type:** architectural_commitment
 - **Subject:** ethics.test_scope_nth_order
 - **Polarity:** asserts
 - **Status:** candidate
 - **Related:** INV-001, INV-015, INV-028, Q-006
 
-### Candidate Q-NEW-A: Formal convergence characterization for ethical attractors
+### Q-023: Formal convergence characterization for ethical attractors
 
 > Can a multiagent REE system with other-cost-aversion primitives, threshold feedback topology, and
 > bounded parameter space {x...x_n} be formally shown to converge to an ethical attractor q via
@@ -150,12 +149,12 @@ pathway not covered by MECH-031, not a contradiction of it.
 
 - **Type:** open_question
 - **Subject:** ethics.formal_convergence_characterization
-- **Polarity:** asserts (as question)
-- **Status:** active
-- **Related:** all ethics INVs, Candidate ARC-NEW-A
-- **Note:** May be a paper-level contribution if unified framework does not already exist
+- **Polarity:** open
+- **Status:** open
+- **Related:** all ethics INVs, ARC-034
+- **Note:** Literature search 2026-03-25 confirms paper-level contribution -- unified framework not found
 
-### Candidate Q-NEW-B: Correct formal representation for trajectory-integral ethics testing
+### Q-024: Correct formal representation for trajectory-integral ethics testing
 
 > What is the correct formal structure for "given threshold/feedback processes bounded by
 > {x...x_n}, the system reliably reaches emergent state q"? Three candidate structures identified:
@@ -164,9 +163,9 @@ pathway not covered by MECH-031, not a contradiction of it.
 
 - **Type:** open_question
 - **Subject:** ethics.trajectory_integral_representation
-- **Polarity:** asserts (as question)
-- **Status:** active
-- **Related:** Candidate Q-NEW-A, Candidate ARC-NEW-A
+- **Polarity:** open
+- **Status:** open
+- **Related:** Q-023, ARC-034
 
 ---
 
@@ -198,24 +197,93 @@ Core claim for a paper:
 - This can be formally characterized via attractor / potential game / stochastic stability methods
 - The observation generalizes beyond the human case to synthetic agents with OTHER_SELFLIKE tagging
 
-Novelty check needed:
-- Prosocial MARL literature: covers shared reward, not counterfactual cost-aversion as bypass
-- Indirect reciprocity (evolutionary game theory): covers reputational mechanisms, not
-  counterfactual / depleted-state bootstrapping
-- Care ethics (philosophy): non-formal, does not connect to convergence proofs
+**Novelty verdict (2026-03-25 literature search): CONFIRMED -- see section below.**
 
-If no unified formal framework covers this combination, the paper case is strong. Literature search
-recommended before committing.
+---
+
+## Literature Search (2026-03-25)
+
+Searched: prosocial MARL + counterfactual reward shaping; empathy + depleted motivation +
+cooperation; potential game ethics + multiagent convergence; Kandori-Mailath-Rob stochastic
+stability + cooperative evolution; indirect reciprocity + counterfactual + empathy.
+
+### What was found
+
+**Prosocial MARL / counterfactual reward shaping:**
+Counterfactual reasoning in MARL is well-developed -- COMA (Foerster et al. 2017) marginalizes out
+an agent's action for credit assignment; Jaques et al. (2019) use social influence as a reward
+signal; potential-based difference rewards shape cooperation. All of these use other-regarding
+preferences as *reward shaping terms*, not as motivational surrogates for a depleted pathway.
+No MARL framework found that models: (1) degraded direct pathway, (2) counterfactual projection
+of another agent's anticipated burden, (3) other-cost-aversion distress as bypass/surrogate.
+
+**Empathy and depleted motivation (psychology):**
+Batson's empathy-altruism hypothesis (1981, 2011): empathic concern generates genuine other-
+directed motivation and can override personal cost considerations. "Personal distress" (distress
+at another's suffering as self-aversive arousal) is formally modeled as a separate sub-process --
+closer to the mechanism Daniel observed (distress-at-their-struggle as motivator). However:
+(a) the personal distress model treats this as self-serving aversion reduction, not as a bypass
+for a depleted direct pathway; (b) the mechanism is not modeled as counterfactual (other agent
+need not be present); (c) no formal convergence claim. Empathy fatigue / avoidance literature
+(Zaki, Cameron) documents that empathy itself can be depleted -- separate from the pathway
+depletion that MECH-127 describes.
+
+**Potential games and ethics:**
+Monderer & Shapley (1996): potential games guarantee pure-strategy Nash equilibria and Finite
+Improvement Property convergence. Applied to coordination and cooperation in multiagent systems.
+NOT applied to ethical attractor characterization via care-ethics or empathic cooperation
+primitives. Advanced game-theoretic frameworks (arxiv 2025) note moral/normative framing can
+alter payoffs, but no formal potential function for ethical attractors found.
+
+**KMR stochastic stability:**
+Kandori, Mailath & Rob (1993): finite populations, stochastic mutations, selects risk-dominant
+(or Pareto-dominant) equilibria. Multi-level KMR (Springer 1993): efficiency can overcome
+risk-dominance in group-structured populations. "Kandori norm" in indirect reciprocity literature
+is a social norm label (one of the leading-eight), not an application of the KMR framework to
+care ethics. No paper found applying KMR stochastic stability to care-ethics or empathic
+activation settings. Note: KMR requires finite population + mutation dynamics -- applicability
+to REE agent architecture needs verification (Q-023, Q-024).
+
+**Indirect reciprocity + counterfactual:**
+Radzvilavicius, Plotkin & McAvoy (2019, eLife): "Evolution of empathetic moral evaluation" --
+empathetic IR observers use the donor's counterfactual information (what the donor knew) when
+judging behavior. This is counterfactual perspective-taking for *reputation evaluation*, not
+for motivational bypass. Nowak & Sigmund (2005), Panchanathan & Boyd (2004): standard IR
+covers cooperation via reputation; depleted-agent bootstrapping via counterfactual cost-aversion
+is outside their scope.
+
+### What was NOT found
+
+No paper found covering the specific combination:
+1. Agent in resource-depleted / motivation-deficit state
+2. Counterfactual projection of another agent's anticipated burden (other not present)
+3. Other-cost-aversion distress substituting as motivational surrogate for the degraded pathway
+4. Formal convergence of this mechanism to ethical attractor in multiagent system
+
+### Novelty verdict
+
+**CONFIRMED.** The unified framework is not in existing literature. Component 3 (personal distress
+as motivation) has precursors in Batson; components 1+2+3 as a formal bypass mechanism and
+component 4 as a convergence proof are novel.
+
+**Paper angle: strong.** Closest existing territory (prosocial MARL, Batson empathy-altruism,
+Radzvilavicius empathetic IR) does not threaten priority. The formal contribution -- connecting
+other-cost-aversion primitive to convergence proofs for ethical attractors in multiagent systems
+-- is open.
+
+**Before committing to paper:** verify KMR model assumptions apply to REE architecture (finite
+population, mutation analog -- Q-024 follow-up). Potential game framing may be cleaner if REE
+social interaction can be cast as an ordinal potential game.
 
 ---
 
 ## Next Steps
 
-1. Register the four candidate claims above in `docs/claims/claims.yaml` (separate governance step)
-2. Check `docs/thoughts/2026-02-09_empathy.md` -- ARC-005 and MECH-031 source -- for any
-   prior formulations that should be cross-referenced
-3. Initiate literature search: prosocial MARL, indirect reciprocity, potential game ethics,
-   Kandori-Mailath-Rob stochastic stability -- confirm novelty of unified framework
-4. Consider adding an ethics test scope section to `docs/architecture/` (or an open note in the
-   existing ethics-relevant architecture docs) flagging the nth-order test gap
-5. Paper angle: if literature search confirms novelty, flag to Daniel as a candidate paper project
+1. ~~Register the four candidate claims above in `docs/claims/claims.yaml`~~ DONE 2026-03-25
+   -- MECH-127, ARC-034, Q-023, Q-024 registered; claims.json rebuilt (261 claims total)
+2. ~~Check `docs/thoughts/2026-02-09_empathy.md`~~ DONE 2026-03-25
+   -- No conflict with MECH-127. Prior doc covers MECH-031/032 (modulation); MECH-127 is bypass.
+   Cross-reference note added to social.md MECH-127 stub.
+3. ~~Literature search~~ DONE 2026-03-25 -- see section below. Novelty confirmed.
+4. ~~Architecture stubs~~ DONE 2026-03-25 -- MECH-127 in social.md; ARC-034/Q-023/Q-024 in invariants.md
+5. Paper angle: CONFIRMED by literature search -- flag as candidate paper project

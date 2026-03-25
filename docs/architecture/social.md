@@ -271,6 +271,50 @@ within the existing commitment/residue framework.
 
 ---
 
+<a id="mech-127"></a>
+## Counterfactual Other-Cost-Aversion as Motivational Surrogate (MECH-127)
+
+**Claim Type:** mechanism_hypothesis
+**Scope:** Counterfactual empathic activation substituting for a degraded direct motivation pathway
+**Depends On:** MECH-031, MECH-032, INV-005, INV-028, INV-034
+**Status:** candidate
+**Claim ID:** MECH-127
+
+When an agent's direct task-motivation pathway is degraded (deficit state), modeling the
+*anticipated* cost to another agent -- other-cost-aversion -- can substitute as an activation
+mechanism, producing cooperative task-engagement even when the other agent is absent and no
+direct task reward signal is available.
+
+**Key structural distinction from MECH-031:**
+MECH-031 describes empathy *modulating* behavior via OTHER_SELFLIKE tagging and control-plane
+coupling -- modulation of an existing pathway. MECH-127 describes empathy *replacing* a degraded
+pathway -- it is a **bypass**, not a modulation. The distress-at-their-struggle response provides
+motivational energy the direct pathway cannot supply.
+
+**The activation is counterfactual:** the other agent need not be present or actually struggling.
+The anticipation of what *would* happen to them *if* they took on the burden is sufficient to
+activate the mechanism. This implies OTHER_SELFLIKE tagging must function pre-encounter (supporting
+MECH-032 high-recall bias) and that forward simulation (E2/E3 lookahead) underlies the projection.
+
+**Mechanism steps:**
+1. Direct motivation pathway degraded (agent in deficit state)
+2. Counterfactual projection: model what would happen to Agent B if B took on the task
+3. Affective response to that model: distress-at-B's-struggle activates via shadow bundle
+4. Distress-response provides motivational energy the direct pathway cannot
+5. Behavioral output: task engagement / cooperation -- identical to direct-pathway output
+6. Cooperative uplift: actual burden-sharing reduces cost, positive feedback loop
+
+**Multiagent implication:** this mechanism can produce *more* cooperative output under degraded
+conditions than predicted by n=1 (direct-pathway) analysis. This is the motivating case for
+ARC-034 (ethics testing must span nth-order dynamics).
+
+**Motivating observation:** first-person report, 2026-03-24. Formal basis:
+`docs/thoughts/2026-02-09_empathy.md` (MECH-031/032 infrastructure) provides the shadow bundle
+and control-plane coupling that MECH-127 recruits. See also:
+`evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md`.
+
+---
+
 ## Fast Empathy via Shadow Bundles
 
 When `OTHER_SELFLIKE` is high, REE can instantiate a shadow bundle of inferred streams for an agent `j`:
@@ -312,6 +356,8 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - MECH-041
 - MECH-051
 - MECH-052
+- MECH-127
+- ARC-034
 - Q-009
 
 ## References / Source Fragments

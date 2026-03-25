@@ -575,6 +575,18 @@
     "title": "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state.",
     "type": "invariant"
   },
+  "INV-037": {
+    "status": "candidate",
+    "subject": "state.stored_vs_active_distinction",
+    "title": "A content class that is stored and retrievable in the REE system is not thereby active in the navigable state used for trajectory evaluation; active participation requires a preparation substrate (vmPFC-analog) that converts stored content into live state components at evaluation time.",
+    "type": "invariant"
+  },
+  "INV-038": {
+    "status": "candidate",
+    "subject": "ethics.post_hoc_filter_insufficiency",
+    "title": "A system with correct post-hoc ethical scoring but without an active constraint preparation substrate will produce the EVR pattern: correct verbal moral judgments coexisting with unconstrained trajectory generation; this pattern is not correctable by improving post-hoc scoring accuracy.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1353,6 +1365,30 @@
     "status": "candidate",
     "subject": "curiosity.agent_novelty_typing",
     "title": "Curiosity-driven approach must distinguish world-state novelty from agent-policy novelty; untyped novelty reward creates chronic approach pressure toward partially unpredictable agents regardless of harm risk.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-131": {
+    "status": "candidate",
+    "subject": "vmPFC.residue_activation",
+    "title": "A vmPFC-analog substrate must activate stored aversive residue as an anticipatory forward-biasing signal in the navigable state at trajectory evaluation time; residue that is correctly stored but not so activated will fail to suppress harm-associated trajectory re-selection.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-132": {
+    "status": "candidate",
+    "subject": "vmPFC.constraint_activation",
+    "title": "A vmPFC-analog substrate must activate social and identity constraints as live trajectory gates in the navigable state; constraints that are stored as semantic knowledge but not so activated will not prevent norm-violating trajectory generation even when post-hoc evaluation correctly identifies the violation.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-133": {
+    "status": "candidate",
+    "subject": "vmPFC.safety_memory_competition",
+    "title": "A vmPFC-analog substrate must activate safety memories with sufficient force to compete with threat-attractor states at the level of navigable state construction; an extinction memory that exists in storage but cannot outcompete the threat attractor at state-construction time will produce intrusive return to threat-consistent trajectory generation regardless of contextual safety evidence.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-134": {
+    "status": "candidate",
+    "subject": "vmPFC.goal_approach_pull_activation",
+    "title": "A vmPFC-analog substrate must activate goal approach pull as a distinct property from goal representation; a goal that is correctly represented (G component present) but whose approach pull is not activated produces avoidance and anhedonia indistinguishable from absent goals, but is correctable by restoring approach-pull activation without changing goal content.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

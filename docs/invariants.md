@@ -500,6 +500,71 @@ None noted in preserved sources.
 - INV-023
 - INV-024
 
+<a id="arc-034"></a>
+## Ethics Testing Must Span nth-Order Multiagent Trajectory Distributions (ARC-034)
+
+**Claim Type:** architectural_commitment
+**Status:** candidate
+**Claim ID:** ARC-034
+
+A REE system can be locally ethical at every pairwise (n=1) interaction and still produce an
+ethically problematic emergent collective state at n=k. Conversely, locally depleted agents can
+produce *more* ethical emergent behavior at n=k than n=1 predicts -- as in MECH-127 (counterfactual
+empathic activation where depleted agent produces increased helping via nth-order route). Ethics
+tests that only probe direct pathways will miss the mechanism that actually produced the ethical
+behavior.
+
+Ethics testing therefore requires three test types: (1) Descriptive -- characterize what collective
+state q the system tends toward (attractor theory, ergodic theory); (2) Prescriptive -- prove a
+designed system reaches target q (Lyapunov, potential games, reachability); (3) Diagnostic --
+detect when nth-order dynamics diverge from (n-1)th predictions (transfer entropy, perturbation
+theory). This is a test-scope claim, not an architectural claim about where ethics lives; it does
+not contradict INV-001 (no explicit ethics module).
+
+See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md`
+
+---
+
+<a id="q-023"></a>
+## Q-023 -- Formal Convergence to Ethical Attractors (Open Question)
+
+**Claim Type:** open_question
+**Status:** open
+**Claim ID:** Q-023
+
+Can a multiagent REE system with other-cost-aversion primitives (MECH-127) be formally shown to
+converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic
+stability (Kandori-Mailath-Rob 1993)? Nearest existing territory: prosocial MARL (shared reward,
+not counterfactual cost-aversion as bypass) and indirect reciprocity (reputational mechanisms, not
+depleted-agent bootstrapping). Literature search 2026-03-25 confirmed no unified framework covers
+all four features: depleted-agent activation, counterfactual projection, nth-order cascade,
+convergence proof to ethical attractor. If no such framework exists, this is a paper-level
+contribution. Potential game framing may be cleanest if REE social interaction can be cast as an
+ordinal potential game.
+
+See: `evidence/planning/thought_intake_2026-03-24_empathy_multiagent_ethics.md` (literature search section)
+
+---
+
+<a id="q-024"></a>
+## Q-024 -- Formal Structure of Trajectory-Integral Ethics Testing (Open Question)
+
+**Claim Type:** open_question
+**Status:** open
+**Claim ID:** Q-024
+
+What is the correct formal representation for "threshold/feedback processes bounded by {x...x_n}
+reliably reaching emergent state q" -- and are the descriptive, prescriptive, and diagnostic test
+types (ARC-034) all needed, or does one subsume the others? The MECH-127 motivating case is a
+diagnostic instance: n=1 analysis predicts reduced helping; n=2 counterfactual empathic activation
+predicts increased helping -- inversion. Whether the prescriptive framework (Lyapunov / potential
+game) can subsume the diagnostic requirement, or whether empirical trajectory testing is always
+necessary, depends on whether REE ethics properties are amenable to formal proof. KMR model
+assumptions (finite population, mutation dynamics) need verification against REE architecture
+before adopting stochastic stability as the primary prescriptive tool.
+
+---
+
 ## References / Source Fragments
 
 - `docs/processed/legacy_tree/docs/invariants.md`

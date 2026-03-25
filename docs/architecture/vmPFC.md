@@ -143,6 +143,12 @@ A goal representation that does not exert active approach pull on the navigable 
 | ID | Subject | Title (abbreviated) |
 |---|---|---|
 | ARC-035 | vmPFC.affective_normative_state_preparation | vmPFC converts stored affective/normative/residue content into active navigable state components |
+| INV-037 | state.stored_vs_active_distinction | Stored/retrievable content is not thereby active in the navigable state; preparation substrate required |
+| INV-038 | ethics.post_hoc_filter_insufficiency | Post-hoc ethical scoring without active preparation produces EVR pattern; not correctable by scoring accuracy |
+| MECH-131 | vmPFC.residue_activation | vmPFC-analog must activate stored residue as anticipatory bias before trajectory evaluation |
+| MECH-132 | vmPFC.constraint_activation | vmPFC-analog must activate social/identity constraints as live trajectory gates |
+| MECH-133 | vmPFC.safety_memory_competition | vmPFC-analog must activate safety memories with sufficient force to outcompete threat attractors |
+| MECH-134 | vmPFC.goal_approach_pull_activation | Goal approach pull is a separable property from goal representation; vmPFC-analog activates it independently |
 
 MECH-126 (`state_abstraction.failure_modes_psychiatric_analogs`) registers the nine failure modes of state abstraction, four of which (Tracks 2b, 5, 7, 8) involve vmPFC as the central disrupted substrate.
 
@@ -161,3 +167,6 @@ MECH-126 (`state_abstraction.failure_modes_psychiatric_analogs`) registers the n
 | MECH-126 | Failure-mode taxonomy; four of nine tracks involve vmPFC disruption |
 | INV-035 | State must not be defined by sensory appearance alone |
 | INV-036 | State must support transition prediction, valence tagging, and uncertainty representation |
+| INV-037 | Stored/active distinction — the core architectural fact this page explains |
+| INV-038 | Post-hoc filter insufficiency — grounded EVR argument for why preparation must precede generation |
+| MECH-131–134 | Four content-class activation mechanisms (residue, constraints, safety memory, approach pull) |
