@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 7251,
   "runner_started_at": "2026-03-26T21:02:19.765363+00:00",
-  "last_updated": "2026-03-26T21:49:28.970720+00:00",
+  "last_updated": "2026-03-26T22:05:44.616543+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -2546,6 +2546,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_098_mech099_three_stream/v3_exq_098_mech099_three_stream_20260326T214928Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 68.7
+    },
+    {
+      "queue_id": "V3-EXQ-099",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-098 reafference upgrade gate (3-layer MLP h=128) + discriminative pair",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[V3-EXQ-099] Phase 1 FAIL: predictor R2 insufficient (R2=0.0000, threshold=0.70), MECH-098 cannot be meaningfully tested -- engineering bottleneck remains. Upgrade path: increase hidden_dim further, add deeper architecture, or increase data collection episodes. | Status: FAIL",
+      "started_at": "2026-03-26T22:05:41.739196+00:00",
+      "completed_at": "2026-03-26T22:05:44.613607+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_099_mech098_reafference_upgrade/v3_exq_099_mech098_reafference_upgrade_20260326T220544Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2.9
     }
   ]
 }

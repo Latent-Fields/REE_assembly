@@ -1,0 +1,24 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "r2_test": 0.0,
+    "gate_threshold": 0.7,
+    "n_samples": 8,
+    "c1_pass": 0.0,
+    "c2_pass": 0.0,
+    "c3_pass": 0.0,
+    "phase1_gate_failed": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-099 -- MECH-098 Reafference Upgrade: Phase 1 FAIL\n\n**Status:** FAIL\n**Claims:** MECH-098\n**Reason:** engineering bottleneck -- predictor R2 insufficient\n\n## Phase 1 Gate\n\nR2_test=0.0000 (threshold=0.70) -- FAIL\n\n## Note\n\npredictor R2 insufficient (R2=0.0000, threshold=0.70), MECH-098 cannot be meaningfully tested -- engineering bottleneck remains. Upgrade path: increase hidden_dim further, add deeper architecture, or increase data collection episodes.\n\nMECH-098 is NOT weakened by this result. The claim is conceptually correct but requires a higher-quality predictor before the discriminative test is meaningful.\n",
+  "claim_ids": [
+    "MECH-098"
+  ],
+  "evidence_direction": "not_applicable",
+  "experiment_type": "v3_exq_099_mech098_reafference_upgrade",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260326T220544Z",
+  "claim": "MECH-098",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_099_mech098_reafference_upgrade_20260326T220544Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
