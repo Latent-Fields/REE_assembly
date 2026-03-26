@@ -29,6 +29,7 @@ Stop the server: Ctrl+C  (also stops any runners started here)
 """
 
 import argparse
+import datetime
 import http.server
 import json
 import os
@@ -42,6 +43,12 @@ import time
 from pathlib import Path
 from urllib.parse import urlparse
 
+try:
+    import yaml as _yaml
+    _YAML_OK = True
+except ImportError:
+    _YAML_OK = False
+
 # ── Paths ────────────────────────────────────────────────────────────────────
 
 SERVE_DIR = Path(__file__).resolve().parent
@@ -49,7 +56,31 @@ STATUS_FILE = SERVE_DIR / "evidence" / "experiments" / "runner_status.json"  # l
 STATUS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_status"       # per-machine split
 RUNNER_LOG = SERVE_DIR / "runner.log"
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
-CONTRIBUTIONS_FILE = SERVE_DIR / "contributors" / "contributions.json"
+CONTRIBUTIONS_FILE  = SERVE_DIR / "contributors" / "contributions.json"
+
+# Timeline data paths
+_TL_CLAIMS_YAML     = SERVE_DIR / "docs" / "claims" / "claims.yaml"
+_TL_CLAIM_EVIDENCE  = SERVE_DIR / "evidence" / "experiments" / "claim_evidence.v1.json"
+_TL_EVIDENCE_DIR    = SERVE_DIR / "evidence" / "experiments"
+_TL_LITERATURE_DIR  = SERVE_DIR / "evidence" / "literature"
+
+_TL_MILESTONES = [
+    {"date": "2026-02-13T00:00:00Z", "label": "Project start / first experiments",                   "kind": "start"},
+    {"date": "2026-02-15T18:46:42Z", "label": "First governance batch (10 claims adjudicated)",       "kind": "governance"},
+    {"date": "2026-02-25T16:56:00Z", "label": "Second governance batch",                              "kind": "governance"},
+    {"date": "2026-02-26T00:00:00Z", "label": "ree-experiments-lab archived; V2 real substrate",      "kind": "architecture"},
+    {"date": "2026-02-27T00:00:00Z", "label": "Epoch start: ree_hybrid_guardrails_v1",                "kind": "architecture"},
+    {"date": "2026-03-06T00:00:00Z", "label": "SD-002 resolved: E1 prior wired into HippocampalModule","kind": "architecture"},
+    {"date": "2026-03-14T00:00:00Z", "label": "SD-005: z_self/z_world split registered",              "kind": "architecture"},
+    {"date": "2026-03-15T00:00:00Z", "label": "Control-plane heartbeat cluster registered",           "kind": "architecture"},
+    {"date": "2026-03-16T00:00:00Z", "label": "Governance pipeline fixed; contamination corrected",   "kind": "governance"},
+    {"date": "2026-03-18T00:00:00Z", "label": "V3 EXQ-013-019 root cause: SD-008/alpha_world",        "kind": "milestone"},
+    {"date": "2026-03-19T00:00:00Z", "label": "V3 experiment series begins",                          "kind": "start"},
+]
+
+_TL_DATE_RE    = re.compile(r'\b(20\d{2}-\d{2}-\d{2})\b')
+_TL_REG_RE     = re.compile(r'registered\s+(20\d{2}-\d{2}-\d{2})', re.IGNORECASE)
+_TL_THOUGHT_RE = re.compile(r'docs/thoughts/(20\d{2}-\d{2}-\d{2})')
 
 # Python executable -- prefer REE_PYTHON env var, then known torch-capable paths
 def _default_python() -> str:
@@ -427,9 +458,11 @@ def start_runner(ver: str = "v3") -> dict:
         python_exe = sys.executable  # fallback
 
     log_fh = open(RUNNER_LOG, "a")
+    machine_name = os.environ.get("REE_MACHINE_NAME") or socket.gethostname()
+    STATUS_DIR.mkdir(parents=True, exist_ok=True)
     cmd = [python_exe, str(cfg["script"]),
-           "--status-file", str(STATUS_FILE),
-           "--machine", os.environ.get("REE_MACHINE_NAME") or socket.gethostname(),
+           "--status-file", str(STATUS_DIR / f"{machine_name}.json"),
+           "--machine", machine_name,
            "--loop"]  # Keep polling for new experiments after queue exhaustion
     if cfg.get("auto_sync"):
         cmd.append("--auto-sync")
@@ -523,6 +556,184 @@ def read_queue(ver: str) -> dict:
     return {"items": items, "ver": ver}
 
 
+# ── Timeline builder ─────────────────────────────────────────────────────────
+
+def _tl_utc_now() -> str:
+    return datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _tl_claim_date(claim: dict) -> tuple:
+    """Return (iso_date_str_or_None, confidence_str) for a claim dict.
+    Confidence: 'adjudicated' | 'inferred' | 'thought_file' | 'unknown'
+    """
+    adj = claim.get("adjudicated_at_utc")
+    if adj:
+        return str(adj), "adjudicated"
+    # Search note fields for explicit "registered YYYY-MM-DD" pattern first
+    for field in ("evidence_quality_note", "reframe_note", "notes"):
+        txt = str(claim.get(field) or "")
+        m = _TL_REG_RE.search(txt)
+        if m:
+            return m.group(1) + "T00:00:00Z", "inferred"
+    # Fallback: earliest date found in any note field
+    all_dates = []
+    for field in ("evidence_quality_note", "reframe_note", "notes"):
+        all_dates += _TL_DATE_RE.findall(str(claim.get(field) or ""))
+    if all_dates:
+        return min(all_dates) + "T00:00:00Z", "inferred"
+    # Fallback: date from thought-file in source list
+    for src in (claim.get("source") or []):
+        m = _TL_THOUGHT_RE.search(str(src))
+        if m:
+            return m.group(1) + "T00:00:00Z", "thought_file"
+    return None, "unknown"
+
+
+def _tl_load_claims() -> list:
+    """Load claims list from claims.yaml. Returns [] on failure."""
+    if not _TL_CLAIMS_YAML.exists():
+        return []
+    try:
+        if _YAML_OK:
+            raw = _yaml.safe_load(_TL_CLAIMS_YAML.read_text())
+            claims_list = raw.get("claims", []) if isinstance(raw, dict) else (raw or [])
+        else:
+            # Minimal regex fallback if PyYAML unavailable
+            claims_list = []
+    except Exception:
+        claims_list = []
+    return claims_list or []
+
+
+def _build_timeline_events() -> dict:
+    """Build the timeline events payload from all available data sources."""
+    events = []
+    claims_map = {}
+
+    # --- Claims ---
+    for c in _tl_load_claims():
+        cid = str(c.get("id") or "")
+        if not cid:
+            continue
+        dt, conf = _tl_claim_date(c)
+        claims_map[cid] = {
+            "id": cid,
+            "title": str(c.get("title") or ""),
+            "claim_type": str(c.get("claim_type") or ""),
+            "status": str(c.get("status") or ""),
+            "lifecycle_stage": str(c.get("lifecycle_stage") or ""),
+            "confidence": c.get("confidence"),
+            "depends_on": list(c.get("depends_on") or []),
+            "v3_pending": bool(c.get("v3_pending")),
+            "estimated_at": dt,
+            "date_confidence": conf,
+        }
+        events.append({
+            "type": "claim",
+            "date": dt or "2026-02-13T00:00:00Z",
+            "date_confidence": conf,
+            "claim_id": cid,
+            "claim_type": str(c.get("claim_type") or ""),
+            "status": str(c.get("status") or ""),
+            "title": str(c.get("title") or ""),
+        })
+        if c.get("adjudicated_at_utc"):
+            events.append({
+                "type": "governance",
+                "date": str(c["adjudicated_at_utc"]),
+                "date_confidence": "exact",
+                "claim_id": cid,
+                "outcome": str(c.get("adjudication_outcome") or ""),
+            })
+
+    # --- Experiment manifests ---
+    if _TL_EVIDENCE_DIR.exists():
+        for mf in sorted(_TL_EVIDENCE_DIR.glob("**/runs/**/manifest.json")):
+            try:
+                m = json.loads(mf.read_text())
+            except Exception:
+                continue
+            ts = str(m.get("timestamp_utc") or "").strip()
+            if not ts:
+                continue
+            events.append({
+                "type": "experiment",
+                "date": ts,
+                "date_confidence": "exact",
+                "run_id": str(m.get("run_id") or ""),
+                "experiment_type": str(m.get("experiment_type") or ""),
+                "status": str(m.get("status") or "UNKNOWN").upper(),
+                "claim_ids": [str(x) for x in (
+                    m.get("claim_ids_tested") or m.get("claim_ids") or []
+                ) if x],
+                "evidence_direction": str(m.get("evidence_direction") or "unknown"),
+                "architecture_epoch": str(m.get("architecture_epoch") or ""),
+            })
+
+    # --- Literature records ---
+    if _TL_LITERATURE_DIR.exists():
+        for rf in sorted(_TL_LITERATURE_DIR.glob("**/record.json")):
+            try:
+                r = json.loads(rf.read_text())
+            except Exception:
+                continue
+            ts = str(r.get("timestamp_utc") or "").strip()
+            if not ts:
+                continue
+            events.append({
+                "type": "literature",
+                "date": ts,
+                "date_confidence": "exact",
+                "entry_id": str(r.get("entry_id") or ""),
+                "claim_ids": [str(x) for x in (r.get("claim_ids") or []) if x],
+                "evidence_direction": str(r.get("evidence_direction") or "unknown"),
+                "title": str((r.get("source") or {}).get("title") or ""),
+            })
+
+    # --- Milestones ---
+    for ms in _TL_MILESTONES:
+        events.append({**ms, "type": "milestone", "date_confidence": "exact"})
+
+    events.sort(key=lambda e: str(e.get("date") or ""))
+
+    # --- Confidence series ---
+    confidence_series = {}
+    try:
+        cev = json.loads(_TL_CLAIM_EVIDENCE.read_text())
+        for cid, cdata in (cev.get("claims") or {}).items():
+            entries = sorted(
+                [e for e in (cdata.get("recent_entries") or []) if e.get("timestamp_utc")],
+                key=lambda e: str(e["timestamp_utc"]),
+            )
+            pts = [
+                {
+                    "date": str(e["timestamp_utc"]),
+                    "confidence": e.get("confidence"),
+                    "source_type": e.get("source_type", "experimental"),
+                    "status": e.get("status", ""),
+                }
+                for e in entries if e.get("confidence") is not None
+            ]
+            if pts:
+                confidence_series[cid] = pts
+    except Exception:
+        pass
+
+    date_vals = [e["date"] for e in events if e.get("date")]
+    return {
+        "schema_version": "timeline/v1",
+        "generated_at": _tl_utc_now(),
+        "date_range": {
+            "start": min(date_vals) if date_vals else "2026-02-13T00:00:00Z",
+            "end":   max(date_vals) if date_vals else "2026-03-25T00:00:00Z",
+        },
+        "events": events,
+        "claims": claims_map,
+        "milestones": _TL_MILESTONES,
+        "confidence_series": confidence_series,
+    }
+
+
 # ── HTTP handler ─────────────────────────────────────────────────────────────
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -605,6 +816,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_response(404)
                 self.end_headers()
+            return
+        if path == "/api/timeline/events":
+            body = json.dumps(_build_timeline_events()).encode()
+            self._json_response(body)
             return
         if path == "/api/review/tracker":
             data = load_review_tracker()
