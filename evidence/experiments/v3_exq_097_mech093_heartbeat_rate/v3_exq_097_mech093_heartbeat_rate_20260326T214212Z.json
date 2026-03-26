@@ -1,0 +1,36 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "p1_mean_rate_high_harm": 9.1025,
+    "p1_mean_rate_low_harm": 8.36,
+    "p1_rate_gap": -0.7424999999999997,
+    "p1_n_high_harm_ticks": 1600.0,
+    "p1_n_low_harm_ticks": 100.0,
+    "harm_rate_on": 0.26154492023509657,
+    "harm_rate_off": 0.3048780487804878,
+    "harm_rate_ratio": 0.8578673383711167,
+    "action_var_on": 0.22208085971367633,
+    "action_var_off": 1.3083188699785921,
+    "action_var_ratio": 0.1697452087634494,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 2.0,
+    "alpha_world": 0.9,
+    "seed": 42.0,
+    "warmup_episodes": 200.0,
+    "eval_episodes": 40.0
+  },
+  "summary_markdown": "# V3-EXQ-097 -- MECH-093 z_beta Heartbeat Rate Modulation\n\n**Status:** FAIL\n**Claims:** MECH-093\n**Seed:** 42\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 200 eps  **Eval:** 40 eps  **Steps/ep:** 200\n\n## Pre-Registered Thresholds\n\nC1 (modulation gate): p1_rate_gap (low_harm_mean - high_harm_mean) >= 2.0 steps\nC2 (reactivity):      harm_rate_ON <= 0.95 * harm_rate_OFF\nC3 (stability):       action_var_ON <= 0.95 * action_var_OFF (safe phases)\nPASS: C1 AND (C2 OR C3)\n\n## Phase 1 Results (Modulation Gate, BETA_MOD_ON)\n\n| Metric | Value |\n|--------|-------|\n| mean e3_steps_per_tick (high-harm eps) | 9.10 (n=1600) |\n| mean e3_steps_per_tick (low-harm eps)  | 8.36 (n=100) |\n| rate_gap (low - high)                  | -0.74 |\n| C1 result | FAIL |\n\n## Phase 2 Results (Behavioral)\n\n| Condition | harm_rate | action_var_safe | n_safe_steps |\n|-----------|-----------|-----------------|---------------|\n| BETA_MOD_ON  | 0.2615  | 0.2221  | 1574 |\n| BETA_MOD_OFF | 0.3049 | 1.3083 | 1227 |\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: rate_gap >= 2.0               | FAIL | -0.74 |\n| C2: harm_rate ratio <= 0.95       | PASS | 0.858 |\n| C3: action_var ratio <= 0.95      | PASS | 0.170 |\n\nCriteria met: 2/3 -> **FAIL**\n\n## Interpretation\n\nMECH-093 NOT SUPPORTED: modulation not instantiated. E3 rate did not differ between high-harm and low-harm episodes (p1_rate_gap=-0.74, need >=2). z_beta may not encode harm salience after current training budget. Options: more warmup episodes, explicit z_beta harm supervision, or larger harm_scale to increase z_beta excursion. [modulation not instantiated (C1 gate failed)]\n\n## Failure Notes\n\n- C1 FAIL: p1_rate_gap=-0.74 < 2.0 (n_high_ticks=1600, n_low_ticks=100)\n",
+  "claim_ids": [
+    "MECH-093"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_097_mech093_heartbeat_rate",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260326T214212Z",
+  "claim": "MECH-093",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_097_mech093_heartbeat_rate_20260326T214212Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
