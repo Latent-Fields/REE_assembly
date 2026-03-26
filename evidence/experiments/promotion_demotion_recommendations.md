@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-25T07:40:59.518734Z`
+Generated: `2026-03-26T16:50:49.266774Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -17,7 +17,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-092` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-093` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-095` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
 | `MECH-096` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-097` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -138,7 +137,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.633, conflict_ratio=0.667, exp_entries=7, lit_entries=1; directions supports=2, weakens=4, mixed=1, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.63, conflict_ratio=0.667, exp_entries=7, lit_entries=1; directions supports=2, weakens=4, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -152,25 +151,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-19T19:52:00Z`
 - Last selected option: Hold at candidate — resolve conflict first
 - Last rationale: User confirmed hold for conflict resolution. z_beta modulates E3 heartbeat frequency — conflicting V3 evidence. Hold at candidate until targeted experiment resolves.
-
-### MECH-095
-- Current status: `candidate`
-- Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.821, conflict_ratio=0.333, exp_entries=5, lit_entries=4; directions supports=5, weakens=1, mixed=3, unknown=0, conflict_ratio=0.333
-- Recommendation: `promote_to_provisional`
-- Options (pros/cons):
-  - Promote now (faster convergence, risk premature lock-in)
-  - Hold until one additional confirming run (better robustness, slower progress)
-  - Hold and request targeted literature triangulation (better external grounding, extra delay)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-24T15:33:11.358559Z`
-- Last selected option: Hold at candidate -- resolve conflict first
-- Last rationale: V3 experiment evidence now exists but the conflicting exp entry (EXQ-047i) had two instrumentation bugs: MSE routing loss ~0 (alpha=0.9 EMA suppressed signal) and contact probe majority-class collapse. Its evidence is unreliable. EXQ-092 (047j) fixes both issues and is currently running. Hold at candidate; if EXQ-092 passes, conflict resolves in favor of MECH-095. If 047j fails on clean instrumentation, genuine lit-vs-exp disagreement requiring targeted redesign.
 
 ### MECH-096
 - Current status: `candidate`
@@ -211,7 +191,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.77, conflict_ratio=1, exp_entries=17, lit_entries=3; directions supports=7, weakens=7, mixed=6, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.768, conflict_ratio=1, exp_entries=17, lit_entries=3; directions supports=7, weakens=7, mixed=6, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -229,7 +209,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.663, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.662, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
