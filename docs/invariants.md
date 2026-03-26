@@ -449,6 +449,119 @@ Action serves as the primary epistemic probe. Perturbation — acting on the wor
 
 ---
 
+## Extended Invariants (2026-03-22 to 2026-03-25)
+
+These invariants were registered during V3 experimentation. They extend the foundational set
+with implications from approach/avoidance symmetry, epistemic self-monitoring, state definition,
+and vmPFC-mediated constraint activation.
+
+<a id="inv-032"></a>
+### INV-032: Moral Agency Requires Both Approach and Avoidance Drives
+
+**Subject:** agency.approach_avoidance_both_necessary
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** Moral agency requires both approach and avoidance drives; pure avoidance produces a degenerate risk manager, not an ethical agent.
+
+An architecture capable only of avoidance cannot care — it can only refrain. Care (INV-029) requires orientation toward flourishing, not merely absence of harm. Both drives must be structurally represented. A system that avoids all harm by doing nothing has satisfied every avoidance criterion while failing as an agent.
+
+**Depends on:** INV-029, INV-030
+**Source:** `evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md`
+
+---
+
+<a id="inv-033"></a>
+### INV-033: Second-Order Epistemic Access Is Required
+
+**Subject:** epistemic.second_order_self_monitoring
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics.
+
+First-order error signals (E3 running variance, E1 prediction error) are necessary but not sufficient. An agent that cannot model its own uncertainty cannot gate commitment on epistemic state — it commits when harm is low rather than when confidence is sufficient. Second-order self-monitoring must be structurally wired, not inferred post-hoc.
+
+**Depends on:** INV-030, INV-032, ARC-016, MECH-113
+**Source:** `evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md`
+
+---
+
+<a id="inv-034"></a>
+### INV-034: Goal Maintenance Is a Necessary Co-Condition for Ethical Agency
+
+**Subject:** ethical_agency.goal_maintenance_necessary
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.
+
+Harm-avoidance alone produces quiescence — the minimum-action policy that causes no harm because it does nothing. Quiescence is not ethical agency; it is paralysis. Genuine ethical agency requires: (1) harm-avoidance (SD-010, MECH-095, ARC-016); (2) goal-directed approach (MECH-112, MECH-116, ARC-030). Clinical grounding: avolition in schizophrenia, anhedonic depression — harm-avoidance systems remain intact while agency collapses.
+
+**Depends on:** INV-032, ARC-030, MECH-112, Q-021
+**Source:** `evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md`
+
+---
+
+<a id="inv-035"></a>
+### INV-035: State Is Not Raw Perception
+
+**Subject:** state.not_raw_perception
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states.
+
+The same sensory input at a door produces entirely different viable transitions, costs, antigoals, urgency, and commitment structures depending on temporal position (T), active constraints (C), and goal/antigoal relations (G, A). Collapsing these to appearance means the hippocampal rollout cannot distinguish "leaving for work" from "fleeing danger."
+
+**Depends on:** ARC-004, ARC-003, ARC-007
+**Source:** `evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md`
+
+---
+
+<a id="inv-036"></a>
+### INV-036: State Requires Transition Prediction, Valence Tagging, and Uncertainty
+
+**Subject:** state.functional_requirements
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state.
+
+These are the minimum requirements: (1) Without transition grounding, the hippocampal system cannot chain the state into a rollout. (2) Without goal-relation and antigoal-relation fields, E3 has no directional signal for path selection. (3) Without structured uncertainty, precision weighting has nothing to operate on. INV-035 and INV-036 together define the outer boundary of valid state abstraction.
+
+**Depends on:** INV-035, ARC-007, ARC-018, ARC-003
+**Source:** `evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md`
+
+---
+
+<a id="inv-037"></a>
+### INV-037: Stored Content Is Not Thereby Active
+
+**Subject:** state.stored_vs_active_distinction
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** A content class that is stored and retrievable in the REE system is not thereby active in the navigable state used for trajectory evaluation; active participation requires a preparation substrate (vmPFC-analog) that converts stored content into live state components at evaluation time.
+
+The stored/active distinction is the central architectural fact that ARC-035 explains. Damasio's EVR patient (Damasio 1985, PMID 4069365) had above-average IQ, intact language, intact declarative memory, and could correctly describe appropriate choices in social scenarios — while continuously making catastrophically inappropriate choices. The correct content was stored and retrievable; it was not active in the navigable state. vmPFC ablation had removed the preparation substrate.
+
+**Depends on:** INV-035, INV-036, ARC-035, ARC-003
+**Location:** `docs/architecture/vmPFC.md`
+**Source:** `evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md`
+
+---
+
+<a id="inv-038"></a>
+### INV-038: Post-Hoc Ethical Scoring Cannot Replace Constraint Activation
+
+**Subject:** ethics.post_hoc_filter_insufficiency
+**Polarity:** asserts
+**Status:** candidate
+**Claim:** A system with correct post-hoc ethical scoring but without an active constraint preparation substrate will produce the EVR pattern: correct verbal moral judgments coexisting with unconstrained trajectory generation; this pattern is not correctable by improving post-hoc scoring accuracy.
+
+INV-001 asserts that ethical behavior cannot be compiled into a single explicit ethics module. INV-037 explains why: stored ethical content is not the same as active ethical constraint. A system with a high-accuracy post-hoc ethics scorer but without vmPFC-analog preparation routing will score its own outputs correctly while generating those outputs from a trajectory generator that has no live access to those constraints. Adding a more accurate scorer does not fix the architectural gap; it increases the fidelity of self-report while the behavior remains unconstrained.
+
+**Depends on:** INV-001, INV-037, ARC-035, ARC-003
+**Location:** `docs/architecture/vmPFC.md`
+**Source:** `evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md`
+
+---
+
 ## Interpretation
 
 These invariants collectively assert that:
@@ -499,6 +612,20 @@ None noted in preserved sources.
 - INV-022
 - INV-023
 - INV-024
+- INV-025
+- INV-026
+- INV-027
+- INV-028
+- INV-029
+- INV-030
+- INV-031
+- INV-032
+- INV-033
+- INV-034
+- INV-035
+- INV-036
+- INV-037
+- INV-038
 
 <a id="arc-034"></a>
 ## Ethics Testing Must Span nth-Order Multiagent Trajectory Distributions (ARC-034)

@@ -9,7 +9,36 @@
 
 ---
 
-## Status Snapshot (2026-03-20)
+## Status Snapshot (2026-03-26)
+
+- **V2 complete.** Series closed after EXQ-028 (2026-03-19). Governance cycle applied 7
+  decisions, V3-pending gate lifted.
+- **V3 active.** ~96 experiments run (through EXQ-096a). SDs 004–010 implemented.
+  SD-010 (harm stream separation) unblocked the prior FAIL cluster: EXQ-056c/058b/059c all PASS.
+- **SD-011 is the current bottleneck.** Dual nociceptive streams (z_harm_s + z_harm_a) are
+  required for the SD-003 counterfactual redesign. EXQ-093/094 confirmed that
+  `HarmBridge(z_world → z_harm)` has bridge_r2=0 (architectural impossibility by SD-010 design).
+  ~10 experiments are blocked pending SD-011. Design doc: `sd_011_dual_nociceptive_streams.md`.
+- **SD-012 registered.** Homeostatic drive modulation for z_goal seeding — required for
+  EXQ-085+ (wanting/liking experiments) and for any goal-directed behavior validation.
+  Design doc: `sd_012_homeostatic_drive.md`.
+- **New claims registered (2026-03-24/25):** INV-032–038 (approach/avoidance symmetry,
+  epistemic self-monitoring, goal maintenance, state definition, stored/active distinction,
+  EVR pattern). ARC-030–035. SD-011/012. MECH-112–134.
+- **Currently queued:** EXQ-074b (MECH-112/117 wanting/liking, supersedes EXQ-074) and
+  EXQ-076b (MECH-116/ARC-032 goal conditioning, supersedes EXQ-076).
+- **MECH-124 diagnostic:** When reviewing EXQ-074b/076b results, check whether z_goal
+  salience is competitive with harm salience — if not, this is a V4 early risk indicator
+  (consolidation-mediated option-space contraction).
+- **0 pending review** as of 2026-03-25 (all experiments discussed and marked in
+  review_tracker.json).
+- **Phase gate:** SD-011 implementation → re-run blocked experiments → governance cycle.
+- **Step 3.1 (Substrate Debt Resolution)** is the current active step; SD-008/009/010 are
+  done; SD-011/012 remain.
+
+---
+
+## Status Snapshot (2026-03-20) — archived
 
 - **V2 complete.** All three hard-stop criteria triggered after EXQ-028. Governance cycle
   run 2026-03-19: 7 decisions applied, V3-pending gate lifted, ARC-024 and SD-010
@@ -259,15 +288,17 @@ to V3 environment. EXQ-030b PASS: SD-003 attribution pipeline validated.
 #### Step 3.1 — Substrate Debt Resolution ← **current step**
 
 **In-scope:**
-- SD-008: alpha_world ≥ 0.9 in LatentStackConfig (default 0.3 suppresses event responses)
-- SD-009: event-contrastive CE auxiliary loss for z_world encoder (MECH-100)
-- SD-010: harm stream separation — CausalGridWorldV2 with separate harm_obs channel,
-  dedicated HarmEncoder → z_harm, E3 takes z_harm as primary input; unblocks ~10 pending FAILs
+- SD-008: alpha_world ≥ 0.9 in LatentStackConfig ✓ (validated EXQ-040)
+- SD-009: event-contrastive CE auxiliary loss for z_world encoder ✓ (EXQ-020 PASS)
+- SD-010: harm stream separation ✓ (EXQ-056c/058b/059c PASS)
+- SD-011: dual nociceptive streams (z_harm_s + z_harm_a) ← **current focus**
+- SD-012: homeostatic drive modulation for z_goal seeding ← **next**
 
 **Exit criteria:**
-- SD-008/SD-009 validated at scale (z_world event selectivity confirmed)
-- SD-010 implemented and EXQ-056/058/059 re-run on new substrate (validation)
-- 17 pending FAILs from 2026-03-20 batch reviewed; attribution FAIL cluster resolved
+- SD-011 implemented and EXQ-093/094 successors run on dual-stream substrate
+- SD-003 counterfactual redesigned for z_harm_s pipeline and validated
+- SD-012 implemented; EXQ-085 successors (wanting/liking) runnable with functional z_goal
+- Pending FAIL cluster (~10 experiments) reviewed after SD-011 implementation
 
 #### Step 3.2 — V3 Claim Qualification
 
@@ -335,17 +366,20 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: 3.1 — Substrate Debt Resolution**
+**Current step: 3.1 — Substrate Debt Resolution (SD-011/012 phase)**
 
-1. **Implement SD-010** (harm stream separation): CausalGridWorldV2 with separate
-   `harm_obs` channel, dedicated HarmEncoder → z_harm, E3 wired to z_harm as primary
-   input. Re-queue EXQ-056/058/059 on new substrate.
-2. **Review 17 pending FAILs** (generated 2026-03-20). Prioritise SD-010 cluster
-   (EXQ-044/045/047/056/058/059) and structural mechanism FAILs (EXQ-048/049/050/051/052).
-   Update `review_tracker.json` and re-run `generate_pending_review.py`.
-3. **SD-008 validation at scale**: confirm alpha_world ≥ 0.9 in LatentStackConfig
-   default; run targeted z_world event-selectivity experiment if not yet done.
-4. **SD-009**: design and queue event-contrastive CE auxiliary loss experiment (MECH-100).
+1. **Implement SD-011** (dual nociceptive streams): split z_harm into z_harm_s + z_harm_a;
+   add HarmEncoderA, E2_harm_s forward model; update LatentState and E3Selector.
+   Design doc: `docs/architecture/sd_011_dual_nociceptive_streams.md`.
+2. **Redesign SD-003 counterfactual** for z_harm_s pipeline (post SD-011):
+   `causal_sig = E3.harm_eval(z_harm_s_actual) - E3.harm_eval(E2_harm_s(z_harm_s, a_cf))`.
+   Do NOT use HarmBridge — bridge_r2=0 is architectural.
+3. **Implement SD-012** (homeostatic drive): wire drive_level into GoalState.update() with
+   drive-scaled benefit amplitude. Design doc: `docs/architecture/sd_012_homeostatic_drive.md`.
+4. **Re-run blocked experiments** (EXQ-093/094 successors + EXQ-085 successors) after
+   SD-011/012 implementation.
+5. **Await EXQ-074b and EXQ-076b results** (currently queued); review MECH-124 diagnostic
+   (z_goal salience vs harm salience as V4 risk indicator).
 
 ---
 
