@@ -1,0 +1,93 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "harm_event_auc_three": 0.8579837422271789,
+    "harm_event_auc_two": 0.896373170339055,
+    "auc_delta": -0.03838942811187607,
+    "z_world_harm_r2_three": 0.0,
+    "z_world_harm_r2_two": 0.0,
+    "r2_ratio": 0.0,
+    "harm_avoidance_three": 0.00807156942350079,
+    "harm_avoidance_two": 0.00807156942350079,
+    "avoidance_delta": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 2.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "harm_dim": 16.0,
+    "proximity_harm_scale": 0.05
+  },
+  "summary_markdown": "# V3-EXQ-098 -- MECH-099 Three-Stream vs Two-Stream Harm Channel\n\n**Status:** FAIL\n**Claims:** MECH-099\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 100 eps\n\n## Pre-Registered Thresholds\n\nC1: auc_THREE - auc_TWO >= 0.05  (harm_event_AUC improvement)\nC2: r2_world_THREE / r2_world_TWO <= 0.80  (z_world purity, MECH-069)\nC3: avoidance_THREE >= avoidance_TWO  (behavioral, flee policy)\n\n## Aggregate Results\n\n| Metric | THREE_STREAM | TWO_STREAM | Delta/Ratio | Pass |\n|--------|-------------|-----------|-------------|------|\n| harm_event_AUC | 0.8580 | 0.8964 | -0.0384 | NO |\n| z_world_harm_R2 | 0.0000 | 0.0000 | 0.0000 | YES |\n| harm_avoidance | 0.0081 | 0.0081 | +0.0000 | YES |\n\n## Interpretation\n\nMECH-099 NOT SUPPORTED at this training budget/scale. AUC delta=-0.0384 (C1 needs 0.05). Lateral head did not produce a cleaner harm signal than z_world. Possible causes: lateral_head input (HAZARD_INDICES + contamination_view) insufficient for 400-episode training; world_obs_encoder shared weights create interference; or both conditions reach similar representation quality.\n\n## Per-Seed (THREE_STREAM)\n\n  seed=42: auc=0.8676 r2_world=0.0000 avoidance=0.0097 harm_events_train=6752\n  seed=7: auc=0.8484 r2_world=0.0000 avoidance=0.0065 harm_events_train=6863\n\n## Per-Seed (TWO_STREAM)\n\n  seed=42: auc=0.8943 r2_world=0.0000 avoidance=0.0097 harm_events_train=6752\n  seed=7: auc=0.8984 r2_world=0.0000 avoidance=0.0065 harm_events_train=6863\n\n## Failure Notes\n\n- C1 FAIL: auc_THREE=0.8580 vs auc_TWO=0.8964 (delta=-0.0384, needs >=0.05). Lateral head did not improve harm event AUC by 5pp.\n",
+  "claim_ids": [
+    "MECH-099"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_098_mech099_three_stream",
+  "per_seed_three": [
+    {
+      "seed": 42,
+      "condition": "THREE_STREAM",
+      "three_stream": true,
+      "harm_event_auc": 0.8675815577224028,
+      "z_world_harm_r2": 0.0,
+      "harm_avoidance_rate": 0.00965665236051505,
+      "harm_contacts": 923,
+      "total_eval_steps": 932,
+      "n_harm_events_eval": 923,
+      "train_harm_events": 6752,
+      "train_approach_events": 6381,
+      "train_total_steps": 7552
+    },
+    {
+      "seed": 7,
+      "condition": "THREE_STREAM",
+      "three_stream": true,
+      "harm_event_auc": 0.848385926731955,
+      "z_world_harm_r2": 0.0,
+      "harm_avoidance_rate": 0.006486486486486531,
+      "harm_contacts": 919,
+      "total_eval_steps": 925,
+      "n_harm_events_eval": 919,
+      "train_harm_events": 6863,
+      "train_approach_events": 6519,
+      "train_total_steps": 7571
+    }
+  ],
+  "per_seed_two": [
+    {
+      "seed": 42,
+      "condition": "TWO_STREAM",
+      "three_stream": false,
+      "harm_event_auc": 0.8943060069820633,
+      "z_world_harm_r2": 0.0,
+      "harm_avoidance_rate": 0.00965665236051505,
+      "harm_contacts": 923,
+      "total_eval_steps": 932,
+      "n_harm_events_eval": 923,
+      "train_harm_events": 6752,
+      "train_approach_events": 6381,
+      "train_total_steps": 7552
+    },
+    {
+      "seed": 7,
+      "condition": "TWO_STREAM",
+      "three_stream": false,
+      "harm_event_auc": 0.8984403336960465,
+      "z_world_harm_r2": 0.0,
+      "harm_avoidance_rate": 0.006486486486486531,
+      "harm_contacts": 919,
+      "total_eval_steps": 925,
+      "n_harm_events_eval": 919,
+      "train_harm_events": 6863,
+      "train_approach_events": 6519,
+      "train_total_steps": 7571
+    }
+  ],
+  "run_timestamp": "20260326T214928Z",
+  "claim": "MECH-099",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_098_mech099_three_stream_20260326T214928Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
