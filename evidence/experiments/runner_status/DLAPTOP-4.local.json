@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "runner_pid": 7251,
   "runner_started_at": "2026-03-26T21:02:19.765363+00:00",
-  "last_updated": "2026-03-27T17:08:58.262017+00:00",
-  "idle": true,
+  "last_updated": "2026-03-27T17:21:39.938092+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
@@ -2644,6 +2644,48 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_098b_mech099_agency_attribution/v3_exq_098b_mech099_agency_attribution_20260327T155605Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 111.6
+    },
+    {
+      "queue_id": "V3-EXQ-085f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-071/MECH-112/MECH-117 goal-wired navigation (fix: E3.select uses goal_state)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | calibration_gap_goal_present: 0.02999606728553772 | goal_vs_harm_ratio: 2.1039267611205243",
+      "started_at": "2026-03-27T17:18:04.862798+00:00",
+      "completed_at": "2026-03-27T17:20:25.519842+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085f_mech071_goal_wired_navigation/v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 140.7
+    },
+    {
+      "queue_id": "V3-EXQ-095a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-033/SD-011 HarmForwardModel training diagnosis (grad norms + hazard-only parallel)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap: 0.07276281717383448 | harm_none: 0.5328478862841924 | harm_approach: 0.6056107034580269",
+      "started_at": "2026-03-27T17:20:28.235717+00:00",
+      "completed_at": "2026-03-27T17:21:11.389181+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_095a_harm_fwd_diagnosis/v3_exq_095a_harm_fwd_diagnosis_20260327T172109Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 43.2
+    },
+    {
+      "queue_id": "V3-EXQ-100",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-011/ARC-016 z_harm_a first integration test (affective stream temporal stability)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "std_z_harm_a_high: 0.02568027258461274 | std_z_harm_s_high: 0.36860796002459023 | crit1_harm_a_responds: 0.0",
+      "started_at": "2026-03-27T17:21:14.916661+00:00",
+      "completed_at": "2026-03-27T17:21:39.929405+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_100_z_harm_a_integration/v3_exq_100_z_harm_a_integration_20260327T172137Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 25.0
     }
   ]
 }
