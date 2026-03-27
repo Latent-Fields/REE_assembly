@@ -1,0 +1,95 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "attribution_auc_three": 0.9941861431709003,
+    "attribution_auc_two": 0.9988832772166105,
+    "auc_delta": -0.004697134045710261,
+    "harm_avoidance_three": 0.018200314951851426,
+    "harm_avoidance_two": 0.017469006243218732,
+    "avoidance_delta": 0.0007313087086326941,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 2.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "motion_dim": 16.0,
+    "env_drift_prob": 0.3
+  },
+  "summary_markdown": "# V3-EXQ-098b -- MECH-099 Agency Attribution Three-Stream Redesign\n\n**Status:** FAIL\n**Claims:** MECH-099, MECH-095\n**Seeds:** [42, 7]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 100 eps\n**env_drift_prob:** 0.3  **env_drift_interval:** 3\n\n## Redesign from EXQ-098\n\nEXQ-098 trained lateral head with BCE on harm_obs (duplicate harm signal). Adverse direction (delta=-0.038) = information disadvantage, not architectural failure. EXQ-098b trains lateral head with BCE on agency attribution labels (agent_caused vs env_caused hazard contact). Motion-delta input (MT analog) added to lateral head (delta_hazard = hazard_ch_t - hazard_ch_{t-1}).\n\n## Pre-Registered Thresholds\n\nC1: attr_AUC_THREE - attr_AUC_TWO >= 0.05  (relative attribution advantage)\nC2: attr_AUC_THREE >= 0.65  (absolute attribution learning)\nC3: avoidance_THREE >= avoidance_TWO  (behavioral: attribution-guided flee)\n\n## Aggregate Results\n\n| Metric | THREE_STREAM | TWO_STREAM | Delta | Pass |\n|--------|-------------|-----------|-------|------|\n| attribution_AUC (C1) | 0.9942 | 0.9989 | -0.0047 | NO |\n| attribution_AUC >= 0.65 (C2) | 0.9942 | -- | -- | YES |\n| harm_avoidance (C3) | 0.0182 | 0.0175 | +0.0007 | YES |\n\n## Interpretation\n\nPARTIAL: C2 passes (absolute AUC=0.9942 >= 0.65) but C1 fails (delta=-0.0047 < 0.05). THREE_STREAM learned attribution but did not outperform TWO_STREAM. z_world may encode agency attribution nearly as well as the dedicated motion head at this scale. Consider: larger motion_dim, deeper lateral head, or longer training.\n\n## Per-Seed (THREE_STREAM)\n\n  seed=42: attr_auc=0.9895 avoidance=0.0215 agent_caused_train=887 env_caused_train=306 contact_eval=324 (a=298 e=26)\n  seed=7: attr_auc=0.9988 avoidance=0.0149 agent_caused_train=893 env_caused_train=289 contact_eval=321 (a=295 e=26)\n\n## Per-Seed (TWO_STREAM)\n\n  seed=42: attr_auc=0.9989 avoidance=0.0191 agent_caused_train=887 env_caused_train=306 contact_eval=306 (a=300 e=6)\n  seed=7: attr_auc=0.9989 avoidance=0.0158 agent_caused_train=893 env_caused_train=289 contact_eval=309 (a=297 e=12)\n\n## Failure Notes\n\n- C1 FAIL: attr_auc_THREE=0.9942 vs attr_auc_TWO=0.9989 (delta=-0.0047, needs >=0.05). MotionLateralHead did not improve attribution AUC by 5pp over z_world.\n",
+  "claim_ids": [
+    "MECH-099",
+    "MECH-095"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_098b_mech099_agency_attribution",
+  "per_seed_three": [
+    {
+      "seed": 42,
+      "condition": "THREE_STREAM",
+      "three_stream": true,
+      "attribution_auc": 0.9895456892101188,
+      "harm_avoidance_rate": 0.02147525676937445,
+      "harm_contacts": 1048,
+      "total_eval_steps": 1071,
+      "n_contact_steps_eval": 324,
+      "n_agent_caused_eval": 298,
+      "n_env_caused_eval": 26,
+      "n_agent_caused_train": 887,
+      "n_env_caused_train": 306,
+      "train_total_steps": 14207
+    },
+    {
+      "seed": 7,
+      "condition": "THREE_STREAM",
+      "three_stream": true,
+      "attribution_auc": 0.9988265971316819,
+      "harm_avoidance_rate": 0.014925373134328401,
+      "harm_contacts": 1056,
+      "total_eval_steps": 1072,
+      "n_contact_steps_eval": 321,
+      "n_agent_caused_eval": 295,
+      "n_env_caused_eval": 26,
+      "n_agent_caused_train": 893,
+      "n_env_caused_train": 289,
+      "train_total_steps": 14126
+    }
+  ],
+  "per_seed_two": [
+    {
+      "seed": 42,
+      "condition": "TWO_STREAM",
+      "three_stream": false,
+      "attribution_auc": 0.9988888888888889,
+      "harm_avoidance_rate": 0.019138755980861233,
+      "harm_contacts": 1025,
+      "total_eval_steps": 1045,
+      "n_contact_steps_eval": 306,
+      "n_agent_caused_eval": 300,
+      "n_env_caused_eval": 6,
+      "n_agent_caused_train": 887,
+      "n_env_caused_train": 306,
+      "train_total_steps": 14207
+    },
+    {
+      "seed": 7,
+      "condition": "TWO_STREAM",
+      "three_stream": false,
+      "attribution_auc": 0.9988776655443322,
+      "harm_avoidance_rate": 0.01579925650557623,
+      "harm_contacts": 1059,
+      "total_eval_steps": 1076,
+      "n_contact_steps_eval": 309,
+      "n_agent_caused_eval": 297,
+      "n_env_caused_eval": 12,
+      "n_agent_caused_train": 893,
+      "n_env_caused_train": 289,
+      "train_total_steps": 14126
+    }
+  ],
+  "run_timestamp": "20260327T155605Z",
+  "claim": "MECH-099",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
