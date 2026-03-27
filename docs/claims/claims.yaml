@@ -3161,6 +3161,14 @@
     because random-walk warmup without homeostatic drive cannot generate goal representations.
     Non-contributory: hold redesign pending drive/hunger architecture and curriculum schedule.
     See thought: docs/thoughts/2026-03-24_mech071_goal_latent_non_contributory_evidence.md
+    EXQ-085e FAIL 3/4 (2026-03-26): z_goal_norm=0.135 > 0.1 threshold (C1 marginally PASS)
+    but benefit_ratio=1.00 < 1.3 (C2 FAIL). SD-012 homeostatic drive installed but goal
+    latent not competitive enough to produce differential behaviour. This is the 5th
+    consecutive failure in the 085 series (085 through 085e). MECH-071's core claim (harm
+    calibration asymmetry) is not being tested -- all failures are at z_goal seeding
+    prerequisite. Path forward requires deeper architectural discussion: current
+    benefit_exposure modulation approach may be insufficient; curriculum seeding or direct
+    z_goal injection may be required. Do not demote MECH-071 based on this series.
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
@@ -3984,6 +3992,15 @@
     sweep of pre-commit hippocampal rollouts and DMN simulations for trajectory
     abandonment. These are distinct clocks at distinct timescales operating on distinct
     planning functions.
+  evidence_quality_note: |
+    EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0).
+    E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes. The gap
+    is negative (higher harm -> slightly lower rate) -- opposite of prediction.
+    EXQ-096a PASS is a broad integration check, not a discriminative test for rate
+    modulation. The current operationalization (episode-level E3 clock rate gap) may
+    not capture z_beta-mediated rate modulation in this implementation.
+    Hold candidate, resolve conflict. Suggest reviewing whether E3 heartbeat rate is
+    meaningfully instrumented in V3 before redesigning EXQ-097.
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
@@ -3991,7 +4008,7 @@
   claim_type: mechanism_hypothesis
   subject: tpj.agency_detection_comparator
   polarity: asserts
-  status: provisional
+  status: active
   adjudicated_at_utc: "2026-03-25T00:00:00Z"
   adjudication_outcome: promoted
   implementation_phase: v3
@@ -4021,6 +4038,12 @@
     incongruent=exafference/world-change. The efference copy reaches parietal via
     SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
     Literature: evidence/literature/targeted_review_reafference_streams/.
+  evidence_quality_note: |
+    EXQ-047k PASS 5/5 (2026-03-25, 4 seeds): contact_recall_routed=0.796 > 0.55,
+    recall_improvement=+0.065 > 0.04, action_dissoc=-0.007 > -0.05, n_contact_min=164.
+    4-seed replication with clean discriminative test. Promoted from provisional to active.
+    Combined with lit_conf=0.907 (Blakemore 2002, Gu 2008, Pitcher & Ungerleider 2021,
+    Rolls 2023), evidence for TPJ as agency-detection comparator is strong.
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
   claim_type: mechanism_hypothesis
@@ -4157,6 +4180,16 @@
     Note: the mechanism is architecturally correct (MSTd congruent neuron analog);
     the failure is engineering (predictor accuracy), not conceptual. Do NOT demote
     based on EXQ-069/082 alone. Redesign predictor first.
+    EXQ-099 superseded (2026-03-27): both runs had collection filter bug (only 1 and 8
+    locomotion steps collected vs 2000+ expected; filter used ttype=='none' which
+    misses hazard_approach/benefit_approach in CausalGridWorldV2). Superseded by EXQ-099a.
+    EXQ-099a T223151Z PASS (2026-03-26): n_samples=50, gate_threshold=-1.0 (intentionally
+    relaxed to test whether any correction level helps), R2_test=-0.249, selectivity_ratio=
+    1.655 >= 1.1, harm_avoidance_rate ON=OFF=1.0. Reafference correction produces cleaner
+    selectivity even with a poor predictor. Mechanism confirmed conceptually. Predictor
+    quality (R2 well below 0.70) remains engineering bottleneck for full validation.
+    EXQ-099a T223306Z FAIL not_applicable (2026-03-26): n_samples=167, gate=0.70, R2=-0.027.
+    Phase 1 gate failure -- engineering bottleneck persists at stricter quality threshold.
 - id: MECH-099
   title: "Visual streams use a three-pathway architecture (ventral/dorsal/frontal) for object, action, and executive routing."
   claim_type: mechanism_hypothesis
@@ -4195,6 +4228,16 @@
     content), lateral head (→agency/harm signal for E3).
     Literature: evidence/literature/targeted_review_reafference_streams/
     (Haak & Beckmann 2018, Pitcher & Ungerleider 2021).
+  evidence_quality_note: |
+    EXQ-098 (2026-03-26): Two independent FAILs.
+    Run 1 (seeds=42, 5 eps warmup): auc_delta=0.0000 (threshold >= 0.05).
+    Run 2 (seeds=42+7, 400 eps warmup): auc_delta=-0.0384 -- lateral head UNDERPERFORMS
+    baseline with more training. Adverse direction in run 2 suggests lateral head may
+    actively interfere with the existing two-stream harm signal.
+    Hold at candidate. EXQ-098b redesign needed before closing this question. The
+    Haak & Beckmann three-pathway biological grounding is strong, but the current
+    lateral head architecture (separate AUC scoring on harm channel) does not produce
+    the expected signal improvement.
 # Registered 2026-03-18 — EMA root-cause analysis and encoder supervision gap
 - id: MECH-100
   title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
@@ -5261,6 +5304,16 @@
     E3 domain; hippocampal terrain becomes attractive near z_goal, not just repulsive near
     z_harm; subgoal representations needed at multiple trajectory steps.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  evidence_quality_note: |
+    EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all
+    conditions. Superseded by EXQ-074d.
+    EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0).
+    C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show
+    a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28
+    in 074d). C2/C3/C4 PASS in both: wanting/liking dissociation confirmed in trajectory
+    scoring metrics (l2_redirect, l1_fraction, goal_proximity).
+    C1 requires redesign: use goal-following navigation in wanting condition vs random/nogo
+    baseline, so resource visit rate CAN vary across conditions.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -5602,6 +5655,14 @@
     ACC (goal PE, conflict monitoring), vmPFC (decision value), premotor/SMA (sequence
     planning). These additional frontal functions may require further E1 specialisation
     in V4 beyond goal working memory. Registered 2026-03-23. Experiment: EXQ-076.
+  evidence_quality_note: |
+    EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0,
+    goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition).
+    Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition.
+    At 2000 total steps with 1000-step post-removal window, goal persists robustly in both
+    conditions -- insufficient time to observe meaningful decay. Not a refutation; budget
+    too small. Need 10,000+ steps with goal removal at step 5000 for a meaningful halflife
+    comparison. Queue EXQ-076e with longer training budget.
 
 - id: MECH-117
   title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
@@ -5637,6 +5698,13 @@
     requires z_goal_latent. Both signals serve different roles: wanting shapes approach
     trajectories prospectively; liking calibrates z_goal via benefit_exposure updates.
     Registered 2026-03-23. Experiment: EXQ-074b.
+  evidence_quality_note: |
+    Same dissociation evidence as MECH-112. EXQ-074d/074e C1 FAIL is a test design
+    confound (greedy nav uniform across conditions). C2 PASS (liking l2_redirect <=7 steps
+    in 074d -- fast redirect to moved resource confirms benefit_eval_head responds to
+    current location, not memory). C3 PASS (wanting l1_fraction=0.355 -- directional
+    approach toward goal location). Wanting and liking operate on distinct spatial and
+    temporal scales as predicted. C1 redesign needed for behavioural resource-rate evidence.
 
 - id: ARC-032
   title: "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation."
@@ -5671,6 +5739,13 @@
     Note: ARC-032 is currently tested jointly with MECH-116 in EXQ-076. A separate
     theta-bypass ablation would be needed to isolate ARC-032 specifically.
     Registered 2026-03-23. Experiment: EXQ-076 (joint with MECH-116).
+  evidence_quality_note: |
+    EXQ-076d FAIL 1/4 (tested jointly with MECH-116, 2026-03-27): same null result as
+    MECH-116 at 2000 steps. ARC-032's specific prediction (theta-bypass degrades goal
+    maintenance) has not been tested -- EXQ-076 only tests joint goal conditioning;
+    no theta-bypass ablation condition was included. ARC-032 remains untested as a
+    standalone architectural claim. Design a separate ablation experiment isolating the
+    theta channel (E1 output -> E3 direct vs. E1 output -> ThetaBuffer -> E3).
 
 - id: ARC-033
   title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
@@ -5740,6 +5815,13 @@
     Clinical grounding: avolition in schizophrenia, anhedonic depression, amotivation
     syndromes all demonstrate that harm-avoidance systems remain intact while agency
     collapses. REE must avoid this architecture failure mode. Registered 2026-03-23.
+  evidence_quality_note: |
+    INV-034 depends on MECH-112/116 (goal maintenance architecture). EXQ-085 through
+    EXQ-085e all failed at the z_goal seeding prerequisite (SD-012 homeostatic drive
+    bottleneck). INV-034's core claim (goal maintenance is necessary for ethical agency)
+    is conceptually uncontested but experimentally untestable until SD-012 is resolved.
+    Path forward: same as MECH-071/SD-012. Hold pending architectural discussion of
+    z_goal seeding mechanism.
 
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."

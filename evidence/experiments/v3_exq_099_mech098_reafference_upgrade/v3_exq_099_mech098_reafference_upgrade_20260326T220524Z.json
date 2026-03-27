@@ -27,7 +27,9 @@
   "claim_ids": [
     "MECH-098"
   ],
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "EXQ-099 had collection filter bug: only 1 locomotion step collected in phase 1 (expected 2000+). Predictor trained on 1 sample is meaningless. Superseded by EXQ-099a which fixes the transition_type filter. PASS result is unreliable.",
+  "superseded_by": "v3_exq_099a_mech098_reafference_upgrade",
   "experiment_type": "v3_exq_099_mech098_reafference_upgrade",
   "fatal_error_count": 0,
   "run_timestamp": "20260326T220524Z",

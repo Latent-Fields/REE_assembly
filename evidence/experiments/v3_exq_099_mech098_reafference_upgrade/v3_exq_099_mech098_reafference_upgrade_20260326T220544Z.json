@@ -13,7 +13,9 @@
   "claim_ids": [
     "MECH-098"
   ],
-  "evidence_direction": "not_applicable",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "EXQ-099 had collection filter bug: only 8 locomotion steps collected (expected 2000+) because filter used ttype=='none' which excluded hazard_approach and benefit_approach steps in CausalGridWorldV2. Phase 1 gate correctly failed but root cause was the bug. Superseded by EXQ-099a which broadens the filter.",
+  "superseded_by": "v3_exq_099a_mech098_reafference_upgrade",
   "experiment_type": "v3_exq_099_mech098_reafference_upgrade",
   "fatal_error_count": 0,
   "run_timestamp": "20260326T220544Z",
