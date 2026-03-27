@@ -3162,13 +3162,24 @@
     Non-contributory: hold redesign pending drive/hunger architecture and curriculum schedule.
     See thought: docs/thoughts/2026-03-24_mech071_goal_latent_non_contributory_evidence.md
     EXQ-085e FAIL 3/4 (2026-03-26): z_goal_norm=0.135 > 0.1 threshold (C1 marginally PASS)
-    but benefit_ratio=1.00 < 1.3 (C2 FAIL). SD-012 homeostatic drive installed but goal
-    latent not competitive enough to produce differential behaviour. This is the 5th
-    consecutive failure in the 085 series (085 through 085e). MECH-071's core claim (harm
-    calibration asymmetry) is not being tested -- all failures are at z_goal seeding
-    prerequisite. Path forward requires deeper architectural discussion: current
-    benefit_exposure modulation approach may be insufficient; curriculum seeding or direct
-    z_goal injection may be required. Do not demote MECH-071 based on this series.
+    but benefit_ratio=1.00 < 1.3 (C2 FAIL). C3 PASS (calibration_gap=0.1664). Root cause
+    of C2=1.00 (wiring bug, 2026-03-27 diagnosis): In every 085x script, goal_state was
+    maintained (seeding worked) but NEVER passed to action selection. Both GOAL_PRESENT and
+    GOAL_ABSENT used random.randint() in eval -- a disconnected signal cannot change
+    behaviour, guaranteeing benefit_ratio=1.00. E3Selector.score_trajectory() already has
+    compute_goal_score() implemented (lines 453-457 of e3_selector.py): subtracts
+    goal_weight * goal_proximity(z_world) from cost when goal_state.is_active(). The
+    architecture is correct. The experiment scaffolding was broken across all 5 iterations.
+    C3 consistently PASS across 085 through 085e (calibration_gap 0.03-0.17): this IS
+    meaningful evidence for MECH-071's core claim (harm calibration intact with goal
+    conditioning). Do not demote MECH-071 based on this series -- C2 failures are a
+    wiring bug, not an architectural failure.
+    EXQ-085f queued (2026-03-27): fixes the wiring. GOAL_PRESENT eval uses
+    _goal_guided_action() -- E2.world_forward(z_world, a) for each candidate action,
+    goal_state.goal_proximity() scores each prediction, greedy selection. GOAL_ABSENT
+    still random. Same training for both conditions. New diagnostics: goal_resource_r
+    (Pearson r: is z_goal pointing toward resources?) and goal_vs_harm_ratio (MECH-124
+    V4 risk: is z_goal salience competitive with harm?).
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
