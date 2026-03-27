@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "raw_harm_a_mean_high": 0.1308471043229103,
+    "raw_harm_a_mean_low": 0.19731011960227043,
+    "raw_harm_a_autocorr_high": 0.06853815199758626,
+    "raw_harm_s_autocorr_high": 0.09643296905705112,
+    "enc_z_harm_a_mean_high": 0.742251258772431,
+    "enc_z_harm_a_mean_low": 1.0882970897189106,
+    "enc_z_harm_a_ac_high": -0.003971620955444431,
+    "enc_z_harm_s_ac_high": 0.06109885913605622,
+    "crit1_raw_density": 0.0,
+    "crit2_raw_autocorr": 0.0,
+    "crit3_enc_density": 0.0,
+    "crit4_enc_autocorr": 0.0,
+    "crit5_no_errors": 1.0,
+    "criteria_met": 1.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-100b -- SD-011 / ARC-016 Affective Harm Stream Diagnostic\n\n**Status:** FAIL\n**Claims:** SD-011, ARC-016\n**Supersedes:** V3-EXQ-100 (C2 negative autocorrelation anomaly)\n**Design:** Two-phase: raw harm_obs_a diagnostic + encoder quality check\n\n## Diagnosis: RAW_EMA_FAIL\n\n## Phase 0: Raw harm_obs_a (no encoder)\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|-----------------|-----------------|-----------|\n| harm_obs_a mean | 0.1308 | 0.1973 | high > low * 1.1 (C1) |\n| harm_obs_a autocorr_lag10 | 0.069 | -0.063 | > 0.3 (C2) |\n| harm_obs_s autocorr_lag10 | 0.096 | -- | reference |\n\n| Criterion | Result |\n|-----------|--------|\n| C1: raw density response | FAIL |\n| C2: raw autocorr > 0.3 | FAIL |\n\n## Phase 1: Encoder output (after training)\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|-----------------|-----------------|-----------|\n| z_harm_a mean norm | 0.7423 | 1.0883 | high > low * 1.1 (C3) |\n| z_harm_a autocorr_lag10 | -0.004 | -- | > z_harm_s (C4) |\n| z_harm_s autocorr_lag10 | 0.061 | -- | reference |\n\n| Criterion | Result |\n|-----------|--------|\n| C3: encoder density | FAIL |\n| C4: encoder autocorr | FAIL |\n| C5: no fatal errors | PASS |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: raw harm_obs_a NOT responding to density (high=0.1308 vs low=0.1973) -- root cause: CausalGridWorldV2 EMA not generating density-sensitive signal\n- C2 FAIL: raw harm_obs_a autocorr=0.069 (< 0.3) -- EMA not providing temporal persistence\n- C3 FAIL: z_harm_a encoder output not density-sensitive (high=0.7423 vs low=1.0883) -- encoder degenerates despite healthy input\n- C4 FAIL: z_harm_a autocorr=-0.004 not > z_harm_s autocorr=0.061 -- encoder not preserving temporal stability\n",
+  "claim_ids": [
+    "SD-011",
+    "ARC-016"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_100b_affective_harm_diagnostic",
+  "fatal_error_count": 0,
+  "diagnosis": "RAW_EMA_FAIL",
+  "supersedes": "v3_exq_100_z_harm_a_integration",
+  "run_timestamp": "20260327T174257Z",
+  "claim": "SD-011",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_100b_affective_harm_diagnostic_20260327T174257Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
