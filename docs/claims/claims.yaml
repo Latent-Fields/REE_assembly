@@ -3994,13 +3994,17 @@
     planning functions.
   evidence_quality_note: |
     EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0).
-    E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes. The gap
-    is negative (higher harm -> slightly lower rate) -- opposite of prediction.
-    EXQ-096a PASS is a broad integration check, not a discriminative test for rate
-    modulation. The current operationalization (episode-level E3 clock rate gap) may
-    not capture z_beta-mediated rate modulation in this implementation.
-    Hold candidate, resolve conflict. Suggest reviewing whether E3 heartbeat rate is
-    meaningfully instrumented in V3 before redesigning EXQ-097.
+    E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is
+    negative (higher harm -> slightly lower rate) -- opposite of prediction.
+    DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta()
+    is called every step in agent._e1_step() (agent.py:272). Implementation gap does
+    NOT exist. Root causes: (1) z_beta does not encode harm salience sufficiently after
+    200 warmup episodes -- magnitude is not elevated during harm events. Pool skewed
+    16:1 (high-harm vs low-harm ticks), confirming harm is pervasive so z_beta has
+    minimal between-episode variance. (2) Episode-level averaging is too coarse: the
+    correct operationalization is step-level Pearson r(|z_beta|, 1/e3_steps_per_tick),
+    not the mean clock rate gap between episode types. EXQ-097b redesigned with
+    step-level metric + 500 warmup episodes. Hold candidate.
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
