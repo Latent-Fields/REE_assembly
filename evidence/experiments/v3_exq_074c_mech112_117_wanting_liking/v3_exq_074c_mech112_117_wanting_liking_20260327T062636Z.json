@@ -1,0 +1,81 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "resource_rate_nogo": 0.0,
+    "resource_rate_liking": 0.0,
+    "resource_rate_wanting": 0.0,
+    "harm_rate_nogo": 0.0036666666666666666,
+    "harm_rate_liking": 0.0036666666666666666,
+    "harm_rate_wanting": 0.0036666666666666666,
+    "liking_l2_redirect_steps": 200.0,
+    "wanting_l1_directed_fraction": 1.0,
+    "wanting_goal_norm_final": 0.0,
+    "wanting_goal_proximity_final": 1.0,
+    "wanting_goal_active": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-074c -- MECH-117 Wanting/Liking Dissociation\n\n**Status:** FAIL\n**Claims:** MECH-112, MECH-117\n**Seed:** 42  **Steps:** 3000  **Relocation:** step 1500\n\n## Conditions\n\n- nogo: benefit_eval_enabled=False, z_goal_enabled=False\n- liking: benefit_eval_enabled=True, z_goal_enabled=False\n- wanting: benefit_eval_enabled=False, z_goal_enabled=True\n\n## Results\n\n| Metric | nogo | liking | wanting |\n|---|---|---|---|\n| resource_visit_rate | 0.0000 | 0.0000 | 0.0000 |\n| harm_rate | 0.0037 | 0.0037 | 0.0037 |\n| l2_redirect_steps | -- | 200 | -- |\n| l1_directed_fraction | -- | -- | 1.000 |\n| goal_norm_final | -- | -- | 0.0000 |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: wanting resource >= nogo + 0.04 | FAIL |\n| C2: liking l2_redirect <= 15 steps | FAIL |\n| C3: wanting l1_fraction >= 0.25 | PASS |\n| C4: wanting harm delta <= 0.03 | PASS |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Interpretation\n\nMECH-117 PARTIAL: Some dissociation signal present but below full threshold. Consider longer training or adjusted goal_weight/decay_goal.\n\n## Failure Notes\n\n- C1 FAIL: resource_rate gap=0.0000 < 0.04\n- C2 FAIL: liking l2_redirect=200 steps > 15\n",
+  "claim_ids": [
+    "MECH-112",
+    "MECH-117"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_074c_mech112_117_wanting_liking",
+  "fatal_error_count": 0,
+  "condition_results": {
+    "nogo": {
+      "condition": "nogo",
+      "resource_visit_rate": 0.0,
+      "harm_rate": 0.0036666666666666666,
+      "l1_directed_fraction": 1.0,
+      "liking_l2_redirect_steps": 200,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 0,
+      "n_harm_events": 11,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 200
+    },
+    "liking": {
+      "condition": "liking",
+      "resource_visit_rate": 0.0,
+      "harm_rate": 0.0036666666666666666,
+      "l1_directed_fraction": 1.0,
+      "liking_l2_redirect_steps": 200,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 0,
+      "n_harm_events": 11,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 200
+    },
+    "wanting": {
+      "condition": "wanting",
+      "resource_visit_rate": 0.0,
+      "harm_rate": 0.0036666666666666666,
+      "l1_directed_fraction": 1.0,
+      "liking_l2_redirect_steps": 200,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 1.0,
+      "goal_active": false,
+      "n_resource_visits": 0,
+      "n_harm_events": 11,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 200
+    }
+  },
+  "run_timestamp": "20260327T062636Z",
+  "claim": "MECH-112",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_074c_mech112_117_wanting_liking_20260327T062636Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

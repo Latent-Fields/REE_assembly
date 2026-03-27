@@ -1,0 +1,72 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "resource_rate_noe1": 0.275,
+    "resource_rate_withe1": 0.275,
+    "goal_halflife_noe1": 2000.0,
+    "goal_halflife_withe1": 2000.0,
+    "halflife_ratio": 1.0,
+    "peak_goal_norm_noe1": 0.3568956255912781,
+    "peak_goal_norm_withe1": 0.3568956255912781,
+    "goal_norm_at_1200_noe1": 0.13104085624217987,
+    "goal_norm_at_1200_withe1": 0.13104085624217987,
+    "harm_rate_noe1": 0.6985,
+    "harm_rate_withe1": 0.6985,
+    "e1_err_goal_noe1": 0.0,
+    "e1_err_neutral_noe1": 0.0,
+    "e1_err_goal_withe1": 0.0,
+    "e1_err_neutral_withe1": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-076d -- MECH-116 / ARC-032 E1 Goal Conditioning\n\n**Status:** FAIL\n**Claims:** MECH-116, ARC-032\n**Seed:** 42  **Steps:** 2000  **Resource removal:** step 1000\n**Fix from 076c:** CausalGridWorldV2 size=6, resource_respawn, 50% proximity-following navigation (z_goal seeding fix).\n\n## Conditions\n\n- wanting_noe1: z_goal_enabled=True, e1_goal_conditioned=False\n- wanting_withe1: z_goal_enabled=True, e1_goal_conditioned=True\n\n## Results\n\n| Metric | noe1 | withe1 |\n|---|---|---|\n| resource_visit_rate | 0.2750 | 0.2750 |\n| goal_halflife (steps) | 2000 | 2000 |\n| peak_goal_norm | 0.3569 | 0.3569 |\n| goal_norm_at_1200 | 0.1310 | 0.1310 |\n| harm_rate | 0.6985 | 0.6985 |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: halflife ratio >= 1.5x | FAIL |\n| C2: resource gap >= 0.03 | FAIL |\n| C3: noe1 goal decays to <50% peak by t1200 | PASS |\n| C4: withe1 goal_norm_t1200 >= noe1 + 0.02 | FAIL |\n\nCriteria met: 1/4 -> **FAIL**\n\n## Interpretation\n\nMECH-116 / ARC-032 NOT SUPPORTED: E1 conditioning does not demonstrably extend goal persistence. z_goal decay_goal may dominate over E1 recurrent maintenance, or benefit signal is insufficient to establish a strong z_goal prior to removal.\n\n## Failure Notes\n\n- C1 FAIL: halflife ratio=1.00 < 1.5 (noe1=2000 withe1=2000)\n- C2 FAIL: resource_rate gap=0.0000 < 0.03\n- C4 FAIL: goal_norm_t1200 diff=0.0000 < 0.02\n",
+  "claim_ids": [
+    "MECH-116",
+    "ARC-032"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_076d_mech116_arc032_e1_goal_conditioning",
+  "fatal_error_count": 0,
+  "condition_results": {
+    "wanting_noe1": {
+      "condition": "wanting_noe1",
+      "resource_visit_rate": 0.275,
+      "harm_rate": 0.6985,
+      "goal_halflife": 2000,
+      "peak_goal_norm": 0.3568956255912781,
+      "peak_goal_prox": 0.9958794116973877,
+      "goal_norm_at_1200": 0.13104085624217987,
+      "mean_e1_err_goal_steps": 0.0,
+      "mean_e1_err_neutral_steps": 0.0,
+      "n_e1_goal_steps": 1552,
+      "n_e1_neutral_steps": 448,
+      "n_resource_visits": 275,
+      "n_harm_events": 1397,
+      "total_steps": 2000
+    },
+    "wanting_withe1": {
+      "condition": "wanting_withe1",
+      "resource_visit_rate": 0.275,
+      "harm_rate": 0.6985,
+      "goal_halflife": 2000,
+      "peak_goal_norm": 0.3568956255912781,
+      "peak_goal_prox": 0.9958794116973877,
+      "goal_norm_at_1200": 0.13104085624217987,
+      "mean_e1_err_goal_steps": 0.0,
+      "mean_e1_err_neutral_steps": 0.0,
+      "n_e1_goal_steps": 1552,
+      "n_e1_neutral_steps": 448,
+      "n_resource_visits": 275,
+      "n_harm_events": 1397,
+      "total_steps": 2000
+    }
+  },
+  "run_timestamp": "20260327T065341Z",
+  "claim": "MECH-116",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_076d_mech116_arc032_e1_goal_conditioning_20260327T065341Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
