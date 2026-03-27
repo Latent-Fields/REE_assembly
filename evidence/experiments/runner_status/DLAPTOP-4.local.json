@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 7251,
   "runner_started_at": "2026-03-26T21:02:19.765363+00:00",
-  "last_updated": "2026-03-27T14:30:28.550900+00:00",
+  "last_updated": "2026-03-27T14:53:31.834147+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -2616,6 +2616,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_076e_mech116_arc032_e1_goal_conditioning/v3_exq_076e_mech116_arc032_e1_goal_conditioning_20260327T143027Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 34.8
+    },
+    {
+      "queue_id": "V3-EXQ-097b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-093 z_beta heartbeat rate modulation: step-level Pearson r (fixes EXQ-097 episode-averaging flaw)",
+      "description": "Discriminative pair BETA_MOD_ON vs BETA_MOD_OFF. C1 redesigned: step-level Pearson r(|z_beta|_norm, 1/e3_steps_per_tick) >= 0.15. 500 warmup episodes. EXQ-097 used episode-level mean gap which was too coarse (16:1 pool skew, minimal between-episode z_beta variance).",
+      "result": "PASS",
+      "result_summary": "harm_rate_on: 0.37018937080024433 | harm_rate_off: 0.23487986743993372 | harm_rate_ratio: 1.5760796139537738",
+      "started_at": "2026-03-27T14:32:34.576807+00:00",
+      "completed_at": "2026-03-27T14:53:31.825089+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_097b_mech093_heartbeat_rate/v3_exq_097b_mech093_heartbeat_rate_20260327T145329Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1257.2
     }
   ]
 }
