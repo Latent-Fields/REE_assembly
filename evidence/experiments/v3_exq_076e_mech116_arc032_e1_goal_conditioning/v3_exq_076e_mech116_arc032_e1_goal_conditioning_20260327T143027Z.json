@@ -1,0 +1,71 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "resource_rate_unconditioned": 0.249,
+    "resource_rate_conditioned": 0.249,
+    "goal_halflife_unconditioned": 10000.0,
+    "goal_halflife_conditioned": 10000.0,
+    "halflife_ratio": 1.0,
+    "peak_goal_norm_unconditioned": 0.3612843453884125,
+    "peak_goal_norm_conditioned": 0.3612843453884125,
+    "goal_norm_at_r1000_unconditioned": 0.0013850679388269782,
+    "goal_norm_at_r1000_conditioned": 0.0013850679388269782,
+    "harm_rate_unconditioned": 0.6875,
+    "harm_rate_conditioned": 0.6875,
+    "e1_err_goal_unconditioned": 0.0,
+    "e1_err_neutral_unconditioned": 0.0,
+    "e1_err_goal_conditioned": 0.0,
+    "e1_err_neutral_conditioned": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "criteria_met": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-076e -- MECH-116 / ARC-032 E1 Goal Conditioning 10k-step\n\n**Status:** FAIL\n**Claims:** MECH-116, ARC-032\n**Seed:** 42  **Steps:** 10000  **Resource removal:** step 5000  **Checkpoint:** step 6000\n**Budget rationale:** 076d used 2000 steps (removal at 1000); 30%% halflife threshold never reached in either condition. Extended to 10,000 steps (removal at 5000) to allow differential decay to emerge.\n\n## Conditions\n\n- goal_unconditioned: z_goal_enabled=True, e1_goal_conditioned=False\n- goal_conditioned: z_goal_enabled=True, e1_goal_conditioned=True\n\n## Results\n\n| Metric | unconditioned | conditioned |\n|---|---|---|\n| resource_visit_rate (pre-removal) | 0.2490 | 0.2490 |\n| goal_halflife (steps post-removal) | 10000 | 10000 |\n| halflife ratio | -- | 1.00 |\n| peak_goal_norm | 0.3613 | 0.3613 |\n| goal_norm at step 6000 | 0.0014 | 0.0014 |\n| harm_rate | 0.6875 | 0.6875 |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: halflife ratio >= 1.5x | FAIL |\n| C2: resource gap >= 0.03 | FAIL |\n| C3: goal_norm_conditioned > 0.05 at step 6000 | FAIL |\n\nCriteria met: 0/3 -> **FAIL**\n\n## Interpretation\n\nMECH-116 / ARC-032 NOT SUPPORTED: E1 conditioning does not demonstrably extend goal persistence at 10,000-step budget. z_goal decay may dominate over E1 recurrent maintenance, or benefit signal is insufficient to establish a strong z_goal prior to removal.\n\n## Failure Notes\n\n- C1 FAIL: halflife ratio=1.00 < 1.5 (uncond=10000 cond=10000)\n- C2 FAIL: resource_rate gap=0.0000 < 0.03\n- C3 FAIL: goal_norm_conditioned_at_r1000=0.0014 <= 0.05 (E1 conditioning not maintaining detectable goal signal at step 6000)\n",
+  "claim_ids": [
+    "MECH-116",
+    "ARC-032"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_076e_mech116_arc032_e1_goal_conditioning",
+  "fatal_error_count": 0,
+  "condition_results": {
+    "goal_unconditioned": {
+      "condition": "goal_unconditioned",
+      "resource_visit_rate": 0.249,
+      "harm_rate": 0.6875,
+      "goal_halflife": 10000,
+      "peak_goal_norm": 0.3612843453884125,
+      "peak_goal_prox": 0.9972858428955078,
+      "goal_norm_at_r1000": 0.0013850679388269782,
+      "mean_e1_err_goal_steps": 0.0,
+      "mean_e1_err_neutral_steps": 0.0,
+      "n_e1_goal_steps": 8701,
+      "n_e1_neutral_steps": 1299,
+      "n_resource_visits": 1245,
+      "n_harm_events": 6875,
+      "total_steps": 10000
+    },
+    "goal_conditioned": {
+      "condition": "goal_conditioned",
+      "resource_visit_rate": 0.249,
+      "harm_rate": 0.6875,
+      "goal_halflife": 10000,
+      "peak_goal_norm": 0.3612843453884125,
+      "peak_goal_prox": 0.9972858428955078,
+      "goal_norm_at_r1000": 0.0013850679388269782,
+      "mean_e1_err_goal_steps": 0.0,
+      "mean_e1_err_neutral_steps": 0.0,
+      "n_e1_goal_steps": 8701,
+      "n_e1_neutral_steps": 1299,
+      "n_resource_visits": 1245,
+      "n_harm_events": 6875,
+      "total_steps": 10000
+    }
+  },
+  "run_timestamp": "20260327T143027Z",
+  "claim": "MECH-116",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_076e_mech116_arc032_e1_goal_conditioning_20260327T143027Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
