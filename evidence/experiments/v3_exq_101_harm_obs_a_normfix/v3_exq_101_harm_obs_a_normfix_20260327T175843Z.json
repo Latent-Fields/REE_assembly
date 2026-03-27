@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "raw_harm_a_mean_high": 0.20140586222968995,
+    "raw_harm_a_mean_low": 0.2750789909418672,
+    "raw_harm_a_autocorr_high": 0.059977997589161225,
+    "raw_harm_s_autocorr_high": 0.09643296905705112,
+    "enc_z_harm_a_mean_high": 1.0908700317144393,
+    "enc_z_harm_a_mean_low": 1.4952373482645995,
+    "enc_z_harm_a_ac_high": -0.0079248260958373,
+    "enc_z_harm_s_ac_high": 0.06109885913605622,
+    "crit1_raw_density": 0.0,
+    "crit2_raw_autocorr": 0.0,
+    "crit3_enc_density": 0.0,
+    "crit4_enc_autocorr": 0.0,
+    "crit5_no_errors": 1.0,
+    "criteria_met": 1.0,
+    "fatal_error_count": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-101 -- SD-011 / ARC-016 harm_obs_a Normalization Fix Validation\n\n**Status:** FAIL\n**Claims:** SD-011, ARC-016\n**Supersedes:** V3-EXQ-100b (RAW_EMA_FAIL: hazard_max normalization bug)\n**Fix:** Removed per-step division by hazard_field.max() in harm_obs_a EMA update.\n         Now uses raw field values clipped to [0, 1].\n\n## Diagnosis: EMA_STILL_BROKEN\n\n## Phase 0: Raw harm_obs_a (no encoder) -- after normfix\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|-----------------|-----------------|-----------|\n| harm_obs_a mean | 0.2014 | 0.2751 | high > low * 1.1 (C1) |\n| harm_obs_a autocorr_lag10 | 0.060 | -0.094 | > 0.3 (C2) |\n| harm_obs_s autocorr_lag10 | 0.096 | -- | reference |\n\n| Criterion | Result |\n|-----------|--------|\n| C1: raw density response | FAIL |\n| C2: raw autocorr > 0.3 | FAIL |\n\n## Phase 1: Encoder output (after training)\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|-----------------|-----------------|-----------|\n| z_harm_a mean norm | 1.0909 | 1.4952 | high > low * 1.1 (C3) |\n| z_harm_a autocorr_lag10 | -0.008 | -- | > z_harm_s (C4) |\n| z_harm_s autocorr_lag10 | 0.061 | -- | reference |\n\n| Criterion | Result |\n|-----------|--------|\n| C3: encoder density | FAIL |\n| C4: encoder autocorr | FAIL |\n| C5: no fatal errors | PASS |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: harm_obs_a still not responding to density after normfix (high=0.2014 vs low=0.2751)\n- C2 FAIL: raw autocorr=0.060 still < 0.3 after normfix\n- C3 FAIL: z_harm_a encoder not density-sensitive (high=1.0909 vs low=1.4952)\n- C4 FAIL: z_harm_a autocorr=-0.008 not > z_harm_s autocorr=0.061\n",
+  "claim_ids": [
+    "SD-011",
+    "ARC-016"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_101_harm_obs_a_normfix",
+  "fatal_error_count": 0,
+  "diagnosis": "EMA_STILL_BROKEN",
+  "supersedes": "v3_exq_100b_affective_harm_diagnostic",
+  "run_timestamp": "20260327T175843Z",
+  "claim": "SD-011",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_101_harm_obs_a_normfix_20260327T175843Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

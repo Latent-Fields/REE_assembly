@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_032c_mech102_dense_grid
 
-Generated: `2026-03-27T17:31:31.434312Z`
+Generated: `2026-03-27T17:54:48.745257Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
