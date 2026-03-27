@@ -2,10 +2,58 @@
   "schema_version": "v1",
   "runner_pid": 7251,
   "runner_started_at": "2026-03-26T21:02:19.765363+00:00",
-  "last_updated": "2026-03-27T17:21:39.938092+00:00",
+  "last_updated": "2026-03-27T17:41:07.774615+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-095b",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ARC-033/SD-011 HarmForwardModel slow-learning extension (1800 eps)",
+    "description": "",
+    "script": "experiments/v3_exq_095b_harm_fwd_slow_learning.py",
+    "started_at": "2026-03-27T17:40:57.737878+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 100,
+      "episodes_total": 1800,
+      "overall_pct": 5.6
+    },
+    "seconds_elapsed": 10,
+    "seconds_remaining": 789,
+    "recent_lines": [
+      "FULL model: (51d harm_obs_s -> z_harm_s[32])",
+      "HAZARD model: (25d hazard_only -> z_harm_hz[16])",
+      "Phase1: 1800 eps (2x EXQ-095a)  logging every 100 steps",
+      "[P1] Terrain + HarmForwardModel training (1800 eps)...",
+      "[P1] ep 100/1800  hf_buf=1427  hf_loss~0.00169  hz_loss~0.00030  gnorm~0.02091"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
+    {
+      "queue_id": "V3-EXQ-095b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-033/SD-011 HarmForwardModel slow-learning extension (1800 eps)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-100b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-011/ARC-016 affective harm stream root-cause diagnostic",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",

@@ -3180,6 +3180,14 @@
     still random. Same training for both conditions. New diagnostics: goal_resource_r
     (Pearson r: is z_goal pointing toward resources?) and goal_vs_harm_ratio (MECH-124
     V4 risk: is z_goal salience competitive with harm?).
+    EXQ-085f FAIL 3/4 (2026-03-27, 3-seed): C1 PASS (z_goal_norm=0.228 > 0.1). C3 PASS
+    (cal_gap=0.030 -- MECH-071 calibration gradient intact). C4 PASS. C2 FAIL
+    (benefit_ratio=0.28x < 1.3x: GOAL_PRESENT=0.180/ep vs GOAL_ABSENT=0.637/ep). Wiring
+    now confirmed working; the new bottleneck is seeding quality: goal_resource_r=0.087
+    (< 0.2 threshold) -- z_goal is seeded but not pointing toward resources. MECH-124
+    diagnostic: goal_vs_harm_ratio=2.104 (> 0.3) -- salience is adequate, not the issue.
+    C3 PASS confirms MECH-071 calibration gradient is intact even when goal guidance
+    hurts navigation. Next step: warm-start z_goal initialization or stronger curriculum.
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
@@ -4016,6 +4024,13 @@
     correct operationalization is step-level Pearson r(|z_beta|, 1/e3_steps_per_tick),
     not the mean clock rate gap between episode types. EXQ-097b redesigned with
     step-level metric + 500 warmup episodes. Hold candidate.
+    EXQ-097b PASS 2/3 (2026-03-27): C1 r=0.964 (n=29937 steps) -- step-level z_beta/rate
+    correlation confirmed (core claim). C3 action_var_ratio=0.096 -- 10x lower action
+    variance in safe phases when BETA_MOD_ON. C2 harm_rate FAIL (ratio=1.58, higher in
+    BETA_MOD_ON): state selection artifact -- high-z_beta phases are high-harm contexts
+    by construction. Agent encounters more harm because it IS in high-harm situations, not
+    because slowing causes harm. PASS = C1 AND C3. MECH-093 supported. Promote to
+    provisional pending multi-seed replication.
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
@@ -4253,6 +4268,14 @@
     Haak & Beckmann three-pathway biological grounding is strong, but the current
     lateral head architecture (separate AUC scoring on harm channel) does not produce
     the expected signal improvement.
+    EXQ-098b FAIL 2/3 (2026-03-27, 2-seed): Redesigned with agency attribution labels
+    (agent_caused vs env_caused contact) + motion-delta input (MT analog). C2 PASS:
+    attr_AUC_THREE=0.9942 >= 0.65 (both streams learn attribution well). C3 PASS:
+    avoidance slightly higher with THREE_STREAM (+0.0007). C1 FAIL: auc_delta=-0.0047
+    (< 0.05 threshold) -- THREE_STREAM does not outperform TWO_STREAM. Key finding:
+    z_world already encodes agency attribution nearly as well (AUC_TWO=0.9989) as the
+    dedicated lateral head at this scale. The three-stream architectural advantage may
+    only emerge at larger world_dim or with a deeper lateral head. Hold candidate.
 # Registered 2026-03-18 — EMA root-cause analysis and encoder supervision gap
 - id: MECH-100
   title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
@@ -5025,6 +5048,15 @@
     ACC but not S1 -- affective and sensory-discriminative components are independent.
     Keltner et al. (2006) predictability suppresses sensory (S1) activity, not affective
     (ACC) -- forward model cancellation applies to z_harm_s but not z_harm_a.
+    EXQ-100 FAIL 2/4 (2026-03-27): First integration of AffectiveHarmEncoder (z_harm_a).
+    C3 PASS: step-std z_harm_a=0.026 vs z_harm_s=0.369 -- EMA smoothing structure confirmed
+    at the encoder output level. C4 PASS (no errors). C1 FAIL: z_harm_a LOWER in HIGH_HAZARD
+    (0.392) than LOW_HAZARD (0.425) -- inverted response. C2 FAIL: autocorr z_harm_a=-0.017
+    vs z_harm_s=0.061 -- negative autocorrelation from an EMA output is anomalous. Diagnosis:
+    harm_obs_a (EMA accumulator in environment) may not vary across conditions as expected,
+    OR AffectiveHarmEncoder is outputting near-random values despite structural smoothness.
+    EXQ-100b diagnostic needed: instrument harm_obs_a directly to verify density response
+    before any encoder training.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -5678,6 +5710,16 @@
     conditions -- insufficient time to observe meaningful decay. Not a refutation; budget
     too small. Need 10,000+ steps with goal removal at step 5000 for a meaningful halflife
     comparison. Queue EXQ-076e with longer training budget.
+    EXQ-076e FAIL 0/3 (2026-03-27, 10000 steps): Extended budget with removal at step 5000.
+    Both conditions IDENTICAL: resource_rate=0.249, halflife=10000, peak_goal_norm=0.3613,
+    goal_norm_at_step6000=0.0014. All metrics equal to 5 decimal places. The E1 conditioning
+    makes no measurable difference to goal maintenance. Two interpretations: (1) z_goal
+    representation is too weak to persist regardless of E1 conditioning (dependent on SD-012
+    seeding quality, not E1 recurrent maintenance); (2) The benefit signal is insufficient
+    to establish a meaningful goal prior before removal at step 5000. Goal_norm_at_step6000
+    =0.0014 in BOTH conditions -- goal has already decayed to near-zero. E1 conditioning
+    cannot maintain what wasn't there. Blocked by SD-012 / seeding quality, not testable
+    until z_goal seeding is reliable.
 
 - id: MECH-117
   title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
@@ -5787,6 +5829,13 @@
     E2.world_forward. This confirms the E2-forward-model-as-counterfactual architecture is
     sound; the same pattern now applies to z_harm_s. EXQ-093 FAIL (bridge_r2=0) and EXQ-094
     FAIL (100x regression) confirm that z_world -> z_harm bridge is not the path forward.
+    EXQ-095a FAIL/SLOW_LEARNING (2026-03-27, 900 phase1 eps): Separate FULL (51d) vs
+    HAZARD-ONLY (25d) HarmForwardModel trained. C1 PASS (grad=0.065), C2 PASS (loss 4x
+    drop: 0.00426->0.00113), C5 PASS (causal_approach=0.003864). C3/C4 FAIL: R2=0.0000
+    for both. hf_hazard_loss shows genuine monotonic decrease throughout 900 eps -- learning
+    IS occurring but model converges to conditional mean without capturing action-conditional
+    variance structure. Not an architectural failure; 900-ep budget insufficient. EXQ-095b
+    with 1800 phase1 eps queued.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
@@ -6853,3 +6902,11 @@
     require repeated drive-reduction cycles. Keramati & Gutkin (2014) homeostatic
     RL -- reward = drive reduction, not raw stimulus value; benefit signal must
     scale by drive level. Registered 2026-03-25.
+  evidence_quality_note: |
+    EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True,
+    curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation
+    successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables
+    seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random.
+    C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstream navigation quality
+    is the new bottleneck (goal_resource_r=0.087 -- z_goal not pointing toward resources).
+    SD-012 seeding claim is supported by C1 PASS; the FAIL is in navigation, not seeding.

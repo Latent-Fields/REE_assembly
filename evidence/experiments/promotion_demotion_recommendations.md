@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-27T10:58:13.000472Z`
+Generated: `2026-03-27T17:31:31.434312Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -138,7 +138,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
 - Why this decision is needed: overall_conf=0.621, conflict_ratio=0.571, exp_entries=8, lit_entries=1; directions supports=2, weakens=5, mixed=1, unknown=0, conflict_ratio=0.571
-- Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes. The gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. EXQ-096a PASS is a broad integration check, not a discriminative test for rate modulation. The current operationalization (episode-level E3 clock rate gap) may no…
+- Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta() is called every step in agent._e1_step() (agent.py:272). Implementation gap does NO…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -192,7 +192,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.78, conflict_ratio=1, exp_entries=21, lit_entries=3; directions supports=9, weakens=9, mixed=6, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.779, conflict_ratio=1, exp_entries=21, lit_entries=3; directions supports=9, weakens=9, mixed=6, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -210,7 +210,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.671, conflict_ratio=1, exp_entries=4, lit_entries=3; directions supports=3, weakens=3, mixed=1, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.67, conflict_ratio=1, exp_entries=4, lit_entries=3; directions supports=3, weakens=3, mixed=1, unknown=0, conflict_ratio=1
 - Evidence quality note: EXQ-098 (2026-03-26): Two independent FAILs. Run 1 (seeds=42, 5 eps warmup): auc_delta=0.0000 (threshold >= 0.05). Run 2 (seeds=42+7, 400 eps warmup): auc_delta=-0.0384 -- lateral head UNDERPERFORMS baseline with more training. Adverse direction in run 2 suggests lateral head may actively interfere with the existing two-stream harm signal. Hold at candidate. EXQ-098b redesign needed before closing…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
