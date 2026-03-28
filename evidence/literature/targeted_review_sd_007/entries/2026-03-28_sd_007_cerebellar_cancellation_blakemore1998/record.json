@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_007",
+  "entry_id": "2026-03-28_sd_007_cerebellar_cancellation_blakemore1998",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-007"],
+  "source": {
+    "title": "Central cancellation of self-produced tickle sensation.",
+    "authors": ["Blakemore, S.J.", "Wolpert, D.M.", "Frith, C.D."],
+    "year": 1998,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/2870",
+    "url": "https://doi.org/10.1038/2870"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "High-impact Nature Neuroscience paper establishing that the cerebellum predicts the specific sensory consequences of movement and provides the cancellation signal — the forward model framework underlying SD-007's ReafferencePredictor. fMRI shows reduced somatosensory cortex activity and reduced cerebellar activity for self-produced vs. externally produced touch. The Wolpert group's forward model interpretation (cerebellum as internal model computing sensory prediction) is exactly the computational form implemented in SD-007. Confidence is moderated by modality transfer (tactile -> visual) and by the coarse spatial resolution of fMRI relative to single-unit findings.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The cancellation is shown to be specific to self-produced stimuli with predictable sensory consequences — externally produced stimuli of identical physical parameters are perceived as significantly more intense. This implies the predictor must be trained on the specific statistical relationship between actions and sensory outcomes; an untrained or poorly calibrated predictor would fail to cancel.",
+    "The cerebellum shows less activation during the movement that generates the tactile stimulus than during a movement that does not — suggesting the cancellation signal is computed in relation to the predicted sensory consequence of the specific action, not movement in general."
+  ],
+  "tags": ["sd_007", "forward_model", "reafference_cancellation", "cerebellum", "sensory_attenuation"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum is involved in predicting the specific sensory consequences of movements, providing the signal used to cancel the sensory response to self-generated stimulation. Self-produced tactile stimuli produce less somatosensory cortex activity than externally produced stimuli.",
+    "ree_translation": "SD-007's ReafferencePredictor(z_world_raw_prev, a_prev) is the REE implementation of the cerebellar forward model described here. It takes the prior world state and the motor action as input — just as the cerebellum takes the efference copy of the motor command — and outputs a prediction of the expected change in z_world due to self-movement. This prediction is subtracted to yield the perspective-corrected latent z_world_corrected.",
+    "mapping_caveat": "The paper's mechanism is tactile/somatosensory; SD-007 is about visual perspective correction in a gridworld. The forward-model principle is shared but the specific sensory content differs substantially. Additionally, the cerebellar circuit has a precise biological substrate (granule cells, Purkinje cells, mossy fibres) that the ReafferencePredictor abstracts over.",
+    "source_context": "Human fMRI, self-produced vs. externally produced tactile stimulation paradigm, healthy adults. Classic paper from the Wolpert/Frith group establishing the cerebellar forward model for sensory cancellation."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.32,
+    "notes": "Modality transfer (tactile -> visual gridworld) is the primary risk. The forward-model computational claim is strongly supported; the specific neural substrate for visual reafference correction in SD-007's context differs from the somatosensory-cerebellar circuit studied here."
+  }
+}

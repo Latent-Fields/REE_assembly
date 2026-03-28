@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-28T15:23:18.889531Z`
+Generated: `2026-03-28T16:09:32.196508Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -24,7 +24,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-003` | directional, mixed_evidence | 13 | 20 | 0.788 | `v3_exq_095_harm_forward_model_sd003_20260325T021349Z_v3` | 71 |
 | `SD-004` | directional | 3 | 5 | 0.75 | `v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3` | 8 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 10 | 13 | 0.87 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 32 |
-| `SD-007` | directional, mixed_evidence | 7 | 7 | 1 | `v3_exq_057_sd010_reafference_isolation_20260322T014230Z_v3` | 18 |
+| `SD-007` | directional, mixed_evidence | 11 | 7 | 0.778 | `2026-03-28_sd_007_vestibular_reafference_roy2001` | 22 |
 
 ## Conflict Details
 
@@ -66,7 +66,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-018
 - Conflict types: directional
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.75
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.749
 - Recent entries:
   - `2026-03-15T12:58:44.288398+00:00` `experimental` `claim_probe_arc_018` direction=`weakens` confidence=0.75
   - `2026-03-20T07:38:09Z` `experimental` `claim_probe_arc_018` direction=`supports` confidence=0.75
@@ -116,7 +116,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-071
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=10, conflict_ratio=0.87, overall_confidence=0.776
+- Evidence breakdown: supports=13, weakens=10, conflict_ratio=0.87, overall_confidence=0.775
 - Recent entries:
   - `2026-03-24T20:22:10Z` `experimental` `v3_exq_085d_mech071_goal_persist` direction=`unknown` confidence=0.45
   - `2026-03-26T16:35:11.928901Z` `experimental` `v3_exq_058_arc027_harm_stream_calibration` direction=`supports` confidence=0.75
@@ -233,7 +233,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-135
 - Conflict types: directional
-- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, overall_confidence=0.7
+- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, overall_confidence=0.699
 - Recent entries:
   - `2026-03-28T09:54:13Z` `experimental` `v3_exq_103_e2_training_horizon_ablation` direction=`supports` confidence=0.75
   - `2026-03-28T09:54:19Z` `experimental` `v3_exq_104_e1_parallel_rollout` direction=`weakens` confidence=0.75
@@ -291,13 +291,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-007
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=7, conflict_ratio=1, overall_confidence=0.747
+- Evidence breakdown: supports=11, weakens=7, conflict_ratio=0.778, overall_confidence=0.811
 - Recent entries:
-  - `2026-03-18T20:17:40Z` `experimental` `v3_exq_029_sd003_proxy_gradient_world` direction=`supports` confidence=0.75
-  - `2026-03-19T20:17:02Z` `experimental` `claim_probe_sd_007` direction=`supports` confidence=0.75
-  - `2026-03-19T20:17:02Z` `experimental` `v3_exq_027b_sd007_reafference_diagnostic` direction=`supports` confidence=0.75
-  - `2026-03-20T17:11:30Z` `experimental` `claim_probe_mech_100` direction=`weakens` confidence=0.75
   - `2026-03-22T01:42:30Z` `experimental` `v3_exq_057_sd010_reafference_isolation` direction=`supports` confidence=0.75
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.73
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.8
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.7
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.77
+- Recurring failure signatures:
+  - `The cancellation is shown to be specific to self-produced stimuli with predictable sensory consequences — externally produced stimuli of identical physical parameters are perceived as significantly more intense. This implies the predictor must be trained on the specific statistical relationship between actions and sensory outcomes; an untrained or poorly calibrated predictor would fail to cancel.` (1)
+  - `The cerebellum shows less activation during the movement that generates the tactile stimulus than during a movement that does not — suggesting the cancellation signal is computed in relation to the predicted sensory consequence of the specific action, not movement in general.` (1)
+  - `The review notes important differences across sensory systems: visual reafference cancellation operates at higher cortical stages than vestibular/somatosensory suppression, implying that the REE architecture's single latent-level subtraction is an abstraction of a multi-stage biological process.` (1)
+  - `The review emphasises that the brain continuously calibrates the relationship between motor signals and sensory feedback — a static predictor without ongoing calibration would diverge, a failure mode not directly addressed in SD-007's current implementation.` (1)
+  - `Attenuation is graded by temporal delay: increasing delay between action and sensory outcome reduces attenuation, suggesting temporal correspondence is a prerequisite. A ReafferencePredictor operating on a stale prior state (large effective delay) would lose its cancellation effectiveness.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_060_arc016_beta_gate_fixed_threshold
 
-Generated: `2026-03-28T15:23:18.889531Z`
+Generated: `2026-03-28T16:09:32.196508Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

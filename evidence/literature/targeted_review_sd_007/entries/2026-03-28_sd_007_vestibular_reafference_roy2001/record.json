@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_007",
+  "entry_id": "2026-03-28_sd_007_vestibular_reafference_roy2001",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-007"],
+  "source": {
+    "title": "Selective processing of vestibular reafference during self-generated head motion.",
+    "authors": ["Roy, J.E.", "Cullen, K.E."],
+    "year": 2001,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.21-06-02131.2001",
+    "url": "https://doi.org/10.1523/JNEUROSCI.21-06-02131.2001"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "High source quality (J Neurosci, single-unit in macaque, widely cited). Strong mapping fidelity: the paper directly demonstrates that the motor command (efference copy of neck activation), not proprioceptive feedback, is the effective input for cancelling self-generated vestibular reafference — directly analogous to SD-007's design decision that z_world_raw_prev (not z_self_prev) must drive the ReafferencePredictor. Transfer risk is moderate: this is the vestibular system, while SD-007 targets visual/optic flow, but the reafference cancellation principle is shown to be general across sensory modalities.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cancellation is gated by neck motor command activation — if no neck muscle activation occurs (e.g., arm-driven whole-body rotation), neurons encode head motion normally, suggesting the efference copy mechanism is specific to the activated musculature, not a global self-motion suppression.",
+    "Proprioceptive input alone does not produce the cancellation effect — passive stretch of neck muscles during externally driven head motion does not gate vestibular responses."
+  ],
+  "tags": ["sd_007", "reafference", "efference_copy", "vestibular", "self_motion_cancellation"],
+  "mapping": {
+    "source_claim_statement": "During active head-on-body movements, vestibular nucleus neurons are suppressed, and this suppression is mediated by efference copy of the neck motor command rather than by proprioceptive feedback or knowledge of self-generated head motion.",
+    "ree_translation": "In SD-007, z_world_corrected = z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev). The choice of z_world_raw_prev as input (not z_self_prev) mirrors this finding: what matters for perspective correction is the content of the world stream as it responds to the agent's motor action, not the body-state representation alone. The neck motor command in the biological case corresponds to a_prev in REE; the vestibular nucleus suppression corresponds to the ReafferencePredictor output cancelling the action-induced change in z_world_raw.",
+    "mapping_caveat": "The vestibular system cancels rotational/translational body-in-space signals; SD-007's ReafferencePredictor cancels visual perspective shift caused by agent locomotion in a gridworld. The computational principle is shared, but the specific sensory substrate and what constitutes 'self-caused' differs. In the biological case the motor command is directly available; in REE it is the discrete action token a_prev.",
+    "source_context": "Alert rhesus macaques, in vivo single-unit recording from vestibular nucleus, active vs. passive head rotation paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk mainly from modality shift (vestibular -> visual optic flow) but the computational principle of efference-copy-based reafference cancellation is well-established across modalities by subsequent reviews."
+  }
+}

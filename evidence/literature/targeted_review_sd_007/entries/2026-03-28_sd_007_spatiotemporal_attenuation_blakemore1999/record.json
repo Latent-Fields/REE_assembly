@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_007",
+  "entry_id": "2026-03-28_sd_007_spatiotemporal_attenuation_blakemore1999",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-007"],
+  "source": {
+    "title": "Spatio-temporal prediction modulates the perception of self-produced stimuli.",
+    "authors": ["Blakemore, S.J.", "Frith, C.D.", "Wolpert, D.M."],
+    "year": 1999,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/089892999563607",
+    "url": "https://doi.org/10.1162/089892999563607"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Behavioural study establishing that self-generated sensory attenuation degrades parametrically with temporal delay and spatial mismatch between motor action and sensory outcome — the attenuation is proportional to the error between the forward model prediction and actual sensory feedback. This provides direct support for SD-007's design choice that the predictor input must be the world state (z_world_raw_prev) rather than the body state (z_self_prev): the cancellation only works when there is spatio-temporal correspondence between the action and the specific sensory change it produces. Confidence is moderated by the tactile modality and the human psychophysics methodology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Attenuation is graded by temporal delay: increasing delay between action and sensory outcome reduces attenuation, suggesting temporal correspondence is a prerequisite. A ReafferencePredictor operating on a stale prior state (large effective delay) would lose its cancellation effectiveness.",
+    "Trajectory perturbation (spatial mismatch between intended and actual sensory change direction) also reduces attenuation, implying the predictor must encode the directionality of the expected sensory change — a purely scalar or action-type-only predictor would be insufficient."
+  ],
+  "tags": ["sd_007", "sensory_attenuation", "forward_model", "spatiotemporal_prediction", "self_generated"],
+  "mapping": {
+    "source_claim_statement": "The attenuation of self-produced sensory stimuli is proportional to the error between the sensory feedback predicted by an internal forward model and the actual sensory feedback. Increasing temporal delay or spatial mismatch between action and sensory outcome degrades attenuation parametrically.",
+    "ree_translation": "SD-007's design decision that z_world_raw_prev (not z_self_prev) drives the ReafferencePredictor is supported by this paper's logic: accurate cancellation requires predicting the specific sensory change produced by the action. In a gridworld, what changes in z_world_raw when the agent moves is determined by the world content that enters the agent's view — which is captured in z_world_raw_prev — not by the body-state transition. This mirrors the finding that spatial correspondence (direction of sensory change) matters for attenuation.",
+    "mapping_caveat": "Human tactile psychophysics using a robotic delay/perturbation paradigm. The gridworld version of this question is whether a delay between action and the predictor's correction would degrade SD-007's performance — this is not tested in the current experiment design. The spatial mismatch finding maps onto z_world content rather than a simple scalar, which is consistent with SD-007's vector-valued predictor output.",
+    "source_context": "Human participants, robotic tactile stimulation setup, parametric manipulation of delay and spatial correspondence. Classic Wolpert group experiment establishing forward model prediction error framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Same modality transfer caveat as Blakemore 1998. The conceptual mapping to SD-007's input choice is strong and specific, but the empirical test is tactile not visual."
+  }
+}

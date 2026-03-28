@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_007",
+  "entry_id": "2026-03-28_sd_007_predictive_sensing_review_brooks2019",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-007"],
+  "source": {
+    "title": "Predictive Sensing: The Role of Motor Signals in Sensory Processing.",
+    "authors": ["Brooks, J.X.", "Cullen, K.E."],
+    "year": 2019,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2019.06.003",
+    "url": "https://doi.org/10.1016/j.bpsc.2019.06.003"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Authoritative review by the Cullen group synthesising circuit-level evidence for motor-signal-based reafference cancellation across somatosensory, vestibular, auditory, and visual systems. Directly relevant to SD-007: the paper establishes (a) the generality of the principle, (b) that cancellation occurs at the earliest stages of central processing, with cerebellum central, and (c) that visual processing implements cancellation at cortical rather than subcortical stages — matching SD-007's placement of the ReafferencePredictor at the latent encoding level rather than the raw sensory level. Low transfer risk because the review explicitly covers visual processing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes important differences across sensory systems: visual reafference cancellation operates at higher cortical stages than vestibular/somatosensory suppression, implying that the REE architecture's single latent-level subtraction is an abstraction of a multi-stage biological process.",
+    "The review emphasises that the brain continuously calibrates the relationship between motor signals and sensory feedback — a static predictor without ongoing calibration would diverge, a failure mode not directly addressed in SD-007's current implementation."
+  ],
+  "tags": ["sd_007", "predictive_sensing", "reafference", "efference_copy", "motor_signals", "review"],
+  "mapping": {
+    "source_claim_statement": "A general feature of sensory processing is the integration of motor signals with sensory information to distinguish exafferent (externally generated) from reafferent (self-generated) inputs. Motor-related inputs selectively cancel self-generated sensory responses at the earliest stages of central processing, with the cerebellum playing a key role. In visual processing, motor-related inputs cancel reafference at cortical stages.",
+    "ree_translation": "SD-007 implements this principle as a latent-space subtraction: z_world_corrected = z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev). The ReafferencePredictor is the REE analogue of the cerebellum's forward model, and its placement at the encoder stage mirrors the cortical-level cancellation described for visual processing. The paper's finding that visual reafference cancellation is cortical (not subcortical) is consistent with SD-007's choice to correct z_world at the latent representation level rather than at raw observation level.",
+    "mapping_caveat": "The review covers real sensory systems with biological motor commands (muscle activations, neck efference copies). REE's a_prev is a discrete action token in a gridworld, which is a heavily abstracted analogue. The calibration dynamics described in the paper (continuous recalibration as motor-sensory relationships change) are not currently modelled in SD-007.",
+    "source_context": "Review of cross-species literature including macaque, rodent, fish, and human neuroimaging data. Covers somatosensory, vestibular, auditory, and visual systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.18,
+    "notes": "Low transfer risk: the review explicitly covers visual processing and establishes the principle as domain-general. Main caveat is abstraction level of the REE implementation vs. full biological circuit."
+  }
+}

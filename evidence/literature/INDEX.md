@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-03-28T15:23:18.889531Z`
+Generated: `2026-03-28T16:09:32.196508Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -51,6 +51,7 @@ Generated: `2026-03-28T15:23:18.889531Z`
 | `targeted_review_q_011` | [`2026-02-15_q011_lit-0026_completion`](targeted_review_q_011/entries/2026-02-15_q011_lit-0026_completion/record.json) | 4 | [`summary`](targeted_review_q_011/entries/2026-02-15_q011_lit-0026_completion/summary.md) |
 | `targeted_review_q_019` | [`2026-02-27_q019_crick_1984`](targeted_review_q_019/entries/2026-02-27_q019_crick_1984/record.json) | 6 | [`summary`](targeted_review_q_019/entries/2026-02-27_q019_crick_1984/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
+| `targeted_review_sd_007` | [`2026-03-28_sd_007_vestibular_reafference_roy2001`](targeted_review_sd_007/entries/2026-03-28_sd_007_vestibular_reafference_roy2001/record.json) | 4 | [`summary`](targeted_review_sd_007/entries/2026-03-28_sd_007_vestibular_reafference_roy2001/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-02-15_mech056_lit-0014_completion`](targeted_review_v3_hippocampal_rollout/entries/2026-02-15_mech056_lit-0014_completion/record.json) | 11 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-02-15_mech056_lit-0014_completion/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |
