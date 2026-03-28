@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-28T14:42:03.776300Z`
+Generated: `2026-03-28T15:03:10.888174Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -11,6 +11,7 @@ Use this as the human-in-the-loop review queue.
 | claim_id | current_status | decision_needed | recommendation | decision_status |
 |---|---|---|---|---|
 | `ARC-023` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `ARC-026` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-091` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-092` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -39,6 +40,22 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361127Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.
+
+### ARC-026
+- Current status: `candidate`
+- Decision needed: Promotion review: candidate -> provisional
+- Why this decision is needed: overall_conf=0.784, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: EXQ-033 FAIL (2026-03-18): Tested C4 — whether approach_slope > contact_slope across training depths (ep 200–1000) on CausalGridWorldV2 (alpha_world=0.9, proximity_scale=0.05). Result: approach_slope=0.000265, contact_slope=0.000289, ratio=0.920. FAIL attributed to training instability: both signals peaked at ep500 (gap_approach=0.285, gap_contact=0.276) then degraded by ep1000 (0.245, 0.265). The…
+- Recommendation: `promote_to_provisional`
+- Options (pros/cons):
+  - Promote now (faster convergence, risk premature lock-in)
+  - Hold until one additional confirming run (better robustness, slower progress)
+  - Hold and request targeted literature triangulation (better external grounding, extra delay)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### MECH-072
 - Current status: `candidate`

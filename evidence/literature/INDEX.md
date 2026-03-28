@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-03-28T14:42:03.776300Z`
+Generated: `2026-03-28T15:03:10.888174Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -8,7 +8,7 @@ Generated: `2026-03-28T14:42:03.776300Z`
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
 | `targeted_review_arc_024` | [`2026-03-28_arc_024_threat_proximity_gradient_mobbs2007`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/record.json) | 3 | [`summary`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/summary.md) |
 | `targeted_review_arc_027_nociception` | [`2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/record.json) | 3 | [`summary`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/summary.md) |
-| `targeted_review_connectome_arc_016` | [`2026-02-21_arc016_principal_gradient_continuum_pnas2016`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/record.json) | 4 | [`summary`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/summary.md) |
+| `targeted_review_connectome_arc_016` | [`2026-03-28_arc_016_threshold_striatum_presma_forstmann2008`](targeted_review_connectome_arc_016/entries/2026-03-28_arc_016_threshold_striatum_presma_forstmann2008/record.json) | 6 | [`summary`](targeted_review_connectome_arc_016/entries/2026-03-28_arc_016_threshold_striatum_presma_forstmann2008/summary.md) |
 | `targeted_review_connectome_arc_023` | [`2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/record.json) | 1 | [`summary`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/summary.md) |
 | `targeted_review_connectome_mech_025` | [`2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_025/entries/2026-02-21_mech025_goal_directed_dmn_coupling_neuroimage2010/summary.md) |
 | `targeted_review_connectome_mech_026` | [`2026-02-21_mech026_concurrent_direct_indirect_nature2013`](targeted_review_connectome_mech_026/entries/2026-02-21_mech026_concurrent_direct_indirect_nature2013/record.json) | 4 | [`summary`](targeted_review_connectome_mech_026/entries/2026-02-21_mech026_concurrent_direct_indirect_nature2013/summary.md) |

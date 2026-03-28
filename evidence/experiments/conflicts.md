@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-28T14:42:03.776300Z`
+Generated: `2026-03-28T15:03:10.888174Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -8,11 +8,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |
 |---|---|---|---|---|---|---|
 | `ARC-007` | directional | 4 | 6 | 0.8 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 11 |
-| `ARC-016` | directional, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_101_harm_obs_a_normfix_20260327T175843Z_v3` | 28 |
+| `ARC-016` | directional, source_disagreement, mixed_evidence | 13 | 13 | 1 | `2026-03-28_arc_016_threshold_striatum_presma_forstmann2008` | 30 |
 | `ARC-018` | directional | 2 | 1 | 0.667 | `v3_exq_053_arc018_rollout_viability_20260320T073809Z_v3` | 3 |
-| `ARC-024` | directional, mixed_evidence | 10 | 7 | 0.824 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 30 |
+| `ARC-024` | directional, mixed_evidence | 12 | 7 | 0.737 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 30 |
 | `MECH-033` | directional | 4 | 1 | 0.4 | `v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3` | 5 |
-| `MECH-071` | directional, mixed_evidence | 11 | 10 | 0.952 | `v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3` | 47 |
+| `MECH-071` | directional, mixed_evidence | 13 | 10 | 0.87 | `v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3` | 47 |
 | `MECH-089` | directional, mixed_evidence | 9 | 3 | 0.5 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 16 |
 | `MECH-090` | directional, mixed_evidence | 8 | 4 | 0.667 | `20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3` | 21 |
 | `MECH-093` | directional, source_disagreement, mixed_evidence | 3 | 5 | 0.75 | `v3_exq_097b_mech093_heartbeat_rate_20260327T145329Z_v3` | 10 |
@@ -30,7 +30,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=6, conflict_ratio=0.8, overall_confidence=0.707
+- Evidence breakdown: supports=4, weakens=6, conflict_ratio=0.8, overall_confidence=0.706
 - Recent entries:
   - `2026-03-23T12:16:55Z` `experimental` `v3_exq_046_arc007_path_memory_ablation` direction=`weakens` confidence=0.75
   - `2026-03-23T14:33:03Z` `experimental` `v3_exq_046_arc007_path_memory_ablation` direction=`weakens` confidence=0.75
@@ -45,16 +45,20 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### ARC-016
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=13, conflict_ratio=0.917, overall_confidence=0.799
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=13, weakens=13, conflict_ratio=1, overall_confidence=0.803
 - Recent entries:
-  - `2026-03-26T16:35:11.936466Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
-  - `2026-03-26T16:35:11.936824Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
   - `2026-03-27T17:21:37Z` `experimental` `v3_exq_100_z_harm_a_integration` direction=`mixed` confidence=0.5
   - `2026-03-27T17:42:57Z` `experimental` `v3_exq_100b_affective_harm_diagnostic` direction=`weakens` confidence=0.75
   - `2026-03-27T17:58:43Z` `experimental` `v3_exq_101_harm_obs_a_normfix` direction=`weakens` confidence=0.75
+  - `2026-03-28T23:55:00Z` `literature` `targeted_review_connectome_arc_016` direction=`supports` confidence=0.76
+  - `2026-03-28T23:55:00Z` `literature` `targeted_review_connectome_arc_016` direction=`supports` confidence=0.74
 - Recurring failure signatures:
   - `v2_verdict_fail:precision_regime_probe` (2)
+  - `The model addresses tonic dopamine modulation of global precision rather than the local, phasic variance computation REE proposes (E3-derived variance from a specific predictive model).` (1)
+  - `The affordance/action-selection framing is specific to motor hierarchy; the REE BetaGate operates at a cognitive control level that is not directly modelled.` (1)
+  - `Simulated Parkinson's-like deficits are presented as validation, but this requires the transfer from pathological to healthy-optimal to REE agent which is speculative.` (1)
+  - `The threshold manipulation is externally imposed (speed-accuracy cues) not internally derived from prediction uncertainty, unlike ARC-016's E3-derived variance mechanism.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -76,7 +80,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=10, weakens=7, conflict_ratio=0.824, overall_confidence=0.777
+- Evidence breakdown: supports=12, weakens=7, conflict_ratio=0.737, overall_confidence=0.791
 - Recent entries:
   - `2026-03-23T12:21:09Z` `experimental` `v3_exq_077_arc024_asymptotic_proxy_pair` direction=`supports` confidence=0.75
   - `2026-03-23T14:33:50Z` `experimental` `v3_exq_071_rollout_batched_attribution` direction=`mixed` confidence=0.5
@@ -112,7 +116,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-071
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=10, conflict_ratio=0.952, overall_confidence=0.757
+- Evidence breakdown: supports=13, weakens=10, conflict_ratio=0.87, overall_confidence=0.776
 - Recent entries:
   - `2026-03-24T20:22:10Z` `experimental` `v3_exq_085d_mech071_goal_persist` direction=`unknown` confidence=0.45
   - `2026-03-26T16:35:11.928901Z` `experimental` `v3_exq_058_arc027_harm_stream_calibration` direction=`supports` confidence=0.75

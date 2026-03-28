@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "resource_visit_rate_nogo": 0.0,
+    "resource_visit_rate_comp": 0.0,
+    "resource_visit_rate_rand": 0.0,
+    "policy_entropy_nogo": -9.98980009325346e-10,
+    "policy_entropy_comp": -9.98980009325346e-10,
+    "n_resource_events_nogo": 0.0,
+    "n_resource_events_comp": 0.0,
+    "harm_rate_nogo": 0.017134115247322796,
+    "harm_rate_comp": 0.017134115247322796,
+    "mean_resource_field_nogo": 1.2714254933799305,
+    "mean_resource_field_comp": 1.2714254933799305,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-072b -- Q-021 Behavioral Flatness Diagnostic\n\n**Status:** FAIL\n**Claims:** Q-021\n**Seed:** 42  **Warmup:** 200 eps  **Eval:** 50 eps\n\n## Conditions\n\n| Condition | resource_visit_rate | policy_entropy | n_resource_events |\n|---|---|---|---|\n| NoGo-only (A) | 0.0000 | -0.0000 | 0 |\n| Competitive (B) | 0.0000 | -0.0000 | 0 |\n| Random baseline | 0.0000 | 1.3858 | 0 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: nogo <= random+0.02 (flatness present) | PASS | 0.0000 vs 0.0200 |\n| C2: competitive >= nogo+0.05 (Go channel helps) | FAIL | 0.0000 vs 0.0500 |\n| C3: entropy gap >= 0.10 (diversity difference) | FAIL | 0.0000 |\n| C4: nogo resource events <= comp*0.80 | PASS | 0 vs 0.0 |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Interpretation\n\nQ-021 PARTIAL: Some behavioral flatness signal detected but below threshold. Longer training or stronger harm signal may be needed.\n\n## Failure Notes\n\n- C2 FAIL: comp resource_rate=0.0000 < nogo+0.05=0.0500\n- C3 FAIL: entropy gap=0.0000 < 0.10\n",
+  "claim_ids": [
+    "Q-021"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_072b_q021_behavioral_flatness",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260328T135541Z",
+  "claim": "Q-021",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_072b_q021_behavioral_flatness_20260328T135541Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

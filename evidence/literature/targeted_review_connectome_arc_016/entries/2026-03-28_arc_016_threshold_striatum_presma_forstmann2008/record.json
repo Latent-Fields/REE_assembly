@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-03-28_arc_016_threshold_striatum_presma_forstmann2008",
+  "timestamp_utc": "2026-03-28T23:55:00Z",
+  "claim_ids_tested": ["ARC-016"],
+  "source": {
+    "title": "Striatum and pre-SMA facilitate decision-making under time pressure",
+    "authors": ["Birte U Forstmann", "Gilles Dutilh", "Scott Brown", "Jane Neumann", "D Yves von Cramon", "K Richard Ridderinkhof", "Eric-Jan Wagenmakers"],
+    "year": 2008,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.0805903105",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18981414/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Good mapping to the threshold-gating half of ARC-016's circuit: striatum and pre-SMA activation correlates with response threshold adjustment under speed pressure, directly instantiating the claim that a BG-frontal circuit modulates action-selection gating based on a threshold parameter. Individual variation in striatum activation predicts individual variation in threshold — confirming the threshold is a circuit-level variable, not just behavioural. Moderate transfer risk from response-speed pressure to REE's precision-derived commitment threshold.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The threshold manipulation is externally imposed (speed-accuracy cues) not internally derived from prediction uncertainty, unlike ARC-016's E3-derived variance mechanism.",
+    "Pre-SMA/striatum are motor circuit nodes; ARC-016's BetaGate is conceptually at the cognitive control level, requiring an additional inference that the same circuit logic generalises upward.",
+    "fMRI temporal resolution cannot resolve whether threshold is set before or during the deliberation phase, which matters for the E3-derived variance → threshold → gate ordering ARC-016 requires."
+  ],
+  "tags": ["arc_016", "decision_threshold", "striatum", "pre_SMA", "BetaGate", "action_selection_gating"],
+  "mapping": {
+    "source_claim_statement": "Under speed pressure, striatum and pre-SMA are activated; individual variation in these activations correlates with individual variation in response threshold (lower threshold = faster/less accurate). The basal ganglia-frontal circuit implements threshold modulation for action gating.",
+    "ree_translation": "The striatum-pre-SMA threshold modulation circuit is the neural analog of ARC-016's BetaGate: the BG-frontal circuit sets a commitment threshold and gates when accumulated evidence (or in REE, when E3-derived variance crosses a relative threshold) permits action release. The REE BetaGate's commit-rate vs precision relationship (EXQ-018b: 40% precision drop → 40% commit-rate drop) directly parallels the threshold-activation correlation this study documents.",
+    "mapping_caveat": "Forstmann et al. vary threshold via externally imposed speed-accuracy instructions; ARC-016 requires threshold to emerge from E3's internal uncertainty estimate. The neural circuit is the same but the driving signal differs. The inference is that the same BG-frontal gating circuit that implements instruction-driven threshold adjustment also implements E3-driven threshold adjustment.",
+    "source_context": "Human fMRI, n=19, two-alternative forced choice perceptual decision task with speed-accuracy emphasis cues, drift-diffusion model parameter extraction"
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.34,
+    "notes": "PNAS journal, human data, strong individual-differences correlation design. Transfer risk from externally-driven to internally-derived threshold. Mapping fidelity penalised for this distinction."
+  }
+}

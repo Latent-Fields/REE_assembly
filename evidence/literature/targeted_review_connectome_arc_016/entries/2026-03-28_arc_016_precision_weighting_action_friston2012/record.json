@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_016",
+  "entry_id": "2026-03-28_arc_016_precision_weighting_action_friston2012",
+  "timestamp_utc": "2026-03-28T23:55:00Z",
+  "claim_ids_tested": ["ARC-016"],
+  "source": {
+    "title": "Dopamine, Affordance and Active Inference",
+    "authors": ["Karl J Friston", "Tamara Shiner", "Thomas FitzGerald", "Joseph M Galea", "Rick Adams", "Harriet Brown", "Raymond J Dolan", "Rosalyn Moran", "Klaas Enno Stephan", "Sven Bestmann"],
+    "year": 2012,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1002327",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22241972/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "High mapping fidelity for the precision-weighting half of ARC-016's circuit: dopamine modulates prediction error precision (inverse variance of expectations), which in the REE mapping corresponds directly to E3-derived variance setting the weight of prediction errors that drive action selection. Source quality is strong (PLoS Comp Bio, Friston lab). Transfer risk is moderate because the paper models motor action affordances specifically, not a general E3→BetaGate→action_selection circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model addresses tonic dopamine modulation of global precision rather than the local, phasic variance computation REE proposes (E3-derived variance from a specific predictive model).",
+    "The affordance/action-selection framing is specific to motor hierarchy; the REE BetaGate operates at a cognitive control level that is not directly modelled.",
+    "Simulated Parkinson's-like deficits are presented as validation, but this requires the transfer from pathological to healthy-optimal to REE agent which is speculative."
+  ],
+  "tags": ["arc_016", "precision_weighting", "prediction_error", "dopamine", "active_inference", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Dopamine encodes the precision (inverse variance) of prediction errors in a hierarchical generative model; modulating dopamine shifts the balance between sensory evidence and prior beliefs in driving action. High precision = errors drive strong action updates; low precision = prior beliefs dominate.",
+    "ree_translation": "In ARC-016's circuit, E3-derived prediction variance plays the role Friston assigns to dopamine-encoded precision: high variance (uncertain environment) = low precision = lower commitment threshold (more cautious); low variance (predictable environment) = high precision = higher commitment threshold (more decisive). The EXQ-018b relative threshold (2x training baseline variance) instantiates this: the agent adjusts action commitment proportional to its own current prediction uncertainty.",
+    "mapping_caveat": "The paper models dopamine as a neuromodulator setting global precision, not as a circuit element in a local variance→threshold→gate computation. REE's circuit is architecturally more specific: E3 computes local prediction variance, compares it to a relative threshold, and gates action via BetaGate. The precision-weighting principle is conserved but the implementation pathway differs.",
+    "source_context": "Computational model of sequential motor behaviour; hierarchical Bayesian inference; simulated Parkinson's disease"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Strong theoretical grounding. Transfer risk from motor affordances to cognitive control/BetaGate gating requires an additional step. Mapping fidelity penalised for global vs local precision distinction."
+  }
+}

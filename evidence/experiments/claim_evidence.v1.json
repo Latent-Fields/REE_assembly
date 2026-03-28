@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=10 entry(s), lit=1 entry(s), exp_conf=0.698, lit_conf=0.734",
+      "confidence_rationale": "exp=10 entry(s), lit=1 entry(s), exp_conf=0.697, lit_conf=0.734",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -208,7 +208,7 @@
         "exp:simulation": 10,
         "lit:neuroscience_experiment": 1
       },
-      "experimental_confidence": 0.698,
+      "experimental_confidence": 0.697,
       "fail_runs": 6,
       "genuine_exp_count": 10,
       "genuine_exp_direction_counts": {
@@ -220,7 +220,7 @@
       "latest_run_id": "v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3",
       "latest_timestamp_utc": "2026-03-25T05:54:16Z",
       "literature_confidence": 0.734,
-      "overall_confidence": 0.707,
+      "overall_confidence": 0.706,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -301,17 +301,19 @@
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=27 entry(s), lit=4 entry(s), exp_conf=0.726, lit_conf=0.873",
+      "confidence_rationale": "exp=27 entry(s), lit=6 entry(s), exp_conf=0.726, lit_conf=0.88",
       "direction_counts": {
         "mixed": 4,
-        "supports": 14,
+        "supports": 16,
         "unknown": 0,
         "weakens": 13
       },
-      "entries_total": 31,
+      "entries_total": 33,
       "evidence_class_counts": {
         "exp:simulation": 27,
+        "lit:computational_model": 1,
         "lit:connectome_gradient_continuous_landscape": 1,
+        "lit:fmri_connectivity": 1,
         "lit:intrinsic_network_competition": 1,
         "lit:metastate_hierarchical_dynamics": 1,
         "lit:network_switching_salience_control": 1
@@ -325,40 +327,12 @@
         "unknown": 0,
         "weakens": 13
       },
-      "latest_run_id": "v3_exq_101_harm_obs_a_normfix_20260327T175843Z_v3",
-      "latest_timestamp_utc": "2026-03-27T17:58:43Z",
-      "literature_confidence": 0.873,
-      "overall_confidence": 0.799,
+      "latest_run_id": "2026-03-28_arc_016_threshold_striatum_presma_forstmann2008",
+      "latest_timestamp_utc": "2026-03-28T23:55:00Z",
+      "literature_confidence": 0.88,
+      "overall_confidence": 0.803,
       "pass_runs": 10,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "v3_exq_060_arc016_beta_gate_fixed_threshold",
-          "failure_signatures": [],
-          "run_id": "20260321T131212Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-26T16:35:11.936466Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-016",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "v3_exq_060_arc016_beta_gate_fixed_threshold",
-          "failure_signatures": [],
-          "run_id": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-26T16:35:11.936824Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-016",
@@ -400,12 +374,48 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-27T17:58:43Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.76,
+          "confidence_rationale": "High mapping fidelity for the precision-weighting half of ARC-016's circuit: dopamine modulates prediction error precision (inverse variance of expectations), which in the REE mapping corresponds directly to E3-derived variance setting the weight of prediction errors that drive action selection. Source quality is strong (PLoS Comp Bio, Friston lab). Transfer risk is moderate because the paper models motor action affordances specifically, not a general E3\u2192BetaGate\u2192action_selection circuit.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_016",
+          "failure_signatures": [
+            "The model addresses tonic dopamine modulation of global precision rather than the local, phasic variance computation REE proposes (E3-derived variance from a specific predictive model).",
+            "The affordance/action-selection framing is specific to motor hierarchy; the REE BetaGate operates at a cognitive control level that is not directly modelled.",
+            "Simulated Parkinson's-like deficits are presented as validation, but this requires the transfer from pathological to healthy-optimal to REE agent which is speculative."
+          ],
+          "run_id": "2026-03-28_arc_016_precision_weighting_action_friston2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-016",
+          "confidence": 0.74,
+          "confidence_rationale": "Good mapping to the threshold-gating half of ARC-016's circuit: striatum and pre-SMA activation correlates with response threshold adjustment under speed pressure, directly instantiating the claim that a BG-frontal circuit modulates action-selection gating based on a threshold parameter. Individual variation in striatum activation predicts individual variation in threshold \u2014 confirming the threshold is a circuit-level variable, not just behavioural. Moderate transfer risk from response-speed pressure to REE's precision-derived commitment threshold.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_016",
+          "failure_signatures": [
+            "The threshold manipulation is externally imposed (speed-accuracy cues) not internally derived from prediction uncertainty, unlike ARC-016's E3-derived variance mechanism.",
+            "Pre-SMA/striatum are motor circuit nodes; ARC-016's BetaGate is conceptually at the cognitive control level, requiring an additional inference that the same circuit logic generalises upward.",
+            "fMRI temporal resolution cannot resolve whether threshold is set before or during the deliberation phase, which matters for the E3-derived variance \u2192 threshold \u2192 gate ordering ARC-016 requires."
+          ],
+          "run_id": "2026-03-28_arc_016_threshold_striatum_presma_forstmann2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T23:55:00Z"
         }
       ],
-      "runs_total": 31,
+      "runs_total": 33,
       "source_counts": {
         "experimental": 27,
-        "literature": 4
+        "literature": 6
       }
     },
     "ARC-017": {
@@ -688,10 +698,10 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=27 entry(s), lit=3 entry(s), exp_conf=0.727, lit_conf=0.827",
+      "confidence_rationale": "exp=27 entry(s), lit=3 entry(s), exp_conf=0.755, lit_conf=0.827",
       "direction_counts": {
-        "mixed": 13,
-        "supports": 10,
+        "mixed": 11,
+        "supports": 12,
         "unknown": 0,
         "weakens": 7
       },
@@ -701,19 +711,19 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.727,
+      "experimental_confidence": 0.755,
       "fail_runs": 20,
       "genuine_exp_count": 27,
       "genuine_exp_direction_counts": {
-        "mixed": 13,
-        "supports": 7,
+        "mixed": 11,
+        "supports": 9,
         "unknown": 0,
         "weakens": 7
       },
       "latest_run_id": "2026-03-28_arc_024_threat_proximity_gradient_mobbs2007",
       "latest_timestamp_utc": "2026-03-28T23:45:00Z",
       "literature_confidence": 0.827,
-      "overall_confidence": 0.777,
+      "overall_confidence": 0.791,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -859,6 +869,68 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-18T20:25:55Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 2,
+        "literature": 0
+      }
+    },
+    "ARC-026": {
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.784, lit_conf=0",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "exp:simulation": 2
+      },
+      "experimental_confidence": 0.784,
+      "fail_runs": 2,
+      "genuine_exp_count": 2,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
+      "latest_timestamp_utc": "2026-03-19T06:07:20Z",
+      "literature_confidence": 0.0,
+      "overall_confidence": 0.784,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-026",
+          "confidence": 0.55,
+          "confidence_rationale": "direction/status mismatch",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "v3_exq_033_training_depth_calibration",
+          "failure_signatures": [],
+          "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-18T20:25:10Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-026",
+          "confidence": 0.55,
+          "confidence_rationale": "direction/status mismatch",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "experiment_type": "v3_exq_039_training_progression",
+          "failure_signatures": [],
+          "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-19T06:07:20Z"
         }
       ],
       "runs_total": 2,
@@ -1329,10 +1401,10 @@
       }
     },
     "INV-029": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.508, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.781, lit_conf=0",
       "direction_counts": {
-        "mixed": 2,
-        "supports": 0,
+        "mixed": 1,
+        "supports": 1,
         "unknown": 0,
         "weakens": 0
       },
@@ -1340,19 +1412,19 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.508,
+      "experimental_confidence": 0.781,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
-        "mixed": 2,
-        "supports": 0,
+        "mixed": 1,
+        "supports": 1,
         "unknown": 0,
         "weakens": 0
       },
       "latest_run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
       "latest_timestamp_utc": "2026-03-18T20:25:10Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.508,
+      "overall_confidence": 0.781,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1372,10 +1444,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "INV-029",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.55,
+          "confidence_rationale": "direction/status mismatch",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "supports",
           "experiment_type": "v3_exq_033_training_depth_calibration",
           "failure_signatures": [],
           "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -3325,10 +3397,10 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=43 entry(s), lit=0 entry(s), exp_conf=0.757, lit_conf=0",
+      "confidence_rationale": "exp=43 entry(s), lit=0 entry(s), exp_conf=0.776, lit_conf=0",
       "direction_counts": {
-        "mixed": 21,
-        "supports": 11,
+        "mixed": 19,
+        "supports": 13,
         "unknown": 2,
         "weakens": 9
       },
@@ -3336,19 +3408,19 @@
       "evidence_class_counts": {
         "exp:simulation": 43
       },
-      "experimental_confidence": 0.757,
+      "experimental_confidence": 0.776,
       "fail_runs": 32,
       "genuine_exp_count": 43,
       "genuine_exp_direction_counts": {
-        "mixed": 21,
-        "supports": 11,
+        "mixed": 19,
+        "supports": 13,
         "unknown": 2,
         "weakens": 9
       },
       "latest_run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
       "latest_timestamp_utc": "2026-03-27T17:20:24Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.757,
+      "overall_confidence": 0.776,
       "pass_runs": 11,
       "recent_entries": [
         {
@@ -30160,10 +30232,24 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-024",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
+      "experiment_type": "v3_exq_033_training_depth_calibration",
+      "failure_signatures": [],
+      "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-18T20:25:10Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-026",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
       "experiment_type": "v3_exq_033_training_depth_calibration",
       "failure_signatures": [],
       "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -30188,10 +30274,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-029",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_type": "v3_exq_033_training_depth_calibration",
       "failure_signatures": [],
       "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -30216,10 +30302,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-071",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_type": "v3_exq_033_training_depth_calibration",
       "failure_signatures": [],
       "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -30776,10 +30862,24 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-024",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
+      "experiment_type": "v3_exq_039_training_progression",
+      "failure_signatures": [],
+      "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-03-19T06:07:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-026",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
       "experiment_type": "v3_exq_039_training_progression",
       "failure_signatures": [],
       "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
@@ -30804,10 +30904,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-071",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.55,
+      "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_type": "v3_exq_039_training_progression",
       "failure_signatures": [],
       "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
@@ -35143,9 +35243,45 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-03-28T23:45:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.76,
+      "confidence_rationale": "High mapping fidelity for the precision-weighting half of ARC-016's circuit: dopamine modulates prediction error precision (inverse variance of expectations), which in the REE mapping corresponds directly to E3-derived variance setting the weight of prediction errors that drive action selection. Source quality is strong (PLoS Comp Bio, Friston lab). Transfer risk is moderate because the paper models motor action affordances specifically, not a general E3\u2192BetaGate\u2192action_selection circuit.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_016",
+      "failure_signatures": [
+        "The model addresses tonic dopamine modulation of global precision rather than the local, phasic variance computation REE proposes (E3-derived variance from a specific predictive model).",
+        "The affordance/action-selection framing is specific to motor hierarchy; the REE BetaGate operates at a cognitive control level that is not directly modelled.",
+        "Simulated Parkinson's-like deficits are presented as validation, but this requires the transfer from pathological to healthy-optimal to REE agent which is speculative."
+      ],
+      "run_id": "2026-03-28_arc_016_precision_weighting_action_friston2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-016",
+      "confidence": 0.74,
+      "confidence_rationale": "Good mapping to the threshold-gating half of ARC-016's circuit: striatum and pre-SMA activation correlates with response threshold adjustment under speed pressure, directly instantiating the claim that a BG-frontal circuit modulates action-selection gating based on a threshold parameter. Individual variation in striatum activation predicts individual variation in threshold \u2014 confirming the threshold is a circuit-level variable, not just behavioural. Moderate transfer risk from response-speed pressure to REE's precision-derived commitment threshold.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_016",
+      "failure_signatures": [
+        "The threshold manipulation is externally imposed (speed-accuracy cues) not internally derived from prediction uncertainty, unlike ARC-016's E3-derived variance mechanism.",
+        "Pre-SMA/striatum are motor circuit nodes; ARC-016's BetaGate is conceptually at the cognitive control level, requiring an additional inference that the same circuit logic generalises upward.",
+        "fMRI temporal resolution cannot resolve whether threshold is set before or during the deliberation phase, which matters for the E3-derived variance \u2192 threshold \u2192 gate ordering ARC-016 requires."
+      ],
+      "run_id": "2026-03-28_arc_016_threshold_striatum_presma_forstmann2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T23:55:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-28T14:42:03.776300Z",
+  "generated_at_utc": "2026-03-28T15:03:10.888174Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
