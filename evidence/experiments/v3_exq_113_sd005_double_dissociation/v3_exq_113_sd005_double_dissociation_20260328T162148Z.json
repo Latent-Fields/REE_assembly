@@ -1,0 +1,50 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_world_split": 0.009484627746142726,
+    "gap_world_unified": 0.006184183764282758,
+    "delta_approach_gap_world": 0.0033004439818599685,
+    "gap_self_split": 0.0010947314506960515,
+    "gap_self_unified": 0.0017164820888440069,
+    "delta_approach_gap_self": -0.0006217506381479554,
+    "n_approach_min": 446.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "nav_bias": 0.4,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-113 -- SD-005 Double Dissociation\n\n**Status:** FAIL\n**Claims:** SD-005\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 300 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, use_proxy_fields=True, nav_bias=0.4\n\n## Pre-Registered Thresholds\n\nC1: delta_approach_gap_world (SPLIT-UNIFIED) >= 0.02  (world improves in SPLIT)\nC2: gap_approach_split_world >= 0.06  (SPLIT world absolutely detects approach)\nC3: gap_approach_unified_world >= 0.0  (UNIFIED learns something)\nC4: delta_approach_gap_self (SPLIT-UNIFIED) <= -0.02  (z_self loses world content in SPLIT = purification)\nC5: n_approach_eval >= 30  (data quality)\n\n## Results\n\n| Condition | gap_world | gap_self | mean_world_none | mean_world_appr |\n|-----------|----------|---------|-----------------|------------------|\n| SPLIT   | 0.0095 | 0.0011 | 0.5065 | 0.5160 |\n| UNIFIED | 0.0062 | 0.0017 | 0.5066 | 0.5128 |\n\n**delta_world (SPLIT-UNIFIED): +0.0033**  **delta_self (SPLIT-UNIFIED): -0.0006**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: delta_world >= 0.02 | FAIL | 0.0033 |\n| C2: gap_world_split >= 0.06 | FAIL | 0.0095 |\n| C3: gap_world_unified >= 0.0 | PASS | 0.0062 |\n| C4: delta_self <= -0.02 | FAIL | -0.0006 |\n| C5: n_approach_min >= 30 | PASS | 446 |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Interpretation\n\nSD-005 z_world advantage not replicated at this environment scale (gap_world_split=0.0095, delta=+0.0033). Suggests EXQ-078 result may not generalise to 6x6 environment or warmup reduction from 350->300 episodes was insufficient.\n\n## Per-Seed\n\nSPLIT:\n  seed=42: gap_world=0.0130 gap_self=0.0016 n_approach=447\n  seed=123: gap_world=0.0059 gap_self=0.0006 n_approach=446\n\nUNIFIED:\n  seed=42: gap_world=0.0085 gap_self=0.0014 n_approach=447\n  seed=123: gap_world=0.0039 gap_self=0.0021 n_approach=446\n\n## Failure Notes\n\n- C1 FAIL: delta_world=0.0033 < 0.02 (split does not improve world approach detection by >=2pp)\n- C2 FAIL: gap_world_split=0.0095 < 0.06 (split z_world cannot detect hazard approach at all)\n- C4 FAIL: delta_self=-0.0006 > -0.02 (split z_self does NOT lose world content vs unified z_self) -- purification not demonstrated at current scale\n",
+  "claim_ids": [
+    "SD-005"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_113_sd005_double_dissociation",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260328T162148Z",
+  "claim": "SD-005",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_delta_world": 0.02,
+    "C2_gap_world_split": 0.06,
+    "C3_gap_world_unified": 0.0,
+    "C4_delta_self": -0.02,
+    "C5_n_approach": 30
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "SPLIT",
+    "UNIFIED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0006"
+}
