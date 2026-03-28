@@ -878,39 +878,39 @@
       }
     },
     "ARC-026": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.784, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.354, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 0,
         "unknown": 0,
-        "weakens": 0
+        "weakens": 2
       },
       "entries_total": 2,
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.784,
+      "experimental_confidence": 0.354,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 0,
         "unknown": 0,
-        "weakens": 0
+        "weakens": 2
       },
       "latest_run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
       "latest_timestamp_utc": "2026-03-19T06:07:20Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.784,
+      "overall_confidence": 0.354,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-026",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
+          "evidence_direction": "weakens",
           "experiment_type": "v3_exq_033_training_depth_calibration",
           "failure_signatures": [],
           "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -921,10 +921,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-026",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
+          "evidence_direction": "weakens",
           "experiment_type": "v3_exq_039_training_progression",
           "failure_signatures": [],
           "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
@@ -3501,7 +3501,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.613, lit_conf=0",
+      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.612, lit_conf=0",
       "direction_counts": {
         "mixed": 4,
         "supports": 0,
@@ -3512,7 +3512,7 @@
       "evidence_class_counts": {
         "exp:simulation": 4
       },
-      "experimental_confidence": 0.613,
+      "experimental_confidence": 0.612,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -3524,7 +3524,7 @@
       "latest_run_id": "v3_exq_054_mech072_world_delta_gating_20260320T180545Z_v3",
       "latest_timestamp_utc": "2026-03-20T18:05:45Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.613,
+      "overall_confidence": 0.612,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -30246,10 +30246,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-026",
-      "confidence": 0.55,
-      "confidence_rationale": "direction/status mismatch",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "supports",
+      "evidence_direction": "weakens",
       "experiment_type": "v3_exq_033_training_depth_calibration",
       "failure_signatures": [],
       "run_id": "v3_exq_033_training_depth_calibration_20260318T202510Z_v3",
@@ -30876,10 +30876,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-026",
-      "confidence": 0.55,
-      "confidence_rationale": "direction/status mismatch",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "supports",
+      "evidence_direction": "weakens",
       "experiment_type": "v3_exq_039_training_progression",
       "failure_signatures": [],
       "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
@@ -35281,7 +35281,7 @@
       "timestamp_utc": "2026-03-28T23:55:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-28T15:03:10.888174Z",
+  "generated_at_utc": "2026-03-28T15:23:18.889531Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

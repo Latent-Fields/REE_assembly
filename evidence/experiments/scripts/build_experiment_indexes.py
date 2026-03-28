@@ -76,6 +76,7 @@ class RunRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "simulation"
     evidence_direction: str = "unknown"
+    evidence_direction_per_claim: dict[str, str] = field(default_factory=dict)
     direction_explicitly_set: bool = False
     architecture_epoch: str = ""
     adapter_signals_path: Path | None = None
@@ -312,6 +313,16 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         claim_ids_tested = [str(x).strip() for x in claim_ids_raw if str(x).strip()]
         evidence_class = str(manifest.get("evidence_class", "simulation")).strip() or "simulation"
         evidence_direction = _normalize_direction(manifest.get("evidence_direction"))
+        # Per-claim direction overrides: {"ARC-024": "supports", "ARC-026": "weakens"}.
+        # When present for a given claim_id, replaces the run-level evidence_direction
+        # for that claim only.  Keys not present fall back to the run-level direction.
+        raw_per_claim = manifest.get("evidence_direction_per_claim") or {}
+        evidence_direction_per_claim: dict[str, str] = {}
+        if isinstance(raw_per_claim, dict):
+            for cid, val in raw_per_claim.items():
+                normalized = _normalize_direction(val)
+                if normalized != "unknown":  # skip placeholder/empty entries
+                    evidence_direction_per_claim[str(cid)] = normalized
         # direction_explicitly_set: True when manifest has an evidence_direction_note,
         # meaning the direction was a deliberate manual override and should not be
         # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
@@ -332,6 +343,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                evidence_direction_per_claim=evidence_direction_per_claim,
                 direction_explicitly_set=direction_explicitly_set,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
@@ -1098,8 +1110,6 @@ def _write_claim_evidence_matrix(
         if inferred_direction == "unknown" and not run.direction_explicitly_set:
             inferred_direction = "supports" if run.final_status == "PASS" else "weakens"
 
-        entry_confidence, entry_confidence_rationale = _experimental_entry_confidence(run, inferred_direction)
-
         if not run.claim_ids_tested:
             matrix["unlinked_runs"].append(
                 {
@@ -1113,6 +1123,11 @@ def _write_claim_evidence_matrix(
             continue
 
         for claim_id in run.claim_ids_tested:
+            # Per-claim direction override: if the manifest declares a specific
+            # direction for this claim_id, use it; otherwise fall back to the
+            # run-level inferred direction.
+            claim_direction = run.evidence_direction_per_claim.get(claim_id, inferred_direction)
+            entry_confidence, entry_confidence_rationale = _experimental_entry_confidence(run, claim_direction)
             entry = {
                 "claim_id": claim_id,
                 "source_type": "experimental",
@@ -1121,7 +1136,7 @@ def _write_claim_evidence_matrix(
                 "timestamp_utc": run.timestamp_raw,
                 "status": run.final_status,
                 "evidence_class": _prefix_class("experimental", run.evidence_class),
-                "evidence_direction": inferred_direction,
+                "evidence_direction": claim_direction,
                 "confidence": entry_confidence,
                 "confidence_rationale": entry_confidence_rationale,
                 "failure_signatures": run.failure_signatures,
