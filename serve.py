@@ -11,13 +11,16 @@ Usage:
     python3 serve.py --port 9000
 
 API (POST, called by the Experiments tab in the explorer):
-    /api/runner/start          -- start V3 runner (default)
-    /api/runner/stop           -- stop whichever runner is running
-    /api/runner/v3/start       -- start V3 runner
-    /api/runner/v3/stop        -- stop V3 runner
-    /api/runner/v2/start       -- start V2 runner
-    /api/runner/v2/stop        -- stop V2 runner
-    /api/runner/status         -- JSON status of both runners
+    /api/runner/start             -- start V3 runner (default)
+    /api/runner/stop              -- graceful drain: finish current experiment then stop
+    /api/runner/force_stop        -- immediate SIGKILL (data loss acceptable)
+    /api/runner/v3/start          -- start V3 runner
+    /api/runner/v3/stop           -- graceful drain V3 runner
+    /api/runner/v3/force_stop     -- force-kill V3 runner immediately
+    /api/runner/v2/start          -- start V2 runner
+    /api/runner/v2/stop           -- graceful drain V2 runner
+    /api/runner/v2/force_stop     -- force-kill V2 runner immediately
+    /api/runner/status            -- JSON status of both runners (includes draining flag)
     /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
 
@@ -479,7 +482,14 @@ def start_runner(ver: str = "v3") -> dict:
 
 
 def stop_runner(ver: str | None = None) -> dict:
-    """Stop a specific runner (ver='v3'/'v2') or any running runner (ver=None)."""
+    """Request graceful drain of a runner (ver='v3'/'v2') or any running runner.
+
+    Sends SIGTERM which triggers the runner's drain mode: it finishes the current
+    experiment then exits cleanly.  Returns immediately with status='draining' --
+    the runner continues running until the experiment completes.
+
+    Use force_stop_runner() for an immediate SIGKILL when data loss is acceptable.
+    """
     versions_to_try = [ver] if ver else ["v3", "v2"]
 
     for v in versions_to_try:
@@ -491,14 +501,10 @@ def stop_runner(ver: str | None = None) -> dict:
         proc = _runner_procs.get(v)
         if proc is not None and proc.poll() is None:
             pid = proc.pid
-            proc.terminate()
-            try:
-                proc.wait(timeout=6)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-            _runner_procs[v] = None
-            print(f"[serve] {cfg['label']} runner stopped (PID {pid})", flush=True)
-            return {"status": "stopped", "pid": pid, "substrate": v}
+            proc.terminate()  # SIGTERM -> runner sets drain flag, finishes current experiment
+            # Do NOT wait -- experiment may take minutes.  Runner will exit on its own.
+            print(f"[serve] {cfg['label']} drain requested (PID {pid})", flush=True)
+            return {"status": "draining", "pid": pid, "substrate": v}
 
         # Try a runner started outside this server session
         target_pid = _runner_ext_pids.get(v) or _runner_pid(v)
@@ -506,7 +512,46 @@ def stop_runner(ver: str | None = None) -> dict:
             try:
                 os.kill(target_pid, signal.SIGTERM)
                 _runner_ext_pids[v] = None
-                print(f"[serve] {cfg['label']} runner stopped via signal (PID {target_pid})", flush=True)
+                print(f"[serve] {cfg['label']} drain requested via signal (PID {target_pid})",
+                      flush=True)
+                return {"status": "draining", "pid": target_pid, "substrate": v}
+            except (ProcessLookupError, PermissionError) as e:
+                return {"status": "error", "message": str(e)}
+
+    return {"status": "not_running"}
+
+
+def force_stop_runner(ver: str | None = None) -> dict:
+    """Immediately kill a runner (SIGKILL).  Use when stopping cannot wait for experiment end.
+
+    Data from any in-progress experiment will be lost.
+    """
+    versions_to_try = [ver] if ver else ["v3", "v2"]
+
+    for v in versions_to_try:
+        if v not in RUNNERS:
+            continue
+        cfg = RUNNERS[v]
+
+        proc = _runner_procs.get(v)
+        if proc is not None and proc.poll() is None:
+            pid = proc.pid
+            proc.kill()
+            try:
+                proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                pass
+            _runner_procs[v] = None
+            print(f"[serve] {cfg['label']} force-killed (PID {pid})", flush=True)
+            return {"status": "stopped", "pid": pid, "substrate": v}
+
+        target_pid = _runner_ext_pids.get(v) or _runner_pid(v)
+        if target_pid:
+            try:
+                os.kill(target_pid, signal.SIGKILL)
+                _runner_ext_pids[v] = None
+                print(f"[serve] {cfg['label']} force-killed via signal (PID {target_pid})",
+                      flush=True)
                 return {"status": "stopped", "pid": target_pid, "substrate": v}
             except (ProcessLookupError, PermissionError) as e:
                 return {"status": "error", "message": str(e)}
@@ -515,7 +560,22 @@ def stop_runner(ver: str | None = None) -> dict:
 
 
 def runner_status() -> dict:
-    """Return status of all runners."""
+    """Return status of all runners, including draining flag."""
+    # Read per-machine status files once to check for draining state.
+    draining_any = False
+    try:
+        if STATUS_DIR.is_dir():
+            for f in STATUS_DIR.glob("*.json"):
+                try:
+                    d = json.loads(f.read_text())
+                    if d.get("draining") and not d.get("idle", True):
+                        draining_any = True
+                        break
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
     result = {}
     for ver in RUNNERS:
         pid = _runner_pid(ver)
@@ -523,6 +583,9 @@ def runner_status() -> dict:
             "running": pid is not None,
             "pid": pid,
             "label": RUNNERS[ver]["label"],
+            # draining: runner is alive but finishing current experiment before stopping.
+            # Only meaningful for V3 (V2 is archived); attached to the ver that is actually running.
+            "draining": draining_any and pid is not None,
         }
     return result
 
@@ -865,15 +928,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = start_runner("v3")
         elif path == "/api/runner/v3/stop":
             result = stop_runner("v3")
+        elif path == "/api/runner/v3/force_stop":
+            result = force_stop_runner("v3")
         elif path == "/api/runner/v2/start":
             result = start_runner("v2")
         elif path == "/api/runner/v2/stop":
             result = stop_runner("v2")
+        elif path == "/api/runner/v2/force_stop":
+            result = force_stop_runner("v2")
         # Legacy endpoints (default to V3)
         elif path == "/api/runner/start":
             result = start_runner("v3")
         elif path == "/api/runner/stop":
             result = stop_runner()  # stop any
+        elif path == "/api/runner/force_stop":
+            result = force_stop_runner()  # force-stop any
         elif path == "/api/run":
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')

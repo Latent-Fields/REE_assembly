@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-28.1 -->
+<!-- EXPLORER_VERSION: 2026-03-28.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8447,19 +8447,24 @@ END CONFLICT RESOLUTION`;
 
       // Helper: wire start/stop for a substrate version
       function wireRunnerButtons(ver) {
-        const startBtn = document.getElementById(ver + 'StartBtn');
-        const stopBtn  = document.getElementById(ver + 'StopBtn');
-        const ctrlMsg  = document.getElementById(ver + 'CtrlMsg');
-        const dotEl    = document.getElementById(ver + 'StatusDot');
+        const startBtn    = document.getElementById(ver + 'StartBtn');
+        const stopBtn     = document.getElementById(ver + 'StopBtn');
+        const ctrlMsg     = document.getElementById(ver + 'CtrlMsg');
+        const dotEl       = document.getElementById(ver + 'StatusDot');
 
-        const info = runnerInfo[ver] || {};
-        const running = !!info.running;
+        const info     = runnerInfo[ver] || {};
+        const running  = !!info.running;
+        const draining = !!info.draining;
 
-        // Update status dot
+        // Update status dot -- three states: Draining, Running, Idle
         if (dotEl) {
-          dotEl.innerHTML = running
-            ? `<span style="color:#2e7d32;font-weight:600">&#9679; Running${info.pid ? ' (PID ' + info.pid + ')' : ''}</span>`
-            : `<span style="color:var(--muted)">&#9675; Idle</span>`;
+          if (draining) {
+            dotEl.innerHTML = `<span style="color:#e65100;font-weight:600">&#9679; Finishing current experiment\u2026${info.pid ? ' (PID ' + info.pid + ')' : ''}</span>`;
+          } else if (running) {
+            dotEl.innerHTML = `<span style="color:#2e7d32;font-weight:600">&#9679; Running${info.pid ? ' (PID ' + info.pid + ')' : ''}</span>`;
+          } else {
+            dotEl.innerHTML = `<span style="color:var(--muted)">&#9675; Idle</span>`;
+          }
         }
 
         if (startBtn) {
@@ -8485,17 +8490,38 @@ END CONFLICT RESOLUTION`;
         }
 
         if (stopBtn) {
-          stopBtn.disabled = !running;
-          stopBtn.addEventListener('click', async () => {
-            stopBtn.disabled = true;
-            stopBtn.textContent = 'Stopping\u2026';
-            const r = await callRunnerAPI('/api/runner/' + ver + '/stop');
-            if (ctrlMsg) ctrlMsg.textContent =
-              r.status === 'stopped'     ? 'Stopped.' :
-              r.status === 'not_running' ? 'Was not running.' :
-              r.message || r.status;
-            setTimeout(() => renderExperiments(), 800);
-          });
+          if (draining) {
+            // Runner is already draining -- show Force Stop instead
+            stopBtn.disabled = false;
+            stopBtn.textContent = 'Force Stop';
+            stopBtn.title = 'Kill immediately -- current experiment data will be lost';
+            stopBtn.style.background = '#c00';
+            stopBtn.addEventListener('click', async () => {
+              stopBtn.disabled = true;
+              stopBtn.textContent = 'Killing\u2026';
+              const r = await callRunnerAPI('/api/runner/' + ver + '/force_stop');
+              if (ctrlMsg) ctrlMsg.textContent =
+                r.status === 'stopped'     ? 'Force-stopped.' :
+                r.status === 'not_running' ? 'Was not running.' :
+                r.message || r.status;
+              setTimeout(() => renderExperiments(), 800);
+            });
+          } else {
+            // Normal stop -- graceful drain
+            stopBtn.disabled = !running;
+            stopBtn.title = 'Finish current experiment then stop (no data loss)';
+            stopBtn.addEventListener('click', async () => {
+              stopBtn.disabled = true;
+              stopBtn.textContent = 'Stopping\u2026';
+              const r = await callRunnerAPI('/api/runner/' + ver + '/stop');
+              if (ctrlMsg) ctrlMsg.textContent =
+                r.status === 'draining'    ? 'Finishing current experiment, then stopping...' :
+                r.status === 'stopped'     ? 'Stopped.' :
+                r.status === 'not_running' ? 'Was not running.' :
+                r.message || r.status;
+              setTimeout(() => renderExperiments(), 1500);
+            });
+          }
         }
       }
 

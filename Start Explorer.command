@@ -7,10 +7,21 @@
 cd "$(dirname "$0")"
 PORT=8000
 
+# ── Pull latest code before starting ─────────────────────────────────────────
+echo "Pulling latest code..."
+git pull --ff-only origin master 2>&1 | tail -1 || echo "  (REE_assembly pull skipped -- local changes present or offline)"
+if [ -d "../ree-v3/.git" ]; then
+    git -C ../ree-v3 pull --ff-only origin main 2>&1 | tail -1 || echo "  (ree-v3 pull skipped -- local changes present or offline)"
+fi
+echo ""
+echo "NOTE: If experiment_runner.py was updated, stop and restart the runner"
+echo "      from the Explorer UI (Experiments tab) to pick up the new code."
+echo ""
+
 # Kill any existing serve.py on this port
 existing_pid=$(lsof -ti :$PORT 2>/dev/null)
 if [ -n "$existing_pid" ]; then
-    echo "Port $PORT in use (PID $existing_pid) — stopping it first..."
+    echo "Port $PORT in use (PID $existing_pid) -- stopping it first..."
     kill "$existing_pid" 2>/dev/null
     sleep 1
 fi
