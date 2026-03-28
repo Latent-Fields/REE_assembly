@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-28T22:57:03.129656Z",
+  "generated_at_utc": "2026-03-28T23:08:52.961162Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -1429,11 +1429,13 @@
       "backlog_id": "EVB-0071",
       "claim_id": "Q-002",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-147",
+      "executed_queue_id": "V3-EXQ-147",
       "objective": "Reduce uncertainty for Q-002 via targeted experiment runs.",
       "priority": "low",
       "proposal_id": "EXP-0088",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_q_002",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1443,11 +1445,13 @@
     {
       "backlog_id": "EVB-0071",
       "claim_id": "Q-002",
+      "executed_by": "V3-EXQ-147",
+      "executed_queue_id": "V3-EXQ-147",
       "objective": "Improve literature grounding and confidence for Q-002.",
       "priority": "low",
       "proposal_id": "LIT-0089",
       "proposal_type": "literature_review",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly",
       "why_now": [
         "no_evidence_for_open_question"
@@ -1936,11 +1940,13 @@
     {
       "claim_id": "MECH-128",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-147",
+      "executed_queue_id": "V3-EXQ-147",
       "objective": "Validate that E1 LSTM goal-conditioning (MECH-128) actually shapes E1's predictive distribution. PASS: E1 prediction error is significantly lower for goal-relevant state transitions than goal-irrelevant ones when z_goal_latent is provided vs withheld (interaction term), demonstrating that goal context modulates prediction rather than being a dormant input.",
       "priority": "low",
       "proposal_id": "EXP-0088",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -1971,9 +1977,9 @@
       "target_repo": "REE_assembly"
     }
   ],
-  "n_executed": 55,
-  "n_proposed_exp": 17,
-  "n_proposed_lit": 58,
+  "n_executed": 58,
+  "n_proposed_exp": 15,
+  "n_proposed_lit": 57,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }
