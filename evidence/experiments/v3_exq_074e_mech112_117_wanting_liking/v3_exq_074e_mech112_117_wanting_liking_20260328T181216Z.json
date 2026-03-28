@@ -1,0 +1,81 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "resource_rate_nogo": 0.25133333333333335,
+    "resource_rate_liking": 0.25133333333333335,
+    "resource_rate_wanting": 0.25133333333333335,
+    "harm_rate_nogo": 0.6113333333333333,
+    "harm_rate_liking": 0.6113333333333333,
+    "harm_rate_wanting": 0.6113333333333333,
+    "liking_l2_redirect_steps": 7.0,
+    "wanting_l1_directed_fraction": 0.355,
+    "wanting_goal_norm_final": 0.2822374999523163,
+    "wanting_goal_proximity_final": 0.979832112789154,
+    "wanting_goal_active": 1.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-074e -- MECH-117 Wanting/Liking Dissociation\n\n**Status:** FAIL\n**Claims:** MECH-112, MECH-117\n**Seed:** 42  **Steps:** 3000  **Relocation:** step 1500\n**Fix from 074d:** CausalGridWorldV2 size=6, resource_respawn, 50% proximity-following navigation (z_goal seeding fix).\n\n## Conditions\n\n- nogo: benefit_eval_enabled=False, z_goal_enabled=False\n- liking: benefit_eval_enabled=True, z_goal_enabled=False\n- wanting: benefit_eval_enabled=False, z_goal_enabled=True\n\n## Results\n\n| Metric | nogo | liking | wanting |\n|---|---|---|---|\n| resource_visit_rate | 0.2513 | 0.2513 | 0.2513 |\n| harm_rate | 0.6113 | 0.6113 | 0.6113 |\n| l2_redirect_steps | -- | 7 | -- |\n| l1_directed_fraction | -- | -- | 0.355 |\n| goal_norm_final | -- | -- | 0.2822 |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: wanting resource >= nogo + 0.04 | FAIL |\n| C2: liking l2_redirect <= 15 steps | PASS |\n| C3: wanting l1_fraction >= 0.25 | PASS |\n| C4: wanting harm delta <= 0.03 | PASS |\n\nCriteria met: 3/4 -> **FAIL**\n\n## Interpretation\n\nMECH-117 PARTIAL: Some dissociation signal present but below full threshold. Consider longer training or adjusted goal_weight/decay_goal.\n\n## Failure Notes\n\n- C1 FAIL: resource_rate gap=0.0000 < 0.04\n",
+  "claim_ids": [
+    "MECH-112",
+    "MECH-117"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_074e_mech112_117_wanting_liking",
+  "fatal_error_count": 0,
+  "condition_results": {
+    "nogo": {
+      "condition": "nogo",
+      "resource_visit_rate": 0.25133333333333335,
+      "harm_rate": 0.6113333333333333,
+      "l1_directed_fraction": 0.355,
+      "liking_l2_redirect_steps": 7,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 754,
+      "n_harm_events": 1834,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 71
+    },
+    "liking": {
+      "condition": "liking",
+      "resource_visit_rate": 0.25133333333333335,
+      "harm_rate": 0.6113333333333333,
+      "l1_directed_fraction": 0.355,
+      "liking_l2_redirect_steps": 7,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 754,
+      "n_harm_events": 1834,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 71
+    },
+    "wanting": {
+      "condition": "wanting",
+      "resource_visit_rate": 0.25133333333333335,
+      "harm_rate": 0.6113333333333333,
+      "l1_directed_fraction": 0.355,
+      "liking_l2_redirect_steps": 7,
+      "goal_norm_final": 0.2822374999523163,
+      "goal_proximity_final": 0.979832112789154,
+      "goal_active": true,
+      "n_resource_visits": 754,
+      "n_harm_events": 1834,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 71
+    }
+  },
+  "run_timestamp": "20260328T181216Z",
+  "claim": "MECH-112",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_074e_mech112_117_wanting_liking_20260328T181216Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
