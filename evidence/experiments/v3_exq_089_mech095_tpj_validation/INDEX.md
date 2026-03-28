@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_089_mech095_tpj_validation
 
-Generated: `2026-03-28T11:20:38.158172Z`
+Generated: `2026-03-28T13:58:54.127827Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

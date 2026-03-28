@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_035_mech069_optimizer_merge
 
-Generated: `2026-03-28T11:20:38.158172Z`
+Generated: `2026-03-28T13:58:54.127827Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

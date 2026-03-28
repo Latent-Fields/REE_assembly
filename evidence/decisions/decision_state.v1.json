@@ -315,6 +315,15 @@
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-03-19T19:52:00Z"
     },
+    "MECH-135": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "EXQ-103 PASS x2 confirms E2 multi-step training substrate is functional. EXQ-104/105 FAIL 0/3 is an implementation artifact (untrained agent -- E2.world_forward maps to near-zero, FROZEN appears high from random cosine similarity). EXQ-104b queued with training phase. Do not count EXQ-104/105 as weakening MECH-135 until trained-agent retest. v3_pending retained pending diagnostic.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold at candidate -- EXQ-104b diagnostic required before evidence update",
+      "timestamp_utc": "2026-03-28T17:30:00Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -415,7 +424,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-03-28T11:20:38.158172Z",
+  "generated_at_utc": "2026-03-28T13:58:54.127827Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
