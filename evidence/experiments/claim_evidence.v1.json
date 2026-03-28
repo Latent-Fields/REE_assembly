@@ -688,16 +688,18 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=27 entry(s), lit=0 entry(s), exp_conf=0.727, lit_conf=0",
+      "confidence_rationale": "exp=27 entry(s), lit=3 entry(s), exp_conf=0.727, lit_conf=0.827",
       "direction_counts": {
         "mixed": 13,
-        "supports": 7,
+        "supports": 10,
         "unknown": 0,
         "weakens": 7
       },
-      "entries_total": 27,
+      "entries_total": 30,
       "evidence_class_counts": {
-        "exp:simulation": 27
+        "exp:simulation": 27,
+        "lit:fmri_connectivity": 2,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.727,
       "fail_runs": 20,
@@ -708,54 +710,12 @@
         "unknown": 0,
         "weakens": 7
       },
-      "latest_run_id": "v3_exq_071_rollout_batched_attribution_20260323T143350Z_v3",
-      "latest_timestamp_utc": "2026-03-23T14:33:50Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.727,
+      "latest_run_id": "2026-03-28_arc_024_threat_proximity_gradient_mobbs2007",
+      "latest_timestamp_utc": "2026-03-28T23:45:00Z",
+      "literature_confidence": 0.827,
+      "overall_confidence": 0.777,
       "pass_runs": 7,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-024",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_039_training_progression",
-          "failure_signatures": [],
-          "run_id": "v3_exq_039_training_progression_20260319T060720Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-19T06:07:20Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-024",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_mech_102",
-          "failure_signatures": [],
-          "run_id": "20260319T201636Z_v3_exq_045_mech102_ethical_ttype_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-19T20:16:36Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-024",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_045_mech102_ethical_ttype",
-          "failure_signatures": [],
-          "run_id": "v3_exq_045_mech102_ethical_ttype_20260319T201636Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-19T20:16:36Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-024",
@@ -783,12 +743,66 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-23T14:33:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.78,
+          "confidence_rationale": "Strong mapping fidelity: predatory imminence continuum theory is the ethological formalisation of ARC-024's gradient structure claim, providing both the theoretical grounding and neural circuit detail. Pre-encounter, post-encounter, and circa-strike modes directly instantiate the gradient: behaviour form and vigour both change continuously as a function of perceived threat distance, before contact occurs. Source quality is solid (Fanselow is the originator of PIC theory, open-access PMC journal). Transfer risk is moderate (primarily animal literature; human data exists but is secondary).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_024",
+          "failure_signatures": [
+            "PIC theory describes three discrete modes rather than a fully continuous gradient; the transitions between modes are threshold-like, which could be interpreted as arguing for partial discreteness rather than pure continuous gradient structure.",
+            "Primarily rodent literature; human PIC research (including Mobbs 2007) is referenced but not the primary evidence base of this review.",
+            "The review's focus is on sustained threat and BST/hippocampal circuits rather than the gradient structure per se; the gradient argument must be inferred from the broader PIC framework."
+          ],
+          "run_id": "2026-03-28_arc_024_predatory_imminence_continuum_fanselow2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T23:45:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.7,
+          "confidence_rationale": "Excellent source quality (Nature, human fMRI, Dayan/Dolan/Friston collaboration). Mapping fidelity is moderate: the paper demonstrates a *temporal* gradient (harm prediction building up as a cue sequence unfolds before the painful event) which is the temporal analogue of ARC-024's spatial gradient. The brain tracks harm signal magnitude across the sequence of cues leading up to contact \u2014 supporting the proxy-gradient claim. Transfer risk is elevated because temporal prediction gradients and spatial proximity gradients are distinct mechanisms, even if both support the broader claim.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_024",
+          "failure_signatures": [
+            "Temporal prediction gradients (cue1 -> cue2 -> pain) are structurally analogous to but not identical with spatial proximity gradients (distance to hazard).",
+            "Ventral striatum/insula activity reflects reward-prediction-error signals, not the harm gradient field directly; the mapping to CausalGridWorldV2's hazard_field requires additional theoretical steps.",
+            "Study used electrical pain stimuli; generalisability to naturalistic harm sources is uncertain."
+          ],
+          "run_id": "2026-03-28_arc_024_td_aversive_prediction_seymour2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T23:45:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-024",
+          "confidence": 0.78,
+          "confidence_rationale": "High source quality (Science, human fMRI) and strong mapping fidelity: vmPFC-to-PAG shift is a direct neural instantiation of ARC-024's gradient structure. Harm signal magnitude increases continuously as threat proximity increases, before contact occurs. Modest transfer risk because the virtual-threat paradigm may not capture all naturalistic gradient properties.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_024",
+          "failure_signatures": [
+            "Small sample (n=14) limits generalisability of the vmPFC-PAG gradient finding.",
+            "Virtual predator paradigm with controlled shock delivery may produce cleaner gradients than real-world harm sources, potentially overestimating gradient smoothness.",
+            "Shock magnitude was known to participants; real-world harm is uncertain, which could alter the shape of the gradient."
+          ],
+          "run_id": "2026-03-28_arc_024_threat_proximity_gradient_mobbs2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T23:45:00Z"
         }
       ],
-      "runs_total": 27,
+      "runs_total": 30,
       "source_counts": {
         "experimental": 27,
-        "literature": 0
+        "literature": 3
       }
     },
     "ARC-025": {
@@ -1377,7 +1391,7 @@
       }
     },
     "INV-034": {
-      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.573, lit_conf=0",
+      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.572, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -1388,7 +1402,7 @@
       "evidence_class_counts": {
         "exp:simulation": 3
       },
-      "experimental_confidence": 0.573,
+      "experimental_confidence": 0.572,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1400,7 +1414,7 @@
       "latest_run_id": "v3_exq_085e_mech071_drive_modulated_goal_20260326T180934Z_v3",
       "latest_timestamp_utc": "2026-03-26T18:09:34Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.573,
+      "overall_confidence": 0.572,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1565,7 +1579,7 @@
       }
     },
     "MECH-026": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.463, lit_conf=0.887",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.462, lit_conf=0.887",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -1580,7 +1594,7 @@
         "lit:frontosubthalamic_inhibitory_control": 1,
         "lit:human_hyperdirect_movement_inhibition": 1
       },
-      "experimental_confidence": 0.463,
+      "experimental_confidence": 0.462,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4243,7 +4257,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.515, lit_conf=0.874",
+      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.514, lit_conf=0.874",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -4256,7 +4270,7 @@
         "lit:connectome_analysis": 2,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.515,
+      "experimental_confidence": 0.514,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -4268,7 +4282,7 @@
       "latest_run_id": "v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3",
       "latest_timestamp_utc": "2026-03-27T15:56:05Z",
       "literature_confidence": 0.874,
-      "overall_confidence": 0.695,
+      "overall_confidence": 0.694,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7198,7 +7212,7 @@
       }
     },
     "onboarding": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.812, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.811, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -7209,7 +7223,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.812,
+      "experimental_confidence": 0.811,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -7221,7 +7235,7 @@
       "latest_run_id": "v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3",
       "latest_timestamp_utc": "2026-03-22T12:46:04Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.812,
+      "overall_confidence": 0.811,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -35075,9 +35089,63 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-03-28T10:04:44Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.78,
+      "confidence_rationale": "Strong mapping fidelity: predatory imminence continuum theory is the ethological formalisation of ARC-024's gradient structure claim, providing both the theoretical grounding and neural circuit detail. Pre-encounter, post-encounter, and circa-strike modes directly instantiate the gradient: behaviour form and vigour both change continuously as a function of perceived threat distance, before contact occurs. Source quality is solid (Fanselow is the originator of PIC theory, open-access PMC journal). Transfer risk is moderate (primarily animal literature; human data exists but is secondary).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_024",
+      "failure_signatures": [
+        "PIC theory describes three discrete modes rather than a fully continuous gradient; the transitions between modes are threshold-like, which could be interpreted as arguing for partial discreteness rather than pure continuous gradient structure.",
+        "Primarily rodent literature; human PIC research (including Mobbs 2007) is referenced but not the primary evidence base of this review.",
+        "The review's focus is on sustained threat and BST/hippocampal circuits rather than the gradient structure per se; the gradient argument must be inferred from the broader PIC framework."
+      ],
+      "run_id": "2026-03-28_arc_024_predatory_imminence_continuum_fanselow2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T23:45:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.7,
+      "confidence_rationale": "Excellent source quality (Nature, human fMRI, Dayan/Dolan/Friston collaboration). Mapping fidelity is moderate: the paper demonstrates a *temporal* gradient (harm prediction building up as a cue sequence unfolds before the painful event) which is the temporal analogue of ARC-024's spatial gradient. The brain tracks harm signal magnitude across the sequence of cues leading up to contact \u2014 supporting the proxy-gradient claim. Transfer risk is elevated because temporal prediction gradients and spatial proximity gradients are distinct mechanisms, even if both support the broader claim.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_024",
+      "failure_signatures": [
+        "Temporal prediction gradients (cue1 -> cue2 -> pain) are structurally analogous to but not identical with spatial proximity gradients (distance to hazard).",
+        "Ventral striatum/insula activity reflects reward-prediction-error signals, not the harm gradient field directly; the mapping to CausalGridWorldV2's hazard_field requires additional theoretical steps.",
+        "Study used electrical pain stimuli; generalisability to naturalistic harm sources is uncertain."
+      ],
+      "run_id": "2026-03-28_arc_024_td_aversive_prediction_seymour2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T23:45:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-024",
+      "confidence": 0.78,
+      "confidence_rationale": "High source quality (Science, human fMRI) and strong mapping fidelity: vmPFC-to-PAG shift is a direct neural instantiation of ARC-024's gradient structure. Harm signal magnitude increases continuously as threat proximity increases, before contact occurs. Modest transfer risk because the virtual-threat paradigm may not capture all naturalistic gradient properties.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_024",
+      "failure_signatures": [
+        "Small sample (n=14) limits generalisability of the vmPFC-PAG gradient finding.",
+        "Virtual predator paradigm with controlled shock delivery may produce cleaner gradients than real-world harm sources, potentially overestimating gradient smoothness.",
+        "Shock magnitude was known to participants; real-world harm is uncertain, which could alter the shape of the gradient."
+      ],
+      "run_id": "2026-03-28_arc_024_threat_proximity_gradient_mobbs2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T23:45:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-28T14:22:41.155830Z",
+  "generated_at_utc": "2026-03-28T14:42:03.776300Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

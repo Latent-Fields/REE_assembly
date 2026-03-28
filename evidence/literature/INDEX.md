@@ -1,11 +1,12 @@
 # Literature Evidence Index
 
-Generated: `2026-03-28T14:22:41.155830Z`
+Generated: `2026-03-28T14:42:03.776300Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
+| `targeted_review_arc_024` | [`2026-03-28_arc_024_threat_proximity_gradient_mobbs2007`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/record.json) | 3 | [`summary`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/summary.md) |
 | `targeted_review_arc_027_nociception` | [`2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/record.json) | 3 | [`summary`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-02-21_arc016_principal_gradient_continuum_pnas2016`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/record.json) | 4 | [`summary`](targeted_review_connectome_arc_016/entries/2026-02-21_arc016_principal_gradient_continuum_pnas2016/summary.md) |
 | `targeted_review_connectome_arc_023` | [`2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/record.json) | 1 | [`summary`](targeted_review_connectome_arc_023/entries/2026-03-16_arc023_thalamic_circuits_signal_noise_nature2021/summary.md) |

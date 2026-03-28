@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-28T14:22:41.155830Z`
+Generated: `2026-03-28T14:42:03.776300Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -10,7 +10,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-007` | directional | 4 | 6 | 0.8 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 11 |
 | `ARC-016` | directional, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_101_harm_obs_a_normfix_20260327T175843Z_v3` | 28 |
 | `ARC-018` | directional | 2 | 1 | 0.667 | `v3_exq_053_arc018_rollout_viability_20260320T073809Z_v3` | 3 |
-| `ARC-024` | directional, mixed_evidence | 7 | 7 | 1 | `v3_exq_071_rollout_batched_attribution_20260323T143350Z_v3` | 27 |
+| `ARC-024` | directional, mixed_evidence | 10 | 7 | 0.824 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 30 |
 | `MECH-033` | directional | 4 | 1 | 0.4 | `v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3` | 5 |
 | `MECH-071` | directional, mixed_evidence | 11 | 10 | 0.952 | `v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3` | 47 |
 | `MECH-089` | directional, mixed_evidence | 9 | 3 | 0.5 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 16 |
@@ -76,13 +76,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=7, conflict_ratio=1, overall_confidence=0.727
+- Evidence breakdown: supports=10, weakens=7, conflict_ratio=0.824, overall_confidence=0.777
 - Recent entries:
-  - `2026-03-19T06:07:20Z` `experimental` `v3_exq_039_training_progression` direction=`mixed` confidence=0.5
-  - `2026-03-19T20:16:36Z` `experimental` `claim_probe_mech_102` direction=`weakens` confidence=0.75
-  - `2026-03-19T20:16:36Z` `experimental` `v3_exq_045_mech102_ethical_ttype` direction=`weakens` confidence=0.75
   - `2026-03-23T12:21:09Z` `experimental` `v3_exq_077_arc024_asymptotic_proxy_pair` direction=`supports` confidence=0.75
   - `2026-03-23T14:33:50Z` `experimental` `v3_exq_071_rollout_batched_attribution` direction=`mixed` confidence=0.5
+  - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
+  - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.7
+  - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
+- Recurring failure signatures:
+  - `PIC theory describes three discrete modes rather than a fully continuous gradient; the transitions between modes are threshold-like, which could be interpreted as arguing for partial discreteness rather than pure continuous gradient structure.` (1)
+  - `Primarily rodent literature; human PIC research (including Mobbs 2007) is referenced but not the primary evidence base of this review.` (1)
+  - `The review's focus is on sustained threat and BST/hippocampal circuits rather than the gradient structure per se; the gradient argument must be inferred from the broader PIC framework.` (1)
+  - `Temporal prediction gradients (cue1 -> cue2 -> pain) are structurally analogous to but not identical with spatial proximity gradients (distance to hazard).` (1)
+  - `Ventral striatum/insula activity reflects reward-prediction-error signals, not the harm gradient field directly; the mapping to CausalGridWorldV2's hazard_field requires additional theoretical steps.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -195,7 +201,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-099
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.695
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.694
 - Recent entries:
   - `2026-03-17T23:20:06Z` `experimental` `claim_probe_mech_099` direction=`weakens` confidence=0.75
   - `2026-03-26T21:47:50Z` `experimental` `v3_exq_098_mech099_three_stream` direction=`weakens` confidence=0.75

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_024",
+  "entry_id": "2026-03-28_arc_024_td_aversive_prediction_seymour2004",
+  "timestamp_utc": "2026-03-28T23:45:00Z",
+  "claim_ids_tested": ["ARC-024"],
+  "source": {
+    "title": "Temporal difference models describe higher-order learning in humans",
+    "authors": ["Ben Seymour", "John P O'Doherty", "Peter Dayan", "Martin Koltzenburg", "Anthony K Jones", "Raymond J Dolan", "Karl J Friston", "Richard S Frackowiak"],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/nature02581",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15190354/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Excellent source quality (Nature, human fMRI, Dayan/Dolan/Friston collaboration). Mapping fidelity is moderate: the paper demonstrates a *temporal* gradient (harm prediction building up as a cue sequence unfolds before the painful event) which is the temporal analogue of ARC-024's spatial gradient. The brain tracks harm signal magnitude across the sequence of cues leading up to contact — supporting the proxy-gradient claim. Transfer risk is elevated because temporal prediction gradients and spatial proximity gradients are distinct mechanisms, even if both support the broader claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Temporal prediction gradients (cue1 -> cue2 -> pain) are structurally analogous to but not identical with spatial proximity gradients (distance to hazard).",
+    "Ventral striatum/insula activity reflects reward-prediction-error signals, not the harm gradient field directly; the mapping to CausalGridWorldV2's hazard_field requires additional theoretical steps.",
+    "Study used electrical pain stimuli; generalisability to naturalistic harm sources is uncertain."
+  ],
+  "tags": ["arc_024", "temporal_difference", "aversive_learning", "harm_prediction", "striatum", "insula"],
+  "mapping": {
+    "source_claim_statement": "Neural activity in ventral striatum and anterior insula corresponds to temporal difference (TD) prediction error signals during sequential aversive conditioning: the brain generates graded harm prediction signals that update across a sequence of cues preceding the painful stimulus.",
+    "ree_translation": "The TD harm prediction signal is the temporal version of ARC-024's spatial gradient: in both cases, the brain (and by extension E2/E3 in REE) represents harm as a graded signal that builds toward an asymptotic limit (the contact event). The hazard_field in CausalGridWorldV2 instantiates the spatial version; TD learning over trajectories captures the temporal version. Both support the architectural claim that harm signals are not binary at-contact.",
+    "mapping_caveat": "The paper demonstrates temporal gradients, not spatial proximity gradients. ARC-024's primary operationalisation in the REE environment is spatial (proximity to hazard cell). The inference requires treating temporal distance and spatial distance as equivalent operalisations of the same underlying gradient structure.",
+    "source_context": "Human fMRI, sequential aversive conditioning with electrical pain, healthy participants"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "Highest-quality source in this batch. Mapping fidelity penalised for temporal-vs-spatial distinction. Transfer risk elevated for same reason plus pain-stimulus specificity."
+  }
+}

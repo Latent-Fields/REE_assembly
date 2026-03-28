@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_024",
+  "entry_id": "2026-03-28_arc_024_threat_proximity_gradient_mobbs2007",
+  "timestamp_utc": "2026-03-28T23:45:00Z",
+  "claim_ids_tested": ["ARC-024"],
+  "source": {
+    "title": "When fear is near: threat imminence elicits prefrontal-periaqueductal gray shifts in humans",
+    "authors": ["Dean Mobbs", "Predrag Petrovic", "Jennifer L Marchant", "Demis Hassabis", "Nikolaus Weiskopf", "Ben Seymour", "Raymond J Dolan", "Christopher D Frith"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1144298",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17717184/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (Science, human fMRI) and strong mapping fidelity: vmPFC-to-PAG shift is a direct neural instantiation of ARC-024's gradient structure. Harm signal magnitude increases continuously as threat proximity increases, before contact occurs. Modest transfer risk because the virtual-threat paradigm may not capture all naturalistic gradient properties.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Small sample (n=14) limits generalisability of the vmPFC-PAG gradient finding.",
+    "Virtual predator paradigm with controlled shock delivery may produce cleaner gradients than real-world harm sources, potentially overestimating gradient smoothness.",
+    "Shock magnitude was known to participants; real-world harm is uncertain, which could alter the shape of the gradient."
+  ],
+  "tags": ["arc_024", "threat_proximity", "vmPFC", "PAG", "harm_gradient", "defensive_behavior"],
+  "mapping": {
+    "source_claim_statement": "As a virtual predator approaches, human fMRI activity shifts continuously from ventromedial prefrontal cortex (distal threat) to periaqueductal gray (proximal/imminent threat), with PAG activity correlating with dread and escape confidence.",
+    "ree_translation": "The vmPFC-to-PAG shift is the neural correlate of ARC-024's harm gradient: the brain encodes harm signal intensity proportional to proximity to the harm source before contact occurs. The world-latent encoding of harm (hazard_field in CausalGridWorldV2) recapitulates this gradient structure computationally.",
+    "mapping_caveat": "The study measures spatial imminence (distance between agent and predator) rather than the world-latent representation of harm. The inference from neural gradient to latent-space gradient requires an additional step.",
+    "source_context": "Human fMRI, n=14 healthy participants, virtual maze, virtual predator, electrical shock upon capture"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Science journal, human data, well-replicated finding. Transfer risk is low for the gradient-before-contact point but moderate for the latent-space interpretation."
+  }
+}

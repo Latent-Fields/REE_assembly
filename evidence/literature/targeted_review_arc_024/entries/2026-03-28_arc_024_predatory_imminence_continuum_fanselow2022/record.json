@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_024",
+  "entry_id": "2026-03-28_arc_024_predatory_imminence_continuum_fanselow2022",
+  "timestamp_utc": "2026-03-28T23:45:00Z",
+  "claim_ids_tested": ["ARC-024"],
+  "source": {
+    "title": "Negative valence systems: sustained threat and the predatory imminence continuum",
+    "authors": ["Michael S Fanselow"],
+    "year": 2022,
+    "venue": "Emerging Topics in Life Sciences",
+    "doi": "10.1042/ETLS20220003",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36286244/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong mapping fidelity: predatory imminence continuum theory is the ethological formalisation of ARC-024's gradient structure claim, providing both the theoretical grounding and neural circuit detail. Pre-encounter, post-encounter, and circa-strike modes directly instantiate the gradient: behaviour form and vigour both change continuously as a function of perceived threat distance, before contact occurs. Source quality is solid (Fanselow is the originator of PIC theory, open-access PMC journal). Transfer risk is moderate (primarily animal literature; human data exists but is secondary).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PIC theory describes three discrete modes rather than a fully continuous gradient; the transitions between modes are threshold-like, which could be interpreted as arguing for partial discreteness rather than pure continuous gradient structure.",
+    "Primarily rodent literature; human PIC research (including Mobbs 2007) is referenced but not the primary evidence base of this review.",
+    "The review's focus is on sustained threat and BST/hippocampal circuits rather than the gradient structure per se; the gradient argument must be inferred from the broader PIC framework."
+  ],
+  "tags": ["arc_024", "predatory_imminence", "defensive_behavior", "threat_gradient", "BLA", "PAG", "amygdala"],
+  "mapping": {
+    "source_claim_statement": "The predatory imminence continuum ranges from no threat (pre-encounter: anxiety, foraging modification) through detected threat (post-encounter: freezing, inhibition) to near-contact (circa-strike: fight/flight/tonic immobility). Behaviour topography and vigour are determined by the psychological distance from the threat, not a binary contact signal.",
+    "ree_translation": "The predatory imminence continuum is the behavioural instantiation of ARC-024's asymptotic gradient: harm signal magnitude and response topography grade continuously with proximity to the harm source. The hazard_field in CausalGridWorldV2 (continuous proximity signal) recapitulates this gradient; E3.harm_eval learning graded danger maps (EXQ-029 PASS) mirrors the PIC's topographic differentiation across gradient levels.",
+    "mapping_caveat": "PIC is a behavioural/neural theory of anti-predator defence; ARC-024 is an architectural claim about world-latent space representation. The inference from observable behavioural gradient to world-latent gradient representation requires treating the world's harm signal as the causal driver of the PIC gradient, which is the core architectural assumption ARC-024 makes.",
+    "source_context": "Theoretical review integrating rodent fear conditioning literature and human data; framed around NIMH RDoC negative valence constructs"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Highest mapping fidelity in this batch: PIC directly models graded harm signals before contact. Source quality penalised slightly for journal tier (Emerging Topics Life Sciences vs Science/Nature) and single-author review format. Transfer risk low because the animal-to-human transfer is supported by Mobbs 2007 and the PIC literature includes human data."
+  }
+}
