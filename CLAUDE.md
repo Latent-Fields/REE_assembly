@@ -66,17 +66,19 @@ After each governance/experiment discussion session:
   The runner writes `claim_ids_tested` in `runs/**/manifest.json`.
   The indexer accepts both — no action needed, but use `claim_ids` in new V3 scripts.
 
-## Known Indexer Limitation: evidence_direction is Per-Experiment, Not Per-Claim
+## evidence_direction: Per-Experiment Default with Optional Per-Claim Overrides
 
-The indexer applies a single `evidence_direction` (supports/weakens/mixed) to **all** claims tagged
-in a multi-claim experiment, derived from the overall PASS/FAIL outcome. This is systematically wrong
-for multi-claim experiments where only some claims' criteria fail.
+The indexer applies a single `evidence_direction` (supports/weakens/mixed) to all claims tagged
+in a multi-claim experiment unless overridden. For experiments where different claims have distinct
+pass/fail outcomes, use `evidence_direction_per_claim` (see below). Without it, a single FAIL
+outcome incorrectly marks all tagged claims as "weakens" even if only some criteria failed.
 
-**Canonical example (2026-03-22):** EXQ-023 tested SD-008, SD-003, MECH-098, ARC-016 together.
-SD-008's criterion (event_selectivity_margin=0.084) **passed**. But SD-007 R² and SD-003 calibration
-failed, making the overall outcome FAIL and marking SD-008 as "weakens" — incorrect.
+**Canonical example of the failure mode (2026-03-22):** EXQ-023 tested SD-008, SD-003, MECH-098,
+ARC-016 together. SD-008's criterion (event_selectivity_margin=0.084) **passed**. But SD-007 R²
+and SD-003 calibration failed, making the overall outcome FAIL and marking SD-008 as "weakens" —
+incorrect.
 
-**Workaround:** When manual review identifies a per-claim direction error, correct the manifest
+**Fallback workaround (for older manifests without per-claim field):** Correct the manifest
 `evidence_direction` field directly and add an `evidence_direction_note` explaining the correction.
 Rebuild the index after. This is a manual process — the pipeline does not detect these errors.
 
