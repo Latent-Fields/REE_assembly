@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-28T16:09:32.196508Z",
+  "generated_at_utc": "2026-03-28T16:21:43.995717Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -100,11 +100,13 @@
       "backlog_id": "EVB-0006",
       "claim_id": "MECH-099",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-113",
+      "executed_queue_id": "V3-EXQ-113",
       "objective": "Generate decision-grade discriminative evidence for MECH-099 before governance deadline.",
       "priority": "high",
       "proposal_id": "EXP-0006",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_099",
       "target_repo": "ree-v3",
       "why_now": [
@@ -179,30 +181,13 @@
     },
     {
       "backlog_id": "EVB-0009",
-      "claim_id": "SD-007",
+      "claim_id": "MECH-093",
       "dispatch_mode": "discriminative_pair",
-      "objective": "Run a discriminative support-vs-ablation pair for SD-007 with matched seeds and pre-registered thresholds.",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-093 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0011",
       "proposal_type": "experimental",
       "status": "proposed",
-      "suggested_experiment_type": "v3_exq_027_sd003_v3_reafference",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0010",
-      "claim_id": "MECH-093",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-109",
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-093 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0012",
-      "proposal_type": "experimental",
-      "status": "executed",
       "suggested_experiment_type": "v3_exq_038_arc016_precision_sweep",
       "target_repo": "ree-v3",
       "why_now": [
@@ -211,14 +196,15 @@
       ]
     },
     {
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0010",
       "claim_id": "SD-004",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-109",
       "objective": "Run a discriminative support-vs-ablation pair for SD-004 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0013",
+      "proposal_id": "EXP-0012",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_042_hippocampal_terrain_training",
       "target_repo": "ree-v3",
       "why_now": [
@@ -228,13 +214,14 @@
       ]
     },
     {
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0010",
       "claim_id": "SD-004",
+      "executed_by": "V3-EXQ-109",
       "objective": "Improve literature grounding and confidence for SD-004.",
       "priority": "high",
-      "proposal_id": "LIT-0014",
+      "proposal_id": "LIT-0013",
       "proposal_type": "literature_review",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly",
       "why_now": [
         "active_conflict",
@@ -243,15 +230,31 @@
       ]
     },
     {
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0011",
       "claim_id": "ARC-024",
       "dispatch_mode": "discriminative_pair",
       "objective": "Run a discriminative support-vs-ablation pair for ARC-024 with matched seeds and pre-registered thresholds.",
       "priority": "high",
-      "proposal_id": "EXP-0015",
+      "proposal_id": "EXP-0014",
       "proposal_type": "experimental",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_sd_003",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0012",
+      "claim_id": "SD-007",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for SD-007 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0015",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "v3_exq_027_sd003_v3_reafference",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -1737,9 +1740,9 @@
       "target_repo": "REE_assembly"
     }
   ],
-  "n_executed": 6,
-  "n_proposed_exp": 46,
-  "n_proposed_lit": 70,
+  "n_executed": 8,
+  "n_proposed_exp": 45,
+  "n_proposed_lit": 69,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

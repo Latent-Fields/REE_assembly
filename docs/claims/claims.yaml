@@ -4947,7 +4947,10 @@
     be z_world_raw_prev (not z_self_prev): cell content entering view dominates
     Δz_world_raw and is inaccessible from body state alone (EXQ-027 run 1
     R²=0.027 with z_self inputs). Biological basis: MSTd receives optic flow
-    plus efference copy.
+    plus efference copy. Known limitation (Brooks & Cullen 2019 review):
+    the brain continuously recalibrates the motor-sensory relationship;
+    the current static predictor does not model this -- potential failure
+    mode for non-stationary environments or long-running agents.
   depends_on: [SD-005]
   location: docs/architecture/sensory_stream_tags.md
 
