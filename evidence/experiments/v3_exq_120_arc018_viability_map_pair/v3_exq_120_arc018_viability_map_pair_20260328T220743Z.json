@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "harm_rate_on": 0.0058,
+    "harm_rate_ablated": 0.7471046269747569,
+    "harm_reduction_frac": 0.9922366964537672,
+    "residue_events_min_on": 3556.0,
+    "active_centers_min_on": 32.0,
+    "seed_pair_pass_harm": 2.0,
+    "n_harm_min": 54.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "nav_bias": 0.4,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 5.0
+  },
+  "summary_markdown": "# V3-EXQ-120 -- ARC-018 Viability Map Discriminative Pair\n\n**Status:** PASS\n**Claim:** ARC-018\n**Decision:** retain_ree\n**Seeds:** [42, 123]\n**Conditions:** VIABILITY_MAP_ON (residue+hippo+precision) vs VIABILITY_MAP_ABLATED (no terrain, no precision update)\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps  **Steps/ep:** 200\n**Env:** CausalGridWorldV2 size=6, 4 hazards, use_proxy_fields=True, nav_bias=0.4\n\n## Pre-Registered Thresholds\n\nC1: harm_reduction_frac >= 0.15  (MAP_ON reduces harm by >=15%)\nC2: residue_events_min_on >= 20  (viability map actually populated)\nC3: consistent harm reduction for ALL seeds  (seed_pair_pass >= 2)\nC4: n_harm_min >= 20  (data quality gate)\nC5: active_centers_min_on >= 5  (viability map covers enough latent space)\n\n## Results\n\n| Condition | harm_rate | harm_events | steps |\n|-----------|----------|------------|-------|\n| MAP_ON  | 0.0058 | 116 | 20000 |\n| MAP_ABLATED | 0.7471 | 1055 | 1412 |\n\n**harm_reduction_frac: +0.9922**  (0.7471 -> 0.0058)\n**residue_events_min_on: 3556**  **active_centers_min_on: 32**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_reduction >= 0.15 | PASS | 0.9922 |\n| C2: residue_events_min >= 20 | PASS | 3556 |\n| C3: consistent across seeds | PASS | 2/2 |\n| C4: n_harm_min >= 20 | PASS | 54 |\n| C5: active_centers_min >= 5 | PASS | 32 |\n\nCriteria met: 5/5 -> **PASS**\n\n## Interpretation\n\nARC-018 SUPPORTED: Hippocampal viability map provides measurable harm reduction: MAP_ON=0.0058 vs MAP_ABLATED=0.7471 (99.2% reduction). Residue field populated (min events=3556, active centers=32). Consistent across all 2 seeds. E2 rollout scoring (terrain prior) enables the viability map navigation advantage.\n\n## Per-Seed\n\nVIABILITY_MAP_ON:\n  seed=42: harm_rate=0.0062 harm_events=62/10000 residue_events=3556 active_centers=32\n  seed=123: harm_rate=0.0054 harm_events=54/10000 residue_events=3638 active_centers=32\n\nVIABILITY_MAP_ABLATED:\n  seed=42: harm_rate=0.7449 harm_events=511/686\n  seed=123: harm_rate=0.7493 harm_events=544/726\n\n",
+  "claim_ids": [
+    "ARC-018"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_120_arc018_viability_map_pair",
+  "run_timestamp": "20260328T220743Z",
+  "claim": "ARC-018",
+  "verdict": "PASS",
+  "run_id": "v3_exq_120_arc018_viability_map_pair_20260328T220743Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_harm_reduction_frac": 0.15,
+    "C2_min_residue_events_on": 20,
+    "C3_seed_pair_pass": 2,
+    "C4_n_harm_min": 20,
+    "C5_min_active_centers_on": 5
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "VIABILITY_MAP_ON",
+    "VIABILITY_MAP_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0014"
+}

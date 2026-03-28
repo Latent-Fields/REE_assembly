@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-28T21:49:11.486199+00:00",
+  "last_updated": "2026-03-28T22:07:43.802148+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-120",
-    "backlog_id": "EVB-0014",
-    "claim_id": "ARC-018",
-    "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
-    "description": "",
-    "script": "experiments/v3_exq_120_arc018_viability_map_pair.py",
-    "started_at": "2026-03-28T21:33:09.983006+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 400,
-      "episodes_total": 400,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 961,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "ao_std  = elite_ao_tensor.std(dim=0) + 1e-6",
-      "[train] seed=42 cond=VIABILITY_MAP_ON ep 100/400 harm_events=864 harm_rate=0.1053 residue_events=864",
-      "[train] seed=42 cond=VIABILITY_MAP_ON ep 200/400 harm_events=1726 harm_rate=0.1006 residue_events=1726",
-      "[train] seed=42 cond=VIABILITY_MAP_ON ep 300/400 harm_events=2678 harm_rate=0.1041 residue_events=2678",
-      "[train] seed=42 cond=VIABILITY_MAP_ON ep 400/400 harm_events=3556 harm_rate=0.1010 residue_events=3556"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -40,17 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-120",
-      "backlog_id": "EVB-0014",
-      "claim_id": "ARC-018",
-      "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2023,6 +1986,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_119_mech090_beta_gate_pair/v3_exq_119_mech090_beta_gate_pair_20260328T213307Z.json",
       "completed_by": "Mac",
       "actual_secs": 427.6
+    },
+    {
+      "queue_id": "V3-EXQ-120",
+      "backlog_id": "EVB-0014",
+      "claim_id": "ARC-018",
+      "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "harm_reduction_frac: 0.9922366964537672 | seed_pair_pass_harm: 2.0 | n_harm_min: 54.0",
+      "started_at": "2026-03-28T21:33:09.983006+00:00",
+      "completed_at": "2026-03-28T22:07:43.799199+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_120_arc018_viability_map_pair/v3_exq_120_arc018_viability_map_pair_20260328T220743Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 2073.8
     }
   ]
 }
