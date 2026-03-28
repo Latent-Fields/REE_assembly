@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_079_mech102_depletion_ordering
 
-Generated: `2026-03-28T16:21:43.995717Z`
+Generated: `2026-03-28T19:04:16.841136Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
