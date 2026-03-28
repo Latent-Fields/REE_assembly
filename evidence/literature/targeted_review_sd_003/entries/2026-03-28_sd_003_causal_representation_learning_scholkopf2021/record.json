@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-03-28_sd_003_causal_representation_learning_scholkopf2021",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "Towards Causal Representation Learning.",
+    "authors": ["Scholkopf, B.", "Locatello, F.", "Bauer, S.", "Ke, N.R.", "Kalchbrenner, N.", "Goyal, A.", "Bengio, Y."],
+    "year": 2021,
+    "venue": "Proceedings of the IEEE",
+    "doi": "10.1109/JPROC.2021.3058954",
+    "url": "https://arxiv.org/abs/2102.11107"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "This paper provides the formal theoretical grounding for why a learned forward model can in principle serve as a structural causal model (SCM) enabling interventional and counterfactual reasoning. SD-003 requires E2 to function as exactly this: a model that, given a state z_t and an action, faithfully represents P(z_harm_s_next | do(a)) and P(z_harm_s_next | do(a_cf)) -- interventional distributions that support the counterfactual difference causal_sig. Scholkopf et al. 2021 articulates why representation learning must target this causal structure (rather than merely correlational structure) to support transfer and generalisation -- directly relevant to SD-003's claim that E2 trained on harm-stream transitions can be used for counterfactual attribution rather than just one-step prediction. The paper identifies the core research gap: most causality work assumes causal variables are already known, whereas SD-003's E2_harm_s must learn them from harm-stream observations. Confidence is moderated because the paper addresses the static causal graph over observations rather than dynamic sequential causal attribution, and because the convergence conditions it identifies are for disentanglement tasks rather than sequential action-conditional forward models.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Scholkopf et al. warn that most learned representations do not support interventional reasoning because they encode correlational structure rather than causal structure. If E2_harm_s is trained with a standard regression objective (minimising next-state prediction error), it may learn to encode correlational regularities between actions and harm outcomes rather than the underlying causal mechanism. In this case, E2(z_t, a_cf) would not correctly represent the interventional distribution P(z_harm_s | do(a_cf)), and causal_sig would be a biased estimate of the true causal contribution.",
+    "The paper argues that causal representation learning requires some form of interventional or multi-environment data to break the symmetry between observationally equivalent but causally distinct models. If SD-003's E2_harm_s is trained only on observational trajectories without explicit counterfactual perturbations, it may not learn a representation that supports the interventional computation causal_sig requires."
+  ],
+  "tags": ["sd_003", "causal_representation_learning", "structural_causal_model", "interventional_distribution", "counterfactual", "forward_model", "representation_learning"],
+  "mapping": {
+    "source_claim_statement": "Most machine learning representations encode correlational statistical structure from observational data. For representations to support transfer, generalisation, and counterfactual reasoning, they must instead encode the underlying causal structure -- the structural causal model (SCM) governing how variables relate under interventions. Causal representation learning is the problem of discovering high-level causal variables and their relationships from raw observations. Interventional distributions P(Y | do(X)) are fundamentally distinct from conditional distributions P(Y | X) and require causal representations to compute correctly.",
+    "ree_translation": "SD-003 requires E2_harm_s to compute P(z_harm_s_next | do(a_actual)) and P(z_harm_s_next | do(a_cf)) -- interventional distributions in the harm latent space. For causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf) to correctly isolate the agent's causal contribution, E2 must function as an SCM rather than a correlational predictor. Scholkopf 2021 provides the theoretical justification for why this distinction matters and what it requires: the representation must disentangle causally independent factors, and training must include interventional signal. This motivates the ARC-033 design decision to treat E2_harm_s as a structural forward model, not just a regression target.",
+    "mapping_caveat": "The paper primarily addresses the static causal discovery problem (finding the causal graph over a set of observed variables), not the dynamic sequential action-conditional causal attribution SD-003 requires. The interventional reasoning SD-003 needs is action-conditional at each timestep in a Markov chain, not a one-time structural graph discovery. Additionally, the convergence conditions the paper identifies are for identifiability of causal variables in static settings with i.i.d. data -- these conditions do not directly translate to the non-i.i.d., sequential, action-conditional setting of SD-003's E2_harm_s training. The paper supports the motivation and formal framing of SD-003, but does not directly validate its specific implementation.",
+    "source_context": "Theoretical and conceptual review paper. Special issue of Proceedings of the IEEE on advances in machine learning and deep neural networks, 2021. Broad scope: bridges Pearl's do-calculus, Bayesian networks, and representation learning. Highly influential; authors include Bengio and Scholkopf."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "Source quality is high (Proc IEEE special issue, senior authors including Bengio and Scholkopf). Mapping fidelity is moderate: the formal SCM framing and interventional distribution distinction are directly relevant to SD-003's causal_sig operation, but the static-graph focus and identifiability conditions do not directly validate the sequential action-conditional setting. Transfer risk is moderate-high: the framework must be extended from static causal graph discovery to dynamic action-conditional sequential forward modeling."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-03-28_sd_003_force_escalation_self_attribution_shergill2003",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "Two eyes for an eye: the neuroscience of force escalation.",
+    "authors": ["Shergill, S.S.", "Bays, P.M.", "Frith, C.D.", "Wolpert, D.M."],
+    "year": 2003,
+    "venue": "Science",
+    "doi": "10.1126/science.1085327",
+    "url": "https://doi.org/10.1126/science.1085327"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This paper provides the clearest behavioral demonstration that the forward model output is actively subtracted from the perceived magnitude of self-caused stimuli before a causal judgment is made. Participants applying force to themselves systematically underestimate it relative to externally applied force of identical physical magnitude -- the forward model prediction is being compared against the sensory consequence and cancelling part of the perceived force. This is exactly the operationalisation of SD-003's causal_sig computation: the difference between what the agent's forward model predicted and what would have occurred without that action. The force escalation failure mode (each agent applies progressively more force in reciprocal conflict because they perceive their own force as smaller than their partner's) is a vivid empirical illustration of what happens when the forward model comparison is not completed by a counterfactual: the agent cannot distinguish 'I caused this' from 'this happened to me'. Confidence is moderated by the modality gap (tactile force vs. harm proximity in REE) and by the single-pass nature of the demonstrated mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Force escalation cycles emerge when the forward model comparison is complete for self-produced stimuli (which are perceived as smaller) but no counterfactual is available for partner-produced stimuli -- the asymmetry in perceived magnitude drives runaway escalation. This maps onto an SD-003 failure mode: an agent without a calibrated counterfactual comparison would systematically underestimate its own harm contribution relative to external harm events, potentially missing its own causal footprint entirely.",
+    "The cancellation effect is specific to the predicted sensory consequence of the movement -- it does not generalise to stimuli outside the forward model's prediction window. This implies that E2 in SD-003 must be trained on the statistical relationship between specific actions and their harm-stream consequences; an undertrained E2 would fail to cancel its own outputs and would misattribute self-caused harm as external."
+  ],
+  "tags": ["sd_003", "forward_model", "self_attribution", "force_escalation", "sensory_cancellation", "causal_signature", "behavioral"],
+  "mapping": {
+    "source_claim_statement": "When participants generate a force on their partner's finger, they systematically underestimate their own applied force relative to the force they perceive their partner applying. The forward model of the motor system predicts the sensory consequence of self-generated force and cancels part of the perceived intensity -- meaning self-generated force feels lighter than externally generated force of identical magnitude. This causes a persistent escalation cycle in reciprocal force tasks.",
+    "ree_translation": "The paper demonstrates behaviorally that the forward model difference (predicted sensory consequence of action minus null counterfactual) IS the mechanism of self-attribution -- it is not just theoretical. In SD-003 terms: causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf) is what the nervous system computes to distinguish self-caused from other-caused force. The force escalation failure mode is the direct behavioral signature of what SD-003 prevents: an agent that cannot complete the counterfactual comparison will misestimate its own causal contribution and cannot correct for it. In the REE harm-stream context, this translates to the agent failing to recognise that harm events in z_harm_s were self-caused, leading to failure to update on counterfactual trajectories.",
+    "mapping_caveat": "The paper's forward model operates on tactile force perception, not on harm-stream latents (z_harm_s). SD-003 computes its causal_sig in the harm latent space, not in the force magnitude domain. The computational principle (forward model difference as self-attribution signal) transfers, but the specific sensory content, timescale, and dimensionality differ. Additionally, the paper demonstrates the single-pass cancellation effect (E2(a_actual) subtracted from perception), not the explicit two-pass counterfactual difference SD-003 implements. The two-pass counterfactual is the REE-specific extension.",
+    "source_context": "Human behavioral experiment, healthy adult participants, tactile force production task. High-impact Science paper. Wolpert-Frith group. Foundational empirical demonstration of the forward model cancellation effect in causal attribution."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is very high (Science, canonical empirical result). Mapping fidelity is moderate: the forward model cancellation principle maps directly but the modality (tactile force vs. harm-stream latent) and the single-pass vs. two-pass distinction reduce fidelity. Transfer risk is moderate for the same modality reason, and because the task is a symmetric reciprocal force paradigm rather than an agent-in-environment causal attribution setting."
+  }
+}

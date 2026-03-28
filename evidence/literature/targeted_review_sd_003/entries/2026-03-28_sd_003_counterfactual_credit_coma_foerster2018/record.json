@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-03-28_sd_003_counterfactual_credit_coma_foerster2018",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "Counterfactual Multi-Agent Policy Gradients.",
+    "authors": ["Foerster, J.N.", "Farquhar, G.", "Afouras, T.", "Nardelli, N.", "Whiteson, S."],
+    "year": 2018,
+    "venue": "AAAI Conference on Artificial Intelligence",
+    "doi": "10.48550/arXiv.1705.08926",
+    "url": "https://arxiv.org/abs/1705.08926"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "COMA's counterfactual baseline is structurally the closest existing ML implementation to SD-003's causal_sig operation. COMA isolates an individual agent's causal contribution to a joint outcome by computing A(s, a) = Q(s, a) - sum_a' [pi(a'|s) * Q(s, a')], where the second term is the expected Q under the agent's marginal action distribution. This is a trained forward model (critic) evaluated twice -- once under the actual action and once under the counterfactual marginal -- with the difference extracted as the credit signal. The paper provides empirical convergence evidence in a cooperative multi-agent StarCraft benchmark, demonstrating that this counterfactual difference operation produces stable gradients and improves over non-counterfactual baselines. This is direct computational evidence that the forward model difference mechanism (SD-003's causal_sig) is a tractable, learnable, convergent credit assignment operation. Confidence is high for the computational claim; moderated by the multi-agent vs single-agent distinction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "COMA's counterfactual baseline requires a centralised critic during training -- the Q-function must observe the full joint state-action space to correctly marginalise over other agents' actions. If the critic has limited information about the joint state, the counterfactual baseline is biased. In SD-003, the analogous risk is that E2 has limited observability of the state at the time of action, making causal_sig a biased estimate of the actual causal contribution.",
+    "The paper notes that COMA's counterfactual is over the marginal action distribution, not a specific counterfactual action. SD-003 uses a specific counterfactual action (a_cf), which is a different operation. The specific-counterfactual version requires a mechanism for selecting a_cf; COMA sidesteps this by marginalising. If counterfactual action selection in SD-003 is poorly specified, causal_sig will be sensitive to the choice of a_cf."
+  ],
+  "tags": ["sd_003", "counterfactual_baseline", "credit_assignment", "multi_agent", "forward_model", "causal_signature", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "A counterfactual advantage function A(s, a) = Q(s, a) - E_pi[Q(s, a')] isolates an individual agent's causal contribution to the joint team reward by comparing the Q-value under the agent's actual action against the Q-value under the counterfactual marginal action distribution. This counterfactual baseline significantly improves credit assignment in cooperative multi-agent settings and produces stable policy gradient updates.",
+    "ree_translation": "COMA operationalises the same core computation that SD-003 proposes for REE self-attribution: a learned forward model (critic / E2) is evaluated under the actual action and under a counterfactual, with the difference extracted as the causal contribution signal. In SD-003 notation: causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf). COMA demonstrates that this operation is trainable, convergent, and produces better credit assignment than non-counterfactual baselines -- directly supporting the tractability of the SD-003 design decision.",
+    "mapping_caveat": "COMA operates in a cooperative multi-agent setting where the counterfactual is over the marginal action distribution of the other agents' policies. SD-003 is a single-agent system where the counterfactual is a specific alternative action (a_cf), not a distribution over other agents. The multi-agent framing changes both what is being marginalised and why -- in COMA, the purpose is credit assignment between agents; in SD-003, the purpose is distinguishing agent-caused from environment-caused outcomes. The specific-counterfactual version SD-003 uses has stronger requirements for how a_cf is selected, which COMA's marginalisation approach avoids entirely.",
+    "source_context": "Multi-agent reinforcement learning, cooperative StarCraft unit micromanagement benchmark. Centralised training with decentralised execution framework. AAAI 2018. Computational simulation study."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Source quality is good (AAAI, influential paper in MARL credit assignment). Mapping fidelity is moderate-high: the counterfactual forward model difference operation is structurally identical to SD-003; the multi-agent vs single-agent framing is the primary caveat but does not invalidate the computational claim. Transfer risk is moderate: the domain (cooperative MARL vs single agent in environment) differs, but the credit assignment problem formulation is analogous."
+  }
+}

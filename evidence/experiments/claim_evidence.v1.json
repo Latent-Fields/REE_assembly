@@ -4887,7 +4887,7 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.628, lit_conf=0",
+      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.627, lit_conf=0",
       "direction_counts": {
         "mixed": 4,
         "supports": 0,
@@ -4898,7 +4898,7 @@
       "evidence_class_counts": {
         "exp:simulation": 4
       },
-      "experimental_confidence": 0.628,
+      "experimental_confidence": 0.627,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -4910,7 +4910,7 @@
       "latest_run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
       "latest_timestamp_utc": "2026-03-27T17:20:24Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.628,
+      "overall_confidence": 0.627,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5053,7 +5053,7 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.628, lit_conf=0",
+      "confidence_rationale": "exp=4 entry(s), lit=0 entry(s), exp_conf=0.627, lit_conf=0",
       "direction_counts": {
         "mixed": 4,
         "supports": 0,
@@ -5064,7 +5064,7 @@
       "evidence_class_counts": {
         "exp:simulation": 4
       },
-      "experimental_confidence": 0.628,
+      "experimental_confidence": 0.627,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -5076,7 +5076,7 @@
       "latest_run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
       "latest_timestamp_utc": "2026-03-27T17:20:24Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.628,
+      "overall_confidence": 0.627,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6409,16 +6409,19 @@
       }
     },
     "SD-003": {
-      "confidence_rationale": "exp=71 entry(s), lit=0 entry(s), exp_conf=0.68, lit_conf=0",
+      "confidence_rationale": "exp=71 entry(s), lit=4 entry(s), exp_conf=0.68, lit_conf=0.859",
       "direction_counts": {
         "mixed": 38,
-        "supports": 13,
+        "supports": 17,
         "unknown": 0,
         "weakens": 20
       },
-      "entries_total": 71,
+      "entries_total": 75,
       "evidence_class_counts": {
-        "exp:simulation": 71
+        "exp:simulation": 71,
+        "lit:behavioral_human": 1,
+        "lit:computational_model": 2,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.68,
       "fail_runs": 59,
@@ -6429,68 +6432,12 @@
         "unknown": 0,
         "weakens": 20
       },
-      "latest_run_id": "v3_exq_095_harm_forward_model_sd003_20260325T021349Z_v3",
-      "latest_timestamp_utc": "2026-03-25T02:13:49Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.68,
+      "latest_run_id": "2026-03-28_sd_003_force_escalation_self_attribution_shergill2003",
+      "latest_timestamp_utc": "2026-03-28T00:00:00Z",
+      "literature_confidence": 0.859,
+      "overall_confidence": 0.769,
       "pass_runs": 12,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_058c_sd010_sd003_attribution_fixed",
-          "failure_signatures": [],
-          "run_id": "v3_exq_058c_sd010_sd003_attribution_fixed_20260320T212335Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-20T21:23:35Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_071_rollout_batched_attribution",
-          "failure_signatures": [],
-          "run_id": "v3_exq_071_rollout_batched_attribution_20260323T143350Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T14:33:50Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_087_harm_bridge_validation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_087_harm_bridge_validation_20260323T184150Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T18:41:50Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_093_harm_bridge_e3_fix",
-          "failure_signatures": [],
-          "run_id": "v3_exq_093_harm_bridge_e3_fix_20260324T172512Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-24T17:25:12Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-003",
@@ -6504,12 +6451,81 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-25T02:13:49Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical theoretical statement that sense of agency derives from a forward model comparator: the motor system issues an efference copy of the intended command, a forward model predicts the expected sensory consequence, and the comparator checks predicted against actual. Deviations are attributed to external causes; matches are attributed to self. This is exactly the architectural logic SD-003 formalises as causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf). The clinical sections on delusions of control (schizophrenia passivity, utilisation behaviour) constitute natural experiments confirming that disrupting the forward model comparator produces misattribution of self-caused outcomes to external sources -- the precise failure mode SD-003 is designed to prevent. Confidence is moderated because the paper addresses the single-pass comparator (E2(a_actual) - observed), not the two-pass counterfactual difference SD-003 implements; the two-pass extension is inferential from this base.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_003",
+          "failure_signatures": [
+            "Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.",
+            "Patients with anosognosia experience illusory awareness of movement despite sensory loss, driven by motor command streams alone -- suggesting the forward model can generate self-attribution independently of sensory feedback, which has implications for SD-003 in low-feedback environments.",
+            "The paper identifies parietal cortex as housing predicted and current state representations, and prefrontal/premotor as housing intended action representations -- disruption at either site produces distinct misattribution patterns, suggesting that the single forward model SD-003 implements may need to be decomposed in V4."
+          ],
+          "run_id": "2026-03-28_sd_003_agency_comparator_frith2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003",
+          "confidence": 0.71,
+          "confidence_rationale": "This paper provides the formal theoretical grounding for why a learned forward model can in principle serve as a structural causal model (SCM) enabling interventional and counterfactual reasoning. SD-003 requires E2 to function as exactly this: a model that, given a state z_t and an action, faithfully represents P(z_harm_s_next | do(a)) and P(z_harm_s_next | do(a_cf)) -- interventional distributions that support the counterfactual difference causal_sig. Scholkopf et al. 2021 articulates why representation learning must target this causal structure (rather than merely correlational structure) to support transfer and generalisation -- directly relevant to SD-003's claim that E2 trained on harm-stream transitions can be used for counterfactual attribution rather than just one-step prediction. The paper identifies the core research gap: most causality work assumes causal variables are already known, whereas SD-003's E2_harm_s must learn them from harm-stream observations. Confidence is moderated because the paper addresses the static causal graph over observations rather than dynamic sequential causal attribution, and because the convergence conditions it identifies are for disentanglement tasks rather than sequential action-conditional forward models.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_003",
+          "failure_signatures": [
+            "Scholkopf et al. warn that most learned representations do not support interventional reasoning because they encode correlational structure rather than causal structure. If E2_harm_s is trained with a standard regression objective (minimising next-state prediction error), it may learn to encode correlational regularities between actions and harm outcomes rather than the underlying causal mechanism. In this case, E2(z_t, a_cf) would not correctly represent the interventional distribution P(z_harm_s | do(a_cf)), and causal_sig would be a biased estimate of the true causal contribution.",
+            "The paper argues that causal representation learning requires some form of interventional or multi-environment data to break the symmetry between observationally equivalent but causally distinct models. If SD-003's E2_harm_s is trained only on observational trajectories without explicit counterfactual perturbations, it may not learn a representation that supports the interventional computation causal_sig requires."
+          ],
+          "run_id": "2026-03-28_sd_003_causal_representation_learning_scholkopf2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003",
+          "confidence": 0.76,
+          "confidence_rationale": "COMA's counterfactual baseline is structurally the closest existing ML implementation to SD-003's causal_sig operation. COMA isolates an individual agent's causal contribution to a joint outcome by computing A(s, a) = Q(s, a) - sum_a' [pi(a'|s) * Q(s, a')], where the second term is the expected Q under the agent's marginal action distribution. This is a trained forward model (critic) evaluated twice -- once under the actual action and once under the counterfactual marginal -- with the difference extracted as the credit signal. The paper provides empirical convergence evidence in a cooperative multi-agent StarCraft benchmark, demonstrating that this counterfactual difference operation produces stable gradients and improves over non-counterfactual baselines. This is direct computational evidence that the forward model difference mechanism (SD-003's causal_sig) is a tractable, learnable, convergent credit assignment operation. Confidence is high for the computational claim; moderated by the multi-agent vs single-agent distinction.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_003",
+          "failure_signatures": [
+            "COMA's counterfactual baseline requires a centralised critic during training -- the Q-function must observe the full joint state-action space to correctly marginalise over other agents' actions. If the critic has limited information about the joint state, the counterfactual baseline is biased. In SD-003, the analogous risk is that E2 has limited observability of the state at the time of action, making causal_sig a biased estimate of the actual causal contribution.",
+            "The paper notes that COMA's counterfactual is over the marginal action distribution, not a specific counterfactual action. SD-003 uses a specific counterfactual action (a_cf), which is a different operation. The specific-counterfactual version requires a mechanism for selecting a_cf; COMA sidesteps this by marginalising. If counterfactual action selection in SD-003 is poorly specified, causal_sig will be sensitive to the choice of a_cf."
+          ],
+          "run_id": "2026-03-28_sd_003_counterfactual_credit_coma_foerster2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-003",
+          "confidence": 0.68,
+          "confidence_rationale": "This paper provides the clearest behavioral demonstration that the forward model output is actively subtracted from the perceived magnitude of self-caused stimuli before a causal judgment is made. Participants applying force to themselves systematically underestimate it relative to externally applied force of identical physical magnitude -- the forward model prediction is being compared against the sensory consequence and cancelling part of the perceived force. This is exactly the operationalisation of SD-003's causal_sig computation: the difference between what the agent's forward model predicted and what would have occurred without that action. The force escalation failure mode (each agent applies progressively more force in reciprocal conflict because they perceive their own force as smaller than their partner's) is a vivid empirical illustration of what happens when the forward model comparison is not completed by a counterfactual: the agent cannot distinguish 'I caused this' from 'this happened to me'. Confidence is moderated by the modality gap (tactile force vs. harm proximity in REE) and by the single-pass nature of the demonstrated mechanism.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_003",
+          "failure_signatures": [
+            "Force escalation cycles emerge when the forward model comparison is complete for self-produced stimuli (which are perceived as smaller) but no counterfactual is available for partner-produced stimuli -- the asymmetry in perceived magnitude drives runaway escalation. This maps onto an SD-003 failure mode: an agent without a calibrated counterfactual comparison would systematically underestimate its own harm contribution relative to external harm events, potentially missing its own causal footprint entirely.",
+            "The cancellation effect is specific to the predicted sensory consequence of the movement -- it does not generalise to stimuli outside the forward model's prediction window. This implies that E2 in SD-003 must be trained on the statistical relationship between specific actions and their harm-stream consequences; an undertrained E2 would fail to cancel its own outputs and would misattribute self-caused harm as external."
+          ],
+          "run_id": "2026-03-28_sd_003_force_escalation_self_attribution_shergill2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-28T00:00:00Z"
         }
       ],
-      "runs_total": 71,
+      "runs_total": 75,
       "source_counts": {
         "experimental": 71,
-        "literature": 0
+        "literature": 4
       }
     },
     "SD-003-prereq": {
@@ -7253,7 +7269,7 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.478, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.477, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -7264,7 +7280,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.478,
+      "experimental_confidence": 0.477,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7276,7 +7292,7 @@
       "latest_run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
       "latest_timestamp_utc": "2026-03-27T17:20:24Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.478,
+      "overall_confidence": 0.477,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -35153,6 +35169,75 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical theoretical statement that sense of agency derives from a forward model comparator: the motor system issues an efference copy of the intended command, a forward model predicts the expected sensory consequence, and the comparator checks predicted against actual. Deviations are attributed to external causes; matches are attributed to self. This is exactly the architectural logic SD-003 formalises as causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf). The clinical sections on delusions of control (schizophrenia passivity, utilisation behaviour) constitute natural experiments confirming that disrupting the forward model comparator produces misattribution of self-caused outcomes to external sources -- the precise failure mode SD-003 is designed to prevent. Confidence is moderated because the paper addresses the single-pass comparator (E2(a_actual) - observed), not the two-pass counterfactual difference SD-003 implements; the two-pass extension is inferential from this base.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_003",
+      "failure_signatures": [
+        "Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.",
+        "Patients with anosognosia experience illusory awareness of movement despite sensory loss, driven by motor command streams alone -- suggesting the forward model can generate self-attribution independently of sensory feedback, which has implications for SD-003 in low-feedback environments.",
+        "The paper identifies parietal cortex as housing predicted and current state representations, and prefrontal/premotor as housing intended action representations -- disruption at either site produces distinct misattribution patterns, suggesting that the single forward model SD-003 implements may need to be decomposed in V4."
+      ],
+      "run_id": "2026-03-28_sd_003_agency_comparator_frith2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.71,
+      "confidence_rationale": "This paper provides the formal theoretical grounding for why a learned forward model can in principle serve as a structural causal model (SCM) enabling interventional and counterfactual reasoning. SD-003 requires E2 to function as exactly this: a model that, given a state z_t and an action, faithfully represents P(z_harm_s_next | do(a)) and P(z_harm_s_next | do(a_cf)) -- interventional distributions that support the counterfactual difference causal_sig. Scholkopf et al. 2021 articulates why representation learning must target this causal structure (rather than merely correlational structure) to support transfer and generalisation -- directly relevant to SD-003's claim that E2 trained on harm-stream transitions can be used for counterfactual attribution rather than just one-step prediction. The paper identifies the core research gap: most causality work assumes causal variables are already known, whereas SD-003's E2_harm_s must learn them from harm-stream observations. Confidence is moderated because the paper addresses the static causal graph over observations rather than dynamic sequential causal attribution, and because the convergence conditions it identifies are for disentanglement tasks rather than sequential action-conditional forward models.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_003",
+      "failure_signatures": [
+        "Scholkopf et al. warn that most learned representations do not support interventional reasoning because they encode correlational structure rather than causal structure. If E2_harm_s is trained with a standard regression objective (minimising next-state prediction error), it may learn to encode correlational regularities between actions and harm outcomes rather than the underlying causal mechanism. In this case, E2(z_t, a_cf) would not correctly represent the interventional distribution P(z_harm_s | do(a_cf)), and causal_sig would be a biased estimate of the true causal contribution.",
+        "The paper argues that causal representation learning requires some form of interventional or multi-environment data to break the symmetry between observationally equivalent but causally distinct models. If SD-003's E2_harm_s is trained only on observational trajectories without explicit counterfactual perturbations, it may not learn a representation that supports the interventional computation causal_sig requires."
+      ],
+      "run_id": "2026-03-28_sd_003_causal_representation_learning_scholkopf2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.76,
+      "confidence_rationale": "COMA's counterfactual baseline is structurally the closest existing ML implementation to SD-003's causal_sig operation. COMA isolates an individual agent's causal contribution to a joint outcome by computing A(s, a) = Q(s, a) - sum_a' [pi(a'|s) * Q(s, a')], where the second term is the expected Q under the agent's marginal action distribution. This is a trained forward model (critic) evaluated twice -- once under the actual action and once under the counterfactual marginal -- with the difference extracted as the credit signal. The paper provides empirical convergence evidence in a cooperative multi-agent StarCraft benchmark, demonstrating that this counterfactual difference operation produces stable gradients and improves over non-counterfactual baselines. This is direct computational evidence that the forward model difference mechanism (SD-003's causal_sig) is a tractable, learnable, convergent credit assignment operation. Confidence is high for the computational claim; moderated by the multi-agent vs single-agent distinction.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_003",
+      "failure_signatures": [
+        "COMA's counterfactual baseline requires a centralised critic during training -- the Q-function must observe the full joint state-action space to correctly marginalise over other agents' actions. If the critic has limited information about the joint state, the counterfactual baseline is biased. In SD-003, the analogous risk is that E2 has limited observability of the state at the time of action, making causal_sig a biased estimate of the actual causal contribution.",
+        "The paper notes that COMA's counterfactual is over the marginal action distribution, not a specific counterfactual action. SD-003 uses a specific counterfactual action (a_cf), which is a different operation. The specific-counterfactual version requires a mechanism for selecting a_cf; COMA sidesteps this by marginalising. If counterfactual action selection in SD-003 is poorly specified, causal_sig will be sensitive to the choice of a_cf."
+      ],
+      "run_id": "2026-03-28_sd_003_counterfactual_credit_coma_foerster2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-003",
+      "confidence": 0.68,
+      "confidence_rationale": "This paper provides the clearest behavioral demonstration that the forward model output is actively subtracted from the perceived magnitude of self-caused stimuli before a causal judgment is made. Participants applying force to themselves systematically underestimate it relative to externally applied force of identical physical magnitude -- the forward model prediction is being compared against the sensory consequence and cancelling part of the perceived force. This is exactly the operationalisation of SD-003's causal_sig computation: the difference between what the agent's forward model predicted and what would have occurred without that action. The force escalation failure mode (each agent applies progressively more force in reciprocal conflict because they perceive their own force as smaller than their partner's) is a vivid empirical illustration of what happens when the forward model comparison is not completed by a counterfactual: the agent cannot distinguish 'I caused this' from 'this happened to me'. Confidence is moderated by the modality gap (tactile force vs. harm proximity in REE) and by the single-pass nature of the demonstrated mechanism.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_003",
+      "failure_signatures": [
+        "Force escalation cycles emerge when the forward model comparison is complete for self-produced stimuli (which are perceived as smaller) but no counterfactual is available for partner-produced stimuli -- the asymmetry in perceived magnitude drives runaway escalation. This maps onto an SD-003 failure mode: an agent without a calibrated counterfactual comparison would systematically underestimate its own harm contribution relative to external harm events, potentially missing its own causal footprint entirely.",
+        "The cancellation effect is specific to the predicted sensory consequence of the movement -- it does not generalise to stimuli outside the forward model's prediction window. This implies that E2 in SD-003 must be trained on the statistical relationship between specific actions and their harm-stream consequences; an undertrained E2 would fail to cancel its own outputs and would misattribute self-caused harm as external."
+      ],
+      "run_id": "2026-03-28_sd_003_force_escalation_self_attribution_shergill2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-28T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-007",
       "confidence": 0.73,
       "confidence_rationale": "High-impact Nature Neuroscience paper establishing that the cerebellum predicts the specific sensory consequences of movement and provides the cancellation signal \u2014 the forward model framework underlying SD-007's ReafferencePredictor. fMRI shows reduced somatosensory cortex activity and reduced cerebellar activity for self-produced vs. externally produced touch. The Wolpert group's forward model interpretation (cerebellum as internal model computing sensory prediction) is exactly the computational form implemented in SD-007. Confidence is moderated by modality transfer (tactile -> visual) and by the coarse spatial resolution of fMRI relative to single-unit findings.",
@@ -35380,7 +35465,7 @@
       "timestamp_utc": "2026-03-28T23:55:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-28T20:19:50.423517Z",
+  "generated_at_utc": "2026-03-28T20:37:49.508634Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

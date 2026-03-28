@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-28T19:56:31.570580+00:00",
+  "last_updated": "2026-03-28T20:40:55.257566+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-114",
@@ -16,16 +16,18 @@
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
+      "episodes_done": 250,
+      "episodes_total": 300,
+      "overall_pct": 83.3
     },
-    "seconds_elapsed": 105,
-    "seconds_remaining": 1040,
+    "seconds_elapsed": 2769,
+    "seconds_remaining": 555,
     "recent_lines": [
-      "[V3-EXQ-114] MAP_NAV seed=42 warmup=300 eval=50 alpha_world=0.9",
-      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/ree_core/hippocampal/module.py:240: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1857.)",
-      "ao_std  = elite_ao_tensor.std(dim=0) + 1e-6"
+      "[train] seed=123 cond=MAP_NAV ep 50/300 harm_events=69 harm_rate=0.0069",
+      "[train] seed=123 cond=MAP_NAV ep 100/300 harm_events=124 harm_rate=0.0062",
+      "[train] seed=123 cond=MAP_NAV ep 150/300 harm_events=191 harm_rate=0.0064",
+      "[train] seed=123 cond=MAP_NAV ep 200/300 harm_events=239 harm_rate=0.0060",
+      "[train] seed=123 cond=MAP_NAV ep 250/300 harm_events=306 harm_rate=0.0061"
     ],
     "ree_version": "v3"
   },

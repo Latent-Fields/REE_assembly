@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-03-28_sd_003_agency_comparator_frith2000",
+  "timestamp_utc": "2026-03-28T00:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "Abnormalities in the awareness and control of action.",
+    "authors": ["Frith, C.D.", "Blakemore, S.J.", "Wolpert, D.M."],
+    "year": 2000,
+    "venue": "Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences",
+    "doi": "10.1098/rstb.2000.0734",
+    "url": "https://doi.org/10.1098/rstb.2000.0734"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the canonical theoretical statement that sense of agency derives from a forward model comparator: the motor system issues an efference copy of the intended command, a forward model predicts the expected sensory consequence, and the comparator checks predicted against actual. Deviations are attributed to external causes; matches are attributed to self. This is exactly the architectural logic SD-003 formalises as causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf). The clinical sections on delusions of control (schizophrenia passivity, utilisation behaviour) constitute natural experiments confirming that disrupting the forward model comparator produces misattribution of self-caused outcomes to external sources -- the precise failure mode SD-003 is designed to prevent. Confidence is moderated because the paper addresses the single-pass comparator (E2(a_actual) - observed), not the two-pass counterfactual difference SD-003 implements; the two-pass extension is inferential from this base.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.",
+    "Patients with anosognosia experience illusory awareness of movement despite sensory loss, driven by motor command streams alone -- suggesting the forward model can generate self-attribution independently of sensory feedback, which has implications for SD-003 in low-feedback environments.",
+    "The paper identifies parietal cortex as housing predicted and current state representations, and prefrontal/premotor as housing intended action representations -- disruption at either site produces distinct misattribution patterns, suggesting that the single forward model SD-003 implements may need to be decomposed in V4."
+  ],
+  "tags": ["sd_003", "forward_model", "sense_of_agency", "self_attribution", "efference_copy", "delusions_of_control", "comparator_model"],
+  "mapping": {
+    "source_claim_statement": "The motor system generates an efference copy of motor commands that drives a forward model predicting expected sensory consequences. The comparator checks these predictions against actual sensory feedback. Predicted-actual matches signal self-caused action; mismatches signal external causation. Disruption of this comparator mechanism produces characteristic misattribution disorders (delusions of control, anosognosia, phantom limb).",
+    "ree_translation": "SD-003 implements the two-pass version of this comparator as the causal signature: causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf). E2 is the REE forward model (analogous to the internal model here); the efference copy maps onto the action input a_actual; the counterfactual a_cf is the specific innovation SD-003 adds beyond the single-pass comparator. The causal_sig isolates what the agent itself caused (the difference between actual and counterfactual forward model outputs) from what would have happened anyway. Clinical failure cases (delusions of control) directly instantiate the failure mode: when E2 is poorly calibrated, causal_sig will misclassify agent-caused outcomes as externally caused.",
+    "mapping_caveat": "The paper describes and supports the single-pass comparator (E2(a_actual) - observed_sensory_consequence), not the two-pass counterfactual difference SD-003 implements. The step from single-pass to two-pass is theoretically motivated but not directly evidenced by this paper. The counterfactual a_cf is also SD-003-specific: the paper does not discuss how counterfactual actions would be selected or evaluated. Additionally, the biological substrate (parietal-prefrontal circuit) abstracts over a level of implementation detail that is not yet in REE V3.",
+    "source_context": "Human clinical and neuropsychological review; draws on lesion studies, patient case series, and neuroimaging. Framework paper from the Wolpert-Frith group. Represents the consensus forward model account of motor awareness and agency circa 2000."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Source quality is high -- Phil Trans Roy Soc B, senior authorship, widely cited canonical review. Mapping fidelity is moderate: the core forward-model comparator logic is directly relevant, but SD-003's two-pass counterfactual extension goes beyond what the paper directly evidences. Transfer risk is low -- the claim is about the computational principle of forward-model-based self-attribution, not a species or modality-specific mechanism."
+  }
+}

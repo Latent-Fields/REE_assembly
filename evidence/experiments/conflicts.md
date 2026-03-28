@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-28T19:56:00.086694Z`
+Generated: `2026-03-28T20:37:49.508634Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -21,7 +21,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-099` | directional, source_disagreement, mixed_evidence | 3 | 4 | 0.857 | `v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3` | 9 |
 | `MECH-102` | directional, mixed_evidence | 3 | 10 | 0.462 | `v3_exq_080_mech102_depletion_ordering_20260323T131625Z_v3` | 23 |
 | `MECH-135` | directional | 2 | 2 | 1 | `v3_exq_103_e2_training_horizon_ablation_20260328T100444Z_v3` | 4 |
-| `SD-003` | directional, mixed_evidence | 13 | 20 | 0.788 | `v3_exq_095_harm_forward_model_sd003_20260325T021349Z_v3` | 71 |
+| `SD-003` | directional, source_disagreement, mixed_evidence | 17 | 20 | 0.919 | `2026-03-28_sd_003_force_escalation_self_attribution_shergill2003` | 75 |
 | `SD-004` | directional | 3 | 5 | 0.75 | `v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3` | 8 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 10 | 13 | 0.87 | `v3_exq_096a_full_integration_benchmark_20260325T055416Z_v3` | 32 |
 | `SD-007` | directional, mixed_evidence | 12 | 7 | 0.737 | `2026-03-28_sd_007_vestibular_reafference_roy2001` | 23 |
@@ -245,14 +245,20 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### SD-003
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=20, conflict_ratio=0.788, overall_confidence=0.68
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=17, weakens=20, conflict_ratio=0.919, overall_confidence=0.769
 - Recent entries:
-  - `2026-03-20T21:23:35Z` `experimental` `v3_exq_058c_sd010_sd003_attribution_fixed` direction=`mixed` confidence=0.5
-  - `2026-03-23T14:33:50Z` `experimental` `v3_exq_071_rollout_batched_attribution` direction=`mixed` confidence=0.5
-  - `2026-03-23T18:41:50Z` `experimental` `v3_exq_087_harm_bridge_validation` direction=`mixed` confidence=0.5
-  - `2026-03-24T17:25:12Z` `experimental` `v3_exq_093_harm_bridge_e3_fix` direction=`mixed` confidence=0.5
   - `2026-03-25T02:13:49Z` `experimental` `v3_exq_095_harm_forward_model_sd003` direction=`mixed` confidence=0.5
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.72
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.71
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.76
+  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.68
+- Recurring failure signatures:
+  - `Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.` (1)
+  - `Patients with anosognosia experience illusory awareness of movement despite sensory loss, driven by motor command streams alone -- suggesting the forward model can generate self-attribution independently of sensory feedback, which has implications for SD-003 in low-feedback environments.` (1)
+  - `The paper identifies parietal cortex as housing predicted and current state representations, and prefrontal/premotor as housing intended action representations -- disruption at either site produces distinct misattribution patterns, suggesting that the single forward model SD-003 implements may need to be decomposed in V4.` (1)
+  - `Scholkopf et al. warn that most learned representations do not support interventional reasoning because they encode correlational structure rather than causal structure. If E2_harm_s is trained with a standard regression objective (minimising next-state prediction error), it may learn to encode correlational regularities between actions and harm outcomes rather than the underlying causal mechanism. In this case, E2(z_t, a_cf) would not correctly represent the interventional distribution P(z_harm_s | do(a_cf)), and causal_sig would be a biased estimate of the true causal contribution.` (1)
+  - `The paper argues that causal representation learning requires some form of interventional or multi-environment data to break the symmetry between observationally equivalent but causally distinct models. If SD-003's E2_harm_s is trained only on observational trajectories without explicit counterfactual perturbations, it may not learn a representation that supports the interventional computation causal_sig requires.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
