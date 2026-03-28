@@ -1,0 +1,44 @@
+{
+  "run_id": "v3_exq_118_c1fail_20260328T212454Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "discriminative_pair_sd007_reafference_multiseed",
+  "claim_ids": [
+    "SD-007"
+  ],
+  "claim_ids_tested": [
+    "SD-007"
+  ],
+  "status": "FAIL",
+  "fail_reason": "C1_FAIL_predictor_quality_insufficient",
+  "r2_test": -0.2880432219337439,
+  "n_train_samples": 910,
+  "n_test_samples": 247,
+  "n_locomotion_sequences": 40,
+  "n_locomotion_steps": 1157,
+  "c1_pass": false,
+  "c2_pass": false,
+  "c3_pass": false,
+  "c3_partial": false,
+  "c4_pass": false,
+  "pair_pass_count": 0,
+  "seeds_tested": [
+    42,
+    123,
+    456
+  ],
+  "registered_c1_threshold": 0.1,
+  "registered_c2_threshold": 1.15,
+  "registered_c3_full_threshold": 3,
+  "registered_c3_partial_threshold": 2,
+  "registered_c4_min_approach": 30,
+  "registered_c4_min_seeds": 2,
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "not_applicable",
+  "recommended_outcome": "hold",
+  "outcome_scores": {
+    "retain_ree": false,
+    "hybridize": false,
+    "retire_ree_claim": false
+  },
+  "summary": "SD-007 Phase 1 gate FAIL: R2_test=-0.2880 < threshold=0.10. Engineering bottleneck prevents Phase 2. Collected 1157 steps from 40 episodes in low-hazard env (size=8, 1 hazard). Does NOT retire SD-007 -- predictor quality insufficient to test design decision."
+}

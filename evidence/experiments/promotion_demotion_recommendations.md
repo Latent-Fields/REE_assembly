@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-28T21:16:16.854723Z`
+Generated: `2026-03-28T21:45:05.894910Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -19,6 +19,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-099` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-135` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
+| `SD-011` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 
 ## Decision Details
 
@@ -97,7 +98,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-093
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.661, conflict_ratio=0.75, exp_entries=9, lit_entries=1; directions supports=3, weakens=5, mixed=1, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: overall_conf=0.693, conflict_ratio=0.889, exp_entries=10, lit_entries=1; directions supports=4, weakens=5, mixed=1, unknown=0, conflict_ratio=0.889
 - Evidence quality note: EXQ-097 FAIL 2/3 (2026-03-26): C1 FAIL -- p1_rate_gap=-0.74 (threshold >= 2.0). E3 heartbeat rate did NOT differentiate high-harm from low-harm episodes; gap is negative (higher harm -> slightly lower rate) -- opposite of prediction. DIAGNOSTIC (2026-03-27): z_beta IS wired to clock rate. update_e3_rate_from_beta() is called every step in agent._e1_step() (agent.py:272). Implementation gap does NO…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -153,7 +154,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-135
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=7, mixed=0, unknown=0, conflict_ratio=0.727
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=2, mixed=0, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -186,3 +187,19 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361158Z`
 - Last selected option: Narrow the question into testable sub-questions (higher tractability)
 - Last rationale: User confirmed: narrow Q-019 into testable V3 sub-questions targeting the BG three-gate vs single-gate distinction. ARC-021 direction (three distinct loops with incommensurable errors) is the working hypothesis; V3 experiment design should isolate each loop independently before testing full three-gate interaction.
+
+### SD-011
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
+- Why this decision is needed: overall_conf=0.622, conflict_ratio=0.5, exp_entries=12, lit_entries=0; directions supports=1, weakens=3, mixed=4, unknown=0, conflict_ratio=0.5
+- Evidence quality note: EXQ-093 FAIL + EXQ-094 FAIL (2026-03-24): Both confirmed bridge_r2=0 -- SD-010 makes z_world perp z_harm by architectural design, so HarmBridge(z_world -> z_harm) is infeasible (nothing to learn). EXQ-094 confirmed training E3 on bridge noise produced 100x regression in harm_var vs EXQ-088. These experiments collectively demonstrate that the current single-stream z_harm cannot simultaneously serve…
+- Recommendation: `hold_candidate_resolve_conflict`
+- Options (pros/cons):
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`

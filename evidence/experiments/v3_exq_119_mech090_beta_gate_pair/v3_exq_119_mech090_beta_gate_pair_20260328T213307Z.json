@@ -1,0 +1,68 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "pair_c1_pass_count": 2.0,
+    "c2_seeds_passing": 0.0,
+    "c3_seeds_passing": 2.0,
+    "n_seeds": 2.0,
+    "c1_threshold_hold": 0.6,
+    "c2_threshold_release": 0.5,
+    "c3_threshold_ablation_max": 0.4,
+    "c4_threshold_n_committed": 50.0,
+    "total_fatal_errors": 0.0,
+    "criteria_met": 4.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "alpha_world": 0.9,
+    "warmup_episodes": 400.0,
+    "eval_episodes": 50.0,
+    "seed42_on_hold_conc": 1.0,
+    "seed42_on_release_conc": 0.0,
+    "seed42_on_n_committed": 790.0,
+    "seed42_on_n_uncommitted": 0.0,
+    "seed123_on_hold_conc": 1.0,
+    "seed123_on_release_conc": 0.0,
+    "seed123_on_n_committed": 760.0,
+    "seed123_on_n_uncommitted": 0.0,
+    "seed42_off_hold_conc": 0.0,
+    "seed42_off_n_committed": 790.0,
+    "seed123_off_hold_conc": 0.0,
+    "seed123_off_n_committed": 760.0
+  },
+  "summary_markdown": "# V3-EXQ-119 -- MECH-090: Beta Gate Committed Dynamics (Multi-Seed Pair)\n\n**Status:** FAIL\n**Claims:** MECH-090\n**Proposal:** EXP-0016 / EVB-0013\n**Decision:** hold\n**Seeds:** [42, 123]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps  **Steps/ep:** 200\n\n## Context\n\nEXQ-049e (seed=0) two-condition design showed committed_hold_conc=1.0 (C1) and uncommitted_release_conc consistent with claim. This is the matched-seed discriminative replication with a full GATE_OFF ablation arm.\n\n## Pre-Registered Thresholds\n\nC1 (hold concordance, GATE_ON): committed_hold_conc >= 0.6 for BOTH seeds\nC2 (release concordance, GATE_ON): uncommitted_release_conc >= 0.5 for >= 1 seed\nC3 (ablation, GATE_OFF): committed_hold_conc < 0.4 for BOTH seeds\nC4 (data quality): n_committed >= 50 per seed (GATE_ON)\nC5 (no crashes): zero fatal errors\nPASS: C1_both AND C2_at_least_one AND C3_both AND C4_both AND C5\n\n## Per-Seed Results -- BETA_GATE_ON\n\n| Seed | hold_conc | release_conc | n_committed | n_uncommitted | C1 | C2 |\n|------|-----------|--------------|-------------|---------------|----|----|  \n| 42 | 1.000 | 0.000 | 790 | 0 | PASS | FAIL |\n| 123 | 1.000 | 0.000 | 760 | 0 | PASS | FAIL |\n\n## Per-Seed Results -- BETA_GATE_OFF (Ablation)\n\n| Seed | hold_conc | n_committed | C3 |\n|------|-----------|-------------|----|\n| 42 | 0.000 | 790 | PASS |\n| 123 | 0.000 | 760 | PASS |\n\n## Aggregate\n\n| Criterion | Result | Detail |\n|-----------|--------|--------|\n| C1: hold_conc>=0.6 both (GATE_ON) | PASS | 2/2 seeds |\n| C2: release_conc>=0.5 >=1 (GATE_ON) | FAIL | 0/2 seeds |\n| C3: hold_conc<0.4 both (GATE_OFF) | PASS | 2/2 seeds |\n| C4: n_committed>=50 both (GATE_ON) | PASS | 2/2 seeds |\n| C5: no fatal errors | PASS | fatal=0 |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Interpretation\n\nMECH-090 INCONCLUSIVE: criteria_met=4/5. See failure notes for details.\n\n## Failure Notes\n\n- C2 seed=42 (GATE_ON): uncommitted_release_conc=0.000 < 0.5\n- C2 seed=123 (GATE_ON): uncommitted_release_conc=0.000 < 0.5\n",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_119_mech090_beta_gate_pair",
+  "fatal_error_count": 0.0,
+  "supersedes": "v3_exq_049e_mech090_two_condition",
+  "run_timestamp": "20260328T213307Z",
+  "claim": "MECH-090",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_119_mech090_beta_gate_pair_20260328T213307Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_committed_hold_concordance_geq": 0.6,
+    "C2_uncommitted_release_concordance_geq": 0.5,
+    "C3_ablation_hold_conc_lt": 0.4,
+    "C4_n_committed_geq": 50
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "BETA_GATE_ON",
+    "BETA_GATE_OFF"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0013",
+  "claim_ids_tested": [
+    "MECH-090"
+  ],
+  "evidence_class": "experiment"
+}

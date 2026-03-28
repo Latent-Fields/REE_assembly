@@ -288,6 +288,8 @@
     from "the proxy is too weak to carry meaningful path information."
     V3 gate cleared (2026-03-28): SD-004 action objects + HippocampalModule now implemented
     in ree-v3. V3 path-memory experiments can proceed.
+    EXQ-114 PASS (2026-03-28, 4/4): MAP_NAV harm_rate=0.006 vs MAP_ABLATED=0.765.
+    99.2% harm reduction. 2/2 seeds consistent. Strong V3 confirmation of ARC-007.
   depends_on:
     - ARC-004
     - ARC-003
@@ -3822,6 +3824,12 @@
     benefiting from smoothing. Redesign should test context-dependent theta window sizes
     or shorter theta cycles (theta_k=1 or 2). EXQ-047g queued for SD-005 functional
     separation test; MECH-089 redesign deferred pending theta_k calibration.
+    EXQ-122 FAIL (2026-03-28): theta_k=2 discriminative pair (ON vs ABLATED, 2 seeds).
+    ADVERSE DIRECTION: harm_auc_ON=0.489 vs harm_auc_ABLATED=0.625 (delta=-0.135). Even
+    with k=2, theta batching hurts harm attribution. C1/C2/C3 fail; C4/C5 pass (32 harm
+    steps -- data quality OK). Strengthens context-gated interpretation: uniform temporal
+    smoothing is harmful at any tested batch size. Genuine weakening for static-k variant.
+    Hold at active; context-dependent gating design needed before promotion.
   depends_on:
     - ARC-023
     - ARC-021
@@ -7028,9 +7036,13 @@
     appears high). EXQ-104b queued to re-test after training phase.
     EXQ-105 FAIL 0/3 (2026-03-28): horizon sweep. E2_WORLD flat ~4.0 across h10/20/30;
     FROZEN scales linearly. Confirms collapse is immediate, not horizon-dependent.
+    EXQ-108 PASS (2026-03-28, 12:50): discriminative pair PASS. Adds second support entry
+    for substrate capability.
+    EXQ-108 second run (19:53) FAIL + EXQ-104b second run (18:26) FAIL: both have empty
+    metrics -- runner artifacts. Marked superseded per governance decision 2026-03-28.
     Governance decision (2026-03-28): hold at candidate -- EXQ-104b diagnostic required
-    before any evidence_direction update. Do not count EXQ-104/105 as weakening evidence
-    until trained-agent retest confirms the pattern.
+    before any evidence_direction update. Do not count EXQ-104/105 or artifact runs as
+    weakening evidence until trained-agent retest confirms the pattern.
   depends_on:
     - SD-005
     - MECH-069

@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-28T21:16:52.114156+00:00",
+  "last_updated": "2026-03-28T21:49:11.486199+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-116",
-    "backlog_id": "EVB-0009",
-    "claim_id": "MECH-093",
-    "title": "MECH-093 z_beta heartbeat modulation: BETA_MOD_ON vs OFF, matched seeds [42,123]",
+    "queue_id": "V3-EXQ-120",
+    "backlog_id": "EVB-0014",
+    "claim_id": "ARC-018",
+    "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
     "description": "",
-    "script": "experiments/v3_exq_116_mech093_heartbeat_multiseed.py",
-    "started_at": "2026-03-28T20:48:39.045459+00:00",
+    "script": "experiments/v3_exq_120_arc018_viability_map_pair.py",
+    "started_at": "2026-03-28T21:33:09.983006+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
       "episodes_done": 400,
-      "episodes_total": 500,
-      "overall_pct": 80.0
+      "episodes_total": 400,
+      "overall_pct": 100.0
     },
-    "seconds_elapsed": 1693,
-    "seconds_remaining": 423,
+    "seconds_elapsed": 961,
+    "seconds_remaining": 0,
     "recent_lines": [
-      "[V3-EXQ-116] BETA_MOD_OFF seed=123 warmup=500 eval=40 alpha_world=0.9",
-      "[train] cond=BETA_MOD_OFF seed=123 ep 100/500 ep_harm=1.1524 buf_pos=994 buf_neg=2000",
-      "[train] cond=BETA_MOD_OFF seed=123 ep 200/500 ep_harm=1.1436 buf_pos=1866 buf_neg=2000",
-      "[train] cond=BETA_MOD_OFF seed=123 ep 300/500 ep_harm=1.7400 buf_pos=2000 buf_neg=2000",
-      "[train] cond=BETA_MOD_OFF seed=123 ep 400/500 ep_harm=1.2500 buf_pos=2000 buf_neg=2000"
+      "ao_std  = elite_ao_tensor.std(dim=0) + 1e-6",
+      "[train] seed=42 cond=VIABILITY_MAP_ON ep 100/400 harm_events=864 harm_rate=0.1053 residue_events=864",
+      "[train] seed=42 cond=VIABILITY_MAP_ON ep 200/400 harm_events=1726 harm_rate=0.1006 residue_events=1726",
+      "[train] seed=42 cond=VIABILITY_MAP_ON ep 300/400 harm_events=2678 harm_rate=0.1041 residue_events=2678",
+      "[train] seed=42 cond=VIABILITY_MAP_ON ep 400/400 harm_events=3556 harm_rate=0.1010 residue_events=3556"
     ],
     "ree_version": "v3"
   },
@@ -44,57 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-116",
-      "backlog_id": "EVB-0009",
-      "claim_id": "MECH-093",
-      "title": "MECH-093 z_beta heartbeat modulation: BETA_MOD_ON vs OFF, matched seeds [42,123]",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-117",
-      "backlog_id": "EVB-0011",
-      "claim_id": "ARC-024",
-      "title": "ARC-024 harm-benefit opposing gradient discriminative pair: GRADIENT_PAIR vs FLAT_CONTROL, seeds [42,123]",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-118",
-      "backlog_id": "EVB-0012",
-      "claim_id": "SD-007",
-      "title": "SD-007 reafference matched-seed discriminative pair: REAF_ON vs REAF_OFF, seeds [42,123,456]",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-119",
-      "backlog_id": "EVB-0013",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 beta gate committed dynamics: GATE_ON vs GATE_OFF x 2 seeds",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-120",
       "backlog_id": "EVB-0014",
       "claim_id": "ARC-018",
       "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2011,6 +1967,62 @@
       "output_file": "",
       "completed_by": "Mac",
       "actual_secs": 18.6
+    },
+    {
+      "queue_id": "V3-EXQ-116",
+      "backlog_id": "EVB-0009",
+      "claim_id": "MECH-093",
+      "title": "MECH-093 z_beta heartbeat modulation: BETA_MOD_ON vs OFF, matched seeds [42,123]",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-03-28T20:48:39.045459+00:00",
+      "completed_at": "2026-03-28T21:17:57.180359+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_116_mech093_heartbeat_multiseed/v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 1758.1
+    },
+    {
+      "queue_id": "V3-EXQ-117",
+      "backlog_id": "EVB-0011",
+      "claim_id": "ARC-024",
+      "title": "ARC-024 harm-benefit opposing gradient discriminative pair: GRADIENT_PAIR vs FLAT_CONTROL, seeds [42,123]",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "gradient_gap_harm_approach_none_sem: 0.0011617817933201602 | gradient_cosine_sim_harm_benefit_mean: -99.0 | flat_gap_harm_approach_none_mean: -99.0",
+      "started_at": "2026-03-28T21:17:59.333626+00:00",
+      "completed_at": "2026-03-28T21:24:51.028041+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_117_arc024_harm_benefit_gradient_pair/v3_exq_117_arc024_harm_benefit_gradient_pair_20260328T212450Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 411.7
+    },
+    {
+      "queue_id": "V3-EXQ-118",
+      "backlog_id": "EVB-0012",
+      "claim_id": "SD-007",
+      "title": "SD-007 reafference matched-seed discriminative pair: REAF_ON vs REAF_OFF, seeds [42,123,456]",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[Phase1] C1 FAIL R2_test=-0.2880 threshold=0.10 | [EXQ-118] EXIT status=FAIL",
+      "started_at": "2026-03-28T21:24:53.189146+00:00",
+      "completed_at": "2026-03-28T21:25:57.632326+00:00",
+      "output_file": "",
+      "completed_by": "Mac",
+      "actual_secs": 64.4
+    },
+    {
+      "queue_id": "V3-EXQ-119",
+      "backlog_id": "EVB-0013",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 beta gate committed dynamics: GATE_ON vs GATE_OFF x 2 seeds",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-03-28T21:26:00.190106+00:00",
+      "completed_at": "2026-03-28T21:33:07.796776+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_119_mech090_beta_gate_pair/v3_exq_119_mech090_beta_gate_pair_20260328T213307Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 427.6
     }
   ]
 }

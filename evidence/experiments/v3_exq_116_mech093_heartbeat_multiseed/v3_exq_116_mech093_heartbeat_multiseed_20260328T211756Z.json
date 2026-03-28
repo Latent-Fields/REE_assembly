@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "pair_c1_pass_count": 2.0,
+    "n_seeds": 2.0,
+    "c1_threshold": 0.15,
+    "c2_threshold": 0.9,
+    "c4_threshold_nsteps": 1000.0,
+    "c2_seeds_passing": 2.0,
+    "c3_seeds_passing": 2.0,
+    "criteria_met": 4.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "alpha_world": 0.9,
+    "warmup_episodes": 500.0,
+    "eval_episodes": 40.0,
+    "seed42_p1_pearson_r": 0.9648597478248888,
+    "seed123_p1_pearson_r": 0.9748364692794604,
+    "seed42_p1_n_steps": 26716.0,
+    "seed123_p1_n_steps": 25586.0,
+    "seed42_action_var_ratio": 0.49885903428050365,
+    "seed123_action_var_ratio": 0.001323462769512152
+  },
+  "summary_markdown": "# V3-EXQ-116 -- MECH-093 z_beta Heartbeat Rate Modulation (Multi-Seed)\n\n**Status:** PASS\n**Claims:** MECH-093\n**Proposal:** EXP-0011 / EVB-0009\n**Decision:** retain_ree\n**Seeds:** [42, 123]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 500 eps  **Eval:** 40 eps  **Steps/ep:** 200\n\n## Context\n\nEXQ-097b (seed=42 only) PASS 2/3: C1 r=0.964, C3 var_ratio=0.096. MECH-093 promoted to provisional pending multi-seed replication. This experiment provides that replication.\n\n## Pre-Registered Thresholds\n\nC1 (modulation gate): Pearson r(|z_beta|_norm, 1/e3_rate) >= 0.15 for BOTH seeds (BETA_MOD_ON)\nC2 (safe-phase stability): action_var_ratio (ON/OFF) <= 0.9 for >= 1 seed\nC3 (direction consistency): r >= 0 for BOTH seeds (no inversion)\nC4 (data quality): n_steps >= 1000 per seed\nPASS: C1_both AND C3 AND C4\n\n## Per-Seed Results (BETA_MOD_ON)\n\n| Seed | Pearson r | n_steps | C1 | C3 | C2 |\n|------|-----------|---------|----|----|----|\n| 42 | 0.965 | 26716 | PASS | PASS | PASS |\n| 123 | 0.975 | 25586 | PASS | PASS | PASS |\n\n## Aggregate\n\n| Criterion | Result | Detail |\n|-----------|--------|--------|\n| C1: r>=0.15 both seeds | PASS | 2/2 seeds |\n| C2: var_ratio<=0.9 >=1 seed | PASS | 2/2 seeds |\n| C3: direction consistent | PASS | 2/2 seeds |\n| C4: data quality | PASS | 2/2 seeds |\n\nCriteria met: 4/4 -> **PASS**\n\n## Interpretation\n\nMECH-093 SUPPORTED by multi-seed replication (2 seeds). Step-level z_beta/rate correlation confirmed for all seeds (C1 r>=0.15), direction consistent (C3), data sufficient (C4). z_beta encodes arousal state and modulates E3 heartbeat frequency at the step level. This is distinct from precision-weighting (MECH-059): rate modulation controls update frequency, not update magnitude.\n",
+  "claim_ids": [
+    "MECH-093"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_116_mech093_heartbeat_multiseed",
+  "fatal_error_count": 0,
+  "supersedes": "v3_exq_097b_mech093_heartbeat_rate",
+  "run_timestamp": "20260328T211756Z",
+  "claim": "MECH-093",
+  "verdict": "PASS",
+  "run_id": "v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_pearson_r_per_seed": 0.15,
+    "C2_action_var_ratio_leq": 0.9,
+    "C3_direction_consistent_r_geq_0": 0.0,
+    "C4_n_steps_per_seed_geq": 1000
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "BETA_MOD_ON",
+    "BETA_MOD_OFF"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0009",
+  "claim_ids_tested": [
+    "MECH-093"
+  ],
+  "evidence_class": "experiment"
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-28T21:16:16.854723Z`
+Generated: `2026-03-28T21:45:05.894910Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -10,23 +10,23 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-007` | directional | 5 | 6 | 0.909 | `v3_exq_114_arc007_path_memory_probe_20260328T204815Z_v3` | 12 |
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 13 | 13 | 1 | `2026-03-28_arc_016_threshold_striatum_presma_forstmann2008` | 30 |
 | `ARC-018` | directional | 2 | 1 | 0.667 | `v3_exq_053_arc018_rollout_viability_20260320T073809Z_v3` | 3 |
-| `ARC-024` | directional, mixed_evidence | 12 | 8 | 0.8 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 32 |
+| `ARC-024` | directional, mixed_evidence | 13 | 9 | 0.818 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 33 |
 | `MECH-033` | directional | 4 | 1 | 0.4 | `v3_exq_055_mech033_kernel_chaining_20260320T191345Z_v3` | 5 |
-| `MECH-071` | directional, mixed_evidence | 13 | 11 | 0.917 | `v3_exq_071d_rollout_batched_attribution_20260328T181225Z_v3` | 49 |
+| `MECH-071` | directional, mixed_evidence | 14 | 11 | 0.88 | `v3_exq_071d_rollout_batched_attribution_20260328T181225Z_v3` | 49 |
 | `MECH-089` | directional, mixed_evidence | 9 | 4 | 0.615 | `v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3` | 17 |
-| `MECH-090` | directional, mixed_evidence | 8 | 4 | 0.667 | `20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3` | 21 |
-| `MECH-093` | directional, source_disagreement, mixed_evidence | 3 | 5 | 0.75 | `v3_exq_097b_mech093_heartbeat_rate_20260327T145329Z_v3` | 10 |
+| `MECH-090` | directional, mixed_evidence | 8 | 4 | 0.667 | `v3_exq_119_mech090_beta_gate_pair_20260328T213307Z_v3` | 22 |
+| `MECH-093` | directional, source_disagreement, mixed_evidence | 4 | 5 | 0.889 | `v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3` | 11 |
 | `MECH-095` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_121_mech095_agency_attribution_pair_20260328T195503Z_v3` | 12 |
 | `MECH-098` | directional, source_disagreement, mixed_evidence | 9 | 12 | 0.857 | `v3_exq_110_c1fail_20260328T161637Z_v3` | 27 |
 | `MECH-099` | directional, source_disagreement, mixed_evidence | 3 | 4 | 0.857 | `v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3` | 9 |
 | `MECH-102` | directional, mixed_evidence | 3 | 10 | 0.462 | `v3_exq_080_mech102_depletion_ordering_20260323T131625Z_v3` | 23 |
 | `MECH-104` | directional, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_126_mech104_surprise_gate_pair_20260328T203037Z_v3` | 6 |
-| `MECH-135` | directional | 4 | 7 | 0.727 | `v3_exq_108_mech135_discriminative_pair_20260328T195341Z_v3` | 11 |
-| `SD-003` | directional, source_disagreement, mixed_evidence | 17 | 22 | 0.872 | `v3_exq_115_sd003_zharms_counterfactual_20260328T204836Z_v3` | 78 |
+| `MECH-135` | directional | 4 | 2 | 0.667 | `v3_exq_108_mech135_discriminative_pair_20260328T195341Z_v3` | 11 |
+| `SD-003` | directional, source_disagreement, mixed_evidence | 17 | 23 | 0.85 | `v3_exq_115_sd003_zharms_counterfactual_20260328T204836Z_v3` | 78 |
 | `SD-004` | directional | 3 | 5 | 0.75 | `v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3` | 8 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 10 | 14 | 0.833 | `v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3` | 33 |
-| `SD-007` | directional, source_disagreement, mixed_evidence | 12 | 8 | 0.8 | `v3_exq_111_c1fail_20260328T161718Z_v3` | 24 |
-| `SD-011` | directional, mixed_evidence | 1 | 6 | 0.286 | `v3_exq_106a_harm_obs_a_persistence_fix_20260328T202420Z_v3` | 12 |
+| `SD-007` | directional, source_disagreement, mixed_evidence | 12 | 9 | 0.857 | `v3_exq_118_c1fail_20260328T212454Z_v3` | 25 |
+| `SD-011` | directional, mixed_evidence | 1 | 3 | 0.5 | `v3_exq_106a_harm_obs_a_persistence_fix_20260328T202420Z_v3` | 12 |
 
 ## Conflict Details
 
@@ -82,10 +82,10 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=12, weakens=8, conflict_ratio=0.8, overall_confidence=0.789
+- Evidence breakdown: supports=13, weakens=9, conflict_ratio=0.818, overall_confidence=0.789
 - Recent entries:
-  - `2026-03-28T16:15:03Z` `experimental` `v3_exq_107_arc024_gradient_vs_flat_structure` direction=`weakens` confidence=0.75
-  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`mixed` confidence=0.5
+  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`supports` confidence=0.55
+  - `2026-03-28T21:24:50Z` `experimental` `v3_exq_117_arc024_harm_benefit_gradient_pair` direction=`weakens` confidence=0.75
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.7
   - `2026-03-28T23:45:00Z` `literature` `targeted_review_arc_024` direction=`supports` confidence=0.78
@@ -118,13 +118,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-071
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=13, weakens=11, conflict_ratio=0.917, overall_confidence=0.766
+- Evidence breakdown: supports=14, weakens=11, conflict_ratio=0.88, overall_confidence=0.774
 - Recent entries:
   - `2026-03-26T18:09:34Z` `experimental` `v3_exq_085e_mech071_drive_modulated_goal` direction=`mixed` confidence=0.5
   - `2026-03-27T17:09:48Z` `experimental` `v3_exq_085f_mech071_goal_wired_navigation` direction=`superseded` confidence=0.55
   - `2026-03-27T17:20:24Z` `experimental` `v3_exq_085f_mech071_goal_wired_navigation` direction=`mixed` confidence=0.5
   - `2026-03-28T16:18:08Z` `experimental` `v3_exq_112_mech071_harm_eval_discriminative` direction=`weakens` confidence=0.75
-  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`mixed` confidence=0.5
+  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`supports` confidence=0.55
 - Recurring failure signatures:
   - `v2_verdict_fail:causal_attribution_calibration` (1)
 - Suggested resolution actions:
@@ -148,13 +148,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.74
+- Evidence breakdown: supports=8, weakens=4, conflict_ratio=0.667, overall_confidence=0.742
 - Recent entries:
-  - `2026-03-25T05:05:29Z` `experimental` `v3_exq_096_full_integration_benchmark` direction=`superseded` confidence=0.55
   - `2026-03-25T05:54:16Z` `experimental` `v3_exq_096a_full_integration_benchmark` direction=`supports` confidence=0.75
   - `2026-03-26T16:35:11.933414Z` `experimental` `v3_exq_059_arc016_beta_gate_fixed_threshold` direction=`weakens` confidence=0.75
   - `2026-03-26T16:35:11.936466Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
   - `2026-03-26T16:35:11.936824Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
+  - `2026-03-28T21:33:07Z` `experimental` `v3_exq_119_mech090_beta_gate_pair` direction=`mixed` confidence=0.5
 - Recurring failure signatures:
   - `beta_as_idle_not_commitment` (1)
   - `sensorimotor_beta_desynchronizes_during_action` (1)
@@ -165,13 +165,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-093
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, overall_confidence=0.663
+- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, overall_confidence=0.695
 - Recent entries:
-  - `2026-03-22T02:09:09Z` `experimental` `v3_exq_038_arc016_precision_sweep` direction=`weakens` confidence=0.75
   - `2026-03-25T05:05:29Z` `experimental` `v3_exq_096_full_integration_benchmark` direction=`superseded` confidence=0.55
   - `2026-03-25T05:54:16Z` `experimental` `v3_exq_096a_full_integration_benchmark` direction=`supports` confidence=0.75
   - `2026-03-26T21:42:12Z` `experimental` `v3_exq_097_mech093_heartbeat_rate` direction=`weakens` confidence=0.75
   - `2026-03-27T14:53:29Z` `experimental` `v3_exq_097b_mech093_heartbeat_rate` direction=`supports` confidence=0.75
+  - `2026-03-28T21:17:56Z` `experimental` `v3_exq_116_mech093_heartbeat_multiseed` direction=`supports` confidence=0.75
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -249,13 +249,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-135
 - Conflict types: directional
-- Evidence breakdown: supports=4, weakens=7, conflict_ratio=0.727, overall_confidence=0.688
+- Evidence breakdown: supports=4, weakens=2, conflict_ratio=0.667, overall_confidence=0.824
 - Recent entries:
-  - `2026-03-28T12:37:36Z` `experimental` `v3_exq_104_e1_parallel_rollout` direction=`weakens` confidence=0.75
-  - `2026-03-28T12:37:41Z` `experimental` `v3_exq_105_rollout_horizon_sweep` direction=`weakens` confidence=0.75
+  - `2026-03-28T12:37:36Z` `experimental` `v3_exq_104_e1_parallel_rollout` direction=`superseded` confidence=0.55
+  - `2026-03-28T12:37:41Z` `experimental` `v3_exq_105_rollout_horizon_sweep` direction=`superseded` confidence=0.55
   - `2026-03-28T12:50:04Z` `experimental` `v3_exq_108_mech135_discriminative_pair` direction=`supports` confidence=0.75
-  - `2026-03-28T18:26:06Z` `experimental` `v3_exq_104b_e1_parallel_rollout_trained` direction=`weakens` confidence=0.75
-  - `2026-03-28T19:53:41Z` `experimental` `v3_exq_108_mech135_discriminative_pair` direction=`weakens` confidence=0.75
+  - `2026-03-28T18:26:06Z` `experimental` `v3_exq_104b_e1_parallel_rollout_trained` direction=`superseded` confidence=0.55
+  - `2026-03-28T19:53:41Z` `experimental` `v3_exq_108_mech135_discriminative_pair` direction=`superseded` confidence=0.55
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -263,12 +263,12 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-003
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=17, weakens=22, conflict_ratio=0.872, overall_confidence=0.769
+- Evidence breakdown: supports=17, weakens=23, conflict_ratio=0.85, overall_confidence=0.767
 - Recent entries:
   - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.76
   - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_003` direction=`supports` confidence=0.68
   - `2026-03-28T16:16:34Z` `experimental` `v3_exq_109_sd003_harm_counterfactual` direction=`weakens` confidence=0.75
-  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`mixed` confidence=0.5
+  - `2026-03-28T18:12:25Z` `experimental` `v3_exq_071d_rollout_batched_attribution` direction=`weakens` confidence=0.75
   - `2026-03-28T20:48:36Z` `experimental` `v3_exq_115_sd003_zharms_counterfactual` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.` (1)
@@ -314,13 +314,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-007
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=12, weakens=8, conflict_ratio=0.8, overall_confidence=0.816
+- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, overall_confidence=0.809
 - Recent entries:
-  - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.73
   - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.8
   - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.7
   - `2026-03-28T00:00:00Z` `literature` `targeted_review_sd_007` direction=`supports` confidence=0.77
   - `2026-03-28T20:51:48.277586Z` `experimental` `discriminative_pair_sd007_reafference_gate` direction=`weakens` confidence=0.75
+  - `2026-03-28T21:40:19.449255Z` `experimental` `discriminative_pair_sd007_reafference_multiseed` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The cancellation is shown to be specific to self-produced stimuli with predictable sensory consequences — externally produced stimuli of identical physical parameters are perceived as significantly more intense. This implies the predictor must be trained on the specific statistical relationship between actions and sensory outcomes; an untrained or poorly calibrated predictor would fail to cancel.` (1)
   - `The cerebellum shows less activation during the movement that generates the tactile stimulus than during a movement that does not — suggesting the cancellation signal is computed in relation to the predicted sensory consequence of the specific action, not movement in general.` (1)
@@ -334,12 +334,12 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-011
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=1, weakens=6, conflict_ratio=0.286, overall_confidence=0.579
+- Evidence breakdown: supports=1, weakens=3, conflict_ratio=0.5, overall_confidence=0.625
 - Recent entries:
-  - `2026-03-28T12:23:30Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`weakens` confidence=0.75
-  - `2026-03-28T12:25:54Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`weakens` confidence=0.75
-  - `2026-03-28T12:37:23Z` `experimental` `v3_exq_102_harm_obs_a_clip_diagnosis` direction=`mixed` confidence=0.5
-  - `2026-03-28T12:37:45Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`weakens` confidence=0.75
+  - `2026-03-28T12:23:30Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`superseded` confidence=0.55
+  - `2026-03-28T12:25:54Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`superseded` confidence=0.55
+  - `2026-03-28T12:37:23Z` `experimental` `v3_exq_102_harm_obs_a_clip_diagnosis` direction=`superseded` confidence=0.55
+  - `2026-03-28T12:37:45Z` `experimental` `v3_exq_106_harm_obs_a_temporal_persistence` direction=`superseded` confidence=0.55
   - `2026-03-28T20:24:20Z` `experimental` `v3_exq_106a_harm_obs_a_persistence_fix` direction=`supports` confidence=0.75
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.

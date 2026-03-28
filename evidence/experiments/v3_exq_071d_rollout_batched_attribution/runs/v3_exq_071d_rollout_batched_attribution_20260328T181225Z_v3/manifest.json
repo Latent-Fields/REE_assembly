@@ -26,6 +26,8 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {"ARC-024": "supports", "MECH-071": "supports", "SD-003": "weakens"},
+  "evidence_direction_note": "C1/C2/C4/C5 pass (attribution_gap>0, rank_corr=1.0, world_forward_r2=0.945, data quality). C3 FAIL is specific to SD-003 causal signal (causal_sig_approach too small). Per-claim directions assigned.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
