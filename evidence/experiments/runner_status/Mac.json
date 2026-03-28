@@ -2,15 +2,116 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-28T19:53:42.136493+00:00",
+  "last_updated": "2026-03-28T19:56:31.570580+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-114",
+    "backlog_id": "EVB-0007",
+    "claim_id": "ARC-007",
+    "title": "ARC-007 path memory probe: MAP_NAV vs MAP_ABLATED discriminative pair",
+    "description": "",
+    "script": "experiments/v3_exq_114_arc007_path_memory_probe.py",
+    "started_at": "2026-03-28T19:54:46.391596+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 105,
+    "seconds_remaining": 1040,
+    "recent_lines": [
+      "[V3-EXQ-114] MAP_NAV seed=42 warmup=300 eval=50 alpha_world=0.9",
+      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/ree_core/hippocampal/module.py:240: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1857.)",
+      "ao_std  = elite_ao_tensor.std(dim=0) + 1e-6"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-114",
+      "backlog_id": "EVB-0007",
+      "claim_id": "ARC-007",
+      "title": "ARC-007 path memory probe: MAP_NAV vs MAP_ABLATED discriminative pair",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-115",
+      "backlog_id": "EVB-0008",
+      "claim_id": "SD-003",
+      "title": "SD-003 z_harm_s counterfactual attribution: TRAINED vs ABLATED HarmForwardModel",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-116",
+      "backlog_id": "EVB-0009",
+      "claim_id": "MECH-093",
+      "title": "MECH-093 z_beta heartbeat modulation: BETA_MOD_ON vs OFF, matched seeds [42,123]",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-117",
+      "backlog_id": "EVB-0011",
+      "claim_id": "ARC-024",
+      "title": "ARC-024 harm-benefit opposing gradient discriminative pair: GRADIENT_PAIR vs FLAT_CONTROL, seeds [42,123]",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-118",
+      "backlog_id": "EVB-0012",
+      "claim_id": "SD-007",
+      "title": "SD-007 reafference matched-seed discriminative pair: REAF_ON vs REAF_OFF, seeds [42,123,456]",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-119",
+      "backlog_id": "EVB-0013",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 beta gate committed dynamics: GATE_ON vs GATE_OFF x 2 seeds",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-120",
+      "backlog_id": "EVB-0014",
+      "claim_id": "ARC-018",
+      "title": "ARC-018 viability map: VIABILITY_MAP_ON vs VIABILITY_MAP_ABLATED x 2 seeds",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
