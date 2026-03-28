@@ -3130,6 +3130,15 @@
   source:
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
     - docs/architecture/three_loop_learning_channels.md
+  evidence_quality_note: >
+    The rollout_horizon > prediction_horizon ordering is valid for planning only if E1
+    co-evolves z_world during rollout (see MECH-135). Without co-evolution, a longer
+    rollout worsens goal visibility -- E3 plans in a frozen world for N steps instead of
+    a shorter frozen world. Correct neurological mapping: E1=cortical (slow LSTM, z_world
+    domain, prediction_horizon=20); E2=cerebellar (fast efference-copy forward model,
+    z_self domain, training horizon=1-step). E2 training horizon is separate from
+    rollout_horizon and correctly short. See MECH-135 for the full parallel-rollout claim
+    and EXQ-103/104/105 for experimental validation.
 - id: MECH-071
   title: "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions."
   claim_type: mechanism_hypothesis
@@ -6926,3 +6935,44 @@
     C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstream navigation quality
     is the new bottleneck (goal_resource_r=0.087 -- z_goal not pointing toward resources).
     SD-012 seeding claim is supported by C1 PASS; the FAIL is in navigation, not seeding.
+
+- id: MECH-135
+  title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
+  claim_type: mechanism_hypothesis
+  subject: planning.e1_e2_parallel_rollout
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  depends_on:
+    - SD-005
+    - MECH-069
+    - MECH-070
+  location: docs/architecture/
+  source:
+    - docs/architecture/sd_004_sd_005_encoder_codesign.md
+  notes: >
+    Neurological mapping: E1 = cortical (slow LSTM, sensory prediction error, z_world
+    domain, prediction_horizon=20). E2 = cerebellar (fast efference-copy forward model,
+    motor-sensory error, z_self domain, training horizon=1-step). The Wolpert/Kawato
+    framework identifies the cerebellum as the internal forward model for action
+    consequences -- this is E2 exactly. E2's training horizon is correctly short (1-step
+    MSE on z_self); the Wolpert cerebellum does fast, local motor-sensory prediction,
+    not multi-step world modeling. E2's rollout_horizon=30 > E1 prediction_horizon=20
+    is valid for planning only if E1 co-evolves z_world during rollout. Without
+    co-evolution: (a) E3 evaluates goal achievement against t=0 world state for all 30
+    steps -- goal-relevant events (resource contact, harm exposure) in the simulated
+    rollout are invisible to E3; (b) longer rollout is worse than shorter rollout under
+    frozen z_world because more steps of stale world accumulate without correction.
+    Cerebro-cerebellar co-evolution during motor imagery is the correct neural analogue:
+    cerebellar (E2) and cortical (E1) forward models co-evolve in parallel during
+    imagined movement -- neither runs in isolation. Implementation requires E1 to expose
+    a single-step z_world forward pass called once per rollout step alongside E2's
+    predict_next_self(). MECH-135 may be a contributing factor in the EXQ-085 cluster
+    failures (z_goal_norm low despite seeding): even when z_goal was seeded, the rollout
+    used for trajectory selection could not detect goal achievement because z_world was
+    frozen. Enables: SD-003 (counterfactual attribution requires z_world to evolve during
+    hypothetical rollout), INV-034 (goal maintenance requires E3 to track goal progress
+    through world-state evolution), MECH-116 (E1 goal conditioning only effective if E1
+    is active during rollout). Registered 2026-03-28.
+  evidence: []
