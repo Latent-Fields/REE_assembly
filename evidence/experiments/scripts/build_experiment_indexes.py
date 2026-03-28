@@ -3605,12 +3605,75 @@ def _write_planning_outputs(
         except Exception:
             pass  # malformed manual file -- skip silently
 
+    # Carry forward non-proposed status from the existing proposals file.
+    # Generated proposals always start as "proposed"; any manual status edits
+    # (e.g. "executed") are wiped on regeneration unless we re-apply them here.
+    # Key by backlog_id (stable across regenerations); fall back to proposal_id
+    # for manual proposals that may not carry a backlog_id.
+    _existing_status: dict[str, dict] = {}
+    _existing_proposals_path = planning_root / "experiment_proposals.v1.json"
+    if _existing_proposals_path.exists():
+        try:
+            _existing_doc = json.loads(
+                _existing_proposals_path.read_text(encoding="utf-8")
+            )
+            for _ep in _existing_doc.get("items", []):
+                _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+                if _bid and _ep.get("status", "proposed") != "proposed":
+                    _existing_status[_bid] = {
+                        k: _ep[k]
+                        for k in ("status", "executed_by", "executed_queue_id")
+                        if k in _ep
+                    }
+        except Exception:
+            pass  # malformed existing file -- skip silently
+
+    for _p in proposals:
+        _bid = _p.get("backlog_id") or _p.get("proposal_id")
+        if _bid and _bid in _existing_status:
+            _p.update(_existing_status[_bid])
+
     proposals_doc = {
         "schema_version": "experiment_proposals/v1",
         "generated_at_utc": generated_at,
         "source_backlog": "evidence/planning/evidence_backlog.v1.json",
         "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",
         "items": proposals,
+    }
+
+    # Write a lightweight companion index for fast proposal surfacing.
+    # Omits acceptance_checks and required_pack_contract (the bulk of token cost).
+    # Claude reads this file to browse and select proposals; the full file is
+    # accessed via bash only when implementing a specific chosen proposal.
+    _INDEX_FIELDS = (
+        "proposal_id", "backlog_id", "claim_id", "proposal_type",
+        "status", "priority", "objective", "suggested_experiment_type",
+        "why_now", "target_repo", "dispatch_mode",
+        "executed_by", "executed_queue_id",
+    )
+    _index_items = [
+        {k: p[k] for k in _INDEX_FIELDS if k in p}
+        for p in proposals
+    ]
+    _index_doc: dict[str, Any] = {
+        "schema_version": "experiment_proposals_index/v1",
+        "generated_at_utc": generated_at,
+        "note": (
+            "Lightweight surfacing index -- no acceptance_checks or pack_contract. "
+            "For full proposal detail use experiment_proposals.v1.json via bash."
+        ),
+        "n_proposed_exp": sum(
+            1 for p in _index_items
+            if p.get("proposal_type") == "experimental"
+            and p.get("status") == "proposed"
+        ),
+        "n_proposed_lit": sum(
+            1 for p in _index_items
+            if p.get("proposal_type") != "experimental"
+            and p.get("status") == "proposed"
+        ),
+        "n_executed": sum(1 for p in _index_items if p.get("status") == "executed"),
+        "items": _index_items,
     }
     architecture_gap_doc = {
         "schema_version": "architecture_gap_register/v1",
@@ -3681,6 +3744,10 @@ def _write_planning_outputs(
     )
     (planning_root / "experiment_proposals.v1.json").write_text(
         json.dumps(proposals_doc, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (planning_root / "experiment_proposals_index.v1.json").write_text(
+        json.dumps(_index_doc, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     (planning_root / "architecture_gap_register.v1.json").write_text(
