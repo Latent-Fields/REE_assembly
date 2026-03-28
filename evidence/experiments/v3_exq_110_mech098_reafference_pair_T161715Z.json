@@ -1,0 +1,23 @@
+{
+  "run_id": "v3_exq_110_c1fail_20260328T161637Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_110_mech098_reafference_pair",
+  "claim_ids": [
+    "MECH-098"
+  ],
+  "status": "FAIL",
+  "fail_reason": "C1_FAIL_predictor_quality_insufficient",
+  "r2_test": -0.48624950624400687,
+  "n_train_samples": 683,
+  "n_test_samples": 200,
+  "n_locomotion_sequences": 30,
+  "n_locomotion_steps": 883,
+  "c1_pass": false,
+  "c2_pass": false,
+  "c3_pass": false,
+  "registered_c1_threshold": 0.1,
+  "registered_c2_threshold": 1.15,
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "not_applicable",
+  "summary": "Phase 1 gate FAIL: R2_test=-0.4862 < threshold=0.10. Engineering bottleneck persists. Collected 883 locomotion steps from 30 episodes in low-hazard env (size=8, 1 hazard). Does NOT weaken MECH-098 conceptually -- predictor quality insufficient to test mechanism."
+}

@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "calib_gap_trained": 0.009114667773246765,
+    "calib_gap_random": 1.3306736946105957e-05,
+    "delta_calibration_gap": 0.00910136103630066,
+    "harm_pred_std_trained": 0.035211811773478985,
+    "harm_pred_std_random": 0.00040484312921762466,
+    "c4_graded_pass": 0.0,
+    "n_approach_min": 573.0,
+    "n_agent_min": 16.0,
+    "seeds_passed": 0.0,
+    "pair_pass_count": 2.0,
+    "n_seeds": 2.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-112 -- MECH-071 harm_eval Trained vs Random Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-071\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Grid:** 6x6, 4 hazards, use_proxy_fields=True (ARC-024)\n**Train:** 200 eps  **Eval:** 60 eps  **nav_bias:** 0.4\n\n## Pre-Registered Thresholds\n\nC1: calib_gap_trained >= 0.08\nC2: calib_gap_random  <= 0.04\nC3: delta_calibration_gap >= 0.05\nC4: harm_eval_contact > harm_eval_approach > harm_eval_none (trained)\nC5: n_approach >= 10 AND n_agent_hazard >= 5\n\n## Results\n\n| Head | calib_gap (agent-none) | harm_pred_std |\n|------|------------------------|---------------|\n| TRAINED | 0.0091 | 0.0352 |\n| RANDOM  | 0.0000 | 0.0004 |\n\n**delta_calibration_gap: +0.0091**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: calib_gap_trained >= 0.08 | FAIL | 0.0091 |\n| C2: calib_gap_random <= 0.04  | PASS | 0.0000 |\n| C3: delta >= 0.05             | FAIL | 0.0091 |\n| C4: graded model (contact > approach > none) | FAIL | False |\n| C5: n_approach>=10, n_agent>=5 | PASS | approach=573, agent=16 |\n\nseeds passed: 0/2  criteria met: 2/5  -> **FAIL**\n\n## Interpretation\n\nMECH-071 NOT SUPPORTED: Trained head calibration_gap=0.0091 fails to meet threshold. Either z_world does not encode sufficient proximity structure for E3 to learn harm gradients, or the training procedure is insufficient. Consider whether ARC-024 proxy fields are providing the expected gradient structure.\n\n## Per-Seed\n\n  seed=42: calib_trained=-0.0036 calib_random=-0.0000 delta=-0.0036 graded=False n_approach=587 n_agent=16\n  seed=123: calib_trained=0.0219 calib_random=0.0000 delta=0.0218 graded=False n_approach=573 n_agent=20\n\n## Failure Notes\n\n- C1 FAIL: calib_gap_trained=0.0091 < 0.08 (trained head cannot detect harm gradient -- MECH-071 not supported)\n- C3 FAIL: delta=0.0091 < 0.05 (training adds marginal signal above random baseline)\n- C4 FAIL: graded model not monotonic (contact > approach > none) in all seeds -- harm gradient not graded in z_world\n",
+  "claim_ids": [
+    "MECH-071"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_112_mech071_harm_eval_discriminative",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260328T161808Z",
+  "claim": "MECH-071",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_112_mech071_harm_eval_discriminative_20260328T161808Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

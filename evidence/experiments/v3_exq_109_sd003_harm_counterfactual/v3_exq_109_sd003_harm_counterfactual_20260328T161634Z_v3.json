@@ -1,0 +1,208 @@
+{
+  "experiment_type": "v3_exq_109_sd003_harm_counterfactual",
+  "run_id": "v3_exq_109_sd003_harm_counterfactual_20260328T161634Z_v3",
+  "run_timestamp": "20260328T161634Z",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "claim_ids_tested": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "weakens",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_seeds": 3.0,
+  "grid_size": 6,
+  "n_hazards": 4,
+  "registered_thresholds": {
+    "c1_harm_fwd_r2": 0.1,
+    "c2_delta_approach": 0.005,
+    "c3_grad_ordering": 0.0,
+    "c4_escalation": 0.0,
+    "c5_min_approach_evt": 20
+  },
+  "metrics": {
+    "harm_fwd_r2": -0.2239013910293579,
+    "delta_approach": -0.5781860193893539,
+    "causal_approach_trained": 0.015385034529893551,
+    "causal_none_trained": 0.0005384852799180592,
+    "causal_contact_trained": 0.046424035038094204,
+    "n_approach_eval": 521.6666666666666,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "status": "FAIL",
+  "verdict": "FAIL",
+  "scenario": "SD-003 counterfactual attribution: TRAINED vs RANDOM HarmForwardModel",
+  "interpretation": "PASS: learned HarmForwardModel adds systematic causal signal for approach events beyond random-init baseline -- SD-003 harm-stream pipeline validated. FAIL C1: forward model still not learning (ARC-033 blocked). FAIL C2 with C1 pass: pipeline architecture correct but signal too weak.",
+  "pairwise_deltas": {
+    "causal_approach_trained_minus_random": -0.5781860193893539
+  },
+  "per_seed_results": [
+    {
+      "experiment_type": "v3_exq_109_sd003_harm_counterfactual",
+      "claim_ids": [
+        "SD-003",
+        "ARC-033"
+      ],
+      "seed": 42,
+      "phase1_episodes": 150,
+      "phase2_episodes": 75,
+      "eval_episodes": 50,
+      "steps_per_episode": 200,
+      "nav_bias": 0.6,
+      "grid_size": 6,
+      "n_hazards": 4,
+      "registered_thresholds": {
+        "c1_harm_fwd_r2": 0.1,
+        "c2_delta_approach": 0.005,
+        "c3_grad_ordering": 0.0,
+        "c4_escalation": 0.0,
+        "c5_min_approach_evt": 20
+      },
+      "metrics": {
+        "harm_fwd_r2": 0.0,
+        "causal_approach_trained": -0.043225361355419815,
+        "causal_approach_random": 0.6764719638159904,
+        "delta_approach": -0.7196973251714102,
+        "causal_none_trained": -0.04941468891643343,
+        "causal_contact_trained": -0.010405440832439225,
+        "n_approach_eval": 522.0,
+        "n_contact_eval": 95.0,
+        "n_none_eval": 651.0,
+        "n_approach_p1": 1492.0,
+        "n_contact_p1": 318.0,
+        "n_none_p1": 1705.0,
+        "crit1_pass": 0.0,
+        "crit2_pass": 0.0,
+        "crit3_pass": 1.0,
+        "crit4_pass": 1.0,
+        "crit5_pass": 1.0,
+        "criteria_met": 3.0,
+        "fatal_error_count": 0.0
+      },
+      "status": "FAIL",
+      "verdict": "FAIL",
+      "summary": "# V3-EXQ-109 -- SD-003 Harm-Stream Counterfactual Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-033\n**Supersedes:** EXQ-095/095a/095b (harm_fwd_r2=0 root cause: 12x12 sparse grid + random nav)\n\n## Design\n\nDiscriminative pair within a single run:\n- TRAINED: HarmForwardModel trained on (z_harm_t, action_t, z_harm_t+1) transitions\n- RANDOM: Same architecture, random init (never trained)\nBoth use the same HarmEncoder and E3 harm_eval head trained in P1/P2.\n\nFixes over EXQ-095:\n1. Grid 6x6 (was 12x12): denser hazard coverage\n2. Navigation bias 0.6: 60% toward-hazard, 40% random\n3. 4 hazards (was 6): avoids additive-field clip saturation (EXQ-102 finding)\n\n## Pre-Registered Criteria\n\n| Criterion | Threshold | Value | Pass |\n|-----------|-----------|-------|------|\n| C1 harm_fwd_r2 | >0.1 | 0.0000 | no |\n| C2 delta_approach | >0.005 | -0.719697 | no |\n| C3 approach>none (trained) | >0 | 0.006189 | yes |\n| C4 contact>approach (trained) | >0 | 0.032820 | yes |\n| C5 n_approach_eval | >20 | 522 | yes |\n\n## Pairwise Comparison (Scenario: SD-003 discrimination)\n\n| Condition | approach | none | contact |\n|-----------|----------|------|---------|\n| TRAINED   | -0.04323 | -0.04941 | -0.01041 |\n| RANDOM    | 0.67647  | n/a  | n/a     |\n| delta     | -0.71970          | --   | --      |\n\n## Failure Notes\n\n- C1 FAIL: harm_fwd_r2=0.0000 <= 0.1 (forward model not learning harm dynamics even with denser grid)\n- C2 FAIL: delta_approach=-0.719697 <= 0.005 (trained CF does not add signal vs random CF for approach events)\n",
+      "scenario": "SD-003 counterfactual attribution: TRAINED vs RANDOM HarmForwardModel",
+      "interpretation": "PASS confirms SD-003 harm-stream pipeline: learned E2_harm_s adds attribution signal beyond random noise for approach events. FAIL with C1=0 indicates forward model still not learning: needs further investigation (ARC-033 blocked at current architecture/scale).",
+      "pairwise_deltas": {
+        "causal_approach_trained_minus_random": -0.7196973251714102
+      }
+    },
+    {
+      "experiment_type": "v3_exq_109_sd003_harm_counterfactual",
+      "claim_ids": [
+        "SD-003",
+        "ARC-033"
+      ],
+      "seed": 43,
+      "phase1_episodes": 150,
+      "phase2_episodes": 75,
+      "eval_episodes": 50,
+      "steps_per_episode": 200,
+      "nav_bias": 0.6,
+      "grid_size": 6,
+      "n_hazards": 4,
+      "registered_thresholds": {
+        "c1_harm_fwd_r2": 0.1,
+        "c2_delta_approach": 0.005,
+        "c3_grad_ordering": 0.0,
+        "c4_escalation": 0.0,
+        "c5_min_approach_evt": 20
+      },
+      "metrics": {
+        "harm_fwd_r2": 0.0,
+        "causal_approach_trained": 0.029759755414091274,
+        "causal_approach_random": 0.5842891148969023,
+        "delta_approach": -0.554529359482811,
+        "causal_none_trained": 0.015242524315825606,
+        "causal_contact_trained": 0.049363026760592316,
+        "n_approach_eval": 499.0,
+        "n_contact_eval": 101.0,
+        "n_none_eval": 565.0,
+        "n_approach_p1": 1515.0,
+        "n_contact_p1": 292.0,
+        "n_none_p1": 1904.0,
+        "crit1_pass": 0.0,
+        "crit2_pass": 0.0,
+        "crit3_pass": 1.0,
+        "crit4_pass": 1.0,
+        "crit5_pass": 1.0,
+        "criteria_met": 3.0,
+        "fatal_error_count": 0.0
+      },
+      "status": "FAIL",
+      "verdict": "FAIL",
+      "summary": "# V3-EXQ-109 -- SD-003 Harm-Stream Counterfactual Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-033\n**Supersedes:** EXQ-095/095a/095b (harm_fwd_r2=0 root cause: 12x12 sparse grid + random nav)\n\n## Design\n\nDiscriminative pair within a single run:\n- TRAINED: HarmForwardModel trained on (z_harm_t, action_t, z_harm_t+1) transitions\n- RANDOM: Same architecture, random init (never trained)\nBoth use the same HarmEncoder and E3 harm_eval head trained in P1/P2.\n\nFixes over EXQ-095:\n1. Grid 6x6 (was 12x12): denser hazard coverage\n2. Navigation bias 0.6: 60% toward-hazard, 40% random\n3. 4 hazards (was 6): avoids additive-field clip saturation (EXQ-102 finding)\n\n## Pre-Registered Criteria\n\n| Criterion | Threshold | Value | Pass |\n|-----------|-----------|-------|------|\n| C1 harm_fwd_r2 | >0.1 | 0.0000 | no |\n| C2 delta_approach | >0.005 | -0.554529 | no |\n| C3 approach>none (trained) | >0 | 0.014517 | yes |\n| C4 contact>approach (trained) | >0 | 0.019603 | yes |\n| C5 n_approach_eval | >20 | 499 | yes |\n\n## Pairwise Comparison (Scenario: SD-003 discrimination)\n\n| Condition | approach | none | contact |\n|-----------|----------|------|---------|\n| TRAINED   | 0.02976 | 0.01524 | 0.04936 |\n| RANDOM    | 0.58429  | n/a  | n/a     |\n| delta     | -0.55453          | --   | --      |\n\n## Failure Notes\n\n- C1 FAIL: harm_fwd_r2=0.0000 <= 0.1 (forward model not learning harm dynamics even with denser grid)\n- C2 FAIL: delta_approach=-0.554529 <= 0.005 (trained CF does not add signal vs random CF for approach events)\n",
+      "scenario": "SD-003 counterfactual attribution: TRAINED vs RANDOM HarmForwardModel",
+      "interpretation": "PASS confirms SD-003 harm-stream pipeline: learned E2_harm_s adds attribution signal beyond random noise for approach events. FAIL with C1=0 indicates forward model still not learning: needs further investigation (ARC-033 blocked at current architecture/scale).",
+      "pairwise_deltas": {
+        "causal_approach_trained_minus_random": -0.554529359482811
+      }
+    },
+    {
+      "experiment_type": "v3_exq_109_sd003_harm_counterfactual",
+      "claim_ids": [
+        "SD-003",
+        "ARC-033"
+      ],
+      "seed": 44,
+      "phase1_episodes": 150,
+      "phase2_episodes": 75,
+      "eval_episodes": 50,
+      "steps_per_episode": 200,
+      "nav_bias": 0.6,
+      "grid_size": 6,
+      "n_hazards": 4,
+      "registered_thresholds": {
+        "c1_harm_fwd_r2": 0.1,
+        "c2_delta_approach": 0.005,
+        "c3_grad_ordering": 0.0,
+        "c4_escalation": 0.0,
+        "c5_min_approach_evt": 20
+      },
+      "metrics": {
+        "harm_fwd_r2": -0.6717041730880737,
+        "causal_approach_trained": 0.059620709531009196,
+        "causal_approach_random": 0.5199520830448499,
+        "delta_approach": -0.4603313735138407,
+        "causal_none_trained": 0.035787620440361996,
+        "causal_contact_trained": 0.10031451918612952,
+        "n_approach_eval": 544.0,
+        "n_contact_eval": 87.0,
+        "n_none_eval": 630.0,
+        "n_approach_p1": 1523.0,
+        "n_contact_p1": 291.0,
+        "n_none_p1": 1867.0,
+        "crit1_pass": 0.0,
+        "crit2_pass": 0.0,
+        "crit3_pass": 1.0,
+        "crit4_pass": 1.0,
+        "crit5_pass": 1.0,
+        "criteria_met": 3.0,
+        "fatal_error_count": 0.0
+      },
+      "status": "FAIL",
+      "verdict": "FAIL",
+      "summary": "# V3-EXQ-109 -- SD-003 Harm-Stream Counterfactual Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-033\n**Supersedes:** EXQ-095/095a/095b (harm_fwd_r2=0 root cause: 12x12 sparse grid + random nav)\n\n## Design\n\nDiscriminative pair within a single run:\n- TRAINED: HarmForwardModel trained on (z_harm_t, action_t, z_harm_t+1) transitions\n- RANDOM: Same architecture, random init (never trained)\nBoth use the same HarmEncoder and E3 harm_eval head trained in P1/P2.\n\nFixes over EXQ-095:\n1. Grid 6x6 (was 12x12): denser hazard coverage\n2. Navigation bias 0.6: 60% toward-hazard, 40% random\n3. 4 hazards (was 6): avoids additive-field clip saturation (EXQ-102 finding)\n\n## Pre-Registered Criteria\n\n| Criterion | Threshold | Value | Pass |\n|-----------|-----------|-------|------|\n| C1 harm_fwd_r2 | >0.1 | -0.6717 | no |\n| C2 delta_approach | >0.005 | -0.460331 | no |\n| C3 approach>none (trained) | >0 | 0.023833 | yes |\n| C4 contact>approach (trained) | >0 | 0.040694 | yes |\n| C5 n_approach_eval | >20 | 544 | yes |\n\n## Pairwise Comparison (Scenario: SD-003 discrimination)\n\n| Condition | approach | none | contact |\n|-----------|----------|------|---------|\n| TRAINED   | 0.05962 | 0.03579 | 0.10031 |\n| RANDOM    | 0.51995  | n/a  | n/a     |\n| delta     | -0.46033          | --   | --      |\n\n## Failure Notes\n\n- C1 FAIL: harm_fwd_r2=-0.6717 <= 0.1 (forward model not learning harm dynamics even with denser grid)\n- C2 FAIL: delta_approach=-0.460331 <= 0.005 (trained CF does not add signal vs random CF for approach events)\n",
+      "scenario": "SD-003 counterfactual attribution: TRAINED vs RANDOM HarmForwardModel",
+      "interpretation": "PASS confirms SD-003 harm-stream pipeline: learned E2_harm_s adds attribution signal beyond random noise for approach events. FAIL with C1=0 indicates forward model still not learning: needs further investigation (ARC-033 blocked at current architecture/scale).",
+      "pairwise_deltas": {
+        "causal_approach_trained_minus_random": -0.4603313735138407
+      }
+    }
+  ]
+}

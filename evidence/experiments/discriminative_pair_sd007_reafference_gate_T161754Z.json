@@ -1,0 +1,33 @@
+{
+  "run_id": "v3_exq_111_c1fail_20260328T161718Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "discriminative_pair_sd007_reafference_gate",
+  "claim_ids": [
+    "SD-007"
+  ],
+  "claim_ids_tested": [
+    "SD-007"
+  ],
+  "status": "FAIL",
+  "fail_reason": "C1_FAIL_predictor_quality_insufficient",
+  "r2_test": -0.48624950624400687,
+  "n_train_samples": 683,
+  "n_test_samples": 200,
+  "n_locomotion_sequences": 30,
+  "n_locomotion_steps": 883,
+  "c1_pass": false,
+  "c2_pass": false,
+  "c3_pass": false,
+  "pair_pass_count": 0,
+  "registered_c1_threshold": 0.1,
+  "registered_c2_threshold": 1.15,
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "not_applicable",
+  "recommended_outcome": "hold",
+  "outcome_scores": {
+    "retain_ree": false,
+    "hybridize": false,
+    "retire_ree_claim": false
+  },
+  "summary": "SD-007 Phase 1 gate FAIL: R2_test=-0.4862 < threshold=0.10. Engineering bottleneck prevents Phase 2. Collected 883 steps from 30 episodes in low-hazard env (size=8, 1 hazard). Does NOT retire SD-007 -- predictor quality insufficient to test design decision."
+}
