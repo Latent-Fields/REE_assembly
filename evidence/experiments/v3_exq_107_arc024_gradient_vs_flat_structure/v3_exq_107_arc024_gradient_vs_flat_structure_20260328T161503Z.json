@@ -1,0 +1,126 @@
+{
+  "status": "FAIL",
+  "claim_ids": [
+    "ARC-024"
+  ],
+  "experiment_type": "v3_exq_107_arc024_gradient_vs_flat_structure",
+  "evidence_direction": "weakens",
+  "fatal_error_count": 0,
+  "summary_markdown": "# V3-EXQ-107 -- ARC-024 Gradient vs Flat Proxy Structure\n\n**Status:** FAIL\n**Claims:** ARC-024\n**Seeds:** [0, 1, 2, 3, 4]\n**Warmup:** 200 eps  **Eval:** 50 eps  **Steps/ep:** 60\n\n## Design\n\nTwo conditions matched on seeds:\n  GRADIENT: use_proxy_fields=True -- body_obs=12, world_obs=250,\n            includes hazard_field_view and resource_field_view.\n  FLAT:     use_proxy_fields=False -- body_obs=10, world_obs=200,\n            binary contact harm only, no proximity gradient.\n\n## Pre-Registered Thresholds\n\nC1 (pre-contact gradient): gap_approach_none >= 0.08 (GRADIENT)\nC2 (AUC quality):          harm_eval_auc >= 0.6 (GRADIENT)\nC3 (discriminative):       GRADIENT_auc > FLAT_auc + 0.05 (supporting)\nPASS: C1 AND C2\n\n## Results\n\n| Metric | GRADIENT | FLAT |\n|--------|----------|------|\n| gap_approach_none (mean +/- sem) | 0.0030 +/- 0.0011 | N/A |\n| harm_eval_auc (mean +/- sem)     | 0.6477 +/- 0.0138 | 0.5010 +/- 0.0086 |\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: gap >= 0.08            | FAIL | 0.0030 |\n| C2: AUC >= 0.6            | PASS | 0.6477 |\n| C3: disc >= 0.05 (support) | PASS | 0.1467 |\n\n**PASS = C1 AND C2 -> FAIL**\n\n## Event Counts (total across seeds)\n\nGRADIENT: approach=1298 contact=195 none=843\nFLAT:     contact=451\n\n## Interpretation\n\nARC-024 NOT SUPPORTED: z_world fails to encode pre-contact gradient. gap_approach_none=0.0030 < 0.08. Gradient fields in obs do not propagate into z_world latent structure at current training scale (200 episodes).\n\n## Failure Notes\n\n- C1 FAIL: gradient gap_approach_none=0.0030 < 0.08 -- z_world does not encode pre-contact gradient structure\n",
+  "metrics": {
+    "gradient_gap_approach_none_mean": 0.0030208533947879146,
+    "gradient_gap_approach_none_sem": 0.0010750335147935656,
+    "gradient_harm_eval_auc_mean": 0.6477056672157206,
+    "gradient_harm_eval_auc_sem": 0.013753513862053438,
+    "flat_harm_eval_auc_mean": 0.5010085046887582,
+    "flat_harm_eval_auc_sem": 0.00862873785824215,
+    "discriminative_auc_advantage": 0.1466971625269624,
+    "c1_threshold": 0.08,
+    "c2_threshold": 0.6,
+    "c3_advantage": 0.05,
+    "c1_pass": 0.0,
+    "c2_pass": 1.0,
+    "c3_pass": 1.0,
+    "n_seeds": 5.0,
+    "n_grad_approach_total": 1298.0,
+    "n_grad_contact_total": 195.0,
+    "n_none_total": 843.0,
+    "warmup_episodes": 200.0,
+    "eval_episodes": 50.0
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "condition": "GRADIENT",
+      "gap_approach_none": 0.0016694397462586608,
+      "harm_eval_auc": 0.6552109663620455,
+      "n_approach": 235,
+      "n_contact": 43,
+      "n_none": 148
+    },
+    {
+      "seed": 0,
+      "condition": "FLAT",
+      "gap_approach_none": NaN,
+      "harm_eval_auc": 0.471938557815389,
+      "n_approach": 0,
+      "n_contact": 89,
+      "n_none": 790
+    },
+    {
+      "seed": 1,
+      "condition": "GRADIENT",
+      "gap_approach_none": 0.007238565257710272,
+      "harm_eval_auc": 0.6494082840236687,
+      "n_approach": 282,
+      "n_contact": 36,
+      "n_none": 169
+    },
+    {
+      "seed": 1,
+      "condition": "FLAT",
+      "gap_approach_none": NaN,
+      "harm_eval_auc": 0.5134542876478361,
+      "n_approach": 0,
+      "n_contact": 91,
+      "n_none": 682
+    },
+    {
+      "seed": 2,
+      "condition": "GRADIENT",
+      "gap_approach_none": 0.0021378406013825013,
+      "harm_eval_auc": 0.6267201834862385,
+      "n_approach": 292,
+      "n_contact": 35,
+      "n_none": 176
+    },
+    {
+      "seed": 2,
+      "condition": "FLAT",
+      "gap_approach_none": NaN,
+      "harm_eval_auc": 0.5198512465954327,
+      "n_approach": 0,
+      "n_contact": 86,
+      "n_none": 777
+    },
+    {
+      "seed": 3,
+      "condition": "GRADIENT",
+      "gap_approach_none": 0.0026424426251827615,
+      "harm_eval_auc": 0.6936831550802139,
+      "n_approach": 268,
+      "n_contact": 38,
+      "n_none": 176
+    },
+    {
+      "seed": 3,
+      "condition": "FLAT",
+      "gap_approach_none": NaN,
+      "harm_eval_auc": 0.49178647727928865,
+      "n_approach": 0,
+      "n_contact": 92,
+      "n_none": 753
+    },
+    {
+      "seed": 4,
+      "condition": "GRADIENT",
+      "gap_approach_none": 0.0014159787434053772,
+      "harm_eval_auc": 0.6135057471264368,
+      "n_approach": 221,
+      "n_contact": 43,
+      "n_none": 174
+    },
+    {
+      "seed": 4,
+      "condition": "FLAT",
+      "gap_approach_none": NaN,
+      "harm_eval_auc": 0.5080119541058449,
+      "n_approach": 0,
+      "n_contact": 93,
+      "n_none": 716
+    }
+  ],
+  "run_timestamp": "20260328T161503Z",
+  "run_id": "v3_exq_107_arc024_gradient_vs_flat_structure_20260328T161503Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
