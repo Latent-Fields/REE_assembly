@@ -4842,6 +4842,20 @@
     E3(z_harm_s_cf). EXQ-093/094 confirmed that HarmBridge(z_world -> z_harm) is
     infeasible (bridge_r2=0 architectural, SD-010 makes z_world perp z_harm).
     ARC-033 + SD-011 implementation required before SD-003 can be retested.
+  evidence_quality_note: >
+    Literature pull 2026-03-28 (4 entries, lit_conf=0.859, all supports) identified two
+    caveats that must be resolved before V3 retest. (1) Biological precedent gap: Frith 2000
+    and Shergill 2003 directly evidence the single-pass comparator (E2(a_actual) - observed),
+    not the two-pass counterfactual SD-003 implements. The two-pass extension is an
+    inferential step with no direct biological evidence. (2) Interventional training
+    requirement: Scholkopf 2021 establishes that a regression-trained forward model learns the
+    correlational distribution P(z_harm_s | z_t, a), not the interventional distribution
+    P(z_harm_s | do(a)). In confounded states (where agent presence correlates with ambient
+    harm), E2_harm_s trained on observational trajectories alone will produce a biased
+    causal_sig. ARC-033 (E2_harm_s) implementation must include counterfactual perturbation
+    signal in training -- not only observational rollouts -- for SD-003 to be valid.
+    EXQ-115 tests the new z_harm_s pipeline; a follow-up varying interventional vs
+    observational training is needed if EXQ-115 passes.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033]
   location: docs/architecture/sd_003_experiment_design.md
 
