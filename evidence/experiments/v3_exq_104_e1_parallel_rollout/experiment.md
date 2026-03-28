@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_104_e1_parallel_rollout_20260328T123736Z_v3` at `2026-03-28T12:37:36Z` signatures: none
 - `v3_exq_104_e1_parallel_rollout_20260328T095419Z_v3` at `2026-03-28T09:54:19Z` signatures: none
 
 Recurring signatures:

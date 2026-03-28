@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_102_harm_obs_a_clip_diagnosis_20260328T123723Z_v3` at `2026-03-28T12:37:23Z` signatures: none
 - `v3_exq_102_harm_obs_a_clip_diagnosis_20260328T093752Z_v3` at `2026-03-28T09:37:52Z` signatures: none
 
 Recurring signatures:

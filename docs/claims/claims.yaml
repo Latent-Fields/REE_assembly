@@ -4856,7 +4856,7 @@
     signal in training -- not only observational rollouts -- for SD-003 to be valid.
     EXQ-115 tests the new z_harm_s pipeline; a follow-up varying interventional vs
     observational training is needed if EXQ-115 passes.
-  depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033]
+  depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
 - id: SD-004
@@ -6965,6 +6965,48 @@
     C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstream navigation quality
     is the new bottleneck (goal_resource_r=0.087 -- z_goal not pointing toward resources).
     SD-012 seeding claim is supported by C1 PASS; the FAIL is in navigation, not seeding.
+
+- id: SD-013
+  title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
+  claim_type: design_decision
+  subject: self_attribution.e2_harm_s_interventional_training
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on: [SD-003, SD-011, ARC-033]
+  notes: >
+    Scholkopf et al. 2021 establishes that a forward model trained on observational
+    trajectories learns P(z_harm_s_next | z_t, a) -- the correlational distribution --
+    not P(z_harm_s_next | do(a)) -- the interventional distribution. These diverge in
+    confounded states: environments where agent presence correlates with ambient harm
+    independently of the agent's causal contribution. In such states, an
+    observational-only E2_harm_s encodes the correlation, not the causal mechanism.
+    Consequence: causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf) will underestimate
+    the agent's causal contribution (both terms are biased upward in confounded states,
+    compressing the difference). ARC-033 implementation must include at least a subset
+    of training steps where a_cf is actually executed from the same state and the
+    resulting z_harm_s change observed -- explicit interventional perturbation, not
+    just observational rollout. This is the REE-level analogue of multi-environment
+    or do-intervention training required for causal identifiability. Registered
+    2026-03-28 following SD-003 literature pull.
+  experimental_test: >
+    Discriminative pair. Hold environment, agent architecture, and evaluation protocol
+    fixed. Vary E2_harm_s training only: INTERVENTIONAL condition trains E2_harm_s
+    with a subset of steps where a_cf is substituted for a_actual and the resulting
+    harm-stream change recorded; OBSERVATIONAL condition trains on standard rollout
+    trajectories only. Primary measure: causal_sig bias in confounded states -- states
+    where ambient harm rate is elevated due to agent proximity to hazard zones
+    (correlation, not causation). Pass criterion: INTERVENTIONAL condition produces
+    significantly lower causal_sig error in confounded states vs OBSERVATIONAL baseline.
+    Prerequisite: EXQ-115 must pass (establish that z_harm_s causal_sig works at all)
+    before this test is informative.
+  evidence_quality_note: >
+    No experimental evidence yet. Theoretical grounding from Scholkopf et al. 2021
+    (lit entry 2026-03-28_sd_003_causal_representation_learning_scholkopf2021 in
+    targeted_review_sd_003). The necessity claim (bias is material in the actual
+    gridworld confound structure) is unverified -- the gridworld may not have
+    sufficient confounding for the bias to affect SD-003 results in practice.
+    EXQ-115 PASS is a prerequisite before this claim becomes testable.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
