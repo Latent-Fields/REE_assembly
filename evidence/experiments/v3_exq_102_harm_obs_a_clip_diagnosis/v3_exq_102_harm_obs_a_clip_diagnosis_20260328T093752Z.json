@@ -1,0 +1,82 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "grid_mean_high": 1.775416438659032,
+    "grid_mean_low": 0.5899542289177577,
+    "local_clip_mean_high": 0.22153340208033717,
+    "local_clip_mean_low": 0.24222930390698214,
+    "local_raw_mean_high": 1.648821909535726,
+    "local_raw_mean_low": 0.5516144476882616,
+    "resource_mean_high": 0.17223257968823114,
+    "resource_mean_low": 0.31436141823480523,
+    "autocorr_norm_lag10": 0.014165242321996967,
+    "crit1_grid_scaling": 1.0,
+    "crit2_clip_density": 0.0,
+    "crit3_raw_density": 1.0,
+    "crit4_autocorr": 0.0,
+    "crit5_no_errors": 1.0,
+    "criteria_met": 3.0,
+    "n_seeds": 5.0
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "grid_high": 1.7543861281871795,
+      "grid_low": 0.5806292138497035,
+      "clip_high": 0.236094936269025,
+      "clip_low": 0.2537690146950384,
+      "raw_high": 1.6303695384979247,
+      "raw_low": 0.5607513586441676
+    },
+    {
+      "seed": 43,
+      "grid_high": 1.789239342212677,
+      "grid_low": 0.5889769627650578,
+      "clip_high": 0.2065824245288968,
+      "clip_low": 0.2536672768555582,
+      "raw_high": 1.618020871949196,
+      "raw_low": 0.5526744567275047
+    },
+    {
+      "seed": 44,
+      "grid_high": 1.7784845213095346,
+      "grid_low": 0.6039253048102061,
+      "clip_high": 0.21300353992730378,
+      "clip_low": 0.24372415450091164,
+      "raw_high": 1.6894375399748485,
+      "raw_low": 0.6089199987808863
+    },
+    {
+      "seed": 45,
+      "grid_high": 1.779901088476181,
+      "grid_low": 0.5825438676277797,
+      "clip_high": 0.22001188301791746,
+      "clip_low": 0.20928896135650576,
+      "raw_high": 1.6698678912242253,
+      "raw_low": 0.48916621525684983
+    },
+    {
+      "seed": 46,
+      "grid_high": 1.7750711131095886,
+      "grid_low": 0.5936957955360412,
+      "clip_high": 0.23197422665854295,
+      "clip_low": 0.25069711212689677,
+      "raw_high": 1.636413706032435,
+      "raw_low": 0.5465602090318998
+    }
+  ],
+  "summary_markdown": "# V3-EXQ-102 -- SD-011 harm_obs_a Clip vs Raw Density Diagnostic\n\n**Status:** FAIL\n**Claims:** SD-011\n**Supersedes:** V3-EXQ-101 (EMA_STILL_BROKEN after normfix)\n**Seeds:** [42, 43, 44, 45, 46]  **Steps/seed/condition:** 300\n\n## Diagnosis: CLIP_SATURATION\n\nHypotheses tested:\n- H1 PLACEMENT_CONFOUND: seed=42 first-2-hazards placement biases single-seed test\n- H2 CLIP_SATURATION: [0,1] clip destroys additive density info (cells near 2+ hazards cap)\n\n## Phase 0: Multi-seed Density Response (N=5 seeds x 300 steps)\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|-----------------|-----------------|-----------|\n| Grid-wide field mean | 1.7754 | 0.5900 | high > low * 2.5 (C1) |\n| Local CLIPPED hazard dims | 0.2215 | 0.2422 | high > low * 1.1 (C2) |\n| Local RAW hazard dims | 1.6488 | 0.5516 | high > low * 1.1 (C3) |\n| Resource dims | 0.1722 | 0.3144 | reference only |\n\n| Criterion | Result | Interpretation |\n|-----------|--------|----------------|\n| C1: field scales with n_hazards | PASS | field construction |\n| C2: clipped local density | FAIL | clip approach |\n| C3: raw local density | PASS | raw (no-clip) approach |\n\n## Phase 1: Temporal Persistence\n\n| Metric | Value | Criterion |\n|--------|-------|-----------|\n| harm_obs_a norm autocorr_lag10 | 0.014 | > 0.3 (C4) |\n\n| Criterion | Result |\n|-----------|--------|\n| C4: temporal persistence | FAIL |\n| C5: no fatal errors | PASS |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Failure Notes\n\n- C2 FAIL: clipped local hazard dims not density-responsive (HIGH=0.2215 LOW=0.2422, ratio=0.91x < 1.1x)\n- C4 FAIL: harm_obs_a norm autocorr=0.014 < 0.3 -- EMA not providing temporal persistence on agent trajectory\n\n## Per-Seed Results\n\n| Seed | Grid HIGH | Grid LOW | Clip HIGH | Clip LOW | Raw HIGH | Raw LOW |\n|------|-----------|----------|-----------|----------|----------|---------|\n| 42 | 1.7544 | 0.5806 | 0.2361 | 0.2538 | 1.6304 | 0.5608 |\n| 43 | 1.7892 | 0.5890 | 0.2066 | 0.2537 | 1.6180 | 0.5527 |\n| 44 | 1.7785 | 0.6039 | 0.2130 | 0.2437 | 1.6894 | 0.6089 |\n| 45 | 1.7799 | 0.5825 | 0.2200 | 0.2093 | 1.6699 | 0.4892 |\n| 46 | 1.7751 | 0.5937 | 0.2320 | 0.2507 | 1.6364 | 0.5466 |\n\n",
+  "claim_ids": [
+    "SD-011"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_102_harm_obs_a_clip_diagnosis",
+  "fatal_error_count": 0,
+  "diagnosis": "CLIP_SATURATION",
+  "supersedes": "v3_exq_101_harm_obs_a_normfix",
+  "run_timestamp": "20260328T093752Z",
+  "claim": "SD-011",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_102_harm_obs_a_clip_diagnosis_20260328T093752Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
