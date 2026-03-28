@@ -2,63 +2,15 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-28T19:17:28.597070+00:00",
+  "last_updated": "2026-03-28T19:53:42.136493+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-051c",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "Q-007 z_beta volatility injection (API fix)",
-    "description": "",
-    "script": "experiments/v3_exq_051c_q007_zbeta_volatility_injection.py",
-    "started_at": "2026-03-28T18:26:09.084760+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 3080,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "obs_world = torch.tensor(obs_dict[\"world_state\"], dtype=torch.float32)",
-      "ep  50: stable   rv=0.5000 z_b=0.6662 | volatile rv=0.5000 z_b=0.7743",
-      "ep 100: stable   rv=0.5000 z_b=0.6659 | volatile rv=0.5000 z_b=0.7753",
-      "ep 150: stable   rv=0.5000 z_b=0.6660 | volatile rv=0.5000 z_b=0.7751",
-      "ep 200: stable   rv=0.5000 z_b=0.6652 | volatile rv=0.5000 z_b=0.7752"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-051c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Q-007 z_beta volatility injection (API fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-108",
-      "backlog_id": "EVB-0004",
-      "claim_id": "MECH-135",
-      "title": "MECH-135 discriminative pair: E1 co-evolution vs frozen z_world plan selection",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -1922,6 +1874,34 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_104b_e1_parallel_rollout_trained/v3_exq_104b_e1_parallel_rollout_trained_20260328T182606Z.json",
       "completed_by": "Mac",
       "actual_secs": 14.5
+    },
+    {
+      "queue_id": "V3-EXQ-051c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-007 z_beta volatility injection (API fix)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL",
+      "started_at": "2026-03-28T18:26:09.084760+00:00",
+      "completed_at": "2026-03-28T19:53:16.441061+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_051c_q007_zbeta_volatility_injection/v3_exq_051c_q007_zbeta_volatility_injection_20260328T195315Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 5227.3
+    },
+    {
+      "queue_id": "V3-EXQ-108",
+      "backlog_id": "EVB-0004",
+      "claim_id": "MECH-135",
+      "title": "MECH-135 discriminative pair: E1 co-evolution vs frozen z_world plan selection",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[EXQ-108] Status: FAIL | Status: FAIL",
+      "started_at": "2026-03-28T19:53:18.626180+00:00",
+      "completed_at": "2026-03-28T19:53:42.135147+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_108_mech135_discriminative_pair/v3_exq_108_mech135_discriminative_pair_20260328T195341Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 23.5
     }
   ]
 }

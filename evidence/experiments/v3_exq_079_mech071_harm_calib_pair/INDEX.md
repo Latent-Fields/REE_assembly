@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_079_mech071_harm_calib_pair
 
-Generated: `2026-03-28T19:16:56.857425Z`
+Generated: `2026-03-28T19:49:05.995289Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
