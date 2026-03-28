@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-28T20:19:50.423517Z",
+  "generated_at_utc": "2026-03-28T20:25:29.432453Z",
   "items": [
     {
       "acceptance_checks": [
@@ -9,11 +9,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0001",
       "claim_id": "ARC-016",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -56,11 +56,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0002",
       "claim_id": "MECH-098",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -104,11 +104,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0003",
       "claim_id": "MECH-135",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -153,11 +153,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0004",
       "claim_id": "MECH-071",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -201,11 +201,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0005",
       "claim_id": "SD-005",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -249,11 +249,11 @@
         "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-03-31T20:19:50.423517Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+        "Package outputs as decision-grade comparison by `2026-03-31T20:25:29.432453Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
       ],
       "backlog_id": "EVB-0006",
       "claim_id": "MECH-099",
-      "decision_deadline_utc": "2026-03-31T20:19:50.423517Z",
+      "decision_deadline_utc": "2026-03-31T20:25:29.432453Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -4761,6 +4761,8 @@
       "design": "2x2: condition A = committed BG gate active, condition B = gate ablated (beta suppressed), crossed with stable vs volatile environment. 2 matched seeds. PASS: harm_committed < harm_ablated in stable env; gap narrows or reverses in volatile env.",
       "dispatch_mode": "discriminative_pair",
       "estimated_minutes": 85,
+      "executed_by": "V3-EXQ-125",
+      "executed_queue_id": "V3-EXQ-125",
       "machine_affinity": "macbook",
       "notes": "Depends on ARC-016 (provisional) and MECH-090 (active). This is the behavioral consequence layer split from ARC-016 into ARC-029 during 2026-03-22 governance session.",
       "objective": "Test whether committed operating mode produces measurably lower harm outcomes than ablated (uncommitted) mode, and whether this gap narrows in volatile environments (gate-ablation design).",
@@ -4769,7 +4771,7 @@
       "proposal_type": "experimental",
       "queue_id": "V3-EXQ-063",
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
