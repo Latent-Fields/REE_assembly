@@ -5055,8 +5055,15 @@
     vs z_harm_s=0.061 -- negative autocorrelation from an EMA output is anomalous. Diagnosis:
     harm_obs_a (EMA accumulator in environment) may not vary across conditions as expected,
     OR AffectiveHarmEncoder is outputting near-random values despite structural smoothness.
-    EXQ-100b diagnostic needed: instrument harm_obs_a directly to verify density response
-    before any encoder training.
+    EXQ-100b FAIL 1/5 RAW_EMA_FAIL (2026-03-27): Two-phase diagnostic confirmed root cause
+    is in CausalGridWorldV2, not the encoder. Raw harm_obs_a mean: HIGH_HAZARD=0.131 vs
+    LOW_HAZARD=0.197 (inverted -- more hazards = lower accumulation). Raw autocorr_lag10=0.069
+    (expected ~0.37 for tau=20 EMA). Root cause identified: prox_now is normalized by
+    hazard_max = field.max(). In high-density environments, overlapping hazard fields push
+    hazard_max higher, shrinking each proximity contribution proportionally -- EMA tracks
+    density-relative rather than absolute exposure. Fix: remove hazard_max normalization
+    in prox_now computation (use raw field values or fixed normalization).
+    EXQ-101 queued after fix.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -5836,6 +5843,15 @@
     IS occurring but model converges to conditional mean without capturing action-conditional
     variance structure. Not an architectural failure; 900-ep budget insufficient. EXQ-095b
     with 1800 phase1 eps queued.
+    EXQ-095b FAIL/SLOW_LEARNING_PERSISTENT (2026-03-27, 1800 phase1 eps): R2=0 persists.
+    hf_hazard_loss reaches ~0.0001 (very tiny) but R2=0. Diagnosis: harm_obs_s variance is
+    near-zero across steps (agent mostly not being hit; sparse signal). Model predicts
+    conditional mean with near-zero MSE, yielding R2=0 trivially. More episodes are
+    unlikely to help. Root cause: harm_obs_s (harm_exposure scalar) is too sparse to
+    build action-conditional predictive structure at single-step resolution. Alternative
+    target needed -- possibly harm_obs_a (affective accumulator) after fixing normalization
+    bug (see SD-011 note). EXQ-095c will test forward model on harm_obs_a once SD-011
+    normalization fix is confirmed by EXQ-101.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
