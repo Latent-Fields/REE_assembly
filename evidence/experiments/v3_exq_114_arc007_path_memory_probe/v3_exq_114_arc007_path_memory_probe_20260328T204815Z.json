@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "harm_rate_nav": 0.00595,
+    "harm_rate_ablated": 0.7647838369730828,
+    "harm_reduction_frac": 0.9922200238651102,
+    "residue_score_nav": 0.0,
+    "seed_pair_pass_harm": 2.0,
+    "n_harm_min": 58.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-114 -- ARC-007 Path Memory Probe\n\n**Status:** PASS\n**Claim:** ARC-007\n**Decision:** retain_ree\n**Seeds:** [42, 123]\n**Conditions:** MAP_NAV (hippocampal terrain guidance) vs MAP_ABLATED (random action selection)\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 300 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, use_proxy_fields=True\n\n## Pre-Registered Thresholds\n\nC1: harm_reduction_frac >= 0.15  (MAP_NAV reduces harm rate by >=15% vs MAP_ABLATED)\nC2: residue trajectory samples >= 5 for MAP_NAV  (hippocampal proposals generate world_states)\nC3: consistent harm rate reduction for ALL seeds  (seed_pair_pass >= 2)\nC4: n_harm_min >= 20  (data quality gate)\n\n## Results\n\n| Condition | harm_rate | harm_events | steps |\n|-----------|----------|------------|-------|\n| MAP_NAV  | 0.0060 | 119 | 20000 |\n| MAP_ABLATED | 0.7648 | 1086 | 1420 |\n\n**harm_reduction_frac: +0.9922**  (0.7648 -> 0.0060)\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_reduction >= 0.15 | PASS | 0.9922 |\n| C2: residue samples available | PASS | 20000 |\n| C3: consistent across seeds | PASS | 2/2 |\n| C4: n_harm_min >= 20 | PASS | 58 |\n\nCriteria met: 4/4 -> **PASS**\n\n## Interpretation\n\nARC-007 SUPPORTED: Hippocampal terrain-guided navigation reduces harm rate by 99.2% (MAP_NAV=0.0060 vs MAP_ABLATED=0.7648). Consistent direction across all {len(seeds)} seeds. Path memory through residue-field terrain provides measurable safety advantage.\n\n## Per-Seed\n\nMAP_NAV:\n  seed=42: harm_rate_eval=0.0061 harm_events=61/10000 residue=nan\n  seed=123: harm_rate_eval=0.0058 harm_events=58/10000 residue=nan\n\nMAP_ABLATED:\n  seed=42: harm_rate_eval=0.7642 harm_events=538/704\n  seed=123: harm_rate_eval=0.7654 harm_events=548/716\n\n",
+  "claim_ids": [
+    "ARC-007"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_114_arc007_path_memory_probe",
+  "run_timestamp": "20260328T204815Z",
+  "claim": "ARC-007",
+  "verdict": "PASS",
+  "run_id": "v3_exq_114_arc007_path_memory_probe_20260328T204815Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_harm_reduction_frac": 0.15,
+    "C2_min_residue_samples": 5,
+    "C3_seed_pair_pass": 2,
+    "C4_n_harm_min": 20
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "MAP_NAV",
+    "MAP_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0007"
+}

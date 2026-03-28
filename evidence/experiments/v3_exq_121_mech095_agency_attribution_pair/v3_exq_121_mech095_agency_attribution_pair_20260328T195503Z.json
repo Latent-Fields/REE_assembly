@@ -1,0 +1,69 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "attribution_auc_on": 0.64,
+    "attribution_auc_ablated": 0.36,
+    "auc_delta": 0.28,
+    "min_contacts_eval": 10.0,
+    "mean_mismatch_agent": 0.522269070148468,
+    "mean_mismatch_env": 0.5206447660923004,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 3.0,
+    "n_seeds": 1.0,
+    "alpha_world": 0.9,
+    "env_drift_prob": 0.3
+  },
+  "summary_markdown": "# V3-EXQ-121 -- MECH-095 Agency Attribution Discriminative Pair\n\n**Status:** FAIL\n**Claim:** MECH-095\n**Proposal:** EXP-0019 / EVB-0015\n**Seeds:** [42]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps\n**env_drift_prob:** 0.3  **env_drift_interval:** 3\n\n## Design\n\nAGENCY_ATTRIBUTION_ON: AgencyComparator computes efference-copy mismatch (predicted z_self delta vs observed), encodes as agency signal.\nAGENCY_ATTRIBUTION_ABLATED: Direct fusion of [z_self_delta, z_world] without structured comparison.\n\n## Pre-Registered Thresholds\n\nC1: auc_ON - auc_ABLATED >= 0.05  (relative advantage)\nC2: auc_ON >= 0.6  (absolute attribution learning)\nC3: auc_ON > auc_ABLATED for ALL seeds  (consistency)\nC4: min_contacts >= 20  (data quality)\nC5 (diagnostic): env mismatch >= 1.05x agent mismatch\n\n## Aggregate Results\n\n| Metric | AGENCY_ON | AGENCY_ABLATED | Delta | Pass |\n|--------|-----------|----------------|-------|------|\n| attribution_AUC (C1) | 0.6400 | 0.3600 | +0.2800 | YES |\n| attribution_AUC >= 0.6 (C2) | 0.6400 | -- | -- | YES |\n| seed consistency (C3) | [True] | -- | -- | YES |\n| min_contacts (C4) | 10 | -- | -- | NO |\n| mm_env/mm_agent (C5 diag) | 0.997 | -- | -- | NO |\n\n## Interpretation\n\nMECH-095 NOT SUPPORTED at current operationalisation. auc_ON=0.6400, auc_ABLATED=0.3600, delta=+0.2800. AgencyComparator (efference-copy mismatch) did not outperform direct fusion baseline. Possible causes: (1) self_dim=32 z_self delta too noisy for reliable efference-copy prediction; (2) action embedding (one-hot 5) insufficient to predict z_self dynamics; (3) env_drift_prob=0.3 generates sufficient env_caused events but they may not produce discriminable z_self mismatch patterns.\n\n## Per-Seed (AGENCY_ATTRIBUTION_ON)\n\n  seed=42: auc=0.6400 harm_rate=0.8507 contacts_eval=10 (a=5 e=5) mm_agent=0.5223 mm_env=0.5206 train: a=6 e=4\n\n## Per-Seed (AGENCY_ATTRIBUTION_ABLATED)\n\n  seed=42: auc=0.3600 harm_rate=0.8507 contacts_eval=10 (a=5 e=5) train: a=6 e=4\n\n## Failure Notes\n\n- C4 FAIL: min_contacts=10 < 20. Insufficient hazard contact events in eval -- data quality issue. Increase env_drift_prob or warmup_episodes.\n- C5 (diagnostic): mm_agent=0.5223 mm_env=0.5206 ratio=0.997 < 1.05. Env-caused contacts did not produce higher z_self mismatch than agent-caused. The efference copy may not capture enough predictable self-motion signal.\n",
+  "claim_ids": [
+    "MECH-095"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_121_mech095_agency_attribution_pair",
+  "per_seed_on": [
+    {
+      "seed": 42,
+      "condition": "AGENCY_ATTRIBUTION_ON",
+      "agency_on": true,
+      "attribution_auc": 0.64,
+      "harm_rate": 0.8507462686567164,
+      "harm_contacts": 57,
+      "total_eval_steps": 67,
+      "n_contact_steps_eval": 10,
+      "n_agent_caused_eval": 5,
+      "n_env_caused_eval": 5,
+      "mean_mismatch_agent_eval": 0.522269070148468,
+      "mean_mismatch_env_eval": 0.5206447660923004,
+      "n_agent_caused_train": 6,
+      "n_env_caused_train": 4,
+      "total_train_steps": 92
+    }
+  ],
+  "per_seed_off": [
+    {
+      "seed": 42,
+      "condition": "AGENCY_ATTRIBUTION_ABLATED",
+      "agency_on": false,
+      "attribution_auc": 0.36,
+      "harm_rate": 0.8507462686567164,
+      "harm_contacts": 57,
+      "total_eval_steps": 67,
+      "n_contact_steps_eval": 10,
+      "n_agent_caused_eval": 5,
+      "n_env_caused_eval": 5,
+      "mean_mismatch_agent_eval": 0.0,
+      "mean_mismatch_env_eval": 0.0,
+      "n_agent_caused_train": 6,
+      "n_env_caused_train": 4,
+      "total_train_steps": 92
+    }
+  ],
+  "run_timestamp": "20260328T195503Z",
+  "claim": "MECH-095",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T195503Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

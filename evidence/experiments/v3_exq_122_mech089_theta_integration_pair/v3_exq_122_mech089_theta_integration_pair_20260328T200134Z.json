@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "harm_auc_on": 0.4895833333333333,
+    "harm_auc_ablated": 0.625,
+    "auc_delta": -0.13541666666666669,
+    "min_harm_steps_eval": 32.0,
+    "mean_within_batch_var": 3.415592896175349e-05,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0,
+    "n_seeds": 1.0,
+    "theta_k": 2.0,
+    "alpha_world": 0.9,
+    "env_drift_prob": 0.3
+  },
+  "summary_markdown": "# V3-EXQ-122 -- MECH-089 Theta-Gamma Integration Discriminative Pair\n\n**Status:** FAIL\n**Claim:** MECH-089\n**Proposal:** EXP-0020 / EVB-0016\n**Seeds:** [42]\n**theta_k:** 2  (E3 ticks every 2 steps; same rate in both conditions)\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps\n**env_drift_prob:** 0.3  **env_drift_interval:** 3\n\n## Design\n\nTHETA_INTEGRATION_ON: E3 receives ThetaBuffer.summary() = mean of last 2 z_world frames at each E3 tick.\nTHETA_INTEGRATION_ABLATED: E3 receives raw most-recent z_world frame at each E3 tick. Same E3 update rate (every 2 steps). Only the content differs.\n\nRedesign rationale (vs EXQ-066): theta_k=4 degraded E3 performance (batched error 2.28x worse than raw). Redesign uses theta_k=2 (shorter window) and measures harm AUC rather than prediction error variance for a cleaner discriminative outcome.\n\n## Pre-Registered Thresholds\n\nC1: harm_auc_ON - harm_auc_ABLATED >= 0.05  (relative advantage)\nC2: harm_auc_ON >= 0.6  (absolute harm prediction learning)\nC3: harm_auc_ON > harm_auc_ABLATED for ALL seeds  (consistency)\nC4: min_harm_steps >= 20  (data quality)\nC5 (diagnostic): mean_within_batch_var >= 1e-05  (buffer non-trivial)\n\n## Aggregate Results\n\n| Metric | THETA_ON | THETA_ABLATED | Delta | Pass |\n|--------|----------|---------------|-------|------|\n| harm_AUC (C1 delta) | 0.4896 | 0.6250 | -0.1354 | NO |\n| harm_AUC >= 0.6 (C2) | 0.4896 | -- | -- | NO |\n| seed consistency (C3) | [False] | -- | -- | NO |\n| min_harm_steps (C4) | 32 | -- | -- | YES |\n| mean_batch_var (C5 diag) | 0.000034 | -- | -- | YES |\n\n## Interpretation\n\nMECH-089 NOT SUPPORTED at theta_k=2 operationalisation. harm_auc_ON=0.4896, harm_auc_ABLATED=0.6250, delta=-0.1354. Theta-cycle averaging of E1 z_world output did not improve E3 harm prediction AUC over raw same-rate z_world delivery. Consistent with EXQ-066 backwards result (k=4 degraded performance): the environment may change meaningfully every step, making any averaging (even at k=2) destroy temporal resolution E3 relies on.\n\n## Per-Seed (THETA_INTEGRATION_ON)\n\n  seed=42: harm_auc=0.4896 harm_rate=0.7111 harm_steps_eval=32 n_e3_ticks=22 mean_batch_var=0.000034 train_harm_steps=34\n\n## Per-Seed (THETA_INTEGRATION_ABLATED)\n\n  seed=42: harm_auc=0.6250 harm_rate=0.7111 harm_steps_eval=32 n_e3_ticks=22 train_harm_steps=34\n\n## Failure Notes\n\n- C1 FAIL: harm_auc_ON=0.4896 vs harm_auc_ABLATED=0.6250 (delta=-0.1354, needs >=0.05). Theta-averaging (k=2) did not improve harm AUC over raw same-rate sampling. Possible causes: (1) theta_k=2 still too coarse for CausalGridWorldV2 dynamics, (2) harm_buf training signal too sparse at this hazard density, (3) E3 harm_eval learns equally well from raw or averaged z_world at world_dim=32.\n- C2 FAIL: harm_auc_ON=0.4896 (needs >=0.6). ON condition did not achieve reliable harm prediction. Check harm_buf_pos_final -- insufficient positive samples.\n- C3 FAIL: per_seed direction inconsistent ([False]). ON did not consistently beat ABLATED across seeds.\n",
+  "claim_ids": [
+    "MECH-089"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_122_mech089_theta_integration_pair",
+  "per_seed_on": [
+    {
+      "seed": 42,
+      "condition": "THETA_INTEGRATION_ON",
+      "theta_on": true,
+      "harm_auc": 0.4895833333333333,
+      "harm_rate": 0.7111111111111111,
+      "harm_steps_eval": 32,
+      "total_eval_steps": 45,
+      "n_e3_ticks_eval": 22,
+      "mean_within_batch_var": 3.415592896175349e-05,
+      "train_harm_steps": 34,
+      "harm_buf_pos_final": 34,
+      "harm_buf_neg_final": 9
+    }
+  ],
+  "per_seed_off": [
+    {
+      "seed": 42,
+      "condition": "THETA_INTEGRATION_ABLATED",
+      "theta_on": false,
+      "harm_auc": 0.625,
+      "harm_rate": 0.7111111111111111,
+      "harm_steps_eval": 32,
+      "total_eval_steps": 45,
+      "n_e3_ticks_eval": 22,
+      "mean_within_batch_var": 0.0,
+      "train_harm_steps": 34,
+      "harm_buf_pos_final": 34,
+      "harm_buf_neg_final": 9
+    }
+  ],
+  "run_timestamp": "20260328T200134Z",
+  "claim": "MECH-089",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

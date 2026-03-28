@@ -1,0 +1,89 @@
+{
+  "experiment_type": "v3_exq_115_sd003_zharms_counterfactual",
+  "run_id": "v3_exq_115_sd003_zharms_counterfactual_20260328T204836Z_v3",
+  "run_timestamp": "20260328T204836Z",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "claim_ids_tested": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "evidence_class": "discriminative_pair",
+  "evidence_direction": "weakens",
+  "seeds": [
+    42,
+    123
+  ],
+  "n_seeds": 2.0,
+  "grid_size": 6,
+  "n_hazards": 4,
+  "nav_bias": 0.6,
+  "registered_thresholds": {
+    "c1_harm_fwd_r2": 0.1,
+    "c2_delta_approach": 0.005,
+    "c3_grad_ordering": 0.0,
+    "c4_escalation": 0.0,
+    "c5_min_approach_evt": 20,
+    "c6_seed_consistency": 0.0
+  },
+  "metrics": {
+    "harm_fwd_r2": 0.0,
+    "delta_approach": -0.4754823434422942,
+    "causal_approach_trained": -0.019490906587048964,
+    "causal_approach_ablated": 0.45599143685524524,
+    "causal_none_trained": -0.02592207243653382,
+    "causal_contact_trained": 0.0033858110524588375,
+    "n_approach_eval": 508.5,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 0.0,
+    "criteria_met": 3.0,
+    "fatal_error_count": 0.0
+  },
+  "status": "FAIL",
+  "verdict": "FAIL",
+  "scenario": "SD-003 z_harm_s counterfactual: TRAINED vs ABLATED HarmForwardModel",
+  "interpretation": "PASS: learned E2_harm_s (HarmForwardModel) adds systematic causal signal for approach events vs ablated baseline -- SD-003 z_harm_s pipeline validated, ARC-033 forward model trainable. FAIL C1: HarmForwardModel not learning z_harm_s dynamics (ARC-033 gate not met; deeper architectural issue). FAIL C2 with C1 pass: forward model learns dynamics but pipeline produces no discrimination -- SD-003 z_harm_s architecture insufficient.",
+  "pairwise_deltas": {
+    "causal_approach_trained_minus_ablated": -0.4754823434422942
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "harm_fwd_r2": 0.0,
+      "causal_approach_trained": -0.043225361355419815,
+      "causal_approach_ablated": 0.6764719638159904,
+      "delta_approach": -0.7196973251714102,
+      "causal_none_trained": -0.04941468891643343,
+      "causal_contact_trained": -0.010405440832439225,
+      "n_approach_eval": 522.0,
+      "n_contact_eval": 95.0,
+      "n_none_eval": 651.0,
+      "n_approach_p1": 1492.0,
+      "n_contact_p1": 318.0,
+      "n_none_p1": 1705.0
+    },
+    {
+      "seed": 123,
+      "harm_fwd_r2": 0.0,
+      "causal_approach_trained": 0.004243548181321886,
+      "causal_approach_ablated": 0.2355109098945001,
+      "delta_approach": -0.23126736171317822,
+      "causal_none_trained": -0.0024294559566342107,
+      "causal_contact_trained": 0.0171770629373569,
+      "n_approach_eval": 495.0,
+      "n_contact_eval": 103.0,
+      "n_none_eval": 490.0,
+      "n_approach_p1": 1511.0,
+      "n_contact_p1": 292.0,
+      "n_none_p1": 1791.0
+    }
+  ],
+  "summary": "# V3-EXQ-115 -- SD-003 z_harm_s Counterfactual Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-033\n**Supersedes:** EXQ-109 (pre-SD-011 era, single z_harm stream, no matched-seed design)\n\n## Design\n\nDiscriminative pair: TRAINED vs ABLATED HarmForwardModel (E2_harm_s analog).\nBoth conditions use the same HarmEncoder + E3 harm_eval head trained identically in P1/P2.\nSeeds matched across conditions: [42, 123].\n\nSD-003 pipeline:\n  causal_sig = E3(z_harm_s_actual) - mean(E3(E2_harm_s(z_harm_s, a_cf)))\nABLATED: random-init forward model never trained -- produces noise predictions.\n\n## Pre-Registered Criteria\n\n| Criterion | Threshold | Value | Pass |\n|-----------|-----------|-------|------|\n| C1 harm_fwd_r2 | >0.1 | 0.0000 | no |\n| C2 delta_approach | >0.005 | -0.475482 | no |\n| C3 approach>none (trained) | >0 | 0.006431 | yes |\n| C4 contact>approach (trained) | >0 | 0.022877 | yes |\n| C5 n_approach_eval | >20 | 508.5 | yes |\n| C6 both seeds delta>0 | sign consistent | no | no |\n\n## Pairwise Comparison\n\n| Seed | harm_fwd_r2 | causal_approach_trained | causal_approach_ablated | delta | n_approach |\n|------|-------------|-------------------------|-------------------------|-------|------------|\n| 42 | 0.0000 | -0.04323 | 0.67647 | -0.71970 | 522 |\n| 123 | 0.0000 | 0.00424 | 0.23551 | -0.23127 | 495 |\n\n| **mean** | **0.0000** | **-0.01949** | **0.45599** | **-0.47548** | **508.5** |\n\n## Failure Notes\n\n- C1 FAIL: harm_fwd_r2_mean=0.0000 <= 0.1 (HarmForwardModel not learning z_harm_s dynamics -- ARC-033 gate not met)\n- C2 FAIL: delta_approach_mean=-0.475482 <= 0.005 (trained counterfactual adds no signal vs ablated for approach events)\n- C6 FAIL: seed consistency broken -- per-seed deltas: {42: -0.7196973251714102, 123: -0.23126736171317822} (direction not consistent across both seeds)\n"
+}

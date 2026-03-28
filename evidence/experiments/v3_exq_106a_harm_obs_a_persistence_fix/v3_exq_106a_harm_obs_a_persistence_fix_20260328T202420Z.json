@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "experiment_type": "v3_exq_106a_harm_obs_a_persistence_fix",
+  "claim_ids": [
+    "SD-011"
+  ],
+  "evidence_direction": "supports",
+  "supersedes": "v3_exq_106_harm_obs_a_temporal_persistence",
+  "seeds": [
+    42
+  ],
+  "n_steps": 60,
+  "n_hazards_high": 6,
+  "n_hazards_low": 2,
+  "grid_mean_high": 1.7654967685540517,
+  "grid_mean_low": 0.5900727132956187,
+  "local_raw_mean_high": 1.8795974751313527,
+  "local_raw_mean_low": 0.5767881229519844,
+  "autocorr_lag10_high": 0.5110508961419024,
+  "autocorr_lag10_low": 0.5987488612701898,
+  "ema_mean_high": 0.6979221535846591,
+  "ema_mean_low": 0.38673574157680074,
+  "crit1_grid_scaling": 1.0,
+  "crit3_raw_density": 1.0,
+  "crit4_autocorr": 1.0,
+  "crit5_no_errors": 1.0,
+  "criteria_met": 4.0,
+  "n_seeds": 1.0,
+  "fatal_error_count": 0,
+  "failure_notes": [],
+  "summary_markdown": "# V3-EXQ-106a -- SD-011 harm_obs_a Temporal Persistence (episode-reset fix)\n\n**Status:** PASS\n**Claims:** SD-011\n**Supersedes:** V3-EXQ-106 (C4 FAIL: autocorr=0.070; episode-reset destroyed persistence)\n**Seeds:** [42]  **Steps/seed/condition:** 60\n\n## Fix Applied\n\nCausalGridWorldV2.harm_obs_a_ema moved from reset() to __init__(). Now persists across\nepisode boundaries, as intended for a homeostatic/affective accumulator.\nExpected autocorr at lag 10 = (1-0.05)^10 ~ 0.60 >> threshold 0.3.\n\n## Results\n\n| Metric | HIGH (6 hazards) | LOW (2 hazards) | Criterion |\n|--------|--------------|-------------|-----------|\n| Grid-wide field mean | 1.7655 | 0.5901 | HIGH > LOW * 2.5x (C1) |\n| Local raw hazard | 1.8796 | 0.5768 | HIGH > LOW * 1.1x (C3) |\n| EMA dim-0 mean | 0.6979 | 0.3867 | reference |\n| Autocorr lag10 | 0.5111 | 0.5987 | > 0.3 (C4) |\n\n| Criterion | Result |\n|-----------|--------|\n| C1: field scales with n_hazards | PASS |\n| C3: raw density responsive | PASS |\n| C4: temporal persistence | PASS |\n| C5: no fatal errors | PASS |\n\nCriteria met: 4/4 -> **PASS**\n\n\n## Per-Seed Results\n\n| Seed | Grid HIGH | Grid LOW | Raw HIGH | Raw LOW | AC HIGH | AC LOW |\n|------|-----------|----------|----------|---------|---------|--------|\n| 42 | 1.7655 | 0.5901 | 1.8796 | 0.5768 | 0.5111 | 0.5987 |\n",
+  "metrics": {
+    "grid_mean_high": 1.7654967685540517,
+    "grid_mean_low": 0.5900727132956187,
+    "local_raw_mean_high": 1.8795974751313527,
+    "local_raw_mean_low": 0.5767881229519844,
+    "autocorr_lag10_high": 0.5110508961419024,
+    "autocorr_lag10_low": 0.5987488612701898,
+    "crit1_grid_scaling": 1.0,
+    "crit3_raw_density": 1.0,
+    "crit4_autocorr": 1.0,
+    "crit5_no_errors": 1.0,
+    "criteria_met": 4.0
+  },
+  "run_timestamp": "20260328T202420Z",
+  "run_id": "v3_exq_106a_harm_obs_a_persistence_fix_20260328T202420Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "verdict": "PASS"
+}
