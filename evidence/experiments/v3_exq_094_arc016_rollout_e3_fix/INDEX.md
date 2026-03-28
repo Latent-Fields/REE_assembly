@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_094_arc016_rollout_e3_fix
 
-Generated: `2026-03-28T13:58:54.127827Z`
+Generated: `2026-03-28T14:22:41.155830Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
