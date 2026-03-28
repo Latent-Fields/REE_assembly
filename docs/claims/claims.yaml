@@ -278,15 +278,16 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
-  v3_pending: true
   evidence_quality_note: |
     V2 EXQ (path_memory_ablation, 2026-03-08): FAIL (partial_support=true, 1/2 criteria).
-    PATH_MEMORY vs PATH_ABLATED agent harm: 0.896 vs 0.912 — sub-threshold difference.
+    PATH_MEMORY vs PATH_ABLATED agent harm: 0.896 vs 0.912 -- sub-threshold difference.
     Proxy representation was a 26-element obs-vector slice [252, 278] standing in for
     hippocampal path memory. This is too crude to test the architectural claim: proper
     ARC-007 path memory requires a functioning HippocampalModule navigating a structured
     path space (SD-004). The ablation test cannot distinguish "path memory doesn't help"
-    from "the proxy is too weak to carry meaningful path information." V3 required.
+    from "the proxy is too weak to carry meaningful path information."
+    V3 gate cleared (2026-03-28): SD-004 action objects + HippocampalModule now implemented
+    in ree-v3. V3 path-memory experiments can proceed.
   depends_on:
     - ARC-004
     - ARC-003
@@ -1040,14 +1041,10 @@
   subject: emotion.universal_expression_channel_mapping
   polarity: asserts
   status: active
-  v3_pending: true
-  v3_pending_reason: |
-    Requires correct three-channel E1/E2/E3 separation (SD-005, ARC-021). z_beta must receive
-    clean E3 harm/goal error; E3 precision must be meaningfully distinct from E1/E2 activity.
-    Neither holds in V2. Even with dynamic precision implemented, V2 channel contamination
-    would make the valence-precision correlation uninterpretable.
   evidence_quality_note: |
-    V2 experiment EXQ-024 (valence_regime_correlation, EVB-0006) FAIL — run twice (2026-03-08,
+    V3 gate cleared (2026-03-28): SD-005 (z_self/z_world split) and ARC-016 (dynamic precision)
+    now implemented in ree-v3. V3 experiments can now test z_beta/running_variance correlation.
+    V2 experiment EXQ-024 (valence_regime_correlation, EVB-0006) FAIL -- run twice (2026-03-08,
     2026-03-15), consistent result. Proximate failure: E3 precision hardcoded at 0.5 (no dynamic
     precision channel implemented), making the correlation mathematically impossible to observe.
     Fundamental blocker: V2 lacks correct E1/E2/E3 representation — z_beta receives mixed signals
@@ -1283,13 +1280,11 @@
   subject: cognitive_modes.action_doing
   polarity: asserts
   status: candidate
-  v3_pending: true
-  v3_pending_reason: |
-    Requires (1) dynamic E3 precision (same gap as Q-007) and (2) self-attribution via SD-003
-    (agent must internally distinguish agent-caused vs environment-caused events, not read a
-    ground-truth label). SD-003 requires E2 action-object latent (SD-004). Both are V3 prerequisites.
   evidence_quality_note: |
-    V2 experiment EXQ-026 (action_doing_mode_probe, EVB-0025) FAIL — 1 run (2026-03-08).
+    V3 gate cleared (2026-03-28): SD-004 (action objects), SD-005 (z_self/z_world split),
+    and ARC-016 (dynamic precision) now implemented in ree-v3. V3 action-doing mode
+    experiments can now proceed.
+    V2 experiment EXQ-026 (action_doing_mode_probe, EVB-0025) FAIL -- 1 run (2026-03-08).
     Proximate failure: action_precision_lift = 0.0 across all seeds/conditions — E3 precision
     hardcoded, no dynamic channel (same root cause as Q-007). Fundamental blocker: action-doing
     mode requires self-attribution (SD-003) — the agent must detect it is the causal source, not
@@ -3228,8 +3223,9 @@
     difference, below C3 threshold). C4 FAIL: calibration_gap_approach=0. E2 cannot
     discriminate agent vs environment dynamics without SD-005 z_self/z_world split — z_gamma
     conflates both. Partial signal: false_attr dropped 33%→26%, showing the gate threshold
-    captures some structure, but C3/C4 require SD-005 to pass. v3_pending removed — V3
-    evidence now exists (EXQ-054), but result is FAIL pending SD-005.
+    captures some structure, but C3/C4 require SD-005 to pass. v3_pending kept (2026-03-28):
+    specific blocker is SD-011 (z_harm_s stream). Foreseeable-harm discrimination requires
+    E2_harm_s forward model (ARC-033) which depends on SD-011 dual nociceptive split.
     New architectural question (2026-03-20): world-delta magnitude is insufficient to
     discriminate agent vs environment causation -- both produce similar E2 perturbation
     magnitudes. The gate requires directional discrimination: which subspace of z_world
@@ -3764,6 +3760,10 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
+    SD-006 is not yet implemented beyond time-multiplexed phase 1. Full asynchronous
+    multi-rate testing requires SD-006 phase 2 implementation.
   claim_level: mixed
   functional_restatement: >
     Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
@@ -3928,6 +3928,9 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
+    Phase-reset of E3 heartbeat requires SD-006 phase 2 async implementation first.
   claim_level: mechanistic
   functional_restatement: >
     Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
@@ -3958,6 +3961,9 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
+    Quiescent heartbeat replay requires SD-006 phase 2 async loop before testing.
   claim_level: mixed
   functional_restatement: >
     During quiescent periods between active E3 updates, the hippocampal module performs
@@ -4089,7 +4095,9 @@
   subject: observation_encoder.dual_stream_routing
   polarity: asserts
   status: candidate
-  implementation_phase: v3
+  evidence_quality_note: |
+    V3 gate cleared (2026-03-28): SD-005 (z_self/z_world split) and SD-007 (reafference
+    predictor) now implemented in ree-v3. Dual-stream routing experiments can proceed.
   depends_on:
     - SD-005
     - MECH-069
@@ -4099,7 +4107,7 @@
   notes: >
     The observation encoder must implement two anatomically motivated output heads,
     not a single encoder with a learned routing gate. Dorsal-equivalent head:
-    egocentric, action-relevant, high temporal resolution → z_self.
+    egocentric, action-relevant, high temporal resolution -> z_self.
     Ventral-equivalent head: allocentric, object-identity, sustained representation
     → z_world. The two streams process structurally different information at
     different temporal resolutions and must remain architecturally distinct or
@@ -4121,7 +4129,12 @@
   subject: peripersonal_space.commit_locus
   polarity: asserts
   status: candidate
-  implementation_phase: v3
+  evidence_quality_note: |
+    V3 gate cleared (2026-03-28): SD-005 (z_self/z_world split) and ARC-016 (dynamic
+    precision) now implemented in ree-v3. Peripersonal space / commit locus experiments
+    can proceed. Note: depends on MECH-091 (salient event cycle-reset) which still needs
+    SD-006 (async heartbeat); design experiments around the commit boundary itself
+    independent of heartbeat reset if possible.
   depends_on:
     - SD-005
     - MECH-091
@@ -6944,6 +6957,21 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  evidence_quality_note: |
+    EXQ-103 PASS x2 (2026-03-28): E2 training horizon ablation. Multi-step z_world
+    transitions learned without collapsing z_self/z_world independence (C1/C2/C3 all pass,
+    2 independent runs). Core computational substrate for MECH-135 is functional.
+    EXQ-104 FAIL 0/3 (2026-03-28): parallel rollout vs frozen. E2_WORLD goal scores
+    collapse to ~4 vs FROZEN ~30 immediately. Likely implementation artifact: agent is
+    untrained (random weights) so E2.world_forward maps inputs toward near-zero. FROZEN
+    scores ~1/step from high-dim random cosine similarity summed over 30 steps. E1_PRED
+    scores ~25.5 (reasonable but C2 threshold 1.05x > FROZEN fails since FROZEN already
+    appears high). EXQ-104b queued to re-test after training phase.
+    EXQ-105 FAIL 0/3 (2026-03-28): horizon sweep. E2_WORLD flat ~4.0 across h10/20/30;
+    FROZEN scales linearly. Confirms collapse is immediate, not horizon-dependent.
+    Governance decision (2026-03-28): hold at candidate -- EXQ-104b diagnostic required
+    before any evidence_direction update. Do not count EXQ-104/105 as weakening evidence
+    until trained-agent retest confirms the pattern.
   depends_on:
     - SD-005
     - MECH-069
