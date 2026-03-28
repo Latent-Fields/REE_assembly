@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-22.4 -->
+<!-- EXPLORER_VERSION: 2026-03-28.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -418,6 +418,31 @@
 
     .conflict-block {
       margin: 8px 0;
+    }
+
+    .trans-blocking-details summary {
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .trans-blocking-body {
+      margin-top: 6px;
+      padding-left: 8px;
+      border-left: 2px solid var(--border);
+    }
+
+    .trans-depth {
+      font-size: 12px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .trans-depth-label {
+      color: var(--muted);
+      font-style: italic;
+      margin-right: 4px;
     }
 
     details summary {
@@ -7156,6 +7181,57 @@ END CONFLICT RESOLUTION`;
       }
     }
 
+    // ------------------------------------------------------------
+    // Transitive blocking: BFS through inverted depends_on graph
+    // Returns [{depth, ids}] for depth >= 1. Depth 1 = direct dependents.
+    // ------------------------------------------------------------
+    function computeTransitiveBlocked(rootId) {
+      // Build inverse map: id -> [direct dependents]
+      const invMap = new Map();
+      allClaims.forEach(c => {
+        (c.depends_on || []).forEach(dep => {
+          if (!invMap.has(dep)) invMap.set(dep, []);
+          invMap.get(dep).push(c.id);
+        });
+      });
+
+      const visited = new Set();
+      const byDepth = [];
+      let frontier = [rootId];
+
+      while (frontier.length > 0) {
+        const next = [];
+        frontier.forEach(node => {
+          (invMap.get(node) || []).forEach(dep => {
+            if (!visited.has(dep)) {
+              visited.add(dep);
+              next.push(dep);
+            }
+          });
+        });
+        if (next.length > 0) byDepth.push({ depth: byDepth.length + 1, ids: next });
+        frontier = next;
+      }
+      return byDepth; // [{depth:1, ids:[...]}, {depth:2, ids:[...]}, ...]
+    }
+
+    function renderTransitiveBlocking(rootId) {
+      const byDepth = computeTransitiveBlocked(rootId);
+      if (byDepth.length === 0) return '<em>none</em>';
+
+      const total = byDepth.reduce((s, d) => s + d.ids.length, 0);
+      const depthLines = byDepth.map(d => {
+        const links = d.ids.map(id => `<a href="#" data-id="${id}">${id}</a>`).join(', ');
+        return `<div class="trans-depth"><span class="trans-depth-label">depth ${d.depth}:</span> ${links}</div>`;
+      }).join('');
+
+      return `
+        <details class="trans-blocking-details">
+          <summary>${total} claim${total !== 1 ? 's' : ''} blocked transitively</summary>
+          <div class="trans-blocking-body">${depthLines}</div>
+        </details>`;
+    }
+
     async function selectClaim(id) {
       selectedId = id;
       renderTable();
@@ -7185,6 +7261,7 @@ END CONFLICT RESOLUTION`;
           <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
           <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
           <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+          <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
           <li><strong>Conflicts:</strong> ${conflicts.length ? conflicts.map(f => {
             const link = relativeLink(f);
             return `<a href="${link}" target="_blank">${f}</a>`;
@@ -7239,6 +7316,7 @@ END CONFLICT RESOLUTION`;
           <li><strong>Location:</strong> ${loc ? `<a href="${loc}" target="_blank">${loc}</a> <button class="doc-open" data-doc="${loc}">Open in Docs</button>` : '-'}</li>
             <li><strong>Depends On:</strong> ${c.depends_on.length ? c.depends_on.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
             <li><strong>Dependents:</strong> ${dependents.length ? dependents.map(d => `<a href="#" data-id="${d}">${d}</a>`).join(', ') : '-'}</li>
+            <li><strong>Transitive Blocking:</strong> ${renderTransitiveBlocking(c.id)}</li>
             <li><strong>Conflict files:</strong> ${conflicts.length ? conflicts.map(f => {
               const link = relativeLink(f);
               return `<a href="${link}" target="_blank">${f}</a>`;
