@@ -1,0 +1,99 @@
+{
+  "run_id": "v3_exq_153_q013_uncertainty_calibration_20260329T132242Z_v3",
+  "experiment_type": "v3_exq_153_q013_uncertainty_calibration_pair",
+  "claim_ids": [
+    "Q-013"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_class": "discriminative_pair",
+  "guidance": "stochastic_uncertainty_heads_superior_hybridize_confirmed",
+  "criteria": {
+    "C1_stochastic_calibrated": true,
+    "C2_deterministic_calibrated": false,
+    "C3_stochastic_advantage": true,
+    "C4_sufficient_harm_events": true,
+    "C5_seed_consistent": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_CALIB_MIN": 0.58,
+    "THRESH_STOCH_ADVANTAGE": 0.05,
+    "THRESH_MIN_HARM": 30,
+    "WINDOW_SIZE": 10,
+    "HORIZON": 5
+  },
+  "summary_metrics": {
+    "deterministic_dispersion_calibration_auc": 0.49194847783949164,
+    "deterministic_dispersion_n_harm_events": 9003.0,
+    "deterministic_dispersion_mean_uncertainty": 0.30763259136686105,
+    "deterministic_dispersion_mean_warmup_loss": 0.03985515612580348,
+    "stochastic_head_calibration_auc": 0.735829865713046,
+    "stochastic_head_n_harm_events": 9003.0,
+    "stochastic_head_mean_uncertainty": 0.13610169601738453,
+    "stochastic_head_mean_warmup_loss": 0.23047149620967683,
+    "delta_auc_stoch_vs_det": 0.24388138787355435
+  },
+  "protocol": {
+    "warmup_episodes": 200,
+    "eval_episodes": 50,
+    "steps_per_episode": 200,
+    "kl_weight": 0.001,
+    "window_size": 10,
+    "horizon": 5
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Two-condition uncertainty calibration test: DETERMINISTIC_DISPERSION (plain linear encoder + running z_world std over last 10 steps as uncertainty signal), STOCHASTIC_HEAD (mean+log_var encoder, reparametrized z_world, sigma=exp(0.5*log_var)). Both trained with E1 world prediction loss (no E3/harm supervision). KL_WEIGHT=0.001 for stochastic head. Calibration metric: AUC of uncertainty predicting harm in next HORIZON=5 steps. 2 seeds x 2 conditions = 4 cells. CausalGridWorldV2 size=10 4 hazards 0 resources hazard_harm=0.05 env_drift_interval=5 env_drift_prob=0.3 (high drift + hazard density).",
+  "interpretation": "PASS => Q-013 resolved: stochastic uncertainty heads provide substantially better calibration (AUC gap >= 0.05); hybridize recommendation supported. REE precision routing requires explicit learned sigma, not just dispersion. PARTIAL_DET_ADEQUATE => deterministic dispersion adequate at this scale; both achieve AUC >= 0.58; stochastic advantage not demonstrated. REE may defer stochastic uncertainty heads in early V3 experiments. PARTIAL_BOTH_POOR => neither mechanism achieves calibrated uncertainty; environment or window/horizon parameters need adjustment; inconclusive. FAIL => too few harm events or degenerate AUC; implementation problem.",
+  "per_seed_results": {
+    "DETERMINISTIC_DISPERSION": [
+      {
+        "condition": "DETERMINISTIC_DISPERSION",
+        "seed": 42,
+        "calibration_auc": 0.5364389893058847,
+        "n_harm_events": 8997,
+        "mean_uncertainty": 0.3072246761990711,
+        "mean_warmup_loss": 0.045517248570453375,
+        "n_calib_steps": 9995,
+        "n_positive_calib": 9978
+      },
+      {
+        "condition": "DETERMINISTIC_DISPERSION",
+        "seed": 123,
+        "calibration_auc": 0.44745796637309854,
+        "n_harm_events": 9009,
+        "mean_uncertainty": 0.3080405065346509,
+        "mean_warmup_loss": 0.03419306368115358,
+        "n_calib_steps": 9995,
+        "n_positive_calib": 9992
+      }
+    ],
+    "STOCHASTIC_HEAD": [
+      {
+        "condition": "STOCHASTIC_HEAD",
+        "seed": 42,
+        "calibration_auc": 0.6344899956374611,
+        "n_harm_events": 8997,
+        "mean_uncertainty": 0.13562325301617384,
+        "mean_warmup_loss": 0.23300247373208405,
+        "n_calib_steps": 9995,
+        "n_positive_calib": 9978
+      },
+      {
+        "condition": "STOCHASTIC_HEAD",
+        "seed": 123,
+        "calibration_auc": 0.8371697357886307,
+        "n_harm_events": 9009,
+        "mean_uncertainty": 0.13658013901859523,
+        "mean_warmup_loss": 0.22794051868726964,
+        "n_calib_steps": 9995,
+        "n_positive_calib": 9992
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T13:22:42.175080+00:00"
+}
