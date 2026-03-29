@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-29T14:02:05.200389Z`
+Generated: `2026-03-29T15:41:02.734729Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -11,16 +11,24 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 13 | 13 | 1 | `2026-03-28_arc_016_threshold_striatum_presma_forstmann2008` | 30 |
 | `ARC-018` | directional | 7 | 1 | 0.25 | `2026-03-29_arc_018_prioritized_replay_mattar2018` | 8 |
 | `ARC-024` | directional, mixed_evidence | 13 | 9 | 0.818 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 33 |
+| `ARC-026` | directional, source_disagreement | 2 | 2 | 1 | `2026-03-29_arc_026_long_horizon_care_bratman1987` | 4 |
+| `ARC-030` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-03-29_arc_030_competitive_model_striatal_bariselli2019` | 4 |
+| `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_arc_032_theta_goal_navigation_review_colgin2016` | 7 |
+| `ARC-033` | directional, source_disagreement, mixed_evidence | 2 | 3 | 0.8 | `2026-03-29_arc_033_sensory_attenuation_case2016` | 7 |
 | `MECH-033` | directional, mixed_evidence | 7 | 1 | 0.25 | `2026-03-29_mech_033_preplay_prospective_olafsdottir2015` | 9 |
 | `MECH-071` | directional, mixed_evidence | 18 | 11 | 0.759 | `2026-03-29_mech_071_threat_imminence_gradient_mobbs2007` | 53 |
+| `MECH-072` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_mech_072_stress_memory_decontextualization_schwabe2024` | 7 |
 | `MECH-089` | directional, mixed_evidence | 9 | 4 | 0.615 | `v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3` | 17 |
 | `MECH-090` | directional, mixed_evidence | 8 | 4 | 0.667 | `v3_exq_119_mech090_beta_gate_pair_20260328T213307Z_v3` | 22 |
 | `MECH-093` | directional, source_disagreement, mixed_evidence | 4 | 5 | 0.889 | `v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3` | 11 |
 | `MECH-095` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_121_mech095_agency_attribution_pair_20260328T195503Z_v3` | 12 |
 | `MECH-098` | directional, source_disagreement, mixed_evidence | 9 | 12 | 0.857 | `v3_exq_110_c1fail_20260328T161637Z_v3` | 27 |
 | `MECH-099` | directional, source_disagreement, mixed_evidence | 3 | 4 | 0.857 | `v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3` | 9 |
+| `MECH-100` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `2026-03-29_mech_100_ventral_stream_categorical_murray2004` | 7 |
 | `MECH-102` | directional, source_disagreement, mixed_evidence | 5 | 10 | 0.667 | `2026-03-29_mech_102_just_war_last_resort_aloyo2015` | 27 |
 | `MECH-104` | directional, mixed_evidence | 7 | 1 | 0.25 | `2026-03-29_mech_104_unexpected_uncertainty_ne_yudayan2005` | 10 |
+| `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_mech_116_lstm_working_memory_review_baddeley2003` | 7 |
+| `MECH-118` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-03-29_mech_118_temporal_dissociation_memory_signals_staresina2012` | 4 |
 | `MECH-135` | directional, mixed_evidence | 7 | 2 | 0.444 | `2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998` | 15 |
 | `Q-020` | directional | 1 | 2 | 0.667 | `2026-03-29_q020_value_free_map_duvelle2019` | 3 |
 | `SD-003` | directional, source_disagreement, mixed_evidence | 17 | 23 | 0.85 | `v3_exq_115_sd003_zharms_counterfactual_20260328T204836Z_v3` | 78 |
@@ -104,9 +112,85 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### ARC-026
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, overall_confidence=0.543
+- Recent entries:
+  - `2026-03-18T20:25:10Z` `experimental` `v3_exq_033_training_depth_calibration` direction=`weakens` confidence=0.75
+  - `2026-03-19T06:07:20Z` `experimental` `v3_exq_039_training_progression` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:40:00Z` `literature` `targeted_review_arc_026` direction=`supports` confidence=0.72
+  - `2026-03-29T14:45:00Z` `literature` `targeted_review_arc_026` direction=`supports` confidence=0.62
+- Recurring failure signatures:
+  - `Frankfurt's account is primarily about what love is, not about how it scales with intelligence or capability. The ARC-026 expansion claim (love expands under intelligence rather than being crowded out) is an inference from Frankfurt's account, not a direct prediction.` (1)
+  - `Frankfurt's analysis applies to human agents with specific volitional structures -- the transfer to artificial agents or simulated systems requires the additional assumption that volitional structure is implementable in those systems.` (1)
+  - `Bratman's account does not directly address what happens to commitment when planning capacity increases beyond human levels -- his framework is developed for human agents with specific cognitive constraints.` (1)
+  - `Plans can be revised or abandoned if new information arrives -- Bratman's system is not committed to permanent expansion of care under intelligence, only that planning structures persist in the absence of defeating conditions.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### ARC-030
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.71
+- Recent entries:
+  - `2026-03-23T18:02:54Z` `experimental` `v3_exq_086_arc030_go_nogo_symmetry` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:15:00Z` `literature` `targeted_review_arc_030` direction=`supports` confidence=0.8
+  - `2026-03-29T14:20:00Z` `literature` `targeted_review_arc_030` direction=`supports` confidence=0.82
+  - `2026-03-29T14:25:00Z` `literature` `targeted_review_arc_030` direction=`supports` confidence=0.74
+- Recurring failure signatures:
+  - `The study measures receptor binding as a proxy for pathway function -- it does not directly measure Go/NoGo firing rates or downstream behavioral channel activation. Binding differences could reflect baseline differences that do not causally drive approach/avoidance learning.` (1)
+  - `The inverted-U relationship for D2 and avoidance learning implies optimal rather than monotonic tuning -- too much or too little D2 activity impairs avoidance. This is more complex than ARC-030's symmetric channel model implies.` (1)
+  - `The study is conducted in the nucleus accumbens (ventral striatum / limbic loop) specifically, not across all three BG loops. Whether the same D1/D2 causal dissociation holds in the associative and sensorimotor loops (relevant to E2 and E1) is not directly tested.` (1)
+  - `The RNB technique blocks synaptic transmission entirely rather than modulating it -- this may produce a different phenotype than partial reduction in signal strength, which is the REE-relevant scenario (imbalanced rather than absent channels).` (1)
+  - `The paper is a theoretical review proposing a model, not a direct experimental test of the competitive architecture. The competitive model is one of several models discussed; its superiority over the classic Go/NoGo suppression model is argued but not experimentally settled in this paper.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### ARC-032
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.65
+- Recent entries:
+  - `2026-03-27T14:30:27Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
+  - `2026-03-28T18:12:53Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.8
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.72
+- Recurring failure signatures:
+  - `If mPFC-hippocampal theta coherence during navigation reflects hippocampal movement signaling rather than frontal goal representation, the ARC-032 framing would be inverted` (1)
+  - `If theta appears during any locomotion regardless of goal-directedness, the goal-context specificity of the packaging claim would be undermined` (1)
+  - `If prefrontal-hippocampal theta coherence during goal navigation reflects hippocampus driving prefrontal (bottom-up) rather than frontal driving hippocampus (top-down), the ARC-032 directional claim would need revision` (1)
+  - `If theta coherence is a byproduct of shared input rather than a communication mechanism, the packaging analogy would not hold` (1)
+  - `If hippocampal theta is primarily a movement/speed signal with no goal-representation content, the ARC-032 claim that theta packages goal context would be weakened` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### ARC-033
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=2, weakens=3, conflict_ratio=0.8, overall_confidence=0.595
+- Recent entries:
+  - `2026-03-27T17:42:20Z` `experimental` `v3_exq_095b_harm_fwd_slow_learning` direction=`weakens` confidence=0.75
+  - `2026-03-28T16:16:34Z` `experimental` `v3_exq_109_sd003_harm_counterfactual` direction=`weakens` confidence=0.75
+  - `2026-03-28T20:48:36Z` `experimental` `v3_exq_115_sd003_zharms_counterfactual` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_033` direction=`supports` confidence=0.65
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_033` direction=`supports` confidence=0.62
+- Recurring failure signatures:
+  - `If forward models are stored as a monolithic controller rather than modular separate models, then the internal-model loading result might reflect weight interpolation rather than distinct model selection, undermining the architectural analogy for E2_harm_s.` (1)
+  - `The harm forward model in REE is a learned MLP trained on harm proximity labels; the cerebellum/motor cortex architecture for object manipulation models differs substantially in implementation detail.` (1)
+  - `The study uses affective touch (C-tactile fibers, innocuous), not nociceptive harm stimuli. Extending to harm/nociception requires an additional inference step.` (1)
+  - `rTMS over S1 reduced sensory discrimination but did not eliminate it entirely, suggesting partial rather than complete channel separation.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### MECH-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.841
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, overall_confidence=0.84
 - Recent entries:
   - `2026-03-20T19:13:45Z` `experimental` `v3_exq_055_mech033_kernel_chaining` direction=`supports` confidence=0.75
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.75
@@ -141,9 +225,29 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### MECH-072
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, overall_confidence=0.644
+- Recent entries:
+  - `2026-03-20T08:29:32Z` `experimental` `v3_exq_054_mech072_world_delta_gating` direction=`mixed` confidence=0.5
+  - `2026-03-20T18:05:45Z` `experimental` `claim_probe_mech_072` direction=`mixed` confidence=0.5
+  - `2026-03-20T18:05:45Z` `experimental` `v3_exq_054_mech072_world_delta_gating` direction=`mixed` confidence=0.5
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_072` direction=`supports` confidence=0.58
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_072` direction=`supports` confidence=0.6
+- Recurring failure signatures:
+  - `v2_verdict_fail:selective_residue_attribution` (1)
+  - `Rodent evidence only; human translational validity not established.` (1)
+  - `The contextual memory enhancement in these experiments targets fear expression at retrieval, not residue accumulation at action time. MECH-072's gate operates earlier in the process.` (1)
+  - `The preclinical models use relatively simple contextual cues; REE's foreseeable-harm judgment requires more complex causal reasoning about what was knowable at decision time.` (1)
+  - `The paper's framework is about episodic memory under stress, not about causal attribution during action selection. MECH-072 is about gating residue accumulation, which is a real-time process, not a post-hoc memory retrieval process.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### MECH-089
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=4, conflict_ratio=0.615, overall_confidence=0.817
+- Evidence breakdown: supports=9, weakens=4, conflict_ratio=0.615, overall_confidence=0.816
 - Recent entries:
   - `2026-03-22T12:00:00Z` `literature` `targeted_review_connectome_mech_089` direction=`supports` confidence=0.84
   - `2026-03-23T10:10:09Z` `experimental` `v3_exq_066_mech089_theta_batching` direction=`mixed` confidence=0.5
@@ -228,6 +332,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### MECH-100
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.6
+- Recent entries:
+  - `2026-03-20T16:51:49Z` `experimental` `claim_probe_mech_100` direction=`mixed` confidence=0.5
+  - `2026-03-20T17:11:30Z` `experimental` `claim_probe_mech_100` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_100` direction=`supports` confidence=0.58
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_100` direction=`supports` confidence=0.65
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_100` direction=`supports` confidence=0.62
+- Recurring failure signatures:
+  - `If the brain processes continuous sensory streams without categorical event segmentation, the CE auxiliary loss label design would lose its biological grounding` (1)
+  - `If event boundaries are not specially marked by prediction error or neural transients, the event-type label scheme would be arbitrary rather than biologically grounded` (1)
+  - `If IT cortex object selectivity is innate or emerges purely from statistics of visual experience without categorical training, the supervision requirement would not hold` (1)
+  - `If IT categorical selectivity requires only reconstruction-like prediction (next frame prediction) without category labels, MECH-100's auxiliary loss claim would be weakened` (1)
+  - `If perirhinal category selectivity is entirely explained by input statistics (reconstruction pressure) without any top-down categorical signal, MECH-100's auxiliary loss claim would be weakened` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### MECH-102
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=5, weakens=10, conflict_ratio=0.667, overall_confidence=0.713
@@ -254,6 +378,45 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.78
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.8
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.79
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-116
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.644
+- Recent entries:
+  - `2026-03-27T14:30:27Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
+  - `2026-03-28T18:12:53Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.72
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.82
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.65
+- Recurring failure signatures:
+  - `If prefrontal cooling disrupted motor execution rather than memory maintenance, the delay-period function would be artifactual` (1)
+  - `If the deficit was due to attentional disruption rather than working memory, the maintenance analogy to LSTM recurrence would not follow` (1)
+  - `If DLPFC sustained firing required continuous sensory refresh rather than recurrent maintenance, the LSTM analogy would fail` (1)
+  - `If delay-period activity encoded motor preparation rather than sensory memory content, the goal-context mapping would be undermined` (1)
+  - `If working memory is primarily a phonological loop or visuospatial sketch pad phenomenon with no central maintenance role, the MECH-116 analogy would locate the wrong component` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-118
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.697
+- Recent entries:
+  - `2026-03-28T16:06:49Z` `experimental` `v3_exq_084d_q022_deff_hopfield_dissociation` direction=`weakens` confidence=0.75
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.78
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.72
+  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.73
+- Recurring failure signatures:
+  - `If familiarity and recollection are not doubly dissociable -- if one always predicts the other -- then there is no empirical motivation for maintaining separate Hopfield familiarity and D_eff signals in MECH-118.` (1)
+  - `If Hopfield stability in the REE architecture does not behave as a graded signal-detection process (but rather as a threshold recollection-type signal), the familiarity/recollection analogy would be misapplied.` (1)
+  - `If patient KN's spared familiarity is explained by residual hippocampal function rather than perirhinal-independent processing, the double dissociation evidence weakens.` (1)
+  - `If the REE HopfieldMemory retrieval mechanism is not analogous to perirhinal match-strength computation (but instead implements a retrieval-like process requiring z_self context), the familiarity analog would be misassigned.` (1)
+  - `If the temporal dissociation between perirhinal and hippocampal signals is an artifact of signal propagation delays rather than distinct computational processes, the timing difference would not imply informational independence.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
