@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_001",
+  "entry_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-001"],
+  "source": {
+    "title": "Cortical VIP neurons locally control the gain but globally control the coherence of gamma band rhythms",
+    "authors": ["Julia Veit", "Gregory Handy", "Daniel P Mossing", "Brent Doiron", "Hillel Adesnik"],
+    "year": 2022,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2022.10.036"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality mouse V1 study combining electrophysiology, optogenetics, and computational modeling. Directly shows a circuit mechanism by which gamma coherence across cortical regions tracks continuous vs. discontinuous image features -- a plausible substrate for entity-boundary binding. Transfer to human/primate entity emergence and to REE's latent-space binding requires additional mapping steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_001", "gamma_oscillations", "binding", "VIP_interneurons", "visual_cortex", "coherence", "entity_emergence"],
+  "mapping": {
+    "source_claim_statement": "VIP disinhibitory interneurons in mouse V1 linearly scale local gamma power without changing stimulus tuning, but suppress long-range gamma synchronization when two regions process non-matching stimuli -- thereby constructing gamma-band filters for spatially extended but continuous image features such as contours.",
+    "ree_translation": "In REE, entity emergence requires that latent representations of co-occurring features cohere into a unified object token. The VIP-gated gamma coherence mechanism provides a candidate neural substrate: gamma synchrony tracks the spatial continuity of a stimulus, encoding entity-boundary information. This maps onto the Q-001 question of what circuit mechanisms bind distributed feature representations into a single entity.",
+    "mapping_caveat": "The study is entirely in mouse V1 using drifting grating stimuli -- a far simpler scene than the multi-attribute entities REE aims to represent. The gamma-as-binding hypothesis remains contested: the paper itself notes that VIP interneurons are 'constructing filters for contours', not demonstrating a complete binding mechanism. REE entity emergence involves multiple feature dimensions beyond orientation; the generalizability of this VIP circuit to higher-order entity formation is not established.",
+    "source_context": "Mouse primary visual cortex, in vivo electrophysiology with optogenetic VIP suppression, idealized grating stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Excellent methodological quality (Nature-tier journal, optogenetics + modeling). Mapping fidelity is moderate: the study identifies a circuit for spatial coherence gating, which is one component of binding but not the full mechanism of entity emergence. Transfer risk is appreciable because REE entities are abstract multi-attribute objects, not simple orientation gratings."
+  }
+}

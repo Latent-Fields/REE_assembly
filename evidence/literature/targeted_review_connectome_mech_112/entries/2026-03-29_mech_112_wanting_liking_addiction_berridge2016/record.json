@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-03-29_mech_112_wanting_liking_addiction_berridge2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Liking, wanting, and the incentive-sensitization theory of addiction",
+    "authors": ["Berridge, K.C.", "Robinson, T.E."],
+    "year": 2016,
+    "venue": "American Psychologist",
+    "doi": "10.1037/amp0000059",
+    "pmid": "27977239",
+    "pmc": "PMC5171207",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27977239/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This 2016 review consolidates two decades of wanting/liking dissociation research and demonstrates the robustness of the dissociation across species, conditions, and pathological states (addiction). The key addition over the 1996 paper is the demonstration that wanting can become sensitised and escalate beyond liking -- states are possible where wanting is very high and liking is very low or absent. This confirms that the two signals are not merely different labels for the same gradient, but genuinely independent computational processes. For MECH-112, this strengthens the argument that z_goal (wanting) must be a separately maintained latent, because if it were merely a transformation of benefit_eval_head (liking), the dissociation could not be reproduced. Confidence 0.80 because this is a review integrating many sources rather than a single novel experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a single latent variable could produce both wanting-like (prospective, persistent approach) and liking-like (consummatory spike) behavior through different read-out modes, MECH-112's claim for a distinct z_goal representation would be architecturally unnecessary.",
+    "If sensitisation-like dynamics (wanting escalating beyond liking) are not architecturally possible in REE, the pathological cases (addiction, compulsive approach) documented in this paper would be reproduced incorrectly."
+  ],
+  "tags": ["mech_112", "wanting", "liking", "incentive_sensitization", "addiction", "dopamine", "dissociation", "approach_motivation"],
+  "mapping": {
+    "source_claim_statement": "Wanting (incentive salience, dopamine/mesolimbic) and liking (hedonic impact, opioid/endocannabinoid in hotspots) are dissociable at neural and behavioral levels. In addiction, dopaminergic sensitisation amplifies wanting independently of liking, producing compulsive approach to stimuli that are no longer pleasurable. Wanting can occur without cognitive desire and can be amplified by drive states, stress, and environmental cues.",
+    "ree_translation": "For MECH-112, the sensitisation case is particularly important: it shows that the wanting signal is an independently regulated quantity, not a derived read-out of hedonic value. In REE, this maps to the requirement that z_goal (wanting) should be maintained and updated via a process that is distinct from benefit_eval_head calibration -- otherwise REE cannot architecturally reproduce approach-without-benefit, which is the wanting-without-liking signature. The paper also supports the drive-state modulation of wanting (relevant to SD-012): wanting amplifies under deprivation and stress, independently of changes in liking. This is why homeostatic drive scaling of benefit signals in SD-012 must specifically target the wanting/z_goal pathway, not the hedonic/liking pathway.",
+    "mapping_caveat": "The addiction sensitisation case, while demonstrating the wanted independence of wanting, involves a pathological process (repeated drug exposure, sensitisation) that may not translate to normal goal formation in REE. The REE z_goal pathway is modelled on normal goal-directed approach, not compulsive craving. The paper's evidence base is primarily rodent; the human sections rely more on theory and clinical analogy. The relevance to REE is the architectural principle, not the pathological dynamics.",
+    "source_context": "Review paper; American Psychologist; integrates two decades of rodent behavioral, neurochemical, and optogenetic studies from Berridge lab; also includes human implications sections."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "American Psychologist review, very high citation count, authoritative synthesis. Mapping fidelity strong for the architectural principle; moderate for the sensitisation dynamics which may not be directly relevant to normal REE operation. Transfer risk low for the dissociation principle."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_018",
+  "entry_id": "2026-03-29_arc_018_goals_habits_dolan2013",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["ARC-018"],
+  "source": {
+    "title": "Goals and habits in the brain",
+    "authors": ["Dolan, Ray J", "Dayan, Peter"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Dolan & Dayan's comprehensive review of goal-directed vs habitual decision-making provides the theoretical scaffolding that situates ARC-018's hippocampal viability map. They articulate the model-based/model-free distinction, clarify that goal-directed behaviour requires a cognitive map whose value is updated prospectively (not merely retrospectively), and review the evidence that hippocampus is an essential substrate for model-based planning. This is theoretical grounding rather than direct experimental evidence, hence the lower confidence -- but the conceptual alignment is high. The review's framing of 'model-based' as requiring explicit forward simulation is exactly what ARC-018 claims for the viability map. Confidence is limited by the fact that ARC-018 makes specific mechanistic claims (E2 indexing, E3 error update) that go well beyond what this review can address.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_018", "model_based", "goal_directed", "habit", "hippocampus", "theoretical_review", "cognitive_map"],
+  "mapping": {
+    "source_claim_statement": "Goal-directed behaviour requires a model of the world that supports prospective simulation of action consequences; hippocampus is central to model-based planning; the goal-directed/habitual spectrum maps onto model-based/model-free RL; flexible value updating (e.g. after reward revaluation) depends on model-based representations.",
+    "ree_translation": "ARC-018's viability map is the specific hippocampal structure that enables model-based planning. Dolan & Dayan provide the theoretical foundation: the map must encode transition structure and outcome values in a way that permits prospective simulation and flexible updating. The paper's identification of hippocampus as the locus of model-based representation supports ARC-018's claim; the emphasis on flexible updating under new goal/harm information directly supports the E3-error-driven update component.",
+    "mapping_caveat": "This is a review of behavioural and lesion literature; it does not address the specific indexing coordinate (spatial vs action-object) or the E3 error signal mechanism. The claim that hippocampus is the model-based substrate is well-supported but not universally agreed -- some accounts distribute this role across prefrontal cortex and hippocampus.",
+    "source_context": "Theoretical review, rodent and human literature, behavioural and lesion studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.15,
+    "notes": "High-quality theoretical source, but mapping fidelity is moderate because the review does not address the V3-specific claims (action-object indexing, E3 error signals). Works mainly as theoretical grounding for the viability-map framing."
+  }
+}

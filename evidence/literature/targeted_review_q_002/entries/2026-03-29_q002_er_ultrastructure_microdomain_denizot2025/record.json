@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_002",
+  "entry_id": "2026-03-29_q002_er_ultrastructure_microdomain_denizot2025",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-002"],
+  "source": {
+    "title": "The Ultrastructural Properties of the Endoplasmic Reticulum Govern Microdomain Signaling in Perisynaptic Astrocytic Processes",
+    "authors": ["Audrey Denizot", "Maria Fernanda Veloz Castillo", "Pavel Puchenkov", "Corrado Cali", "Erik De Schutter"],
+    "year": 2025,
+    "venue": "Glia",
+    "doi": "10.1002/glia.70091"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-resolution 3D electron microscopy reconstruction of hippocampal tripartite synapses combined with reaction-diffusion simulation directly resolves how ER ultrastructure governs Ca microdomain scale within perisynaptic astrocytic processes. ER presence in 75% of PAPs, with highly diverse shapes, creates a heterogeneous landscape of Ca amplification and attenuation that further refines the spatial resolution picture for R(x,t).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_002", "astrocyte", "endoplasmic_reticulum", "calcium_microdomain", "spatial_resolution", "tripartite_synapse", "electron_microscopy", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "75% of perisynaptic astrocytic processes contain endoplasmic reticulum with strikingly diverse shapes and spatial distributions. ER-PM contact sites act as local Ca signal amplifiers when equipped with IP3 receptor clusters, or attenuate Ca activity without clustering. Astrocyte Ca activity is governed by a complex interplay between Ca channel location, ER surface-volume ratio, and spatial distribution.",
+    "ree_translation": "The R(x,t) field in REE is not spatially homogeneous even within a single astrocyte-territory domain. This paper shows that R field gain at any given locus depends on the local ER structure -- analogous to saying that the R field has spatially varying gain parameters at sub-territory resolution. For REE design, this implies R(x,t) should have not just a fixed spatial resolution but also position-dependent amplification characteristics that could in principle be learned from experience (analogous to experience-dependent ER remodeling).",
+    "mapping_caveat": "3D EM reconstructions are static snapshots -- they cannot show how ER ultrastructure changes with synaptic activity or learning. The IP3 receptor clustering finding is from simulation, not direct experimental measurement of clustering in live tissue. Translating heterogeneous ER-dependent gain to REE latent space requires treating ER geometry as an analogue of learned R-field gain parameters, which is a significant conceptual extrapolation.",
+    "source_context": "3D reconstruction of hippocampal tripartite synapses from high-resolution electron microscopy (rodent), combined with reaction-diffusion simulations in algorithmically generated 3D PAP meshes with varying ER geometry."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Very recent paper (2025) in Glia using cutting-edge 3D EM + simulation pipeline. Source quality high. Mapping fidelity is good: the paper directly refines the spatial resolution answer from Denizot 2022 by adding within-PAP ER geometry as a further spatial determinant. Transfer risk is moderate -- rodent, static snapshot, and the ER-as-gain-parameter mapping is a conceptual step."
+  }
+}

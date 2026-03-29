@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_102",
+  "entry_id": "2026-03-29_mech_102_frustration_aggression_berkowitz1989",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["MECH-102"],
+  "source": {
+    "title": "Frustration-aggression hypothesis: examination and reformulation",
+    "authors": ["Leonard Berkowitz"],
+    "year": 1989,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.106.1.59",
+    "pmid": "2667009",
+    "volume": "106",
+    "issue": "1",
+    "pages": "59-73"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Berkowitz's reformulation directly frames aggression/violence as triggered by goal-path blockage (pathway exhaustion), with negative affect as the mediating mechanism. This maps plausibly onto MECH-102's claim that violence is triggered when coordination pathways become unavailable. The fit is strongest for the individual level. Transfer risk is moderate because Berkowitz is modelling emotional aggression in individuals, not architectural error-correction in systems, and his model does not distinguish low-energy vs. high-energy intervention paths in the REE sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_102", "frustration_aggression", "goal_blocking", "pathway_exhaustion", "individual_violence"],
+  "mapping": {
+    "source_claim_statement": "Frustrations generate aggressive inclinations to the degree that they arouse negative affect; aggression is triggered specifically when goal-directed behavior is blocked and the blockage is appraised as aversive. Violence (hostile aggression) is a downstream consequence of thwarted goal attainment.",
+    "ree_translation": "In REE terms, the blocked goal corresponds to a closed low-energy coordination pathway: the agent's forward model can no longer project a coherent future through repair, exchange, or arbitration. Negative affect arousal maps roughly onto the error signal that accumulates when the agent's predicted trajectory is obstructed. Violence (high-energy intervention) becomes the selected response when the low-energy pathways that normally absorb goal-thwarting are unavailable. Berkowitz's 'arbitrary vs. non-arbitrary' frustration distinction maps onto whether the pathway closure was caused by an external agent or by structural unavailability -- both trigger MECH-102 in REE, though via slightly different routes.",
+    "mapping_caveat": "Berkowitz is describing an affective-motivational process in individual humans, not an architectural switching criterion in a computational agent. MECH-102 claims violence is selected after pathway exhaustion -- Berkowitz shows violence is triggered by pathway blockage mediated by negative affect. The causal chain is directionally consistent but the mechanisms are different: REE is structural/computational, Berkowitz is affective/associative. Berkowitz also does not distinguish 'terminal' from other forms of aggression, and his model does not require prior exhaustion of non-violent alternatives.",
+    "source_context": "Laboratory and field studies of human emotional aggression; mostly social psychological paradigms (blocking subjects from reaching rewards). Not combat or institutional violence."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "High source quality -- landmark review in a top journal, highly cited, empirically grounded. Mapping fidelity moderate: directional fit is clear (blocked pathway -> violence) but the mechanisms are affective/associative rather than architectural. Transfer risk is meaningful because Berkowitz's model does not require exhaustion of alternatives -- frustration can trigger aggression even when non-violent paths remain open, which is a partial disconfirmation of MECH-102's 'terminal' framing."
+  }
+}

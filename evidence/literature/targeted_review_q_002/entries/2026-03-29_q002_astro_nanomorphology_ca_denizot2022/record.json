@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_002",
+  "entry_id": "2026-03-29_q002_astro_nanomorphology_ca_denizot2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-002"],
+  "source": {
+    "title": "Control of Ca2+ signals by astrocyte nanoscale morphology at tripartite synapses",
+    "authors": ["Audrey Denizot", "Misa Arizono", "U Valentin Nagerl", "Hugues Berry", "Erik De Schutter"],
+    "year": 2022,
+    "venue": "Glia",
+    "doi": "10.1002/glia.24258"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Computational reaction-diffusion modeling anchored in super-resolution microscopy data directly quantifies how astrocyte process nanomorphology sets Ca microdomain spatial scale at tripartite synapses. The model predicts that individual synaptic contacts are the relevant spatial unit, and that swelling (pathological state) attenuates spatial restriction. This directly constrains the appropriate spatial resolution for R(x,t) in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_002", "astrocyte", "calcium_microdomain", "spatial_resolution", "tripartite_synapse", "nanomorphology", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "The nanoscale morphology of astrocytic processes (perisynaptic astrocytic processes, PAPs) powerfully shapes the spatiotemporal properties of Ca2+ signals and promotes local Ca2+ activity that is spatially restricted to individual synaptic contacts. Astrocytic swelling attenuates this spatial restriction and hinders signal propagation.",
+    "ree_translation": "R(x,t) in REE is a regulatory residue field maintained by an astrocyte-analog module. This paper suggests the appropriate spatial resolution for R(x,t) is at the level of individual synaptic contacts -- roughly the scale of individual feature-coupling events in the latent space. A coarser resolution (whole-astrocyte or whole-region) would fail to preserve the per-synapse independence that the morphology enforces. This answers Q-002 by anchoring the spatial grain of R to the micrometer scale of PAP process territories.",
+    "mapping_caveat": "The model uses idealized 3D geometries derived from super-resolution microscopy of rodent tissue -- not human, and not in vivo during active processing. The spatial resolution argument (synapse-scale) assumes REE's latent space has a synaptic-scale topology, which is an abstraction. In practice, REE R(x,t) is a continuous field over a latent manifold; the mapping from morphological nanoscale to latent-space resolution requires additional design choices.",
+    "source_context": "Computational reaction-diffusion simulations using idealized 3D process geometries from rodent brain super-resolution microscopy data; validated with hypo-osmotic swelling experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Glia is a field-leading journal; the modeling approach is mechanistically rigorous and tied to experimental validation. Mapping fidelity is relatively high because the paper directly addresses spatial scale of Ca signals at synaptic contacts, which maps cleanly onto the spatial resolution question for R(x,t). Transfer risk is moderate -- rodent-based, and the jump from morphological to latent-space resolution is conceptual."
+  }
+}

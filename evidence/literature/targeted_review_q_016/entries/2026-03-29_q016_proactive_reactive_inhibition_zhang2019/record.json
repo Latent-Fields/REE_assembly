@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_016",
+  "entry_id": "2026-03-29_q016_proactive_reactive_inhibition_zhang2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-016"],
+  "source": {
+    "title": "Common Neural Network for Different Functions: An Investigation of Proactive and Reactive Inhibition",
+    "authors": ["Fan Zhang", "Sunao Iwaki"],
+    "year": 2019,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2019.00124"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Human fMRI with dynamic causal modelling showing distinct fronto-basal ganglia pathways for proactive (prepare-to-inhibit) vs. reactive (cancel-in-flight) inhibition, with a longer DLPFC-caudate-IFG pathway for proactive and a shorter IFG-SMA-STN pathway for reactive. This maps onto REE's pre-commit vs. post-commit suppression channels and gives mechanistic grounding for why the arbitration policy needs to operate at two different timescales within the same anatomical network.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_016", "proactive_inhibition", "reactive_inhibition", "hyperdirect_pathway", "indirect_pathway", "fronto_basal_ganglia", "dynamic_causal_modelling"],
+  "mapping": {
+    "source_claim_statement": "Both proactive and reactive inhibition recruit IFG, SMA, STN, and M1; proactive inhibition additionally recruits a longer DLPFC-caudate-IFG pathway that modulates downstream control; the shorter IFG-SMA-STN hyperdirect pathway mediates reactive inhibition. DCM shows that caudate-to-IFG connectivity is specifically modulated by proactive but not reactive inhibition.",
+    "ree_translation": "In REE's tri-loop architecture, the proactive/reactive distinction maps onto E3-gate arbitration (plan ahead to prevent a bad action -- proactive) vs. post-commitment suppression (cancel an action already in progress -- reactive). The longer prefrontal-caudate pathway for proactive control implies that the planning loop (E3) must feed into the gate-conflict arbitration *before* commitment, not just at the moment of execution. For Q-016, this means the arbitration policy must operate at two timescales: a proactive E3-driven preparation of gate priorities (using the DLPFC-caudate path analog) and a reactive emergency-cancel mechanism (using the hyperdirect STN path analog). A policy that only implements one of these risks either chronic over-preparation (never committing) or chronic under-suppression (unable to cancel).",
+    "mapping_caveat": "The stop-signal paradigm used probes inhibition of simple motor responses, not the kind of multi-loop conflict involving incommensurable error signals that Q-016 concerns. The proactive manipulation (participants prepared to inhibit a response they knew might need to be suppressed) is closer to REE's E3 pre-commit simulation than to a genuine three-loop conflict. The DCM connectivity findings are correlational evidence of pathway engagement, not direct evidence of what arbitration policy is optimal.",
+    "source_context": "Human fMRI, stop-signal paradigm, dynamic causal modelling (70 models compared), healthy adult participants"
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.67,
+    "transfer_risk": 0.34,
+    "notes": "Solid human fMRI with rigorous model comparison. Transfer risk moderate -- stop-signal inhibition is a proxy for but not equivalent to tri-loop conflict arbitration. The proactive/reactive distinction is the most directly REE-relevant finding."
+  }
+}

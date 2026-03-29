@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-03-29_mech_112_incentive_salience_berridge1996",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Food reward: brain substrates of wanting and liking",
+    "authors": ["Berridge, K.C."],
+    "year": 1996,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/0149-7634(95)00033-b",
+    "pmid": "8622814",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8622814/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the foundational empirical paper establishing the wanting/liking distinction and localising wanting to mesolimbic dopamine and the nucleus accumbens, while localising liking to opioid hotspots in NAc shell and ventral pallidum. The paper directly supports MECH-112's claim that a prospective approach drive (wanting) requires a distinct neural substrate from hedonic evaluation (liking), and that without a functioning dopaminergic wanting system, goal-directed approach collapses even when hedonic capacity is intact. The animal work is rigorous. Confidence docked from 0.85 to 0.82 because the paper predates the full characterisation of NAc shell hotspot anatomy, and the REE mapping requires treating a computational latent (z_goal) as the substrate rather than dopamine neurons directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If z_goal seeding and trajectory scoring operated through a single unified valence signal with no architectural separation, the wanting/liking dissociation this paper documents would be architecturally irreproducible in REE.",
+    "If approach behavior can emerge in REE from harm-avoidance gradients alone (no positive z_goal attractor), the claim that wanting requires a distinct representation would be weakened."
+  ],
+  "tags": ["mech_112", "incentive_salience", "wanting", "liking", "dopamine", "nucleus_accumbens", "goal_representation", "approach_motivation"],
+  "mapping": {
+    "source_claim_statement": "Food reward contains two dissociable functional components -- wanting (incentive salience, mediated by mesolimbic dopamine and nucleus accumbens) and liking (hedonic impact, mediated by opioid/GABA systems in NAc shell hotspots and ventral pallidum). Dopamine-depleted rats show normal liking reactions to sucrose but do not approach or consume food. The wanting system is the motivational engine for goal approach; the liking system is the evaluative signal at consummation.",
+    "ree_translation": "MECH-112 claims E3 requires a structured latent goal representation (z_goal positive attractor in z_world or z_goal sub-space) distinct from harm avoidance. Berridge 1996 provides the neural existence proof: the brain maintains a prospective wanting signal (dopaminergic, persistent, approach-generating) that is architecturally separable from the hedonic liking signal (opioid, consummatory, evaluative). In REE terms: z_goal must encode wanting -- the forward-looking motivational pull toward a future state -- not merely register benefit_exposure at contact (which would be liking, i.e., the benefit_eval_head). Without z_goal, E3's residue field is a pure aversion landscape; gradient minimum under learning is quiescence. This paper is the empirical grounding for why a dedicated goal-attractor representation is architecturally necessary.",
+    "mapping_caveat": "The paper's experimental model is food-seeking in rodents under dopamine depletion. REE's z_goal is a latent representation in a neural network, not a biological dopamine circuit. The wanting/liking dissociation in rodents establishes the conceptual architecture, but the specific implementation mechanism (dopamine vs. latent vector) requires a separate translation step. Also, the paper does not directly address temporal persistence of the wanting signal across multi-step trajectories, which is MECH-112's key requirement.",
+    "source_context": "Animal behavioral study with neurochemical lesions (6-OHDA dopamine depletion) and taste reactivity measurement; rats; multiple experiments over years preceding 1996."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Neuroscience and Biobehavioral Reviews, landmark paper by the originator of the wanting/liking framework. Source quality very high. Mapping fidelity strong -- the dissociation principle maps cleanly to the z_goal/benefit_eval_head distinction. Transfer risk low because the claim is architectural (separate representations required) not mechanistic (specific substrate required)."
+  }
+}

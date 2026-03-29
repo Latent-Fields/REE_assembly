@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_003",
+  "entry_id": "2026-03-29_q003_ip3r_subtypes_dimensionality_sherwood2021",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-003"],
+  "source": {
+    "title": "Astrocytic IP3Rs: Beyond IP3R2",
+    "authors": ["Mark W Sherwood", "Misa Arizono", "Aude Panatier", "Katsuhiko Mikoshiba", "Stephane H R Oliet"],
+    "year": 2021,
+    "venue": "Frontiers in Cellular Neuroscience",
+    "doi": "10.3389/fncel.2021.695817"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Expert review demonstrating that three IP3R isoforms (IP3R1, IP3R2, IP3R3) are expressed in astrocytes, each with distinct biophysical properties, distributions, and functional roles that generate qualitatively different spatiotemporal Ca dynamics. This provides the mechanistic basis for claiming that astrocyte Ca signaling is inherently multi-dimensional rather than scalar, directly informing the R(x,t) dimensionality question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_003", "astrocyte", "IP3R_subtypes", "dimensionality", "calcium_signaling", "gliotransmission", "spatiotemporal_diversity"],
+  "mapping": {
+    "source_claim_statement": "Astrocytes express three IP3R isoforms (IP3R1, IP3R2, IP3R3) with distinct biophysical properties, subcellular distributions, and regulation. Each subtype mediates different physiological roles -- IP3R2 is the dominant GPCR-Ca responder, but IP3R1 and IP3R3 have unique properties that enrich spatiotemporal Ca diversity and provide distinct opportunities for integrating neuronal input and modulating astrocyte-neuron communication.",
+    "ree_translation": "If the astrocyte-analog Ca signal is inherently multi-channel (three IP3R subtypes with different kinetics and distributions), then R(x,t) is more naturally modeled as a vector (or multi-channel) field rather than a scalar. Each channel of R could correspond to a different Ca signaling mode: a fast, IP3R2-dominated channel for rapid synaptic modulation; slower IP3R1/3 channels for longer-timescale regulatory states. This supports the vector interpretation of R(x,t) for Q-003.",
+    "mapping_caveat": "This review synthesizes evidence primarily from rodent studies; the functional roles of IP3R1 and IP3R3 in human astrocytes are not established. The case for functional independence of the three channels is strong biophysically but the behavioral/circuit evidence for distinct functional roles of IP3R1/3 is limited -- the review acknowledges significant discrepancies in the literature. The mapping to REE requires assuming that these three channels provide genuinely non-redundant information channels, which is plausible but not proven.",
+    "source_context": "Systematic review of IP3R isoform literature; primarily rodent astrocyte studies with some human cell line data; covers biophysics, distribution, GPCR coupling, and cognitive function associations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Review paper in Frontiers in Cellular Neuroscience by leading groups in astrocyte Ca signaling (Mikoshiba, Oliet labs). Source quality is good for a review. Mapping fidelity is solid -- the multiple-isoform argument maps cleanly to the vector-vs-scalar dimensionality question. Transfer risk is moderate: isoform functional roles are not fully resolved and the three-channel mapping to REE is schematic."
+  }
+}

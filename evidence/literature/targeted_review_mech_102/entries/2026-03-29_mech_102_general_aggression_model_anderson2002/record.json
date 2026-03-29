@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_102",
+  "entry_id": "2026-03-29_mech_102_general_aggression_model_anderson2002",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["MECH-102"],
+  "source": {
+    "title": "Human aggression",
+    "authors": ["Craig A. Anderson", "Brad J. Bushman"],
+    "year": 2002,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev.psych.53.100901.135231",
+    "pmid": "11752478",
+    "volume": "53",
+    "pages": "27-51"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "The General Aggression Model (GAM) provides a comprehensive unifying framework for human aggression that is relevant but ambivalent toward MECH-102. The GAM posits that aggression emerges from interaction of situational inputs and person variables, processed through cognition, affect, and arousal. This is consistent with MECH-102 in that it acknowledges aggression is not the default response -- it requires triggering conditions. However, the GAM does not specifically frame violence as 'terminal' or require exhaustion of low-energy pathways before aggression is selected. The GAM's episodic appraisal and reappraisal component is the strongest connection: it implies that aggressive action is selected after evaluation of available responses, which allows for a reading consistent with MECH-102's escalation ladder. Confidence is moderate because the mapping requires selective reading of the GAM.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The GAM does not require prior exhaustion of non-violent coordination alternatives before aggression is triggered -- it can be activated by hostile attribution bias, provocation cues, or script activation without pathway closure."
+  ],
+  "tags": ["mech_102", "general_aggression_model", "situational_inputs", "appraisal", "escalation", "knowledge_structures"],
+  "mapping": {
+    "source_claim_statement": "Aggression emerges from situational and personological inputs processed through internal states (cognition, affect, arousal), with appraisal and reappraisal determining whether aggressive vs. non-aggressive action is selected. Chronic exposure builds aggressive knowledge structures that lower the threshold for aggressive responses.",
+    "ree_translation": "The GAM's 'present internal state' and 'appraisal/reappraisal' stage maps loosely onto REE's error-signal integration and trajectory evaluation. The GAM's recognition that non-aggressive responses are evaluated alongside aggressive ones during appraisal is directionally consistent with MECH-102's claim that low-energy pathways are considered before violence is selected. The 'thoughtful action' vs. 'impulsive action' distinction in the GAM maps onto the pre-commit vs. post-commit channel distinction in REE: thoughtful appraisal corresponds to full trajectory evaluation including low-energy options; impulsive aggression corresponds to commitment-architecture failure where consequences cannot be modelled beyond the immediate step.",
+    "mapping_caveat": "The GAM is a descriptive psychological model, not a normative architectural claim. Anderson and Bushman are describing when aggression actually occurs in humans, not when it should occur in a well-designed system. The GAM explicitly notes that hostile attribution bias, dehumanisation, and script activation can trigger aggression even when coordination alternatives remain available -- this is precisely the failure mode MECH-102 is designed to prevent, not the mechanism MECH-102 describes. The GAM also has no concept of 'energy cost' of different intervention types.",
+    "source_context": "Broad review of human aggression research across social, developmental, and clinical psychology; spans laboratory experiments, longitudinal studies, and cross-cultural data."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Excellent source quality -- canonical unifying framework, heavily cited. Mapping fidelity is moderate-low: the GAM is broad enough that selective elements support MECH-102, but the full framework is descriptive of actual human aggression patterns which often violate MECH-102's terminal/last-resort structure. Transfer risk is high because the GAM's most empirically robust findings -- script activation, hostile attribution -- describe conditions where violence occurs without pathway exhaustion."
+  }
+}

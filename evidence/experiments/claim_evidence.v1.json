@@ -487,18 +487,22 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.705, lit_conf=0.793",
+      "confidence_rationale": "exp=3 entry(s), lit=11 entry(s), exp_conf=0.705, lit_conf=0.84",
       "direction_counts": {
         "mixed": 0,
-        "supports": 7,
+        "supports": 12,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 9,
+      "entries_total": 14,
       "evidence_class_counts": {
         "exp:simulation": 3,
+        "lit:behavioral_human": 1,
+        "lit:computational_model": 1,
         "lit:computational_neuroscience_model": 3,
-        "lit:neuroscience_experiment": 3
+        "lit:electrophysiology_single_unit": 2,
+        "lit:neuroscience_experiment": 3,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.705,
       "fail_runs": 1,
@@ -509,87 +513,87 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_053_arc018_rollout_viability_20260320T073809Z_v3",
-      "latest_timestamp_utc": "2026-03-20T07:38:09Z",
-      "literature_confidence": 0.793,
-      "overall_confidence": 0.749,
+      "latest_run_id": "2026-03-29_arc_018_prioritized_replay_mattar2018",
+      "latest_timestamp_utc": "2026-03-29T13:30:00Z",
+      "literature_confidence": 0.84,
+      "overall_confidence": 0.772,
       "pass_runs": 2,
       "recent_entries": [
         {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.79,
-          "confidence_rationale": "Direct in vivo evidence that hippocampal sequential activity at decision points sweeps toward goal locations; strong support for rollout/path-evaluation roles but indirect for REE-specific residue geometry. Follow-up extraction scoped to ARC-018 path-rollout grounding using goal-directed replay evidence.",
-          "evidence_class": "lit:neuroscience_experiment",
+          "confidence": 0.78,
+          "confidence_rationale": "Olafsdottir et al. demonstrate that awake hippocampal replay dynamically switches between task-focused (planning-mode) and consolidation-mode reactivation depending on task demands. Replay immediately before or after movement toward a reward preferentially encoded the current trajectory; during extended immobility, bias disappeared. Task-focused reactivations predicted subsequent decision accuracy. This is direct evidence that hippocampal replay is a context-sensitive, decision-relevant process -- supporting ARC-018's claim that the viability map is actively maintained and queried at decision time rather than being a static structure. The switch between modes (planning vs consolidation) also supports the hypothesis that the E3 harm/goal error signal gates replay content.",
+          "evidence_class": "lit:electrophysiology_single_unit",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "experiment_type": "targeted_review_connectome_arc_018",
           "failure_signatures": [],
-          "run_id": "2026-02-15_arc018_future_path_replay_followup",
+          "run_id": "2026-03-29_arc_018_awake_replay_switch_olafsdottir2017",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T15:10:00Z"
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         },
         {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.73,
-          "confidence_rationale": "The prioritized replay account reproduces multiple replay signatures and links replay selection to gain/need-like utility, consistent with precision-weighted rollout selection; evidence remains model-based and indirect for dual commit channels. Follow-up extraction scoped to MECH-056 replay-prioritization and planning coupling. Proposal completion extraction for LIT-0005 scoped to ARC-018.",
-          "evidence_class": "lit:computational_neuroscience_model",
+          "confidence": 0.85,
+          "confidence_rationale": "Gold-standard electrophysiology in behaving rats demonstrating that hippocampal place-cell sequences generated before goal-directed navigation depict future goal-directed trajectories. The sequences are goal-biased (current location to known goal) and predict immediate future behaviour even for novel start-goal combinations. This is direct evidence for the hippocampus generating prospective rollouts indexed by a destination (goal) coordinate. The main caveat for ARC-018 is that the indexing dimension here is spatial location rather than the E2 action-object coordinate posited in the V3 framing; the biology supports the rollout mechanism but is agnostic about what the coordinate system encodes at a computational level.",
+          "evidence_class": "lit:electrophysiology_single_unit",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "experiment_type": "targeted_review_connectome_arc_018",
           "failure_signatures": [],
-          "run_id": "2026-02-15_arc018_lit-0005_completion",
+          "run_id": "2026-03-29_arc_018_forward_sweeps_pfeiffer2013",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T16:00:00Z"
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "claim_probe_arc_018",
-          "failure_signatures": [
-            "v2_verdict_fail:rollout_viability_mapping"
-          ],
-          "run_id": "20260315T125844_rollout_viability_mapping_v2",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-15T12:58:44.288398+00:00"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-018",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
+          "confidence": 0.68,
+          "confidence_rationale": "Dolan & Dayan's comprehensive review of goal-directed vs habitual decision-making provides the theoretical scaffolding that situates ARC-018's hippocampal viability map. They articulate the model-based/model-free distinction, clarify that goal-directed behaviour requires a cognitive map whose value is updated prospectively (not merely retrospectively), and review the evidence that hippocampus is an essential substrate for model-based planning. This is theoretical grounding rather than direct experimental evidence, hence the lower confidence -- but the conceptual alignment is high. The review's framing of 'model-based' as requiring explicit forward simulation is exactly what ARC-018 claims for the viability map. Confidence is limited by the fact that ARC-018 makes specific mechanistic claims (E2 indexing, E3 error update) that go well beyond what this review can address.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "claim_probe_arc_018",
+          "experiment_type": "targeted_review_connectome_arc_018",
           "failure_signatures": [],
-          "run_id": "20260320T073809Z_v3_exq_053_arc018_rollout_viability_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-20T07:38:09Z"
+          "run_id": "2026-03-29_arc_018_goals_habits_dolan2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
+          "confidence": 0.72,
+          "confidence_rationale": "Momennejad et al. provide direct human fMRI evidence that off-task hippocampal replay (indexed by multi-voxel pattern reactivation) predicts subsequent replanning behaviour, and that uncertainty (unsigned prediction error) triggers such replay. This maps closely onto ARC-018's claim that the hippocampal viability map is updated by E3 harm/goal error: here, prediction error (a proxy for uncertainty/harm-goal discrepancy) triggers the hippocampal reactivation that enables replanning. The human context is also valuable -- it extends the rodent findings across species. The main limitation for ARC-018 is that the task is abstract (two-step sequential decision) rather than spatial navigation, which is actually a strength: it suggests the mechanism generalises beyond spatial maps to action-object level representations.",
+          "evidence_class": "lit:behavioral_human",
           "evidence_direction": "supports",
-          "experiment_type": "v3_exq_053_arc018_rollout_viability",
+          "experiment_type": "targeted_review_connectome_arc_018",
           "failure_signatures": [],
-          "run_id": "v3_exq_053_arc018_rollout_viability_20260320T073809Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-20T07:38:09Z"
+          "run_id": "2026-03-29_arc_018_offline_replay_planning_momennejad2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-018",
+          "confidence": 0.8,
+          "confidence_rationale": "Mattar & Daw provide the clearest computational framework for why hippocampal replay is ordered by utility -- specifically, by how much additional reward would be earned from better choices at each state. This 'prioritized memory access' framework maps closely onto ARC-018's viability map: the hippocampal representation is updated in proportion to its relevance to current decision-making under harm/goal error signals. The paper also proposes that dysfunction of this prioritisation mechanism underlies rumination and craving -- a striking parallel to the harm-valence component of ARC-018's viability map. Confidence slightly below peak because this is a theoretical/computational model, not electrophysiology, and the utility metric used (reward gain) is not identical to E3 harm/goal error.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_018",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_arc_018_prioritized_replay_mattar2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         }
       ],
-      "runs_total": 9,
+      "runs_total": 14,
       "source_counts": {
         "experimental": 3,
-        "literature": 6
+        "literature": 11
       }
     },
     "ARC-021": {
@@ -1510,18 +1514,20 @@
       }
     },
     "INV-034": {
-      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.571, lit_conf=0",
+      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.57, lit_conf=0.775",
       "direction_counts": {
         "mixed": 1,
-        "supports": 0,
+        "supports": 2,
         "unknown": 2,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "exp:simulation": 3
+        "exp:simulation": 3,
+        "lit:meta_analysis": 1,
+        "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.571,
+      "experimental_confidence": 0.57,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1530,10 +1536,10 @@
         "unknown": 2,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_085e_mech071_drive_modulated_goal_20260326T180934Z_v3",
-      "latest_timestamp_utc": "2026-03-26T18:09:34Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.571,
+      "latest_run_id": "2026-03-29_inv_034_goal_representations_schizophrenia_barch2010",
+      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
+      "literature_confidence": 0.775,
+      "overall_confidence": 0.652,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1577,12 +1583,46 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-26T18:09:34Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-034",
+          "confidence": 0.72,
+          "confidence_rationale": "Strauss et al. 2021 synthesise evidence that avolition -- the impairment in motivated, goal-directed behavior -- is the core negative symptom driving functional disability in schizophrenia. Their key argument is that avolition is distinct from and more consequential than diminished expression, and that it reflects VTA/NAc/PFC circuit failure rather than a single neurotransmitter problem. This supports INV-034 by showing that the loss of goal-directed agency (avolition) is architecturally separable from other symptoms and from harm-avoidance systems. Patients with primary avolition are not reckless -- their harm-avoidance circuitry is functional -- but they lack the approach drive to initiate and sustain goal-directed behavior. This is the clinical demonstration of INV-034's claim: harm-avoidance minus goal maintenance equals passivity, not agency. Confidence 0.72 because this paper focuses on treatment implications and the mechanistic dissection of avolition is secondary to clinical description.",
+          "evidence_class": "lit:meta_analysis",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_034",
+          "failure_signatures": [
+            "If avolition correlated equally with impaired harm-avoidance (patients with avolition also show increased dangerous behavior), the clean dissociation supporting INV-034 would not hold.",
+            "If the core functional disability in schizophrenia were driven by diminished expression (flat affect, poverty of speech) rather than avolition specifically, the argument that goal maintenance failure is the critical agency prerequisite would be weakened."
+          ],
+          "run_id": "2026-03-29_inv_034_avolition_core_negative_symptom_foussias2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-034",
+          "confidence": 0.78,
+          "confidence_rationale": "INV-034 claims that goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance -- a system that can only avoid harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency. Barch and Dowd provide the clinical demonstration of this principle: schizophrenia patients with negative symptoms have largely intact harm-avoidance (they do not engage in dangerous behaviors indiscriminately) and intact hedonic evaluation (liking), yet they show profoundly reduced goal-directed agency -- they do not initiate, pursue, or sustain behavior toward valued goals. This is precisely the clinical profile predicted by INV-034's claim: when goal maintenance fails, agency collapses to passivity even in the presence of intact harm-avoidance systems. Confidence 0.78 because the paper does not frame the clinical finding in terms of agency theory, and the inference from schizophrenia avolition to computational architectural necessity requires a philosophical step.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_inv_034",
+          "failure_signatures": [
+            "If patients with pure negative symptoms (avolition, absent wanting) nevertheless showed normal goal-directed behavior, INV-034's claim that goal maintenance is necessary for agency would require revision.",
+            "If harm-avoidance systems were also impaired in avolition, the dissociation between intact harm-avoidance and absent goal-directed agency would not hold, weakening the evidence that goal maintenance is distinctively necessary."
+          ],
+          "run_id": "2026-03-29_inv_034_goal_representations_schizophrenia_barch2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 3,
-        "literature": 0
+        "literature": 2
       }
     },
     "MECH-025": {
@@ -1698,7 +1738,7 @@
       }
     },
     "MECH-026": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.461, lit_conf=0.886",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.46, lit_conf=0.886",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -1713,7 +1753,7 @@
         "lit:frontosubthalamic_inhibitory_control": 1,
         "lit:human_hyperdirect_movement_inhibition": 1
       },
-      "experimental_confidence": 0.461,
+      "experimental_confidence": 0.46,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1725,7 +1765,7 @@
       "latest_run_id": "v3_exq_067_mech026_ready_vigilance_20260322T234028Z_v3",
       "latest_timestamp_utc": "2026-03-22T23:40:28Z",
       "literature_confidence": 0.886,
-      "overall_confidence": 0.78,
+      "overall_confidence": 0.779,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2838,7 +2878,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.743, lit_conf=0.837",
+      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.742, lit_conf=0.837",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -2850,7 +2890,7 @@
         "exp:simulation": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.743,
+      "experimental_confidence": 0.742,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2862,7 +2902,7 @@
       "latest_run_id": "20260314T202143_control_plane_precision_separation_v2",
       "latest_timestamp_utc": "2026-03-14T20:21:43.211016+00:00",
       "literature_confidence": 0.837,
-      "overall_confidence": 0.814,
+      "overall_confidence": 0.813,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -3446,17 +3486,18 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=45 entry(s), lit=1 entry(s), exp_conf=0.773, lit_conf=0.75",
+      "confidence_rationale": "exp=45 entry(s), lit=4 entry(s), exp_conf=0.773, lit_conf=0.889",
       "direction_counts": {
         "mixed": 19,
-        "supports": 15,
+        "supports": 18,
         "unknown": 2,
         "weakens": 10
       },
-      "entries_total": 46,
+      "entries_total": 49,
       "evidence_class_counts": {
         "exp:simulation": 45,
-        "lit:fmri_connectivity": 1
+        "lit:behavioral_human": 1,
+        "lit:fmri_connectivity": 3
       },
       "experimental_confidence": 0.773,
       "fail_runs": 34,
@@ -3467,54 +3508,12 @@
         "unknown": 2,
         "weakens": 10
       },
-      "latest_run_id": "2026-03-29_mech_071_efference_selfproduced_blakemore1998",
+      "latest_run_id": "2026-03-29_mech_071_threat_imminence_gradient_mobbs2007",
       "latest_timestamp_utc": "2026-03-29T12:15:00Z",
-      "literature_confidence": 0.75,
-      "overall_confidence": 0.767,
+      "literature_confidence": 0.889,
+      "overall_confidence": 0.831,
       "pass_runs": 11,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-071",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_085e_mech071_drive_modulated_goal",
-          "failure_signatures": [],
-          "run_id": "v3_exq_085e_mech071_drive_modulated_goal_20260326T180934Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-26T18:09:34Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-071",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_085f_mech071_goal_wired_navigation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T17:20:24Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-071",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_112_mech071_harm_eval_discriminative",
-          "failure_signatures": [],
-          "run_id": "v3_exq_112_mech071_harm_eval_discriminative_20260328T161808Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-28T16:18:08Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-071",
@@ -3532,6 +3531,23 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-071",
+          "confidence": 0.72,
+          "confidence_rationale": "Provides neural evidence for a distinct causal-inference gating mechanism that modulates how outcomes are attributed to agent actions versus external causes. RPEs modulated by causal beliefs are represented in dorsal striatum (action-learning pathway) while unmodulated RPEs are in ventral striatum. Causal beliefs are represented in anterior insula, with effective connectivity from insula to dorsal striatum. This is the neural implementation of the attribution asymmetry that MECH-071 predicts: the brain has a dedicated circuit for deciding whether an outcome was caused by the agent and gating learning accordingly. Confidence 0.72 because the paper is about reward, not harm, and uses standard RL credit assignment rather than harm-specific prediction evaluation.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_071",
+          "failure_signatures": [
+            "If E2/E3 harm prediction errors are not differentially routed based on causal attribution (agent-caused vs environment-caused), the dorsal/ventral striatum dissociation predicted by this paper would not appear in REE's architecture.",
+            "If the insula-to-striatum gating of causal beliefs is absent in harm-specific circuits, MECH-071's calibration asymmetry would need a different implementation route."
+          ],
+          "run_id": "2026-03-29_mech_071_causal_inference_corticostriatal_dorfman2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T12:15:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
           "confidence": 0.8,
           "confidence_rationale": "Directly demonstrates the central mechanism that makes MECH-071 neurobiologically plausible: cerebellar forward models predict the sensory consequences of self-generated movement and attenuate the somatosensory cortical response. External stimulation produces greater somatosensory cortex activation than identical self-produced stimulation, establishing that the brain differentially encodes self-generated versus externally-generated sensory events. The mapping to E2 as efference-copy forward model and the self/environment asymmetry in harm prediction is direct. Confidence capped at 0.80 because the domain is tactile sensation (not harm evaluation) and the stimuli are benign.",
           "evidence_class": "lit:fmri_connectivity",
@@ -3544,12 +3560,46 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T12:15:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.82,
+          "confidence_rationale": "The paper provides the most direct behavioral evidence for MECH-071's self/environment calibration asymmetry. When subjects match a force they have experienced, they systematically overestimate the force needed when reproducing it via their own action -- because the self-generated force feels weaker (attenuated by efference copy prediction). This means self-generated forces are UNDER-perceived relative to externally-applied identical forces. Applied to harm: agent-caused harm events produce weaker afferent harm signals than environmentally-caused harm events of identical physical magnitude. E2 operating as a forward model for self-generated actions would therefore receive systematically attenuated harm feedback compared to environment-caused events -- this is precisely the calibration asymmetry MECH-071 predicts. The confidence is 0.82 -- strong behavioral signal, clear mechanism, but domain remains force/tactile rather than harm evaluation proper.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_071",
+          "failure_signatures": [
+            "If E2 harm prediction shows no agent/environment differential in calibration quality under identical physical harm magnitudes, the sensory attenuation mechanism this paper establishes would be disconfirmed as a route to MECH-071.",
+            "If the calibration asymmetry flips -- E2 better calibrated for environment-caused harm -- this would require a different theoretical account."
+          ],
+          "run_id": "2026-03-29_mech_071_force_calibration_shergill2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T12:15:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-071",
+          "confidence": 0.77,
+          "confidence_rationale": "Directly demonstrates the graded threat-proximity neural encoding that MECH-071's second claim (E3 learns a graded danger model, approach gradient not just contact) requires. As a virtual predator approached subjects in an avoidance maze, brain activity systematically shifted from vmPFC (distal threat, planning-dominated) to PAG (proximal threat, defensive escape). The gradient is continuous and prospective -- the brain encodes danger before contact, as a function of proximity. This is the neural instantiation of the approach-gradient harm model. Confidence 0.77: the effect is robust and in human brain during active avoidance, which maps well to E3's harm evaluation during trajectory planning. The virtual predator paradigm is somewhat artificial and the gradient is measured in BOLD not in latent harm representations.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_071",
+          "failure_signatures": [
+            "If E3 only represents harm at contact (binary) without any prospective graded encoding during approach, the vmPFC-to-PAG gradient seen in this paper would have no REE analogue -- MECH-071's graded danger model would be disconfirmed.",
+            "If the approach-gradient structure in z_harm_s is flat until contact, this paper's continuous proximity-coding would predict that result cannot replicate in REE's architecture."
+          ],
+          "run_id": "2026-03-29_mech_071_threat_imminence_gradient_mobbs2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T12:15:00Z"
         }
       ],
-      "runs_total": 46,
+      "runs_total": 49,
       "source_counts": {
         "experimental": 45,
-        "literature": 1
+        "literature": 4
       }
     },
     "MECH-072": {
@@ -4381,7 +4431,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.513, lit_conf=0.873",
+      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.512, lit_conf=0.873",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -4394,7 +4444,7 @@
         "lit:connectome_analysis": 2,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.513,
+      "experimental_confidence": 0.512,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -4406,7 +4456,7 @@
       "latest_run_id": "v3_exq_098b_mech099_agency_attribution_20260327T155605Z_v3",
       "latest_timestamp_utc": "2026-03-27T15:56:05Z",
       "literature_confidence": 0.873,
-      "overall_confidence": 0.693,
+      "overall_confidence": 0.692,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4577,7 +4627,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.859, lit_conf=0",
+      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.858, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -4588,7 +4638,7 @@
       "evidence_class_counts": {
         "exp:simulation": 3
       },
-      "experimental_confidence": 0.859,
+      "experimental_confidence": 0.858,
       "fail_runs": 0,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -4600,7 +4650,7 @@
       "latest_run_id": "v3_exq_057_sd010_reafference_isolation_20260322T014230Z_v3",
       "latest_timestamp_utc": "2026-03-22T01:42:30Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.859,
+      "overall_confidence": 0.858,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -4653,16 +4703,18 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=23 entry(s), lit=0 entry(s), exp_conf=0.605, lit_conf=0",
+      "confidence_rationale": "exp=23 entry(s), lit=4 entry(s), exp_conf=0.605, lit_conf=0.821",
       "direction_counts": {
-        "mixed": 10,
-        "supports": 3,
+        "mixed": 12,
+        "supports": 5,
         "unknown": 0,
         "weakens": 10
       },
-      "entries_total": 23,
+      "entries_total": 27,
       "evidence_class_counts": {
-        "exp:simulation": 23
+        "exp:simulation": 23,
+        "lit:computational_model": 1,
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.605,
       "fail_runs": 20,
@@ -4673,68 +4725,12 @@
         "unknown": 0,
         "weakens": 10
       },
-      "latest_run_id": "v3_exq_080_mech102_depletion_ordering_20260323T131625Z_v3",
-      "latest_timestamp_utc": "2026-03-23T13:16:25Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.605,
+      "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
+      "latest_timestamp_utc": "2026-03-29T13:30:00Z",
+      "literature_confidence": 0.821,
+      "overall_confidence": 0.713,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "v3_exq_059c_sd010_mech102_advantage_fixed",
-          "failure_signatures": [],
-          "run_id": "v3_exq_059c_sd010_mech102_advantage_fixed_20260321T084609Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-21T08:46:09Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_079_mech102_depletion_ordering",
-          "failure_signatures": [],
-          "run_id": "v3_exq_079_mech102_depletion_ordering_20260323T123107Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T12:31:07Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_080_mech102_terminal_correction_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_080_mech102_terminal_correction_pair_20260323T124922Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T12:49:22Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-102",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_083_mech102_terminal_correction_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_083_mech102_terminal_correction_pair_20260323T131415Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T13:14:15Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-102",
@@ -4748,12 +4744,72 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-23T13:16:25Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.67,
+          "confidence_rationale": "Axelrod's iterated prisoner's dilemma framework is one of the most rigorous formal models of when cooperation breaks down and defection (analogous to conflict/violence) becomes the equilibrium strategy. The core finding -- that cooperation persists when the shadow of the future is long enough, and collapses when repeat interaction is no longer expected -- maps directly onto MECH-102's claim that violence emerges when coordination pathways are unavailable. Axelrod's 'provocability' condition (immediate retaliation to defection) and 'forgiveness' condition (return to cooperation after defection is punished) together imply a threshold structure where escalation to high-energy conflict is reserved for cases where the cooperative equilibrium cannot be restored. Confidence is moderate-high because the formal structure is compelling, but the translation from iterated PD to REE's error-correction framework requires non-trivial interpretation.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_102",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_mech_102_evolution_cooperation_axelrod1984",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.7,
+          "confidence_rationale": "Berkowitz's reformulation directly frames aggression/violence as triggered by goal-path blockage (pathway exhaustion), with negative affect as the mediating mechanism. This maps plausibly onto MECH-102's claim that violence is triggered when coordination pathways become unavailable. The fit is strongest for the individual level. Transfer risk is moderate because Berkowitz is modelling emotional aggression in individuals, not architectural error-correction in systems, and his model does not distinguish low-energy vs. high-energy intervention paths in the REE sense.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_102",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_mech_102_frustration_aggression_berkowitz1989",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.62,
+          "confidence_rationale": "The General Aggression Model (GAM) provides a comprehensive unifying framework for human aggression that is relevant but ambivalent toward MECH-102. The GAM posits that aggression emerges from interaction of situational inputs and person variables, processed through cognition, affect, and arousal. This is consistent with MECH-102 in that it acknowledges aggression is not the default response -- it requires triggering conditions. However, the GAM does not specifically frame violence as 'terminal' or require exhaustion of low-energy pathways before aggression is selected. The GAM's episodic appraisal and reappraisal component is the strongest connection: it implies that aggressive action is selected after evaluation of available responses, which allows for a reading consistent with MECH-102's escalation ladder. Confidence is moderate because the mapping requires selective reading of the GAM.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_102",
+          "failure_signatures": [
+            "The GAM does not require prior exhaustion of non-violent coordination alternatives before aggression is triggered -- it can be activated by hostile attribution bias, provocation cues, or script activation without pathway closure."
+          ],
+          "run_id": "2026-03-29_mech_102_general_aggression_model_anderson2002",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-102",
+          "confidence": 0.58,
+          "confidence_rationale": "Aloyo's paper is directly about the 'last resort' criterion in just war theory, making it superficially highly relevant to MECH-102. However, Aloyo's central conclusion is that the last resort criterion is either redundant with proportionality or produces perverse recommendations -- and should therefore be dropped. This is a complication rather than a simple support or weakening of MECH-102. The complication is philosophically important: if 'last resort' is not a coherent standalone criterion at the institutional/civilizational level, then MECH-102's claim that violence is 'triggered only when low-energy coordination pathways have been exhausted' faces the same philosophical challenge Aloyo raises. On the other hand, Aloyo's preferred replacement (minimize severe harms to innocents) is structurally consistent with INV-029 (love as long-horizon coherence bias) -- the real work is done by coherence-preservation, not by an ordinal sequencing of violence as 'last' in a temporal sense.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_102",
+          "failure_signatures": [
+            "Aloyo argues that all accounts of last resort either generate wrong policy recommendations or reduce to proportionality, suggesting the 'sequential exhaustion' framing of MECH-102 may face analogous philosophical problems at the institutional level."
+          ],
+          "run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         }
       ],
-      "runs_total": 23,
+      "runs_total": 27,
       "source_counts": {
         "experimental": 23,
-        "literature": 0
+        "literature": 4
       }
     },
     "MECH-103": {
@@ -4989,16 +5045,18 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=5 entry(s), lit=0 entry(s), exp_conf=0.678, lit_conf=0",
+      "confidence_rationale": "exp=5 entry(s), lit=3 entry(s), exp_conf=0.678, lit_conf=0.845",
       "direction_counts": {
         "mixed": 5,
-        "supports": 0,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 8,
       "evidence_class_counts": {
-        "exp:simulation": 5
+        "exp:simulation": 5,
+        "lit:connectome_mechanistic_review": 2,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.678,
       "fail_runs": 5,
@@ -5009,54 +5067,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_074e_mech112_117_wanting_liking_20260328T181216Z_v3",
-      "latest_timestamp_utc": "2026-03-28T18:12:16Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.678,
+      "latest_run_id": "2026-03-29_mech_112_wanting_liking_addiction_berridge2016",
+      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
+      "literature_confidence": 0.845,
+      "overall_confidence": 0.762,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_074c_mech112_117_wanting_liking",
-          "failure_signatures": [],
-          "run_id": "v3_exq_074c_mech112_117_wanting_liking_20260327T062636Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T06:26:36Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_074d_mech112_117_wanting_liking",
-          "failure_signatures": [],
-          "run_id": "v3_exq_074d_mech112_117_wanting_liking_20260327T065349Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T06:53:49Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_074e_mech112_117_wanting_liking",
-          "failure_signatures": [],
-          "run_id": "v3_exq_074e_mech112_117_wanting_liking_20260327T070014Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T07:00:14Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-112",
@@ -5084,12 +5100,63 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-28T18:12:16Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.75,
+          "confidence_rationale": "Barch and Dowd provide strong clinical and neuroscientific evidence that goal representation failure -- specifically the failure to maintain and use internal goal states to drive behavior -- is the proximal cause of avolition in schizophrenia. Their key finding is that liking (consummatory pleasure) is intact in schizophrenia while wanting (anticipatory, prospective motivation) is selectively impaired. This is a direct clinical demonstration that a system can fail specifically at the wanting/z_goal level while leaving the hedonic/liking system intact. For MECH-112, this constitutes a lesion model of the claim: when goal representation fails, goal-directed behavior collapses even though the capacity to enjoy outcomes at receipt is preserved. Confidence 0.75 rather than 0.80 because this is a theoretical review, not primary neuroimaging or experimental data, and the prefrontal-striatal mechanism is proposed rather than definitively demonstrated.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If MECH-112's z_goal representation is unnecessary and agents can generate approach behavior from benefit_eval_head (liking) signals alone, then the schizophrenia dissociation documented here would predict that schizophrenia patients (intact liking, absent wanting) should show normal goal-directed behavior -- which they do not.",
+            "If prefrontal goal maintenance is not required for behavior to remain goal-directed under delay, the prefrontal-striatal model would not predict the specific deficits in avolition versus anhedonia."
+          ],
+          "run_id": "2026-03-29_mech_112_goal_representations_schizophrenia_barch2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.82,
+          "confidence_rationale": "This is the foundational empirical paper establishing the wanting/liking distinction and localising wanting to mesolimbic dopamine and the nucleus accumbens, while localising liking to opioid hotspots in NAc shell and ventral pallidum. The paper directly supports MECH-112's claim that a prospective approach drive (wanting) requires a distinct neural substrate from hedonic evaluation (liking), and that without a functioning dopaminergic wanting system, goal-directed approach collapses even when hedonic capacity is intact. The animal work is rigorous. Confidence docked from 0.85 to 0.82 because the paper predates the full characterisation of NAc shell hotspot anatomy, and the REE mapping requires treating a computational latent (z_goal) as the substrate rather than dopamine neurons directly.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If z_goal seeding and trajectory scoring operated through a single unified valence signal with no architectural separation, the wanting/liking dissociation this paper documents would be architecturally irreproducible in REE.",
+            "If approach behavior can emerge in REE from harm-avoidance gradients alone (no positive z_goal attractor), the claim that wanting requires a distinct representation would be weakened."
+          ],
+          "run_id": "2026-03-29_mech_112_incentive_salience_berridge1996",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.8,
+          "confidence_rationale": "This 2016 review consolidates two decades of wanting/liking dissociation research and demonstrates the robustness of the dissociation across species, conditions, and pathological states (addiction). The key addition over the 1996 paper is the demonstration that wanting can become sensitised and escalate beyond liking -- states are possible where wanting is very high and liking is very low or absent. This confirms that the two signals are not merely different labels for the same gradient, but genuinely independent computational processes. For MECH-112, this strengthens the argument that z_goal (wanting) must be a separately maintained latent, because if it were merely a transformation of benefit_eval_head (liking), the dissociation could not be reproduced. Confidence 0.80 because this is a review integrating many sources rather than a single novel experiment.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If a single latent variable could produce both wanting-like (prospective, persistent approach) and liking-like (consummatory spike) behavior through different read-out modes, MECH-112's claim for a distinct z_goal representation would be architecturally unnecessary.",
+            "If sensitisation-like dynamics (wanting escalating beyond liking) are not architecturally possible in REE, the pathological cases (addiction, compulsive approach) documented in this paper would be reproduced incorrectly."
+          ],
+          "run_id": "2026-03-29_mech_112_wanting_liking_addiction_berridge2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 5,
-        "literature": 0
+        "literature": 3
       }
     },
     "MECH-113": {
@@ -5231,16 +5298,18 @@
       }
     },
     "MECH-117": {
-      "confidence_rationale": "exp=5 entry(s), lit=0 entry(s), exp_conf=0.678, lit_conf=0",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.678, lit_conf=0.782",
       "direction_counts": {
         "mixed": 5,
-        "supports": 0,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 7,
       "evidence_class_counts": {
-        "exp:simulation": 5
+        "exp:simulation": 5,
+        "lit:connectome_mechanistic_review": 1,
+        "lit:fmri_connectivity": 1
       },
       "experimental_confidence": 0.678,
       "fail_runs": 5,
@@ -5251,40 +5320,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_074e_mech112_117_wanting_liking_20260328T181216Z_v3",
-      "latest_timestamp_utc": "2026-03-28T18:12:16Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.678,
+      "latest_run_id": "2026-03-29_mech_117_wanting_liking_dopamine_berridge1998",
+      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
+      "literature_confidence": 0.782,
+      "overall_confidence": 0.72,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-117",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_074c_mech112_117_wanting_liking",
-          "failure_signatures": [],
-          "run_id": "v3_exq_074c_mech112_117_wanting_liking_20260327T062636Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T06:26:36Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-117",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_type": "v3_exq_074d_mech112_117_wanting_liking",
-          "failure_signatures": [],
-          "run_id": "v3_exq_074d_mech112_117_wanting_liking_20260327T065349Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-27T06:53:49Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-117",
@@ -5326,12 +5367,46 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-28T18:12:16Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-117",
+          "confidence": 0.68,
+          "confidence_rationale": "Culbreth et al. 2023 use computational modeling of a reinforcement learning task to show that schizophrenia patients have reduced uncertainty-driven (goal-directed) exploration, with rlPFC abnormalities as the neural substrate. This supports MECH-117's dissociation because reduced exploration in schizophrenia is specifically linked to impaired goal-directed (wanting-like, prospective) processing, not to reduced reward sensitivity per se (liking-like). The rlPFC finding maps to the wanting pathway (prospective, frontal-maintained) rather than the striatal liking pathway. Confidence 0.68 because the paper is specifically about exploration-exploitation, not wanting/liking dissociation directly, so the mapping requires an inferential step. The neuroimaging data does support the prefrontal goal-maintenance (wanting) vs. reward-at-receipt (liking/striatal) distinction, but not as its primary claim.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_117",
+          "failure_signatures": [
+            "If schizophrenia exploration deficits were explained entirely by reduced reward sensitivity (liking) rather than by goal-representation failures (wanting), the rlPFC-specific finding would not appear and the wanting/liking dissociation would be unsupported.",
+            "If the exploration deficit correlates equally with consummatory and anticipatory anhedonia measures, the wanting-specific attribution would need revision."
+          ],
+          "run_id": "2026-03-29_mech_117_rl_exploration_schizophrenia_culbreth2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-117",
+          "confidence": 0.85,
+          "confidence_rationale": "This is the most direct empirical grounding for MECH-117's claim that wanting and liking are functionally dissociable. Berridge and Robinson demonstrate through dopamine depletion experiments that rats with near-total dopamine depletion show normal hedonic (liking) reactions to sucrose taste but do not seek or consume food (absent wanting/approach). This is the experimental proof of concept that a system can score hedonic value at receipt (liking signal intact) while failing completely to generate prospective approach drive (wanting signal absent). MECH-117 maps this to the REE distinction between benefit_eval_head (liking -- proximity spike at receipt) and z_goal_latent (wanting -- smooth gradient from distance). The dissociation is directly testable in REE because these two signals have different spatial and temporal profiles in trajectory scoring. Confidence 0.85 because this is primary experimental data, the dissociation is clean and unambiguous, and the mapping to REE is structurally direct.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_117",
+          "failure_signatures": [
+            "If REE's benefit_eval_head and z_goal_latent signals covary identically in all conditions (no conditions where one is present and the other absent), the functional dissociation this paper documents would not be architecturally reproducible.",
+            "If dopamine depletion in this paper had reduced both wanting and liking equivalently, the claim for distinct computational pathways would not hold and MECH-117 would need revision."
+          ],
+          "run_id": "2026-03-29_mech_117_wanting_liking_dopamine_berridge1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 5,
-        "literature": 0
+        "literature": 2
       }
     },
     "MECH-118": {
@@ -5595,15 +5670,17 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.449",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.81",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 0,
+        "mixed": 1,
+        "supports": 2,
         "unknown": 1,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
       "experimental_confidence": 0.0,
@@ -5615,10 +5692,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_q001_lit-0034_completion",
-      "latest_timestamp_utc": "2026-02-15T16:08:00Z",
-      "literature_confidence": 0.449,
-      "overall_confidence": 0.449,
+      "latest_run_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.81,
+      "overall_confidence": 0.81,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5633,24 +5710,70 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T16:08:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-001",
+          "confidence": 0.62,
+          "confidence_rationale": "Causal manipulation (tACS) in humans provides rare evidence that gamma synchronization across sensory cortices is involved in multisensory integration, but the findings run contrary to simple binding predictions -- gamma tACS prevented sensory decoupling and delayed responses, suggesting binding may involve decoupling and re-coupling dynamics rather than sustained synchrony. Mixed direction: the paper challenges naive gamma-binding accounts while affirming that gamma dynamics are causally relevant to cross-modal entity integration.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_001",
+          "failure_signatures": [
+            "gamma_tACS_delayed_not_enhanced_congruence"
+          ],
+          "run_id": "2026-03-29_q001_crossmodal_gamma_tacs_misselhorn2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-001",
+          "confidence": 0.7,
+          "confidence_rationale": "Primate LFP and human EEG data showing two functionally distinct gamma bands (slow 25-45 Hz and fast 45-70 Hz) with different spatial coherence profiles in V1. The dual-gamma finding partially dissociates local feature processing from long-range integration relevant to entity binding. Genuine cross-species replication (monkey + human) strengthens transfer to REE, though the mechanism linking dual gammas to entity emergence remains a theoretical step.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_001",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q001_dual_gamma_primates_murty2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-001",
+          "confidence": 0.74,
+          "confidence_rationale": "High-quality mouse V1 study combining electrophysiology, optogenetics, and computational modeling. Directly shows a circuit mechanism by which gamma coherence across cortical regions tracks continuous vs. discontinuous image features -- a plausible substrate for entity-boundary binding. Transfer to human/primate entity emergence and to REE's latent-space binding requires additional mapping steps.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_001",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 4
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.449",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.831",
       "direction_counts": {
         "mixed": 0,
-        "supports": 0,
+        "supports": 3,
         "unknown": 1,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
+        "lit:computational_model": 2,
+        "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
       "experimental_confidence": 0.0,
@@ -5662,10 +5785,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_q002_lit-0036_completion",
-      "latest_timestamp_utc": "2026-02-15T16:09:00Z",
-      "literature_confidence": 0.449,
-      "overall_confidence": 0.449,
+      "latest_run_id": "2026-03-29_q002_spatial_threshold_ca_surge_lines2024",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.831,
+      "overall_confidence": 0.831,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5680,24 +5803,67 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T16:09:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-002",
+          "confidence": 0.73,
+          "confidence_rationale": "Computational reaction-diffusion modeling anchored in super-resolution microscopy data directly quantifies how astrocyte process nanomorphology sets Ca microdomain spatial scale at tripartite synapses. The model predicts that individual synaptic contacts are the relevant spatial unit, and that swelling (pathological state) attenuates spatial restriction. This directly constrains the appropriate spatial resolution for R(x,t) in REE.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_002",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q002_astro_nanomorphology_ca_denizot2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-002",
+          "confidence": 0.72,
+          "confidence_rationale": "High-resolution 3D electron microscopy reconstruction of hippocampal tripartite synapses combined with reaction-diffusion simulation directly resolves how ER ultrastructure governs Ca microdomain scale within perisynaptic astrocytic processes. ER presence in 75% of PAPs, with highly diverse shapes, creates a heterogeneous landscape of Ca amplification and attenuation that further refines the spatial resolution picture for R(x,t).",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_002",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q002_er_ultrastructure_microdomain_denizot2025",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-002",
+          "confidence": 0.78,
+          "confidence_rationale": "In vivo two-photon imaging in mice identifies a precise spatial threshold (>23% of astrocyte arborization activated) that determines whether Ca activity remains localized to domains or spreads cell-wide to trigger gliotransmitter release. This is the most directly quantitative answer in the literature to how spatial extent of activation governs R-field output. High confidence because the finding is empirical (not purely modeling), has mechanistic grounding (IP3R2), and the spatial threshold concept maps directly to R(x,t) resolution design.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_002",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q002_spatial_threshold_ca_surge_lines2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 4
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.449",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.675",
       "direction_counts": {
         "mixed": 0,
-        "supports": 0,
+        "supports": 1,
         "unknown": 1,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
+        "lit:theoretical_review": 1,
         "lit:theory_mapping_gap": 1
       },
       "experimental_confidence": 0.0,
@@ -5709,10 +5875,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_q003_lit-0038_completion",
-      "latest_timestamp_utc": "2026-02-15T16:10:00Z",
-      "literature_confidence": 0.449,
-      "overall_confidence": 0.449,
+      "latest_run_id": "2026-03-29_q003_ip3r_subtypes_dimensionality_sherwood2021",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.675,
+      "overall_confidence": 0.675,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5727,12 +5893,26 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T16:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-003",
+          "confidence": 0.68,
+          "confidence_rationale": "Expert review demonstrating that three IP3R isoforms (IP3R1, IP3R2, IP3R3) are expressed in astrocytes, each with distinct biophysical properties, distributions, and functional roles that generate qualitatively different spatiotemporal Ca dynamics. This provides the mechanistic basis for claiming that astrocyte Ca signaling is inherently multi-dimensional rather than scalar, directly informing the R(x,t) dimensionality question.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_003",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q003_ip3r_subtypes_dimensionality_sherwood2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 2
       }
     },
     "Q-004": {
@@ -6405,15 +6585,17 @@
       }
     },
     "Q-015": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.741",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.848",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 5,
       "evidence_class_counts": {
+        "lit:electrophysiology_lfp": 2,
+        "lit:fmri_connectivity": 1,
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
@@ -6426,10 +6608,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_mech061_agency_comparator_review_nrn2017",
-      "latest_timestamp_utc": "2026-02-15T14:16:00Z",
-      "literature_confidence": 0.741,
-      "overall_confidence": 0.741,
+      "latest_run_id": "2026-03-29_q015_veto_dFMC_connectivity_kuhn2009",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.848,
+      "overall_confidence": 0.848,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6457,25 +6639,70 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T14:16:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-015",
+          "confidence": 0.65,
+          "confidence_rationale": "Widefield calcium imaging showing structured multi-second pre-movement dynamics distributed across cortex, including inhibition of motor cortex starting ~5s before self-initiated action. Establishes that commit-precursor signals are distributed (not a single token) and extend several seconds before movement -- constraining the timescale window for any commit token. Confidence reduced by species gap (mouse vs. human) and absence of direct commitment/inhibition paradigm.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_015",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q015_mesoscale_premovement_mitelut2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-015",
+          "confidence": 0.72,
+          "confidence_rationale": "Directly distinguishes proximal (just-in-time) from distal (planned-in-advance) intention using EEG, finding a distinct slow negative frontal 'intention potential' for distal intentions that is separable from the late RP. This is high-quality human EEG with clean experimental dissociation. Transfer risk is moderate because REE's commit token operates over multiple timescales simultaneously, whereas this work cleanly separates them.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_015",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q015_proximal_distal_intention_vinding2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-015",
+          "confidence": 0.7,
+          "confidence_rationale": "Haggard group fMRI-connectivity study identifying dFMC (dorsal fronto-median cortex / pre-SMA) as the veto locus with top-down suppressive connectivity to premotor cortex. Directly addresses the neural implementation of the 'point of no return' by showing that the veto signal has a specific anatomical seat and a specific connectivity signature. Confidence reduced by the indirect mapping: REE's commit token is a representation problem, not just a location problem.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_015",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q015_veto_dFMC_connectivity_kuhn2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 5
       }
     },
     "Q-016": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.789",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.867",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 2,
+        "mixed": 1,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 5,
       "evidence_class_counts": {
+        "lit:computational_model": 1,
         "lit:computational_neuroscience_model": 1,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:fmri_connectivity": 1,
         "lit:neuroscience_review": 1
       },
       "experimental_confidence": 0.0,
@@ -6487,10 +6714,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_mech062_pbwm_gating_neuralcomputation2006",
-      "latest_timestamp_utc": "2026-02-15T14:19:00Z",
-      "literature_confidence": 0.789,
-      "overall_confidence": 0.789,
+      "latest_run_id": "2026-03-29_q016_proactive_reactive_inhibition_zhang2019",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.867,
+      "overall_confidence": 0.867,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6518,29 +6745,72 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T14:19:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-016",
+          "confidence": 0.68,
+          "confidence_rationale": "Thorough theoretical review synthesising WTA (striatal max) vs. soft-max (cortical) selection mechanisms and their RL implementation correspondences. Directly addresses the arbitration policy question with computational precision, arguing that both mechanisms co-exist at different timescales and serve complementary functions. Mixed direction because the paper does not resolve which policy prevents coupling collapse -- it describes both without adjudicating the failure modes.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_016",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q016_corticostriatal_WTA_morita2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-016",
+          "confidence": 0.73,
+          "confidence_rationale": "High-impact Nature paper with optogenetic dissection of indirect pathway function in a licking task. Shows that indirect SPNs suppress ongoing actions and enable exploration via inter-collicular competition -- a concrete mechanism for how the indirect pathway mediates the go/no-go arbitration that is central to Q-016. Very direct mechanistic evidence. Confidence reduced by species (mouse) and simplicity of the lateralized licking task compared to tri-loop conflict.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_016",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q016_indirect_pathway_collicular_lee2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-016",
+          "confidence": 0.66,
+          "confidence_rationale": "Human fMRI with dynamic causal modelling showing distinct fronto-basal ganglia pathways for proactive (prepare-to-inhibit) vs. reactive (cancel-in-flight) inhibition, with a longer DLPFC-caudate-IFG pathway for proactive and a shorter IFG-SMA-STN pathway for reactive. This maps onto REE's pre-commit vs. post-commit suppression channels and gives mechanistic grounding for why the arbitration policy needs to operate at two different timescales within the same anatomical network.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_016",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q016_proactive_reactive_inhibition_zhang2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 5
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=0 entry(s), lit=8 entry(s), exp_conf=0, lit_conf=0.877",
+      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.886",
       "direction_counts": {
         "mixed": 1,
-        "supports": 7,
+        "supports": 8,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 8,
+      "entries_total": 9,
       "evidence_class_counts": {
         "lit:computational_neuroscience_theory": 3,
         "lit:connectome_arousal_interrupt_channel": 1,
         "lit:connectome_axis_nonorthogonality": 1,
         "lit:connectome_functional_dissociation": 1,
         "lit:connectome_precision_axis_constraint": 1,
+        "lit:fmri_connectivity": 1,
         "lit:neuroscience_theory": 1
       },
       "experimental_confidence": 0.0,
@@ -6552,25 +6822,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012",
-      "latest_timestamp_utc": "2026-02-15T21:23:00Z",
-      "literature_confidence": 0.877,
-      "overall_confidence": 0.877,
+      "latest_run_id": "2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.886,
+      "overall_confidence": 0.886,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "claim_id": "Q-017",
-          "confidence": 0.79,
-          "confidence_rationale": "Provides direct theoretical separation of distinct uncertainty/control functions across neuromodulatory systems, supporting REE orthogonal control-axis decomposition. Follow-up extraction scoped to Q-017 uncertainty-sensitive control allocation. Proposal completion extraction for LIT-0032 scoped to Q-017.",
-          "evidence_class": "lit:computational_neuroscience_theory",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_063",
-          "failure_signatures": [],
-          "run_id": "2026-02-15_q017_lit-0032_completion",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-02-15T16:07:00Z"
-        },
         {
           "claim_id": "Q-017",
           "confidence": 0.78,
@@ -6622,12 +6879,26 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-02-15T21:23:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-017",
+          "confidence": 0.72,
+          "confidence_rationale": "MVPA fMRI study showing that brain states predict both normative valence and arousal ratings of IAPS stimuli, and that the neuroanatomical encodings of valence and arousal are geometrically orthogonal -- directly validating the circumplex model's core claim. This is the most directly relevant empirical result for Q-017: two axes are sufficient and they are orthogonal in neural space. Confidence limited by the purely affective focus; control/precision axes are not tested.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_017",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 9,
       "source_counts": {
         "experimental": 0,
-        "literature": 8
+        "literature": 9
       }
     },
     "Q-019": {
@@ -6737,17 +7008,95 @@
         "literature": 6
       }
     },
-    "Q-021": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.478, lit_conf=0",
+    "Q-020": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.675",
       "direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 2
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:electrophysiology_single_unit": 3
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
         "supports": 0,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "latest_run_id": "2026-03-29_q020_value_free_map_duvelle2019",
+      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
+      "literature_confidence": 0.675,
+      "overall_confidence": 0.675,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.78,
+          "confidence_rationale": "High-quality single-unit recording in primates (Cell, 2021). Shows directly that hippocampal neurons tile an abstract value space with place-like fields -- value encoding is not merely tagging but genuine map-structured representation. This is the strongest existing evidence that hippocampal cognitive maps extend to value geometry, directly supporting MECH-073 and challenging the ARC-007 framing that the hippocampal module is value-computation-free.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q020_abstract_value_map_knudsen2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.72,
+          "confidence_rationale": "Empirical calcium imaging plus optogenetics in freely moving mice, published in a top-tier venue. Directly demonstrates that ventral CA1 neurons form a stable 'emotional geography' encoding anxiogenic zones -- valence is spatially organized within the hippocampal map, not merely externally tagged onto it post hoc. This directly challenges ARC-007's framing that the hippocampal module is value-free, though the dorsal/ventral distinction creates a partial escape hatch.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q020_valence_geography_jimenez2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.65,
+          "confidence_rationale": "Provides direct dorsal CA1 evidence supporting the value-free spatial map hypothesis, consistent with ARC-007's framing. Rats showed clear goal-value behavioral sensitivity while dorsal CA1 place cells did not modulate firing by reward magnitude. This supports the hypothesis that dorsal hippocampus provides a value-neutral spatial substrate, with value encoding occurring elsewhere. Confidence is moderate because the finding is null (no modulation) in a specific subregion and task, and the dorsal/ventral distinction means it is compatible with the Jimenez/Knudsen evidence rather than contradicting it.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [],
+          "run_id": "2026-03-29_q020_value_free_map_duvelle2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T15:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "Q-021": {
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.478, lit_conf=0.808",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.478,
       "fail_runs": 1,
@@ -6758,10 +7107,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_072b_q021_behavioral_flatness_20260328T135541Z_v3",
-      "latest_timestamp_utc": "2026-03-28T13:55:41Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.478,
+      "latest_run_id": "2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020",
+      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
+      "literature_confidence": 0.808,
+      "overall_confidence": 0.726,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6777,12 +7126,63 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-28T13:55:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-021",
+          "confidence": 0.72,
+          "confidence_rationale": "Barrett et al. 2016 propose that depression is fundamentally a disorder of allostasis, characterised as a 'locked-in' brain that has become relatively insensitive to sensory context. The locked-in dynamic is a positive feedback loop: dysfunctional interoceptive predictions lead to large prediction errors, which increase reliance on prior predictions (because sensory signals are deemed unreliable), which further amplifies errors. The behavioral consequence is progressive withdrawal from approach behaviors -- behaviors that could provide disconfirming evidence are avoided, preventing updating of the dysfunctional priors. This is Q-021's Pathway A dynamics made explicit: when the approach/drive system fails to generate updating signals, the agent becomes locked into avoidance and quiescence. The paper directly supports the claim that pure avoidance produces behavioral flatness by describing the clinical trajectory of this process. Confidence 0.72 because the paper is theoretical and the active inference framing requires translation to REE's architecture.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_021",
+          "failure_signatures": [
+            "If behavioral avoidance in depression were driven primarily by excessive fear or threat signals (heightened harm-avoidance) rather than by failure of approach drives to update dysfunctional priors, Q-021's framing of pure-avoidance as sufficient for flatness would need revision.",
+            "If the locked-in feedback loop could be broken purely by harm-avoidance recalibration (without restoring approach drive), the necessity of approach signals for preventing quiescence would be weakened."
+          ],
+          "run_id": "2026-03-29_q_021_active_inference_depression_barrett2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-021",
+          "confidence": 0.73,
+          "confidence_rationale": "Stephan et al. 2016 provide a hierarchical Bayesian framework in which depression emerges from persistent interoceptive prediction errors that shift metacognitive beliefs toward allostatic self-inefficacy: the agent believes its internal regulation will fail, withdraws from effortful approach behaviors, and enters a state of behavioral quiescence that is functionally protective but catastrophically disabling. This is precisely Q-021's Pathway A clinical analog: when drive regulation fails or is chronically violated, the agent converges on low-action policy as the minimum-prediction-error strategy. The behavioral flatness is not a bug -- it is the optimal policy for an agent whose internal model predicts that approach will not reduce drive (self-inefficacy). Confidence 0.73 because this is a theoretical framework paper, not primary experimental data, and the connection to REE's pure-avoidance training requires additional inferential steps.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_021",
+          "failure_signatures": [
+            "If depressive behavioral quiescence were primarily driven by excessive harm-avoidance (heightened NoGo signals) rather than by failure of approach drives, Q-021's Pathway A framing would be incomplete and this paper's self-efficacy framework would not map cleanly.",
+            "If agents with intact approach drives but disrupted homeostatic prediction (high interoceptive prediction error) did not show behavioral flatness, the interoceptive inference pathway to quiescence would be empirically unsupported."
+          ],
+          "run_id": "2026-03-29_q_021_allostatic_selfefficacy_stephan2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-021",
+          "confidence": 0.7,
+          "confidence_rationale": "Culbreth et al. 2020 link avolition to reduced effort allocation in schizophrenia, correlating laboratory effort-cost decision making with daily-life motivational experience measured via ecological momentary assessment. The paper shows that individuals with greater avolition show reduced willingness to expend effort for reward in the laboratory, and that this laboratory measure predicts reduced goal-directed activity in daily life. Critically, the paper finds neural correlates in striatal activation deficits during effort allocation -- the wanting/approach circuitry. This provides behavioral and neural evidence for Q-021: agents with impaired approach drives (wanting circuitry) show flattened behavioral profiles both in structured laboratory tasks and in naturalistic daily-life settings. The behavioral flatness extends beyond the laboratory and constitutes genuine generalized policy flattening. Confidence 0.70 because the paper does not ablate approach drive specifically (it studies a patient population rather than an experimental training manipulation).",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_021",
+          "failure_signatures": [
+            "If avolition in schizophrenia were driven by elevated harm-avoidance (patients avoid effort because they fear failure) rather than by absent approach drive (patients simply do not have motivational pull toward goals), the Q-021 Pathway A interpretation would need revision.",
+            "If the effort-avoidance in avolition were fully explained by cognitive load or resource depletion rather than motivational drive failure, the link to approach signal absence would be indirect."
+          ],
+          "run_id": "2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 3
       }
     },
     "Q-022": {
@@ -6995,16 +7395,19 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=0 entry(s), exp_conf=0.681, lit_conf=0",
+      "confidence_rationale": "exp=8 entry(s), lit=4 entry(s), exp_conf=0.681, lit_conf=0.894",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 7,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 8,
+      "entries_total": 12,
       "evidence_class_counts": {
-        "exp:simulation": 8
+        "exp:simulation": 8,
+        "lit:computational_model": 2,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.681,
       "fail_runs": 5,
@@ -7015,68 +7418,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3",
-      "latest_timestamp_utc": "2026-03-23T16:23:27Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.681,
+      "latest_run_id": "2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015",
+      "latest_timestamp_utc": "2026-03-29T13:30:00Z",
+      "literature_confidence": 0.894,
+      "overall_confidence": 0.787,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "claim_probe_sd_004",
-          "failure_signatures": [],
-          "run_id": "20260319T090529Z_v3_exq_042_hippocampal_terrain_training_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-19T09:05:29Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "v3_exq_042_hippocampal_terrain_training",
-          "failure_signatures": [],
-          "run_id": "v3_exq_042_hippocampal_terrain_training_20260319T090529Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-19T09:05:29Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_046_arc007_path_memory_ablation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T121655Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T12:16:55Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_046_arc007_path_memory_ablation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T143303Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T14:33:03Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-004",
@@ -7090,12 +7437,80 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-23T16:23:27Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.8,
+          "confidence_rationale": "This review paper makes the key generalisation that the cognitive map is not a spatial map but a map of task-relevant relational structure -- which directly licenses SD-004's claim that the HippocampalModule should map action-object space rather than raw z_world. Behrens et al. argue that place and grid cells are a specific instance of general coding principles for organising any structured knowledge. The non-spatial cognitive map framing is exactly what SD-004 requires: the map backbone is action-consequence structure, not geometric coordinates.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_004",
+          "failure_signatures": [
+            "Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure",
+            "The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial"
+          ],
+          "run_id": "2026-03-29_sd_004_cognitive_map_review_behrens2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.85,
+          "confidence_rationale": "This is the primary computational paper arguing that hippocampal place cells encode a predictive (successor) map rather than purely geometric space. The SR framework directly instantiates the core SD-004 claim that the hippocampal map is organized by future-state structure -- i.e., by what follows from current position under a given policy -- rather than raw sensory coordinates. The mapping to SD-004 requires one extension (from state-successor to action-consequence objects), but the foundational architecture is essentially identical. High-quality journal, large citation base, replicated predictions.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_004",
+          "failure_signatures": [
+            "SR is policy-dependent -- the predictive map changes when behavior changes, implying the map backbone is not a stable action-object library but a policy-contingent weighting",
+            "SR as originally formulated does not compress multi-step action sequences into objects; it represents individual states weighted by future occupancy"
+          ],
+          "run_id": "2026-03-29_sd_004_predictive_map_stachenfeld2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.78,
+          "confidence_rationale": "This is the foundational paper introducing the successor representation -- the computational substrate that Stachenfeld et al. (2017) later linked to hippocampal place cells. Dayan shows that representing states by their expected future state-occupancies (discounted, policy-weighted) enables efficient generalisation and long-horizon value computation without per-step simulation. This directly grounds SD-004's planning-horizon claim: action objects as SR units collapse multi-step sequences into single entries, giving the same computational advantage Dayan demonstrated for temporally extended state representations. Confidence below 0.85 because the original paper predates neural binding; the hippocampal link is established by subsequent work.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_004",
+          "failure_signatures": [
+            "SR is defined over primitive states; Dayan does not consider action-object compression -- the extension to action-consequence chunks requires additional theoretical work (temporal abstraction, options framework)",
+            "SR remains policy-dependent; when the agent's policy changes, the SR must be relearned -- this raises the question of whether action objects can serve as a stable map backbone across policy updates"
+          ],
+          "run_id": "2026-03-29_sd_004_successor_representation_dayan1993",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.72,
+          "confidence_rationale": "This paper provides direct electrophysiological evidence that hippocampal sequential activity is not a passive replay of recent spatial experience but a goal-directed prospective computation: look-ahead distance varies with the distance to the current goal. This supports SD-004's requirement that the HippocampalModule's traversal of action-object space be goal-directed rather than purely state-driven. The paper also suggests that planning horizon scales with goal distance -- exactly the long-horizon planning advantage SD-004 claims for action-object navigation. Confidence reduced from peak because the paper operates in raw place-cell space, not action-object space.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_004",
+          "failure_signatures": [
+            "Sequences are of spatial positions, not compressed action objects -- the goal-scaling effect is demonstrated for spatial look-ahead, not for chunked multi-step action sequences",
+            "Look-ahead in theta sequences is typically a few tens of centimetres, far shorter than the 20-step planning horizon SD-004 targets; longer-horizon planning may require sharp-wave ripples rather than theta sequences"
+          ],
+          "run_id": "2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T13:30:00Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 12,
       "source_counts": {
         "experimental": 8,
-        "literature": 0
+        "literature": 4
       }
     },
     "SD-005": {
@@ -7296,7 +7711,7 @@
       }
     },
     "SD-007": {
-      "confidence_rationale": "exp=19 entry(s), lit=5 entry(s), exp_conf=0.729, lit_conf=0.888",
+      "confidence_rationale": "exp=19 entry(s), lit=5 entry(s), exp_conf=0.728, lit_conf=0.888",
       "direction_counts": {
         "mixed": 4,
         "supports": 12,
@@ -7312,7 +7727,7 @@
         "lit:fmri_connectivity": 1,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.729,
+      "experimental_confidence": 0.728,
       "fail_runs": 12,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -7688,16 +8103,19 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.476, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.476, lit_conf=0.842",
       "direction_counts": {
         "mixed": 1,
-        "supports": 0,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:behavioral_animal": 1,
+        "lit:computational_model": 1,
+        "lit:electrophysiology_single_unit": 1
       },
       "experimental_confidence": 0.476,
       "fail_runs": 1,
@@ -7708,10 +8126,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3",
-      "latest_timestamp_utc": "2026-03-27T17:20:24Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.476,
+      "latest_run_id": "2026-03-29_sd_012_homeostatic_rl_keramati2014",
+      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
+      "literature_confidence": 0.842,
+      "overall_confidence": 0.75,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7727,16 +8145,67 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-27T17:20:24Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-012",
+          "confidence": 0.7,
+          "confidence_rationale": "Schultz et al. 1997 demonstrate that dopamine neurons encode temporal difference prediction errors: they respond to unexpected rewards, transfer to predictive cues, and are depressed by expected reward omissions. Critically for SD-012, the paper shows that goal representations require multiple reward-prediction pairings over time -- the prediction error signal is what drives the transfer from reward to cue, and this transfer requires repeated cycles. This supports SD-012's requirement that resources must respawn after consumption (resource_respawn_on_consume=True) to enable repeated drive-reduction cycles: without repeated encounters, the prediction error cannot transfer from contact to approach trajectories, and z_goal cannot form through the trajectory-shaping pathway that SD-012 proposes. Confidence 0.70 rather than higher because the paper's primary contribution is TD learning in dopamine neurons, not drive-state modulation per se -- the connection to SD-012's drive-scaling formula is indirect, mediated by the requirement for repeated reward cycles.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_012",
+          "failure_signatures": [
+            "If z_goal seeded adequately from a single resource contact without repeated encounters, the iterative prediction-error mechanism this paper describes would not be necessary for goal representation formation.",
+            "If the prediction error signal in REE did not transfer from resource contact to approach trajectory over multiple episodes, the SD-012 architecture for z_goal formation via drive-scaled benefit accumulation would fail."
+          ],
+          "run_id": "2026-03-29_sd_012_dopamine_prediction_reward_schultz1997",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-012",
+          "confidence": 0.8,
+          "confidence_rationale": "Balleine and Dickinson 1998 establish that goal-directed action requires two separable learning processes: contingency learning (action-outcome) and incentive learning (acquisition and updating of outcome value as a function of current motivational state). The incentive learning component is critical for SD-012: the insular cortex lesion experiments show that animals can learn that an action produces a food outcome (contingency learning intact) but lose the ability to update the value of that outcome based on changes in drive state (incentive learning impaired). This directly supports SD-012's claim that benefit signals must be scaled by drive state for goal representations to form and update appropriately. Without drive-state modulation of outcome value, the agent can learn stimulus-outcome associations but cannot form goal representations that respond to current needs. Confidence 0.80 because this is rigorous animal behavioral data with pharmacological intervention and outcome devaluation paradigms.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_012",
+          "failure_signatures": [
+            "If insular cortex lesions in devaluation experiments left goal-directed behavior intact (animals still avoided devalued outcomes), the incentive learning mechanism required for drive-state updating would not be necessary, and SD-012's drive-scaling hypothesis would lose its empirical grounding.",
+            "If goal-directed behavior emerged equally under high and low drive in the devaluation paradigm (no drive-state sensitivity of outcome value), the fundamental SD-012 assumption would be contradicted."
+          ],
+          "run_id": "2026-03-29_sd_012_goal_directed_action_balleine1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-012",
+          "confidence": 0.85,
+          "confidence_rationale": "Keramati and Gutkin 2014 is the most directly relevant computational paper for SD-012. Their homeostatic RL (HRL) framework formalises exactly what SD-012 implements: reward is not a fixed property of an outcome but a function of how much the outcome reduces the distance between internal state and homeostatic setpoint. At high drive (large deviation from setpoint), the same outcome is more rewarding. At low drive (near setpoint), the same outcome is less rewarding. The SD-012 formula -- effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level) -- is a linear approximation of the HRL drive function. This paper provides the theoretical grounding and empirical plausibility arguments for this class of benefit scaling. Confidence 0.85 because this is a formal computational model with empirical grounding, not just a review, and its predictions about drive-state modulation of reward are directly instantiated in SD-012.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_012",
+          "failure_signatures": [
+            "If benefit signals in REE that do not scale with drive state produce adequate z_goal seeding, SD-012's hypothesis that drive-scaling is necessary would be empirically refuted.",
+            "If homeostatic drive state is irrelevant to goal formation -- if z_goal seeds equally well regardless of agent_energy -- the drive modulation mechanism would be architecturally unnecessary."
+          ],
+          "run_id": "2026-03-29_sd_012_homeostatic_rl_keramati2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-29T14:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 3
       }
     },
     "onboarding": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.81, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.809, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -7747,7 +8216,7 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.81,
+      "experimental_confidence": 0.809,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -7759,7 +8228,7 @@
       "latest_run_id": "v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3",
       "latest_timestamp_utc": "2026-03-22T12:46:04Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.81,
+      "overall_confidence": 0.809,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -36833,6 +37302,23 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-071",
+      "confidence": 0.72,
+      "confidence_rationale": "Provides neural evidence for a distinct causal-inference gating mechanism that modulates how outcomes are attributed to agent actions versus external causes. RPEs modulated by causal beliefs are represented in dorsal striatum (action-learning pathway) while unmodulated RPEs are in ventral striatum. Causal beliefs are represented in anterior insula, with effective connectivity from insula to dorsal striatum. This is the neural implementation of the attribution asymmetry that MECH-071 predicts: the brain has a dedicated circuit for deciding whether an outcome was caused by the agent and gating learning accordingly. Confidence 0.72 because the paper is about reward, not harm, and uses standard RL credit assignment rather than harm-specific prediction evaluation.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_071",
+      "failure_signatures": [
+        "If E2/E3 harm prediction errors are not differentially routed based on causal attribution (agent-caused vs environment-caused), the dorsal/ventral striatum dissociation predicted by this paper would not appear in REE's architecture.",
+        "If the insula-to-striatum gating of causal beliefs is absent in harm-specific circuits, MECH-071's calibration asymmetry would need a different implementation route."
+      ],
+      "run_id": "2026-03-29_mech_071_causal_inference_corticostriatal_dorfman2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T12:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
       "confidence": 0.8,
       "confidence_rationale": "Directly demonstrates the central mechanism that makes MECH-071 neurobiologically plausible: cerebellar forward models predict the sensory consequences of self-generated movement and attenuate the somatosensory cortical response. External stimulation produces greater somatosensory cortex activation than identical self-produced stimulation, establishing that the brain differentially encodes self-generated versus externally-generated sensory events. The mapping to E2 as efference-copy forward model and the self/environment asymmetry in harm prediction is direct. Confidence capped at 0.80 because the domain is tactile sensation (not harm evaluation) and the stimuli are benign.",
       "evidence_class": "lit:fmri_connectivity",
@@ -36845,9 +37331,702 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-03-29T12:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.82,
+      "confidence_rationale": "The paper provides the most direct behavioral evidence for MECH-071's self/environment calibration asymmetry. When subjects match a force they have experienced, they systematically overestimate the force needed when reproducing it via their own action -- because the self-generated force feels weaker (attenuated by efference copy prediction). This means self-generated forces are UNDER-perceived relative to externally-applied identical forces. Applied to harm: agent-caused harm events produce weaker afferent harm signals than environmentally-caused harm events of identical physical magnitude. E2 operating as a forward model for self-generated actions would therefore receive systematically attenuated harm feedback compared to environment-caused events -- this is precisely the calibration asymmetry MECH-071 predicts. The confidence is 0.82 -- strong behavioral signal, clear mechanism, but domain remains force/tactile rather than harm evaluation proper.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_071",
+      "failure_signatures": [
+        "If E2 harm prediction shows no agent/environment differential in calibration quality under identical physical harm magnitudes, the sensory attenuation mechanism this paper establishes would be disconfirmed as a route to MECH-071.",
+        "If the calibration asymmetry flips -- E2 better calibrated for environment-caused harm -- this would require a different theoretical account."
+      ],
+      "run_id": "2026-03-29_mech_071_force_calibration_shergill2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T12:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-071",
+      "confidence": 0.77,
+      "confidence_rationale": "Directly demonstrates the graded threat-proximity neural encoding that MECH-071's second claim (E3 learns a graded danger model, approach gradient not just contact) requires. As a virtual predator approached subjects in an avoidance maze, brain activity systematically shifted from vmPFC (distal threat, planning-dominated) to PAG (proximal threat, defensive escape). The gradient is continuous and prospective -- the brain encodes danger before contact, as a function of proximity. This is the neural instantiation of the approach-gradient harm model. Confidence 0.77: the effect is robust and in human brain during active avoidance, which maps well to E3's harm evaluation during trajectory planning. The virtual predator paradigm is somewhat artificial and the gradient is measured in BOLD not in latent harm representations.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_071",
+      "failure_signatures": [
+        "If E3 only represents harm at contact (binary) without any prospective graded encoding during approach, the vmPFC-to-PAG gradient seen in this paper would have no REE analogue -- MECH-071's graded danger model would be disconfirmed.",
+        "If the approach-gradient structure in z_harm_s is flat until contact, this paper's continuous proximity-coding would predict that result cannot replicate in REE's architecture."
+      ],
+      "run_id": "2026-03-29_mech_071_threat_imminence_gradient_mobbs2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T12:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.78,
+      "confidence_rationale": "Olafsdottir et al. demonstrate that awake hippocampal replay dynamically switches between task-focused (planning-mode) and consolidation-mode reactivation depending on task demands. Replay immediately before or after movement toward a reward preferentially encoded the current trajectory; during extended immobility, bias disappeared. Task-focused reactivations predicted subsequent decision accuracy. This is direct evidence that hippocampal replay is a context-sensitive, decision-relevant process -- supporting ARC-018's claim that the viability map is actively maintained and queried at decision time rather than being a static structure. The switch between modes (planning vs consolidation) also supports the hypothesis that the E3 harm/goal error signal gates replay content.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_018",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_arc_018_awake_replay_switch_olafsdottir2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.85,
+      "confidence_rationale": "Gold-standard electrophysiology in behaving rats demonstrating that hippocampal place-cell sequences generated before goal-directed navigation depict future goal-directed trajectories. The sequences are goal-biased (current location to known goal) and predict immediate future behaviour even for novel start-goal combinations. This is direct evidence for the hippocampus generating prospective rollouts indexed by a destination (goal) coordinate. The main caveat for ARC-018 is that the indexing dimension here is spatial location rather than the E2 action-object coordinate posited in the V3 framing; the biology supports the rollout mechanism but is agnostic about what the coordinate system encodes at a computational level.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_018",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_arc_018_forward_sweeps_pfeiffer2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.68,
+      "confidence_rationale": "Dolan & Dayan's comprehensive review of goal-directed vs habitual decision-making provides the theoretical scaffolding that situates ARC-018's hippocampal viability map. They articulate the model-based/model-free distinction, clarify that goal-directed behaviour requires a cognitive map whose value is updated prospectively (not merely retrospectively), and review the evidence that hippocampus is an essential substrate for model-based planning. This is theoretical grounding rather than direct experimental evidence, hence the lower confidence -- but the conceptual alignment is high. The review's framing of 'model-based' as requiring explicit forward simulation is exactly what ARC-018 claims for the viability map. Confidence is limited by the fact that ARC-018 makes specific mechanistic claims (E2 indexing, E3 error update) that go well beyond what this review can address.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_018",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_arc_018_goals_habits_dolan2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.72,
+      "confidence_rationale": "Momennejad et al. provide direct human fMRI evidence that off-task hippocampal replay (indexed by multi-voxel pattern reactivation) predicts subsequent replanning behaviour, and that uncertainty (unsigned prediction error) triggers such replay. This maps closely onto ARC-018's claim that the hippocampal viability map is updated by E3 harm/goal error: here, prediction error (a proxy for uncertainty/harm-goal discrepancy) triggers the hippocampal reactivation that enables replanning. The human context is also valuable -- it extends the rodent findings across species. The main limitation for ARC-018 is that the task is abstract (two-step sequential decision) rather than spatial navigation, which is actually a strength: it suggests the mechanism generalises beyond spatial maps to action-object level representations.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_018",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_arc_018_offline_replay_planning_momennejad2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.8,
+      "confidence_rationale": "Mattar & Daw provide the clearest computational framework for why hippocampal replay is ordered by utility -- specifically, by how much additional reward would be earned from better choices at each state. This 'prioritized memory access' framework maps closely onto ARC-018's viability map: the hippocampal representation is updated in proportion to its relevance to current decision-making under harm/goal error signals. The paper also proposes that dysfunction of this prioritisation mechanism underlies rumination and craving -- a striking parallel to the harm-valence component of ARC-018's viability map. Confidence slightly below peak because this is a theoretical/computational model, not electrophysiology, and the utility metric used (reward gain) is not identical to E3 harm/goal error.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_018",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_arc_018_prioritized_replay_mattar2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.67,
+      "confidence_rationale": "Axelrod's iterated prisoner's dilemma framework is one of the most rigorous formal models of when cooperation breaks down and defection (analogous to conflict/violence) becomes the equilibrium strategy. The core finding -- that cooperation persists when the shadow of the future is long enough, and collapses when repeat interaction is no longer expected -- maps directly onto MECH-102's claim that violence emerges when coordination pathways are unavailable. Axelrod's 'provocability' condition (immediate retaliation to defection) and 'forgiveness' condition (return to cooperation after defection is punished) together imply a threshold structure where escalation to high-energy conflict is reserved for cases where the cooperative equilibrium cannot be restored. Confidence is moderate-high because the formal structure is compelling, but the translation from iterated PD to REE's error-correction framework requires non-trivial interpretation.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_102",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_mech_102_evolution_cooperation_axelrod1984",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.7,
+      "confidence_rationale": "Berkowitz's reformulation directly frames aggression/violence as triggered by goal-path blockage (pathway exhaustion), with negative affect as the mediating mechanism. This maps plausibly onto MECH-102's claim that violence is triggered when coordination pathways become unavailable. The fit is strongest for the individual level. Transfer risk is moderate because Berkowitz is modelling emotional aggression in individuals, not architectural error-correction in systems, and his model does not distinguish low-energy vs. high-energy intervention paths in the REE sense.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_102",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_mech_102_frustration_aggression_berkowitz1989",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.62,
+      "confidence_rationale": "The General Aggression Model (GAM) provides a comprehensive unifying framework for human aggression that is relevant but ambivalent toward MECH-102. The GAM posits that aggression emerges from interaction of situational inputs and person variables, processed through cognition, affect, and arousal. This is consistent with MECH-102 in that it acknowledges aggression is not the default response -- it requires triggering conditions. However, the GAM does not specifically frame violence as 'terminal' or require exhaustion of low-energy pathways before aggression is selected. The GAM's episodic appraisal and reappraisal component is the strongest connection: it implies that aggressive action is selected after evaluation of available responses, which allows for a reading consistent with MECH-102's escalation ladder. Confidence is moderate because the mapping requires selective reading of the GAM.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_102",
+      "failure_signatures": [
+        "The GAM does not require prior exhaustion of non-violent coordination alternatives before aggression is triggered -- it can be activated by hostile attribution bias, provocation cues, or script activation without pathway closure."
+      ],
+      "run_id": "2026-03-29_mech_102_general_aggression_model_anderson2002",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-102",
+      "confidence": 0.58,
+      "confidence_rationale": "Aloyo's paper is directly about the 'last resort' criterion in just war theory, making it superficially highly relevant to MECH-102. However, Aloyo's central conclusion is that the last resort criterion is either redundant with proportionality or produces perverse recommendations -- and should therefore be dropped. This is a complication rather than a simple support or weakening of MECH-102. The complication is philosophically important: if 'last resort' is not a coherent standalone criterion at the institutional/civilizational level, then MECH-102's claim that violence is 'triggered only when low-energy coordination pathways have been exhausted' faces the same philosophical challenge Aloyo raises. On the other hand, Aloyo's preferred replacement (minimize severe harms to innocents) is structurally consistent with INV-029 (love as long-horizon coherence bias) -- the real work is done by coherence-preservation, not by an ordinal sequencing of violence as 'last' in a temporal sense.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_102",
+      "failure_signatures": [
+        "Aloyo argues that all accounts of last resort either generate wrong policy recommendations or reduce to proportionality, suggesting the 'sequential exhaustion' framing of MECH-102 may face analogous philosophical problems at the institutional level."
+      ],
+      "run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.8,
+      "confidence_rationale": "This review paper makes the key generalisation that the cognitive map is not a spatial map but a map of task-relevant relational structure -- which directly licenses SD-004's claim that the HippocampalModule should map action-object space rather than raw z_world. Behrens et al. argue that place and grid cells are a specific instance of general coding principles for organising any structured knowledge. The non-spatial cognitive map framing is exactly what SD-004 requires: the map backbone is action-consequence structure, not geometric coordinates.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_004",
+      "failure_signatures": [
+        "Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure",
+        "The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial"
+      ],
+      "run_id": "2026-03-29_sd_004_cognitive_map_review_behrens2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.85,
+      "confidence_rationale": "This is the primary computational paper arguing that hippocampal place cells encode a predictive (successor) map rather than purely geometric space. The SR framework directly instantiates the core SD-004 claim that the hippocampal map is organized by future-state structure -- i.e., by what follows from current position under a given policy -- rather than raw sensory coordinates. The mapping to SD-004 requires one extension (from state-successor to action-consequence objects), but the foundational architecture is essentially identical. High-quality journal, large citation base, replicated predictions.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_004",
+      "failure_signatures": [
+        "SR is policy-dependent -- the predictive map changes when behavior changes, implying the map backbone is not a stable action-object library but a policy-contingent weighting",
+        "SR as originally formulated does not compress multi-step action sequences into objects; it represents individual states weighted by future occupancy"
+      ],
+      "run_id": "2026-03-29_sd_004_predictive_map_stachenfeld2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.78,
+      "confidence_rationale": "This is the foundational paper introducing the successor representation -- the computational substrate that Stachenfeld et al. (2017) later linked to hippocampal place cells. Dayan shows that representing states by their expected future state-occupancies (discounted, policy-weighted) enables efficient generalisation and long-horizon value computation without per-step simulation. This directly grounds SD-004's planning-horizon claim: action objects as SR units collapse multi-step sequences into single entries, giving the same computational advantage Dayan demonstrated for temporally extended state representations. Confidence below 0.85 because the original paper predates neural binding; the hippocampal link is established by subsequent work.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_004",
+      "failure_signatures": [
+        "SR is defined over primitive states; Dayan does not consider action-object compression -- the extension to action-consequence chunks requires additional theoretical work (temporal abstraction, options framework)",
+        "SR remains policy-dependent; when the agent's policy changes, the SR must be relearned -- this raises the question of whether action objects can serve as a stable map backbone across policy updates"
+      ],
+      "run_id": "2026-03-29_sd_004_successor_representation_dayan1993",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.72,
+      "confidence_rationale": "This paper provides direct electrophysiological evidence that hippocampal sequential activity is not a passive replay of recent spatial experience but a goal-directed prospective computation: look-ahead distance varies with the distance to the current goal. This supports SD-004's requirement that the HippocampalModule's traversal of action-object space be goal-directed rather than purely state-driven. The paper also suggests that planning horizon scales with goal distance -- exactly the long-horizon planning advantage SD-004 claims for action-object navigation. Confidence reduced from peak because the paper operates in raw place-cell space, not action-object space.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_004",
+      "failure_signatures": [
+        "Sequences are of spatial positions, not compressed action objects -- the goal-scaling effect is demonstrated for spatial look-ahead, not for chunked multi-step action sequences",
+        "Look-ahead in theta sequences is typically a few tens of centimetres, far shorter than the 20-step planning horizon SD-004 targets; longer-horizon planning may require sharp-wave ripples rather than theta sequences"
+      ],
+      "run_id": "2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T13:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-034",
+      "confidence": 0.72,
+      "confidence_rationale": "Strauss et al. 2021 synthesise evidence that avolition -- the impairment in motivated, goal-directed behavior -- is the core negative symptom driving functional disability in schizophrenia. Their key argument is that avolition is distinct from and more consequential than diminished expression, and that it reflects VTA/NAc/PFC circuit failure rather than a single neurotransmitter problem. This supports INV-034 by showing that the loss of goal-directed agency (avolition) is architecturally separable from other symptoms and from harm-avoidance systems. Patients with primary avolition are not reckless -- their harm-avoidance circuitry is functional -- but they lack the approach drive to initiate and sustain goal-directed behavior. This is the clinical demonstration of INV-034's claim: harm-avoidance minus goal maintenance equals passivity, not agency. Confidence 0.72 because this paper focuses on treatment implications and the mechanistic dissection of avolition is secondary to clinical description.",
+      "evidence_class": "lit:meta_analysis",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_034",
+      "failure_signatures": [
+        "If avolition correlated equally with impaired harm-avoidance (patients with avolition also show increased dangerous behavior), the clean dissociation supporting INV-034 would not hold.",
+        "If the core functional disability in schizophrenia were driven by diminished expression (flat affect, poverty of speech) rather than avolition specifically, the argument that goal maintenance failure is the critical agency prerequisite would be weakened."
+      ],
+      "run_id": "2026-03-29_inv_034_avolition_core_negative_symptom_foussias2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-034",
+      "confidence": 0.78,
+      "confidence_rationale": "INV-034 claims that goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance -- a system that can only avoid harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency. Barch and Dowd provide the clinical demonstration of this principle: schizophrenia patients with negative symptoms have largely intact harm-avoidance (they do not engage in dangerous behaviors indiscriminately) and intact hedonic evaluation (liking), yet they show profoundly reduced goal-directed agency -- they do not initiate, pursue, or sustain behavior toward valued goals. This is precisely the clinical profile predicted by INV-034's claim: when goal maintenance fails, agency collapses to passivity even in the presence of intact harm-avoidance systems. Confidence 0.78 because the paper does not frame the clinical finding in terms of agency theory, and the inference from schizophrenia avolition to computational architectural necessity requires a philosophical step.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_inv_034",
+      "failure_signatures": [
+        "If patients with pure negative symptoms (avolition, absent wanting) nevertheless showed normal goal-directed behavior, INV-034's claim that goal maintenance is necessary for agency would require revision.",
+        "If harm-avoidance systems were also impaired in avolition, the dissociation between intact harm-avoidance and absent goal-directed agency would not hold, weakening the evidence that goal maintenance is distinctively necessary."
+      ],
+      "run_id": "2026-03-29_inv_034_goal_representations_schizophrenia_barch2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.75,
+      "confidence_rationale": "Barch and Dowd provide strong clinical and neuroscientific evidence that goal representation failure -- specifically the failure to maintain and use internal goal states to drive behavior -- is the proximal cause of avolition in schizophrenia. Their key finding is that liking (consummatory pleasure) is intact in schizophrenia while wanting (anticipatory, prospective motivation) is selectively impaired. This is a direct clinical demonstration that a system can fail specifically at the wanting/z_goal level while leaving the hedonic/liking system intact. For MECH-112, this constitutes a lesion model of the claim: when goal representation fails, goal-directed behavior collapses even though the capacity to enjoy outcomes at receipt is preserved. Confidence 0.75 rather than 0.80 because this is a theoretical review, not primary neuroimaging or experimental data, and the prefrontal-striatal mechanism is proposed rather than definitively demonstrated.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If MECH-112's z_goal representation is unnecessary and agents can generate approach behavior from benefit_eval_head (liking) signals alone, then the schizophrenia dissociation documented here would predict that schizophrenia patients (intact liking, absent wanting) should show normal goal-directed behavior -- which they do not.",
+        "If prefrontal goal maintenance is not required for behavior to remain goal-directed under delay, the prefrontal-striatal model would not predict the specific deficits in avolition versus anhedonia."
+      ],
+      "run_id": "2026-03-29_mech_112_goal_representations_schizophrenia_barch2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.82,
+      "confidence_rationale": "This is the foundational empirical paper establishing the wanting/liking distinction and localising wanting to mesolimbic dopamine and the nucleus accumbens, while localising liking to opioid hotspots in NAc shell and ventral pallidum. The paper directly supports MECH-112's claim that a prospective approach drive (wanting) requires a distinct neural substrate from hedonic evaluation (liking), and that without a functioning dopaminergic wanting system, goal-directed approach collapses even when hedonic capacity is intact. The animal work is rigorous. Confidence docked from 0.85 to 0.82 because the paper predates the full characterisation of NAc shell hotspot anatomy, and the REE mapping requires treating a computational latent (z_goal) as the substrate rather than dopamine neurons directly.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If z_goal seeding and trajectory scoring operated through a single unified valence signal with no architectural separation, the wanting/liking dissociation this paper documents would be architecturally irreproducible in REE.",
+        "If approach behavior can emerge in REE from harm-avoidance gradients alone (no positive z_goal attractor), the claim that wanting requires a distinct representation would be weakened."
+      ],
+      "run_id": "2026-03-29_mech_112_incentive_salience_berridge1996",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.8,
+      "confidence_rationale": "This 2016 review consolidates two decades of wanting/liking dissociation research and demonstrates the robustness of the dissociation across species, conditions, and pathological states (addiction). The key addition over the 1996 paper is the demonstration that wanting can become sensitised and escalate beyond liking -- states are possible where wanting is very high and liking is very low or absent. This confirms that the two signals are not merely different labels for the same gradient, but genuinely independent computational processes. For MECH-112, this strengthens the argument that z_goal (wanting) must be a separately maintained latent, because if it were merely a transformation of benefit_eval_head (liking), the dissociation could not be reproduced. Confidence 0.80 because this is a review integrating many sources rather than a single novel experiment.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If a single latent variable could produce both wanting-like (prospective, persistent approach) and liking-like (consummatory spike) behavior through different read-out modes, MECH-112's claim for a distinct z_goal representation would be architecturally unnecessary.",
+        "If sensitisation-like dynamics (wanting escalating beyond liking) are not architecturally possible in REE, the pathological cases (addiction, compulsive approach) documented in this paper would be reproduced incorrectly."
+      ],
+      "run_id": "2026-03-29_mech_112_wanting_liking_addiction_berridge2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-117",
+      "confidence": 0.68,
+      "confidence_rationale": "Culbreth et al. 2023 use computational modeling of a reinforcement learning task to show that schizophrenia patients have reduced uncertainty-driven (goal-directed) exploration, with rlPFC abnormalities as the neural substrate. This supports MECH-117's dissociation because reduced exploration in schizophrenia is specifically linked to impaired goal-directed (wanting-like, prospective) processing, not to reduced reward sensitivity per se (liking-like). The rlPFC finding maps to the wanting pathway (prospective, frontal-maintained) rather than the striatal liking pathway. Confidence 0.68 because the paper is specifically about exploration-exploitation, not wanting/liking dissociation directly, so the mapping requires an inferential step. The neuroimaging data does support the prefrontal goal-maintenance (wanting) vs. reward-at-receipt (liking/striatal) distinction, but not as its primary claim.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_117",
+      "failure_signatures": [
+        "If schizophrenia exploration deficits were explained entirely by reduced reward sensitivity (liking) rather than by goal-representation failures (wanting), the rlPFC-specific finding would not appear and the wanting/liking dissociation would be unsupported.",
+        "If the exploration deficit correlates equally with consummatory and anticipatory anhedonia measures, the wanting-specific attribution would need revision."
+      ],
+      "run_id": "2026-03-29_mech_117_rl_exploration_schizophrenia_culbreth2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-117",
+      "confidence": 0.85,
+      "confidence_rationale": "This is the most direct empirical grounding for MECH-117's claim that wanting and liking are functionally dissociable. Berridge and Robinson demonstrate through dopamine depletion experiments that rats with near-total dopamine depletion show normal hedonic (liking) reactions to sucrose taste but do not seek or consume food (absent wanting/approach). This is the experimental proof of concept that a system can score hedonic value at receipt (liking signal intact) while failing completely to generate prospective approach drive (wanting signal absent). MECH-117 maps this to the REE distinction between benefit_eval_head (liking -- proximity spike at receipt) and z_goal_latent (wanting -- smooth gradient from distance). The dissociation is directly testable in REE because these two signals have different spatial and temporal profiles in trajectory scoring. Confidence 0.85 because this is primary experimental data, the dissociation is clean and unambiguous, and the mapping to REE is structurally direct.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_117",
+      "failure_signatures": [
+        "If REE's benefit_eval_head and z_goal_latent signals covary identically in all conditions (no conditions where one is present and the other absent), the functional dissociation this paper documents would not be architecturally reproducible.",
+        "If dopamine depletion in this paper had reduced both wanting and liking equivalently, the claim for distinct computational pathways would not hold and MECH-117 would need revision."
+      ],
+      "run_id": "2026-03-29_mech_117_wanting_liking_dopamine_berridge1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-021",
+      "confidence": 0.72,
+      "confidence_rationale": "Barrett et al. 2016 propose that depression is fundamentally a disorder of allostasis, characterised as a 'locked-in' brain that has become relatively insensitive to sensory context. The locked-in dynamic is a positive feedback loop: dysfunctional interoceptive predictions lead to large prediction errors, which increase reliance on prior predictions (because sensory signals are deemed unreliable), which further amplifies errors. The behavioral consequence is progressive withdrawal from approach behaviors -- behaviors that could provide disconfirming evidence are avoided, preventing updating of the dysfunctional priors. This is Q-021's Pathway A dynamics made explicit: when the approach/drive system fails to generate updating signals, the agent becomes locked into avoidance and quiescence. The paper directly supports the claim that pure avoidance produces behavioral flatness by describing the clinical trajectory of this process. Confidence 0.72 because the paper is theoretical and the active inference framing requires translation to REE's architecture.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_021",
+      "failure_signatures": [
+        "If behavioral avoidance in depression were driven primarily by excessive fear or threat signals (heightened harm-avoidance) rather than by failure of approach drives to update dysfunctional priors, Q-021's framing of pure-avoidance as sufficient for flatness would need revision.",
+        "If the locked-in feedback loop could be broken purely by harm-avoidance recalibration (without restoring approach drive), the necessity of approach signals for preventing quiescence would be weakened."
+      ],
+      "run_id": "2026-03-29_q_021_active_inference_depression_barrett2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-021",
+      "confidence": 0.73,
+      "confidence_rationale": "Stephan et al. 2016 provide a hierarchical Bayesian framework in which depression emerges from persistent interoceptive prediction errors that shift metacognitive beliefs toward allostatic self-inefficacy: the agent believes its internal regulation will fail, withdraws from effortful approach behaviors, and enters a state of behavioral quiescence that is functionally protective but catastrophically disabling. This is precisely Q-021's Pathway A clinical analog: when drive regulation fails or is chronically violated, the agent converges on low-action policy as the minimum-prediction-error strategy. The behavioral flatness is not a bug -- it is the optimal policy for an agent whose internal model predicts that approach will not reduce drive (self-inefficacy). Confidence 0.73 because this is a theoretical framework paper, not primary experimental data, and the connection to REE's pure-avoidance training requires additional inferential steps.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_021",
+      "failure_signatures": [
+        "If depressive behavioral quiescence were primarily driven by excessive harm-avoidance (heightened NoGo signals) rather than by failure of approach drives, Q-021's Pathway A framing would be incomplete and this paper's self-efficacy framework would not map cleanly.",
+        "If agents with intact approach drives but disrupted homeostatic prediction (high interoceptive prediction error) did not show behavioral flatness, the interoceptive inference pathway to quiescence would be empirically unsupported."
+      ],
+      "run_id": "2026-03-29_q_021_allostatic_selfefficacy_stephan2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-021",
+      "confidence": 0.7,
+      "confidence_rationale": "Culbreth et al. 2020 link avolition to reduced effort allocation in schizophrenia, correlating laboratory effort-cost decision making with daily-life motivational experience measured via ecological momentary assessment. The paper shows that individuals with greater avolition show reduced willingness to expend effort for reward in the laboratory, and that this laboratory measure predicts reduced goal-directed activity in daily life. Critically, the paper finds neural correlates in striatal activation deficits during effort allocation -- the wanting/approach circuitry. This provides behavioral and neural evidence for Q-021: agents with impaired approach drives (wanting circuitry) show flattened behavioral profiles both in structured laboratory tasks and in naturalistic daily-life settings. The behavioral flatness extends beyond the laboratory and constitutes genuine generalized policy flattening. Confidence 0.70 because the paper does not ablate approach drive specifically (it studies a patient population rather than an experimental training manipulation).",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_021",
+      "failure_signatures": [
+        "If avolition in schizophrenia were driven by elevated harm-avoidance (patients avoid effort because they fear failure) rather than by absent approach drive (patients simply do not have motivational pull toward goals), the Q-021 Pathway A interpretation would need revision.",
+        "If the effort-avoidance in avolition were fully explained by cognitive load or resource depletion rather than motivational drive failure, the link to approach signal absence would be indirect."
+      ],
+      "run_id": "2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-012",
+      "confidence": 0.7,
+      "confidence_rationale": "Schultz et al. 1997 demonstrate that dopamine neurons encode temporal difference prediction errors: they respond to unexpected rewards, transfer to predictive cues, and are depressed by expected reward omissions. Critically for SD-012, the paper shows that goal representations require multiple reward-prediction pairings over time -- the prediction error signal is what drives the transfer from reward to cue, and this transfer requires repeated cycles. This supports SD-012's requirement that resources must respawn after consumption (resource_respawn_on_consume=True) to enable repeated drive-reduction cycles: without repeated encounters, the prediction error cannot transfer from contact to approach trajectories, and z_goal cannot form through the trajectory-shaping pathway that SD-012 proposes. Confidence 0.70 rather than higher because the paper's primary contribution is TD learning in dopamine neurons, not drive-state modulation per se -- the connection to SD-012's drive-scaling formula is indirect, mediated by the requirement for repeated reward cycles.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_012",
+      "failure_signatures": [
+        "If z_goal seeded adequately from a single resource contact without repeated encounters, the iterative prediction-error mechanism this paper describes would not be necessary for goal representation formation.",
+        "If the prediction error signal in REE did not transfer from resource contact to approach trajectory over multiple episodes, the SD-012 architecture for z_goal formation via drive-scaled benefit accumulation would fail."
+      ],
+      "run_id": "2026-03-29_sd_012_dopamine_prediction_reward_schultz1997",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-012",
+      "confidence": 0.8,
+      "confidence_rationale": "Balleine and Dickinson 1998 establish that goal-directed action requires two separable learning processes: contingency learning (action-outcome) and incentive learning (acquisition and updating of outcome value as a function of current motivational state). The incentive learning component is critical for SD-012: the insular cortex lesion experiments show that animals can learn that an action produces a food outcome (contingency learning intact) but lose the ability to update the value of that outcome based on changes in drive state (incentive learning impaired). This directly supports SD-012's claim that benefit signals must be scaled by drive state for goal representations to form and update appropriately. Without drive-state modulation of outcome value, the agent can learn stimulus-outcome associations but cannot form goal representations that respond to current needs. Confidence 0.80 because this is rigorous animal behavioral data with pharmacological intervention and outcome devaluation paradigms.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_012",
+      "failure_signatures": [
+        "If insular cortex lesions in devaluation experiments left goal-directed behavior intact (animals still avoided devalued outcomes), the incentive learning mechanism required for drive-state updating would not be necessary, and SD-012's drive-scaling hypothesis would lose its empirical grounding.",
+        "If goal-directed behavior emerged equally under high and low drive in the devaluation paradigm (no drive-state sensitivity of outcome value), the fundamental SD-012 assumption would be contradicted."
+      ],
+      "run_id": "2026-03-29_sd_012_goal_directed_action_balleine1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-012",
+      "confidence": 0.85,
+      "confidence_rationale": "Keramati and Gutkin 2014 is the most directly relevant computational paper for SD-012. Their homeostatic RL (HRL) framework formalises exactly what SD-012 implements: reward is not a fixed property of an outcome but a function of how much the outcome reduces the distance between internal state and homeostatic setpoint. At high drive (large deviation from setpoint), the same outcome is more rewarding. At low drive (near setpoint), the same outcome is less rewarding. The SD-012 formula -- effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level) -- is a linear approximation of the HRL drive function. This paper provides the theoretical grounding and empirical plausibility arguments for this class of benefit scaling. Confidence 0.85 because this is a formal computational model with empirical grounding, not just a review, and its predictions about drive-state modulation of reward are directly instantiated in SD-012.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_012",
+      "failure_signatures": [
+        "If benefit signals in REE that do not scale with drive state produce adequate z_goal seeding, SD-012's hypothesis that drive-scaling is necessary would be empirically refuted.",
+        "If homeostatic drive state is irrelevant to goal formation -- if z_goal seeds equally well regardless of agent_energy -- the drive modulation mechanism would be architecturally unnecessary."
+      ],
+      "run_id": "2026-03-29_sd_012_homeostatic_rl_keramati2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T14:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-001",
+      "confidence": 0.62,
+      "confidence_rationale": "Causal manipulation (tACS) in humans provides rare evidence that gamma synchronization across sensory cortices is involved in multisensory integration, but the findings run contrary to simple binding predictions -- gamma tACS prevented sensory decoupling and delayed responses, suggesting binding may involve decoupling and re-coupling dynamics rather than sustained synchrony. Mixed direction: the paper challenges naive gamma-binding accounts while affirming that gamma dynamics are causally relevant to cross-modal entity integration.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_001",
+      "failure_signatures": [
+        "gamma_tACS_delayed_not_enhanced_congruence"
+      ],
+      "run_id": "2026-03-29_q001_crossmodal_gamma_tacs_misselhorn2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-001",
+      "confidence": 0.7,
+      "confidence_rationale": "Primate LFP and human EEG data showing two functionally distinct gamma bands (slow 25-45 Hz and fast 45-70 Hz) with different spatial coherence profiles in V1. The dual-gamma finding partially dissociates local feature processing from long-range integration relevant to entity binding. Genuine cross-species replication (monkey + human) strengthens transfer to REE, though the mechanism linking dual gammas to entity emergence remains a theoretical step.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_001",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q001_dual_gamma_primates_murty2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-001",
+      "confidence": 0.74,
+      "confidence_rationale": "High-quality mouse V1 study combining electrophysiology, optogenetics, and computational modeling. Directly shows a circuit mechanism by which gamma coherence across cortical regions tracks continuous vs. discontinuous image features -- a plausible substrate for entity-boundary binding. Transfer to human/primate entity emergence and to REE's latent-space binding requires additional mapping steps.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_001",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-002",
+      "confidence": 0.73,
+      "confidence_rationale": "Computational reaction-diffusion modeling anchored in super-resolution microscopy data directly quantifies how astrocyte process nanomorphology sets Ca microdomain spatial scale at tripartite synapses. The model predicts that individual synaptic contacts are the relevant spatial unit, and that swelling (pathological state) attenuates spatial restriction. This directly constrains the appropriate spatial resolution for R(x,t) in REE.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_002",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q002_astro_nanomorphology_ca_denizot2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-002",
+      "confidence": 0.72,
+      "confidence_rationale": "High-resolution 3D electron microscopy reconstruction of hippocampal tripartite synapses combined with reaction-diffusion simulation directly resolves how ER ultrastructure governs Ca microdomain scale within perisynaptic astrocytic processes. ER presence in 75% of PAPs, with highly diverse shapes, creates a heterogeneous landscape of Ca amplification and attenuation that further refines the spatial resolution picture for R(x,t).",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_002",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q002_er_ultrastructure_microdomain_denizot2025",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-002",
+      "confidence": 0.78,
+      "confidence_rationale": "In vivo two-photon imaging in mice identifies a precise spatial threshold (>23% of astrocyte arborization activated) that determines whether Ca activity remains localized to domains or spreads cell-wide to trigger gliotransmitter release. This is the most directly quantitative answer in the literature to how spatial extent of activation governs R-field output. High confidence because the finding is empirical (not purely modeling), has mechanistic grounding (IP3R2), and the spatial threshold concept maps directly to R(x,t) resolution design.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_002",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q002_spatial_threshold_ca_surge_lines2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-003",
+      "confidence": 0.68,
+      "confidence_rationale": "Expert review demonstrating that three IP3R isoforms (IP3R1, IP3R2, IP3R3) are expressed in astrocytes, each with distinct biophysical properties, distributions, and functional roles that generate qualitatively different spatiotemporal Ca dynamics. This provides the mechanistic basis for claiming that astrocyte Ca signaling is inherently multi-dimensional rather than scalar, directly informing the R(x,t) dimensionality question.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_003",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q003_ip3r_subtypes_dimensionality_sherwood2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-015",
+      "confidence": 0.65,
+      "confidence_rationale": "Widefield calcium imaging showing structured multi-second pre-movement dynamics distributed across cortex, including inhibition of motor cortex starting ~5s before self-initiated action. Establishes that commit-precursor signals are distributed (not a single token) and extend several seconds before movement -- constraining the timescale window for any commit token. Confidence reduced by species gap (mouse vs. human) and absence of direct commitment/inhibition paradigm.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_015",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q015_mesoscale_premovement_mitelut2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-015",
+      "confidence": 0.72,
+      "confidence_rationale": "Directly distinguishes proximal (just-in-time) from distal (planned-in-advance) intention using EEG, finding a distinct slow negative frontal 'intention potential' for distal intentions that is separable from the late RP. This is high-quality human EEG with clean experimental dissociation. Transfer risk is moderate because REE's commit token operates over multiple timescales simultaneously, whereas this work cleanly separates them.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_015",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q015_proximal_distal_intention_vinding2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-015",
+      "confidence": 0.7,
+      "confidence_rationale": "Haggard group fMRI-connectivity study identifying dFMC (dorsal fronto-median cortex / pre-SMA) as the veto locus with top-down suppressive connectivity to premotor cortex. Directly addresses the neural implementation of the 'point of no return' by showing that the veto signal has a specific anatomical seat and a specific connectivity signature. Confidence reduced by the indirect mapping: REE's commit token is a representation problem, not just a location problem.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_015",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q015_veto_dFMC_connectivity_kuhn2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-016",
+      "confidence": 0.68,
+      "confidence_rationale": "Thorough theoretical review synthesising WTA (striatal max) vs. soft-max (cortical) selection mechanisms and their RL implementation correspondences. Directly addresses the arbitration policy question with computational precision, arguing that both mechanisms co-exist at different timescales and serve complementary functions. Mixed direction because the paper does not resolve which policy prevents coupling collapse -- it describes both without adjudicating the failure modes.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_016",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q016_corticostriatal_WTA_morita2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-016",
+      "confidence": 0.73,
+      "confidence_rationale": "High-impact Nature paper with optogenetic dissection of indirect pathway function in a licking task. Shows that indirect SPNs suppress ongoing actions and enable exploration via inter-collicular competition -- a concrete mechanism for how the indirect pathway mediates the go/no-go arbitration that is central to Q-016. Very direct mechanistic evidence. Confidence reduced by species (mouse) and simplicity of the lateralized licking task compared to tri-loop conflict.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_016",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q016_indirect_pathway_collicular_lee2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-016",
+      "confidence": 0.66,
+      "confidence_rationale": "Human fMRI with dynamic causal modelling showing distinct fronto-basal ganglia pathways for proactive (prepare-to-inhibit) vs. reactive (cancel-in-flight) inhibition, with a longer DLPFC-caudate-IFG pathway for proactive and a shorter IFG-SMA-STN pathway for reactive. This maps onto REE's pre-commit vs. post-commit suppression channels and gives mechanistic grounding for why the arbitration policy needs to operate at two different timescales within the same anatomical network.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_016",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q016_proactive_reactive_inhibition_zhang2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-017",
+      "confidence": 0.72,
+      "confidence_rationale": "MVPA fMRI study showing that brain states predict both normative valence and arousal ratings of IAPS stimuli, and that the neuroanatomical encodings of valence and arousal are geometrically orthogonal -- directly validating the circumplex model's core claim. This is the most directly relevant empirical result for Q-017: two axes are sufficient and they are orthogonal in neural space. Confidence limited by the purely affective focus; control/precision axes are not tested.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_017",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.78,
+      "confidence_rationale": "High-quality single-unit recording in primates (Cell, 2021). Shows directly that hippocampal neurons tile an abstract value space with place-like fields -- value encoding is not merely tagging but genuine map-structured representation. This is the strongest existing evidence that hippocampal cognitive maps extend to value geometry, directly supporting MECH-073 and challenging the ARC-007 framing that the hippocampal module is value-computation-free.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q020_abstract_value_map_knudsen2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.72,
+      "confidence_rationale": "Empirical calcium imaging plus optogenetics in freely moving mice, published in a top-tier venue. Directly demonstrates that ventral CA1 neurons form a stable 'emotional geography' encoding anxiogenic zones -- valence is spatially organized within the hippocampal map, not merely externally tagged onto it post hoc. This directly challenges ARC-007's framing that the hippocampal module is value-free, though the dorsal/ventral distinction creates a partial escape hatch.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q020_valence_geography_jimenez2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.65,
+      "confidence_rationale": "Provides direct dorsal CA1 evidence supporting the value-free spatial map hypothesis, consistent with ARC-007's framing. Rats showed clear goal-value behavioral sensitivity while dorsal CA1 place cells did not modulate firing by reward magnitude. This supports the hypothesis that dorsal hippocampus provides a value-neutral spatial substrate, with value encoding occurring elsewhere. Confidence is moderate because the finding is null (no modulation) in a specific subregion and task, and the dorsal/ventral distinction means it is compatible with the Jimenez/Knudsen evidence rather than contradicting it.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [],
+      "run_id": "2026-03-29_q020_value_free_map_duvelle2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-29T15:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-29T11:14:39.629457Z",
+  "generated_at_utc": "2026-03-29T12:23:52.494031Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

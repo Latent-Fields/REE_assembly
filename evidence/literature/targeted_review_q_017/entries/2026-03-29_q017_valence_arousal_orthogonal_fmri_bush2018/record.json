@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_017",
+  "entry_id": "2026-03-29_q017_valence_arousal_orthogonal_fmri_bush2018",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-017"],
+  "source": {
+    "title": "Common Functional Brain States Encode both Perceived Emotion and the Psychophysiological Response to Affective Stimuli",
+    "authors": ["Keith A. Bush", "Anthony Privratsky", "Jonathan Gardner", "Melissa J. Zielinski", "Clinton D. Kilts"],
+    "year": 2018,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-018-33621-6"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "MVPA fMRI study showing that brain states predict both normative valence and arousal ratings of IAPS stimuli, and that the neuroanatomical encodings of valence and arousal are geometrically orthogonal -- directly validating the circumplex model's core claim. This is the most directly relevant empirical result for Q-017: two axes are sufficient and they are orthogonal in neural space. Confidence limited by the purely affective focus; control/precision axes are not tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_017", "valence", "arousal", "circumplex_model", "orthogonality", "fmri", "MVPA", "affective_dimensions"],
+  "mapping": {
+    "source_claim_statement": "fMRI brain states (multivariate patterns) significantly predict normative valence and arousal scores of IAPS stimuli and individual skin conductance responses; geometric analysis of the neuroanatomical regression parameters shows that valence and arousal encodings are orthogonal, consistent with the circumplex model of emotion.",
+    "ree_translation": "REE's control plane includes valence (mu/kappa, the harm/benefit signal) and arousal (broadly corresponding to precision weighting and drive level). Q-017 asks whether these are genuinely orthogonal axes or whether they collapse under certain conditions. Bush et al. provide fMRI evidence that, at least for passively viewed affective stimuli, valence and arousal are encoded as orthogonal dimensions in neural state space. This supports the hypothesis that REE's mu/kappa axis and its precision/arousal axis constitute a genuinely minimal pair of independent axes -- removing either one cannot be compensated by the other. However, the paper does not test the commitment-state or control-regime axes that REE also posits.",
+    "mapping_caveat": "The study used passive viewing of static IAPS images in healthy adults -- a very different context from REE's active agent navigating harm-relevant decisions. The orthogonality result may not hold under conditions of high arousal where valence is extreme (the circumplex model predicts boundary effects at high arousal). REE's control plane includes axes beyond valence and arousal (commitment state, precision weight, goal salience) that are not tested here; showing valence-arousal orthogonality does not confirm the full minimal set.",
+    "source_context": "Human fMRI, MVPA regression, IAPS passive viewing paradigm, healthy demographically diverse adults (n=19)"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.28,
+    "notes": "Clean MVPA approach with geometric validation of the circumplex prediction. Main limitation is passive viewing context vs. REE's active decision context, and the restricted two-axis scope."
+  }
+}

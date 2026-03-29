@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_001",
+  "entry_id": "2026-03-29_q001_crossmodal_gamma_tacs_misselhorn2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-001"],
+  "source": {
+    "title": "Synchronization of Sensory Gamma Oscillations Promotes Multisensory Communication",
+    "authors": ["Jonas Misselhorn", "Bettina C Schwab", "Till R Schneider", "Andreas K Engel"],
+    "year": 2019,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0101-19.2019"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Causal manipulation (tACS) in humans provides rare evidence that gamma synchronization across sensory cortices is involved in multisensory integration, but the findings run contrary to simple binding predictions -- gamma tACS prevented sensory decoupling and delayed responses, suggesting binding may involve decoupling and re-coupling dynamics rather than sustained synchrony. Mixed direction: the paper challenges naive gamma-binding accounts while affirming that gamma dynamics are causally relevant to cross-modal entity integration.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["gamma_tACS_delayed_not_enhanced_congruence"],
+  "tags": ["q_001", "gamma_oscillations", "multisensory_binding", "tACS", "human", "causal_manipulation", "binding_debate"],
+  "mapping": {
+    "source_claim_statement": "40 Hz tACS over visual and somatosensory cortex delayed responses to congruent visual-tactile stimuli; EEG reanalysis showed decoupling of sensory gamma during congruent trials. The authors conclude that cross-modal congruence processing involves corticocortical communication rather than feature binding via sustained synchrony, and that gamma tACS prevented the necessary decoupling.",
+    "ree_translation": "For REE, entity emergence across modalities (or across latent feature dimensions) may require a decoupling-then-rebinding cycle rather than sustained synchronized activity. This challenges the assumption that R(x,t)-mediated entity binding operates through simple coherence enhancement. Instead, the residue field may need to support dynamic, transient binding events -- more like a gating signal than a sustained synchronizer.",
+    "mapping_caveat": "tACS has uncertain spatial and circuit specificity; whether the observed effects reflect altered gamma synchrony per se or broader neuronal excitability changes is debated. The visual-tactile paradigm is one specific form of multisensory binding, and the decoupling interpretation is the authors' interpretation of a null/paradoxical result. The implications for REE's single-modality internal entity binding are indirect.",
+    "source_context": "Human subjects (n=variable, male and female), EEG + 4-electrode tACS over visual and somatosensory cortex, visual-tactile amplitude matching task assessing congruence effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Causal manipulation (tACS) in humans is a methodological strength. However, tACS mechanism uncertainty and the paradoxical result reduce interpretive clarity. Mapping fidelity is lower than for the other Q-001 entries because the implications for REE entity binding require inferring from an unexpected result. Transfer risk is higher due to multisensory-specific context."
+  }
+}

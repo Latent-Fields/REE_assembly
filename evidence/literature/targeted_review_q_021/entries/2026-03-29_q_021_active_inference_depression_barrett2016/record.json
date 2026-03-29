@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_021",
+  "entry_id": "2026-03-29_q_021_active_inference_depression_barrett2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["Q-021"],
+  "source": {
+    "title": "An active inference theory of allostasis and interoception in depression",
+    "authors": ["Barrett, L.F.", "Quigley, K.S.", "Hamilton, P."],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2016.0011",
+    "pmid": "28080969",
+    "pmc": "PMC5062100",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28080969/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Barrett et al. 2016 propose that depression is fundamentally a disorder of allostasis, characterised as a 'locked-in' brain that has become relatively insensitive to sensory context. The locked-in dynamic is a positive feedback loop: dysfunctional interoceptive predictions lead to large prediction errors, which increase reliance on prior predictions (because sensory signals are deemed unreliable), which further amplifies errors. The behavioral consequence is progressive withdrawal from approach behaviors -- behaviors that could provide disconfirming evidence are avoided, preventing updating of the dysfunctional priors. This is Q-021's Pathway A dynamics made explicit: when the approach/drive system fails to generate updating signals, the agent becomes locked into avoidance and quiescence. The paper directly supports the claim that pure avoidance produces behavioral flatness by describing the clinical trajectory of this process. Confidence 0.72 because the paper is theoretical and the active inference framing requires translation to REE's architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If behavioral avoidance in depression were driven primarily by excessive fear or threat signals (heightened harm-avoidance) rather than by failure of approach drives to update dysfunctional priors, Q-021's framing of pure-avoidance as sufficient for flatness would need revision.",
+    "If the locked-in feedback loop could be broken purely by harm-avoidance recalibration (without restoring approach drive), the necessity of approach signals for preventing quiescence would be weakened."
+  ],
+  "tags": ["q_021", "depression", "active_inference", "allostasis", "locked_in", "behavioral_avoidance", "approach_withdrawal", "interoceptive_prediction"],
+  "mapping": {
+    "source_claim_statement": "Depression is a disorder of allostasis in which the brain becomes locked into dysfunctional interoceptive predictions via a positive feedback loop. Peripheral physiological changes lead to imprecise interoceptive afferents, increasing reliance on prior predictions. Behavioral avoidance prevents disconfirming sensory evidence, locking in the dysfunctional state. The result is progressive behavioral withdrawal and reduced initiative across all domains -- a clinically observable form of behavioral flatness driven by failed allostatic regulation.",
+    "ree_translation": "Q-021 asks whether pure harm-avoidance training produces behavioral flatness. Barrett et al. 2016 show that in biological depression, behavioral flatness emerges from a system that has become oriented toward avoiding disconfirming signals -- not from actively elevated harm fear, but from the absence of approach signals that would otherwise provide updating. The locked-in dynamic is what REE's Q-021 tests: can an agent trained only on harm signals enter a stable quiescent attractor state? The Barrett framework predicts yes: without approach signals to pull the agent toward varied contexts, the minimum-prediction-error policy converges on non-action. The paper also provides a Q-021 Pathway B analog: even when drive is present (allostatic need exists), if the metacognitive belief about self-efficacy is broken, behavioral flatness persists -- this maps to MECH-113/114 (D_eff pathway to flatness) in Q-021's two-pathway analysis.",
+    "mapping_caveat": "Barrett et al. 2016 address clinical depression in humans via an active inference framework -- neither the patient population nor the computational framework maps directly to REE's training regime question. The active inference account requires treating REE's training objective as a form of prior-setting: pure harm-avoidance training installs a prior that only avoidance reduces surprise, which is an inferential framing not native to REE's gradient descent training. The paper does not study trained agents or ablated training signals -- it studies patients with affective disorders. The translation requires substantial conceptual bridging.",
+    "source_context": "Theoretical review; Philosophical Transactions of the Royal Society B; active inference/predictive processing framework; draws on clinical depression and affective neuroscience literature; no primary experimental data."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Philosophical Transactions Royal Society B, high-prestige journal. Source quality high. Mapping fidelity moderate -- the locked-in dynamic is conceptually related but requires active inference framing that REE does not natively use. Transfer risk moderate-high due to the clinical-to-computational translation gap."
+  }
+}

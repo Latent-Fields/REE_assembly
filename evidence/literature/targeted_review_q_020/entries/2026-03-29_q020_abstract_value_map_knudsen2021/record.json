@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-03-29_q020_abstract_value_map_knudsen2021",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-020"],
+  "source": {
+    "title": "Hippocampal neurons construct a map of an abstract value space",
+    "authors": [
+      "Knudsen EB",
+      "Wallis JD"
+    ],
+    "year": 2021,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2021.07.010",
+    "pmid": "34348112",
+    "pmcid": "PMC8459666"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality single-unit recording in primates (Cell, 2021). Shows directly that hippocampal neurons tile an abstract value space with place-like fields -- value encoding is not merely tagging but genuine map-structured representation. This is the strongest existing evidence that hippocampal cognitive maps extend to value geometry, directly supporting MECH-073 and challenging the ARC-007 framing that the hippocampal module is value-computation-free.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_020", "value_place_fields", "abstract_value_space", "cognitive_map", "primate_hippocampus", "reward_encoding", "single_unit"],
+  "mapping": {
+    "source_claim_statement": "Primate hippocampal neurons exhibit 'value place fields' -- spatially tuned responses to positions in an abstract reward-value space defined by the relative value of three choice options. These fields share four properties with spatial place cells: consistency across experiences, multidimensional tuning, directional selectivity, and remapping in novel contexts. They generalize across contexts as experience accumulates.",
+    "ree_translation": "MECH-073 proposes valence is intrinsic to hippocampal map geometry; Knudsen and Wallis provide the most direct demonstration that the hippocampus actively *constructs* a value map, not merely receives one. The abstract value space maps directly onto REE's residue field R(x,t): R is not just geometrically tagged by external valence input but is the hippocampus's own representational structure. For ARC-007, the critical implication is that 'no new value computation' must be interpreted carefully -- the hippocampus does generate value-structured representations, but these may be retrieved rather than computed de novo on each planning step.",
+    "mapping_caveat": "The value space here is purely abstract (relative option value in a choice task), not harm-avoidance or spatial-emotional geography. REE's residue field conflates harm, goal, and spatial salience. Whether value place fields would emerge for harm-related residue (vs. reward-relative-value) is untested. Primate choice-value task differs substantially from agent harm-navigation scenarios; transfer requires assuming the same mechanism operates across value types.",
+    "source_context": "Primate (macaque) hippocampus; single-unit electrophysiology during abstract value-based decision task; cue values defined by relative reward magnitudes"
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Cell paper with clean primate electrophysiology. Mapping fidelity reduced because value in the paper is purely abstract reward comparison, whereas MECH-073 and ARC-007 concern harm/goal valence in navigation context. The four-property parallelism with spatial place cells is strong but the value domain differs from REE's residue field."
+  }
+}

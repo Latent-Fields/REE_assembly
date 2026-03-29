@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_023",
+  "entry_id": "2026-03-29_q023_potential_games_monderer1996",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-023"],
+  "source": {
+    "title": "Potential Games",
+    "authors": [
+      "Monderer D",
+      "Shapley LS"
+    ],
+    "year": 1996,
+    "venue": "Games and Economic Behavior",
+    "doi": "10.1006/game.1996.0044"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Foundational theoretical result: any finite game with a potential function has the Finite Improvement Property (all improvement paths terminate at Nash equilibria), making Nash equilibria reachable via decentralized best-response dynamics. If REE multiagent systems with other-cost-aversion can be cast as ordinal potential games, convergence to Nash equilibria -- and by extension to ethical attractors -- follows from this theorem. The confidence gap is the if: whether REE's counterfactual utility (MECH-127) preserves the ordinal potential structure is unproven.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_023", "potential_game", "Nash_equilibrium", "convergence", "Finite_Improvement_Property", "ordinal_potential", "game_theory"],
+  "mapping": {
+    "source_claim_statement": "Finite games with an ordinal potential function have the Finite Improvement Property: every sequence of unilateral better-reply moves terminates at a pure Nash equilibrium. Exact potential games are equivalent to congestion games. Fictitious play converges in any potential game. The potential function strictly increases along improvement paths, ensuring convergence without coordination.",
+    "ree_translation": "Q-023 asks whether a REE multiagent system with other-cost-aversion primitives can be formally shown to converge to ethical attractors. Monderer and Shapley's framework provides the minimal sufficient condition: if the REE utility structure (including ARC-034's other-cost penalty and INV-028's harm internalization) admits an ordinal potential function, then best-response learning by REE agents converges to a Nash equilibrium. The ethical attractor is the Nash equilibrium of the potential game, which by the potential-maximizing property of stochastic stability (Young 1993) would be the one maximizing the potential function -- i.e., the one minimizing aggregate harm. This is the foundational mathematical gateway for Q-023.",
+    "mapping_caveat": "The potential game framework requires that individual payoff differences from unilateral deviation have the same sign as potential function differences (ordinal) or the same value (exact). MECH-127 introduces counterfactual utility -- an agent's payoff depends on what would have happened without their action -- which creates interdependence that may break the ordinal potential condition. Whether the REE utility structure actually admits a potential function must be separately verified. The framework also assumes finite strategy spaces; REE agents operate over continuous action spaces in general.",
+    "source_context": "Formal game theory; mathematical proof; applies to finite N-player games in strategic form"
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Landmark mathematical paper with extremely high source quality. Mapping fidelity is the bottleneck: the potential game condition may not hold for REE's counterfactual utility structure (MECH-127). Transfer risk includes continuous-action extension and the gap between Nash equilibrium convergence and 'ethical attractor' convergence -- these are not identical."
+  }
+}

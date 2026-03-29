@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-03-29_sd_012_dopamine_prediction_reward_schultz1997",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "A neural substrate of prediction and reward",
+    "authors": ["Schultz, W.", "Dayan, P.", "Montague, P.R."],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5306.1593",
+    "pmid": "9054347",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9054347/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Schultz et al. 1997 demonstrate that dopamine neurons encode temporal difference prediction errors: they respond to unexpected rewards, transfer to predictive cues, and are depressed by expected reward omissions. Critically for SD-012, the paper shows that goal representations require multiple reward-prediction pairings over time -- the prediction error signal is what drives the transfer from reward to cue, and this transfer requires repeated cycles. This supports SD-012's requirement that resources must respawn after consumption (resource_respawn_on_consume=True) to enable repeated drive-reduction cycles: without repeated encounters, the prediction error cannot transfer from contact to approach trajectories, and z_goal cannot form through the trajectory-shaping pathway that SD-012 proposes. Confidence 0.70 rather than higher because the paper's primary contribution is TD learning in dopamine neurons, not drive-state modulation per se -- the connection to SD-012's drive-scaling formula is indirect, mediated by the requirement for repeated reward cycles.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If z_goal seeded adequately from a single resource contact without repeated encounters, the iterative prediction-error mechanism this paper describes would not be necessary for goal representation formation.",
+    "If the prediction error signal in REE did not transfer from resource contact to approach trajectory over multiple episodes, the SD-012 architecture for z_goal formation via drive-scaled benefit accumulation would fail."
+  ],
+  "tags": ["sd_012", "dopamine", "prediction_error", "temporal_difference", "reward_learning", "goal_representation", "repeated_cycles"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons encode reward prediction errors (RPE): positive RPE (unexpected reward), zero RPE (predicted reward), negative RPE (omission of expected reward). Over training, the dopamine response transfers from primary reward to the earliest predictive cue. This transfer requires multiple reward-prediction pairings and reflects the iterative TD update process that builds a prediction map from environmental cues to future reward.",
+    "ree_translation": "SD-012 requires resource_respawn_on_consume=True to enable repeated drive-reduction cycles for z_goal formation. The Schultz et al. grounding for this requirement: goal representations in biology require iterative prediction-error updates across multiple reward encounters to build stable cue-reward associations. A single contact is not enough to establish a goal representation -- the prediction error signal must repeatedly propagate from reward receipt back through approach trajectories over many episodes. In REE's architecture, this translates to needing multiple benefit exposure events (each scaled by drive) to accumulate benefit_exposure above the seeding threshold. The drive scaling (SD-012) ensures each contact is weighted appropriately by current need, and the respawn requirement ensures multiple contacts are possible.",
+    "mapping_caveat": "Schultz et al. 1997 study primate VTA dopamine neurons in a classical conditioning paradigm, not goal-directed instrumental action. The prediction error signal they document is a biological correlate of TD learning, whereas REE's z_goal is trained by gradient descent with an explicit benefit_exposure EMA signal -- different mechanisms that share the functional principle but not the implementation. The paper does not directly address drive-state modulation of prediction error magnitude, which is the specific claim of SD-012. The connection to drive scaling requires additional inference from Keramati and Gutkin 2014 to be complete.",
+    "source_context": "Electrophysiology in awake behaving primates; VTA/substantia nigra dopamine neurons; classical conditioning paradigm with juice reward; collaboration between Schultz neurophysiology lab and Dayan/Montague computational neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Science, landmark paper with very high citation count. Source quality extremely high. Mapping fidelity moderate -- the TD prediction error principle supports the need for repeated reward cycles but does not directly support drive-state scaling of benefit signals. Transfer risk moderate because the biological implementation (dopamine neurons) and the REE implementation (EMA benefit_exposure) differ substantially."
+  }
+}

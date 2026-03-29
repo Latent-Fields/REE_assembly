@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_102",
+  "entry_id": "2026-03-29_mech_102_evolution_cooperation_axelrod1984",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["MECH-102"],
+  "source": {
+    "title": "The Evolution of Cooperation",
+    "authors": ["Robert Axelrod"],
+    "year": 1984,
+    "venue": "Basic Books",
+    "doi": null,
+    "isbn": "978-0-465-02122-2",
+    "note": "Foundational monograph; Axelrod 1980a/1980b in Journal of Conflict Resolution also relevant (doi:10.1177/002200278002400101)"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Axelrod's iterated prisoner's dilemma framework is one of the most rigorous formal models of when cooperation breaks down and defection (analogous to conflict/violence) becomes the equilibrium strategy. The core finding -- that cooperation persists when the shadow of the future is long enough, and collapses when repeat interaction is no longer expected -- maps directly onto MECH-102's claim that violence emerges when coordination pathways are unavailable. Axelrod's 'provocability' condition (immediate retaliation to defection) and 'forgiveness' condition (return to cooperation after defection is punished) together imply a threshold structure where escalation to high-energy conflict is reserved for cases where the cooperative equilibrium cannot be restored. Confidence is moderate-high because the formal structure is compelling, but the translation from iterated PD to REE's error-correction framework requires non-trivial interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_102", "game_theory", "cooperation_breakdown", "defection", "iterated_prisoners_dilemma", "escalation", "coordination_failure"],
+  "mapping": {
+    "source_claim_statement": "Cooperation can emerge and persist among self-interested agents when interactions are repeated and the future is sufficiently valued. When cooperation breaks down -- through defection, noise, or structural conditions that truncate expected future interaction -- retaliatory escalation follows. Tit-for-tat (provocable, forgiving, clear) outperforms both unconditional cooperation and unconditional defection. Escalation spirals result from cooperation failure in noisy or finite-horizon environments.",
+    "ree_translation": "In REE terms, 'repeated interaction with valued future' is equivalent to a long-horizon coherence bias (INV-029 / love as structural preference for coordination-preserving futures). The cooperative equilibrium represents the low-energy coordination pathway. When structural conditions close off the cooperative equilibrium -- finite horizon, loss of future interaction, irreversible defection by the other party -- Axelrod's model predicts defection as the rational response, which maps onto MECH-102's violence-as-terminal-error-correction. The 'shadow of the future' condition maps onto the agent's forward model projecting whether coherent coordination futures remain accessible. Escalation spirals from noise-driven mutual defection correspond to MECH-102's condition (c): commitment architecture failure where consequences cannot be modelled beyond the immediate step.",
+    "mapping_caveat": "Axelrod's model is explicitly rationalist and payoff-based: agents defect when defection maximises payoff, not when error-correction architecture demands it. MECH-102 frames violence as an architectural mechanism, not a strategic choice. The translation is more metaphorical than formal: REE's 'low-energy coordination pathway unavailability' is not the same as Axelrod's 'cooperative equilibrium instability'. The model also operates at a dyadic/social level and does not address the internal computational architecture of individual agents. Additionally, Axelrod's framework is about symmetric two-party games; MECH-102's claim is about an agent's unilateral error-correction decision.",
+    "source_context": "Formal game theory; iterated prisoner's dilemma tournaments with computer strategies; later extended to evolutionary and biological contexts. Originally aimed at political science and international relations."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is very high -- foundational, rigorous, widely validated. Mapping fidelity is moderate: the structural parallel (cooperation failure -> escalation) is strong, but the mechanism level (strategic payoff vs. architectural error-correction) differs. Transfer risk is moderate because the formal conditions for cooperation breakdown in Axelrod's model (finite horizon, unilateral defection, noise) have direct analogues in REE's pathway-closure conditions, making the translation more grounded than purely metaphorical."
+  }
+}

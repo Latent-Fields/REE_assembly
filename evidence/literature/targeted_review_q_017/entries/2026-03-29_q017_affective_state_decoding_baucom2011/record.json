@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_017",
+  "entry_id": "2026-03-29_q017_affective_state_decoding_baucom2011",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-017"],
+  "source": {
+    "title": "Decoding the neural representation of affective states",
+    "authors": ["Laura B. Baucom", "Douglas H. Wedell", "Jing Wang", "David N. Blitzer", "Svetlana V. Shinkareva"],
+    "year": 2011,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2011.07.037"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "MVPA fMRI study showing above-chance prediction of valence, arousal, and combined affective states from whole-brain patterns, with individual-difference multidimensional scaling (MDS) of fMRI data recovering a 2D structure consistent with the circumplex model. Supports dimensionality claim (two axes sufficient to organise affective neural space) but is older, smaller, and uses block design rather than event-related paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_017", "valence", "arousal", "MVPA", "fmri", "multidimensional_scaling", "circumplex_model", "affective_state_decoding"],
+  "mapping": {
+    "source_claim_statement": "Multivariate whole-brain patterns predict valence, arousal, and combined affective states above chance across a range of voxel numbers; MDS of fMRI pattern distances recovers a 2D space separating valence and arousal levels, consistent with the circumplex model of affect.",
+    "ree_translation": "The MDS finding is the most REE-relevant result: neural state space spontaneously organises into a low-dimensional structure whose principal dimensions correspond to valence and arousal. For Q-017, this means that if one starts with high-dimensional fMRI brain states and allows dimensionality reduction to find the natural geometry, two axes emerge that map onto the circumplex dimensions. This converges with Bush et al. (2018) to support the hypothesis that REE's mu/kappa and precision/arousal axes are the minimal sufficient pair for affective state encoding. The methodology (MVPA plus MDS) is also a proof-of-concept for how REE might empirically validate its own axis minimality: dimensionality reduction of the agent's latent state representations should recover the claimed control axes if they are genuinely minimal.",
+    "mapping_caveat": "Block design fMRI conflates transient stimulus-evoked responses with sustained state representations -- it is unclear whether the 2D MDS structure reflects moment-to-moment affective encoding or sustained emotional state. The circumplex model was derived from self-report behavioural data; finding neural correlates consistent with it does not validate that these two axes are causally sufficient for control-plane function in REE. The participant sample and stimuli are the same passive-viewing IAPS type, limiting generalization.",
+    "source_context": "Human fMRI, block design, IAPS passive viewing, healthy adults, MVPA with MDS analysis"
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "Older study with block design and smaller sample but provides converging MDS evidence for the circumplex dimensionality claim. Together with Bush 2018, these two papers constitute a reasonable convergent case for valence-arousal orthogonality in neural state space."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_004",
+  "entry_id": "2026-03-29_sd_004_successor_representation_dayan1993",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["SD-004"],
+  "source": {
+    "title": "Improving Generalization for Temporal Difference Learning: The Successor Representation",
+    "authors": ["Dayan, Peter"],
+    "year": 1993,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco.1993.5.4.613",
+    "pmid": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the foundational paper introducing the successor representation -- the computational substrate that Stachenfeld et al. (2017) later linked to hippocampal place cells. Dayan shows that representing states by their expected future state-occupancies (discounted, policy-weighted) enables efficient generalisation and long-horizon value computation without per-step simulation. This directly grounds SD-004's planning-horizon claim: action objects as SR units collapse multi-step sequences into single entries, giving the same computational advantage Dayan demonstrated for temporally extended state representations. Confidence below 0.85 because the original paper predates neural binding; the hippocampal link is established by subsequent work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SR is defined over primitive states; Dayan does not consider action-object compression -- the extension to action-consequence chunks requires additional theoretical work (temporal abstraction, options framework)",
+    "SR remains policy-dependent; when the agent's policy changes, the SR must be relearned -- this raises the question of whether action objects can serve as a stable map backbone across policy updates"
+  ],
+  "tags": ["sd_004", "successor_representation", "temporal_difference", "reinforcement_learning", "planning", "state_representation", "temporal_abstraction"],
+  "mapping": {
+    "source_claim_statement": "Representing state i as a vector encoding the expected discounted future occupancy of all states j (the successor representation M(i,j)) provides an appropriate generalisation structure for TD learning. States with similar successors are represented similarly. The SR can be learned by TD machinery applied to state-indicator features. Applied to a navigation task, the SR produces representations that correctly adapt to barriers -- suggesting the representation encodes reachability structure, not geometry.",
+    "ree_translation": "The SR provides the theoretical foundation for SD-004. In REE, action objects are essentially SR units over action-consequence space rather than raw state space: each action object M(a, a') encodes the expected discounted occupancy of future action-objects given current action-object a under the agent's policy. Dayan's efficiency result (value computation as a simple linear read from SR without per-step simulation) is the computational rationale for SD-004's claim that action-object navigation extends planning horizon beyond raw z_world traversal. The barrier-adaptation result in Dayan also prefigures the hippocampal flexible-rerouting behaviour SD-004 must support.",
+    "mapping_caveat": "Dayan's SR is over primitive states; SD-004 requires SR over action objects (compressed multi-step chunks). This extension requires the options/temporal-abstraction framework (Sutton et al. 1999) to formalise, which Dayan (1993) does not address. The policy-dependence of SR means that the action-object map backbone will shift as the agent's policy changes -- whether this is acceptable for long-horizon planning or requires a more stable substrate is an open design question for SD-004.",
+    "source_context": "Pure computational paper; theoretical derivation with a toy navigation task illustration. No empirical neural data. Predates the hippocampal SR connection by approximately 20 years."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (foundational paper, 800+ citations). Mapping fidelity good for the computational principle; moderate because the action-object extension requires temporal abstraction machinery not in the original paper. Transfer risk moderate: the efficiency argument transfers directly, but the stability question is not addressed."
+  }
+}

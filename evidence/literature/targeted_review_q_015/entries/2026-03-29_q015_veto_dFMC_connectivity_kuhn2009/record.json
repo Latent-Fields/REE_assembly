@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_015",
+  "entry_id": "2026-03-29_q015_veto_dFMC_connectivity_kuhn2009",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-015"],
+  "source": {
+    "title": "Intentional inhibition: how the 'veto-area' exerts control",
+    "authors": ["Simone Kuhn", "Patrick Haggard", "Marcel Brass"],
+    "year": 2009,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.20711"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Haggard group fMRI-connectivity study identifying dFMC (dorsal fronto-median cortex / pre-SMA) as the veto locus with top-down suppressive connectivity to premotor cortex. Directly addresses the neural implementation of the 'point of no return' by showing that the veto signal has a specific anatomical seat and a specific connectivity signature. Confidence reduced by the indirect mapping: REE's commit token is a representation problem, not just a location problem.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_015", "veto", "point_of_no_return", "dFMC", "pre_SMA", "intentional_inhibition", "commitment_token"],
+  "mapping": {
+    "source_claim_statement": "Voluntary inhibition of a prepared action selectively activates dorsal fronto-median cortex (dFMC/pre-SMA), and effective connectivity analysis reveals that dFMC exerts top-down inhibitory influence over premotor areas. This constitutes a 'veto-area' that mediates intentional suppression of near-complete motor programs.",
+    "ree_translation": "The commit token in REE must be cancellable up to a specific window -- the pre-SMA veto window -- after which the motor program becomes irreversible. The existence of a dedicated veto circuit with its own connectivity signature implies that the minimal token contract must include a 'cancellation-window-open' flag that remains active until the point of no return. Once dFMC connectivity to premotor cortex is severed (or in REE terms, once the pre-commit simulation channel closes), the token transitions to a locked-post-commit state. The minimal contract is thus: (planned-at, cancel-open, committed-at).",
+    "mapping_caveat": "The paper uses a motor preparation paradigm with a specific perceptual cue to inhibit. REE's commit boundary spans cognitive/ethical as well as motor commitments; the dFMC locus may be specific to motor-level veto and may not generalize to E3-level ethical commitment gates. Additionally, 'top-down inhibition of premotor areas' as measured by fMRI effective connectivity is a coarser signal than what REE would need to implement a precise cancel-window flag.",
+    "source_context": "Human fMRI, voluntary action inhibition task, healthy adults, effective connectivity analysis (structural equation modelling)"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Haggard lab work on veto is among the most cited in the field. fMRI connectivity does not give timing resolution -- cannot say exactly when the cancel window closes. Transfer risk from motor to cognitive-ethical commits is real."
+  }
+}

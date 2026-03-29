@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_117",
+  "entry_id": "2026-03-29_mech_117_wanting_liking_dopamine_berridge1998",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-117"],
+  "source": {
+    "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
+    "authors": ["Berridge, K.C.", "Robinson, T.E."],
+    "year": 1998,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/S0165-0173(98)00019-8",
+    "pmid": "9858756",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9858756/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the most direct empirical grounding for MECH-117's claim that wanting and liking are functionally dissociable. Berridge and Robinson demonstrate through dopamine depletion experiments that rats with near-total dopamine depletion show normal hedonic (liking) reactions to sucrose taste but do not seek or consume food (absent wanting/approach). This is the experimental proof of concept that a system can score hedonic value at receipt (liking signal intact) while failing completely to generate prospective approach drive (wanting signal absent). MECH-117 maps this to the REE distinction between benefit_eval_head (liking -- proximity spike at receipt) and z_goal_latent (wanting -- smooth gradient from distance). The dissociation is directly testable in REE because these two signals have different spatial and temporal profiles in trajectory scoring. Confidence 0.85 because this is primary experimental data, the dissociation is clean and unambiguous, and the mapping to REE is structurally direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's benefit_eval_head and z_goal_latent signals covary identically in all conditions (no conditions where one is present and the other absent), the functional dissociation this paper documents would not be architecturally reproducible.",
+    "If dopamine depletion in this paper had reduced both wanting and liking equivalently, the claim for distinct computational pathways would not hold and MECH-117 would need revision."
+  ],
+  "tags": ["mech_117", "wanting", "liking", "dissociation", "dopamine", "opioid", "incentive_salience", "hedonic_impact", "nucleus_accumbens"],
+  "mapping": {
+    "source_claim_statement": "Dopamine mediates incentive salience (wanting) but not hedonic impact (liking). After near-total 6-OHDA lesion of dopamine systems, rats show: normal positive hedonic reactions to sucrose (liking intact), normal aversive reactions to quinine, normal taste aversion conditioning, but complete absence of food approach and consumption (wanting absent). Dopamine is necessary for the motivational attribution of incentive salience to stimuli but not for experiencing their hedonic value when contacted.",
+    "ree_translation": "MECH-117 claims that benefit_eval_head (liking signal -- trains on benefit_exposure at receipt, produces proximity spike near resource cell) and z_goal_latent (wanting signal -- goal_proximity = 1/(1 + MSE(z_world, z_goal)), smooth gradient from distance, persists after relocation) are functionally dissociable in trajectory scoring. Berridge and Robinson 1998 provide the biological foundation: these are not two windows onto the same underlying value signal, but genuinely separate functional systems. The spatial profile difference predicted by MECH-117 (sharp spike vs. smooth gradient) corresponds to the biological distinction between consummatory hedonic reactions (contact-dependent) and incentive salience (distance-dependent, drive-state sensitive). The relocation test in MECH-117 (wanting maintains approach to L1 for >= 25% of steps after resource moves to L2; liking redirects within approximately 10 steps) directly tests this temporal dissociation.",
+    "mapping_caveat": "The dopamine depletion model removes an entire neuromodulatory system, which is more drastic than any manipulation possible in REE. The biological wanting system emerges from a lifetime of development and reinforcement learning; z_goal_latent is a trained representation that must be seeded by benefit_exposure before it can generate approach. The biological system's intrinsic persistence and resistance to devaluation may be properties of the dopaminergic architecture that do not automatically transfer to a gradient descent-trained latent. The paper also does not directly address the gradient shape of incentive salience across space -- the spatial profile must be inferred from the behavioral approach dynamics.",
+    "source_context": "Primary animal experiment; 6-OHDA dopamine depletion in rats; taste reactivity measure for hedonic reactions; multiple experiments on approach, consumption, and conditioning; published as comprehensive review with original data."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Brain Research Reviews, landmark paper. Source quality very high -- rigorous pharmacological dissection of dopamine's role in reward. Mapping fidelity high because the wanting/liking distinction maps directly onto the z_goal_latent/benefit_eval_head architecture in MECH-117. Transfer risk low because the claim is about functional dissociability of two signals, not their specific biological substrate."
+  }
+}

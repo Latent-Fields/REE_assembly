@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_016",
+  "entry_id": "2026-03-29_q016_corticostriatal_WTA_morita2016",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-016"],
+  "source": {
+    "title": "Corticostriatal circuit mechanisms of value-based action selection: Implementation of reinforcement learning algorithms and beyond",
+    "authors": ["Kenji Morita", "Jenia Jitsev", "Abigail Morrison"],
+    "year": 2016,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2016.05.017"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Thorough theoretical review synthesising WTA (striatal max) vs. soft-max (cortical) selection mechanisms and their RL implementation correspondences. Directly addresses the arbitration policy question with computational precision, arguing that both mechanisms co-exist at different timescales and serve complementary functions. Mixed direction because the paper does not resolve which policy prevents coupling collapse -- it describes both without adjudicating the failure modes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_016", "winner_take_all", "softmax", "corticostriatal", "action_selection", "Q_learning", "SARSA", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "Striatal lateral inhibition implements WTA (max-operation) selection of highest-valued action on short timescales despite weak/sparse lateral inhibition; cortical recurrent excitation implements soft-max (probabilistic) selection and integrates information over longer timescales; together they may co-implement Q-learning (striatal max for value update signal) while cortex sustains the executed-action representation for RPE computation.",
+    "ree_translation": "For REE's tri-loop arbitration, this review suggests that each loop may implement a different selection regime: a WTA-like striatal gate for the motor loop (fast, commit or not) and a soft-max cortical regime for the planning and sensorium loops (slower, probabilistic blending). The coupling-collapse risk in Q-016 arises when a WTA from one loop is imposed on loops that were operating in soft-max mode -- the discrete commitment of the motor loop may prematurely foreclose the probabilistic exploration of the planning loop. The review does not provide empirical resolution but frames the design space for the arbitration policy: the REE policy must preserve soft-max dynamics in the higher loops even while the motor loop has committed.",
+    "mapping_caveat": "This is a theoretical review synthesising computational models, not empirical data from multi-loop conflict scenarios. The loops in REE are distinguished by error signal type (sensorium, thought/planning, harm/goal) whereas the WTA/soft-max distinction here is primarily a timescale and lateral-inhibition-strength argument. REE's three loops are incommensurable in a deeper sense than just having different timescales -- this review does not address incommensurable error signals.",
+    "source_context": "Computational review, synthesis of theoretical models and experimental literature, no species-specific paradigm"
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Strong theoretical synthesis but limited by absence of empirical multi-loop conflict data. The WTA/soft-max dual-mechanism framing is the most directly relevant contribution for Q-016."
+  }
+}

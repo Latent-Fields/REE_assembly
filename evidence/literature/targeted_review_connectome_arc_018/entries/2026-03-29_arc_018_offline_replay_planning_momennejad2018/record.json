@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_018",
+  "entry_id": "2026-03-29_arc_018_offline_replay_planning_momennejad2018",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["ARC-018"],
+  "source": {
+    "title": "Offline replay supports planning in human reinforcement learning",
+    "authors": ["Momennejad, Ida", "Otto, A Ross", "Daw, Nathaniel D", "Norman, Kenneth A"],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.32548"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Momennejad et al. provide direct human fMRI evidence that off-task hippocampal replay (indexed by multi-voxel pattern reactivation) predicts subsequent replanning behaviour, and that uncertainty (unsigned prediction error) triggers such replay. This maps closely onto ARC-018's claim that the hippocampal viability map is updated by E3 harm/goal error: here, prediction error (a proxy for uncertainty/harm-goal discrepancy) triggers the hippocampal reactivation that enables replanning. The human context is also valuable -- it extends the rodent findings across species. The main limitation for ARC-018 is that the task is abstract (two-step sequential decision) rather than spatial navigation, which is actually a strength: it suggests the mechanism generalises beyond spatial maps to action-object level representations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_018", "offline_replay", "human_fmri", "replanning", "uncertainty", "prediction_error", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Offline hippocampal replay (multi-voxel pattern evidence during rest) predicts subsequent replanning in a reward revaluation task; unsigned prediction error (uncertainty) triggers replay; hippocampus and anterior cingulate cortex are active during off-task periods when revaluation is required.",
+    "ree_translation": "ARC-018 proposes that the viability map is updated by E3 harm/goal error. Momennejad et al. show that a form of prediction error (uncertainty) triggers the hippocampal offline reactivation that enables replanning -- the closest human experimental counterpart to E3 error-driven viability map update. The two-step sequential task also moves beyond spatial coordinates toward abstract action-sequence coordinates, providing partial support for the action-object indexing claim in ARC-018 V3.",
+    "mapping_caveat": "The fMRI measure of replay is indirect (MVPA pattern similarity) and does not resolve individual sequence events. The uncertainty measure (unsigned PE) is a proxy, not a direct E3 harm/goal error signal. The mapping from 'reward revaluation' to 'harm/goal error' requires the assumption that harm signals are encoded as negative reward -- plausible but not directly tested.",
+    "source_context": "Human adults, abstract two-step sequential decision task, fMRI (BOLD), reward revaluation manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Human data and abstract task design are genuine strengths for ARC-018's action-object framing. The indirect replay measure is the main weakness. The uncertainty-triggers-replay finding is a strong match to error-driven viability map updating."
+  }
+}

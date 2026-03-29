@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_021",
+  "entry_id": "2026-03-29_q_021_avolition_effort_schizophrenia_culbreth2020",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["Q-021"],
+  "source": {
+    "title": "Effort, avolition and motivational experience in schizophrenia: analysis of behavioral and neuroimaging data with relationships to daily motivational experience",
+    "authors": ["Culbreth, A.J.", "Moran, E.K.", "Kandala, S.", "Westbrook, A.", "Barch, D.M."],
+    "year": 2020,
+    "venue": "Clinical Psychological Science",
+    "doi": "10.1177/2167702620901558",
+    "pmid": "33758684",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33758684/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Culbreth et al. 2020 link avolition to reduced effort allocation in schizophrenia, correlating laboratory effort-cost decision making with daily-life motivational experience measured via ecological momentary assessment. The paper shows that individuals with greater avolition show reduced willingness to expend effort for reward in the laboratory, and that this laboratory measure predicts reduced goal-directed activity in daily life. Critically, the paper finds neural correlates in striatal activation deficits during effort allocation -- the wanting/approach circuitry. This provides behavioral and neural evidence for Q-021: agents with impaired approach drives (wanting circuitry) show flattened behavioral profiles both in structured laboratory tasks and in naturalistic daily-life settings. The behavioral flatness extends beyond the laboratory and constitutes genuine generalized policy flattening. Confidence 0.70 because the paper does not ablate approach drive specifically (it studies a patient population rather than an experimental training manipulation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If avolition in schizophrenia were driven by elevated harm-avoidance (patients avoid effort because they fear failure) rather than by absent approach drive (patients simply do not have motivational pull toward goals), the Q-021 Pathway A interpretation would need revision.",
+    "If the effort-avoidance in avolition were fully explained by cognitive load or resource depletion rather than motivational drive failure, the link to approach signal absence would be indirect."
+  ],
+  "tags": ["q_021", "avolition", "effort_allocation", "schizophrenia", "behavioral_flatness", "striatum", "approach_drive", "daily_functioning", "ecological_momentary_assessment"],
+  "mapping": {
+    "source_claim_statement": "Individuals with schizophrenia and greater avolition show reduced willingness to expend effort for reward in laboratory tasks and reduced goal-directed behavior in daily life. Striatal activation during effort allocation predicts real-world motivational activity. The behavioral flatness is not limited to structured tasks -- it generalises to naturalistic settings, confirming that avolition represents a stable, generalized reduction in approach-motivated behavior.",
+    "ree_translation": "Q-021 predicts that a pure harm-avoidance trained agent would show reduced policy entropy and action rate -- behavioral flatness generalised across contexts. Culbreth et al. 2020 document the clinical analog: patients with impaired approach drives (wanting circuitry impairment, measured as reduced striatal activation) show behavioral flatness that generalises from laboratory to daily life. The ecological momentary assessment data is particularly important: it shows that the flatness is not an artifact of the experimental context but a stable feature of the agent's policy. This supports Q-021's prediction that the flatness should be measurable as reduced action rate over training, not just in specific test conditions.",
+    "mapping_caveat": "Culbreth et al. 2020 study schizophrenia patients, not trained agents. The wanting circuitry impairment in schizophrenia may involve mechanisms (dopamine dysregulation, cognitive impairment) that have no direct analog in REE's training regime. Also, effort discounting in schizophrenia may partly reflect elevated subjective cost of effort (not just absent approach drive), which would correspond more to MECH-113/114's self-incoherence pathway in Q-021 than to Pathway A's pure drive-absence mechanism. The paper does not test the dissociability of the two pathways.",
+    "source_context": "Multimethod study combining behavioral effort task, fMRI, and ecological momentary assessment; schizophrenia patients vs. controls; Barch lab; Clinical Psychological Science."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Clinical Psychological Science, peer-reviewed. Source quality good -- multimethod design with ecological validity. Mapping fidelity moderate -- the behavioral flatness prediction matches Q-021, but the mechanism (schizophrenia wanting-circuit impairment vs. pure-avoidance training) differs. Transfer risk moderate because the patient-versus-trained-agent translation requires inference about equivalent mechanisms."
+  }
+}

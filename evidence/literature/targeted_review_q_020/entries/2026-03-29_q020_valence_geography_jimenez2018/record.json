@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-03-29_q020_valence_geography_jimenez2018",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-020"],
+  "source": {
+    "title": "Anxiety Cells in a Hippocampal-Hypothalamic Circuit",
+    "authors": [
+      "Jimenez JC",
+      "Su K",
+      "Goldberg AR",
+      "Luna VM",
+      "Biane JS",
+      "Ordek G",
+      "Zhou P",
+      "Ong SK",
+      "Wright MA",
+      "Zweifel L",
+      "Paninski L",
+      "Hen R",
+      "Kheirbek MA"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.016",
+    "pmid": "29397273"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "Empirical calcium imaging plus optogenetics in freely moving mice, published in a top-tier venue. Directly demonstrates that ventral CA1 neurons form a stable 'emotional geography' encoding anxiogenic zones -- valence is spatially organized within the hippocampal map, not merely externally tagged onto it post hoc. This directly challenges ARC-007's framing that the hippocampal module is value-free, though the dorsal/ventral distinction creates a partial escape hatch.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_020", "valence_encoding", "ventral_hippocampus", "anxiety_cells", "emotional_geography", "calcium_imaging", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "A specialized population of ventral CA1 neurons ('anxiety cells') fires selectively in anxiogenic spatial zones; this activity is stable, spatially organized, and causally required for avoidance behavior. vCA1 projects directly to lateral hypothalamus to rapidly control anxiety, distinct from the BA pathway that handles fear memory.",
+    "ree_translation": "MECH-073 proposes that valence is intrinsic to hippocampal map geometry; Jimenez et al. provide the most direct empirical evidence for this. Ventral CA1 anxiety cells constitute a within-hippocampus valence layer: the map does not merely track neutral position and hand off valence to amygdala, but itself organizes 'affective zones'. For ARC-007, this means the residue-field terrain R(x,t) may already carry affective sign -- the hippocampal module is not purely value-neutral. Resolution path A (revising ARC-007 to 'no new value computation' rather than 'no value representation') is empirically supported by this data.",
+    "mapping_caveat": "The anxiety cells are localized to ventral CA1, whereas ARC-007 and MECH-073 abstract over hippocampal subregions. REE does not yet specify a dorsal/ventral distinction in its hippocampal module. Transfer from mouse vCA1 in open-field anxiety assays to a computational agent's residue-field navigation involves substantial abstraction. The causal optogenetics confirm function but do not specify the representational geometry of valence encoding.",
+    "source_context": "Mouse vCA1; calcium imaging (GCaMP6f) and optogenetics (channelrhodopsin/halorhodopsin) in freely moving animals; open-field and elevated plus maze anxiety paradigms"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Top-tier empirical paper with causal evidence. Mapping fidelity is moderate because REE hippocampal module does not distinguish dorsal vs ventral; the valence geography finding is clear but the exact geometry of how anxiety cells tile space (vs. a tagged override) is less clear. Transfer risk is real: mouse anxiety, not agent harm-navigation."
+  }
+}

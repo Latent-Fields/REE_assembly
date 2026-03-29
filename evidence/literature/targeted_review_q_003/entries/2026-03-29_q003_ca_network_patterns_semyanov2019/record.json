@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_003",
+  "entry_id": "2026-03-29_q003_ca_network_patterns_semyanov2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-003"],
+  "source": {
+    "title": "Spatiotemporal pattern of calcium activity in astrocytic network",
+    "authors": ["Alexey Semyanov"],
+    "year": 2019,
+    "venue": "Cell Calcium",
+    "doi": "10.1016/j.ceca.2018.12.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Review advancing the 'guiding template' concept: multiple distinct spatiotemporal Ca patterns in the astrocytic network determine multiple states of the neuronal network. The explicit proposition that multiple Ca patterns map to multiple network states provides a strong mechanistic argument for vector (rather than scalar) R(x,t). The surface-to-volume ratio threshold mechanism also directly bridges the Q-002 spatial resolution and Q-003 dimensionality questions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_003", "astrocyte", "calcium_network", "guiding_template", "dimensionality", "spatiotemporal_patterns", "gliotransmission"],
+  "mapping": {
+    "source_claim_statement": "Multiple spatiotemporal patterns of Ca activity in the astrocytic network (guiding templates) determine multiple states of the neuronal network through release of gliotransmitters. Astrocytic leaflets sense synaptic activity; branchlets integrate signals from leaflets and extrasynaptic inputs; surface-to-volume ratio sets the threshold for spreading Ca events.",
+    "ree_translation": "Semyanov's 'guiding template' concept maps directly onto the dimensionality question for R(x,t). If the astrocytic network generates N distinguishable Ca patterns, each inducing a distinct neuronal network state, then R(x,t) must be at minimum an N-dimensional vector to represent which template is active. A scalar R can only encode one axis of variation (e.g., high vs. low regulatory tone), losing the specific pattern information needed to distinguish different network states. The multi-pattern picture argues for vector R.",
+    "mapping_caveat": "The guiding template concept is proposed as a theoretical framework -- the experimental evidence for a discrete set of distinguishable templates is limited and most observations show a continuous spectrum of Ca patterns. The mapping from continuous pattern space to a finite-dimensional vector R requires an additional discretization step. The review is also quite broad and draws on literature from multiple species without always distinguishing human from rodent findings.",
+    "source_context": "Review of Ca signaling in astrocytic networks; synthesizes data from rodent and in vitro preparations; covers leaflet/branchlet architecture, intercellular propagation via gap junctions and ATP, and linkage to neuronal network states."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Cell Calcium is a specialist journal; Semyanov is a prominent voice in Ca signaling. The guiding template concept maps unusually cleanly onto the dimensionality question, giving a higher mapping fidelity than the IP3R subtype review. Transfer risk is moderate -- the multi-template claim is theoretically motivated but the experimental evidence for genuinely distinguishable templates is not as strong as the morphological/biophysical evidence."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_001",
+  "entry_id": "2026-03-29_q001_dual_gamma_primates_murty2018",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-001"],
+  "source": {
+    "title": "Large Visual Stimuli Induce Two Distinct Gamma Oscillations in Primate Visual Cortex",
+    "authors": ["Dinavahi V P S Murty", "Vinay Shirhatti", "Poojya Ravishankar", "Supratim Ray"],
+    "year": 2018,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2270-17.2017"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Primate LFP and human EEG data showing two functionally distinct gamma bands (slow 25-45 Hz and fast 45-70 Hz) with different spatial coherence profiles in V1. The dual-gamma finding partially dissociates local feature processing from long-range integration relevant to entity binding. Genuine cross-species replication (monkey + human) strengthens transfer to REE, though the mechanism linking dual gammas to entity emergence remains a theoretical step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_001", "gamma_oscillations", "primate", "human_EEG", "dual_gamma", "binding", "feature_binding", "visual_cortex"],
+  "mapping": {
+    "source_claim_statement": "Large visual stimuli induce two distinct gamma oscillations in primate V1 (bonnet monkeys) and human EEG: slow gamma (25-45 Hz) reflecting long-range processing and fast gamma (45-70 Hz) reflecting short-range processing, with distinct tuning for orientation, contrast, drift speed, and size.",
+    "ree_translation": "Entity emergence in REE requires binding local features (handled by fast, short-range processes) with more global context (handled by slow, long-range processes). The dual-gamma dissociation provides a mechanistic scaffold: fast gamma could support local feature detection while slow gamma could mediate the inter-region synchrony needed to bind features into a unified entity representation in z_world.",
+    "mapping_caveat": "Both gamma rhythms are measured in primary visual cortex in response to simple grating stimuli. Entity formation at the level REE requires -- multi-attribute objects with causal histories and goal/harm relevance -- likely requires higher cortical areas (IT, PFC) beyond V1. The mapping from V1 dual-gamma to REE entity binding is an extrapolation. Additionally, human EEG cannot resolve laminar or single-unit dynamics, limiting mechanistic inference.",
+    "source_context": "Awake bonnet monkeys (LFP recordings in V1) and human subjects (EEG), large grating stimuli of varying orientation, contrast, size, and drift speed."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "Strong cross-species replication (primate LFP + human EEG) raises source quality. Mapping fidelity is limited by the V1/grating context; the jump to abstract entity binding requires invoking additional mechanisms not tested here. Transfer risk moderate -- gamma oscillations in visual cortex are well-established but REE entity emergence is a more abstract cognitive operation."
+  }
+}

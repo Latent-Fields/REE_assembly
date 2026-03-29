@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-03-29_mech_112_goal_representations_schizophrenia_barch2010",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Goal representations and motivational drive in schizophrenia: the role of prefrontal-striatal interactions",
+    "authors": ["Barch, D.M.", "Dowd, E.C."],
+    "year": 2010,
+    "venue": "Schizophrenia Bulletin",
+    "doi": "10.1093/schbul/sbq068",
+    "pmid": "20566491",
+    "pmc": "PMC2930335",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20566491/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Barch and Dowd provide strong clinical and neuroscientific evidence that goal representation failure -- specifically the failure to maintain and use internal goal states to drive behavior -- is the proximal cause of avolition in schizophrenia. Their key finding is that liking (consummatory pleasure) is intact in schizophrenia while wanting (anticipatory, prospective motivation) is selectively impaired. This is a direct clinical demonstration that a system can fail specifically at the wanting/z_goal level while leaving the hedonic/liking system intact. For MECH-112, this constitutes a lesion model of the claim: when goal representation fails, goal-directed behavior collapses even though the capacity to enjoy outcomes at receipt is preserved. Confidence 0.75 rather than 0.80 because this is a theoretical review, not primary neuroimaging or experimental data, and the prefrontal-striatal mechanism is proposed rather than definitively demonstrated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-112's z_goal representation is unnecessary and agents can generate approach behavior from benefit_eval_head (liking) signals alone, then the schizophrenia dissociation documented here would predict that schizophrenia patients (intact liking, absent wanting) should show normal goal-directed behavior -- which they do not.",
+    "If prefrontal goal maintenance is not required for behavior to remain goal-directed under delay, the prefrontal-striatal model would not predict the specific deficits in avolition versus anhedonia."
+  ],
+  "tags": ["mech_112", "goal_representation", "schizophrenia", "avolition", "prefrontal_striatal", "wanting", "liking", "negative_symptoms"],
+  "mapping": {
+    "source_claim_statement": "Negative symptoms in schizophrenia (particularly avolition) reflect failures to use internal goal representations and anticipated reward signals to drive behavior, rather than failures of hedonic experience per se. Individuals with schizophrenia enjoy pleasurable experiences when they occur (intact liking/consummatory pleasure) but fail to initiate behavior to bring such experiences about (impaired wanting/anticipatory motivation). This maps to a deficit in prefrontal-striatal circuits that maintain goal representations and translate them into motivational drive.",
+    "ree_translation": "MECH-112's core claim is that E3 requires a structured latent goal representation (z_goal positive attractor) distinct from harm avoidance. The schizophrenia negative symptom profile described by Barch and Dowd is a clinical instantiation of what happens when this representation fails: the system has intact evaluative capacity (liking/benefit_eval_head works) but cannot generate prospective approach drive (wanting/z_goal is absent or degraded). The avolition profile -- doing nothing, not initiating, quiescence -- is precisely the degenerate policy predicted for a harm-avoidance-only system. This paper provides the clinical existence proof that wanting and liking are separable, and that wanting failure produces behavioral flatness without hedonic failure.",
+    "mapping_caveat": "Schizophrenia is a complex disorder with multiple contributing mechanisms including cognitive dysregulation, formal thought disorder, and medication effects. The specific prefrontal-striatal circuit described may not map cleanly to REE's E3/hippocampal architecture. The paper is a review integrating heterogeneous studies, so the evidence quality for any specific mechanistic claim varies across the cited sources. The wanting/liking distinction in schizophrenia is well-supported but the specific PFC role in goal maintenance versus action-outcome learning versus effort discounting is still debated.",
+    "source_context": "Theoretical and integrative review; Schizophrenia Bulletin; draws on neuroimaging, behavioral, and pharmacological studies in human schizophrenia patients; n varies across cited studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Schizophrenia Bulletin, high-quality review journal. Mapping fidelity strong because the wanting/liking dissociation in schizophrenia is a direct clinical analog of the z_goal/benefit_eval_head distinction. Transfer risk moderate because schizophrenia is a pathological state and the mechanism of deficit (dopamine dysregulation, PFC dysfunction) may differ from the normal developmental architecture of goal representations."
+  }
+}

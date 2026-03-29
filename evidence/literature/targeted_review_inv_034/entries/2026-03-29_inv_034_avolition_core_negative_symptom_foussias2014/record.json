@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_034",
+  "entry_id": "2026-03-29_inv_034_avolition_core_negative_symptom_foussias2014",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["INV-034"],
+  "source": {
+    "title": "Avolition as the core negative symptom in schizophrenia: relevance to pharmacological treatment development",
+    "authors": ["Strauss, G.P.", "Bartolomeo, L.A.", "Harvey, P.D."],
+    "year": 2021,
+    "venue": "NPJ Schizophrenia",
+    "doi": "10.1038/s41537-021-00145-4",
+    "pmid": "33637748",
+    "pmc": "PMC7910596",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33637748/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strauss et al. 2021 synthesise evidence that avolition -- the impairment in motivated, goal-directed behavior -- is the core negative symptom driving functional disability in schizophrenia. Their key argument is that avolition is distinct from and more consequential than diminished expression, and that it reflects VTA/NAc/PFC circuit failure rather than a single neurotransmitter problem. This supports INV-034 by showing that the loss of goal-directed agency (avolition) is architecturally separable from other symptoms and from harm-avoidance systems. Patients with primary avolition are not reckless -- their harm-avoidance circuitry is functional -- but they lack the approach drive to initiate and sustain goal-directed behavior. This is the clinical demonstration of INV-034's claim: harm-avoidance minus goal maintenance equals passivity, not agency. Confidence 0.72 because this paper focuses on treatment implications and the mechanistic dissection of avolition is secondary to clinical description.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If avolition correlated equally with impaired harm-avoidance (patients with avolition also show increased dangerous behavior), the clean dissociation supporting INV-034 would not hold.",
+    "If the core functional disability in schizophrenia were driven by diminished expression (flat affect, poverty of speech) rather than avolition specifically, the argument that goal maintenance failure is the critical agency prerequisite would be weakened."
+  ],
+  "tags": ["inv_034", "avolition", "agency", "schizophrenia", "negative_symptoms", "goal_maintenance", "motivation", "VTA_NAc_PFC"],
+  "mapping": {
+    "source_claim_statement": "Avolition -- reduction in motivated, goal-directed behavior -- is the central negative symptom driving functional disability in schizophrenia. It reflects impairment in VTA/NAc/PFC circuits mediating goal representation and approach drive. Primary avolition is distinct from diminished expression and responds differently to treatment. Patients retain harm-avoidance capacity but lose the positive motivational drive to initiate goal pursuit.",
+    "ree_translation": "INV-034's claim is that goal maintenance is necessary for ethical agency alongside harm-avoidance. Strauss et al. 2021 provide the strongest clinical evidence: avolition is the symptom cluster most predictive of functional collapse, and it dissociates from both diminished expression and from harm-avoidance function. A schizophrenia patient with primary avolition is not dangerous (harm avoidance intact) but is not an agent (goal pursuit absent). This is the exact architecture INV-034 says would result from removing goal maintenance from an otherwise intact system. The paper also identifies the relevant circuits: VTA (wanting/incentive salience), NAc (goal representation), PFC (goal maintenance and working memory) -- all of which are upstream of the harm-avoidance circuitry and constitute the wanting pathway that MECH-112 proposes must be represented as z_goal.",
+    "mapping_caveat": "Strauss et al. 2021 do not frame their findings in terms of computational architecture or the wanting/liking distinction explicitly. The inference from clinical avolition to the necessity of a goal-maintenance latent in REE requires a conceptual translation from clinical psychiatry to computational agency theory. Also, the paper discusses pharmacological treatment targets, which introduces the complexity that pharmacological interventions affect multiple circuits simultaneously. The specific mechanism of avolition (whether it is goal representation failure, effort discounting, or prediction error failure) is still debated.",
+    "source_context": "Review and meta-analysis synthesis; NPJ Schizophrenia; human clinical population; focuses on avolition across primary and secondary negative symptom categories; treatment-oriented framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "NPJ Schizophrenia, peer-reviewed clinical neuroscience. Source quality good. Mapping fidelity moderate -- the paper supports the clinical analog but does not engage with the computational architecture questions that INV-034 raises. Transfer risk moderate because translating from clinical syndrome description to architectural necessity requires philosophical inference."
+  }
+}

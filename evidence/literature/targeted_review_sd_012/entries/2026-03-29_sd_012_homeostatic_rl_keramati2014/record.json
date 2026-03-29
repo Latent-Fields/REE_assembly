@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-03-29_sd_012_homeostatic_rl_keramati2014",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Homeostatic reinforcement learning for integrating reward collection and physiological stability",
+    "authors": ["Keramati, M.", "Gutkin, B."],
+    "year": 2014,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.04811",
+    "pmid": "25457346",
+    "pmc": "PMC4270100",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25457346/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Keramati and Gutkin 2014 is the most directly relevant computational paper for SD-012. Their homeostatic RL (HRL) framework formalises exactly what SD-012 implements: reward is not a fixed property of an outcome but a function of how much the outcome reduces the distance between internal state and homeostatic setpoint. At high drive (large deviation from setpoint), the same outcome is more rewarding. At low drive (near setpoint), the same outcome is less rewarding. The SD-012 formula -- effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level) -- is a linear approximation of the HRL drive function. This paper provides the theoretical grounding and empirical plausibility arguments for this class of benefit scaling. Confidence 0.85 because this is a formal computational model with empirical grounding, not just a review, and its predictions about drive-state modulation of reward are directly instantiated in SD-012.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If benefit signals in REE that do not scale with drive state produce adequate z_goal seeding, SD-012's hypothesis that drive-scaling is necessary would be empirically refuted.",
+    "If homeostatic drive state is irrelevant to goal formation -- if z_goal seeds equally well regardless of agent_energy -- the drive modulation mechanism would be architecturally unnecessary."
+  ],
+  "tags": ["sd_012", "homeostatic_rl", "drive_reduction", "reward_scaling", "incentive_motivation", "goal_seeding", "z_goal"],
+  "mapping": {
+    "source_claim_statement": "Animals are rewarded by outcomes proportional to their drive-reduction effect: reward = f(drive_level_before - drive_level_after). The drive level is the deviation of internal state from homeostatic setpoint. Under high hunger (large drive), food is more rewarding; under satiety (near setpoint), the same food is less rewarding. The model unifies homeostatic regulation and reinforcement learning by defining primary reward as drive reduction, not stimulus contact. Dopamine neurons' instantaneous response to sensory properties of food can be explained as a shortcut estimate of drive-reduction that does not require waiting for full digestion.",
+    "ree_translation": "SD-012's design decision is that z_goal seeding fails unless benefit signals are scaled by drive level: effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level). This is a direct implementation of Keramati and Gutkin's core equation: reward scales with drive. At high drive (agent_energy low, drive_level = 1 - energy near 1.0), a single resource contact should produce a much larger benefit signal -- enough to push benefit_exposure above the seeding threshold. At low drive (sated, energy near 1.0, drive_level near 0), benefit_exposure is barely amplified and may not cross threshold. This is why random-walk warmup fails to seed z_goal: without drive, the effective_benefit of occasional resource contacts is too small to accumulate above threshold. The HRL framework also predicts that multiple drive-reduction cycles are needed for stable goal representation (consistent with the SD-012 requirement for resource_respawn_on_consume to allow repeated encounters).",
+    "mapping_caveat": "Keramati and Gutkin's model is a normative RL framework for biological organisms with continuous homeostatic state variables. SD-012's implementation uses a simplified scalar drive_level and a linear scaling term rather than the full HRL optimality criterion. The full HRL framework also makes predictions about habit versus goal-directed transitions that are not directly relevant to SD-012's current scope. Additionally, the model is a theoretical proposal with empirical grounding from existing animal studies -- it was not experimentally validated in a new paradigm in this paper.",
+    "source_context": "Computational neuroscience model; eLife; derives HRL framework from first principles; validates against existing animal behavioral data (drive-modulated reward, devaluation effects, overeating); theoretical paper with empirical plausibility arguments."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "eLife, high-quality open-access journal. The mapping is very direct: SD-012's benefit scaling is a linear approximation of the HRL drive function. Transfer risk low because the claim is about the functional principle (drive scales reward) not the specific biological substrate."
+  }
+}

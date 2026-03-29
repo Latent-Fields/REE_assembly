@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-03-29_sd_012_goal_directed_action_balleine1998",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Goal-directed instrumental action: contingency and incentive learning and their cortical substrates",
+    "authors": ["Balleine, B.W.", "Dickinson, A."],
+    "year": 1998,
+    "venue": "Neuropharmacology",
+    "doi": "10.1016/s0028-3908(98)00033-1",
+    "pmid": "9704982",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9704982/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Balleine and Dickinson 1998 establish that goal-directed action requires two separable learning processes: contingency learning (action-outcome) and incentive learning (acquisition and updating of outcome value as a function of current motivational state). The incentive learning component is critical for SD-012: the insular cortex lesion experiments show that animals can learn that an action produces a food outcome (contingency learning intact) but lose the ability to update the value of that outcome based on changes in drive state (incentive learning impaired). This directly supports SD-012's claim that benefit signals must be scaled by drive state for goal representations to form and update appropriately. Without drive-state modulation of outcome value, the agent can learn stimulus-outcome associations but cannot form goal representations that respond to current needs. Confidence 0.80 because this is rigorous animal behavioral data with pharmacological intervention and outcome devaluation paradigms.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If insular cortex lesions in devaluation experiments left goal-directed behavior intact (animals still avoided devalued outcomes), the incentive learning mechanism required for drive-state updating would not be necessary, and SD-012's drive-scaling hypothesis would lose its empirical grounding.",
+    "If goal-directed behavior emerged equally under high and low drive in the devaluation paradigm (no drive-state sensitivity of outcome value), the fundamental SD-012 assumption would be contradicted."
+  ],
+  "tags": ["sd_012", "goal_directed", "incentive_learning", "outcome_devaluation", "drive_state", "insular_cortex", "homeostatic_motivation"],
+  "mapping": {
+    "source_claim_statement": "Goal-directed instrumental action requires both contingency learning (action causes outcome) and incentive learning (outcome has current value given current motivational state). Insular cortex lesions selectively impair incentive learning: lesioned animals can learn contingencies but cannot update outcome value following specific satiety, and therefore continue to pursue devalued outcomes. Goal-directed behavior requires that current drive state modulates the motivational value of anticipated outcomes -- not just learning that an outcome is available.",
+    "ree_translation": "SD-012's implementation requires that benefit_exposure be scaled by drive_level during z_goal seeding. Balleine and Dickinson's incentive learning concept maps directly to this: the value of a benefit to the agent must be computed relative to current homeostatic need, not as a fixed property of the stimulus. An agent at low energy (high drive) should weight a resource encounter much more heavily than a sated agent encountering the same resource. Without this modulation, benefit_exposure accumulates slowly and equally regardless of need, which is precisely why random-walk warmup fails to seed z_goal -- the agent contacts resources but has no mechanism to weight those contacts by current drive. The insular cortex in this model plays a role analogous to the drive-level computation in SD-012: it integrates current motivational state with learned cue-outcome associations to produce an updated incentive value.",
+    "mapping_caveat": "Balleine and Dickinson's paradigm uses specific satiety (consuming one food to satisfaction) as the drive manipulation, which is a much more drastic intervention than the gradual energy decay in CausalGridWorld. The insular cortex substrate has no direct analog in REE's architecture -- SD-012's drive scaling is implemented as a formula rather than as a distinct anatomical module. Also, the paper's primary contribution is demonstrating that contingency learning and incentive learning are dissociable processes, not that drive level per se modulates goal formation dynamics.",
+    "source_context": "Animal behavioral experiment; rats; 6-OHDA and cortical lesion methods; specific satiety devaluation paradigm; multiple experiments over preceding years; landmark paper in goal-directed action field."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Highly cited landmark paper. Source quality very high. Mapping fidelity good -- incentive learning as drive-state modulation of outcome value maps well to SD-012's drive scaling. Transfer risk low because the claim is functional (drive must modulate reward value) rather than substrate-specific."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_004",
+  "entry_id": "2026-03-29_sd_004_cognitive_map_review_behrens2018",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["SD-004"],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior",
+    "authors": ["Behrens, Timothy E.J.", "Muller, Timothy H.", "Whittington, James C.R.", "Mark, Shirley", "Baram, Alon B.", "Stachenfeld, Kimberly L.", "Kurth-Nelson, Zeb"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002",
+    "pmid": "30359611"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This review paper makes the key generalisation that the cognitive map is not a spatial map but a map of task-relevant relational structure -- which directly licenses SD-004's claim that the HippocampalModule should map action-object space rather than raw z_world. Behrens et al. argue that place and grid cells are a specific instance of general coding principles for organising any structured knowledge. The non-spatial cognitive map framing is exactly what SD-004 requires: the map backbone is action-consequence structure, not geometric coordinates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure",
+    "The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial"
+  ],
+  "tags": ["sd_004", "cognitive_map", "abstract_map", "task_structure", "generalisation", "hippocampus", "grid_cells", "non_spatial"],
+  "mapping": {
+    "source_claim_statement": "The cognitive map is not a spatial map; it is a representation of the relational structure of the environment that supports flexible inference and generalisation. Place and grid cells are a special case of a general mechanism for encoding structural relationships across arbitrary domains. The hippocampus organises knowledge according to the underlying task-relevant topology, not raw sensory coordinates.",
+    "ree_translation": "SD-004 proposes that the HippocampalModule maps action-object space O. Behrens et al. provide the conceptual licence: if the hippocampal map encodes task-relevant relational structure rather than sensory geometry, then for an agent whose task is defined by action consequences, the natural map backbone is action-object structure. The generalisation from spatial to non-spatial maps means SD-004 is not proposing an exotic mechanism -- it is following the logic of cognitive map theory to its natural conclusion in an agent that operates over action consequences rather than spatial positions.",
+    "mapping_caveat": "The paper reviews evidence that the map generalises beyond space, but most concrete evidence is from social hierarchy and value tasks -- not action-sequence compression. The specific claim that action objects form the map nodes requires an additional step beyond what Behrens et al. demonstrate. The authors also note substantial open questions about how map structure is determined by experience vs. prior.",
+    "source_context": "Review of rodent electrophysiology, human fMRI, and computational models across spatial, social, and value-based domains. Theory-heavy with broad empirical survey."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "High-quality review in Neuron. Mapping fidelity is good at the conceptual level (the claim that cognitive maps encode task structure directly supports SD-004) but the specific action-object map backbone requires extension beyond what the review directly addresses."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_117",
+  "entry_id": "2026-03-29_mech_117_rl_exploration_schizophrenia_culbreth2023",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-117"],
+  "source": {
+    "title": "A computational neuroimaging study of reinforcement learning and goal-directed exploration in schizophrenia spectrum disorders",
+    "authors": ["Culbreth, A.J.", "Schwartz, E.K.", "Frank, M.J.", "Brown, E.C.", "Gold, J.M.", "Waltz, J.A."],
+    "year": 2023,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/S0033291722003993",
+    "url": "https://www.cambridge.org/core/journals/psychological-medicine/article/abs/computational-neuroimaging-study-of-reinforcement-learning-and-goaldirected-exploration-in-schizophrenia-spectrum-disorders/688244D1853A365D464A3EC6F885E5D3"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Culbreth et al. 2023 use computational modeling of a reinforcement learning task to show that schizophrenia patients have reduced uncertainty-driven (goal-directed) exploration, with rlPFC abnormalities as the neural substrate. This supports MECH-117's dissociation because reduced exploration in schizophrenia is specifically linked to impaired goal-directed (wanting-like, prospective) processing, not to reduced reward sensitivity per se (liking-like). The rlPFC finding maps to the wanting pathway (prospective, frontal-maintained) rather than the striatal liking pathway. Confidence 0.68 because the paper is specifically about exploration-exploitation, not wanting/liking dissociation directly, so the mapping requires an inferential step. The neuroimaging data does support the prefrontal goal-maintenance (wanting) vs. reward-at-receipt (liking/striatal) distinction, but not as its primary claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If schizophrenia exploration deficits were explained entirely by reduced reward sensitivity (liking) rather than by goal-representation failures (wanting), the rlPFC-specific finding would not appear and the wanting/liking dissociation would be unsupported.",
+    "If the exploration deficit correlates equally with consummatory and anticipatory anhedonia measures, the wanting-specific attribution would need revision."
+  ],
+  "tags": ["mech_117", "schizophrenia", "reinforcement_learning", "exploration", "goal_directed", "rlpfc", "wanting", "dissociation", "computational_psychiatry"],
+  "mapping": {
+    "source_claim_statement": "Schizophrenia spectrum patients show reduced goal-directed (uncertainty-driven) exploration compared to healthy controls on a reinforcement learning task, with rlPFC hypoactivation as the neural signature. Reduced exploration is related to anhedonia and negative symptoms. The deficit is specifically in the use of uncertainty to drive exploratory choice -- a prospective, goal-directed process -- rather than in basic reward sensitivity.",
+    "ree_translation": "MECH-117 claims wanting (z_goal_latent trajectory scoring) and liking (benefit_eval_head) are functionally dissociable. Culbreth et al. 2023 provide neuroimaging evidence that the prospective, goal-directed component of reward processing (exploration based on uncertainty about future value) is preferentially impaired in schizophrenia, mediated by rlPFC, whereas basic reward feedback processing is less impaired. This supports the claim that prospective wanting is a distinct signal with distinct neural substrate from hedonic liking. The rlPFC role corresponds architecturally to the prefrontal goal-maintenance (wanting) pathway; the reduced exploration corresponds to what happens when z_goal_latent fails to generate smooth approach gradients -- the agent explores randomly rather than goal-directedly.",
+    "mapping_caveat": "This paper tests exploration-exploitation tradeoffs, not the wanting/liking dissociation directly. The connection to MECH-117 requires treating uncertainty-driven exploration as a wanting-like process (prospective, frontal-maintained) and contrast with reward-at-receipt as liking-like -- an inferential step the authors do not make explicitly. The rlPFC finding is correlational (fMRI) and cannot establish whether goal representation failure causes the exploration deficit or vice versa. Additionally, the paper studies schizophrenia, a pathological population, so normal wanting/liking architecture may differ.",
+    "source_context": "Computational neuroimaging study; fMRI with multi-armed bandit RL task; n=schizophrenia spectrum + controls; Frank lab computational model (epsilon/directed exploration decomposition); Psychological Medicine."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Psychological Medicine, peer-reviewed clinical neuroscience. Source quality good. Mapping fidelity moderate -- the exploration/exploitation distinction is an inferential proxy for the wanting/liking distinction rather than a direct test. Transfer risk moderate because of the pathological population and because exploration behavior involves additional mechanisms beyond the basic wanting/liking dichotomy."
+  }
+}

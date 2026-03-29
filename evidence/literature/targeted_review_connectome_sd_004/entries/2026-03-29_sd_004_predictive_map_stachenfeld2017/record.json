@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_004",
+  "entry_id": "2026-03-29_sd_004_predictive_map_stachenfeld2017",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["SD-004"],
+  "source": {
+    "title": "The hippocampus as a predictive map",
+    "authors": ["Stachenfeld, Kimberly L.", "Botvinick, Matthew M.", "Gershman, Samuel J."],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4650",
+    "pmid": "28967910"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the primary computational paper arguing that hippocampal place cells encode a predictive (successor) map rather than purely geometric space. The SR framework directly instantiates the core SD-004 claim that the hippocampal map is organized by future-state structure -- i.e., by what follows from current position under a given policy -- rather than raw sensory coordinates. The mapping to SD-004 requires one extension (from state-successor to action-consequence objects), but the foundational architecture is essentially identical. High-quality journal, large citation base, replicated predictions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SR is policy-dependent -- the predictive map changes when behavior changes, implying the map backbone is not a stable action-object library but a policy-contingent weighting",
+    "SR as originally formulated does not compress multi-step action sequences into objects; it represents individual states weighted by future occupancy"
+  ],
+  "tags": ["sd_004", "successor_representation", "predictive_map", "place_cells", "grid_cells", "entorhinal_cortex", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells encode the successor representation M(s, s') -- the expected discounted future occupancy of state s' given current state s under the agent's policy. Entorhinal grid cells provide a low-dimensional basis set (eigendecomposition) for this predictive map. The map is organized by future-state structure, not geometric proximity.",
+    "ree_translation": "In REE SD-004, the HippocampalModule navigates action-object space O rather than raw z_world. Stachenfeld et al. ground this by showing that the biological hippocampal map is already organized by prediction of future states, not raw sensory geometry. The action-object backbone is a natural extension: if the map is already structured by what-comes-next, organizing it by compressed action-consequence chunks (action objects) is a principled step beyond raw SR. The grid-cell eigendecomposition further supports the idea that the map backbone can be a compact basis set rather than a flat lookup table.",
+    "mapping_caveat": "SD-004 requires action objects as the map's indexing unit, not states. Stachenfeld et al. operate at the state level. The extension from 'states weighted by future occupancy' to 'action-consequence objects as map nodes' is conceptually motivated but not directly demonstrated in this paper. The policy-dependence of SR (the map shifts when policy shifts) is both a feature (map adapts to goals) and a liability (the action-object library may not be stable enough to serve as a persistent backbone).",
+    "source_context": "Rodent and human spatial navigation tasks; grid and place cell electrophysiology and fMRI; theoretical SR derivation with empirical predictions about firing field shape, barrier effects, and reward proximity distortions."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.20,
+    "notes": "Source quality high (Nature Neuroscience, >1000 citations). Mapping fidelity good but requires one theoretical step beyond the paper's direct claims. Transfer risk low because the computational framework is the same; the extension is additive not transformative."
+  }
+}

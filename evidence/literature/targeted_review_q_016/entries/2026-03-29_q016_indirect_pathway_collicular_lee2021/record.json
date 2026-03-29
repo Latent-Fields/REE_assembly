@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_016",
+  "entry_id": "2026-03-29_q016_indirect_pathway_collicular_lee2021",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-016"],
+  "source": {
+    "title": "Striatal indirect pathway mediates exploration via collicular competition",
+    "authors": ["Jaeeon Lee", "Bernardo L. Sabatini"],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-04055-4"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "High-impact Nature paper with optogenetic dissection of indirect pathway function in a licking task. Shows that indirect SPNs suppress ongoing actions and enable exploration via inter-collicular competition -- a concrete mechanism for how the indirect pathway mediates the go/no-go arbitration that is central to Q-016. Very direct mechanistic evidence. Confidence reduced by species (mouse) and simplicity of the lateralized licking task compared to tri-loop conflict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_016", "indirect_pathway", "action_suppression", "exploration", "superior_colliculus", "competition", "corticostriatal"],
+  "mapping": {
+    "source_claim_statement": "Indirect striatal projection neurons (iSPNs) suppress ongoing contraversive actions and promote ipsiversive exploration via modulation of superior colliculus, mediated by inter-collicular competition where each hemisphere inhibits the other. iSPN inactivation impairs suppression of devalued actions and reduces exploratory licking.",
+    "ree_translation": "In REE's tri-loop architecture, the indirect pathway plays the role of the no-go gate. This paper shows that the indirect pathway does not merely suppress -- it actively mediates competition between alternative action representations downstream (via SC). For Q-016, this means that the arbitration policy must preserve the competitive structure downstream: a pure winner-take-all policy that silences the indirect pathway's influence would eliminate exploration. The collicular competition mechanism suggests that the arbitration policy needs to be soft-competitive rather than hard-suppressive -- otherwise the losing gate collapses entirely rather than merely yielding priority, and coupling collapse follows.",
+    "mapping_caveat": "The collicular competition mechanism is specific to the oculomotor/action-direction domain in a simple lateralized licking task. REE's tri-loop conflict involves loops at cognitive, limbic, and motor levels simultaneously -- there is no evidence from this paper that the same collicular competition mechanism operates across all three REE loops. The exploration function studied here (devalued-action suppression and exploratory behavior) is behaviorally distinct from the REE tri-loop conflict scenario where ethical and cognitive loops may disagree with a motor loop.",
+    "source_context": "Mouse optogenetics, in vivo electrophysiology, lateralized licking task, healthy adult mice"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Exceptionally clean optogenetic dissection in top-tier journal. Transfer risk primarily from species and from the simplicity of the lateralized licking task -- REE tri-loop conflict involves interactions across qualitatively different loop types."
+  }
+}

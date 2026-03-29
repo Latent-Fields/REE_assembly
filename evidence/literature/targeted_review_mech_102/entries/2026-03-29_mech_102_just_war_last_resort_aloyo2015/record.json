@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_102",
+  "entry_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
+  "timestamp_utc": "2026-03-29T13:30:00Z",
+  "claim_ids_tested": ["MECH-102"],
+  "source": {
+    "title": "Just War Theory and the Last of Last Resort",
+    "authors": ["Eamon Aloyo"],
+    "year": 2015,
+    "venue": "Ethics & International Affairs",
+    "doi": "10.1017/S0892679415000064",
+    "volume": "29",
+    "issue": "2",
+    "pages": "187-201"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Aloyo's paper is directly about the 'last resort' criterion in just war theory, making it superficially highly relevant to MECH-102. However, Aloyo's central conclusion is that the last resort criterion is either redundant with proportionality or produces perverse recommendations -- and should therefore be dropped. This is a complication rather than a simple support or weakening of MECH-102. The complication is philosophically important: if 'last resort' is not a coherent standalone criterion at the institutional/civilizational level, then MECH-102's claim that violence is 'triggered only when low-energy coordination pathways have been exhausted' faces the same philosophical challenge Aloyo raises. On the other hand, Aloyo's preferred replacement (minimize severe harms to innocents) is structurally consistent with INV-029 (love as long-horizon coherence bias) -- the real work is done by coherence-preservation, not by an ordinal sequencing of violence as 'last' in a temporal sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aloyo argues that all accounts of last resort either generate wrong policy recommendations or reduce to proportionality, suggesting the 'sequential exhaustion' framing of MECH-102 may face analogous philosophical problems at the institutional level."
+  ],
+  "tags": ["mech_102", "just_war_theory", "last_resort", "proportionality", "ethics_of_violence", "institutional_level"],
+  "mapping": {
+    "source_claim_statement": "The last resort criterion of just war theory -- which requires exhausting peaceful alternatives before resorting to war -- is philosophically incoherent in its standard formulations. Adhering to it can cause more harm than alternatives. What matters morally is minimizing severe harms to innocents and achieving just causes, not sequential exhaustion of non-violent options.",
+    "ree_translation": "Aloyo's critique maps onto a genuine tension in MECH-102: the claim that violence is 'triggered only when low-energy pathways have been exhausted' sounds like a temporal/sequential last-resort criterion of exactly the kind Aloyo finds problematic. The REE resolution is structural rather than temporal -- the key is not that non-violent options were tried in sequence, but that the agent's forward model can no longer project a coherent future through them. This is closer to Aloyo's preferred proportionality-based standard (net harms to coherent futures) than to a strict temporal sequencing. The failure mode Aloyo identifies -- where strict last-resort adherence increases total harm -- corresponds in REE to a pathological delay in escalation when the forward model has already established that low-energy paths are blocked.",
+    "mapping_caveat": "Aloyo is operating at the level of interstate war and just war theory, not individual psychology or computational architecture. His arguments are normative (what should justify violence) rather than descriptive (what triggers violence in systems). The philosophical challenge he raises is real for MECH-102 but can potentially be dissolved by reframing 'pathway exhaustion' as a forward-model prediction rather than a temporal sequence. This reframing has not been formally articulated in MECH-102's current claim statement.",
+    "source_context": "Normative political philosophy, just war tradition, ethics of interstate armed conflict. Cambridge/peer-reviewed philosophy of war journal."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "High source quality -- peer-reviewed philosophy journal, clear argumentation. Mapping fidelity is moderate: the domain (interstate war ethics) and the claim level (normative) are both different from MECH-102 (architectural mechanism). Transfer risk is significant because Aloyo's critique directly targets the 'sequential exhaustion' framing that MECH-102 superficially resembles; the REE structural reframing may dissolve this but requires explicit development."
+  }
+}

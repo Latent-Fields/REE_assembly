@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_002",
+  "entry_id": "2026-03-29_q002_spatial_threshold_ca_surge_lines2024",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-002"],
+  "source": {
+    "title": "A spatial threshold for astrocyte calcium surge",
+    "authors": ["Justin Lines", "Andres Baraibar", "Carmen Nanclares", "Eduardo D Martin", "Juan Aguilar", "Paulo Kofuji", "Marta Navarrete", "Alfonso Araque"],
+    "year": 2024,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.90046"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "In vivo two-photon imaging in mice identifies a precise spatial threshold (>23% of astrocyte arborization activated) that determines whether Ca activity remains localized to domains or spreads cell-wide to trigger gliotransmitter release. This is the most directly quantitative answer in the literature to how spatial extent of activation governs R-field output. High confidence because the finding is empirical (not purely modeling), has mechanistic grounding (IP3R2), and the spatial threshold concept maps directly to R(x,t) resolution design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_002", "astrocyte", "calcium_surge", "spatial_threshold", "in_vivo", "gliotransmitter", "IP3R2", "cortex"],
+  "mapping": {
+    "source_claim_statement": "Sensory-evoked astrocyte Ca responses originate and remain localized in domains of the astrocytic arborization but propagate to the entire cell if a spatial threshold of >23% of the arborization being activated is surpassed. IP3R2 is required for calcium surge. The spatial threshold of the Ca signal determines gliotransmitter release.",
+    "ree_translation": "R(x,t) in REE has two regimes: a locally-confined regime where activity below a spatial threshold produces domain-specific modulation of nearby synapses only, and a global-spread regime above threshold where R exerts cell-wide (or territory-wide) regulatory influence and triggers gliotransmitter-equivalent output. For REE's residue field, this means the appropriate spatial resolution is not fixed -- it is state-dependent, with a threshold nonlinearity. Below threshold, R should be resolved at domain (sub-territory) scale. Above threshold, R spreads to territory scale.",
+    "mapping_caveat": "The 23% threshold is measured relative to a single astrocyte's arborization area in mouse cortex under sensory stimulation. The corresponding threshold in REE latent space (what fraction of concurrently active feature representations triggers a global R update) requires separate calibration. This paper establishes the principle and rough magnitude but the exact threshold is species- and context-specific.",
+    "source_context": "Mice, in vivo two-photon imaging of cortical astrocytes during sensory stimulation; IP3R2 knockout mice for mechanistic validation; in situ electrophysiological recordings for gliotransmitter output."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Published in eLife, in vivo two-photon imaging with genetic validation (IP3R2 KO) and electrophysiological output confirmation. The spatial threshold finding is quantitatively precise and directly relevant to Q-002. Mapping fidelity is the highest of the three Q-002 entries because the threshold nonlinearity concept maps cleanly to R(x,t) regime design. Transfer risk is low conceptually but the specific 23% value should not be imported numerically into REE without recalibration."
+  }
+}

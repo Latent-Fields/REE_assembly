@@ -1,0 +1,23 @@
+# Summary: Wikenheiser & Redish (2015) — Hippocampal theta sequences reflect current goals
+
+**Source:** Nature Neuroscience, 18(2):289-294. DOI: 10.1038/nn.3909. PMID: 25559082.
+
+## What the paper did
+
+Wikenheiser and Redish recorded from hippocampal place cells in rats performing a value-guided decision-making task on a circular track with multiple goal locations at varying distances. During active navigation, hippocampal place cells fire in sequences that are compressed within a single theta oscillation cycle (~125ms), producing a time-compressed trajectory through space. The key question the paper addressed was whether these theta sequences are passive kinematic artifacts -- simply reflecting the animal's current movement -- or active prospective computations reflecting the animal's goals. They found the latter: the look-ahead distance of theta sequences (how far ahead of the animal's current position the sequence extended) varied on a moment-by-moment basis with the distance to the current goal. Journeys to more distant goals produced longer look-ahead sequences; look-ahead was predictive of the animal's actual destination. This was not an artifact of movement speed or distance already traveled.
+
+## Key findings relevant to SD-004
+
+Three findings are directly relevant. First, theta sequences are prospective: they represent the path the animal is about to take, not the path it has just taken. This is active planning, not replay. Second, look-ahead scales with goal distance: the hippocampal computation adapts its temporal horizon to the demands of the current goal. Third, sequences preferentially represent paths the animal will actually take, not alternative paths that were available. Taken together, these findings establish that the hippocampal sequential machinery is a goal-directed, goal-scaled prospective computation -- not a kinematic readout or a passive memory trace. For SD-004, this is the biological evidence that hippocampal navigation of a map can be goal-modulated at the level of the planning horizon itself.
+
+## REE translation: grounding SD-004
+
+SD-004 claims that the HippocampalModule navigates action-object space O to enable planning horizons far beyond raw state space. Wikenheiser and Redish demonstrate the biological substrate for this claim at the level of sequential neural activity: the hippocampus performs prospective, goal-scaled trajectory computation. If the map nodes are action objects (each encoding a multi-step consequence), then the same goal-scaling principle would amplify the effective planning horizon considerably -- because each 'step' in the action-object map corresponds to multiple steps in raw z_world. The paper also establishes that the planning horizon is dynamic, not fixed. This supports a key SD-004 design implication: the HippocampalModule should be able to vary its traversal depth in action-object space as a function of goal distance or urgency, rather than using a fixed rollout horizon. This is analogous to what Wikenheiser and Redish observe: the hippocampus does not plan ahead a fixed number of centimetres but extends its look-ahead as far as the goal demands.
+
+## Limitations and caveats
+
+The sequences Wikenheiser and Redish describe operate at the scale of spatial positions, not compressed action objects. The look-ahead in their data covers a few tens of centimetres within a single theta cycle -- far shorter than the 20-step planning horizon SD-004 targets. The long-horizon planning SD-004 requires may engage a different hippocampal mechanism: sharp-wave ripple (SWR) replay during rest, which can represent far longer trajectories than online theta sequences. The Wikenheiser paper does not address SWR replay. There is also a question of whether goal-scaling of look-ahead generalises to abstract, non-spatial action-object spaces or is specific to the kinematics of spatial navigation. The paper is rodent electrophysiology in a spatial task; the generalisation to an abstract action-consequence domain requires inference beyond the data.
+
+## Confidence reasoning
+
+Confidence 0.72. The source is excellent (Nature Neuroscience, direct electrophysiology with clear behavioural controls). The mapping to SD-004 is good for the goal-directed and goal-scaled claims but moderate for the long-horizon and action-object claims. The main reduction is transfer risk: the sequences in the paper are spatial and short-horizon; SD-004 requires abstract and long-horizon navigation. The goal-scaling result is the most transferable finding; the specific mechanism (theta sequences) may be less relevant than the principle it demonstrates.

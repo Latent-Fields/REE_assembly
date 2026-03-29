@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_021",
+  "entry_id": "2026-03-29_q_021_allostatic_selfefficacy_stephan2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["Q-021"],
+  "source": {
+    "title": "Allostatic self-efficacy: a metacognitive theory of dyshomeostasis-induced fatigue and depression",
+    "authors": ["Stephan, K.E.", "Manjaly, Z.M.", "Mathys, C.D.", "Weber, L.A.", "Paliwal, S.", "Gard, T.", "Tittgemeyer, M.", "Fleming, S.M.", "Haker, H.", "Seth, A.K.", "Petzschner, F.H."],
+    "year": 2016,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2016.00550",
+    "pmid": "27895566",
+    "pmc": "PMC5108808",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27895566/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Stephan et al. 2016 provide a hierarchical Bayesian framework in which depression emerges from persistent interoceptive prediction errors that shift metacognitive beliefs toward allostatic self-inefficacy: the agent believes its internal regulation will fail, withdraws from effortful approach behaviors, and enters a state of behavioral quiescence that is functionally protective but catastrophically disabling. This is precisely Q-021's Pathway A clinical analog: when drive regulation fails or is chronically violated, the agent converges on low-action policy as the minimum-prediction-error strategy. The behavioral flatness is not a bug -- it is the optimal policy for an agent whose internal model predicts that approach will not reduce drive (self-inefficacy). Confidence 0.73 because this is a theoretical framework paper, not primary experimental data, and the connection to REE's pure-avoidance training requires additional inferential steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If depressive behavioral quiescence were primarily driven by excessive harm-avoidance (heightened NoGo signals) rather than by failure of approach drives, Q-021's Pathway A framing would be incomplete and this paper's self-efficacy framework would not map cleanly.",
+    "If agents with intact approach drives but disrupted homeostatic prediction (high interoceptive prediction error) did not show behavioral flatness, the interoceptive inference pathway to quiescence would be empirically unsupported."
+  ],
+  "tags": ["q_021", "behavioral_flatness", "depression", "allostatic", "homeostatic", "active_inference", "self_efficacy", "approach_withdrawal", "quiescence"],
+  "mapping": {
+    "source_claim_statement": "Chronic interoceptive prediction error (dyshomeostasis) leads to a metacognitive update: the agent infers low allostatic self-efficacy -- the belief that regulatory actions will fail to restore homeostasis. Under low self-efficacy, the agent reduces effortful approach behaviors because these are predicted to incur cost without achieving drive reduction. The resulting behavioral profile is fatigue and depression -- reduced initiation, reduced goal pursuit, quiescent policy -- as an adaptive response to perceived self-inefficacy.",
+    "ree_translation": "Q-021 asks whether training with harm-avoidance signals only produces behavioral flatness. Stephan et al. provide a complementary clinical model of how behavioral flatness can emerge from homeostatic drive failure: when the drive system fails to predict that approach will be rewarded (self-efficacy failure), the optimal policy converges on non-action. In REE, training with only harm signals is analogous to a regime where the drive/approach system has zero weight: the agent has no representation that actions can reduce drive or move toward goals. The minimum-harm policy is then also the minimum-action policy -- quiescence. The Stephan framework supports Q-021 by showing that in biological systems, disruption of the drive-reward prediction pathway (here via interoceptive dysregulation) directly produces behavioral flatness, independent of whether harm-avoidance systems are intact.",
+    "mapping_caveat": "Stephan et al. 2016 is a theoretical framework paper about depression and fatigue as metacognitive responses to allostatic failure -- it does not study the effects of pure harm-avoidance training in a neural network. The connection to Q-021 requires treating 'allostatic self-inefficacy' as an analog to 'no approach drive training signal.' These are related but not identical: self-inefficacy involves actively predicting that approach will fail, whereas pure harm-avoidance training simply never installs an approach signal. The paper also mixes drive failure (homeostatic signal absent) with belief failure (belief about efficacy updated), which are architecturally distinct in REE.",
+    "source_context": "Theoretical review; Frontiers in Human Neuroscience; Bayesian/active inference framing; draws on clinical depression and fatigue literature; no primary experimental data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Frontiers in Human Neuroscience, reputable journal. Source quality good but theoretical. Mapping fidelity moderate -- the self-efficacy framework maps to behavioral flatness under drive failure, which is adjacent to but not identical to pure harm-avoidance training. Transfer risk moderate-high because the clinical mechanism (interoceptive dysregulation and metacognitive belief update) differs from the REE training regime question."
+  }
+}

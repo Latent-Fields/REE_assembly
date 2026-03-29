@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_034",
+  "entry_id": "2026-03-29_inv_034_goal_representations_schizophrenia_barch2010",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["INV-034"],
+  "source": {
+    "title": "Goal representations and motivational drive in schizophrenia: the role of prefrontal-striatal interactions",
+    "authors": ["Barch, D.M.", "Dowd, E.C."],
+    "year": 2010,
+    "venue": "Schizophrenia Bulletin",
+    "doi": "10.1093/schbul/sbq068",
+    "pmid": "20566491",
+    "pmc": "PMC2930335",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20566491/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "INV-034 claims that goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance -- a system that can only avoid harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency. Barch and Dowd provide the clinical demonstration of this principle: schizophrenia patients with negative symptoms have largely intact harm-avoidance (they do not engage in dangerous behaviors indiscriminately) and intact hedonic evaluation (liking), yet they show profoundly reduced goal-directed agency -- they do not initiate, pursue, or sustain behavior toward valued goals. This is precisely the clinical profile predicted by INV-034's claim: when goal maintenance fails, agency collapses to passivity even in the presence of intact harm-avoidance systems. Confidence 0.78 because the paper does not frame the clinical finding in terms of agency theory, and the inference from schizophrenia avolition to computational architectural necessity requires a philosophical step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If patients with pure negative symptoms (avolition, absent wanting) nevertheless showed normal goal-directed behavior, INV-034's claim that goal maintenance is necessary for agency would require revision.",
+    "If harm-avoidance systems were also impaired in avolition, the dissociation between intact harm-avoidance and absent goal-directed agency would not hold, weakening the evidence that goal maintenance is distinctively necessary."
+  ],
+  "tags": ["inv_034", "goal_maintenance", "agency", "schizophrenia", "avolition", "ethical_agency", "prefrontal_striatal", "wanting", "behavioral_passivity"],
+  "mapping": {
+    "source_claim_statement": "Schizophrenia negative symptoms, particularly avolition, reflect failures to maintain and use internal goal representations to drive behavior. Patients have intact hedonic reactions at receipt but fail to initiate goal-directed behavior. The deficit is in translating reward information into motivated action plans -- a failure of goal maintenance and motivational drive generation in prefrontal-striatal circuits.",
+    "ree_translation": "INV-034 claims that harm-avoidance alone is insufficient for ethical agency -- goal maintenance (sustained z_goal representation, wanting) is a necessary co-condition. The schizophrenia negative symptom profile is the clinical existence proof: these patients have intact harm avoidance (they do not walk into traffic, do not harm others without reason) and intact hedonic evaluation (liking/consummatory pleasure is normal), yet their agency is profoundly impaired -- they are avolitional, passive, unable to pursue goals. REE must not reproduce this architecture failure: a system trained only on harm-avoidance signals, with no goal representation, would behaviorally resemble the negative-symptom schizophrenia profile. The minimum-action policy (quiescence avoids all harm) is not agency. Barch and Dowd provide the clinical grounding for why MECH-112 and goal representation are necessary prerequisites for INV-034.",
+    "mapping_caveat": "The paper does not discuss ethical agency as a concept -- the connection to INV-034's framing requires extending from clinical motivation theory to computational architecture theory. Schizophrenia negative symptoms have multiple contributing mechanisms (dopamine dysregulation, cognitive control impairment, social cognition deficits) and may not purely reflect goal-representation failure. The prefrontal-striatal circuit described is a hypothesis about mechanism, not a definitively established causal chain. Some debate exists about whether avolition reflects motivational deficits specifically versus broader cognitive impairments.",
+    "source_context": "Theoretical and integrative review; Schizophrenia Bulletin; human clinical population; draws on neuroimaging, behavioral, and pharmacological studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "High-quality review. Mapping fidelity is good for the clinical analog but requires a step from clinical motivation failure to computational architectural necessity for ethical agency -- this step involves philosophical inference not warranted by the source alone. Transfer risk moderate for the same reason."
+  }
+}

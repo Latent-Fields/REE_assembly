@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-03-29_q020_value_free_map_duvelle2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-020"],
+  "source": {
+    "title": "Insensitivity of Place Cells to the Value of Spatial Goals in a Two-Choice Flexible Navigation Task",
+    "authors": [
+      "Duvelle E",
+      "Grieves RM",
+      "Hok V",
+      "Poucet B",
+      "Arleo A",
+      "Jeffery KJ",
+      "Save E"
+    ],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1578-18.2018",
+    "pmid": "30696727"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Provides direct dorsal CA1 evidence supporting the value-free spatial map hypothesis, consistent with ARC-007's framing. Rats showed clear goal-value behavioral sensitivity while dorsal CA1 place cells did not modulate firing by reward magnitude. This supports the hypothesis that dorsal hippocampus provides a value-neutral spatial substrate, with value encoding occurring elsewhere. Confidence is moderate because the finding is null (no modulation) in a specific subregion and task, and the dorsal/ventral distinction means it is compatible with the Jimenez/Knudsen evidence rather than contradicting it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_020", "value_free_map", "place_cells", "dorsal_hippocampus", "reward_insensitivity", "spatial_navigation", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "Dorsal CA1 place cells maintain stable spatial representations regardless of reward magnitude at goal locations. Rats showed preference for higher-value goals behaviorally, and there was out-of-field firing at goal locations, but place cell firing rate and spatial selectivity were not modulated by goal value. The authors conclude dorsal hippocampus provides a 'value-free spatial representation' that links to value via other circuits.",
+    "ree_translation": "ARC-007 holds that the hippocampal module navigates residue-field terrain R(x,t) without computing new value per se. Duvelle et al. support the dorsal CA1 component of this: the spatial substrate is value-neutral in the sense that place cell geometry does not vary with reward magnitude. However, the 'out-of-field firing' at goal locations suggests some goal-relevance modulation exists. For REE, this supports the view that the navigation-geometry layer of R(x,t) is value-independent (supporting ARC-007), while a separable layer carries goal/harm valence (consistent with MECH-073). The two claims may coexist in different hippocampal layers or subregions.",
+    "mapping_caveat": "This is a dorsal CA1 finding; the value-free result explicitly does not extend to ventral hippocampus (see Jimenez 2018). REE's hippocampal module does not specify a dorsal/ventral split. The task uses spatial navigation with varying reward amounts -- a clean dissociation but not one that tests harm-avoidance residue. The null result (no modulation) is intrinsically harder to interpret than a positive effect; absence of reward-magnitude coding is not the same as absence of any value representation.",
+    "source_context": "Rat dorsal CA1; tetrode electrophysiology during two-choice flexible spatial navigation task; reward magnitude manipulation (1 vs. 3 food pellets)"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Good empirical paper, JNeurosci 2019. The null-modulation finding is clean and the dissociation between behavior (goal-value sensitive) and place cells (value-insensitive) is methodologically important. Mapping fidelity is moderate-good because the dorsal CA1 finding aligns with ARC-007's value-free-navigation premise. Transfer risk is lower than Jimenez/Knudsen because the spatial navigation task is structurally closer to REE's hippocampal rollout scenario."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_015",
+  "entry_id": "2026-03-29_q015_mesoscale_premovement_mitelut2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-015"],
+  "source": {
+    "title": "Mesoscale cortex-wide neural dynamics predict self-initiated actions in mice several seconds prior to movement",
+    "authors": ["Catalin Mitelut", "Yongxu Zhang", "Yuki Sekino", "Jamie D. Boyd", "Federico Bollanos", "Nicholas V. Swindale", "Greg Silasi", "Shreya Saxena", "Timothy H. Murphy"],
+    "year": 2022,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.76506"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Widefield calcium imaging showing structured multi-second pre-movement dynamics distributed across cortex, including inhibition of motor cortex starting ~5s before self-initiated action. Establishes that commit-precursor signals are distributed (not a single token) and extend several seconds before movement -- constraining the timescale window for any commit token. Confidence reduced by species gap (mouse vs. human) and absence of direct commitment/inhibition paradigm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_015", "premovement_dynamics", "multi_timescale", "motor_cortex_inhibition", "self_initiated_action", "widefield_imaging"],
+  "mapping": {
+    "source_claim_statement": "Cortical activity in mice shows structured variance changes 3-5 seconds prior to self-initiated lever pulls; motor cortex is initially inhibited (~5s before) then activated (~2s before); action prediction is best with distributed multi-area rather than single-area signals. These dynamics are structured beyond random neural fluctuations.",
+    "ree_translation": "The multi-second premovement dynamics suggest that the commit precursor is not a single moment but a trajectory. In REE terms, the E3 planning loop must begin encoding a 'warming up to commit' signal several seconds before gate opening. This constrains the minimal commit token: it cannot be instantiated at a single moment without losing the trajectory information that allows accurate attribution of when the decision was effectively irreversible. The inhibition-then-activation sequence in motor cortex maps loosely onto REE's pre-commit simulation phase (suppression of premature execution) followed by commit-gate opening (activation enabling movement). The distributed prediction advantage implies that the commit token should aggregate signals across multiple subsystems, not just the gate-opening locus.",
+    "mapping_caveat": "Mouse widefield calcium imaging cannot resolve the cognitive-level planning signals that REE's E3 represents. The lever-pull paradigm involves a simple reward-motivated movement with no ethical or multi-option planning component. The 5-second window observed here may be a lower bound for mouse motor actions; REE's planning horizon is substantially longer and more abstract. The species transfer from mouse to human-analogous agent is a significant additional assumption.",
+    "source_context": "Mouse widefield calcium imaging, self-initiated lever pull paradigm, reward-motivated behavior, healthy adult mice"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "High-quality imaging data with careful controls for random-process confounds. Transfer risk elevated by species gap and task simplicity. The main REE-relevant finding (distributed, multi-second pre-commit trajectory) is suggestive but not directly probative of what a minimal token contract must contain."
+  }
+}

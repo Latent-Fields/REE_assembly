@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_015",
+  "entry_id": "2026-03-29_q015_proximal_distal_intention_vinding2013",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-015"],
+  "source": {
+    "title": "Distinct electrophysiological potentials for intention in action and prior intention for action",
+    "authors": ["Mikkel C. Vinding", "Mads Jensen", "Morten Overgaard"],
+    "year": 2013,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2013.09.001"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly distinguishes proximal (just-in-time) from distal (planned-in-advance) intention using EEG, finding a distinct slow negative frontal 'intention potential' for distal intentions that is separable from the late RP. This is high-quality human EEG with clean experimental dissociation. Transfer risk is moderate because REE's commit token operates over multiple timescales simultaneously, whereas this work cleanly separates them.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_015", "readiness_potential", "distal_intention", "proximal_intention", "multi_timescale", "commitment_token"],
+  "mapping": {
+    "source_claim_statement": "Proximal intention (immediately prior to action) and distal intention (formed seconds before movement) are associated with distinct electrophysiological signatures: a late RP differentiates proximal from distal conditions, while a slow negative mid-frontal 'intention potential' appears only for self-paced distal intentions and not for externally-cued distal intentions.",
+    "ree_translation": "REE's commit token must encode at minimum two separable temporal registers: a proximal gate (when-to-fire, analogous to late RP) and a distal planning commitment (a prior-intention mark, analogous to the intention potential). A single scalar timestamp is insufficient -- the minimal contract must carry both a 'formed-when' and a 'triggered-when' field to support multi-timescale attribution across E1/E2/E3.",
+    "mapping_caveat": "The paper's distal condition uses a 2.5-second delay between intention formation and movement -- a fixed laboratory window. REE's commit boundary must operate over variable and potentially much longer planning horizons. The mid-frontal 'intention potential' is only present for self-paced decisions, not externally-cued ones; REE must account for authority-triggered commits that may bypass the distal register entirely.",
+    "source_context": "Human EEG, voluntary finger movement paradigm, healthy young adults, self-paced vs. externally-cued intention conditions"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.28,
+    "notes": "Clean experimental design with direct manipulation of intention timing. Moderate transfer risk because the REE commit token is a computational construct while the RP/intention-potential are continuous EEG signals; the structural mapping (two distinct temporal registers) is valid but the implementation details differ substantially."
+  }
+}
