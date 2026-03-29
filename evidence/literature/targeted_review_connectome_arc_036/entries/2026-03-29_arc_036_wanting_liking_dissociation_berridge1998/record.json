@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_036",
+  "entry_id": "2026-03-29_arc_036_wanting_liking_dissociation_berridge1998",
+  "timestamp_utc": "2026-03-29T13:40:00Z",
+  "claim_ids_tested": ["ARC-036"],
+  "source": {
+    "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
+    "authors": ["Berridge, Kent C.", "Robinson, Terry E."],
+    "year": 1998,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/S0165-0173(98)00019-8",
+    "pmid": "9858756",
+    "volume": "28",
+    "issue": "3",
+    "pages": "309-369"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the canonical paper establishing that dopamine subserves 'wanting' (incentive salience) but not 'liking' (hedonic impact), and that reward learning (prediction error updating) is a third functionally separable process. The dissociation is demonstrated across multiple lesion, pharmacological, and behavioural paradigms in rodents. For ARC-036, this is the foundational paper grounding the claim that the hippocampal terrain map encodes separable valence dimensions: wanting and liking are shown to be doubly dissociable both behaviourally and neurobiologically, establishing that a terrain map tracking both would require at minimum two distinct valence channels. Confidence is high because the evidence base is large and the dissociation is robust; slight reduction from 1.0 reflects that this paper does not directly address hippocampal encoding or replay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_036", "valence_map", "wanting", "liking", "dopamine", "incentive_salience", "hedonic_impact", "dissociation", "nucleus_accumbens"],
+  "mapping": {
+    "source_claim_statement": "Dopamine mediates incentive salience ('wanting') but not hedonic impact ('liking') or declarative reward learning. Animals with virtually complete dopamine depletion still display normal hedonic reactions to sucrose but lose appetitive motivation and fail to work for reward. These three reward components are therefore separable at the neural systems level.",
+    "ree_translation": "ARC-036 claims the hippocampal terrain map encodes separable valence dimensions including wanting and liking as distinct channels. Berridge and Robinson's dissociation provides the neurobiological grounding for this: if wanting and liking are mediated by distinct neural substrates (dopamine vs. opioid/endocannabinoid systems), then a terrain map that tracked both would necessarily encode them via separable representational channels. The harm-causal residue field (ARC-007 special case) is a third dimension — aversive, self-attributed harm — that is again distinct from both incentive salience and hedonic pleasure. The dissociation paper establishes the conceptual and biological precedent that motivationally relevant terrain encoding is inherently multidimensional.",
+    "mapping_caveat": "The paper's framework is built on appetitive reward; the harm/aversion dimension is not directly addressed in Berridge and Robinson's framework. 'Wanting' for aversive outcomes (fear, avoidance) is discussed but the directional specificity differs. The step from striatal/mesolimbic substrate to hippocampal spatial map encoding of these dimensions requires additional bridging literature. This paper establishes the dimensional structure; it does not demonstrate that hippocampus encodes it spatially.",
+    "source_context": "Rodent behavioral pharmacology and lesion studies; dopamine depletion via 6-OHDA, taste reactivity measures for liking, instrumental/approach behavior for wanting; synthetic review of the field up to 1998"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Extremely high source quality: canonical paper, ~12,000 citations, foundational to the reward neuroscience field. Mapping fidelity is high because ARC-036's multi-dimensional claim requires exactly the kind of dissociation Berridge and Robinson demonstrate. Transfer risk is low-to-moderate: the dissociation itself transfers directly; the gap is from mesolimbic substrate to hippocampal spatial encoding, which requires the other entries in this review to bridge."
+  }
+}

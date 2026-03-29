@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_014",
+  "entry_id": "2026-03-29_q014_invariance_equivariance_tradeoff_wang2024",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-014"],
+  "source": {
+    "title": "Understanding the Role of Equivariance in Self-supervised Learning",
+    "authors": ["Yifei Wang", "Kaiwen Hu", "Sharut Gupta", "Ziyu Ye", "Yisen Wang", "Stefanie Jegelka"],
+    "year": 2024,
+    "venue": "NeurIPS 2024",
+    "doi": "10.48550/arXiv.2411.06508"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Wang et al. establish that invariant SSL architectures (JEPA family) systematically discard features required for equivariant downstream tasks, with an information-theoretic bound on the information loss. This directly supports Q-014: JEPA invariances create blind spots for downstream tasks that require sensitivity to the suppressed features. In REE attribution contexts, those suppressed features may include precisely the event-type distinctions required for causal harm attribution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_014", "JEPA", "invariance", "equivariance", "information_loss", "attribution", "ethical_blind_spot", "NeurIPS"],
+  "mapping": {
+    "source_claim_statement": "Invariant SSL methods discard augmentation-related information through the invariance mechanism itself; equivariant SSL recovers this via an explaining-away synergy; the information gap is measurable and systematically affects performance on downstream tasks requiring the suppressed features.",
+    "ree_translation": "JEPA invariances trained to suppress perceptual nuisance variation will also suppress event-type distinctions that happen to look like nuisance variation at the feature level. In REE attribution -- where the agent must distinguish between superficially similar trajectories with different causal structures (agent-caused vs. environment-caused harm, for example) -- this information loss constitutes an ethical blind spot: the architecture structurally cannot represent the relevant distinction, not merely as a capacity limitation but as a design consequence of the invariance objective.",
+    "mapping_caveat": "Wang et al. study visual augmentations (crop, color jitter, rotation) in static image classification. The information discarded is visual transformation information. Whether the analogous information in a temporal dynamics model -- fine-grained event-type distinctions required for moral attribution -- is also suppressed by JEPA's invariance objective has not been directly tested. The argument by analogy is plausible but requires validation in the temporal sequential domain.",
+    "source_context": "Image-domain self-supervised learning, ViT backbone, standard vision benchmarks, downstream classification and equivariant prediction tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "NeurIPS 2024, rigorous theoretical and empirical treatment. Confidence above baseline because the mechanism is general (invariance = information loss) and the mapping to JEPA-based E1/E2 in REE is direct in principle, even if not empirically validated in that specific context. Transfer risk is moderate: the visual augmentation domain is quite different from temporal dynamics."
+  }
+}

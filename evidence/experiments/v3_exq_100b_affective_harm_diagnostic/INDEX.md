@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_100b_affective_harm_diagnostic
 
-Generated: `2026-03-29T12:56:39.865551Z`
+Generated: `2026-03-29T13:43:21.678686Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

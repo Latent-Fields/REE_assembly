@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_013",
+  "entry_id": "2026-03-29_q013_equivariance_ssl_uncertainty_wang2024",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-013"],
+  "source": {
+    "title": "Understanding the Role of Equivariance in Self-supervised Learning",
+    "authors": ["Yifei Wang", "Kaiwen Hu", "Sharut Gupta", "Ziyu Ye", "Yisen Wang", "Stefanie Jegelka"],
+    "year": 2024,
+    "venue": "NeurIPS 2024",
+    "doi": "10.48550/arXiv.2411.06508"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.61,
+  "confidence_rationale": "This NeurIPS 2024 paper provides an information-theoretic framework showing that invariance-only SSL (the JEPA regime) discards information useful for equivariant downstream tasks, while equivariant SSL introduces an explaining-away effect that synergistically retains more downstream-useful features. For Q-013, the relevance is indirect: the uncertainty content discarded by JEPA's invariances is exactly what precision routing needs to distinguish, but the paper does not directly address calibration or uncertainty heads. Evidence is mixed because the framework simultaneously explains why JEPA discards certain distinctions (a liability for Q-013) and how equivariant extensions recover them (pointing toward a viable hybridize architecture).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_013", "JEPA", "equivariance", "invariance", "information_theory", "SSL", "downstream_tasks", "NeurIPS"],
+  "mapping": {
+    "source_claim_statement": "Invariant SSL methods (including JEPA-style architectures) discard augmentation-related information that is required for equivariant downstream tasks; an explaining-away synergy in equivariant SSL methods allows them to retain this information while also learning invariant structure.",
+    "ree_translation": "For Q-013, the discarded information in JEPA's invariant representations includes transformations that are precisely the kind of fine-grained event distinctions REE's precision routing needs to weight. A deterministic JEPA representation that is invariant to small scene perturbations may not preserve the signal differences needed to distinguish high- from low-precision prediction contexts in E3. However, the equivariant extension framework Wang et al. develop provides a principled path toward a hybridize architecture that retains both invariant and equivariant channels.",
+    "mapping_caveat": "Wang et al. study image-domain SSL (vision tasks, standard augmentations like crop, jitter, flip). The 'information' discarded by invariance in their framework is visual augmentation information, not uncertainty about future states in a temporal world model. REE's precision routing operates over temporal prediction errors, not classification-style features. The information-theoretic argument may generalise, but the specific information types are different.",
+    "source_context": "Image-domain self-supervised learning, classification downstream tasks, ViT backbone, standard augmentation protocols."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.48,
+    "notes": "NeurIPS 2024, rigorous information-theoretic framework with experimental validation. Mapping fidelity is limited because the domain (image classification SSL) is quite different from temporal dynamics modelling in REE. The argument generalises in principle but has not been validated in the temporal world-model context."
+  }
+}

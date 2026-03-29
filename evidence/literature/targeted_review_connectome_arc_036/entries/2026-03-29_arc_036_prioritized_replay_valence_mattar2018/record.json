@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_036",
+  "entry_id": "2026-03-29_arc_036_prioritized_replay_valence_mattar2018",
+  "timestamp_utc": "2026-03-29T13:40:00Z",
+  "claim_ids_tested": ["ARC-036"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": ["Mattar, Marcelo G.", "Daw, Nathaniel D."],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "pmid": "30349103",
+    "pmcid": "PMC6203620",
+    "volume": "21",
+    "issue": "11",
+    "pages": "1609-1617"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Mattar and Daw's prioritized replay framework provides the mechanism by which a multi-dimensional valence terrain would be differentially consolidated and updated in hippocampus. The paper demonstrates that replay content is determined by a value-based utility function (need x gain) rather than recency or spatial proximity. For ARC-036, this means that if hippocampus encodes separable valence dimensions (wanting, liking, harm, surprise), then the terrain zones with high utility across any of those dimensions would be candidates for prioritized replay. The paper further supports the claim that replay is not a passive echo of experience but an active maintenance process that sculpts the terrain map according to decision-relevant value structure. This is a different mapping from the ARC-007 entry (which focuses on residue-field path prioritization); here the focus is on how value-weighted replay supports the multi-dimensional terrain structure that ARC-036 claims hippocampus maintains.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_036", "valence_map", "hippocampal_replay", "prioritized_replay", "value_weighted", "terrain_consolidation", "multi_dimensional_valence", "planning", "need_gain"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay is prioritized by a utility metric that is the product of 'need' (probability of visiting a state soon) and 'gain' (expected improvement in decision quality from updating that state's value estimate). This framework accounts for reverse replay, prospective replay, and value-sensitive replay prioritization under a single normative theory. Replay is therefore organized around the decision-relevant value structure of the environment, not around spatial recency.",
+    "ree_translation": "ARC-036 claims that hippocampal terrain maps encode separable valence dimensions and that ARC-007 residue-field navigation is the harm-causal special case. If hippocampus encodes multiple valence dimensions — wanting, liking, harm-discriminative, surprise — then Mattar and Daw's framework predicts that replay would be prioritized by whichever dimension currently has the highest utility. In a dangerous environment, harm-salient zones have high gain (their harm estimates are highly decision-relevant) and potentially high need (the agent may be approaching them). In a novel environment, surprise-salient zones have high gain (their value estimates are uncertain). In an appetitive context, wanting-salient zones dominate. The prioritized replay framework therefore provides a unified mechanism by which different valence dimensions of the terrain map are selectively consolidated depending on the current behavioral context — a drive-state-gated replay process that is the biological implementation of SD-012 (homeostatic drive scaling).",
+    "mapping_caveat": "The model operationalizes value as a scalar expected reward. Extending it to a multi-dimensional valence terrain (wanting + liking + harm + surprise as separate channels) requires either treating each dimension as a separate replay queue with its own need-gain calculation, or defining a joint utility function over the multi-dimensional terrain that is not specified in the paper. The paper does not address how the drive state of the organism (hunger, fear, curiosity) would selectively weight one dimension's utility over another — which is precisely what SD-012 requires. This extension is conceptually natural but is not demonstrated. Additionally, this is a computational model validated against rodent spatial navigation; the multi-dimensional valence terrain is a theoretical extension beyond what the paper tests.",
+    "source_context": "Computational modelling with sequential nonlocal reactivation; validated against rodent spatial navigation data (place-cell replay during rest); successor representation variant also presented; pure theory-and-simulation paper with empirical validation against existing rodent datasets"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Nature Neuroscience, well-validated computational theory). Mapping fidelity is somewhat lower than the ARC-007 entry: here the claim is that prioritized replay supports a multi-dimensional valence terrain, which requires extending the scalar value framework to multiple dimensions — a step not taken in the paper itself. Transfer risk is moderate for the same reason: the scalar-to-multidimensional extension is conceptually motivated but undemonstrated. The paper remains highly relevant because it establishes the mechanism (utility-based prioritization) that any multi-dimensional terrain map would need replay to implement."
+  }
+}

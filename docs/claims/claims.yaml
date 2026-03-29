@@ -7088,6 +7088,84 @@
     sufficient confounding for the bias to affect SD-003 results in practice.
     EXQ-115 PASS is a prerequisite before this claim becomes testable.
 
+- id: SD-014
+  title: "Hippocampal map nodes must store an explicit 4-component valence vector (wanting, liking, harm-discriminative, surprise) updated incrementally per visit; replay prioritisation is weighted by drive-state-gated valence relevance."
+  claim_type: design_decision
+  subject: hippocampus.valence_vector_node_recording
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-036
+    - SD-011
+    - SD-012
+    - MECH-030
+  notes: >
+    The concrete implementation requirement derived from ARC-036. Each hippocampal map node
+    stores a 4-component valence vector V = [w, l, h, s] updated incrementally on each visit:
+
+    w (wanting): exponential moving average of drive-scaled benefit_exposure at this node.
+    Update rule: w <- (1-alpha_w) * w + alpha_w * (benefit_signal * (1 + drive_weight * drive_level)).
+    The drive-scaling (SD-012) ensures wanting is elevated when the agent is resource-depleted.
+    Biological: mesolimbic DA sensitisation -- incentive salience scales with homeostatic state
+    even when consummatory value (liking) is constant or declining.
+
+    l (liking): EMA of actual consummatory reward received at outcome contact. Updated only on
+    outcome contact events (resource receipt, goal achievement), not on approach. This is the
+    critical dissociation from w: l is updated by outcome, w is updated by approach drive. They
+    diverge under tolerance/depletion conditions -- w remains elevated when the same resource
+    delivers reduced consummatory value. Biological: opioid/endocannabinoid hedonic hotspots
+    (Berridge 2009); liking signal requires receptor engagement at outcome, not anticipation.
+
+    h (harm-discriminative): EMA of z_harm_a (affective harm accumulator, SD-011) at this node.
+    Corresponds to the accumulated threat urgency at this location. Used by E3 for harm-weighted
+    trajectory evaluation. ARC-007 residue field is the causal-attributive layer on top of h;
+    h itself is the unconditional harm valence (what harm is present here, regardless of cause).
+
+    s (surprise): EMA of |prediction_error| at this node. Updated by E1 loss (sensory prediction
+    error) and/or E2 loss (transition prediction error) at each visit. High s flags states with
+    residual model uncertainty -- replay priority boost for s-high nodes accelerates learning.
+    Biological: dopamine RPE burst/pause as novelty/surprise signal (Schultz 1997); LC-NE
+    unexpected uncertainty (MECH-104) as the aversive-surprise complement.
+
+    Replay prioritisation: at each SWR replay event (MECH-030), each candidate node is scored:
+    priority(node) = dot(V_node, d_current) + epsilon
+    where d_current = [d_w, d_l, d_h, d_s] is the current drive salience vector (normalised):
+    - d_w elevated during resource depletion (wanting-relevant replay)
+    - d_l elevated after goal achievement (consolidate what was rewarding)
+    - d_h elevated during threat/post-harm (harm-avoiding trajectory consolidation)
+    - d_s elevated during active exploration phases (learning-efficient replay)
+    This produces the context-sensitive replay prioritisation that Mattar & Daw (2018) observed:
+    value-weighted replay naturally emerges as a special case when d = [0, 1, 0, 0].
+
+    Wanting/liking dissociation requirement: w and l MUST be stored as separate scalars.
+    A composite value signal (w + l or max(w,l)) loses the approach-despite-diminished-reward
+    failure mode. The dissociation is the empirical signature of the wanting/liking split
+    (Berridge & Robinson 1998): dopamine-lesioned animals lose approach (wanting) while
+    still showing facial liking responses at outcome contact. Conversely, opioid blockade
+    reduces liking while leaving approach intact. If w >> l at a frequently-visited node,
+    the agent is in the incentive-trap state: approach motivation is high but consummatory
+    value is depleted. This pattern should be detectable in the valence vector and should
+    trigger reduced approach priority in a correctly-implemented SD-014 system.
+
+    MECH-124 connection: if h is chronically elevated at approach-relevant nodes (the agent
+    encounters harm while approaching wanted resources), offline replay under high d_h will
+    selectively consolidate harm predictions for those nodes, progressively attenuating w
+    (the consolidation-mediated option contraction mechanism). SD-014 makes this failure mode
+    measurable: the ratio w/h at frequently-replayed nodes provides an early warning signal.
+
+    Prerequisite for EXP-0098 (wanting/liking dissociation validation) and for the full ARC-036
+    experimental programme. Registered 2026-03-29.
+  experimental_test: >
+    Discriminative pair (EXP-0098). Two conditions: UNIFIED_VALUE (single composite reward
+    signal, current architecture) vs DISSOCIATED_VALENCE (separate w and l tracking, SD-014
+    implementation). Environment: reward-diminishing gridworld where resource energy_restore
+    decays across training (simulating tolerance or incentive sensitisation).
+    Pass criterion: DISSOCIATED_VALENCE agent reduces approach-rate to low-liking nodes
+    relative to UNIFIED_VALUE agent, without globally reducing goal-directed behavior
+    (maintained approach to high-liking nodes). Tests that the wanting/liking dissociation
+    is behaviourally consequential and that SD-014 recording enables the agent to track it.
+
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
   claim_type: mechanism_hypothesis

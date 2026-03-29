@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_014",
+  "entry_id": "2026-03-29_q014_bias_fairness_invariance_mehrabi2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-014"],
+  "source": {
+    "title": "A Survey on Bias and Fairness in Machine Learning",
+    "authors": ["Ninareh Mehrabi", "Fred Morstatter", "Nripsuta Saxena", "Kristina Lerman", "Aram Galstyan"],
+    "year": 2022,
+    "venue": "ACM Computing Surveys",
+    "doi": "10.1145/3457607"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Mehrabi et al.'s survey documents the systematic failure of 'fairness through unawareness' -- representation invariance to protected attributes does not remove bias when the suppressed attributes correlate with other features. This supports Q-014's concern that JEPA invariances can hide ethically relevant distinctions: the same mechanism (invariance to a feature that correlates with ethically significant variation) produces blind spots in attribution. Confidence is moderate because the survey addresses fairness in supervised classification, not causal attribution in world models.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_014", "fairness", "invariance", "attribution_bias", "ethical_blind_spot", "representation_learning", "survey"],
+  "mapping": {
+    "source_claim_statement": "Fairness Through Unawareness -- learning representations invariant to protected attributes -- fails to remove bias when protected attributes correlate with non-protected features; the invariance creates a proxy-attribute blind spot that systematically affects downstream decisions.",
+    "ree_translation": "JEPA invariances trained to suppress perceptual noise can function like FTU: by suppressing variation that correlates with causal event structure, they create proxy-feature blind spots in the representation that propagate to attribution errors in E3. The ethical blind spot in Q-014 is the world-model analogue of FTU's fairness failure -- the invariance is designed to remove noise but inadvertently removes signal required for ethical evaluation.",
+    "mapping_caveat": "The survey addresses bias in supervised ML pipelines with explicit protected attributes (race, gender) and discrimination as the harm type. REE's attribution context is about causal event-type distinctions, not demographic group membership. The FTU analogy is conceptually apt but architecturally different: JEPA invariances are trained without reference to protected attributes, while FTU is explicit. The mechanism is similar but the operationalisation differs substantially.",
+    "source_context": "Survey of ML fairness literature, supervised classification and regression, demographic protected attributes, multiple application domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.50,
+    "notes": "Highly cited survey published in ACM Computing Surveys (journal version 2022, arXiv 2019). Source quality is high as a canonical reference. Mapping fidelity is lower because the survey's harm model (demographic discrimination) differs from REE's harm model (causal attribution of agent actions). The FTU analogy is useful conceptually but should not be read as direct evidence that JEPA specifically produces attribution errors."
+  }
+}

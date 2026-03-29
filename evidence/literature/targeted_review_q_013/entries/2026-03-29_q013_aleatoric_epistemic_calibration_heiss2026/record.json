@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_013",
+  "entry_id": "2026-03-29_q013_aleatoric_epistemic_calibration_heiss2026",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-013"],
+  "source": {
+    "title": "JUCAL: Jointly Calibrating Aleatoric and Epistemic Uncertainty in Classification Tasks",
+    "authors": ["Jakob Heiss", "Soren Lambrecht", "Jakob Weissteiner", "Hanna Wutte", "Zan Zuric", "Josef Teichmann", "Bin Yu"],
+    "year": 2026,
+    "venue": "arXiv (stat.ML)",
+    "doi": "10.48550/arXiv.2602.20153"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "JUCAL demonstrates that jointly calibrating aleatoric and epistemic uncertainty requires a separate calibration procedure that standard temperature scaling cannot provide -- the two uncertainties have different structural sources that must be treated independently. This weakens Q-013's hybridize outcome by showing that a deterministic JEPA backbone cannot simply derive well-calibrated epistemic uncertainty from dispersion alone: explicit joint calibration is needed, and that calibration requires the two channels to be structurally distinct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_013", "uncertainty_calibration", "aleatoric", "epistemic", "JEPA", "ensemble_calibration"],
+  "mapping": {
+    "source_claim_statement": "Classical temperature scaling fails to balance aleatoric and epistemic uncertainty in classifier ensembles; JUCAL jointly calibrates both by optimising two separate scaling constants, outperforming temperature scaling by up to 15-20% on NLL and prediction set size.",
+    "ree_translation": "Q-013 asks whether JEPA's deterministic representation plus a derived dispersion measure can match explicit stochastic uncertainty heads for REE precision routing. JUCAL's finding that even in ensembles -- which have a natural source of both uncertainty types -- joint calibration requires treating the two as structurally distinct signals suggests that collapsing both into a single dispersion term would lose the calibration needed for reliable precision routing in E3.",
+    "mapping_caveat": "JUCAL studies classification ensembles, not JEPA-style joint-embedding architectures or dynamics world models. The calibration challenge it documents (imbalanced aleatoric/epistemic weighting) is a general problem in uncertainty estimation but has not been demonstrated specifically in JEPA latent spaces. The paper does not address REE-style precision routing or sequential decision-making -- transfer to the REE context requires several additional assumptions.",
+    "source_context": "Classifier ensembles on classification benchmarks, static inputs, no temporal or sequential structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "arXiv preprint, not yet peer-reviewed at time of entry. The core finding (joint calibration of two structurally distinct uncertainty types outperforms unified temperature scaling) is well-motivated and the result is plausible, but the preprint has not been independently replicated. Transfer to JEPA/REE context requires multiple analogical steps."
+  }
+}

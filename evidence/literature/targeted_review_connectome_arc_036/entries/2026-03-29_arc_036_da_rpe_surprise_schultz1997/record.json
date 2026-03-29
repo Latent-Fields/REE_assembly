@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_036",
+  "entry_id": "2026-03-29_arc_036_da_rpe_surprise_schultz1997",
+  "timestamp_utc": "2026-03-29T13:40:00Z",
+  "claim_ids_tested": ["ARC-036"],
+  "source": {
+    "title": "A neural substrate of prediction and reward",
+    "authors": ["Schultz, Wolfram", "Dayan, Peter", "Montague, P. Read"],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5306.1593",
+    "pmid": "9054347",
+    "volume": "275",
+    "issue": "5306",
+    "pages": "1593-1599"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This paper establishes that midbrain dopamine neurons encode a temporal-difference reward prediction error (RPE) — a signal that is positive for unexpected rewards, negative for predicted reward omissions, and zero for fully predicted rewards. This operationalises 'surprise' as a distinct, neurally separable signal from hedonic impact and incentive salience. For ARC-036, this grounds the surprise dimension of the hippocampal valence terrain: unexpected events (rewarding or aversive) generate RPE signals that gate state-space updating. The paper provides electrophysiological confirmation that the DA system carries a signal matching the theoretical RPE of temporal-difference models, establishing surprise as a genuine fourth dimension separable from wanting and liking. Confidence is high; slight reduction reflects that the hippocampal terrain-map connection is inferential — DA RPE acts as a learning signal that modulates what gets encoded in terrain, not a direct terrain dimension itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_036", "valence_map", "surprise", "dopamine", "prediction_error", "temporal_difference", "RPE", "learning_signal", "state_boundary"],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons fire in response to unexpected rewards and reward-predicting stimuli, but their firing transfers from the reward itself to the earliest predictor of reward across learning. When a predicted reward is omitted, dopamine neurons show a suppression at the time the reward was expected. This activity pattern precisely matches the temporal-difference prediction error of reinforcement learning models.",
+    "ree_translation": "ARC-036 claims the hippocampal terrain map encodes a surprise dimension alongside wanting, liking, and harm-discriminative dimensions. Schultz et al. 1997 grounds the surprise dimension: phasic DA RPE signals mark the boundaries of expectation violation, which is equivalent to tagging state transitions as 'more or less surprising than predicted.' In hippocampal terrain terms, regions where DA RPE is chronically elevated (unpredictable state transitions, unexpected outcomes) would be encoded as high-surprise zones. The REE z_world encoder incorporates event contrastive supervision (SD-009, MECH-100) — the event-type auxiliary loss is directly analogous to tagging states by their surprise/RPE signature. The Schultz framework establishes that this surprise signal is not a byproduct of hedonic impact or incentive salience but a distinct computational quantity with dedicated neural encoding.",
+    "mapping_caveat": "DA RPE is a scalar signal encoding signed prediction error for reward value. It does not directly encode harm prediction error or aversive surprise as a distinct dimension — the aversive analogue is partially served by DA suppression but also by separate systems (habenula, norepinephrine). The translation to a terrain 'dimension' requires interpreting RPE not as a learning rate signal but as a property of locations in state space — which is a theoretical extension of the original model. Furthermore, the paper focuses on ventral tegmental area and striatal projections; hippocampal DA input is sparser and may carry modified rather than identical RPE signals.",
+    "source_context": "Primate (macaque monkey) single-unit electrophysiology; ventral tegmental area and substantia nigra pars compacta dopamine neurons; classical conditioning paradigms with juice reward; combined with theoretical temporal-difference model analysis"
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is near-maximal: this is one of the most cited papers in neuroscience (~20,000 citations), published in Science, with both empirical and theoretical components that have been extensively replicated. Mapping fidelity is good-but-not-high: the RPE-as-surprise signal clearly grounds the surprise dimension of ARC-036's valence map, but the step from learning signal to terrain property requires conceptual translation. Transfer risk is moderate: the macaque electrophysiology is well-replicated across species, but the hippocampal-specific DA pathway is sparser and less characterised than striatal projections."
+  }
+}
