@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_112_mech071_harm_eval_discriminative
 
-Generated: `2026-03-29T21:16:47.831679Z`
+Generated: `2026-03-29T21:30:05.008989Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,106 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3",
+  "experiment_type": "v3_exq_166a_sd003_obs_space_forward_model",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033",
+    "SD-011"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria_met": 4,
+  "total_criteria": 6,
+  "dry_run": false,
+  "supersedes": "v3_exq_166_sd003_obs_space_forward_model",
+  "notes": "EXQ-166a: 4-seed replication with extended P0 (80 eps). Fixes EXQ-166 seed instability (seed 123 R2=0 due to P0 encoder quality failure in 50 eps). P0 quality diagnostic added (z_harm variance check per seed). C6 criterion: majority (>=3/4 seeds) instead of both seeds.",
+  "metrics": {
+    "obs_fwd_r2_mean": 0.45244200527668,
+    "delta_approach_mean": 0.0006415770488931009,
+    "causal_approach_trained_mean": 0.00021031721126882092,
+    "causal_none_trained_mean": -0.018113591522505388,
+    "causal_contact_trained_mean": 0.01490420738429223,
+    "causal_approach_ablated_mean": -0.00043125983762427986,
+    "n_approach_eval_mean": 392.75,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 0.0
+  },
+  "per_seed": {
+    "42": {
+      "obs_fwd_r2": 0.9249331951141357,
+      "delta_approach": -0.01443365272948552,
+      "causal_approach_trained": -0.0011521590399558264,
+      "causal_none_trained": -0.022013369375316737,
+      "causal_contact_trained": 0.00909031207968549,
+      "causal_approach_ablated": 0.013281493689529694,
+      "n_approach_eval": 389,
+      "n_contact_eval": 82,
+      "p0_z_harm_var": 0.15084034204483032
+    },
+    "123": {
+      "obs_fwd_r2": 0.0,
+      "delta_approach": 0.023105960814158125,
+      "causal_approach_trained": 0.0036168095906575553,
+      "causal_none_trained": -0.012542103403492978,
+      "causal_contact_trained": 0.019088562804719676,
+      "causal_approach_ablated": -0.01948915122350057,
+      "n_approach_eval": 375,
+      "n_contact_eval": 92,
+      "p0_z_harm_var": 0.02852964773774147
+    },
+    "7": {
+      "obs_fwd_r2": 0.0,
+      "delta_approach": -0.0003960522903403652,
+      "causal_approach_trained": -0.000631511029858274,
+      "causal_none_trained": -0.019716612541157263,
+      "causal_contact_trained": 0.01664644890818102,
+      "causal_approach_ablated": -0.00023545873951790885,
+      "n_approach_eval": 394,
+      "n_contact_eval": 87,
+      "p0_z_harm_var": 0.08581956475973129
+    },
+    "13": {
+      "obs_fwd_r2": 0.8848348259925842,
+      "delta_approach": -0.005709947598759835,
+      "causal_approach_trained": -0.000991870675768171,
+      "causal_none_trained": -0.018182280770054567,
+      "causal_contact_trained": 0.014791505744582725,
+      "causal_approach_ablated": 0.004718076922991664,
+      "n_approach_eval": 413,
+      "n_contact_eval": 76,
+      "p0_z_harm_var": 0.083150714635849
+    }
+  },
+  "p0_quality": {
+    "42": 0.15084034204483032,
+    "123": 0.02852964773774147,
+    "7": 0.08581956475973129,
+    "13": 0.083150714635849
+  },
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      13
+    ],
+    "phase0_episodes": 80,
+    "phase1_episodes": 80,
+    "phase2_episodes": 30,
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "world_dim": 32,
+    "self_dim": 16,
+    "nav_bias": 0.65,
+    "harm_obs_dim": 51,
+    "z_harm_dim": 32,
+    "fwd_hidden_dim": 128,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "p0_var_thresh": 0.005
+  }
+}

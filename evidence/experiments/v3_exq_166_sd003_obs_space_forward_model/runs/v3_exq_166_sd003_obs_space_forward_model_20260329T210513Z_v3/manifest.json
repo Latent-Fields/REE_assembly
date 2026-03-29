@@ -25,8 +25,8 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
-  "evidence_direction_note": "EXQ-166 PASS 4/6 (2026-03-29): obs_fwd_r2=0.43 (C1 PASS) -- obs-space forward model learns to predict harm_obs_s_next, confirming ARC-033 feasibility and fixing EXQ-115 identity collapse. Trained > ablated in approach count (C3 PASS); negative causal in goal-absent condition (C4 PASS); causal_contact_trained > 0 (C5 PASS). C2/C6 sub-threshold. Supports ARC-033 (obs-space E2_harm_s forward model is viable), SD-003 (obs-space counterfactual pipeline feasible), SD-011 (harm_obs_s stream computable as obs-space input).",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "EXQ-166 MIXED 4/6 (2026-03-29): architecture is directionally correct but seed instability prevents clean PASS. Seed 42: obs_fwd_r2=0.867 (strong), causal gap present. Seed 123: obs_fwd_r2=0.0 (complete collapse). Root cause: P0 encoder quality variance -- 50 episodes insufficient to produce reliable z_harm representation on some seeds. EXQ-166a queued with 4 seeds and P0 extended to 80 episodes.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
