@@ -215,6 +215,24 @@
     "title": "Hippocampal terrain maps encode separable valence dimensions (wanting, liking, harm-discriminative, surprise); ARC-007 residue-field navigation is the harm-causal special case of this general architecture.",
     "type": "architectural_commitment"
   },
+  "ARC-037": {
+    "status": "candidate",
+    "subject": "attribution.causal_routing_circuit",
+    "title": "REE requires a causal attribution routing circuit (anterior insula equivalent) that classifies prediction errors as agent-caused or environment-caused and gates them into the E3/goal-directed learning channel vs the E1/habit-residue channel respectively.",
+    "type": "architectural_commitment"
+  },
+  "ARC-038": {
+    "status": "candidate",
+    "subject": "hippocampus.waking_consolidation_mode",
+    "title": "During waking immobility, hippocampal replay switches between task-focused forward sweeps (planning mode) and local consolidation replay (integration mode) based on task demand; this waking consolidation mode is architecturally necessary for viability map integration during experience.",
+    "type": "architectural_commitment"
+  },
+  "ARC-039": {
+    "status": "candidate",
+    "subject": "hippocampus.entorhinal_offline_consolidation",
+    "title": "Durable long-term storage of the hippocampal viability map requires a hippocampal-entorhinal loop that engages during offline (sleep/DMN-equivalent) consolidation and provides a coordinate-invariant grid representation; this loop does not operate during waking planning or waking immobility consolidation.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -1401,6 +1419,12 @@
     "status": "candidate",
     "subject": "planning.e1_e2_parallel_rollout",
     "title": "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-136": {
+    "status": "candidate",
+    "subject": "e3.harm_eval_agency_correction",
+    "title": "E3 harm evaluation must apply an agency-gain correction to counteract E2's systematic attenuation of agent-caused prediction errors; without this correction the agent structurally underweights its own causal harm.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

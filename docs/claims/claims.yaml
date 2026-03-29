@@ -3005,6 +3005,20 @@
     measurable approach-gradient avoidance, consistent with the violence-as-terminal-
     error-correction framing: maximum ethical leverage is in the approach gradient
     before contact, not at contact itself. Corroborates EXQ-032b energy ladder.
+    NORMATIVE STATUS NOTE (2026-03-29): MECH-102 is a normative architectural claim
+    about what a well-designed system should do -- not a description of how biological
+    systems actually behave. Psychological literature (Anderson & Bushman 2002 GAM;
+    Berkowitz 1989) shows humans frequently select violence before low-energy pathways
+    are exhausted via hostile attribution bias and script activation -- these are
+    MECH-102 failure modes, not its mechanism. The forward-model framing (violence
+    selected when the agent's model projects no coherent future accessible via low-energy
+    paths) is distinct from a temporal last-resort claim (try non-violent options first
+    in sequence). The forward-model framing avoids Aloyo's (2015) just-war critique of
+    temporal last-resort: pathway accessibility is a predictive judgment, not a required
+    sequence of attempts. Open question: avoiding premature violence may require positive
+    inhibitory mechanisms not present in human biology; equally, the claim permits
+    violence as ethically required action when pathway closure is genuine. Both remain
+    architecturally untested and warrant scrutiny under V4 ethical validation.
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
@@ -7224,4 +7238,146 @@
     hypothetical rollout), INV-034 (goal maintenance requires E3 to track goal progress
     through world-state evolution), MECH-116 (E1 goal conditioning only effective if E1
     is active during rollout). Registered 2026-03-28.
+  evidence: []
+
+# Claims registered 2026-03-29 from MECH-071/ARC-018 literature pull discussion
+
+- id: MECH-136
+  title: "E3 harm evaluation must apply an agency-gain correction to counteract E2's systematic attenuation of agent-caused prediction errors; without this correction the agent structurally underweights its own causal harm."
+  claim_type: mechanism_hypothesis
+  subject: e3.harm_eval_agency_correction
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-071
+    - SD-011
+    - SD-007
+  notes: >
+    Shergill et al. (2003, Science) quantify the consequence of efference copy attenuation:
+    subjects must apply ~2/3 more force than received to perceive equivalence, because
+    self-generated forces are under-perceived by the predictive forward model. Applied to
+    REE: E2's forward model suppresses prediction error for well-predicted agent-caused
+    transitions (the agent "expected" its own action consequence), systematically producing
+    smaller residuals for agent-caused harm than for identically-sized environment-caused
+    harm. Without correction, E3 harm evaluation inherits this attenuation as a structural
+    moral blind spot: the agent underestimates the harm it causes relative to harm it
+    receives.
+    The correction mechanism: E3 must detect the causal origin of a prediction error
+    (agent-caused vs env-caused, via SD-003/SD-011) and apply an inverse-attenuation
+    weighting to agent-caused harm signals before harm_eval scoring. The magnitude of
+    the correction is calibrated to the E2 forward model's prediction confidence for
+    the action that caused the harm -- higher confidence (better-predicted action) implies
+    greater attenuation and thus greater required correction.
+    Connection to MECH-124: if z_goal salience systematically exceeds harm salience in
+    consolidated viability maps, the agency-gain correction is a necessary but not
+    sufficient condition for harm-appropriate goal pursuit. MECH-136 and MECH-124 must
+    be validated together in V3/V4 ethical trajectory evaluation experiments.
+    Registered 2026-03-29 from MECH-071 lit pull (Blakemore 1998, Shergill 2003).
+  evidence: []
+
+- id: ARC-037
+  title: "REE requires a causal attribution routing circuit (anterior insula equivalent) that classifies prediction errors as agent-caused or environment-caused and gates them into the E3/goal-directed learning channel vs the E1/habit-residue channel respectively."
+  claim_type: architectural_commitment
+  subject: attribution.causal_routing_circuit
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-071
+    - SD-003
+    - SD-011
+    - ARC-021
+  notes: >
+    Dorfman et al. (2021, J Neurosci) show that causal beliefs about action outcomes
+    are encoded in anterior insula and gate prediction errors differentially into
+    dorsal striatum (goal-directed, causal learning) but not ventral striatum (general
+    reward/habit). REE functional equivalents: dorsal striatum = E3 learning channel
+    (goal-directed, model-based, harm-attributed); ventral striatum = E1/residue update
+    channel (habitual, sensory, non-attributed).
+    ARC-037 specifies the routing architecture: a module that reads causal_sig (from
+    SD-003 counterfactual E2 output) or z_harm_s/z_harm_a streams (from SD-011) and
+    classifies each prediction error event as agent-caused or environment-caused.
+    Agent-caused errors: routed with full weight to E3 harm_eval and trajectory
+    planning updates. Environment-caused errors: routed to E1 world-model update and
+    residue field R(x,t), not E3. Misrouting (treating env-caused harm as agent-caused)
+    produces false guilt/moral overattribution; misrouting in the other direction
+    (treating agent-caused harm as env-caused) produces the moral blind spot described
+    by MECH-136.
+    This routing circuit is the architectural bridge between SD-003 (what was agent-caused)
+    and the learning channels that update on that information. Without it, SD-003's
+    causal_sig exists but has no downstream effect on learning. The anterior insula
+    substrate is consistent with its known role in interoception, agency attribution,
+    and moral judgement.
+    Registered 2026-03-29 from MECH-071 lit pull (Dorfman et al. 2021).
+  evidence: []
+
+- id: ARC-038
+  title: "During waking immobility, hippocampal replay switches between task-focused forward sweeps (planning mode) and local consolidation replay (integration mode) based on task demand; this waking consolidation mode is architecturally necessary for viability map integration during experience."
+  claim_type: architectural_commitment
+  subject: hippocampus.waking_consolidation_mode
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-018
+    - ARC-007
+    - MECH-092
+  notes: >
+    Olafsdottir et al. (2017, Neuron) show that awake hippocampal replay is not
+    homogeneous: during active task engagement, replay is task-focused and prospective
+    (forward sweeps, pre/post-experience sequences). During waking rest and immobility,
+    replay switches to a local consolidation mode that integrates experience into map
+    geometry without requiring an active goal target. This switch is task-demand-driven,
+    not sleep-gated.
+    REE implementation: MECH-092 specifies that quiescent E3 heartbeat cycles trigger
+    SWR-equivalent replay for viability map consolidation (micro-DMN). ARC-038 adds
+    that this waking consolidation must be a distinct operating mode from forward-sweep
+    planning replay: (a) it runs without an active z_goal target; (b) it updates map
+    geometry based on recent trajectory experience rather than planning toward a goal;
+    (c) it is triggered by low task-demand signals (beta elevation, no active commitment
+    pending) rather than by goal-state availability.
+    The distinction matters for V3 implementation: if waking replay only runs in
+    forward-sweep mode (goal-directed), the viability map accumulates experience only
+    for currently-relevant goals. Waking consolidation mode allows experience from any
+    trajectory to integrate into the map, making harm-avoidance knowledge general rather
+    than goal-specific.
+    V3 scope: the waking/task-demand switch mechanism can be implemented without
+    entorhinal grid involvement (see ARC-039 for the V4 durable-storage extension).
+    Registered 2026-03-29 from ARC-018 lit pull (Olafsdottir et al. 2017).
+  evidence: []
+
+- id: ARC-039
+  title: "Durable long-term storage of the hippocampal viability map requires a hippocampal-entorhinal loop that engages during offline (sleep/DMN-equivalent) consolidation and provides a coordinate-invariant grid representation; this loop does not operate during waking planning or waking immobility consolidation."
+  claim_type: architectural_commitment
+  subject: hippocampus.entorhinal_offline_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-038
+    - ARC-018
+    - MECH-092
+  notes: >
+    Olafsdottir et al. (2017, Neuron) identify that entorhinal grid cells engage
+    coherently with hippocampus only during offline/immobility consolidation, not
+    during active waking planning. The hippocampal-entorhinal loop is thus not
+    required for moment-to-moment viability map use -- it is specifically the
+    substrate for long-term, durable map storage.
+    Architectural significance: entorhinal grid cells provide a compressed,
+    coordinate-invariant geometric representation of the map (grid code). Hippocampal
+    place/sequence representations are episodic and context-specific; the grid code
+    abstracts across episodes, enabling the map to generalise to new environments
+    and contexts. For REE, this means the viability map as used by ARC-018/ARC-038
+    during waking is ephemeral unless it is periodically consolidated via the
+    hippocampal-entorhinal loop during offline periods.
+    V4 scope justification: (a) requires implementing an entorhinal grid module as
+    a separate component from the HippocampalModule; (b) requires offline
+    (sleep-equivalent) processing phases distinct from waking micro-quiescence;
+    (c) requires a read-back mechanism for the grid representation to seed waking
+    hippocampal sequences. These are substantial architectural additions beyond
+    the V3 substrate. V3 viability maps are explicitly episodic and will degrade
+    across long training runs without this consolidation pathway -- this is an
+    acceptable V3 limitation.
+    Registered 2026-03-29 from ARC-018 lit pull (Olafsdottir et al. 2017).
   evidence: []
