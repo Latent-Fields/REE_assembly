@@ -1,0 +1,62 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_entropy_on": -9.98958693043273e-10,
+    "mean_entropy_ablated": -9.98958693043273e-10,
+    "mean_entropy_gap": 0.0,
+    "mean_cells_on": 50.5,
+    "mean_cells_ablated": 50.5,
+    "mean_cell_gap": 0.0,
+    "mean_harm_rate_on": 0.0,
+    "mean_harm_rate_ablated": 0.0,
+    "mean_harm_delta": 0.0,
+    "per_seed_entropy_gap_min": 0.0,
+    "per_seed_entropy_gap_max": 0.0,
+    "per_seed_cell_gap_min": 0.0,
+    "per_seed_harm_delta_max": 0.0,
+    "novelty_ema_min": 0.0001058964628453118,
+    "n_harm_min": 0.0,
+    "n_seeds": 2.0,
+    "novelty_bonus_weight": 0.1,
+    "nav_bias": 0.3,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-141 -- MECH-111 Novelty/Curiosity Drive Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-111\n**Decision:** hybridize\n**Seeds:** [42, 123]\n**Conditions:** NOVELTY_DRIVE_ON vs NOVELTY_DRIVE_ABLATED\n**Warmup:** 200 eps x 200 steps  **Eval:** 50 eps x 200 steps\n**Env:** CausalGridWorld size=10, 5 hazards, 5 resources nav_bias=0.3\n**novelty_bonus_weight:** 0.1\n\n## Design\n\nMECH-111 asserts E1 prediction-error surprise at moderate magnitudes generates intrinsic positive valence (curiosity/novelty drive). The experiment compares NOVELTY_DRIVE_ON (E1 EMA bonus active) against NOVELTY_DRIVE_ABLATED (no bonus) across 2 matched seeds. Key test: does the drive increase exploration (entropy, cell coverage) without increasing harm (curiosity-surprise is safe, not alarm-surprise)?\n\n## Pre-Registered Thresholds\n\nC1: per-seed entropy_gap (ON-ABLATED) >= 0.1 (both seeds)\nC2: per-seed cell_gap (ON-ABLATED) >= 3 (both seeds)\nC3: per-seed harm_delta (ON-ABLATED) <= 0.02 (both seeds)\nC4: novelty_ema_ON > 1e-06 both seeds (signal non-zero)\nC5: n_harm_min >= 10 both conditions (data quality)\n\n## Results\n\n| Condition | entropy | novel_cells | harm_rate |\n|-----------|---------|-------------|----------|\n| NOVELTY_DRIVE_ON      | -0.0000 | 50.5 | 0.0000 |\n| NOVELTY_DRIVE_ABLATED | -0.0000 | 50.5 | 0.0000 |\n\n**per-seed entropy_gap: [0.0, 0.0]**\n**per-seed cell_gap: [0, 0]**\n**per-seed harm_delta: [0.0, 0.0]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: entropy_gap >= 0.1 (both seeds) | FAIL | [0.0, 0.0] |\n| C2: cell_gap >= 3 (both seeds) | FAIL | [0, 0] |\n| C3: harm_delta <= 0.02 (both seeds) | PASS | [0.0, 0.0] |\n| C4: novelty_ema_ON > 1e-06 (both seeds) | PASS | [0.0001059, 0.0001483] |\n| C5: n_harm_min >= 10 | FAIL | 0 |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Interpretation\n\nMECH-111 NOT SUPPORTED: novelty bonus does not produce measurable exploration increase. E1 error may be too uniform across states, or the EMA is not feeding back into E3 selection effectively. Criteria: C1=False C2=False C3=True C4=True C5=False.\n\n## Per-Seed Detail\n\nNOVELTY_DRIVE_ON:\n  seed=42: entropy=-0.0000 cells=53 harm_rate=0.0000 novelty_ema=0.00011\n  seed=123: entropy=-0.0000 cells=48 harm_rate=0.0000 novelty_ema=0.00015\n\nNOVELTY_DRIVE_ABLATED:\n  seed=42: entropy=-0.0000 cells=53 harm_rate=0.0000\n  seed=123: entropy=-0.0000 cells=48 harm_rate=0.0000\n\n## Failure Notes\n\n- C1 FAIL: per-seed entropy_gap [0.0, 0.0] < 0.1 -- novelty bonus does not produce measurable entropy increase\n- C2 FAIL: per-seed cell_gap [0, 0] < 3 -- novelty drive does not increase novel cell coverage\n- C5 FAIL: n_harm_min=0 < 10 -- insufficient harm contacts; increase nav_bias or eval episodes\n",
+  "claim_ids": [
+    "MECH-111"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_141_mech111_novelty_drive_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T043458Z",
+  "claim": "MECH-111",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_141_mech111_novelty_drive_pair_20260329T043458Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_per_seed_entropy_gap": 0.1,
+    "C2_per_seed_cell_gap": 3,
+    "C3_per_seed_harm_delta": 0.02,
+    "C4_novelty_ema_min": 1e-06,
+    "C5_n_harm_min": 10
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "NOVELTY_DRIVE_ON",
+    "NOVELTY_DRIVE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0061",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "MECH-111"
+  ]
+}

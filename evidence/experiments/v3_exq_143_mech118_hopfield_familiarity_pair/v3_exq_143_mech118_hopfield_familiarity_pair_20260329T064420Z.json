@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_stab_post_on": 0.9990547841275581,
+    "mean_stab_post_abl": 0.9978461650071622,
+    "mean_stab_base_on": 0.9999999918151239,
+    "mean_stab_base_abl": 0.9999999918151239,
+    "mean_d_eff_post_on": 21.43573557123191,
+    "mean_d_eff_post_abl": 21.62656064150711,
+    "mean_r3_stab_analytic": 0.023670008406043053,
+    "mean_r3_d_eff_analytic": 22.194491386413574,
+    "mean_stab_gap": 0.0012086191203959928,
+    "mean_d_eff_diff": 0.19082507027520101,
+    "n_stab_min": 1080.0,
+    "hopfield_weight": 0.05,
+    "hopfield_capacity": 64.0,
+    "maint_weight": 0.1,
+    "d_eff_target": 1.5,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-143 -- MECH-118 Hopfield Familiarity Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-118\n**Decision:** hybridize\n**Seeds:** [42, 123]\n**Conditions:** HOPFIELD_ON vs HOPFIELD_ABLATED\n**Warmup:** 300 eps x 200 steps  **Memory collection:** 30 eps  **Post-perturb eval:** 50 eps\n**Env:** CausalGridWorldV2 size=10, 3 hazards, 4 resources nav_bias=0.35\n**Perturbation:** R3 coherent-unfamiliar vector (orthogonal to mean stored pattern, same norm as baseline z_self)\n**hopfield_weight:** 0.05  **hopfield_capacity:** 64  **maint_weight:** 0.1  **d_eff_target:** 1.5\n\n## Design\n\nMECH-118 asserts Hopfield-style pattern familiarity is a distinct self-maintenance signal from D_eff coherence. HOPFIELD_ON adds a familiarity pull loss (toward nearest stored z_self pattern) on top of the D_eff homeostatic loss. HOPFIELD_ABLATED uses D_eff homeostasis only. A Regime 3 (coherent-unfamiliar) perturbation is injected at eval start: R3 vector has low D_eff (coherent, D_eff~1) but near-zero Hopfield stability (unfamiliar direction). D_eff homeostasis cannot detect this state. HOPFIELD_ON should recover stability; HOPFIELD_ABLATED should not.\n\n## R3 Perturbation Quality\n\n| Metric | Value | Expectation |\n|--------|-------|-------------|\n| R3 stability (analytic) | 0.0237 | ~0 (unfamiliar) |\n| R3 D_eff (analytic) | 22.194 | ~1 (coherent) |\n\n## Pre-Registered Thresholds\n\nC1: HOPFIELD_ON stab_post >= 0.3 both seeds (familiarity recovery)\nC2: HOPFIELD_ABLATED stab_post <= 0.2 both seeds (no spontaneous recovery without Hopfield)\nC3: per-seed stab_gap (ON_post - ABL_post) >= 0.08 both seeds (discriminative separation)\nC4: D_eff difference |ON - ABL| <= 0.8 both seeds (Hopfield adds familiarity signal, does NOT replace D_eff control)\nC5: n_stab_samples >= 50 per condition per seed (data quality)\n\n## Results\n\n| Condition | stab_baseline | stab_post | d_eff_baseline | d_eff_post |\n|-----------|---------------|-----------|----------------|------------|\n| HOPFIELD_ON      | 1.0000 | 0.9991 | -- | 21.4357 |\n| HOPFIELD_ABLATED | 1.0000 | 0.9978 | -- | 21.6266 |\n\n**Per-seed stability gap (ON - ABL): [0.0012, 0.0012]**\n**Per-seed D_eff difference: [0.343, 0.0386]**\n\n### HOPFIELD_ON per seed\n  seed=42: stab_base=1.0000 stab_post=0.9991 d_eff_base=20.5823 d_eff_post=20.2951 n_stab=1080\n  seed=123: stab_base=1.0000 stab_post=0.9990 d_eff_base=22.6341 d_eff_post=22.5764 n_stab=1100\n\n### HOPFIELD_ABLATED per seed\n  seed=42: stab_base=1.0000 stab_post=0.9978 d_eff_base=20.5823 d_eff_post=20.6381 n_stab=1080\n  seed=123: stab_base=1.0000 stab_post=0.9979 d_eff_base=22.6341 d_eff_post=22.6150 n_stab=1100\n\n## PASS Criteria\n\n| Criterion | Result |\n|-----------|--------|\n| C1: ON stab_post >= 0.3 (both seeds) | PASS |\n| C2: ABL stab_post <= 0.2 (both seeds) | FAIL |\n| C3: stab_gap >= 0.08 (both seeds) | FAIL |\n| C4: d_eff_diff <= 0.8 (both seeds) | PASS |\n| C5: n_stab >= 50 (both conditions both seeds) | PASS |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-118 NOT SUPPORTED: Hopfield familiarity loss does not produce discriminative stability recovery after R3 perturbation. ON stab_post=0.9991; ABL stab_post=0.9978. Possible causes: R3 perturbation not sufficiently unfamiliar (r3_stab_analytic=0.0237 should be near 0); hopfield_weight too small to drive recovery; or D_eff homeostasis incidentally restores familiarity (no dissociation). Re-evaluate after Q-022 dissociation result (EXQ-084d).\n\n## Failure Notes\n\n- C2 FAIL: HOPFIELD_ABLATED stab_post [0.9978, 0.9979] > 0.2 -- ablated condition spontaneously recovers familiarity without Hopfield; R3 perturbation may not be sufficiently orthogonal to familiar subspace or D_eff homeostasis indirectly restores familiarity\n- C3 FAIL: per-seed stab gap [0.0012, 0.0012] < 0.08 in some seeds; conditions do not discriminate -- increase hopfield_weight or eval episodes\n",
+  "claim_ids": [
+    "MECH-118"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_143_mech118_hopfield_familiarity_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T064420Z",
+  "claim": "MECH-118",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_143_mech118_hopfield_familiarity_pair_20260329T064420Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
