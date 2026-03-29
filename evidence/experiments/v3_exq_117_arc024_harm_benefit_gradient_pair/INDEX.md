@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_117_arc024_harm_benefit_gradient_pair
 
-Generated: `2026-03-29T08:14:56.221931Z`
+Generated: `2026-03-29T08:35:12.594888Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

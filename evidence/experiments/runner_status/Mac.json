@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-29T08:15:37.669408+00:00",
+  "last_updated": "2026-03-29T08:36:05.517977+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-146",
@@ -16,18 +16,18 @@
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 200,
+      "episodes_done": 100,
       "episodes_total": 300,
-      "overall_pct": 66.7
+      "overall_pct": 33.3
     },
-    "seconds_elapsed": 3032,
-    "seconds_remaining": 1514,
+    "seconds_elapsed": 4260,
+    "seconds_remaining": 8532,
     "recent_lines": [
-      "[train] ENTITY_ABLATED seed=42 ep 300/300 harm=1.006",
-      "[ENTITY_ABLATED] seed=42 n_events=1349 event_response=0.0435 baseline_delta=0.0201 snr=2.168 persistence=0.9999 baseline_persist=0.9997",
-      "[V3-EXQ-146] ENTITY_BINDING_ON seed=123 warmup=300 eval=100 ablate_z_self=False maint_weight=0.1",
-      "[train] ENTITY_BINDING_ON seed=123 ep 100/300 harm=1.125",
-      "[train] ENTITY_BINDING_ON seed=123 ep 200/300 harm=1.182"
+      "[train] ENTITY_BINDING_ON seed=123 ep 200/300 harm=1.182",
+      "[train] ENTITY_BINDING_ON seed=123 ep 300/300 harm=1.151",
+      "[ENTITY_BINDING_ON] seed=123 n_events=1317 event_response=0.0427 baseline_delta=0.0233 snr=1.831 persistence=0.9999 baseline_persist=0.9999",
+      "[V3-EXQ-146] ENTITY_ABLATED seed=123 warmup=300 eval=100 ablate_z_self=True maint_weight=0.0",
+      "[train] ENTITY_ABLATED seed=123 ep 100/300 harm=1.125"
     ],
     "ree_version": "v3"
   },

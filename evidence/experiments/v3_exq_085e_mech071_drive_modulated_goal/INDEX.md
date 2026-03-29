@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085e_mech071_drive_modulated_goal
 
-Generated: `2026-03-29T08:14:56.221931Z`
+Generated: `2026-03-29T08:35:12.594888Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
