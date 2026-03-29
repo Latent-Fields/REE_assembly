@@ -3334,6 +3334,13 @@
     diagnostic: goal_vs_harm_ratio=2.104 (> 0.3) -- salience is adequate, not the issue.
     C3 PASS confirms MECH-071 calibration gradient is intact even when goal guidance
     hurts navigation. Next step: warm-start z_goal initialization or stronger curriculum.
+    EXQ-085g FAIL 3/4 (2026-03-29): contact-gated seeding (seeding z_goal exclusively at
+    resource contact, benefit_exposure=1.0). C1 PASS (z_goal_norm=0.399 > 0.1). C3 PASS
+    (cal_gap=0.218). C4 PASS. C2 FAIL (benefit_ratio=0.37x). MECH-124: goal_vs_harm=2.249
+    (no V4 risk). Root cause: goal_resource_r=0.066 < 0.2 -- z_world at contact encodes
+    full scene, not resource specifically; features are not location-invariant across
+    respawns. Dedicated z_resource encoder needed (SD-015). MECH-071 calibration claim
+    intact (C3 consistently PASS); failure is in goal navigation, not harm calibration.
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
@@ -5609,6 +5616,10 @@
     scoring metrics (l2_redirect, l1_fraction, goal_proximity).
     C1 requires redesign: use goal-following navigation in wanting condition vs random/nogo
     baseline, so resource visit rate CAN vary across conditions.
+    EXQ-085g FAIL 3/4 (2026-03-29): same C1 failure pattern. goal_resource_r=0.066 < 0.2
+    threshold: z_goal not pointing toward resources despite contact-gated seeding. z_world
+    at contact encodes full scene; resource features not isolated. SD-015 z_resource
+    separation required before MECH-112 wanting system can navigate to goals.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -6035,6 +6046,9 @@
     current location, not memory). C3 PASS (wanting l1_fraction=0.355 -- directional
     approach toward goal location). Wanting and liking operate on distinct spatial and
     temporal scales as predicted. C1 redesign needed for behavioural resource-rate evidence.
+    EXQ-085g FAIL 3/4 (2026-03-29): wanting-liking dissociation not yet testable because
+    z_goal not pointing to resources (goal_resource_r=0.066). Gated on SD-015 z_resource
+    separation.
 
 - id: ARC-032
   title: "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation."
@@ -6118,6 +6132,11 @@
     target needed -- possibly harm_obs_a (affective accumulator) after fixing normalization
     bug (see SD-011 note). EXQ-095c will test forward model on harm_obs_a once SD-011
     normalization fix is confirmed by EXQ-101.
+    EXQ-166 MIXED 4/6 (2026-03-29): obs-space forward model (Approach B, residual
+    architecture). Fixes EXQ-115 identity collapse. Seed 42: obs_fwd_r2=0.867 (strong
+    convergence -- architecture validated). Seed 123: obs_fwd_r2=0.0 (P0 encoder quality
+    failure). Causal gap directionally correct (approach > none). Architecture sound;
+    stability issue. EXQ-166a queued with 4 seeds, P0 extended to 80 episodes.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
@@ -7289,6 +7308,11 @@
     C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstream navigation quality
     is the new bottleneck (goal_resource_r=0.087 -- z_goal not pointing toward resources).
     SD-012 seeding claim is supported by C1 PASS; the FAIL is in navigation, not seeding.
+    EXQ-085g FAIL 3/4 (2026-03-29): contact-gated seeding fix. C1 PASS (z_goal_norm=0.399).
+    Drive modulation seeding confirmed working across two iterations. Bottleneck is now
+    z_resource representation: z_world at contact is scene-wide, not resource-specific.
+    SD-012 core claim (drive-scaled benefit enables seeding) remains supported. SD-014
+    z_resource separation is the next required step for navigation to follow.
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
@@ -7409,6 +7433,43 @@
     relative to UNIFIED_VALUE agent, without globally reducing goal-directed behavior
     (maintained approach to high-liking nodes). Tests that the wanting/liking dissociation
     is behaviourally consequential and that SD-014 recording enables the agent to track it.
+
+- id: SD-015
+  title: "Goal-directed navigation requires a dedicated z_resource encoder that captures object-type features invariant to spatial location, separate from z_world."
+  claim_type: design_decision
+  subject: goal_representation.z_resource_encoder
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-012
+    - MECH-112
+    - SD-005
+  functional_restatement: >
+    EXQ-085f/085g established that seeding z_goal from z_world at resource contact does not
+    produce a goal representation that guides navigation toward resources. Root cause:
+    z_world at contact encodes the full scene (agent position, hazards, resource positions)
+    rather than isolating resource-specific features. Resources respawn at random locations
+    after collection, so z_world at the contact moment has no predictive value for future
+    resource locations.
+    The fix: a dedicated ResourceEncoder(resource_obs -> z_resource) extracts object-type
+    features from the observation. z_goal is seeded from z_resource rather than z_world.
+    z_resource encodes what kind of resource is present (type, magnitude) -- features that
+    are stable across spatial locations. This parallels the SD-011 z_harm_s/z_harm_a split:
+    just as z_harm_s was separated from z_world to enable forward prediction, z_resource
+    must be separated to enable goal-directed approach navigation.
+    Biological grounding: ventral visual stream (IT cortex) encodes object identity
+    independent of spatial position (DiCarlo & Cox 2007 -- untangled representation);
+    hippocampal place cells bind context (where) with object identity (what); goal-directed
+    approach requires a "what-to-seek" signal, not a "where-it-was" signal.
+    CausalGridWorldV2 already provides a resource_field_view channel in the observation;
+    a 2-layer MLP ResourceEncoder can extract resource type from this without requiring
+    changes to the grid world environment.
+  registered_utc: 2026-03-29
+  evidence_quality_note: |
+    Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all
+    085x iterations despite contact-gated seeding). EXP-0093 will first test a handcrafted
+    resource_indicator to confirm the diagnosis before implementing the full encoder.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
