@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-29T21:30:05.008989Z`
+Generated: `2026-03-29T21:44:09.498519Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -374,7 +374,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-098
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=9, weakens=12, conflict_ratio=0.857, overall_confidence=0.774
+- Evidence breakdown: supports=9, weakens=12, conflict_ratio=0.857, overall_confidence=0.773
 - Recent entries:
   - `2026-03-26T22:31:51Z` `experimental` `v3_exq_099a_mech098_reafference_upgrade` direction=`supports` confidence=0.75
   - `2026-03-26T22:33:06Z` `experimental` `v3_exq_099a_mech098_reafference_upgrade` direction=`weakens` confidence=0.75

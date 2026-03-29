@@ -1,0 +1,81 @@
+{
+  "run_id": "v3_exq_177_sd008_integration_test_20260329T215657Z_v3",
+  "experiment_type": "v3_exq_177_sd008_integration_test",
+  "claim_ids": [
+    "SD-008"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_class": "integration_test",
+  "criteria": {
+    "C1_event_selectivity_margin_gt_0_05_both_seeds": false,
+    "C2_world_forward_r2_gt_0_30_both_seeds": true,
+    "C3_mean_attribution_gap_gt_0_005_both_seeds": false
+  },
+  "pre_registered_thresholds": {
+    "THRESH_EVENT_SEL": 0.05,
+    "THRESH_WORLD_R2": 0.3,
+    "THRESH_ATTRIBUTION": 0.005
+  },
+  "summary_metrics": {
+    "event_selectivity_margin_mean": 0.00033909082412719727,
+    "world_forward_r2_mean": 0.9409582468078722,
+    "mean_attribution_gap_mean": 0.0003412208173809004,
+    "c1_both_seeds": false,
+    "c2_both_seeds": true,
+    "c3_both_seeds": false,
+    "n_criteria_both_seeds": 1
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "CausalGridWorldV2 8x8, 3 hazards, 3 resources, hazard_harm=0.02, env_drift_interval=5, env_drift_prob=0.3; alpha_world=0.9 (SD-008); reafference correction enabled (SD-007); counterfactual attribution enabled (SD-003)",
+  "interpretation": "Composition failed: at least two of three criteria failed both seeds. Components may be destructively interfering or one is not learning.",
+  "per_seed_results": {
+    "42": {
+      "seed": 42,
+      "event_selectivity_margin": 5.0187110900878906e-05,
+      "world_forward_r2": 0.943898182349755,
+      "mean_attribution_gap": 0.00048716905336064026,
+      "n_hazard_steps": 830,
+      "n_open_steps": 126,
+      "n_transitions": 995,
+      "n_attribution_events": 830,
+      "warmup_steps": 5809,
+      "c1_pass": false,
+      "c2_pass": true,
+      "c3_pass": false,
+      "n_criteria_pass": 1
+    },
+    "123": {
+      "seed": 123,
+      "event_selectivity_margin": 0.0006279945373535156,
+      "world_forward_r2": 0.9380183112659894,
+      "mean_attribution_gap": 0.00019527258140116064,
+      "n_hazard_steps": 758,
+      "n_open_steps": 105,
+      "n_transitions": 900,
+      "n_attribution_events": 758,
+      "warmup_steps": 5865,
+      "c1_pass": false,
+      "c2_pass": true,
+      "c3_pass": false,
+      "n_criteria_pass": 1
+    }
+  },
+  "config": {
+    "alpha_world": 0.9,
+    "world_dim": 32,
+    "warmup_episodes": 300,
+    "warmup_steps_per_ep": 100,
+    "eval_episodes": 50,
+    "eval_steps_per_ep": 100,
+    "sd007_reafference": true,
+    "sd008_alpha_correction": true,
+    "sd003_counterfactual": true
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T21:56:57.647107+00:00"
+}

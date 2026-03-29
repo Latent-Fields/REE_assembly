@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "benefit_rate_go": 0.0,
+    "benefit_rate_nogo": 0.0,
+    "delta_benefit_rate": 0.0,
+    "harm_rate_go": 0.18597398461803558,
+    "harm_rate_nogo": 0.18734400299806445,
+    "goal_proximity_go": 0.8314781134218902,
+    "n_benefit_buf_go": 274.0,
+    "n_harm_buf_go": 4000.0,
+    "n_harm_buf_nogo": 4000.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "proximity_scale": 0.05,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-086 -- ARC-030 Go/NoGo Symmetry (Approach-Avoidance)\n\n**Status:** FAIL\n**Claims:** ARC-030\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7]\n**Warmup:** 150 eps  **Eval:** 30 eps\n\n## Pre-Registered Thresholds\n\nC1: delta_benefit_rate          > 0.001\nC2: harm_rate_GO                <= harm_rate_NOGO * 1.5\nC3: benefit_rate_GO             > 0.001\nC4: per-seed GO > NOGO direction\n\n## Results\n\n| Condition | benefit_rate | harm_rate | goal_proximity |\n|-----------|-------------|-----------|----------------|\n| GO_NOGO   | 0.00000  | 0.18597 | 0.8315 |\n| NOGO_ONLY | 0.00000 | 0.18734 | N/A |\n\n**delta_benefit_rate (GO - NOGO): +0.00000**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: delta_benefit_rate > 0.001       | FAIL | +0.00000 |\n| C2: harm_rate_GO <= NOGO*1.5         | PASS | 0.18597 vs 0.28102 |\n| C3: benefit_rate_GO > 0.001          | FAIL | 0.00000 |\n| C4: per-seed direction               | FAIL | [False, False] |\n\nCriteria met: 1/4 -> **FAIL**\n\n## Interpretation\n\nARC-030 NOT SUPPORTED: Go channel does not consistently improve resource collection. Either benefit_eval training is insufficient, z_goal attractor is not forming, or the environment benefit signal is too sparse. Diagnostic: check n_benefit_buf_pos in metrics.\n\n## Per-Seed\n\nGO_NOGO:\n  seed=42: benefit_rate=0.00000 harm_rate=0.18440 goal_prox=0.8615 benefit_buf=119\n  seed=7: benefit_rate=0.00000 harm_rate=0.18755 goal_prox=0.8015 benefit_buf=155\n\nNOGO_ONLY:\n  seed=42: benefit_rate=0.00000 harm_rate=0.19035\n  seed=7: benefit_rate=0.00000 harm_rate=0.18434\n\n## Failure Notes\n\n- C1 FAIL: delta_benefit_rate=0.00000 <= 0.001 -- Go channel not producing measurable benefit advantage\n- C3 FAIL: benefit_rate_GO=0.00000 <= 0.001 -- Go agent still behaviourally flat (training too short or goal_weight too low)\n- C4 FAIL: inconsistent directionality across seeds -- [False, False]\n",
+  "claim_ids": [
+    "ARC-030"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_086_arc030_go_nogo_symmetry",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T215407Z",
+  "claim": "ARC-030",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_086_arc030_go_nogo_symmetry_20260329T215407Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
