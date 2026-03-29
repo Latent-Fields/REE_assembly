@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_113",
+  "entry_id": "2026-03-29_mech_113_allostatic_self_efficacy_stephan2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-113"],
+  "source": {
+    "title": "Allostatic Self-efficacy: A Metacognitive Theory of Dyshomeostasis-Induced Fatigue and Depression",
+    "authors": ["Stephan, K.E.", "Manjaly, Z.M.", "Mathys, C.D.", "Weber, L.A.E.", "Paliwal, S.", "Gard, T.", "Tittgemeyer, M.", "Fleming, S.M.", "Haker, H.", "Seth, A.K.", "Petzschner, F.H."],
+    "year": 2016,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2016.00550",
+    "pmid": "27895566",
+    "pmc": "PMC5108808",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27895566/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Stephan et al. provide the most architecturally relevant mapping to MECH-113 of any paper in this cluster. They introduce allostatic self-efficacy as a metacognitive monitoring layer -- a third level above reactive homeostasis (Level 1) and predictive allostasis (Level 2) -- that tracks the agent's own regulatory capacity. Chronic dyshomeostasis plus low self-efficacy is their mechanism for fatigue and depression. This three-level structure maps precisely to MECH-113's three-level architecture: Level 1 (reactive D_eff monitoring), Level 2 (anticipatory allostatic setpoint), Level 3 (metacognitive self-efficacy). The mechanistic link MECH-113 failure -> low self-efficacy -> behavioral inhibition -> Q-021 behavioral flatness is grounded here. Confidence 0.82 because the hierarchical structure is highly specific and directly maps, with the caveat that the metacognitive layer is modelled at the level of the whole organism's regulatory beliefs, not a latent vector in an artificial agent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If allostatic self-efficacy is not a distinct metacognitive level but reduces to higher-order prediction error, then MECH-113 Level 3 collapses into Level 2, and the learned helplessness failure mode loses its architectural distinctiveness.",
+    "If fatigue and depression arise from mechanisms unrelated to interoceptive self-monitoring (e.g., inflammatory cytokines, neurotransmitter depletion as primary), the MECH-113 -> Q-021 behavioral flatness pathway would have no biological warrant."
+  ],
+  "tags": ["mech_113", "allostatic_self_efficacy", "homeostasis", "metacognition", "fatigue", "depression", "learned_helplessness", "interoception", "stephan"],
+  "mapping": {
+    "source_claim_statement": "The brain monitors not just current interoceptive states but also its own capacity to regulate those states. When chronic dyshomeostasis occurs, a metacognitive belief is updated: 'I cannot regulate my own internal states.' This low-self-efficacy belief, once formed, generalises beyond bodily regulation to behavior in general, producing fatigue (motivational inhibition) and eventually depression (global learned helplessness). The hierarchical structure requires at minimum three levels: reactive homeostatic reflex, predictive allostatic setpoint adjustment, and metacognitive monitoring of regulatory capacity.",
+    "ree_translation": "MECH-113's Level 3 (metacognitive self-efficacy) is directly instantiated by Stephan et al.'s framework. When z_self coherence is chronically low (MECH-113 Level 1 failure), the agent's self-maintenance loss is persistently high. Over time, this persistent failure should update a higher-order belief: 'My self-model cannot be maintained.' This is the allostatic self-efficacy collapse that maps to Q-021's behavioral flatness pathway. The three-level architecture in MECH-113 notes was not arbitrary -- it was designed to capture exactly this escalation from reactive signal to allostatic anticipation to metacognitive self-model of regulatory capacity. The failure cascade MECH-113 -> low efficacy -> inhibited agency has its biological grounding here.",
+    "mapping_caveat": "Stephan et al.'s framework applies to the whole organism's Bayesian model of its own visceral regulation -- the self-efficacy belief is over bodily homeostasis. In REE, MECH-113 Level 3 is not yet implemented, and the self-efficacy analog would be a belief about the agent's capacity to maintain z_self coherence in a latent vector space, not in visceral regulation. The generalization from somatic self-efficacy to behavioral self-efficacy that drives depression in the clinical model may not transfer straightforwardly to an artificial agent whose 'body' is the z_self latent space. The model is a conceptual framework, not a mechanistic implementation.",
+    "source_context": "Theoretical review; Frontiers in Human Neuroscience; hierarchical Bayesian framework; integrates Bayesian brain / active inference / interoceptive inference literatures; clinical application is to fatigue and depression as psychiatric conditions arising from dyshomeostasis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Frontiers in Human Neuroscience; senior authors include Stephan, Seth, and Petzschner -- the central figures in computational interoception. Mapping fidelity is high because the three-level structure and the failure cascade are explicitly adopted in MECH-113's architecture notes. Transfer risk is moderate because the metacognitive self-efficacy mechanism applies to biological organisms with genuine visceral regulation; its analog in REE is conceptual rather than mechanistically specified at present."
+  }
+}

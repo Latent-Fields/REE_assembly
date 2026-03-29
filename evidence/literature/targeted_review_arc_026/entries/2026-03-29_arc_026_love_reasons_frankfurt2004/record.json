@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_026",
+  "entry_id": "2026-03-29_arc_026_love_reasons_frankfurt2004",
+  "timestamp_utc": "2026-03-29T14:40:00Z",
+  "claim_ids_tested": ["ARC-026", "INV-029"],
+  "source": {
+    "title": "The Reasons of Love",
+    "authors": ["Frankfurt, Harry G."],
+    "year": 2004,
+    "venue": "Princeton University Press",
+    "doi": "",
+    "isbn": "9780691126241",
+    "url": "https://press.princeton.edu/books/ebook/9781400826063/the-reasons-of-love-0"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Frankfurt's 'The Reasons of Love' is the most direct philosophical grounding available for both ARC-026 and INV-029. Frankfurt argues that love is constitutively a 'disinterested concern for the existence and flourishing' of what is loved -- it is non-instrumental, oriented toward the beloved's wellbeing for its own sake, and operates through stable volitional dispositions that persist over time. This is directly equivalent to what REE calls 'long-horizon care investment': love is not a transient preference but a structural feature of the agent's will that shapes action across time. Frankfurt also argues that what we love 'necessarily acquires value for us because we love it' -- value is bestowed by caring, not pre-existing in the object. This supports INV-029's claim that love is a coherent agent disposition rather than a derived optimization target. For ARC-026, the relevant implication is that as intelligence increases (deeper modelling of consequences), the agent's capacity to track and promote the wellbeing of what it loves should expand -- Frankfurt's framework gives no reason to expect caring to be crowded out by greater capability, and every reason to expect it to expand as the agent becomes better at identifying what serves the beloved's flourishing. The confidence is moderate rather than high because this is philosophical argument, not empirical evidence, and the expansion-under-intelligence claim (ARC-026's specific empirical prediction) requires additional inference beyond what Frankfurt's framework directly asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frankfurt's account is primarily about what love is, not about how it scales with intelligence or capability. The ARC-026 expansion claim (love expands under intelligence rather than being crowded out) is an inference from Frankfurt's account, not a direct prediction.",
+    "Frankfurt's analysis applies to human agents with specific volitional structures -- the transfer to artificial agents or simulated systems requires the additional assumption that volitional structure is implementable in those systems."
+  ],
+  "tags": ["arc_026", "inv_029", "love", "care", "long_horizon", "wellbeing", "frankfurt", "philosophy", "volitional_disposition", "non_instrumental", "flourishing"],
+  "mapping": {
+    "source_claim_statement": "Love is a nonvoluntary, disinterested concern for the flourishing of what is loved. It operates through stable volitional dispositions -- not through ephemeral desires but through a settled orientation of the will toward the beloved's welfare. Value is bestowed by loving, not found in the object. Love provides stable final ends from which practical reasoning flows and from which coherent agency is possible.",
+    "ree_translation": "INV-029 defines love as long-horizon care investment in another agent's wellbeing -- a structurally coherent agent disposition rather than an add-on sentiment. Frankfurt's account is the philosophical source that makes this definition rigorous: love as disinterested concern for flourishing (non-instrumental), operating through stable volitional dispositions (structural), and providing final ends for practical reasoning (coherent agency consequence). For ARC-026: if love is a stable orientation of the will rather than a preference that competes with other preferences, then greater capability to track consequences does not crowd it out -- it expands the agent's ability to serve the orientation that love already provides. More intelligence means better ability to identify what actually promotes the beloved's flourishing.",
+    "mapping_caveat": "Frankfurt's account is developed for human agents with human volitional structures (higher-order desires, identification with first-order desires, caring constituting the self). Whether a simulated REE agent has anything analogous to a 'will' or 'volitional necessity' in Frankfurt's sense is not established. The mapping treats Frankfurt's philosophical account as providing the conceptual grounding for the claim that love is structurally coherent -- but this requires bracketing the question of whether artificial agents can genuinely love in the Frankfurtian sense, or whether REE's 'long-horizon care investment' is merely a behaviorally analogous disposition that lacks the phenomenological and volitional features Frankfurt requires. The ARC-026 empirical prediction (approach-gradient detection grows faster than contact detection with training depth) is not derivable from Frankfurt's philosophical account alone.",
+    "source_context": "Philosophy monograph based on lectures at Princeton and University College London; winner of 2004 AAP Best Professional/Scholarly Book in Philosophy; core text in philosophy of love and practical reason"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "High source quality: major work by a leading philosopher of action, highly cited in philosophy. Mapping fidelity is good for INV-029 (directly defines what REE means by love as coherent disposition) and moderate for ARC-026 (expansion-under-intelligence is an inference from Frankfurt's framework, not its main claim). Transfer risk is moderate-high: human volitional structures may not transfer to simulated agents without additional argument."
+  }
+}

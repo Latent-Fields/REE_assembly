@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_113",
+  "entry_id": "2026-03-29_mech_113_computational_interoception_petzschner2021",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-113"],
+  "source": {
+    "title": "Computational Models of Interoception and Body Regulation",
+    "authors": ["Petzschner, F.H.", "Garfinkel, S.N.", "Paulus, M.P.", "Koch, C.", "Khalsa, S.S."],
+    "year": 2021,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2020.09.012",
+    "pmid": "33378658",
+    "pmc": "PMC8109616",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33378658/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Petzschner et al. provide a taxonomic review of computational approaches to interoception and body regulation, explicitly distinguishing three model families: interoceptive perception models (what is the current state?), body regulation models (what action should be taken?), and forecasting models (what state will result?). This maps to MECH-113's three-level architecture: Level 1 (reactive perception/monitoring), Level 2 (anticipatory regulation with forward model), Level 3 (metacognitive monitoring of regulatory capacity). The review explicitly notes that all three families are needed for a complete account, and that deficits at each level produce distinct failure modes. Confidence is 0.75 rather than higher because this is a review article organizing existing frameworks rather than providing new experimental evidence, and the specific link to self-maintenance error signals as implemented in REE requires additional inference steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the three model families (perception, regulation, forecasting) are not functionally distinct and can be collapsed into a single model, MECH-113's three-level architecture loses computational motivation.",
+    "If interoceptive regulation models do not require explicit setpoint representations, MECH-113's Level 2 (allostatic anticipatory setpoint) would lack biological grounding."
+  ],
+  "tags": ["mech_113", "interoception", "computational_models", "allostasis", "homeostasis", "body_regulation", "bayesian_brain", "petzschner"],
+  "mapping": {
+    "source_claim_statement": "A complete computational account of interoception requires three distinct model families: perceptual models that estimate current internal state from interoceptive signals (homeostatic), regulatory models that select actions to maintain or restore desired states (allostatic), and forecasting models that predict future internal states given planned actions. Each family has distinct failure modes. Disruptions to perceptual models produce interoceptive misattribution; disruptions to regulatory models produce action-selection failures; disruptions to forecasting models produce failures of anticipatory self-regulation.",
+    "ree_translation": "MECH-113's three-level architecture maps directly to this taxonomy. Level 1 (z_self D_eff monitoring + self-maintenance loss) is the perceptual model: the agent estimates whether its current self-representation is coherent. Level 2 (allostatic anticipatory monitoring, not yet implemented) is the regulatory/forecasting model: E2 monitors predicted z_self D_eff over rollout horizon. Level 3 (metacognitive self-efficacy) is the metacognitive monitoring of regulatory capacity that determines whether Level 2 correction attempts are launched or suppressed. The three-way architecture is not a design choice but a reflection of the distinct computational problems at each level, confirmed by this review.",
+    "mapping_caveat": "Petzschner et al. review models grounded in biological interoception -- autonomic nervous system, visceral afferents, homeostatic reflex arcs. REE's z_self is a latent representation in an artificial agent with no visceral loop. The three model families identified by Petzschner et al. are distinguished by their signal modalities and control objectives, which differ fundamentally from REE's architecture. The parallel structure is compelling but the empirical evidence cited in the review supports biological interoception, not computational z_self monitoring. The review also focuses on existing computational implementations, few of which resemble REE's architecture.",
+    "source_context": "Invited review article; Trends in Neurosciences; draws on computational models from active inference, control theory, reinforcement learning, and dynamical systems; clinical applications discussed include pain, interoceptive dysfunction in psychiatric disorders, and allostatic load."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Trends in Neurosciences is a high-impact review venue. Petzschner leads this literature. Mapping fidelity is moderate -- the three-level taxonomy parallels MECH-113's design but is not a direct instantiation. Transfer risk is similar to the Seth/Friston entry: the biological substrate differs substantially from the artificial agent context."
+  }
+}

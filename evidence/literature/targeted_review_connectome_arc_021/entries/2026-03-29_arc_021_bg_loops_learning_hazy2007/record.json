@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_021",
+  "entry_id": "2026-03-29_arc_021_bg_loops_learning_hazy2007",
+  "timestamp_utc": "2026-03-29T14:10:00Z",
+  "claim_ids_tested": ["ARC-021"],
+  "source": {
+    "title": "Towards an executive without a homunculus: computational models of the prefrontal cortex/basal ganglia system",
+    "authors": ["Hazy, Thomas E.", "Frank, Michael J.", "O'Reilly, Randall C."],
+    "year": 2007,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2007.2055",
+    "pmid": "17428778",
+    "volume": "362",
+    "issue": "1485",
+    "pages": "1601-1613",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2440774/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Hazy, Frank and O'Reilly extend the PBWM framework to include both maintenance gating and output gating as distinct learning channels, and discuss how the BG implement parallel loops with separate Go/NoGo learning pathways for each. The paper explicitly describes how the direct pathway (D1-MSN, Go) and indirect pathway (D2-MSN, NoGo) implement separate credit channels within each BG-PFC loop, and how these parallel circuits correspond to anatomically distinct functional domains. The paper strengthens ARC-021 by showing that the learning-channel separation is not just a design choice but a functional requirement: output gating and maintenance gating trained together produce interference, mirroring the logic of ARC-021 for E1/E2/E3. The main limitation is the same as PBWM: the paper focuses on WM gating distinctions, not on the sensorimotor/associative/limbic three-loop anatomy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's parallel channels are within a single cognitive domain (working memory) and do not model the three-loop anatomy (limbic/associative/sensorimotor) that ARC-021 requires.",
+    "A single dopamine signal drives all channels -- the separation is by pathway specificity, not by distinct neuromodulatory systems. If REE's three engines share a single error signal, the separation argument weakens."
+  ],
+  "tags": ["arc_021", "basal_ganglia", "prefrontal_cortex", "learning_channels", "go_nogo", "output_gating", "maintenance_gating", "computational_model", "executive_function"],
+  "mapping": {
+    "source_claim_statement": "The BG implement parallel, independently trainable Go/NoGo gating circuits for distinct PFC functions (WM maintenance and output gating). Each gating circuit develops its own pattern of connection weights enabling separate decisions. Mixing maintenance and output gating signals degrades performance by cross-contaminating credit assignment.",
+    "ree_translation": "REE's E1/E2/E3 engines are the analogues of parallel BG-PFC loops with separate learning targets. Just as maintenance gating and output gating must remain distinct to avoid cross-contamination of credit, E1's sensory prediction error, E2's motor-sensory error, and E3's harm/goal error must remain distinct. The Hazy et al. paper provides the computational argument -- the functional case for maintaining separate channels -- that ARC-021 relies on at the mechanistic level.",
+    "mapping_caveat": "The paper's parallel channels are specifically maintenance vs output gating in PFC -- a partition that corresponds to two channels, not three. Mapping to REE's three-engine architecture requires an additional inference step. Furthermore, the paper does not argue that the channels are incommensurable in principle -- only that training them together degrades performance in a WM task. Whether the same degradation would occur with REE's three error types is an extrapolation.",
+    "source_context": "Computational neuroscience review; builds directly on O'Reilly & Frank 2006 PBWM; provides biological grounding via BG anatomy (direct/indirect pathways, SNr, GPe, thalamus); tested on standard WM tasks"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.38,
+    "notes": "High source quality: published in a leading neuroscience venue, core paper in the O'Reilly/Frank research programme. Mapping fidelity is moderate: the learning-channel argument is directly relevant but the two-channel partition does not map cleanly to three REE engines. Transfer risk is moderate-high: the WM domain is relatively distant from REE's harm/ethics domain, and the specific claim that harm/goal error is incommensurable with sensory/motor errors requires additional evidence."
+  }
+}

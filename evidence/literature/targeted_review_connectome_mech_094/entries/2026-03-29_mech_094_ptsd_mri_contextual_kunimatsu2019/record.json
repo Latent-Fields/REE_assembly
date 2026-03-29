@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_094",
+  "entry_id": "2026-03-29_mech_094_ptsd_mri_contextual_kunimatsu2019",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "MRI findings in posttraumatic stress disorder.",
+    "authors": ["Kunimatsu A", "Yasaka K", "Akai H", "Kunimatsu N", "Abe O"],
+    "year": 2019,
+    "venue": "Journal of Magnetic Resonance Imaging",
+    "doi": "10.1002/jmri.26929",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31515885/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Comprehensive neuroimaging review documenting the PTSD neural phenotype: prefrontal hypoactivation (especially mPFC/ACC), amygdala hyperactivity, hippocampal volume reduction and contextual processing failure. The prefrontal-hippocampal disconnection is directly relevant to MECH-094's tag-loss mechanism: prefrontal structures that implement the reality-monitoring / hypothesis-tag function are structurally and functionally compromised in PTSD, leading to the breakdown of simulation/reality boundary that MECH-094 identifies as the PTSD mechanism. Confidence 0.65 because this is a structural/functional MRI review supporting the failure mode, not directly testing the tagging mechanism itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Correlation between prefrontal hypoactivation and PTSD symptoms does not prove that the mechanism is tag loss rather than, say, failure of fear extinction.",
+    "The MRI review covers the full PTSD neural phenotype; the relevance to MECH-094 specifically requires selecting the prefrontal/hippocampal/contextual components, which is a selective reading."
+  ],
+  "tags": ["mech_094", "ptsd", "prefrontal_cortex", "hippocampus", "amygdala", "contextual_processing", "reality_monitoring", "mri"],
+  "mapping": {
+    "source_claim_statement": "PTSD neuroimaging consistently shows: medial/dorsolateral PFC hypoactivation, amygdala hyperactivation, hippocampal volume reduction and functional abnormalities in contextual processing. Hippocampal and PFC alterations are highly reproducible across studies. Altered functional networks include autobiographical memory retrieval and self-thought networks. Contextual processing deficit is a core feature of PTSD pathophysiology.",
+    "ree_translation": "MECH-094 identifies tag loss as the PTSD mechanism: when the hypothesis tag is lost, the post-commit channel opens during what is structurally a simulation/replay event, causing residue accumulation from simulated content. The PTSD neuroimaging phenotype is consistent with this: prefrontal hypoactivation = loss of the reality-monitoring / tag-maintenance circuit; hippocampal abnormalities = loss of contextual binding that would otherwise allow the system to identify a memory as past rather than present; amygdala hyperactivation = unconstrained affective response from the harm stream when the tag/context gate fails. The three-component PTSD phenotype (PFC down, hippocampus impaired, amygdala up) maps onto the three components of MECH-094's failure mode: tag maintenance circuit down, contextual gating impaired, harm-signal output up.",
+    "mapping_caveat": "The MRI findings describe structural and functional correlates of established PTSD; they do not directly test the hypothesis-tag mechanism. MECH-094 offers a mechanistic interpretation of these findings, but the findings are equally consistent with alternative accounts (fear extinction failure, attentional narrowing, etc.). The mapping requires selecting the components relevant to tag loss rather than comprehensive PTSD aetiology.",
+    "source_context": "Comprehensive MRI review from University of Tokyo group, published in Journal of Magnetic Resonance Imaging. Covers structural MRI, DTI, resting-state fMRI, and task-based fMRI findings across the PTSD literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality (comprehensive review, major journal). Mapping fidelity is moderate -- the neuroimaging phenotype is consistent with MECH-094's tag-loss interpretation but does not uniquely confirm it. Transfer risk is moderate: the PTSD failure mode is a genuine clinical translation of MECH-094's predicted pathology, but the direction of causality in PTSD (which came first: tag loss or amygdala hyperactivity) is not established."
+  }
+}

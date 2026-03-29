@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_021",
+  "entry_id": "2026-03-29_arc_021_corticostriatal_anatomy_haber2003",
+  "timestamp_utc": "2026-03-29T14:05:00Z",
+  "claim_ids_tested": ["ARC-021"],
+  "source": {
+    "title": "The primate basal ganglia: parallel and integrative networks",
+    "authors": ["Haber, Suzanne N."],
+    "year": 2003,
+    "venue": "Journal of Chemical Neuroanatomy",
+    "doi": "10.1016/j.jchemneu.2003.10.003",
+    "volume": "26",
+    "issue": "4",
+    "pages": "317-330",
+    "url": "https://doi.org/10.1016/j.jchemneu.2003.10.003"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Haber's 2003 review is the canonical anatomical reference establishing that the primate basal ganglia are organized into three functionally distinct corticostriatal loops: limbic (ventromedial striatum, OFC/ACC/amygdala), associative (central striatum, dlPFC/parietal), and sensorimotor (dorsolateral striatum, motor/somatosensory cortex). These loops receive qualitatively different cortical inputs and project to distinct thalamic and midbrain targets. The review also introduces the 'spiraling' striatonigrostriatal pathway that allows unidirectional influence from limbic to associative to motor circuits -- providing a substrate for hierarchical integration without mixing the channels. This directly supports ARC-021's claim that the three BG-like loops require distinct learning channels because their input anatomy is itself distinct. The caveat is that the review describes anatomy in macaques, requiring cross-species transfer to human/computational architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper acknowledges overlap between loops and a continuum rather than strict segregation -- loop boundaries are gradient-like, not sharp, which partially weakens the 'distinct channels' claim.",
+    "The spiraling striatonigrostriatal pathway allows information to flow from limbic to motor circuits, implying the loops are not informationally isolated -- cross-talk may mean a single credit signal can influence all three."
+  ],
+  "tags": ["arc_021", "basal_ganglia", "corticostriatal", "three_loops", "sensorimotor", "limbic", "associative", "anatomy", "primate", "striatum", "connectome"],
+  "mapping": {
+    "source_claim_statement": "The primate striatum is organized into three functional domains -- limbic (ventromedial), associative (central), and sensorimotor (dorsolateral) -- receiving topographically distinct cortical inputs. These three regions form parallel loops through BG, thalamus, and back to cortex, with distinct input-output profiles. Information flows spirally from limbic to motor circuits via the striatonigrostriatal pathway, not through mixture within a loop.",
+    "ree_translation": "The three BG domains correspond to REE's three engine error channels: the limbic loop (OFC/ACC, nucleus accumbens) processes harm/benefit/goal signals analogous to E3's harm_eval and goal-approach channels; the associative loop (dlPFC, caudate) processes goal-directed planning analogous to E3's planning/evaluation function; the sensorimotor loop (motor cortex, putamen) processes motor execution analogous to E2's action-consequence forward model. ARC-021's requirement that these remain distinct learning channels is grounded in the anatomical finding that the cortical inputs to these loops carry qualitatively different information.",
+    "mapping_caveat": "The anatomical loops are defined by connectivity gradients in macaque, not by the functional information content their signals carry. The claim that these anatomically distinct projections carry incommensurable learning signals (MECH-069) is an inference from the anatomy, not directly demonstrated by tract tracing. Haber's paper does not measure error signal content in each loop -- it establishes that the input anatomy differs, which is necessary but not sufficient for ARC-021. Transfer from primate anatomy to REE's simulated agent architecture also requires the assumption that the functional necessity of separation scales to artificial systems.",
+    "source_context": "Anatomical review based on tract-tracing and neurochemistry in macaque primates; landmark reference for BG loop organization; widely cited in computational neuroscience as the empirical foundation for multi-loop BG models"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Highest source quality in this cluster: definitive anatomical review by the leading authority on primate BG connectivity, >2000 citations. Mapping fidelity is good but not perfect: the anatomical distinction supports the 'distinct channels' claim but does not directly establish incommensurability of learning signals. Transfer risk is low-moderate: the three-loop anatomy is well conserved across mammals, and the computational consequence (separate learning channels) follows from the anatomy with reasonable plausibility."
+  }
+}

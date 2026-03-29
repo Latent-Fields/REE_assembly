@@ -1,0 +1,25 @@
+# Sparing of the familiarity component of recognition memory in a patient with hippocampal pathology
+
+**Aggleton et al. (2005) -- Neuropsychologia -- DOI: 10.1016/j.neuropsychologia.2005.01.019 -- PMID: 16154457**
+
+## What the paper did
+
+Aggleton and colleagues describe patient KN, who sustained bilateral hippocampal damage following meningitis in 1993. Quantitative MRI reveals approximately 45% bilateral reduction in hippocampal volume, encompassing the dentate gyrus, CA fields, and subicular cortices. Crucially, the perirhinal cortex is largely spared. Behaviorally, KN presents with persistent anterograde amnesia: he cannot recall recent events or learn new information for later recall. Yet on recognition tasks -- simple yes/no judgments about whether an item was seen before -- he performs at or near normal levels. The authors apply the dual-process framework (developed with co-author Yonelinas) to parse this recognition sparing: using remember/know paradigms and receiver-operating-characteristic analysis, they demonstrate that KN's spared recognition is entirely attributable to familiarity-based processes while recollection is severely impaired. The study provides one of the cleanest neuropsychological double dissociations in the literature, confirming the Aggleton-Brown model that familiarity is supported by perirhinal cortex independently of hippocampal recollection.
+
+## Key findings relevant to MECH-118
+
+Patient KN is an existence proof. He demonstrates that a system can lose almost half of its hippocampal tissue -- the substrate for contextual recall and pattern completion -- while retaining a functional familiarity signal that supports near-normal item recognition. The mechanism is not compensatory use of residual hippocampus; the volumetric loss is severe and bilateral. The familiarity signal survives because it is computed by a substrate (perirhinal cortex) that remains intact. This tells us something important about the information structure of familiarity: it does not require contextual recovery or pattern completion. It is a match-strength signal -- how closely the current representation resembles stored representations -- that operates independently of the episodic reconstruction process.
+
+For MECH-118, this is the biological existence proof for the independence of the familiarity signal from broader coherence/contextual measures. The claim is not that REE has a perirhinal cortex -- it does not -- but that the computational role played by the perirhinal familiarity signal (graded match-strength, independent of contextual recall) can be implemented independently of other self-monitoring measures. KN shows this independence is biologically real and neurally supported.
+
+## REE translation
+
+The translation is by functional analogy. In REE, the HopfieldMemory class implements a familiarity-analog: at each step, the current z_self is compared against stored self-states in a 64-slot LRU memory using attention-based Hopfield retrieval. The stability score -- the maximum attention weight across stored states -- is a graded match-strength signal analogous to the perirhinal familiarity signal. D_eff measures population-level representational dimensionality: how spread out z_self is across dimensions. KN's case provides grounds for expecting that these can dissociate: an agent with high D_eff (dispersed self-model, impaired 'hippocampal' coherence) might still produce a strong familiarity signal if the current dispersed state resembles previously visited dispersed states. Conversely, an agent with low D_eff (coherent self-model) might produce low familiarity if the current coherent state is novel territory -- the MECH-119 pathological regime.
+
+## Limitations and caveats
+
+Single patient case studies provide existence proofs but not mechanistic specifications. KN's perirhinal cortex is not perfectly preserved, and the 12-year history of compensatory neuroplasticity since the insult complicates any clean inference about native processing. The computational mechanism by which perirhinal cortex implements familiarity is still debated: does it operate via reduced representational dimensionality itself (a kind of biological D_eff), via match-strength to stored traces, or via something else? The Ramsauer et al. (2021) modern Hopfield network used in the REE implementation was not the operative model for perirhinal function when this study was conducted. The architectural transfer is therefore by structural analogy rather than by established biological mechanism.
+
+## Confidence reasoning
+
+Confidence is set at 0.72. The case is genuinely compelling -- KN is one of the canonical demonstrations of the familiarity/recollection dissociation. The limitation is the single-patient design and the architectural distance between perirhinal biology and Hopfield network. For MECH-118, this paper serves as the biological existence proof; it does not directly validate the REE implementation. It should be read alongside Yonelinas 2001 (theoretical framework) and Staresina 2012 (temporal dissociation) for a complete picture.

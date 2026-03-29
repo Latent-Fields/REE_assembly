@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_111",
+  "entry_id": "2026-03-29_mech_111_novelty_seeking_circuit_zona_incerta_ogasawara2022",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-111"],
+  "source": {
+    "title": "A primate temporal cortex-zona incerta pathway for novelty seeking",
+    "authors": ["Ogasawara, T.", "Sogukpinar, F.", "Zhang, K.", "Feng, Y.", "Pai, J.", "Jezzini, A.", "Monosov, I.E."],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-021-00950-1",
+    "pmid": "34903880",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34903880/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Ogasawara et al. provide the most direct evidence available that novelty-seeking has its own dedicated neural circuit, architecturally distinct from reward-seeking (dopamine) circuits. ZI neurons activate on predictions of novel objects before the gaze shift, not on predictions of familiar rewards. This is the primate-level demonstration of an information-seeking drive that is architecturally separate from value-based decision making -- directly supporting MECH-111's claim that E1 prediction error at moderate magnitudes generates intrinsic positive valence and that this is not repurposed reward dopamine. The AVMTC -> ZI pathway encodes novelty prediction, not reward prediction. Confidence 0.76 because this is a primary electrophysiology study in primates (high quality, high relevance) but the ZI/AVMTC circuit has no direct architectural analog in REE's E1/E2/E3 framework.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ZI neurons encode a general motivational signal that includes reward-seeking and cannot be specifically characterised as novelty-seeking, the dedicated circuit claim would be weakened.",
+    "If the temporal cortex-ZI pathway is not functionally distinct from dopaminergic reward circuits in behavior (e.g., both are needed for exploration, neither alone is sufficient), the architectural separation claim would not directly support MECH-111."
+  ],
+  "tags": ["mech_111", "novelty_seeking", "zona_incerta", "temporal_cortex", "primate", "exploration", "dedicated_circuit", "information_seeking", "ogasawara"],
+  "mapping": {
+    "source_claim_statement": "In macaque monkeys, novelty-seeking behavior is controlled by the zona incerta (ZI), a subthalamic region. ZI neurons fire in response to predictions of novel stimuli (before the action that would produce exposure to novelty), not to predictions of familiar rewards. Inactivation of ZI reduces novelty seeking without affecting reward seeking. The anterior ventral medial temporal cortex (AVMTC) provides novelty-prediction signals to ZI. The circuit is functionally distinct from the lateral habenula and from dopaminergic substantia nigra neurons associated with reward prediction error. Novelty seeking is driven by predictions of novelty per se -- before reward value is assessed -- and operates on a dedicated circuit.",
+    "ree_translation": "MECH-111 claims that E1 prediction error at moderate magnitudes generates intrinsic positive valence (curiosity drive) that is architecturally distinct from harm avoidance and from pragmatic reward value. Ogasawara et al. confirm the biological reality of a dedicated novelty-seeking circuit that fires on predictions of novelty before any reward assessment. In REE, E1's world model produces prediction errors that could, at moderate magnitudes, drive information-seeking actions independently of z_beta (affective) and z_goal (goal attractor) channels. The ZI/AVMTC pathway is the biological analog: a dedicated subcortical novelty-prediction system that lowers the commitment threshold for novel-state-exploring actions (as described in the MECH-111 notes). The key architectural lesson: novelty drive is NOT repurposed E1 prediction error fed to the harm-avoidance machinery; it requires its own downstream circuit.",
+    "mapping_caveat": "The ZI/AVMTC circuit in macaques has no direct anatomical analog in REE's E1/E2/E3 framework. REE has no zona incerta. The novelty-seeking drive in MECH-111 would need to be implemented as a separate computational pathway -- either a distinct latent channel or a dedicated modulator on commit threshold -- not as a modification of existing E1 error routing. The primate architecture studied here is for visual novelty seeking (eye movements to novel objects); REE's curiosity signal would be for state-space exploration in a grid-world. The behavioral analogy is strong but the mechanistic transfer requires explicit architectural decisions not yet made in REE.",
+    "source_context": "Primary electrophysiology study; Nature Neuroscience; macaque monkeys; single-unit recordings from zona incerta and related regions; pharmacological inactivation experiments; optogenetic stimulation; behavioral task measuring gaze shifts to familiar vs. novel objects."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.38,
+    "notes": "Nature Neuroscience; rigorous primate electrophysiology with pharmacological validation. Very high source quality. Mapping fidelity is moderate because ZI has no REE analog and the behavioral context (visual novelty in primates) differs from grid-world exploration. Transfer risk is moderate -- the architectural principle (dedicated novelty circuit) transfers; the specific implementation does not."
+  }
+}

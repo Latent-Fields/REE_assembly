@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_022",
+  "entry_id": "2026-03-29_q_022_mixed_selectivity_dimensionality_rigotti2013",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["Q-022"],
+  "source": {
+    "title": "The importance of mixed selectivity in complex cognitive tasks",
+    "authors": ["Rigotti, M.", "Barak, O.", "Warden, M.R.", "Wang, X.J.", "Daw, N.D.", "Miller, E.K.", "Fusi, S."],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12160",
+    "pmid": "23685452",
+    "pmc": "PMC4412347",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23685452/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Rigotti et al. demonstrate that representational dimensionality (participation ratio / D_eff) predicts behavioral performance independently of other aspects of neural coding, and that dimensionality is determined by the presence of nonlinear mixed selectivity -- responses that cannot be explained as linear combinations of task variables. The critical point for Q-022 is stated in claims.yaml: the participation ratio measures representational capacity / ambient dimensionality, not proximity to any stored attractor. High D_eff means many effective dimensions are used; high Hopfield familiarity means the current state is close to a stored attractor. These are geometrically orthogonal: a high-D space can have no attractors near the current state (novel high-D exploration), and a low-D space can have the current state sitting precisely in a stored attractor. Rigotti et al. provide the operational grounding for D_eff that confirms this orthogonality. Confidence 0.74 because this is a primary empirical electrophysiology paper (high quality) validating D_eff / participation ratio as a meaningful neural measure, directly operationalising the MECH-113 / Q-022 framework.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dimensionality (participation ratio) and familiarity (attractor proximity) are empirically coupled in trained neural networks -- if high-D states are always unfamiliar and low-D states are always familiar -- then the theoretical orthogonality would not yield practical dissociation.",
+    "If D_eff collapses in error trials because error trials are also low-familiarity trials (not because they are low-D per se), the behavioral relevance of D_eff would be confounded with familiarity, undermining the Q-022 dissociation argument."
+  ],
+  "tags": ["q_022", "dimensionality", "participation_ratio", "mixed_selectivity", "prefrontal_cortex", "representational_geometry", "d_eff", "rigotti"],
+  "mapping": {
+    "source_claim_statement": "Neural representations in prefrontal cortex exhibit mixed selectivity: individual neurons respond to combinations of multiple task-relevant variables in ways that cannot be explained as linear sums. The dimensionality of this representation (measured by participation ratio / effective dimensionality) predicts behavioral performance: dimensionality collapses in error trials. High dimensionality arises from nonlinear mixed selectivity and confers computational capacity by enabling linear readout of complex functions of the input. The participation ratio measures how many effective dimensions the neural population uses, not proximity to any specific stored state.",
+    "ree_translation": "D_eff in REE is implemented as the participation ratio of z_self: (sum|z_self|)^2 / sum(z_self^2). Rigotti et al. establish that this measure has behavioral relevance (collapse predicts errors), computational interpretation (high D_eff = high representational capacity from nonlinear mixed selectivity), and -- crucially for Q-022 -- geometric meaning: D_eff measures ambient dimensionality of the representation, not proximity to any attractor. A z_self with high D_eff is using many dimensions; this says nothing about whether any of those dimensions are near a stored self-state in the HopfieldMemory. A z_self with low D_eff is focused; this says nothing about whether it is in familiar or unfamiliar territory. The orthogonality of D_eff and Hopfield familiarity is therefore not assumed but operationally specified by Rigotti et al.'s framework.",
+    "mapping_caveat": "Rigotti et al. study prefrontal cortex population codes in macaques performing a sequence memory task. REE's z_self is a latent vector in an LSTM, not a population of spiking neurons. The participation ratio applied to a latent vector is mathematically identical to the population-level participation ratio (same formula), but the biological mechanisms generating mixed selectivity in PFC -- nonlinear dendritic computations, recurrent attractor dynamics -- differ from the mechanisms that determine the geometry of z_self in an LSTM. The behavioral relevance of D_eff collapse in PFC (predicts errors) does not directly imply that D_eff collapse in z_self predicts ethical errors or agency failures -- this is an additional claim that requires experimental validation in REE (EXQ-075/076 are beginning to address this).",
+    "source_context": "Primary electrophysiology paper; Nature; macaque PFC recordings during a sequence memory task; n=multi-hundred single units; participation ratio analysis introduced as a neural measure; behavioral performance correlation reported."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.33,
+    "notes": "Nature; co-authored with Earl Miller (MIT), one of the most influential PFC researchers. Participation ratio is directly used in the REE implementation. Mapping fidelity is moderate-high because the same mathematical measure is used, reducing definitional transfer risk. Transfer risk is moderate because spiking population codes in PFC differ mechanistically from LSTM latent vectors."
+  }
+}

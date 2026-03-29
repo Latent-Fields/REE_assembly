@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_029",
+  "entry_id": "2026-03-29_arc_029_regret_avoidance_ofc_coricelli2005",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-029"],
+  "source": {
+    "title": "Regret and its avoidance: a neuroimaging study of choice behavior.",
+    "authors": ["Coricelli, G.", "Critchley, H.D.", "Joffily, M.", "O'Doherty, J.P.", "Sirigu, A.", "Dolan, R.J."],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1514",
+    "url": "https://www.nature.com/articles/nn1514"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Coricelli et al. (2005) demonstrates that committed choices (where the outcome of the unchosen alternative is revealed) produce qualitatively different neural and behavioral responses than unchosen alternatives: specifically, medial OFC and anterior cingulate activate in proportion to the counterfactual gap between what was obtained and what could have been obtained. Subjects became progressively regret-aversive over the experiment, and the same OFC/amygdala circuit that registered experienced regret was active prospectively during decision-making, modifying subsequent choices to avoid regret. This is the neural signature of a committed-mode error routing: post-commitment outcomes (realised consequences of chosen actions) are evaluated against a counterfactual baseline in a way that influences future committed choices differently from pre-commitment deliberation. ARC-029 claims that committed and uncommitted operating modes produce measurably distinct harm outcomes. The Coricelli paper supports the distinct modes claim: committed outcomes activate a neural circuit (OFC/ACC/amygdala regret system) that is not active during pre-decision simulation, and this circuit specifically evaluates irreversible consequences. Confidence moderated by the significant mapping gap: Coricelli studies human subjective regret in a gambling paradigm, while ARC-029 is about observable harm accumulation in an agent control loop.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper studies subjective emotional responses (regret as a felt state) rather than objective harm accumulation differences. ARC-029's claim is specifically about measurably distinct harm outcomes -- a behavioral rather than subjective claim. The Coricelli paper does not measure harm directly and does not compare cumulative harm between committed and uncommitted conditions.",
+    "The gambling paradigm used by Coricelli does not involve the kind of irreversible physical harm that motivates ARC-029's commit boundary. Losing money in a gamble is financially irreversible but qualitatively different from the harm-irreversibility that motivates the pre/post-commit distinction in REE."
+  ],
+  "tags": ["arc_029", "commitment", "regret", "counterfactual", "ofc", "decision", "harm_outcomes", "post_decision"],
+  "mapping": {
+    "source_claim_statement": "Committed choices (outcomes revealed) produce neural responses -- medial OFC, ACC, hippocampus, amygdala activation proportional to counterfactual gap -- that are qualitatively different from pre-decision deliberation. The same circuit mediates experienced regret and anticipation of regret, progressively modifying choice behavior to avoid large counterfactual gaps.",
+    "ree_translation": "ARC-029's claim is that post-commitment error routing produces measurably distinct harm outcomes compared to uncommitted operation. Coricelli's paper provides the biological substrate for this claim: the OFC/amygdala regret circuit activates specifically in response to committed-choice outcomes evaluated against counterfactuals. In REE terms, this is the post-commit channel: errors after the commitment boundary are realised-outcome errors (not simulated), and they activate a different evaluation circuit than pre-commit simulation errors. The REE commit boundary corresponds to the moment in Coricelli's paradigm where the unchosen alternative is revealed and counterfactual evaluation becomes possible. Before this moment (pre-commit, uncommitted mode), errors are simulated and no counterfactual gap can be computed because the action has not been taken.",
+    "mapping_caveat": "Coricelli measures subjective regret (felt emotional response, OFC activation, subsequent choice modification) while ARC-029 claims distinct harm accumulation in an agent's control loop. Subjective regret and objective harm outcomes are related but distinct constructs. The gambling paradigm uses financial outcomes; REE's harm concept is broader (harm to others, harm to environment). The neural data are human fMRI; REE is a computational model without a fMRI signal. The causal chain from OFC regret activation to distinct harm outcomes requires an additional step not demonstrated by this paper.",
+    "source_context": "Human fMRI study at UCL/Wellcome Trust Centre, Nature Neuroscience 2005. Landmark paper in decision neuroscience demonstrating the neural basis of regret and regret anticipation. PMID 16116457."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Nature Neuroscience paper from a leading decision neuroscience group, high-impact and widely cited. Mapping fidelity is limited because the paper addresses subjective regret in a gambling context rather than objective harm accumulation in an agent control loop. Transfer risk is elevated by the subjective/objective and emotional/behavioral gaps."
+  }
+}

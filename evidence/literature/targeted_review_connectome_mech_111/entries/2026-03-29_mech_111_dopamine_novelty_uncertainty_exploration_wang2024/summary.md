@@ -1,0 +1,27 @@
+# Dopamine encoding of novelty facilitates efficient uncertainty-driven exploration
+
+**Wang et al. (2024) -- PLoS Computational Biology -- DOI: 10.1371/journal.pcbi.1011516 -- PMID: 38626219**
+
+## What the paper did
+
+Yuhao Wang and colleagues present a computational model of novelty-driven exploration in the basal ganglia and validate it against electrophysiological and behavioral data. The starting point is the well-established observation that animals explore novel environments and novel stimuli, and that dopamine plays a role in this exploration. But the precise computational role of dopamine in novelty-seeking has been debated. Standard temporal-difference models treat dopamine as encoding reward prediction error (the difference between expected and received reward). Wang et al. propose a different model: dopaminergic novelty signals encode the variance of the reward distribution -- not how much reward was received relative to expectation, but how uncertain the reward distribution is in a given state. The D1 (direct) and D2 (indirect) striatal pathways in this model jointly represent the mean and variance of reward distributions. When a novel state is encountered (high variance, low sample count), mesolimbic dopamine provides a transient novelty signal that shifts the balance toward exploration by temporarily amplifying the D2 pathway contribution. As the state becomes familiar (variance decreases as samples accumulate), the novelty signal diminishes and the balance shifts toward exploitation. The model is normative: it outperforms standard UCB (upper confidence bound) exploration strategies when fitted to the task environment.
+
+## Key findings relevant to MECH-111
+
+The critical finding is the distinction between variance encoding and mean encoding. Standard prediction error (mean) dopamine would fire more for surprising rewards. Novelty dopamine fires more for uncertain states -- states where the distribution of possible outcomes is wide, not just states where the received outcome was surprising. This distinction matters enormously for MECH-111: curiosity is about uncertainty, not surprise. A state can be surprising (large prediction error against a confident prior) or uncertain (moderate prediction error against a diffuse prior), and these motivate different responses. Curiosity / novelty-seeking should track uncertainty; alarm / prediction error should track surprise.
+
+The second key finding is the mechanism: the novelty signal acts on the commit threshold by modulating the direct/indirect pathway balance. This is not a separate reward signal added to the value function -- it is a modulatory signal on the decision mechanism itself. In MECH-111, the curiosity signal lowers the commit threshold for novel states; the Wang model provides the computational mechanism (variance -> novelty signal -> pathway balance -> exploration bias).
+
+## REE translation
+
+MECH-111 notes that novelty drive is not repurposed E1 prediction error but encodes reward variance (uncertainty), and that it acts on commit threshold rather than through the goal attractor channel. Wang et al. provide the direct computational model for this architecture. In REE:
+
+E1 world model produces prediction errors. At moderate magnitudes (not low -- which signals familiar territory; not high -- which signals alarm), the variance of E1 prediction errors across recent states could be used to compute a novelty/uncertainty signal. This signal should modulate the commit threshold (MECH-114, MECH-111 interaction): in uncertain states, commit threshold is lowered, biasing toward exploration; in familiar states or states with high mean harm signal, commit threshold is raised. The Wang model shows this mechanism is normative -- it produces better exploration strategies than alternatives -- providing both a blueprint and a principled justification for the MECH-111 architectural requirement.
+
+## Limitations and caveats
+
+Wang et al.'s model is explicitly about reward uncertainty -- the variance of reward outcomes given a state. MECH-111's curiosity signal is grounded in information-theoretic prediction error, which is about state uncertainty rather than reward uncertainty. These overlap when uncertain states predict uncertain rewards, but they come apart in purely exploratory settings where there is no reward at all. The model has not been tested on pure information-seeking tasks without reward. Additionally, the specific D1/D2 pathway mechanism has no direct REE equivalent: implementing the Wang architecture in REE would require introducing basal-ganglia-analog mechanisms not currently in the design. The model is also validated primarily on rodent data; whether the same mechanism operates in primate-level planning systems is an open question.
+
+## Confidence reasoning
+
+Confidence is set at 0.74. PLoS Computational Biology with electrophysiological validation is high-quality. The variance-encoding / commit-modulation mechanism maps directly to MECH-111's architectural notes. Transfer risk is moderate: the computational principles are substrate-independent in principle, but the specific mechanism requires architectural implementation not yet present in REE. The paper is stronger as a computational proof-of-concept than as a direct biological validation, but for MECH-111's purposes -- grounding the intrinsic curiosity architecture in normative computational theory -- it is well-suited.

@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_021",
+  "entry_id": "2026-03-29_arc_021_three_bg_loops_oreilly2006",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-021"],
+  "source": {
+    "title": "Making Working Memory Work: A Computational Model of Learning in the Prefrontal Cortex and Basal Ganglia",
+    "authors": ["O'Reilly, Randall C.", "Frank, Michael J."],
+    "year": 2006,
+    "venue": "Neural Computation",
+    "doi": "10.1162/089976606775093909",
+    "pmid": "16378516",
+    "volume": "18",
+    "issue": "2",
+    "pages": "283-328",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16378516/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The PBWM model provides the canonical computational instantiation of parallel, functionally distinct BG-PFC loops in which distinct error signals (dopamine prediction error, working memory maintenance signal, output gating signal) drive separate learning channels. The paper demonstrates that collapsing these channels -- making the update and maintenance gate the same -- produces a recognisable failure mode: the system cannot hold information stable while simultaneously updating other representations. This is the computational signature of what ARC-021 asserts: separate learning channels are necessary because mixing error signals produces misattribution. The limitation is that PBWM focuses on two parallel PFC stripes (maintenance and output gating) and does not cleanly decompose into the three-loop anatomy (sensorimotor / associative / limbic) that grounds ARC-021. The mapping requires the reader to equate the computational channels with biological loop anatomy, which the paper does not make explicit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's distinct channels correspond to working memory maintenance vs output gating in PFC, not directly to the three corticostriatal loops (sensorimotor, associative, limbic). ARC-021 requires the three-loop anatomy; PBWM requires the two-gating-channel computational argument.",
+    "If the three biological loops can be reduced to a common dopamine RL signal without functional loss, the learning-channel-separation claim weakens -- PBWM itself uses a single DA signal that gates both channels."
+  ],
+  "tags": ["arc_021", "basal_ganglia", "prefrontal_cortex", "learning_channels", "go_nogo", "working_memory", "pbwm", "computational_model", "dopamine"],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia implement parallel gating circuits (direct/indirect pathway Go/NoGo) that control selective update of distinct PFC working memory representations. Distinct stripes in PFC are independently gated, and each stripe's learning is driven by a dopamine-modulated RL signal. Mixing gating signals across stripes degrades performance.",
+    "ree_translation": "In REE, E1/E2/E3 constitute three functionally distinct error channels -- sensory prediction error (E1), motor-sensory error (E2), and harm/goal error (E3). ARC-021 asserts these must remain separate learning targets. PBWM provides the architectural precedent: separate BG gating circuits maintain separate learning pathways; collapsing them produces misattribution. The functional argument for separation (distinct information cannot be compressed into one channel without loss) applies directly to the three REE engines.",
+    "mapping_caveat": "PBWM's functional separation is between WM maintenance and output gating within PFC stripes -- a cognitive architecture claim, not a direct mapping to sensorimotor/associative/limbic loop anatomy. The leap from 'two-channel WM gating' to 'three-loop learning channel separation' requires additional anatomical grounding (Haber 2003) that is not present in this paper. Transfer risk is therefore moderate.",
+    "source_context": "Computational neuroscience; builds on rodent electrophysiology and human neuroimaging of BG-PFC function; validated against LSTM and SRN on working memory tasks"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: landmark paper, widely cited, foundational for BG-PFC computational neuroscience. Mapping fidelity is moderate: the learning-channel-separation principle carries over but the specific anatomical three-loop claim requires supplementary papers. Transfer risk is moderate: PBWM is a model of human cognition not an agent ethics architecture; the claim that mixing channels causes misattribution is general enough to transfer but untested in the REE domain."
+  }
+}

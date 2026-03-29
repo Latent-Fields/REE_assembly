@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_101",
+  "entry_id": "2026-03-29_mech_101_efference_copy_visual_cancellation_von_holst1950",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-101"],
+  "source": {
+    "title": "Das Reafferenzprinzip (The Reafference Principle)",
+    "authors": ["von Holst E", "Mittelstaedt H"],
+    "year": 1950,
+    "venue": "Naturwissenschaften",
+    "doi": "10.1007/BF00622571",
+    "url": "https://link.springer.com/article/10.1007/BF00622571"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Von Holst and Mittelstaedt's 1950 paper introducing the reafference principle is the foundational theoretical statement of the problem that MECH-101 addresses: how does the nervous system distinguish sensory signals caused by self-generated movement (reafference) from those caused by external events (exafference)? Their solution -- efference copy (Efferenzkopie) of the motor command is compared with the incoming sensory signal; the match is cancelled (reafference suppressed) leaving the unmatched component (exafference) salient -- is the biological principle that the REE ReafferencePredictor implements computationally. Confidence is high for a theoretical paper because the principle is directly instantiated in MECH-101; confidence is not higher because this is a foundational theoretical framing rather than an experimental test of the specific scene-context requirement MECH-101 adds.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If efference copy cancellation is motor-command-sufficient (no scene context needed) and MECH-101's R2=0.027 failure was due to a different cause, the z_world_raw_prev requirement would not follow from this principle",
+    "If the reafference principle does not apply to the kind of visual change caused by locomotion in a local-view grid (new cell content revealed), the foundational framing would not map"
+  ],
+  "tags": ["mech_101", "reafference_principle", "efference_copy", "self_motion", "foundational_theory", "von_holst"],
+  "mapping": {
+    "source_claim_statement": "When the nervous system generates a motor command, it sends a copy of that command (Efferenzkopie) to sensory processing systems. This copy is used to predict the expected sensory consequences (reafference) of the movement. The predicted reafference is compared with the actual sensory signal; matching components are cancelled, leaving only the unexpected component (exafference) that signals environmental events rather than self-caused ones.",
+    "ree_translation": "The ReafferencePredictor in REE instantiates the reafference principle computationally: given action a_t (the efference copy) and z_world_raw_prev (the scene state needed to predict scene-content-dependent visual change), it predicts the locomotion-caused component of delta_z_world_raw. This predicted reafference is subtracted, leaving z_world encoding the exafferent component -- changes in the world not caused by the agent's movement. MECH-101's core claim is that the action (efference copy) alone is insufficient for this prediction; z_world_raw_prev is also required because the reafference in a local-view environment is scene-content-dependent.",
+    "mapping_caveat": "Von Holst and Mittelstaedt's 1950 principle was developed in the context of continuous sensorimotor control (fly visual stabilization, fish tail-wagging experiments). The principle is general but the specific claim MECH-101 adds -- that scene context (z_world_raw_prev) is required in addition to the motor command -- is not in the original formulation. Von Holst's original formulation assumes the motor command alone is sufficient to generate the expected reafference. MECH-101 extends this by noting that in local-view environments, the reafference is also a function of what is in the world, requiring scene-state input beyond the motor command. This is a non-trivial extension of the original principle.",
+    "source_context": "Foundational theoretical paper introducing the concepts of Efferenzkopie (efference copy), Reafferenz (reafference = self-caused sensory signals), and Exafferenz (externally caused sensory signals). Illustrated with behavioral experiments in insects and fish. Published in German; English translation in Behavioral Physiology and Neurobiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.25,
+    "notes": "Extremely high source quality -- foundational paper introducing the reafference principle, one of the most cited concepts in sensorimotor neuroscience. Mapping fidelity is good because the principle directly grounds MECH-101, but the specific scene-context extension is not in von Holst's original formulation -- MECH-101 adds a requirement that goes beyond the basic principle. Transfer risk is low because the reafference principle is general enough to apply across implementations."
+  }
+}

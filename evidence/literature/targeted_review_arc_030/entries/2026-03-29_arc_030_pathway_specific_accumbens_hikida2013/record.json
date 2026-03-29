@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_030",
+  "entry_id": "2026-03-29_arc_030_pathway_specific_accumbens_hikida2013",
+  "timestamp_utc": "2026-03-29T14:20:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Pathway-specific modulation of nucleus accumbens in reward and aversive behavior via selective transmitter receptors",
+    "authors": ["Hikida, Takatoshi", "Yawata, Shosaku", "Yamaguchi, Takashi", "Danjo, Teruko", "Sasaoka, Toshikuni", "Wang, Yue", "Nakanishi, Shigetada"],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1220358110",
+    "pmid": "23248274",
+    "volume": "110",
+    "issue": "2",
+    "pages": "342-347",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.1220358110"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This PNAS paper by Hikida and Nakanishi uses reversible neurotransmission blocking (RNB), a gene-manipulation technique that allows pathway-specific silencing of either the direct (D1-expressing) or indirect (D2-expressing) NAc pathway, to causally dissociate approach and avoidance learning. Silencing the direct pathway (D1/Go) impairs conditioned place preference (reward learning, approach) while leaving avoidance intact. Silencing the indirect pathway (D2/NoGo) impairs passive avoidance learning while leaving reward learning intact. Crucially, this is not a receptor binding correlation (as in Cox et al.) -- it is a selective pharmacogenetic silencing of each pathway in mice. The causal dissociation is clean and directly instantiates ARC-030's claim that Go and NoGo sub-channels are functionally segregated and both necessary. The fact that silencing either pathway produces a specific deficit (not just weaker overall learning) is exactly what ARC-030 predicts: you cannot substitute one channel for the other.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study is conducted in the nucleus accumbens (ventral striatum / limbic loop) specifically, not across all three BG loops. Whether the same D1/D2 causal dissociation holds in the associative and sensorimotor loops (relevant to E2 and E1) is not directly tested.",
+    "The RNB technique blocks synaptic transmission entirely rather than modulating it -- this may produce a different phenotype than partial reduction in signal strength, which is the REE-relevant scenario (imbalanced rather than absent channels)."
+  ],
+  "tags": ["arc_030", "d1_receptor", "d2_receptor", "approach_avoidance", "nucleus_accumbens", "direct_pathway", "indirect_pathway", "mouse", "behavioral_animal", "causal_dissociation", "go_nogo"],
+  "mapping": {
+    "source_claim_statement": "Selective silencing of direct-pathway (D1-expressing) NAc neurons impairs reward/approach learning but not avoidance learning. Selective silencing of indirect-pathway (D2-expressing) NAc neurons impairs aversive/avoidance learning but not reward learning. D1 activation in the direct pathway is required for reward learning; D2 inactivation in the indirect pathway is required for aversive learning. The two pathways are causally distinct and functionally non-redundant.",
+    "ree_translation": "ARC-030 requires that Go (approach/execute) and NoGo (suppress/avoid) sub-channels are symmetric and both necessary. The Hikida et al. causal silencing directly instantiates this: removing the Go channel (D1/direct) eliminates approach learning without affecting avoidance, and removing the NoGo channel (D2/indirect) eliminates avoidance learning without affecting approach. An REE agent with only the NoGo channel would be analogous to a mouse with D1-pathway-silenced NAc: it avoids harm but cannot learn to approach goals. The behavioral flatness prediction of ARC-030 follows directly.",
+    "mapping_caveat": "The RNB technique blocks the pathway completely -- the REE scenario is one of asymmetric weighting (NoGo dominant, Go absent or weak) rather than complete Go ablation. Complete ablation produces a sharper phenotype than imbalance would. Additionally, the study focuses on the ventral striatum / limbic loop, specifically NAc, which maps onto E3's motivational/goal channel rather than E2's motor-sensory channel or E1's sensory prediction channel. Whether the D1/D2 causal dissociation operates identically in the associative and sensorimotor loops that correspond to E2 and E1 requires separate evidence. The mouse model also uses simple Pavlovian conditioning paradigms, not goal-directed planning.",
+    "source_context": "Mouse pharmacogenetic study using RNB (reversible neurotransmission blocking); nucleus accumbens D1/D2 pathway-specific silencing; conditioned place preference (reward) and passive avoidance (aversive) tasks; Nakanishi lab, Osaka University"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.32,
+    "notes": "High source quality: PNAS publication with causal genetic manipulation -- stronger evidence than correlational PET studies. Mapping fidelity is good: the causal D1/D2 dissociation is the most direct available evidence for the Go/NoGo functional segregation ARC-030 requires. Transfer risk is moderate: the study is in mouse NAc specifically (limbic loop), and the mapping to REE's full three-loop architecture requires extrapolation."
+  }
+}

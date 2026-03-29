@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-03-29_mech_116_lstm_working_memory_review_baddeley2003",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Working memory: looking back and looking forward",
+    "authors": ["Baddeley A"],
+    "year": 2003,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1201",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14523382/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Baddeley's 2003 review of working memory theory is relevant because it frames working memory as a multi-component system where the central executive integrates information maintained in subsidiary buffers -- a functional architecture with structural parallels to the E1/E3 division in REE. The episodic buffer component Baddeley introduces in this review (a capacity-limited, multimodal temporary store that integrates information from long-term memory and the subsidiary buffers) is particularly relevant to MECH-116's claim about goal-context maintenance. Confidence is moderate because the Baddeley framework is cognitive-psychological rather than neurophysiological, making the mapping to E1 LSTM mechanisms less direct than the Goldman-Rakic single-unit data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If working memory is primarily a phonological loop or visuospatial sketch pad phenomenon with no central maintenance role, the MECH-116 analogy would locate the wrong component",
+    "If the central executive function is better mapped to E3 than to E1, the MECH-116 attribution would need revision"
+  ],
+  "tags": ["mech_116", "working_memory", "central_executive", "episodic_buffer", "baddeley", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Working memory is a multi-component system comprising a central executive (attentional controller), phonological loop, visuospatial sketch pad, and episodic buffer (new in 2000). The episodic buffer temporarily holds integrated multimodal representations linked to long-term memory. The central executive orchestrates maintenance and manipulation of information across subsystems.",
+    "ree_translation": "E1's LSTM hidden state functions analogously to the central executive's working memory register: it maintains an integrated representation (z_goal_latent + world context) across steps and serves as the substrate from which E3 (the planner, analogous to the episodic buffer's access to long-term memory) retrieves goal-context information via the theta channel (ARC-032). The maintenance is active (recurrent) rather than passive, consistent with Baddeley's central executive characterization.",
+    "mapping_caveat": "Baddeley's framework is a cognitive-psychological model; the components are defined by behavioral dissociation (e.g., phonological loop impaired by articulatory suppression) rather than by neural mechanism. The mapping between Baddeley's central executive and DLPFC -- and by extension to E1's LSTM -- requires the additional step of neuroscientific grounding (Goldman-Rakic's work). The Baddeley 2003 paper does not directly address LSTM recurrence or computational models of working memory maintenance.",
+    "source_context": "Review paper synthesizing 30 years of Baddeley-Hitch working memory framework, introducing the episodic buffer, and discussing neural correlates. Widely cited as the defining theoretical statement of the multi-component working memory model."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "High source quality -- landmark theoretical review. Lower mapping fidelity because it is a cognitive framework, not a mechanistic/neural one. Transfer risk higher because the E1 LSTM is a specific neural-computational mechanism and Baddeley's framework does not directly speak to recurrent network implementation."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-03-29_mech_072_stress_memory_decontextualization_schwabe2024",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "Memory Under Stress: From Adaptation to Disorder.",
+    "authors": ["Schwabe L"],
+    "year": 2024,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2024.06.005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38880463/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Provides mechanistic account of how stress produces decontextualised memory representations -- memories that retain strong sensory/emotional content but lose hippocampal-dependent contextual binding. This is relevant to MECH-072 because foreseeable-harm gating is essentially a contextual judgment: can the agent have anticipated this harm given what was known at the time? Without contextual binding, attribution computations (was this foreseeable?) become unreliable. Confidence capped at 0.60 because the paper addresses stress-induced memory effects, not foreseeable-harm gating directly; the connection is indirect via contextual memory processing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's framework is about episodic memory under stress, not about causal attribution during action selection. MECH-072 is about gating residue accumulation, which is a real-time process, not a post-hoc memory retrieval process.",
+    "The decontextualisation mechanism (stress hormones affecting hippocampal function) is not directly implemented in REE's architecture."
+  ],
+  "tags": ["mech_072", "contextual_memory", "hippocampus", "stress", "decontextualization", "foreseeable_harm"],
+  "mapping": {
+    "source_claim_statement": "Stress produces decontextualised memory representations -- strong sensory/emotional encoding but reduced hippocampal contextual binding. This makes memories easily cued (hypermnesia) but stripped of temporal/contextual information, leading to intrusions and generalised fear. Contextual processing deficit is specifically a hippocampal associative learning failure.",
+    "ree_translation": "MECH-072 proposes that residue accumulation should be gated by whether the agent could have foreseen the harm -- a foreseeable-harm threshold. The ability to make this judgment requires contextual information: what was known at decision time, what action was taken, what alternative actions were available. Schwabe's framework shows that when contextual binding fails, the system cannot correctly attribute outcomes to their causes; harm becomes associated with presence rather than action. This motivates the foreseeable-harm gate: without it, any harm event proximate to the agent gets attributed, regardless of whether the agent could have predicted or prevented it -- the computational parallel of contextual memory failure.",
+    "mapping_caveat": "MECH-072 is about a write gate on residue accumulation, not about memory retrieval. The biological mechanism (stress hormones disrupting hippocampal contextual encoding) is not directly instantiated in REE. The mapping is at the level of functional analogy: contextual failure -> miscalibrated attribution; foreseeable-harm gate -> contextual correction. This is conceptual support, not direct mechanistic evidence.",
+    "source_context": "Comprehensive review in Biological Psychiatry from a leading stress and memory researcher. Covers preclinical and clinical evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (Biological Psychiatry, specialist review). Mapping fidelity is moderate-low because MECH-072 is about action-time gating, not episodic memory. Transfer risk is moderate-high for the same reason."
+  }
+}

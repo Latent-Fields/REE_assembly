@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_010",
+  "entry_id": "2026-03-29_sd_010_lateral_medial_pain_ploner2004",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-010"],
+  "source": {
+    "title": "Cortical representation of pain.",
+    "authors": ["Ploner M", "Schnitzler A"],
+    "year": 2004,
+    "venue": "Nervenarzt",
+    "doi": "10.1007/s00115-004-1739-y",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15184984/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "German-language review establishing cortical pain representation across parallel networks: S1 for discriminative aspects, ACC for affective aspects, with distinct first-pain (S1-dominant) vs second-pain (ACC-dominant) temporal profiles. The first-pain/second-pain distinction directly instantiates the A-delta (fast, discriminative) vs C-fiber (slow, affective) separation at the cortical level. Confidence slightly lower than Willis 1997 due to language barrier limiting detailed extraction and the review predating modern connectomics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If S1 cortex turns out to encode affective qualities of pain as strongly as discriminative qualities, the clean separation motivating SD-010 becomes less compelling.",
+    "German-language source; abstract only reviewed in English -- extraction is from English abstract."
+  ],
+  "tags": ["sd_010", "cortical_pain", "s1_cortex", "anterior_cingulate", "first_pain", "second_pain"],
+  "mapping": {
+    "source_claim_statement": "S1 cortex is mainly involved in discriminative aspects of pain; ACC is closely related to pain affect. First pain (A-delta mediated) is particularly related to S1 activation; second pain (C-fiber mediated) to ACC activation.",
+    "ree_translation": "The first-pain/second-pain cortical dissociation provides cortical-level confirmation that z_harm_s (proximity/intensity, A-delta) and z_harm_a (accumulated urgency, C-fiber) are processed by different cortical targets. SD-010 separates these at the encoder level in REE, which mirrors the S1/ACC functional division.",
+    "mapping_caveat": "The cortical dissociation describes time-to-peak activation differences, not strict anatomical segregation. In REE, the separation is enforced by architecture and supervision targets. The temporal aspect (first vs second pain timing) is not directly modelled in the current REE V3 implementation.",
+    "source_context": "Review article focused on human cortical pain representation; provides good bridge between spinal pathway anatomy (Willis 1997) and cortical functional organisation. Published in German neurology journal with English abstract."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Moderate source quality (German-language review in specialist journal, not top-tier English journal). Mapping fidelity is good -- the cortical dissociation is a clean analogy for z_harm_s vs z_harm_a. Transfer risk is moderate: the biological distinction is at cortical level whereas SD-010 is about encoder architecture; the connection is indirect."
+  }
+}

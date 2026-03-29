@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_119",
+  "entry_id": "2026-03-29_mech_119_depersonalization_selective_impairment_sierra2011",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-119"],
+  "source": {
+    "title": "Depersonalization: A selective impairment of self-awareness",
+    "authors": ["Sierra, M.", "David, A.S."],
+    "year": 2011,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2010.10.018",
+    "pmid": "21087873",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21087873/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Sierra and David describe depersonalisation disorder (DPD) as a condition in which prefrontal inhibition of limbic/insular regions produces emotional numbing -- a 'coherent but detached' state. Cognitive clarity is preserved (the patient can think, reason, and describe their experience with precision) while the emotional salience of self-related content is absent. In REE terms, this is Regime 3 of MECH-119: low D_eff (coherent self-model, the patient is not confused) combined with low Hopfield familiarity (the patient does not recognise their own mental states as emotionally familiar -- the affective tag is missing). The prefrontal inhibition mechanism -- the patient has structurally intact self-representations but the familiarity/emotional resonance signal is suppressed -- is the biological existence proof for the low D_eff + low familiarity regime. Confidence 0.77 because this is a theoretical review integrating heterogeneous evidence, and the mapping from 'emotional familiarity' to Hopfield pattern familiarity requires interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If depersonalisation is better explained by a general attentional deficit rather than selective prefrontal inhibition of familiarity signals, the coherent-but-unfamiliar characterisation would be imprecise.",
+    "If D_eff is elevated in depersonalisation (the patient is cognitively confused, not merely emotionally unfamiliar), then the Regime 3 characterisation is wrong and MECH-119 would not find clinical support in this condition."
+  ],
+  "tags": ["mech_119", "depersonalization", "derealization", "self_model", "prefrontal_inhibition", "emotional_numbing", "insula", "limbic", "sierra"],
+  "mapping": {
+    "source_claim_statement": "Depersonalisation disorder is characterised by preserved cognitive self-representation (the patient thinks clearly, describes their experience articulately) combined with absence of emotional salience for self-related content. The neural mechanism is increased prefrontal (right VLPFC) inhibition of limbic and insular regions, particularly the amygdala and anterior insula. The patient's self-model is structurally intact but the emotional familiarity signal that normally tags self-related representations as 'mine' and 'real' is suppressed. This produces the phenomenology of unreality: 'I can see myself clearly but cannot feel that this is me.'",
+    "ree_translation": "MECH-119 describes Regime 3: low D_eff (coherent self-model) combined with low Hopfield stability (unfamiliar self-state -- no stored self-state matches the current configuration). Sierra and David's DPD description is the clinical instantiation. Low D_eff maps to cognitive clarity: the patient's self-model is not dispersed or confused (which would be high D_eff, Regime 2 confusion). Low Hopfield familiarity maps to the absent emotional salience: the self-model is no longer recognised as 'mine' -- the familiarity tag is suppressed by prefrontal inhibition of the systems (insula, amygdala) that normally generate it. The structural Markov blanket is intact (the patient functions adequately in many domains) but the familiarity signal is severed. This is the three-way dissociation that confirms Regime 3 exists clinically.",
+    "mapping_caveat": "The mapping of 'emotional familiarity' to Hopfield pattern familiarity is interpretive. Biological familiarity in the recognition memory literature is a graded match-strength signal from perirhinal cortex to stimuli. Emotional familiarity in DPD is more specifically the interoceptive/affective salience of self-related content -- processed by insula and amygdala. These are not the same signal. REE's Hopfield familiarity is a match-strength signal (z_self vs. stored self-states) which is closer to perirhinal familiarity than to insula-based affective salience. The DPD case is therefore best understood as supporting the existence of the low D_eff + low 'familiarity-like' signal regime, with 'familiarity-like' covering both perirhinal and interoceptive/affective dimensions that REE would need to disambiguate.",
+    "source_context": "Theoretical review; Consciousness and Cognition; integrates neuroimaging studies of DPD, psychophysiological studies, lesion data, and phenomenological descriptions; co-authored by leading clinical researchers at King's College London Depersonalisation Unit."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Consciousness and Cognition; Sierra and David are the dominant clinical researchers in this space. Source quality is high. Mapping fidelity is moderate because the translation from emotional familiarity/affect to Hopfield pattern familiarity requires interpretation -- these are not the same construct. Transfer risk is moderate."
+  }
+}

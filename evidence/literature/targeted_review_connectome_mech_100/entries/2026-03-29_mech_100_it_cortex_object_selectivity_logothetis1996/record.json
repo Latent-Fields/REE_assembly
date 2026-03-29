@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_100",
+  "entry_id": "2026-03-29_mech_100_it_cortex_object_selectivity_logothetis1996",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-100"],
+  "source": {
+    "title": "Visual object recognition",
+    "authors": ["Logothetis NK", "Sheinberg DL"],
+    "year": 1996,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.ne.19.030196.001321",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8833443/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Logothetis and Sheinberg review the single-unit and behavioral evidence for how inferior temporal (IT) cortex develops object-selective and category-selective responses, emphasizing that the selectivity arises through experience with specific objects and categories -- not through passive exposure. The review synthesizes evidence that IT neurons trained on specific object categories fire selectively for those categories after training, with selectivity developing through the training process itself. This directly supports MECH-100's claim that event-type categorical supervision (the CE auxiliary loss) is required to develop discriminative representations in z_world.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If IT cortex object selectivity is innate or emerges purely from statistics of visual experience without categorical training, the supervision requirement would not hold",
+    "If IT categorical selectivity requires only reconstruction-like prediction (next frame prediction) without category labels, MECH-100's auxiliary loss claim would be weakened"
+  ],
+  "tags": ["mech_100", "it_cortex", "object_selectivity", "categorical_representation", "ventral_stream", "experience_dependent"],
+  "mapping": {
+    "source_claim_statement": "Inferior temporal cortex neurons develop selectivity for specific objects and categories through experience. Training monkeys to recognize a set of three-dimensional wire objects produces IT neurons that fire selectively for those trained objects but not for untrained ones. The selectivity is view-specific for novel viewpoints but can generalize across views with training.",
+    "ree_translation": "The z_world encoder must be trained with an event-type CE auxiliary loss (MECH-100) to develop event-discriminative responses, just as IT cortex develops category-selective responses only through categorical experience (training on specific categories). Without the CE loss, z_world learns a reconstruction-optimal representation that is dominated by the most statistically prominent features (locomotion in grid-world) rather than the categorical event distinctions needed for harm evaluation. The CE loss is the computational analog of categorical training in IT cortex development.",
+    "mapping_caveat": "Logothetis and Sheinberg focus on view-invariant object recognition in IT cortex -- the ability to recognize a 3D object from novel viewpoints after training. The z_world encoder faces a different problem: distinguishing event types (none/env_hazard/agent_hazard) that co-occur with locomotion. The categorical training in the biological case involves repeated exposure to labeled objects over days; the MECH-100 CE loss provides a simultaneous online categorical signal during RL training. The mechanisms and timescales differ. Additionally, IT cortex sits at a later stage in the ventral hierarchy than what z_world encoding corresponds to in REE.",
+    "source_context": "Comprehensive review of visual object recognition neuroscience: ventral stream hierarchy (V1->V2->V4->IT), single-unit recording evidence, behavioral studies of recognition after IT lesions, computational models including view-based and structural description models."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.40,
+    "notes": "High source quality -- landmark Annual Review paper. Mapping fidelity moderate: the principle (categorical training produces categorical selectivity) aligns well, but the specific mechanisms and contexts differ. Transfer risk moderate-high: the deep learning CE loss implementation is not directly comparable to biological experience-dependent IT plasticity."
+  }
+}

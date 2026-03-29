@@ -1,0 +1,21 @@
+# Hazy, Frank & O'Reilly (2007) -- Towards an Executive Without a Homunculus
+
+## What the paper did
+
+Hazy, Frank, and O'Reilly extend their PBWM framework to address the broader problem of how the prefrontal cortex/basal ganglia system could implement executive function without a homunculus -- an unexplained inner controller that simply knows what to do. Their solution is a learning architecture: the BG implement parallel Go/NoGo gating circuits, one for each distinct PFC function, with dopamine-modulated reinforcement learning shaping when each gate fires. The paper introduces a critical extension: separate maintenance gating and output gating circuits. The maintenance gate controls when information is written into PFC working memory; the output gate controls which currently maintained representation is deployed to guide action. Each gate has its own striatal pathway and its own learning signal, even though both use the same dopamine RL mechanism.
+
+## Key findings relevant to ARC-021
+
+The key insight is that the functional requirements of WM maintenance and output selection are sufficiently different that they demand separate learning channels. Training a single channel to simultaneously learn 'update WM when new information arrives' and 'deploy WM representation to action when ready' produces interference: the system cannot simultaneously learn to be selective about updates (conservative maintenance) and selective about outputs (flexible selection). Separate circuits, with separate connection weights, solve this by allowing each function to develop its own policy independently. This is the computational argument for what ARC-021 asserts: when two functions have different functional requirements, mixing their learning signals degrades both. The paper also explicitly discusses how the parallel circuits correspond to distinct BG loop anatomy -- the direct and indirect pathways, through SNr and GPe respectively, implement Go and NoGo within each loop, and the loops operate in parallel.
+
+## How this translates to REE (ARC-021)
+
+The argument from Hazy et al. translates to ARC-021 as follows. REE has three functional requirements: E1 must track rapidly changing sensory predictions (fast, high bandwidth, corrects its own world model); E2 must predict action consequences for motor planning (medium rate, action-conditioned); E3 must evaluate harm and goal trajectories for commitment decisions (slow, long-horizon, ethically weighted). These are as different from each other as WM maintenance is from output selection. If their learning signals are mixed -- if a single error term is backpropagated through all three engines -- each engine will receive credit contaminated by the other engines' objectives. The paper shows why this is architecturally necessary, not merely convenient.
+
+## Limitations and caveats
+
+The paper's parallel channels map onto two distinctions, not three -- maintenance gating and output gating. REE's three-engine architecture requires an additional channel and an additional argument for why three channels rather than two. The paper also restricts its analysis to a WM domain; the claim that the same functional argument applies to harm/goal evaluation (E3's domain) requires the additional step of showing that harm/goal signals are not merely a special case of outcome value within the existing WM framework. The paper's Go/NoGo within each loop is also a within-channel mechanism, not a between-channel mechanism -- the separation it describes is between WM functions, not between error signal types. There is a risk of over-reading the analogy.
+
+## Confidence reasoning
+
+Confidence is set at 0.70 -- slightly lower than Haber (2003) because the mapping requires more inferential steps. The source quality is high and the functional argument for channel separation is directly relevant to ARC-021's logic. But the paper's two-channel architecture is a less direct fit for REE's three-engine design, and the domain (WM gating) is far enough from REE's harm/ethics domain that the transfer carries moderate risk. Paired with Haber (2003) for anatomy and PBWM (O'Reilly & Frank 2006) for the computational core, this paper strengthens the overall case but should not be read as direct evidence on its own.

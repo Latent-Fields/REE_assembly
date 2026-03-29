@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_025",
+  "entry_id": "2026-03-29_arc_025_active_inference_process_theory_friston2017",
+  "timestamp_utc": "2026-03-29T14:30:00Z",
+  "claim_ids_tested": ["ARC-025"],
+  "source": {
+    "title": "Active inference: A process theory",
+    "authors": ["Friston, Karl J.", "FitzGerald, Thomas", "Rigoli, Francesco", "Schwartenbeck, Philipp", "Pezzulo, Giovanni"],
+    "year": 2017,
+    "venue": "Neural Computation",
+    "doi": "10.1162/NECO_a_00912",
+    "pmid": "27870614",
+    "volume": "29",
+    "issue": "1",
+    "pages": "1-49",
+    "url": "https://doi.org/10.1162/NECO_a_00912"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Friston et al.'s 2017 'process theory' paper develops a full computational instantiation of active inference in which belief updating occurs across three qualitatively distinct processes: perceptual inference (updating beliefs about hidden states from sensory evidence), policy selection (evaluating expected free energy over action sequences), and learning (updating the parameters of the generative model over slower timescales). The paper demonstrates that each process operates on a different timescale, uses a different update equation, and cannot be reduced to either of the others without losing a functional capability. Perceptual inference without policy selection produces passive observation without action. Policy selection without perceptual inference produces blind action without world-model updating. Learning without either produces a frozen model. This three-way irreducibility is structurally analogous to E1/E2/E3 in REE: E1 (sensory world model, fast), E2 (action consequence forward model, medium), E3 (long-horizon evaluation and commitment, slow). The caveat is that the mapping is architectural analogy rather than identity -- the active inference framework uses variational inference and expected free energy, not REE's hybrid LSTM/planning architecture, and the three processes in active inference do not map cleanly onto REE's three engines.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The three active inference processes (perception, policy, learning) do not correspond one-to-one with REE's E1/E2/E3 -- the mapping requires re-interpretation at each step.",
+    "Active inference unifies perception and action under a single free energy objective, which is precisely what ARC-025 argues against: REE claims the three engines are irreducible because they implement distinct constraints, not just distinct computational styles within a shared objective.",
+    "A sufficiently powerful single neural network could in principle learn to implement all three active inference processes simultaneously -- ARC-025 claims irreducibility, which would require showing such a network fails in specific ways."
+  ],
+  "tags": ["arc_025", "active_inference", "free_energy", "perception", "action", "learning", "three_levels", "timescales", "computational_model", "irreducibility", "friston"],
+  "mapping": {
+    "source_claim_statement": "Active inference requires three qualitatively distinct computational processes: (1) perceptual inference -- updating beliefs about hidden states from sensory evidence at fast timescales; (2) policy selection -- evaluating expected free energy over action sequences to select policies at medium timescales; (3) learning -- updating the generative model parameters (A, B, C, D matrices) over slow timescales. Each process uses distinct update equations and operates at a distinct temporal grain. Collapsing any two produces a recognisable failure mode.",
+    "ree_translation": "ARC-025 claims E1 (world prediction, fast LSTM), E2 (action consequence model, medium), and E3 (harm/goal evaluation, slow planning) are irreducible. The active inference framework provides a normative argument for why three distinct processes at distinct timescales are necessary: a system that can perceive without evaluating consequences cannot commit; a system that can evaluate consequences without learning cannot update; a system that learns without separate inference cannot act in real time. REE's E1/E2/E3 implements the same functional partition by different means. The normative argument for the partition transfers even if the implementation differs.",
+    "mapping_caveat": "Active inference's three processes are defined by their role in free energy minimization under a specific Bayesian framework -- perception minimises variational free energy over hidden states; policy selection minimises expected free energy over policies; learning minimises free energy over model parameters. REE's three engines are defined by their error signals (sensory prediction, motor-sensory, harm/goal) and by axiomatic necessity (INV-025/026/027). These are different grounds for the partition. The mapping is plausible but the ARC-025 claim requires that the three REE engines are irreducible specifically -- not merely that some three-process partition is useful. Whether a two-engine reduction would be equivalent to the ARC-025 failure mode predictions (E1+E2 without E3 produces analysis without commitment; E1+E3 without E2 produces impulsive commitment; E2+E3 without E1 produces brittle rigidity) is a stronger claim than active inference directly supports.",
+    "source_context": "Computational neuroscience paper; Markov decision process formalism; connects to broader FEP literature; tests against empirically observed neuronal response properties in simulated agents; foundational paper in active inference research programme"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.40,
+    "notes": "High source quality: flagship active inference paper, >1000 citations, in Neural Computation. Mapping fidelity is moderate: the three-process structure is directly relevant but the mapping requires re-interpretation at each step, and active inference's three processes correspond to different computational roles than REE's three engines. Transfer risk is moderate-high: active inference is a normative framework that could in principle absorb the REE three-engine architecture as a special case, which would weaken ARC-025's irreducibility claim by showing a two-process equivalent could exist within the FEP framework."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_029",
+  "entry_id": "2026-03-29_arc_029_ofc_regret_lesion_camille2004",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-029"],
+  "source": {
+    "title": "The Involvement of the Orbitofrontal Cortex in the Experience of Regret.",
+    "authors": ["Camille, N.", "Coricelli, G.", "Sallet, J.", "Pradat-Diehl, P.", "Duhamel, J.R.", "Sirigu, A."],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1094550",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15155951/"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Camille et al. (2004) provides a double dissociation argument: patients with orbitofrontal cortex lesions fail to report regret and fail to anticipate negative consequences of committed choices, while normal subjects do both. This lesion study establishes that post-commitment counterfactual evaluation is an active, dedicated neural computation -- not merely an implicit process -- and that its absence measurably changes decision behavior. When the circuit is removed by lesion, patients make suboptimal choices that normal subjects learn to avoid through accumulated regret. This is structural evidence that committed-mode error processing is distinct from pre-commitment deliberation: the OFC is required for post-commitment evaluation, and agents without it behave differently in measurable ways. ARC-029 claims that committed and uncommitted modes produce measurably distinct harm outcomes; the lesion evidence provides the double-dissociation side of this argument -- that there exists a neural mechanism specifically dedicated to post-commitment outcome evaluation, and its presence or absence changes behavioral outcomes. Confidence moderated by the clinical/computational gap and by the fact that the paper measures choice suboptimality (regret-avoidance failure) rather than harm accumulation directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OFC lesion patients still make decisions and incur outcomes -- they do not become unable to operate. The deficit is specifically in regret-learning and regret anticipation, not in general decision capacity. This means the committed/uncommitted distinction is specifically about the evaluative and learning circuit, not about execution capacity. ARC-029's claim about distinct harm outcomes would need to specify whether it is about the execution or the evaluation channel.",
+    "The paper is a clinical case series with small N -- a typical limitation for lesion studies. The specific OFC lesion locations vary across patients. The generalisation from OFC lesion patients to a computational architecture requires strong assumptions about modularity."
+  ],
+  "tags": ["arc_029", "commitment", "regret", "ofc_lesion", "counterfactual", "decision", "distinct_modes", "harm"],
+  "mapping": {
+    "source_claim_statement": "Patients with orbitofrontal cortex lesions do not report regret after committed choices and do not anticipate negative consequences when making future committed choices, even though they can perform the cognitive task normally in other respects. Normal subjects report regret and learn to avoid regret-inducing choices. The OFC is specifically required for post-commitment counterfactual evaluation.",
+    "ree_translation": "ARC-029 requires that committed and uncommitted modes produce measurably distinct harm outcomes. Camille's lesion study establishes the double-dissociation: when the post-commitment evaluation circuit is absent, agents accumulate worse outcomes from committed choices (they fail to learn from regret and fail to anticipate future harm from irreversible choices). This is direct causal evidence that post-commitment error processing produces different outcomes from pre-commitment processing -- exactly the distinction ARC-029 codifies. In REE's architecture, the commit boundary gates the transition from pre-commit (simulated, counterfactual evaluation available) to post-commit (realised, OFC-equivalent circuit required). The lesion study shows that removing this circuit specifically degrades performance on committed choices without affecting other decision capacities, confirming that committed and uncommitted modes are computationally separable.",
+    "mapping_caveat": "Camille's study measures learning failure and choice suboptimality in a gambling paradigm. ARC-029 claims distinct harm outcomes in an agent control loop where harm is a specific measurable quantity (harm_gap in EXQ-063). The subjective/objective and clinical/computational gaps are real. The OFC lesion removes the regret evaluation circuit, but ARC-029's commit boundary mechanism is about routing errors differently, not about a single evaluation region being present or absent. The lesion analogy is useful for the general claim but not for the specific architectural implementation.",
+    "source_context": "Clinical case series study of patients with OFC lesions vs. healthy controls. Science 2004. First study directly implicating OFC in the computation of regret. PMID 15155951. Closely related to Coricelli et al. (2005) and often cited as the founding pair of the OFC-regret literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.48,
+    "notes": "Science paper with a clean double-dissociation design. Mapping fidelity is more limited than for Coricelli (2005) because the lesion study focuses on learning failure (regret avoidance) rather than moment-to-moment harm accumulation. Transfer risk is elevated by clinical-to-computational gap and by the subjective regret vs. objective harm distinction."
+  }
+}

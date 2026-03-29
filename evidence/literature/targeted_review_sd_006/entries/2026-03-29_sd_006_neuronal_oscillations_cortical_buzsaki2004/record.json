@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_006",
+  "entry_id": "2026-03-29_sd_006_neuronal_oscillations_cortical_buzsaki2004",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-006"],
+  "source": {
+    "title": "Neuronal Oscillations in Cortical Networks.",
+    "authors": ["Buzsaki, G.", "Draguhn, A."],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1099745",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15218136/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Buzsaki and Draguhn's landmark Science review establishes that cortical networks exhibit behaviorally-dependent oscillations spanning five orders of magnitude in frequency (from <0.1 Hz slow oscillations to >500 Hz ripples). Crucially, these oscillations are not noise or epiphenomena -- they are phylogenetically preserved and functionally necessary for temporal binding, input selection, and synaptic plasticity. The review covers theta, gamma, and beta bands specifically as functional computational rates. SD-006's design assigns E1, E2, and E3 to characteristic rates corresponding to these bands. The paper's central argument -- that network oscillations bias input selection and temporally link neurons into assemblies at characteristic rates -- supports SD-006's claim that running modules at their characteristic biological rates rather than lockstep captures an important functional property of the neural systems REE models. Confidence moderated by the generality of the review (it covers all oscillation bands and does not specifically argue for multi-module rate separation in a computational architecture sense) and by the modality gap (biological oscillations vs. discrete simulation timesteps).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review covers a very wide range of oscillation frequencies and does not specifically argue that cognitive modules should run at distinct rates rather than being coupled. In fact, inter-areal synchronisation is one of the reviewed mechanisms, which could be read as arguing for coupled (lockstep) communication at least within frequency bands.",
+    "Beta oscillations in motor cortex are associated with a status quo maintenance / anti-movement function (elevated beta suppresses movement), which is distinct from the positive processing-rate assignment SD-006 makes for E2 at a gamma-analogous rate."
+  ],
+  "tags": ["sd_006", "cortical_oscillations", "multi_timescale", "theta", "gamma", "beta", "neural_computation"],
+  "mapping": {
+    "source_claim_statement": "Mammalian cortical neurons form behavior-dependent oscillating networks spanning five orders of magnitude in frequency. These oscillations are phylogenetically preserved, indicating functional relevance. Network oscillations bias input selection, temporally link neurons into assemblies, and facilitate synaptic plasticity, cooperatively supporting temporal representation and long-term consolidation.",
+    "ree_translation": "SD-006's multi-rate architecture reflects the fact that the neural systems REE models operate at characteristic biological rates. Buzsaki and Draguhn establish that theta, gamma, and beta oscillations are distinct functional rates, not arbitrary artifacts. E3 running at theta-rate (~4-8 Hz) reflects the deliberative planning rate; E2 running at ~10 Hz reflects the fast motor-sensory loop rate (gamma-analogous); E1 running at ~1 Hz reflects the consolidation / slow-learning rate. The paper's argument that oscillations bias input selection provides a functional rationale for why rate separation matters: different modules attend to different input streams on different timescales, and running them at characteristic rates ensures each module receives inputs at the appropriate temporal resolution.",
+    "mapping_caveat": "The paper is a broad review of all cortical oscillations and does not address multi-module computational architectures. The mapping from continuous biological oscillations to discrete simulation timestep rates is a conceptual translation, not a derivation. The paper does not specify that modules should be asynchronous -- only that characteristic rates exist. Whether asynchrony is the right implementation of rate separation (vs. synchronous but differently-downsampled updates) is not addressed. Additionally, the review covers many oscillation bands; SD-006 uses only three, and the specific rate values in SD-006 (1 Hz, 10 Hz, 4-8 Hz) are not derivable from this paper alone.",
+    "source_context": "Landmark review in Science by Buzsaki (Rutgers/NYU) and Draguhn. Published 2004, >6000 citations. Established the functional oscillation hypothesis as a mainstream framework in systems neuroscience. PMID 15218136."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.30,
+    "notes": "Science review from a leading group, >6000 citations, canonical in the field. Mapping fidelity is moderate: the paper establishes that characteristic oscillatory rates are functional and preserved, but does not specifically argue for asynchronous multi-module rate separation. Transfer risk is low -- the rate hierarchy principle is general."
+  }
+}

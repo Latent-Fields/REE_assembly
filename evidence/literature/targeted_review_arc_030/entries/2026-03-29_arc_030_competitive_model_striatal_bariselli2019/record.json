@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_030",
+  "entry_id": "2026-03-29_arc_030_competitive_model_striatal_bariselli2019",
+  "timestamp_utc": "2026-03-29T14:25:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "A competitive model for striatal action selection",
+    "authors": ["Bariselli, Sebastiano", "Fobbs, Wambura C.", "Creed, Meaghan C.", "Bhatt, Jay M."],
+    "year": 2019,
+    "venue": "Brain Research",
+    "doi": "10.1016/j.brainres.2018.10.009",
+    "volume": "1713",
+    "pages": "70-79",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6451675/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Bariselli et al. propose a 'competitive model' of striatal action selection that is directly relevant to ARC-030 in a surprising and important way: they argue that dMSNs (D1/Go) and iMSNs (D2/NoGo) are tuned to the SAME actions and compete to determine behavioral response -- they are not two parallel pipelines selecting different actions from different inventories. This is the precise architecture shape ARC-030 requires: dual evaluation of the same hippocampal trajectory proposals, with the commit threshold as the balance point of competition. The paper provides the conceptual framework for how symmetric Go/NoGo sub-channels can operate on the same action space without creating conflicting action representations. The confidence is moderate rather than high because this is a theoretical/review paper rather than direct experimental evidence, and the 'competitive model' is explicitly contrasted with earlier models to show it is not yet the consensus view.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is a theoretical review proposing a model, not a direct experimental test of the competitive architecture. The competitive model is one of several models discussed; its superiority over the classic Go/NoGo suppression model is argued but not experimentally settled in this paper.",
+    "The model is developed for striatal action selection in movement/reward contexts, not for the long-horizon trajectory evaluation that REE's E3 implements. Whether dMSN/iMSN competition operates at the planning horizon required for ethical evaluation is untested."
+  ],
+  "tags": ["arc_030", "d1_msn", "d2_msn", "competitive_model", "striatum", "action_selection", "go_nogo", "approach_avoidance", "direct_indirect_pathway", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "dMSNs and iMSNs are tuned to the same actions and compete to determine behavioral response, rather than facilitating and suppressing different actions respectively. When dMSN activity dominates, the thalamus is disinhibited and approach occurs; when iMSN activity dominates, thalamic inhibition continues and avoidance persists. Dopamine shifts the competition balance via D1/D2 receptor-mediated synaptic plasticity.",
+    "ree_translation": "ARC-030's implementation is not two parallel pipelines selecting different trajectories. As the claim notes explicitly: it is dual evaluation of the SAME hippocampal trajectory proposals, with the harm channel (SD-010/NoGo) and goal channel (MECH-112/Go) both evaluating each proposal. The commit threshold is the competition balance point. Bariselli et al.'s competitive model is the biological precedent for exactly this architecture: same action proposals evaluated by both channels simultaneously, with the precision-weighted balance determining whether the trajectory is executed. This resolves a potential confusion in ARC-030 -- Go and NoGo are not selecting from different trajectory sets, they are voting on the same trajectory.",
+    "mapping_caveat": "The competitive model is proposed for striatal action selection at the motor execution level -- the sensorimotor and possibly associative loops. Its extension to REE's long-horizon trajectory planning (hippocampal proposals evaluated over many steps) requires the additional assumption that the competition mechanism scales to planning timescales. The paper also does not specify what 'the same actions' means at an abstract planning level -- in a rodent, action proposals are relatively simple motor programs; in REE, they are multi-step trajectory representations. The scope of 'same action' in the competitive model may be narrower than REE requires.",
+    "source_context": "Theoretical review; draws on rodent electrophysiology, optogenetics, and pharmacology literature; explicitly contrasts competitive model with classic Go/NoGo suppression model and complementary-roles model; published in Brain Research"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Moderate-high source quality for a theoretical review: published in a peer-reviewed journal, by researchers active in the field, with explicit engagement with competing models. Mapping fidelity is notably high: the competitive model is a near-exact description of ARC-030's architecture (same trajectory proposals evaluated by both channels, competition balance at commit threshold). Transfer risk is moderate: the model is developed for motor-level action selection and extension to long-horizon trajectory evaluation requires untested assumptions."
+  }
+}

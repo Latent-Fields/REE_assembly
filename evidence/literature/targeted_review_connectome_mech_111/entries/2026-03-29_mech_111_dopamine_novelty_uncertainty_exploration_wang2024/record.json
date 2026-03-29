@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_111",
+  "entry_id": "2026-03-29_mech_111_dopamine_novelty_uncertainty_exploration_wang2024",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-111"],
+  "source": {
+    "title": "Dopamine encoding of novelty facilitates efficient uncertainty-driven exploration",
+    "authors": ["Wang, Y.", "Lak, A.", "Manohar, S.G.", "Bogacz, R."],
+    "year": 2024,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1011516",
+    "pmid": "38626219",
+    "pmc": "PMC11051659",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38626219/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Wang et al. provide a computational model and electrophysiological validation showing that dopaminergic novelty signals encode reward distribution variance (uncertainty), not mean reward -- and that this uncertainty encoding, distinct from reward prediction error, enables efficient exploration. The basal ganglia direct and indirect pathways jointly estimate mean and variance; mesolimbic dopamine provides transient novelty signals that modulate the exploration-exploitation tradeoff as a function of uncertainty. This directly supports MECH-111's claim that the curiosity signal encodes reward variance (uncertainty about outcomes) rather than mean reward, and that it acts on commit threshold rather than through the goal attractor channel. Confidence 0.74 because this is a high-quality computational model with electrophysiological validation, but the specific dopaminergic mechanism is in the basal ganglia (no direct REE analog) and the model deals with reward uncertainty, not the information-theoretic prediction error that MECH-111 grounds in E1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If novelty-related dopamine signals encode mean reward rather than variance (i.e., if they are standard prediction error signals), the uncertainty-driven exploration model would collapse to standard TD learning and MECH-111's distinct curiosity signal would lack dopaminergic grounding.",
+    "If the basal ganglia variance encoding is specific to reward contexts and does not generalise to information-theoretic contexts (exploration of novel states without reward), the model would not support MECH-111's claim about intrinsic information-seeking."
+  ],
+  "tags": ["mech_111", "dopamine", "novelty", "uncertainty", "exploration", "basal_ganglia", "reward_variance", "computational_model", "wang"],
+  "mapping": {
+    "source_claim_statement": "Dopaminergic novelty signals in the basal ganglia system encode reward distribution variance (uncertainty), not mean reward. The direct and indirect striatal pathways jointly represent mean and variance of reward distributions. Mesolimbic dopamine provides transient novelty signals that dynamically adjust the relative contribution of the two pathways as a function of uncertainty, optimally balancing exploration (variance-seeking) and exploitation (mean-maximising). This is a normative model: when parameters are optimised, it outperforms standard UCB strategies.",
+    "ree_translation": "MECH-111 notes in claims.yaml: 'dopaminergic novelty signals encode VARIANCE of reward distribution (uncertainty), not mean reward; distinct from TD prediction error.' Wang et al. provide the direct computational model for this. In REE, E1 prediction error is not mean reward prediction error but world-state prediction error (surprise). MECH-111's curiosity signal would similarly encode the variance of E1 prediction error distribution (uncertainty about what E1 will predict next in a state), not the mean. The Wang model suggests this should act on the commit threshold by adjusting the exploration-exploitation balance as a function of uncertainty -- exactly as described in MECH-111 ('acts on commit threshold, lowering for novel states'). The mechanism: high uncertainty (novel state, high E1 prediction error variance) -> transient novelty signal -> lower commit threshold -> exploration action selected preferentially.",
+    "mapping_caveat": "Wang et al.'s model is grounded in basal ganglia D1/D2 pathways and mesolimbic dopamine -- specific biological substrates with no direct REE equivalents. REE has no explicit D1/D2 pathway distinction and no mesolimbic dopamine system. The translation requires that E1 prediction error variance plays the functional role of the dopaminergic novelty signal in REE's architecture, and that something analogous to the direct/indirect pathway balance modulates the commit threshold. These are architectural assumptions not yet implemented. Additionally, the model is validated on reward-based tasks; whether it generalises to information-seeking without reward value is assumed but not tested in the paper.",
+    "source_context": "Computational model paper with electrophysiological validation; PLoS Computational Biology; model is fit to electrophysiological data and behavioral data from rodent and primate experiments; code available at GitHub."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "PLoS Computational Biology; rigorous computational work with empirical validation. Source quality is high. Mapping fidelity is moderate -- the variance-encoding / commit-threshold mechanism maps well to MECH-111's description, but the specific biological substrate (BG D1/D2 pathways) differs from REE's architecture. Transfer risk is moderate because the computational principles (encode variance, modulate exploration) are substrate-independent in principle."
+  }
+}

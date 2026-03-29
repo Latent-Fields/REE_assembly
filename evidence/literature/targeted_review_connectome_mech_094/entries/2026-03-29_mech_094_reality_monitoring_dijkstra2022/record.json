@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_094",
+  "entry_id": "2026-03-29_mech_094_reality_monitoring_dijkstra2022",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Perceptual reality monitoring: Neural mechanisms dissociating imagination from reality.",
+    "authors": ["Dijkstra N", "Kok P", "Fleming SM"],
+    "year": 2022,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2022.104557",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35122782/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the most directly relevant paper for MECH-094. Dijkstra et al. review the neural mechanisms by which the brain distinguishes internally generated imagination from externally generated perception -- precisely the computation MECH-094's hypothesis tag implements. Key findings: (1) no single low-level signal unambiguously marks internal vs external origin; (2) higher-order cortical circuits (prefrontal) evaluate first-order sensory/cognitive factors to make the determination; (3) this shares core computations with metacognition; (4) failure of this monitoring explains hallucinations and related symptoms. The parallel with MECH-094 is close: the hypothesis tag is the REE implementation of the reality-monitoring gate, and tag loss maps to the clinical failure modes. Confidence 0.82 because the mapping is direct and the paper is recent and comprehensive, but the review is theoretical rather than providing single mechanistic experiments.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review finds that no single signal unambiguously marks internal vs external origin -- reality monitoring is implemented by multi-factor inference, not a single tag. MECH-094 proposes a categorical tag, which is a cleaner mechanism than the multi-factor inference the biology suggests.",
+    "If the brain uses graded signals rather than categorical tagging, the failure mode of tag loss (MECH-094's PTSD mechanism) might be better described as tag degradation rather than binary loss."
+  ],
+  "tags": ["mech_094", "reality_monitoring", "imagination", "perception", "prefrontal_cortex", "metacognition", "hypothesis_tag"],
+  "mapping": {
+    "source_claim_statement": "Imagination and perception share neural substrates, posing a challenge for perceptual reality monitoring. No single factor unambiguously marks internal vs external origin. Reality monitoring is implemented by higher-level cortical circuits evaluating first-order sensory and cognitive factors; it shares core computations with metacognition. Failure explains source confusion, hallucinations, and clinical symptoms.",
+    "ree_translation": "MECH-094 proposes that the hypothesis tag is a categorical write gate that routes simulation signals away from the post-commit residue channel. The tag's function is exactly perceptual reality monitoring at the architectural level: it determines which signals are internally generated (simulated, DMN) versus committed outcomes, and prevents the former from writing to the residue field. Dijkstra et al.'s architecture of higher-order cortical circuits evaluating first-order signals maps to E3's role in MECH-094: E3 maintains the tag as part of its commitment-state representation. The review's clinical failure modes (hallucinations, source confusion) correspond to MECH-094's tag-loss pathology (PTSD flashbacks, psychosis).",
+    "mapping_caveat": "The biological reality monitoring is implemented by probabilistic inference over multiple graded signals; MECH-094's tag is categorical and architectural. A categorical tag is computationally cleaner but may not capture the graded continuum of reality monitoring failures seen clinically. The biological mechanism described is primarily perceptual (distinguishing imagery from sensory input); MECH-094's tag operates on a different level (distinguishing simulation mode from committed action mode), which is a related but not identical function.",
+    "source_context": "Comprehensive review from UCL's Wellcome Centre for Human Neuroimaging, published in Neuroscience and Biobehavioral Reviews. Authors include Fleming (metacognition expert) and Kok (predictive coding/imagery specialist)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (comprehensive recent review from leading lab). Mapping fidelity is high -- MECH-094 is directly implementing a biological reality monitoring function. Transfer risk is low: the functional parallel between biological reality monitoring and MECH-094's simulation/committed distinction is close. Main caveat is the categorical vs graded distinction."
+  }
+}

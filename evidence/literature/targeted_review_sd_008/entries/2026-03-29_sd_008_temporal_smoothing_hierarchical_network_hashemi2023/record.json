@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_008",
+  "entry_id": "2026-03-29_sd_008_temporal_smoothing_hierarchical_network_hashemi2023",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-008"],
+  "source": {
+    "title": "Robust and efficient representations of dynamic stimuli in hierarchical neural networks via temporal smoothing.",
+    "authors": ["Hashemi, M.", "Kang, H.", "Kim, J."],
+    "year": 2023,
+    "venue": "Frontiers in Computational Neuroscience",
+    "doi": "10.3389/fncom.2023.1164595",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10307978/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Directly demonstrates the tradeoff between temporal smoothing and representational fidelity in hierarchical networks processing dynamic stimuli. The paper shows that moderate smoothness can achieve robustness, but also establishes that transmission delay in hierarchical systems causes upper levels to carry older information -- the exact failure mode that motivates SD-008. When alpha is low (heavy smoothing over many timesteps), z_world in an upper hierarchy carries substantially older event information. The paper's framework implies that excessively heavy smoothing undermines the ability to represent current environmental state faithfully. Confidence moderated by the fact that the paper advocates for smoothness as a noise-robustness tool rather than specifically studying the threshold effect that SD-008 codifies; the 0.9 alpha threshold is a REE-specific design choice not directly derived from this work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows that too little smoothing leads to noisy representations vulnerable to transmission errors across hierarchical levels. This is not the failure mode SD-008 addresses -- SD-008 addresses the opposite failure: too much smoothing (alpha=0.3) suppresses event responses.",
+    "The smoothness benefit identified here applies to noise robustness across hierarchical transmission. In REE, z_world is used at the same level it is computed, so the cross-hierarchy transmission delay argument applies less directly."
+  ],
+  "tags": ["sd_008", "temporal_smoothing", "hierarchical_network", "dynamic_stimuli", "ema", "tradeoff"],
+  "mapping": {
+    "source_claim_statement": "Temporal smoothing in hierarchical neural networks can achieve both efficiency and robustness by dealing with noise and neural transmission delay when processing dynamic visual stimuli; the appropriate level of smoothness involves a tradeoff between noise robustness and representational fidelity to the current input.",
+    "ree_translation": "SD-008's EMA alpha parameter directly controls the degree of temporal smoothing applied to z_world. The paper's framework supports the claim that the appropriate alpha value is a meaningful design parameter -- too low (high smoothing, alpha=0.3) reduces representational fidelity to the current event, suppressing event responses to 30% of their instantaneous value. SD-008 sets alpha >= 0.9 to ensure z_world tracks the current environmental event faithfully rather than a several-step weighted average.",
+    "mapping_caveat": "The paper studies hierarchical networks where smoothing is applied across levels with transmission delay -- a different architecture from REE's single-level EMA in LatentStack. The paper does not identify a specific alpha threshold analogous to the 0.9 value in SD-008; the threshold is derived from REE-specific experimental evidence (EXQ-023, EXQ-040). The transfer from visual hierarchy to REE's world-state encoder is indirect.",
+    "source_context": "Computational modeling study examining how temporal smoothing interacts with neural noise and transmission delay in a hierarchical visual processing network. Published in Frontiers in Computational Neuroscience (PMCID PMC10307978)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Frontiers journal is solid but lower prestige than Nature/Science/Neuron. The mapping is conceptually valid but the paper addresses a different architecture (hierarchical with delay vs. single-level EMA). The core insight -- that smoothing level is a real design parameter with representational consequences -- is well-supported."
+  }
+}

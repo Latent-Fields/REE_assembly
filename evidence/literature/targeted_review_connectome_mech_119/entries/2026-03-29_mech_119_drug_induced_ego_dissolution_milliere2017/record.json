@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_119",
+  "entry_id": "2026-03-29_mech_119_drug_induced_ego_dissolution_milliere2017",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-119"],
+  "source": {
+    "title": "Looking for the Self: Phenomenology, Neurophysiology and Philosophical Significance of Drug-induced Ego Dissolution",
+    "authors": ["Milliere, R."],
+    "year": 2017,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2017.00245",
+    "pmid": "28588463",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28588463/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Milliere's review of drug-induced ego dissolution provides evidence from three distinct drug classes (classical psychedelics, dissociatives, kappa-opioid agonists) that simultaneously produce three different self-dissolution regimes, closely mapping to MECH-119's three-regime space. Classical psychedelics produce high D_eff with novel unfamiliar states (Regime 2 + extended). Dissociatives produce the 'coherent but detached' pattern (low D_eff, low familiarity, disrupted Markov blanket -- Regime 3). Kappa-opioid agonists produce dysphoric unfamiliarity with intact self-location -- a distinctive variant of Regime 3. These three drug classes simultaneously dissociate all three REE self-monitoring framings, providing the strongest available evidence that the three dimensions (D_eff, familiarity, Markov blanket integrity) can be induced independently. Confidence 0.68 because this is a philosophical/phenomenological review rather than primary neuroimaging or mechanism data, and the mapping from phenomenological descriptions to REE computational regimes involves substantial interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the three drug classes produce overlapping self-disorder profiles -- if any two of the three regimes cannot be cleanly separated pharmacologically -- the three-dimensional regime space of MECH-119 would lack empirical support.",
+    "If the phenomenological descriptions of ego dissolution do not map to measurable changes in self-model dimensionality, familiarity, or blanket integrity, the REE regime taxonomy cannot be grounded in these observations."
+  ],
+  "tags": ["mech_119", "ego_dissolution", "psychedelics", "dissociatives", "kappa_opioid", "depersonalization", "self_consciousness", "drug_induced", "milliere"],
+  "mapping": {
+    "source_claim_statement": "Three drug classes produce phenomenologically distinct forms of ego dissolution. Classical psychedelics (psilocybin, LSD) produce 'oceanic boundlessness' -- high-entropy, expansive, unfamiliar self-states; self-model boundaries dissolve with positive affect. Dissociative anesthetics (ketamine, PCP) produce 'coherent but detached' states -- self-location and cognitive clarity preserved but emotional resonance and felt-selfness absent; similar to depersonalisation. Kappa-opioid agonists (salvinorin A) produce dysphoric unfamiliarity with intact self-location but distorted sense of bodily position -- coherent but alien rather than merely detached. These three classes act on different neurotransmitter receptors and produce different configurations of self-experience.",
+    "ree_translation": "The three drug classes map directly to MECH-119's three-regime space. Classical psychedelics produce Regime 2 (high D_eff + low familiarity -- the dispersed, confused regime) with an extended positive-valence dimension not fully captured by D_eff alone. Dissociatives produce Regime 3 (low D_eff + low familiarity -- coherent but detached), confirming the existence proof from DPD. Kappa-opioid agonists produce a variant of Regime 3 (coherent self-model but dysphoric unfamiliarity -- the self-state is focused but the quality of unfamiliarity is aversive rather than neutral). Critically, these three are pharmacologically induced independently: the drug specificity shows that the three regimes can be reached by different mechanisms, supporting the claim that they are genuinely distinct computational states and not just quantitative variations on a single dimension. For Q-022, this is also relevant: the pharmacological dissociation is independent evidence that D_eff and familiarity can be dissociated.",
+    "mapping_caveat": "The mapping from phenomenological descriptions of drug-induced states to REE computational regimes is interpretive, not measured. No study has measured D_eff of z_self or Hopfield familiarity under drug conditions -- the mapping is analogical. The review relies on self-report questionnaire data (5D-ASC, APZ) which measure phenomenological dimensions, not neural architectures. The philosophical/phenomenological focus of the paper means the mechanisms described are at the level of conscious experience, not neural implementation. The three drug class characterisations are also idealized -- real drug effects are heterogeneous and dose-dependent.",
+    "source_context": "Philosophical and phenomenological review; Frontiers in Human Neuroscience; integrates self-report data from psychedelic research, neuroimaging evidence on altered states, and philosophy of mind frameworks; addresses the question of whether consciousness always involves self-awareness."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Frontiers in Human Neuroscience; philosophical review; good source quality for its type but not primary neuroimaging. Mapping fidelity moderate-low because the translation from phenomenological descriptions to computational regimes requires interpretation. Transfer risk is the highest in this cluster because the evidence base is phenomenological self-report rather than neural measurement."
+  }
+}

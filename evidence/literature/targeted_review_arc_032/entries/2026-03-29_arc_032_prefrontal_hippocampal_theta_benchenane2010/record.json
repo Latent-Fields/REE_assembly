@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-03-29_arc_032_prefrontal_hippocampal_theta_benchenane2010",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Coherent theta oscillations and reorganization of spike timing in the hippocampal-prefrontal network upon learning",
+    "authors": ["Benchenane K", "Peyrache A", "Khamassi M", "Tierney PL", "Gioanni Y", "Battaglia FP", "Wiener SI"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.05.013",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20620877/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This paper directly demonstrates that prefrontal-hippocampal theta coherence increases specifically when animals learn a new goal location and peaks at decision points, providing strong support for ARC-032's claim that theta synchrony is the communication pathway for goal context from frontal working memory (E1) to hippocampal navigation (E3). The mapping is very tight: goal learning triggers theta coupling, and the coupling is behaviorally relevant (coherence predicts correct choices). Confidence is moderated by the animal-to-computational translation gap and by the fact that the paper does not isolate whether frontal theta drives hippocampal navigation or vice versa.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If prefrontal-hippocampal theta coherence during goal navigation reflects hippocampus driving prefrontal (bottom-up) rather than frontal driving hippocampus (top-down), the ARC-032 directional claim would need revision",
+    "If theta coherence is a byproduct of shared input rather than a communication mechanism, the packaging analogy would not hold"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "prefrontal_hippocampal", "goal_navigation", "coherence", "learning"],
+  "mapping": {
+    "source_claim_statement": "Theta coherence between prefrontal cortex and hippocampus increases when rats learn a new goal location in a Y-maze, peaks at decision choice points, and predicts correct versus incorrect choices. PFC neurons reorganize their spike timing to align with hippocampal theta phase upon learning.",
+    "ree_translation": "E1's theta-rate output (packaged by MECH-089 ThetaBuffer, MECH-091 phase-reset) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring. The ARC-032 prediction -- that theta-bypass degrades goal maintenance -- maps to the Benchenane finding that theta coherence is necessary for successful goal-directed navigation. In REE, the ThetaBuffer is the computational implementation of the synchronization mechanism; removing it (theta bypass) should degrade the goal-context signal reaching E3, analogous to disrupting PFC-hippocampal theta coherence.",
+    "mapping_caveat": "Benchenane et al. record LFP coherence and spike-phase coupling -- these are population-level signals. The ARC-032 ThetaBuffer operates on the output of a single LSTM unit (E1), not on a population. The biological theta is a true oscillation; the ThetaBuffer is a discrete averaging window. Whether these produce equivalent smoothing and packaging effects is not established. Additionally, the Benchenane data do not allow causal isolation of PFC-to-hippocampus versus hippocampus-to-PFC information flow within the theta cycle.",
+    "source_context": "Rats learning a Y-maze goal location; simultaneous LFP and single-unit recording from mPFC and hippocampus; learning-dependent changes in theta coherence and spike-phase alignment; coherence at choice points predicts correct vs. incorrect navigation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "High source quality -- landmark theta coherence paper in a top journal. Mapping fidelity is good because the behavioral context (goal learning, navigation) and the communication-via-theta claim map directly to ARC-032. Transfer risk is moderate: the biological theta oscillation and the ThetaBuffer are functionally analogous but not mechanistically equivalent."
+  }
+}

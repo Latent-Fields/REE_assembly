@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_022",
+  "entry_id": "2026-03-29_q_022_markov_blankets_life_friston2013",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["Q-022"],
+  "source": {
+    "title": "Life as we know it",
+    "authors": ["Friston, K.J."],
+    "year": 2013,
+    "venue": "Journal of the Royal Society Interface",
+    "doi": "10.1098/rsif.2013.0475",
+    "pmid": "23825119",
+    "pmc": "PMC3730701",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23825119/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Friston's 'Life as we know it' establishes the Markov blanket as a topological/structural property: it is defined by conditional independence relationships (which states screen off internal from external states), not by geometric properties of representational space. This is the critical observation that makes D_eff and Markov blanket integrity mathematically orthogonal. D_eff (participation ratio) measures the dimensionality of a representational geometry. A Markov blanket is a set of variables satisfying a conditional independence criterion. These are defined on different mathematical objects and can in principle take independent values. Friston's formulation confirms this: the same Markov blanket structure is consistent with many different internal representational geometries, and vice versa. For Q-022, this supports the three-way dissociation question: D_eff, Hopfield familiarity, and Markov blanket integrity are mathematically distinct and should be tested independently. Confidence 0.72 because this is a theoretical/mathematical argument, not experimental evidence for the dissociation in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If D_eff and Markov blanket integrity are empirically coupled in practice (even if mathematically distinct) -- if they always co-vary in learned representations -- then the three-way dissociation would not be operationally testable, collapsing Q-022 to a two-dimensional question.",
+    "If the Markov blanket formulation is not applicable to REE's z_self (because z_self does not constitute a statistical Markov blanket in the relevant sense), the third axis of the Q-022 dissociation would be undefined."
+  ],
+  "tags": ["q_022", "markov_blanket", "free_energy_principle", "active_inference", "dimensionality", "self_organisation", "friston", "topology"],
+  "mapping": {
+    "source_claim_statement": "Any ergodic random dynamical system with a Markov blanket will, by the free energy principle, appear to engage in Bayesian inference to preserve its functional and structural integrity. The Markov blanket is defined topologically: it is the set of states that renders internal and external states conditionally independent. This definition is structural, not geometric -- it specifies which variables screen off which others, not the shape or dimensionality of any representational space. The same Markov blanket structure is compatible with many different internal representational geometries.",
+    "ree_translation": "Q-022 asks whether D_eff (participation ratio, geometric measure of representational dimensionality) and Hopfield pattern stability (match-strength to stored attractors) can dissociate in REE. Friston 2013 adds a third axis: Markov blanket integrity (the conditional independence structure between z_self and the external world). The mathematical distinctness of the three is confirmed by Friston's formulation. D_eff measures a geometric property of the z_self distribution (how many effective dimensions are used). Hopfield stability measures proximity to stored attractor states (item-level match). Markov blanket integrity measures whether z_self computations are appropriately screened off from external state influence (structural/topological). A coherent z_self (low D_eff) can have any level of Hopfield familiarity and any level of blanket integrity. This mathematical orthogonality supports Q-022's expectation that the three measures can be dissociated experimentally in CausalGridWorldV2.",
+    "mapping_caveat": "Friston's Markov blanket formalism applies to dynamical systems with well-defined statistical structure. REE's z_self is a learned latent representation in an LSTM, not a statistical system with a closed-form Markov blanket. Whether z_self constitutes a Markov blanket in the rigorous FEP sense is itself an open question. The mathematical orthogonality argument applies to the formal definitions but may not translate to empirical independence in a finite trained network. Additionally, Friston 2013 is a theoretical/philosophical paper arguing for the universality of the free energy principle, not a paper about measurement of blanket integrity or its relationship to representational geometry.",
+    "source_context": "Theoretical paper; Journal of the Royal Society Interface; presents a mathematical argument with simulations of a 'primordial soup' showing spontaneous self-organisation; highly influential but also highly contested in the philosophy of biology and cognitive science literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "J R Soc Interface; Friston is the originator of the FEP framework. Source quality is high. Mapping fidelity is moderate because the application of Markov blanket formalism to REE's z_self requires establishing that z_self constitutes a blanket in the relevant sense -- this is not done in REE currently. Transfer risk is moderate: mathematical orthogonality is preserved in principle but may not hold empirically in trained networks."
+  }
+}

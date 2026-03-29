@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_118",
+  "entry_id": "2026-03-29_mech_118_dual_process_familiarity_recollection_yonelinas2001",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-118"],
+  "source": {
+    "title": "Components of episodic memory: the contribution of recollection and familiarity",
+    "authors": ["Yonelinas, A.P."],
+    "year": 2001,
+    "venue": "Philosophical Transactions of the Royal Society of London B: Biological Sciences",
+    "doi": "10.1098/rstb.2001.0939",
+    "pmid": "11571028",
+    "pmc": "PMC1088520",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11571028/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Yonelinas provides the canonical dual-process framework for recognition memory, establishing that familiarity (signal-detection, graded strength signal) and recollection (threshold process, qualitative contextual recovery) are behaviourally, neurally, and phenomenologically distinct. The double dissociation is demonstrated across neuropsychological cases, receiver-operating-characteristic curve analyses, and neuroimaging. For MECH-118, this provides the foundational claim: familiarity operates as an independent signal from episodic recollection, with different computational properties (signal detection vs. threshold), different neural substrates (perirhinal cortex vs. hippocampus), and different failure modes. The REE translation is that Hopfield pattern familiarity (a signal-detection graded match to stored attractors) is informationally distinct from z_self coherence (D_eff, a population-level geometric measure). Confidence 0.78 because the biological analog is well-established but the translation to artificial self-state monitoring involves significant architectural distance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If familiarity and recollection are not doubly dissociable -- if one always predicts the other -- then there is no empirical motivation for maintaining separate Hopfield familiarity and D_eff signals in MECH-118.",
+    "If Hopfield stability in the REE architecture does not behave as a graded signal-detection process (but rather as a threshold recollection-type signal), the familiarity/recollection analogy would be misapplied."
+  ],
+  "tags": ["mech_118", "familiarity", "recollection", "dual_process", "recognition_memory", "perirhinal_cortex", "hippocampus", "yonelinas"],
+  "mapping": {
+    "source_claim_statement": "Recognition memory involves two distinct retrieval processes: recollection and familiarity. Recollection is a threshold process in which qualitative contextual information about a prior episode is retrieved; it is hippocampus-dependent and follows a threshold rather than graded detection function. Familiarity is a graded signal-detection process in which items are recognised based on a continuous strength signal rather than contextual recovery; it is perirhinal cortex-dependent. These processes are doubly dissociable: patients with selective hippocampal damage show impaired recollection with intact familiarity; patients with perirhinal damage show impaired familiarity with relatively preserved recollection.",
+    "ree_translation": "MECH-118 maps Hopfield pattern familiarity to the biological familiarity signal (perirhinal-based, graded, signal-detection) and D_eff to a complementary coherence measure that does not have a clean biological analog in the recollection/familiarity literature but is closer to the population-level representational geometry described by Rigotti et al. 2013. The key REE claim -- that these two signals are informationally distinct -- is directly supported by the biological double dissociation. A z_self state can be focused (low D_eff, coherent) but unfamiliar to the Hopfield memory (no stored attractor close to current state); this corresponds to perirhinal familiarity intact while hippocampal contextual recovery fails, or vice versa. The existence of the biological double dissociation provides empirical grounds for expecting the computational double dissociation as well.",
+    "mapping_caveat": "The biological familiarity/recollection dissociation is grounded in the specific neural architecture of the medial temporal lobe. REE has no hippocampus or perirhinal cortex in the biological sense. The HopfieldMemory class in the epistemic-mapping codebase implements pattern familiarity as an attention-based retrieval over a 64-slot LRU memory, which captures the signal-detection/graded property of familiarity but not the contextual recovery property of recollection. D_eff is a participation ratio measuring representational dimensionality, which is geometrically distinct from both familiarity and recollection in the biological sense. The mapping is by functional analogy (graded vs. geometric measures of self-state quality) rather than mechanistic homology.",
+    "source_context": "Canonical review; Philosophical Transactions of the Royal Society B; integrates receiver-operating-characteristic analyses, neuropsychological case studies, process dissociation procedure data, and early fMRI evidence; forms the theoretical backbone of the dual-process tradition in memory research."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Phil Trans R Soc B; Yonelinas is the founding figure of the dual-process signal-detection model; paper has >2000 citations. Mapping fidelity moderate because the biological substrate differs substantially from REE's architecture and the analogy is functional rather than mechanistic. Transfer risk moderate-to-high for the same reasons."
+  }
+}

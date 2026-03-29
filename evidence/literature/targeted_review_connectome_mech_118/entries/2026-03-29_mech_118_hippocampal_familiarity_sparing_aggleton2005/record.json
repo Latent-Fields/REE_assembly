@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_118",
+  "entry_id": "2026-03-29_mech_118_hippocampal_familiarity_sparing_aggleton2005",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-118"],
+  "source": {
+    "title": "Sparing of the familiarity component of recognition memory in a patient with hippocampal pathology",
+    "authors": ["Aggleton, J.P.", "Vann, S.D.", "Denby, C.", "Dix, S.", "Mayes, A.R.", "Roberts, N.", "Yonelinas, A.P."],
+    "year": 2005,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/j.neuropsychologia.2005.01.019",
+    "pmid": "16154457",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16154457/"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Patient KN provides one of the clearest demonstrations in the neuropsychological literature that familiarity-based recognition can survive severe hippocampal damage when perirhinal cortex is spared. The 45% bilateral hippocampal volume loss with near-normal perirhinal cortex produces severely impaired recall and recollection while sparing familiarity-based item recognition. This is the most direct neural existence proof for the familiarity/recollection dissociation -- it shows that the familiarity signal has its own substrate, not dependent on hippocampal circuitry. For MECH-118, this supports the claim that pattern familiarity (mapped to perirhinal-based familiarity signal) is independent of other coherence measures. Confidence 0.72 because single patient case studies, while compelling existence proofs, cannot establish generality, and the transfer from medial temporal lobe architecture to REE's latent-space Hopfield memory is architecturally very large.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If patient KN's spared familiarity is explained by residual hippocampal function rather than perirhinal-independent processing, the double dissociation evidence weakens.",
+    "If the REE HopfieldMemory retrieval mechanism is not analogous to perirhinal match-strength computation (but instead implements a retrieval-like process requiring z_self context), the familiarity analog would be misassigned."
+  ],
+  "tags": ["mech_118", "familiarity", "hippocampus", "perirhinal_cortex", "patient_case", "lesion", "double_dissociation", "aggleton"],
+  "mapping": {
+    "source_claim_statement": "Patient KN, with 45% bilateral hippocampal volume loss but near-normal perirhinal cortex, shows severely impaired recall and recollection-based recognition while maintaining near-normal familiarity-based recognition. The dissociation is robust across multiple recognition paradigms using remember/know and receiver-operating-characteristic analyses. This confirms the Aggleton-Brown hypothesis that familiarity is perirhinal-dependent and hippocampus-independent.",
+    "ree_translation": "KN demonstrates that the familiarity signal can survive in the absence of the hippocampal substrate that supports contextual recollection and recall. In REE, MECH-118's Hopfield familiarity signal is implemented in a memory bank (HopfieldMemory class, LRU-managed) that is architecturally independent of the hippocampal pattern completion system. KN's case is the existence proof that a familiarity-like signal can be dissociated from recollection/contextual recall -- providing biological warrant for maintaining the Hopfield familiarity signal as a genuinely independent monitoring stream. The clinical lesson for REE: a system with degraded 'hippocampal' capacity (reduced pattern-separation, poor contextual recall) can still detect whether a current self-state is familiar via a perirhinal-analog match-strength process.",
+    "mapping_caveat": "Single patient case studies are existence proofs, not mechanistic specifications. KN establishes that the dissociation can occur; it does not specify the computational algorithm by which perirhinal cortex implements familiarity. The REE HopfieldMemory uses modern Hopfield networks with attention-based retrieval (Ramsauer et al. 2021), which was not the operative biological model when this study was published. The transfer from perirhinal biology to Hopfield network computation is an architectural assumption, not a validated mapping. Additionally, patient KN suffered meningitis -- the brain reorganisation over years of living with hippocampal damage may produce compensatory mechanisms not present in an agent with native architecture.",
+    "source_context": "Clinical case study; Neuropsychologia; detailed MRI volumetry of hippocampal and perirhinal volumes; behavioral testing with multiple recognition memory paradigms (remember/know, ROC analysis, source memory); co-authored with Yonelinas, providing the dual-process framework for interpreting the data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Neuropsychologia, well-regarded neuropsychology venue. Single patient design limits generalizability. Mapping fidelity is moderate -- the existence proof is valid but the mechanistic distance from perirhinal-based familiarity to Hopfield network is substantial. Transfer risk moderately high."
+  }
+}

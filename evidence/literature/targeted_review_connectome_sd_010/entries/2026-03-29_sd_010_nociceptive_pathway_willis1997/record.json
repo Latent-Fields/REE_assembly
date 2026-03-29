@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_010",
+  "entry_id": "2026-03-29_sd_010_nociceptive_pathway_willis1997",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-010"],
+  "source": {
+    "title": "Neuroanatomy of the pain system and of the pathways that modulate pain.",
+    "authors": ["Willis WD", "Westlund KN"],
+    "year": 1997,
+    "venue": "Journal of Clinical Neurophysiology",
+    "doi": "10.1097/00004691-199701000-00002",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9013357/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Authoritative comprehensive review of spinal nociceptive pathways documenting the anatomically distinct lateral (neospinothalamic, A-delta, VPL-S1/S2) and medial (paleospinothalamic, C-fiber, intralaminar thalamus-ACC/insula) streams. This dual-pathway architecture is the direct biological basis for SD-010's design decision to separate z_harm from z_world. Confidence capped below 0.9 because the mapping from biological pathway anatomy to a computational latent separation requires a conceptual translation step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the lateral/medial distinction turns out to be an oversimplification with heavy cross-talk at thalamic level, the clean stream separation assumed by SD-010 may not hold.",
+    "The review covers both human and animal data; some findings are rodent-only and may not generalize to primate nociceptive organization."
+  ],
+  "tags": ["sd_010", "nociception", "spinothalamic", "pain_pathways", "a_delta", "c_fiber"],
+  "mapping": {
+    "source_claim_statement": "Multiple ascending nociceptive pathways exist, including the spinothalamic tract. The neospinothalamic (lateral) tract carries A-delta fast signals to VPL thalamus then S1/S2 for sensory-discriminative processing; the paleospinothalamic (medial) tract carries C-fiber slow signals to intralaminar thalamic nuclei then ACC/insula for affective-motivational processing.",
+    "ree_translation": "SD-010 posits that the harm stream (z_harm) must be a dedicated sensory pathway separate from z_world. The neospinothalamic stream maps to z_harm_s (proximity/intensity, action-predictable, supports E2_harm_s forward model); the paleospinothalamic stream maps to z_harm_a (accumulated homeostatic deviation, motivational urgency fed directly to E3). SD-010's separation of HarmEncoder from world encoder mirrors the biological separation of these two ascending systems.",
+    "mapping_caveat": "The biological separation describes first-order anatomical wiring; REE's separation is a learned latent-space distinction enforced by separate encoder heads and supervision targets. Whether learned orthogonality recapitulates anatomical pathway independence is not guaranteed. The dual-stream split is argued by analogy, not by a direct bridge experiment.",
+    "source_context": "Classic 1997 review; well-replicated anatomical consensus. The lateral/medial distinction is described across all standard neuroscience texts. The review emphasizes that multiple ascending paths exist and that the spinothalamic tract is the most prominent but not exclusive nociceptive pathway."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Highly authoritative source; well-cited foundational review. Mapping fidelity is good because the two-stream anatomy corresponds closely to SD-010's two-encoder design. Transfer risk is low-moderate: biological anatomy provides strong structural motivation for the computational design, but the architectural claim is about learned latent separation rather than anatomical wiring."
+  }
+}

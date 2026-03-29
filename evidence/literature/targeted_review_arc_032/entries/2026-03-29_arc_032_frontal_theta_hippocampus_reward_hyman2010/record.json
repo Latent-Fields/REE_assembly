@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-03-29_arc_032_frontal_theta_hippocampus_reward_hyman2010",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Simultaneous recording of hippocampal and medial prefrontal theta oscillations: implications for spatial navigation and working memory",
+    "authors": ["Hyman JM", "Zilli EA", "Paley AM", "Hasselmo ME"],
+    "year": 2010,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20709",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19489006/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Hyman et al. provide simultaneous recordings of hippocampal and mPFC theta during spatial navigation, showing that mPFC theta power and coherence with hippocampus are elevated during periods of active spatial navigation and working memory demands. The finding that theta coordinates information flow between these structures during navigation supports ARC-032's architectural claim. The 2010 Hippocampus paper complements Benchenane 2010 by characterizing the oscillatory properties during ongoing navigation rather than around a learning event, providing evidence that theta packaging is a persistent property of the goal-navigation communication channel rather than only a learning signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If mPFC-hippocampal theta coherence during navigation reflects hippocampal movement signaling rather than frontal goal representation, the ARC-032 framing would be inverted",
+    "If theta appears during any locomotion regardless of goal-directedness, the goal-context specificity of the packaging claim would be undermined"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "prefrontal_hippocampal", "spatial_navigation", "working_memory", "hyman"],
+  "mapping": {
+    "source_claim_statement": "Medial prefrontal cortex and hippocampus simultaneously exhibit theta oscillations during spatial navigation tasks, with coherence between the two regions elevated during navigation segments requiring working memory (holding a previous choice in mind to avoid repeating it). Theta phase relationships carry information about spatial context.",
+    "ree_translation": "The theta channel between E1 (frontal working memory) and E3 (hippocampal navigator) is architecturally active during ongoing goal-directed behavior, not only during learning events. ARC-032's ThetaBuffer provides a continuous packaging mechanism that makes E1 goal context available to E3 at each theta cycle, consistent with the Hyman et al. characterization of ongoing theta coherence during navigation.",
+    "mapping_caveat": "Hyman et al. record from rat mPFC, which as noted in the Benchenane entry is a less direct analog of primate DLPFC than we would want. The theta oscillations in rat mPFC during navigation may reflect spatial context coding (closely tied to hippocampal theta) rather than goal representation per se. The working memory demands in the Hyman task (alternation, non-match to sample) involve recent-choice memory rather than maintained goal identity, which is a distinct kind of content from what MECH-116 and ARC-032 describe.",
+    "source_context": "Rat spatial alternation and working memory tasks; simultaneous LFP from hippocampus and mPFC; comparison of theta power and coherence across task phases; analysis of phase relationships."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality -- peer-reviewed Hippocampus journal, well-designed electrophysiology study. Mapping fidelity moderate: the content being maintained in the Hyman task (recent choice) is not identical to the goal context MECH-116/ARC-032 describe, though both require cross-time maintenance mediated by mPFC-hippocampal theta. Transfer risk as for Benchenane."
+  }
+}

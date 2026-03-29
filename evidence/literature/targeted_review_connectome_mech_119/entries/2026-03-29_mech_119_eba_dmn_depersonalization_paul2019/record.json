@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_119",
+  "entry_id": "2026-03-29_mech_119_eba_dmn_depersonalization_paul2019",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-119"],
+  "source": {
+    "title": "Functional Connectivity Between Extrastriate Body Area and Default Mode Network Predicts Depersonalization Symptoms in Major Depression: Findings From an A Priori Specified Multinetwork Comparison",
+    "authors": ["Paul, E.R.", "Farmer, M.", "Kampe, R.", "Cremers, H.R.", "Hamilton, J.P."],
+    "year": 2019,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2019.03.007",
+    "pmid": "31103548",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31103548/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Paul et al. provide fMRI connectivity evidence that depersonalisation symptoms in major depression are specifically predicted by reduced connectivity between the extrastriate body area (EBA) and the default mode network (DMN). The EBA is a region involved in processing body-related perceptual information; the DMN supports autobiographical self-model construction. When EBA-DMN connectivity is reduced, the patient's perceptual body representation is severed from the autobiographical/narrative self-model -- the 'felt body' cannot update the 'conceptual self.' This is the neural correlate of 'I can see myself but cannot feel that this is me.' For MECH-119, this provides a connectivity-level mechanism for the low familiarity signal: the body familiarity input (EBA) is disconnected from the self-model integration hub (DMN). Confidence 0.70 because the study is in major depression patients rather than primary DPD, effect sizes are moderate, and the EBA-DMN interpretation requires additional inference to reach MECH-119.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the EBA-DMN connectivity reduction predicts general depressive severity rather than specifically depersonalisation symptoms, the finding would support a general model of depression-related interoceptive disconnection rather than the specific Regime 3 characterisation.",
+    "If depersonalisation in major depression is mechanistically distinct from primary depersonalisation disorder, the body familiarity severing mechanism may not generalise."
+  ],
+  "tags": ["mech_119", "depersonalization", "EBA", "DMN", "fmri_connectivity", "body_familiarity", "self_model", "depression", "paul"],
+  "mapping": {
+    "source_claim_statement": "In patients with major depression, reduced resting-state functional connectivity between the extrastriate body area and the default mode network predicts higher levels of depersonalisation/derealisation symptoms, specifically and above other connectivity models tested (hippocampus-DMN, mPFC-ventral striatum, posterior-anterior insula). The EBA processes body-specific perceptual information; the DMN integrates this into an autobiographical self-narrative. Severing this connection produces depersonalisation: the perceptual self is processed but not integrated into the felt/familiar sense of self.",
+    "ree_translation": "MECH-119 Regime 3 (low D_eff + low Hopfield familiarity) corresponds to a state where the self-model is coherent but the familiarity signal is absent. Paul et al. provide a connectivity mechanism: in REE terms, this corresponds to a situation where the z_self vector is well-formed (low D_eff, coherent) but the channel that updates the familiarity memory with body-related information is severed or attenuated. The HopfieldMemory would stop receiving informative updates about body state, leading to low familiarity scores even for coherent z_self states. The EBA-DMN disconnection is the biological analog of a disrupted body-state-to-self-model update pathway.",
+    "mapping_caveat": "The study is in major depression with depersonalisation symptoms, not primary depersonalisation disorder -- there may be confounds from depression-related functional changes in DMN and EBA unrelated to depersonalisation per se. The EBA in biology processes perceptual body imagery; REE has no direct analog to the EBA. The translation requires that some component of REE's z_self encoding plays an EBA-like role (providing body-state information to the self-model), which is not explicitly specified in the current architecture. The connectivity measure is resting-state functional connectivity, which is correlational and does not specify direction of information flow or mechanism.",
+    "source_context": "Primary fMRI study; Biological Psychiatry: Cognitive Neuroscience and Neuroimaging; n=31 patients with MDD, n=22 healthy controls; resting-state fMRI; a priori specified multi-network comparison -- four competing neural models of depersonalisation tested simultaneously."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Biological Psychiatry: CNNI is a respected venue. The a priori multi-model comparison is a methodological strength. Moderate sample size. Mapping fidelity is moderate-low because the EBA has no REE analog and the connectivity mechanism requires inferential steps to reach MECH-119. Transfer risk is moderate."
+  }
+}

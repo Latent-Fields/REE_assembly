@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_025",
+  "entry_id": "2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018",
+  "timestamp_utc": "2026-03-29T14:35:00Z",
+  "claim_ids_tested": ["ARC-025"],
+  "source": {
+    "title": "Hierarchical active inference: A theory of motivated control",
+    "authors": ["Pezzulo, Giovanni", "Rigoli, Francesco", "Friston, Karl J."],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2018.01.009",
+    "pmid": "29475638",
+    "volume": "22",
+    "issue": "4",
+    "pages": "294-306",
+    "url": "https://doi.org/10.1016/j.tics.2018.01.009"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Pezzulo, Rigoli and Friston extend active inference to a hierarchical architecture in which distinct levels of the hierarchy implement different types of predictive processing at different timescales -- fast sensorimotor prediction at lower levels, abstract goal-directed planning at higher levels, with motivational/drive states modulating both. The paper argues that these levels are not equivalent implementations of the same computation: lower levels are dominated by sensory prediction error (fast, reactive); higher levels are dominated by expected free energy minimization over multi-step plans (slow, prospective). Crucially, the paper argues that a flat (non-hierarchical) agent cannot solve tasks requiring both rapid sensory correction and long-horizon planning -- the levels are functionally irreducible. This maps directly onto ARC-025's claim that E1 (fast sensory), E2 (medium action-consequence), and E3 (slow harm/goal planning) cannot be collapsed. The main limitation is that the paper identifies two levels of hierarchy (fast sensorimotor and slow goal-directed) more clearly than three, and the motivational/drive layer is not cleanly separated as a third irreducible level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper primarily distinguishes two levels of hierarchy (fast sensorimotor and slow goal-directed), not three. The three-engine irreducibility claim requires a third distinct level that is not as clearly established.",
+    "Motivational control is treated as a modulator of the two-level hierarchy rather than a separate third engine, which could suggest a two-engine architecture is sufficient with motivational weighting on top."
+  ],
+  "tags": ["arc_025", "hierarchical_predictive_processing", "active_inference", "three_levels", "sensorimotor", "goal_directed", "motivation", "irreducibility", "theoretical_review", "friston", "pezzulo"],
+  "mapping": {
+    "source_claim_statement": "Hierarchical active inference requires at least two functionally irreducible levels: fast sensorimotor prediction/correction and slow goal-directed planning via expected free energy. A flat single-level agent cannot implement both simultaneously without a hierarchical architecture. Motivational states modulate the precision weighting across levels, enabling context-dependent emphasis on exploration versus exploitation.",
+    "ree_translation": "ARC-025 claims E1/E2/E3 are a three-way irreducible partition. Pezzulo et al. provide the theoretical support for at least a two-way irreducibility (fast sensory vs slow planning) -- the E1/E3 distinction. The E2 engine (action-consequence forward model, motor-sensory error) occupies an intermediate level that the paper does not clearly separate from either the fast sensorimotor layer or the slow planning layer. This is both a mapping caveat and a substantive pointer: the strongest two-level argument covers E1 vs E3, while E2's irreducibility requires separate grounding (MECH-069 provides this via the incommensurability of motor-sensory vs harm/goal error). The paper therefore partially supports ARC-025 and partially leaves the E2 distinction to other evidence.",
+    "mapping_caveat": "The paper is primarily concerned with the fast/slow hierarchy, not with three levels. The motivational layer is treated as precision weighting over the existing levels rather than as a third irreducible engine. REE's E2 (action-consequence forward model) occupies a middle position that the paper does not cleanly differentiate from the sensorimotor layer -- E2 is faster than E3 planning but slower than E1 sensory inference. Whether E2 constitutes a genuinely irreducible third level or could be implemented as part of a two-level hierarchy with the appropriate architecture is not resolved by this paper.",
+    "source_context": "Theoretical review in Trends in Cognitive Sciences; connects to BG-PFC architecture via motivated control; draws on computational psychiatry literature; by core active inference group (Pezzulo, Friston)"
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "High source quality: review in TiCS by leading researchers. Mapping fidelity is below average: the paper supports a two-level hierarchy more clearly than three, and the E2-level irreducibility is not addressed. Transfer risk is moderate-high for the same reason: if the paper's two-level hierarchy is sufficient for viable cognition, a two-engine REE reduction (E1+E3, with E2 as a special case) might be defensible, which would weaken ARC-025."
+  }
+}

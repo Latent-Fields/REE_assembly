@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_100",
+  "entry_id": "2026-03-29_mech_100_ventral_stream_categorical_murray2004",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-100"],
+  "source": {
+    "title": "What we know and do not know about the functions of the perirhinal cortex",
+    "authors": ["Murray EA", "Bussey TJ", "Saksida LM"],
+    "year": 2007,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.29.051605.112951",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17645520/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Murray, Bussey and Saksida's review of perirhinal cortex function argues that the ventral visual stream up to perirhinal cortex develops object discrimination and categorical representations through experience with visual objects, and that pure reconstruction error is insufficient to produce category-selective responses -- top-down categorical signals are required. This directly supports MECH-100's claim that z_world training requires an event-type CE auxiliary loss rather than reconstruction alone. The mapping is indirect because the perirhinal cortex is not identical to the z_world encoder, and the specific mechanism discussed is long-term experiential learning rather than within-session auxiliary loss training. Confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If perirhinal category selectivity is entirely explained by input statistics (reconstruction pressure) without any top-down categorical signal, MECH-100's auxiliary loss claim would be weakened",
+    "If the relevant biological analog for z_world is dorsal rather than ventral stream, the Murray et al. mapping would be mislocated"
+  ],
+  "tags": ["mech_100", "ventral_stream", "categorical_selectivity", "perirhinal_cortex", "object_recognition", "top_down"],
+  "mapping": {
+    "source_claim_statement": "Perirhinal cortex (the terminus of the ventral visual stream in rodents) develops categorical object representations through experience. Lesions impair the ability to distinguish objects that share many features -- a categorically demanding task -- suggesting that category-level discrimination requires active learning beyond simple feature extraction.",
+    "ree_translation": "The z_world encoder (ventral stream analog) cannot develop event-discriminative representations through reconstruction loss alone, just as perirhinal cortex cannot develop category-selective responses through passive input exposure. An explicit categorical training signal -- the event-type CE auxiliary loss in MECH-100 -- is required to force z_world to carry discriminative information, analogous to the categorical discrimination demands that shape perirhinal representations.",
+    "mapping_caveat": "The Murray et al. review discusses perirhinal cortex in the context of long-term visual object learning, not encoder training with an auxiliary classification head. The biological mechanism (experience-dependent synaptic plasticity over development and learning) is quite different from the MECH-100 proposed fix (cross-entropy loss backpropagated through a linear classifier head during RL training). The claim that both require 'categorical top-down signals' is conceptually aligned but mechanistically distinct. Additionally, perirhinal cortex may be closer to E3's evaluation function than to z_world encoding per se.",
+    "source_context": "Review of perirhinal cortex lesion studies, single-unit recordings, and computational models in rodents and primates. Core argument: perirhinal cortex represents complex conjunctions of object features and mediates object discrimination; it is the apex of the ventral stream for categorical object knowledge."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Good source quality -- Annual Review, well-established authors on ventral stream function. Mapping fidelity limited by the gap between long-term experiential learning and auxiliary loss training, and by the perirhinal-to-z_world anatomical correspondence being approximate. Transfer risk elevated because the specific claim (CE auxiliary loss forces encoder discrimination) is a computational design decision, and the biological analog (experiential category learning) is at a different level of description."
+  }
+}

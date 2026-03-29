@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_030",
+  "entry_id": "2026-03-29_arc_030_d1_d2_approach_avoidance_cox2015",
+  "timestamp_utc": "2026-03-29T14:15:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Striatal D1 and D2 signaling differentially predict learning from positive and negative outcomes",
+    "authors": ["Cox, Sylvia M.L.", "Frank, Michael J.", "Larcher, Kevin", "Fellows, Lesley K.", "Clark, Cheryl A.", "Leyton, Marco", "Dagher, Alain"],
+    "year": 2015,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2014.12.070",
+    "pmid": "25562824",
+    "volume": "109",
+    "pages": "95-101",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25562824/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This PET study directly tests the prediction from the Frank Go/NoGo model that D1 receptor binding in the striatum predicts approach learning and D2 receptor binding predicts avoidance learning. The authors measure individual differences in D1 and D2 binding using PET with two radioligands in healthy humans, then correlate binding with performance on a probabilistic reinforcement learning task with win and loss feedback. D1 binding selectively predicts learning from positive outcomes (approach); D2 binding predicts learning from negative outcomes (avoidance) in an inverted-U fashion; dopamine depletion improved avoidance learning putatively via D2 upregulation. The paper explicitly concludes: 'These findings support a bidirectional modulatory role for striatal dopamine in reward and avoidance learning via segregated D1 and D2 cortico-striatal pathways.' This is direct human empirical support for ARC-030's claim that symmetric Go/NoGo sub-channels (D1/approach vs D2/avoidance) are necessary for behavioral balance. The main limitation is that this paper measures static receptor binding rather than dynamic pathway activation, and the task is a simple RL paradigm rather than a full approach-avoidance conflict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study measures receptor binding as a proxy for pathway function -- it does not directly measure Go/NoGo firing rates or downstream behavioral channel activation. Binding differences could reflect baseline differences that do not causally drive approach/avoidance learning.",
+    "The inverted-U relationship for D2 and avoidance learning implies optimal rather than monotonic tuning -- too much or too little D2 activity impairs avoidance. This is more complex than ARC-030's symmetric channel model implies."
+  ],
+  "tags": ["arc_030", "d1_receptor", "d2_receptor", "approach_avoidance", "striatum", "basal_ganglia", "go_nogo", "reinforcement_learning", "pet", "dopamine", "human"],
+  "mapping": {
+    "source_claim_statement": "Individual differences in human approach and avoidance learning are predicted by striatal D1 and D2 receptor binding, respectively. The direct pathway (D1, Go) mediates approach; the indirect pathway (D2, NoGo) mediates avoidance. Both pathways operate in parallel within the same striatal region and their balance determines the approach/avoidance ratio in behavior. This supports 'a bidirectional modulatory role for striatal dopamine via segregated D1 and D2 pathways.'",
+    "ree_translation": "ARC-030 claims that each BG-like loop in REE requires symmetric Go (approach/execute) and NoGo (suppress/avoid) sub-channels, driven by D1-MSN and D2-MSN competition respectively. Cox et al. provide direct human evidence that the D1/approach and D2/avoidance channels are functionally segregated and that both are necessary for normal behavioral balance. An agent with only NoGo (harm avoidance without goal approach) would collapse to behavioral flatness -- exactly what the Cox et al. data predict, since D1 binding selectively predicts positive learning and cannot be replaced by D2 signaling.",
+    "mapping_caveat": "The Cox et al. study uses a simple probabilistic RL task with win/loss feedback -- the learning signal is explicit reward/punishment, not the harm/goal evaluation that REE's E3 implements. Whether the D1/D2 segregation principle extends from simple reward learning to the complex, long-horizon harm/goal evaluation in REE is an inference. The study also examines individual differences in a cross-sectional design rather than manipulating the D1/D2 ratio directly, limiting causal claims. Transfer to a simulated architecture requires assuming that the functional principle (symmetric channels needed for behavioral balance) is substrate-independent.",
+    "source_context": "Human PET study with probabilistic reinforcement learning task; combines [11C]raclopride (D2 ligand) and [11C]NNC-112 (D1 ligand); healthy adults; developed by the Frank Go/NoGo model research programme"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "High source quality: peer-reviewed PET study in a high-impact journal, developed from a specific a priori computational prediction. Mapping fidelity is good: the D1/D2 channel separation directly instantiates ARC-030's Go/NoGo sub-channel claim. Transfer risk is relatively low: the principle that D1-approach and D2-avoidance are functionally segregated is robust across species and paradigms; the leap to REE's architecture is one of abstraction level rather than domain."
+  }
+}

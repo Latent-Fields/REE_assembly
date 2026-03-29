@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-03-29_mech_116_dlpfc_goal_working_memory_fusteralexander1971",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Delayed response deficit by cryogenic depression of frontal cortex",
+    "authors": ["Fuster JM", "Alexander GE"],
+    "year": 1971,
+    "venue": "Brain Research",
+    "doi": "10.1016/0006-8993(71)90604-8",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/5570882/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The Fuster and Alexander 1971 paper is the first demonstration that prefrontal cooling selectively disrupts delayed-response performance -- establishing the prefrontal delay-period function decades before Goldman-Rakic's cellular characterization. The causal direction is clear: frontal cortex is required for bridging the temporal gap. This supports the idea that a frontal-analog system (E1 in REE) carries the burden of cross-time maintenance, which is MECH-116's core claim. Confidence is lower than Goldman-Rakic 1995 because this paper uses lesion/cooling methods rather than single-unit recording of the putative sustained-firing mechanism, making the mechanistic inference more indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If prefrontal cooling disrupted motor execution rather than memory maintenance, the delay-period function would be artifactual",
+    "If the deficit was due to attentional disruption rather than working memory, the maintenance analogy to LSTM recurrence would not follow"
+  ],
+  "tags": ["mech_116", "dlpfc", "working_memory", "delay_period", "prefrontal_lesion", "fuster"],
+  "mapping": {
+    "source_claim_statement": "Reversible cryogenic suppression of frontal cortex in primates produces a selective deficit in delayed-response tasks (where bridging the temporal gap requires holding a cue in mind) but spares immediate-response performance, demonstrating that frontal cortex is causally necessary for cross-time information maintenance.",
+    "ree_translation": "Frontal cortex (E1's biological analog) is causally required for goal-context maintenance across the delay between goal-setting and goal-approach. If E1's recurrent hidden state is disrupted (ablated or zeroed), goal-conditioned prediction should fail -- consistent with the prediction MECH-116 makes about goal-conditioned vs. unconditioned E1.",
+    "mapping_caveat": "Cooling studies suppress all prefrontal activity, not selectively the delay-period sustained-firing neurons. The deficit could reflect loss of any frontal function -- attention, strategy, motor sequencing -- rather than specifically the working memory substrate that Goldman-Rakic later characterized. MECH-116 maps E1 to the cellular sustained-firing mechanism, not to prefrontal function broadly; the Fuster/Alexander result supports the broader claim but does not isolate the mechanism.",
+    "source_context": "Macaque monkeys; 1971 experiment; frontal cortex suppressed with cooling probe; immediate vs. delayed response performance compared; cooling selectively impairs delayed but not immediate responses."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Historically foundational paper establishing the causal role of frontal cortex in delay-period performance. Mapping fidelity lower because the method is lesion/cooling (causal necessity) rather than single-unit recording (mechanism), and the cooling is broad-frontal rather than DLPFC-specific. Transfer risk moderate for same reasons as Goldman-Rakic."
+  }
+}

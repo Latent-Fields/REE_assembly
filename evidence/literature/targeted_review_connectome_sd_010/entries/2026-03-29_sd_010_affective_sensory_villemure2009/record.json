@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_010",
+  "entry_id": "2026-03-29_sd_010_affective_sensory_villemure2009",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-010"],
+  "source": {
+    "title": "Mood influences supraspinal pain processing separately from attention.",
+    "authors": ["Villemure C", "Bushnell MC"],
+    "year": 2009,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3822-08.2009",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19158297/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Provides experimental dissociation of affective and sensory-discriminative pain processing using an elegant mood-vs-attention design. Mood manipulation selectively modulated ACC and medial thalamus (affective stream) while attention modulation affected anterior insular cortex; odor-induced positive mood decreased pain unpleasantness but not intensity. This double dissociation supports the SD-010 architectural claim that harm's affective and discriminative channels can be independently modulated. Confidence capped at 0.70 because the study tests modulation rather than baseline stream separation, and uses a non-pain-stimulus manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation found is between mood and attention modulation, not between the two ascending streams directly. It is possible to read the result as showing two modulatory systems rather than two independent sensory channels.",
+    "The study uses odor-induced mood and heat pain; generalization to the harm-signal context in REE is not guaranteed."
+  ],
+  "tags": ["sd_010", "pain_affect", "anterior_cingulate", "medial_thalamus", "double_dissociation", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Mood manipulation selectively decreased pain unpleasantness and reduced ACC and medial thalamus activation; attentional manipulation selectively modulated anterior insula. Lateral inferior frontal cortex correlated with mood-related modulation, superior parietal cortex with attention-related modulation. Two separate neuromodulatory circuits underlie emotional and attentional modulation of pain.",
+    "ree_translation": "The ACC/medial thalamus modulation by affective state with no change in S1 (intensity discrimination) confirms that the affective and discriminative channels can be independently modulated in the human brain. In REE terms, this supports the claim that z_harm_a (affective urgency, ACC-like) and z_harm_s (proximity/intensity, S1-like) are not merely redundant representations but separate functional channels that respond to different modulatory inputs.",
+    "mapping_caveat": "The experiment demonstrates modulatory separability, not architectural separability. SD-010 claims the channels are distinct encoders, not merely that they can be independently suppressed. A strong inference from modulatory independence to encoder independence requires an additional mechanistic assumption that these experiments do not directly test.",
+    "source_context": "High-quality fMRI study in healthy human participants using a well-controlled crossover design. Published in Journal of Neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (JNeurosci, well-controlled design, n=20+). Mapping fidelity is moderate -- the double dissociation is consistent with SD-010 but tests modulatory pathways rather than encoding channels. Transfer risk is moderate-high because the mapping requires an additional inference step from modulatory independence to encoder independence."
+  }
+}

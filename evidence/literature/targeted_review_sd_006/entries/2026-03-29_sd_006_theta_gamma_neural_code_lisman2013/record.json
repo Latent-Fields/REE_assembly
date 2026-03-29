@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_006",
+  "entry_id": "2026-03-29_sd_006_theta_gamma_neural_code_lisman2013",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-006"],
+  "source": {
+    "title": "The Theta-Gamma Neural Code.",
+    "authors": ["Lisman, J.E.", "Jensen, O."],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.03.007",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3648857/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the canonical review of the theta-gamma neural code, synthesising two decades of work following Lisman and Idiart (1995). It reviews strong evidence from hippocampus, entorhinal cortex, and prefrontal cortex that information processing operates at multiple simultaneous timescales -- theta (~5-8 Hz, ~125-200 ms cycles) and gamma (~30-80 Hz, ~12-30 ms cycles) -- and that these are not incidental co-occurring rhythms but functional rates that structure information coding and inter-regional communication. SD-006 implements E1 at slow rate (~1 Hz analogue), E2 at ~10 Hz, and E3 at ~4-8 Hz (theta-analogue). The Lisman/Jensen review directly supports the design choice of distinct characteristic rates and provides the neural homologue mapping: E3 operating at theta-rate (4-8 Hz) is the planning/deliberative rate, E2 operating at gamma-rate (~10 Hz) is the fast action-selection rate, and E1 operating at a still-slower rate is the consolidation/slow-learning rate. The 0.80 confidence reflects high-quality evidence from a strong venue but acknowledges that the paper studies hippocampus/WM oscillations and SD-006's mapping to a computational architecture involves conceptual translation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The theta-gamma code is demonstrated primarily in the context of working memory item storage (7 +/- 2 items in gamma subcycles of a theta cycle). SD-006 is about processing rates of computational modules, not about item storage capacity. The rate mapping is indirect: E3 at theta-rate does not mean E3 implements item storage in the Lisman/Idiart sense.",
+    "The paper focuses on hippocampus and medial temporal lobe. SD-006's design maps E3 to prefrontal/planning circuits and E2 to motor circuits, which may have different characteristic oscillatory rates than hippocampus proper."
+  ],
+  "tags": ["sd_006", "theta_gamma", "nested_oscillations", "multi_rate", "working_memory", "hippocampus", "neural_code"],
+  "mapping": {
+    "source_claim_statement": "Theta and gamma oscillations interact in cortical and hippocampal circuits to form a neural code. Theta (~5-8 Hz) provides the slow cycling context; gamma (~30-80 Hz) provides fast subcycles within each theta cycle. Different information items are represented in different gamma subcycles. This coding scheme is preserved across species and brain regions, and is functionally necessary for working memory and navigation.",
+    "ree_translation": "SD-006's async multi-rate architecture assigns E1, E2, and E3 to distinct characteristic rates rather than running them in lockstep. The Lisman/Jensen theta-gamma framework provides the biological homologue: E3 (planning/evaluation) runs at theta-equivalent rate (~4-8 Hz, the deliberative decision cycle), E2 (fast transition model) runs at gamma-equivalent rate (~10 Hz, fast action-sensory loop), and E1 (slow world model) runs at a still-slower consolidation rate (~1 Hz analogue). The paper's evidence that these rates are not arbitrary but reflect distinct functional timescales -- theta for context/planning, gamma for fast sequencing -- validates the architectural choice to use characteristic rates rather than arbitrary uniform clocking.",
+    "mapping_caveat": "The theta-gamma code is a theory of information encoding (how many items can be stored, how sequential information is ordered). SD-006 is a theory of processing rates (how fast each module runs). These are related but distinct claims: the rate at which a module runs and the coding scheme it uses to organise information within each cycle are separable. The paper does not directly address multi-module systems with different processing rates in the computational sense that SD-006 instantiates. The mapping from Hz-based neural oscillations to simulation timestep rates also requires calibration assumptions not provided by the paper.",
+    "source_context": "Canonical review paper by Lisman (Brandeis) and Jensen (Radboud/Donders Institute), Neuron 2013. Synthesises evidence from hippocampus, prefrontal cortex, entorhinal cortex in rodents and humans. PMID 23522038, PMCID PMC3648857."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Neuron review by the leading authors in the field. Mapping fidelity is moderately high: the theta/gamma rate distinction directly supports the E2/E3 rate distinction in SD-006. Transfer risk is relatively low because the rate hierarchy (slow deliberative / fast motor) is a general computational principle, not specific to hippocampal anatomy."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-03-29_arc_033_sensory_attenuation_case2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-033"],
+  "source": {
+    "title": "Encoding of Touch Intensity But Not Pleasantness in Human Primary Somatosensory Cortex.",
+    "authors": ["Case LK", "Laubacher CM", "Olausson H", "Wang B", "Spagnolo PA", "Bushnell MC"],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1130-15.2016",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27225773/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Provides clean experimental evidence that S1 encodes stimulus intensity (the discriminative-predictive dimension) but not pleasantness (the affective dimension). Relevant to ARC-033 because E2_harm_s is a forward model for the sensory-discriminative channel (intensity/proximity), and the cleanness of this channel -- its relative freedom from affective contamination -- determines how learnable E2_harm_s will be. If S1 mixing with affective signals were the norm, E2_harm_s would be harder to learn. The rTMS arm causally confirms S1's role. Confidence capped at 0.62 because the paper addresses touch pleasantness not harm nociception, and the link to forward model learnability is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses affective touch (C-tactile fibers, innocuous), not nociceptive harm stimuli. Extending to harm/nociception requires an additional inference step.",
+    "rTMS over S1 reduced sensory discrimination but did not eliminate it entirely, suggesting partial rather than complete channel separation."
+  ],
+  "tags": ["arc_033", "s1_cortex", "sensory_discriminative", "affective_touch", "rtms", "fmri", "channel_separation"],
+  "mapping": {
+    "source_claim_statement": "fMRI showed intensity ratings predicted S1 activation, pleasantness predicted only ACC activation. After rTMS over S1, sensory discrimination was reduced and touch felt more intense, but pleasantness was unaffected. Divergent neural processing of touch intensity and pleasantness: affective touch encoded outside S1.",
+    "ree_translation": "ARC-033 requires that z_harm_s (sensory-discriminative harm, proximity/intensity) is a learnable target for E2_harm_s -- i.e., that this channel encodes structured, action-conditional information without affective contamination. The S1-only encoding of intensity (not pleasantness) supports the claim that the sensory-discriminative harm signal is a clean, relatively affect-free channel. E2_harm_s predicting z_harm_s is the computational parallel of the brain computing intensity (proximity) changes without mixing in affective state.",
+    "mapping_caveat": "The paper addresses C-tactile (CT) afferent mediated affective touch, not nociception. CT fibers are a distinct class from A-delta and C-fiber nociceptors. The channel separation shown for affective vs discriminative touch may not hold with the same cleanness for nociceptive stimuli, where affective and discriminative signals are more intertwined at the spinal level.",
+    "source_context": "NIH-based study using fMRI + rTMS combination, published in Journal of Neuroscience. Combines correlational (fMRI) with causal (rTMS) methods in the same participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (JNeurosci, fMRI+rTMS combination). Mapping fidelity is moderate-low because the paper is about affective touch, not nociception. Transfer risk is moderate-high for the same reason. The result is consistent with but does not specifically demonstrate the structure of the harm stream."
+  }
+}

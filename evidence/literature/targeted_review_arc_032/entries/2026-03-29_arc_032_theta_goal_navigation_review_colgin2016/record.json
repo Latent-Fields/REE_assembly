@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_032",
+  "entry_id": "2026-03-29_arc_032_theta_goal_navigation_review_colgin2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-032"],
+  "source": {
+    "title": "Rhythms of the hippocampal network",
+    "authors": ["Colgin LL"],
+    "year": 2016,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2016.21",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27255556/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Colgin's 2016 review synthesizes work on hippocampal rhythms across theta, gamma, and sharp-wave ripple frequencies and their functional roles, including the role of theta in mediating prefrontal-hippocampal communication during goal-directed behavior. The review covers the mechanistic substrate (medial septal theta pacemaker, EC-hippocampal theta routing) and functional evidence (theta phase coding, theta-gamma coupling for sequence compression). This provides ARC-032 with a mechanistic account of how theta packaging works biologically, strengthening the plausibility argument for the ThetaBuffer as a computational analog. Confidence is moderate because it is a review paper and the ARC-032 mapping requires several steps.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal theta is primarily a movement/speed signal with no goal-representation content, the ARC-032 claim that theta packages goal context would be weakened",
+    "If gamma rather than theta is the dominant inter-regional communication frequency for goal context, ARC-032 would need revision"
+  ],
+  "tags": ["arc_032", "theta_oscillations", "hippocampal_rhythms", "goal_navigation", "theoretical_review", "colgin"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta oscillations (4-12 Hz) coordinate activity between hippocampus and its inputs (medial entorhinal cortex, prefrontal cortex) during active exploration and goal-directed navigation. Theta phase encodes temporal context and sequences. Prefrontal-hippocampal theta coherence peaks during decision-making and working memory tasks.",
+    "ree_translation": "The ThetaBuffer (MECH-089) in REE creates a discrete approximation to the biological theta cycle's packaging function. Just as biological theta coordinates prefrontal and hippocampal activity at 4-12 Hz during goal-directed navigation, the ThetaBuffer delivers E1 output to E3 at a rate corresponding to the theta band, ensuring that goal context is available to E3 at the appropriate temporal resolution for trajectory planning.",
+    "mapping_caveat": "The Colgin review covers hippocampal theta as a local oscillation, not solely as a prefrontal communication channel. Much of the theta literature concerns hippocampal-entorhinal interactions, speed coding, and place cell sequences -- not directly goal context from frontal cortex. ARC-032 invokes the prefrontal-hippocampal theta coherence literature specifically, which is a subset of the broader theta rhythm literature. The review supports the general theta-as-coordinator claim but does not specifically isolate the frontal-goal-to-hippocampal-navigation pathway that ARC-032 requires.",
+    "source_context": "Comprehensive review of hippocampal network rhythms: theta (4-12 Hz), slow and fast gamma (25-50 Hz, 60-100 Hz), sharp-wave ripples (150-250 Hz). Covers mechanisms, functional correlates, computational models."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.30,
+    "notes": "High source quality -- authoritative review in NRN. Mapping fidelity moderate-low because the review's primary concern is hippocampal-internal and hippocampal-entorhinal theta, with PFC-hippocampal communication as one of several covered topics. The review provides mechanistic depth that strengthens the biological plausibility of ARC-032 but does not directly test it."
+  }
+}

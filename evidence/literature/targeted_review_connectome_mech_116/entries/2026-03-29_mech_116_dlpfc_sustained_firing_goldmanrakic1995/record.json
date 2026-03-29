@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_116",
+  "entry_id": "2026-03-29_mech_116_dlpfc_sustained_firing_goldmanrakic1995",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-116"],
+  "source": {
+    "title": "Cellular basis of working memory",
+    "authors": ["Goldman-Rakic PS"],
+    "year": 1995,
+    "venue": "Neuron",
+    "doi": "10.1016/0896-6273(95)90422-x",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7695894/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct single-unit recordings from DLPFC in primates demonstrate stimulus-selective sustained firing across delay periods, providing the canonical biological substrate that MECH-116 maps to. The analogy to LSTM recurrent hidden state is structurally tight: both maintain information across time via recurrent dynamics without requiring ongoing sensory input. Mapping caveat lowers confidence from 0.9: biological persistent activity involves active maintenance through recurrent excitation and NMDA receptor dynamics, whereas LSTM gating is a learned approximation. Transfer risk is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If DLPFC sustained firing required continuous sensory refresh rather than recurrent maintenance, the LSTM analogy would fail",
+    "If delay-period activity encoded motor preparation rather than sensory memory content, the goal-context mapping would be undermined"
+  ],
+  "tags": ["mech_116", "dlpfc", "working_memory", "sustained_firing", "delay_period", "prefrontal_cortex"],
+  "mapping": {
+    "source_claim_statement": "DLPFC pyramidal neurons sustain stimulus-selective elevated firing rates across delay periods of seconds in spatial delayed-response tasks, maintaining information about a cue location that no longer exists in the environment.",
+    "ree_translation": "E1's LSTM hidden state h_t maintains goal-context information recurrently across steps without requiring the z_goal_latent input to be continuously refreshed -- the computational analog of sustained DLPFC firing during the delay period.",
+    "mapping_caveat": "Biological sustained firing relies on recurrent excitation between DLPFC pyramidal cells and on NMDA receptor-dependent plateau potentials, mechanisms with no direct counterpart in standard LSTM gating. The LSTM analogy captures functional equivalence (information maintained across time) but not mechanistic equivalence. Additionally, DLPFC maintains sensory cue identity (where was the stimulus?), whereas MECH-116 claims E1 maintains goal context (what is the current objective?); these are related but not identical memory contents.",
+    "source_context": "Monkey delayed-response paradigm; spatial cue presented briefly then removed; single-unit recording during 2-5 second delay; ~30% of DLPFC neurons show sustained above-baseline firing selective for cue location."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "This is the foundational paper establishing DLPFC as the cellular basis of working memory. Source quality is very high. Mapping fidelity is moderate because LSTM gating is an approximation to the active recurrent maintenance mechanisms described. Transfer risk reflects the biological-to-computational gap and the spatial-cue vs goal-context content difference."
+  }
+}

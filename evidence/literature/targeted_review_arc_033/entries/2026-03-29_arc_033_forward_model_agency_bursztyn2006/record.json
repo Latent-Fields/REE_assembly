@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-03-29_arc_033_forward_model_agency_bursztyn2006",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["ARC-033"],
+  "source": {
+    "title": "Neural correlates of internal-model loading.",
+    "authors": ["Bursztyn LLCD", "Ganesh G", "Imamizu H", "Kawato M", "Flanagan JR"],
+    "year": 2006,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2006.10.051",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17174919/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Provides fMRI evidence for neural implementation of distinct domain-specific internal (forward) models in cerebellum and motor cortex. Demonstrates that internal models are selectively recruited (loaded) before action execution, confirming the brain maintains multiple concurrent forward models and recruits the appropriate one based on context. This directly supports ARC-033's claim that E2_harm_s is a separate forward model from E2.world_forward -- the brain's architecture suggests domain-specific forward model modularity. Confidence capped at 0.65 because the paper studies tool manipulation models, not harm stream models; the transfer to a harm-specific forward model is by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If forward models are stored as a monolithic controller rather than modular separate models, then the internal-model loading result might reflect weight interpolation rather than distinct model selection, undermining the architectural analogy for E2_harm_s.",
+    "The harm forward model in REE is a learned MLP trained on harm proximity labels; the cerebellum/motor cortex architecture for object manipulation models differs substantially in implementation detail."
+  ],
+  "tags": ["arc_033", "forward_model", "internal_model", "cerebellum", "motor_cortex", "fmri", "modular_models"],
+  "mapping": {
+    "source_claim_statement": "Event-related fMRI during preparation to manipulate an object with recently learned dynamics revealed activity in ipsilateral cerebellum and contralateral/supplementary motor areas specifically when an internal model of the object's dynamics needed to be loaded, but not for familiar objects or isometric tasks. This implicates these regions in internal model recruitment before movement execution.",
+    "ree_translation": "ARC-033 claims that SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s that operates separately from E2.world_forward. The brain's use of distinct cerebellar/motor cortex internal models for different objects/contexts provides biological precedent for this architectural modularity: separate predictive models can be maintained and selectively recruited for different domains. E2_harm_s is the harm-domain-specific model in the same way the cerebellum maintains a tool-specific internal model.",
+    "mapping_caveat": "The biological models described are sensorimotor dynamics models (force-motion relationships for tool manipulation), not harm proximity models. The modular architecture principle is the relevant transfer, not the specific content. The REE harm forward model operates on a different feature space and timescale. The biological precedent motivates the architectural modularity but does not guarantee that a harm-specific forward model will be learnable in the REE substrate.",
+    "source_context": "fMRI experiment using a well-validated paradigm (Kawato lab). Published in Current Biology. Confirms the preparatory (anticipatory) nature of internal model loading, which is relevant because ARC-033's forward model must predict future harm states before action."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.50,
+    "notes": "High source quality (Current Biology, Kawato lab). Mapping fidelity is moderate-low: the paper provides precedent for modular forward models but the harm domain is quite different from object manipulation dynamics. Transfer risk is high because the biological implementation and REE implementation differ substantially in detail."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_113",
+  "entry_id": "2026-03-29_mech_113_interoceptive_inference_seth2016",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-113"],
+  "source": {
+    "title": "Active interoceptive inference and the emotional brain",
+    "authors": ["Seth, A.K.", "Friston, K.J."],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2016.0007",
+    "pmid": "28080966",
+    "pmc": "PMC5062097",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28080966/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Seth and Friston provide the foundational theoretical framework directly instantiated by MECH-113. Their core claim is that interoception operates as hierarchical Bayesian inference over the causes of visceral signals, and that maintaining the fidelity of this generative model constitutes maintenance of selfhood. The Markov blanket framing is explicit: internal states minimise surprise about self-generated states, and failure to do so is experienced as interoceptive distress. This maps tightly to MECH-113 Level 1 (z_self coherence signal) and provides the FEP Markov blanket framing as an independent but convergent description. Confidence 0.80 because this is a theoretical review with strong mechanistic specification -- the framework has been operationalised in subsequent empirical work -- but the mapping to a discrete latent self-model in a recurrent neural network introduces transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the sense of self does not arise from maintaining a generative model of interoceptive signals, then the analogy between z_self coherence and biological selfhood is weakened, and MECH-113's claim to biological grounding is indirect.",
+    "If interoceptive inference is modality-specific and does not generalise to latent self-representations (z_self as computed by REE), the D_eff monitoring architecture would not inherit the properties of the interoceptive generative model."
+  ],
+  "tags": ["mech_113", "interoceptive_inference", "active_inference", "free_energy_principle", "self_model", "markov_blanket", "seth", "friston"],
+  "mapping": {
+    "source_claim_statement": "Interoception operates as the inversion of a hierarchical generative model of internal milieu states. The sense of an embodied self emerges from successfully predicting interoceptive signals. When this model is maintained -- when predictions are accurate and precision-weighted -- the agent has a coherent, stable sense of self. Disruption of predictive accuracy maps to interoceptive distress and altered selfhood.",
+    "ree_translation": "MECH-113 claims the agent needs a self-maintenance error signal monitoring latent coherence independently of harm signals. Seth and Friston's framework supports this as the FEP Markov blanket framing: maintaining z_self fidelity IS maintaining the Markov blanket. The self-maintenance error signal in MECH-113 is the computational analog of interoceptive prediction error. Low D_eff (coherent z_self) corresponds to a well-maintained generative model. High D_eff (dispersed self-state) corresponds to chronic interoceptive misprediction, which in this framework should generate a negative affect signal -- directly grounding the MECH-113 self-maintenance loss in biology.",
+    "mapping_caveat": "Seth and Friston's framework is grounded in visceral and autonomic interoception (cardiac, gastric, respiratory signals), whereas z_self in REE is a latent representation of motor-sensory self-state in a grid-world abstraction. The transfer from biological interoceptive inference to artificial latent self-monitoring is significant. The mathematical structure (Bayesian inference over self-generated states) is preserved, but the specific signal modalities and neural substrates differ entirely. The Markov blanket formulation is powerful but leaves the specific implementation of coherence monitoring unspecified.",
+    "source_context": "Theoretical review article; Philosophical Transactions of the Royal Society B, themed issue on interoception beyond homeostasis; integrates computational, phenomenological, and neuroimaging evidence; key empirical supports cited include cardiac interoception studies, rubber hand illusion paradigms, and psychiatric applications."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Phil Trans R Soc B is a top-tier journal; Seth and Friston are the dominant authorities on this framework. Mapping fidelity is high because the Markov blanket / self-maintenance error convergence is not coincidental -- MECH-113 was explicitly designed with this framing in mind. Transfer risk is moderate-to-high because visceral interoception -> z_self monitoring in an artificial LSTM agent is a substantial architectural jump."
+  }
+}

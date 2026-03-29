@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_029",
+  "entry_id": "2026-03-29_inv_029_robust_concern_view_love_sep",
+  "timestamp_utc": "2026-03-29T14:55:00Z",
+  "claim_ids_tested": ["INV-029"],
+  "source": {
+    "title": "Love (Stanford Encyclopedia of Philosophy)",
+    "authors": ["Keller, Simon"],
+    "year": 2023,
+    "venue": "Stanford Encyclopedia of Philosophy",
+    "doi": "",
+    "url": "https://plato.stanford.edu/entries/love/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "The SEP entry on Love provides a systematic survey of the philosophical literature on what love is, including extensive treatment of the 'robust concern view' -- the position (held by Frankfurt, Taylor, Soble, LaFollette, Newton-Smith and others) that the defining feature of love is caring about the beloved for her own sake, non-instrumentally. The entry establishes that this view has strong philosophical consensus support: caring for the beloved's wellbeing for its own sake, constancy of commitment, and identification with the beloved's interests are regarded as conceptually necessary features of love across multiple frameworks. For INV-029, this is relevant because it shows that the definition REE adopts -- love as long-horizon care investment in another agent's wellbeing -- is not a stipulative definition invented by REE but corresponds to a well-established philosophical consensus (the robust concern view). The confidence is moderate rather than high because the SEP entry surveys existing views rather than arguing for a new position, and its relevance to artificial agents is not directly addressed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The SEP entry surveys multiple competing views of love -- robust concern, emotion, union, appraisal -- and does not definitively establish that the robust concern view is correct over alternatives. Alternative views (love as emotion, love as a way of seeing the beloved) could be incompatible with REE's structurally-coherent-disposition framing.",
+    "The SEP entry does not address love in artificial agents, and the question of whether the robust concern view can be instantiated in non-human systems is not discussed."
+  ],
+  "tags": ["inv_029", "love", "robust_concern_view", "caring", "non_instrumental", "philosophy", "philosophical_consensus", "agent_disposition", "sep"],
+  "mapping": {
+    "source_claim_statement": "The 'robust concern view' holds that love essentially consists in caring for the beloved's wellbeing for its own sake -- a disinterested, non-instrumental concern for the beloved to exist and flourish. This view is held by multiple philosophers (Frankfurt, Taylor, Soble, LaFollette, Newton-Smith) as capturing the defining feature of love. Constancy of commitment and identification with the beloved's interests are widely accepted as necessary features of love across multiple philosophical frameworks.",
+    "ree_translation": "INV-029 defines love as 'long-horizon care investment in another agent's wellbeing -- a structurally coherent agent disposition.' The SEP entry establishes that this definition is not idiosyncratic but corresponds to the mainstream robust concern view of love in philosophy. The non-instrumental concern for flourishing ('care investment in another's wellbeing'), the constancy over time ('long-horizon'), and the dispositional rather than episodic character ('structurally coherent disposition') are all features of the robust concern view that multiple philosophical traditions endorse. INV-029 is not introducing a novel philosophical claim -- it is adopting a well-supported philosophical position and applying it to REE's architectural context.",
+    "mapping_caveat": "The SEP entry is a survey of existing philosophical views, not an argument. It documents that the robust concern view is well-supported but also documents serious alternatives. The union views (love as aspiring to merge with the beloved) and some emotion views are potentially incompatible with the structurally-coherent-disposition framing of INV-029. The entry also does not resolve the question of whether artificial agents can love or whether the robust concern view applies to them. The mapping treats the SEP entry as providing philosophical consensus support for INV-029's definitional choice, not as establishing that love in REE's sense is genuinely instantiable.",
+    "source_context": "Stanford Encyclopedia of Philosophy review article; authoritative survey of the philosophical literature on love; regularly updated; accessible public reference for the philosophical consensus on love's nature"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Good source quality: SEP is the authoritative philosophical reference, and the entry surveys the literature comprehensively. Mapping fidelity is moderate: the robust concern view is the directly relevant position but the SEP entry documents competing views that are not resolved. Transfer risk is moderate: the entry is about human love and does not address artificial agents."
+  }
+}

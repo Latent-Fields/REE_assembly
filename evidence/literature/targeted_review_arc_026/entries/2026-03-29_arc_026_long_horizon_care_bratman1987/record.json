@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_026",
+  "entry_id": "2026-03-29_arc_026_long_horizon_care_bratman1987",
+  "timestamp_utc": "2026-03-29T14:45:00Z",
+  "claim_ids_tested": ["ARC-026"],
+  "source": {
+    "title": "Intention, Plans, and Practical Reason",
+    "authors": ["Bratman, Michael E."],
+    "year": 1987,
+    "venue": "Harvard University Press",
+    "doi": "",
+    "isbn": "9780674458086",
+    "url": "https://www.hup.harvard.edu/books/9780674458086"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Bratman's philosophy of planning agency provides a structural argument for why long-horizon commitments -- which ARC-026 identifies as the architecture of love-as-care -- are necessary for rational agency and expand in functional scope as planning capacity increases. Bratman argues that intentions (plans) are not reducible to desires plus beliefs: they are sui generis practical attitudes that persist over time, structure deliberation by pruning the space of further planning, and create hierarchical plans that coordinate action across extended timeframes. The key implication for ARC-026 is that as an agent's planning depth increases, the functional reach of its existing commitments expands -- a deeper planner can identify more means to serve a given end, can coordinate more complex action sequences in service of it, and can better navigate obstacles to fulfilling it. This supports the 'love expands under intelligence' claim: long-horizon care commitment is not a fixed-bandwidth resource that gets crowded out by more sophisticated processing; it is a final-end specification whose practical consequences expand as reasoning capability deepens. The confidence is moderate because Bratman's account, like Frankfurt's, does not directly address artificial agents or the specific empirical prediction in ARC-026.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bratman's account does not directly address what happens to commitment when planning capacity increases beyond human levels -- his framework is developed for human agents with specific cognitive constraints.",
+    "Plans can be revised or abandoned if new information arrives -- Bratman's system is not committed to permanent expansion of care under intelligence, only that planning structures persist in the absence of defeating conditions."
+  ],
+  "tags": ["arc_026", "bratman", "intention", "planning", "long_horizon", "commitment", "practical_reason", "philosophy", "agency"],
+  "mapping": {
+    "source_claim_statement": "Intentions (plans) are sui generis practical attitudes that persist over time, structure deliberation by specifying what further planning is needed, and coordinate action across extended timeframes in service of distal goals. Planning rationality requires that existing intentions be stable -- not reconsidered without reason -- so that hierarchical plans can be built on them. As planning depth increases, the agent can coordinate more complex action sequences in service of settled commitments.",
+    "ree_translation": "ARC-026 claims love as long-horizon care investment expands under intelligence rather than being crowded out. Bratman's planning theory provides the structural argument: love, understood as a settled commitment to the beloved's flourishing, functions as a terminal plan -- a final-end specification from which all further planning about how to serve that flourishing derives. As an agent becomes more intelligent (deeper planning, better world model, richer consequence tracking), the practical reach of its terminal plan expands. A more capable planner can identify better means, navigate more complex obstacles, and coordinate longer action sequences in service of the same loving commitment. The expansion is structural, not coincidental.",
+    "mapping_caveat": "Bratman's account is for human agents with human cognitive constraints. Whether an artificial agent has intentions in Bratman's sense -- persistent practical attitudes that resist reconsideration and structure deliberation -- depends on REE's architecture implementing something analogous to planning commitment, which is an empirical question about the architecture rather than a philosophical derivation. The ARC-026 empirical prediction (approach-gradient detection grows faster than contact detection) also requires a much more specific claim than Bratman's general argument about planning rationality. The connection between 'planning capacity expands the reach of settled commitments' and 'approach-gradient sensitivity grows faster than contact-avoidance sensitivity' requires additional empirical and theoretical work.",
+    "source_context": "Philosophy monograph; foundational text in philosophy of action; introduces the planning theory of intention that has shaped philosophy of agency for four decades; widely cited in philosophy, decision theory, and AI"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.48,
+    "notes": "High source quality: foundational work in philosophy of action, >4000 citations. Mapping fidelity is moderate: the planning-commitment expansion argument supports ARC-026's structural claim but does not directly generate the empirical prediction. Transfer risk is high: the transfer from human planning agents with phenomenologically rich intentions to simulated neural network agents requires substantial argument."
+  }
+}

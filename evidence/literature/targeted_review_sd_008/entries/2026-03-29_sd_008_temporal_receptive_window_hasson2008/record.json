@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_008",
+  "entry_id": "2026-03-29_sd_008_temporal_receptive_window_hasson2008",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-008"],
+  "source": {
+    "title": "A Hierarchy of Temporal Receptive Windows in Human Cortex.",
+    "authors": ["Hasson, U.", "Yang, E.", "Vallines, I.", "Heeger, D.J.", "Rubin, N."],
+    "year": 2008,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5487-07.2008",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556707/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Hasson et al. (2008) establishes the neuroscientific principle that cortical areas have characteristic temporal integration windows (TRWs) -- the duration over which past input influences the current response. Early sensory areas have short TRWs (responding to momentary input), while higher-order areas integrate over longer windows. This is direct biological evidence that the temporal integration constant of a neural representation is a functionally meaningful parameter: areas that integrate over longer windows lose event-level resolution and encode slower context. The paper's fMRI finding that higher-level areas (STS, precuneus, TPJ) show reduced reliability when film segments are scrambled at fine timescales is the biological analogue of SD-008's finding that z_world with low alpha loses event selectivity. The TRW framework provides the neuroscientific foundation for why an EMA with alpha=0.3 creates a representation with the wrong temporal granularity for event-selective encoding. Confidence moderated by the modality gap (human fMRI with naturalistic films vs. REE gridworld) and by the fact that Hasson's hierarchy is about different brain areas having different TRWs, whereas SD-008 is about a single computational unit's integration constant.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows that some higher-order areas benefit from long TRWs for semantic and contextual processing. This could be read as arguing for low-alpha (long integration) in some processing stages. The key distinction is that E3 in REE is the appropriate place for long-window contextual integration, not z_world. z_world is REE's analogue of early-to-mid sensory encoding where short TRWs are appropriate.",
+    "The paper does not establish a specific TRW threshold equivalent to alpha=0.9 in a discrete-timestep EMA. The quantitative mapping requires additional assumptions."
+  ],
+  "tags": ["sd_008", "temporal_receptive_window", "cortical_hierarchy", "integration_window", "fmri", "event_encoding"],
+  "mapping": {
+    "source_claim_statement": "Different cortical areas have characteristic temporal receptive windows (TRWs). Early visual areas respond reliably to the momentary input; higher areas show reduced reliability when temporal structure is disrupted at fine timescales, indicating that they integrate over longer windows. The TRW is the duration of the period in the past over which information affects the current response.",
+    "ree_translation": "SD-008's EMA alpha controls LatentStack's effective TRW for z_world. At alpha=0.3, z_world's TRW spans approximately 3 to 5 timesteps (the window over which 95% of the weight accumulates), making it a mid-to-long integration unit that is insensitive to abrupt events -- equivalent to a Hasson-style area with a long TRW. At alpha >= 0.9, z_world's TRW shrinks to approximately 1 to 2 timesteps, making it event-responsive in a manner consistent with Hasson's early sensory areas. SD-008 specifies that z_world should have a short TRW because its role is event detection, not contextual integration; that integration role belongs to E3 and the planning hierarchy.",
+    "mapping_caveat": "Hasson's TRWs are properties of distinct brain regions with different anatomical structures, whereas SD-008 is about one parameter in a single computational module. The discrete-timestep EMA is not a direct neural analogue of a continuous TRW. The translation from TRW timescales (seconds in fMRI) to EMA alpha in a simulation timestep requires calibration not provided by the paper. Additionally, Hasson does not directly study event detection failure -- his measure is inter-subject response reliability, not selectivity to event boundaries.",
+    "source_context": "Human fMRI study using silent film stimuli presented forward, backward, or temporally scrambled. Classic paper from the Hasson lab establishing the temporal hierarchy concept. PMID 18322098, Journal of Neuroscience 2008."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High-quality Journal of Neuroscience paper from a leading group. The TRW framework is the canonical neuroscientific concept that maps onto the EMA alpha tradeoff. Mapping fidelity is moderate because the paper is about anatomically distinct regions with different integration constants, while SD-008 is about tuning a single module's integration constant."
+  }
+}

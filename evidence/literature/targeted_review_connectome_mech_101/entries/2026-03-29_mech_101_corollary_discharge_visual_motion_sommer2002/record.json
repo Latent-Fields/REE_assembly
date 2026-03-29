@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_101",
+  "entry_id": "2026-03-29_mech_101_corollary_discharge_visual_motion_sommer2002",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-101"],
+  "source": {
+    "title": "A pathway in primate brain for internal monitoring of movements",
+    "authors": ["Sommer MA", "Wurtz RH"],
+    "year": 2002,
+    "venue": "Science",
+    "doi": "10.1126/science.1069590",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11823538/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Sommer and Wurtz 2002 identified the neural pathway for corollary discharge (the primate analog of efference copy) in the context of saccadic eye movements: the mediodorsal thalamus relays a copy of the saccade command from superior colliculus to frontal eye fields, where it is used to update the internal representation of visual space across the movement. This is relevant to MECH-101 because it provides a concrete neural implementation of the efference copy principle in the visual system -- showing that such pathways exist and are causally necessary for accurate self-motion attribution. The mapping is partially indirect because saccades (eye movements) are not locomotion, but the computational principle applies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If corollary discharge pathways for locomotion do not exist in primate cortex, the biological grounding for the ReafferencePredictor action input would weaken",
+    "If saccadic corollary discharge suppresses all visual signals during movement (blanket suppression) rather than predicting and subtracting specific expected signals, the predictive cancellation model would need revision"
+  ],
+  "tags": ["mech_101", "corollary_discharge", "efference_copy", "saccade", "visual_cortex", "self_motion", "sommer_wurtz"],
+  "mapping": {
+    "source_claim_statement": "A corollary discharge pathway relays a copy of the saccade motor command from superior colliculus through mediodorsal thalamus to frontal eye fields in primates. This corollary discharge signal is used to update the internal representation of visual targets across saccadic eye movements, compensating for the retinal shift caused by the movement. Inactivating the thalamic relay disrupts this compensation.",
+    "ree_translation": "The REE ReafferencePredictor receives action a_t (the analog of the corollary discharge / motor command copy) to predict the expected change in z_world_raw caused by locomotion. Just as the frontal eye field uses the saccade corollary discharge to predict where a visual target will be after the eye movement, the ReafferencePredictor uses a_t (plus z_world_raw_prev) to predict what new content will enter the field of view after the locomotion step. The predicted reafference is subtracted, leaving z_world selective for externally-caused changes.",
+    "mapping_caveat": "Sommer and Wurtz study saccadic eye movements, which are rapid (30-100ms) and produce a predictable retinal shift. Locomotion in a grid-world is quite different: the movement reveals new cell content depending on the world layout, not just shifts the retinal image. The corollary discharge for saccades predicts a rigid shift; the reafference prediction in REE must predict content-dependent new information. The scene-state requirement (z_world_raw_prev) is not present in Sommer-Wurtz's saccadic model because retinal shifts are geometry-determined, not scene-content-determined. Additionally, Sommer-Wurtz study FEF and SC, which are not direct analogs of the z_world encoder.",
+    "source_context": "Primate electrophysiology; single unit recording in FEF and MD thalamus during saccadic tasks; thalamic inactivation study showing causal necessity of the corollary discharge pathway for trans-saccadic visual stability; published in Science."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality -- Science publication, causal experiment with inactivation, foundational paper on the corollary discharge pathway. Mapping fidelity moderate: saccadic corollary discharge provides a concrete neural implementation of the action-based reafference prediction principle but the specific scene-context extension of MECH-101 is not present in the saccadic case. Transfer risk moderate: different movement type (saccade vs. locomotion), different expected reafference (rigid shift vs. content-dependent new information)."
+  }
+}

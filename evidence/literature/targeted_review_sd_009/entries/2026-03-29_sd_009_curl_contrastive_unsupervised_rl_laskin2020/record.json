@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_009",
+  "entry_id": "2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-009"],
+  "source": {
+    "title": "CURL: Contrastive Unsupervised Representations for Reinforcement Learning.",
+    "authors": ["Laskin, M.", "Srinivas, A.", "Abbeel, P."],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (ICML 2020)",
+    "doi": "10.48550/arXiv.2004.04136",
+    "url": "https://arxiv.org/abs/2004.04136"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "CURL directly demonstrates that adding a contrastive auxiliary objective to an RL encoder dramatically improves the representational quality and sample efficiency of the agent, with almost no change to the RL algorithm itself. The mechanism is the same as SD-009's CE auxiliary loss: a discriminative objective is added to the encoder's training signal that forces it to maintain categorical structure it would otherwise discard. In SD-009, the CE loss classifies event types (hazard present, absent, neutral); in CURL, contrastive NCE maximises agreement between augmentations of the same observation. Both approaches address the same fundamental failure mode: reconstruction and prediction losses alone do not force the encoder to maintain any particular categorical organisation of the latent space. Confidence is moderated because CURL uses contrastive self-supervised learning (no explicit label supervision) while SD-009 uses a supervised CE loss over event categories; these are related but not identical mechanisms. The sample efficiency gain in CURL (1.9x over prior methods) is strong empirical evidence that the mechanism is effective.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CURL's contrastive objective is defined over augmented pairs (positive pairs = augmentations of the same observation), not over categorical event labels as in SD-009. If the relevant category structure is not captured by augmentation invariance (e.g., two different event types that look superficially similar under augmentation), CURL's contrastive objective would not preserve it. SD-009's CE loss explicitly targets event-type categories that are not derivable from augmentation structure alone.",
+    "CURL was demonstrated on Atari and DeepMind Control Suite visual tasks. REE uses a simple gridworld where the pixel space is much lower-dimensional. The sample efficiency argument is more pressing for high-dimensional visual RL than for the gridworld setting."
+  ],
+  "tags": ["sd_009", "contrastive_learning", "auxiliary_loss", "encoder", "reinforcement_learning", "representation_learning"],
+  "mapping": {
+    "source_claim_statement": "Adding a contrastive auxiliary objective to an RL encoder significantly improves representation quality and downstream task performance. The encoder receives gradients from both the contrastive objective and the RL task objective, and learns representations that are more informative for decision-making than those trained on RL signal alone.",
+    "ree_translation": "SD-009 applies the same principle: z_world's encoder is trained with both a prediction/reconstruction objective (analogous to the RL objective) and a CE auxiliary loss classifying event types (analogous to the contrastive objective). The CE loss forces z_world to maintain discriminative structure separating hazard-present from hazard-absent states -- structure that the prediction loss alone fails to impose because predicting the next state does not require knowing whether that state contains a hazard. CURL's strong empirical results validate the general mechanism of using auxiliary discriminative objectives to improve encoder representational quality in RL contexts.",
+    "mapping_caveat": "CURL's auxiliary objective is unsupervised (contrastive over augmented pairs) while SD-009's is supervised (CE over event-type labels). Supervised CE is a stronger signal but requires labels that may not always be available; CURL's framework generalises more broadly. The modality gap (high-dimensional pixel observations vs. REE gridworld state encoder) also means the quantitative sample efficiency gains from CURL are not directly portable. The REE claim is that CE auxiliary loss specifically preserves event-type categories; CURL demonstrates the general principle rather than this specific instantiation.",
+    "source_context": "Empirical ML paper from the Abbeel group at Berkeley. ICML 2020 proceedings. arXiv:2004.04136. The most widely cited paper applying contrastive auxiliary objectives to RL encoder training."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "ICML 2020 paper from a leading group with strong empirical results. Mapping fidelity is moderate because the specific loss form differs (contrastive vs. CE over labels). Transfer risk is low -- both are RL encoder settings where the auxiliary objective addresses the same underlying failure mode."
+  }
+}

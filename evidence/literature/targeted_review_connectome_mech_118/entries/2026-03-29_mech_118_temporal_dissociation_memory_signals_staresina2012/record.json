@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_118",
+  "entry_id": "2026-03-29_mech_118_temporal_dissociation_memory_signals_staresina2012",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-118"],
+  "source": {
+    "title": "Memory signals are temporally dissociated in and across human hippocampus and perirhinal cortex",
+    "authors": ["Staresina, B.P.", "Fell, J.", "Do Lam, A.T.A.", "Axmacher, N.", "Henson, R.N.A."],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3154",
+    "pmid": "22751037",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22751037/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Staresina et al. use simultaneous fMRI and intracranial EEG in patients undergoing presurgical evaluation to show that familiarity signals (perirhinal) and recollection signals (hippocampal) are temporally dissociated: perirhinal familiarity signals emerge earlier during memory retrieval than hippocampal recollection signals. Conventional fMRI alone showed indistinguishable roles for the two regions, but the temporal resolution of intracranial EEG revealed clear differences. This adds a temporal dissociation dimension to the spatial dissociation documented by Aggleton 2005, and is directly relevant to MECH-118's claim that D_eff and Hopfield familiarity operate on different timescales -- the claim that they are 'informationally separate' extends to temporal separation. Confidence 0.73 because this is a high-quality primary empirical study with a novel combined methods approach, but the transfer risk remains: the biological temporal dissociation maps only loosely to the computational timescales in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the temporal dissociation between perirhinal and hippocampal signals is an artifact of signal propagation delays rather than distinct computational processes, the timing difference would not imply informational independence.",
+    "If D_eff and Hopfield stability in REE are computed on the same timescale (same input, same step), the temporal dissociation evidence would not distinguish them -- both would need different frequency or integration windows to benefit from this finding."
+  ],
+  "tags": ["mech_118", "familiarity", "recollection", "temporal_dissociation", "intracranial_eeg", "fmri", "perirhinal_cortex", "hippocampus", "staresina"],
+  "mapping": {
+    "source_claim_statement": "Using simultaneous fMRI and intracranial EEG during a recognition memory task, perirhinal cortex signals associated with familiarity precede hippocampal signals associated with recollection in time. Conventional fMRI analysis failed to detect this difference because BOLD is too slow. The temporal dissociation is consistent with familiarity being computed via a rapid match-strength process while recollection requires additional time for contextual pattern completion.",
+    "ree_translation": "MECH-118 claims D_eff and Hopfield stability are informationally distinct signals. Staresina et al. add temporal separation to the spatial/substrate dissociation already established by Aggleton 2005. In REE terms: Hopfield familiarity could in principle be computed on a shorter integration window than D_eff (which requires sampling the population distribution of z_self across multiple steps to measure the participation ratio). This temporal depth difference is a prediction of MECH-118 that has not been tested. The biological finding motivates asking whether the two REE signals diverge not just spatially (different mathematical operations on z_self) but temporally (different temporal integration windows). If yes, this would constitute a stronger form of the dissociation Q-022 is designed to test.",
+    "mapping_caveat": "The temporal dissociation in Staresina et al. is measured in milliseconds (perirhinal signals tens to hundreds of milliseconds before hippocampal signals). REE operates at the level of environment steps -- each step corresponds to one observation-action cycle. The temporal separation between Hopfield familiarity and D_eff in REE would be in units of steps, not milliseconds, and would need to be deliberately engineered (different integration windows) rather than emerging from signal propagation biology. The fMRI component of the study is confounded by the BOLD haemodynamic response, as the authors acknowledge. The intracranial EEG component provides the temporal dissociation evidence but is limited to epilepsy patients undergoing presurgical evaluation -- a population with known cortical abnormalities.",
+    "source_context": "Primary empirical study; Nature Neuroscience; n=10 patients (intracranial EEG) plus n=21 controls (fMRI); recognition memory task with source retrieval; simultaneous fMRI + intracranial EEG is a methodological innovation for this question."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.42,
+    "notes": "Nature Neuroscience; methodologically innovative; the temporal dissociation is a significant novel finding. Mapping fidelity is lower than the Yonelinas/Aggleton entries because the transfer from millisecond-scale biological temporal dissociation to step-scale REE temporal separation requires additional architectural assumptions. Transfer risk is moderate-high for the same reason."
+  }
+}

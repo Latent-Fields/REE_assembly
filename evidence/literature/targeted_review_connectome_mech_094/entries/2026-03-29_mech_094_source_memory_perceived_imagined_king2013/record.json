@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_094",
+  "entry_id": "2026-03-29_mech_094_source_memory_perceived_imagined_king2013",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Lateral posterior parietal activity during source memory judgments of perceived and imagined events.",
+    "authors": ["King DR", "Miller MB"],
+    "year": 2013,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/j.neuropsychologia.2013.11.006",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24269856/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides direct empirical evidence for neural dissociation between perceived and imagined events during source memory judgments. Lateral posterior parietal cortex and dorsolateral prefrontal cortex were more active for attributing events to perception versus imagination. This source-based dissociation is the experimental substrate for MECH-094's claim that the brain implements distinct write pathways for committed (perceived) versus simulated (imagined) content. Confidence capped at 0.68 because the study is about retrospective source memory judgments, not real-time tagging during event encoding, and the REE hypothesis tag operates at encoding time.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Source memory is a retrieval process; MECH-094's hypothesis tag is an encoding-time mechanism. The neural dissociation at retrieval does not directly imply a categorical encoding-time tag.",
+    "The dissociation involves parietal cortex (lateral PPC) and dlPFC, while MECH-094 does not specify a parietal implementation -- the tag is described as a prefrontal commitment-state representation."
+  ],
+  "tags": ["mech_094", "source_memory", "imagination", "perception", "parietal_cortex", "dlPFC", "reality_monitoring", "fmri"],
+  "mapping": {
+    "source_claim_statement": "Left lateral posterior parietal cortex and dorsolateral prefrontal cortex were more active during source attributions of perceived versus imagined events. Activity in these regions correlated with successful item memory for perceived but not imagined events. Source-based dissociation of successful retrieval activity implicates different neural mechanisms for perceived vs imagined memories.",
+    "ree_translation": "MECH-094 proposes that simulation/DMN content is routed through the pre-commit channel (tagged 'hypothetical') while committed-outcome content writes to the post-commit residue channel. King & Miller show that the brain maintains distinct neural signals for perceived versus imagined sources when making source attribution judgments. In REE terms, this corresponds to the hypothesis tag being neurally trackable: the tag leaves a distinct neural footprint (lateral PPC, dlPFC) that the system can use when deciding how to process a memory -- which is functionally equivalent to routing signals through different channels based on their source tag.",
+    "mapping_caveat": "The study examines retrieval-time source judgments about previously encoded events; MECH-094's hypothesis tag must operate at encoding time to prevent residue writes during simulation. The neural dissociation at retrieval is consistent with different encoding tags having been applied, but does not directly demonstrate the encoding-time mechanism. Additionally, the study uses neutral object images, not emotionally valenced harm events.",
+    "source_context": "fMRI study at UCSB, published in Neuropsychologia. Standard recognition memory paradigm with source attribution. Uses within-subject design with n=25 adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.38,
+    "notes": "Good source quality (established journal, adequate n, clear design). Mapping fidelity is moderate -- retrieval dissociation is consistent with MECH-094 but is one step removed from the encoding-time mechanism. Transfer risk is moderate: the paradigm uses neutral memory, not harm-relevant content, but the source-monitoring function is general."
+  }
+}

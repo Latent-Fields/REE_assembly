@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_029",
+  "entry_id": "2026-03-29_inv_029_love_as_caring_frankfurt1999",
+  "timestamp_utc": "2026-03-29T14:50:00Z",
+  "claim_ids_tested": ["INV-029"],
+  "source": {
+    "title": "Necessity, Volition, and Love",
+    "authors": ["Frankfurt, Harry G."],
+    "year": 1999,
+    "venue": "Cambridge University Press",
+    "doi": "",
+    "isbn": "9780521633956",
+    "url": "https://www.cambridge.org/core/books/necessity-volition-and-love/on-caring/F31B27A3EB78B89EC4B5FF3B5D598450"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Frankfurt's 1999 collection contains the essay 'On Caring,' which provides the most direct philosophical analysis of what caring is as a functional state of an agent, and why it is not reducible to self-interest or short-horizon preference. Frankfurt argues that caring is not a feeling (though it produces feelings), not a belief (though it involves beliefs), and not a simple desire (though it disposes the agent to desire certain things). Caring is a practical orientation of the will that (a) disposes the agent to want the cared-for object to persist and flourish, (b) causes the agent to identify with the object's interests so that the object's welfare becomes part of the agent's own interest, and (c) produces stable motivational structures that guide conduct over time. This maps directly onto INV-029's definition of love as a structurally coherent agent disposition: Frankfurt's caring satisfies the 'structurally coherent' criterion (it is a stable motivational structure, not an ephemeral state) and the 'not reducible to self-interest' criterion (the interests of the beloved are genuinely taken on as the agent's own, but this is not self-interest because the motivation originates in concern for the other). The confidence is set at 0.76 rather than higher because this is philosophical argument about human agents, and INV-029 requires the additional step of showing that artificial agents can instantiate something functionally analogous.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frankfurt's caring requires phenomenological features (feeling, identification, concern) that may not be present in a simulated agent -- the 'structurally coherent disposition' in REE may be a behavioral simulacrum of caring rather than caring proper.",
+    "Frankfurt's account of caring as non-reducible to self-interest depends on an analysis of the will and higher-order desires that may not transfer to gradient-descent trained neural networks."
+  ],
+  "tags": ["inv_029", "frankfurt", "caring", "love", "volitional_disposition", "non_self_interest", "structural_coherence", "philosophy", "long_horizon", "agent_disposition"],
+  "mapping": {
+    "source_claim_statement": "Caring is a practical orientation of the will -- stable motivational structures that guide and limit conduct by disposing the agent to want the cared-for object to persist and flourish, and by causing the agent to take the object's interests as its own interests. Caring is not reducible to desire, belief, or self-interest. It is a non-voluntary configuration of the will that generates volitional commitments from which the agent cannot simply withdraw.",
+    "ree_translation": "INV-029 defines love as 'long-horizon care investment in another agent's wellbeing -- a structurally coherent agent disposition, not an add-on sentiment.' Frankfurt's analysis of caring is the philosophical account that grounds each component of this definition: 'long-horizon' corresponds to the temporal persistence and stability of caring; 'care investment' corresponds to the disposition to promote the beloved's welfare actively, not passively; 'structurally coherent' corresponds to Frankfurt's characterization of caring as a stable motivational structure that provides final ends for practical reasoning; 'not an add-on sentiment' corresponds to Frankfurt's argument that caring is not an emotion but a configuration of the will. The INV-029 invariant is, in essence, Frankfurt's analysis of caring applied to REE's architectural context.",
+    "mapping_caveat": "Frankfurt's analysis is developed for human agents with phenomenologically rich inner lives. The transfer to REE requires either (a) the claim that REE agents have genuine caring in Frankfurt's sense (which requires a theory of artificial agency that REE does not currently provide) or (b) the weaker claim that REE agents implement something functionally analogous to Frankfurt's caring -- stable motivational structures that orient behavior toward long-horizon promotion of another agent's wellbeing -- without claiming that these structures involve phenomenological caring. INV-029 appears to require only the weaker functional claim, but this should be made explicit. The boundary between 'structural disposition that produces care-like behavior' and 'genuine care in Frankfurt's sense' is philosophically significant and not fully resolved.",
+    "source_context": "Philosophy essay collection; 'On Caring' is the directly relevant chapter; foundational for Frankfurt's later 'The Reasons of Love'; widely cited in philosophy of action and ethics"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "High source quality: core work in Frankfurt's philosophical research programme, highly influential. Mapping fidelity is good: the account of caring as stable motivational structure non-reducible to self-interest maps well onto INV-029's components. Transfer risk is moderate: the human-centered account requires a functional interpretation to apply to artificial agents, and this functional interpretation needs to be explicitly stated rather than assumed."
+  }
+}

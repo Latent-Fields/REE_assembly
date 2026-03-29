@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_009",
+  "entry_id": "2026-03-29_sd_009_action_driven_contrastive_adat_kim2022",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["SD-009"],
+  "source": {
+    "title": "Action-driven contrastive representation for reinforcement learning.",
+    "authors": ["Kim, M.", "Lee, J.", "Kim, J."],
+    "year": 2022,
+    "venue": "PLOS ONE",
+    "doi": "10.1371/journal.pone.0265456",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8932622/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "ADAT is particularly relevant to SD-009 because it uses category labels (action types) as the supervisory signal for contrastive learning, rather than unsupervised augmentation consistency as in CURL. The ADAT hypothesis -- that representations trained to discriminate action-type categories capture the features that matter for control decisions -- is structurally identical to SD-009's hypothesis that representations trained to discriminate event-type categories (hazard present/absent/neutral) capture the features that matter for harm evaluation. Both approaches share the view that the latent space should be organised by categorical distinctions that are functionally meaningful for the task, and that a CE or contrastive-CE auxiliary loss over those categories is the appropriate mechanism to impose this organisation. ADAT's superior performance over CURL (1.24x over CURL's HNS on Atari) suggests that category-supervised contrastive learning is stronger than unsupervised augmentation-based contrastive learning -- providing additional support for SD-009's choice of a supervised CE loss. Confidence moderated by modality gap and by the fact that ADAT's categories are actions (input-side) while SD-009's categories are environmental event types (output-side, what the encoder must detect).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ADAT uses action labels as the categorical supervisor: states that share the same action are pulled together in latent space. SD-009 uses event-type labels: observations are pulled together based on the environmental category (hazard vs. safe). These are different categorical dimensions. In ADAT, the hypothesis is that action-relevant features are the most important; in SD-009, the hypothesis is that harm-relevant event features are the most important for z_world specifically.",
+    "ADAT was tested on Atari and ProcGen visual RL benchmarks. The generalisation to REE's gridworld state encoding (lower-dimensional, different observation statistics) is untested."
+  ],
+  "tags": ["sd_009", "contrastive_learning", "auxiliary_loss", "categorical_supervision", "encoder", "reinforcement_learning", "event_type"],
+  "mapping": {
+    "source_claim_statement": "Using category labels (action types) as the supervisory signal for contrastive auxiliary learning improves RL encoder representations beyond what unsupervised contrastive objectives achieve. The representation captures features essential for deciding actions while ignoring control-irrelevant information. This approach outperforms prior unsupervised contrastive methods.",
+    "ree_translation": "SD-009's CE auxiliary loss uses environmental event-type labels (hazard present, absent, neutral) as the categorical supervisor for z_world's encoder. This is the same mechanism as ADAT: a supervised categorical signal forces the encoder to maintain latent structure aligned with the relevant categories. Where ADAT shows that action-type categories are the right supervisory signal for action selection, SD-009 argues that harm-relevant event categories are the right supervisory signal for a world-state encoder whose downstream use is harm evaluation. ADAT's empirical superiority over unsupervised contrastive learning supports the design choice in SD-009 to use supervised CE rather than unsupervised contrastive objectives.",
+    "mapping_caveat": "ADAT's categorical supervisor is action types -- an input-side category that tells the encoder what the agent did. SD-009's categorical supervisor is event types -- an output-side category that tells the encoder what the environment contains. This is a meaningful difference: ADAT produces action-aligned representations while SD-009 produces environment-aligned representations. Whether the superiority of supervised-categorical over unsupervised-contrastive objectives generalises from action supervision to event-type supervision requires a separate argument (which is available: the information-theoretic logic is the same, and the labels are simply different categorical dimensions).",
+    "source_context": "Empirical ML paper from Seoul National University, PLOS ONE 2022. Tests ADAT auxiliary task for RL encoder training on Atari Games and ProcGen. PMID 35303031, PMCID PMC8932622."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "PLOS ONE is solid but below top-tier ML venues. ADAT is a direct elaboration of CURL's framework using category labels as supervision -- the closest available paper to SD-009's exact mechanism among published results. Mapping fidelity is moderate because the category type differs (action vs. event type)."
+  }
+}

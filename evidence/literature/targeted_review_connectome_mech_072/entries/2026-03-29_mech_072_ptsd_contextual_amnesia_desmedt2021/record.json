@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_072",
+  "entry_id": "2026-03-29_mech_072_ptsd_contextual_amnesia_desmedt2021",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-072"],
+  "source": {
+    "title": "(Re)contextualizing the Trauma to Prevent or Treat PTSD-Related Hypermnesia.",
+    "authors": ["Desmedt A"],
+    "year": 2021,
+    "venue": "Chronic Stress",
+    "doi": "10.1177/24705470211021073",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34104834/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Direct experimental evidence that promoting hippocampal-dependent contextual memory of trauma prevents and treats PTSD-related hypermnesia in rodent models. Critically, optogenetic, pharmacological, or cognitive-behavioural enhancement of contextual memory processing durably suppressed fear hypermnesia. This provides causal evidence that contextual binding acts as a gate on harm signal magnitude -- when context is restored, harm responding normalises. Maps to MECH-072's claim that foreseeable-harm gating (a form of contextual correction) reduces false attribution rates. Confidence capped at 0.58 because the evidence is from rodents, the manipulation targets memory retrieval rather than attribution at action time, and the gate mechanism in MECH-072 is more specific than general contextualisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rodent evidence only; human translational validity not established.",
+    "The contextual memory enhancement in these experiments targets fear expression at retrieval, not residue accumulation at action time. MECH-072's gate operates earlier in the process.",
+    "The preclinical models use relatively simple contextual cues; REE's foreseeable-harm judgment requires more complex causal reasoning about what was knowable at decision time."
+  ],
+  "tags": ["mech_072", "ptsd", "contextual_memory", "hippocampus", "fear_hypermnesia", "foreseeable_harm", "causal_gate"],
+  "mapping": {
+    "source_claim_statement": "PTSD shows paradoxical memory dissociation: intrusive emotional hypermnesia (too much fear at harm-associated cues) with declarative/contextual amnesia (no clear contextual binding). Enhancing hippocampal contextual processing of the trauma (via optogenetics, pharmacology, or CBT) durably prevents and treats the hypermnesia. Contextual amnesia is the cause of hypermnesia, not merely a co-symptom.",
+    "ree_translation": "MECH-072 claims that foreseeable-harm gating on residue accumulation reduces false attribution rates. Desmedt's finding that contextual amnesia is the causal driver of hypermnesia -- and that restoring contextual binding normalises fear responding -- provides the closest biological analogue. In REE terms: without foreseeable-harm gating (contextual correction), residue accumulates at harm events regardless of whether they were agent-caused or foreseeable, producing an inflated harm estimate analogous to hypermnesia. Restoring the gate (contextual information about what was knowable) normalises attribution, analogous to restoring hippocampal contextual binding normalising fear responding.",
+    "mapping_caveat": "The biological intervention targets memory retrieval and consolidation; MECH-072 targets write-time gating of residue accumulation. These are different stages in the processing chain. The fact that restoring context suppresses hypermnesia is consistent with a contextual gate being important, but does not directly demonstrate the specific forward-model-based foreseeable-harm gate that MECH-072 proposes. The rodent model also cannot demonstrate the complex causal reasoning required for genuine foreseeable-harm judgment.",
+    "source_context": "Preclinical rodent work from INSERM Bordeaux, using well-validated PTSD rodent models. Open access journal. Includes optogenetic manipulation, which provides strong causal evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.55,
+    "notes": "Moderate source quality (open access, rodent data, but causal optogenetic arm is strong). Mapping fidelity is moderate-low because the biological intervention targets memory consolidation/retrieval rather than action-time gating. Transfer risk is moderate-high due to rodent-to-human-to-agent chain."
+  }
+}

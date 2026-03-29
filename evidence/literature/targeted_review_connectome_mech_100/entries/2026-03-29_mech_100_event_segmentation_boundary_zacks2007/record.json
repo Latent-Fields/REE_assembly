@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_100",
+  "entry_id": "2026-03-29_mech_100_event_segmentation_boundary_zacks2007",
+  "timestamp_utc": "2026-03-29T14:00:00Z",
+  "claim_ids_tested": ["MECH-100"],
+  "source": {
+    "title": "Event structure in perception and conception",
+    "authors": ["Zacks JM", "Tversky B"],
+    "year": 2001,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.127.1.3",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11271752/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Zacks and Tversky's event segmentation theory proposes that the perceptual system actively segments continuous experience into discrete events at points of change -- event boundaries -- and that these boundaries are associated with heightened neural activity and prediction error signals. This is relevant to MECH-100 because it provides a theoretical basis for the event type labels used in the CE auxiliary loss (none / env_hazard / agent_hazard): these are distinct event types in the Zacks sense, separated by event boundaries. The claim that neural systems are organized around event boundaries rather than continuous feature streams supports the architectural decision to train z_world with discrete categorical event supervision rather than continuous reconstruction only. Confidence is moderate-low because this is a cognitive psychology theory, not a neuroscientific mechanism directly applicable to z_world encoding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the brain processes continuous sensory streams without categorical event segmentation, the CE auxiliary loss label design would lose its biological grounding",
+    "If event boundaries are not specially marked by prediction error or neural transients, the event-type label scheme would be arbitrary rather than biologically grounded"
+  ],
+  "tags": ["mech_100", "event_segmentation", "event_boundary", "categorical_perception", "theoretical_review", "zacks"],
+  "mapping": {
+    "source_claim_statement": "Humans and other animals parse continuous experience into discrete events -- stable periods separated by boundaries where some aspect of the situation changes significantly. Event boundaries are associated with elevated attention, prediction error, and memory encoding. The hierarchical event structure maps to hierarchical goal and action organization.",
+    "ree_translation": "The event-type CE auxiliary loss labels (0=none, 1=env_caused_hazard, 2=agent_caused_hazard) correspond to discrete event types in the Zacks sense: transitions between event types mark event boundaries. Training z_world to classify event type forces it to represent the stable period content (event type) rather than only the trajectory of feature change (which reconstruction loss captures). This is computationally analogous to the brain maintaining an event model and updating it at event boundaries.",
+    "mapping_caveat": "Zacks and Tversky's theory is a cognitive-level account of human event parsing, tested primarily in video-watching paradigms rather than active navigation with harm. The grid-world events in REE (env_hazard onset, agent_hazard onset) are abrupt and physically salient; they are likely simpler than the complex naturalistic events Zacks studies. The theory provides conceptual framing for why event-type labels are a natural unit for z_world supervision, but does not directly test whether CE loss is the right computational mechanism.",
+    "source_context": "Theoretical paper proposing event segmentation theory -- that perception is organized around event parsing rather than continuous flow. Reviews evidence from action perception, narrative comprehension, and spatial cognition. Highly cited foundational paper in event cognition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality -- foundational theoretical paper, well-cited. Mapping fidelity limited: the theory is at the cognitive level of human event parsing, whereas MECH-100 is a claim about gradient-based encoder training. The conceptual alignment (discrete event categories rather than continuous feature streams) is genuine but the mechanistic translation is weak. Transfer risk elevated for the same reasons."
+  }
+}
