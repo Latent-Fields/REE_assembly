@@ -233,6 +233,12 @@
     "title": "Durable long-term storage of the hippocampal viability map requires a hippocampal-entorhinal loop that engages during offline (sleep/DMN-equivalent) consolidation and provides a coordinate-invariant grid representation; this loop does not operate during waking planning or waking immobility consolidation.",
     "type": "architectural_commitment"
   },
+  "ARC-040": {
+    "status": "candidate",
+    "subject": "hippocampus.dorsal_ventral_functional_segregation",
+    "title": "The REE hippocampal module requires dorsal-predominant trajectory proposal (value-free spatial navigation) combined with a ventral-analog valence prior sourced from R(x,t) geometry; these are architecturally segregated, not merged.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -1427,6 +1433,66 @@
     "title": "E3 harm evaluation must apply an agency-gain correction to counteract E2's systematic attenuation of agent-caused prediction errors; without this correction the agent structurally underweights its own causal harm.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-137": {
+    "status": "candidate",
+    "subject": "commitment.boundary_token_dual_temporal_registers",
+    "title": "Commit token must carry two distinct temporal registers: a distal-intent timestamp (when the action was planned) and a proximal-trigger timestamp (when the action was initiated), not a single trigger event.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-138": {
+    "status": "candidate",
+    "subject": "commitment.boundary_token_cancel_window_flag",
+    "title": "Commit token must include a cancel-window-open flag supported by a top-down suppressive pathway from dFMC/pre-SMA to premotor cortex that can veto the transition before execution lock-in.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-139": {
+    "status": "candidate",
+    "subject": "commitment.boundary_as_trajectory_endpoint",
+    "title": "Commitment is a distributed multi-second pre-movement trajectory across motor and prefrontal regions, not a point event; the commit boundary marks the end of this trajectory, not a single moment.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-140": {
+    "status": "candidate",
+    "subject": "commitment.tri_loop_soft_competitive_arbitration",
+    "title": "Tri-loop gate conflict arbitration uses soft-competitive disinhibition (indirect pathway inter-collicular competition) rather than winner-take-all suppression; WTA imposed across loops causes coupling collapse.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-141": {
+    "status": "candidate",
+    "subject": "commitment.tri_loop_dual_timescale_arbitration",
+    "title": "Tri-loop arbitration requires both a slow proactive inhibition pathway (prefrontal-caudate, seconds-scale) and a fast reactive hyperdirect pathway (milliseconds-scale); these operate at segregated timescales and cannot be collapsed.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-142": {
+    "status": "candidate",
+    "subject": "control_plane.cholinergic_axis_orthogonality_maintenance",
+    "title": "Valence-arousal axis orthogonality in the control plane is not a static geometric property but requires active cholinergic maintenance during learning; without it, axes drift toward correlation under repeated co-activation.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-143": {
+    "status": "candidate",
+    "subject": "hippocampus.dorsal_ca1_value_free_map",
+    "title": "Dorsal CA1 implements value-free spatial mapping: place cells are insensitive to goal value when goal location changes, supporting ARC-007's no-new-value-computation constraint for the trajectory proposal module.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-144": {
+    "status": "candidate",
+    "subject": "hippocampus.ventral_ca1_valence_encoding",
+    "title": "Ventral CA1 contains spatially organized valence encoding (anxiety geography, abstract value maps); valence is intrinsic to hippocampal map geometry in the ventral compartment, supporting MECH-073.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-145": {
+    "status": "candidate",
+    "subject": "ethics.prescriptive_cbf_certificate",
+    "title": "Prescriptive ethical trajectory certification in REE requires a Control Barrier Function (CBF) or equivalent forward-invariance certificate that guarantees bounded convergence to the ethical attractor set given the architecture's constraint satisfaction.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-146": {
+    "status": "candidate",
+    "subject": "ethics.diagnostic_barrier_certificate",
+    "title": "Diagnostic ethical trajectory verification in REE (counterfactual case, MECH-127) requires backward reachability analysis or barrier certificates rather than prescriptive CBF synthesis; the two formal tools are not interchangeable.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1500,13 +1566,13 @@
     "type": "open_question"
   },
   "Q-013": {
-    "status": "active",
+    "status": "legacy",
     "subject": "uncertainty.deterministic_vs_stochastic_jepa_calibration",
     "title": "Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?",
     "type": "open_question"
   },
   "Q-014": {
-    "status": "active",
+    "status": "legacy",
     "subject": "invariance.ethical_relevance_blind_spot_risk",
     "title": "Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?",
     "type": "open_question"

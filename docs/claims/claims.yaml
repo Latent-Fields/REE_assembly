@@ -2168,6 +2168,26 @@
     - MECH-037
     - MECH-054
     - MECH-062
+  notes: >
+    Literature grounding (2026-03-29, Q-018 lit pull): Sterzer et al. (Front Hum
+    Neurosci 2016) reframes the RC-conflict threshold as a precision RATIO rather
+    than an absolute signal strength -- thought insertion and misattribution arise
+    when the ratio of internal-model precision to external-authority precision is
+    miscalibrated. Howes & Murray (Biol Psych 2020) show that early adverse
+    experience systematically lowers this ratio threshold (aberrant salience),
+    and that the CHR-to-psychosis transition is the hysteresis zone corresponding
+    to a threshold that is both too low to resist spoofing and too unstable to
+    self-correct. Damiani et al. (meta-analysis 2022) confirms internal source
+    monitoring is the most vulnerable calibration target (SMD ~0.5-1.0 deficit).
+    Implementation implication: the RC-conflict lane threshold should be
+    implemented as ratio(E1_precision, authority_signal_precision), not an
+    absolute authority-signal magnitude. This directly addresses Q-018's
+    calibration question.
+    Clinical analogue: authority_spoofing_low_threshold -> psychosis/paranoia;
+    over_suppression_high_threshold -> rigid_hypervigilance/anhedonia.
+    Clinical analogues are tracked as notes rather than a separate field -- the
+    psychiatric symptom mapping is evidence for the architectural claim, not a
+    separate claim type.
   location: docs/architecture/control_plane_signal_map.md#mech-065
   source:
     - docs/architecture/control_plane_signal_map.md
@@ -2251,18 +2271,25 @@
   location: docs/architecture/agency_responsibility_flow.md#q-012
   source:
     - docs/thoughts/2026-02-13_LeCun_developed_lots_of_REE.md
+# Q-013 retired 2026-03-29 -- JEPA integration decoupled from REE.
+# The uncertainty calibration question is moot without a JEPA substrate.
+# The REE-native precision routing question is now addressed by MECH-059 directly.
 - id: Q-013
   title: "Can deterministic JEPA plus derived dispersion match explicit stochastic uncertainty heads for REE precision routing?"
   claim_type: open_question
   subject: uncertainty.deterministic_vs_stochastic_jepa_calibration
   polarity: asks
-  status: active
-  lifecycle_stage: adjudicated
+  status: legacy
+  lifecycle_stage: retired
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:51:50.720541Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
-  evidence_quality_note: "Prior experimental evidence from jepa_uncertainty_channels (126 runs) was from ree-v2 synthetic scaffolding. Adjudication direction (hybridize) is valid. Needs genuine ree-v1-minimal uncertainty calibration experiments."
+  evidence_quality_note: >
+    JEPA integration dropped from REE architecture 2026-03-29. This question is
+    moot. All prior experimental evidence (jepa_uncertainty_channels, 126 runs)
+    was from ree-v2 synthetic scaffolding and is invalid. REE-native precision
+    routing is addressed by MECH-059 directly. Retired.
   depends_on:
     - MECH-059
     - ARC-005
@@ -2270,18 +2297,32 @@
   location: docs/architecture/agency_responsibility_flow.md#q-013
   source:
     - docs/architecture/agency_responsibility_flow.md
+# Q-014 retired 2026-03-29 -- JEPA integration decoupled from REE.
+# The JEPA-framed question is moot, but the underlying insight (representation
+# invariances can hide ethically relevant distinctions in attribution) is
+# REE-native and transferred to MECH-137a (see below).
 - id: Q-014
   title: "Do JEPA invariances hide ethically relevant distinctions in REE attribution contexts?"
   claim_type: open_question
   subject: invariance.ethical_relevance_blind_spot_risk
   polarity: asks
-  status: active
-  lifecycle_stage: adjudicated
+  status: legacy
+  lifecycle_stage: retired
   adjudication_outcome: hybridize
   adjudicated_at_utc: 2026-02-25T16:51:50.758372Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
-  evidence_quality_note: "Prior experimental evidence from jepa_uncertainty_channels (126 runs) was from ree-v2 synthetic scaffolding. Adjudication direction (hybridize) is valid. Needs genuine ree-v1-minimal blind-spot probe experiments."
+  evidence_quality_note: >
+    JEPA integration dropped from REE architecture 2026-03-29. The JEPA-specific
+    framing is moot. The core insight -- that representation learning invariances
+    can create attribution blind spots -- survives as a REE-native concern.
+    Wang et al. (NeurIPS 2024) and Mehrabi et al. (ACM Surveys 2022) provide
+    the relevant grounding. The REE-native formulation is: z_world encoder
+    invariances that discard harm-predictive features create structural moral
+    blind spots in E3 harm evaluation. This is addressed by MECH-128 (E1 goal
+    conditioning) and the SD-008/SD-009 encoder design requirements.
+    Retired as JEPA question; REE-native blind-spot concern tracked via
+    evidence_quality_note on MECH-128 and SD-008. Prior synthetic evidence invalid.
   depends_on:
     - MECH-057
     - MECH-059
@@ -7380,4 +7421,313 @@
     across long training runs without this consolidation pathway -- this is an
     acceptable V3 limitation.
     Registered 2026-03-29 from ARC-018 lit pull (Olafsdottir et al. 2017).
+  evidence: []
+
+# ============================================================
+# New claims registered 2026-03-29 from Q-cluster lit pulls
+# ============================================================
+
+# --- Q-015 cluster: commit-boundary token anatomy ---
+
+- id: MECH-137
+  title: "Commit token must carry two distinct temporal registers: a distal-intent timestamp (when the action was planned) and a proximal-trigger timestamp (when the action was initiated), not a single trigger event."
+  claim_type: mechanism_hypothesis
+  subject: commitment.boundary_token_dual_temporal_registers
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-061
+    - ARC-003
+    - Q-015
+  notes: >
+    Vinding et al. (Cortex 2013, EEG) demonstrate that distal and proximal
+    intentions have distinct electrophysiological signatures (distinct LRP
+    components) that are temporally separable and carry independent information.
+    The minimal commit token therefore cannot be a single trigger timestamp; it
+    must encode both when an action was decided (distal intent) and when it was
+    executed (proximal trigger). In REE terms: the commit boundary token needs
+    a planned_at field and a triggered_at field as structurally distinct
+    registers, not one combined "commit_at" event. This constrains Q-015's
+    minimal contract: two temporal fields are necessary even at the minimum.
+    Registered 2026-03-29 from Q-015 lit pull.
+  evidence: []
+
+- id: MECH-138
+  title: "Commit token must include a cancel-window-open flag supported by a top-down suppressive pathway from dFMC/pre-SMA to premotor cortex that can veto the transition before execution lock-in."
+  claim_type: mechanism_hypothesis
+  subject: commitment.boundary_token_cancel_window_flag
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-061
+    - MECH-062
+    - ARC-003
+    - Q-015
+  notes: >
+    Kuhn & Brass (Hum Brain Mapp 2009, fMRI connectivity) identify the
+    dorsomedial frontal cortex (dFMC) / pre-SMA as the veto locus, with
+    suppressive top-down connectivity to premotor cortex that can cancel a
+    prepared action before execution lock-in. The cancel window is neurally
+    distinct from both the planning phase (distal intent) and the execution
+    phase (post-commit). In REE: the commit boundary token must have a boolean
+    cancel_window_open flag. While this flag is true, the E3 veto pathway can
+    intervene; once execution lock-in occurs, the flag closes and post-commit
+    error routing takes over. This is distinct from pre-commit simulation --
+    the cancel window is the transition zone between simulation-complete and
+    execution-locked.
+    Registered 2026-03-29 from Q-015 lit pull.
+  evidence: []
+
+- id: MECH-139
+  title: "Commitment is a distributed multi-second pre-movement trajectory across motor and prefrontal regions, not a point event; the commit boundary marks the end of this trajectory, not a single moment."
+  claim_type: mechanism_hypothesis
+  subject: commitment.boundary_as_trajectory_endpoint
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-061
+    - MECH-137
+    - MECH-138
+    - ARC-003
+  notes: >
+    Mitelut et al. (eLife 2022, widefield Ca++ imaging across 6 dorsal cortical
+    areas) show structured, predictive multi-second pre-movement dynamics
+    distributed across motor and prefrontal regions before any detectable EMG.
+    Commitment is a process that unfolds over seconds, not a discrete event.
+    The REE commit boundary should be modelled as the endpoint of an eligibility
+    trajectory rather than a point transition. This has implications for how
+    E3's pre-commit simulation maps onto the commitment process: the trajectory
+    from "simulation begun" to "commit boundary reached" has internal structure
+    that carries information about confidence, conflict resolution, and
+    cancellability -- not just a binary pre/post state.
+    Registered 2026-03-29 from Q-015 lit pull.
+  evidence: []
+
+# --- Q-016 cluster: tri-loop gate arbitration ---
+
+- id: MECH-140
+  title: "Tri-loop gate conflict arbitration uses soft-competitive disinhibition (indirect pathway inter-collicular competition) rather than winner-take-all suppression; WTA imposed across loops causes coupling collapse."
+  claim_type: mechanism_hypothesis
+  subject: commitment.tri_loop_soft_competitive_arbitration
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-062
+    - ARC-005
+    - Q-016
+  notes: >
+    Lee & Sabatini (Nature 2021, optogenetics in mice) show the indirect
+    pathway implements competitive disinhibition via inter-collicular
+    competition, not hard suppression -- the losing loop is inhibited but
+    not silenced. Morita (Behav Brain Res 2016, computational review)
+    demonstrates that striatal WTA and cortical soft-max operate at
+    different timescales and are complementary; imposing WTA from one loop
+    onto soft-max loops causes exactly the coupling collapse Q-016 tries
+    to prevent. The REE tri-loop arbitration policy should use
+    soft-competitive (graded inhibition) rather than WTA. This means
+    losing loops remain active at reduced gain rather than gated off --
+    they can still contribute monitoring signal even when not gating
+    execution.
+    Registered 2026-03-29 from Q-016 lit pull.
+  evidence: []
+
+- id: MECH-141
+  title: "Tri-loop arbitration requires both a slow proactive inhibition pathway (prefrontal-caudate, seconds-scale) and a fast reactive hyperdirect pathway (milliseconds-scale); these operate at segregated timescales and cannot be collapsed."
+  claim_type: mechanism_hypothesis
+  subject: commitment.tri_loop_dual_timescale_arbitration
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-062
+    - MECH-140
+    - ARC-005
+    - Q-016
+  notes: >
+    Zhang & Iwaki (Front Behav Neurosci 2019, fMRI DCM) demonstrate two
+    neurally dissociable inhibitory pathways: (1) proactive -- slow
+    prefrontal-caudate sustained suppression (seconds-scale, anticipatory);
+    (2) reactive -- fast hyperdirect STN pathway (milliseconds-scale,
+    triggered by unexpected stop signals). A complete arbitration policy
+    must include both. The proactive pathway pre-sets gate bias based on
+    prior planning (maps to E3 pre-commit eligibility assessment); the
+    reactive pathway allows rapid interruption after eligibility is
+    committed (maps to the cancel-window MECH-138 but at shorter
+    timescales). Collapsing both into a single arbitration signal loses
+    the fast-interrupt capability.
+    Registered 2026-03-29 from Q-016 lit pull.
+  evidence: []
+
+# --- Q-017 cluster: control plane axis orthogonality ---
+
+- id: MECH-142
+  title: "Valence-arousal axis orthogonality in the control plane is not a static geometric property but requires active cholinergic maintenance during learning; without it, axes drift toward correlation under repeated co-activation."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.cholinergic_axis_orthogonality_maintenance
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-063
+    - ARC-005
+  notes: >
+    Bush et al. (Sci Rep 2018, MVPA fMRI) and Baucom et al. (NeuroImage 2011,
+    MDS of brain states) both confirm that valence and arousal are neurally
+    orthogonal -- the circumplex pair is sufficient to recover most of affect-
+    space geometry. This validates MECH-063's orthogonal-axes commitment.
+    The critical addition from Gonzalez-Redondo et al. (Sci Rep 2025, spiking
+    NN with cholinergic modulation): ACh gating prevents cross-channel
+    interference during learning. In simulation, removing cholinergic
+    modulation caused axes to drift toward correlation under co-activation.
+    REE implementation implication: the control plane must include an
+    explicit decorrelation or orthogonality-maintenance mechanism (ACh-analog)
+    during training, not just at initialisation. This may affect both the
+    control plane (ARC-005) and hippocampal function (where valence and
+    spatial dimensions could similarly correlate without active separation).
+    Registered 2026-03-29 from Q-017 lit pull.
+  evidence: []
+
+# --- Q-020 cluster: hippocampal dorsal/ventral functional segregation ---
+
+- id: MECH-143
+  title: "Dorsal CA1 implements value-free spatial mapping: place cells are insensitive to goal value when goal location changes, supporting ARC-007's no-new-value-computation constraint for the trajectory proposal module."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.dorsal_ca1_value_free_map
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-007
+    - MECH-073
+    - Q-020
+  notes: >
+    Duvelle et al. (Curr Biol 2019) tested whether dorsal CA1 place cells
+    remap or rescale when the value of a goal location changes (while
+    keeping the goal location constant). Place fields were geometrically
+    stable and insensitive to the reward value of the goal -- the spatial
+    map does not encode value. This is direct empirical support for
+    ARC-007's claim that the hippocampal trajectory proposal module
+    navigates the residue-field terrain without computing new value.
+    The navigation mechanism uses the existing R(x,t) geometry; it does
+    not update value representations based on current goal salience.
+    Registered 2026-03-29 from Q-020 lit pull.
+  evidence: []
+
+- id: MECH-144
+  title: "Ventral CA1 contains spatially organized valence encoding (anxiety geography, abstract value maps); valence is intrinsic to hippocampal map geometry in the ventral compartment, supporting MECH-073."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.ventral_ca1_valence_encoding
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-073
+    - ARC-007
+    - Q-020
+  notes: >
+    Jimenez et al. (Cell 2018, optogenetics in mice) identify "anxiety cells"
+    in ventral CA1 that fire in proportion to distance from an aversive open
+    space -- spatially organized valence encoding in the hippocampal map
+    itself. Knudsen & Wallis (Neuron 2021, primate electrophysiology) show
+    that primate hippocampus actively constructs abstract value maps during
+    choice tasks, with value geometry intrinsic to the representational
+    structure. Together these strongly support MECH-073: valence is
+    geometrically embedded in the hippocampal map, not just externally tagged.
+    The dorsal/ventral dissociation (MECH-143 vs MECH-144) resolves Q-020
+    via Path A: ARC-007's no-new-value-computation constraint holds for the
+    dorsal trajectory proposal module; the ventral compartment contributes a
+    valence prior that is encoded in R(x,t) geometry rather than computed
+    de novo during planning.
+    Registered 2026-03-29 from Q-020 lit pull.
+  evidence: []
+
+- id: ARC-040
+  title: "The REE hippocampal module requires dorsal-predominant trajectory proposal (value-free spatial navigation) combined with a ventral-analog valence prior sourced from R(x,t) geometry; these are architecturally segregated, not merged."
+  claim_type: architectural_commitment
+  subject: hippocampus.dorsal_ventral_functional_segregation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-007
+    - MECH-143
+    - MECH-144
+    - MECH-073
+    - Q-020
+  notes: >
+    Q-020 Path A resolution (2026-03-29): The empirical dorsal/ventral
+    dissociation (MECH-143 value-free dorsal; MECH-144 valence-encoded
+    ventral) is compatible with ARC-007's architectural constraint.
+    ARC-007's "no new value computation" applies to the dorsal trajectory
+    proposal component: it navigates existing R(x,t) residue-field terrain
+    without computing new value. The ventral hippocampal analog provides
+    a valence prior that is already encoded in R(x,t) geometry -- it was
+    accumulated there by prior experience, not computed on-the-fly during
+    planning. These two roles must be architecturally segregated: a single
+    undifferentiated hippocampal module conflates value-free navigation
+    with valence-weighted selection, which would violate ARC-007.
+    V4 scope: V3 HippocampalModule is undifferentiated. Dorsal/ventral
+    segregation with explicit ventral-analog valence prior pathway is a
+    V4 architectural requirement. V3 is an acceptable simplification but
+    will systematically underweight valence in trajectory selection until
+    this is implemented.
+    Registered 2026-03-29 from Q-020 lit pull.
+  evidence: []
+
+# --- Q-024 cluster: formal certificates for ethical trajectory representation ---
+
+- id: MECH-145
+  title: "Prescriptive ethical trajectory certification in REE requires a Control Barrier Function (CBF) or equivalent forward-invariance certificate that guarantees bounded convergence to the ethical attractor set given the architecture's constraint satisfaction."
+  claim_type: mechanism_hypothesis
+  subject: ethics.prescriptive_cbf_certificate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v5
+  depends_on:
+    - Q-024
+    - Q-023
+    - ARC-034
+  notes: >
+    Ames et al. (IEEE TAC 2017, CBF-QP framework) show that a control barrier
+    function h(x) with h(x)>=0 on the safe/ethical set provides a forward-
+    invariance certificate via a single inequality constraint at each step.
+    This is the prescriptive variant for Q-024: given a candidate CBF for
+    the REE ethical constraint set (bounded harm accumulation, goal pursuit
+    within valence bounds), synthesis via CBF-QP guarantees that any policy
+    satisfying the CBF constraint will remain within the ethical attractor.
+    Applicable when the system dynamics and constraint set are well-defined
+    (symmetric-coupling case of Q-023 without MECH-127 counterfactual).
+    V5 scope: requires (1) formal specification of the REE ethical constraint
+    set as an implicit surface h(x)=0; (2) differentiable dynamics for CBF
+    gradient computation; (3) validated potential game structure (Q-023).
+    None of these are available before V4 experimental validation.
+    Registered 2026-03-29 from Q-024 lit pull.
+  evidence: []
+
+- id: MECH-146
+  title: "Diagnostic ethical trajectory verification in REE (counterfactual case, MECH-127) requires backward reachability analysis or barrier certificates rather than prescriptive CBF synthesis; the two formal tools are not interchangeable."
+  claim_type: mechanism_hypothesis
+  subject: ethics.diagnostic_barrier_certificate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v5
+  depends_on:
+    - Q-024
+    - MECH-127
+    - MECH-145
+    - Q-023
+  notes: >
+    Prajna & Jadbabaie (HSCC 2004, barrier certificates) provide the
+    verification/diagnostic tool: for a given trajectory, barrier
+    certificates verify whether the trajectory could have reached an unsafe
+    set without forward simulation. This is irreducible for MECH-127's
+    counterfactual utility case where the question is "could this agent's
+    trajectory have caused more harm under an alternative policy?" --
+    a backward-looking question that CBF-QP synthesis cannot answer.
+    Choi et al. (arXiv 2023) explicitly identify backward reachability
+    as the underdeveloped gap in the CBF literature and confirm that
+    forward and backward certificates are structurally distinct.
+    Architectural significance: REE needs both MECH-145 and MECH-146.
+    MECH-145 (prescriptive) certifies future behaviour will stay ethical;
+    MECH-146 (diagnostic) evaluates whether past behaviour was counterfactually
+    ethical under MECH-127. A single certificate type cannot serve both roles.
+    V5 scope: requires MECH-127 formal characterisation and V4 potential
+    game validation before backward reachability analysis is tractable.
+    Registered 2026-03-29 from Q-024 lit pull.
   evidence: []
