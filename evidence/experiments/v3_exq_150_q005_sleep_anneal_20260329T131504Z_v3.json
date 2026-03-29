@@ -1,0 +1,272 @@
+{
+  "run_id": "v3_exq_150_q005_sleep_anneal_20260329T131504Z_v3",
+  "experiment_type": "v3_exq_150_q005_sleep_anneal_pair",
+  "claim_ids": [
+    "Q-005"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "residue_field_contrast_failed",
+  "criteria": {
+    "C1_anneal_wins": false,
+    "C2_reset_no_regression": true,
+    "C3_anneal_contrast": false,
+    "C4_no_anneal_contrast": false,
+    "C5_seed_consistent": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_ANNEAL_WIN": 0.92,
+    "THRESH_NO_REGRESSION": 1.15,
+    "THRESH_CONTRAST_ANNEAL": 0.03,
+    "THRESH_CONTRAST_NO_ANNEAL": 0.02,
+    "ANNEAL_FACTOR": 0.3
+  },
+  "summary_metrics": {
+    "no_anneal_mean_harm_post_sleep": 9.050502401683481,
+    "no_anneal_final_contrast": 0.0,
+    "anneal_mean_harm_post_sleep": 9.050502401683481,
+    "anneal_final_contrast": 0.0,
+    "reset_mean_harm_post_sleep": 9.050502401683481,
+    "reset_final_contrast": 0.0
+  },
+  "protocol": {
+    "waking_phases": 3,
+    "episodes_per_phase": 100,
+    "steps_per_episode": 200,
+    "sleep_phases": 2
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Three-condition sleep annealing test: NO_ANNEAL (residue persists unchanged), ANNEAL (RBF weights *= 0.3 after each waking phase, synaptic homeostasis analog), RESET (RBF weights zeroed after each waking phase, tabula rasa). Protocol: 3 waking phases x 100 episodes x 200 steps separated by 2 sleep phases. Primary metric: mean_harm_post_sleep (mean over waking phases 2+3). 2 seeds x 3 conditions = 6 cells. CausalGridWorldV2 size=10 2 hazards 3 resources.",
+  "interpretation": "PASS => Q-005 guidance: ANNEAL (factor=0.3) is beneficial; offline partial R(x,t) decay models sleep homeostasis correctly. PARTIAL (NO_ANNEAL) => Q-005 guidance: persistent residue is better; no offline operation needed. PARTIAL (other) => Q-005 inconclusive; neither condition clearly better. FAIL => residue field does not build usable spatial contrast (C3/C4 failed).",
+  "per_seed_results": {
+    "NO_ANNEAL": [
+      {
+        "condition": "NO_ANNEAL",
+        "seed": 42,
+        "mean_harm_post_sleep": 9.029721230566503,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.197698348864913,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.70587411229276,
+            "mean_residue_elsewhere": 46.69141473487352,
+            "total_residue": 91.97856140136719,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.1085692178458,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 137.33256496220034,
+            "mean_residue_elsewhere": 137.38995562704847,
+            "total_residue": 183.0565185546875,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 8.950873243287207,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 227.68891040257046,
+            "mean_residue_elsewhere": 227.85507255812823,
+            "total_residue": 272.5560607910156,
+            "n_episodes": 100
+          }
+        ]
+      },
+      {
+        "condition": "NO_ANNEAL",
+        "seed": 123,
+        "mean_harm_post_sleep": 9.071283572800459,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.24785832066834,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.96271367292733,
+            "mean_residue_elsewhere": 46.700515382835746,
+            "total_residue": 92.48067474365234,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.084757084980609,
+            "residue_contrast": 0.11297555920864966,
+            "mean_residue_at_harm": 137.49525786213465,
+            "mean_residue_elsewhere": 137.382282302926,
+            "total_residue": 183.3213348388672,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 9.057810060620309,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 228.64875889330992,
+            "mean_residue_elsewhere": 229.15237170898013,
+            "total_residue": 273.8889465332031,
+            "n_episodes": 100
+          }
+        ]
+      }
+    ],
+    "ANNEAL": [
+      {
+        "condition": "ANNEAL",
+        "seed": 42,
+        "mean_harm_post_sleep": 9.029721230566503,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.197698348864913,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.70587411229276,
+            "mean_residue_elsewhere": 46.69141473487352,
+            "total_residue": 91.97856140136719,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.1085692178458,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 73.08395301870661,
+            "mean_residue_elsewhere": 73.16040271628056,
+            "total_residue": 183.0565185546875,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 8.950873243287207,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 80.53762749868726,
+            "mean_residue_elsewhere": 80.7462968260555,
+            "total_residue": 272.5560607910156,
+            "n_episodes": 100
+          }
+        ]
+      },
+      {
+        "condition": "ANNEAL",
+        "seed": 123,
+        "mean_harm_post_sleep": 9.071283572800459,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.24785832066834,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.96271367292733,
+            "mean_residue_elsewhere": 46.700515382835746,
+            "total_residue": 92.48067474365234,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.084757084980609,
+            "residue_contrast": 0.07643258412502973,
+            "mean_residue_at_harm": 72.8946656290936,
+            "mean_residue_elsewhere": 72.81823304496857,
+            "total_residue": 183.3213348388672,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 9.057810060620309,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 81.20387349326485,
+            "mean_residue_elsewhere": 81.79012016707354,
+            "total_residue": 273.8889465332031,
+            "n_episodes": 100
+          }
+        ]
+      }
+    ],
+    "RESET": [
+      {
+        "condition": "RESET",
+        "seed": 42,
+        "mean_harm_post_sleep": 9.029721230566503,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.197698348864913,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.70587411229276,
+            "mean_residue_elsewhere": 46.69141473487352,
+            "total_residue": 91.97856140136719,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.1085692178458,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.54882870714671,
+            "mean_residue_elsewhere": 45.633446914712245,
+            "total_residue": 183.0565185546875,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 8.950873243287207,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.00828489280494,
+            "mean_residue_elsewhere": 45.227211850376456,
+            "total_residue": 272.5560607910156,
+            "n_episodes": 100
+          }
+        ]
+      },
+      {
+        "condition": "RESET",
+        "seed": 123,
+        "mean_harm_post_sleep": 9.071283572800459,
+        "final_contrast": 0.0,
+        "anneal_contrast_after_sleep": 0.0,
+        "phase_results": [
+          {
+            "phase_idx": 0,
+            "mean_harm": 9.24785832066834,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.96271367292733,
+            "mean_residue_elsewhere": 46.700515382835746,
+            "total_residue": 92.48067474365234,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 1,
+            "mean_harm": 9.084757084980609,
+            "residue_contrast": 0.060771328835883764,
+            "mean_residue_at_harm": 45.208696762992155,
+            "mean_residue_elsewhere": 45.14792543415627,
+            "total_residue": 183.3213348388672,
+            "n_episodes": 100
+          },
+          {
+            "phase_idx": 2,
+            "mean_harm": 9.057810060620309,
+            "residue_contrast": 0.0,
+            "mean_residue_at_harm": 45.6997201268873,
+            "mean_residue_elsewhere": 46.30585208331291,
+            "total_residue": 273.8889465332031,
+            "n_episodes": 100
+          }
+        ]
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T13:15:04.159051+00:00"
+}

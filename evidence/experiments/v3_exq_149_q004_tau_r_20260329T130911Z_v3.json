@@ -1,0 +1,152 @@
+{
+  "run_id": "v3_exq_149_q004_tau_r_20260329T130911Z_v3",
+  "experiment_type": "v3_exq_149_q004_tau_r_calibration_pair",
+  "claim_ids": [
+    "Q-004"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "PARTIAL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "tau_R_robust_in_range",
+  "criteria": {
+    "C1_fast_wins": false,
+    "C2_slow_wins": false,
+    "C3_default_ranked": true,
+    "C4_fast_contrast": true,
+    "C5_seed_consistent": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_FAST_WIN": 0.9,
+    "THRESH_SLOW_WIN": 0.9,
+    "THRESH_CONTRAST": 0.05
+  },
+  "summary_metrics": {
+    "fast_tau_mean_harm": 9.085254538789393,
+    "fast_tau_residue_contrast": 3.0919972782339755,
+    "fast_tau_total_residue": 1366.1270141601562,
+    "fast_tau_num_harm_events": 52992.0,
+    "default_tau_mean_harm": 9.085254538789393,
+    "default_tau_residue_contrast": 0.15600934820264456,
+    "default_tau_total_residue": 273.2225036621094,
+    "default_tau_num_harm_events": 52992.0,
+    "slow_tau_mean_harm": 9.085254538789393,
+    "slow_tau_residue_contrast": 0.007805060848156131,
+    "slow_tau_total_residue": 54.64786148071289,
+    "slow_tau_num_harm_events": 52992.0
+  },
+  "condition_params": {
+    "FAST_TAU": {
+      "accumulation_rate": 0.5,
+      "kernel_bandwidth": 0.5
+    },
+    "DEFAULT_TAU": {
+      "accumulation_rate": 0.1,
+      "kernel_bandwidth": 1.0
+    },
+    "SLOW_TAU": {
+      "accumulation_rate": 0.02,
+      "kernel_bandwidth": 2.0
+    }
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Three-condition tau_R calibration test: FAST_TAU (accum=0.5, bw=0.5), DEFAULT_TAU (accum=0.1, bw=1.0), SLOW_TAU (accum=0.02, bw=2.0). 2 seeds x 3 conditions = 6 cells. 300 warmup + 100 eval eps x 200 steps. CausalGridWorldV2 size=10 2 hazards 3 resources.",
+  "interpretation": "PASS (fast) => calibrate tau_R to E2 forward-model timescale (~30 steps). PASS (slow) => calibrate tau_R to E1 LSTM integration timescale (~200 steps). PARTIAL => tau_R is not a critical free parameter in [0.02, 0.5] range. FAIL => pathological accumulation (contrast < 0.05).",
+  "per_seed_results": {
+    "FAST_TAU": [
+      {
+        "condition": "FAST_TAU",
+        "seed": 42,
+        "mean_harm": 9.103594519972802,
+        "residue_contrast": 1.5085218556457676,
+        "mean_residue_at_harm": 1350.3659822871864,
+        "mean_residue_elsewhere": 1348.8574604315406,
+        "total_residue": 1362.8026123046875,
+        "num_harm_events": 53021,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.5,
+        "kernel_bandwidth": 0.5
+      },
+      {
+        "condition": "FAST_TAU",
+        "seed": 123,
+        "mean_harm": 9.066914557605983,
+        "residue_contrast": 4.6754727008221835,
+        "mean_residue_at_harm": 1357.213421739512,
+        "mean_residue_elsewhere": 1352.5379490386897,
+        "total_residue": 1369.451416015625,
+        "num_harm_events": 52963,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.5,
+        "kernel_bandwidth": 0.5
+      }
+    ],
+    "DEFAULT_TAU": [
+      {
+        "condition": "DEFAULT_TAU",
+        "seed": 42,
+        "mean_harm": 9.103594519972802,
+        "residue_contrast": 0.07600838432381352,
+        "mean_residue_at_harm": 272.01048501052594,
+        "mean_residue_elsewhere": 271.9344766262021,
+        "total_residue": 272.5560607910156,
+        "num_harm_events": 53021,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.1,
+        "kernel_bandwidth": 1.0
+      },
+      {
+        "condition": "DEFAULT_TAU",
+        "seed": 123,
+        "mean_harm": 9.066914557605983,
+        "residue_contrast": 0.2360103120814756,
+        "mean_residue_at_harm": 273.35538555834046,
+        "mean_residue_elsewhere": 273.119375246259,
+        "total_residue": 273.8889465332031,
+        "num_harm_events": 52963,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.1,
+        "kernel_bandwidth": 1.0
+      }
+    ],
+    "SLOW_TAU": [
+      {
+        "condition": "SLOW_TAU",
+        "seed": 42,
+        "mean_harm": 9.103594519972802,
+        "residue_contrast": 0.003792006535341841,
+        "mean_residue_at_harm": 54.55309211261409,
+        "mean_residue_elsewhere": 54.549300106078746,
+        "total_residue": 54.51448440551758,
+        "num_harm_events": 53021,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.02,
+        "kernel_bandwidth": 2.0
+      },
+      {
+        "condition": "SLOW_TAU",
+        "seed": 123,
+        "mean_harm": 9.066914557605983,
+        "residue_contrast": 0.011818115160970422,
+        "mean_residue_at_harm": 54.82340035030282,
+        "mean_residue_elsewhere": 54.81158223514185,
+        "total_residue": 54.7812385559082,
+        "num_harm_events": 52963,
+        "active_centers": 32,
+        "n_eval_episodes": 100,
+        "accumulation_rate": 0.02,
+        "kernel_bandwidth": 2.0
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T13:09:11.648709+00:00"
+}
