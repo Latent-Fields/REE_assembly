@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_135",
+  "entry_id": "2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-135"],
+  "source": {
+    "title": "Internal models in the cerebellum",
+    "authors": ["Daniel M. Wolpert", "R. Chris Miall", "Mitsuo Kawato"],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/S1364-6613(98)01221-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "MOSAIC architecture explicitly proposes multiple paired forward models running in parallel, with each forward model predicting consequences while responsibility estimates gate their contributions. This is a direct structural analogue to the E2 (cerebellar/predictive) running parallel to E1 (cortical/world-state) during planning. However, the biological paper does not address co-evolution of a slower world model during the rollout -- it assumes the cortical context is given, not co-updating -- so the parallel structure is confirmed but the co-evolution claim requires further support.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The MOSAIC framework treats context/environment as an input to responsibility estimators, not as a co-evolving world-state updated by cerebellar output during the rollout. This is a structural gap relative to MECH-135's co-evolution claim."
+  ],
+  "tags": ["mech_135", "cerebellum", "forward_model", "parallel_rollout", "planning", "mosaic", "motor_control", "internal_model"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum contains multiple paired forward and inverse models that run in parallel; each forward model predicts sensory consequences of motor commands, and responsibility estimates based on prediction error weight each module's contribution to the final output.",
+    "ree_translation": "E2 (cerebellar-like, z_self latent) maps onto the MOSAIC forward models: fast predictors running in parallel during trajectory evaluation. The parallel architecture directly supports MECH-135's claim that E2 must run alongside E1 during planning rather than sequentially. The responsibility-gating mechanism also provides a candidate biological basis for how E2 outputs modulate trajectory selection.",
+    "mapping_caveat": "MOSAIC forward models all share a fixed cortical context signal -- they are parallel across modules but not co-evolving with a separate slow world model. REE's claim that E1 (z_world) co-evolves *during* the E2 rollout is a stronger claim than MOSAIC supports. The motor domain of the paper also means any extension to cognitive planning requires a further bridging assumption (Wolpert & Kawato 1998 acknowledge this extension speculatively).",
+    "source_context": "Motor control; computational model grounded in ocular following response and arm movement adaptation data; non-human primate and human behavioral studies cited as support."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Landmark theoretical paper with high citation record and strong biological anchoring. Mapping fidelity is good for the parallel structure but lower for the co-evolution aspect. Transfer risk: motor domain to cognitive planning is acknowledged in the paper but not demonstrated; co-evolution of a slow world state during rollout is not addressed."
+  }
+}

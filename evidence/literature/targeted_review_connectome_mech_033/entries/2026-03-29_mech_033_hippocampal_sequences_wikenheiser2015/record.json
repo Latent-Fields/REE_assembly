@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_033",
+  "entry_id": "2026-03-29_mech_033_hippocampal_sequences_wikenheiser2015",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-033"],
+  "source": {
+    "title": "Decoupled traversals of the hippocampal sequence reflect decisions about the future",
+    "authors": ["Wikenheiser, Andrew M.", "Redish, A. David"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3945",
+    "pmid": "25559082"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct electrophysiological evidence that hippocampal place-cell sequences 'decouple' from the animal's current position to represent future paths during deliberation. This is the closest empirical analog to rollout seeding: the sequence is not a replay of past experience but a prospective projection. Confidence is high because this is in-vivo single-unit recording during active decision-making, not just a computational model. Not higher because (a) the paper does not identify the circuit source of the decoupled sequence -- it does not show that a forward-predictor analogous to E2 seeds the sequence, and (b) the task is spatial navigation with explicit decision points, not abstract goal-harm planning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_033", "hippocampus", "forward_model", "place_cells", "theta_sequences", "decision_making", "prospective_coding"],
+  "mapping": {
+    "source_claim_statement": "During deliberation at a T-maze choice point, hippocampal place-cell sequences project ahead of the animal's current position, representing the future path being considered. These 'vicarious trial and error' sequences are decoupled from current position and correlated with the subsequent choice.",
+    "ree_translation": "In REE, hippocampal rollouts are sequences of predicted future states (z_t+1, z_t+2, ...) used for trajectory evaluation. Wikenheiser & Redish show exactly this: the hippocampus generates ahead-of-position sequences at decision points that predict the choice to be made. E2 is the fast transition kernel that would compute each z_t+1 from z_t and a proposed action -- providing the step-by-step forward transition that drives the decoupled sequence. The coupling between sequence direction and subsequent choice maps to the E3 evaluation that selects among E2-generated rollouts.",
+    "mapping_caveat": "The paper demonstrates prospective sequence generation but does not identify the circuit mechanism that seeds or drives the sequence. Whether the source is a cerebellum-like fast predictor (E2 analogue), a cortical top-down signal, or intrinsic hippocampal dynamics is unresolved. REE's MECH-033 makes a specific claim about E2's role; this paper is consistent with but does not distinguish E2-seeded from other seeding mechanisms. Task is spatial T-maze (rodent), not multi-step abstract planning.",
+    "source_context": "Rodent (rat), T-maze spatial navigation with probabilistic reward, in-vivo single-unit electrophysiology during deliberation"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Nature Neuroscience, in-vivo single-unit recording during active decision-making, direct behavioral correlation. Mapping fidelity good: the paper directly demonstrates prospective hippocampal sequences at choice points, which is exactly the rollout that MECH-033 claims E2 seeds. Transfer risk moderate: spatial vs abstract planning gap; the seeding mechanism is not identified in the source."
+  }
+}

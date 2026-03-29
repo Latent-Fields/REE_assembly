@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_007",
+  "entry_id": "2026-03-29_arc_007_prioritized_replay_mattar2018",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": ["Mattar, Marcelo G.", "Daw, Nathaniel D."],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z",
+    "pmid": "30349103",
+    "pmcid": "PMC6203620",
+    "volume": "21",
+    "issue": "11",
+    "pages": "1609-1617"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This paper provides a normative theory of hippocampal replay that directly links replay content to value/utility structure: memories are replayed in order of their 'need' — how much extra reward would accrue from better decisions based on that memory. This means replay is inherently organised around value topology rather than spatial recency or proximity. For ARC-007, this is directly relevant: if replay is prioritised by utility/value, then high-residue (high-harm) locations would be candidates for prioritised replay when they are proximate in a planned trajectory, providing a computational mechanism for how paths through residue-field terrain are differentially stored and reactivated. The theory unifies planning, consolidation, and learning functions of replay under a single value-sensitive framework. Confidence is slightly reduced because the empirical validation is against spatial navigation data where 'value' is reward, not harm/residue.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_007", "hippocampus", "replay", "prioritized_memory", "value_terrain", "path_memory", "planning", "consolidation", "reward", "residue_field"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal replay is not random or purely recency-driven but is prioritised by expected utility: the gain in future reward that would result from updating the value estimate of a replayed state. Replay preferentially reactivates states that are (a) about to be encountered (need) and (b) have recently received new value information (gain). This makes replay sensitive to both the prospective trajectory and the value landscape.",
+    "ree_translation": "In REE, the residue field encodes accumulated harm salience across a trajectory. Mattar and Daw's prioritised replay framework predicts that hippocampal sequences would preferentially replay states along trajectories with high expected harm — precisely because those states have high 'need' (they are about to be traversed) and high 'gain' (their harm estimates are informative for future decisions). This provides a specific computational mechanism implementing ARC-007: path replay is not topographically uniform but is sculpted by the residue-field topology of the planned trajectory.",
+    "mapping_caveat": "The model operationalises 'value' as future expected reward — a scalar, Markovian signal. REE's residue field is a multidimensional, non-Markovian harm footprint that includes causal attribution, not just reward valence. The prioritisation metric (need x gain) may not generalise straightforwardly to a harm-accumulation landscape where the relevant signal is causal responsibility rather than expected future reward. The framework supports the mechanism but the specific utility function would need to be REE-adapted.",
+    "source_context": "Computational modelling; validated against rodent place-cell replay data (spatial navigation tasks); one variant uses successor representation as the memory substrate"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Nature Neuroscience, strongly validated computational theory). Mapping fidelity is good: the value-sensitivity of replay is exactly what ARC-007 requires, and the SR variant of the model directly connects to the Stachenfeld et al. predictive map framework. Transfer risk is moderate: the utility metric is reward-based; REE harm/residue would require a different operationalisation of 'gain' and 'need' in the prioritisation algorithm."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_007",
+  "entry_id": "2026-03-29_arc_007_cognitive_map_behrens2018",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior",
+    "authors": ["Behrens, Timothy E.J.", "Muller, Timothy H.", "Whittington, James C.R.", "Mark, Shirley", "Baram, Alon B.", "Stachenfeld, Kimberly L.", "Kurth-Nelson, Zeb"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002",
+    "pmid": "30359611",
+    "volume": "100",
+    "issue": "2",
+    "pages": "490-509"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "This major theoretical review argues that hippocampal and entorhinal circuits implement a general-purpose relational/structural knowledge map that extends well beyond Euclidean space to organise any domain with relational structure — including value, social hierarchy, and abstract feature space. This supports the spirit of ARC-007 by demonstrating that hippocampal maps are not geometrically constrained but are domain-general structural representations that can in principle encode harm/residue topology. However, the paper is a theoretical synthesis rather than direct experimental evidence for harm-terrain organisation; it broadens the concept of cognitive map without specifically grounding it in salience/harm fields. The 'mixed' direction reflects that the paper both supports the generalisation (maps can encode non-spatial structure) and implicitly challenges the specific REE framing (there is no empirical anchor for harm-residue as a map axis).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not provide evidence that harm or causal attribution specifically is used as an organising axis for hippocampal maps — the non-spatial examples are relational/semantic, not harm-weighted."
+  ],
+  "tags": ["arc_007", "hippocampus", "cognitive_map", "relational_map", "knowledge_structure", "flexible_behavior", "entorhinal", "path_memory", "non_spatial"],
+  "mapping": {
+    "source_claim_statement": "The hippocampal-entorhinal system implements a general-purpose 'cognitive map' that encodes the relational structure of any knowledge domain, not just spatial geometry. The same neural principles that organise spatial maps can organise social, conceptual, or value-based knowledge. Successor representations and grid-like codes appear across domains.",
+    "ree_translation": "If hippocampal maps are domain-general relational structures, then a residue field — the accumulated causal/harm footprint of actions — is a valid candidate axis for hippocampal map organisation. ARC-007 would be one instantiation of this principle: the hippocampus organises paths through residue-topology just as it organises paths through spatial, social, or value-based topologies. The Behrens review provides the theoretical scaffold that makes ARC-007 neurobiologically plausible.",
+    "mapping_caveat": "The review's non-spatial examples (social hierarchies, abstract feature spaces, reward structures) all share the property that the relational structure is relatively stable and experience-driven over many trials. REE's residue field may change rapidly within a single episode as actions unfold and harm accumulates. Whether hippocampal map mechanisms operate at the temporal resolution required for episode-level residue tracking is an open question not addressed by this review. The mapping is plausibility-supporting but does not constitute direct evidence.",
+    "source_context": "Theoretical/computational review; draws on rodent electrophysiology, human fMRI, artificial agents; non-spatial tasks include social hierarchy navigation and abstract sequence learning"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (flagship journal, highly cited synthesis from leading groups). Mapping fidelity is moderate: the generalisation principle supports ARC-007 but no specific harm-terrain claim is tested. Transfer risk is elevated because the non-spatial domains studied (social hierarchy, abstract sequences) differ importantly from REE's harm-accumulation residue field in temporal dynamics and causal structure."
+  }
+}

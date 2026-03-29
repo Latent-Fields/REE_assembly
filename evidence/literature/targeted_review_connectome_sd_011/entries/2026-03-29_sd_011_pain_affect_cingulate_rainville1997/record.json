@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-03-29_sd_011_pain_affect_cingulate_rainville1997",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Pain affect encoded in human anterior cingulate but not somatosensory cortex.",
+    "authors": ["Rainville P", "Duncan GH", "Price DD", "Carrier B", "Bushnell MC"],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.277.5328.968",
+    "pmid": "9252330",
+    "citation": "Science 277(5328):968-71"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "Canonical human PET study using hypnotic modulation to selectively alter pain unpleasantness while holding intensity constant. Demonstrates functional dissociation between ACC (affect) and S1 (intensity/sensory-discriminative), directly instantiating the two-stream split that SD-011 encodes as z_harm_a vs z_harm_s. High source quality (Science, >5000 citations), clean experimental design, direct mapping to claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd_011", "nociception", "dual_stream", "pain", "sensory_discriminative", "affective_motivational", "anterior_cingulate", "somatosensory_cortex", "pet", "hypnosis", "human"],
+  "mapping": {
+    "source_claim_statement": "Anterior cingulate cortex encodes pain affect (unpleasantness) selectively; primary somatosensory cortex encodes pain intensity. Hypnotic modulation of unpleasantness changes ACC activity without changing S1 activity.",
+    "ree_translation": "ACC activation maps onto z_harm_a (affective-motivational stream): encodes how unpleasant harm is, drives avoidance priority. S1/S2 activation maps onto z_harm_s (sensory-discriminative stream): encodes where/what/how intense the harm signal is. The experimental dissociation is the strongest human evidence that these are genuinely separable representational channels.",
+    "mapping_caveat": "The ACC/S1 dissociation is cortical — it does not directly demonstrate the upstream lateral vs. medial spinothalamic split that is the proposed anatomical basis of SD-011. The cortical readout could in principle arise from a single upstream stream with divergent projections rather than two anatomically distinct ascending pathways. SD-011 posits stream separation earlier (z_harm_s / z_harm_a as latent variables), so the cortical dissociation is consistent but not proof of the upstream split.",
+    "source_context": "Human adults, acute experimental pain (hot water immersion), hypnotic suggestion to modulate unpleasantness, PET neuroimaging"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.15,
+    "notes": "Transfer risk is low: human study with direct relevance to the proposed cortical-level representational distinction. The main risk is that cortical dissociation may not require the subcortical stream separation that SD-011 specifically encodes. This does not weaken support for the functional claim, only for the precise anatomical mechanism."
+  }
+}

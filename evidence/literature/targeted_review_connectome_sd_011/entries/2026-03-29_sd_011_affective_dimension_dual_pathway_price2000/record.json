@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-03-29_sd_011_affective_dimension_dual_pathway_price2000",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Psychological and neural mechanisms of the affective dimension of pain.",
+    "authors": ["Price DD"],
+    "year": 2000,
+    "venue": "Science",
+    "doi": "10.1126/science.288.5472.1769",
+    "pmid": "10846154",
+    "citation": "Science 288(5472):1769-72"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Authoritative review in Science synthesising the dual-pathway framework for pain affect, explicitly distinguishing primary unpleasantness from secondary affect (anticipatory/emotional), and detailing both direct spinal-limbic pathways and cortico-limbic pathways converging on ACC. Provides the explicit circuit-level architecture that SD-011 instantiates. High source quality and strong mapping fidelity, but as a review it does not add new primary experimental data beyond the literature it synthesises.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd_011", "nociception", "dual_stream", "pain", "affective_motivational", "sensory_discriminative", "anterior_cingulate", "spinothalamic", "limbic", "corticolimbic", "review"],
+  "mapping": {
+    "source_claim_statement": "Pain affect has two components: primary unpleasantness (immediate, encoded in ACC) and secondary affect (anticipatory emotional reactions). Both are served by two converging input routes: (1) direct spinal pathways to limbic structures and medial thalamic nuclei, and (2) a cortico-limbic pathway routing through somatosensory cortex and then to ACC. The direct path bypasses somatosensory cortex and carries motivational-urgency information; the indirect path provides contextual/cognitive mediation.",
+    "ree_translation": "The direct spinal-limbic pathway (medial spinothalamic to medial thalamus to ACC/anterior insula) maps onto z_harm_a generation: fast, automatic affective loading without full sensory-discriminative processing. The cortico-limbic pathway (lateral spinothalamic -> VPL -> S1/S2 -> ACC) represents an integration route where z_harm_s informs z_harm_a through a higher-level cross-stream integration. This is architecturally important: SD-011 separates the two streams, but Price's model makes explicit that they converge on ACC — meaning z_harm_a receives both direct affective input and cross-stream input from z_harm_s. REE's implementation needs to account for this convergence, not treat the streams as fully orthogonal.",
+    "mapping_caveat": "Price's review introduces a secondary affect dimension (anticipatory emotional suffering, regret, dread) that REE has not explicitly encoded. This may be relevant to V4 design when harm signals extend into planning horizons. Additionally, the paper describes the dual pathways as converging — not as strictly parallel independent channels — which complicates a strict z_harm_s / z_harm_a orthogonality assumption. Transfer risk: the harm signals in REE derive from gridworld navigation, not somatic nociception, so the specific circuitry is not replicated but the functional distinction is.",
+    "source_context": "Human and animal experimental literature review, combining clinical pain studies, animal tract-tracing anatomy, and human PET/fMRI neuroimaging"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "The Price 2000 review is the best single synthesis of the dual-pathway architecture for pain affect as of 2000. Its explicit description of both direct and indirect routes to ACC is the clearest circuit-level account available. Transfer risk is moderate because REE's harm signals are not somatic nociception — but the functional logic (separating where/what/how-intense from how-unpleasant/what-to-do) is domain-general."
+  }
+}

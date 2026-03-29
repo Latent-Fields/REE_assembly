@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_033",
+  "entry_id": "2026-03-29_mech_033_hippocampal_forward_sweep_pfeiffer2013",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-033"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Pfeiffer, Brad E.", "Foster, David J."],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "pmid": "23594744"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Landmark in-vivo demonstration that hippocampal place-cell sequences during awake replay project from the animal's current position to a remembered goal location -- an explicit forward sweep, not just a sequential replay. The sweeps are goal-directed and terminate at the reward site, which directly supports the idea that hippocampal rollouts are initialized from current state and propagated toward a target. Confidence slightly below Wikenheiser & Redish because the seeding mechanism is not identified and the sequences here occur during awake stillness (sharp wave ripples) rather than during active deliberation theta sequences.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_033", "hippocampus", "forward_model", "place_cells", "awake_replay", "sharp_wave_ripple", "goal_directed", "forward_sweep"],
+  "mapping": {
+    "source_claim_statement": "During awake immobility, hippocampal place-cell sequences (sharp wave ripple events) project forward from the animal's current location toward a remembered goal, traversing the intervening space in sequence. These prospective sweeps precede movement toward the goal and are not simple recapitulations of past experience.",
+    "ree_translation": "In REE, E2 seeding of hippocampal rollouts means the rollout begins at z_t (current state) and propagates forward using E2 transition kernels. Pfeiffer & Foster demonstrate this exact structure in biological hippocampus: the SWR sequence starts at current position and traverses predicted future positions toward the goal. E2's kernel would provide each z_{t+k} in the chain. The goal-directedness of the sweep also maps to E3's role in selecting rollout targets based on z_goal.",
+    "mapping_caveat": "Sequences are during sharp wave ripples (SWR) in awake immobility, not during theta-rhythm active traversal. The seeding signal for SWR sequences is debated -- candidate sources include CA3 autoassociative dynamics, entorhinal cortex input, and neocortical reactivation. An E2-analogue (fast cerebellar predictor) has not been identified as the SWR seed. Also: goal is a known spatial location, not an abstract harm-avoidance target, limiting transfer to REE's planning context.",
+    "source_context": "Rodent (rat), open maze with multiple reward locations, in-vivo CA1 place-cell electrophysiology during awake immobility (SWR events)"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high: Nature paper, landmark result, widely replicated. Mapping fidelity good: goal-directed forward sweep from current state is structurally identical to E2-seeded rollout from z_t to z_goal. Gap: SWR mechanism vs theta-sequence mechanism may differ in their seeding circuits. Transfer risk moderate-high: SWR sequences in awake immobility vs active planning sequences; spatial goal vs abstract harm/goal."
+  }
+}

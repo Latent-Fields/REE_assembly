@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_007",
+  "entry_id": "2026-03-29_arc_007_predictive_map_stachenfeld2017",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "The hippocampus as a predictive map",
+    "authors": ["Stachenfeld, Kimberly L.", "Botvinick, Matthew M.", "Gershman, Samuel J."],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4650",
+    "pmid": "28967910",
+    "volume": "20",
+    "pages": "1643-1653"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the central theoretical paper linking hippocampal place cells to a successor representation (SR) that encodes future-state predictions weighted by transition statistics. The SR is inherently sensitive to reward/value topology: when reward distributions change, the effective map distorts around reward-dense regions. This directly supports ARC-007's claim that hippocampal maps are organised around value/salience terrain rather than pure geometry. The paper is high-quality (Nature Neuroscience, widely cited), but it is primarily a theoretical/computational model with supporting re-analysis of existing datasets rather than novel electrophysiology — hence mapping fidelity is high but the empirical grounding is partly indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_007", "hippocampus", "path_memory", "residue_field", "predictive_map", "successor_representation", "place_cells", "reward_sensitivity", "replay"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus encodes a successor representation: each state is represented in terms of the discounted expected future occupancy of all other states, weighted by a transition policy. This makes place field geometry sensitive to reward structure, movement statistics, and environmental topology rather than raw Euclidean distance.",
+    "ree_translation": "In REE, the 'residue field' is the accumulated causal/harm footprint of actions — analogous to a value/salience landscape. If hippocampus encodes a successor representation, then hippocampal path storage and replay are automatically organised around the topology of that salience landscape, not just physical geometry. A path through high-residue terrain will have a systematically different SR signature than a path through neutral terrain — directly implementing ARC-007's claim.",
+    "mapping_caveat": "The SR maps future state occupancy under a fixed policy — it is shaped by reward only insofar as reward influences the policy that generates transitions. The REE residue field is an accumulated harm footprint that may evolve on faster timescales and is not identical to a reward signal. The mapping holds best when REE residue is interpreted as a shaping signal on the transition policy rather than as a direct value function component. Over-literal translation risks conflating predictive structure with normative harm representation.",
+    "source_context": "Rodent spatial navigation (linear track, open field, T-maze); human fMRI non-spatial relational task (Garvert et al. reanalysis); computational modelling throughout"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (flagship journal, foundational paper, 2000+ citations). Mapping fidelity is strong because the SR framework directly predicts value-topology sensitivity of hippocampal maps. Transfer risk is moderate: SR reward sensitivity is mediated through policy, not direct value encoding, which introduces a layer of indirection when translating to REE residue-field terrain."
+  }
+}

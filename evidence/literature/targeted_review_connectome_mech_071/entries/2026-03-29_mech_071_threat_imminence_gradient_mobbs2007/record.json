@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_071",
+  "entry_id": "2026-03-29_mech_071_threat_imminence_gradient_mobbs2007",
+  "timestamp_utc": "2026-03-29T12:15:00Z",
+  "claim_ids_tested": ["MECH-071"],
+  "source": {
+    "title": "When fear is near: threat imminence elicits prefrontal-periaqueductal gray shifts in humans",
+    "authors": ["Mobbs, D.", "Petrovic, P.", "Marchant, J.L.", "Hassabis, D.", "Weiskopf, N.", "Seymour, B.", "Dolan, R.J.", "Frith, C.D."],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1144298",
+    "pmid": "17717184",
+    "pmc": "PMC2648508"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Directly demonstrates the graded threat-proximity neural encoding that MECH-071's second claim (E3 learns a graded danger model, approach gradient not just contact) requires. As a virtual predator approached subjects in an avoidance maze, brain activity systematically shifted from vmPFC (distal threat, planning-dominated) to PAG (proximal threat, defensive escape). The gradient is continuous and prospective -- the brain encodes danger before contact, as a function of proximity. This is the neural instantiation of the approach-gradient harm model. Confidence 0.77: the effect is robust and in human brain during active avoidance, which maps well to E3's harm evaluation during trajectory planning. The virtual predator paradigm is somewhat artificial and the gradient is measured in BOLD not in latent harm representations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E3 only represents harm at contact (binary) without any prospective graded encoding during approach, the vmPFC-to-PAG gradient seen in this paper would have no REE analogue -- MECH-071's graded danger model would be disconfirmed.",
+    "If the approach-gradient structure in z_harm_s is flat until contact, this paper's continuous proximity-coding would predict that result cannot replicate in REE's architecture."
+  ],
+  "tags": ["mech_071", "threat_imminence", "approach_gradient", "proximity_encoding", "vmPFC", "periaqueductal_gray", "danger_model", "fear", "defensive_behavior", "arc_024"],
+  "mapping": {
+    "source_claim_statement": "As a virtual predator (threat) grows closer, brain activity shifts from vmPFC (associated with planning and distal threat) to periaqueductal gray (associated with immediate defensive response). This shift is graded, continuous with threat proximity, and correlates with subjective dread and confidence of escape. The threat imminence continuum -- pre-encounter, post-encounter, circa-strike -- maps onto distinct neural substrates.",
+    "ree_translation": "MECH-071's second sub-claim is that E3 learns a graded danger model with an approach gradient, not merely a binary contact/no-contact harm signal. Mobbs et al. demonstrate that the biological brain already implements such a gradient: vmPFC encodes distant threat (planning-appropriate, low urgency), PAG encodes proximal threat (defensive-escape-appropriate, high urgency), and the transition is continuous with proximity. In REE, E3's harm evaluation during trajectory rollout should instantiate an analogous gradient in z_harm_s: trajectories approaching hazards should produce increasing harm salience before contact, not just at contact. This is also what EXQ-032b PASS confirmed (energy escalation ladder: none to hazard_approach to contact). The Mobbs paper provides the biological substrate that makes this architecturally credible -- the brain has dedicated circuits for graded proximity-danger encoding, and these circuits are active during active avoidance (which is exactly what E3's trajectory planning amounts to).",
+    "mapping_caveat": "The Mobbs paradigm uses a simple 2D maze avoidance with a virtual predator -- proximity is explicit spatial distance, and the harm (pain) is applied on capture. REE's harm gradient would need to be learned from z_world features and harm history, not from explicit spatial coordinates. The vmPFC-to-PAG shift is a high-level circuit transition; REE's analogue would be a change in z_harm_s valence as a function of latent trajectory proximity to harm-associated states -- a substantially different computational implementation. The mapping to ARC-024 (harm gradients claim) is strong; the mapping to MECH-071's E2 calibration asymmetry is indirect (this paper is primarily evidence for the approach-gradient sub-claim).",
+    "source_context": "Human fMRI (n not specified in available abstract); healthy adults; active avoidance maze task with virtual predator capable of inflicting mild pain via skin electrodes; measures BOLD as function of predator proximity and threat imminence."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Science publication, widely cited, foundational to the threat imminence literature. Mapping fidelity strong for the approach-gradient sub-claim of MECH-071; transfer risk is the explicit spatial proximity to learned latent harm proximity, and biological circuit to REE latent dynamics."
+  }
+}

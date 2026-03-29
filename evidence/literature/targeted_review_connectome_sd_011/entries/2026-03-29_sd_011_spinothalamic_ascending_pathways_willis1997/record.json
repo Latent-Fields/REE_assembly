@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-03-29_sd_011_spinothalamic_ascending_pathways_willis1997",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Neuroanatomy of the pain system and of the pathways that modulate pain.",
+    "authors": ["Willis WD", "Westlund KN"],
+    "year": 1997,
+    "venue": "Journal of Clinical Neurophysiology",
+    "doi": "10.1097/00004691-199701000-00002",
+    "pmid": "9013357",
+    "pmc": "PMC7859971",
+    "citation": "J Clin Neurophysiol 14(1):2-31"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Comprehensive anatomical review of the spinothalamic tract and other ascending nociceptive pathways by two of the leading tract-tracing neuroanatomists of the 20th century. Directly describes the lateral vs. medial spinothalamic tract division, their distinct thalamic targets, and their functional significance for sensory-discriminative vs. affective-motivational pain processing. This is the definitive anatomical foundation for the proposed subcortical stream separation in SD-011.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd_011", "nociception", "dual_stream", "pain", "spinothalamic", "lateral_spinothalamic", "medial_spinothalamic", "thalamus", "anatomy", "ascending_pathways", "sensory_discriminative", "affective_motivational", "review"],
+  "mapping": {
+    "source_claim_statement": "The spinothalamic tract divides into a lateral component projecting to VPL (ventral posterolateral thalamus) and then to S1/S2 somatosensory cortex (encoding location, quality, intensity of nociception) and a medial component projecting to intralaminar and posterior thalamic nuclei and then to ACC, prefrontal cortex, and anterior insula (encoding affective-motivational responses to nociception). Multiple other ascending nociceptive pathways also exist (spinomesencephalic, spinoreticular, spinolimbic) but the STT lateral/medial division is the primary channel for cortical pain processing.",
+    "ree_translation": "Willis and Westlund provide the foundational anatomical evidence that the two pain streams diverge as early as the spinothalamic tract. The lateral STT to VPL to S1/S2 is the biological instantiation of z_harm_s: high-fidelity sensory-discriminative encoding of harm location, quality, and intensity. The medial STT to intralaminar thalamus to ACC/anterior insula is the biological instantiation of z_harm_a: affective and motivational harm encoding. This anatomical divergence is the basis for SD-011's claim that the two streams are genuinely separable rather than being a post-hoc cortical reprocessing of a single signal.",
+    "mapping_caveat": "Willis and Westlund's review is primarily based on animal (cat, monkey) tract-tracing studies. Human spinothalamic anatomy is broadly similar but there are quantitative and possibly qualitative differences. In particular, the proportion of STT neurons projecting to medial vs. lateral thalamus, and the degree to which these projections are segregated vs. collateralising (single neurons projecting to both), is not fully established. If a significant proportion of STT neurons send collaterals to both lateral and medial thalamus, the two streams would not be anatomically independent at their origin — only at their downstream targets. The review does not fully resolve this collateralisation question.",
+    "source_context": "Cat and non-human primate neuroanatomy (tract-tracing, lesion, electrophysiology); some human clinical correlates; 1997 synthesis of several decades of Willis lab work"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.28,
+    "notes": "Willis and Westlund are the canonical source on STT anatomy — Willis spent 30+ years characterising spinothalamic tract neurons. The mapping is direct: lateral/medial STT precisely maps onto z_harm_s / z_harm_a. Transfer risk is somewhat higher than the functional papers because: (1) this is animal anatomy with human inference; (2) collateralisation of STT neurons is a real anatomical complication; (3) REE's harm signal comes from a gridworld environment, not somatic nociceptors, requiring the most abstraction of all 5 papers."
+  }
+}

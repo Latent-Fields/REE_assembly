@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-03-29_sd_011_interoception_insula_lateral_medial_craig2002",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "How do you feel? Interoception: the sense of the physiological condition of the body.",
+    "authors": ["Craig AD"],
+    "year": 2002,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn894",
+    "pmid": "12154366",
+    "citation": "Nat Rev Neurosci 3(8):655-66"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Craig's foundational NRN review provides the anatomical substrate for the dual-stream distinction by establishing the lamina I spinothalamic pathway to posterior insula as the dedicated sensory-discriminative interoceptive route, while describing the medial spinothalamic projections to affective-motivational cortex. This paper is the definitive account of the lateral vs. medial STT distinction in primates and humans, and is the most influential articulation of where in the brain the two streams physically separate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd_011", "nociception", "dual_stream", "pain", "interoception", "insula", "spinothalamic", "lateral_medial", "lamina_I", "posterior_insula", "anterior_insula", "affective_motivational", "sensory_discriminative", "review"],
+  "mapping": {
+    "source_claim_statement": "A dedicated lamina I spinothalamic pathway projects to the posterior insula via VPMpc (ventral posterior medial parvocellular thalamic nucleus), providing a cortical interoceptive map of the physiological state of the body — temperature, pain, itch, visceral sensations. This is the sensory-discriminative interoceptive channel. Separate projections from lamina I and deeper laminae target medial thalamic nuclei and ACC/anterior insula, providing the affective and autonomic response channel.",
+    "ree_translation": "The lateral spinothalamic tract (lamina I -> VPMpc -> posterior insula / S2) is the anatomical substrate of z_harm_s: it provides a topographic, high-fidelity sensory-discriminative map of where harm is, what kind it is, and how intense. The medial spinothalamic pathway (to medial thalamus, ACC, anterior insula) is the anatomical substrate of z_harm_a: it carries the motivational and autonomic urgency signal. Craig's model makes the anatomical separation of these streams explicit at the spinal cord level — they diverge from lamina I neurons and are not merely cortical reprocessing of a single signal.",
+    "mapping_caveat": "Craig's model has been contested by some pain researchers who argue that the lateral/medial STT distinction is not as clean as his model implies, and that significant convergence occurs at subcortical levels. The posterior insula role is well-established in primates but the homology in rodent models (where most mechanistic work is done) is imperfect. Additionally, Craig's lamina I pathway emphasises thermoreception alongside nociception — the specific nociceptive contribution requires care not to over-generalise. REE's z_harm_s is conceived as harm-specific; Craig's posterior insula map is broader (all interoceptive modalities).",
+    "source_context": "Primate and human comparative neuroanatomy and functional imaging; synthesis of tract-tracing studies in cats and primates with human fMRI and PET"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.22,
+    "notes": "Craig 2002 is the single most important anatomical account of the dual-stream distinction. Transfer risk is moderate because: (1) REE operates on a gridworld environment, not a body; (2) the posterior insula 'map' concept requires abstraction to be relevant to engineered latents; (3) the lamina I specificity may not have a direct analogue in the REE sensor architecture. These are acceptable abstraction risks for a design-decision-level claim."
+  }
+}

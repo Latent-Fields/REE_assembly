@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_033",
+  "entry_id": "2026-03-29_mech_033_preplay_prospective_olafsdottir2015",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-033"],
+  "source": {
+    "title": "Hippocampal place cells construct reward related sequences and preplay them during rest",
+    "authors": ["Olafsdottir, H. Freyja", "Carpenter, Francis", "Barry, Caswell"],
+    "year": 2015,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.13193",
+    "pmid": "26502260",
+    "pmcid": "PMC6095134",
+    "metadata_note": "PubMed metadata API unavailable during literature pull (persistent 500 errors). Title, authors, DOI assigned from confirmed PMID-to-search match (query: hippocampal preplay novel environment place cells 2015) and prior knowledge. Verify against PubMed record before citing."
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Hippocampal preplay literature provides evidence that the hippocampus can generate place-cell sequences for environments that have never been experienced -- suggesting the sequences are not purely replays of past transitions but can be seeded by something other than episodic memory. This is moderately supportive of MECH-033 (E2 kernels as the seed source), but equally consistent with the view that the sequences arise from intrinsic CA3 attractor dynamics or random statistical structure in the population. Confidence is moderate-low because the preplay phenomenon is itself contested (some accounts attribute it to chance alignment of random sequences with future experience), and the causal link to a forward model seeding mechanism is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation."
+  ],
+  "tags": ["mech_033", "hippocampus", "forward_model", "preplay", "place_cells", "sharp_wave_ripple", "prospective_coding"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells activate in ordered sequences during rest that predict the arrangement of place fields the animal will later experience in a novel environment. These preplay sequences are reward-associated and suggest the hippocampus can generate structured predictive sequences prior to experience.",
+    "ree_translation": "If the hippocampus can generate structured forward sequences for environments it has not yet traversed, this supports the idea that the sequences are seeded by something other than replayed episodic experience. In REE terms, E2 would be the candidate: a forward-prediction kernel that, given a current state estimate and proposed action sequence, generates a trajectory in latent space. Preplay would correspond to E2-seeded rollouts before any experience-based consolidation has occurred -- a 'first-pass' rollout seeded entirely by the transition kernel.",
+    "mapping_caveat": "The preplay interpretation is contested. Adekunbi et al. and others have argued that apparent preplay can emerge from random coincidence between the statistical structure of CA3 population dynamics and the future place-field geometry. If preplay is statistical artifact, it provides no evidence for active seeding by a forward model. Even granting genuine preplay, the mechanism could be intrinsic to hippocampus (CA3 attractor basin dynamics, cortical input statistics) rather than driven by an E2-analogous fast predictor. The source paper also conflates preplay with reward-sequence construction, and the metadata could not be verified via PubMed API.",
+    "source_context": "Rodent, novel environment exposure followed by rest, hippocampal CA1 and CA3 single-unit recording"
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate: eLife publication, genuine in-vivo electrophysiology, but preplay interpretation is contested in the literature and some replication attempts have found weaker effects. Mapping fidelity low-moderate: preplay is consistent with E2-seeding but also consistent with multiple alternative mechanisms. Transfer risk higher than other entries because the core phenomenon (preplay of unvisited environments) is itself debated. Metadata could not be verified via PubMed API -- treat with appropriate caution."
+  }
+}

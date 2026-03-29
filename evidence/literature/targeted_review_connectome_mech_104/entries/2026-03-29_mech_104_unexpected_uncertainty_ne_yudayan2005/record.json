@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_104",
+  "entry_id": "2026-03-29_mech_104_unexpected_uncertainty_ne_yudayan2005",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-104"],
+  "source": {
+    "title": "Uncertainty, neuromodulation, and attention",
+    "authors": ["Yu AJ", "Dayan P"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "pmid": "15944135"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Yu and Dayan make the most explicit theoretical case in the literature for a clean dissociation between expected uncertainty (tracked by ACh) and unexpected uncertainty (tracked by NE). Unexpected uncertainty -- defined as uncertainty arising from violations of the generative model itself, i.e., the world has changed -- is proposed to drive NE-mediated attentional reorienting. This maps with high fidelity onto MECH-104's claim that unexpected harm (a prime trigger of unexpected uncertainty) elevates NE and enables de-commitment. Confidence docked because this is a computational model with limited direct LC-NE causal data; the ACh/NE dissociation is an inference from behavioral pharmacology rather than direct recording.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_104", "locus_coeruleus", "norepinephrine", "volatility", "commitment", "unexpected_uncertainty", "expected_uncertainty", "acetylcholine", "attention", "bayesian"],
+  "mapping": {
+    "source_claim_statement": "Expected uncertainty (known stochasticity within a stable environment) is tracked by acetylcholine, which attenuates prior-driven top-down predictions. Unexpected uncertainty (arising from violations of environmental stability -- model change) is tracked by norepinephrine, which signals that the generative model itself may be wrong and drives attentional reorienting away from current predictions.",
+    "ree_translation": "Yu and Dayan's 'unexpected uncertainty' is exactly the regime that unexpected harm events generate in REE: the agent's forward model did not predict harm, so the environment is potentially less stable than represented. NE signalling unexpected uncertainty maps directly onto MECH-104's volatility interrupt: elevated NE from harm-surprise signals that the current commitment (plan) is based on a model that may no longer be valid, providing the formal Bayesian justification for de-commitment. This is the strongest available theoretical grounding for why LC-NE specifically -- rather than dopaminergic prediction error -- should mediate commitment disruption.",
+    "mapping_caveat": "Yu and Dayan's model is a normative Bayesian framework inferred from behavioral pharmacology (lesion, muscarinic/nicotinic blockade studies), not direct LC unit recording. The mapping from 'unexpected uncertainty' as a Bayesian quantity to 'commitment uncertainty' as a REE construct requires that (a) NE is implemented by LC specifically (not peripheral sympathetic NE), and (b) the signal reaches commitment-gating circuitry (prefrontal/ACC) in the form postulated. Neither is directly tested in this paper. Additionally, the model does not specify whether the NE signal enables de-commitment by raising threshold for plan continuation or by directly interrupting a committed plan in progress.",
+    "source_context": "Theoretical/computational; behavioral pharmacology (rat and human studies cited); no direct electrophysiology"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: landmark Neuron paper, highly cited, rigorous Bayesian formalisation. Mapping fidelity is the strongest of the four entries -- the 'unexpected uncertainty -> NE -> reorienting' chain maps almost one-to-one onto 'unexpected harm -> LC-NE -> de-commitment'. Transfer risk is moderate: the model is normative and the mechanistic implementation is not fully specified; the step from 'attentional reorienting' to 'commitment de-gating' requires a further architectural argument."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_135",
+  "entry_id": "2026-03-29_mech_135_grasp_parallel_world_model_planning_psenka2026",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-135"],
+  "source": {
+    "title": "Parallel Stochastic Gradient-Based Planning for World Models",
+    "authors": ["Michael Psenka", "Michael Rabbat", "Aditi Krishnapriyan", "Yann LeCun", "Amir Bar"],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "doi": "10.48550/arXiv.2602.00475"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "GRASP provides a computational existence proof that parallel latent state optimization during planning rollouts is both feasible and superior to sequential shooting methods. The 'lifted states' formulation -- treating each timestep's latent state as an independent optimization variable -- is structurally analogous to allowing z_world to co-evolve across trajectory steps rather than being fixed. However, GRASP operates within a single world model rather than coupling two distinct models (E2 and E1), so it does not directly test the two-model co-evolution claim in MECH-135. The parallel advantage demonstrated (up to +10% success rate at half compute cost) is relevant evidence that parallel latent computation during planning is practically beneficial, which is consistent with MECH-135's motivation. The preprint status and single-model architecture limit confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "GRASP uses a single world model with parallelized state optimization across time -- it does not involve two separate models (fast/cerebellar and slow/cortical) co-evolving. The dual-model structure of MECH-135 is not tested.",
+    "The 'lifted states' formulation with soft dynamics constraints is a gradient-based optimization technique, not a biological parallel computation -- the mapping to cerebellar-cortical co-evolution requires significant additional bridging."
+  ],
+  "tags": ["mech_135", "parallel_rollout", "world_model", "planning", "latent_space", "gradient_based", "computational", "jepa", "trajectory_evaluation"],
+  "mapping": {
+    "source_claim_statement": "Planning in learned latent world models can be parallelized by treating future states as independent optimization variables with soft dynamics constraints, yielding better performance than sequential (shooting) methods with lower compute cost.",
+    "ree_translation": "GRASP's demonstration that parallel latent state optimization outperforms sequential rollouts is a computational argument for why MECH-135's parallel E2+E1 architecture is preferable to running E2 first and then updating z_world separately. The 'virtual states' that evolve under gradient pressure rather than strict sequential dynamics are an abstract analogue to z_world co-evolving under E2 rollout pressure rather than remaining fixed. The result supports the utility claim underlying MECH-135 (parallel co-evolution enables better trajectory evaluation) even though the mechanism differs.",
+    "mapping_caveat": "GRASP is a single-model planner; MECH-135 requires *two distinct* latent representations (z_self and z_world) maintained by functionally separate modules (E2 and E1) that co-evolve during rollout. The computational benefit of parallelism shown in GRASP does not directly imply that the two-model architecture is necessary -- a single parallel model might suffice. Additionally, GRASP's parallel advantage comes from optimization geometry (escaping local minima), not from biological co-evolution constraints, so the motivations differ.",
+    "source_context": "Computational reinforcement learning; visual world models (video prediction); evaluated on D4RL and DeepMind Control Suite benchmarks; preprint from Meta FAIR / UC Berkeley / NYU."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.48,
+    "transfer_risk": 0.55,
+    "notes": "Preprint status reduces source quality ceiling. Mapping fidelity is moderate-low: the parallel planning benefit is relevant but the single-model architecture means MECH-135's dual-model co-evolution is not directly tested. Transfer risk is higher because the computational motivation (optimization landscape) differs from the biological motivation (fast/slow coupled predictors)."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_135",
+  "entry_id": "2026-03-29_mech_135_cerebro_cerebellar_forward_model_tanaka2020",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-135"],
+  "source": {
+    "title": "The Cerebro-Cerebellum as a Locus of Forward Model: A Review",
+    "authors": ["Hirokazu Tanaka", "Takahiro Ishikawa", "Jongho Lee", "Shinji Kakei"],
+    "year": 2020,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2020.00019"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This paper provides the strongest biological grounding among the neuroscience entries for the parallel coupling claim. The Tanaka et al. review presents three converging lines of evidence: (1) dentate nucleus output is predictive of mossy fiber input (physiological), (2) movement kinematics are predictive in healthy subjects but lagging in cerebellar ataxia patients (behavioral), and (3) cerebellar cortex and dentate nucleus receive separate mossy fiber projections encoding cortical-descent and sensory-feedback signals respectively -- a morphological prerequisite for a Kalman filter computation. The Kalman filter framing is particularly relevant: a Kalman filter is inherently a parallel process (prediction step + update step simultaneously tracking a state estimate), which maps cleanly onto MECH-135's claim that E2 and E1 must co-evolve. The morphological finding of separate MF channels also supports the z_self/z_world split in SD-005. Confidence is capped at 0.74 because the paper is in the motor domain and the Kalman filter interpretation, while compelling, remains a theoretical framing rather than a direct demonstration of co-evolution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's evidence for Kalman-filter-style parallel computation is primarily in the motor domain; the extension to cognitive/planning functions is speculative and not demonstrated.",
+    "The separate MF projection finding is morphological and compatible with sequential gating architectures as well as parallel ones -- it is a necessary but not sufficient condition for parallel co-evolution."
+  ],
+  "tags": ["mech_135", "cerebellum", "forward_model", "parallel_rollout", "kalman_filter", "dentate_nucleus", "cortical_prediction", "connectome", "morphology"],
+  "mapping": {
+    "source_claim_statement": "The cerebro-cerebellum receives separate mossy fiber inputs representing cortical-descending prediction signals and sensory feedback signals, and its dentate nucleus outputs are predictive of mossy fiber inputs -- consistent with a Kalman filter performing simultaneous prediction and state update.",
+    "ree_translation": "The Kalman filter architecture described here maps directly onto MECH-135: the prediction step (E2 running forward from the current state) and the update step (E1 z_world incorporating new evidence) are inherently parallel, not sequential. The two separate MF channels map onto the z_self (motor-sensorium, E2 domain) and z_world (cortical representation, E1 domain) split in SD-005. The dentate-predictive finding supports the claim that cerebellar output anticipates cortical state, which is exactly what is required for E2 to drive co-evolution of z_world during a planning rollout.",
+    "mapping_caveat": "The paper's Kalman filter framing is an interpretive choice, not a demonstrated neural computation. The motor domain focus means the cognitive planning extension is a further inferential step. The paper explicitly notes the extension to non-motor functions is speculative. Additionally, the REE architecture differs from a strict Kalman filter in that E2 and E1 are not the prediction/update steps of a single estimator but distinct subsystems -- the structural analogy is illuminating but not exact.",
+    "source_context": "Review paper integrating physiological (monkey dentate nucleus recordings), behavioral (cerebellar ataxia patients, kinematic data), and morphological (mossy fiber projection anatomy) evidence; focus on motor control with speculative extension to cognition."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Open-access Frontiers review with multi-method evidence convergence. Mapping fidelity is the strongest of the four entries because the Kalman filter parallel structure directly instantiates the co-evolution logic. Transfer risk is moderate: motor-to-planning extension is inferential, and the Kalman filter interpretation itself is still contested."
+  }
+}

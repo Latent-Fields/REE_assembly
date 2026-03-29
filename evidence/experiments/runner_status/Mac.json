@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-29T08:36:05.517977+00:00",
+  "last_updated": "2026-03-29T12:14:20.341326+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-146",
-    "backlog_id": "EVB-0070",
-    "claim_id": "Q-001",
-    "title": "Q-001 entity-binding pair: ENTITY_BINDING_ON vs ENTITY_ABLATED (seeds [42,123])",
+    "queue_id": "V3-EXQ-147",
+    "backlog_id": "EVB-0071",
+    "claim_id": "MECH-128",
+    "title": "MECH-128/Q-002 E1 goal-conditioning pair: GOAL_CONDITIONED vs GOAL_ABLATED (seeds [42,123], world_dim=32+16)",
     "description": "",
-    "script": "experiments/v3_exq_146_q001_entity_binding_pair.py",
-    "started_at": "2026-03-29T07:25:05.960672+00:00",
+    "script": "experiments/v3_exq_147_mech128_e1_goal_conditioning_pair.py",
+    "started_at": "2026-03-29T08:46:05.307077+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
       "episodes_done": 100,
-      "episodes_total": 300,
-      "overall_pct": 33.3
+      "episodes_total": 400,
+      "overall_pct": 25.0
     },
-    "seconds_elapsed": 4260,
-    "seconds_remaining": 8532,
+    "seconds_elapsed": 12495,
+    "seconds_remaining": 37485,
     "recent_lines": [
-      "[train] ENTITY_BINDING_ON seed=123 ep 200/300 harm=1.182",
-      "[train] ENTITY_BINDING_ON seed=123 ep 300/300 harm=1.151",
-      "[ENTITY_BINDING_ON] seed=123 n_events=1317 event_response=0.0427 baseline_delta=0.0233 snr=1.831 persistence=0.9999 baseline_persist=0.9999",
-      "[V3-EXQ-146] ENTITY_ABLATED seed=123 warmup=300 eval=100 ablate_z_self=True maint_weight=0.0",
-      "[train] ENTITY_ABLATED seed=123 ep 100/300 harm=1.125"
+      "[train] GOAL_ABLATED dim=32 seed=123 ep 300/400 harm=1.033 benefit=0.000",
+      "[train] GOAL_ABLATED dim=32 seed=123 ep 400/400 harm=1.517 benefit=0.685",
+      "[GOAL_ABLATED] dim=32 seed=123 n_goal=1572 n_neutral=405 n_all=3189 err_goal=0.00018 err_neutral=0.00017 err_all=0.00018 goal_norm=0.4221",
+      "[V3-EXQ-147] GOAL_CONDITIONED world_dim=16 seed=123 goal_conditioned=True e1_goal_dim=16 warmup=400 eval=120",
+      "[train] GOAL_CONDITIONED dim=16 seed=123 ep 100/400 harm=1.220 benefit=0.000"
     ],
     "ree_version": "v3"
   },
@@ -44,24 +44,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-146",
-      "backlog_id": "EVB-0070",
-      "claim_id": "Q-001",
-      "title": "Q-001 entity-binding pair: ENTITY_BINDING_ON vs ENTITY_ABLATED (seeds [42,123])",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-147",
       "backlog_id": "EVB-0071",
       "claim_id": "MECH-128",
       "title": "MECH-128/Q-002 E1 goal-conditioning pair: GOAL_CONDITIONED vs GOAL_ABLATED (seeds [42,123], world_dim=32+16)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -2456,6 +2445,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_145_sd008_sd007_sd003_integration/v3_exq_145_sd008_sd007_sd003_integration_20260329T072503Z.json",
       "completed_by": "Mac",
       "actual_secs": 3.5
+    },
+    {
+      "queue_id": "V3-EXQ-146",
+      "backlog_id": "EVB-0070",
+      "claim_id": "Q-001",
+      "title": "Q-001 entity-binding pair: ENTITY_BINDING_ON vs ENTITY_ABLATED (seeds [42,123])",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-03-29T07:25:05.960672+00:00",
+      "completed_at": "2026-03-29T08:46:03.118724+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_146_q001_entity_binding_pair/v3_exq_146_q001_entity_binding_pair_20260329T084602Z.json",
+      "completed_by": "Mac",
+      "actual_secs": 4857.1
     }
   ]
 }

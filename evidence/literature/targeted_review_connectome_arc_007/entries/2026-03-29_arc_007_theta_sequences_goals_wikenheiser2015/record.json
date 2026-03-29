@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_007",
+  "entry_id": "2026-03-29_arc_007_theta_sequences_goals_wikenheiser2015",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["ARC-007"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals",
+    "authors": ["Wikenheiser, Andrew M.", "Redish, A. David"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909",
+    "pmid": "25559082",
+    "pmcid": "PMC4428659",
+    "volume": "18",
+    "issue": "2",
+    "pages": "289-294"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This paper provides direct electrophysiological evidence that hippocampal theta sequences (time-compressed path representations) are dynamically modulated by the animal's current goal location and the value structure of the task. Look-ahead distance scales with goal distance, predicts the animal's destination on single trials, and varies moment-by-moment with behavioural context. This strongly supports ARC-007: hippocampal sequences are not passively replaying geometry but are actively shaped by goal/value topology. The paper is novel in-vivo electrophysiology in rats performing a genuine value-guided decision task. Confidence is slightly below the Stachenfeld paper because the direct connection to 'harm salience terrain' requires interpretive translation — the paper demonstrates goal-sensitivity of sequences, not explicit residue/harm-field organisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_007", "hippocampus", "path_memory", "theta_sequences", "goal_directed", "look_ahead", "replay", "value_guided", "place_cells"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta sequences (place-cell ensemble activity compressed within theta cycles, projecting forward along an upcoming trajectory) dynamically scale their look-ahead distance based on the animal's current goal: farther goals elicit longer look-ahead; look-ahead predicts the animal's destination on individual trials.",
+    "ree_translation": "In REE, the hippocampus is posited to store and replay paths through residue-field terrain. If theta sequences scale with goal salience, then the same mechanism naturally scales with residue-field topology: a path traversing high-harm terrain would elicit more extended prospective sequencing than a low-salience path. The goal-sensitivity demonstrated here is a direct functional precursor to the residue-field sensitivity that ARC-007 requires.",
+    "mapping_caveat": "The paper uses a 'goal' operationalised as a spatial reward location with a variable wait time — a relatively simple value signal. REE's residue field is a richer, causally-grounded harm footprint that is not reducible to spatial reward locus. It is possible that theta sequences are sensitive to simple spatial goal proximity but would not scale with REE-style accumulated harm salience, which is distributed rather than point-localised. This boundary condition is not tested in this paper.",
+    "source_context": "Rat electrophysiology; circular track value-guided decision-making task; three reward locations with variable wait times; in-vivo multi-unit recording during navigation"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Strong empirical paper with direct behavioural relevance. Mapping fidelity is good but not perfect: the paper demonstrates goal-modulation of sequences rather than harm-terrain modulation per se. Transfer risk is moderate because the simplicity of the reward signal used (single spatial loci, variable wait time) may not generalise to distributed harm-landscape topology as modelled in REE."
+  }
+}

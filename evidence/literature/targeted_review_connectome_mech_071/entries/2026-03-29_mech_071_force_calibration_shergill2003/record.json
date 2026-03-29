@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_071",
+  "entry_id": "2026-03-29_mech_071_force_calibration_shergill2003",
+  "timestamp_utc": "2026-03-29T12:15:00Z",
+  "claim_ids_tested": ["MECH-071"],
+  "source": {
+    "title": "Two eyes for an eye: the neuroscience of force escalation",
+    "authors": ["Shergill, S.S.", "Bays, P.M.", "Frith, C.D.", "Wolpert, D.M."],
+    "year": 2003,
+    "venue": "Science",
+    "doi": "10.1126/science.1085327",
+    "pmid": "12855800"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The paper provides the most direct behavioral evidence for MECH-071's self/environment calibration asymmetry. When subjects match a force they have experienced, they systematically overestimate the force needed when reproducing it via their own action -- because the self-generated force feels weaker (attenuated by efference copy prediction). This means self-generated forces are UNDER-perceived relative to externally-applied identical forces. Applied to harm: agent-caused harm events produce weaker afferent harm signals than environmentally-caused harm events of identical physical magnitude. E2 operating as a forward model for self-generated actions would therefore receive systematically attenuated harm feedback compared to environment-caused events -- this is precisely the calibration asymmetry MECH-071 predicts. The confidence is 0.82 -- strong behavioral signal, clear mechanism, but domain remains force/tactile rather than harm evaluation proper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E2 harm prediction shows no agent/environment differential in calibration quality under identical physical harm magnitudes, the sensory attenuation mechanism this paper establishes would be disconfirmed as a route to MECH-071.",
+    "If the calibration asymmetry flips -- E2 better calibrated for environment-caused harm -- this would require a different theoretical account."
+  ],
+  "tags": ["mech_071", "force_calibration", "sensory_attenuation", "efference_copy", "self_other_asymmetry", "force_escalation", "agency"],
+  "mapping": {
+    "source_claim_statement": "Self-generated forces are perceived as systematically weaker than externally-applied forces of identical magnitude; subjects must apply approximately two-thirds more force than they received to perceive equivalence when using direct action. This effect disappears when the mapping between action and sensory outcome is novel (joystick control), where prediction is absent.",
+    "ree_translation": "MECH-071 claims E2 harm prediction is better calibrated for agent-caused versus environment-caused transitions. Shergill et al. demonstrate the calibration asymmetry in force perception: self-generated force arrives already discounted by the efference copy prediction. E2 as a forward model (MECH-070) does the same -- it predicts the harm consequences of agent actions in advance, so the actual harm arrives as a small residual error rather than a full surprise. Environment-caused harm, arriving with no E2 prediction, generates a full uncancelled harm signal. Critically, this means E2's harm predictions will show systematically better match (lower error) for agent-caused harm than for environment-caused harm of equal physical magnitude -- exactly the calibration asymmetry in MECH-071. The force escalation consequence (physical conflicts escalate because each participant underestimates the force they apply) is a real-world downstream of this asymmetry -- the same asymmetry, in a harm context, would mean agents systematically underestimate the harm they cause relative to harm they receive.",
+    "mapping_caveat": "The paper studies force perception in a tit-for-tat physical conflict paradigm, not a harm evaluation system per se. REE's E2 operates on latent representations of harm (z_harm_s in SD-011 architecture), not directly on force magnitudes. The question of whether forward-model attenuation of harm-relevant signals survives the encoding into z_harm_s is not addressed. Additionally, the paper's participants use direct proprioception; E2 operates on learned latent dynamics, and whether predictive attenuation emerges spontaneously in trained latent models or requires explicit architectural support is open.",
+    "source_context": "Human behavioral experiment; healthy adults; torque motor applies force to index finger; subjects reproduce force using own finger or joystick; measures perceived force magnitude via reproduction task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Science publication, widely cited, tight experimental design. Mapping fidelity high for the calibration asymmetry core claim; transfer risk is domain (force/tactile) to harm evaluation, and biological sensorimotor to artificial latent model."
+  }
+}

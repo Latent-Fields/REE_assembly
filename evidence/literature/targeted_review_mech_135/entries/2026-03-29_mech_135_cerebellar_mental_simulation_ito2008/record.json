@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_135",
+  "entry_id": "2026-03-29_mech_135_cerebellar_mental_simulation_ito2008",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-135"],
+  "source": {
+    "title": "Control of mental activities by internal models in the cerebellum",
+    "authors": ["Masao Ito"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2332"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Ito's argument that cerebellar internal models reproduce essential properties of *mental representations in the cerebral cortex* -- not merely motor dynamics -- is strong indirect support for MECH-135. If the cerebellum models cortical representation dynamics, then cerebellar prediction (E2 in REE terms) must be coupled to cortical state (E1/z_world) during mental simulation, not just during motor execution. This logically implies a form of parallel co-evolution. However, the paper is a theoretical review without direct experimental demonstration of simultaneous E2-E1 state co-evolution, and the mechanism proposed is general enough that sequential architectures are not excluded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ito's framework does not specify whether cerebellar internal models run simultaneously with cortical state updates or whether they run in an interleaved/sequential fashion. The co-evolution timing claim in MECH-135 is not directly addressed."
+  ],
+  "tags": ["mech_135", "cerebellum", "forward_model", "mental_simulation", "cortical_representation", "cognitive_planning", "internal_model", "ito"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum encodes internal models that reproduce the essential properties of mental representations in the cerebral cortex, enabling predictive control of non-motor cognitive functions including thought, imagination, and intuition.",
+    "ree_translation": "E2's role in REE extends beyond motor-sensory prediction (z_self) to modelling dynamics of cortical representations -- directly aligning with z_world (E1's domain). If E2 models cortical representation dynamics, it must run in parallel with E1 during trajectory evaluation so that E2's predictions are temporally aligned with the evolving cortical state. Ito's extension of cerebellar forward models to mental representation gives biological grounding to the E2-E1 coupling hypothesis in MECH-135.",
+    "mapping_caveat": "Ito's 'control of mental activities' framework proposes that the cerebellum models cortical activity patterns in general -- not specifically the world-state latent as distinct from the self/proprioceptive latent (the SD-005 split). Applying this to the REE z_self vs z_world architecture requires assuming that what E2 models includes world-state properties, which REE's current design restricts. The REE claim is about the co-evolution of z_world *during* an E2 rollout -- Ito does not address this dynamic coupling explicitly.",
+    "source_context": "Comprehensive theoretical review; draws on anatomical (transsynaptic viral tracing -- Middleton & Strick 1994), lesion, and imaging evidence in humans and non-human primates; includes psychiatric symptom analysis as convergent evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "High-impact review in Nature Reviews Neuroscience (1200+ citations). Mapping fidelity is moderate: the cerebellar-models-cortex claim is a strong structural match, but the co-evolution timing and the z_self/z_world split are not addressed. Transfer risk is relatively low given the paper explicitly extends to cognitive/mental functions, but the specific E2-E1 coupling during planning rollouts is an additional step."
+  }
+}

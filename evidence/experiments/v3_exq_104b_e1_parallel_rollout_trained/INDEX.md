@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_104b_e1_parallel_rollout_trained
 
-Generated: `2026-03-29T08:35:12.594888Z`
+Generated: `2026-03-29T11:14:39.629457Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

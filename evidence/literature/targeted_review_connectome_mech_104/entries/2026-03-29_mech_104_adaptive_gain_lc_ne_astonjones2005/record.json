@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_104",
+  "entry_id": "2026-03-29_mech_104_adaptive_gain_lc_ne_astonjones2005",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["MECH-104"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Aston-Jones G", "Cohen JD"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the canonical theoretical framework for LC-NE function: the paper explicitly proposes that LC phasic activity (triggered by task-relevant unexpected events, including negative outcomes) mediates behavioral flexibility by transiently raising gain and facilitating disengagement from the current task/behavioral mode. The adaptive gain theory maps well onto MECH-104's volatility interrupt enabling de-commitment. Confidence docked slightly because the paper is a theoretical synthesis rather than direct causal manipulation, and the specific link to harm surprise vs. other salient events is not cleanly separated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_104", "locus_coeruleus", "norepinephrine", "volatility", "commitment", "adaptive_gain", "phasic_lc", "behavioral_flexibility", "disengagement"],
+  "mapping": {
+    "source_claim_statement": "Phasic LC-NE activation, triggered by task-relevant unexpected events (salient stimuli, errors, unexpected outcomes), transiently increases neural gain across target forebrain regions, promoting disengagement from the current task/behavioral mode and facilitating exploration or re-engagement; tonic LC activity shifts the exploitation/exploration balance toward exploration.",
+    "ree_translation": "Phasic LC firing in response to unexpected harmful outcomes corresponds directly to MECH-104's volatility interrupt: the transient gain spike raises commitment uncertainty (MECH-104's 'spikes commitment uncertainty') and the behavioral disengagement it promotes maps onto the de-commitment route. Tonic-to-phasic LC mode transitions provide the mechanistic substrate for Route-1 (jitter) and Route-2 (harm_surprise-gated) de-commitment.",
+    "mapping_caveat": "The adaptive gain theory is silent on the specific phenomenology of 'harm' vs. generic surprise -- LC phasic responses are driven by any salient unexpected outcome (reward, punishment, orienting events). MECH-104 specifically targets unexpected harm as the trigger; whether harm events produce a qualitatively distinct LC response from unexpected reward is not established by this paper. Transfer requires additional harm-specificity evidence.",
+    "source_context": "Multi-species (rat, monkey, human); behavioral and electrophysiological; theoretical synthesis integrating LC unit recording, pharmacology, and computational modeling"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Source quality is very high -- canonical review with >4000 citations, comprehensive empirical grounding. Mapping fidelity is good but the harm-specificity gap is a genuine limitation. Transfer risk is moderate: the theory is abstract-computational, and the translation from 'task-relevant unexpected event' to 'harm surprise' requires a substantive interpretive step."
+  }
+}

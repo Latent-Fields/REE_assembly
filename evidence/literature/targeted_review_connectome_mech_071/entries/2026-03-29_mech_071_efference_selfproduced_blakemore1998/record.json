@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_071",
+  "entry_id": "2026-03-29_mech_071_efference_selfproduced_blakemore1998",
+  "timestamp_utc": "2026-03-29T12:15:00Z",
+  "claim_ids_tested": ["MECH-071"],
+  "source": {
+    "title": "Central cancellation of self-produced tickle sensation",
+    "authors": ["Blakemore, S.J.", "Wolpert, D.M.", "Frith, C.D."],
+    "year": 1998,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/2870",
+    "pmid": "10196573"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Directly demonstrates the central mechanism that makes MECH-071 neurobiologically plausible: cerebellar forward models predict the sensory consequences of self-generated movement and attenuate the somatosensory cortical response. External stimulation produces greater somatosensory cortex activation than identical self-produced stimulation, establishing that the brain differentially encodes self-generated versus externally-generated sensory events. The mapping to E2 as efference-copy forward model and the self/environment asymmetry in harm prediction is direct. Confidence capped at 0.80 because the domain is tactile sensation (not harm evaluation) and the stimuli are benign.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E2 cannot distinguish self-generated from environment-generated harm events at the latent level, this cerebellar forward-model architecture would predict identical somatosensory responses -- the opposite of what the paper shows."
+  ],
+  "tags": ["mech_071", "efference_copy", "reafference", "forward_model", "cerebellum", "self_other_asymmetry", "somatosensory_attenuation"],
+  "mapping": {
+    "source_claim_statement": "The cerebellum generates predictions of the sensory consequences of self-produced movements; these predictions cancel (attenuate) the somatosensory cortical response, so self-produced tactile stimuli produce less somatosensory cortex activation than externally produced identical stimuli.",
+    "ree_translation": "MECH-071 posits that E2 harm prediction is better calibrated for agent-caused transitions than environment-caused ones. This maps directly: E2 functions as the efference-copy forward model -- it receives motor commands (z_self, SD-005) and predicts resulting sensory-world states including harm consequences. When the agent acts, E2 has advance prediction of the outcome; when the environment acts on the agent, no efference copy exists and the harm signal arrives unpredicted. The cerebellar-cortical attenuation gradient is the precise neural mechanism that would make agent-caused harm MORE predictable (lower surprise, better calibrated) while environment-caused harm generates larger, less-attenuated prediction errors.",
+    "mapping_caveat": "The paper uses benign tactile tickle stimuli, not harm events. The claim that the same forward-model architecture extends to harm evaluation requires an additional step -- that E2/E3 harm evaluation circuits receive analogous efference-copy signals. This is architecturally supported by MECH-070 (E2 as conceptual sensorium motor model) but is not directly demonstrated in this paper.",
+    "source_context": "Human fMRI; healthy young adults; self-produced vs externally-produced tactile stimulation of the palm; measures somatosensory cortex and cerebellar BOLD responses."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High source quality -- Nature Neuroscience, widely replicated, foundational. Mapping fidelity strong for the self/other asymmetry mechanism; transfer risk is the extension from benign touch to harm evaluation, and from biological motor systems to artificial latent architectures."
+  }
+}

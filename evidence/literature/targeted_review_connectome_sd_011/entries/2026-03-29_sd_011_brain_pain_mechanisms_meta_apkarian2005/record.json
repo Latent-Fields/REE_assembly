@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-03-29_sd_011_brain_pain_mechanisms_meta_apkarian2005",
+  "timestamp_utc": "2026-03-29T11:05:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Human brain mechanisms of pain perception and regulation in health and disease.",
+    "authors": ["Apkarian AV", "Bushnell MC", "Treede RD", "Zubieta JK"],
+    "year": 2005,
+    "venue": "European Journal of Pain",
+    "doi": "10.1016/j.ejpain.2004.11.001",
+    "pmid": "15979027",
+    "citation": "Eur J Pain 9(4):463-84"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Systematic meta-analysis of 68 hemodynamic pain studies in normal subjects and 30 in clinical pain, synthesising the brain network for pain. Directly identifies S1, S2, insula, ACC, and PFC as the core pain matrix, with explicit discussion of functional roles. Provides population-level consistency data for the sensory-discriminative vs. affective-motivational split across many studies, strengthening the generalisability of the two-stream claim. Lower individual entry confidence than Rainville because it is a broad review/meta-analysis rather than a focused dissociation experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["sd_011", "nociception", "dual_stream", "pain", "meta_analysis", "pain_matrix", "anterior_cingulate", "insula", "somatosensory_cortex", "prefrontal", "human", "neuroimaging"],
+  "mapping": {
+    "source_claim_statement": "The core brain network for acute pain comprises S1, S2, insular cortex (IC), anterior cingulate cortex (ACC), and prefrontal cortex. Somatotopic organisation is confirmed in 10 studies (S1/S2 role in sensory-discriminative processing). Psychological modulation is discussed in 20 studies (affective-motivational modulation via ACC/PFC). Chronic pain shifts the network towards cognitive/emotional brain areas, suggesting a transition from sensory to affective dominance.",
+    "ree_translation": "The meta-analysis confirms that S1/S2 and posterior insula form the sensory-discriminative pain matrix (z_harm_s target regions), while ACC, anterior insula, and PFC form the affective-motivational pain matrix (z_harm_a target regions). The convergence across 68 independent studies provides population-level support for the functional two-stream hypothesis that SD-011 encodes. The chronic pain finding — in which affective/emotional regions become dominant — is architecturally relevant: it suggests that sustained or unsupported harm signals migrate from z_harm_s to z_harm_a territory, which may be a failure mode REE needs to guard against (harm signal chronification).",
+    "mapping_caveat": "The meta-analysis identifies a network, not independent streams — the 'pain matrix' regions are all co-activated in most studies, and their functional independence is inferred from differential modulation paradigms rather than demonstrated by clean dissociation. The convergence finding (S1/S2 and ACC both active in most pain studies) could be read as evidence against strict stream separation. Additionally, Apkarian et al. note substantial methodological heterogeneity across studies; the meta-analysis pools studies with different pain modalities, intensities, and duration, limiting the precision of functional claims.",
+    "source_context": "Human neuroimaging meta-analysis (PET, fMRI, EEG, MEG); acute experimental pain in healthy adults + clinical chronic pain populations; 1988-2003 literature window"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Source quality is high (4-author team including Treede and Bushnell, both authoritative in the field; European Journal of Pain systematic review). Mapping fidelity is somewhat lower because the meta-analysis supports the two-stream claim at a coarser level of analysis — it confirms network-level organisation without providing the mechanistic dissociation that Rainville or Craig provide. Transfer risk is higher because the broad pain matrix concept has been challenged as a 'salience network' rather than a pain-specific system (see Iannetti & Mouraux 2010), which would undermine a clean z_harm_s / z_harm_a interpretation."
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "run_id": "v3_exq_161_q024_trajectory_representation_triple_20260329T104847Z_v3",
+  "experiment_type": "v3_exq_161_q024_trajectory_representation_triple",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-024"
+  ],
+  "timestamp_utc": "20260329T104847Z",
+  "dry_run": true,
+  "config": {
+    "total_episodes": 500,
+    "measurement_episodes": 125,
+    "steps_per_episode": 200,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "DESCRIPTIVE",
+      "PRESCRIPTIVE",
+      "DIAGNOSTIC"
+    ],
+    "lyap_weight": 0.5,
+    "mono_margin": 0.005,
+    "te_lag_steps": [
+      1,
+      5,
+      10
+    ]
+  },
+  "thresholds": {
+    "THRESH_LYAP_BENEFIT": 0.02,
+    "THRESH_TE_BASELINE": 0.01,
+    "THRESH_MONO": 0.3,
+    "THRESH_DIAG_PARITY": 0.02,
+    "THRESH_MIN_HARM_EVENTS": 20
+  },
+  "criteria": {
+    "C1_prescriptive_benefit": false,
+    "C2_diagnostic_te_nonmarkovian": false,
+    "C3_prescriptive_monotone": true,
+    "C4_diagnostic_harm_parity": true,
+    "C5_harm_events_sufficient": false
+  },
+  "outcome": "FAIL",
+  "evidence_class": "experimental",
+  "evidence_direction": "mixed",
+  "summary": "Outcome=FAIL. Q-024: Are DESCRIPTIVE, PRESCRIPTIVE, and DIAGNOSTIC test-type variants for trajectory-integral representation all needed, or does one subsume the others? Three conditions: DESCRIPTIVE (pure attractor tracking), PRESCRIPTIVE (Lyapunov-proxy constraint enforcing monotone harm decrease), DIAGNOSTIC (transfer-entropy measurement of higher-order dynamics). C1 PRESCRIPTIVE benefit >= 0.02: False. C2 DIAGNOSTIC te_k1 > 0.01 (non-Markovian): False. C3 PRESCRIPTIVE mono_viol < 0.3: True. C4 DIAGNOSTIC harm_final within 0.02 of DESCRIPTIVE: True. C5 harm events sufficient: False. PASS => PRESCRIPTIVE adds value over DESCRIPTIVE (C1); higher-order dynamics are real (C2); prescriptive Lyapunov is functioning (C3); diagnostic does not disrupt convergence (C4). All three variants irreducibly needed; Q-024 primary hypothesis supported. PARTIAL_PRESCRIPTIVE_DOMINATES => C1+C3 pass, C2 fails: Lyapunov adds value but diagnostic is redundant; prescriptive subsumes descriptive. PARTIAL_DESCRIPTIVE_SUFFICIENT => neither C1 nor C2: pure attractor tracking sufficient; no benefit to Lyapunov constraint or TE measurement. PARTIAL_DIAGNOSTIC_ONLY => C2 but not C1: higher-order dynamics exist but Lyapunov constraint does not help; diagnostic irreducible. FAIL => insufficient data.",
+  "cells": [
+    {
+      "condition": "DESCRIPTIVE",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "condition": "PRESCRIPTIVE",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "condition": "DIAGNOSTIC",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "condition": "DESCRIPTIVE",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "condition": "PRESCRIPTIVE",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "condition": "DIAGNOSTIC",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0,
+      "n_episodes": 2
+    }
+  ],
+  "summary_table": [
+    {
+      "condition": "DESCRIPTIVE",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    },
+    {
+      "condition": "DESCRIPTIVE",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    },
+    {
+      "condition": "PRESCRIPTIVE",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    },
+    {
+      "condition": "PRESCRIPTIVE",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    },
+    {
+      "condition": "DIAGNOSTIC",
+      "seed": 42,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    },
+    {
+      "condition": "DIAGNOSTIC",
+      "seed": 123,
+      "harm_rate_final": 0.0,
+      "harm_rate_early": 0.0,
+      "harm_delta": 0.0,
+      "n_harm_events_final": 0,
+      "n_measurement_steps": 200,
+      "monotone_violation_rate": 0.0,
+      "te_k1": 0.0,
+      "te_k5": 0.0,
+      "te_k10": 0.0
+    }
+  ],
+  "pairwise_deltas": [
+    {
+      "seed": 42,
+      "harm_final_descriptive": 0.0,
+      "harm_final_prescriptive": 0.0,
+      "harm_final_diagnostic": 0.0,
+      "prescriptive_vs_descriptive": 0.0,
+      "diagnostic_vs_descriptive": 0.0,
+      "lyap_benefit_margin": -0.02,
+      "monotone_violation_rate_presc": 0.0,
+      "te_k1_diag": 0.0,
+      "te_k5_diag": 0.0,
+      "te_k10_diag": 0.0
+    },
+    {
+      "seed": 123,
+      "harm_final_descriptive": 0.0,
+      "harm_final_prescriptive": 0.0,
+      "harm_final_diagnostic": 0.0,
+      "prescriptive_vs_descriptive": 0.0,
+      "diagnostic_vs_descriptive": 0.0,
+      "lyap_benefit_margin": -0.02,
+      "monotone_violation_rate_presc": 0.0,
+      "te_k1_diag": 0.0,
+      "te_k5_diag": 0.0,
+      "te_k10_diag": 0.0
+    }
+  ]
+}

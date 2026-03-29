@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_071",
+  "entry_id": "2026-03-29_mech_071_causal_inference_corticostriatal_dorfman2021",
+  "timestamp_utc": "2026-03-29T12:15:00Z",
+  "claim_ids_tested": ["MECH-071"],
+  "source": {
+    "title": "Causal Inference Gates Corticostriatal Learning",
+    "authors": ["Dorfman, H.M.", "Tomov, M.S.", "Cheung, B.", "Clarke, D.", "Gershman, S.J.", "Hughes, B.L."],
+    "year": 2021,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2796-20.2021",
+    "pmid": "34244363",
+    "pmc": "PMC8360688"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides neural evidence for a distinct causal-inference gating mechanism that modulates how outcomes are attributed to agent actions versus external causes. RPEs modulated by causal beliefs are represented in dorsal striatum (action-learning pathway) while unmodulated RPEs are in ventral striatum. Causal beliefs are represented in anterior insula, with effective connectivity from insula to dorsal striatum. This is the neural implementation of the attribution asymmetry that MECH-071 predicts: the brain has a dedicated circuit for deciding whether an outcome was caused by the agent and gating learning accordingly. Confidence 0.72 because the paper is about reward, not harm, and uses standard RL credit assignment rather than harm-specific prediction evaluation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If E2/E3 harm prediction errors are not differentially routed based on causal attribution (agent-caused vs environment-caused), the dorsal/ventral striatum dissociation predicted by this paper would not appear in REE's architecture.",
+    "If the insula-to-striatum gating of causal beliefs is absent in harm-specific circuits, MECH-071's calibration asymmetry would need a different implementation route."
+  ],
+  "tags": ["mech_071", "causal_inference", "agency_attribution", "striatum", "insula", "prediction_error", "reinforcement_learning", "dorsal_striatum"],
+  "mapping": {
+    "source_claim_statement": "Causal beliefs about whether an outcome was caused by the agent modulate reward prediction errors in dorsal striatum but not ventral striatum. Causal beliefs themselves are represented in anterior insula and inferior frontal gyrus, with effective connectivity from anterior insula to dorsal striatum. This architecture allows the brain to restrict credit assignment to outcomes genuinely caused by the agent.",
+    "ree_translation": "MECH-071's E2 calibration asymmetry requires that the system can distinguish agent-caused from environment-caused harm transitions and apply different error weighting. Dorfman et al. provide the neural implementation of this: anterior insula computes causal beliefs (was I the cause?), and these beliefs gate RPEs in dorsal striatum (action-learning channel). In REE terms: E3's harm evaluation would receive differently-weighted prediction errors depending on causal attribution, analogous to this insula-dorsal striatum circuit. This supports the architectural necessity of a causal attribution stage upstream of harm learning -- which is precisely what MECH-071 and ARC-024 (harm gradients) together describe. The paper also supports the separation of harm-from-action versus harm-from-environment into distinct learning channels, consistent with ARC-021's incommensurable error signal argument.",
+    "mapping_caveat": "The paper studies reward credit assignment, not harm evaluation. The causal inference mechanism may be reward-specific (dorsal striatum for voluntary action credit) and not identically implemented for harm attribution. MECH-071's claim is specifically about prediction calibration quality, whereas Dorfman et al. describe gating of learning updates -- these are related but not identical phenomena. The effective connectivity (insula to striatum) is correlational from SEM, not causal.",
+    "source_context": "Human fMRI; n=31 healthy adults; Bayesian RL task with manipulated causal structure; measures RPE modulation and effective connectivity between insula and striatum."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Journal of Neuroscience, solid experimental design. Mapping fidelity is moderate -- the causal-belief gating of RPEs is the right mechanism but in a reward context; transfer risk involves extending from reward to harm and from biological striatum to E3's harm-learning pathway."
+  }
+}
