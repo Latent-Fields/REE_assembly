@@ -1,6 +1,6 @@
 # Experiment Index: claim_probe_sd_004
 
-Generated: `2026-03-29T15:41:02.734729Z`
+Generated: `2026-03-29T20:23:16.472360Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

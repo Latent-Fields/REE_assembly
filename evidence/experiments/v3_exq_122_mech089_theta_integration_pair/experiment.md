@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3` at `2026-03-28T22:10:59Z` signatures: none
 - `v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3` at `2026-03-28T20:01:34Z` signatures: none
 
 Recurring signatures:

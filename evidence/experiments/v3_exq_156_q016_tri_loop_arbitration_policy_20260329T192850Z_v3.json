@@ -1,0 +1,195 @@
+{
+  "run_id": "v3_exq_156_q016_tri_loop_arbitration_policy_20260329T192850Z_v3",
+  "experiment_type": "v3_exq_156_q016_tri_loop_arbitration_policy_pair",
+  "claim_ids": [
+    "Q-016"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "insufficient_conflict_steps_increase_hazard_density_or_conflict_prob",
+  "best_policy": null,
+  "criteria": {
+    "C1_best_policy_beats_blended_harm": false,
+    "C2_best_policy_no_coupling_collapse": false,
+    "C3_wta_more_spread_than_weighted_sum": false,
+    "C4_sufficient_conflict_steps": false,
+    "C5_gate_informative": false
+  },
+  "pre_registered_thresholds": {
+    "THRESH_HARM_MARGIN": 0.03,
+    "THRESH_SPREAD_MIN": 0.05,
+    "THRESH_GATE_VAR_MIN": 0.01,
+    "THRESH_MIN_CONFLICT_STEPS": 50,
+    "CONFLICT_THRESH": 0.15
+  },
+  "summary_metrics": {
+    "priority_harm_harm_rate": 0.0,
+    "priority_harm_inter_loop_spread": 0.0,
+    "priority_harm_commit_gate_variance": 0.0001602834452116897,
+    "priority_harm_n_conflict_steps": 0.0,
+    "priority_harm_winner_loop_entropy": 0.0,
+    "weighted_sum_harm_rate": 0.0,
+    "weighted_sum_inter_loop_spread": 0.0,
+    "weighted_sum_commit_gate_variance": 6.796626889155395e-05,
+    "weighted_sum_n_conflict_steps": 0.0,
+    "weighted_sum_winner_loop_entropy": 0.0,
+    "winner_take_all_harm_rate": 0.0,
+    "winner_take_all_inter_loop_spread": 0.0,
+    "winner_take_all_commit_gate_variance": 5.111230406069931e-07,
+    "winner_take_all_n_conflict_steps": 0.0,
+    "winner_take_all_winner_loop_entropy": 1.0818491626104834,
+    "blended_harm_rate": 0.0,
+    "blended_inter_loop_spread": 0.0,
+    "blended_commit_gate_variance": 0.0,
+    "blended_n_conflict_steps": 0.0,
+    "blended_winner_loop_entropy": 0.0,
+    "delta_harm_priority_harm_vs_blended": 0.0,
+    "delta_harm_weighted_sum_vs_blended": 0.0,
+    "delta_harm_winner_take_all_vs_blended": 0.0
+  },
+  "protocol": {
+    "total_episodes": 500,
+    "measurement_episodes": 125,
+    "steps_per_episode": 200,
+    "gate_reg": 0.0001,
+    "conflict_thresh": 0.15,
+    "weighted_sum_weights": {
+      "motor": 0.2,
+      "cog": 0.3,
+      "mot": 0.5
+    },
+    "lr": 0.0003
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Four-condition tri-loop arbitration policy test. Three gated policy conditions (PRIORITY_HARM, WEIGHTED_SUM, WINNER_TAKE_ALL) plus a BLENDED baseline (no gating). Each condition has three loop gates: motor (body-state input), cognitive (world-state input), motivational (joint input). Conflict operationalised as |g_motor - g_cog| > CONFLICT_THRESH. PRIORITY_HARM: motivational gate overrides at conflict steps; mean(all three) otherwise. WEIGHTED_SUM: fixed weighted combination (motor=0.2, cog=0.3, mot=0.5). WINNER_TAKE_ALL: argmax gate wins; others contribute 0. Loss: g_commit * harm_eval_loss + (1-g_commit) * world_pred_loss + gate entropy regularisation. BLENDED: 0.5 * harm_eval_loss + 0.5 * world_pred_loss (no gates). 4 conditions x 2 seeds = 8 cells. CausalGridWorldV2 size=8 num_hazards=5 num_resources=2 hazard_harm=0.1 env_drift_interval=5 env_drift_prob=0.4. 500 total episodes; 125 measurement episodes (last quartile).",
+  "interpretation": "PASS => Best arbitration policy identified (see best_policy field). That policy avoids coupling collapse (inter_loop_spread > threshold), outperforms BLENDED on harm avoidance, and has an informative commit gate. WTA produces more inter-loop spread than WEIGHTED_SUM (C3), consistent with hard competitive inhibition preserving loop independence. Q-016 partially resolved: the identified policy is the answer. PARTIAL_NO_WINNER => All policies that avoid coupling collapse still fail to outperform BLENDED on harm avoidance, OR no policy avoids collapse. Structural changes (separate loss targets per loop, or architectural BG segregation) are needed before arbitration policy can be discriminated. PARTIAL_COLLAPSE_ONLY => All policies collapse (inter_loop_spread -> 0). The three loop gates converge to the same value regardless of condition. Architecture-level change required. Q-016 remains open. FAIL => Insufficient conflict events for reliable metric estimation. Increase num_hazards or env_drift_prob.",
+  "per_seed_results": {
+    "PRIORITY_HARM": [
+      {
+        "condition": "PRIORITY_HARM",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 0.00027796398317573554,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      },
+      {
+        "condition": "PRIORITY_HARM",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 4.260290724764384e-05,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      }
+    ],
+    "WEIGHTED_SUM": [
+      {
+        "condition": "WEIGHTED_SUM",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 0.0001252212237132391,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      },
+      {
+        "condition": "WEIGHTED_SUM",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 1.0711314069868805e-05,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      }
+    ],
+    "WINNER_TAKE_ALL": [
+      {
+        "condition": "WINNER_TAKE_ALL",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 4.835021585188346e-07,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 6104,
+          "cog": 9581,
+          "mot": 9315
+        },
+        "winner_loop_entropy": 1.0796612945000776
+      },
+      {
+        "condition": "WINNER_TAKE_ALL",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 5.387439226951517e-07,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 6382,
+          "cog": 9080,
+          "mot": 9538
+        },
+        "winner_loop_entropy": 1.084037030720889
+      }
+    ],
+    "BLENDED": [
+      {
+        "condition": "BLENDED",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 0.0,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      },
+      {
+        "condition": "BLENDED",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "commit_gate_variance": 0.0,
+        "n_conflict_steps": 0,
+        "winner_loop_counts": {
+          "motor": 0,
+          "cog": 0,
+          "mot": 0
+        },
+        "winner_loop_entropy": 0.0
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T19:28:50.570246+00:00"
+}

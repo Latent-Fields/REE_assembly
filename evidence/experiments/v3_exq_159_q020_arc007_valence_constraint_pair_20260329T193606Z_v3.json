@@ -1,0 +1,169 @@
+{
+  "run_id": "v3_exq_159_q020_arc007_valence_constraint_pair_20260329T193606Z_v3",
+  "experiment_type": "v3_exq_159_q020_arc007_valence_constraint_pair",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "Q-020"
+  ],
+  "timestamp_utc": "20260329T193606Z",
+  "dry_run": false,
+  "config": {
+    "total_episodes": 500,
+    "measurement_episodes": 125,
+    "steps_per_episode": 200,
+    "k_candidates": 5,
+    "lr": 0.0003,
+    "ent_bonus": 0.005,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "VALUE_FLAT",
+      "VALUE_FLAT_NO_RESIDUE",
+      "VALUE_LADEN"
+    ],
+    "residue_lambda": 2.0,
+    "residue_decay": 0.95
+  },
+  "thresholds": {
+    "THRESH_PARITY": 0.05,
+    "THRESH_RESIDUE_BENEFIT": 0.04,
+    "THRESH_HARM_CEILING": 0.4,
+    "THRESH_MIN_HARM_EVENTS": 20,
+    "THRESH_VALENCE_HEAD_ACTIVE": 0.01
+  },
+  "criteria": {
+    "C1_parity_laden_flat": true,
+    "C2_residue_benefit_confirmed": false,
+    "C3_laden_not_at_floor": true,
+    "C4_harm_events_sufficient": false,
+    "C5_valence_head_active": false
+  },
+  "outcome": "FAIL",
+  "evidence_class": "experimental",
+  "evidence_direction": "weakens",
+  "summary": "Outcome=FAIL. Q-020: ARC-007 no-value-computation constraint vs MECH-073 (valence intrinsic to hippocampal map). Conditions: VALUE_FLAT (residue-shaping, no direct valence; ARC-007 compliant), VALUE_FLAT_NO_RESIDUE (ablation: no residue shaping, no direct valence), VALUE_LADEN (direct valence head during proposal generation; MECH-073 analog). C1 parity |laden-flat| <= 0.05: True. C2 residue benefit (no_residue worse than flat by >= 0.04): False. C3 laden not at floor: True. C4 enough harm events: False. C5 valence head active: False. PASS => ARC-007 constraint survives: value-flat + residue achieves parity with value-laden; residue field is the operative mechanism. MECH-073 direct intrinsic form is not required. PARTIAL_LADEN_ADVANTAGE => VALUE_LADEN outperforms VALUE_FLAT beyond parity margin; direct valence embedding adds value; ARC-007 may need revision. PARTIAL_NO_RESIDUE_EFFECT => residue ablation does not worsen VALUE_FLAT; confound: residue too weak at this scale or both conditions learn from harm equally. FAIL => insufficient harm events or valence head inactive.",
+  "cells": [
+    {
+      "condition": "VALUE_FLAT",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_FLAT_NO_RESIDUE",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_LADEN",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 3.4099317619620707e-06
+    },
+    {
+      "condition": "VALUE_FLAT",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_FLAT_NO_RESIDUE",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_LADEN",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 3.8224975726461704e-06
+    }
+  ],
+  "summary_table": [
+    {
+      "condition": "VALUE_FLAT",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_FLAT",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_FLAT_NO_RESIDUE",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_FLAT_NO_RESIDUE",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_LADEN",
+      "seed": 42,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    },
+    {
+      "condition": "VALUE_LADEN",
+      "seed": 123,
+      "harm_rate": 0.0,
+      "n_harm_events": 0,
+      "n_measurement_steps": 25000,
+      "proposal_harm_score_mean": 0.0
+    }
+  ],
+  "pairwise_deltas": [
+    {
+      "seed": 42,
+      "harm_flat": 0.0,
+      "harm_no_residue": 0.0,
+      "harm_laden": 0.0,
+      "laden_vs_flat_delta": 0.0,
+      "flat_vs_noResid_delta": 0.0,
+      "abs_laden_flat": 0.0,
+      "residue_benefit_delta": 0.0
+    },
+    {
+      "seed": 123,
+      "harm_flat": 0.0,
+      "harm_no_residue": 0.0,
+      "harm_laden": 0.0,
+      "laden_vs_flat_delta": 0.0,
+      "flat_vs_noResid_delta": 0.0,
+      "abs_laden_flat": 0.0,
+      "residue_benefit_delta": 0.0
+    }
+  ]
+}

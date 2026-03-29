@@ -336,6 +336,10 @@
   location: docs/architecture/entities_and_binding.md#q-001
   source:
     - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
+  evidence_quality_note: |
+    EXQ-146 FAIL/weakens (2026-03-29): entity binding discriminative pair. First experimental
+    entry. Failure does not yet constrain the question -- substrate and training budget gaps
+    likely.
 - id: ARC-009
   title: "Language is a symbolic mediation and coordination layer."
   claim_type: architectural_commitment
@@ -435,6 +439,10 @@
   location: docs/architecture/astrocyte_regulatory_stack.md#q-002
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+  evidence_quality_note: |
+    EXQ-147 FAIL/weakens via MECH-128 (2026-03-29): E1 goal conditioning pair FAIL. First
+    experimental entry. Failure likely reflects training budget / substrate gap rather than
+    fundamental resolution question.
 - id: Q-003
   title: "Should R(x,t) be scalar or vector?"
   claim_type: open_question
@@ -446,6 +454,10 @@
   location: docs/architecture/astrocyte_regulatory_stack.md#q-003
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+  evidence_quality_note: |
+    EXQ-148 FAIL/weakens x2 (2026-03-28, 2026-03-29): R-field dimensionality discriminative pair
+    run twice, both FAIL/weakens. Two consistent results. Weakening evidence accumulating; question
+    may need reframing once residue field contrast infrastructure is confirmed working.
 - id: Q-004
   title: "How to calibrate tau_R relative to E1/E2?"
   claim_type: open_question
@@ -457,6 +469,12 @@
   location: docs/architecture/astrocyte_regulatory_stack.md#q-004
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+  evidence_quality_note: |
+    EXQ-149 PARTIAL (2026-03-29): tau_R in [0.02, 0.5] does not affect harm rate at current
+    training budget. FAST_TAU produces ~400x more residue contrast than SLOW_TAU
+    (residue_contrast=3.09 vs 0.008), but all conditions show identical mean_harm (~9.085).
+    Question shifts: tau_R matters for residue accumulation patterns and timescales, not harm
+    rate at this training scale. Calibration question remains open at higher training budgets.
 - id: Q-005
   title: "Can sleep anneal or reset R(x,t)?"
   claim_type: open_question
@@ -468,6 +486,11 @@
   location: docs/architecture/astrocyte_regulatory_stack.md#q-005
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
+  evidence_quality_note: |
+    EXQ-150 FAIL/mixed (2026-03-29): superseded -- sleep not implemented in V3; post-training
+    phase simulation (anneal vs no-anneal) not representative of genuine sleep annealing. Manifest
+    marked superseded. Anneal vs no-anneal conditions showed identical harm (9.050). Untestable
+    until V3 sleep substrate implemented.
 - id: ARC-013
   title: "Residue is persistent latent-space curvature; hippocampal paths form a cognitive map."
   claim_type: architectural_commitment
@@ -1037,6 +1060,11 @@
   location: docs/architecture/agency_responsibility_flow.md#q-006
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
+  evidence_quality_note: |
+    EXQ-151 FAIL/mixed (2026-03-29): implementation gap -- residue field not building contrast
+    (guidance="implementation_problem_residue_field_not_building"); all conditions delta_harm=0;
+    not informative about Q-006 itself. Scoring excluded. Infrastructure fix required: residue
+    field must build meaningful contrast before developmental vs additive ethics can be tested.
 - id: Q-007
   title: "Do universal expressions map to stable control-channel regimes?"
   claim_type: open_question
@@ -1189,6 +1217,9 @@
   subject: sensory_stream_tags.minimal_set
   polarity: asserts
   status: provisional
+  evidence_quality_note: |
+    EXQ-129 FAIL (2026-03-29): stream tag pair FAIL. First experimental entry.
+    EXQ-135 FAIL (2026-03-29): reality coherence pair FAIL. Second FAIL on this claim.
   depends_on:
     - INV-008
     - INV-012
@@ -1234,6 +1265,8 @@
     criteria). SD-004 and SD-005 prerequisites implemented in V3 substrate.
     v3_pending cleared 2026-03-20. Outstanding: EXQ-046 (ARC-007 ablation) will confirm
     the action-object indexing mechanism specifically contributes.
+    EXQ-120 PASS (2026-03-28): viability map discriminative pair. evidence_direction=supports.
+    Adds one more support entry confirming the V3 substrate continues to pass this claim.
   depends_on:
     - ARC-007
     - ARC-003
@@ -1375,6 +1408,10 @@
   subject: sleep.modes_consolidation
   polarity: asserts
   status: provisional
+  evidence_quality_note: |
+    EXQ-127 FAIL (2026-03-29): superseded -- sleep not implemented in V3; post-training
+    phase simulation does not test this claim. Manifest marked superseded. Claim remains
+    provisional pending V4 sleep substrate implementation.
   depends_on:
     - ARC-011
     - ARC-005
@@ -1457,6 +1494,12 @@
     harm 67× vs self-only (harm_ao=0.00147 vs harm_self=0.0684), cal_gap_ao=0.734 vs
     cal_gap_self=0.021. All 5 criteria met. V3 z_world action-object E2 is the correct primitive.
     v3_pending cleared 2026-03-20.
+    EXQ-124 FAIL (2026-03-28): harm_rate_CHAIN=0.621 vs ABLATED=0.057 (~10x worse with kernel
+    chain). Training calibration issue: 400-episode warmup insufficient, E2 world_forward not
+    well trained, terrain prior not calibrated for kernel-chain conditions. Not fundamental
+    failure of the claim -- prior EXQ-055 PASS remains valid (different baseline). Experiment
+    design problem. Literature pull on hippocampal planning queued (Pfeiffer & Foster 2013;
+    Wikenheiser & Redish 2015).
   depends_on:
     - ARC-018
     - ARC-002
@@ -1873,6 +1916,10 @@
     architecture than episodic gating. Subject updated to reflect: completion events as
     policy-propagation gates, not as exclusive E3 update triggers. Full test requires
     ARC-023 + MECH-090 (V3 substrate, SD-006).
+    EXQ-139 FAIL (2026-03-29): mean_committed_seq_len_on=0.0 -- committed sequences never
+    generated; gate never triggered at this training scale; harm_rate_GATE_ON=harm_rate_ABLATED=
+    0.7244. Substrate issue, not scientific failure. Hold pending investigation of why committed
+    sequences fail to generate at current training budget.
   depends_on:
     - ARC-015
     - ARC-005
@@ -2262,7 +2309,15 @@
   adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
   adjudication_decision_status: applied
   adjudication_recommendation: retain_ree
-  evidence_quality_note: "All 8 experimental entries are synthetic (ree-v2, _toyenv_internal_minimal run_ids, archived 2026-02-26). The 4:4 supports/weakens split and 0.503 confidence score are entirely synthetic artefacts — do NOT act on any demote recommendation based on this data. 3 literature entries are valid (2 supports, 1 mixed) and insufficient alone to resolve the question. Retain candidate status pending genuine ree-v1-minimal runs."
+  evidence_quality_note: |
+    All 8 prior experimental entries are synthetic (ree-v2, _toyenv_internal_minimal run_ids,
+    archived 2026-02-26). The 4:4 supports/weakens split and 0.503 confidence score are
+    entirely synthetic artefacts -- do NOT act on any demote recommendation based on this data.
+    3 literature entries are valid (2 supports, 1 mixed) and insufficient alone to resolve the
+    question. Retain candidate status pending genuine ree-v1-minimal runs.
+    EXQ-152 FAIL/mixed (2026-03-29): REE_FULL vs PREDICTIVE_ONLY delta_harm=0; informative null
+    at current training scale. Significant training budget expected to be required before
+    meaningful differences emerge between full REE and predictive-only baselines.
   depends_on:
     - MECH-057
     - ARC-015
@@ -2387,7 +2442,12 @@
   adjudicated_at_utc: 2026-02-25T16:51:50.648196Z
   adjudication_decision_status: applied
   adjudication_recommendation: hybridize
-  evidence_quality_note: "Prior experimental evidence from claim_probe_q_017 / control_axis_ablation (30 runs) was from ree-v2 synthetic scaffolding. Adjudication (hybridize) is valid architectural direction. Needs genuine ree-v1-minimal control axis experiments."
+  evidence_quality_note: |
+    Prior experimental evidence from claim_probe_q_017 / control_axis_ablation (30 runs) was
+    from ree-v2 synthetic scaffolding. Adjudication (hybridize) is valid architectural direction.
+    Needs genuine ree-v1-minimal control axis experiments.
+    EXQ-157 FAIL (2026-03-29): dry_run=true -- no training occurred; all metrics zero; result
+    invalid. Manifest marked superseded. Re-queue pending with correct non-dry-run execution.
   depends_on:
     - MECH-063
     - ARC-005
@@ -2973,7 +3033,9 @@
     of the claim. C1-C3 all PASSED (gradient world present, E3 generalises, harm eval
     graded). proximity_scale=0.05 may be too narrow, amplifying approach-signal noise.
     Needs: training runs >1000 epochs with LR decay, multiple seeds, possibly larger
-    proximity_scale (0.1–0.2) to reduce noise in approach region.
+    proximity_scale (0.1-0.2) to reduce noise in approach region.
+    Hold confirmed (2026-03-29): no new experiments this session. SD-010 dependency and
+    approach-avoidance symmetry implementation remain prerequisites.
   notes: >
     Behavioral/capability-expansion prediction split from ARC-024 (2026-03-19).
     The philosophical/foundational layer (death/love as asymptotic limits) is ARC-024,
@@ -2997,6 +3059,8 @@
   subject: ethics.violence_as_terminal_error_correction
   polarity: asserts
   status: active
+  evidence_quality_note: |
+    EXQ-123 FAIL (2026-03-29): harm gradient pair FAIL. First experimental entry.
   depends_on:
     - INV-029
     - INV-028
@@ -3182,7 +3246,7 @@
   source:
     - docs/thoughts/2026-03-14_three_bg_systems_error_signals.md
     - docs/architecture/three_loop_learning_channels.md
-  evidence_quality_note: >
+  evidence_quality_note: |
     The rollout_horizon > prediction_horizon ordering is valid for planning only if E1
     co-evolves z_world during rollout (see MECH-135). Without co-evolution, a longer
     rollout worsens goal visibility -- E3 plans in a frozen world for N steps instead of
@@ -3191,6 +3255,8 @@
     z_self domain, training horizon=1-step). E2 training horizon is separate from
     rollout_horizon and correctly short. See MECH-135 for the full parallel-rollout claim
     and EXQ-103/104/105 for experimental validation.
+    EXQ-132 FAIL (2026-03-29): E2 motor model pair FAIL. First experimental entry for this
+    specific claim. Training budget likely insufficient to discriminate E2 motor model horizon.
 - id: MECH-071
   title: "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions."
   claim_type: mechanism_hypothesis
@@ -3524,6 +3590,12 @@
   subject: drive.behavioral_flatness_under_pure_avoidance
   polarity: open
   status: open
+  evidence_quality_note: |
+    narrow_open_question (2026-03-29): two independent pathways to behavioral flatness already
+    identified in notes. Pathway A (drive absence, ARC-030) tested by EXQ-072; Pathway B
+    (self-incoherence-gated commit suppression, MECH-113/114) untested. Definitive test requires
+    both pathways. No experimental evidence yet -- question narrowing applied to focus on
+    discriminating between the two pathways.
   depends_on:
     - ARC-030
     - MECH-111
@@ -3780,6 +3852,10 @@
   polarity: asserts
   status: candidate
   claim_level: functional
+  evidence_quality_note: |
+    EXQ-140 FAIL/weakens (2026-03-29): hypothesis tag gate discriminative pair FAIL.
+    Consistent with prior finding that hypothesis tag gate as implemented is invalid as
+    an approach. Weakening evidence accumulating.
   depends_on:
     - ARC-014
     - INV-011
@@ -3821,6 +3897,8 @@
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     SD-006 is not yet implemented beyond time-multiplexed phase 1. Full asynchronous
     multi-rate testing requires SD-006 phase 2 implementation.
+    EXQ-131 FAIL/mixed (2026-03-29): multirate heartbeat discriminative pair FAIL. SD-006
+    phase 2 async required for full three-loop rate separation. Confirms existing hold.
   claim_level: mixed
   functional_restatement: >
     Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
@@ -3994,6 +4072,11 @@
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     Phase-reset of E3 heartbeat requires SD-006 phase 2 async implementation first.
+    EXQ-133 FAIL (2026-03-29): 5656 phase resets fired successfully but produced no
+    discriminative behavioral signal (gap_on=0.014, criterion needs >=0.04). Resets execute
+    but downstream async update consequences do not propagate. SD-006 phase 2 (fully async
+    multi-rate loop) required for async effects to be observable. Investigation queued for
+    why phase resets produce no downstream behavioral change even with current sync implementation.
   claim_level: mechanistic
   functional_restatement: >
     Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
@@ -4027,6 +4110,8 @@
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     Quiescent heartbeat replay requires SD-006 phase 2 async loop before testing.
+    EXQ-136 FAIL/weakens (2026-03-29): quiescent replay discriminative pair FAIL. SD-006
+    phase 2 async required for full offline consolidation. Confirms existing hold.
   claim_level: mixed
   functional_restatement: >
     During quiescent periods between active E3 updates, the hippocampal module performs
@@ -4120,6 +4205,14 @@
   adjudicated_at_utc: "2026-03-25T00:00:00Z"
   adjudication_outcome: promoted
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-121 FAIL (2026-03-28): AUC_COMP_ON=0.411 vs AUC_COMP_ABLATED=0.745 (delta=-0.334).
+    Only 1/5 criteria passed. AgencyComparator actively hurts attribution performance at current
+    training scale. Possible causes: z_self (32-dim) too noisy for reliable efference-copy
+    prediction; insufficient action embedding granularity; env_drift_prob=0.3 may be too low to
+    produce enough discriminable other-caused events. Holds at active status -- prior neuroanatomical
+    and literature support remains valid. Redesign flagged: larger z_self, improved efference-copy
+    embedding, or higher env_drift_prob needed before next experimental test.
   depends_on:
     - SD-005
     - MECH-069
@@ -4161,6 +4254,7 @@
   evidence_quality_note: |
     V3 gate cleared (2026-03-28): SD-005 (z_self/z_world split) and SD-007 (reafference
     predictor) now implemented in ree-v3. Dual-stream routing experiments can proceed.
+    EXQ-130 FAIL (2026-03-29): dual-stream routing pair FAIL. First experimental entry.
   depends_on:
     - SD-005
     - MECH-069
@@ -4198,6 +4292,8 @@
     can proceed. Note: depends on MECH-091 (salient event cycle-reset) which still needs
     SD-006 (async heartbeat); design experiments around the commit boundary itself
     independent of heartbeat reset if possible.
+    EXQ-137 FAIL (2026-03-29): PPS commit locus discriminative pair FAIL. First experimental
+    entry.
   depends_on:
     - SD-005
     - MECH-091
@@ -4449,6 +4545,12 @@
   subject: e1.multimodal_exteroception_fusion
   polarity: asserts
   status: candidate
+  evidence_quality_note: |
+    EXQ-128 FAIL (2026-03-29): superseded -- no multimodal sensory input in V3 substrate;
+    artificial auditory channel not representative of genuine exteroceptive fusion. Manifest
+    marked superseded. Claim untestable until V3 multimodal input is implemented.
+    EXQ-134 FAIL (2026-03-29): somatosensory fusion pair -- same substrate issue; also
+    superseded. Claim requires genuine multi-modality input streams.
   depends_on:
     - ARC-017
     - ARC-004
@@ -4676,6 +4778,9 @@
   polarity: asserts
   status: provisional
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-125 FAIL (2026-03-29): committed mode discriminative pair FAIL. Adding weakening
+    evidence. Prior EXQ-063 PASS remains valid. Mixed evidence building.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -4709,6 +4814,10 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and
+    approach-avoidance symmetry (Go sub-channel implementation) required before testing. No
+    experimental evidence yet.
   depends_on:
     - ARC-021
     - MECH-069
@@ -5166,6 +5275,10 @@
     density-relative rather than absolute exposure. Fix: remove hazard_max normalization
     in prox_now computation (use raw field values or fixed normalization).
     EXQ-101 queued after fix.
+    EXQ-106a PASS (2026-03-28): harm_obs_a persistence fix. evidence_direction=supports. Confirms
+    harm_obs_a signal quality and accumulator behaviour are correct after normalization fix. Core
+    z_harm_s/z_harm_a stream separation claim still not implemented; this validates the accumulator
+    component only.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -5390,6 +5503,9 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-141 FAIL/weakens (2026-03-29): novelty drive discriminative pair FAIL. First
+    experimental entry.
   depends_on:
     - MECH-069
     - ARC-030
@@ -5478,6 +5594,10 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-142 FAIL/weakens (2026-03-28): self-maintenance pair FAIL (first run).
+    EXQ-142 FAIL (2026-03-29): self-maintenance pair re-run, FAIL again. Two consistent FAIL
+    results. Weakening evidence accumulating.
   depends_on:
     - SD-005
     - SD-007
@@ -5625,6 +5745,9 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL.
+    First experimental entry.
   depends_on:
     - MECH-113
     - INV-033
@@ -5671,8 +5794,13 @@
   claim_type: mechanism_hypothesis
   subject: self_maintenance.coherent_unfamiliar_pathology
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-144 PASS (2026-03-29, 5/5): coherent-unfamiliar discriminative pair. All 5 criteria met.
+    evidence_direction=supports. 0 conflict ratio; conf=0.81 with 2 experiment entries (both
+    supports) and 3 literature entries. Clean promotion to provisional per governance decision
+    2026-03-29.
   depends_on:
     - MECH-113
     - MECH-118
@@ -5732,6 +5860,13 @@
   subject: self_maintenance.deff_stability_dissociation
   polarity: open
   status: open
+  evidence_quality_note: |
+    narrow_open_question (2026-03-29): three-regime dissociation experiment design specified in
+    notes: (1) Normal training: low D_eff + high stability; (2) Noise perturbation: high D_eff +
+    low stability; (3) Structured novel perturbation: low D_eff + low stability (targeted basis
+    rotation). Experiment to test whether Regime 3 is empirically distinguishable from Regime 2.
+    No experimental evidence yet -- experiment design requires MECH-119 substrate (now
+    provisional).
   depends_on:
     - MECH-113
     - MECH-118
@@ -5829,6 +5964,12 @@
     =0.0014 in BOTH conditions -- goal has already decayed to near-zero. E1 conditioning
     cannot maintain what wasn't there. Blocked by SD-012 / seeding quality, not testable
     until z_goal seeding is reliable.
+    EXPERIMENTAL DESIGN PROBLEM (2026-03-29): goal_norm collapses to ~0.0014 in BOTH conditions
+    by step 6000, before the 30%-of-peak halflife threshold is reached. Both conditions report
+    halflife=10000 (never reached), making conditions appear identical. Fix options: (a) longer
+    post-removal window (goal removal at step 7000+ in 15000-step run); (b) lower threshold
+    to 10% of peak; (c) direct exponential decay rate fitting instead of halflife threshold.
+    New EXP proposals queued (2026-03-29) for all three options.
 
 - id: MECH-117
   title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
@@ -6692,6 +6833,11 @@
   subject: ethics.formal_convergence_characterization
   polarity: open
   status: open
+  evidence_quality_note: |
+    narrow_open_question (2026-03-29): three-step focused programme identified -- (1) prove base
+    REE (symmetric coupling, separable harm/benefit) is an ordinal potential game; (2) show
+    MECH-127 (counterfactual utility) breaks the standard framework; (3) characterize the
+    extended framework (pseudo-potential or interdependent-types). No experimental evidence yet.
   depends_on:
     - ARC-034
     - MECH-127
@@ -6729,6 +6875,13 @@
   subject: ethics.trajectory_integral_representation
   polarity: open
   status: open
+  evidence_quality_note: |
+    EXQ-161 FAIL (2026-03-29): dry_run=true -- no training occurred; all harm events=0; result
+    invalid. Manifest marked superseded. Re-queue pending.
+    narrow_open_question (2026-03-29): prescriptive covers the base symmetric-coupling case;
+    diagnostic is irreducible for MECH-127 counterfactual-activation cases. All three test
+    types (descriptive, prescriptive, diagnostic) are genuinely needed; none subsumes the others
+    for the full REE system.
   depends_on:
     - Q-023
     - ARC-034
@@ -6762,6 +6915,11 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    EXQ-147 FAIL/weakens (2026-03-29): E1 goal conditioning discriminative pair FAIL. First
+    experimental entry. Failure likely reflects training budget / substrate depth rather than
+    fundamental claim failure -- z_goal conditioning requires substantial training to show
+    discriminative effect in trajectory quality.
   depends_on:
     - MECH-112
     - ARC-003

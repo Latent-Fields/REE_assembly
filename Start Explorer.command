@@ -33,6 +33,9 @@ echo "│  Ctrl+C to stop                             │"
 echo "└─────────────────────────────────────────────┘"
 echo ""
 
+# Ensure correct machine identity for runner affinity matching
+export REE_MACHINE_NAME=DLAPTOP-4.local
+
 # Start server in background, capture PID
 caffeinate -i python3 serve.py --port $PORT &
 SERVER_PID=$!

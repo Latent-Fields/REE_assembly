@@ -1,0 +1,97 @@
+{
+  "run_id": "v3_exq_154_q014_jepa_invariance_blind_spot_20260329T190928Z_v3",
+  "experiment_type": "v3_exq_154_q014_jepa_invariance_blind_spot_pair",
+  "claim_ids": [
+    "Q-014"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "insufficient_harm_events_implementation_problem",
+  "criteria": {
+    "C1_harm_sensitive_calibrated": false,
+    "C2_jepa_invariant_calibrated": false,
+    "C3_harm_sensitive_advantage": false,
+    "C4_sufficient_harm_events": false,
+    "C5_seed_consistent": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_ATTR_MIN": 0.65,
+    "THRESH_ATTR_ADVANTAGE": 0.08,
+    "THRESH_MIN_AGENT_HARM": 20,
+    "THRESH_MIN_ENV_HARM": 20
+  },
+  "summary_metrics": {
+    "jepa_invariant_attribution_auc": 0.5,
+    "jepa_invariant_n_agent_harm": 0.0,
+    "jepa_invariant_n_env_harm": 0.0,
+    "jepa_invariant_mean_train_loss": 0.035178503262475715,
+    "harm_sensitive_attribution_auc": 0.5,
+    "harm_sensitive_n_agent_harm": 0.0,
+    "harm_sensitive_n_env_harm": 0.0,
+    "harm_sensitive_mean_train_loss": 0.03592687956315155,
+    "delta_auc_harm_sens_vs_jepa": 0.0
+  },
+  "protocol": {
+    "train_episodes": 300,
+    "probe_collect_episodes": 100,
+    "steps_per_episode": 200,
+    "ema_tau": 0.99,
+    "vicreg_gamma": 1.0,
+    "vicreg_coeff": 1.0,
+    "event_class_weight": 0.5,
+    "probe_train_steps": 200,
+    "probe_train_frac": 0.8
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Two-condition JEPA invariance blind-spot test: JEPA_INVARIANT (stop-gradient target encoder, predictor-only gradient flow, VICReg collapse prevention, no event supervision), HARM_SENSITIVE (event cross-entropy auxiliary loss + world prediction loss, full encoder gradient). Both conditions: random action policy, 300 train episodes, 100 probe episodes. Attribution probe: post-hoc linear classifier trained on (z_world, harm_source) pairs; AUC for agent-caused vs env-caused harm separation. 2 seeds x 2 conditions = 4 cells. CausalGridWorldV2 size=8 5 hazards 0 resources hazard_harm=0.05 env_drift_interval=3 env_drift_prob=0.4 (high hazard density + drift).",
+  "interpretation": "PASS => Q-014 resolved: JEPA invariance suppresses attribution signal. attribution_auc gap >= 0.08 confirms that invariance training collapses agent-caused vs env-caused harm distinctions in z_world. REE cannot use pure JEPA encoders for attribution; hybridize recommendation supported -- event-contrastive supervision required. PARTIAL_BOTH_HIGH => JEPA encoder preserves attribution at this scale; blind-spot risk not confirmed. May emerge at larger scale or with richer action-conditional harm structures. PARTIAL_BOTH_LOW => neither encoder achieves attribution calibration; environment too simple or harm events too infrequent; inconclusive. FAIL => insufficient harm events; configuration or implementation problem.",
+  "per_seed_results": {
+    "JEPA_INVARIANT": [
+      {
+        "condition": "JEPA_INVARIANT",
+        "seed": 42,
+        "attribution_auc": 0.5,
+        "n_agent_harm": 0,
+        "n_env_harm": 0,
+        "n_probe_total": 989,
+        "mean_train_loss": 0.03430345630225687
+      },
+      {
+        "condition": "JEPA_INVARIANT",
+        "seed": 123,
+        "attribution_auc": 0.5,
+        "n_agent_harm": 0,
+        "n_env_harm": 0,
+        "n_probe_total": 1076,
+        "mean_train_loss": 0.03605355022269456
+      }
+    ],
+    "HARM_SENSITIVE": [
+      {
+        "condition": "HARM_SENSITIVE",
+        "seed": 42,
+        "attribution_auc": 0.5,
+        "n_agent_harm": 0,
+        "n_env_harm": 0,
+        "n_probe_total": 989,
+        "mean_train_loss": 0.03660747733427173
+      },
+      {
+        "condition": "HARM_SENSITIVE",
+        "seed": 123,
+        "attribution_auc": 0.5,
+        "n_agent_harm": 0,
+        "n_env_harm": 0,
+        "n_probe_total": 1076,
+        "mean_train_loss": 0.03524628179203137
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T19:09:28.845393+00:00"
+}

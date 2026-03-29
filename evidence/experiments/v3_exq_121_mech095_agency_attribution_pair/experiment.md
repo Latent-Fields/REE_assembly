@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3` at `2026-03-28T22:09:39Z` signatures: none
 - `v3_exq_121_mech095_agency_attribution_pair_20260328T195503Z_v3` at `2026-03-28T19:55:03Z` signatures: none
 
 Recurring signatures:

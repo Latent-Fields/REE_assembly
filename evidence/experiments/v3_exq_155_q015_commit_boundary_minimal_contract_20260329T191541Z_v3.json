@@ -1,0 +1,116 @@
+{
+  "run_id": "v3_exq_155_q015_commit_boundary_minimal_contract_20260329T191541Z_v3",
+  "experiment_type": "v3_exq_155_q015_commit_boundary_minimal_contract_pair",
+  "claim_ids": [
+    "Q-015"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "insufficient_harm_events_or_training_divergence",
+  "criteria": {
+    "C1_with_boundary_beats_blended_harm": false,
+    "C2_with_boundary_signal_separation": true,
+    "C3_blended_correlated": false,
+    "C4_minimal_boundary_beats_blended_harm": false,
+    "C5_minimal_boundary_matches_full": true,
+    "C6_minimal_boundary_signal_separation": true,
+    "C7_sufficient_harm_events": false
+  },
+  "pre_registered_thresholds": {
+    "THRESH_HARM_MARGIN": 0.05,
+    "THRESH_CORR_MAX": 0.3,
+    "THRESH_CORR_MIN_BLENDED": 0.25,
+    "THRESH_MIN_HARM_EVENTS": 30
+  },
+  "summary_metrics": {
+    "with_boundary_last_q_harm": 0.0,
+    "with_boundary_pre_post_corr": 0.1604706308854878,
+    "with_boundary_n_harm_events": 0.0,
+    "with_boundary_mean_gate_entropy": 0.0,
+    "blended_last_q_harm": 0.0,
+    "blended_pre_post_corr": 0.013009156708938607,
+    "blended_n_harm_events": 0.0,
+    "blended_mean_gate_entropy": 0.0,
+    "minimal_boundary_last_q_harm": 0.0,
+    "minimal_boundary_pre_post_corr": 0.01977808994257763,
+    "minimal_boundary_n_harm_events": 0.0,
+    "minimal_boundary_mean_gate_entropy": -9.528851372579084e-07,
+    "delta_harm_with_vs_blended": 0.0,
+    "delta_harm_minimal_vs_blended": 0.0,
+    "delta_harm_minimal_vs_full": 0.0
+  },
+  "protocol": {
+    "total_episodes": 400,
+    "measurement_episodes": 100,
+    "steps_per_episode": 200,
+    "commit_step_frac": 0.5,
+    "alpha_blend": 0.5,
+    "lr": 0.0003
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Three-condition commit boundary minimal contract test: WITH_BOUNDARY (binary gate, episode phase split, pre=world_pred_loss only, post=harm_eval_loss only), BLENDED (no gate, alpha=0.5 mixed loss at every step), MINIMAL_BOUNDARY (learned soft gate g=sigmoid(MLP(z_world,z_self)), loss = g*harm_eval + (1-g)*world_pred, no external phase info). All conditions: random action policy, 400 total episodes, 100 measurement episodes (last quartile). Metrics: last_q_harm (policy quality), pre_post_corr (signal separation), gate_entropy (MINIMAL_BOUNDARY only -- convergence to near-binary gate). 3 conditions x 2 seeds = 6 cells. CausalGridWorldV2 size=8 num_hazards=4 num_resources=2 hazard_harm=0.05 env_drift_interval=5 env_drift_prob=0.3.",
+  "interpretation": "PASS => Q-015 partially resolved: the minimal sufficient boundary contract is a soft learned gate, not a strict binary token. MECH-061 replicated at V3 scale. REE can implement a lighter boundary mechanism. PARTIAL_FULL_NEEDED => Full binary boundary is necessary at V3 scale. Soft learned gate cannot discover the pre/post split reliably. Q-015 partially resolved: strict binary token is the minimal contract. PARTIAL_V3_FAIL => MECH-061 boundary benefit does not replicate at V3 scale. SD-007 reafference-corrected z_world may change the error signal properties in ways that eliminate the boundary benefit seen at V1 scale. FAIL => insufficient harm events or training divergence; not informative.",
+  "per_seed_results": {
+    "WITH_BOUNDARY": [
+      {
+        "condition": "WITH_BOUNDARY",
+        "seed": 42,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.1402895767970667,
+        "n_harm_events": 0,
+        "mean_gate_entropy": 0.0
+      },
+      {
+        "condition": "WITH_BOUNDARY",
+        "seed": 123,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.18065168497390888,
+        "n_harm_events": 0,
+        "mean_gate_entropy": 0.0
+      }
+    ],
+    "BLENDED": [
+      {
+        "condition": "BLENDED",
+        "seed": 42,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.017917090965988168,
+        "n_harm_events": 0,
+        "mean_gate_entropy": 0.0
+      },
+      {
+        "condition": "BLENDED",
+        "seed": 123,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.008101222451889045,
+        "n_harm_events": 0,
+        "mean_gate_entropy": 0.0
+      }
+    ],
+    "MINIMAL_BOUNDARY": [
+      {
+        "condition": "MINIMAL_BOUNDARY",
+        "seed": 42,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.0047080875980871646,
+        "n_harm_events": 0,
+        "mean_gate_entropy": -9.531480453915719e-07
+      },
+      {
+        "condition": "MINIMAL_BOUNDARY",
+        "seed": 123,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.034848092287068096,
+        "n_harm_events": 0,
+        "mean_gate_entropy": -9.526222291242448e-07
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T19:15:41.552203+00:00"
+}
