@@ -54,6 +54,51 @@
       "selected_option": "Hold at provisional \u2014 split resolved conflict scope",
       "timestamp_utc": "2026-03-19T20:35:00Z"
     },
+    "ARC-026": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.111675Z"
+    },
+    "ARC-030": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.149863Z"
+    },
+    "ARC-032": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.185592Z"
+    },
+    "ARC-033": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.222068Z"
+    },
+    "ARC-036": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "ARC-036 requires SD-011 (dual nociceptive streams) + SD-012 (homeostatic drive) as prerequisites. Both are currently blocked. Hold at candidate until V3 multi-dimensional valence vector per state is implemented (SD-013).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-29T21:15:46.898963Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -134,6 +179,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "hold_candidate_resolve_conflict",
       "timestamp_utc": "2026-02-25T16:39:07.535473Z"
+    },
+    "MECH-057a": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "EXQ-139 FAIL: committed sequences never generated (mean_committed_seq_len_on=0.0) at current training budget. Substrate issue, not falsification. Hold until committed-sequence generation is verified before promotion.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Hold at candidate -- investigate committed sequence generation first",
+      "timestamp_utc": "2026-03-29T21:15:31.848348Z"
     },
     "MECH-058": {
       "actor": "user",
@@ -236,21 +290,21 @@
     },
     "MECH-091": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Salient event phase-reset of E3 heartbeat clock. V3-scoped heartbeat cluster claim.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361147Z"
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.297665Z"
     },
     "MECH-092": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Quiescent heartbeat \u2192 hippocampal SWR-equivalent replay (micro-DMN). V3-scoped heartbeat cluster claim.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361150Z"
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.333183Z"
     },
     "MECH-093": {
       "actor": "user",
@@ -260,6 +314,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Hold at candidate \u2014 resolve conflict first",
       "timestamp_utc": "2026-03-19T19:52:00Z"
+    },
+    "MECH-094": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.368222Z"
     },
     "MECH-095": {
       "actor": "user",
@@ -314,6 +377,33 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-03-19T19:52:00Z"
+    },
+    "MECH-111": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.399734Z"
+    },
+    "MECH-116": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.432666Z"
+    },
+    "MECH-118": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.465228Z"
     },
     "MECH-135": {
       "actor": "user",
@@ -414,6 +504,51 @@
       "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
       "timestamp_utc": "2026-03-16T18:20:19.361158Z"
     },
+    "Q-021": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Two independent pathways to behavioral flatness identified (Pathway A: drive absence, ARC-030; Pathway B: self-incoherence-gated commit suppression, MECH-113/114). Discriminative experiment design specified in evidence_quality_note.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-03-29T21:15:46.773489Z"
+    },
+    "Q-022": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Three-regime dissociation experiment design specified: Normal training (low D_eff + high stability), Noise perturbation (high D_eff + low stability), Structured novel perturbation (low D_eff + low stability). Target: distinguish Regime 3 from Regime 2 empirically.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-03-29T21:15:46.805989Z"
+    },
+    "Q-023": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Three-step programme: (1) prove base REE is ordinal potential game; (2) show MECH-127 counterfactual utility breaks standard framework; (3) characterize extended framework. EXQ-160 superseded -- implementation gap.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-03-29T21:15:46.837005Z"
+    },
+    "Q-024": {
+      "actor": "user",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "EXQ-161 superseded (dry-run artifact; implementation gap -- policy trained with entropy bonus only, z_world/z_self detached). Question narrowing applied to focus on discriminating DESCRIPTIVE vs PRESCRIPTIVE vs DIAGNOSTIC trajectory representations. Fresh experiment required.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
+      "timestamp_utc": "2026-03-29T21:15:46.867662Z"
+    },
+    "SD-011": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-29T21:16:41.260169Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -424,7 +559,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-03-29T20:23:16.472360Z",
+  "generated_at_utc": "2026-03-29T21:16:47.831679Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

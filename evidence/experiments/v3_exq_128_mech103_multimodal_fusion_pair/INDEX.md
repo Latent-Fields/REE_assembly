@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_128_mech103_multimodal_fusion_pair
 
-Generated: `2026-03-29T20:23:16.472360Z`
+Generated: `2026-03-29T21:16:47.831679Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

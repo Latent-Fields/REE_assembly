@@ -2409,6 +2409,10 @@
     conf=0.55) is superseded — it was computed from the now-invalid synthetic entries.
     Retain active. Question is partially answered; further experiments on richer substrates
     will tighten the boundary contract definition.
+    EXQ-155 SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy
+    bonus (ENT_BONUS=5e-3), z_world/z_self detached from policy forward pass. Policy converges
+    to maximum-entropy random walk (action_entropy=ln(5)=1.6094); commit boundary never
+    exercised. Redesign needed with harm-avoidance policy gradient wired to policy. See EXP-0094.
   depends_on:
     - MECH-061
     - ARC-003
@@ -2423,6 +2427,11 @@
   subject: commitment.tri_loop_conflict_arbitration_policy
   polarity: asks
   status: active
+  evidence_quality_note: |
+    EXQ-156 SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy
+    bonus (ENT_BONUS=5e-3), z_world/z_self detached from policy forward pass. Policy converges
+    to maximum-entropy random walk (action_entropy=ln(5)=1.6094); tri-loop gate conflicts never
+    generated. Redesign needed with harm-avoidance policy gradient wired to policy. See EXP-0094.
   depends_on:
     - MECH-062
     - ARC-003
@@ -2446,8 +2455,12 @@
     Prior experimental evidence from claim_probe_q_017 / control_axis_ablation (30 runs) was
     from ree-v2 synthetic scaffolding. Adjudication (hybridize) is valid architectural direction.
     Needs genuine ree-v1-minimal control axis experiments.
-    EXQ-157 FAIL (2026-03-29): dry_run=true -- no training occurred; all metrics zero; result
-    invalid. Manifest marked superseded. Re-queue pending with correct non-dry-run execution.
+    EXQ-157 T081401Z SUPERSEDED (2026-03-29): dry_run=true -- no training occurred; all metrics
+    zero; result invalid. Manifest marked superseded.
+    EXQ-157 T185928Z SUPERSEDED (2026-03-29): implementation gap -- policy trained only with
+    entropy bonus (ENT_BONUS=5e-3), z_world/z_self detached from policy forward pass. Policy
+    converges to maximum-entropy random walk (action_entropy=ln(5)=1.6094); control axes never
+    exercised. Redesign needed with harm-avoidance policy gradient wired to policy. See EXP-0094.
   depends_on:
     - MECH-063
     - ARC-005
@@ -2462,6 +2475,12 @@
   subject: control_plane.reality_conflict_hysteresis_calibration
   polarity: asks
   status: active
+  evidence_quality_note: |
+    EXQ-158 PASS (2026-03-29): authority-spoofing event injection (2000+ events) confirmed
+    RC-conflict gate fires correctly and spoofing suppression applies without chronic over-
+    suppression. Note: experiment synthesizes spoofing events directly rather than relying on
+    organic hazard encounters; result valid for the threshold calibration question but does not
+    test the full organic harm-encounter pipeline. Partial answer.
   depends_on:
     - MECH-065
     - MECH-062
@@ -3575,6 +3594,10 @@
     through MECH-080 survive independently (most do not require MECH-073 to be valid).
     Note: MECH-074 through MECH-080 have partial independence from MECH-073 — see individual
     conflict notes. Q-019 resolution evidence may inform this question.
+    EXQ-159 SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy
+    bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk
+    (action_entropy=ln(5)=1.6094). Hippocampal valence constraint (ARC-007) never exercised.
+    Gated on SD-004 hippocampal navigation implementation. See EXP-0095.
   depends_on:
     - ARC-007
     - MECH-073
@@ -6838,6 +6861,9 @@
     REE (symmetric coupling, separable harm/benefit) is an ordinal potential game; (2) show
     MECH-127 (counterfactual utility) breaks the standard framework; (3) characterize the
     extended framework (pseudo-potential or interdependent-types). No experimental evidence yet.
+    EXQ-160 SUPERSEDED (2026-03-29): implementation gap -- single-agent harm avoidance not
+    working (policy = maximum-entropy random walk); multiagent convergence question premature.
+    Gated on single-agent harm-avoidance confirmed working (EXP-0094 results). See EXP-0096.
   depends_on:
     - ARC-034
     - MECH-127
@@ -6876,8 +6902,13 @@
   polarity: open
   status: open
   evidence_quality_note: |
-    EXQ-161 FAIL (2026-03-29): dry_run=true -- no training occurred; all harm events=0; result
-    invalid. Manifest marked superseded. Re-queue pending.
+    EXQ-161 T104847Z SUPERSEDED (2026-03-29): dry_run=true -- no training occurred; all harm
+    events=0; result invalid. Manifest marked superseded.
+    EXQ-161 T200440Z SUPERSEDED (2026-03-29): implementation gap -- policy trained only with
+    entropy bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk
+    (action_entropy=ln(5)=1.6094). No harm events; trajectory representation question requires
+    active harm-avoidance behavior to generate relevant trajectories. Gated on single-agent
+    harm-avoidance confirmed working. See EXP-0096.
     narrow_open_question (2026-03-29): prescriptive covers the base symmetric-coupling case;
     diagnostic is irreducible for MECH-127 counterfactual-activation cases. All three test
     types (descriptive, prescriptive, diagnostic) are genuinely needed; none subsumes the others

@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_166_sd003_obs_space_forward_model",
+  "run_id": "v3_exq_166_sd003_obs_space_forward_model_20260329T210513Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-29T21:05:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-003",
+    "ARC-033",
+    "SD-011"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_note": "EXQ-166 PASS 4/6 (2026-03-29): obs_fwd_r2=0.43 (C1 PASS) -- obs-space forward model learns to predict harm_obs_s_next, confirming ARC-033 feasibility and fixing EXQ-115 identity collapse. Trained > ablated in approach count (C3 PASS); negative causal in goal-absent condition (C4 PASS); causal_contact_trained > 0 (C5 PASS). C2/C6 sub-threshold. Supports ARC-033 (obs-space E2_harm_s forward model is viable), SD-003 (obs-space counterfactual pipeline feasible), SD-011 (harm_obs_s stream computable as obs-space input).",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}
