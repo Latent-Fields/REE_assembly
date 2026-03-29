@@ -6559,6 +6559,78 @@
     evaluation time. Both are necessary; failure modes are complementary and partially orthogonal.
     Registered 2026-03-24.
 
+- id: ARC-036
+  title: "Hippocampal terrain maps encode separable valence dimensions (wanting, liking, harm-discriminative, surprise); ARC-007 residue-field navigation is the harm-causal special case of this general architecture."
+  claim_type: architectural_commitment
+  subject: hippocampus.multidimensional_valence_map
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-007
+    - SD-011
+    - SD-012
+    - MECH-030
+    - MECH-124
+    - INV-029
+  notes: >
+    ARC-007 specifies that the hippocampal map stores and replays paths through residue-field
+    terrain. The residue field is the harm-causal special case of a more general architecture:
+    each state in the hippocampal map carries a multi-dimensional valence vector encoding
+    separable affective properties of that state.
+
+    Four valence dimensions, each with distinct biological substrate and REE mapping:
+
+    (1) Wanting (incentive salience): drive-state-scaled approach motivation, grounded in
+    mesolimbic DA (NAc core, VTA). Scales with homeostatic drive level per SD-012. Maps onto
+    the z_goal seeding mechanism: benefit_exposure is the current proxy for the wanting
+    dimension of the valence field. High wanting drives approach trajectory selection
+    independent of liking -- the wanting/liking dissociation (Berridge & Robinson 1998, 2016)
+    means approach motivation can be high even when consummatory value is low (the incentive
+    trap: compulsive approach to diminished reward).
+
+    (2) Liking (hedonic value): consummatory pleasure at outcome receipt, grounded in
+    opioid/endocannabinoid hotspots (NAc shell, ventral pallidum). Dissociable from wanting.
+    The terminal reward signal after goal achievement. If liking << wanting at a state, the
+    agent approaches but does not find the expected consummatory value -- the signature of
+    compulsive or addictive approach patterns, and a substrate for MECH-124 consolidation loops.
+
+    (3) Harm-discriminative (z_harm_s / z_harm_a): already fully specified in SD-011. The harm
+    dimension of the valence field is the most developed in the current architecture. The residue
+    field (ARC-007) is the causal-attributive specialisation of this dimension: it answers what
+    harm did I cause here, not merely what harm is present here. ARC-007 is therefore the ethical-
+    accountability layer built on top of the harm component of this general valence map.
+
+    (4) Surprise (prediction error salience): mismatch between expected and actual state, grounded
+    in dopamine RPE burst/pause (phasic DA, Schultz 1997) and LC-NE unexpected uncertainty
+    (MECH-104, Yu & Dayan 2005). High surprise at a state flags it for prioritised replay (Mattar
+    & Daw 2018: value-weighted replay is driven partly by Bellman error -- a surprise signal).
+    Novelty-weighted hippocampal replay is the empirical correlate.
+
+    Replay prioritisation: offline SWR replay (MECH-030) selects replay content based on
+    valence-weighted utility. Current drive state (SD-012) gates which dimension dominates:
+    during threat, harm-valence prioritises harm-avoiding trajectories; during resource
+    depletion, wanting-valence prioritises approach; during active learning, surprise-valence
+    prioritises novel states. This is the substrate for MECH-124's consolidation failure mode:
+    if harm-valence chronically dominates replay content, consolidation selectively amplifies
+    harm predictions, progressively contracting option space (the harm-wanting dissociation
+    produces approach-in-fear, further loading harm-valence on consolidation).
+
+    Relationship to ARC-007: ARC-007 remains valid as the claim about harm-causal residue.
+    ARC-036 generalises the map substrate. The two are complementary: ARC-007 specifies the
+    ethical-accountability signal; ARC-036 specifies the full motivational-navigational terrain
+    within which ethical trajectory selection operates.
+
+    The wanting/liking dissociation has a direct clinical-alignment implication: a system
+    optimising for wanting (incentive salience, approach) without tracking liking (consummatory
+    value) will compulsively approach high-DA states regardless of hedonic outcome -- the
+    compulsive alignment failure mode. INV-029 (love as long-horizon coherence bias) requires
+    that trajectory selection be biased toward futures that preserve coordination capacity;
+    compulsive approach driven by wanting-liking dissociation systematically undermines this
+    by narrowing the option space through repeated harm-proximate approach.
+
+    Registered 2026-03-29.
+
 - id: Q-023
   title: "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?"
   claim_type: open_question
