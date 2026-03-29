@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-03-29T13:43:21.678686Z`
+Generated: `2026-03-29T14:02:05.200389Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
