@@ -1,0 +1,146 @@
+{
+  "run_id": "v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3",
+  "experiment_type": "v3_exq_165_mech143_hippocampal_value_sensitivity",
+  "claim_ids_tested": [
+    "MECH-143",
+    "MECH-144"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "insufficient_data_or_training_divergence",
+  "criteria_met": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false
+  },
+  "pre_registered_thresholds": {
+    "THRESH_HARM_DIFF": 0.02,
+    "THRESH_COMPLETION_DIFF": 0.05,
+    "THRESH_SPIKE_TRIVIAL": 0.01,
+    "RECOVERY_THRESH": 0.005,
+    "K_SHUFFLE": 50
+  },
+  "summary_metrics": {
+    "fixed_value_harm_rate": 0.0025320887719194178,
+    "fixed_value_goal_completion_rate": 1.0,
+    "fixed_value_path_efficiency": 2.52625,
+    "fixed_value_post_shuffle_harm_spike": NaN,
+    "fixed_value_adaptation_speed_mean": NaN,
+    "fixed_value_n_goal_completions_mean": 400.0,
+    "fixed_value_n_shuffle_events_mean": 0.0,
+    "shuffled_value_harm_rate": 0.002148469538868088,
+    "shuffled_value_goal_completion_rate": 1.0,
+    "shuffled_value_path_efficiency": 2.2287500000000002,
+    "shuffled_value_post_shuffle_harm_spike": 0.00024203307909592586,
+    "shuffled_value_adaptation_speed_mean": 0.375,
+    "shuffled_value_n_goal_completions_mean": 400.0,
+    "shuffled_value_n_shuffle_events_mean": 4.0,
+    "delta_harm_fixed_vs_shuffled": -0.00038361923305132994,
+    "delta_completion_fixed_vs_shuffled": 0.0
+  },
+  "per_seed_results": {
+    "FIXED_VALUE": [
+      {
+        "seed": 42,
+        "condition": "FIXED_VALUE",
+        "harm_rate": 0.002895794299825467,
+        "goal_completion_rate": 1.0,
+        "path_efficiency": 2.02125,
+        "post_shuffle_harm_spike": NaN,
+        "adaptation_speed_mean": NaN,
+        "n_goal_completions": 400,
+        "n_shuffle_events": 0,
+        "shuffle_event_episodes": [],
+        "mean_residue_final": 0.022812485694885254
+      },
+      {
+        "seed": 123,
+        "condition": "FIXED_VALUE",
+        "harm_rate": 0.0021683832440133684,
+        "goal_completion_rate": 1.0,
+        "path_efficiency": 3.03125,
+        "post_shuffle_harm_spike": NaN,
+        "adaptation_speed_mean": NaN,
+        "n_goal_completions": 400,
+        "n_shuffle_events": 0,
+        "shuffle_event_episodes": [],
+        "mean_residue_final": 0.0267968587577343
+      }
+    ],
+    "SHUFFLED_VALUE": [
+      {
+        "seed": 42,
+        "condition": "SHUFFLED_VALUE",
+        "harm_rate": 0.0026085223920583327,
+        "goal_completion_rate": 1.0,
+        "path_efficiency": 2.50375,
+        "post_shuffle_harm_spike": 0.0001463623572412928,
+        "adaptation_speed_mean": 0.0,
+        "n_goal_completions": 400,
+        "n_shuffle_events": 4,
+        "shuffle_event_episodes": [
+          50,
+          100,
+          200,
+          350
+        ],
+        "mean_residue_final": 0.028437482193112373
+      },
+      {
+        "seed": 123,
+        "condition": "SHUFFLED_VALUE",
+        "harm_rate": 0.0016884166856778432,
+        "goal_completion_rate": 1.0,
+        "path_efficiency": 1.95375,
+        "post_shuffle_harm_spike": 0.00033770380095055893,
+        "adaptation_speed_mean": 0.75,
+        "n_goal_completions": 400,
+        "n_shuffle_events": 4,
+        "shuffle_event_episodes": [
+          50,
+          200,
+          250,
+          300
+        ],
+        "mean_residue_final": 0.021874986588954926
+      }
+    ]
+  },
+  "config": {
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "k_shuffle": 50,
+    "hazard_harm": 0.05,
+    "nav_bias": 0.6,
+    "goal_a_pos": [
+      2,
+      2
+    ],
+    "goal_b_pos": [
+      6,
+      6
+    ],
+    "goal_a_reward_high": 1.0,
+    "goal_a_reward_low": 0.5,
+    "lr": 0.001,
+    "hidden_dim": 32,
+    "world_dim": 32,
+    "self_dim": 16,
+    "harm_dim": 8,
+    "seeds": [
+      42,
+      123
+    ]
+  },
+  "scenario": "FIXED_VALUE: goal_A=1.0 (high), goal_B=0.5 (low), fixed for all 400 episodes. SHUFFLED_VALUE: every K=50 episodes, with prob=0.5 swap goal value assignments. Goal positions never change. Hazard positions never change. Hippocampal terrain navigator is value-blind (residue-field only, no reward inputs). GoalSelectionHead IS reward-sensitive (expected to show shuffle disruption). 2 conditions x 2 seeds = 4 cells. C1: harm_rate diff < 0.02. C2: completion_rate diff < 0.05. C3: post_shuffle_harm_spike < 0.01. C4: data quality gates.",
+  "interpretation": "PASS => strongly value-flat navigation confirmed. HippocampalModule terrain navigation is value-free per MECH-143. ARC-007 STRICT upheld: terrain sensitivity is a consequence of residue-field geometry, not a separate value computation. PARTIAL_SOFT_FLAT => aggregate metrics flat but transient disruption detectable after shuffles. Implicit value learning exists but is shallow. ARC-007 STRICT held at aggregate level; minor implementation issue. PARTIAL_VALUE_SENSITIVE => significant value-sensitivity in navigation. Current undifferentiated HippocampalModule violates ARC-007 STRICT. Supports MECH-144: valence intrinsic to map geometry in undifferentiated module. Dorsal/ventral CA1 separation required before ARC-007 STRICT is achievable. FAIL => insufficient data or training divergence; not informative.",
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T15:28:00.309745+00:00"
+}
