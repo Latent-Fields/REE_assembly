@@ -1,0 +1,103 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "attribution_auc_on": 0.41096796490123133,
+    "attribution_auc_ablated": 0.7449903126117519,
+    "auc_delta": -0.33402234771052053,
+    "min_contacts_eval": 171.0,
+    "mean_mismatch_agent": 1.6054643708325247,
+    "mean_mismatch_env": 1.4902036665993579,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 1.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "env_drift_prob": 0.3
+  },
+  "summary_markdown": "# V3-EXQ-121 -- MECH-095 Agency Attribution Discriminative Pair\n\n**Status:** FAIL\n**Claim:** MECH-095\n**Proposal:** EXP-0019 / EVB-0015\n**Seeds:** [42, 123]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps\n**env_drift_prob:** 0.3  **env_drift_interval:** 3\n\n## Design\n\nAGENCY_ATTRIBUTION_ON: AgencyComparator computes efference-copy mismatch (predicted z_self delta vs observed), encodes as agency signal.\nAGENCY_ATTRIBUTION_ABLATED: Direct fusion of [z_self_delta, z_world] without structured comparison.\n\n## Pre-Registered Thresholds\n\nC1: auc_ON - auc_ABLATED >= 0.05  (relative advantage)\nC2: auc_ON >= 0.6  (absolute attribution learning)\nC3: auc_ON > auc_ABLATED for ALL seeds  (consistency)\nC4: min_contacts >= 20  (data quality)\nC5 (diagnostic): env mismatch >= 1.05x agent mismatch\n\n## Aggregate Results\n\n| Metric | AGENCY_ON | AGENCY_ABLATED | Delta | Pass |\n|--------|-----------|----------------|-------|------|\n| attribution_AUC (C1) | 0.4110 | 0.7450 | -0.3340 | NO |\n| attribution_AUC >= 0.6 (C2) | 0.4110 | -- | -- | NO |\n| seed consistency (C3) | [False, False] | -- | -- | NO |\n| min_contacts (C4) | 171 | -- | -- | YES |\n| mm_env/mm_agent (C5 diag) | 0.928 | -- | -- | NO |\n\n## Interpretation\n\nMECH-095 NOT SUPPORTED at current operationalisation. auc_ON=0.4110, auc_ABLATED=0.7450, delta=-0.3340. AgencyComparator (efference-copy mismatch) did not outperform direct fusion baseline. Possible causes: (1) self_dim=32 z_self delta too noisy for reliable efference-copy prediction; (2) action embedding (one-hot 5) insufficient to predict z_self dynamics; (3) env_drift_prob=0.3 generates sufficient env_caused events but they may not produce discriminable z_self mismatch patterns.\n\n## Per-Seed (AGENCY_ATTRIBUTION_ON)\n\n  seed=42: auc=0.4109 harm_rate=0.8361 contacts_eval=192 (a=107 e=85) mm_agent=1.8663 mm_env=1.7576 train: a=835 e=671\n  seed=123: auc=0.4111 harm_rate=0.8463 contacts_eval=171 (a=103 e=68) mm_agent=1.3446 mm_env=1.2228 train: a=842 e=679\n\n## Per-Seed (AGENCY_ATTRIBUTION_ABLATED)\n\n  seed=42: auc=0.7227 harm_rate=0.8361 contacts_eval=192 (a=107 e=85) train: a=835 e=671\n  seed=123: auc=0.7673 harm_rate=0.8463 contacts_eval=171 (a=103 e=68) train: a=842 e=679\n\n## Failure Notes\n\n- C1 FAIL: auc_ON=0.4110 vs auc_ABLATED=0.7450 (delta=-0.3340, needs >=0.05). AgencyComparator did not provide relative attribution advantage. Possible causes: (1) z_self delta signal too noisy at self_dim=32, (2) env_drift_prob too low (too few env_caused events), (3) action embedding insufficient for efference copy at scale.\n- C2 FAIL: auc_ON=0.4110 (needs >=0.6). ON condition did not achieve reliable attribution above chance. Check n_agent_caused_train and n_env_caused_train -- sparse signal.\n- C3 FAIL: per_seed direction inconsistent ([False, False]). ON did not consistently beat ABLATED across seeds.\n- C5 (diagnostic): mm_agent=1.6055 mm_env=1.4902 ratio=0.928 < 1.05. Env-caused contacts did not produce higher z_self mismatch than agent-caused. The efference copy may not capture enough predictable self-motion signal.\n",
+  "claim_ids": [
+    "MECH-095"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_121_mech095_agency_attribution_pair",
+  "per_seed_on": [
+    {
+      "seed": 42,
+      "condition": "AGENCY_ATTRIBUTION_ON",
+      "agency_on": true,
+      "attribution_auc": 0.4108851017042331,
+      "harm_rate": 0.8361204013377926,
+      "harm_contacts": 1250,
+      "total_eval_steps": 1495,
+      "n_contact_steps_eval": 192,
+      "n_agent_caused_eval": 107,
+      "n_env_caused_eval": 85,
+      "mean_mismatch_agent_eval": 1.8663004319244456,
+      "mean_mismatch_env_eval": 1.7576097158824697,
+      "n_agent_caused_train": 835,
+      "n_env_caused_train": 671,
+      "total_train_steps": 12742
+    },
+    {
+      "seed": 123,
+      "condition": "AGENCY_ATTRIBUTION_ON",
+      "agency_on": true,
+      "attribution_auc": 0.41105082809822957,
+      "harm_rate": 0.8462566844919787,
+      "harm_contacts": 1266,
+      "total_eval_steps": 1496,
+      "n_contact_steps_eval": 171,
+      "n_agent_caused_eval": 103,
+      "n_env_caused_eval": 68,
+      "mean_mismatch_agent_eval": 1.3446283097406035,
+      "mean_mismatch_env_eval": 1.222797617316246,
+      "n_agent_caused_train": 842,
+      "n_env_caused_train": 679,
+      "total_train_steps": 12841
+    }
+  ],
+  "per_seed_off": [
+    {
+      "seed": 42,
+      "condition": "AGENCY_ATTRIBUTION_ABLATED",
+      "agency_on": false,
+      "attribution_auc": 0.7227047828477186,
+      "harm_rate": 0.8361204013377926,
+      "harm_contacts": 1250,
+      "total_eval_steps": 1495,
+      "n_contact_steps_eval": 192,
+      "n_agent_caused_eval": 107,
+      "n_env_caused_eval": 85,
+      "mean_mismatch_agent_eval": 0.0,
+      "mean_mismatch_env_eval": 0.0,
+      "n_agent_caused_train": 835,
+      "n_env_caused_train": 671,
+      "total_train_steps": 12742
+    },
+    {
+      "seed": 123,
+      "condition": "AGENCY_ATTRIBUTION_ABLATED",
+      "agency_on": false,
+      "attribution_auc": 0.7672758423757853,
+      "harm_rate": 0.8462566844919787,
+      "harm_contacts": 1266,
+      "total_eval_steps": 1496,
+      "n_contact_steps_eval": 171,
+      "n_agent_caused_eval": 103,
+      "n_env_caused_eval": 68,
+      "mean_mismatch_agent_eval": 0.0,
+      "mean_mismatch_env_eval": 0.0,
+      "n_agent_caused_train": 842,
+      "n_env_caused_train": 679,
+      "total_train_steps": 12841
+    }
+  ],
+  "run_timestamp": "20260328T220939Z",
+  "claim": "MECH-095",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

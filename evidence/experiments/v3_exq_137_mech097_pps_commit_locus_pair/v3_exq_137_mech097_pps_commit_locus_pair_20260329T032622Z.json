@@ -1,0 +1,51 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_locus_on": 0.0029528430725209165,
+    "gap_locus_ablated": 0.007910855424860641,
+    "delta_gap": -0.004958012352339725,
+    "n_harm_eval_min": 535.0,
+    "n_approach_contacts_min": 535.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "nav_bias": 0.45,
+    "per_seed_delta_min": -0.008270084725026439,
+    "per_seed_delta_max": -0.0016459399796530105,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-137 -- MECH-097 Peripersonal Space Commit Locus Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-097\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** PPS_LOCUS_ON vs PPS_LOCUS_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.45\n\n## Experimental Design\n\nPPS_LOCUS_ON: harm_eval_head receives cat(z_world, pps_feature)\n  pps_feature = max hazard_field intensity in central 3x3 of 5x5 view\nPPS_LOCUS_ABLATED: harm_eval_head receives z_world only\n\n## Pre-Registered Thresholds\n\nC1: gap_locus_on >= 0.04 in all seeds  (PPS_LOCUS_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (PPS adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: n_approach_contacts_min >= 10  (manipulation check: proximity events fired)\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| PPS_LOCUS_ON      | 0.0030 | 0.5401 | 0.5372 |\n| PPS_LOCUS_ABLATED | 0.0079 | 0.5234 | 0.5155 |\n\n**delta_gap (ON - ABLATED): -0.0050**\n**n_approach_contacts (min across all cells): 535**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0030 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0083, -0.0016] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0079 |\n| C4: n_harm_min >= 20 | PASS | 535 |\n| C5: n_approach_contacts_min >= 10 | PASS | 535 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-097 V3 proxy NOT supported: gap_on=0.0030 (C1 FAIL), delta=-0.0050 (C2 FAIL). Peripersonal space proximity encoding does not demonstrate improvement in harm eval quality at this training scale.\n\n## Per-Seed\n\nPPS_LOCUS_ON:\n  seed=42: gap=0.0038 n_harm=545 n_approach_contacts=545\n  seed=123: gap=0.0021 n_harm=535 n_approach_contacts=535\n\nPPS_LOCUS_ABLATED:\n  seed=42: gap=0.0121 n_harm=545 n_approach_contacts=545\n  seed=123: gap=0.0037 n_harm=535 n_approach_contacts=535\n\n## Failure Notes\n\n- C1 FAIL: PPS_LOCUS_ON gap below 0.04 in seeds [42, 123] -- harm_eval_head not learning harm representation even with PPS feature\n- C2 FAIL: per-seed deltas ['-0.0083', '-0.0016'] < 0.02 -- PPS feature does not add >=2pp over ablated condition\n",
+  "claim_ids": [
+    "MECH-097"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_137_mech097_pps_commit_locus_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032622Z",
+  "claim": "MECH-097",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_137_mech097_pps_commit_locus_pair_20260329T032622Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_locus_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20,
+    "C5_n_approach_contacts_min": 10
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "PPS_LOCUS_ON",
+    "PPS_LOCUS_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0029",
+  "proposal_id": "EXP-0037"
+}

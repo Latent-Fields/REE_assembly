@@ -1,0 +1,91 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "harm_rate_chain": 0.6211210449154644,
+    "harm_rate_ablated": 0.05680525804435856,
+    "harm_reduction_delta": -0.5643157868711058,
+    "relative_reduction": -9.934217470334142,
+    "min_contacts_ablated": 369.0,
+    "mean_residue_chain": 0.07500148202923534,
+    "mean_residue_ablated": 0.07499961702029088,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_residue_diag": 0.0,
+    "criteria_met": 1.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "n_candidates": 8.0,
+    "horizon": 5.0,
+    "n_cem_iterations": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-124 -- MECH-033 Kernel Chaining Interface Discriminative Pair\n\n**Status:** FAIL\n**Claim:** MECH-033\n**Proposal:** EXP-0023 / EVB-0018\n**Seeds:** [42, 123]\n**alpha_world:** 0.9  (SD-008)\n**Warmup:** 400 eps  **Eval:** 50 eps\n**n_candidates:** 8  **horizon:** 5  **n_cem_iterations:** 3\n\n## Design\n\nKERNEL_CHAIN_ON: HippocampalModule CEM in action-object space O. Terrain prior seeds distribution; E2 action_object kernels chain across horizon; residue field scores trajectories; elite refit.\nKERNEL_CHAIN_ABLATED: Random candidate actions; E3 selects best via one-step E2 world_forward lookahead. No kernel chaining.\nBoth conditions train E1, E2, E3 harm_eval, and hippocampus identically.\n\n## Pre-Registered Thresholds\n\nC1: harm_rate_ABLATED - harm_rate_CHAIN >= 0.03  (absolute harm reduction)\nC2: relative_reduction >= 0.15  (15pct relative reduction)\nC3: harm_rate_CHAIN < harm_rate_ABLATED for ALL seeds  (consistency)\nC4: min_contacts_ablated >= 20  (data quality)\nC5 (diagnostic): mean_residue_CHAIN <= mean_residue_ABLATED\n\n## Aggregate Results\n\n| Metric | KERNEL_CHAIN_ON | KERNEL_CHAIN_ABLATED | Delta | Pass |\n|--------|----------------|---------------------|-------|------|\n| harm_rate (C1 delta) | 0.6211 | 0.0568 | -0.5643 | NO |\n| relative_reduction (C2) | -9.9342 | -- | -- | NO |\n| seed consistency (C3) | [False, False] | -- | -- | NO |\n| min_contacts_ablated (C4) | -- | 369 | -- | YES |\n| mean_residue (C5 diag) | 0.0750 | 0.0750 | -- | n/a |\n\n## Interpretation\n\nMECH-033 NOT SUPPORTED: Kernel chaining provides no meaningful planning advantage. harm_rate_CHAIN=0.6211, harm_rate_ABLATED=0.0568, delta=-0.5643. Random candidate generation with E3 selection performs comparably to hippocampal CEM in action-object space. The kernel chaining interface does not preserve causal continuity in a way that reduces harm at this scale.\n\n## Per-Seed (KERNEL_CHAIN_ON)\n\n  seed=42: harm_rate=0.7462 n_contacts=585 n_total=784 mean_residue=0.0779 train_harm_steps=54363 train_e2_world_steps=79600\n  seed=123: harm_rate=0.4961 n_contacts=694 n_total=1399 mean_residue=0.0721 train_harm_steps=54328 train_e2_world_steps=79600\n\n## Per-Seed (KERNEL_CHAIN_ABLATED)\n\n  seed=42: harm_rate=0.0754 n_contacts=516 n_total=6841 mean_residue=0.0779\n  seed=123: harm_rate=0.0382 n_contacts=369 n_total=9664 mean_residue=0.0721\n\n## Failure Notes\n\n- C1 FAIL: harm_rate delta=-0.5643 (needs >=0.03). Kernel chaining does not produce a meaningful absolute harm reduction. Possible causes: (1) E2 world_forward model not well trained (check train_e2_world_steps); (2) terrain prior does not learn hazard structure; (3) 400 warmup insufficient for hippocampal CEM to calibrate.\n- C2 FAIL: relative_reduction=-9.9342 (needs >=0.15). Chaining eliminates less than 15pct of ablated-condition harm. Chaining may add planning signal but it is weak relative to baseline.\n- C3 FAIL: per_seed direction inconsistent ([False, False]). Chaining did not consistently reduce harm across both seeds.\n",
+  "claim_ids": [
+    "MECH-033"
+  ],
+  "evidence_class": "experimental",
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_124_mech033_kernel_chain_pair",
+  "per_seed_on": [
+    {
+      "seed": 42,
+      "condition": "KERNEL_CHAIN_ON",
+      "chain_on": true,
+      "harm_rate": 0.7461734693877551,
+      "n_contact_steps": 585,
+      "n_total_steps": 784,
+      "mean_residue_score": 0.07791298319946746,
+      "train_harm_steps": 54363,
+      "train_e2_world_steps": 79600,
+      "harm_buf_pos_final": 1000,
+      "harm_buf_neg_final": 1000
+    },
+    {
+      "seed": 123,
+      "condition": "KERNEL_CHAIN_ON",
+      "chain_on": true,
+      "harm_rate": 0.4960686204431737,
+      "n_contact_steps": 694,
+      "n_total_steps": 1399,
+      "mean_residue_score": 0.07208998085900321,
+      "train_harm_steps": 54328,
+      "train_e2_world_steps": 79600,
+      "harm_buf_pos_final": 1000,
+      "harm_buf_neg_final": 1000
+    }
+  ],
+  "per_seed_off": [
+    {
+      "seed": 42,
+      "condition": "KERNEL_CHAIN_ABLATED",
+      "chain_on": false,
+      "harm_rate": 0.07542756906884958,
+      "n_contact_steps": 516,
+      "n_total_steps": 6841,
+      "mean_residue_score": 0.07789531350680357,
+      "train_harm_steps": 54363,
+      "train_e2_world_steps": 79600,
+      "harm_buf_pos_final": 1000,
+      "harm_buf_neg_final": 1000
+    },
+    {
+      "seed": 123,
+      "condition": "KERNEL_CHAIN_ABLATED",
+      "chain_on": false,
+      "harm_rate": 0.03818294701986755,
+      "n_contact_steps": 369,
+      "n_total_steps": 9664,
+      "mean_residue_score": 0.0721039205337782,
+      "train_harm_steps": 54328,
+      "train_e2_world_steps": 79600,
+      "harm_buf_pos_final": 1000,
+      "harm_buf_neg_final": 1000
+    }
+  ],
+  "run_timestamp": "20260328T222558Z",
+  "claim": "MECH-033",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_124_mech033_kernel_chain_pair_20260328T222558Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

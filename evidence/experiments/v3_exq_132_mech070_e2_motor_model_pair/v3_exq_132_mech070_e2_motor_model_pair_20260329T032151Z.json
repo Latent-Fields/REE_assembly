@@ -1,0 +1,54 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_motor_on": 0.015299121729194565,
+    "gap_ablated": 0.015299121729194565,
+    "delta_gap": 0.0,
+    "n_harm_eval_min": 533.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.4,
+    "alpha_world": 0.9,
+    "e2_r2_on": 0.9961337488585726,
+    "per_seed_delta_min": 0.0,
+    "per_seed_delta_max": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-132 -- MECH-070 E2 Motor-Model Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-070\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** E2_MOTOR_ON vs E2_MOTOR_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.4\n\n## Design\n\nMECH-070 asserts E2 is a conceptual-sensorium motor model (cerebellar analog)\nwith planning horizon exceeding E1 (cortical, prediction_horizon=20).\n\nE2_MOTOR_ON: E2 trains on z_self motor-sensory transitions (1-step MSE on z_self). E1 and E3 harm_eval also train normally.\n\nE2_MOTOR_ABLATED: E2 frozen at random init. E1 and E3 harm_eval train normally.\nMotor model contribution removed; E3 must rely on z_world alone.\n\nKey metric: harm_eval_gap = mean_harm_score - mean_safe_score at eval.\nSecondary: e2_r2 (R^2 of E2.world_forward on z_self norm; confirms manipulation).\n\n## Pre-Registered Thresholds\n\nC1: gap_motor_on >= 0.04 in all seeds  (E2_MOTOR_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (motor model adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns from z_world; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events)\nC5: e2_r2_on >= 0.05  (E2 learned a useful z_self forward model)\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe | e2_r2 |\n|-----------|-----------|-----------|-----------|-------|\n| E2_MOTOR_ON      | 0.0153 | 0.5218 | 0.5065 | 0.9961 |\n| E2_MOTOR_ABLATED | 0.0153 | 0.5218 | 0.5065 | -- |\n\n**delta_gap (ON - ABLATED): +0.0000**\n\nDiagnostic: e2_r2_on=0.9961 (manipulation check -- confirms E2 learned a useful z_self forward model in E2_MOTOR_ON).\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0153 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [0.0, 0.0] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0153 |\n| C4: n_harm_min >= 20 | PASS | 533 |\n| C5: e2_r2_on >= 0.05 | PASS | 0.9961 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-070 NOT supported at V3 proxy level: gap_on=0.0153 (C1 FAIL), delta=+0.0000 (C2 FAIL), e2_r2=0.9961 (C5 PASS). Trained E2 motor model does not produce a detectable improvement in harm_eval quality over the frozen-E2 ablation at this scale. Possible reasons: (a) at world_dim=32 the z_self forward model is too simple to add discriminative value; (b) E3 learns from z_world alone, making E2 contributions marginal; (c) the V3 proxy does not exercise the rollout horizon advantage claimed by MECH-070 (which requires active trajectory evaluation, not just R^2 of next-step z_self prediction).\n\n## Per-Seed\n\nE2_MOTOR_ON:\n  seed=42: gap=0.0138 n_harm=580 e2_r2=0.9950\n  seed=123: gap=0.0168 n_harm=533 e2_r2=0.9972\n\nE2_MOTOR_ABLATED:\n  seed=42: gap=0.0138 n_harm=580 e2_r2=0.0000\n  seed=123: gap=0.0168 n_harm=533 e2_r2=0.0000\n\n## Failure Notes\n\n- C1 FAIL: E2_MOTOR_ON gap below 0.04 in seeds [42, 123] -- E2 motor model does not produce discriminative harm eval signal\n- C2 FAIL: per-seed deltas [0.0, 0.0] < 0.02 -- E2 motor model does not add >=2pp harm eval advantage over ablation\n",
+  "claim_ids": [
+    "MECH-070"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_132_mech070_e2_motor_model_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032151Z",
+  "claim": "MECH-070",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_132_mech070_e2_motor_model_pair_20260329T032151Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_motor_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20,
+    "C5_e2_r2_on": 0.05
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "E2_MOTOR_ON",
+    "E2_MOTOR_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0026",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "MECH-070"
+  ]
+}

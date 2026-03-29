@@ -1,0 +1,50 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_replay_on": 0.0013978476171975784,
+    "gap_replay_ablated": 0.015790974691957588,
+    "delta_gap": -0.01439312707476001,
+    "n_harm_eval_min": 547.0,
+    "n_seeds": 2.0,
+    "n_replay_steps": 10.0,
+    "replay_batch": 32.0,
+    "alpha_world": 0.9,
+    "nav_bias": 0.35,
+    "per_seed_delta_min": -0.017824576410774673,
+    "per_seed_delta_max": -0.010961677738745346,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-127 -- MECH-030 Sleep Consolidation Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-030\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** REPLAY_ON vs REPLAY_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.35\n**n_replay_steps:** 10  **replay_batch:** 32\n\n## Pre-Registered Thresholds\n\nC1: gap_replay_on >= 0.04 in all seeds  (REPLAY_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (consolidation adds >= 2pp)\nC3: gap_replay_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: no fatal errors\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| REPLAY_ON      | 0.0014 | 0.5717 | 0.5703 |\n| REPLAY_ABLATED | 0.0158 | 0.5165 | 0.5007 |\n\n**delta_gap (REPLAY_ON - REPLAY_ABLATED): -0.0144**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0014 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0178, -0.011] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0158 |\n| C4: n_harm_min >= 20 | PASS | 547 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-030 V3 proxy NOT supported: gap_on=0.0014 (C1 FAIL), delta=-0.0144 (C2 FAIL). harm_eval_head does not demonstrate improvement from offline consolidation at this training scale.\n\n## Per-Seed\n\nREPLAY_ON:\n  seed=42: gap=0.0016 n_harm=561\n  seed=123: gap=0.0012 n_harm=556\n\nREPLAY_ABLATED:\n  seed=42: gap=0.0195 n_harm=547\n  seed=123: gap=0.0121 n_harm=560\n\n## Failure Notes\n\n- C1 FAIL: REPLAY_ON gap below 0.04 in seeds [42, 123] -- harm_eval_head not learning meaningful representation even with consolidation\n- C2 FAIL: per-seed deltas ['-0.0178', '-0.0110'] < 0.02 -- consolidation does not add >= 2pp over online-only training\n",
+  "claim_ids": [
+    "MECH-030"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_127_mech030_sleep_consolidation_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T031749Z",
+  "claim": "MECH-030",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_127_mech030_sleep_consolidation_pair_20260329T031749Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_replay_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "REPLAY_ON",
+    "REPLAY_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0019"
+}

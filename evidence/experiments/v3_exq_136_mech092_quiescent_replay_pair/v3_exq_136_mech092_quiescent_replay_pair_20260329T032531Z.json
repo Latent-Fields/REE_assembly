@@ -1,0 +1,54 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_replay_on": 0.01851655715895323,
+    "gap_replay_ablated": 0.015299121729194565,
+    "delta_gap": 0.003217435429758664,
+    "n_harm_eval_min": 533.0,
+    "n_quiescent_triggers_min": 6.0,
+    "n_seeds": 2.0,
+    "quiescence_k": 10.0,
+    "n_replay_steps": 8.0,
+    "replay_batch": 16.0,
+    "alpha_world": 0.9,
+    "nav_bias": 0.4,
+    "per_seed_delta_min": -0.0027368979245028235,
+    "per_seed_delta_max": 0.009171768784020151,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-136 -- MECH-092 Quiescent Replay Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-092\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** QUIESCENT_REPLAY_ON vs QUIESCENT_REPLAY_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.40\n**quiescence_k:** 10 (consecutive non-harm steps to trigger replay)\n**n_replay_steps:** 8  **replay_batch:** 16\n\n## Pre-Registered Thresholds\n\nC1: gap_replay_on >= 0.04 in all seeds  (QUIESCENT_REPLAY_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (quiescent consolidation adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: n_quiescent_triggers_min >= 15  (manipulation check: quiescent windows fire)\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| QUIESCENT_REPLAY_ON      | 0.0185 | 0.5256 | 0.5071 |\n| QUIESCENT_REPLAY_ABLATED | 0.0153 | 0.5218 | 0.5065 |\n\n**delta_gap (ON - ABLATED): +0.0032**\n**n_quiescent_triggers (ON, min across seeds): 6**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0185 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0027, 0.0092] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0153 |\n| C4: n_harm_min >= 20 | PASS | 533 |\n| C5: n_quiescent_triggers_min >= 15 | FAIL | 6 |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Interpretation\n\nC5 FAIL: quiescent replay triggered only 6 times (threshold=15). With nav_bias=0.40 the agent frequently approaches hazards, reducing quiescent window duration. The quiescent mechanism may need higher nav_bias or lower quiescence_k to accumulate enough idle windows. Harm_eval gap (C1 {'PASS' if c1_pass else 'FAIL'}).\n\n## Per-Seed\n\nQUIESCENT_REPLAY_ON:\n  seed=42: gap=0.0110 n_harm=549 n_quiescent_triggers=6\n  seed=123: gap=0.0260 n_harm=556 n_quiescent_triggers=10\n\nQUIESCENT_REPLAY_ABLATED:\n  seed=42: gap=0.0138 n_harm=580\n  seed=123: gap=0.0168 n_harm=533\n\n## Failure Notes\n\n- C1 FAIL: QUIESCENT_REPLAY_ON gap below 0.04 in seeds [42, 123] -- harm_eval_head not learning meaningful representation even with quiescent replay\n- C2 FAIL: per-seed deltas ['-0.0027', '0.0092'] < 0.02 -- quiescent consolidation does not add >=2pp over online-only training\n- C5 FAIL: n_quiescent_triggers_min=6 < 15 -- quiescent replay fired too rarely (manipulation check fail); consider reducing quiescence_k (currently 10)\n",
+  "claim_ids": [
+    "MECH-092"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_136_mech092_quiescent_replay_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032531Z",
+  "claim": "MECH-092",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_136_mech092_quiescent_replay_pair_20260329T032531Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_replay_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20,
+    "C5_n_quiescent_triggers_min": 15
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "QUIESCENT_REPLAY_ON",
+    "QUIESCENT_REPLAY_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0028",
+  "proposal_id": "EXP-0036"
+}

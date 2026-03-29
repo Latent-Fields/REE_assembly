@@ -1,0 +1,57 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "contamination_gap_on": 0.04486503610337789,
+    "contamination_gap_ablated": 0.030668956756826626,
+    "real_harm_gap_on": 0.032197105449963626,
+    "real_harm_gap_ablated": 0.04637514095878156,
+    "delta_contamination_min": -0.015284639335382821,
+    "delta_contamination_max": -0.013107519357719699,
+    "n_real_harm_eval_min": 533.0,
+    "n_replay_harm_eval_min": 1079.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.45,
+    "alpha_world": 0.9,
+    "n_replay_per_ep": 2.0,
+    "replay_noise_std": 0.1,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-140 -- MECH-094 Hypothesis Tag Write Gate Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-094\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** TAG_GATE_ON vs TAG_GATE_ABLATED\n**Warmup:** 400 real eps + 800 replay eps  **Eval:** 50 real + 100 replay eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.45\n**Replay:** n_replay_per_ep=2, noise_std=0.1 (offset-seed env)\n\n## Design\n\nMECH-094 asserts the hypothesis tag is a categorical write gate separating simulation from committed residue updates. The experiment controls whether replay harm events are allowed to train the harm_eval head (proxy for phi(z) write pathway).\n\nTAG_GATE_ON: replay harm is tagged (hypothesis_tag=True); only real harm trains harm_eval buffer.\n\nTAG_GATE_ABLATED: tag absent; replay harm accumulates alongside real harm (PTSD contamination mechanism: replayed content writes as if real).\n\nKey metric: contamination_gap = harm_eval_score(replay harm) - harm_eval_score(replay safe).\nLow contamination_gap: tag suppresses replay routing (MECH-094 ON).\nHigh contamination_gap: tag loss allows replay routing (ablation = PTSD model).\n\nSecondary: real_harm_gap = harm_eval_score(real harm) - harm_eval_score(real safe). Should be high in both conditions (real harm always trains both).\n\n## Pre-Registered Thresholds\n\nC1: contamination_gap_ON <= 0.02 both seeds  (tag gate suppresses replay; near-zero contamination)\nC2: contamination_gap_ABLATED >= 0.04 both seeds  (tag loss produces contamination)\nC3: per-seed delta_contamination (ABLATED-ON) >= 0.03 both seeds  (discriminative gap)\nC4: real_harm_gap_ON >= 0.03 both seeds  (real harm still learned with tag ON)\nC5: n_real_harm_min >= 15 and n_replay_harm_min >= 15  (data quality)\n\n## Results\n\n| Condition | contam_gap | real_harm_gap | n_real_harm | n_replay_harm |\n|-----------|------------|---------------|-------------|---------------|\n| TAG_GATE_ON      | 0.0449 | 0.0322 | 533 | 1079 |\n| TAG_GATE_ABLATED | 0.0307 | 0.0464 | 533 | 1079 |\n\n**delta_contamination per seed: [-0.0153, -0.0131]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: contam_gap_ON <= 0.02 (all seeds) | FAIL | 0.0449 |\n| C2: contam_gap_ABLATED >= 0.04 (all seeds) | FAIL | 0.0307 |\n| C3: per-seed delta >= 0.03 (all seeds) | FAIL | [-0.0153, -0.0131] |\n| C4: real_harm_gap_ON >= 0.03 (all seeds) | FAIL | 0.0322 |\n| C5: n_harm_min >= 15 | PASS | real=533 replay=1079 |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Interpretation\n\nMECH-094 NOT supported at V3 proxy level: contam_gap_ON=0.0449 (C1 FAIL), contam_gap_ABLATED=0.0307 (C2 FAIL), delta_contamination=[-0.0153, -0.0131] (C3 FAIL). The V3 proxy (noisy replay in offset-seed env) may not generate sufficiently distinct replay harm signal to test the write-gate mechanism. Consider: (a) sharper replay/real contrast (higher replay_noise_std or structurally different replay env); (b) more episodes; (c) checking whether harm_eval baseline is dominated by training data volume rather than routing source.\n\n## Per-Seed\n\nTAG_GATE_ON:\n  seed=42: contam_gap=0.0476 real_harm_gap=0.0437 n_real_harm=533 n_replay_harm=1086\n  seed=123: contam_gap=0.0421 real_harm_gap=0.0207 n_real_harm=546 n_replay_harm=1089\n\nTAG_GATE_ABLATED:\n  seed=42: contam_gap=0.0323 real_harm_gap=0.0417 n_real_harm=547 n_replay_harm=1079\n  seed=123: contam_gap=0.0290 real_harm_gap=0.0510 n_real_harm=547 n_replay_harm=1092\n\n## Failure Notes\n\n- C1 FAIL: TAG_GATE_ON contamination_gap > 0.02 in seeds [42, 123] -- tag gate does not suppress replay harm from harm_eval\n- C2 FAIL: TAG_GATE_ABLATED contamination_gap < 0.04 in seeds [42, 123] -- tag loss does not produce measurable contamination; check replay harm volume\n- C3 FAIL: per-seed delta_contamination [-0.0153, -0.0131] < 0.03 -- no discriminative contamination difference; tag gate has no effect at V3 proxy scale\n- C4 FAIL: real_harm_gap_ON < 0.03 in seeds [123] -- real harm not learned even with tag ON; increase nav_bias or warmup\n",
+  "claim_ids": [
+    "MECH-094"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_140_mech094_hypothesis_tag_gate_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T033050Z",
+  "claim": "MECH-094",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_140_mech094_hypothesis_tag_gate_pair_20260329T033050Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_contamination_gap_on": 0.02,
+    "C2_contamination_gap_ablated": 0.04,
+    "C3_per_seed_delta_contamination": 0.03,
+    "C4_real_harm_gap_on": 0.03,
+    "C5_n_harm_min": 15
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "TAG_GATE_ON",
+    "TAG_GATE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0060",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "MECH-094"
+  ]
+}

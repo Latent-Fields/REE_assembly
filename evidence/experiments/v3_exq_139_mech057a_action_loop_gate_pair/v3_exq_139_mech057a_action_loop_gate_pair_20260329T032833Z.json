@@ -1,0 +1,56 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "harm_rate_gate_on": 0.7243637731285699,
+    "harm_rate_ablated": 0.7243637731285699,
+    "delta_harm_rate": 0.0,
+    "n_harm_min": 535.0,
+    "n_committed_min": 737.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.45,
+    "alpha_world": 0.9,
+    "per_seed_ratio_min": 1.0,
+    "per_seed_ratio_max": 1.0,
+    "per_seed_gap_min": 0.0,
+    "per_seed_gap_max": 0.0,
+    "mean_committed_seq_len_on": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-139 -- MECH-057a Action Loop Completion Gate Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-057a\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** COMPLETION_GATE_ON vs COMPLETION_GATE_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.45\n\n## Design\n\nMECH-057a asserts committed action sequences suppress precision updates until execution completes. Completion events are principal policy-propagation opportunities (beta drops, E3 state propagates to action selection).\n\nCOMPLETION_GATE_ON: running_variance update suppressed while committed; accumulated errors flushed as batch at completion boundary (uncommitted transition). BetaGate active (elevates when committed, releases at completion).\n\nCOMPLETION_GATE_ABLATED: continuous per-step running_variance updates; BetaGate disabled (always released). No sequence-boundary gating.\n\n## Pre-Registered Thresholds\n\nC1: harm_rate_on <= harm_rate_ablated * 0.9 (both seeds)\nC2: per-seed absolute gap >= 0.005 (both seeds)\nC3: n_harm_contact_min >= 20 per cell\nC4: n_committed_steps_min >= 30 in eval (GATE_ON, per seed)\nC5: no fatal errors\n\n## Results\n\n| Condition | harm_rate (avg) | harm_contacts |\n|-----------|----------------|---------------|\n| COMPLETION_GATE_ON      | 0.7244 | 1080 |\n| COMPLETION_GATE_ABLATED | 0.7244 | 1080 |\n\n**delta harm_rate (ABLATED - ON): +0.0000**\n\nPer-seed ratios (ON/ABLATED): [1.0, 1.0]\nPer-seed absolute gaps (ABLATED-ON): [0.0, 0.0]\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_rate ratio <= 0.9 (both seeds) | FAIL | [1.0, 1.0] |\n| C2: per-seed gap >= 0.005 (both seeds) | FAIL | [0.0, 0.0] |\n| C3: n_harm_min >= 20 | PASS | 535 |\n| C4: n_committed_min >= 30 (GATE_ON) | PASS | 737 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-057a NOT supported at V3 proxy: GATE_ON harm_rate (0.7244) not significantly lower than GATE_ABLATED (0.7244). Per-seed ratios [1.0, 1.0] do not meet threshold 0.9. Completion-gated precision suppression does not produce detectable harm reduction at this training scale. Possible: the proxy (manual running_variance manipulation) does not faithfully model the biological completion-boundary mechanism; or the effect requires full ARC-023 + SD-006 substrate to manifest.\n\n## Per-Seed\n\nCOMPLETION_GATE_ON:\n  seed=42: harm_rate=0.7228 contacts=545/754 n_committed=754 n_seq=0 mean_seq_len=0.0\n  seed=123: harm_rate=0.7259 contacts=535/737 n_committed=737 n_seq=0 mean_seq_len=0.0\n\nCOMPLETION_GATE_ABLATED:\n  seed=42: harm_rate=0.7228 contacts=545/754\n  seed=123: harm_rate=0.7259 contacts=535/737\n\n## Failure Notes\n\n- C1 FAIL: harm_rate ratio > 0.9 in seeds [42, 123] -- completion-gated precision suppression does not reduce harm rate by >=10%\n- C2 FAIL: per-seed gaps [0.0, 0.0] < 0.005 -- absolute harm rate difference below threshold\n",
+  "claim_ids": [
+    "MECH-057a"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_139_mech057a_action_loop_gate_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032833Z",
+  "claim": "MECH-057a",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_139_mech057a_action_loop_gate_pair_20260329T032833Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_harm_rate_ratio": 0.9,
+    "C2_abs_gap": 0.005,
+    "C3_n_harm_min": 20,
+    "C4_n_committed_min": 30
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "COMPLETION_GATE_ON",
+    "COMPLETION_GATE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0056",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "MECH-057a"
+  ]
+}

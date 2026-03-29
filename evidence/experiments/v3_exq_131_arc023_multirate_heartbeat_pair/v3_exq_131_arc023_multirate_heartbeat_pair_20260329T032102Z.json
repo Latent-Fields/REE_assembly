@@ -1,0 +1,57 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_multirate_on": -3.516643393708385e-05,
+    "gap_ablated": 0.015299121729194565,
+    "delta_gap": -0.015334288163131649,
+    "n_harm_eval_min": 103.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.4,
+    "e3_heartbeat_k": 5.0,
+    "alpha_world": 0.9,
+    "per_seed_delta_min": -0.016780643050277988,
+    "per_seed_delta_max": -0.01388793327598531,
+    "var_harm_eval_on": 1.0545249283614502e-07,
+    "var_harm_eval_ablated": 0.0027597228072769034,
+    "var_delta": -0.0027596173547840674,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-131 -- ARC-023 Multi-Rate Heartbeat Discriminative Pair\n\n**Status:** FAIL\n**Claims:** ARC-023\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** MULTIRATE_ON vs MULTIRATE_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**E3 heartbeat rate:** every 5 steps (MULTIRATE_ON only)\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.4\n\n## Design\n\nARC-023 asserts three BG-like loops operate at characteristic thalamic heartbeat rates.\nFunctional restatement: E3 (deliberation loop) operates at a slower rate than E1/E2.\n\nMULTIRATE_ON: E3 harm_eval trains/evaluates on averaged z_world over 5-step chunks.\nE1 and E2 update every step as usual.\nE3 heartbeat fires every 5 steps (time-multiplexed SD-006 phase 1 proxy).\n\nMULTIRATE_ABLATED: E3 harm_eval trains/evaluates per step.\nAll loops update at the same rate -- no rate separation.\n\n## Pre-Registered Thresholds\n\nC1: gap_on >= 0.04 in all seeds  (MULTIRATE_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (rate separation adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: no fatal errors\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe | var_harm_eval |\n|-----------|-----------|-----------|-----------|---------------|\n| MULTIRATE_ON      | -0.0000 | 0.4999 | 0.5000 | 0.000000 |\n| MULTIRATE_ABLATED | 0.0153 | 0.5218 | 0.5065 | 0.002760 |\n\n**delta_gap (ON - ABLATED): -0.0153**\n\nDiagnostic: var_harm_eval -- lower variance in MULTIRATE_ON indicates more stable\nE3 heartbeat integration (less per-step noise).\n  MULTIRATE_ON: 0.000000  |  MULTIRATE_ABLATED: 0.002760\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | -0.0000 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0139, -0.0168] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0153 |\n| C4: n_harm_min >= 20 | PASS | 103 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nARC-023 NOT supported at V3 proxy level: gap_on=-0.0000 (C1 FAIL), delta=-0.0153 (C2 FAIL). Rate-separated E3 does not produce a detectable improvement in harm_eval discrimination at this training scale. The synchronous time-multiplexed proxy may not capture the full benefit of async rate separation (SD-006 phase 2 required). Note: the chunk-averaging approach used here (mean z_world over K steps) is a conservative proxy -- the benefit of heartbeat synchronization may require the full async E3 implementation to manifest clearly.\n\n## Per-Seed\n\nMULTIRATE_ON:\n  seed=42: gap=-0.0001 n_harm=109 var_harm_eval=0.000000\n  seed=123: gap=0.0000 n_harm=103 var_harm_eval=0.000000\n\nMULTIRATE_ABLATED:\n  seed=42: gap=0.0138 n_harm=580 var_harm_eval=0.001202\n  seed=123: gap=0.0168 n_harm=533 var_harm_eval=0.004317\n\n## Failure Notes\n\n- C1 FAIL: MULTIRATE_ON gap below 0.04 in seeds [42, 123] -- rate-separated E3 does not produce a discriminative harm signal\n- C2 FAIL: per-seed deltas [-0.0139, -0.0168] < 0.02 -- rate separation does not add >=2pp over same-rate E3\n",
+  "claim_ids": [
+    "ARC-023"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_131_arc023_multirate_heartbeat_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032102Z",
+  "claim": "ARC-023",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_131_arc023_multirate_heartbeat_pair_20260329T032102Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_multirate_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "MULTIRATE_ON",
+    "MULTIRATE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0025",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "ARC-023"
+  ],
+  "e3_heartbeat_k": 5
+}

@@ -1,0 +1,56 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_reality_on": 0.015299121729194565,
+    "gap_ablated": 0.01506842807958042,
+    "delta_gap": 0.0002306936496141443,
+    "n_harm_eval_min": 533.0,
+    "n_replay_contamination_min": 30176.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.4,
+    "alpha_world": 0.9,
+    "replay_noise_std": 0.1,
+    "replay_batch_per_step": 4.0,
+    "per_seed_delta_min": -0.0020945689149959312,
+    "per_seed_delta_max": 0.00255595621422422,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-135 -- ARC-017 Reality-Coherence Lane Discriminative Pair\n\n**Status:** FAIL\n**Claims:** ARC-017\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** REALITY_COHERENCE_ON vs REALITY_COHERENCE_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.4\n\n## Design\n\nREALITY_COHERENCE_ON: world encoder trains only on REAL env observations;\nthe reality-coherence provenance constraint is preserved.\nREALITY_COHERENCE_ABLATED: world encoder also trains on noise-perturbed\nreplay of past world_obs (imagined inputs, noise_std=0.1);\nprovenance constraint is violated (real and imagined treated equivalently).\nEvaluation uses ONLY real env observations in both conditions.\n\nComplementary to V3-EXQ-129 (stream-type routing facet of ARC-017).\nThis experiment tests the reality-coherence facet of ARC-017.\n\n## Pre-Registered Thresholds\n\nC1: gap_on >= 0.04 in all seeds  (REALITY_COHERENCE_ON above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (reality grounding adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: n_replay_contam_min >= 50  (manipulation check: ablation received imagined inputs)\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| REALITY_COHERENCE_ON      | 0.0153 | 0.5218 | 0.5065 |\n| REALITY_COHERENCE_ABLATED | 0.0151 | 0.5286 | 0.5135 |\n\n**delta_gap (ON - ABLATED): +0.0002**\n**n_replay_contamination_min (ablated): 30176**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0153 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0021, 0.0026] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0151 |\n| C4: n_harm_min >= 20 | PASS | 533 |\n| C5: n_replay_contam_min >= 50 | PASS | 30176 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nARC-017 reality-coherence lane NOT supported at V3 proxy level: gap_on=0.0153 (C1 FAIL), delta=+0.0002 (C2 FAIL). Grounding the encoder to real observations only does not produce a detectable improvement in harm_eval discrimination vs replay-contaminated encoder at this training scale. Note: this is a V3 proxy -- the full ARC-017 reality-coherence mechanism requires hippocampal trace provenance tracking which is only partially approximated by this noise-perturbation proxy.\n\n## Per-Seed\n\nREALITY_COHERENCE_ON:\n  seed=42: gap=0.0138 n_harm=580\n  seed=123: gap=0.0168 n_harm=533\n\nREALITY_COHERENCE_ABLATED:\n  seed=42: gap=0.0159 n_harm=557 n_replay_contam=30176\n  seed=123: gap=0.0143 n_harm=544 n_replay_contam=30452\n\n## Failure Notes\n\n- C1 FAIL: REALITY_COHERENCE_ON gap below 0.04 in seeds [42, 123] -- reality-grounded encoder does not produce discriminative z_world\n- C2 FAIL: per-seed deltas [-0.0021, 0.0026] < 0.02 -- reality-coherence constraint does not add >=2pp over replay-contaminated encoder\n",
+  "claim_ids": [
+    "ARC-017"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_135_arc017_reality_coherence_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032442Z",
+  "claim": "ARC-017",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_135_arc017_reality_coherence_pair_20260329T032442Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_reality_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20,
+    "C5_n_replay_contam_min": 50
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "REALITY_COHERENCE_ON",
+    "REALITY_COHERENCE_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0023",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "ARC-017"
+  ]
+}

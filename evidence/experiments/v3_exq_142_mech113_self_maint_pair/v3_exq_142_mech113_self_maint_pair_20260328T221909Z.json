@@ -1,0 +1,48 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_d_eff_baseline_on": 22.29282576780693,
+    "mean_d_eff_post_on": 22.22667100282679,
+    "mean_d_eff_ratio_on": 0.9966013161208511,
+    "mean_d_eff_baseline_ablated": 22.29282576780693,
+    "mean_d_eff_post_ablated": 22.22667100282679,
+    "mean_d_eff_ratio_ablated": 0.9966013161208511,
+    "mean_e2_loss_on": 6.323097234626564e-06,
+    "mean_e2_loss_ablated": 6.323097234626564e-06,
+    "per_seed_gap": [
+      0.0,
+      0.0
+    ],
+    "per_seed_ratio_on": [
+      1.003166,
+      0.990036
+    ],
+    "per_seed_ratio_ablated": [
+      1.003166,
+      0.990036
+    ],
+    "n_d_eff_min": 59.0,
+    "maint_weight": 0.1,
+    "d_eff_target": 1.5,
+    "noise_sigma": 2.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-142 -- MECH-113 Self-Maintenance Discriminative Pair\n\n**Status:** FAIL\n**Claims:** MECH-113\n**Decision:** hybridize\n**Seeds:** [42, 123]\n**Conditions:** SELF_MAINT_ON vs SELF_MAINT_ABLATED\n**Warmup:** 200 eps x 200 steps  **Baseline eval:** 10 eps  **Post-perturb eval:** 30 eps\n**Env:** CausalGridWorld size=10, 3 hazards, 5 resources nav_bias=0.35\n**Perturbation:** Gaussian noise sigma=2.0 injected into z_self at first step of eval\n**maint_weight:** 0.1  **d_eff_target:** 1.5\n\n## Design\n\nMECH-113 asserts a homeostatic error signal monitors internal latent coherence (z_self D_eff) independently of external harm signals. SELF_MAINT_ON activates the D_eff homeostatic loss; SELF_MAINT_ABLATED removes it. A Gaussian noise perturbation is injected into z_self at eval start to stress-test recovery. If MECH-113 Level 1 is correct, ON holds D_eff near baseline; ABLATED disperses.\n\n## Pre-Registered Thresholds\n\nC1: ON d_eff_ratio (post/baseline) <= 1.5 both seeds (homeostatic recovery)\nC2: ABLATED d_eff_ratio (post/baseline) >= 2.0 both seeds (uncontrolled dispersal without homeostasis)\nC3: per-seed gap (ABLATED_post - ON_post) >= 0.5x ABLATED_post both seeds (clear separation)\nC4: e2_loss_ON <= e2_loss_ABLATED + 0.01 both seeds (homeostasis does not degrade E2 motor model)\nC5: n_d_eff_samples >= 50 per condition per seed (data quality)\n\n## Results\n\n| Condition | D_eff baseline | D_eff post | ratio | E2 loss |\n|-----------|----------------|------------|-------|----------|\n| SELF_MAINT_ON      | 22.2928 | 22.2267 | 0.997x | 0.00001 |\n| SELF_MAINT_ABLATED | 22.2928 | 22.2267 | 0.997x | 0.00001 |\n\n**per-seed gap (ABLATED_post - ON_post): [0.0, 0.0]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: ON ratio <= 1.5 (both seeds) | PASS | [1.0032, 0.99] |\n| C2: ABLATED ratio >= 2.0 (both seeds) | FAIL | [1.0032, 0.99] |\n| C3: gap >= 0.5x ABLATED_post (both seeds) | FAIL | [0.0, 0.0] |\n| C4: e2_ON <= e2_ABL + 0.01 (both seeds) | PASS | ON=0.00001 ABL=0.00001 |\n| C5: n_d_eff_min >= 50 | PASS | 59 |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nPartial support: directional D_eff effect observed but not all criteria met. C1=True (ON recovery) C2=False (ABL dispersal) C3=False (separation) C4=True (E2 unaffected) C5=True (data quality). Consider adjusting maint_weight or noise_sigma.\n\n## Per-Seed Detail\n\nSELF_MAINT_ON:\n  seed=42: d_eff_baseline=23.7569 d_eff_post=23.8321 ratio=1.003x e2_loss=0.00000 n_samples=82\n  seed=123: d_eff_baseline=20.8287 d_eff_post=20.6212 ratio=0.990x e2_loss=0.00001 n_samples=59\n\nSELF_MAINT_ABLATED:\n  seed=42: d_eff_baseline=23.7569 d_eff_post=23.8321 ratio=1.003x e2_loss=0.00000 n_samples=82\n  seed=123: d_eff_baseline=20.8287 d_eff_post=20.6212 ratio=0.990x e2_loss=0.00001 n_samples=59\n\n## Failure Notes\n\n- C2 FAIL: ABLATED d_eff_ratio [1.0032, 0.99] < 2.0 -- ablated condition does not disperse; D_eff may be architecture-bounded independent of maintenance signal\n- C3 FAIL: per-seed gap [0.0, 0.0] < 0.5 * ablated_post in some seeds; ON and ABLATED conditions do not clearly separate\n",
+  "claim_ids": [
+    "MECH-113"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_142_mech113_self_maint_pair",
+  "fatal_error_count": 0,
+  "decision": "hybridize",
+  "run_timestamp": "20260328T221909Z",
+  "claim": "MECH-113",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_142_mech113_self_maint_pair_20260328T221909Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

@@ -1,0 +1,50 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_fusion_on": 0.02182759498075809,
+    "gap_fusion_ablated": 0.021768125057039123,
+    "delta_gap": 5.9469923718968865e-05,
+    "n_harm_eval_min": 533.0,
+    "n_seeds": 2.0,
+    "soma_dim": 8.0,
+    "nav_bias": 0.4,
+    "alpha_world": 0.9,
+    "per_seed_delta_min": -1.1971587632331193e-06,
+    "per_seed_delta_max": 0.00012013700620117085,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-134 -- MECH-103 Multimodal Exteroceptive Fusion (Somatosensory Channel)\n\n**Status:** FAIL\n**Claims:** MECH-103\n**Proposal:** EXP-0030 / EVB-0022\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** FUSION_ON vs FUSION_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.4\n**Somatosensory channel:** SOMA_DIM=8 (contact-force + near-surface vibration; FUSION_ON informative; FUSION_ABLATED zeros)\n**Replication of:** EXQ-128 (auditory channel) -- distinct second modality\n\n## Pre-Registered Thresholds\n\nC1: gap_fusion_on >= 0.04 in all seeds  (FUSION_ON harm eval above floor)\nC2: per-seed delta (ON - ABLATED) >= 0.02 in all seeds  (soma modality adds >=2pp)\nC3: gap_fusion_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: no fatal errors\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| FUSION_ON      | 0.0218 | 0.5265 | 0.5047 |\n| FUSION_ABLATED | 0.0218 | 0.5265 | 0.5047 |\n\n**delta_gap (FUSION_ON - FUSION_ABLATED): +0.0001**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_on >= 0.04 (all seeds) | FAIL | 0.0218 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0, 0.0001] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0218 |\n| C4: n_harm_min >= 20 | PASS | 533 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nMECH-103 NOT supported (somatosensory channel): gap_on=0.0218 (C1 FAIL), delta=+0.0001 (C2 FAIL). Informative somatosensory channel does not produce a detectable improvement in z_world harm discrimination at this training scale.\n\n## Per-Seed\n\nFUSION_ON:\n  seed=42: gap=0.0219 n_harm=580\n  seed=123: gap=0.0217 n_harm=533\n\nFUSION_ABLATED:\n  seed=42: gap=0.0219 n_harm=580\n  seed=123: gap=0.0216 n_harm=533\n\n## Failure Notes\n\n- C1 FAIL: FUSION_ON gap below 0.04 in seeds [42, 123] -- z_world does not encode harm even with somatosensory input\n- C2 FAIL: per-seed deltas ['-0.0000', '0.0001'] < 0.02 -- somatosensory fusion does not add >=2pp over single-modality\n",
+  "claim_ids": [
+    "MECH-103"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_134_mech103_somatosensory_fusion_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T032328Z",
+  "claim": "MECH-103",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_134_mech103_somatosensory_fusion_pair_20260329T032328Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_fusion_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "FUSION_ON",
+    "FUSION_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0022",
+  "proposal_id": "EXP-0030"
+}

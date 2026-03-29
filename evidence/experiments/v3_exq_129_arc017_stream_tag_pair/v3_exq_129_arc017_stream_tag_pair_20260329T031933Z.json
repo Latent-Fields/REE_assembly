@@ -1,0 +1,52 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gap_typed_on": 0.015299121729194565,
+    "gap_ablated": 0.02572384049934215,
+    "delta_gap": -0.010424718770147584,
+    "n_harm_eval_min": 533.0,
+    "n_seeds": 2.0,
+    "nav_bias": 0.4,
+    "alpha_world": 0.9,
+    "per_seed_delta_min": -0.011035653801542922,
+    "per_seed_delta_max": -0.009813783738752246,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-129 -- ARC-017 Sensory Stream Tag Discriminative Pair\n\n**Status:** FAIL\n**Claims:** ARC-017\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Conditions:** TYPED_TAGS_ON vs TYPED_TAGS_ABLATED\n**Warmup:** 400 eps  **Eval:** 50 eps\n**Env:** CausalGridWorldV2 size=6, 4 hazards, nav_bias=0.4\n\n## Design\n\nTYPED_TAGS_ON: world_obs -> z_world encoder exclusively;\nharm_obs routed to z_harm encoder (ARC-017 typed separation).\nTYPED_TAGS_ABLATED: cat(world_obs, harm_obs) -> single z_world encoder;\nno typed routing -- harm channel information merged into world encoder input.\n\n## Pre-Registered Thresholds\n\nC1: gap_typed >= 0.04 in all seeds  (TYPED_TAGS_ON harm eval above floor)\nC2: per-seed delta (TYPED - ABLATED) >= 0.02 in all seeds  (typed routing adds >=2pp)\nC3: gap_ablated >= 0.0  (ablation learns something; data quality)\nC4: n_harm_eval_min >= 20  (sufficient harm events in eval)\nC5: no fatal errors\n\n## Results\n\n| Condition | gap (avg) | mean_harm | mean_safe |\n|-----------|-----------|-----------|----------|\n| TYPED_TAGS_ON      | 0.0153 | 0.5218 | 0.5065 |\n| TYPED_TAGS_ABLATED | 0.0257 | 0.5256 | 0.4999 |\n\n**delta_gap (TYPED - ABLATED): -0.0104**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: gap_typed >= 0.04 (all seeds) | FAIL | 0.0153 |\n| C2: per-seed delta >= 0.02 (all seeds) | FAIL | [-0.0098, -0.011] |\n| C3: gap_ablated >= 0.0 | PASS | 0.0257 |\n| C4: n_harm_min >= 20 | PASS | 533 |\n| C5: no fatal errors | PASS | -- |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nARC-017 NOT supported at V3 proxy level: gap_typed=0.0153 (C1 FAIL), delta=-0.0104 (C2 FAIL). Typed stream separation does not produce a detectable improvement in harm_eval discrimination at this training scale. Note: this V3 proxy conflates the typed-routing mechanism with the underlying quality of z_world -- a FAIL here may reflect insufficient warmup rather than a genuine claim refutation.\n\n## Per-Seed\n\nTYPED_TAGS_ON:\n  seed=42: gap=0.0138 n_harm=580 world_obs_dim=250\n  seed=123: gap=0.0168 n_harm=533 world_obs_dim=250\n\nTYPED_TAGS_ABLATED:\n  seed=42: gap=0.0236 n_harm=580 world_obs_dim=301\n  seed=123: gap=0.0278 n_harm=533 world_obs_dim=301\n\n## Failure Notes\n\n- C1 FAIL: TYPED_TAGS_ON gap below 0.04 in seeds [42, 123] -- typed routing does not produce a discriminative z_world\n- C2 FAIL: per-seed deltas [-0.0098, -0.011] < 0.02 -- typed stream separation does not add >=2pp over merged input\n",
+  "claim_ids": [
+    "ARC-017"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_129_arc017_stream_tag_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260329T031933Z",
+  "claim": "ARC-017",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_129_arc017_stream_tag_pair_20260329T031933Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_gap_typed_on": 0.04,
+    "C2_per_seed_delta": 0.02,
+    "C3_gap_ablated": 0.0,
+    "C4_n_harm_eval_min": 20
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "TYPED_TAGS_ON",
+    "TYPED_TAGS_ABLATED"
+  ],
+  "dispatch_mode": "discriminative_pair",
+  "backlog_id": "EVB-0021",
+  "evidence_class": "discriminative_pair",
+  "claim_ids_tested": [
+    "ARC-017"
+  ]
+}
