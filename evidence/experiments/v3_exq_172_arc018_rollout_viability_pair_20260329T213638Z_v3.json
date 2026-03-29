@@ -1,0 +1,72 @@
+{
+  "run_id": "v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3",
+  "experiment_type": "v3_exq_172_arc018_rollout_viability_pair",
+  "claim_ids": [
+    "ARC-018"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "INCONCLUSIVE",
+  "evidence_direction": "inconclusive",
+  "evidence_class": "discriminative_pair",
+  "criteria": {
+    "C1_direction": false,
+    "C2_harm_advantage": false,
+    "C3_e2_quality": false,
+    "C4_data_quality": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_C2_ADVANTAGE": 0.005,
+    "THRESH_C3_E2_QUALITY": 0.15,
+    "THRESH_C4_MIN": 5
+  },
+  "summary_metrics": {
+    "harm_rate_ROLLOUT_mean": 0.9520928075194115,
+    "harm_rate_GREEDY_mean": 0.8291999999999999,
+    "harm_advantage_mean": -0.1228928075194115,
+    "e2_world_r2_mean": -0.0327899174866178,
+    "greedy_harm_contacts_per_seed": [
+      4197,
+      4095
+    ]
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "discriminative_pair: ROLLOUT_VIABILITY (k=5 step E2 rollout, n=10 candidates) vs GREEDY_HARM (1-step harm head); shared WorldEncoder+E2+HarmHead trained 500 warmup eps; eval 50 eps x 100 steps; CausalGridWorldV2 size=8 hazards=3 resources=3",
+  "interpretation": "PASS supports ARC-018: explicit multi-step rollout viability scoring outperforms greedy 1-step harm avoidance, validating the hippocampal rollout-and-viability-map mechanism. INCONCLUSIVE = E2 not trained sufficiently or insufficient harm contacts for reliable comparison. FAIL weakens ARC-018: rollout provides no benefit over greedy evaluation.",
+  "per_seed_results": {
+    "42": {
+      "e2_world_r2": -0.1555024343744542,
+      "ROLLOUT_VIABILITY": {
+        "harm_rate": 0.961585615038823,
+        "n_harm_contacts": 4706,
+        "total_steps": 4894
+      },
+      "GREEDY_HARM": {
+        "harm_rate": 0.8394,
+        "n_harm_contacts": 4197,
+        "total_steps": 5000
+      },
+      "harm_advantage": -0.12218561503882297,
+      "c1_direction_pass": false
+    },
+    "123": {
+      "e2_world_r2": 0.0899225994012186,
+      "ROLLOUT_VIABILITY": {
+        "harm_rate": 0.9426,
+        "n_harm_contacts": 4713,
+        "total_steps": 5000
+      },
+      "GREEDY_HARM": {
+        "harm_rate": 0.819,
+        "n_harm_contacts": 4095,
+        "total_steps": 5000
+      },
+      "harm_advantage": -0.12360000000000004,
+      "c1_direction_pass": false
+    }
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T21:36:38.286953+00:00"
+}

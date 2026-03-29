@@ -1,0 +1,86 @@
+{
+  "run_id": "v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3",
+  "experiment_type": "v3_exq_170_q002_r_field_resolution_pair",
+  "claim_ids": [
+    "Q-002"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "criteria": {
+    "C1_fine_harm_rate_not_worse_than_coarse": false,
+    "C2_fine_residue_accuracy_positive": false,
+    "C3_coarse_sufficient_harm_events": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_C1_MARGIN": 0.05,
+    "THRESH_C2_ACCURACY": 0.1,
+    "THRESH_C3_MIN_EVENTS": 5
+  },
+  "summary_metrics": {
+    "fine_harm_rate": 0.027905431085079917,
+    "coarse_harm_rate": 0.00030664556571841236,
+    "fine_residue_accuracy": 0.0164223784423755,
+    "coarse_residue_accuracy": 0.03370561449999152,
+    "fine_n_harm_events": 2374.5,
+    "coarse_n_harm_events": 52.0,
+    "delta_harm_coarse_minus_fine": -0.027598785519361506
+  },
+  "protocol": {
+    "warmup_episodes": 200,
+    "eval_episodes": 100,
+    "steps_per_episode": 100,
+    "lr": 0.0003,
+    "accum_alpha": 0.2,
+    "rbf_bandwidth": 1.0,
+    "fine_num_centers": 32,
+    "coarse_num_centers": 4
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Two-condition residue-field spatial resolution test. FINE (32 RBF centers) vs COARSE (4 RBF centers) in z_world latent space. Architecture: WorldEncoder (Linear(250,32)+LayerNorm), E2WorldForward (Linear(37,32)), RBFLayer with N centers accumulating harm proximity signals. Warmup: 200 episodes, random actions, train encoder+E2 on world prediction MSE, accumulate harm at nearest RBF center. Eval: 100 episodes, greedy avoidance -- pick action minimizing predicted residue score (E2 roll one step). Metrics: harm_rate (lower is better), residue_accuracy (Pearson r between field score and hazard proximity; higher = field correctly represents hazard space). CausalGridWorldV2 size=8 num_hazards=3 num_resources=3 hazard_harm=0.02 env_drift_interval=5 env_drift_prob=0.2. 2 conditions x 2 seeds = 4 cells.",
+  "interpretation": "PASS => FINE resolution matches or beats COARSE on harm rate, and FINE field shows positive correlation with hazard proximity. Supports Q-002: finer spatial resolution in R(x,t) is at least as effective as coarse for harm navigation; spatial structure of z_world latent is informative at fine granularity. FAIL (C1+C3 but not C2) => FINE field does not achieve spatial learning (RBF centers not meaningfully differentiated in z_world space). Weakens Q-002 fine-resolution hypothesis: z_world may not be spatially organized enough at this scale to support fine-grained residue fields. FAIL (other) => insufficient harm events or mixed-direction results; experiment inconclusive for Q-002.",
+  "per_seed_results": {
+    "FINE": [
+      {
+        "condition": "FINE",
+        "seed": 42,
+        "harm_rate": 0.0524575086040497,
+        "residue_accuracy": 0.16301683006838347,
+        "n_harm_events": 4393,
+        "num_rbf_centers": 32
+      },
+      {
+        "condition": "FINE",
+        "seed": 123,
+        "harm_rate": 0.0033533535661101344,
+        "residue_accuracy": -0.13017207318363247,
+        "n_harm_events": 356,
+        "num_rbf_centers": 32
+      }
+    ],
+    "COARSE": [
+      {
+        "condition": "COARSE",
+        "seed": 42,
+        "harm_rate": 0.00025695310413837433,
+        "residue_accuracy": -0.043399323693816785,
+        "n_harm_events": 43,
+        "num_rbf_centers": 4
+      },
+      {
+        "condition": "COARSE",
+        "seed": 123,
+        "harm_rate": 0.00035633802729845044,
+        "residue_accuracy": 0.11081055269379983,
+        "n_harm_events": 61,
+        "num_rbf_centers": 4
+      }
+    ]
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T21:38:12.629107+00:00"
+}

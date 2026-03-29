@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-29T21:32:13.654295+00:00",
-  "idle": true,
+  "last_updated": "2026-03-29T21:39:46.549296+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
@@ -2994,6 +2994,62 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 35.0
+    },
+    {
+      "queue_id": "V3-EXQ-172",
+      "backlog_id": "",
+      "claim_id": "ARC-018",
+      "title": "ARC-018 rollout viability mapping: ROLLOUT_VIABILITY (k=5) vs GREEDY_HARM (1-step) discriminative pair (seeds [42,123])",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[seed 123] ROLLOUT harm_rate=0.9426 GREEDY harm_rate=0.8190 advantage=-0.1236 | Criteria: {'C1_direction': False, 'C2_harm_advantage': False, 'C3_e2_quality': False, 'C4_data_quality': True} | harm_advantage_mean=-0.1229  e2_r2_mean=-0.0328",
+      "started_at": "2026-03-29T21:36:17.675195+00:00",
+      "completed_at": "2026-03-29T21:36:38.734692+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 21.1
+    },
+    {
+      "queue_id": "V3-EXQ-176",
+      "backlog_id": "",
+      "claim_id": "ARC-036",
+      "title": "ARC-036 valence dimension dissociation probe: harm vs benefit RBF terrain correlation (seeds [42,123])",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "Criteria: {'C1_harm_field_active': False, 'C2_benefit_field_active': False, 'C3_dissociation': True} | Outcome: FAIL  evidence_direction: mixed | Done. Outcome: FAIL",
+      "started_at": "2026-03-29T21:36:41.085444+00:00",
+      "completed_at": "2026-03-29T21:37:02.331331+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 21.2
+    },
+    {
+      "queue_id": "V3-EXQ-170",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-002 R-field spatial resolution: FINE (32 centers) vs COARSE (4 centers) discriminative pair",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C3_coarse_sufficient_harm_events: PASS | Overall outcome: FAIL | Done. Outcome: FAIL",
+      "started_at": "2026-03-29T21:37:04.979599+00:00",
+      "completed_at": "2026-03-29T21:38:13.100059+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 68.1
+    },
+    {
+      "queue_id": "V3-EXQ-171",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-033 E2 kernel chain vs ablated: 600-episode warmup fix (EXQ-124 root cause corrected)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "mean_harm_reduction_delta: 0.06110 | Overall outcome: PASS | Done. Outcome: PASS",
+      "started_at": "2026-03-29T21:38:15.470587+00:00",
+      "completed_at": "2026-03-29T21:39:46.549108+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 91.1
     }
   ]
 }
