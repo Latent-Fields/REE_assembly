@@ -1,0 +1,147 @@
+{
+  "run_id": "v3_exq_163_mech141_dual_timescale_arbitration_20260329T203824_v3",
+  "experiment_type": "v3_exq_163_mech141_dual_timescale_arbitration",
+  "claim_ids_tested": [
+    "MECH-141",
+    "MECH-140"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "inconclusive",
+  "evidence_class": "discriminative_triple",
+  "criteria_met": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false
+  },
+  "pre_registered_thresholds": {
+    "CONFLICT_THRESH": 0.2,
+    "THRESH_HARM_MARGIN": 0.02,
+    "THRESH_SPREAD_MIN": 0.05,
+    "THRESH_CORR_MAX": 0.7,
+    "THRESH_CONFLICT_STEPS_MIN": 50
+  },
+  "summary_metrics": {
+    "DUAL_TIMESCALE": {
+      "harm_rate_mean": 0.0,
+      "inter_loop_spread_mean": 0.0,
+      "timescale_gate_correlation_mean": 0.523124524009447,
+      "n_conflict_steps_mean": 0.0,
+      "slow_conflict_mean": 0.0009600396781767502,
+      "fast_conflict_variance_mean": 8.949610248648362e-07
+    },
+    "SLOW_ONLY": {
+      "harm_rate_mean": 0.0,
+      "inter_loop_spread_mean": 0.0,
+      "timescale_gate_correlation_mean": 0.0,
+      "n_conflict_steps_mean": 0.0,
+      "slow_conflict_mean": 0.0009413547135693428,
+      "fast_conflict_variance_mean": 8.920362772873527e-07
+    },
+    "FAST_ONLY": {
+      "harm_rate_mean": 0.0,
+      "inter_loop_spread_mean": 0.0,
+      "timescale_gate_correlation_mean": 0.0,
+      "n_conflict_steps_mean": 0.0,
+      "slow_conflict_mean": 0.0010295417702754354,
+      "fast_conflict_variance_mean": 1.0465951356473495e-06
+    }
+  },
+  "per_seed_results": {
+    "DUAL_TIMESCALE": [
+      {
+        "condition": "DUAL_TIMESCALE",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.5005617724136244,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0009811460762784467,
+        "fast_conflict_variance": 8.780108802217274e-07
+      },
+      {
+        "condition": "DUAL_TIMESCALE",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.5456872756052695,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0009389332800750536,
+        "fast_conflict_variance": 9.11911169507945e-07
+      }
+    ],
+    "SLOW_ONLY": [
+      {
+        "condition": "SLOW_ONLY",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.0,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0007976692841546943,
+        "fast_conflict_variance": 6.202026544090946e-07
+      },
+      {
+        "condition": "SLOW_ONLY",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.0,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0010850401429839912,
+        "fast_conflict_variance": 1.1638699001656109e-06
+      }
+    ],
+    "FAST_ONLY": [
+      {
+        "condition": "FAST_ONLY",
+        "seed": 42,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.0,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0011369836859264199,
+        "fast_conflict_variance": 1.2876600468734552e-06
+      },
+      {
+        "condition": "FAST_ONLY",
+        "seed": 123,
+        "harm_rate": 0.0,
+        "inter_loop_spread": 0.0,
+        "timescale_gate_correlation": 0.0,
+        "n_conflict_steps": 0,
+        "slow_conflict_mean": 0.0009220998546244508,
+        "fast_conflict_variance": 8.055302244212439e-07
+      }
+    ]
+  },
+  "config": {
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "commit_step_frac": 0.5,
+    "ema_tau_slow": 30.0,
+    "w_slow": 0.5,
+    "w_fast": 0.5,
+    "gate_reg": 0.001,
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "hazard_harm": 0.05,
+    "lr": 0.001,
+    "hidden_dim": 32,
+    "world_dim": 32,
+    "self_dim": 16,
+    "harm_dim": 8,
+    "conflict_thresh": 0.2
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "Three-condition dual-timescale arbitration test: DUAL_TIMESCALE (w_slow=0.5 * EMA_tau30 + w_fast=0.5 * current_step), SLOW_ONLY (w_slow=1.0, EMA_tau30), FAST_ONLY (w_fast=1.0, current-step only). All conditions: shared g_motor/g_cog/g_mot gate nets, conflict_signal=|g_motor-g_cog|, random action policy. 3 conditions x 2 seeds = 6 cells. CausalGridWorldV2 size=8 num_hazards=4 num_resources=2 hazard_harm=0.05 env_drift_interval=5 env_drift_prob=0.3. 400 total episodes, 100 measurement episodes (last quartile).",
+  "interpretation": "PASS => MECH-141 supported: dual-timescale arbitration outperforms either single-timescale pathway on harm avoidance, preserves loop independence, and slow/fast signals carry partially independent info. PARTIAL_TIMESCALES_CORRELATED => dual timescale performs well but slow/fast gates are highly correlated -- env may not produce events that differentiate them; scale up env drift or extend episode length. PARTIAL_NO_ADVANTAGE => slow/fast are informationally distinct but dual timescale does not improve harm avoidance at this scale; MECH-141 remains open -- may need stronger hazard density or longer evaluation window. FAIL => insufficient conflict events; increase N_HAZARDS or HAZARD_HARM and re-run.",
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T20:46:37.198934+00:00"
+}

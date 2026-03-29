@@ -1,0 +1,129 @@
+{
+  "run_id": "v3_exq_162_mech137_commit_token_structure_9e3b4eaa_v3",
+  "experiment_type": "v3_exq_162_mech137_commit_token_structure",
+  "claim_ids_tested": [
+    "MECH-137",
+    "MECH-138",
+    "MECH-139"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "PARTIAL_NO_CANCEL",
+  "evidence_direction": "mixed",
+  "evidence_class": "discriminative_pair",
+  "guidance": "three_phase_token_separates_signals_but_cancel_window_vestigial; env_conflict_rate_too_low_at_this_scale; increase_hazard_density_or_CANCEL_THRESH",
+  "criteria_met": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false
+  },
+  "pre_registered_thresholds": {
+    "THRESH_HARM_MARGIN": 0.02,
+    "THRESH_CORR_MAX": 0.3,
+    "THRESH_CANCEL_MIN": 0.05,
+    "THRESH_CANCEL_AVOID": 0.0
+  },
+  "summary_metrics": {
+    "three_phase_last_q_harm": 0.0,
+    "three_phase_pre_post_corr": 0.0823097199398271,
+    "three_phase_cancel_window_utilization": 0.0,
+    "three_phase_cancel_harm_avoided": 0.0,
+    "three_phase_n_cancel_events": 0.0,
+    "two_phase_last_q_harm": 0.0,
+    "two_phase_pre_post_corr": 0.0938843677420928,
+    "two_phase_cancel_window_utilization": 0.0,
+    "two_phase_cancel_harm_avoided": 0.0,
+    "two_phase_n_cancel_events": 0.0,
+    "delta_harm_two_vs_three": 0.0
+  },
+  "per_seed_results": {
+    "THREE_PHASE": [
+      {
+        "condition": "THREE_PHASE",
+        "seed": 42,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.09047136872555715,
+        "cancel_window_utilization": 0.0,
+        "cancel_harm_avoided": 0.0,
+        "n_cancel_events": 0,
+        "mean_harm_when_cancel": 0.0,
+        "mean_harm_no_cancel": 0.0,
+        "n_eval_episodes": 100,
+        "n_pre_commit_samples": 12000,
+        "n_post_commit_samples": 10000
+      },
+      {
+        "condition": "THREE_PHASE",
+        "seed": 123,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.07414807115409704,
+        "cancel_window_utilization": 0.0,
+        "cancel_harm_avoided": 0.0,
+        "n_cancel_events": 0,
+        "mean_harm_when_cancel": 0.0,
+        "mean_harm_no_cancel": 0.0,
+        "n_eval_episodes": 100,
+        "n_pre_commit_samples": 12000,
+        "n_post_commit_samples": 10000
+      }
+    ],
+    "TWO_PHASE": [
+      {
+        "condition": "TWO_PHASE",
+        "seed": 42,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.10882764579725623,
+        "cancel_window_utilization": 0.0,
+        "cancel_harm_avoided": 0.0,
+        "n_cancel_events": 0,
+        "mean_harm_when_cancel": 0.0,
+        "mean_harm_no_cancel": 0.0,
+        "n_eval_episodes": 100,
+        "n_pre_commit_samples": 10000,
+        "n_post_commit_samples": 10000
+      },
+      {
+        "condition": "TWO_PHASE",
+        "seed": 123,
+        "last_q_harm": 0.0,
+        "pre_post_corr": 0.07894108968692937,
+        "cancel_window_utilization": 0.0,
+        "cancel_harm_avoided": 0.0,
+        "n_cancel_events": 0,
+        "mean_harm_when_cancel": 0.0,
+        "mean_harm_no_cancel": 0.0,
+        "n_eval_episodes": 100,
+        "n_pre_commit_samples": 10000,
+        "n_post_commit_samples": 10000
+      }
+    ]
+  },
+  "config": {
+    "conditions": [
+      "THREE_PHASE",
+      "TWO_PHASE"
+    ],
+    "seeds": [
+      42,
+      123
+    ],
+    "n_episodes": 400,
+    "n_eval_episodes": 100,
+    "steps_per_episode": 200,
+    "commit_step_frac": 0.5,
+    "n_cancel_window": 20,
+    "cancel_thresh": 0.3,
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "hazard_harm": 0.05,
+    "lr": 0.001,
+    "world_dim": 32,
+    "self_dim": 16,
+    "hidden_dim": 32
+  },
+  "scenario": "Two-condition commit token anatomy test. THREE_PHASE: commit token has pre-commit (world_pred_loss only), cancel_window (both paths at half weight; cancel fires if harm > CANCEL_THRESH; veto resets phase to PRE_COMMIT and advances commit_step by N_CANCEL_WINDOW), post-commit (harm_eval_loss only). TWO_PHASE: binary gate identical to EXQ-155 WITH_BOUNDARY. Random action policy. 400 total episodes. 100 eval episodes (last quartile). CausalGridWorldV2 size=8 num_hazards=4 num_resources=2 hazard_harm=0.05 env_drift_interval=5 env_drift_prob=0.3. 2 conditions x 2 seeds = 4 cells.",
+  "interpretation": "PASS => THREE_PHASE token behaviorally meaningful. Cancel window is non-trivial (C3) and reduces harm (C4) without hurting policy quality (C1). Signal separation maintained (C2). MECH-137/138/139 supported: commitment is a structured distributed trajectory, not a point event; cancel window adds value. PARTIAL_NO_CANCEL => Token provides good signal separation (C1+C2) but cancel window is rarely invoked (C3 fail) or does not measurably reduce harm (C4 fail). Env may lack sufficient high-harm events to trigger veto at current scale. PARTIAL_HURTS_POLICY => Cancel window resets degrade policy learning (C1 fail). Implementation concern with veto reset logic or env dynamics. FAIL => data quality issue or training divergence.",
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T20:38:20.941118+00:00"
+}

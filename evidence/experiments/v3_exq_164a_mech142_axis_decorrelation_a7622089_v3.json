@@ -1,0 +1,448 @@
+{
+  "run_id": "v3_exq_164a_mech142_axis_decorrelation_a7622089_v3",
+  "experiment_type": "v3_exq_164a_mech142_axis_decorrelation",
+  "claim_ids_tested": [
+    "MECH-142",
+    "MECH-063"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria_met": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true
+  },
+  "criteria_values": {
+    "C1_corr_gaps": [
+      0.0,
+      0.0
+    ],
+    "C2_drift_values": [
+      -0.18144,
+      -0.01923
+    ],
+    "C3_regime_sep_diffs": [
+      0.0,
+      0.0
+    ],
+    "C4_harm_diffs": [
+      0.0,
+      0.0
+    ]
+  },
+  "summary_metrics": {
+    "WITH_DECORRELATION_seed42": {
+      "initial_corr": 0.28048,
+      "final_corr": 0.09904,
+      "regime_sep": 0.0,
+      "last_q_harm": 0.66687
+    },
+    "WITH_DECORRELATION_seed123": {
+      "initial_corr": 0.16418,
+      "final_corr": 0.14495,
+      "regime_sep": 0.0,
+      "last_q_harm": 0.66798
+    },
+    "NO_DECORRELATION_seed42": {
+      "initial_corr": 0.28048,
+      "final_corr": 0.09904,
+      "regime_sep": 0.0,
+      "last_q_harm": 0.66687
+    },
+    "NO_DECORRELATION_seed123": {
+      "initial_corr": 0.16418,
+      "final_corr": 0.14495,
+      "regime_sep": 0.0,
+      "last_q_harm": 0.66798
+    }
+  },
+  "per_seed_results": {
+    "42": {
+      "WITH_DECORRELATION": {
+        "initial_corr": 0.28048,
+        "final_corr": 0.09904,
+        "regime_sep": 0.0,
+        "last_q_harm": 0.66687,
+        "axis_correlation_trajectory": [
+          {
+            "episode": 100,
+            "mean_axis_corr": 0.2804824337363243
+          },
+          {
+            "episode": 200,
+            "mean_axis_corr": 0.08821587637066841
+          },
+          {
+            "episode": 400,
+            "mean_axis_corr": 0.27154316504796344
+          },
+          {
+            "episode": 800,
+            "mean_axis_corr": 0.10909827406188317
+          },
+          {
+            "episode": 1200,
+            "mean_axis_corr": 0.37997105717658997
+          },
+          {
+            "episode": 1600,
+            "mean_axis_corr": 0.09904228430241346
+          }
+        ],
+        "checkpoints": {
+          "100": {
+            "mean_axis_corr": 0.2804824337363243,
+            "r_tonic_phasic": 0.0335485115647316,
+            "r_tonic_affect": 0.3272515833377838,
+            "r_phasic_affect": 0.4806472063064575,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6673909385770559
+          },
+          "200": {
+            "mean_axis_corr": 0.08821587637066841,
+            "r_tonic_phasic": 0.036517392843961716,
+            "r_tonic_affect": 0.0967680811882019,
+            "r_phasic_affect": 0.1313621550798416,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6662531045764685
+          },
+          "400": {
+            "mean_axis_corr": 0.27154316504796344,
+            "r_tonic_phasic": 0.10238805413246155,
+            "r_tonic_affect": 0.17868635058403015,
+            "r_phasic_affect": 0.5335550904273987,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6700980028174818
+          },
+          "800": {
+            "mean_axis_corr": 0.10909827406188317,
+            "r_tonic_phasic": 0.2546306252479553,
+            "r_tonic_affect": 0.00010341718734707683,
+            "r_phasic_affect": 0.07256077975034714,
+            "regime_sep": 0.0,
+            "harm_rate": 0.667494514746964
+          },
+          "1200": {
+            "mean_axis_corr": 0.37997105717658997,
+            "r_tonic_phasic": 0.480491578578949,
+            "r_tonic_affect": 0.21784824132919312,
+            "r_phasic_affect": 0.4415733516216278,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6675273680672049
+          },
+          "1600": {
+            "mean_axis_corr": 0.09904228430241346,
+            "r_tonic_phasic": 0.2792833745479584,
+            "r_tonic_affect": 0.011840523220598698,
+            "r_phasic_affect": 0.006002955138683319,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6668672745868564
+          }
+        }
+      },
+      "NO_DECORRELATION": {
+        "initial_corr": 0.28048,
+        "final_corr": 0.09904,
+        "regime_sep": 0.0,
+        "last_q_harm": 0.66687,
+        "axis_correlation_trajectory": [
+          {
+            "episode": 100,
+            "mean_axis_corr": 0.2804824337363243
+          },
+          {
+            "episode": 200,
+            "mean_axis_corr": 0.08821587637066841
+          },
+          {
+            "episode": 400,
+            "mean_axis_corr": 0.27154316504796344
+          },
+          {
+            "episode": 800,
+            "mean_axis_corr": 0.10909827406188317
+          },
+          {
+            "episode": 1200,
+            "mean_axis_corr": 0.37997105717658997
+          },
+          {
+            "episode": 1600,
+            "mean_axis_corr": 0.09904228430241346
+          }
+        ],
+        "checkpoints": {
+          "100": {
+            "mean_axis_corr": 0.2804824337363243,
+            "r_tonic_phasic": 0.0335485115647316,
+            "r_tonic_affect": 0.3272515833377838,
+            "r_phasic_affect": 0.4806472063064575,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6673909385770559
+          },
+          "200": {
+            "mean_axis_corr": 0.08821587637066841,
+            "r_tonic_phasic": 0.036517392843961716,
+            "r_tonic_affect": 0.0967680811882019,
+            "r_phasic_affect": 0.1313621550798416,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6662531045764685
+          },
+          "400": {
+            "mean_axis_corr": 0.27154316504796344,
+            "r_tonic_phasic": 0.10238805413246155,
+            "r_tonic_affect": 0.17868635058403015,
+            "r_phasic_affect": 0.5335550904273987,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6700980028174818
+          },
+          "800": {
+            "mean_axis_corr": 0.10909827406188317,
+            "r_tonic_phasic": 0.2546306252479553,
+            "r_tonic_affect": 0.00010341718734707683,
+            "r_phasic_affect": 0.07256077975034714,
+            "regime_sep": 0.0,
+            "harm_rate": 0.667494514746964
+          },
+          "1200": {
+            "mean_axis_corr": 0.37997105717658997,
+            "r_tonic_phasic": 0.480491578578949,
+            "r_tonic_affect": 0.21784824132919312,
+            "r_phasic_affect": 0.4415733516216278,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6675273680672049
+          },
+          "1600": {
+            "mean_axis_corr": 0.09904228430241346,
+            "r_tonic_phasic": 0.2792833745479584,
+            "r_tonic_affect": 0.011840523220598698,
+            "r_phasic_affect": 0.006002955138683319,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6668672745868564
+          }
+        }
+      },
+      "C1_corr_gap": 0.0,
+      "C2_drift": -0.18144,
+      "C3_regime_sep_diff": 0.0,
+      "C4_harm_diff": 0.0
+    },
+    "123": {
+      "WITH_DECORRELATION": {
+        "initial_corr": 0.16418,
+        "final_corr": 0.14495,
+        "regime_sep": 0.0,
+        "last_q_harm": 0.66798,
+        "axis_correlation_trajectory": [
+          {
+            "episode": 100,
+            "mean_axis_corr": 0.16417825470368066
+          },
+          {
+            "episode": 200,
+            "mean_axis_corr": 0.28073763847351074
+          },
+          {
+            "episode": 400,
+            "mean_axis_corr": 0.19258768111467361
+          },
+          {
+            "episode": 800,
+            "mean_axis_corr": 0.07290281852086385
+          },
+          {
+            "episode": 1200,
+            "mean_axis_corr": 0.22469514732559523
+          },
+          {
+            "episode": 1600,
+            "mean_axis_corr": 0.1449510008096695
+          }
+        ],
+        "checkpoints": {
+          "100": {
+            "mean_axis_corr": 0.16417825470368066,
+            "r_tonic_phasic": 0.10597340017557144,
+            "r_tonic_affect": 0.25176066160202026,
+            "r_phasic_affect": 0.13480070233345032,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6634320987448096
+          },
+          "200": {
+            "mean_axis_corr": 0.28073763847351074,
+            "r_tonic_phasic": 0.21784573793411255,
+            "r_tonic_affect": 0.28971022367477417,
+            "r_phasic_affect": 0.3346569538116455,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6681038154534995
+          },
+          "400": {
+            "mean_axis_corr": 0.19258768111467361,
+            "r_tonic_phasic": 0.1501108855009079,
+            "r_tonic_affect": 0.10651672631502151,
+            "r_phasic_affect": 0.32113543152809143,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6672404189035297
+          },
+          "800": {
+            "mean_axis_corr": 0.07290281852086385,
+            "r_tonic_phasic": 0.051757119596004486,
+            "r_tonic_affect": 0.10164889693260193,
+            "r_phasic_affect": 0.06530243903398514,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6702713443085552
+          },
+          "1200": {
+            "mean_axis_corr": 0.22469514732559523,
+            "r_tonic_phasic": 0.050477880984544754,
+            "r_tonic_affect": 0.1210579127073288,
+            "r_phasic_affect": 0.5025496482849121,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6690699495233595
+          },
+          "1600": {
+            "mean_axis_corr": 0.1449510008096695,
+            "r_tonic_phasic": 0.12401893734931946,
+            "r_tonic_affect": 0.26803991198539734,
+            "r_phasic_affect": 0.04279415309429169,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6679818099983037
+          }
+        }
+      },
+      "NO_DECORRELATION": {
+        "initial_corr": 0.16418,
+        "final_corr": 0.14495,
+        "regime_sep": 0.0,
+        "last_q_harm": 0.66798,
+        "axis_correlation_trajectory": [
+          {
+            "episode": 100,
+            "mean_axis_corr": 0.16417825470368066
+          },
+          {
+            "episode": 200,
+            "mean_axis_corr": 0.28073763847351074
+          },
+          {
+            "episode": 400,
+            "mean_axis_corr": 0.19258768111467361
+          },
+          {
+            "episode": 800,
+            "mean_axis_corr": 0.07290281852086385
+          },
+          {
+            "episode": 1200,
+            "mean_axis_corr": 0.22469514732559523
+          },
+          {
+            "episode": 1600,
+            "mean_axis_corr": 0.1449510008096695
+          }
+        ],
+        "checkpoints": {
+          "100": {
+            "mean_axis_corr": 0.16417825470368066,
+            "r_tonic_phasic": 0.10597340017557144,
+            "r_tonic_affect": 0.25176066160202026,
+            "r_phasic_affect": 0.13480070233345032,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6634320987448096
+          },
+          "200": {
+            "mean_axis_corr": 0.28073763847351074,
+            "r_tonic_phasic": 0.21784573793411255,
+            "r_tonic_affect": 0.28971022367477417,
+            "r_phasic_affect": 0.3346569538116455,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6681038154534995
+          },
+          "400": {
+            "mean_axis_corr": 0.19258768111467361,
+            "r_tonic_phasic": 0.1501108855009079,
+            "r_tonic_affect": 0.10651672631502151,
+            "r_phasic_affect": 0.32113543152809143,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6672404189035297
+          },
+          "800": {
+            "mean_axis_corr": 0.07290281852086385,
+            "r_tonic_phasic": 0.051757119596004486,
+            "r_tonic_affect": 0.10164889693260193,
+            "r_phasic_affect": 0.06530243903398514,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6702713443085552
+          },
+          "1200": {
+            "mean_axis_corr": 0.22469514732559523,
+            "r_tonic_phasic": 0.050477880984544754,
+            "r_tonic_affect": 0.1210579127073288,
+            "r_phasic_affect": 0.5025496482849121,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6690699495233595
+          },
+          "1600": {
+            "mean_axis_corr": 0.1449510008096695,
+            "r_tonic_phasic": 0.12401893734931946,
+            "r_tonic_affect": 0.26803991198539734,
+            "r_phasic_affect": 0.04279415309429169,
+            "regime_sep": 0.0,
+            "harm_rate": 0.6679818099983037
+          }
+        }
+      },
+      "C1_corr_gap": 0.0,
+      "C2_drift": -0.01923,
+      "C3_regime_sep_diff": 0.0,
+      "C4_harm_diff": 0.0
+    }
+  },
+  "config": {
+    "n_episodes": 1600,
+    "n_eval_episodes": 200,
+    "steps_per_episode": 200,
+    "checkpoints": [
+      100,
+      200,
+      400,
+      800,
+      1200,
+      1600
+    ],
+    "tonic_tau": 50.0,
+    "corr_buffer_size": 100,
+    "decorr_weight": 0.1,
+    "regime_harm_thresh": 0.03,
+    "window_size": 20,
+    "grid_size": 8,
+    "n_hazards": 4,
+    "n_resources": 2,
+    "hazard_harm": 0.05,
+    "lr": 0.001,
+    "ent_bonus": 0.005,
+    "hidden_dim": 32,
+    "world_dim": 32,
+    "self_dim": 16,
+    "seeds": [
+      42,
+      123
+    ],
+    "conditions": [
+      "WITH_DECORRELATION",
+      "NO_DECORRELATION"
+    ]
+  },
+  "thresholds": {
+    "CORR_GAP_MIN": 0.1,
+    "DRIFT_MIN": 0.1,
+    "REGIME_MARGIN": -0.05,
+    "THRESH_HARM_MARGIN": 0.03
+  },
+  "evidence_class": "experimental",
+  "evidence_direction": "weakens",
+  "summary": "Outcome=FAIL. WITH_DECORRELATION vs NO_DECORRELATION (FULL_AXES, 2 seeds). C1 (corr gap): False  gaps=[0.0, 0.0]. C2 (drift): False  drifts=[-0.1814, -0.0192]. C3 (regime sep): True  diffs=[0.0, 0.0]. C4 (harm quality): True  diffs=[0.0, 0.0].",
+  "dry_run": false,
+  "timestamp_utc": "2026-03-29T20:46:52Z"
+}

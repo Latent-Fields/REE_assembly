@@ -1,0 +1,73 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_166_sd003_obs_space_forward_model_20260329T210513Z_v3",
+  "experiment_type": "v3_exq_166_sd003_obs_space_forward_model",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033",
+    "SD-011"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria_met": 4,
+  "total_criteria": 6,
+  "dry_run": false,
+  "supersedes": "v3_exq_115_sd003_zharms_counterfactual",
+  "notes": "Obs-space forward model (Approach B). Staged training: P0 encoder pre-train, P1 frozen encoder + obs-fwd training, P2 E3 calibration, P3 eval. Residual architecture: harm_obs_next = harm_obs_curr + delta(harm_obs, action). Fixes EXQ-115 identity collapse: obs-space shift is near-deterministic.",
+  "metrics": {
+    "obs_fwd_r2_mean": 0.4332713484764099,
+    "delta_approach_mean": 0.002766229267860335,
+    "causal_approach_trained_mean": 0.005274680720695987,
+    "causal_none_trained_mean": -0.020968382829878826,
+    "causal_contact_trained_mean": 0.01686094854806486,
+    "causal_approach_ablated_mean": 0.0025084514528356527,
+    "n_approach_eval_mean": 390.5,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 0.0
+  },
+  "per_seed": {
+    "42": {
+      "obs_fwd_r2": 0.8665426969528198,
+      "delta_approach": -0.01307752839536492,
+      "causal_approach_trained": 0.01042125735070136,
+      "causal_none_trained": -0.018691848109654942,
+      "causal_contact_trained": 0.02543849776772891,
+      "causal_approach_ablated": 0.02349878574606628,
+      "n_approach_eval": 381,
+      "n_contact_eval": 85
+    },
+    "123": {
+      "obs_fwd_r2": 0.0,
+      "delta_approach": 0.01860998693108559,
+      "causal_approach_trained": 0.00012810409069061363,
+      "causal_none_trained": -0.023244917550102714,
+      "causal_contact_trained": 0.008283399328400816,
+      "causal_approach_ablated": -0.018481882840394974,
+      "n_approach_eval": 400,
+      "n_contact_eval": 79
+    }
+  },
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "phase0_episodes": 50,
+    "phase1_episodes": 80,
+    "phase2_episodes": 30,
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "world_dim": 32,
+    "self_dim": 16,
+    "nav_bias": 0.65,
+    "harm_obs_dim": 51,
+    "z_harm_dim": 32,
+    "fwd_hidden_dim": 128,
+    "grid_size": 6,
+    "num_hazards": 4
+  }
+}

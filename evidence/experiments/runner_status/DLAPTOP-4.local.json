@@ -1,86 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 73289,
-  "runner_started_at": "2026-03-29T18:59:25.464237+00:00",
-  "last_updated": "2026-03-29T20:24:30.918638+00:00",
+  "runner_pid": 82367,
+  "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
+  "last_updated": "2026-03-29T21:05:13.983383+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-164",
-    "backlog_id": "",
-    "claim_id": "MECH-142",
-    "title": "MECH-142 axis decorrelation maintenance: WITH_DECORRELATION vs NO_DECORRELATION (seeds [42,123])",
-    "description": "",
-    "script": "experiments/v3_exq_164_mech142_axis_decorrelation.py",
-    "started_at": "2026-03-29T20:14:15.029565+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
-    },
-    "seconds_elapsed": 616,
-    "seconds_remaining": 1040,
-    "recent_lines": [
-      "[EXQ-164]   ep=1600  mean_corr=0.0000  regime_sep=0.0000  harm=0.0000  r_tp=0.000  r_ta=0.000  r_pa=0.000",
-      "[EXQ-164]   DONE  initial_corr=0.0000  final_corr=0.0000  regime_sep=0.0000  last_q_harm=0.0000",
-      "[EXQ-164] --- condition=WITH_DECORRELATION  seed=123 ---",
-      "[EXQ-164]   ep= 100  mean_corr=0.0000  regime_sep=0.0000  harm=0.0000  r_tp=0.000  r_ta=0.000  r_pa=0.000",
-      "[EXQ-164]   ep= 200  mean_corr=0.0000  regime_sep=0.0000  harm=0.0000  r_tp=0.000  r_ta=0.000  r_pa=0.000"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-164",
-      "backlog_id": "",
-      "claim_id": "MECH-142",
-      "title": "MECH-142 axis decorrelation maintenance: WITH_DECORRELATION vs NO_DECORRELATION (seeds [42,123])",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-162",
-      "backlog_id": "",
-      "claim_id": "MECH-137",
-      "title": "MECH-137/138/139 commit token structure anatomy (THREE_PHASE vs TWO_PHASE)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-163",
-      "backlog_id": "",
-      "claim_id": "MECH-141",
-      "title": "MECH-141 dual-timescale tri-loop arbitration (DUAL_TIMESCALE vs SLOW_ONLY vs FAST_ONLY)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-165",
-      "backlog_id": "",
-      "claim_id": "MECH-143",
-      "title": "MECH-143/144 hippocampal value sensitivity probe (FIXED_VALUE vs SHUFFLED_VALUE)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -2966,6 +2896,76 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 573.1
+    },
+    {
+      "queue_id": "V3-EXQ-162",
+      "backlog_id": "",
+      "claim_id": "MECH-137",
+      "title": "MECH-137/138/139 commit token structure anatomy (THREE_PHASE vs TWO_PHASE)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C2_three_phase_signal_separation: PASS | C3_cancel_window_utilization: FAIL | C4_cancel_window_avoids_harm: FAIL",
+      "started_at": "2026-03-29T20:34:45.647938+00:00",
+      "completed_at": "2026-03-29T20:38:21.434824+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_162_mech137_commit_token_structure_9e3b4eaa_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 215.8
+    },
+    {
+      "queue_id": "V3-EXQ-163",
+      "backlog_id": "",
+      "claim_id": "MECH-141",
+      "title": "MECH-141 dual-timescale tri-loop arbitration (DUAL_TIMESCALE vs SLOW_ONLY vs FAST_ONLY)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[FAST_ONLY] seed=123 harm_rate=0.00000 inter_spread=0.0000 timescale_corr=0.0000 n_conflict=0 slow_mean=0.0009 fast_var=0.00000 | Outcome:  FAIL | Done. Outcome: FAIL",
+      "started_at": "2026-03-29T20:38:23.669041+00:00",
+      "completed_at": "2026-03-29T20:46:37.683455+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 494.0
+    },
+    {
+      "queue_id": "V3-EXQ-165",
+      "backlog_id": "",
+      "claim_id": "MECH-143",
+      "title": "MECH-143/144 hippocampal value sensitivity probe (FIXED_VALUE vs SHUFFLED_VALUE)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "C4: FAIL | Overall outcome: FAIL | Done. Outcome: FAIL",
+      "started_at": "2026-03-29T20:46:40.004283+00:00",
+      "completed_at": "2026-03-29T20:46:49.433107+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9.4
+    },
+    {
+      "queue_id": "V3-EXQ-164a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-142 axis decorrelation maintenance (bug fix: harm/resource obs keys)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-164a] C4 (WITH harm <= NO + margin):    True  diffs=[0.0, 0.0] | [EXQ-164a] Outcome: FAIL | [EXQ-164a] Written to /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_164a_mech142_axis_decorrelation_a7622089_v3.json",
+      "started_at": "2026-03-29T20:46:51.769784+00:00",
+      "completed_at": "2026-03-29T21:04:56.441083+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 1084.7
+    },
+    {
+      "queue_id": "V3-EXQ-166",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-003/ARC-033 obs-space forward model for E2_harm_s (TRAINED vs ABLATED)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "n_approach_eval_mean       = 390.5  (C5 >20: PASS) | seed_consistency           = {42: -0.01307752839536492, 123: 0.01860998693108559}  (C6: FAIL) | OUTCOME: FAIL",
+      "started_at": "2026-03-29T21:04:58.700225+00:00",
+      "completed_at": "2026-03-29T21:05:13.983172+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 15.3
     }
   ]
 }

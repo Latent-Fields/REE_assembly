@@ -23,7 +23,8 @@
     "Q-014"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Implementation gap: policy receives gradient only from entropy bonus (ENT_BONUS=5e-3); z_world/z_self detached before policy forward pass so harm_eval_loss does not reach policy. Policy converges to maximum-entropy random walk (action_entropy=ln(5)=1.6094). Harm events never occur at meaningful rates; scientific question untestable. Q-014 also retired/legacy. Redesign required with harm-avoidance policy gradient wired to policy.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
