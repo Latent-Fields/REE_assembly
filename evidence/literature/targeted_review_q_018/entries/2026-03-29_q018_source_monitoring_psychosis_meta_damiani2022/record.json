@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_018",
+  "entry_id": "2026-03-29_q018_source_monitoring_psychosis_meta_damiani2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-018"],
+  "source": {
+    "title": "Understanding source monitoring subtypes and their relation to psychosis: a systematic review and meta-analysis",
+    "authors": ["Stefano Damiani", "Alberto Donadeo", "Nicola Bassetti", "Gonzalo Salazar-de-Pablo", "Cecilia Guiot", "Pierluigi Politi", "Paolo Fusar-Poli"],
+    "year": 2022,
+    "venue": "Psychiatry and Clinical Neurosciences",
+    "doi": "10.1111/pcn.13338"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.69,
+  "confidence_rationale": "Systematic review and meta-analysis (44 studies, 1566 patients, 1175 controls) showing that internal source monitoring and imagined-stimulus discrimination are specifically impaired in psychosis, with externalising bias (misattributing internal events to external sources) as the core deficit in patients with hallucinations. Provides empirical quantification of the internal/external attribution failure central to Q-018's authority-spoofing scenario.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_018", "source_monitoring", "reality_monitoring", "externalising_bias", "psychosis", "hallucinations", "internal_external", "threshold_calibration"],
+  "mapping": {
+    "source_claim_statement": "Source monitoring performance across all subtypes is reduced in psychosis vs. healthy controls (SMD=0.458); internal source monitoring and imagined stimuli are specifically impaired (SMD 0.513-0.978); patients with hallucinations show greater externalising errors (misattributing internal events to external sources, SMD=0.410) and impaired imagined/auditory discrimination.",
+    "ree_translation": "The externalising bias finding is directly relevant to Q-018: patients with psychotic hallucinations systematically misattribute internally generated signals as coming from external sources. This is the RC threshold failure in the direction of over-attribution -- the system's threshold for accepting an internal signal as 'this is mine, not external authority' is set too high, causing it to treat its own representations as external inputs. For Q-018's calibration goal, this meta-analytic evidence quantifies the effect size of this failure mode and links it to a specific monitoring subtype (internal source monitoring, imagined stimuli). The implication is that the RC threshold must be most carefully calibrated for the internal/external boundary -- a miscalibrated threshold in this specific domain produces hallucination-analogue behavior (external authority signal treated as real when it is not), whereas a miscalibrated threshold in other domains produces less severe disturbances.",
+    "mapping_caveat": "The meta-analysis uses behavioural source monitoring tasks (word/image recall) that test an agent's ability to remember whether it said or imagined something -- a memory-based task, not an online RC conflict detection task. REE's RC conflict is a real-time process, not a retrospective recall error. The externalising bias in psychosis may reflect long-term changes in source attribution tendencies, not the kind of moment-to-moment threshold the Q-018 calibration aims at. The mapping requires treating the psychosis externalising bias as a stable manifestation of a threshold parameter, which may oversimplify the underlying dynamics.",
+    "source_context": "Meta-analysis of 44 studies, clinical psychosis populations (schizophrenia spectrum), healthy control comparisons, behavioural source monitoring tasks"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Large meta-analysis with rigorous methodology (PRISMA, Newcastle-Ottawa quality check). The specificity of the internal source monitoring deficit (vs. external monitoring being less impaired) is an empirically important finding for Q-018. Transfer risk from retrospective memory task to real-time RC conflict detection is the main limitation."
+  }
+}

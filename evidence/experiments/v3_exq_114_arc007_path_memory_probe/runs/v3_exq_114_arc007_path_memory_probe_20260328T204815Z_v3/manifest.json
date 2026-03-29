@@ -38,5 +38,10 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "supersedes": [
+    "20260308T114644_path_memory_ablation_v2",
+    "20260316T061908_path_memory_ablation_v2"
+  ],
+  "supersedes_note": "Both V2 path_memory_ablation runs (2026-03-08 FAIL and 2026-03-16 PASS) operated on a substrate without HippocampalModule (SD-004). This V3 run uses full SD-004/SD-005/SD-006 implementation and is the authoritative evidence for ARC-007."
 }

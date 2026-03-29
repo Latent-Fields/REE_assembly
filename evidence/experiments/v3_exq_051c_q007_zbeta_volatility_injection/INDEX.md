@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_051c_q007_zbeta_volatility_injection
 
-Generated: `2026-03-29T12:23:52.494031Z`
+Generated: `2026-03-29T12:56:39.865551Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_004",
+  "entry_id": "2026-03-29_q004_multiscale_astrocyte_plasticity_yamamoto2025",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-004"],
+  "source": {
+    "title": "Astrocyte-Mediated Plasticity: Multi-Scale Mechanisms Linking Synaptic Dynamics to Learning and Memory",
+    "authors": ["Masaya Yamamoto", "Tetsuya Takano"],
+    "year": 2025,
+    "venue": "Cells",
+    "doi": "10.3390/cells14241936"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Recent comprehensive review synthesizing multi-scale temporal architecture of astrocyte Ca dynamics across sub-second microdomain events, second-scale synaptic responses, and slow network states. Explicitly frames astrocyte Ca states as distributed substrates for storage and control, and introduces neuron-astrocyte associative memory models. Directly addresses multi-timescale integration relevant to tau_R calibration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_004", "astrocyte", "calcium_dynamics", "multi-scale", "synaptic_plasticity", "learning_memory", "tau_R", "temporal_integration", "associative_memory"],
+  "mapping": {
+    "source_claim_statement": "Astrocytic Ca signaling and gliotransmission modulate synaptic efficacy and contribute to formation and stabilization of memory traces. Astrocytic microdomains, multisynaptic leaflet domains, and network-level ensembles cooperate to regulate circuit computation across space and time. Neuron-astrocyte associative memory models formalize astrocytic Ca states as distributed substrates for storage and control.",
+    "ree_translation": "The explicit framing of astrocyte Ca states as 'distributed substrates for storage and control' is directly analogous to R(x,t) in REE. The review's three-level temporal hierarchy -- sub-second microdomain, second-scale synaptic modulation, slow network states -- maps to a three-component tau_R: fast (~100ms), intermediate (~1-10s), and slow (~minutes). For calibrating tau_R relative to E1 and E2, the intermediate level (second-scale) is closest to E1/E2 timescales and should be the reference point for short-term harm/goal precision weighting; the slow level is what R accumulates over episodes.",
+    "mapping_caveat": "As a review paper, this work synthesizes multi-scale temporal evidence from diverse sources, and the precise boundaries between timescale levels are not sharply defined. The associative memory model references are largely computational and may not accurately reflect in vivo dynamics. The paper is very recent (2025) and some of its synthesis claims about multi-scale Ca cooperation have limited direct experimental support. Human relevance is acknowledged but not specifically addressed.",
+    "source_context": "Review synthesizing astrocyte Ca signaling literature from sub-second microdomain to slow network states; covers classical literature and recent super-resolution/volumetric in vivo imaging; Kyushu University, Japan."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Cells is a respectable open-access journal (MDPI); review quality is high. The explicit multi-scale temporal hierarchy and associative memory framing maps cleanly onto tau_R calibration. Confidence is moderate at 0.67 because as a review, it consolidates rather than generates primary evidence; the three-level hierarchy is a synthesis claim with limited primary experimental grounding."
+  }
+}

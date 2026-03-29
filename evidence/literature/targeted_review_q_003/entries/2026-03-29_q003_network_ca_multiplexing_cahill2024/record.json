@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_003",
+  "entry_id": "2026-03-29_q003_network_ca_multiplexing_cahill2024",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-003"],
+  "source": {
+    "title": "Network-level encoding of local neurotransmitters in cortical astrocytes",
+    "authors": ["Michelle K Cahill", "Max Collard", "Vincent Tse", "Michael E Reitman", "Roberto Etchenique", "Christoph Kirst", "Kira E Poskanzer"],
+    "year": 2024,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-024-07311-5"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "In vivo and ex vivo two-photon imaging in mice directly demonstrates that GABA and glutamate inputs to the same astrocyte network generate qualitatively different, distinguishable Ca responses -- specifically, propagative vs. non-propagative activity patterns -- over a minutes-long time course. This is direct experimental evidence that astrocyte Ca signaling is multi-dimensional, with at least two functionally distinct channels encoding different neurotransmitter identities.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_003", "astrocyte", "calcium_multiplexing", "GABA", "glutamate", "in_vivo", "network_encoding", "dimensionality", "Nature"],
+  "mapping": {
+    "source_claim_statement": "Brief, subcellular GABA and glutamate inputs produce widespread, long-lasting Ca responses across the cortical astrocyte network. A key subset of Ca activity -- propagative activity -- differentiates astrocyte network responses to these two main neurotransmitters, and may influence responses to future inputs. Local, transient neurotransmitter inputs are encoded by broad cortical astrocyte networks over a minutes-long time course.",
+    "ree_translation": "This paper provides direct experimental evidence for two-channel (at minimum) Ca multiplexing in the R-field: the same astrocyte network generates distinguishable Ca dynamics depending on whether it receives glutamate (excitatory, potentially harm-signaling) or GABA (inhibitory, potentially safety-signaling) input. For R(x,t) in REE, this means a scalar R conflates signals with opposite behavioral valence; a vector R with separate channels for excitatory vs. inhibitory input encoding would better represent the biological dimensionality of the signal.",
+    "mapping_caveat": "The two-photon imaging measures population-level Ca dynamics averaged over many cells. The specific Ca subset (propagative activity) that differentiates GABA vs. glutamate responses is not yet fully characterized mechanistically -- it is defined operationally by its spatial spread pattern, not by a well-understood biophysical substrate. The mapping of GABA/glutamate distinction to harm/safety valence in REE is a theoretical extrapolation; astrocytes do not directly encode valence, they encode neurotransmitter identity.",
+    "source_context": "Mouse cortex, ex vivo and in vivo two-photon astrocyte Ca imaging, photouncaging of GABA and glutamate at controlled spatiotemporal scales, Poskanzer lab (UCSF)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.73,
+    "transfer_risk": 0.28,
+    "notes": "Nature publication with rigorous experimental design (controlled photouncaging, both ex vivo and in vivo validation). Source quality is the highest of the Q-003 entries. Mapping fidelity is good but requires the additional conceptual step of linking neurotransmitter identity (GABA/glutamate) to REE valence channels. Transfer risk is relatively low because the in vivo cortical context is physiologically relevant."
+  }
+}

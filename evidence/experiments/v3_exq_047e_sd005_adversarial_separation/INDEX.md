@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_047e_sd005_adversarial_separation
 
-Generated: `2026-03-29T12:23:52.494031Z`
+Generated: `2026-03-29T12:56:39.865551Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

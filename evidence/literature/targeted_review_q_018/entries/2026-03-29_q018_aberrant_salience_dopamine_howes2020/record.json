@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_018",
+  "entry_id": "2026-03-29_q018_aberrant_salience_dopamine_howes2020",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-018"],
+  "source": {
+    "title": "Aberrant Salience, Information Processing, and Dopaminergic Signaling in People at Clinical High Risk for Psychosis",
+    "authors": ["Oliver D. Howes", "Emily J. Hird", "Rick A. Adams", "Philip R. Corlett", "Philip McGuire"],
+    "year": 2020,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2020.03.012"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality review from leading psychosis researchers synthesising evidence on aberrant salience, dopamine dysregulation, and predictive processing in clinical high-risk populations. Directly addresses the threshold calibration question: too much dopamine-driven precision signalling on irrelevant events = psychosis risk; too little = blunted salience. The CHR population is the natural laboratory for studying the failure mode at the low end of the threshold (over-sensitive to authority/salience signals).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_018", "aberrant_salience", "dopamine", "predictive_processing", "precision", "psychosis_threshold", "clinical_high_risk", "RC_conflict"],
+  "mapping": {
+    "source_claim_statement": "Striatal dopamine dysregulation causes misattribution of salience to irrelevant stimuli, generating false prediction errors and aberrant learning; predictive processing models frame this as dysregulated precision weighting where prior expectations are overridden by spurious prediction errors; early adverse experiences shift prior expectations, potentially lowering the threshold for psychosis transition.",
+    "ree_translation": "REE's RC (Reality Conflict) detector fires when incoming sensory evidence conflicts with the world model at a strength exceeding a threshold. Q-018 asks how to calibrate that threshold to prevent both authority spoofing (threshold too low -- any mismatch overrides the model) and chronic over-suppression (threshold too high -- genuine conflicts are ignored). The aberrant salience model maps directly: a too-low RC threshold corresponds to the pre-psychotic state where every mild mismatch is treated as a significant prediction error requiring model update. The CHR data suggest that the failure mode is not just binary but has a transition zone (prodromal state) where the threshold has shifted but not yet collapsed -- this is the hysteresis region Q-018 cares about. The adverse-prior-experience mechanism (early trauma lowering the psychosis threshold) maps onto authority spoofing: prior experiences that trained a low-trust prior cause the agent to downweight its own model in response to external signals, making it vulnerable to manipulation.",
+    "mapping_caveat": "The paper is a clinical review of human psychosis risk, not a computational study of threshold calibration in an artificial agent. The dopamine mechanism (dysregulated striatal PE signalling) is a biological substrate that has no direct analogue in REE's implementation. REE's RC conflict threshold is a design parameter to be set by the architect, whereas psychosis risk is an emergent property of biological variation. The mapping from 'dysregulated precision signalling' to 'RC threshold miscalibration' is conceptually valid but the causal mechanisms are entirely different.",
+    "source_context": "Clinical review, human CHR populations, neuroimaging and behavioural data synthesis, predictive processing computational framework"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Very high source quality -- Howes, Adams, and Corlett are among the most cited researchers in computational psychiatry and psychosis. Transfer risk comes from the biological-to-computational gap but the conceptual mapping is strong."
+  }
+}

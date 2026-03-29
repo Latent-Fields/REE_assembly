@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-29T12:23:52.494031Z`
+Generated: `2026-03-29T12:56:39.865551Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -20,6 +20,8 @@ Use this as the human-in-the-loop review queue.
 | `MECH-135` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `pending_user` |
 | `SD-011` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 
 ## Decision Details
@@ -193,6 +195,36 @@ Use this as the human-in-the-loop review queue.
 - Current status: `open`
 - Decision needed: Question narrowing review
 - Why this decision is needed: overall_conf=0.726, conflict_ratio=0, exp_entries=1, lit_entries=3; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-023
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.812, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-024
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: overall_conf=0.8, conflict_ratio=0, exp_entries=0, lit_entries=3; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
   - Narrow the question into testable sub-questions (higher tractability)

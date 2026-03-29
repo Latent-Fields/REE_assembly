@@ -25,7 +25,8 @@
     "ARC-007"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "V2 implementation lacked HippocampalModule (SD-004 not yet built). Ablation was operating on an incomplete substrate -- the module under test was not properly wired. Superseded by V3 EXQ-114 (run_id: v3_exq_114_arc007_path_memory_probe_20260328T204815Z_v3, PASS 4/4, 99.2% harm reduction) which includes full SD-004/SD-005/SD-006. This run should not contribute to ARC-007 conflict scoring. 2026-03-29.",
   "failure_signatures": [
     "v2_verdict_fail:path_memory_ablation"
   ],

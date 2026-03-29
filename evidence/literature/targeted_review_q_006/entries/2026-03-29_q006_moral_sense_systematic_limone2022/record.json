@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_006",
+  "entry_id": "2026-03-29_q006_moral_sense_systematic_limone2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-006"],
+  "source": {
+    "title": "Origin and Development of Moral Sense: A Systematic Review",
+    "authors": ["Pierpaolo Limone", "Giusi Antonia Toto"],
+    "year": 2022,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2022.887537"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This systematic review synthesizes evidence that moral sense is both innate (developmentally prior) and socially shaped, concluding that neither pure nativism nor pure social-addition accounts. The developmental character is confirmed, but the review also notes the social-environmental layer is co-constitutive rather than merely additive after the fact -- this nuances rather than straightforwardly supports Q-006.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_006", "moral_development", "systematic_review", "social_cognition", "innate_vs_acquired", "developmental_psychology"],
+  "mapping": {
+    "source_claim_statement": "Moral sense is an innate capacity shaped through social interactions and environmental exposure; it follows a developmental trajectory from infant prosocial discrimination through peer-reinforced reasoning, with each stage qualitatively distinct from prior ones.",
+    "ree_translation": "REE's ARC-015 claim that ethics must be ground-up rather than additive is partially supported: the review's staged model implies that each layer (automatic evaluation, peer-negotiated fairness, principled reasoning) depends on the preceding one. However, the finding that social context co-shapes every stage complicates a simple 'developmental architecture' reading -- it suggests the training curriculum may be as important as the structural ordering.",
+    "mapping_caveat": "Systematic review covers heterogeneous studies using different operationalisations of 'moral sense', from infant preference tasks to adolescent Kohlberg interviews. Pooling these without formal meta-analysis (no quantitative synthesis) limits inference strength. The 'developmental' interpretation may conflate sequential neural maturation with sequential social learning -- the two have distinct implications for artificial training.",
+    "source_context": "Broad review of developmental psychology literature, infancy through adolescence, multiple methods and cultures."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Frontiers in Psychology systematic review, no quantitative pooling -- evidence grade is moderate. The mixed direction reflects that while stages are confirmed, the review explicitly argues against a purely internal developmental unfolding (social environment is constitutive at each stage), which partially complicates the 'developmental not additive' thesis by showing that what gets added at each stage comes partly from outside the agent."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_023",
+  "entry_id": "2026-03-29_q023_multiagent_other_regarding_convergence",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-023"],
+  "source": {
+    "title": "Global Convergence of Multi-Agent Policy Gradient in Markov Potential Games",
+    "authors": [
+      "Leonardos S",
+      "Overman W",
+      "Panageas I",
+      "Piliouras G"
+    ],
+    "year": 2022,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": "10.48550/arXiv.2106.01969"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Provides the first formal convergence proof for independent policy gradient in Markov Potential Games (MPGs) -- the sequential multi-step generalization of normal-form potential games. If REE multiagent systems can be cast as MPGs (or approximate MPGs), this result certifies that REE agents running independent RL converge globally to Nash equilibrium policies. The confidence gap is that MPG structure requires a state-dependent potential function across the full sequential game, which MECH-127's counterfactual utility may violate; and the convergence result is to Nash policies, not specifically to ethical attractors.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_023", "Markov_potential_game", "policy_gradient", "Nash_equilibrium", "global_convergence", "multi_agent_RL", "independent_learning"],
+  "mapping": {
+    "source_claim_statement": "A Markov game is a Markov Potential Game (MPG) if there exists a state-dependent potential function such that any agent's unilateral policy change produces the same value difference as the potential change. In MPGs, independent policy gradient (each agent updating only its own policy) converges globally to a Nash equilibrium policy in O(1/epsilon^2) iterations. Convergence does not require coordination or communication.",
+    "ree_translation": "REE's multiagent architecture (ARC-034) involves multiple agents each running independent RL loops. Q-023 asks whether this system converges to ethical attractors. Leonardos et al. give the state-dependent extension of Monderer and Shapley: if REE's sequential multi-step game satisfies the MPG condition (state-dependent potential function including harm costs), then independent policy gradient converges globally to Nash policies. This is stronger than normal-form potential game convergence because it applies to the full temporal/sequential structure of REE (states, transitions, multi-step rollouts). The ethical attractor identification still requires that the Nash policy be the harm-minimizing one -- which depends on the potential function encoding harm correctly.",
+    "mapping_caveat": "MPG structure requires a state-dependent potential function across the full REE MDP; MECH-127 (counterfactual utility) introduces terms that depend on counterfactual trajectories, not just on the current state and joint policy. Whether counterfactual utility can be incorporated into a state-dependent potential function is an open technical question. Additionally, O(1/epsilon^2) convergence is for tabular settings with known rewards and transitions -- REE agents learn rewards from experience and operate in high-dimensional continuous states, requiring further extension. The paper uses direct policy parameterization; REE's neural network policies require smoothness conditions not guaranteed here.",
+    "source_context": "ICLR 2022; mathematical proof; Markov game theory; tabular and policy gradient settings"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.50,
+    "notes": "ICLR 2022 publication with first-of-kind global convergence result. Mapping fidelity limited by MECH-127 counterfactual utility compatibility with MPG structure, and by tabular vs neural network gap. Transfer risk elevated because the proof requires exact MPG structure -- approximate MPG or pseudo-potential games may need weaker convergence results."
+  }
+}

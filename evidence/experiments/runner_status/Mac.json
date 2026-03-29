@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 43230,
   "runner_started_at": "2026-03-28T18:22:49.543613+00:00",
-  "last_updated": "2026-03-29T12:25:01.147215+00:00",
+  "last_updated": "2026-03-29T12:57:08.577352+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-147",
@@ -16,18 +16,18 @@
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 400,
+      "episodes_done": 300,
       "episodes_total": 400,
-      "overall_pct": 100.0
+      "overall_pct": 75.0
     },
-    "seconds_elapsed": 13136,
-    "seconds_remaining": 0,
+    "seconds_elapsed": 15063,
+    "seconds_remaining": 5021,
     "recent_lines": [
-      "[train] GOAL_CONDITIONED dim=16 seed=123 ep 200/400 harm=1.078 benefit=0.000",
-      "[train] GOAL_CONDITIONED dim=16 seed=123 ep 300/400 harm=1.370 benefit=0.352",
-      "[train] GOAL_CONDITIONED dim=16 seed=123 ep 400/400 harm=1.398 benefit=0.000",
       "[GOAL_CONDITIONED] dim=16 seed=123 n_goal=1481 n_neutral=444 n_all=3156 err_goal=0.00030 err_neutral=0.00030 err_all=0.00030 goal_norm=0.4029",
-      "[V3-EXQ-147] GOAL_ABLATED world_dim=16 seed=123 goal_conditioned=False e1_goal_dim=0 warmup=400 eval=120"
+      "[V3-EXQ-147] GOAL_ABLATED world_dim=16 seed=123 goal_conditioned=False e1_goal_dim=0 warmup=400 eval=120",
+      "[train] GOAL_ABLATED dim=16 seed=123 ep 100/400 harm=1.009 benefit=0.000",
+      "[train] GOAL_ABLATED dim=16 seed=123 ep 200/400 harm=1.403 benefit=0.346",
+      "[train] GOAL_ABLATED dim=16 seed=123 ep 300/400 harm=1.202 benefit=0.000"
     ],
     "ree_version": "v3"
   },

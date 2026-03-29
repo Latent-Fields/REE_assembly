@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_004",
+  "entry_id": "2026-03-29_q004_svr_threshold_slow_ca_semyanov2019",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-004"],
+  "source": {
+    "title": "Spatiotemporal pattern of calcium activity in astrocytic network",
+    "authors": ["Alexey Semyanov"],
+    "year": 2019,
+    "venue": "Cell Calcium",
+    "doi": "10.1016/j.ceca.2018.12.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Review provides mechanistic grounding for why astrocyte Ca activity spans multiple timescales: fast synaptic-scale events in leaflets, intermediate integration in branchlets (surface-to-volume ratio threshold), and slow intercellular propagation via gap junctions and extracellular ATP. The multi-timescale architecture implies tau_R is not a single constant but a distribution spanning seconds to minutes, with the dominant timescale set by morphological state.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_004", "astrocyte", "calcium", "timescale", "SVR_threshold", "branchlet_leaflet", "multi-timescale", "tau_R"],
+  "mapping": {
+    "source_claim_statement": "Astrocytic leaflets sense synaptic activity; branchlets integrate signals from leaflets and extrasynaptic inputs; the surface-to-volume ratio of branchlets sets the threshold for generation of spreading Ca events. Spatially and temporally organized Ca events in the astrocytic network influence variable numbers of synapses and neuronal compartments through gliotransmitter release.",
+    "ree_translation": "The SVR-dependent threshold for spreading Ca events in branchlets provides a mechanistic model for how tau_R transitions between a short timescale (local, leaflet-mediated, fast) and a long timescale (spreading, branchlet-mediated, slow). For REE, this suggests tau_R has at least two components: a fast tau_R for local domain updates (sub-seconds to seconds, comparable to E1 timescale) and a slow tau_R for network-spreading updates (seconds to minutes, much longer than E1/E2). The SVR morphological parameter maps to a design parameter controlling which inputs are strong enough to engage the slow spreading component.",
+    "mapping_caveat": "This is a review proposing a theoretical framework; the specific numerical timescales for the fast vs. slow components are not precisely quantified in this review -- they are inferred from a synthesis of published studies with varying experimental conditions. The SVR morphological threshold is described conceptually and its exact value in rodent vs. human tissue is not given. The multi-timescale framework is widely cited but not uniformly confirmed across experimental settings.",
+    "source_context": "Review of Ca signaling in astrocytic networks; rodent and in vitro data synthesis; covers fast (leaflet, seconds) and slow (branchlet, spreading, minutes) Ca dynamics."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.33,
+    "notes": "Cell Calcium specialist journal, recognized author. The multi-timescale framework is the main contribution for Q-004; it provides the conceptual architecture for tau_R design but not the numerical values needed for direct calibration. Confidence is moderate at 0.65 because the review synthesizes indirect evidence rather than directly measuring timescales."
+  }
+}

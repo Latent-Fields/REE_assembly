@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_005",
+  "entry_id": "2026-03-29_q005_glymphatic_circadian_clearance_hablitz2020",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-005"],
+  "source": {
+    "title": "Circadian control of brain glymphatic and lymphatic fluid flow",
+    "authors": ["Lauren M Hablitz", "Virginia Pla", "Michael Giannetto", "Hanna S Vinitsky", "Frederik Filip Staeger", "Tanner Metcalfe", "Rebecca Nguyen", "Abdellatif Benrais", "Maiken Nedergaard"],
+    "year": 2020,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-020-18115-2"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Directly demonstrates circadian (rest-phase peaking) control of glymphatic clearance mediated by astrocytic AQP4 polarization. Establishes that the sleep-dependent clearance function of astrocytes is tied to the rest/wake cycle via a clock mechanism independent of behavioral state. AQP4 knockout eliminates the day-night difference in clearance, confirming astrocyte-specific causal role. Directly relevant to Q-005: sleep provides periodic, astrocyte-mediated clearance of accumulated R-field residue.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_005", "glymphatic", "sleep", "astrocyte", "AQP4", "circadian", "clearance", "annealing", "R_field"],
+  "mapping": {
+    "source_claim_statement": "Glymphatic influx and clearance exhibit endogenous circadian rhythms peaking during the mid-rest phase of mice; AQP4 perivascular polarization is highest during the rest phase; loss of AQP4 eliminates the day-night difference in both glymphatic influx and CSF drainage to lymph nodes.",
+    "ree_translation": "R(x,t) in REE represents accumulated residue from harm/value signals. Q-005 asks whether sleep can anneal or reset this field. This paper provides the strongest mechanistic argument that sleep-dependent astrocyte function can clear accumulated molecular residue -- with the key feature that it is circadian (clock-driven, not just driven by behavioral quiescence). For REE, this implies the annealing of R(x,t) during sleep is not merely passive decay (parameterized by tau_R alone) but is actively driven by an astrocyte-analog process that occurs during the equivalent of the rest phase -- a distinct process from in-episode R decay.",
+    "mapping_caveat": "Glymphatic clearance is a physical fluid-transport mechanism for removing extracellular metabolic waste (amyloid-beta, lactate) -- it does not directly 'reset' Ca-based or IP3-based signaling states that comprise the regulatory R-field. The mapping requires treating glymphatic clearance as an analog of a more general astrocytic reset process, which extends beyond the paper's scope. The study is in mice; human glymphatic function is less well characterized in vivo.",
+    "source_context": "Mice, in vivo fluorescent tracer injection into cisterna magna to measure CSF influx and lymph node drainage, circadian timecourse at zeitgeber times, AQP4 knockout mice for mechanism, Nedergaard lab (University of Rochester)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Nature Communications, rigorous in vivo study with genetic causal validation. Source quality is high. Mapping fidelity is good for the 'sleep clears accumulated material' claim, but the glymphatic mechanism (physical waste clearance) is only an analog for the regulatory state reset REE needs. Transfer risk is moderate -- the circadian gating of clearance is a specific mechanism that does not automatically extend to Ca-signaling state resets."
+  }
+}

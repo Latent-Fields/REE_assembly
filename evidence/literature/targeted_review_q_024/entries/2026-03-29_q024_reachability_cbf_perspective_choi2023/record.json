@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_024",
+  "entry_id": "2026-03-29_q024_reachability_cbf_perspective_choi2023",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-024"],
+  "source": {
+    "title": "A Forward Reachability Perspective on Control Barrier Functions and Discount Factors in Reachability Analysis",
+    "authors": [
+      "Choi JJ",
+      "Lee D",
+      "Li B",
+      "How JP",
+      "Sreenath K",
+      "Herbert SL",
+      "Tomlin CJ"
+    ],
+    "year": 2023,
+    "venue": "arXiv preprint",
+    "doi": "10.48550/arXiv.2310.17180"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Bridges reachability analysis (the set of states a system can reach) with CBF invariance (the set of states a system is certified to remain within), unifying the descriptive and prescriptive variants of Q-024 in a common Hamilton-Jacobi framework. The Forward Reachable Tube (FRT) characterizes where the system *can* go (descriptive); the CBF condition certifies that the system *stays within* the safe set (prescriptive). Discount factors in the HJ equation naturally produce barrier constraints. Confidence gap: the connection to diagnostic variant and MECH-127 counterfactual structure is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_024", "forward_reachability", "control_barrier_function", "Hamilton_Jacobi", "reachability_tube", "invariant_set", "unification"],
+  "mapping": {
+    "source_claim_statement": "The inevitable Forward Reachable Tube (FRT) -- the set of states that a system must pass through starting from a given initial set -- is a robust control invariant set when its boundary is smooth. Valid CBFs function as forward reachability value functions. Discount factors in the HJ differential game naturally generate barrier constraints. Neural CBFs can be learned to characterize control invariant supersets of the FRT.",
+    "ree_translation": "Q-024 asks for formal representations covering descriptive (characterize attractor), prescriptive (certify bounded convergence), and diagnostic (detect counterfactual deviations) variants. Choi et al. unify the first two: the FRT is the descriptive representation (where do trajectories reliably go from initial conditions?), while the CBF-as-reachability-value-function is the prescriptive certificate. For REE, the ethical attractor state q (INV-028's equilibrium) can be characterized as the terminal state of an inevitable FRT starting from the initial policy state -- this is the descriptive variant. The CBF condition then certifies that REE's dynamics, bounded by the harm constraint, remain in the convergent-to-q tube. The HJ discount factor connection gives a route to incorporating temporal discounting in harm assessment, potentially relevant to how REE weights near-term vs. long-term harm.",
+    "mapping_caveat": "The FRT characterization requires continuously differentiable boundary conditions and deterministic dynamics; REE's learned, stochastic dynamics require stochastic extensions. The diagnostic variant (detecting counterfactual deviations) is not directly addressed -- backward reachability analysis is needed for that, which this paper notes receives less attention. The paper is a preprint (2023) and has not undergone full peer review. The neural CBF learning approach requires data from the system's trajectories, which in REE's case means learning the harm-invariant set from agent experience -- a circular requirement if the agent is not yet certified safe.",
+    "source_context": "arXiv 2023 preprint; formal control theory; Hamilton-Jacobi reachability; differential game formulation; neural CBF learning"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Strong preprint from a respected group (MIT, Berkeley, UCSD); not yet peer reviewed. Mapping fidelity moderate because the unification is at the formal framework level, not yet connected to REE's specific utility/harm structure. Transfer risk moderate because the continuous-state deterministic framework requires extension for stochastic learned dynamics."
+  }
+}

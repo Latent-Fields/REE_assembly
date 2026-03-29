@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_023",
+  "entry_id": "2026-03-29_q023_stochastic_stability_young1993",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-023"],
+  "source": {
+    "title": "The Evolution of Conventions",
+    "authors": [
+      "Young HP"
+    ],
+    "year": 1993,
+    "venue": "Econometrica",
+    "doi": "10.2307/2951778"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Young 1993 proves that stochastic stability -- equilibrium selection under small persistent perturbations to best-response dynamics -- selects potential-maximizing equilibria in potential games and risk-dominant equilibria in 2x2 coordination games. This provides REE with a formal argument that, even with noise/exploration, the long-run selected equilibrium is the one that minimizes aggregate harm cost (if that is the potential). The confidence gap is that REE agents using counterfactual utility (MECH-127) may not satisfy the best-response assumption, and the ethics-as-stochastic-attractor identification is inferential.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_023", "stochastic_stability", "equilibrium_selection", "evolutionary_game_theory", "conventions", "best_response", "Markov_chain"],
+  "mapping": {
+    "source_claim_statement": "In an n-player game where agents sample from a history of recent play and choose optimal responses, with occasional random errors (mutations), the long-run stationary distribution concentrates on stochastically stable states. These are computed via paths of least resistance between equilibria. In potential games, stochastic stability selects the potential-maximizing Nash equilibrium.",
+    "ree_translation": "Q-023 specifically names stochastic stability as one candidate formal method. Young (1993) provides the exact framework: REE agents who approximate best-response learning and occasionally deviate will, in the long run, spend most time near the potential-maximizing equilibrium -- which, if REE's potential encodes aggregate harm minimization, is the ethical attractor. For multiagent REE systems, this means the ethical equilibrium is not just locally stable but globally selected given sufficient time and any positive error rate. This converts the question from 'does the system converge?' to 'what does it converge to?'",
+    "mapping_caveat": "Young's framework assumes adaptive (sample-based) learning, not reinforcement learning or gradient-based optimization as in REE agents. The 'mutations' in Young correspond to exploration or policy noise in REE, but the formal connection requires showing that REE learning dynamics have the right Markov structure. The framework is for finite populations with bounded memory; REE's scalability to large populations or continuous action spaces requires extension. Most critically: Young's result that potential-maximizing equilibria are stochastically stable requires the game to be a potential game -- which brings us back to the unresolved MECH-127 question.",
+    "source_context": "Abstract n-player game theory; Markov chain analysis on perturbed best-response dynamics; theoretical proof"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.48,
+    "notes": "Econometrica landmark, high source quality. Mapping fidelity is moderate because the connection to REE learning dynamics requires multiple additional assumptions (potential game structure, Markov learning, finite strategies). Transfer risk is elevated because the real question -- whether REE's utility structure satisfies the potential condition -- is not addressed by Young's paper itself."
+  }
+}

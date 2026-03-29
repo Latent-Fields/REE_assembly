@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_024",
+  "entry_id": "2026-03-29_q024_barrier_certificates_prajna2004",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-024"],
+  "source": {
+    "title": "Safety Verification of Hybrid Systems Using Barrier Certificates",
+    "authors": [
+      "Prajna S",
+      "Jadbabaie A"
+    ],
+    "year": 2004,
+    "venue": "Hybrid Systems: Computation and Control (HSCC 2004), Lecture Notes in Computer Science vol. 2993",
+    "doi": "10.1007/978-3-540-24743-2_32"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Foundational paper establishing barrier certificates as Lyapunov-like safety proofs for hybrid systems over infinite time horizons, without explicit reachable set computation. Directly provides the descriptive and prescriptive formal vocabulary Q-024 needs: a barrier certificate separates unsafe from safe trajectories, and its existence constitutes a formal proof of bounded convergence. Unlike CBF (Ames 2017) which is controller-synthesis-focused, barrier certificates are verification-focused -- the distinction between certifying that a designed system is safe (prescriptive) and verifying that an existing system is safe (diagnostic/descriptive).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_024", "barrier_certificate", "safety_verification", "hybrid_systems", "Lyapunov", "invariance", "infinite_horizon"],
+  "mapping": {
+    "source_claim_statement": "A barrier certificate is a function of system state whose zero-level set separates the unsafe region from all system trajectories starting from a given initial set. The existence of a barrier certificate proves safety over infinite time horizons, for nonlinear and hybrid systems with uncertain inputs, without requiring explicit reachable set computation. The barrier certificate is found via sum-of-squares programming.",
+    "ree_translation": "Q-024 asks for representations covering descriptive, prescriptive, and diagnostic variants of 'threshold/feedback processes bounded by {x...x_n} reliably reaching emergent state q.' Prajna and Jadbabaie provide the prescriptive-verification form: if a barrier certificate exists separating REE's unsafe states (harm exceeding threshold) from its reachable trajectories, this is a formal proof that the system is safe over an infinite horizon. The diagnostic variant is directly enabled: checking whether a specific trajectory crosses the barrier certificate's zero level set identifies a counterfactual deviation. For REE, the barrier certificate would separate the 'harm-exceeding' region from all trajectories the agent can produce under its current policy -- this is a verification tool applicable after system design (unlike CBFs which constrain synthesis). The hybrid system applicability is particularly relevant: REE's commit boundary creates a hybrid structure (pre-commit vs post-commit dynamics) for which Prajna and Jadbabaie's framework is well-suited.",
+    "mapping_caveat": "Barrier certificates as formulated here require the system dynamics to be polynomial (or expressible as polynomial approximations) for sum-of-squares (SOS) programming to apply. REE's neural network dynamics are not polynomial. Extension to neural network systems requires neural barrier certificates (a newer, separate literature) that do not have the same formal completeness guarantees. The framework verifies that a *given* system is safe -- it does not synthesize a controller, which is what REE's prescriptive variant ultimately requires. The MECH-127 counterfactual dependence again complicates straightforward application: whether counterfactual harm can be encoded in a state-dependent function for the barrier certificate is unresolved.",
+    "source_context": "HSCC 2004 conference proceedings; formal verification; polynomial dynamical systems; sum-of-squares programming; hybrid systems"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "Seminal paper, highly cited, published in a leading formal methods venue. Mapping fidelity moderate: barrier certificate vocabulary maps cleanly onto Q-024's variants but polynomial dynamics assumption is not satisfied by neural network REE systems. Transfer risk elevated because SOS programming completeness does not extend to learned systems; neural barrier certificates (not covered here) are needed."
+  }
+}

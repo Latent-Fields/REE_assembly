@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_005",
+  "entry_id": "2026-03-29_q005_fluid_transport_brain_rasmussen2021",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-005"],
+  "source": {
+    "title": "Fluid transport in the brain",
+    "authors": ["Martin Kaag Rasmussen", "Humberto Mestre", "Maiken Nedergaard"],
+    "year": 2021,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.00031.2020"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative comprehensive review of the glymphatic system by the Nedergaard group (originators of the concept). Establishes that sleep-dependent glymphatic clearance is the brain's primary mechanism for removing accumulated metabolic waste, that it is primarily active during sleep, and that astrocytic AQP4 and the sleep-wake cycle are its key regulatory inputs. Provides the most complete mechanistic picture available for the sleep-annealing question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_005", "glymphatic", "sleep", "astrocyte", "AQP4", "clearance", "waste_removal", "annealing", "R_field", "review"],
+  "mapping": {
+    "source_claim_statement": "The glymphatic system facilitates clearance of potentially harmful metabolic or protein waste products (amyloid-beta, etc.) and is primarily active during sleep, when cardiac cycle, respiration, and slow vasomotion together efficiently propel CSF inflow along periarterial spaces. Astrocytic vascular endfeet and their AQP4 expression are required for the system.",
+    "ree_translation": "The glymphatic review provides the most complete mechanistic picture of how sleep accomplishes R-field annealing in the biological system. For REE, the conceptual import is: sleep is not merely a period of reduced neural activity that allows tau_R passive decay to dominate; it is a period of active, physiologically driven clearance that operates orthogonally to the mechanisms of R accumulation. This implies that REE's sleep-annealing operation should be implemented as a distinct module rather than simply a slow tau_R.",
+    "mapping_caveat": "This review covers molecular waste clearance (amyloid-beta, metabolic metabolites) via physical fluid transport -- not the reset of Ca-signaling regulatory states. The biological sleep-annealing of R(x,t) would require a different mechanism (perhaps IP3R downregulation, ER Ca depletion, or gap junction reconfiguration during NREM) that is not the subject of this review. The mapping of glymphatic clearance to R-field annealing is a conceptual analogy.",
+    "source_context": "Comprehensive review of brain fluid systems; human and rodent data; covers cerebrospinal fluid formation, blood-brain barrier, perivascular spaces, and glymphatic clearance mechanisms; Nedergaard group (University of Copenhagen / University of Rochester)."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.38,
+    "notes": "Physiological Reviews (one of the highest-impact review journals); authoritative review by the group that defined the glymphatic concept. Source quality is very high. Mapping fidelity is moderate because the glymphatic mechanism (physical fluid clearance) is an analogy for R-field annealing rather than the direct mechanism. Transfer risk is the highest of the Q-005 entries because the human sleep-glymphatic system is less well characterized than in rodents."
+  }
+}

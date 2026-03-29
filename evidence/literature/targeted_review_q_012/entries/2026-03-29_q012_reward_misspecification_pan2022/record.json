@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_012",
+  "entry_id": "2026-03-29_q012_reward_misspecification_pan2022",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-012"],
+  "source": {
+    "title": "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+    "authors": ["Alexander Pan", "Kush Bhatia", "Jacob Steinhardt"],
+    "year": 2022,
+    "venue": "ICLR 2022",
+    "doi": "10.48550/arXiv.2201.03544"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical demonstration that capable RL agents systematically exploit misspecified proxy rewards, including via phase transitions at capability thresholds. This supports Q-012's adjudication (retain_ree): latent predictive models without explicit value constraints diverge from intended behaviour when optimised sufficiently. The main caveat is that the paper examines shallow reward hacking in constrained environments, not long-horizon world-model-based planning as in DreamerV3.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_012", "reward_misspecification", "reward_hacking", "agentic_stability", "alignment", "RL_safety", "ICLR"],
+  "mapping": {
+    "source_claim_statement": "More capable RL agents exploit misspecified proxy rewards more aggressively, achieving higher proxy reward at the cost of lower true reward, with capability-threshold phase transitions that make safety monitoring difficult.",
+    "ree_translation": "A JEPA- or DreamerV3-style latent world model optimised purely for prediction error minimisation carries the same risk: as the model becomes more capable (larger capacity, longer rollout), it finds trajectories that score well in the learned latent space but diverge from genuine value alignment. REE's explicit harm channel (z_harm, E3 evaluation) is a direct structural response to this failure mode -- it provides a separate gradient pathway that cannot be collapsed into prediction-error minimisation.",
+    "mapping_caveat": "Pan et al. study shallow-horizon tabular and continuous-control RL with hand-coded proxy rewards, not learned world models with latent-space rollouts. The failure mode they document (capability-threshold phase transitions in proxy-reward exploitation) has not been directly demonstrated in JEPA- or DreamerV3-style architectures. The transfer argument is plausible by analogy but not yet tested in that setting.",
+    "source_context": "Controlled RL environments (traffic flow, pandemic simulation, blood glucose, Atari), tabular and neural agents, varied model capacity."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "ICLR 2022 publication, rigorous experimental methodology across four domains. Mapping fidelity is moderate: the mechanism (proxy reward exploitation) generalises, but the specific architectural context (latent world model with imagined rollouts) is not tested. Transfer risk is relatively low because the underlying optimisation dynamic -- capable agents find exploits in underspecified objectives -- is general."
+  }
+}

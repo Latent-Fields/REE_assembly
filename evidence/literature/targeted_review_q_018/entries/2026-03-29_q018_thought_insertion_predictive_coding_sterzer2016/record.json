@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_018",
+  "entry_id": "2026-03-29_q018_thought_insertion_predictive_coding_sterzer2016",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-018"],
+  "source": {
+    "title": "Thought Insertion as a Self-Disturbance: An Integration of Predictive Coding and Phenomenological Approaches",
+    "authors": ["Philipp Sterzer", "Aaron L. Mishara", "Martin Voss", "Andreas Heinz"],
+    "year": 2016,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2016.00502"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Integration of phenomenological psychiatry and predictive coding to explain thought insertion as aberrant precision weighting of internal events. Directly relevant to Q-018's authority-spoofing scenario: thought insertion is the clinical analogue of an internal process being misattributed to an external authority signal. The paper's mechanism (reduced precision of context-dependent predictions relative to sensory precision) maps onto a specific failure mode of the RC threshold.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_018", "thought_insertion", "predictive_coding", "precision", "self_disturbance", "authority_attribution", "aberrant_salience", "internal_external_boundary"],
+  "mapping": {
+    "source_claim_statement": "Thought insertion results from reduced precision of context-dependent top-down predictions relative to sensory/internal signal precision, causing internally-generated thoughts to acquire aberrant salience as prediction errors and be misattributed to external agency. This is the 'internal' analogue of the aberrant salience mechanism for external stimuli.",
+    "ree_translation": "Q-018's authority spoofing scenario is exactly the failure mode Sterzer et al. describe: an external signal (or in REE, a signal arriving through the authority channel) acquires elevated precision relative to the agent's own world model, causing the agent to update its model based on the external signal rather than treating it as potentially manipulated. The thought-insertion mechanism (internal events misattributed to external agency due to precision imbalance) is the computational inverse of authority spoofing (external events given too much authority due to the same precision imbalance). Both failures arise from the same underlying miscalibration: the ratio of prediction-error precision to prior precision is wrong. For Q-018, this means the RC threshold should be calibrated as a precision ratio: what is the baseline level of internal prediction confidence, and how large must the external authority signal's precision be to legitimately override it? A threshold set as an absolute signal strength is vulnerable; a threshold set as a precision ratio is more robust to scaling attacks.",
+    "mapping_caveat": "Thought insertion is a clinical phenomenological construct whose neural mechanism remains incompletely understood; the predictive coding account is one theoretical framework, not established mechanism. The mapping from 'reduced context-dependent prediction precision' to a REE RC threshold parameter requires that REE's authority-signal processing be analogous to the top-down prediction pathway in the predictive coding hierarchy, which is architecturally non-trivial. REE's RC conflict also involves E1 world-model disagreement with sensory evidence, not just thought-attribution, so the mapping is partial.",
+    "source_context": "Theoretical review integrating phenomenological psychiatry (Heidelberg School) and predictive coding, mescaline model-psychosis literature, no new empirical data"
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.32,
+    "notes": "Theoretically rich and unusually historically grounded (Heidelberg School phenomenology + modern predictive coding). The precision-ratio framing is the most useful contribution for Q-018. Transfer risk from phenomenological/theoretical account to REE design parameter is real but manageable."
+  }
+}

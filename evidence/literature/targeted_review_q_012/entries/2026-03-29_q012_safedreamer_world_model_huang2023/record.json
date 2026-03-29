@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_012",
+  "entry_id": "2026-03-29_q012_safedreamer_world_model_huang2023",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-012"],
+  "source": {
+    "title": "SafeDreamer: Safe Reinforcement Learning with World Models",
+    "authors": ["Weidong Huang", "Jiaming Ji", "Chunhe Xia", "Borong Zhang", "Yaodong Yang"],
+    "year": 2024,
+    "venue": "ICLR 2024",
+    "doi": "10.48550/arXiv.2307.07176"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "SafeDreamer demonstrates directly that DreamerV3-style world model agents fail to achieve safety compliance without explicit constraint incorporation -- standard DreamerV3 'often fails to achieve zero-cost performance in complex scenarios.' The proposed fix (Lagrangian-based constraint planning within the world model) requires adding a structurally separate safety objective. This is the closest available evidence to the exact Q-012 question: a latent predictive world model cannot maintain agentic safety without explicit control constraints.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_012", "DreamerV3", "world_model_safety", "safe_RL", "Lagrangian_constraints", "ICLR", "latent_planning"],
+  "mapping": {
+    "source_claim_statement": "Standard DreamerV3 and comparable world-model RL agents fail to achieve zero-cost performance (safety compliance) in Safety-Gymnasium tasks; integrating Lagrangian constraint optimisation into the world model's planning phase is necessary and sufficient to achieve near-zero safety cost.",
+    "ree_translation": "SafeDreamer provides an existence proof that the failure mode Q-012 identifies is real in practice: DreamerV3 without explicit safety constraints produces unsafe behaviour, and the remedy requires adding a structurally separate constraint pathway -- analogous to REE's explicit harm channel. The Lagrangian method is a mathematical proxy for what REE implements architecturally via z_harm and E3 harm evaluation.",
+    "mapping_caveat": "SafeDreamer's 'safety' is defined by cost functions in Safety-Gymnasium benchmarks, which are engineering constraints (collision avoidance, velocity limits) rather than ethical harm in the REE sense. The paper does not test long-horizon goal-directed harm, value-laden tradeoffs, or situations where harm and reward are structurally coupled. The Lagrangian method also differs architecturally from REE's dedicated harm stream -- it is an optimisation-time penalty, not a separate learned forward model.",
+    "source_context": "Safety-Gymnasium benchmark, DreamerV3-based agent, low-dimensional and visual observation tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.28,
+    "notes": "ICLR 2024 paper using the exact architecture (DreamerV3) most relevant to Q-012. Mapping fidelity is good because the failure mode and fix are directly demonstrated. Transfer risk is moderate: Safety-Gymnasium 'safety' is narrower than REE 'harm', and the Lagrangian patch is architecturally different from a dedicated harm channel, so the strength of analogy should not be overstated."
+  }
+}

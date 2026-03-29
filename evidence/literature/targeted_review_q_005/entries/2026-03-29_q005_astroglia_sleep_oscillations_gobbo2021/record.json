@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_005",
+  "entry_id": "2026-03-29_q005_astroglia_sleep_oscillations_gobbo2021",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-005"],
+  "source": {
+    "title": "From Physiology to Pathology of Cortico-Thalamo-Cortical Oscillations: Astroglia as a Target for Further Research",
+    "authors": ["Davide Gobbo", "Anja Scheller", "Frank Kirchhoff"],
+    "year": 2021,
+    "venue": "Frontiers in Neurology",
+    "doi": "10.3389/fneur.2021.661408"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Reviews astroglial functions specifically relevant to slow-wave sleep physiology: interstitial fluid homeostasis, K+ clearance, gap junction coupling, gliotransmission, and Ca signaling. Frames astroglia as active modulators of NREM slow oscillations -- not passive bystanders -- and discusses how astrocyte dysfunction disrupts sleep architecture. Provides the Ca-signaling mechanism link between sleep physiology and astrocyte state, which is closer to the R-field annealing question than the glymphatic papers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_005", "astrocyte", "sleep", "NREM", "slow_wave", "calcium_signaling", "gliotransmission", "annealing", "R_field", "cortico_thalamic"],
+  "mapping": {
+    "source_claim_statement": "Astrocytes are active modulators of slow-wave sleep physiology through multiple mechanisms: interstitial fluid homeostasis, K+ clearance, gap junction coupling, gliotransmission, Ca signaling, and reactive astrogliosis. Astroglial functions known to modulate network excitability and synchronicity during convulsive seizures are also relevant to the physiology of NREM slow oscillations.",
+    "ree_translation": "For Q-005, this review is most important because it addresses the Ca-signaling dimension of astrocyte function during NREM sleep -- which is closer to the R-field annealing mechanism than the physical fluid clearance of the glymphatic papers. If astrocytic Ca signaling and gliotransmission actively modulate the slow oscillations of NREM sleep (not merely parallel them), then NREM sleep provides a biological context in which the astrocyte's signaling state is itself reset or reconfigured. This would constitute genuine R-field annealing via Ca-state transition during the rest phase.",
+    "mapping_caveat": "This review focuses primarily on epilepsy pathology (absence epilepsy, spike-wave discharges) and uses NREM physiology as the normal comparator rather than as the primary object of study. Direct evidence for Ca-state resetting in astrocytes during NREM is not presented -- it is inferred from the roles of the cited signaling mechanisms. The review does not quantify the extent of any R-field equivalent annealing. The connection to REE's R(x,t) requires multiple inferential steps.",
+    "source_context": "Review focused on absence epilepsy and cortico-thalamo-cortical oscillations, with NREM physiology as normal reference state; astroglial signaling mechanisms reviewed; University of Saarland, Germany."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Frontiers in Neurology is a respectable open-access journal; authors are from a recognized astroglia physiology group. Source quality moderate. Mapping fidelity is lower than the glymphatic papers because the review only implies Ca-state changes during NREM rather than demonstrating them directly. Transfer risk is higher because the primary focus is epilepsy pathology, not normal sleep R-field physiology. However, the Ca-signaling angle is a unique contribution relative to the glymphatic entries."
+  }
+}

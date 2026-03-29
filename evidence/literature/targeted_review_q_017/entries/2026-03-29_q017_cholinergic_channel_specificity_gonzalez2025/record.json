@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_017",
+  "entry_id": "2026-03-29_q017_cholinergic_channel_specificity_gonzalez2025",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-017"],
+  "source": {
+    "title": "Cholinergic modulation enables scalable action selection learning in a computational model of the striatum",
+    "authors": ["Alvaro Gonzalez-Redondo", "Jesus A. Garrido", "Jeanette Hellgren Kotaleski", "Sten Grillner", "Eduardo Ros"],
+    "year": 2025,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-025-18776-3"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Computational modelling study showing that cholinergic gating in striatum enables channel-specific plasticity, preventing cross-channel interference -- directly relevant to the channel-orthogonality constraint in Q-017. The model shows that distinct action channels can maintain orthogonal learning trajectories when ACh gating is intact. Confidence limited by it being a computational model, and the mapping to REE's control-plane axis minimality requires an additional step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_017", "cholinergic_gating", "channel_specificity", "striatum", "orthogonality", "cross_channel_interference", "reinforcement_learning", "control_axes"],
+  "mapping": {
+    "source_claim_statement": "Acetylcholine from striatal cholinergic interneurons acts as a channel-specific gating signal restricting plasticity to post-action temporal windows, suppressing cross-channel interference; direct pathway (D1) neurons maintain stimulus-specific responses while indirect pathway (D2) neurons suppress outdated associations; ACh-gated learning scales well with task complexity (multiple competing stimuli and actions).",
+    "ree_translation": "Q-017 asks about the minimal orthogonal control-axis subset. This paper provides a mechanistic account of how orthogonality between control channels is actively maintained: cholinergic gating ensures that plasticity in one channel does not bleed into adjacent channels. In REE, the three cortico-striatal loops (sensorium, thought/planning, action commitment) need to maintain orthogonal error signals (MECH-069). ACh-mediated channel specificity is a candidate mechanism for preserving that orthogonality -- if REE's loops shared a common hebbian update without gating, their error signals would become correlated over time, collapsing the independence of the control axes. The scalability finding (ACh gating keeps channels separate even in complex multi-stimulus environments) is directly relevant to Q-017: without active channel segregation, the minimal set of orthogonal axes may not remain minimal under operational conditions.",
+    "mapping_caveat": "This is a spiking neural network model, not empirical data from multi-loop conflict scenarios. The 'channels' in this model are stimulus-action pairs, not REE's qualitatively distinct loop types with incommensurable error signals. ACh gating in this model is a plasticity mechanism, not a control-plane axis selection mechanism; the mapping to REE's axis minimality question requires inferring that channel-specific learning also implies channel-specific representation at test time. This inference is plausible but not directly validated.",
+    "source_context": "Computational spiking neural network model of striatum, reinforcement learning tasks with distractors and contingency reversals, no species-specific empirical data"
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Strong computational result from a biologically-constrained model. The transfer from plasticity-level channel specificity to representation-level axis orthogonality requires an additional inferential step. The Grillner group's involvement (Karolinska) adds credibility to the biological grounding."
+  }
+}

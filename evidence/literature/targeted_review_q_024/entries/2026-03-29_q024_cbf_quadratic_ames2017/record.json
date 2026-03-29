@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_024",
+  "entry_id": "2026-03-29_q024_cbf_quadratic_ames2017",
+  "timestamp_utc": "2026-03-29T15:00:00Z",
+  "claim_ids_tested": ["Q-024"],
+  "source": {
+    "title": "Control Barrier Function Based Quadratic Programs for Safety Critical Systems",
+    "authors": [
+      "Ames AD",
+      "Xu X",
+      "Grizzle JW",
+      "Tabuada P"
+    ],
+    "year": 2017,
+    "venue": "IEEE Transactions on Automatic Control",
+    "doi": "10.1109/TAC.2016.2638961"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Provides the foundational formal framework for certifying that dynamical systems remain within a safe set -- directly applicable to Q-024's prescriptive variant ('certify bounded convergence'). CBF conditions are Lyapunov-like constraints on the system trajectory that guarantee forward invariance of the safe set; Zero Barrier Functions additionally make the set asymptotically stable (an attractor). This gives Q-024 a rigorous prescriptive representation. Confidence gap: REE's safe/ethical set may not be the kind of smooth superlevel set CBFs require, and the framework is for deterministic control-affine systems rather than stochastic learned policies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["q_024", "control_barrier_function", "safe_set_invariance", "forward_invariance", "Lyapunov", "prescriptive_certificate", "safety_critical"],
+  "mapping": {
+    "source_claim_statement": "A Control Barrier Function (CBF) h certifies forward invariance of the safe set C = {x: h(x) >= 0} if it satisfies a Lyapunov-like condition on its time derivative. A Zero Barrier Function (ZBF) additionally makes C asymptotically stable. Safety and stability can be unified in a Quadratic Program (QP) that arbitrates between CBF (safety) and CLF (stability) constraints in real time. If a CBF exists, a safety-critical controller is synthesizable.",
+    "ree_translation": "Q-024 asks for a formal representation for threshold/feedback processes reliably reaching an emergent state q. The prescriptive variant ('certify bounded convergence') is exactly what a CBF provides: if h(x) >= 0 defines the ethical safe set (the set of trajectories consistent with bounded harm), then a CBF for h certifies that REE's dynamics keep the system in this set. The ZBF extension makes the ethical set an attractor -- meaning convergence to, not just persistence within, the bounded region. For Q-024's three-variant framing: prescriptive = CBF certificate; descriptive = characterizing the invariant set C geometrically; diagnostic = verifying whether a specific trajectory deviation moves h below zero.",
+    "mapping_caveat": "CBFs require the safe set to be a smooth superlevel set of a continuously differentiable function h. REE's ethical/harm constraint region may not have this smooth geometry -- it could be defined by multiple intersecting constraints, discontinuities from catastrophic actions, or learned representations that are not differentiable. The framework is for deterministic control-affine dynamical systems; REE's stochastic, policy-based dynamics require stochastic CBF extensions (not covered by this paper). MECH-127's counterfactual utility makes the harm constraint depend on hypothetical trajectories, not just the current state -- this is harder to encode in a simple superlevel set.",
+    "source_context": "IEEE Transactions on Automatic Control 2017; formal control theory; nonlinear control-affine systems with real-time QP-based controller synthesis"
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.48,
+    "notes": "IEEE TAC flagship paper with extremely high source quality. Mapping fidelity moderate because CBFs require smooth safe sets and deterministic dynamics; REE's constraint geometry and stochastic learning dynamics may require stochastic or non-smooth CBF extensions. Transfer risk from deterministic robotics/control to learned AI policy dynamics is real but not disqualifying -- the formal structure is directly translatable."
+  }
+}
