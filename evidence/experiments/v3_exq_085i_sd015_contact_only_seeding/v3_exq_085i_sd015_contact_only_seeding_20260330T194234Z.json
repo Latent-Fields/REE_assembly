@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_goal_norm_world_avg": 0.3806346555550893,
+    "z_goal_norm_resource_avg": 3.396495819091797,
+    "benefit_per_ep_goal_present": 0.65,
+    "benefit_per_ep_goal_absent": 0.6333333333333334,
+    "benefit_ratio": 1.026315789473684,
+    "calibration_gap_goal_present": -0.038743158181508384,
+    "goal_resource_r_world": -0.03837696448814829,
+    "goal_resource_r_rfm": 0.2178018172573335,
+    "goal_vs_harm_ratio": 0.9634888028735614,
+    "rfm_final_loss": 0.007809819442200629,
+    "mech124_flag_salience": 0.0,
+    "drive_weight": 2.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_rfm": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-085i -- SD-015 Contact-Only Seeding Fix\n\n**Status:** FAIL\n**Claims:** SD-015, SD-012, MECH-112\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n**Supersedes:** V3-EXQ-085h\n\n## Diagnostic Design\n\nFixes 085h secondary seeding contamination. 085h: z_goal_resource seeded from both contact events AND any near-resource step (secondary path), producing z_goal_norm~2.7 and goal_resource_r=-0.169 (seeds 42/7). Seed 13 (contact-dominated) achieved r=+0.223. Fix: z_goal_resource updated ONLY on resource contact (ttype=='resource'). z_goal_world retains secondary seeding. alpha_goal_resource raised 0.3->0.5 to compensate for reduced update frequency.\n\n**alpha_world:** 0.9  (SD-008)\n**SD-012:** drive_weight=2.0, resource_respawn_on_consume=True\n**RFM lr:** 0.0005\n**rfm_final_loss (avg):** 0.0078\n**Warmup:** 600 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: RFM-lookahead goal guidance; GOAL_ABSENT: random)\n\n## Key Diagnostic Comparison\n\n| Representation | goal_resource_r | Note |\n|---|---|---|\n| z_world-seeded (085g) | -0.038 | expected ~0.066 |\n| resource_field_view-seeded (SD-015) | 0.218 | DIAGNOSTIC: need > 0.2 |\n\nz_goal_norm_world: 0.381  z_goal_norm_resource: 3.396\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm_res | cal_gap | r_rfm | r_world |\n|---|---|---|---|---|---|\n| GOAL_PRESENT | 0.650 | 3.396 | -0.0387 | 0.218 | -0.038 |\n| GOAL_ABSENT  | 0.633 | -- | -- | -- | -- |\n\n**Benefit ratio (goal/no-goal): 1.03x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm_resource > 0.1 | PASS | 3.396 |\n| C2: benefit ratio >= 1.3x | FAIL | 1.03x |\n| C3: goal_resource_r_rfm > 0.2 | PASS | 0.218 |\n| C4: no fatal errors | PASS | -- |\n\nCriteria met: 3/4 -> **FAIL**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 0.963 (< 0.3 = V4 risk)\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.640 z_goal_norm_res=3.308 r_rfm=0.243 r_world=-0.087 rfm_loss=0.0073\n  seed=7: benefit/ep=0.800 z_goal_norm_res=3.728 r_rfm=0.297 r_world=-0.134 rfm_loss=0.0075\n  seed=13: benefit/ep=0.510 z_goal_norm_res=3.154 r_rfm=0.113 r_world=0.106 rfm_loss=0.0085\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.790\n  seed=7: benefit/ep=0.560\n  seed=13: benefit/ep=0.550\n\n## Failure Notes\n\n- C2 FAIL: benefit_ratio=1.03x < 1.3x BUT C3 PASS (goal_resource_r_rfm=0.218 > 0.2). SD-015 representation confirmed. RFM insufficient for navigation. Next: full ResourceEncoder + E2_resource forward model (EXQ-085j).\n",
+  "claim_ids": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085i_sd015_contact_only_seeding",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T194234Z",
+  "claim": "SD-015",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085i_sd015_contact_only_seeding_20260330T194234Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

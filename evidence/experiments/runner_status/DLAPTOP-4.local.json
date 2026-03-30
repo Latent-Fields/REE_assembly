@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T19:41:37.201174+00:00",
+  "last_updated": "2026-03-30T19:42:35.088658+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-085i",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-015 contact-only seeding: fix 085h secondary seeding contamination",
-    "description": "",
-    "script": "experiments/v3_exq_085i_sd015_contact_only_seeding.py",
-    "started_at": "2026-03-30T19:40:32.065091+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 600,
-      "episodes_total": 600,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 65,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[train] seed=7 cond=GOAL_PRESENT ep 400/600 resource=321 seedings_world=321 seedings_res=321 z_goal_norm_world=0.448 z_goal_norm_res=3.050 rfm_loss=0.0058",
-      "[train] seed=7 cond=GOAL_PRESENT ep 500/600 resource=375 seedings_world=375 seedings_res=375 z_goal_norm_world=0.421 z_goal_norm_res=3.314 rfm_loss=0.0113",
-      "[train] seed=7 cond=GOAL_PRESENT ep 600/600 resource=445 seedings_world=445 seedings_res=445 z_goal_norm_world=0.383 z_goal_norm_res=3.728 rfm_loss=0.0099",
-      "[eval] seed=7 cond=GOAL_PRESENT avg_benefit/ep=0.800 z_goal_norm_world=0.383 z_goal_norm_res=3.728 rfm_loss=0.0075 cal_gap=-0.0048 goal_resource_r_world=-0.134 goal_resource_r_rfm=0.297 goal_vs_harm=1.006",
-      "[V3-EXQ-085i] GOAL_ABSENT seed=7 warmup=600 eval=100 curriculum=100 drive_weight=2.0 alpha_world=0.9 lr_rfm=0.0005"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-085i",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015 contact-only seeding: fix 085h secondary seeding contamination",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
@@ -3367,6 +3330,20 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 62.9
+    },
+    {
+      "queue_id": "V3-EXQ-085i",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015 contact-only seeding: fix 085h secondary seeding contamination",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_goal_present: -0.038743158181508384 | goal_vs_harm_ratio: 0.9634888028735614",
+      "started_at": "2026-03-30T19:40:32.065091+00:00",
+      "completed_at": "2026-03-30T19:42:35.086981+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085i_sd015_contact_only_seeding/v3_exq_085i_sd015_contact_only_seeding_20260330T194234Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 123.0
     }
   ]
 }
