@@ -23,7 +23,7 @@
     "SD-008"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "mixed",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Integration context concern only: event_selectivity_margin~0 despite alpha_world=0.9 and excellent world_forward_r2=0.941. Isolated SD-008 tests (EXQ-023, EXQ-040) remain valid. Full-stack interference between SD-007/SD-008/SD-003 may cancel selectivity signal. Does not challenge SD-008 provisional status."
 }

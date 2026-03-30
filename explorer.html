@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-28.2 -->
+<!-- EXPLORER_VERSION: 2026-03-30.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8403,10 +8403,20 @@ END CONFLICT RESOLUTION`;
           });
 
         const allCompleted = [...completedAnnotated, ...evidenceOnlyItems];
-        // Sort by completion time (most recent first) within each version group
+        // Sort by completion time (most recent first) within each version group.
+        // Normalize compact YYYYMMDDTHHMMSSz format to YYYY-MM-DDTHH:MM:SSZ so
+        // string comparison works correctly across both timestamp formats.
         allCompleted.sort((a, b) => {
-          const ta = a.completed_at || a.latest_timestamp || '';
-          const tb = b.completed_at || b.latest_timestamp || '';
+          const normalize = ts => {
+            if (!ts) return '';
+            if (/^\d{8}T\d{6}Z$/i.test(ts)) {
+              return ts.replace(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})/,
+                                '$1-$2-$3T$4:$5:$6');
+            }
+            return ts;
+          };
+          const ta = normalize(a.completed_at || a.latest_timestamp || '');
+          const tb = normalize(b.completed_at || b.latest_timestamp || '');
           return tb.localeCompare(ta);
         });
         html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${allCompleted.length}</div>`;

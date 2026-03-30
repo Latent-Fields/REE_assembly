@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_086_arc030_go_nogo_symmetry",
   "run_id": "v3_exq_086_arc030_go_nogo_symmetry_20260329T215407Z_v3",
-  "status": "FAIL",
+  "status": "INCONCLUSIVE",
   "timestamp_utc": "2026-03-29T21:54:07Z",
   "source_repo": {
     "name": "ree-v3",
@@ -23,7 +23,7 @@
     "ARC-030"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "inconclusive",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Measurement bug: benefit_rate=0 despite 274 buffered benefit events. Go sub-channel logging works but rate computation broken. Does not test ARC-030. Superseded by EXQ-086a (corrected benefit_rate computation)."
 }

@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
   "run_id": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
-  "status": "FAIL",
+  "status": "INCONCLUSIVE",
   "timestamp_utc": "2026-03-29T21:58:06Z",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "SD-003"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "inconclusive",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Phase 1 gate failure (reafference_r2=0.076 < 0.08): experiment terminated before any scientific criteria ran. No evidence for or against SD-008, SD-007, or SD-003. Engineering bottleneck in full-stack reafference quality. Does not falsify any component claim."
 }

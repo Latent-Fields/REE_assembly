@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_177_sd008_integration_test
 
-Generated: `2026-03-30T16:58:14.733561Z`
+Generated: `2026-03-30T18:20:29.119669Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-03-30T16:58:14.733561Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` | `2026-03-30T16:58:09.653240Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/summary.md) / [`manifest`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/manifest.json) / [`metrics`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/metrics.json) |
+| `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` | `2026-03-30T18:15:19.144549Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/summary.md) / [`manifest`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/manifest.json) / [`metrics`](runs/v3_exq_177_sd008_integration_test_20260329T215657Z_v3/metrics.json) |

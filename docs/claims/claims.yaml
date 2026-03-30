@@ -443,6 +443,14 @@
     EXQ-147 FAIL/weakens via MECH-128 (2026-03-29): E1 goal conditioning pair FAIL. First
     experimental entry. Failure likely reflects training budget / substrate gap rather than
     fundamental resolution question.
+    EXQ-170 FAIL 1/3 x2 replicated (2026-03-30, two independent runs): fine resolution (32 RBF
+    centers) vs coarse (4 centers). Fine harm_rate=0.028 vs coarse 0.0003 (93x worse). Fine
+    residue_accuracy=0.016 (threshold 0.10). Consistent across both runs. z_world latent lacks
+    spatial organization to support fine-grained RBF accumulation at V3 scale -- 32 centers
+    spread learning signal too thinly; 4 centers sufficient for zone-level harm/safe distinction.
+    V3 scale finding: coarse resolution adequate, fine counterproductive. Does not rule out fine
+    resolution at higher task complexity or after SD-005/higher-dim z_world. Evidence direction:
+    weakens (fine-resolution hypothesis at V3 scale).
 - id: Q-003
   title: "Should R(x,t) be scalar or vector?"
   claim_type: open_question
@@ -1104,6 +1112,12 @@
         as REE's interoceptive/allostatic channel (Barrett arousal = |interoceptive PE|).
         running_harm_variance becomes μ₃ analog. Requires SD-010 first.
     EXQ-051b queued 2026-03-20 (V3-EXQ-051b).
+    EXQ-051c FAIL 1/3 (2026-03-30, V3-EXQ-051c): C1 PASS -- volatile z_beta_norm=0.775 vs
+    stable=0.659, delta=+0.116 (threshold >0.05 met). C2 FAIL -- r(z_beta, mean_rv)=0.000;
+    mean_rv is flat at 0.500 in both conditions (metric broken -- rv not varying with env).
+    C3 FAIL -- consequence of C2 failure. Directional signal confirmed for z_beta condition
+    difference (C1), but rv injection pathway not producing variance signal. v3_pending hold
+    stands until rv metric is repaired and C2/C3 retested.
   depends_on:
     - ARC-005
     - ARC-021
@@ -1267,6 +1281,14 @@
     the action-object indexing mechanism specifically contributes.
     EXQ-120 PASS (2026-03-28): viability map discriminative pair. evidence_direction=supports.
     Adds one more support entry confirming the V3 substrate continues to pass this claim.
+    EXQ-172 INCONCLUSIVE (2026-03-30, T213638Z): E2 quality borderline (r2=0.203, gate=0.15);
+    direction criteria fail. Not a clean test. Superseded by T070425Z run.
+    EXQ-172 FAIL 0/4 (2026-03-30, T070425Z): harm_advantage_mean=-0.190 (rollout performs 19%
+    worse than greedy). E2 quality adequate (r2=0.203) so quality is not the blocker -- rollout
+    planning itself counterproductive at current E2 fidelity. Possible reading: k=5 step rollout
+    propagates E2 prediction errors faster than 1-step greedy accumulates them. ARC-018 may be
+    E2-quality-gated: rollout advantage likely requires r2 >> 0.5 to outperform greedy. Evidence
+    direction: weakens (second FAIL after V2 EXQ-021). Hold_candidate_resolve_conflict stands.
   depends_on:
     - ARC-007
     - ARC-003
@@ -1500,6 +1522,11 @@
     failure of the claim -- prior EXQ-055 PASS remains valid (different baseline). Experiment
     design problem. Literature pull on hippocampal planning queued (Pfeiffer & Foster 2013;
     Wikenheiser & Redish 2015).
+    EXQ-171 PASS 4/4 x2 (2026-03-30, two independent runs): kernel chain confirmed.
+    harm_rate_CHAIN=0.00021 vs ABLATED=0.0613 (290x safer). world_forward_r2=0.984.
+    harm_reduction_delta=0.0611 >> 0.01 threshold. Both seeds, both runs. EXQ-124 training-budget
+    FAIL superseded -- 600-ep warmup sufficient. EXQ-055 + EXQ-171x2 = three clean PASS entries.
+    Evidence_direction: supports.
   depends_on:
     - ARC-018
     - ARC-002
@@ -2461,6 +2488,13 @@
     entropy bonus (ENT_BONUS=5e-3), z_world/z_self detached from policy forward pass. Policy
     converges to maximum-entropy random walk (action_entropy=ln(5)=1.6094); control axes never
     exercised. Redesign needed with harm-avoidance policy gradient wired to policy. See EXP-0094.
+    EXQ-157 INCONCLUSIVE (2026-03-30, T065453Z): first valid run (prior runs superseded).
+    PARTIAL_COLLAPSE_ADEQUATE: all three axis conditions (FULL/COLLAPSED/MINIMAL) fall within
+    equivalence margin (C5_all_within_equiv=True). C4 (axes non-degenerate) FAIL -- axes likely
+    collapsing in this substrate. Task complexity (8x8 grid) insufficient to discriminate axis
+    structures; single-stream already saturates task capacity. Classified inconclusive: substrate
+    inadequate to test Q-017, not evidence that minimal subset = 1 axis. Redesign needed at higher
+    task complexity.
   depends_on:
     - MECH-063
     - ARC-005
@@ -3929,6 +3963,11 @@
     multi-rate testing requires SD-006 phase 2 implementation.
     EXQ-131 FAIL/mixed (2026-03-29): multirate heartbeat discriminative pair FAIL. SD-006
     phase 2 async required for full three-loop rate separation. Confirms existing hold.
+    EXQ-131 reclassified INCONCLUSIVE (2026-03-30 review): var_harm_eval_on=1.05e-7 (near-zero)
+    vs ablated=0.00276 -- E3 output freeze artifact of time-multiplexed (not async) substrate.
+    Synchronous polling creates stale E3 state; does not replicate biological async multi-rate.
+    Re-run (T215546Z) identical metrics -- one result. SD-006 phase 2 (true async execution)
+    is a structural prerequisite. Does not weaken ARC-023.
   claim_level: mixed
   functional_restatement: >
     Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
@@ -4285,6 +4324,11 @@
     V3 gate cleared (2026-03-28): SD-005 (z_self/z_world split) and SD-007 (reafference
     predictor) now implemented in ree-v3. Dual-stream routing experiments can proceed.
     EXQ-130 FAIL (2026-03-29): dual-stream routing pair FAIL. First experimental entry.
+    EXQ-130 reclassified INCONCLUSIVE (2026-03-30 review): gap_stream_on=0.015, gap_ablated=0.019,
+    delta=-0.004. Both gaps sub-threshold; 8x8 task too simple to discriminate dual-stream
+    advantage (single-stream saturates task capacity). Small negative delta within noise at this
+    scale. Re-run (T215504Z) identical metrics -- one result. Evidence direction corrected to
+    inconclusive: experiment underpowered, not evidence against MECH-096.
   depends_on:
     - SD-005
     - MECH-069
@@ -4324,6 +4368,11 @@
     independent of heartbeat reset if possible.
     EXQ-137 FAIL (2026-03-29): PPS commit locus discriminative pair FAIL. First experimental
     entry.
+    EXQ-137 reclassified INCONCLUSIVE (2026-03-30 review): gap_locus_on=0.003, gap_ablated=0.008,
+    delta=-0.005. SD-006 (async execution) and MECH-091 (salient event phase-reset) prerequisites
+    unmet -- commit locus gate fires at wrong moments in synchronous substrate; phase-reset
+    absorbed by stale E3. Experiment premature. Re-run (T215640Z) identical metrics -- one result.
+    Does not weaken MECH-097. Requeue after SD-006 phase 2.
   depends_on:
     - SD-005
     - MECH-091
@@ -4848,6 +4897,10 @@
     Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and
     approach-avoidance symmetry (Go sub-channel implementation) required before testing. No
     experimental evidence yet.
+    EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274
+    buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go
+    sub-channel logging works (events recorded) but rate metric broken. Does not test ARC-030.
+    Superseded by EXQ-086a (corrected benefit_rate computation, to be designed).
   depends_on:
     - ARC-021
     - MECH-069
@@ -5058,6 +5111,15 @@
     signal in training -- not only observational rollouts -- for SD-003 to be valid.
     EXQ-115 tests the new z_harm_s pipeline; a follow-up varying interventional vs
     observational training is needed if EXQ-115 passes.
+    EXQ-166a FAIL 4/6 (2026-03-30): obs-space forward model (Approach B, 4 seeds, 80-ep P0).
+    obs_fwd_r2 bimodal: seeds 42/seed3=0.925/0.885 (strong convergence), seeds 1/2=0.0 (P0
+    encoder quality failure despite extended warmup). C2 delta_approach=0.0006 (threshold 0.03):
+    near-zero causal gap even for converging seeds. Architecture diagnostic: obs-space forward
+    model learns general obs dynamics (position-change dominated) without selective pressure on
+    harm-causal structure. Loss function indifferent to harm-relevant obs dims (diluted in 51-dim
+    obs by position/resource dims). Proposed fix (EXQ-166b): z_harm_s latent forward model with
+    reconstruction branch (autoencoder) to prevent identity collapse -- keeps learning focused on
+    harm-specific structure. C2 failure is architectural, not a training budget issue.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
@@ -5195,6 +5257,19 @@
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
+  evidence_quality_note: |
+    Promoted to provisional 2026-03-22. Two uncontested supporting experiments: EXQ-023
+    (alpha=1.0, event_selectivity_margin=0.084 passed SD-008 criterion) and EXQ-040 (PASS 4/4,
+    z-separation alpha=0.9 directly confirmed correct event responsiveness). Zero genuine weakening
+    experiments in isolation. EXQ-145 INCONCLUSIVE (2026-03-30): full-stack integration test;
+    Phase 1 reafference gate failed (r2=0.076 < 0.08) before SD-008 selectivity was tested.
+    Engineering bottleneck, does not challenge SD-008 status. EXQ-177 FAIL/mixed (2026-03-30,
+    integration test): event_selectivity_margin~0 despite alpha_world=0.9 and excellent
+    world_forward_r2=0.941. Integration context concern: full-stack composition (SD-007 + SD-008
+    + SD-003) may produce destructive interference cancelling z_world selectivity signal.
+    Isolated SD-008 tests (EXQ-023, EXQ-040) remain valid. SD-008 provisional status stands;
+    integration stack requires further diagnostic.
+
 - id: SD-009
   title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
   claim_type: design_decision
@@ -5309,6 +5384,11 @@
     harm_obs_a signal quality and accumulator behaviour are correct after normalization fix. Core
     z_harm_s/z_harm_a stream separation claim still not implemented; this validates the accumulator
     component only.
+    EXQ-166a FAIL 4/6 (2026-03-30, shared result with SD-003/ARC-033): obs-space forward model
+    approach cannot test z_harm_s stream directly. C2 causal gap near zero -- forward model
+    learns general obs dynamics, not harm-stream-specific causal structure. SD-011 dual-stream
+    architecture (z_harm_s forward-predictable) requires dedicated harm latent, not obs-space
+    proxy. Evidence direction for this claim: mixed.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -5782,6 +5862,11 @@
   evidence_quality_note: |
     EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL.
     First experimental entry.
+    EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed --
+    stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation.
+    Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat
+    ~20.6-20.8 across R1/R2). Supports that Hopfield-style familiarity (stability) is a
+    discriminable self-maintenance signal. D_eff direction between regimes remains unresolved.
   depends_on:
     - MECH-113
     - INV-033
@@ -5835,6 +5920,12 @@
     evidence_direction=supports. 0 conflict ratio; conf=0.81 with 2 experiment entries (both
     supports) and 3 literature entries. Clean promotion to provisional per governance decision
     2026-03-29.
+    EXQ-084d MIXED (per-claim override, 2026-03-30): stability dissociation confirmed (C2/C4
+    PASS -- both noise and novelty collapse stability from 0.950 to 0.063/0.026). However R3
+    (novelty/structured perturbation) produces d_eff=22.6 -- HIGHER than R2 noise (20.8) and R1
+    normal (20.6). MECH-119 predicts coherent-unfamiliar regime has LOW d_eff + low stability.
+    The low-stability prediction is confirmed; the low-d_eff prediction is not. R3 novelty
+    increases dimensionality rather than compressing to a coherent subspace.
   depends_on:
     - MECH-113
     - MECH-118
@@ -5901,6 +5992,13 @@
     rotation). Experiment to test whether Regime 3 is empirically distinguishable from Regime 2.
     No experimental evidence yet -- experiment design requires MECH-119 substrate (now
     provisional).
+    EXQ-084d FAIL 2/4 (2026-03-30): three-regime dissociation (R1=normal, R2=noise sigma=2,
+    R3=novelty). Stability dissociation confirmed: stab_R2=0.063, stab_R3=0.026 vs stab_R1=0.950
+    (C2/C4 PASS). D_eff dissociation wrong direction: d_eff_R3=22.6 > d_eff_R2=20.8 (C1 FAIL;
+    novelty increases D_eff rather than targeting subspace). D_eff flat across R1/R2 (C3 FAIL).
+    Q-022 verdict: D_eff and stability do dissociate (move independently), answering Q-022
+    affirmatively, but D_eff ordering between noise/novelty regimes is opposite of prediction.
+    Evidence direction: mixed. Per-claim overrides applied -- see EXQ-084d manifest.
   depends_on:
     - MECH-113
     - MECH-118
@@ -6137,6 +6235,13 @@
     convergence -- architecture validated). Seed 123: obs_fwd_r2=0.0 (P0 encoder quality
     failure). Causal gap directionally correct (approach > none). Architecture sound;
     stability issue. EXQ-166a queued with 4 seeds, P0 extended to 80 episodes.
+    EXQ-166a FAIL 4/6 (2026-03-30): 4-seed result. obs_fwd_r2 bimodal (0.925/0.0/0.0/0.885);
+    C2 delta_approach=0.0006 (near zero causal gap). Architectural diagnosis: obs-space approach
+    does not provide selective pressure on harm-causal structure -- MSE loss dominated by
+    position-change prediction, harm dims diluted. E2_harm_s dedicated latent stream (ARC-033)
+    is the correct approach; obs-space is a dead end for C2. EXQ-166b proposed: latent-space
+    z_harm_s with reconstruction branch to prevent identity collapse while keeping harm-dedicated
+    learning pressure.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
@@ -6869,6 +6974,16 @@
 
     Registered 2026-03-29.
 
+  evidence_quality_note: |
+    EXQ-176 FAIL 1/3 x2 replicated (2026-03-30, two independent runs): harm/benefit RBF fields
+    not activating. harm_score variance ~3.9e-7 (threshold 0.001), benefit_score variance ~3.9e-7
+    despite 9400+ harm events and 3400+ benefit events per seed. Fields structurally present and
+    accumulating events but RBF outputs flat -- spatial discrimination not occurring. Infrastructure
+    prerequisite unmet: RBF centers need training signal to differentiate positions (not provided
+    by random initialization alone). Not a falsification of ARC-036 multi-dimensional valence
+    map hypothesis; probe infrastructure must be fixed before claim can be tested. ARC-036
+    v3_pending hold stands.
+
 - id: Q-023
   title: "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?"
   claim_type: open_question
@@ -7498,6 +7613,10 @@
     Governance decision (2026-03-28): hold at candidate -- EXQ-104b diagnostic required
     before any evidence_direction update. Do not count EXQ-104/105 or artifact runs as
     weakening evidence until trained-agent retest confirms the pattern.
+    EXQ-103 PASS 3/3 (2026-03-30, re-run): E2 multi-step training substrate confirmed again (cosine
+    sim z_self/z_world remains near-zero across horizons 1/3/5; world_acc 0.90/0.78/0.93). Third
+    substrate confirmation. v3_pending hold retained -- EXQ-104b trained-agent diagnostic still needed
+    before directional evidence on MECH-135 proper.
   depends_on:
     - SD-005
     - MECH-069

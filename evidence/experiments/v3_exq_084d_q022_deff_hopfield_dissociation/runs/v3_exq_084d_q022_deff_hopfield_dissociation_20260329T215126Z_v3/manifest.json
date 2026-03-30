@@ -40,5 +40,11 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_per_claim": {
+    "MECH-118": "supports",
+    "MECH-119": "mixed",
+    "Q-022": "mixed"
+  },
+  "evidence_direction_note": "Per-claim overrides applied. MECH-118 (Hopfield stability signal): supports -- C2/C4 confirm stability collapses with noise/novelty perturbation (0.063/0.026 vs 0.950 baseline). MECH-119 (coherent-unfamiliar regime): mixed -- stability dissociation confirmed but R3 d_eff=22.6 higher than R2 d_eff=20.8, opposite of low-d_eff prediction for coherent-unfamiliar pathology. Q-022 (D_eff/stability dissociation): mixed -- dissociation confirmed (D_eff flat while stability collapses), but D_eff ordering between noise and novelty regimes wrong (C1/C3 fail)."
 }
