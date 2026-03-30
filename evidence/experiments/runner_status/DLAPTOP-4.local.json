@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T21:09:13.995455+00:00",
+  "last_updated": "2026-03-30T21:18:58.873734+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -3442,6 +3442,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085l_sd015_proximity_regression_enc/v3_exq_085l_sd015_proximity_regression_enc_20260330T210913Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 208.3
+    },
+    {
+      "queue_id": "V3-EXQ-085m",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-030 benefit_eval_head resource proximity + E3 native selection",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C3 FAIL: selection_bias=-0.00000 <= 0.005. E3 not preferentially selecting higher-benefit trajectories. H-B CONFIRMED independently of H-A. | C4 FAIL: calibration_gap=0.0000 <= 0.0. benefit_eval_head not assigning higher scores near resources. | Status: FAIL",
+      "started_at": "2026-03-30T21:17:23.650992+00:00",
+      "completed_at": "2026-03-30T21:18:58.872017+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 95.2
     }
   ]
 }
