@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_goal_norm_world_avg": 0.3806346555550893,
+    "z_goal_norm_resource_avg": 2.7035206158955893,
+    "benefit_per_ep_goal_present": 0.4066666666666667,
+    "benefit_per_ep_goal_absent": 0.6333333333333334,
+    "benefit_ratio": 0.6421052631578946,
+    "calibration_gap_goal_present": 0.04860761761665344,
+    "goal_resource_r_world": -0.009623153020547759,
+    "goal_resource_r_rfm": -0.16915407115100164,
+    "goal_vs_harm_ratio": 1.2122288954154505,
+    "rfm_final_loss": 0.007809819442200629,
+    "mech124_flag_salience": 0.0,
+    "drive_weight": 2.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_rfm": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-085h -- SD-015 Resource Indicator Diagnostic\n\n**Status:** FAIL\n**Claims:** SD-015, SD-012, MECH-112\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7, 13]\n**Supersedes:** V3-EXQ-085g\n\n## Diagnostic Design\n\nTests SD-015 hypothesis: resource_field_view (5x5 proximity grid) provides a better goal representation than z_world at resource contact. ResourceForwardModel (RFM) trained during warmup to predict resource_field_view_next given (resource_field_view_curr, action). TWO goal states maintained: z_world-seeded (085g baseline) and resource_field_view-seeded (SD-015). KEY DIAGNOSTIC: goal_resource_r_rfm > 0.2.\n\n**alpha_world:** 0.9  (SD-008)\n**SD-012:** drive_weight=2.0, resource_respawn_on_consume=True\n**RFM lr:** 0.0005\n**rfm_final_loss (avg):** 0.0078\n**Warmup:** 600 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: RFM-lookahead goal guidance; GOAL_ABSENT: random)\n\n## Key Diagnostic Comparison\n\n| Representation | goal_resource_r | Note |\n|---|---|---|\n| z_world-seeded (085g) | -0.010 | expected ~0.066 |\n| resource_field_view-seeded (SD-015) | -0.169 | DIAGNOSTIC: need > 0.2 |\n\nz_goal_norm_world: 0.381  z_goal_norm_resource: 2.704\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm_res | cal_gap | r_rfm | r_world |\n|---|---|---|---|---|---|\n| GOAL_PRESENT | 0.407 | 2.704 | 0.0486 | -0.169 | -0.010 |\n| GOAL_ABSENT  | 0.633 | -- | -- | -- | -- |\n\n**Benefit ratio (goal/no-goal): 0.64x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm_resource > 0.1 | PASS | 2.704 |\n| C2: benefit ratio >= 1.3x | FAIL | 0.64x |\n| C3: goal_resource_r_rfm > 0.2 | FAIL | -0.169 |\n| C4: no fatal errors | PASS | -- |\n\nCriteria met: 2/4 -> **FAIL**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 1.212 (< 0.3 = V4 risk)\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.530 z_goal_norm_res=2.464 r_rfm=-0.503 r_world=-0.024 rfm_loss=0.0073\n  seed=7: benefit/ep=0.280 z_goal_norm_res=2.775 r_rfm=-0.227 r_world=-0.062 rfm_loss=0.0075\n  seed=13: benefit/ep=0.410 z_goal_norm_res=2.872 r_rfm=0.223 r_world=0.057 rfm_loss=0.0085\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.790\n  seed=7: benefit/ep=0.560\n  seed=13: benefit/ep=0.550\n\n## Failure Notes\n\n- C2 FAIL: benefit_ratio=0.64x < 1.3x (goal_present=0.407 vs goal_absent=0.633)\n- C3 FAIL: goal_resource_r_rfm=-0.169 < 0.2 despite rfm_loss=0.0078. Deeper problem: resource_field_view itself may not be useful for goal. Check: does CausalGridWorldV2 provide adequate resource_field_view variation? Are resources respawning as expected?\n- UNEXPECTED: z_world goal (085g approach) OUTPERFORMS resource_field_view. SD-015 hypothesis may be wrong. Investigate env dynamics.\n",
+  "claim_ids": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085h_sd015_resource_indicator_diag",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T192231Z",
+  "claim": "SD-015",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085h_sd015_resource_indicator_diag_20260330T192231Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
