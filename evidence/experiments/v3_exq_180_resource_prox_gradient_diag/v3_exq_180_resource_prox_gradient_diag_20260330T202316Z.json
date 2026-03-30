@@ -1,0 +1,36 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "probe_r2": 0.618670606351469,
+    "benefit_r2_probe": 0.08761232421079398,
+    "benefit_head_r": 0.27530763075848175,
+    "benefit_per_ep_on": 0.19166666666666665,
+    "benefit_per_ep_off": 0.6666666666666667,
+    "benefit_ratio": 0.2874999999999999,
+    "calibration_gap_on": 0.07548239827156067,
+    "n_probe_steps_avg": 216.0,
+    "n_benefit_samples_avg": 8652.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "criteria_met": 2.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "benefit_weight": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-180 -- Resource Proximity Gradient Diagnostic\n\n**Status:** FAIL\n**Claims:** MECH-112, SD-012, ARC-030\n**Seeds:** [42, 7]\n\n## Context\n\nEXQ-179 confirmed: goal_tracking_r=-0.056 (H-A), selection_bias~0 (H-B). z_goal seeding from z_world is scene noise, not a resource gradient. This experiment tests whether benefit_eval_head (ARC-030) can provide the missing gradient by learning resource_prox from z_world directly.\n\n## Two-Part Design\n\n**Part 1 (linear probe):** Is resource proximity linearly decodable from z_world?\n  probe_r2 = R^2 of ridge regression z_world -> resource_prox on 10 random-action probe episodes post-warmup.\n\n**Part 2 (navigation test):** Does training benefit_eval_head on resource_prox labels improve E3 trajectory selection?\n  benefit_head_r = Pearson r(benefit_eval(z_world_t), resource_prox_t) in eval\n  benefit_ratio = benefit_EVAL_ON / benefit_EVAL_OFF\n\n**alpha_world:** 0.9  (SD-008)\n**benefit_weight:** 1.0\n**Warmup:** 400 eps (curriculum=80 eps)\n**Probe:** 10 eps (random actions, post-warmup)\n**Eval:** 60 eps per condition\n\n## Key Results\n\n| Metric | Value | Threshold | Interpretation |\n|---|---|---|---|\n| probe_r2 (Part 1) | 0.6187 | > 0.05 = signal in z_world | C1 PASS: probe_r2=0.6187 > 0.05. z_world DOES contain resour... |\n| benefit_head_r | 0.275 | > 0.1 = head tracks gradient | C2 PASS: benefit_head_r=0.275 > 0.1. Head tracks resource pr... |\n| benefit_ratio | 0.29x | > 1.2 = navigation improved | C3 FAIL: benefit_ratio=0.29x <= 1.2. Head tracks proximity b... |\n\n## Navigation Results\n\n| Condition | benefit/ep | probe_r2 | benefit_head_r |\n|---|---|---|---|\n| BENEFIT_EVAL_ON | 0.192 | 0.6187 | 0.275 |\n| BENEFIT_EVAL_OFF (random) | 0.667 | -- | -- |\n\n**Benefit ratio: 0.29x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: probe_r2 > 0.05 | PASS | 0.6187 |\n| C2: benefit_head_r > 0.1 | PASS | 0.275 |\n| C3: benefit_ratio > 1.2 | FAIL | 0.29x |\n| C4: n_probe_steps >= 500 | FAIL | 216 |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Interpretation\n\nC1 PASS: probe_r2=0.6187 > 0.05. z_world DOES contain resource proximity signal.\n\nC2 PASS: benefit_head_r=0.275 > 0.1. Head tracks resource proximity in eval.\n\nC3 FAIL: benefit_ratio=0.29x <= 1.2. Head tracks proximity but E3 scoring does not improve navigation. Consider increasing benefit_weight or checking trajectory diversity.\n\n**benefit_r2_probe (head fit on probe data):** 0.0876\n\n## Per-Seed\n\nBENEFIT_EVAL_ON:\n  seed=42: benefit/ep=0.183 probe_r2=0.6143 benefit_head_r=0.255 n_trained=8646\n  seed=7: benefit/ep=0.200 probe_r2=0.6231 benefit_head_r=0.296 n_trained=8658\n\nBENEFIT_EVAL_OFF:\n  seed=42: benefit/ep=0.767\n  seed=7: benefit/ep=0.567\n\n## Failure Notes\n\n- C3 FAIL: benefit_ratio=0.29x <= 1.2. Head tracks proximity but E3 scoring does not improve navigation. Consider increasing benefit_weight or checking trajectory diversity.\n- C4 FAIL: n_probe_steps=216 < 500. Increase probe_episodes.\n",
+  "claim_ids": [
+    "MECH-112",
+    "SD-012",
+    "ARC-030"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_180_resource_prox_gradient_diag",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T202316Z",
+  "claim": "MECH-112",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_180_resource_prox_gradient_diag_20260330T202316Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
