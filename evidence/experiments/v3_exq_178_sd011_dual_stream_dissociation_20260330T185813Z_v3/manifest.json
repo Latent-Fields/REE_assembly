@@ -1,0 +1,71 @@
+{
+  "run_id": "v3_exq_178_sd011_dual_stream_dissociation_20260330T185813Z_v3",
+  "experiment_type": "v3_exq_178_sd011_dual_stream_dissociation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-011",
+    "ARC-033"
+  ],
+  "outcome": "FAIL",
+  "criteria": {
+    "C1_fwd_r2": false,
+    "C2_stream_corr": true,
+    "C3_recovery_ratio": false,
+    "C4_hazard_corr": true
+  },
+  "metrics": {
+    "harm_fwd_r2": -0.7269904216503107,
+    "stream_corr": 0.02351151410066657,
+    "recovery_ratio": 1.0050125185032752,
+    "z_harm_s_hazard_corr": 0.6293916037658511
+  },
+  "per_seed": [
+    {
+      "harm_fwd_r2": -0.3054213828766188,
+      "stream_corr": -0.0246763940890488,
+      "recovery_ratio": 1.0055308283241533,
+      "z_harm_s_hazard_corr": 0.716982860360376,
+      "n_sustained": 3860,
+      "n_brief": 20,
+      "n_steps_measured": 8000,
+      "z_hs_norms_mean": 0.8942565187513828,
+      "z_ha_norms_mean": 2.135809790313244,
+      "hazard_level_mean": 0.7318447381295263,
+      "seed": 42
+    },
+    {
+      "harm_fwd_r2": -1.1485594604240026,
+      "stream_corr": 0.07169942229038194,
+      "recovery_ratio": 1.004494208682397,
+      "z_harm_s_hazard_corr": 0.5418003471713263,
+      "n_sustained": 3860,
+      "n_brief": 20,
+      "n_steps_measured": 8000,
+      "z_hs_norms_mean": 1.0545126141607761,
+      "z_ha_norms_mean": 2.1148058267980816,
+      "hazard_level_mean": 0.7346688179858029,
+      "seed": 123
+    }
+  ],
+  "thresholds": {
+    "C1_harm_fwd_r2": 0.2,
+    "C2_stream_corr": 0.85,
+    "C3_recovery_ratio": 1.5,
+    "C4_z_harm_s_hazard_corr": 0.25
+  },
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "warmup_episodes": 150,
+    "fwd_train_episodes": 80,
+    "dissociation_episodes": 40,
+    "steps_per_episode": 200,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "z_harm_s_dim": 32,
+    "z_harm_a_dim": 16
+  },
+  "timestamp_utc": "2026-03-30T18:58:13.051038Z"
+}
