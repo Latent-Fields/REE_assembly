@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_077_arc024_asymptotic_proxy_pair
 
-Generated: `2026-03-30T21:40:17.431625Z`
+Generated: `2026-03-30T21:45:31.164878Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
