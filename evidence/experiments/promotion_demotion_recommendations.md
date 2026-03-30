@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-30T21:47:21.037286Z`
+Generated: `2026-03-30T21:50:03.089057Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -60,7 +60,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.629, conflict_ratio=0.8, exp_entries=3, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=1, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.681, conflict_ratio=0.857, exp_entries=5, lit_entries=3; directions supports=3, weakens=4, mixed=0, unknown=1, conflict_ratio=0.857
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -301,7 +301,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.751, conflict_ratio=0.667, exp_entries=14, lit_entries=3; directions supports=4, weakens=2, mixed=6, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.715, conflict_ratio=0.889, exp_entries=18, lit_entries=3; directions supports=4, weakens=5, mixed=7, unknown=0, conflict_ratio=0.889
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -487,7 +487,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-012
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.751, conflict_ratio=0.667, exp_entries=10, lit_entries=3; directions supports=4, weakens=2, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: overall_conf=0.732, conflict_ratio=0.857, exp_entries=12, lit_entries=3; directions supports=4, weakens=3, mixed=3, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True, curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random. C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstr…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

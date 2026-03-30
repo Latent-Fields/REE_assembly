@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_032_mech102_energy_escalation
 
-Generated: `2026-03-30T21:47:21.037286Z`
+Generated: `2026-03-30T21:50:03.089057Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

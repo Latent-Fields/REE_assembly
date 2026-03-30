@@ -1,0 +1,45 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_085o_sd015_sorted_rf_enc",
+  "run_id": "v3_exq_085o_sd015_sorted_rf_enc_20260330T214636Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-30T21:46:36Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "3/4 criteria, C2 FAIL. sorted RF encoder: enc_final_loss=0.006 (encoder converges), goal_resource_r_enc=0.574 (C3 PASS), prox_r2=0.524. benefit_ratio=0.113 -- navigation does not improve despite working encoder. Consistent with 085l (proximity regression encoder, prox_r2=0.908, benefit_ratio=0.420). Encoding approach is valid; action-selection integration remains the bottleneck across all SD-015 iterations."
+}

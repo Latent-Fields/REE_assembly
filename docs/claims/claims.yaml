@@ -4901,6 +4901,13 @@
     buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go
     sub-channel logging works (events recorded) but rate metric broken. Does not test ARC-030.
     Superseded by EXQ-086a (corrected benefit_rate computation, to be designed).
+    EXQ-085m FAIL 0/4 (2026-03-30): benefit_eval_head in E3 (benefit proximity regression
+    head trained jointly with E3). benefit_eval_r2_train=-8.6 (head diverges completely).
+    benefit_per_ep=0 in both ENABLED/DISABLED conditions -- benefit events not occurring
+    in 1-seed short warmup. ARC-030 approach-via-benefit-head not testable at this scale.
+    Structural issue: benefit signal too sparse during warmup; head cannot learn proximity
+    regression without sustained benefit contact. ARC-030 requires a richer benefit signal
+    or pre-trained benefit head before E3 integration is testable.
   depends_on:
     - ARC-021
     - MECH-069
