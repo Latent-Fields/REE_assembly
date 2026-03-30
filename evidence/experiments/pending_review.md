@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-03-30T06:56:08Z`  
-Last review: `2026-03-30T06:54:45Z`  
-Pending: **30** item(s) -- 7 PASS, 6 FAIL, 17 runner-only (ERROR/UNKNOWN/smoke)
+Generated: `2026-03-30T16:44:27Z`  
+Last review: `2026-03-30T06:56:23Z`  
+Pending: **31** item(s) -- 7 PASS, 6 FAIL, 18 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
@@ -38,11 +38,12 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | `V3-EXQ-165` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-164a` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-166a` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-172` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-176` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-170` | UNKNOWN | `?` | UNKNOWN |
-| `V3-EXQ-171` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-177` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-157a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-170a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-171a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-172a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-176a` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-118` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-134` | UNKNOWN | `?` | UNKNOWN |
 | `V3-EXQ-149` | UNKNOWN | `?` | UNKNOWN |

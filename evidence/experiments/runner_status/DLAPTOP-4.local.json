@@ -2,10 +2,47 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T07:04:47.802055+00:00",
+  "last_updated": "2026-03-30T16:45:09.439205+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-051c",
+    "backlog_id": "",
+    "claim_id": "Q-007",
+    "title": "Q-007 z_beta Volatility Injection -- NE/LC analog via running_variance input",
+    "description": "",
+    "script": "experiments/v3_exq_051c_q007_zbeta_volatility_injection.py",
+    "started_at": "2026-03-30T16:40:59.048544+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 0,
+      "episodes_total": 130,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 250,
+    "seconds_remaining": 5227,
+    "recent_lines": [
+      "[Phase 1] Training stable (300 eps) and volatile (300 eps)...",
+      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_051c_q007_zbeta_volatility_injection.py:220: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+      "obs_body  = torch.tensor(obs_dict[\"body_state\"],  dtype=torch.float32)",
+      "/Users/dgolden/Documents/GitHub/REE_Working/ree-v3/experiments/v3_exq_051c_q007_zbeta_volatility_injection.py:221: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+      "obs_world = torch.tensor(obs_dict[\"world_state\"], dtype=torch.float32)"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
+    {
+      "queue_id": "V3-EXQ-051c",
+      "backlog_id": "",
+      "claim_id": "Q-007",
+      "title": "Q-007 z_beta Volatility Injection -- NE/LC analog via running_variance input",
+      "description": "",
+      "estimated_minutes": 87.1,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
