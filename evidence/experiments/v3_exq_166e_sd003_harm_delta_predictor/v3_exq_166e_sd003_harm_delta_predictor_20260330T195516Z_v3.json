@@ -1,0 +1,110 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
+  "experiment_type": "v3_exq_166e_sd003_harm_delta_predictor",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "PASS",
+  "criteria_met": 6,
+  "total_criteria": 6,
+  "dry_run": false,
+  "supersedes": "v3_exq_166d_sd003_harm_decoder_discrimination",
+  "notes": "EXQ-166e: harm-delta predictor approach. Fixes fundamental identity collapse in latent-space HarmForwardModel (EXQ-166b/c/d). Predicts scalar harm delta (harm_obs_next[CENTER_CELL] - harm_obs_curr[CENTER_CELL]) from (z_harm_s, action). Identity collapse cannot recur: predicting delta=0 for all actions is wrong at approach/contact events where the delta has a signed action-dependent component. ARC-033 causal signal: delta_actual - mean(delta_cf_over_actions).",
+  "metrics": {
+    "delta_r2_mean": 0.6411642758116054,
+    "causal_gap_approach_mean": 0.005239176348881107,
+    "causal_gap_contact_mean": 0.035032324032888425,
+    "causal_gap_neutral_mean": -0.026621445240846427,
+    "n_approach_eval_mean": 7515.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 1.0
+  },
+  "per_seed": {
+    "42": {
+      "delta_r2": 0.6445296471441266,
+      "causal_gap_approach": 0.003948671716830916,
+      "causal_gap_contact": 0.0326385912247583,
+      "causal_gap_neutral": -0.025671289689141324,
+      "n_approach_eval": 7516,
+      "n_contact_eval": 1488,
+      "p0_z_harm_var": 0.07461684197187424,
+      "crit1_pass": 1,
+      "crit2_pass": 1,
+      "crit3_pass": 1,
+      "crit4_pass": 1,
+      "crit5_pass": 1
+    },
+    "123": {
+      "delta_r2": 0.6445090560809217,
+      "causal_gap_approach": 0.003025487899342265,
+      "causal_gap_contact": 0.035746224816954664,
+      "causal_gap_neutral": -0.02649029480050517,
+      "n_approach_eval": 7561,
+      "n_contact_eval": 1522,
+      "p0_z_harm_var": 0.0644596517086029,
+      "crit1_pass": 1,
+      "crit2_pass": 1,
+      "crit3_pass": 1,
+      "crit4_pass": 1,
+      "crit5_pass": 1
+    },
+    "7": {
+      "delta_r2": 0.6720420047532009,
+      "causal_gap_approach": 0.006369771675496487,
+      "causal_gap_contact": 0.03821595020950506,
+      "causal_gap_neutral": -0.026770750734268035,
+      "n_approach_eval": 7545,
+      "n_contact_eval": 1557,
+      "p0_z_harm_var": 0.07576701790094376,
+      "crit1_pass": 1,
+      "crit2_pass": 1,
+      "crit3_pass": 1,
+      "crit4_pass": 1,
+      "crit5_pass": 1
+    },
+    "13": {
+      "delta_r2": 0.6035763952681723,
+      "causal_gap_approach": 0.007612774103854762,
+      "causal_gap_contact": 0.0335285298803357,
+      "causal_gap_neutral": -0.02755344573947117,
+      "n_approach_eval": 7438,
+      "n_contact_eval": 1521,
+      "p0_z_harm_var": 0.0866713672876358,
+      "crit1_pass": 1,
+      "crit2_pass": 1,
+      "crit3_pass": 1,
+      "crit4_pass": 1,
+      "crit5_pass": 1
+    }
+  },
+  "decision": "retain_ree",
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      13
+    ],
+    "phase0_episodes": 200,
+    "phase1_episodes": 300,
+    "eval_episodes": 100,
+    "steps_per_episode": 200,
+    "world_dim": 32,
+    "self_dim": 16,
+    "nav_bias": 0.65,
+    "harm_obs_dim": 51,
+    "z_harm_dim": 32,
+    "center_cell_idx": 12,
+    "fwd_hidden_dim": 64,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "p0_var_thresh": 0.005
+  }
+}
