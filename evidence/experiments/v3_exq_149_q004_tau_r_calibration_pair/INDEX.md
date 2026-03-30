@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_149_q004_tau_r_calibration_pair
 
-Generated: `2026-03-30T16:44:23.215413Z`
+Generated: `2026-03-30T16:58:14.733561Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

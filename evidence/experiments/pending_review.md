@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-03-30T16:44:27Z`  
+Generated: `2026-03-30T16:58:15Z`  
 Last review: `2026-03-30T06:56:23Z`  
-Pending: **31** item(s) -- 7 PASS, 6 FAIL, 18 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **36** item(s) -- 5 PASS, 13 FAIL, 18 runner-only (ERROR/UNKNOWN/smoke)
 
 ## FAIL (action required)
 
@@ -14,18 +14,23 @@ Pending: **31** item(s) -- 7 PASS, 6 FAIL, 18 runner-only (ERROR/UNKNOWN/smoke)
 | `v3_exq_131_arc023_multirate_heartbeat_pair_20260329T215546Z_v3` | 2026-03-29T21:55 | ARC-023 | — |
 | `v3_exq_137_mech097_pps_commit_locus_pair_20260329T215640Z_v3` | 2026-03-29T21:56 | MECH-097 | — |
 | `v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3` | 2026-03-29T21:58 | SD-003, SD-007, SD-008 | — |
+| `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 2026-03-30T16:58 | ARC-033, SD-003, SD-011 | — |
+| `v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3` | 2026-03-30T16:58 | Q-002 | — |
+| `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 2026-03-30T16:58 | Q-002 | — |
+| `v3_exq_172_arc018_rollout_viability_pair_20260330T070425Z_v3` | 2026-03-30T16:58 | ARC-018 | — |
+| `v3_exq_176_arc036_valence_dimension_probe_20260329T213701Z_v3` | 2026-03-30T16:58 | ARC-036 | — |
+| `v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3` | 2026-03-30T16:58 | ARC-036 | — |
+| `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` | 2026-03-30T16:58 | SD-008 | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3` | 2026-03-29T21:54 | MECH-135 |
-| `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 2026-03-30T06:56 | ARC-033, SD-003, SD-011 |
-| `v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3` | 2026-03-30T06:56 | Q-002 |
-| `v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3` | 2026-03-30T06:56 | MECH-033 |
-| `v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3` | 2026-03-30T06:56 | ARC-018 |
-| `v3_exq_176_arc036_valence_dimension_probe_20260329T213701Z_v3` | 2026-03-30T06:56 | ARC-036 |
-| `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` | 2026-03-30T06:56 | SD-008 |
+| `v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3` | 2026-03-30T16:58 | ARC-018 |
+| `v3_exq_157_q017_control_axis_minimal_subset_20260330T065453Z_v3` | 2026-03-30T16:58 | Q-017 |
+| `v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3` | 2026-03-30T16:58 | MECH-033 |
+| `v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3` | 2026-03-30T16:58 | MECH-033 |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 

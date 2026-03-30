@@ -11,5 +11,11 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` at `2026-03-30T16:58:09.642455Z` signatures: none
+- `v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3` at `2026-03-30T16:58:09.640552Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

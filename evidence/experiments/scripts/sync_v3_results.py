@@ -111,7 +111,18 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     if not claim_ids and data.get("claim"):
         claim_ids = [data["claim"]]
 
-    status = str(data.get("status", "UNKNOWN")).upper()
+    # Support both "status" (runner-written manifests) and "overall_outcome" (flat JSON scripts)
+    raw_status = data.get("status") or data.get("overall_outcome", "UNKNOWN")
+    raw_upper = str(raw_status).upper()
+    if raw_upper in ("PASS", "FAIL", "UNKNOWN"):
+        status = raw_upper
+    elif raw_upper.startswith("FAIL"):
+        status = "FAIL"
+    elif raw_upper.startswith("PASS"):
+        status = "PASS"
+    else:
+        # PARTIAL_*, INCONCLUSIVE, etc. -- preserve as-is for human review
+        status = raw_upper
     evidence_direction = str(data.get("evidence_direction", "unknown"))
 
     manifest = {

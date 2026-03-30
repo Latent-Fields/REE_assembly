@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-30T16:44:23.215413Z`
+Generated: `2026-03-30T16:58:14.733561Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -9,14 +9,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 |---|---|---|---|---|---|---|
 | `ARC-007` | directional, source_disagreement, mixed_evidence | 7 | 5 | 0.833 | `2026-03-29_arc_007_theta_sequences_goals_wikenheiser2015` | 16 |
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 13 | 13 | 1 | `2026-03-28_arc_016_threshold_striatum_presma_forstmann2008` | 30 |
-| `ARC-018` | directional | 9 | 1 | 0.2 | `v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3` | 10 |
+| `ARC-018` | directional | 9 | 2 | 0.364 | `v3_exq_172_arc018_rollout_viability_pair_20260330T070425Z_v3` | 11 |
 | `ARC-024` | directional, mixed_evidence | 13 | 9 | 0.818 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 33 |
 | `ARC-026` | directional, source_disagreement | 2 | 2 | 1 | `2026-03-29_arc_026_long_horizon_care_bratman1987` | 4 |
 | `ARC-029` | directional | 3 | 1 | 0.5 | `2026-03-29_arc_029_regret_avoidance_ofc_coricelli2005` | 4 |
 | `ARC-030` | directional, source_disagreement | 3 | 2 | 0.8 | `v3_exq_086_arc030_go_nogo_symmetry_20260329T215407Z_v3` | 5 |
 | `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_arc_032_theta_goal_navigation_review_colgin2016` | 7 |
-| `ARC-033` | directional, source_disagreement, mixed_evidence | 3 | 3 | 1 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 9 |
-| `MECH-033` | directional, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3` | 11 |
+| `ARC-033` | directional, source_disagreement, mixed_evidence | 2 | 3 | 0.8 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 9 |
+| `MECH-033` | directional, mixed_evidence | 9 | 2 | 0.364 | `v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3` | 12 |
 | `MECH-071` | directional, mixed_evidence | 18 | 11 | 0.759 | `v3_exq_085g_mech071_contact_gated_seeding_20260329T210815Z_v3` | 54 |
 | `MECH-072` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_mech_072_stress_memory_decontextualization_schwabe2024` | 7 |
 | `MECH-089` | directional, mixed_evidence | 9 | 5 | 0.714 | `v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3` | 18 |
@@ -36,15 +36,15 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-118` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_084d_q022_deff_hopfield_dissociation_20260329T215126Z_v3` | 6 |
 | `MECH-135` | directional, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3` | 16 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
-| `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3` | 5 |
+| `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 6 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
 | `Q-020` | directional | 1 | 2 | 0.667 | `v3_exq_159_q020_arc007_valence_constraint_pair_20260329T193606Z_v3` | 4 |
-| `SD-003` | directional, source_disagreement, mixed_evidence | 18 | 24 | 0.857 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 82 |
+| `SD-003` | directional, source_disagreement, mixed_evidence | 17 | 24 | 0.829 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 82 |
 | `SD-004` | directional, source_disagreement | 7 | 5 | 0.833 | `2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015` | 12 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 10 | 14 | 0.833 | `v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3` | 33 |
 | `SD-007` | directional, source_disagreement, mixed_evidence | 12 | 10 | 0.909 | `v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3` | 27 |
 | `SD-008` | directional, mixed_evidence | 5 | 1 | 0.333 | `v3_exq_177_sd008_integration_test_20260329T215657Z_v3` | 7 |
-| `SD-011` | directional, mixed_evidence | 8 | 3 | 0.545 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 20 |
+| `SD-011` | directional, source_disagreement, mixed_evidence | 7 | 3 | 0.6 | `v3_exq_166a_sd003_obs_space_forward_model_20260329T213108Z_v3` | 20 |
 
 ## Conflict Details
 
@@ -87,13 +87,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-018
 - Conflict types: directional
-- Evidence breakdown: supports=9, weakens=1, conflict_ratio=0.2, overall_confidence=0.862
+- Evidence breakdown: supports=9, weakens=2, conflict_ratio=0.364, overall_confidence=0.832
 - Recent entries:
-  - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.85
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.68
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.72
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.8
-  - `2026-03-30T06:56:03.799825Z` `experimental` `v3_exq_172_arc018_rollout_viability_pair` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.643322Z` `experimental` `v3_exq_172_arc018_rollout_viability_pair` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.644140Z` `experimental` `v3_exq_172_arc018_rollout_viability_pair` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `v2_verdict_fail:rollout_viability_mapping` (1)
 - Suggested resolution actions:
@@ -199,13 +199,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-033
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=3, conflict_ratio=1, overall_confidence=0.662
+- Evidence breakdown: supports=2, weakens=3, conflict_ratio=0.8, overall_confidence=0.593
 - Recent entries:
   - `2026-03-28T20:48:36Z` `experimental` `v3_exq_115_sd003_zharms_counterfactual` direction=`weakens` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_033` direction=`supports` confidence=0.65
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_033` direction=`supports` confidence=0.62
   - `2026-03-29T21:05:13Z` `experimental` `v3_exq_166_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
-  - `2026-03-30T06:56:03.797945Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.634720Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
 - Recurring failure signatures:
   - `If forward models are stored as a monolithic controller rather than modular separate models, then the internal-model loading result might reflect weight interpolation rather than distinct model selection, undermining the architectural analogy for E2_harm_s.` (1)
   - `The harm forward model in REE is a learned MLP trained on harm proximity labels; the cerebellum/motor cortex architecture for object manipulation models differs substantially in implementation detail.` (1)
@@ -218,13 +218,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.831
+- Evidence breakdown: supports=9, weakens=2, conflict_ratio=0.364, overall_confidence=0.84
 - Recent entries:
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.75
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.78
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.72
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`mixed` confidence=0.58
-  - `2026-03-30T06:56:03.799218Z` `experimental` `v3_exq_171_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.656556Z` `experimental` `v3_exq_171_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.659901Z` `experimental` `v3_exq_171_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `v2_verdict_fail:kernel_chaining_interface` (1)
   - `Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation.` (1)
@@ -548,13 +548,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-002
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.643
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.619
 - Recent entries:
-  - `2026-03-29T13:03:13Z` `experimental` `v3_exq_147_mech128_e1_goal_conditioning_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_002` direction=`supports` confidence=0.73
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_002` direction=`supports` confidence=0.72
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_002` direction=`supports` confidence=0.78
-  - `2026-03-30T06:56:03.798591Z` `experimental` `v3_exq_170_q002_r_field_resolution_pair` direction=`mixed` confidence=0.5
+  - `2026-03-30T16:58:09.640552Z` `experimental` `v3_exq_170_q002_r_field_resolution_pair` direction=`mixed` confidence=0.5
+  - `2026-03-30T16:58:09.642455Z` `experimental` `v3_exq_170_q002_r_field_resolution_pair` direction=`mixed` confidence=0.5
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -589,13 +589,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-003
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=18, weakens=24, conflict_ratio=0.857, overall_confidence=0.768
+- Evidence breakdown: supports=17, weakens=24, conflict_ratio=0.829, overall_confidence=0.764
 - Recent entries:
   - `2026-03-28T20:48:36Z` `experimental` `v3_exq_115_sd003_zharms_counterfactual` direction=`weakens` confidence=0.75
   - `2026-03-29T07:25:03Z` `experimental` `v3_exq_145_sd008_sd007_sd003_integration` direction=`weakens` confidence=0.75
   - `2026-03-29T21:05:13Z` `experimental` `v3_exq_166_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
   - `2026-03-29T21:58:06Z` `experimental` `v3_exq_145_sd008_sd007_sd003_integration` direction=`mixed` confidence=0.5
-  - `2026-03-30T06:56:03.797945Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.634720Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
 - Recurring failure signatures:
   - `Patients with delusions of control report that their own actions feel alien or externally caused -- the forward model comparator is failing to match predicted to actual sensory consequence, so self-generated movements are misclassified as externally produced. This is the SD-003 failure mode: if E2 is miscalibrated, causal_sig will systematically misattribute the agent's own causal footprint.` (1)
   - `Patients with anosognosia experience illusory awareness of movement despite sensory loss, driven by motor command streams alone -- suggesting the forward model can generate self-attribution independently of sensory feedback, which has implications for SD-003 in low-feedback environments.` (1)
@@ -629,7 +629,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-005
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=10, weakens=14, conflict_ratio=0.833, overall_confidence=0.751
+- Evidence breakdown: supports=10, weakens=14, conflict_ratio=0.833, overall_confidence=0.75
 - Recent entries:
   - `2026-03-24T20:23:13Z` `experimental` `v3_exq_047j_tpj_routing_ce` direction=`mixed` confidence=0.5
   - `2026-03-25T02:15:58Z` `experimental` `v3_exq_047k_tpj_routing_larger_n` direction=`supports` confidence=0.75
@@ -666,13 +666,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-008
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.807
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, overall_confidence=0.81
 - Recent entries:
   - `2026-03-29T07:25:03Z` `experimental` `v3_exq_145_sd008_sd007_sd003_integration` direction=`supports` confidence=0.55
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_sd_008` direction=`supports` confidence=0.72
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_sd_008` direction=`supports` confidence=0.68
   - `2026-03-29T21:58:06Z` `experimental` `v3_exq_145_sd008_sd007_sd003_integration` direction=`mixed` confidence=0.5
-  - `2026-03-30T06:56:03.801072Z` `experimental` `v3_exq_177_sd008_integration_test` direction=`weakens` confidence=0.55
+  - `2026-03-30T16:58:09.653240Z` `experimental` `v3_exq_177_sd008_integration_test` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The paper shows that some higher-order areas benefit from long TRWs for semantic and contextual processing. This could be read as arguing for low-alpha (long integration) in some processing stages. The key distinction is that E3 in REE is the appropriate place for long-window contextual integration, not z_world. z_world is REE's analogue of early-to-mid sensory encoding where short TRWs are appropriate.` (1)
   - `The paper does not establish a specific TRW threshold equivalent to alpha=0.9 in a discrete-timestep EMA. The quantitative mapping requires additional assumptions.` (1)
@@ -684,14 +684,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### SD-011
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=3, conflict_ratio=0.545, overall_confidence=0.836
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, overall_confidence=0.812
 - Recent entries:
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_sd_011` direction=`supports` confidence=0.88
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_sd_011` direction=`supports` confidence=0.92
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_sd_011` direction=`supports` confidence=0.84
   - `2026-03-29T21:05:13Z` `experimental` `v3_exq_166_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
-  - `2026-03-30T06:56:03.797945Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`supports` confidence=0.75
+  - `2026-03-30T16:58:09.634720Z` `experimental` `v3_exq_166a_sd003_obs_space_forward_model` direction=`mixed` confidence=0.5
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
