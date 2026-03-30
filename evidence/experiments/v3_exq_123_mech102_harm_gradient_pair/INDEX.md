@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_123_mech102_harm_gradient_pair
 
-Generated: `2026-03-29T21:44:09.498519Z`
+Generated: `2026-03-30T06:56:04.640376Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
