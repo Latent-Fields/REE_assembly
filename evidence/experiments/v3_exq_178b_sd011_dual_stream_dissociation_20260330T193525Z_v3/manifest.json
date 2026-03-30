@@ -1,0 +1,76 @@
+{
+  "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
+  "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-011",
+    "ARC-033"
+  ],
+  "outcome": "PASS",
+  "criteria": {
+    "C1_fwd_r2": true,
+    "C2_stream_corr": true,
+    "C3_autocorr_gap": true,
+    "C4_hazard_corr": true
+  },
+  "metrics": {
+    "harm_fwd_r2": 0.7417986106379751,
+    "stream_corr": 0.07766701335481854,
+    "autocorr_gap": 0.44589773793507503,
+    "z_harm_s_hazard_corr": 0.6009508993726984
+  },
+  "per_seed": [
+    {
+      "harm_fwd_r2": 0.7475812214628506,
+      "stream_corr": 0.07563542581947787,
+      "autocorr_gap": 0.4677921370807117,
+      "z_ha_autocorr_lag10": 0.9135878943216746,
+      "z_hs_autocorr_lag10": 0.44579575724096293,
+      "z_harm_s_hazard_corr": 0.7264721351014126,
+      "n_steps_measured": 8000,
+      "z_hs_norms_mean": 0.8961902056410909,
+      "z_ha_norms_mean": 2.1265430117547512,
+      "hazard_level_mean": 0.7386820371635259,
+      "fwd_loss_final": 0.0008701474871486425,
+      "seed": 42
+    },
+    {
+      "harm_fwd_r2": 0.7360159998130997,
+      "stream_corr": 0.0796986008901592,
+      "autocorr_gap": 0.42400333878943836,
+      "z_ha_autocorr_lag10": 0.9171518215822436,
+      "z_hs_autocorr_lag10": 0.49314848279280526,
+      "z_harm_s_hazard_corr": 0.4754296636439842,
+      "n_steps_measured": 8000,
+      "z_hs_norms_mean": 1.0244346165657043,
+      "z_ha_norms_mean": 2.1198778856098652,
+      "hazard_level_mean": 0.726989498551935,
+      "fwd_loss_final": 0.0009579325560480356,
+      "seed": 123
+    }
+  ],
+  "thresholds": {
+    "C1_harm_fwd_r2": 0.2,
+    "C2_stream_corr": 0.85,
+    "C3_autocorr_gap": 0.1,
+    "C4_z_harm_s_hazard_corr": 0.25
+  },
+  "supersedes": "V3-EXQ-178a",
+  "config": {
+    "seeds": [
+      42,
+      123
+    ],
+    "warmup_episodes": 150,
+    "fwd_collect_episodes": 80,
+    "fwd_train_epochs": 10,
+    "fwd_batch_size": 128,
+    "dissociation_episodes": 40,
+    "steps_per_episode": 200,
+    "harm_obs_dim": 51,
+    "harm_obs_a_dim": 50,
+    "z_harm_s_dim": 32,
+    "z_harm_a_dim": 16
+  },
+  "timestamp_utc": "2026-03-30T19:35:25.226458Z"
+}
