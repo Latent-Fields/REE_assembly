@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T21:45:08.961218+00:00",
+  "last_updated": "2026-03-30T21:45:28.986497+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-085o",
@@ -16,18 +16,18 @@
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 400,
+      "episodes_done": 100,
       "episodes_total": 800,
-      "overall_pct": 50.0
+      "overall_pct": 12.5
     },
-    "seconds_elapsed": 135,
-    "seconds_remaining": 135,
+    "seconds_elapsed": 155,
+    "seconds_remaining": 1011,
     "recent_lines": [
-      "[V3-EXQ-085o] GOAL_ABSENT seed=7 warmup=800 eval=100 curriculum=100 drive_weight=2.0 alpha_world=0.9 lr_enc=0.001 lr_rfm=0.0005",
-      "[train] seed=7 cond=GOAL_ABSENT ep 100/800 resource=121 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.377 enc_loss=0.0081 rfm_loss=0.0155 [curriculum]",
-      "[train] seed=7 cond=GOAL_ABSENT ep 200/800 resource=185 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.455 enc_loss=0.0070 rfm_loss=0.0125",
-      "[train] seed=7 cond=GOAL_ABSENT ep 300/800 resource=245 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.485 enc_loss=0.0057 rfm_loss=0.0076",
-      "[train] seed=7 cond=GOAL_ABSENT ep 400/800 resource=292 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.484 enc_loss=0.0056 rfm_loss=0.0065"
+      "[train] seed=7 cond=GOAL_ABSENT ep 700/800 resource=463 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.527 enc_loss=0.0053 rfm_loss=0.0073",
+      "[train] seed=7 cond=GOAL_ABSENT ep 800/800 resource=516 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.573 enc_loss=0.0050 rfm_loss=0.0068",
+      "[eval] seed=7 cond=GOAL_ABSENT avg_benefit/ep=0.730 z_goal_norm_enc=0.000 enc_loss=0.0051 rfm_loss=0.0070 prox_r2=0.573 cal_gap=0.1321 goal_resource_r_enc=0.000 goal_vs_harm=0.000",
+      "[V3-EXQ-085o] GOAL_PRESENT seed=13 warmup=800 eval=100 curriculum=100 drive_weight=2.0 alpha_world=0.9 lr_enc=0.001 lr_rfm=0.0005",
+      "[train] seed=13 cond=GOAL_PRESENT ep 100/800 resource=121 seedings_enc=121 z_goal_norm_enc=0.892 prox_r2=0.340 enc_loss=0.0088 rfm_loss=0.0113 [curriculum]"
     ],
     "ree_version": "v3"
   },

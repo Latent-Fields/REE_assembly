@@ -7618,6 +7618,12 @@
     Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all
     085x iterations despite contact-gated seeding). EXP-0093 will first test a handcrafted
     resource_indicator to confirm the diagnosis before implementing the full encoder.
+    EXQ-085h through 085l (2026-03-30, 085l final, supersedes prior): ResourceEncoder
+    tested across 5 iterations. 085l (proximity regression encoder): prox_r2=0.908,
+    enc_contact_acc=0.927, goal_resource_r_enc=0.869 -- encoder learns position-invariant
+    resource features. C2 FAIL: benefit_ratio=0.420. Representation is learnable; action
+    integration is the remaining gap. SD-015 encoder design is valid but insufficient alone
+    -- E2Resource lookahead or E3 trajectory scoring must be fixed to complete the claim.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
