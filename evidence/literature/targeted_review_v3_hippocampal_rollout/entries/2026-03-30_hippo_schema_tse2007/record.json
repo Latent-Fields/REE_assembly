@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-03-30_hippo_schema_tse2007",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-038", "ARC-039"],
+  "source": {
+    "title": "Schemas and memory consolidation.",
+    "authors": ["Tse, Dorothy", "Langston, Rosamund F", "Kakeyama, Masaki", "Bethus, Ingrid", "Spooner, Patrick A", "Wood, Emma R", "Witter, Menno P", "Morris, Richard G M"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135935",
+    "pmid": "17412951"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
+    "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
+  ],
+  "tags": ["arc_038", "arc_039", "schema", "consolidation", "rapid_learning", "hippocampus", "neocortex", "prior_knowledge", "memory_assimilation"],
+  "mapping": {
+    "source_claim_statement": "In rats trained on a flavor-place paired-associate task, a neocortical schema (built over multiple training days) enables new paired-associate memories to consolidate within 48 hours rather than weeks. New traces trained for a single trial become rapidly hippocampal-independent when the schema exists. Schemas causally accelerate one-trial learning and its long-term retention.",
+    "ree_translation": "ARC-038 (waking immobility consolidation) and ARC-039 (hippocampal-entorhinal offline consolidation) both predict that E1 consolidation efficiency should scale with the stability and richness of the existing residue-field map. Tse et al. provide the foundational biological evidence for this principle: a stable prior map (schema) is not merely a background context -- it actively compresses the consolidation timeline. REE implication: E1 online learning rate and offline consolidation window should be gated by a map-stability signal, so that novel episodes entering a mature residue field are consolidated without the multi-episode warmup required for an empty map. Motivates INV-039: schema-primed rapid assimilation as a structural invariant of any hippocampal planning system.",
+    "mapping_caveat": "Tse et al. measure behavioral hippocampal-independence (lesion performance), not neural encoding mechanisms. The REE analog must be instantiated as a specific architectural gate -- it is not obvious which module carries the 'schema stability' signal. The rodent task uses flavor-place pairs, a simpler domain than the action-consequence structures in REE's z_world. Transfer risk is moderate.",
+    "source_context": "Rat, hippocampal-dependent paired-associate learning, lesion study (hippocampus, mPFC), behavioral consolidation timeline (24h vs 48h vs weeks)"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Science landmark paper, well-replicated (Tse et al. 2011 JNeuro, van Kesteren et al. multiple follow-ups). Mapping fidelity is good for the principle but moderate for the specific mechanism: REE has no direct analog of hippocampal-independence timing. The core claim (prior map accelerates new learning) maps cleanly."
+  }
+}

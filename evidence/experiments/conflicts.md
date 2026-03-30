@@ -1,22 +1,22 @@
 # Evidence Conflict Report
 
-Generated: `2026-03-30T21:16:11.063769Z`
+Generated: `2026-03-30T21:32:29.800028Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
 
 | claim_id | conflict_types | supports | weakens | conflict_ratio | latest | entries_considered |
 |---|---|---|---|---|---|---|
-| `ARC-007` | directional, source_disagreement, mixed_evidence | 7 | 5 | 0.833 | `2026-03-29_arc_007_theta_sequences_goals_wikenheiser2015` | 16 |
+| `ARC-007` | directional, source_disagreement, mixed_evidence | 11 | 5 | 0.625 | `2026-03-30_hippo_cognitive_map_behrens2018` | 20 |
 | `ARC-016` | directional, source_disagreement, mixed_evidence | 13 | 13 | 1 | `2026-03-28_arc_016_threshold_striatum_presma_forstmann2008` | 30 |
-| `ARC-018` | directional | 8 | 2 | 0.4 | `v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3` | 11 |
+| `ARC-018` | directional | 13 | 2 | 0.267 | `2026-03-30_hippo_time_cells_omer2022` | 16 |
 | `ARC-024` | directional, mixed_evidence | 13 | 9 | 0.818 | `2026-03-28_arc_024_threat_proximity_gradient_mobbs2007` | 33 |
 | `ARC-026` | directional, source_disagreement | 2 | 2 | 1 | `2026-03-29_arc_026_long_horizon_care_bratman1987` | 4 |
 | `ARC-029` | directional | 3 | 1 | 0.5 | `2026-03-29_arc_029_regret_avoidance_ofc_coricelli2005` | 4 |
 | `ARC-030` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_180_resource_prox_gradient_diag_20260330T202316Z_v3` | 6 |
 | `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_arc_032_theta_goal_navigation_review_colgin2016` | 7 |
 | `ARC-033` | directional, mixed_evidence | 10 | 3 | 0.462 | `v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3` | 19 |
-| `MECH-033` | directional, mixed_evidence | 9 | 2 | 0.364 | `v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3` | 12 |
+| `MECH-033` | directional, mixed_evidence | 12 | 2 | 0.286 | `2026-03-30_hippo_pattern_sep_sakon2019` | 15 |
 | `MECH-071` | directional, mixed_evidence | 18 | 11 | 0.759 | `v3_exq_085g_mech071_contact_gated_seeding_20260329T210815Z_v3` | 54 |
 | `MECH-072` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_mech_072_stress_memory_decontextualization_schwabe2024` | 7 |
 | `MECH-089` | directional, mixed_evidence | 9 | 5 | 0.714 | `v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3` | 18 |
@@ -40,7 +40,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
 | `Q-020` | directional | 1 | 2 | 0.667 | `v3_exq_159_q020_arc007_valence_constraint_pair_20260329T193606Z_v3` | 4 |
 | `SD-003` | directional, source_disagreement, mixed_evidence | 24 | 24 | 1 | `v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3` | 89 |
-| `SD-004` | directional, source_disagreement | 7 | 5 | 0.833 | `2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015` | 12 |
+| `SD-004` | directional, source_disagreement | 9 | 5 | 0.714 | `2026-03-30_arc_007_sd_004_cls_updated_kumaran2016` | 14 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 10 | 14 | 0.833 | `v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3` | 33 |
 | `SD-007` | directional, source_disagreement, mixed_evidence | 12 | 10 | 0.909 | `v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3` | 27 |
 | `SD-011` | directional, mixed_evidence | 14 | 3 | 0.353 | `v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3` | 29 |
@@ -49,16 +49,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=5, conflict_ratio=0.833, overall_confidence=0.797
+- Evidence breakdown: supports=11, weakens=5, conflict_ratio=0.625, overall_confidence=0.806
 - Recent entries:
-  - `2026-03-28T20:48:15Z` `experimental` `v3_exq_114_arc007_path_memory_probe` direction=`supports` confidence=0.75
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_arc_007` direction=`mixed` confidence=0.6
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_arc_007` direction=`supports` confidence=0.82
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_arc_007` direction=`supports` confidence=0.74
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_arc_007` direction=`supports` confidence=0.78
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.82
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.83
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.8
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.87
 - Recurring failure signatures:
   - `v2_verdict_fail:path_memory_ablation` (1)
   - `The paper does not provide evidence that harm or causal attribution specifically is used as an organising axis for hippocampal maps — the non-spatial examples are relational/semantic, not harm-weighted.` (1)
+  - `The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.` (1)
+  - `CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism.` (1)
+  - `The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -86,15 +89,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-018
 - Conflict types: directional
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, overall_confidence=0.815
+- Evidence breakdown: supports=13, weakens=2, conflict_ratio=0.267, overall_confidence=0.825
 - Recent entries:
-  - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.68
-  - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.72
-  - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_arc_018` direction=`supports` confidence=0.8
-  - `2026-03-30T16:58:09.644140Z` `experimental` `v3_exq_172_arc018_rollout_viability_pair` direction=`weakens` confidence=0.75
-  - `2026-03-30T18:15:19.145737Z` `experimental` `v3_exq_172_arc018_rollout_viability_pair` direction=`unknown` confidence=0.45
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.83
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.79
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.8
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.81
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.78
 - Recurring failure signatures:
   - `v2_verdict_fail:rollout_viability_mapping` (1)
+  - `The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.` (1)
+  - `Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin.` (1)
+  - `The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.` (1)
+  - `The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -158,7 +165,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-030
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.625
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.624
 - Recent entries:
   - `2026-03-29T14:15:00Z` `literature` `targeted_review_arc_030` direction=`supports` confidence=0.8
   - `2026-03-29T14:20:00Z` `literature` `targeted_review_arc_030` direction=`supports` confidence=0.82
@@ -217,16 +224,19 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=2, conflict_ratio=0.364, overall_confidence=0.839
+- Evidence breakdown: supports=12, weakens=2, conflict_ratio=0.286, overall_confidence=0.849
 - Recent entries:
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.78
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`supports` confidence=0.72
-  - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_033` direction=`mixed` confidence=0.58
   - `2026-03-30T16:58:09.656556Z` `experimental` `v3_exq_171_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
   - `2026-03-30T16:58:09.659901Z` `experimental` `v3_exq_171_mech033_kernel_chain_pair` direction=`supports` confidence=0.75
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.79
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.8
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_v3_hippocampal_rollout` direction=`supports` confidence=0.81
 - Recurring failure signatures:
   - `v2_verdict_fail:kernel_chaining_interface` (1)
   - `Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation.` (1)
+  - `The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.` (1)
+  - `The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here.` (1)
+  - `The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -608,13 +618,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-004
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=7, weakens=5, conflict_ratio=0.833, overall_confidence=0.786
+- Evidence breakdown: supports=9, weakens=5, conflict_ratio=0.714, overall_confidence=0.789
 - Recent entries:
-  - `2026-03-23T16:23:27Z` `experimental` `v3_exq_046_arc007_path_memory_ablation` direction=`weakens` confidence=0.75
-  - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_sd_004` direction=`supports` confidence=0.8
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_sd_004` direction=`supports` confidence=0.85
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_sd_004` direction=`supports` confidence=0.78
   - `2026-03-29T13:30:00Z` `literature` `targeted_review_connectome_sd_004` direction=`supports` confidence=0.72
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.82
+  - `2026-03-30T23:50:00Z` `literature` `targeted_review_hippocampal_subfield_architecture` direction=`supports` confidence=0.83
 - Recurring failure signatures:
   - `Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure` (1)
   - `The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial` (1)

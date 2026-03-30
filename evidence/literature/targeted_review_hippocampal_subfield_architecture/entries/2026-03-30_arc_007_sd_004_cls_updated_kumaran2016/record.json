@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_subfield_architecture",
+  "entry_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-007", "ARC-018", "SD-004"],
+  "source": {
+    "title": "What Learning Systems do Intelligent Agents Need? Complementary Learning Systems Theory Updated",
+    "authors": ["Kumaran, Dharshan", "Hassabis, Demis", "McClelland, James L."],
+    "year": 2016,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2016.05.004",
+    "pmid": "27315762"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+    "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+  ],
+  "tags": ["arc_007", "arc_018", "sd_004", "cls_theory", "replay_weighting", "goal_directed_replay", "ai_neuroscience"],
+  "mapping": {
+    "source_claim_statement": "Intelligent agents need two learning systems: one that gradually acquires structured knowledge (neocortex) and one that quickly learns specifics of individual experiences (hippocampus). Replay allows goal-dependent weighting of experience statistics. Recurrent hippocampal activation can support generalization beyond simple storage.",
+    "ree_translation": "REE's E1/E2/E3 stack and HippocampalModule directly instantiate the two-system architecture. Goal-dependent replay weighting maps onto REE's harm-salience-weighted replay (harmful trajectories replayed more frequently), which is the mechanism by which the residue field accumulates non-uniform density. ARC-007 (paths stored and replayed) and ARC-018 (rollout viability mapping updated by E3 harm/goal error) are both grounded by this paper. SD-004 (action-object map backbone) is the concrete representational choice that enables goal-dependent indexing.",
+    "mapping_caveat": "Kumaran et al. do not specify the representational format of hippocampal storage (what gets indexed). REE's choice of action-object coordinates (SD-004) is a design decision beyond what CLS theory specifies -- it requires independent justification from Stachenfeld 2017 and the successor representation literature. The paper also leaves the replay selection mechanism underspecified.",
+    "source_context": "Theoretical review bridging neuroscience (rodent + human) and deep learning; authored by Google DeepMind and Stanford"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.83,
+    "transfer_risk": 0.20,
+    "notes": "Trends in Cognitive Sciences, highly cited, directly bridges neuroscience and AI design. Mapping fidelity high: paper explicitly addresses AI agent design. Transfer risk low: domain-general architectural argument."
+  }
+}

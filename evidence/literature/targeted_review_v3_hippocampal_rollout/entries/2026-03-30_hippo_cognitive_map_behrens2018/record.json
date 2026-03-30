@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-007", "ARC-022"],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior.",
+    "authors": ["Behrens, Timothy E J", "Muller, Timothy H", "Whittington, James C R", "Mark, Shirley", "Baram, Alon B", "Stachenfeld, Kimberly L", "Kurth-Nelson, Zeb"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002",
+    "pmid": "30359611"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
+    "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
+  ],
+  "tags": ["arc_007", "arc_022", "cognitive_map", "hippocampus", "abstract_relational", "non_spatial", "knowledge_structure", "flexible_behavior", "successor_representation"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal and entorhinal representations of space -- place cells, grid cells, boundary cells -- may be instances of a general coding principle for relational knowledge of all kinds. Evidence from social space (Tavares 2015), auditory frequency maps, and logical relationship paradigms suggests the hippocampal formation encodes abstract relational structure beyond physical navigation. Map-like representations support flexible inference and generalization by encoding transition statistics (successor representation) over learned state spaces.",
+    "ree_translation": "ARC-007 currently frames the hippocampal module as storing and replaying 'paths through residue-field terrain' -- an implicitly spatial metaphor. Behrens et al. provide the theoretical and empirical basis for dropping the spatial qualifier: z_world is a relational state space, and the hippocampal module should naturally encode transition structure over this space regardless of whether z_world encodes physical positions or abstract action-consequence relationships. This directly supports extending ARC-007's scope to cover planning in non-spatial ethical terrain. It also supports ARC-022's hierarchical effect-object abstraction pipeline by providing a neural grounding for why the hippocampus would encode multi-level relational structure. The successor representation framing (Stachenfeld et al.) suggests a concrete computational implementation for ARC-018's rollout viability mapping.",
+    "mapping_caveat": "This is a theoretical review, not a primary empirical study -- confidence in specific non-spatial cognitive map claims remains lower than spatial claims. The successor representation model predicts reward-predictive rather than harm-predictive fields, requiring adaptation for REE's harm-centric residue field. The review does not address how valence or harm signals would be integrated into the abstract map.",
+    "source_context": "Review synthesis across spatial navigation, social cognition, auditory, and abstract relational tasks; human and non-human primate; theoretical framework linking to RL and AI agents"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "High venue, highly cited, explicit AI bridge. Mapping fidelity is high because the review directly addresses the scope of cognitive maps in abstract domains -- exactly the question REE faces with z_world. Transfer risk is low because the claim is at the computational/algorithmic level, not tied to specific rodent anatomy."
+  }
+}

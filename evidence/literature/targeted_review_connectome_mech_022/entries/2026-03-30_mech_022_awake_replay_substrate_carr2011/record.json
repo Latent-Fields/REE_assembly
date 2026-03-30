@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_022",
+  "entry_id": "2026-03-30_mech_022_awake_replay_substrate_carr2011",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["MECH-022"],
+  "source": {
+    "title": "Hippocampal replay in the awake state: a potential substrate for memory consolidation and retrieval",
+    "authors": ["Carr, Margaret F.", "Jadhav, Shantanu P.", "Frank, Loren M."],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2732",
+    "pmid": "21270783",
+    "pmc": "PMC3215304"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational awake replay review establishing the key phenomenology. The central finding -- that replay occurs during behaviorally defined immobility periods and can represent remote environments -- directly supports MECH-022's claim that hypothesis injection is not triggered by ongoing sensory input but by an internal state change. The sensory influence on replay content is particularly relevant to REE: it suggests that what gets injected is sensitive to current context, not random. Confidence is moderate because it is a review (phenomenological) rather than a causal manipulation study.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay content during awake SWRs includes both forward and reverse sequences, and the selection mechanism is not fully understood -- the control-plane gating in MECH-022 is more specific than what the biology has established.",
+    "Remote environment replay demonstrates that injection is not purely driven by current sensory context, which could complicate the control-plane model if REE assumes context-sensitive injection only."
+  ],
+  "tags": ["mech_022", "awake_replay", "swr", "hippocampal_replay", "immobility"],
+  "mapping": {
+    "source_claim_statement": "Awake replay is sequential reactivation of hippocampal place cells representing previously experienced trajectories, occurring primarily during immobility. Sensory information can influence replay content, suggesting a retrieval role. Compressed time-scale repetition promotes consolidation in distributed circuits.",
+    "ree_translation": "The immobility-triggered replay corresponds to MECH-022's control-plane-gated hypothesis injection: the HippocampalModule outputs candidate trajectories to E3 during 'quiescent' states (low motor commitment, post-action pauses), not during active execution. Sensory influence on replay content corresponds to context-sensitive injection -- the terrain state visible to z_world biases which stored paths are surfaced.",
+    "mapping_caveat": "REE's HippocampalModule operates in a simulated environment where 'immobility' maps loosely to E3 evaluation phases rather than physical stillness. The biological trigger is proprioceptive/motor; REE's trigger is an internal scheduling signal. This is a significant architectural extrapolation.",
+    "source_context": "Rodent spatial navigation; place cell recordings during exploration and rest phases"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Nature Neuroscience review, well-cited, primary data well-established. Mapping fidelity moderate-low: the immobility trigger doesn't translate directly to a discrete control-plane signal. Transfer risk moderate: rodent spatial to REE ethical planning requires significant abstraction."
+  }
+}

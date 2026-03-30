@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_subfield_architecture",
+  "entry_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033"],
+  "source": {
+    "title": "Hippocampal Contributions to Control: The Third Way",
+    "authors": ["Lengyel, Mate", "Dayan, Peter"],
+    "year": 2008,
+    "venue": "Advances in Neural Information Processing Systems 20 (NeurIPS 2007)",
+    "doi": null,
+    "url": "https://papers.nips.cc/paper_files/paper/2007/hash/1f4477bad7af3616c1f933a02bfabe4e-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
+    "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
+  ],
+  "tags": ["arc_018", "mech_033", "episodic_rl", "dyna", "hippocampal_control", "third_way", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus provides a third control system beyond model-free (actor-critic/striatum) and model-based (prefrontal forward model). This episodic control system uses stored past experiences directly to guide current decisions. It is most useful early in learning and in complex inferentially noisy environments.",
+    "ree_translation": "MECH-033 (E2 forward-prediction kernels seed hippocampal rollouts) is a specific instantiation of this episodic control architecture. The E2 kernel provides the transition function that extends stored hippocampal episodes beyond single-step recall into multi-step rollouts (ARC-018 viability mapping). The 'third way' normative argument directly justifies why REE has a HippocampalModule at all: pure model-free (habit learning in E3) and pure model-based (E2 rollout alone) are each insufficient; the hybrid episodic system bridging stored experience and forward simulation is computationally optimal for the early-learning regime REE operates in.",
+    "mapping_caveat": "Lengyel & Dayan's episodic RL stores observations directly, not latent representations -- translating to REE requires accepting that z_world (SD-005) is a valid episodic store format. Additionally, the paper treats the hippocampal system as providing recall of specific past episodes, whereas REE's HippocampalModule additionally needs to generalize (propose novel trajectory combinations not previously experienced). This generalization function exceeds the original episodic RL formalism.",
+    "source_context": "Computational/theoretical, simple MDP environments; normative analysis rather than empirical data"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.23,
+    "notes": "NeurIPS peer-reviewed, highly cited in computational neuroscience. Mapping fidelity high: paper directly describes a computational architecture analogous to MECH-033/ARC-018. Transfer risk low: argument is domain-general RL theory, not tied to a specific sensory modality or species."
+  }
+}

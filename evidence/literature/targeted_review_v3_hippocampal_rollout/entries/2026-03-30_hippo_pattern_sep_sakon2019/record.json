@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033"],
+  "source": {
+    "title": "A neural signature of pattern separation in the monkey hippocampus",
+    "authors": ["Sakon, John J", "Suzuki, Wendy A"],
+    "year": 2019,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1900804116",
+    "pmid": "31010929",
+    "pmc": "PMC6511004"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Single-unit recordings in non-human primate CA3/DG during a visual pattern separation task directly homologous to disambiguation. Primate data improves transfer to REE human-adjacent models. Mapping is indirect: REE's hippocampal rollout module must disambiguate z_world trajectories, but the paper measures neural responses to lure images rather than trajectory disambiguation per se. Confidence bounded by this abstraction gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CA3/DG responses to lure images overlap substantially with repeat responses in some neurons, indicating pattern separation is probabilistic, not absolute.",
+    "A subpopulation of CA3/DG neurons drives the key discrimination; the majority are non-selective, implying sparse coding with high variance across trials."
+  ],
+  "tags": ["arc_018", "mech_033", "pattern_separation", "ca3", "dentate_gyrus", "hippocampus", "disambiguation", "trajectory"],
+  "mapping": {
+    "source_claim_statement": "When monkeys discriminate recently seen (repeat) from similar (lure) images in a pattern separation task, CA3/DG neurons respond to lures more like novel than repeat images; a subpopulation of these neurons classifies novel, lure, and repeat images from neural firing rates.",
+    "ree_translation": "ARC-018 requires the hippocampal rollout module to construct trajectory proposals that are genuinely distinct from previously traversed paths even when the z_world states are highly similar. This paper provides direct primate evidence that CA3/DG is the anatomical locus performing this disambiguation -- supporting the claim that REE's hippocampal module needs a CA3/DG-equivalent pattern separation mechanism for non-redundant rollout generation. Motivates new claim MECH-147: DG-mediated pattern separation gates trajectory disambiguation in hippocampal rollout.",
+    "mapping_caveat": "The paper measures item-level disambiguation (visual images), not trajectory-level disambiguation (action sequences in a residue field). The transfer from image-lure discrimination to trajectory proposal disambiguation in z_world is a significant abstraction step. Pattern separation may operate at different time scales in trajectory-domain tasks.",
+    "source_context": "Primate (Macaca mulatta), visual recognition, single-unit electrophysiology, CA3/DG, comparison of repeat vs lure image responses"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "High venue (PNAS), primate data, clean experimental design. Mapping fidelity moderate: image lure discrimination != trajectory disambiguation, but the core mechanism (CA3/DG resolving overlapping inputs into distinct output codes) is directly analogous to the REE rollout disambiguation requirement."
+  }
+}

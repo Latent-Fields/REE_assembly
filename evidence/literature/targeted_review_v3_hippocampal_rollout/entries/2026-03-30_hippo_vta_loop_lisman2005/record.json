@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-03-30_hippo_vta_loop_lisman2005",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["MECH-022", "MECH-075"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory.",
+    "authors": ["Lisman, John E", "Grace, Anthony A"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002",
+    "pmid": "15924857"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
+    "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
+  ],
+  "tags": ["mech_022", "mech_075", "hippocampus", "vta", "dopamine", "novelty", "long_term_memory", "ltp", "hypothesis_injection", "salience_gate"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus detects novelty by comparing incoming sensory input to stored CA3 representations (match-mismatch at CA1). A novelty signal propagates subiculum -> nucleus accumbens -> ventral pallidum -> VTA, triggering VTA dopamine release back into the hippocampus. This upward DA signal enhances LTP at recently active synapses, gating the entry of novel information into long-term memory. The loop integrates novelty, salience, and goal information at VTA.",
+    "ree_translation": "MECH-022 claims hippocampal systems act as hypothesis injectors -- generating candidate trajectories for E3 evaluation. Lisman & Grace provide the biological mechanism for the selectivity gate: novelty at CA1 (EC-predicted vs CA3-retrieved mismatch) signals what is worth injecting into E3 evaluation, and VTA dopamine modulates how strongly that injection updates E1's generative model. This motivates new claim MECH-149: CA1 mismatch between E1-predicted z_world and CA3-retrieved z_world should be the primary novelty signal gating whether a trajectory proposal triggers a full E3 evaluation pass vs is suppressed as redundant. For MECH-075, the BG dopaminergic gain on hippocampal attractors receives direct biological grounding: VTA output to hippocampus IS the BG-adjacent dopaminergic modulation of hippocampal attractor dynamics, providing a unified circuit for MECH-022 and MECH-075.",
+    "mapping_caveat": "REE does not have literal LTP or a subiculum-accumbens-pallidum pathway. The mapping is at the functional level: novelty detection -> modulatory broadcast -> selective update strengthening. The timing requirement (DA release must coincide with encoding) translates loosely to a gate that must be open during the E3 evaluation window. The paper does not address harm-specific signals, only novelty and reward.",
+    "source_context": "Cross-species synthesis (rat electrophysiology, human neuroimaging, theoretical model); hippocampus, VTA, accumbens, ventral pallidum circuit; novelty-dependent LTP and memory encoding"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Landmark review, highly cited, subsequent optogenetic validation. Mapping fidelity is good for the principle (novelty -> modulation -> selective encoding) but moderate for the mechanism (no literal LTP analog in REE). Transfer risk is low for the functional claim, moderate for implementation specifics."
+  }
+}

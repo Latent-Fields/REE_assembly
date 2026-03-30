@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_022",
+  "entry_id": "2026-03-30_mech_022_hpc_pfc_replay_dynamics_shin2019",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["MECH-022"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Shin, Justin D.", "Tang, Wenbo", "Jadhav, Shantanu P."],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "pmid": "31677957",
+    "pmc": "PMC6923537"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the strongest paper in this directory for MECH-022 because it directly demonstrates the HPC-PFC pathway: coordinated hippocampal-prefrontal replay distinguishes correct future paths from alternatives, and prefrontal activity reads out memory-guided paths during decision making. The learning shift from reverse (retrospective) to forward (prospective) replay maps onto REE's pre-commitment trajectory evaluation. High source quality (Neuron, simultaneous multi-region recordings). Mapping fidelity is good -- PFC in this context corresponds to REE's E3 (goal-directed planning layer). Transfer risk moderate: spatial alternation task is more structured than REE's open terrain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Forward replay (prospective) showed clear PFC coordination, but reverse replay (retrospective evaluation) showed a different PFC engagement pattern -- the dual function may not be separable in a single control-plane gate.",
+    "Coordination was measured during inter-trial pauses specifically; whether coordinated replay occurs during within-trial evaluation moments (equivalent to E3 trajectory evaluation) is not established."
+  ],
+  "tags": ["mech_022", "hpc_pfc", "coordinated_replay", "forward_replay", "decision_making", "prospective_planning"],
+  "mapping": {
+    "source_claim_statement": "Coordinated hippocampal-prefrontal replay distinguishes correct past and future paths from alternatives. A learning shift occurs from reverse-replay-based retrospective evaluation to forward-replay-based prospective planning. Prefrontal activity reads out memory-guided paths to support decision making.",
+    "ree_translation": "MECH-022 requires that the HippocampalModule's hypothesis injection reaches E3 (the planning-and-commitment layer). This paper provides direct biological evidence for the HPC-PFC injection pathway: during decision-relevant pauses (control-plane-gated), hippocampus generates candidate trajectories and PFC selects among them. In REE terms, the hippocampus proposes, E3 evaluates, and the 'gating' is the behavioral state that allows the replay-evaluation loop to run.",
+    "mapping_caveat": "REE's E3 is a composite of hippocampal indexing + trajectory evaluation + commitment gating -- it does not map cleanly onto PFC alone. The bidirectional nature of the HPC-PFC interaction (both areas show replay) suggests a mutual constraint architecture, whereas MECH-022 currently frames this as unidirectional injection. This may need revision.",
+    "source_context": "Rats, spatial alternation T-maze task, simultaneous multi-tetrode recordings in CA1 and mPFC during learning"
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.28,
+    "notes": "Neuron, empirical simultaneous recording. Mapping fidelity good -- this is the closest direct analogue to MECH-022's HPC->E3 injection. Transfer risk relatively low: spatial decision-making in a structured maze is more analogous to REE terrain navigation than most spatial tasks."
+  }
+}

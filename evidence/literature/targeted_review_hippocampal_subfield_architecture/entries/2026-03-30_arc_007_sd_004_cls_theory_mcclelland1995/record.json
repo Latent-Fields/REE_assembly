@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_subfield_architecture",
+  "entry_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-007", "SD-004"],
+  "source": {
+    "title": "Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory",
+    "authors": ["McClelland, James L.", "McNaughton, Bruce L.", "O'Reilly, Randall C."],
+    "year": 1995,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.102.3.419",
+    "pmid": "7624455"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
+    "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+  ],
+  "tags": ["arc_007", "sd_004", "cls_theory", "complementary_learning_systems", "hippocampus", "neocortex", "catastrophic_interference"],
+  "mapping": {
+    "source_claim_statement": "Memories are first stored via synaptic changes in the hippocampal system. The hippocampal system permits rapid learning of new items without disrupting structured neocortical representations. Remote memory is based on accumulated neocortical changes produced by interleaved hippocampal reinstatement.",
+    "ree_translation": "In REE, E1 (LSTM, slow world model) corresponds to the neocortical system -- it accumulates structured knowledge about sensory prediction via slow interleaved updates. HippocampalModule corresponds to the hippocampal system -- it stores specific experienced trajectories rapidly (including harm events) without interfering with E1's general world model. ARC-007's path storage and replay function is the direct REE instantiation of hippocampal CLS binding. SD-004's action-object backbone is the representational format of the hippocampal store -- what gets indexed is action-consequence episodes, not raw sensory frames.",
+    "mapping_caveat": "McClelland 1995 focuses on episodic memory for facts/events in a learning context; REE's hippocampus additionally serves as a planning oracle (trajectory proposal). The planning function is not addressed in CLS theory and requires additional justification (addressed by Lengyel & Dayan 2008 and Botvinick 2019 entries in this directory).",
+    "source_context": "Connectionist modelling of human episodic and semantic memory; neuropsychological patient evidence (HM, RB, etc.)"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Psychological Review, ~12,000 citations, foundational. Mapping fidelity high because the CLS argument is structural/architectural and directly analogises to REE's module separation. Transfer risk low: the argument is domain-general and applies to any learning system facing the stability-plasticity dilemma."
+  }
+}

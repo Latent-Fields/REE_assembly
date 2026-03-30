@@ -196,22 +196,22 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=5 entry(s), exp_conf=0.721, lit_conf=0.873",
+      "confidence_rationale": "exp=9 entry(s), lit=9 entry(s), exp_conf=0.72, lit_conf=0.892",
       "direction_counts": {
         "mixed": 1,
-        "supports": 8,
+        "supports": 12,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 14,
+      "entries_total": 18,
       "evidence_class_counts": {
         "exp:simulation": 9,
         "lit:computational_model": 2,
         "lit:electrophysiology_single_unit": 1,
         "lit:neuroscience_experiment": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 5
       },
-      "experimental_confidence": 0.721,
+      "experimental_confidence": 0.72,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -220,70 +220,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-03-29_arc_007_theta_sequences_goals_wikenheiser2015",
-      "latest_timestamp_utc": "2026-03-29T11:05:00Z",
-      "literature_confidence": 0.873,
-      "overall_confidence": 0.797,
+      "latest_run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.892,
+      "overall_confidence": 0.806,
       "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_type": "v3_exq_114_arc007_path_memory_probe",
-          "failure_signatures": [],
-          "run_id": "v3_exq_114_arc007_path_memory_probe_20260328T204815Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-28T20:48:15Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.6,
-          "confidence_rationale": "This major theoretical review argues that hippocampal and entorhinal circuits implement a general-purpose relational/structural knowledge map that extends well beyond Euclidean space to organise any domain with relational structure \u2014 including value, social hierarchy, and abstract feature space. This supports the spirit of ARC-007 by demonstrating that hippocampal maps are not geometrically constrained but are domain-general structural representations that can in principle encode harm/residue topology. However, the paper is a theoretical synthesis rather than direct experimental evidence for harm-terrain organisation; it broadens the concept of cognitive map without specifically grounding it in salience/harm fields. The 'mixed' direction reflects that the paper both supports the generalisation (maps can encode non-spatial structure) and implicitly challenges the specific REE framing (there is no empirical anchor for harm-residue as a map axis).",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_connectome_arc_007",
-          "failure_signatures": [
-            "The paper does not provide evidence that harm or causal attribution specifically is used as an organising axis for hippocampal maps \u2014 the non-spatial examples are relational/semantic, not harm-weighted."
-          ],
-          "run_id": "2026-03-29_arc_007_cognitive_map_behrens2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.82,
-          "confidence_rationale": "This is the central theoretical paper linking hippocampal place cells to a successor representation (SR) that encodes future-state predictions weighted by transition statistics. The SR is inherently sensitive to reward/value topology: when reward distributions change, the effective map distorts around reward-dense regions. This directly supports ARC-007's claim that hippocampal maps are organised around value/salience terrain rather than pure geometry. The paper is high-quality (Nature Neuroscience, widely cited), but it is primarily a theoretical/computational model with supporting re-analysis of existing datasets rather than novel electrophysiology \u2014 hence mapping fidelity is high but the empirical grounding is partly indirect.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_007",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_007_predictive_map_stachenfeld2017",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.74,
-          "confidence_rationale": "This paper provides a normative theory of hippocampal replay that directly links replay content to value/utility structure: memories are replayed in order of their 'need' \u2014 how much extra reward would accrue from better decisions based on that memory. This means replay is inherently organised around value topology rather than spatial recency or proximity. For ARC-007, this is directly relevant: if replay is prioritised by utility/value, then high-residue (high-harm) locations would be candidates for prioritised replay when they are proximate in a planned trajectory, providing a computational mechanism for how paths through residue-field terrain are differentially stored and reactivated. The theory unifies planning, consolidation, and learning functions of replay under a single value-sensitive framework. Confidence is slightly reduced because the empirical validation is against spatial navigation data where 'value' is reward, not harm/residue.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_007",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_007_prioritized_replay_mattar2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
@@ -297,12 +239,80 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T11:05:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.82,
+          "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
+            "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+          ],
+          "run_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.83,
+          "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+            "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+          ],
+          "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.8,
+          "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+            "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+          ],
+          "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.87,
+          "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
+            "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
+          ],
+          "run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         }
       ],
-      "runs_total": 14,
+      "runs_total": 18,
       "source_counts": {
         "experimental": 9,
-        "literature": 5
+        "literature": 9
       }
     },
     "ARC-016": {
@@ -516,22 +526,22 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=6 entry(s), lit=11 entry(s), exp_conf=0.79, lit_conf=0.84",
+      "confidence_rationale": "exp=6 entry(s), lit=16 entry(s), exp_conf=0.79, lit_conf=0.859",
       "direction_counts": {
         "mixed": 0,
-        "supports": 13,
+        "supports": 18,
         "unknown": 1,
         "weakens": 3
       },
-      "entries_total": 17,
+      "entries_total": 22,
       "evidence_class_counts": {
         "exp:simulation": 6,
         "lit:behavioral_human": 1,
-        "lit:computational_model": 1,
+        "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
-        "lit:electrophysiology_single_unit": 2,
+        "lit:electrophysiology_single_unit": 4,
         "lit:neuroscience_experiment": 3,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.79,
       "fail_runs": 2,
@@ -542,87 +552,102 @@
         "unknown": 1,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3",
-      "latest_timestamp_utc": "2026-03-30T18:15:19.145737Z",
-      "literature_confidence": 0.84,
-      "overall_confidence": 0.815,
+      "latest_run_id": "2026-03-30_hippo_time_cells_omer2022",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.859,
+      "overall_confidence": 0.825,
       "pass_runs": 4,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.68,
-          "confidence_rationale": "Dolan & Dayan's comprehensive review of goal-directed vs habitual decision-making provides the theoretical scaffolding that situates ARC-018's hippocampal viability map. They articulate the model-based/model-free distinction, clarify that goal-directed behaviour requires a cognitive map whose value is updated prospectively (not merely retrospectively), and review the evidence that hippocampus is an essential substrate for model-based planning. This is theoretical grounding rather than direct experimental evidence, hence the lower confidence -- but the conceptual alignment is high. The review's framing of 'model-based' as requiring explicit forward simulation is exactly what ARC-018 claims for the viability map. Confidence is limited by the fact that ARC-018 makes specific mechanistic claims (E2 indexing, E3 error update) that go well beyond what this review can address.",
+          "confidence": 0.83,
+          "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_018",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_018_goals_habits_dolan2013",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+            "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+          ],
+          "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.72,
-          "confidence_rationale": "Momennejad et al. provide direct human fMRI evidence that off-task hippocampal replay (indexed by multi-voxel pattern reactivation) predicts subsequent replanning behaviour, and that uncertainty (unsigned prediction error) triggers such replay. This maps closely onto ARC-018's claim that the hippocampal viability map is updated by E3 harm/goal error: here, prediction error (a proxy for uncertainty/harm-goal discrepancy) triggers the hippocampal reactivation that enables replanning. The human context is also valuable -- it extends the rodent findings across species. The main limitation for ARC-018 is that the task is abstract (two-step sequential decision) rather than spatial navigation, which is actually a strength: it suggests the mechanism generalises beyond spatial maps to action-object level representations.",
-          "evidence_class": "lit:behavioral_human",
+          "confidence": 0.79,
+          "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
+          "evidence_class": "lit:computational_model",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_018",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_018_offline_replay_planning_momennejad2018",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
+            "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
+          ],
+          "run_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
           "confidence": 0.8,
-          "confidence_rationale": "Mattar & Daw provide the clearest computational framework for why hippocampal replay is ordered by utility -- specifically, by how much additional reward would be earned from better choices at each state. This 'prioritized memory access' framework maps closely onto ARC-018's viability map: the hippocampal representation is updated in proportion to its relevance to current decision-making under harm/goal error signals. The paper also proposes that dysfunction of this prioritisation mechanism underlies rumination and craving -- a striking parallel to the harm-valence component of ARC-018's viability map. Confidence slightly below peak because this is a theoretical/computational model, not electrophysiology, and the utility metric used (reward gain) is not identical to E3 harm/goal error.",
-          "evidence_class": "lit:computational_model",
+          "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_018",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_018_prioritized_replay_mattar2018",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+            "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+          ],
+          "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_172_arc018_rollout_viability_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_172_arc018_rollout_viability_pair_20260330T070425Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-30T16:58:09.644140Z"
+          "confidence": 0.81,
+          "confidence_rationale": "Single-unit recordings in non-human primate CA3/DG during a visual pattern separation task directly homologous to disambiguation. Primate data improves transfer to REE human-adjacent models. Mapping is indirect: REE's hippocampal rollout module must disambiguate z_world trajectories, but the paper measures neural responses to lure images rather than trajectory disambiguation per se. Confidence bounded by this abstraction gap.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "CA3/DG responses to lure images overlap substantially with repeat responses in some neurons, indicating pattern separation is probabilistic, not absolute.",
+            "A subpopulation of CA3/DG neurons drives the key discrimination; the majority are non-selective, implying sparse coding with high variance across trials."
+          ],
+          "run_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
-          "confidence": 0.45,
-          "confidence_rationale": "unknown direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "unknown",
-          "experiment_type": "v3_exq_172_arc018_rollout_viability_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_172_arc018_rollout_viability_pair_20260329T213638Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-30T18:15:19.145737Z"
+          "confidence": 0.78,
+          "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
+            "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
+          ],
+          "run_id": "2026-03-30_hippo_time_cells_omer2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         }
       ],
-      "runs_total": 17,
+      "runs_total": 22,
       "source_counts": {
         "experimental": 6,
-        "literature": 11
+        "literature": 16
       }
     },
     "ARC-021": {
@@ -738,6 +763,57 @@
       "source_counts": {
         "experimental": 2,
         "literature": 3
+      }
+    },
+    "ARC-022": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.785",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theoretical_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-022",
+          "confidence": 0.87,
+          "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
+            "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
+          ],
+          "run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "ARC-023": {
@@ -1322,7 +1398,7 @@
       }
     },
     "ARC-030": {
-      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.407, lit_conf=0.843",
+      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.406, lit_conf=0.843",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -1336,7 +1412,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.407,
+      "experimental_confidence": 0.406,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -1348,7 +1424,7 @@
       "latest_run_id": "v3_exq_180_resource_prox_gradient_diag_20260330T202316Z_v3",
       "latest_timestamp_utc": "2026-03-30T20:23:16Z",
       "literature_confidence": 0.843,
-      "overall_confidence": 0.625,
+      "overall_confidence": 0.624,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -1764,6 +1840,126 @@
         "literature": 4
       }
     },
+    "ARC-038": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.77",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-30_hippo_schema_tse2007",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.77,
+      "overall_confidence": 0.77,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-038",
+          "confidence": 0.84,
+          "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
+            "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
+          ],
+          "run_id": "2026-03-30_hippo_schema_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "ARC-039": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.805",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:electrophysiology_single_unit": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-30_hippo_time_cells_omer2022",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.805,
+      "overall_confidence": 0.805,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-039",
+          "confidence": 0.84,
+          "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
+            "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
+          ],
+          "run_id": "2026-03-30_hippo_schema_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-039",
+          "confidence": 0.78,
+          "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
+            "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
+          ],
+          "run_id": "2026-03-30_hippo_time_cells_omer2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
     "IMPL-022": {
       "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.65",
       "direction_counts": {
@@ -2095,6 +2291,110 @@
       "source_counts": {
         "experimental": 3,
         "literature": 2
+      }
+    },
+    "MECH-022": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.885",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 3,
+        "lit:electrophysiology_lfp": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-30_mech_022_swr_retrieval_consolidation_joo2018",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.885,
+      "overall_confidence": 0.885,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-022",
+          "confidence": 0.82,
+          "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
+            "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
+          ],
+          "run_id": "2026-03-30_hippo_vta_loop_lisman2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-022",
+          "confidence": 0.72,
+          "confidence_rationale": "Foundational awake replay review establishing the key phenomenology. The central finding -- that replay occurs during behaviorally defined immobility periods and can represent remote environments -- directly supports MECH-022's claim that hypothesis injection is not triggered by ongoing sensory input but by an internal state change. The sensory influence on replay content is particularly relevant to REE: it suggests that what gets injected is sensitive to current context, not random. Confidence is moderate because it is a review (phenomenological) rather than a causal manipulation study.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_022",
+          "failure_signatures": [
+            "Replay content during awake SWRs includes both forward and reverse sequences, and the selection mechanism is not fully understood -- the control-plane gating in MECH-022 is more specific than what the biology has established.",
+            "Remote environment replay demonstrates that injection is not purely driven by current sensory context, which could complicate the control-plane model if REE assumes context-sensitive injection only."
+          ],
+          "run_id": "2026-03-30_mech_022_awake_replay_substrate_carr2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-022",
+          "confidence": 0.76,
+          "confidence_rationale": "This is the strongest paper in this directory for MECH-022 because it directly demonstrates the HPC-PFC pathway: coordinated hippocampal-prefrontal replay distinguishes correct future paths from alternatives, and prefrontal activity reads out memory-guided paths during decision making. The learning shift from reverse (retrospective) to forward (prospective) replay maps onto REE's pre-commitment trajectory evaluation. High source quality (Neuron, simultaneous multi-region recordings). Mapping fidelity is good -- PFC in this context corresponds to REE's E3 (goal-directed planning layer). Transfer risk moderate: spatial alternation task is more structured than REE's open terrain.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_022",
+          "failure_signatures": [
+            "Forward replay (prospective) showed clear PFC coordination, but reverse replay (retrospective evaluation) showed a different PFC engagement pattern -- the dual function may not be separable in a single control-plane gate.",
+            "Coordination was measured during inter-trial pauses specifically; whether coordinated replay occurs during within-trial evaluation moments (equivalent to E3 trajectory evaluation) is not established."
+          ],
+          "run_id": "2026-03-30_mech_022_hpc_pfc_replay_dynamics_shin2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-022",
+          "confidence": 0.78,
+          "confidence_rationale": "High-quality Nature Reviews Neuroscience paper establishing the SWR as the canonical injection event for hippocampal output to downstream circuits. The gating-by-behavioral-state mechanism maps well onto REE's control-plane gating of hypothesis injection (MECH-022). Transfer risk is moderate: the paper covers rodent spatial navigation and human episodic memory but the core SWR mechanism is conserved. Mapping fidelity is good but not perfect -- REE's 'control plane' corresponds to behavioral state modulation of SWR rate, which is a plausible but not one-to-one translation.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_022",
+          "failure_signatures": [
+            "SWR-linked replay content is not always prospective -- a substantial fraction represents past trajectories, suggesting the injection mechanism is not exclusively forward-planning.",
+            "SWR rate is modulated by many factors beyond goal-relevance (novelty, reward, fatigue), so control-plane specificity may be weaker than MECH-022 implies.",
+            "The paper is agnostic about whether SWR content is selected by a top-down gate or emerges from attractor dynamics -- this distinction matters for implementation."
+          ],
+          "run_id": "2026-03-30_mech_022_swr_retrieval_consolidation_joo2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
       }
     },
     "MECH-025": {
@@ -2519,20 +2819,21 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=8 entry(s), lit=10 entry(s), exp_conf=0.862, lit_conf=0.816",
+      "confidence_rationale": "exp=8 entry(s), lit=13 entry(s), exp_conf=0.862, lit_conf=0.837",
       "direction_counts": {
         "mixed": 1,
-        "supports": 14,
+        "supports": 17,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 18,
+      "entries_total": 21,
       "evidence_class_counts": {
         "exp:simulation": 8,
-        "lit:computational_model": 1,
+        "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
-        "lit:electrophysiology_single_unit": 3,
-        "lit:neuroscience_experiment": 3
+        "lit:electrophysiology_single_unit": 4,
+        "lit:neuroscience_experiment": 3,
+        "lit:theoretical_review": 1
       },
       "experimental_confidence": 0.862,
       "fail_runs": 2,
@@ -2543,56 +2844,12 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3",
-      "latest_timestamp_utc": "2026-03-30T16:58:09.659901Z",
-      "literature_confidence": 0.816,
-      "overall_confidence": 0.839,
+      "latest_run_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.837,
+      "overall_confidence": 0.849,
       "pass_runs": 6,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.78,
-          "confidence_rationale": "Direct electrophysiological evidence that hippocampal place-cell sequences 'decouple' from the animal's current position to represent future paths during deliberation. This is the closest empirical analog to rollout seeding: the sequence is not a replay of past experience but a prospective projection. Confidence is high because this is in-vivo single-unit recording during active decision-making, not just a computational model. Not higher because (a) the paper does not identify the circuit source of the decoupled sequence -- it does not show that a forward-predictor analogous to E2 seeds the sequence, and (b) the task is spatial navigation with explicit decision points, not abstract goal-harm planning.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_033",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_mech_033_hippocampal_sequences_wikenheiser2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.72,
-          "confidence_rationale": "Strong theoretical framework showing hippocampus encodes successor representations (SR) -- a predictive map of future states -- which maps closely onto E2-seeded rollout initialisation. The mechanism is well-specified and the SR framing directly supports the claim that hippocampal trajectory rollouts are initialized from a forward-predictive representation. Confidence is not higher because the paper is a computational/theoretical model fitted to rodent place-field data, not a direct mechanistic demonstration that a fast forward predictor (E2 analogue) provides the initial state vector.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_033",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_mech_033_predictive_map_stachenfeld2017",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.58,
-          "confidence_rationale": "Hippocampal preplay literature provides evidence that the hippocampus can generate place-cell sequences for environments that have never been experienced -- suggesting the sequences are not purely replays of past transitions but can be seeded by something other than episodic memory. This is moderately supportive of MECH-033 (E2 kernels as the seed source), but equally consistent with the view that the sequences arise from intrinsic CA3 attractor dynamics or random statistical structure in the population. Confidence is moderate-low because the preplay phenomenon is itself contested (some accounts attribute it to chance alignment of random sequences with future experience), and the causal link to a forward model seeding mechanism is indirect.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_connectome_mech_033",
-          "failure_signatures": [
-            "Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation."
-          ],
-          "run_id": "2026-03-29_mech_033_preplay_prospective_olafsdottir2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-033",
@@ -2620,12 +2877,63 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-03-30T16:58:09.659901Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.79,
+          "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
+            "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
+          ],
+          "run_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.8,
+          "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+            "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+          ],
+          "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.81,
+          "confidence_rationale": "Single-unit recordings in non-human primate CA3/DG during a visual pattern separation task directly homologous to disambiguation. Primate data improves transfer to REE human-adjacent models. Mapping is indirect: REE's hippocampal rollout module must disambiguate z_world trajectories, but the paper measures neural responses to lure images rather than trajectory disambiguation per se. Confidence bounded by this abstraction gap.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "CA3/DG responses to lure images overlap substantially with repeat responses in some neurons, indicating pattern separation is probabilistic, not absolute.",
+            "A subpopulation of CA3/DG neurons drives the key discrimination; the majority are non-selective, implying sparse coding with high variance across trials."
+          ],
+          "run_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         }
       ],
-      "runs_total": 18,
+      "runs_total": 21,
       "source_counts": {
         "experimental": 8,
-        "literature": 10
+        "literature": 13
       }
     },
     "MECH-040": {
@@ -4214,6 +4522,57 @@
       "source_counts": {
         "experimental": 4,
         "literature": 2
+      }
+    },
+    "MECH-075": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.76",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-03-30_hippo_vta_loop_lisman2005",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.76,
+      "overall_confidence": 0.76,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-075",
+          "confidence": 0.82,
+          "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
+            "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
+          ],
+          "run_id": "2026-03-30_hippo_vta_loop_lisman2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "MECH-089": {
@@ -9086,19 +9445,19 @@
       }
     },
     "SD-004": {
-      "confidence_rationale": "exp=8 entry(s), lit=4 entry(s), exp_conf=0.678, lit_conf=0.893",
+      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.678, lit_conf=0.9",
       "direction_counts": {
         "mixed": 0,
-        "supports": 7,
+        "supports": 9,
         "unknown": 0,
         "weakens": 5
       },
-      "entries_total": 12,
+      "entries_total": 14,
       "evidence_class_counts": {
         "exp:simulation": 8,
         "lit:computational_model": 2,
         "lit:electrophysiology_single_unit": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.678,
       "fail_runs": 5,
@@ -9109,43 +9468,12 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015",
-      "latest_timestamp_utc": "2026-03-29T13:30:00Z",
-      "literature_confidence": 0.893,
-      "overall_confidence": 0.786,
+      "latest_run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
+      "literature_confidence": 0.9,
+      "overall_confidence": 0.789,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_type": "v3_exq_046_arc007_path_memory_ablation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_046_arc007_path_memory_ablation_20260323T162327Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-23T16:23:27Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-004",
-          "confidence": 0.8,
-          "confidence_rationale": "This review paper makes the key generalisation that the cognitive map is not a spatial map but a map of task-relevant relational structure -- which directly licenses SD-004's claim that the HippocampalModule should map action-object space rather than raw z_world. Behrens et al. argue that place and grid cells are a specific instance of general coding principles for organising any structured knowledge. The non-spatial cognitive map framing is exactly what SD-004 requires: the map backbone is action-consequence structure, not geometric coordinates.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_004",
-          "failure_signatures": [
-            "Paper remains largely descriptive of biological findings; the abstraction to action-object space is inferred from the logic of generalisation, not demonstrated experimentally in a non-spatial task with action-object structure",
-            "The authors note that direct neural evidence for non-spatial cognitive maps is still emerging; the strongest evidence remains spatial"
-          ],
-          "run_id": "2026-03-29_sd_004_cognitive_map_review_behrens2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T13:30:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-004",
@@ -9196,12 +9524,46 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T13:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.82,
+          "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
+            "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+          ],
+          "run_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-004",
+          "confidence": 0.83,
+          "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "failure_signatures": [
+            "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+            "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+          ],
+          "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-03-30T23:50:00Z"
         }
       ],
-      "runs_total": 12,
+      "runs_total": 14,
       "source_counts": {
         "experimental": 8,
-        "literature": 4
+        "literature": 6
       }
     },
     "SD-005": {
@@ -43156,9 +43518,401 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-03-30T21:16:10.020213Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.82,
+      "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
+        "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+      ],
+      "run_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.83,
+      "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+        "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+      ],
+      "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.8,
+      "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+        "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+      ],
+      "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.87,
+      "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
+        "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
+      ],
+      "run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.83,
+      "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+        "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+      ],
+      "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.79,
+      "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
+        "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
+      ],
+      "run_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.8,
+      "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+        "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+      ],
+      "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.81,
+      "confidence_rationale": "Single-unit recordings in non-human primate CA3/DG during a visual pattern separation task directly homologous to disambiguation. Primate data improves transfer to REE human-adjacent models. Mapping is indirect: REE's hippocampal rollout module must disambiguate z_world trajectories, but the paper measures neural responses to lure images rather than trajectory disambiguation per se. Confidence bounded by this abstraction gap.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "CA3/DG responses to lure images overlap substantially with repeat responses in some neurons, indicating pattern separation is probabilistic, not absolute.",
+        "A subpopulation of CA3/DG neurons drives the key discrimination; the majority are non-selective, implying sparse coding with high variance across trials."
+      ],
+      "run_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.78,
+      "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
+        "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
+      ],
+      "run_id": "2026-03-30_hippo_time_cells_omer2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-022",
+      "confidence": 0.87,
+      "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
+        "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
+      ],
+      "run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-038",
+      "confidence": 0.84,
+      "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
+        "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
+      ],
+      "run_id": "2026-03-30_hippo_schema_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-039",
+      "confidence": 0.84,
+      "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
+        "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
+      ],
+      "run_id": "2026-03-30_hippo_schema_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-039",
+      "confidence": 0.78,
+      "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
+        "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
+      ],
+      "run_id": "2026-03-30_hippo_time_cells_omer2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-022",
+      "confidence": 0.72,
+      "confidence_rationale": "Foundational awake replay review establishing the key phenomenology. The central finding -- that replay occurs during behaviorally defined immobility periods and can represent remote environments -- directly supports MECH-022's claim that hypothesis injection is not triggered by ongoing sensory input but by an internal state change. The sensory influence on replay content is particularly relevant to REE: it suggests that what gets injected is sensitive to current context, not random. Confidence is moderate because it is a review (phenomenological) rather than a causal manipulation study.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_022",
+      "failure_signatures": [
+        "Replay content during awake SWRs includes both forward and reverse sequences, and the selection mechanism is not fully understood -- the control-plane gating in MECH-022 is more specific than what the biology has established.",
+        "Remote environment replay demonstrates that injection is not purely driven by current sensory context, which could complicate the control-plane model if REE assumes context-sensitive injection only."
+      ],
+      "run_id": "2026-03-30_mech_022_awake_replay_substrate_carr2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-022",
+      "confidence": 0.76,
+      "confidence_rationale": "This is the strongest paper in this directory for MECH-022 because it directly demonstrates the HPC-PFC pathway: coordinated hippocampal-prefrontal replay distinguishes correct future paths from alternatives, and prefrontal activity reads out memory-guided paths during decision making. The learning shift from reverse (retrospective) to forward (prospective) replay maps onto REE's pre-commitment trajectory evaluation. High source quality (Neuron, simultaneous multi-region recordings). Mapping fidelity is good -- PFC in this context corresponds to REE's E3 (goal-directed planning layer). Transfer risk moderate: spatial alternation task is more structured than REE's open terrain.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_022",
+      "failure_signatures": [
+        "Forward replay (prospective) showed clear PFC coordination, but reverse replay (retrospective evaluation) showed a different PFC engagement pattern -- the dual function may not be separable in a single control-plane gate.",
+        "Coordination was measured during inter-trial pauses specifically; whether coordinated replay occurs during within-trial evaluation moments (equivalent to E3 trajectory evaluation) is not established."
+      ],
+      "run_id": "2026-03-30_mech_022_hpc_pfc_replay_dynamics_shin2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-022",
+      "confidence": 0.78,
+      "confidence_rationale": "High-quality Nature Reviews Neuroscience paper establishing the SWR as the canonical injection event for hippocampal output to downstream circuits. The gating-by-behavioral-state mechanism maps well onto REE's control-plane gating of hypothesis injection (MECH-022). Transfer risk is moderate: the paper covers rodent spatial navigation and human episodic memory but the core SWR mechanism is conserved. Mapping fidelity is good but not perfect -- REE's 'control plane' corresponds to behavioral state modulation of SWR rate, which is a plausible but not one-to-one translation.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_022",
+      "failure_signatures": [
+        "SWR-linked replay content is not always prospective -- a substantial fraction represents past trajectories, suggesting the injection mechanism is not exclusively forward-planning.",
+        "SWR rate is modulated by many factors beyond goal-relevance (novelty, reward, fatigue), so control-plane specificity may be weaker than MECH-022 implies.",
+        "The paper is agnostic about whether SWR content is selected by a top-down gate or emerges from attractor dynamics -- this distinction matters for implementation."
+      ],
+      "run_id": "2026-03-30_mech_022_swr_retrieval_consolidation_joo2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-022",
+      "confidence": 0.82,
+      "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
+        "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
+      ],
+      "run_id": "2026-03-30_hippo_vta_loop_lisman2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.79,
+      "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
+        "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
+      ],
+      "run_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.8,
+      "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+        "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+      ],
+      "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.81,
+      "confidence_rationale": "Single-unit recordings in non-human primate CA3/DG during a visual pattern separation task directly homologous to disambiguation. Primate data improves transfer to REE human-adjacent models. Mapping is indirect: REE's hippocampal rollout module must disambiguate z_world trajectories, but the paper measures neural responses to lure images rather than trajectory disambiguation per se. Confidence bounded by this abstraction gap.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "CA3/DG responses to lure images overlap substantially with repeat responses in some neurons, indicating pattern separation is probabilistic, not absolute.",
+        "A subpopulation of CA3/DG neurons drives the key discrimination; the majority are non-selective, implying sparse coding with high variance across trials."
+      ],
+      "run_id": "2026-03-30_hippo_pattern_sep_sakon2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-075",
+      "confidence": 0.82,
+      "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
+        "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
+      ],
+      "run_id": "2026-03-30_hippo_vta_loop_lisman2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.82,
+      "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
+        "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+      ],
+      "run_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-004",
+      "confidence": 0.83,
+      "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+      "failure_signatures": [
+        "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
+        "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+      ],
+      "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-03-30T23:50:00Z"
     }
   ],
-  "generated_at_utc": "2026-03-30T21:16:11.063769Z",
+  "generated_at_utc": "2026-03-30T21:32:29.800028Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

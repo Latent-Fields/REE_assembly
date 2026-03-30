@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-03-30_hippo_time_cells_omer2022",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-018", "ARC-039"],
+  "source": {
+    "title": "Contextual and pure time coding for self and other in the hippocampus",
+    "authors": ["Omer, David B", "Las, Liora", "Ulanovsky, Nachum"],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-022-01226-y",
+    "pmid": "36585486"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Nature Neuroscience, bat CA1 single-unit recordings, clean two-population dissociation (contextual vs pure time cells). The finding that hippocampus contains a dedicated population encoding elapsed time independent of spatial context directly motivates a design requirement for E3 rollout time-tagging. Transfer risk is moderate: bat hippocampus, and the 'time' in REE rollouts is agent-internal steps rather than clock time. The social imitation component (time cells triggered by another's landing) is particularly novel and REE-relevant.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pure time cells represent elapsed time only within a single anchor event's window; they do not naturally bridge across multiple sequential events without re-triggering.",
+    "Contextual time cells shift their temporal tuning with spatial context, meaning temporal credit from time cells is inherently context-confounded in spatial tasks."
+  ],
+  "tags": ["arc_018", "arc_039", "time_cells", "temporal_coding", "ca1", "hippocampus", "elapsed_time", "episodic_memory", "credit_assignment"],
+  "mapping": {
+    "source_claim_statement": "Bat hippocampal CA1 contains two distinct populations: contextual time cells (different temporal sequences at different spatial locations, conjunctive space-time coding) and pure time cells (similar preferred times regardless of spatial context, representing elapsed time per se). Both populations activate relative to the bat's own landing and, in a social task, relative to another bat's landing.",
+    "ree_translation": "ARC-018 requires E3 to construct rollout trajectories that encode not just where in z_world but when in sequence events occurred -- enabling correct attribution of delayed outcomes to early trajectory choices. Pure time cells provide the missing ingredient: a context-independent elapsed-time signal that E3 can use to tag rollout steps with temporal distance from the goal event, enabling graded temporal credit assignment. Motivates new claim MECH-148: hippocampal pure time cells provide a temporal scaffolding signal for E3 credit assignment across delayed outcomes. The social imitation component suggests the same mechanism can track another agent's temporal context, relevant to MECH-127 multi-agent counterfactual reasoning.",
+    "mapping_caveat": "Bat CA1 recordings; transfer to human-scale hippocampus uncertain. REE's 'time' is discrete agent steps, not continuous clock time -- the mapping assumes time-cell sequences fire at fixed step intervals during E3 rollout simulation, which is mechanistically plausible but not directly tested. The social coding finding is suggestive but tangential to the primary claim.",
+    "source_context": "Bat (Rhinolophus ferrumequinum), hippocampal CA1, single-unit electrophysiology, landing event anchoring, social imitation task"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Nature Neuroscience, clean dissociation of two populations, novel social angle. Mapping fidelity moderate: the key gap is that REE rollouts are simulated sequences, not lived experience -- the time cells would need to fire during E3's internal simulation, which is a strong assumption requiring its own experimental test."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_subfield_architecture",
+  "entry_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033", "ARC-007"],
+  "source": {
+    "title": "Reinforcement Learning, Fast and Slow",
+    "authors": ["Botvinick, Matthew", "Ritter, Sam", "Wang, Jane X.", "Kurth-Nelson, Zeb", "Blundell, Charles", "Hassabis, Demis"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.02.006"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
+    "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+  ],
+  "tags": ["arc_018", "mech_033", "arc_007", "episodic_rl", "meta_rl", "fast_slow_learning", "hippocampal_replay", "deep_rl"],
+  "mapping": {
+    "source_claim_statement": "Intelligent behavior requires both incremental RL (slow, gradient-based weight updates) and episodic RL (fast, one-shot binding of specific experiences). Hippocampal replay enables episodic RL. Meta-RL trains a recurrent controller to implement an RL algorithm in its activations, enabling rapid within-task adaptation. Together these systems explain human-like learning efficiency.",
+    "ree_translation": "REE's E1 (LSTM, slow world model) and E3 (planning evaluator) together implement the slow incremental RL component. HippocampalModule implements episodic RL: it stores specific harm trajectories and replays them to update E3's harm terrain model rapidly (ARC-007, ARC-018). MECH-033 (E2 kernels seeding rollouts) is the mechanism by which episodic recall is extended into forward simulation -- this is the concrete computational step that connects episodic storage to multi-step planning. The meta-RL framing also suggests that E3's LSTM architecture is not merely a policy network but accumulates an internal learning algorithm about harm navigation, which deepens the justification for E3's recurrent structure.",
+    "mapping_caveat": "The paper does not distinguish harm-terrain navigation from reward maximization. REE's architecture must handle harm as a special class of negative consequence that has ethical weight beyond mere reward signal. The episodic RL framework is neutral on this distinction -- the ethical grounding is a REE-specific extension. Meta-RL applicability depends on E3 having been trained across sufficient task diversity, which is not guaranteed in REE's current training regimen.",
+    "source_context": "Theoretical review drawing on deep RL implementations (DNC, SNAIL, etc.) and neuroscience; authored by Google DeepMind"
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.24,
+    "notes": "Trends in Cognitive Sciences, highly cited. Mapping fidelity good but not perfect: meta-RL component applies only if E3 has been trained in a task-diversity regime, which is unclear. Transfer risk low: argument is domain-general deep RL theory."
+  }
+}

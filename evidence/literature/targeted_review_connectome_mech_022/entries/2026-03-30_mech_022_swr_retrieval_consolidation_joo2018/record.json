@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_022",
+  "entry_id": "2026-03-30_mech_022_swr_retrieval_consolidation_joo2018",
+  "timestamp_utc": "2026-03-30T23:50:00Z",
+  "claim_ids_tested": ["MECH-022"],
+  "source": {
+    "title": "The hippocampal sharp wave-ripple in memory retrieval for immediate use and consolidation",
+    "authors": ["Joo, Hannah R.", "Frank, Loren M."],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-018-0077-1",
+    "pmid": "30356103",
+    "pmc": "PMC6794196"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality Nature Reviews Neuroscience paper establishing the SWR as the canonical injection event for hippocampal output to downstream circuits. The gating-by-behavioral-state mechanism maps well onto REE's control-plane gating of hypothesis injection (MECH-022). Transfer risk is moderate: the paper covers rodent spatial navigation and human episodic memory but the core SWR mechanism is conserved. Mapping fidelity is good but not perfect -- REE's 'control plane' corresponds to behavioral state modulation of SWR rate, which is a plausible but not one-to-one translation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SWR-linked replay content is not always prospective -- a substantial fraction represents past trajectories, suggesting the injection mechanism is not exclusively forward-planning.",
+    "SWR rate is modulated by many factors beyond goal-relevance (novelty, reward, fatigue), so control-plane specificity may be weaker than MECH-022 implies.",
+    "The paper is agnostic about whether SWR content is selected by a top-down gate or emerges from attractor dynamics -- this distinction matters for implementation."
+  ],
+  "tags": ["mech_022", "swr", "hippocampal_replay", "hypothesis_injection", "control_plane"],
+  "mapping": {
+    "source_claim_statement": "The SWR mediates retrieval of stored representations that can be utilized immediately by downstream circuits in decision-making, planning, recollection and imagination, while simultaneously initiating memory consolidation processes. Different SWR types may correspond to different cognitive functions, and a single SWR may support multiple functions.",
+    "ree_translation": "In REE, MECH-022 requires that the HippocampalModule injects hypotheses (candidate trajectories) into the planning loop, gated by the control plane. The SWR is the biological substrate for this injection: the control-plane state (task-engaged vs. quiescent) modulates SWR rate and content selection, and SWR onset is the moment a stored trajectory is made available to E3 for evaluation.",
+    "mapping_caveat": "REE's 'control plane' is an architectural construct; the biological correlate is behavioral state (e.g., immobility, post-reward pauses). The mapping assumes these correspond, which is plausible but has not been directly tested in a planning-for-ethics context. The dual consolidation/retrieval function of SWRs also means hypothesis injection in REE may simultaneously update long-term storage, a coupling not currently modeled.",
+    "source_context": "Rodent spatial navigation + human episodic memory fMRI studies; review integrates ~100 empirical papers"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality very high (NatRevNeuro). Mapping fidelity moderate: behavioral state -> control plane mapping is reasonable but not demonstrated. Transfer risk moderate: SWR mechanism is conserved across species and task types, but the specific role in non-spatial, ethics-relevant planning is extrapolation."
+  }
+}
