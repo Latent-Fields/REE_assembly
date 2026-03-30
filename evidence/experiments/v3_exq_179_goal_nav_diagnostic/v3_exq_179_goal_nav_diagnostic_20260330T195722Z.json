@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "z_goal_norm_avg": 0.4500676393508911,
+    "benefit_per_ep_goal_present": 0.2,
+    "benefit_per_ep_goal_absent": 0.6666666666666667,
+    "benefit_ratio": 0.3,
+    "goal_tracking_r": -0.055507044358633476,
+    "selection_bias": 5.122310947330503e-07,
+    "goal_score_rank_pct": 0.5039499670836076,
+    "goal_vs_harm_ratio": 2.1765035678116638,
+    "calibration_gap_goal_present": 0.06269212067127228,
+    "n_eval_goal_steps_avg": 774.0,
+    "n_resource_seedings_avg": 282.5,
+    "mech124_flag_salience": 0.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 4.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "drive_weight": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-179 -- H-A/H-B Goal Navigation Causal Diagnostic\n\n**Status:** PASS\n**Claims:** MECH-112, SD-012\n**Seeds:** [42, 7]\n\n## Diagnostic Design\n\nTwo competing hypotheses about why z_goal-guided navigation fails:\n\n- **H-A (content problem):** z_goal seeded from z_world at resource contact, but z_world encodes the full scene. Resources respawn randomly -> z_goal is scene-specific noise.\n  Measured by: Pearson r(goal_proximity(z_world_t), resource_proximity_t) = `goal_tracking_r`\n\n- **H-B (utilisation problem):** z_goal is meaningful but E3 trajectory scoring doesn't use it effectively.\n  Measured by: goal_score(selected_traj) - mean(goal_score(other_trajs)) = `selection_bias`\n\nConditions: GOAL_PRESENT (real E3.select() with goal_state) vs GOAL_ABSENT (random actions).\n\n**alpha_world:** 0.9  (SD-008)\n**drive_weight:** 2.0  (SD-012)\n**Warmup:** 400 eps (curriculum=80 eps)\n**Eval:** 60 eps per condition\n\n## Key Diagnostic Results\n\n| Metric | Value | Threshold | Interpretation |\n|---|---|---|---|\n| goal_tracking_r (H-A) | -0.056 | <0.05=confirmed, >0.20=disconfirmed | H-A CONFIRMED: goal_tracking_r=-0.056 < 0.05 -- z_goal does ... |\n| selection_bias (H-B) | 0.00000 | <0.005=confirmed, >0.02=disconfirmed | H-B CONFIRMED: selection_bias=0.00000 < 0.005 -- E3 NOT usin... |\n| goal_score_rank_pct | 0.504 | >0.5=E3 prefers high-goal | -- |\n\n## H-A Conclusion\n\nH-A CONFIRMED: goal_tracking_r=-0.056 < 0.05 -- z_goal does not track resource proximity (content noise hypothesis supported)\n\n## H-B Conclusion\n\nH-B CONFIRMED: selection_bias=0.00000 < 0.005 -- E3 NOT using goal score to select trajectories\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm | cal_gap |\n|---|---|---|---|\n| GOAL_PRESENT | 0.200 | 0.450 | 0.0627 |\n| GOAL_ABSENT  | 0.667 | -- | -- |\n\n**Benefit ratio (goal/no-goal): 0.30x**\n\n## PASS Criteria (diagnostic quality gates)\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm > 0.1 | PASS | 0.450 |\n| C2: n_eval_goal_steps > 500 | PASS | 774 |\n| C3: n_resource_seedings > 5 | PASS | 282.5 |\n| C4: no fatal errors | PASS | -- |\n\nCriteria met: 4/4 -> **PASS**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 2.177 (< 0.3 = V4 salience risk)\n\n## Interpretation Reference\n\n```\ngoal_tracking_r < 0.05  -> H-A CONFIRMED  (z_goal is scene noise)\ngoal_tracking_r > 0.20  -> H-A DISCONFIRMED  (z_goal tracks resources)\nselection_bias  < 0.005 -> H-B CONFIRMED  (E3 not using goal score)\nselection_bias  > 0.02  -> H-B DISCONFIRMED  (E3 IS preferring high-goal trajs)\n```\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.167 z_goal_norm=0.404 goal_tracking_r=-0.007 selection_bias=0.00000 rank_pct=0.513 n_eval_steps=772\n  seed=7: benefit/ep=0.233 z_goal_norm=0.497 goal_tracking_r=-0.104 selection_bias=-0.00000 rank_pct=0.494 n_eval_steps=776\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.767\n  seed=7: benefit/ep=0.567\n\n",
+  "claim_ids": [
+    "MECH-112",
+    "SD-012"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_179_goal_nav_diagnostic",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T195722Z",
+  "claim": "MECH-112",
+  "verdict": "PASS",
+  "run_id": "v3_exq_179_goal_nav_diagnostic_20260330T195722Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
