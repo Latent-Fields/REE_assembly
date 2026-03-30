@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_067_mech026_ready_vigilance
 
-Generated: `2026-03-30T18:20:29.119669Z`
+Generated: `2026-03-30T19:03:17.731887Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

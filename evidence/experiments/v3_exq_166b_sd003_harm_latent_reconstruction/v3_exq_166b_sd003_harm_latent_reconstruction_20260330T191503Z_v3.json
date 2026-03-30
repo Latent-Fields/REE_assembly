@@ -1,0 +1,108 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_166b_sd003_harm_latent_reconstruction_20260330T191503Z_v3",
+  "experiment_type": "v3_exq_166b_sd003_harm_latent_reconstruction",
+  "claim_ids": [
+    "SD-003",
+    "ARC-033",
+    "SD-011"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "criteria_met": 4,
+  "total_criteria": 6,
+  "dry_run": false,
+  "supersedes": "v3_exq_166a_sd003_obs_space_forward_model",
+  "notes": "EXQ-166b: latent forward model (HarmForwardModel from stack.py) with reconstruction branch (HarmDecoder). Fixes EXQ-166a C2 failure: obs-space approach diluted harm signal in 51-dim MSE. P0 now trains encoder as full autoencoder (not scalar-only), ensuring all 32 z_harm dims carry harm structure. Phase 1 joint loss: latent prediction (lambda=1.0) + reconstruction (lambda=0.5). Prevents identity collapse while keeping learning pressure harm-specific.",
+  "metrics": {
+    "latent_fwd_r2_mean": 0.6213805973529816,
+    "delta_approach_mean": -0.48859612387714657,
+    "causal_approach_trained_mean": 0.002803803594649527,
+    "causal_none_trained_mean": -0.020047956533998084,
+    "causal_contact_trained_mean": 0.012984151178990058,
+    "causal_approach_ablated_mean": 0.4913999274717961,
+    "n_approach_eval_mean": 394.25,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 0.0
+  },
+  "per_seed": {
+    "42": {
+      "latent_fwd_r2": 0.7388537526130676,
+      "delta_approach": -0.5937276899221524,
+      "causal_approach_trained": 0.0018789702386998424,
+      "causal_none_trained": -0.02023025191070249,
+      "causal_contact_trained": -0.004477529133422467,
+      "causal_approach_ablated": 0.5956066601608523,
+      "n_approach_eval": 402,
+      "n_contact_eval": 79,
+      "p0_z_harm_var": 0.13651005923748016
+    },
+    "123": {
+      "latent_fwd_r2": 0.9190895557403564,
+      "delta_approach": -0.388950528680342,
+      "causal_approach_trained": 0.002743786292550451,
+      "causal_none_trained": -0.02350817239516741,
+      "causal_contact_trained": 0.017832008691934437,
+      "causal_approach_ablated": 0.3916943149728925,
+      "n_approach_eval": 382,
+      "n_contact_eval": 78,
+      "p0_z_harm_var": 0.06732041388750076
+    },
+    "7": {
+      "latent_fwd_r2": 0.0,
+      "delta_approach": -0.5148667667006037,
+      "causal_approach_trained": 0.0036692018579379685,
+      "causal_none_trained": -0.02132085163750197,
+      "causal_contact_trained": 0.01936036253517325,
+      "causal_approach_ablated": 0.5185359685585417,
+      "n_approach_eval": 406,
+      "n_contact_eval": 88,
+      "p0_z_harm_var": 0.08585505187511444
+    },
+    "13": {
+      "latent_fwd_r2": 0.8275790810585022,
+      "delta_approach": -0.4568395102054882,
+      "causal_approach_trained": 0.002923255989409848,
+      "causal_none_trained": -0.015132550192620466,
+      "causal_contact_trained": 0.01922176262227501,
+      "causal_approach_ablated": 0.45976276619489803,
+      "n_approach_eval": 387,
+      "n_contact_eval": 82,
+      "p0_z_harm_var": 0.0922761783003807
+    }
+  },
+  "p0_quality": {
+    "42": 0.13651005923748016,
+    "123": 0.06732041388750076,
+    "7": 0.08585505187511444,
+    "13": 0.0922761783003807
+  },
+  "config": {
+    "seeds": [
+      42,
+      123,
+      7,
+      13
+    ],
+    "phase0_episodes": 80,
+    "phase1_episodes": 80,
+    "phase2_episodes": 30,
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "world_dim": 32,
+    "self_dim": 16,
+    "nav_bias": 0.65,
+    "harm_obs_dim": 51,
+    "z_harm_dim": 32,
+    "fwd_hidden_dim": 64,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "p0_var_thresh": 0.005,
+    "lambda_latent": 1.0,
+    "lambda_recon": 0.5
+  }
+}
