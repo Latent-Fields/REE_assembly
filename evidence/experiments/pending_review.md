@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-03-30T19:03:18Z`  
+Generated: `2026-03-30T20:01:27Z`  
 Last review: `2026-03-30T19:00:00Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke)
+Pending: **10** item(s) -- 0 PASS, 0 FAIL, 10 runner-only (ERROR/UNKNOWN/smoke)
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -11,6 +11,15 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
 | `V3-EXQ-178` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-166b` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-178a` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-085h` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-166c` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-178b` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-085i` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-166d` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-166e` | UNKNOWN | `?` | UNKNOWN |
+| `V3-EXQ-179` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
 
 ---
 
