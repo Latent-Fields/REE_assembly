@@ -68,5 +68,7 @@
     "z_harm_s_dim": 32,
     "z_harm_a_dim": 16
   },
-  "timestamp_utc": "2026-03-30T19:19:26.059749Z"
+  "timestamp_utc": "2026-03-30T19:19:26.059749Z",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by EXQ-178b (fixed C1: offline batch training of HarmForwardModel replaced online per-step training, achieving fwd_r2=0.742). C1 failure here was a training regime bug, not architectural. SD-011 dissociation signals (C2/C3/C4 all PASS) remain valid but superseded run is excluded from governance scoring."
 }

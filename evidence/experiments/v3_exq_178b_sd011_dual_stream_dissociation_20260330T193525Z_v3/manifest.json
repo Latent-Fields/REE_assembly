@@ -72,5 +72,11 @@
     "z_harm_s_dim": 32,
     "z_harm_a_dim": 16
   },
-  "timestamp_utc": "2026-03-30T19:35:25.226458Z"
+  "timestamp_utc": "2026-03-30T19:35:25.226458Z",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-011": "supports",
+    "ARC-033": "supports"
+  },
+  "evidence_direction_note": "SD-011 (dual nociceptive streams): C2 stream_corr=0.078 (uncorrelated streams), C3 autocorr_gap=0.446 (z_harm_a lag-10 autocorr ~0.92 vs z_harm_s ~0.47 -- affective stream 2x more persistent), C4 hazard_corr=0.601 (z_harm_s tracks immediate hazard proximity). Dual stream architecture biologically validated (Rainville 1997 dissociation: fast sensory / slow affective). ARC-033: C1 harm_fwd_r2=0.742 shows HarmForwardModel can represent z_harm_s dynamics with offline batch training. Note: R2 may partially reflect temporal autocorrelation rather than action-conditional prediction. EXQ-166e (PASS 6/6, retain_ree) provides the definitive ARC-033 test via harm-delta causal gap."
 }
