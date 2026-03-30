@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_goal_norm_world_avg": 0.38585777084032696,
+    "z_goal_norm_enc_avg": 1.1727417707443237,
+    "benefit_per_ep_goal_present": 0.02,
+    "benefit_per_ep_goal_absent": 0.5866666666666667,
+    "benefit_ratio": 0.03409090909090909,
+    "calibration_gap_goal_present": 0.35312264164288837,
+    "goal_resource_r_world": 0.2315743896213243,
+    "goal_resource_r_enc": 0.8194012502466291,
+    "goal_vs_harm_ratio": 0.6046133975663074,
+    "enc_final_loss": 0.22584914549067617,
+    "e2r_final_loss": 0.04139843811605048,
+    "enc_contact_acc": 0.9270833333333334,
+    "mech124_flag_salience": 0.0,
+    "drive_weight": 2.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_enc": 0.001,
+    "lr_e2r": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-085j -- SD-015 ResourceEncoder with Spatial Invariance\n\n**Status:** FAIL\n**Claims:** SD-015, SD-012, MECH-112\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n**Supersedes:** V3-EXQ-085i\n\n## Architecture\n\nResourceEncoder (25->16) trained with contact prediction BCE for spatial invariance. E2Resource (16+5->64->64->16) forward model in encoded space. z_goal seeded from enc.encode(rf) at contact events only. Action selection: E2Resource lookahead maximising cosine_sim to z_goal.\n\n**SD-015 fix vs 085i:** 085i used raw resource_field_view (25-dim) for z_goal -- spatially specific, so resource respawn to new grid position broke goal tracking (2/3 seeds goal harmful). ResourceEncoder learns position-invariant features via contact prediction BCE.\n\n**alpha_world:** 0.9  (SD-008)\n**SD-012:** drive_weight=2.0, resource_respawn_on_consume=True\n**lr_enc:** 0.001  **lr_e2r:** 0.0005\n**enc_final_loss (avg):** 0.2258\n**e2r_final_loss (avg):** 0.0414\n**enc_contact_acc (avg):** 0.927\n**Warmup:** 800 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: E2Resource-lookahead; GOAL_ABSENT: random)\n\n## Key Diagnostic Comparison\n\n| Representation | goal_resource_r | Note |\n|---|---|---|\n| z_world-seeded (085g) | 0.232 | baseline ~0.066 |\n| enc-seeded (085i raw rf) | ~0.218 | 085i result |\n| ResourceEncoder-seeded (085j) | 0.819 | need > 0.2 |\n\nz_goal_norm_world: 0.386  z_goal_norm_enc: 1.173\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm_enc | cal_gap | r_enc |\n|---|---|---|---|---|\n| GOAL_PRESENT | 0.020 | 1.173 | 0.3531 | 0.819 |\n| GOAL_ABSENT  | 0.587 | -- | -- | -- |\n\n**Benefit ratio (goal/no-goal): 0.03x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm_enc > 0.1 | PASS | 1.173 |\n| C2: benefit ratio >= 1.3x | FAIL | 0.03x |\n| C3: goal_resource_r_enc > 0.2 | PASS | 0.819 |\n| C4: enc_contact_acc > 0.7 | PASS | 0.927 |\n\nCriteria met: 3/4 -> **FAIL**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 0.605 (< 0.3 = V4 risk)\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.060 z_goal_norm_enc=0.976 r_enc=0.811 r_world=-0.026 enc_acc=0.898 enc_loss=0.2298 e2r_loss=0.0507\n  seed=7: benefit/ep=0.000 z_goal_norm_enc=1.366 r_enc=0.848 r_world=0.684 enc_acc=0.953 enc_loss=0.2324 e2r_loss=0.0229\n  seed=13: benefit/ep=0.000 z_goal_norm_enc=1.176 r_enc=0.799 r_world=0.037 enc_acc=0.930 enc_loss=0.2154 e2r_loss=0.0506\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.500\n  seed=7: benefit/ep=0.650\n  seed=13: benefit/ep=0.610\n\n## Failure Notes\n\n- C2 FAIL: benefit_ratio=0.03x < 1.3x BUT C3 PASS (goal_resource_r_enc=0.819 > 0.2). Goal representation works; navigation gap. Check action selection / nav_bias strength. Consider stronger lookahead or more eval eps.\n",
+  "claim_ids": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085j_sd015_resource_encoder",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T200336Z",
+  "claim": "SD-015",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085j_sd015_resource_encoder_20260330T200336Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

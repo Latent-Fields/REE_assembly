@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T20:01:34.227897+00:00",
+  "last_updated": "2026-03-30T20:03:36.646427+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-085j",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-015 ResourceEncoder with Spatial Invariance",
-    "description": "",
-    "script": "experiments/v3_exq_085j_sd015_resource_encoder.py",
-    "started_at": "2026-03-30T20:00:28.444604+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 800,
-      "episodes_total": 800,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 66,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[train] seed=42 cond=GOAL_ABSENT ep 400/800 resource=327 seedings_enc=0 z_goal_norm_enc=0.000 enc_acc=0.906 enc_loss=0.2479 e2r_loss=0.0438",
-      "[train] seed=42 cond=GOAL_ABSENT ep 500/800 resource=380 seedings_enc=0 z_goal_norm_enc=0.000 enc_acc=0.945 enc_loss=0.2586 e2r_loss=0.0405",
-      "[train] seed=42 cond=GOAL_ABSENT ep 600/800 resource=435 seedings_enc=0 z_goal_norm_enc=0.000 enc_acc=0.930 enc_loss=0.2205 e2r_loss=0.0438",
-      "[train] seed=42 cond=GOAL_ABSENT ep 700/800 resource=496 seedings_enc=0 z_goal_norm_enc=0.000 enc_acc=0.883 enc_loss=0.2380 e2r_loss=0.0558",
-      "[train] seed=42 cond=GOAL_ABSENT ep 800/800 resource=560 seedings_enc=0 z_goal_norm_enc=0.000 enc_acc=0.961 enc_loss=0.2211 e2r_loss=0.0397"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-085j",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015 ResourceEncoder with Spatial Invariance",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
@@ -3423,6 +3386,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_179_goal_nav_diagnostic/v3_exq_179_goal_nav_diagnostic_20260330T195722Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 61.3
+    },
+    {
+      "queue_id": "V3-EXQ-085j",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015 ResourceEncoder with Spatial Invariance",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_goal_present: 0.35312264164288837 | goal_vs_harm_ratio: 0.6046133975663074",
+      "started_at": "2026-03-30T20:00:28.444604+00:00",
+      "completed_at": "2026-03-30T20:03:36.645396+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085j_sd015_resource_encoder/v3_exq_085j_sd015_resource_encoder_20260330T200336Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 188.2
     }
   ]
 }
