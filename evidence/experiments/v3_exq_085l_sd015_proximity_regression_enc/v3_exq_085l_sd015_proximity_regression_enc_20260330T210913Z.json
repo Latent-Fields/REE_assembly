@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_goal_norm_world_avg": 0.2961469193299611,
+    "z_goal_norm_enc_avg": 0.7307015458742777,
+    "benefit_per_ep_goal_present": 0.27,
+    "benefit_per_ep_goal_absent": 0.6433333333333334,
+    "benefit_ratio": 0.41968911917098445,
+    "calibration_gap_goal_present": 0.3055703639984131,
+    "goal_resource_r_world": 0.03654769257329628,
+    "goal_resource_r_enc": 0.8693412262964735,
+    "goal_vs_harm_ratio": 1.6473406542351354,
+    "enc_final_loss": 0.0011229630715679378,
+    "rfm_final_loss": 0.007591353801894002,
+    "prox_r2": 0.9076156300055102,
+    "mech124_flag_salience": 0.0,
+    "drive_weight": 2.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_enc": 0.001,
+    "lr_rfm": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-085l -- SD-015 Proximity Regression Encoder\n\n**Status:** FAIL\n**Claims:** SD-015, SD-012, MECH-112\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n**Supersedes:** V3-EXQ-085k\n\n## Architecture\n\nProximityEncoder (25->16) trained via MSE regression on resource_proximity = 1/(1+manhattan_dist). Replaces binary contact BCE (085j/k).\n\n**Rationale:** Binary BCE (085j/k) trained encoder to separate contact (is_contact=1) from everything else. Near-resource steps labelled 0 -- encoder didn't distinguish near-resource from far-resource. Proximity regression forces smooth graded z_resource: high near resources, low far away. cosine_sim(z_resource_current, z_goal) now a smooth resource-proximity gradient for action selection.\n\nAction selection: cosine_sim(enc.encode(RFM(rf,a)), z_goal) -- same as 085k.\n\n**alpha_world:** 0.9  (SD-008)\n**SD-012:** drive_weight=2.0, resource_respawn_on_consume=True\n**lr_enc:** 0.001  **lr_rfm:** 0.0005\n**enc_final_loss (avg):** 0.0011\n**rfm_final_loss (avg):** 0.0076\n**prox_r2 (avg):** 0.908\n**Warmup:** 800 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: RFM+enc hybrid; GOAL_ABSENT: random)\n\n## Diagnostic Series Summary\n\n| Variant | Enc type | goal_r | benefit_ratio | Note |\n|---|---|---|---|---|\n| 085i | raw rf (no enc) | 0.218 | 1.03x | spatially specific |\n| 085j | BCE contact enc | 0.819 | 0.034x | E2Resource degenerate |\n| 085k | BCE contact enc + RFM | 0.582 | 0.977x | near-random action selection |\n| 085l | Prox regression enc + RFM | 0.869 | 0.42x | this run |\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm_enc | r_enc | prox_r2 |\n|---|---|---|---|---|\n| GOAL_PRESENT | 0.270 | 0.731 | 0.869 | 0.908 |\n| GOAL_ABSENT  | 0.643 | -- | -- | -- |\n\n**Benefit ratio (goal/no-goal): 0.42x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm_enc > 0.1 | PASS | 0.731 |\n| C2: benefit ratio >= 1.3x | FAIL | 0.42x |\n| C3: goal_resource_r_enc > 0.2 | PASS | 0.869 |\n| C4: prox_r2 > 0.3 | PASS | 0.908 |\n\nCriteria met: 3/4 -> **FAIL**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 1.647 (< 0.3 = V4 risk)\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.130 z_goal_norm_enc=0.501 r_enc=0.882 prox_r2=0.892 rfm_loss=0.0075\n  seed=7: benefit/ep=0.480 z_goal_norm_enc=0.921 r_enc=0.818 prox_r2=0.912 rfm_loss=0.0070\n  seed=13: benefit/ep=0.200 z_goal_norm_enc=0.770 r_enc=0.908 prox_r2=0.919 rfm_loss=0.0083\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.680\n  seed=7: benefit/ep=0.730\n  seed=13: benefit/ep=0.520\n\n## Failure Notes\n\n- C2 FAIL: benefit_ratio=0.42x < 1.3x BUT C3 PASS (r=0.869). Proximity regression gives graded representation but nav gap remains. Consider: more eval eps, stronger goal bias in action selection, or wiring z_goal into REEAgent action scoring directly.\n",
+  "claim_ids": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085l_sd015_proximity_regression_enc",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T210913Z",
+  "claim": "SD-015",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085l_sd015_proximity_regression_enc_20260330T210913Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
