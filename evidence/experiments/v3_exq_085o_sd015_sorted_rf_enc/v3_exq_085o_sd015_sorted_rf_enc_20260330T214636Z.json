@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "z_goal_norm_world_avg": 0.2961469193299611,
+    "z_goal_norm_enc_avg": 0.6172711700201035,
+    "benefit_per_ep_goal_present": 0.07333333333333333,
+    "benefit_per_ep_goal_absent": 0.6433333333333334,
+    "benefit_ratio": 0.11398963730569947,
+    "calibration_gap_goal_present": 0.26338399449984234,
+    "goal_resource_r_world": 0.03661140254877323,
+    "goal_resource_r_enc": 0.57350520443774,
+    "goal_vs_harm_ratio": 2.3463350778213568,
+    "enc_final_loss": 0.005622662751469761,
+    "rfm_final_loss": 0.007591353801894002,
+    "prox_r2": 0.5237696837269573,
+    "mech124_flag_salience": 0.0,
+    "drive_weight": 2.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_enc": 0.001,
+    "lr_rfm": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-085o -- SD-015 Sorted-RF Proximity Encoder\n\n**Status:** FAIL\n**Claims:** SD-015, SD-012, MECH-112\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n**Supersedes:** V3-EXQ-085l\n\n## Architecture\n\nProximityEncoder input: sorted_rf = rf.sort(descending=True) -- position-FREE.\n\n**085l root cause:** proximity regression MSE trains 1-dim proximity_head direction; remaining 15 dims of z_resource freely encode spatial position (which cell the resource occupies). After respawn, 15-dim position mismatch in cosine_sim overrides 1-dim proximity signal -- agent steered to old resource location. All seeds below 1.0x (harmful guidance).\n\n**Fix:** sorting rf removes all spatial position information. All contacts at any cell produce identical sorted_rf profile ([1.0, 0.7, ...]). All 16 encoder dims encode proximity order statistics. z_goal is position-invariant. cosine_sim purely proximity-based.\n\nAction selection: cosine_sim(enc.encode(sort(RFM(rf,a))), z_goal).\nRFM still operates on raw rf for accurate spatial dynamics.\n\n**alpha_world:** 0.9  (SD-008)\n**SD-012:** drive_weight=2.0, resource_respawn_on_consume=True\n**lr_enc:** 0.001  **lr_rfm:** 0.0005\n**enc_final_loss:** 0.0056\n**rfm_final_loss:** 0.0076\n**prox_r2:** 0.524\n**Warmup:** 800 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: sorted-RF+enc hybrid; GOAL_ABSENT: random)\n\n## Diagnostic Series Summary\n\n| Variant | Enc input | goal_r | benefit_ratio | Note |\n|---|---|---|---|---|\n| 085i | raw rf (no enc) | 0.218 | 1.03x | spatially specific |\n| 085j | BCE contact, raw rf | 0.819 | 0.034x | E2Resource degenerate |\n| 085k | BCE contact, raw rf + RFM | 0.582 | 0.977x | binary enc near-random |\n| 085l | prox regression, raw rf + RFM | 0.869 | 0.42x | 15-dim position noise |\n| 085m | prox regression, sorted rf + RFM | 0.574 | 0.11x | this run |\n\n## Navigation Results\n\n| Condition | benefit/ep | z_goal_norm_enc | r_enc | prox_r2 |\n|---|---|---|---|---|\n| GOAL_PRESENT | 0.073 | 0.617 | 0.574 | 0.524 |\n| GOAL_ABSENT  | 0.643 | -- | -- | -- |\n\n**Benefit ratio (goal/no-goal): 0.11x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: z_goal_norm_enc > 0.1 | PASS | 0.617 |\n| C2: benefit ratio >= 1.3x | FAIL | 0.11x |\n| C3: goal_resource_r_enc > 0.2 | PASS | 0.574 |\n| C4: prox_r2 > 0.3 | PASS | 0.524 |\n\nCriteria met: 3/4 -> **FAIL**\n\n## MECH-124 Diagnostics\n\ngoal_vs_harm_ratio: 2.346 (< 0.3 = V4 risk)\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.100 z_goal_norm_enc=0.234 r_enc=0.409 prox_r2=0.499 rfm_loss=0.0075\n  seed=7: benefit/ep=0.080 z_goal_norm_enc=1.004 r_enc=0.754 prox_r2=0.573 rfm_loss=0.0070\n  seed=13: benefit/ep=0.040 z_goal_norm_enc=0.613 r_enc=0.558 prox_r2=0.499 rfm_loss=0.0083\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.680\n  seed=7: benefit/ep=0.730\n  seed=13: benefit/ep=0.520\n\n## Failure Notes\n\n- C2 FAIL: benefit_ratio=0.11x < 1.3x BUT C3 PASS (r=0.574). Sorted-rf enc goal tracks proximity but nav gap persists. If ratio > 0.9: proximity guidance nearly working, consider stronger action bias or more eval episodes. If ratio < 0.5: likely residual position-specificity. Next: direct predict_proximity action selection (no cosine_sim).\n",
+  "claim_ids": [
+    "SD-015",
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_085o_sd015_sorted_rf_enc",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260330T214636Z",
+  "claim": "SD-015",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_085o_sd015_sorted_rf_enc_20260330T214636Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

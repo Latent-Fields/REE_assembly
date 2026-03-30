@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T21:45:44.695019+00:00",
+  "last_updated": "2026-03-30T21:46:36.712522+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-085o",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "SD-015 Sorted-RF Proximity Encoder (Position-Invariant)",
-    "description": "",
-    "script": "experiments/v3_exq_085o_sd015_sorted_rf_enc.py",
-    "started_at": "2026-03-30T21:42:53.763075+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 500,
-      "episodes_total": 800,
-      "overall_pct": 62.5
-    },
-    "seconds_elapsed": 171,
-    "seconds_remaining": 103,
-    "recent_lines": [
-      "[train] seed=13 cond=GOAL_PRESENT ep 100/800 resource=121 seedings_enc=121 z_goal_norm_enc=0.892 prox_r2=0.340 enc_loss=0.0088 rfm_loss=0.0113 [curriculum]",
-      "[train] seed=13 cond=GOAL_PRESENT ep 200/800 resource=182 seedings_enc=182 z_goal_norm_enc=0.742 prox_r2=0.434 enc_loss=0.0073 rfm_loss=0.0112",
-      "[train] seed=13 cond=GOAL_PRESENT ep 300/800 resource=247 seedings_enc=247 z_goal_norm_enc=0.686 prox_r2=0.438 enc_loss=0.0063 rfm_loss=0.0106",
-      "[train] seed=13 cond=GOAL_PRESENT ep 400/800 resource=319 seedings_enc=319 z_goal_norm_enc=0.673 prox_r2=0.475 enc_loss=0.0059 rfm_loss=0.0099",
-      "[train] seed=13 cond=GOAL_PRESENT ep 500/800 resource=382 seedings_enc=382 z_goal_norm_enc=0.586 prox_r2=0.513 enc_loss=0.0060 rfm_loss=0.0084"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-085o",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-015 Sorted-RF Proximity Encoder (Position-Invariant)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
@@ -3507,6 +3470,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085n_sd015_multistep_rfm_rollout/v3_exq_085n_sd015_multistep_rfm_rollout_20260330T212640Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 214.5
+    },
+    {
+      "queue_id": "V3-EXQ-085o",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015 Sorted-RF Proximity Encoder (Position-Invariant)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "calibration_gap_goal_present: 0.26338399449984234 | goal_vs_harm_ratio: 2.3463350778213568",
+      "started_at": "2026-03-30T21:42:53.763075+00:00",
+      "completed_at": "2026-03-30T21:46:36.711207+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_085o_sd015_sorted_rf_enc/v3_exq_085o_sd015_sorted_rf_enc_20260330T214636Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 222.9
     }
   ]
 }
