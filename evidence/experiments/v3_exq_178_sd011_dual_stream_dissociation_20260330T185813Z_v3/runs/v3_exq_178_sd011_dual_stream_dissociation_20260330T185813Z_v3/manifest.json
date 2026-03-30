@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_178_sd011_dual_stream_dissociation",
   "run_id": "v3_exq_178_sd011_dual_stream_dissociation_20260330T185813Z_v3",
-  "status": "UNKNOWN",
+  "status": "SUPERSEDED",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -39,5 +39,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-178b. C1 FAIL: harm_fwd_r2=-0.727 -- HarmForwardModel identity collapse. z_harm_s_hazard_corr=0.629 (C4 PASS) shows sensory stream responds to hazard, but forward model cannot learn transitions."
 }

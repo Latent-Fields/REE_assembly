@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_099a_mech098_reafference_upgrade
 
-Generated: `2026-03-30T21:32:29.800028Z`
+Generated: `2026-03-30T21:40:17.431625Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_166c_sd003_harm_latent_shuffled_ablation",
   "run_id": "v3_exq_166c_sd003_harm_latent_shuffled_ablation_20260330T192815Z_v3",
-  "status": "UNKNOWN",
+  "status": "SUPERSEDED",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-166e. Shuffled ablation: C1 PASS (R2=0.621) but ablation_margin negative (-0.011) -- shuffled model performs better than trained. Wrong direction."
 }

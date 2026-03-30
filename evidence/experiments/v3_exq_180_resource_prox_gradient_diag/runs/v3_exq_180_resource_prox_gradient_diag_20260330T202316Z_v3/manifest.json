@@ -25,7 +25,7 @@
     "ARC-030"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "weakens",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "C1 PASS: probe_r2=0.619 (z_world contains resource proximity signal). C2 PASS: benefit_head_r=0.275 (benefit_eval_head decodes signal). C3 FAIL: benefit_ratio=0.288 (navigation not improved, < 1.2). C4 FAIL: n_probe_steps=216 (below 500 data quality gate). Diagnostic confirms: z_world has the signal and head can decode it, but E3 trajectory scoring does not translate to navigation improvement. Same bottleneck as 085 series -- action integration layer."
 }

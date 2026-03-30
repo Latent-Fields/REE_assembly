@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_166b_sd003_harm_latent_reconstruction",
   "run_id": "v3_exq_166b_sd003_harm_latent_reconstruction_20260330T191329Z_v3",
-  "status": "UNKNOWN",
+  "status": "SUPERSEDED",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-166e (harm-delta predictor). Reconstruction branch prevents identity collapse but trained causal signal inverted vs ablated -- C2 FAIL (delta_approach=-0.608). Latent+reconstruction approach is a dead end for SD-003 discrimination."
 }

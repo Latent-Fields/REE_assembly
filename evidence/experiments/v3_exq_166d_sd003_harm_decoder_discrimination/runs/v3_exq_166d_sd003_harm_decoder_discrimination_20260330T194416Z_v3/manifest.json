@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_166d_sd003_harm_decoder_discrimination",
   "run_id": "v3_exq_166d_sd003_harm_decoder_discrimination_20260330T194416Z_v3",
-  "status": "UNKNOWN",
+  "status": "SUPERSEDED",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-166e. Decoder discrimination: dec_disc_trained=-0.004, dec_disc_shuffled=+0.001 -- discrimination absent. 166e harm-delta approach resolves this."
 }

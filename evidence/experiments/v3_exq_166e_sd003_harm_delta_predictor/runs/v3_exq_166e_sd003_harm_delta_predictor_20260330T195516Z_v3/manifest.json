@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_166e_sd003_harm_delta_predictor",
   "run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
-  "status": "UNKNOWN",
+  "status": "PASS",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -24,7 +24,7 @@
     "ARC-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "supports",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -39,5 +39,14 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "6/6 criteria PASS. Harm-delta prediction (predict scalar delta = harm_obs[12]_next - harm_obs[12]_t from z_harm_s + action) prevents identity collapse structurally. delta_r2=0.641, causal_gap_approach=0.005, causal_gap_contact=0.035 > causal_gap_neutral=-0.027. n_approach_eval=7515 (excellent data quality).",
+  "supersedes": [
+    "v3_exq_166b_sd003_harm_latent_reconstruction_20260330T191329Z_v3",
+    "v3_exq_166b_sd003_harm_latent_reconstruction_20260330T191503Z_v3",
+    "v3_exq_166c_sd003_harm_latent_shuffled_ablation_20260330T192707Z_v3",
+    "v3_exq_166c_sd003_harm_latent_shuffled_ablation_20260330T192815Z_v3",
+    "v3_exq_166d_sd003_harm_decoder_discrimination_20260330T194043Z_v3",
+    "v3_exq_166d_sd003_harm_decoder_discrimination_20260330T194416Z_v3"
+  ]
 }

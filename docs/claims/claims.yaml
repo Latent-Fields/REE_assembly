@@ -5394,6 +5394,13 @@
     learns general obs dynamics, not harm-stream-specific causal structure. SD-011 dual-stream
     architecture (z_harm_s forward-predictable) requires dedicated harm latent, not obs-space
     proxy. Evidence direction for this claim: mixed.
+    EXQ-178b PASS 4/4 (2026-03-30): First validated PASS for SD-011 dual-stream dissociation.
+    harm_fwd_r2=0.742 (C1: HarmForwardModel learns z_harm_s transitions). stream_corr=0.078
+    (C2: streams decorrelated, well below 0.85 saturation threshold). autocorr_gap=0.446
+    (C3: temporal integration confirmed -- z_harm_a accumulates vs z_harm_s). z_harm_s_hazard_corr=0.601
+    (C4: sensory stream encodes hazard proximity). EXQ-178/178a INCONCLUSIVE (C1 FAIL, identity
+    collapse in earlier iterations, superseded). SD-011 stream separation validated; SD-003
+    redesign unblocked.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -6244,9 +6251,17 @@
     C2 delta_approach=0.0006 (near zero causal gap). Architectural diagnosis: obs-space approach
     does not provide selective pressure on harm-causal structure -- MSE loss dominated by
     position-change prediction, harm dims diluted. E2_harm_s dedicated latent stream (ARC-033)
-    is the correct approach; obs-space is a dead end for C2. EXQ-166b proposed: latent-space
-    z_harm_s with reconstruction branch to prevent identity collapse while keeping harm-dedicated
-    learning pressure.
+    is the correct approach; obs-space is a dead end for C2.
+    EXQ-166b/c/d INCONCLUSIVE (superseded, 2026-03-30): Latent+reconstruction approach. C1
+    inconsistent (R2=0.028-0.621 across seeds); C2 FAIL in all runs (delta_approach negative --
+    trained causal signal inverted vs ablated). Reconstruction branch prevents identity collapse
+    in high-R2 seeds but does not recover causal discrimination. Dead end.
+    EXQ-166e PASS 6/6 (2026-03-30): Harm-delta predictor -- predict scalar delta
+    (harm_obs[12]_next - harm_obs[12]_t) from (z_harm_s, action). Identity collapse structurally
+    impossible (delta sign is action-dependent at approach events). delta_r2=0.641 (C1 PASS),
+    causal_gap_approach=0.005 (C2 PASS), causal_gap_contact=0.035 >> causal_gap_neutral=-0.027
+    (C3 PASS). n_approach_eval=7515 (C4/C5/C6 all PASS). First full PASS for ARC-033 harm
+    forward model. E2_harm_s harm-delta architecture validated.
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.
@@ -8104,4 +8119,178 @@
     V5 scope: requires MECH-127 formal characterisation and V4 potential
     game validation before backward reachability analysis is tractable.
     Registered 2026-03-29 from Q-024 lit pull.
+  evidence: []
+
+- id: MECH-147
+  title: "DG-mediated pattern separation gates trajectory disambiguation: the dentate gyrus must produce non-redundant sparse encodings of similar z_world states before rollout proposals are generated, preventing the hippocampal planning module from proposing near-identical trajectories from overlapping inputs."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.pattern_separation_trajectory_disambiguation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-018
+    - MECH-033
+    - SD-004
+  notes: >
+    Motivated by Sakon & Suzuki (2019, PNAS; DOI 10.1073/pnas.1900804116):
+    primate CA3/DG single-unit recordings during a visual lure-discrimination
+    task show that CA3/DG neurons respond to similar (lure) items more like
+    novel items than repeats -- the neural signature of pattern separation.
+    A subpopulation specifically drives the lure/repeat discrimination;
+    pattern separation is sparse and probabilistic, not diffuse.
+    REE implication: ARC-018's rollout viability module requires genuinely
+    distinct trajectory proposals from similar z_world states. Without a
+    DG-equivalent pattern separation stage, the kernel-chaining interface
+    (MECH-033) will systematically collapse similar z_world contexts into
+    similar rollout proposals, wasting E3 evaluation cycles on redundant paths.
+    Architectural requirement: a DG-equivalent sparse expansion layer must
+    precede the hippocampal trajectory proposal generator. Ablation prediction:
+    removing this layer should specifically collapse trajectory diversity in
+    z_world regions with high topological similarity, without degrading
+    trajectory quality in already-distinct regions.
+    Mapping caveat: Sakon & Suzuki measure item-level (single timestep)
+    disambiguation; trajectory-level disambiguation is sequential and involves
+    compounding divergence over E2 rollout steps. The DG stage must operate
+    on the seed z_world state, not the full trajectory, and rely on E2's
+    forward dynamics to amplify initial separation. V4 scope: requires SD-004
+    action-object hippocampal map backbone.
+    Registered 2026-03-30 from hippocampal function literature pull.
+  evidence: []
+
+- id: MECH-148
+  title: "Hippocampal pure time cells provide a temporal scaffolding signal for E3 credit assignment: a context-independent elapsed-time encoding must be present in the hippocampal rollout module to correctly weight trajectory outcomes by their temporal distance from the reference event."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.time_cell_temporal_credit
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-018
+    - ARC-039
+    - MECH-033
+  notes: >
+    Motivated by Omer, Las, & Ulanovsky (2022, Nat Neurosci;
+    DOI 10.1038/s41593-022-01226-y): bat hippocampal CA1 contains two
+    distinct populations -- contextual time cells (different temporal
+    sequences at different spatial locations) and pure time cells (similar
+    preferred times across spatial contexts, encoding elapsed time per se).
+    Both populations anchor to the bat's own event (landing); in a social
+    imitation task, subsets also fire relative to another bat's landing.
+    REE implication: ARC-018 requires E3 to weight rollout outcomes by their
+    temporal distance from the goal event -- a trajectory that produces harm
+    at step 3 is not equivalent to one that produces harm at step 15, even
+    with identical z_world paths. Pure time cells are the biological substrate
+    for this temporal weighting: they provide a context-independent elapsed-
+    time signal that can tag each simulated rollout step regardless of the
+    z_world state at that step. Without such a signal, E3's credit assignment
+    is myopic (step-local) and cannot correctly discount delayed outcomes.
+    The social coding finding (time cells for other's events) suggests the
+    same mechanism generalises to multi-agent temporal credit in MECH-127.
+    Architectural requirement: the hippocampal rollout module must include a
+    time-coding layer producing pure elapsed-time signals independent of z_world
+    state. These signals should be compressed-replay analogs of experienced
+    sequences: during E3's internal simulation, the time layer should fire
+    at fixed step-interval rates. Ablation prediction: removing the time layer
+    should specifically impair long-horizon credit assignment (delayed outcomes)
+    without degrading immediate evaluation (short-horizon rollouts).
+    Mapping caveat: biological time cells encode real elapsed time (continuous);
+    REE rollouts are discrete agent steps. The assumption that time cells fire
+    at fixed intervals during E3 simulation is plausible but untested.
+    V4 scope: requires the hippocampal module architectural work in SD-004.
+    Registered 2026-03-30 from hippocampal function literature pull.
+  evidence: []
+
+- id: MECH-149
+  title: "CA1 mismatch between E1-predicted and CA3-retrieved z_world gates hippocampal trajectory injection into E3 evaluation: novel situations (high CA1 mismatch) should trigger more frequent and diverse rollout proposals; familiar situations (low mismatch) should rely on cached viability estimates."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.ca1_mismatch_novelty_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-022
+    - MECH-075
+    - ARC-018
+    - SD-004
+  notes: >
+    Motivated by Lisman & Grace (2005, Neuron; DOI 10.1016/j.neuron.2005.05.002):
+    the hippocampal-VTA loop architecture proposes that CA1 detects novelty by
+    comparing entorhinal (predicted/current) input to CA3-stored representations
+    (match-mismatch). A novelty signal propagates subiculum -> accumbens ->
+    ventral pallidum -> VTA, triggering dopamine release back to hippocampus
+    that enhances LTP at recently active synapses (selective memory encoding).
+    MECH-022 claims hippocampal systems act as hypothesis injectors -- generating
+    candidate trajectories for E3 evaluation. This paper provides the biological
+    gating mechanism: the CA1 mismatch signal (E1-predicted z_world vs CA3-
+    retrieved z_world) should be the trigger for hippocampal proposal generation.
+    Under familiar conditions (CA1 mismatch low), the existing residue-field map
+    has dense coverage and cached rollout viability estimates are reliable --
+    new trajectory proposals are unnecessary. Under novel conditions (CA1
+    mismatch high), the map lacks coverage and E3 must evaluate fresh proposals.
+    For MECH-075 (BG dopaminergic gain on hippocampal attractors): the VTA-to-
+    hippocampus arm of the Lisman-Grace loop IS the dopaminergic modulation of
+    hippocampal attractor dynamics -- VTA output via accumbens/pallidum is BG-
+    adjacent, and dopamine modulates attractor basin stickiness (exploration
+    vs exploitation balance in rollout sampling).
+    Architectural requirement: the CA1 mismatch signal must be explicitly
+    computed in the hippocampal module (E1 prediction error at the z_world
+    level) and used to gate rollout injection frequency and diversity.
+    High mismatch -> more proposals, higher diversity. Low mismatch -> fewer
+    proposals, higher reliance on cached viability. This gate is not binary;
+    it should scale continuously with mismatch magnitude.
+    Mapping caveat: Lisman & Grace wrote before optogenetics; the specific
+    pathway (subiculum-accumbens-pallidum-VTA) is inferred from pharmacological
+    and lesion evidence, later confirmed but with additional complexity. REE
+    has no literal LTP or subiculum; the mapping is functional (novelty -> gate
+    -> selective update), not anatomical. V4 scope: requires SD-004 hippocampal
+    architecture and a differentiable CA1 mismatch signal in the latent stack.
+    Registered 2026-03-30 from hippocampal function literature pull.
+  evidence: []
+
+- id: INV-039
+  title: "Schema-primed rapid assimilation: any hippocampal planning system with a stable prior map must gate episode consolidation rate by map stability -- new episodes entering a mature, coherent residue field should consolidate without the full multi-episode warmup required for a sparse or unstable map."
+  claim_type: invariant
+  subject: hippocampus.schema_primed_rapid_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - ARC-038
+    - ARC-039
+    - ARC-007
+  notes: >
+    Motivated by Tse et al. (2007, Science; DOI 10.1126/science.1135935):
+    when a neocortical schema (prior associative map of task structure) exists,
+    new paired-associate memories become hippocampal-independent within 48 hours
+    rather than weeks. One-trial learning produces lasting memories when the
+    schema is in place; the schema causally accelerates consolidation. mPFC is
+    required for schema expression (mPFC lesion destroys schema utility).
+    REE implication: ARC-038 (waking immobility consolidation) and ARC-039
+    (hippocampal-entorhinal offline consolidation) both treat consolidation rate
+    as relatively fixed. Tse et al. show biologically that consolidation rate
+    is dynamically gated by schema stability. The REE analog: E1 learning rate
+    and offline consolidation window should be scaled by a residue-field map
+    stability signal. A mature, stable residue field (dense, consistent harm/
+    benefit topology across many episodes) should accelerate novel episode
+    encoding -- new trajectories entering familiar terrain can be consolidated
+    rapidly. A sparse or unstable map (early training, post-remapping) should
+    revert to slow multi-episode consolidation.
+    This is an invariant because it follows from the basic computational logic
+    of associative structures: matching new information to existing structure
+    is always faster than building structure from scratch. The claim is not
+    contingent on REE-specific implementation; any planning system with a
+    hippocampal-equivalent module should exhibit this property.
+    Architectural requirement: the hippocampal module must expose a map-stability
+    signal (e.g., residue-field coverage density, rollout viability consistency
+    over recent episodes) to the consolidation controller. The mPFC role (Tse)
+    maps to E3's control plane -- E3 must actively gate schema use, not merely
+    receive hippocampal output passively.
+    Mapping caveat: rat flavor-place paired-associates are simpler than REE's
+    multi-step action-consequence terrain. The mechanism by which the neocortical
+    schema detects match with new information is unspecified at circuit level
+    in Tse et al.; this is a known gap. Replicated in Tse et al. 2011 and
+    van Kesteren et al. human neuroimaging series. V4 scope: requires stable
+    residue field map from sustained V3 training and ARC-039 offline replay.
+    Registered 2026-03-30 from hippocampal function literature pull.
   evidence: []

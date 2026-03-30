@@ -617,6 +617,12 @@
     "title": "A system with correct post-hoc ethical scoring but without an active constraint preparation substrate will produce the EVR pattern: correct verbal moral judgments coexisting with unconstrained trajectory generation; this pattern is not correctable by improving post-hoc scoring accuracy.",
     "type": "invariant"
   },
+  "INV-039": {
+    "status": "candidate",
+    "subject": "hippocampus.schema_primed_rapid_consolidation",
+    "title": "Schema-primed rapid assimilation: any hippocampal planning system with a stable prior map must gate episode consolidation rate by map stability -- new episodes entering a mature, coherent residue field should consolidate without the full multi-episode warmup required for a sparse or unstable map.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1491,6 +1497,24 @@
     "status": "candidate",
     "subject": "ethics.diagnostic_barrier_certificate",
     "title": "Diagnostic ethical trajectory verification in REE (counterfactual case, MECH-127) requires backward reachability analysis or barrier certificates rather than prescriptive CBF synthesis; the two formal tools are not interchangeable.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-147": {
+    "status": "candidate",
+    "subject": "hippocampus.pattern_separation_trajectory_disambiguation",
+    "title": "DG-mediated pattern separation gates trajectory disambiguation: the dentate gyrus must produce non-redundant sparse encodings of similar z_world states before rollout proposals are generated, preventing the hippocampal planning module from proposing near-identical trajectories from overlapping inputs.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-148": {
+    "status": "candidate",
+    "subject": "hippocampus.time_cell_temporal_credit",
+    "title": "Hippocampal pure time cells provide a temporal scaffolding signal for E3 credit assignment: a context-independent elapsed-time encoding must be present in the hippocampal rollout module to correctly weight trajectory outcomes by their temporal distance from the reference event.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-149": {
+    "status": "candidate",
+    "subject": "hippocampus.ca1_mismatch_novelty_gate",
+    "title": "CA1 mismatch between E1-predicted and CA3-retrieved z_world gates hippocampal trajectory injection into E3 evaluation: novel situations (high CA1 mismatch) should trigger more frequent and diverse rollout proposals; familiar situations (low mismatch) should rely on cached viability estimates.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

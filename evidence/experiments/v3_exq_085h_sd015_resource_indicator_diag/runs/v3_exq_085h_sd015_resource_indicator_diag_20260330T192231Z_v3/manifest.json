@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_085h_sd015_resource_indicator_diag",
   "run_id": "v3_exq_085h_sd015_resource_indicator_diag_20260330T192231Z_v3",
-  "status": "FAIL",
+  "status": "SUPERSEDED",
   "timestamp_utc": "2026-03-30T19:22:31Z",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "MECH-112"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-085l. RFM diagnostic: goal_resource_r_rfm=-0.169 (C3 FAIL) -- RFM lookahead fails due to spatial specificity. C1 PASS (z_goal_norm_resource>2.7). C2 FAIL: benefit_ratio=0.642."
 }

@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation",
   "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-  "status": "UNKNOWN",
+  "status": "PASS",
   "timestamp_utc": "",
   "source_repo": {
     "name": "ree-v3",
@@ -39,5 +39,10 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "4/4 criteria PASS. harm_fwd_r2=0.742 (C1 PASS, HarmForwardModel learns z_harm_s transitions). stream_corr=0.078 (C2 PASS, << 0.85, streams are decorrelated). autocorr_gap=0.446 (C3 PASS, temporal integration confirmed). z_harm_s_hazard_corr=0.601 (C4 PASS, >> 0.25, sensory stream encodes hazard proximity).",
+  "supersedes": [
+    "v3_exq_178_sd011_dual_stream_dissociation_20260330T185813Z_v3",
+    "v3_exq_178a_sd011_dual_stream_dissociation_20260330T191926Z_v3"
+  ]
 }

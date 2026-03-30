@@ -2,10 +2,47 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-03-30T21:40:51.244170+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-03-30T21:44:58.943749+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-085o",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "SD-015 Sorted-RF Proximity Encoder (Position-Invariant)",
+    "description": "",
+    "script": "experiments/v3_exq_085o_sd015_sorted_rf_enc.py",
+    "started_at": "2026-03-30T21:42:53.763075+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 200,
+      "episodes_total": 800,
+      "overall_pct": 25.0
+    },
+    "seconds_elapsed": 125,
+    "seconds_remaining": 376,
+    "recent_lines": [
+      "[train] seed=7 cond=GOAL_PRESENT ep 800/800 resource=516 seedings_enc=516 z_goal_norm_enc=1.004 prox_r2=0.573 enc_loss=0.0050 rfm_loss=0.0068",
+      "[eval] seed=7 cond=GOAL_PRESENT avg_benefit/ep=0.080 z_goal_norm_enc=1.004 enc_loss=0.0051 rfm_loss=0.0070 prox_r2=0.573 cal_gap=0.1335 goal_resource_r_enc=0.754 goal_vs_harm=2.286",
+      "[V3-EXQ-085o] GOAL_ABSENT seed=7 warmup=800 eval=100 curriculum=100 drive_weight=2.0 alpha_world=0.9 lr_enc=0.001 lr_rfm=0.0005",
+      "[train] seed=7 cond=GOAL_ABSENT ep 100/800 resource=121 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.377 enc_loss=0.0081 rfm_loss=0.0155 [curriculum]",
+      "[train] seed=7 cond=GOAL_ABSENT ep 200/800 resource=185 seedings_enc=0 z_goal_norm_enc=0.000 prox_r2=0.455 enc_loss=0.0070 rfm_loss=0.0125"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
+    {
+      "queue_id": "V3-EXQ-085o",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-015 Sorted-RF Proximity Encoder (Position-Invariant)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",

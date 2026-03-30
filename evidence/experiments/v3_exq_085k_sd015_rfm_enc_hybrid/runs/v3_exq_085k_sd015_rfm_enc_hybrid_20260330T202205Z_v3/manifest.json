@@ -3,7 +3,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_085k_sd015_rfm_enc_hybrid",
   "run_id": "v3_exq_085k_sd015_rfm_enc_hybrid_20260330T202205Z_v3",
-  "status": "FAIL",
+  "status": "SUPERSEDED",
   "timestamp_utc": "2026-03-30T20:22:05Z",
   "source_repo": {
     "name": "ree-v3",
@@ -25,7 +25,7 @@
     "MECH-112"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "superseded by EXQ-085l. RFM+Enc hybrid: goal_resource_r_enc=0.582 (C3 PASS) but benefit_ratio=0.978 (~1, neutral). Encoder works but hybrid action selection provides no lift."
 }
