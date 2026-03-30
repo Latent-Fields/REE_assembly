@@ -1,0 +1,60 @@
+{
+  "run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
+  "experiment_type": "v3_exq_176_arc036_valence_dimension_probe",
+  "claim_ids": [
+    "ARC-036"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_class": "targeted_probe",
+  "criteria": {
+    "C1_harm_field_active": false,
+    "C2_benefit_field_active": false,
+    "C3_dissociation": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_C1_VAR": 0.001,
+    "THRESH_C2_VAR": 0.001,
+    "THRESH_C3_CORR": 0.7
+  },
+  "summary_metrics": {
+    "harm_benefit_correlation_mean": 0.05446041329047856,
+    "harm_score_variance_mean": 3.9280023519803586e-07,
+    "benefit_score_variance_mean": 3.9013957777240296e-07,
+    "n_harm_events_per_seed": [
+      9653,
+      9407
+    ],
+    "n_benefit_events_per_seed": [
+      3508,
+      3444
+    ]
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "scenario": "targeted_probe: WorldEncoder (Linear 250->32 + LayerNorm) trained with reconstruction loss (random policy). HarmRBF + BenefitRBF (16 centers, bandwidth=1.0, alpha=0.1) accumulate harm_exposure and benefit_exposure signals. Pearson r between per-step harm_score and benefit_score measures valence dissociation. 500 episodes x 100 steps; CausalGridWorldV2 size=8 hazards=3 resources=3.",
+  "interpretation": "PASS: both terrain fields active AND dissociated (|r|<0.7). Supports ARC-036: harm and benefit accumulate in orthogonal terrain subspaces, consistent with multi-dimensional valence map hypothesis. FAIL with C3 fail: fields are correlated -- harm and benefit terrain overlap, weakening ARC-036 multi-dimensional claim. FAIL with C1/C2: insufficient signal for assessment (mixed).",
+  "per_seed_results": {
+    "42": {
+      "harm_score_variance": 4.4289657103369267e-07,
+      "benefit_score_variance": 2.97295729143507e-07,
+      "harm_benefit_correlation": 0.038763055364312314,
+      "n_harm_events": 9653,
+      "n_benefit_events": 3508,
+      "n_score_samples": 9782
+    },
+    "123": {
+      "harm_score_variance": 3.42703899362379e-07,
+      "benefit_score_variance": 4.829834264012989e-07,
+      "harm_benefit_correlation": 0.07015777121664481,
+      "n_harm_events": 9407,
+      "n_benefit_events": 3444,
+      "n_score_samples": 9548
+    }
+  },
+  "dry_run": false,
+  "timestamp_utc": "2026-03-30T07:04:47.582045+00:00"
+}
