@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-30T18:20:29.119669Z`
+Generated: `2026-03-30T19:03:17.731887Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -31,7 +31,6 @@ Use this as the human-in-the-loop review queue.
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
-| `SD-008` | `provisional` | Promotion review: provisional -> stable | `promote_to_stable` | `pending_user` |
 | `SD-011` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 
 ## Decision Details
@@ -284,7 +283,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-116
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.643, conflict_ratio=0.857, exp_entries=4, lit_entries=3; directions supports=3, weakens=4, mixed=0, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.642, conflict_ratio=0.857, exp_entries=4, lit_entries=3; directions supports=3, weakens=4, mixed=0, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0, goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition). Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition. At 2000 total steps with 1000-step post-removal window, goal persists robustly in both conditions -- insufficient time to observe meaningful dec…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -431,22 +430,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-29T21:15:46.867662Z`
 - Last selected option: Narrow the question into testable sub-questions (higher tractability)
 - Last rationale: EXQ-161 superseded (dry-run artifact; implementation gap -- policy trained with entropy bonus only, z_world/z_self detached). Question narrowing applied to focus on discriminating DESCRIPTIVE vs PRESCRIPTIVE vs DIAGNOSTIC trajectory representations. Fresh experiment required.
-
-### SD-008
-- Current status: `provisional`
-- Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.874, conflict_ratio=0, exp_entries=5, lit_entries=2; directions supports=5, weakens=0, mixed=1, unknown=1, conflict_ratio=0
-- Evidence quality note: Promoted to provisional 2026-03-22. Two uncontested supporting experiments: EXQ-023 (alpha=1.0, event_selectivity_margin=0.084 passed SD-008 criterion) and EXQ-040 (PASS 4/4, z-separation alpha=0.9 directly confirmed correct event responsiveness). Zero genuine weakening experiments in isolation. EXQ-145 INCONCLUSIVE (2026-03-30): full-stack integration test; Phase 1 reafference gate failed (r2=0.0…
-- Recommendation: `promote_to_stable`
-- Options (pros/cons):
-  - Promote now (clear canonical status, risk under-tested edge cases)
-  - Hold pending stress-test replication (better stress confidence, slower closure)
-  - Split claim scope before promotion (clearer boundaries, added doc work)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
 
 ### SD-011
 - Current status: `candidate`

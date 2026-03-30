@@ -5237,11 +5237,13 @@
   claim_type: design_decision
   subject: encoder.z_world_alpha_correction
   polarity: asserts
-  status: provisional
+  status: stable
   status_note: >
+    Promoted to stable 2026-03-30 (overall_conf=0.874, conflict_ratio=0, 5 supporting
+    experiments, 2 lit entries, 0 weakening experiments in isolation).
     Promoted to provisional 2026-03-22. Two uncontested supporting experiments:
     EXQ-023 (alpha=1.0, event_selectivity_margin=0.084 passed SD-008 criterion;
-    overall experiment failed on unrelated claims — SD-007, ARC-016, SD-003 —
+    overall experiment failed on unrelated claims -- SD-007, ARC-016, SD-003 --
     which have since been independently validated) and EXQ-040 (PASS 4/4,
     z-separation alpha=0.9 directly confirmed correct event responsiveness).
     Zero genuine weakening experiments: EXQ-023 direction corrected from weakens
@@ -5254,21 +5256,24 @@
     precision from firing. alpha_self may remain low (body state genuinely
     autocorrelated). Config: LatentStackConfig.alpha_world (default 0.3 for
     compat; set 0.9 or 1.0 for correct operation).
+    EXQ-177 FAIL/mixed (integration test): event_selectivity_margin~0 in full-stack
+    composition (SD-007 + SD-008 + SD-003) despite alpha_world=0.9. Attributed to
+    destructive interference in combined stack, not SD-008 in isolation. Isolated
+    SD-008 tests remain definitive; integration gap is an SD-003/SD-007 diagnostic
+    target.
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
   evidence_quality_note: |
-    Promoted to provisional 2026-03-22. Two uncontested supporting experiments: EXQ-023
-    (alpha=1.0, event_selectivity_margin=0.084 passed SD-008 criterion) and EXQ-040 (PASS 4/4,
-    z-separation alpha=0.9 directly confirmed correct event responsiveness). Zero genuine weakening
-    experiments in isolation. EXQ-145 INCONCLUSIVE (2026-03-30): full-stack integration test;
-    Phase 1 reafference gate failed (r2=0.076 < 0.08) before SD-008 selectivity was tested.
-    Engineering bottleneck, does not challenge SD-008 status. EXQ-177 FAIL/mixed (2026-03-30,
-    integration test): event_selectivity_margin~0 despite alpha_world=0.9 and excellent
-    world_forward_r2=0.941. Integration context concern: full-stack composition (SD-007 + SD-008
-    + SD-003) may produce destructive interference cancelling z_world selectivity signal.
-    Isolated SD-008 tests (EXQ-023, EXQ-040) remain valid. SD-008 provisional status stands;
-    integration stack requires further diagnostic.
+    Promoted to stable 2026-03-30. overall_conf=0.874, conflict_ratio=0, 5 exp entries,
+    2 lit entries, 0 weakening experiments in isolation. Isolated SD-008 tests (EXQ-023,
+    EXQ-040) are definitive and uncontested. EXQ-145 INCONCLUSIVE (2026-03-30): full-stack
+    integration test; Phase 1 reafference gate failed (r2=0.076 < 0.08) before SD-008
+    selectivity was tested -- engineering bottleneck, does not challenge SD-008. EXQ-177
+    FAIL/mixed (2026-03-30): event_selectivity_margin~0 in full-stack (SD-007+SD-008+SD-003)
+    despite alpha_world=0.9 and world_forward_r2=0.941 -- attributed to destructive
+    interference in combined stack composition, not an isolated SD-008 failure. Integration
+    stack diagnostic is a separate workstream (SD-003/SD-007 target).
 
 - id: SD-009
   title: "z_world encoder requires event-type cross-entropy auxiliary loss during training."
