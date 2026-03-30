@@ -5712,6 +5712,13 @@
     threshold: z_goal not pointing toward resources despite contact-gated seeding. z_world
     at contact encodes full scene; resource features not isolated. SD-015 z_resource
     separation required before MECH-112 wanting system can navigate to goals.
+    EXQ-085h through 085l FAIL C2 (2026-03-30): SD-015 encoder series (5 iterations,
+    085l final, supersedes prior). 085l: prox_r2=0.908 (z_world encodes proximity),
+    goal_resource_r_enc=0.869 (ResourceEncoder learns position-invariant features), but
+    benefit_ratio=0.420 (navigation not improved). The signal is learnable; the bottleneck
+    is action-selection integration. Governance: hold -- promotion blocked by consistent C2
+    FAIL across all 5 iterations. MECH-112 wanting system requires working navigation
+    (C2) not just representation (C1/C3) to validate the claim.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -7448,6 +7455,12 @@
     z_resource representation: z_world at contact is scene-wide, not resource-specific.
     SD-012 core claim (drive-scaled benefit enables seeding) remains supported. SD-014
     z_resource separation is the next required step for navigation to follow.
+    EXQ-085h through 085l FAIL C2 (2026-03-30, 5 iterations superseded by 085l final):
+    Drive modulation seeding (C1) passes consistently (z_goal seeds). Navigation (C2,
+    benefit_ratio) fails consistently: 0.642 / 1.026 / 0.034 / 0.978 / 0.420 across
+    085h-085l. SD-012 seeding mechanism is validated; the behavioral lift it is intended
+    to enable is not yet demonstrated. Governance: hold -- core seeding claim is supported
+    but navigation outcome criterion (which is the point of the claim) remains unmet.
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
