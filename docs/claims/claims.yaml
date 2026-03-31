@@ -8509,3 +8509,186 @@
     where hazard gradient cues are present in z_world BEFORE z_harm_a accumulates.
     Registered 2026-03-31 from frontal cue-integration circuit design.
   evidence: []
+
+- id: ARC-042
+  title: "E3's ethical selection machinery is architecturally present from initialisation but functionally dark until E1 and E2 substrate development is complete; REE requires staged developmental phases before ethical selection can operate on real signal."
+  claim_type: architectural_commitment
+  subject: architecture.staged_developmental_phases
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-001
+    - ARC-002
+    - ARC-003
+    - ARC-041
+    - MECH-150
+    - MECH-151
+    - MECH-152
+    - SD-012
+    - SD-016
+  location: docs/architecture/vmPFC.md
+  notes: >
+    REE's architectural components (E1, E2, E3, ContextMemory, terrain weighting)
+    can all be instantiated at initialisation, but the ethical selection chain
+    is functionally gated by substrate development in a strict dependency order.
+
+    Phase 1 -- E1 substrate development: E1 ContextMemory must be trained with a
+    supervised context-labeling objective before it can produce differentiated
+    cue-indexed representations. EXQ-181b confirms that unsupervised experience
+    alone is insufficient (cosine_sim(hazard-proximate, hazard-distal)=0.9999;
+    0/3 seeds pass C1). Without differentiated ContextMemory, MECH-150 produces
+    near-identical outputs across all sensory contexts, and the ARC-041 dual
+    pathways (MECH-151, MECH-152) carry no signal.
+
+    Phase 2 -- E2 substrate development: E2 trajectory generation will only
+    produce meaningfully action-conditional outputs once E1 provides informative
+    priors. The action_bias (MECH-151) is near-zero when ContextMemory is
+    undifferentiated, leaving E2 to generate context-blind affordance proposals.
+    The E1 LSTM bulk prior (SD-002 pathway) is similarly uninformative until
+    E1 has been exposed to sufficient structured environment.
+
+    Phase 3 -- E3 ethical selection: E3's terrain weighting and harm/goal
+    precision scaling (MECH-152, ARC-016) can only amplify signal that exists.
+    With undifferentiated terrain_weight [w_harm, w_goal] from an untrained
+    MECH-152 circuit, E3 ethical selection operates as uniform scoring --
+    architecturally present but not functionally discriminating.
+
+    This staged dependency is not a design deficiency but an architectural
+    feature mirroring biological neurodevelopment: vmPFC/OFC frontal cue
+    integration circuits continue myelinating and forming stable connectivity
+    into the mid-20s. Iowa Gambling Task data shows adolescents can verbally
+    identify harmful decks (stored knowledge intact -- E3 can reason) but the
+    cue -> anticipatory SCR -> action bias pathway (the biological analog of
+    ARC-041) is not yet reliably driving behaviour. The anticipatory SCR appears
+    in adults BEFORE deck selection; in adolescents it appears concurrently or
+    after -- the circuit is wired earlier but the training regime has not yet
+    established the cue-value associations that make it discriminating
+    (Bechara et al. 2000 developmental IGT data).
+
+    Implication: experiments measuring E3 ethical selection performance before
+    Phase 1 (supervised ContextMemory training) is complete will observe
+    near-chance ethical selection not because E3 is broken but because the
+    input signal is absent. EXQ-181b is exactly this failure mode: the circuit
+    was wired (SD-016 complete) but the training regime had not been applied.
+    Registered 2026-03-31 from EXQ-181b result and developmental staging analysis.
+  evidence:
+    - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
+
+- id: MECH-153
+  title: "E1 ContextMemory requires a supervised context-labeling training objective -- not unsupervised experience alone -- to produce differentiated cue-indexed representations; without this objective, hazard-proximate and hazard-distal context vectors remain near-identical (cosine_sim approximately 1.0), leaving the MECH-150 retrieval pathway functionally silent."
+  claim_type: mechanism_hypothesis
+  subject: e1.context_memory_supervised_training_requirement
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-150
+    - SD-016
+    - ARC-041
+  notes: >
+    EXQ-181b result (2026-03-31): with proper context-B sampling (num_hazards=1,
+    genuine spatial separation between hazard-proximate and hazard-distal contexts),
+    cosine_sim(mean_prior_A, mean_prior_B) = 0.9999 across 0/3 seeds. This
+    confirms that ContextMemory -- trained only via implicit error signals from
+    the E1 LSTM world-model objective -- does not develop differentiated context
+    representations. The world-model objective rewards accurate state prediction;
+    it does not reward discriminating between hazard-proximate and hazard-distal
+    states, which can look similar in z_world except for the hazard-gradient
+    component. Without a gradient signal that specifically rewards this
+    distinction, the memory system fails to encode it.
+
+    Required training objective: a supervised context-labeling signal in which
+    the hazard-field label (binary: hazard-proximate / hazard-distal, derived
+    from hazard_gradient_view.max() threshold) is regressed or classified from
+    the ContextMemory output. This provides the gradient that drives the memory
+    system to encode the relevant distinction into stored associations.
+    SD-016 specification already includes a supervised proxy for terrain_weight:
+    hazard_field_view.max() context label (see sd_016_frontal_cue_integration.md,
+    training signals section).
+
+    Biological analog: OFC/vmPFC representation of outcome value and context
+    is not acquired from pure prediction error alone -- outcome labeling and
+    reversal training signals are required to establish cue-value associations
+    (Murray & Izquierdo 2007 OFC reversal; Bechara 2004 somatic marker
+    hypothesis). Patients with intact world knowledge but impaired vmPFC
+    (patient EVR; Eslinger & Damasio 1985) demonstrate that prediction error
+    alone cannot substitute for the value-labeling circuit.
+
+    Prerequisite status: MECH-153 is a prerequisite for MECH-150 evaluation,
+    not a refutation of MECH-150. The retrieval mechanism (MECH-150) can only
+    be tested once the training objective produces differentiated memory content.
+    This is an implementation precondition, not a claim that MECH-150 is false.
+    Registered 2026-03-31 from EXQ-181b result.
+  evidence_quality_note: >
+    EXQ-181b (num_hazards=1, proper context-B sampling): cosine_sim=0.9999
+    (C1 FAIL, 0/3 seeds pass criterion), harm_r2=0.23 (C2 FAIL, 1/3 seeds pass).
+    This is the definitive diagnostic for the supervised training prerequisite.
+    EXQ-181 was degenerate (n_context_B=0, num_hazards=4 makes hazard ambient;
+    marked superseded). EXQ-181b supersedes EXQ-181 as the valid diagnostic.
+    Pre-experimental prerequisite identified -- MECH-150 evaluation blocked until
+    supervised context-labeling training is implemented and validated.
+  evidence:
+    - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
+
+- id: INV-041
+  title: "The childhood phase of REE instantiation -- committed behaviour with constrained affordances -- is the necessary developmental regime that populates E1 ContextMemory with the content ARC-041 (SD-016) requires; this phase is not merely a safety feature but an architectural prerequisite for E3 ethical selection to operate on real signal."
+  claim_type: invariant
+  subject: development.childhood_phase_architectural_necessity
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-042
+    - MECH-153
+    - SD-016
+    - SD-012
+    - ARC-041
+  location: docs/architecture/vmPFC.md
+  notes: >
+    The childhood phase is defined by three co-occurring constraints: (1) high
+    committed-behaviour rate (limited volitional refusal), (2) constrained
+    affordance space (fewer available action types, forced task engagement),
+    (3) supervised context-labeling signal applied to ContextMemory during
+    training. These constraints together generate the training distribution
+    that E1 ContextMemory requires: high exposure to hazard-proximate and
+    hazard-distal contexts under conditions that produce labelled outcome data
+    (harm contacts, goal contacts) for the supervised training objective
+    (MECH-153).
+
+    Without the childhood phase, an REE agent initialised with full affordance
+    space and low commitment rate will avoid hazard-proximate contexts (sensible
+    policy), but the avoidance itself prevents ContextMemory from ever receiving
+    the hazard-context-labeled training signal. The very policy behaviour that
+    makes the agent safe during deployment is the policy behaviour that
+    undermines the E1 substrate development that makes later ethical selection
+    meaningful. This creates a developmental bootstrapping requirement: the
+    agent must first be in a regime where harm-adjacent contexts ARE experienced
+    (childhood phase -- committed, constrained) before the substrate that allows
+    avoiding those contexts intelligently (via E3 cue-indexed precision scaling)
+    is established.
+
+    Biological analog: vmPFC/OFC frontal cue integration circuits continue
+    myelinating and forming stable synaptic connectivity into the mid-20s.
+    Adolescents show Iowa Gambling Task results where they can verbally identify
+    harmful decks (stored declarative knowledge intact -- E3 can reason about
+    outcomes) but the cue -> anticipatory SCR -> action bias pathway is not yet
+    reliably driving behaviour before deck selection. The anticipatory SCR
+    appears before selection in adults; in adolescents it appears concurrently
+    or after (Bechara et al. 2000 developmental IGT data; Gardner & Steinberg
+    2005 risk-taking in adolescent cohorts). The developmental period is the
+    training regime, not the construction period -- the circuit is present
+    earlier than the mid-20s but requires the childhood/adolescent exposure
+    distribution to become discriminating.
+
+    REE implication: the childhood phase must be treated as a system design
+    parameter, not an operational constraint to be minimised. Duration, degree
+    of constraint, and the specific supervised context-labeling signal applied
+    during this phase are hyperparameters of E1 substrate development. The
+    endpoint criterion for exiting the childhood phase is not age/time but
+    the differentiation quality of ContextMemory -- measurable by cosine_sim
+    between hazard-proximate and hazard-distal context representations, the
+    same metric that EXQ-181b found inadequate in the untrained system.
+    Registered 2026-03-31 from developmental staging analysis and EXQ-181b result.
+  evidence:
+    - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
