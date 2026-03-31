@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_032b_mech102_ttype_escalation
 
-Generated: `2026-03-31T18:37:00.406188Z`
+Generated: `2026-03-31T20:17:33.028843Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

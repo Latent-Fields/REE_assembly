@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-31T18:37:00.406188Z`
+Generated: `2026-03-31T20:17:33.028843Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -129,7 +129,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: V3-gated claim, no V3 runs yet. Hold.
 
 ### ARC-041
 - Current status: `candidate`
@@ -144,12 +147,15 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Hold at candidate: conflict_ratio=1.0 with only 2 experimental entries. Insufficient evidence to resolve.
 
 ### MECH-057a
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.807, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.806, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: Prior 10 synthetic runs (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid. Genuine ree-v1-minimal experiment completed 2026-02-26 (EVB-0042, control_completion_requirement): FAIL (informative baseline — effect direction correct, magnitude sub-threshold). FULL last-Q harm 0.879 | NO_ATTRIBUTION 0.896 (+1.9%) | NO_GATING 0.919 (+4.5%). Degradation threshold 1.1 (10%): neither ablation me…
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
@@ -262,7 +268,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.763, conflict_ratio=0.857, exp_entries=24, lit_entries=3; directions supports=9, weakens=12, mixed=6, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.762, conflict_ratio=0.857, exp_entries=24, lit_entries=3; directions supports=9, weakens=12, mixed=6, unknown=0, conflict_ratio=0.857
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -329,7 +335,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Hold at candidate: conflict_ratio=0.889 with greedy navigation confound identified. Resolution experiments needed to isolate z_goal behavioral signal.
 
 ### MECH-116
 - Current status: `candidate`
@@ -401,7 +410,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Hold at candidate: conflict_ratio=1.0, only 2 experimental entries, empty evidence quality note. Needs dedicated experiments.
 
 ### Q-019
 - Current status: `open`
@@ -531,4 +543,7 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Hold at candidate: seeding mechanism works (C1 PASS) but downstream utilization fails (C2 FAIL). SD-012 core claim partially validated; resolution experiments needed for goal-to-behavior pathway.
