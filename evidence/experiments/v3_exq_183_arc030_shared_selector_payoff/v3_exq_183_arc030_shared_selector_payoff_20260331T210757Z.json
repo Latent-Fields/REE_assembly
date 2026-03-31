@@ -1,0 +1,77 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "combined_benefit_rate": 0.15333333333333335,
+    "combined_mean_benefit": 0.0030046594333112526,
+    "combined_harm_rate": 0.14609310085592866,
+    "harm_only_benefit_rate": 0.12666666666666668,
+    "harm_only_mean_benefit": 0.0018510975114520783,
+    "harm_only_harm_rate": 0.18430891580139264,
+    "random_benefit_rate": 0.21,
+    "random_mean_benefit": 0.006886144109474037,
+    "random_harm_rate": 0.2531854245209681,
+    "benefit_eval_auc": 0.538400122739939,
+    "benefit_ratio": 1.2105263157894737,
+    "harm_ratio": 0.7926534656269992,
+    "benefit_weight": 1.0,
+    "n_seeds": 3.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-183 -- ARC-030 Shared Selector Payoff\n\n**Status:** FAIL\n**Claims:** ARC-030, MECH-112\n**Decision:** retire_ree_claim\n**Seeds:** [42, 7, 13]\n\n## Design\n\nShared harm+goal selector (E3 with benefit_eval_head) vs harm-only vs random.\nbenefit_eval_head trained with F.binary_cross_entropy (Sigmoid already applied).\nLabels: is_near_resource = manhattan_dist <= 2.\nAction selection: score = harm_eval(z_world_next) - benefit_weight * benefit_eval(z_world_next).\n\n## Results\n\n| Condition | benefit_rate | mean_benefit | harm_rate |\n|---|---|---|---|\n| COMBINED | 0.153 | 0.00300 | 0.14609 |\n| HARM_ONLY | 0.127 | 0.00185 | 0.18431 |\n| RANDOM | 0.210 | 0.00689 | 0.25319 |\n\n**benefit_eval_auc:** 0.5384\n**benefit_ratio (combined/harm_only):** 1.21x\n**harm_ratio (combined/harm_only):** 0.79x\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: benefit_ratio >= 1.2x | PASS | 1.21x |\n| C2: benefit_eval_auc >= 0.65 | FAIL | 0.5384 |\n| C3: harm_ratio <= 1.2x | PASS | 0.79x |\n\nCriteria met: 2/3 -> **FAIL**\n\n## Per-Seed\n\n  seed=42: auc=0.5671 combined_br=0.140 harm_only_br=0.170 random_br=0.250\n  seed=7: auc=0.5621 combined_br=0.170 harm_only_br=0.200 random_br=0.230\n  seed=13: auc=0.4859 combined_br=0.150 harm_only_br=0.010 random_br=0.150\n\n## Failure Notes\n\n- C2 FAIL: benefit_eval_auc=0.5384 < 0.65. Benefit head cannot discriminate near-resource states.\n",
+  "claim_ids": [
+    "ARC-030",
+    "MECH-112"
+  ],
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "benefit_eval_auc": 0.5671457607433217,
+      "combined_benefit_rate": 0.14,
+      "combined_mean_benefit": 0.0033605871286295098,
+      "combined_harm_rate": 0.1285707645240568,
+      "harm_only_benefit_rate": 0.17,
+      "harm_only_mean_benefit": 0.0019594859035307628,
+      "harm_only_harm_rate": 0.13089520537467797,
+      "random_benefit_rate": 0.25,
+      "random_mean_benefit": 0.007729300295947873,
+      "random_harm_rate": 0.2521572193770568
+    },
+    {
+      "seed": 7,
+      "benefit_eval_auc": 0.5621399176954732,
+      "combined_benefit_rate": 0.17,
+      "combined_mean_benefit": 0.003885694934829497,
+      "combined_harm_rate": 0.19186869804890125,
+      "harm_only_benefit_rate": 0.2,
+      "harm_only_mean_benefit": 0.0032242704557433454,
+      "harm_only_harm_rate": 0.12922351046256225,
+      "random_benefit_rate": 0.23,
+      "random_mean_benefit": 0.0071202353726895085,
+      "random_harm_rate": 0.26066282226507154
+    },
+    {
+      "seed": 13,
+      "benefit_eval_auc": 0.4859146897810219,
+      "combined_benefit_rate": 0.15,
+      "combined_mean_benefit": 0.0017676962364747506,
+      "combined_harm_rate": 0.1178398399948279,
+      "harm_only_benefit_rate": 0.01,
+      "harm_only_mean_benefit": 0.00036953617508212724,
+      "harm_only_harm_rate": 0.29280803156693774,
+      "random_benefit_rate": 0.15,
+      "random_mean_benefit": 0.0058088966597847295,
+      "random_harm_rate": 0.24673623192077593
+    }
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_183_arc030_shared_selector_payoff",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260331T210757Z",
+  "claim": "ARC-030",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_183_arc030_shared_selector_payoff_20260331T210757Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
