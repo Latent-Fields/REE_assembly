@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_162_mech137_commit_token_structure
 
-Generated: `2026-03-31T13:21:48.109127Z`
+Generated: `2026-03-31T18:37:00.406188Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

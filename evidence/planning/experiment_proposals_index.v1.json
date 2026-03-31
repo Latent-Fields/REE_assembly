@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-31T13:21:48.109127Z",
+  "generated_at_utc": "2026-03-31T18:37:00.406188Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -1210,6 +1210,56 @@
       "target_repo": "ree-v3"
     },
     {
+      "claim_id": "SD-003",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Reconfirm the post-SD-011 SD-003 attribution result in its current form: can the trained z_harm_s counterfactual attribution path cleanly beat an explicit ablation or scramble control across matched seeds?",
+      "priority": "high",
+      "proposal_id": "EXP-0089",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "SD-011",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Test whether the dual nociceptive stream substrate is stable enough to be treated as platform rather than rescue work.",
+      "priority": "high",
+      "proposal_id": "EXP-0090",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "SD-015",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Resolve the representation-vs-selection ambiguity by injecting a handcrafted resource indicator into the goal path: if the selector gets an explicit goal cue, can it exploit it behaviorally?",
+      "priority": "high",
+      "proposal_id": "EXP-0091",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "MECH-112",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Show genuine goal-directed behavior with the current best learned goal signal: does GOAL_PRESENT beat GOAL_ABSENT under matched conditions?",
+      "priority": "high",
+      "proposal_id": "EXP-0092",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "ARC-030",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Demonstrate the selector payoff directly: does a shared harm-plus-goal selector outperform a one-sided selector in a hazard-bearing goal task?",
+      "priority": "high",
+      "proposal_id": "EXP-0093",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "target_repo": "ree-v3"
+    },
+    {
       "claim_id": "MECH-128",
       "objective": "Ground MECH-128 (E1 goal-context conditioning) in predictive coding and top-down goal modulation literature: Rao & Ballard 1999 (predictive coding, top-down context), Clark 2013 (predictive brains with goal-directed top-down), Friston 2010 (free-energy, goal context in generative models), Botvinick & Plaut 2004 (goal-conditioned recurrent networks for action sequences).",
       "priority": "medium",
@@ -1238,7 +1288,7 @@
     }
   ],
   "n_executed": 45,
-  "n_proposed_exp": 11,
+  "n_proposed_exp": 16,
   "n_proposed_lit": 22,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

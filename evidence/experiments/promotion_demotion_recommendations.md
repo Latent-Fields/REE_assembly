@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-03-31T13:21:48.109127Z`
+Generated: `2026-03-31T18:37:00.406188Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -43,7 +43,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-026
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.541, conflict_ratio=1, exp_entries=2, lit_entries=2; directions supports=2, weakens=2, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.54, conflict_ratio=1, exp_entries=2, lit_entries=2; directions supports=2, weakens=2, mixed=0, unknown=0, conflict_ratio=1
 - Evidence quality note: EXQ-033 FAIL (2026-03-18): Tested C4 — whether approach_slope > contact_slope across training depths (ep 200–1000) on CausalGridWorldV2 (alpha_world=0.9, proximity_scale=0.05). Result: approach_slope=0.000265, contact_slope=0.000289, ratio=0.920. FAIL attributed to training instability: both signals peaked at ep500 (gap_approach=0.285, gap_contact=0.276) then degraded by ep1000 (0.245, 0.265). The…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -134,7 +134,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.6, conflict_ratio=1, exp_entries=2, lit_entries=0; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.599, conflict_ratio=1, exp_entries=2, lit_entries=0; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -243,7 +243,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-094
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.629, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.628, conflict_ratio=0.5, exp_entries=2, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: EXQ-140 FAIL/weakens (2026-03-29): hypothesis tag gate discriminative pair FAIL. Consistent with prior finding that hypothesis tag gate as implemented is invalid as an approach. Weakening evidence accumulating.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -280,7 +280,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-099
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.691, conflict_ratio=0.857, exp_entries=6, lit_entries=3; directions supports=3, weakens=4, mixed=2, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.69, conflict_ratio=0.857, exp_entries=6, lit_entries=3; directions supports=3, weakens=4, mixed=2, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-098 (2026-03-26): Two independent FAILs. Run 1 (seeds=42, 5 eps warmup): auc_delta=0.0000 (threshold >= 0.05). Run 2 (seeds=42+7, 400 eps warmup): auc_delta=-0.0384 -- lateral head UNDERPERFORMS baseline with more training. Adverse direction in run 2 suggests lateral head may actively interfere with the existing two-stream harm signal. Hold at candidate. EXQ-098b redesign needed before closing…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -318,7 +318,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.714, conflict_ratio=0.889, exp_entries=18, lit_entries=3; directions supports=4, weakens=5, mixed=7, unknown=0, conflict_ratio=0.889
+- Why this decision is needed: overall_conf=0.713, conflict_ratio=0.889, exp_entries=18, lit_entries=3; directions supports=4, weakens=5, mixed=7, unknown=0, conflict_ratio=0.889
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -334,7 +334,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-116
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.642, conflict_ratio=0.857, exp_entries=4, lit_entries=3; directions supports=3, weakens=4, mixed=0, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.641, conflict_ratio=0.857, exp_entries=4, lit_entries=3; directions supports=3, weakens=4, mixed=0, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-076d FAIL 1/4 (2026-03-27, 2 runs identical): halflife_ratio=1.0, resource_rate_gap=0, goal_norm_t1200_diff=0. Only C3 PASS (goal_norm > 0 in wanting condition). Root cause: halflife threshold (30% of peak goal_norm) never reached in either condition. At 2000 total steps with 1000-step post-removal window, goal persists robustly in both conditions -- insufficient time to observe meaningful dec…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -390,7 +390,8 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.6, conflict_ratio=1, exp_entries=2, lit_entries=0; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: overall_conf=0.599, conflict_ratio=1, exp_entries=2, lit_entries=0; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
+- Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
