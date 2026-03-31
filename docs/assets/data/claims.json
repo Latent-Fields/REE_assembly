@@ -239,6 +239,12 @@
     "title": "The REE hippocampal module requires dorsal-predominant trajectory proposal (value-free spatial navigation) combined with a ventral-analog valence prior sourced from R(x,t) geometry; these are architecturally segregated, not merged.",
     "type": "architectural_commitment"
   },
+  "ARC-041": {
+    "status": "candidate",
+    "subject": "architecture.frontal_cue_weighting_circuit",
+    "title": "The frontal cue-weighting circuit -- E1 cue-indexed retrieval (MECH-150) feeding dual pathways to E2 action biasing (MECH-151) and E3 terrain precision scaling (MECH-152) -- completes the stored-to-active pathway specified in ARC-035 by providing the retrieval mechanism and dual downstream output architecture.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -621,6 +627,12 @@
     "status": "candidate",
     "subject": "hippocampus.schema_primed_rapid_consolidation",
     "title": "Schema-primed rapid assimilation: any hippocampal planning system with a stable prior map must gate episode consolidation rate by map stability -- new episodes entering a mature, coherent residue field should consolidate without the full multi-episode warmup required for a sparse or unstable map.",
+    "type": "invariant"
+  },
+  "INV-040": {
+    "status": "candidate",
+    "subject": "ethics.sensory_cue_sufficiency_for_terrain_activation",
+    "title": "A minimal sensory cue pattern in z_world is sufficient to activate the appropriate harm/goal terrain precision configuration via E1 cue-indexed retrieval -- the full accumulation of z_harm_a is not required for terrain preparation to begin.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -1515,6 +1527,24 @@
     "status": "candidate",
     "subject": "hippocampus.ca1_mismatch_novelty_gate",
     "title": "CA1 mismatch between E1-predicted and CA3-retrieved z_world gates hippocampal trajectory injection into E3 evaluation: novel situations (high CA1 mismatch) should trigger more frequent and diverse rollout proposals; familiar situations (low mismatch) should rely on cached viability estimates.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-150": {
+    "status": "candidate",
+    "subject": "e1.cue_indexed_association_retrieval",
+    "title": "E1 ContextMemory, when queried with z_world alone (not the full [z_self, z_world] state), produces a cue-indexed association context that selectively activates stored associations relevant to the current sensory context.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-151": {
+    "status": "candidate",
+    "subject": "e1_e2.cue_indexed_action_affordance_modulation",
+    "title": "The cue-indexed E1 context vector (MECH-150) projects to an action_bias signal that is added to E2.action_object() outputs, producing top-down contextual weighting of the action-affordance manifold prior to HippocampalModule search.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-152": {
+    "status": "candidate",
+    "subject": "e1_e3.cue_indexed_terrain_precision_modulation",
+    "title": "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

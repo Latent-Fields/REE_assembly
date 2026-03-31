@@ -8320,3 +8320,175 @@
     residue field map from sustained V3 training and ARC-039 offline replay.
     Registered 2026-03-30 from hippocampal function literature pull.
   evidence: []
+
+- id: MECH-150
+  title: "E1 ContextMemory, when queried with z_world alone (not the full [z_self, z_world] state), produces a cue-indexed association context that selectively activates stored associations relevant to the current sensory context."
+  claim_type: mechanism_hypothesis
+  subject: e1.cue_indexed_association_retrieval
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-001
+    - SD-005
+  location: docs/architecture/frontal_cue_integration.md#section-2-the-e1-frontal-cue-indexing-mechanism
+  notes: >
+    The ContextMemory already implements soft-attention retrieval via query_proj +
+    key_proj + value_proj. The standard use queries with the full [z_self, z_world]
+    concatenated state (latent_dim=64). MECH-150 uses z_world alone as the query,
+    isolating what sensory cues (not body state) retrieve from stored associations.
+    The output cue_context [batch, latent_dim=64] encodes which stored associations
+    are most strongly activated by the current exteroceptive context.
+    Note: ContextMemory.read() returns [batch, latent_dim=64] (output_proj maps
+    memory_dim=128 -> latent_dim=64). The z_world-only query requires a separate
+    world_query_proj: Linear(world_dim=32, memory_dim=128) because the existing
+    query_proj expects latent_dim=64 as input.
+    Two projection heads convert cue_context: cue_action_proj (Linear(latent_dim=64,
+    action_object_dim=16)) and cue_terrain_proj (Linear(latent_dim=64, 2) + sigmoid).
+    Implementation: new method E1DeepPredictor.extract_cue_context(z_world) ->
+    (action_bias, terrain_weight). Specified in SD-016.
+    Biological analog: OFC/vmPFC pattern-completes from partial sensory cues
+    (Murray & Izquierdo 2007 OFC reversal learning; Damasio 1994 somatic marker
+    hypothesis) -- external sensory context activates stored affective/motivational
+    associations independent of current body state.
+    Prerequisite: SD-005 (z_world must be architecturally distinct from z_self
+    for a z_world-only query to be meaningful).
+    Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence: []
+
+- id: MECH-151
+  title: "The cue-indexed E1 context vector (MECH-150) projects to an action_bias signal that is added to E2.action_object() outputs, producing top-down contextual weighting of the action-affordance manifold prior to HippocampalModule search."
+  claim_type: mechanism_hypothesis
+  subject: e1_e2.cue_indexed_action_affordance_modulation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-150
+    - SD-004
+    - ARC-001
+    - ARC-002
+  location: docs/architecture/frontal_cue_integration.md#section-3-the-e1e2-action-modulation-pathway
+  notes: >
+    Current E2.action_object(z_world, action) produces o_t [action_object_dim] --
+    the compressed world-effect of action. HippocampalModule navigates in this
+    action-object space (SD-004). MECH-151 adds: o_t_biased = o_t + action_bias,
+    where action_bias = E1.cue_action_proj(cue_context). HippocampalModule search
+    is pre-shaped by this bias: action-objects consistent with the cue-activated
+    associations are elevated, contextually inappropriate ones suppressed. This is
+    top-down gating of the affordance manifold -- E1 biases which action-objects
+    rank highly, but E3 still selects.
+    Distinct from MECH-082 (top-down perceptual bias via E2 model distortion,
+    which operates from E2 prediction error structure back through E1 attentional
+    sampling). MECH-151 is the complementary direction: E1->E2 action biasing via
+    cue-context projection.
+    Distinct from MECH-116 (tonic goal conditioning on E1 LSTM): MECH-151 is
+    cue-specific and z_world-indexed (changes with sensory context).
+    Biological analog: vmPFC has direct projections to striatum (caudate/putamen)
+    and premotor cortex (Haber & Behrens 2014 frontostriatal loops) -- not just
+    evaluation input but action gate modulation.
+    Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence: []
+
+- id: MECH-152
+  title: "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation."
+  claim_type: mechanism_hypothesis
+  subject: e1_e3.cue_indexed_terrain_precision_modulation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-150
+    - ARC-016
+    - SD-010
+    - ARC-035
+  location: docs/architecture/frontal_cue_integration.md#section-4-the-e1e3-terrain-precision-modulation-pathway
+  notes: >
+    Current E3 dynamic precision (ARC-016) is a single scalar derived from E3's
+    own prediction error variance (running_variance EMA). It controls the commit
+    threshold but does not distinguish harm precision from goal precision, and does
+    not use sensory context. MECH-152 adds a context-specific multiplicative factor:
+    harm_score_contextual = harm_score * w_harm; goal_score_contextual = goal_score
+    * w_goal, where [w_harm, w_goal] = sigmoid(E1.cue_terrain_proj(cue_context)).
+    Applied before trajectory scoring aggregation in E3.score_trajectory().
+    Example: hazard-gradient context -> w_harm > 0.8, w_goal < 0.5 (harm avoidance
+    focus); resource-proximate context -> w_goal > 0.8, w_harm < 0.5 (approach
+    mode).
+    Relationship to ARC-016: they compose multiplicatively -- effective_harm_precision
+    = (1/running_variance) * w_harm. ARC-016 is temporal (recent prediction error
+    variance); MECH-152 is contextual (current sensory cue association).
+    Biological: vmPFC lesion produces flat w_harm = w_goal regardless of sensory
+    context -- the Iowa Gambling Task deficit is specifically contextual precision
+    scaling failure (Bechara et al. 1994), not absence of harm knowledge.
+    Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence: []
+
+- id: ARC-041
+  title: "The frontal cue-weighting circuit -- E1 cue-indexed retrieval (MECH-150) feeding dual pathways to E2 action biasing (MECH-151) and E3 terrain precision scaling (MECH-152) -- completes the stored-to-active pathway specified in ARC-035 by providing the retrieval mechanism and dual downstream output architecture."
+  claim_type: architectural_commitment
+  subject: architecture.frontal_cue_weighting_circuit
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-150
+    - MECH-151
+    - MECH-152
+    - ARC-035
+    - ARC-001
+    - ARC-002
+    - ARC-003
+    - SD-005
+  location: docs/architecture/frontal_cue_integration.md
+  notes: >
+    ARC-035 (vmPFC.md) specifies that stored affective/normative content must
+    become active in the navigable state at trajectory evaluation time, but does
+    not specify the retrieval mechanism or the E2-facing output pathway. ARC-041
+    specifies the circuit architecture: E1 ContextMemory is queried with z_world,
+    producing cue_context that feeds BOTH E2 (action affordance bias via MECH-151)
+    and E3 (terrain precision scaling via MECH-152). This is a dual-output frontal
+    circuit mapping onto the dual role of OFC/vmPFC: (1) action gating via
+    orbitofrontal to basal ganglia action selection, and (2) value weighting via
+    vmPFC to amygdala/hippocampus terrain scoring.
+    ARC-041 complements SD-002 (E1 terrain_prior -> HippocampalModule): SD-002 is
+    the BULK prior pathway (context-agnostic); ARC-041 is the CUE-SPECIFIC
+    modulation pathway (context-specific). They are additive and independent.
+    V3 implementation: ~5394 new E1 params (world_query_proj + 2 linear projection
+    heads), wiring changes in agent.py. Backward-compat flag sd016_enabled=False
+    preserves existing experiment behavior.
+    Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence: []
+
+- id: INV-040
+  title: "A minimal sensory cue pattern in z_world is sufficient to activate the appropriate harm/goal terrain precision configuration via E1 cue-indexed retrieval -- the full accumulation of z_harm_a is not required for terrain preparation to begin."
+  claim_type: invariant
+  subject: ethics.sensory_cue_sufficiency_for_terrain_activation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-041
+    - MECH-150
+    - MECH-152
+    - SD-005
+  location: docs/architecture/frontal_cue_integration.md#section-8-new-claim-ids
+  notes: >
+    This invariant captures the forward-directionality of the frontal
+    cue-integration circuit: partial sensory cues (e.g., seeing a hazard gradient
+    field in world_obs before reaching the hazard) should be sufficient to activate
+    harm-relevant E1 associations and raise w_harm via MECH-152, even before
+    z_harm_a has accumulated (EMA accumulation takes 10-30 steps at tau ~20). This
+    is why the ContextMemory query uses z_world only (not full state): terrain
+    preparation must begin from sensory evidence alone.
+    Biological grounding: conditioned fear (LeDoux 1996 -- partial CS activates
+    fear state before UCS); OFC extinction context (Milad & Quirk 2012 -- safety
+    context activates safety memory from minimal cues); Iowa Gambling Task pre-SCR
+    (Bechara et al. 1997 -- anticipatory skin conductance response from visual cue
+    context before card selection, not after harm).
+    REE implication: if w_harm is not elevated by hazard-field cues until the agent
+    is already adjacent to hazard (z_harm_a elevated), the system fails to prepare
+    early -- the precise failure mode of vmPFC lesion patients.
+    Testable prediction: E3 terrain_weight w_harm should be elevated in episodes
+    where hazard gradient cues are present in z_world BEFORE z_harm_a accumulates.
+    Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence: []
