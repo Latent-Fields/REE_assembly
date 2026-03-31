@@ -9,6 +9,29 @@
 
 ---
 
+## Status Snapshot (2026-03-31)
+
+- **V3 first-paper gate clarified.** `ree-v3` completion for the first paper is now
+  explicitly scoped to the **waking, single-agent substrate**. Sleep, social extension,
+  language/communication, nth-order ethics, and full psychiatric modelling are **not**
+  blockers for V3 completion.
+- **Immediate focus is the approach/goal side.** Harm/attribution substrate has advanced
+  materially (SD-003 architecture, SD-005, SD-010, SD-011, ARC-033), but the main remaining
+  V3 risk is still positive attractor behavior rather than harm avoidance.
+- **Hard V3 completion gates for paper 1:** (1) post-SD-011 SD-003 works on `z_harm_s`,
+  not only the legacy `z_world` form; (2) harm/attribution substrate is stable enough to
+  treat as platform rather than ongoing rescue work; (3) SD-012 + MECH-112 yield genuine
+  behavioral goal lift, not only `z_goal` activation; (4) ARC-030 is demonstrated as
+  dual evaluation of the same trajectories by harm and goal channels inside one selector;
+  (5) matched-seed reruns and at least one task variant confirm robustness; (6) governance
+  state remains clean enough that review/index/claim status are aligned.
+- **First-paper claim remains narrow.** Target claim is: REE architectural separation yields
+  attributable, harm-avoiding, goal-directed agency in a waking single-agent substrate.
+- **Deferred to V4/V5:** consolidation/sleep mechanisms, integrated self/other modelling,
+  structured communication, and emergent ethical behavior in multi-agent settings.
+
+---
+
 ## Status Snapshot (2026-03-26)
 
 - **V2 complete.** Series closed after EXQ-028 (2026-03-19). Governance cycle applied 7
@@ -86,6 +109,52 @@
 
 The roadmap is not a fixed plan; it is a living document that is deliberately updated at
 each step boundary. Steps may be added, split, or reordered as understanding grows.
+
+## V3 Completion Gate For First Paper (2026-03-31 clarification)
+
+This section records the current planning boundary for when `ree-v3` should be considered
+"complete enough" for the first real paper.
+
+**Paper-1 target claim**
+
+REE should support a narrow, defensible claim:
+
+- A waking, single-agent REE substrate can learn stable self/world attribution, harm avoidance,
+  and genuine goal-directed behavior from architectural separation rather than a monolithic
+  reward objective.
+
+**Must-pass gates**
+
+- **Post-SD-011 SD-003 works in the current architecture.** Counterfactual attribution must
+  succeed on the sensory-discriminative harm stream (`z_harm_s`), not only on the older
+  `z_world` formulation.
+- **Harm/attribution substrate is stable.** SD-005, SD-010, SD-011, and ARC-033 must be
+  reliable enough to function as substrate rather than as active rescue work.
+- **Goal-directed behavior is behaviorally real.** SD-012 and MECH-112 must produce a genuine
+  GOAL_PRESENT vs GOAL_ABSENT behavioral lift, not just `z_goal` seeding.
+- **Approach and avoidance compete in one selector.** ARC-030 must be demonstrated as dual
+  evaluation of the same candidate trajectories by harm and goal channels inside a shared
+  commitment process.
+- **Results survive reruns.** Matched-seed reruns and at least one task variant must confirm
+  the core behavior is not a one-task artifact.
+- **Governance state is clean.** Review tracking, claim status, and experiment indexing must
+  remain aligned enough for the evidence story to be legible to an external reader.
+
+**Explicit non-blockers for V3 completion**
+
+- Sleep/offline consolidation mechanisms.
+- Integrated self/other social modelling.
+- Full language integration; simple future communication primitives are enough.
+- nth-order multi-agent ethics tests.
+- Full computational-psychiatry coverage.
+
+**Deferred to V4/V5 / later papers**
+
+- Sleep-like consolidation as a load-bearing mechanism.
+- Social coupling and other-modelling inside core substrate.
+- Structured communication between agents.
+- Emergent ethical behavior in multi-agent settings.
+- Stronger psychiatric modelling beyond single-agent perturbation analogs.
 
 ---
 
