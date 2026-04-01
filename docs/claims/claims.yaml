@@ -7830,6 +7830,13 @@
     V3 scope: the waking/task-demand switch mechanism can be implemented without
     entorhinal grid involvement (see ARC-039 for the V4 durable-storage extension).
     Registered 2026-03-29 from ARC-018 lit pull (Olafsdottir et al. 2017).
+  evidence_quality_note: >
+    EXQ-191 FAIL (2026-04-01): schema assimilation probe -- primed agent showed zero
+    speedup over naive (both hit 200-episode budget, speedup=1.0x). C2 marginal PASS
+    (primed_final 0.196 vs naive 0.201). Script decision logic recommended retire_ree_claim.
+    However, experiment flagged for /diagnose-errors before governance decision: possible
+    insufficient Phase 0 training or schema-transfer wiring issue. Hold at candidate
+    pending diagnosis. (governance 2026-04-01)
   evidence: []
 
 - id: ARC-039
@@ -8467,6 +8474,11 @@
     context -- the Iowa Gambling Task deficit is specifically contextual precision
     scaling failure (Bechara et al. 1994), not absence of harm knowledge.
     Registered 2026-03-31 from frontal cue-integration circuit design.
+  evidence_quality_note: >
+    EXQ-194 MIXED (2026-04-01): direct terrain pathway -- C1 PASS 3/3 (r_w_harm=0.70,
+    harm modulation works) but C2 FAIL (r_w_goal=-0.007, w_goal constant). EXQ-194a
+    (phased training) also ran. Hold at candidate: harm pathway validated but goal
+    pathway not yet functional. Promote only after w_goal validation. (governance 2026-04-01)
   evidence: []
 
 - id: ARC-041
