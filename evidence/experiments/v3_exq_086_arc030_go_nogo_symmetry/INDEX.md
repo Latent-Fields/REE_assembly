@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_086_arc030_go_nogo_symmetry
 
-Generated: `2026-04-01T23:05:17.789389Z`
+Generated: `2026-04-01T23:08:02.991892Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

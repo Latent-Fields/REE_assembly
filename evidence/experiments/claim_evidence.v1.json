@@ -1993,10 +1993,10 @@
       }
     },
     "ARC-041": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.359, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.597, lit_conf=0",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 0,
+        "mixed": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
@@ -2004,28 +2004,28 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.359,
+      "experimental_confidence": 0.597,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
-        "supports": 0,
+        "mixed": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
       "latest_run_id": "v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3",
       "latest_timestamp_utc": "2026-03-31T13:10:40Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.359,
+      "overall_confidence": 0.597,
       "pass_runs": 1,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-041",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "supports",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_181_e1_prior_context_discrimination",
           "failure_signatures": [],
@@ -7197,10 +7197,10 @@
       }
     },
     "MECH-150": {
-      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.359, lit_conf=0",
+      "confidence_rationale": "exp=2 entry(s), lit=0 entry(s), exp_conf=0.597, lit_conf=0",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 0,
+        "mixed": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
@@ -7208,28 +7208,28 @@
       "evidence_class_counts": {
         "exp:simulation": 2
       },
-      "experimental_confidence": 0.359,
+      "experimental_confidence": 0.597,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
-        "supports": 0,
+        "mixed": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 1
       },
       "latest_run_id": "v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3",
       "latest_timestamp_utc": "2026-03-31T13:10:40Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.359,
+      "overall_confidence": 0.597,
       "pass_runs": 1,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-150",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "supports",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_181_e1_prior_context_discrimination",
           "failure_signatures": [],
@@ -9587,9 +9587,9 @@
     "SD-003": {
       "confidence_rationale": "exp=76 entry(s), lit=4 entry(s), exp_conf=0.634, lit_conf=0.857",
       "direction_counts": {
-        "mixed": 22,
+        "mixed": 21,
         "supports": 18,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 40
       },
       "entries_total": 80,
@@ -9603,9 +9603,9 @@
       "fail_runs": 63,
       "genuine_exp_count": 76,
       "genuine_exp_direction_counts": {
-        "mixed": 22,
+        "mixed": 21,
         "supports": 14,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 40
       },
       "latest_run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
@@ -9647,10 +9647,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-003",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.45,
+          "confidence_rationale": "unknown direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "unknown",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
           "failure_signatures": [],
@@ -10096,9 +10096,9 @@
     "SD-007": {
       "confidence_rationale": "exp=20 entry(s), lit=5 entry(s), exp_conf=0.772, lit_conf=0.887",
       "direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 16,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 8
       },
       "entries_total": 25,
@@ -10114,9 +10114,9 @@
       "fail_runs": 13,
       "genuine_exp_count": 20,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 11,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 8
       },
       "latest_run_id": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
@@ -10190,10 +10190,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-007",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.45,
+          "confidence_rationale": "unknown direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "unknown",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
           "failure_signatures": [],
@@ -10210,11 +10210,11 @@
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.952, lit_conf=0.749",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.951, lit_conf=0.749",
       "direction_counts": {
-        "mixed": 2,
+        "mixed": 1,
         "supports": 5,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 0
       },
       "entries_total": 7,
@@ -10223,19 +10223,19 @@
         "lit:computational_model": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.952,
+      "experimental_confidence": 0.951,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
-        "mixed": 2,
+        "mixed": 1,
         "supports": 3,
-        "unknown": 0,
+        "unknown": 1,
         "weakens": 0
       },
       "latest_run_id": "v3_exq_177_sd008_integration_test_20260329T215657Z_v3",
       "latest_timestamp_utc": "2026-03-30T18:15:19.144549Z",
       "literature_confidence": 0.749,
-      "overall_confidence": 0.871,
+      "overall_confidence": 0.87,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -10290,10 +10290,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-008",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
+          "confidence": 0.45,
+          "confidence_rationale": "unknown direction",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
+          "evidence_direction": "unknown",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
           "failure_signatures": [],
@@ -38734,10 +38734,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-034",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_085_mech071_goal_directed_calibration",
       "failure_signatures": [],
@@ -38750,10 +38750,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-071",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_085_mech071_goal_directed_calibration",
       "failure_signatures": [],
@@ -38871,10 +38871,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-034",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_085_mech071_goal_directed_calibration",
       "failure_signatures": [],
@@ -38887,10 +38887,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-071",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_085_mech071_goal_directed_calibration",
       "failure_signatures": [],
@@ -44464,10 +44464,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-003",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
       "failure_signatures": [],
@@ -44479,10 +44479,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-007",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
       "failure_signatures": [],
@@ -44494,10 +44494,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-008",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.45,
+      "confidence_rationale": "unknown direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "unknown",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_145_sd008_sd007_sd003_integration",
       "failure_signatures": [],
@@ -45482,10 +45482,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-041",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_181_e1_prior_context_discrimination",
       "failure_signatures": [],
@@ -45497,10 +45497,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-150",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_181_e1_prior_context_discrimination",
       "failure_signatures": [],
@@ -46520,7 +46520,7 @@
       "timestamp_utc": "2026-04-01T23:05:11.900980Z"
     }
   ],
-  "generated_at_utc": "2026-04-01T23:05:17.789389Z",
+  "generated_at_utc": "2026-04-01T23:08:02.991892Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
