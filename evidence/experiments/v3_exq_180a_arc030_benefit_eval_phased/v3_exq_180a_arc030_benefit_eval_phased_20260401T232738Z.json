@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "probe_r2": 0.4467166576260249,
+    "benefit_head_r": -0.10263111955273414,
+    "head_r_p1": -0.09368505917833964,
+    "benefit_per_ep_on": 0.16,
+    "benefit_per_ep_off": 0.43333333333333335,
+    "benefit_ratio": 0.36923076923076925,
+    "final_benefit_loss": 0.11782032748063405,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "seeds_c1_pass": 3.0,
+    "seeds_c2_pass": 0.0,
+    "seeds_c3_pass": 0.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "benefit_weight": 1.0,
+    "num_hazards": 4.0,
+    "num_resources": 3.0,
+    "p0_episodes": 200.0,
+    "p1_episodes": 100.0,
+    "p2_episodes": 200.0
+  },
+  "summary_markdown": "# V3-EXQ-180a -- Resource Proximity benefit_eval_head with Phased Training\n\n**Status:** FAIL\n**Claims:** ARC-030\n**Seeds:** [42, 7, 11]\n**Supersedes:** V3-EXQ-180\n\n## Context\n\nEXQ-180 showed probe_r2=0.619 (z_world DOES encode resource proximity, C1 PASS) but benefit_ratio=0.29x (C3 FAIL). Root cause: joint training -- benefit_eval_head chased moving z_world during E1 convergence. Fix: phased training.\n\n## Design (Phased Training Protocol)\n\n**Phase 0 (200 eps):** E1+E2 warmup ONLY. No benefit_eval training. Let z_world converge.\n\n**Phase 1 (100 eps):** Freeze E1+E2. Train benefit_eval_head on z_world.detach() with MSE on resource_field_view.max() (continuous proximity). Also fit linear probe for R^2 diagnostic.\n\n**Phase 2 (200 eps):** Eval with benefit_eval_enabled=True in E3 trajectory scoring. BENEFIT_EVAL_ON vs BENEFIT_EVAL_OFF (random).\n\n**Config:** alpha_world=0.9, benefit_weight=1.0, num_hazards=4, num_resources=3, use_proxy_fields=True\n\n## Key Results\n\n| Metric | Value | Threshold |\n|---|---|---|\n| probe_r2 (linear) | 0.4467 | > 0.3 |\n| benefit_head_r (eval) | -0.1026 | > 0.3 |\n| head_r_p1 (training) | -0.0937 | -- (diagnostic) |\n| benefit_ratio | 0.37x | > 1.0 |\n| benefit_on | 0.160 | -- |\n| benefit_off | 0.433 | -- |\n| final_benefit_loss | 0.117820 | -- |\n\n## Pass Criteria\n\n| Criterion | Result | Seeds passing |\n|---|---|---|\n| C1: probe_r2 > 0.3 | PASS | 3/3 |\n| C2: benefit_head_r > 0.3 | FAIL | 0/3 |\n| C3: benefit_ratio > 1.0 | FAIL | 0/3 |\n\nPASS rule: all three criteria pass in >= 2/3 seeds -> **FAIL**\n\n## Interpretation\n\nC1 PASS: probe_r2=0.4467 (> 0.3) (3/3 seeds). z_world DOES encode resource proximity.\n\nC2 FAIL: benefit_head_r=-0.1026 (<= 0.3) (0/3 seeds). Signal exists in z_world but head did not learn it. Check lr, n_p1_samples, or head capacity.\n\nC3 FAIL: benefit_ratio=0.37x (<= 1.0) (0/3 seeds). Expected -- head not tracking proximity.\n\n## Per-Seed Results\n\n  seed=42: probe_r2=0.4861 head_r=-0.1598 head_r_p1=-0.0941 on=0.165 off=0.515 ratio=0.32x loss=0.093947 C1=PASS C2=FAIL C3=FAIL\n  seed=7: probe_r2=0.3356 head_r=-0.0551 head_r_p1=-0.0876 on=0.165 off=0.335 ratio=0.49x loss=0.150999 C1=PASS C2=FAIL C3=FAIL\n  seed=11: probe_r2=0.5184 head_r=-0.0930 head_r_p1=-0.0993 on=0.150 off=0.450 ratio=0.33x loss=0.108516 C1=PASS C2=FAIL C3=FAIL\n",
+  "claim_ids": [
+    "ARC-030"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_180a_arc030_benefit_eval_phased",
+  "fatal_error_count": 0,
+  "supersedes": "v3_exq_180_resource_prox_gradient_diag",
+  "run_timestamp": "20260401T232738Z",
+  "claim": "ARC-030",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_180a_arc030_benefit_eval_phased_20260401T232738Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "benefit_per_ep_handcrafted": 2.19,
+    "benefit_per_ep_absent": 0.19666666666666666,
+    "benefit_ratio": 11.135593220338983,
+    "harm_per_ep_handcrafted": 1.3533464720884958,
+    "harm_per_ep_absent": 1.1669704423387846,
+    "lambda_goal": 2.0,
+    "lambda_harm": 1.0,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "handcrafted": {
+        "seed": 42,
+        "condition": "GOAL_HANDCRAFTED",
+        "goal_handcrafted": true,
+        "avg_benefit_per_ep": 2.19,
+        "avg_harm_per_ep": 1.3486475388526915,
+        "avg_oracle_prox": 0.18515437953640201,
+        "train_resource_events": 31
+      },
+      "absent": {
+        "seed": 42,
+        "condition": "GOAL_ABSENT",
+        "goal_handcrafted": false,
+        "avg_benefit_per_ep": 0.16,
+        "avg_harm_per_ep": 1.1736915217041968,
+        "avg_oracle_prox": 0.28552422304927316,
+        "train_resource_events": 31
+      }
+    },
+    {
+      "seed": 7,
+      "handcrafted": {
+        "seed": 7,
+        "condition": "GOAL_HANDCRAFTED",
+        "goal_handcrafted": true,
+        "avg_benefit_per_ep": 2.43,
+        "avg_harm_per_ep": 1.3930619644224642,
+        "avg_oracle_prox": 0.19744569485780425,
+        "train_resource_events": 44
+      },
+      "absent": {
+        "seed": 7,
+        "condition": "GOAL_ABSENT",
+        "goal_handcrafted": false,
+        "avg_benefit_per_ep": 0.18,
+        "avg_harm_per_ep": 1.1582967545390128,
+        "avg_oracle_prox": 0.28959108382936505,
+        "train_resource_events": 44
+      }
+    },
+    {
+      "seed": 13,
+      "handcrafted": {
+        "seed": 13,
+        "condition": "GOAL_HANDCRAFTED",
+        "goal_handcrafted": true,
+        "avg_benefit_per_ep": 1.95,
+        "avg_harm_per_ep": 1.3183299129903316,
+        "avg_oracle_prox": 0.1833598262609724,
+        "train_resource_events": 23
+      },
+      "absent": {
+        "seed": 13,
+        "condition": "GOAL_ABSENT",
+        "goal_handcrafted": false,
+        "avg_benefit_per_ep": 0.25,
+        "avg_harm_per_ep": 1.1689230507731438,
+        "avg_oracle_prox": 0.2915695792880259,
+        "train_resource_events": 23
+      }
+    }
+  ],
+  "summary_markdown": "# V3-EXQ-182a -- SD-015 Handcrafted Goal Cue Diagnostic\n\n**Status:** PASS\n**Claims:** SD-015\n**Decision:** retain_ree\n**Seeds:** [42, 7, 13]\n\n## Design\n\nCeiling test: oracle goal signal (1/(1+manhattan_dist_to_resource))\ncomputed directly from env state. No learned representation.\nAction selection: score(a) = -lambda_goal*prox(a) + lambda_harm*hazard(a)\nGOAL_ABSENT: random action selection.\n\n**lambda_goal:** 2.0  **lambda_harm:** 1.0\n**Warmup:** 200 eps  **Eval:** 100 eps\n**Steps:** 200/ep\n\n## Results\n\n| Condition | benefit/ep | harm/ep |\n|---|---|---|\n| GOAL_HANDCRAFTED | 2.190 | 1.353 |\n| GOAL_ABSENT | 0.197 | 1.167 |\n\n**Benefit ratio (handcrafted/absent): 11.14x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: benefit_ratio >= 1.3x | PASS | 11.14x |\n| C2: benefit_handcrafted > 0.5 | PASS | 2.190 |\n\nCriteria met: 2/2 -> **PASS**\n\n## Interpretation\n\nIf PASS: The bottleneck in SD-015 goal navigation is in learned\ngoal representation (z_goal), not in the action-selection mechanism.\nA perfect signal is sufficient -- z_goal learning must improve.\n\nIf C2 FAIL: Even a perfect goal signal is insufficient -- the\nharm-avoidance tradeoff or env layout is the true bottleneck.\nImproving z_goal learning alone will not fix SD-015.\n\n## Per-Seed\n\nGOAL_HANDCRAFTED:\n  seed=42: benefit/ep=2.190 harm/ep=1.349 oracle_prox=0.185\n  seed=7: benefit/ep=2.430 harm/ep=1.393 oracle_prox=0.197\n  seed=13: benefit/ep=1.950 harm/ep=1.318 oracle_prox=0.183\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=0.160 harm/ep=1.174\n  seed=7: benefit/ep=0.180 harm/ep=1.158\n  seed=13: benefit/ep=0.250 harm/ep=1.169\n\n",
+  "claim_ids": [
+    "SD-015"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_182a_sd015_handcrafted_goal_diagnostic",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T232500Z",
+  "claim": "SD-015",
+  "verdict": "PASS",
+  "run_id": "v3_exq_182a_sd015_handcrafted_goal_diagnostic_20260401T232500Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
