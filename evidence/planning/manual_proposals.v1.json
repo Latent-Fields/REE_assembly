@@ -197,7 +197,7 @@
       "dispatch_mode": "discriminative_pair",
       "objective": "Resolve the representation-vs-selection ambiguity by injecting a handcrafted resource indicator into the goal path: if the selector gets an explicit goal cue, can it exploit it behaviorally?",
       "design": "Condition A: benefit path receives a handcrafted or oracle-grade resource indicator / goal cue that is invariant to spatial respawn. Condition B: matched sham or zero-goal control. Keep the rest of the stack unchanged. PASS: Condition A yields a clear navigation / resource-acquisition lift over control without requiring a new learned encoder. Interpretation: PASS -> selection path is usable and learned representation is the main remaining gap. FAIL -> action selection / benefit integration is still broken even with a good signal.",
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-03-31",
       "notes": "This diagnostic should be run before more elaborate goal-encoder work if the current goal stack remains ambiguous."
     },
@@ -225,7 +225,7 @@
       "dispatch_mode": "discriminative_pair",
       "objective": "Demonstrate the selector payoff directly: does a shared harm-plus-goal selector outperform a one-sided selector in a hazard-bearing goal task?",
       "design": "Condition A: COMBINED selector with harm and goal evaluation active on the same candidate trajectories. Condition B: HARM_ONLY selector with goal pressure removed but identical trajectory generation and evaluation budget. Use a goal-bearing environment with non-trivial hazard pressure. PASS: COMBINED improves goal achievement or resource acquisition over HARM_ONLY without paying an unacceptable harm penalty. This is the cleanest behavioral test that approach and avoidance are adjudicated in one selector rather than bolted together externally.",
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-03-31",
       "notes": "Paper-1 selector payoff test. If needed later, compare COMBINED vs GOAL_ONLY as a follow-up rather than broadening this first pair."
     },

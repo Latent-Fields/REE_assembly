@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-31T20:17:33.028843Z",
+  "generated_at_utc": "2026-03-31T20:41:05.637909Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3099,7 +3099,7 @@
       "proposal_id": "EXP-0091",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -3129,7 +3129,7 @@
       "proposal_id": "EXP-0093",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -3185,6 +3185,21 @@
       "source": "manual",
       "status": "proposed",
       "target_repo": "REE_assembly"
+    },
+    {
+      "added_utc": "2026-03-31",
+      "claim_id": "SD-003",
+      "design": "Full latent counterfactual attribution on z_harm_s (post-SD-011). Template: EXQ-030b pipeline transposed from z_world to z_harm_s. Phase 0: joint training of HarmEncoder, ResidualHarmForward (z_harm_s + delta architecture to prevent 166b-d identity collapse), and E3.harm_eval_z_harm (with Fix #2 distribution matching on forward-predicted states). Phase 1: counterfactual eval -- for each step, z_harm_s_actual = ResidualHarmForward(z_harm_s, a_actual), z_harm_s_cf = ResidualHarmForward(z_harm_s, a_cf), causal_sig = E3.harm_eval_z_harm(z_harm_s_actual) - E3.harm_eval_z_harm(z_harm_s_cf). PASS: attribution_gap > 0, causal_sig ordering (approach > none), causal_sig magnitude > 0.005, harm_forward_r2 > 0.05, seed consistency (>=3/4 seeds). This is the definitive z_harm_s counterfactual -- not the scalar delta proxy (EXQ-166e) but the full latent pipeline that the architecture requires for end-to-end responsibility attribution.",
+      "dispatch_mode": "discriminative_pair",
+      "estimated_minutes": 220,
+      "notes": "Anchor experiment for 'responsibility/attribution is real in the current architecture'. The residual architecture (z_harm_s + delta) is critical -- HarmForwardModel in stack.py lacks it, causing 166b-d identity collapse. 4-seed multi-run for robustness.",
+      "objective": "Obtain a clean end-to-end counterfactual attribution result on z_harm_s using the full latent forward model pipeline (not the scalar delta proxy), demonstrating that the post-SD-011 architecture supports genuine self-attribution of harm.",
+      "priority": "critical",
+      "proposal_id": "EXP-0094",
+      "proposal_type": "experimental",
+      "source": "manual",
+      "status": "proposed",
+      "target_repo": "ree-v3"
     }
   ],
   "manual_proposals_source": "evidence/planning/manual_proposals.v1.json",
