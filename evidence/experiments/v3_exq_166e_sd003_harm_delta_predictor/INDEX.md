@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_166e_sd003_harm_delta_predictor
 
-Generated: `2026-04-01T22:51:29.685328Z`
+Generated: `2026-04-01T23:05:17.789389Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-04-01T22:51:29.685328Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3` | `2026-03-30T21:44:24.200099Z` | PASS | delta_r2_mean=0.641164<br>causal_gap_approach_mean=0.005239<br>causal_gap_contact_mean=0.035032<br>causal_gap_neutral_mean=-0.026621<br>n_approach_eval_mean=7515 | - | - | - | [`summary`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/summary.md) / [`manifest`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/manifest.json) / [`metrics`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/metrics.json) |
+| `v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3` | `2026-04-01T23:01:27.714072Z` | PASS | delta_r2_mean=0.641164<br>causal_gap_approach_mean=0.005239<br>causal_gap_contact_mean=0.035032<br>causal_gap_neutral_mean=-0.026621<br>n_approach_eval_mean=7515 | - | - | - | [`summary`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/summary.md) / [`manifest`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/manifest.json) / [`metrics`](runs/v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3/metrics.json) |

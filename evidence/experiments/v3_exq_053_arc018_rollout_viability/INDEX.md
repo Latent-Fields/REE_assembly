@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_053_arc018_rollout_viability
 
-Generated: `2026-04-01T22:51:29.685328Z`
+Generated: `2026-04-01T23:05:17.789389Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
