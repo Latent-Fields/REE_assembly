@@ -1,0 +1,120 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "benefit_per_ep_goal_present": 0.21333333333333335,
+    "benefit_per_ep_goal_absent": 1.0066666666666666,
+    "benefit_ratio": 0.21192052980132453,
+    "harm_per_ep_goal_present": 1.1193474981439115,
+    "harm_per_ep_goal_absent": 1.3065809301368396,
+    "enc_final_loss": 0.0008799196843271299,
+    "rfm_final_loss": 0.0055938646841677845,
+    "prox_r2": 0.9205760875460532,
+    "rfm_prox_discrimination": 0.05397544262260066,
+    "n_seeds": 3.0,
+    "alpha_world": 0.9,
+    "lr_enc": 0.001,
+    "lr_rfm": 0.0005,
+    "curriculum_episodes": 100.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "goal_present": {
+        "seed": 42,
+        "condition": "GOAL_PRESENT",
+        "goal_present": true,
+        "avg_benefit_per_ep": 0.08,
+        "avg_harm_per_ep": 1.164870832912922,
+        "enc_final_loss": 0.0008987634237273596,
+        "rfm_final_loss": 0.004976611748919823,
+        "prox_r2": 0.9232664108948914,
+        "rfm_prox_discrimination": 0.05515250481548719,
+        "train_resource_events": 898
+      },
+      "goal_absent": {
+        "seed": 42,
+        "condition": "GOAL_ABSENT",
+        "goal_present": false,
+        "avg_benefit_per_ep": 1.01,
+        "avg_harm_per_ep": 1.2954986056351663,
+        "enc_final_loss": 0.0008987634237273596,
+        "rfm_final_loss": 0.004976611748919823,
+        "prox_r2": 0.9232664108948914,
+        "rfm_prox_discrimination": 0.0,
+        "train_resource_events": 898
+      }
+    },
+    {
+      "seed": 7,
+      "goal_present": {
+        "seed": 7,
+        "condition": "GOAL_PRESENT",
+        "goal_present": true,
+        "avg_benefit_per_ep": 0.24,
+        "avg_harm_per_ep": 1.0193489831125737,
+        "enc_final_loss": 0.0008671238536480814,
+        "rfm_final_loss": 0.005992999845184386,
+        "prox_r2": 0.9161047114551757,
+        "rfm_prox_discrimination": 0.08041316360688505,
+        "train_resource_events": 839
+      },
+      "goal_absent": {
+        "seed": 7,
+        "condition": "GOAL_ABSENT",
+        "goal_present": false,
+        "avg_benefit_per_ep": 0.99,
+        "avg_harm_per_ep": 1.310194344648123,
+        "enc_final_loss": 0.0008671238536480814,
+        "rfm_final_loss": 0.005992999845184386,
+        "prox_r2": 0.9161047114551757,
+        "rfm_prox_discrimination": 0.0,
+        "train_resource_events": 839
+      }
+    },
+    {
+      "seed": 13,
+      "goal_present": {
+        "seed": 13,
+        "condition": "GOAL_PRESENT",
+        "goal_present": true,
+        "avg_benefit_per_ep": 0.32,
+        "avg_harm_per_ep": 1.1738226784062387,
+        "enc_final_loss": 0.0008738717756059486,
+        "rfm_final_loss": 0.005811982458399143,
+        "prox_r2": 0.9223571402880928,
+        "rfm_prox_discrimination": 0.026360659445429736,
+        "train_resource_events": 915
+      },
+      "goal_absent": {
+        "seed": 13,
+        "condition": "GOAL_ABSENT",
+        "goal_present": false,
+        "avg_benefit_per_ep": 1.02,
+        "avg_harm_per_ep": 1.3140498401272296,
+        "enc_final_loss": 0.0008738717756059486,
+        "rfm_final_loss": 0.005811982458399143,
+        "prox_r2": 0.9223571402880928,
+        "rfm_prox_discrimination": 0.0,
+        "train_resource_events": 915
+      }
+    }
+  ],
+  "summary_markdown": "# V3-EXQ-185 -- Direct Proximity Argmax Navigation\n\n**Status:** FAIL\n**Claims:** MECH-112, SD-015\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n\n## Design\n\nDirect proximity maximization: no z_goal, no cosine_sim.\naction = argmax_a enc.predict_proximity(RFM(rf_curr, a))\nPick action whose predicted next-step resource_field_view has\nhighest predicted proximity.\n\nKey difference from 085l: 085l uses cosine_sim to z_goal snapshot\n(fails because z_goal is scene-specific noise per EXQ-179).\nEXQ-185 bypasses z_goal entirely.\n\n**alpha_world:** 0.9  (SD-008)\n**lr_enc:** 0.001  **lr_rfm:** 0.0005  **lr:** 0.0001\n**enc_final_loss (avg):** 0.0009\n**rfm_final_loss (avg):** 0.0056\n**prox_r2 (avg):** 0.921\n**rfm_prox_discrimination (avg):** 0.0540\n**Warmup:** 800 eps (curriculum=100 eps)\n**Eval:** 100 eps (GOAL_PRESENT: direct prox argmax; GOAL_ABSENT: random)\n\n## Navigation Results\n\n| Condition | benefit/ep | harm/ep |\n|---|---|---|\n| GOAL_PRESENT | 0.213 | 1.119 |\n| GOAL_ABSENT  | 1.007 | 1.307 |\n\n**Benefit ratio (goal/no-goal): 0.21x**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: benefit_ratio >= 1.3x | FAIL | 0.21x |\n| C2: rfm_prox_disc > 0.05 | PASS | 0.0540 |\n| C3: prox_r2 > 0.3 | PASS | 0.921 |\n| C4: rfm_loss < 0.02 | PASS | 0.0056 |\n\nCriteria met: 3/4 -- **FAIL**\n\n## Interpretation\n\nIf PASS: The ProximityEncoder + RFM pipeline can drive resource\nnavigation WITHOUT z_goal or cosine_sim. The bottleneck in 085l\nwas the z_goal mechanism, not the learned representations.\n\nIf C1 FAIL + C2 PASS: RFM produces differentiated predictions\nbut the proximity gradient does not translate to resource collection.\nPossible cause: proximity gradient points toward resources but\nagent encounters hazards en route, or resources respawn elsewhere.\n\nIf C2 FAIL: RFM does not differentiate actions -- forward model\nis too coarse for 1-step proximity changes, or the 5x5 rf view\nis too local to show action-specific differences.\n\n## Per-Seed\n\nGOAL_PRESENT:\n  seed=42: benefit/ep=0.080 harm/ep=1.165 prox_r2=0.923 rfm_loss=0.0050 rfm_prox_disc=0.0552\n  seed=7: benefit/ep=0.240 harm/ep=1.019 prox_r2=0.916 rfm_loss=0.0060 rfm_prox_disc=0.0804\n  seed=13: benefit/ep=0.320 harm/ep=1.174 prox_r2=0.922 rfm_loss=0.0058 rfm_prox_disc=0.0264\n\nGOAL_ABSENT:\n  seed=42: benefit/ep=1.010 harm/ep=1.295\n  seed=7: benefit/ep=0.990 harm/ep=1.310\n  seed=13: benefit/ep=1.020 harm/ep=1.314\n\n## Failure Notes\n\n- C1 FAIL: benefit_ratio=0.21x < 1.3x. present=0.213 vs absent=1.007. Direct proximity argmax does not produce 30% benefit improvement. If RFM predictions barely differ across actions (C2 fail too), RFM is not learning action-specific predictions. If C2 passes but C1 fails, proximity gradient exists but does not lead to resource collection -- env layout or harm dominance.\n",
+  "claim_ids": [
+    "MECH-112",
+    "SD-015"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_185_direct_prox_argmax",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T025836Z",
+  "claim": "MECH-112",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_185_direct_prox_argmax_20260401T025836Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

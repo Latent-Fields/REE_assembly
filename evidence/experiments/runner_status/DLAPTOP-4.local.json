@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-01T02:50:01.419442+00:00",
+  "last_updated": "2026-04-01T03:00:39.608344+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -3554,6 +3554,34 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_194_direct_terrain_pathway/v3_exq_194_direct_terrain_pathway_20260401T025000Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 49.4
+    },
+    {
+      "queue_id": "V3-EXQ-185",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Direct proximity-argmax action selection -- no z_goal, no cosine_sim",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | harm_per_ep_goal_present: 1.1193474981439115 | harm_per_ep_goal_absent: 1.3065809301368396",
+      "started_at": "2026-04-01T02:53:06.594800+00:00",
+      "completed_at": "2026-04-01T02:58:36.960952+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_185_direct_prox_argmax/v3_exq_185_direct_prox_argmax_20260401T025836Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 330.4
+    },
+    {
+      "queue_id": "V3-EXQ-186",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Hybrid benefit+harm selector -- COMBINED vs BENEFIT_ONLY vs HARM_ONLY vs RANDOM",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "benefit_ratio_vs_harm_only: 1.5454545454545456 | harm_ratio_vs_harm_only: 1.3951371410719338 | harm_weight: 1.0",
+      "started_at": "2026-04-01T02:58:39.290483+00:00",
+      "completed_at": "2026-04-01T03:00:39.606909+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_186_hybrid_benefit_harm_selector/v3_exq_186_hybrid_benefit_harm_selector_20260401T030039Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 120.3
     }
   ]
 }
