@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-01T19:38:55.129692+00:00",
+  "last_updated": "2026-04-01T20:27:14.065954+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-191",
+    "queue_id": "V3-EXQ-197",
     "backlog_id": "",
     "claim_id": "",
-    "title": "ARC-038 schema-primed rapid assimilation probe",
+    "title": "MECH-104 volatility interrupt discriminative pair",
     "description": "",
-    "script": "experiments/v3_exq_191_arc038_schema_assimilation_probe.py",
-    "started_at": "2026-04-01T19:36:49.932152+00:00",
+    "script": "experiments/v3_exq_197_mech104_volatility_interrupt_pair.py",
+    "started_at": "2026-04-01T19:56:30.337893+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 100,
-      "episodes_total": 200,
+      "episodes_done": 200,
+      "episodes_total": 400,
       "overall_pct": 50.0
     },
-    "seconds_elapsed": 125,
-    "seconds_remaining": 125,
+    "seconds_elapsed": 1844,
+    "seconds_remaining": 1844,
     "recent_lines": [
-      "[eval SCHEMA_PRIMED] ep 150/200 harm_rate=0.21302 recent_10_mean=0.11733",
-      "[eval SCHEMA_PRIMED] ep 200/200 harm_rate=0.00271 recent_10_mean=0.16716",
-      "[NAIVE] Evaluating on env_seed_b=200 (no pre-training)...",
-      "[eval NAIVE] ep 50/200 harm_rate=0.26066 recent_10_mean=0.14781",
-      "[eval NAIVE] ep 100/200 harm_rate=0.00286 recent_10_mean=0.12909"
+      "============================================================",
+      "[V3-EXQ-197] Seed 42",
+      "============================================================",
+      "[train seed=42] ep 100/400  running_var=0.000001",
+      "[train seed=42] ep 200/400  running_var=0.000002"
     ],
     "ree_version": "v3"
   },
@@ -37,28 +37,6 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-191",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-038 schema-primed rapid assimilation probe",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-192",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-075 hippocampal-VTA novelty loop probe",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -77,24 +55,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-196",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-018 hippocampal rollout + viability mapping pair",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-197",
       "backlog_id": "",
       "claim_id": "",
       "title": "MECH-104 volatility interrupt discriminative pair",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -3758,6 +3725,48 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_190_mech022_hypothesis_injection_probe/v3_exq_190_mech022_hypothesis_injection_probe_20260401T193646Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2367.2
+    },
+    {
+      "queue_id": "V3-EXQ-191",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-038 schema-primed rapid assimilation probe",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "naive_mean_harm_rate: 0.1859413747196673 | random_mean_harm_rate: 0.26824463237419527 | target_harm_rate: 0.002",
+      "started_at": "2026-04-01T19:36:49.932152+00:00",
+      "completed_at": "2026-04-01T19:40:07.829169+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_191_arc038_schema_assimilation_probe/v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 197.9
+    },
+    {
+      "queue_id": "V3-EXQ-192",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-075 hippocampal-VTA novelty loop probe",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1",
+      "started_at": "2026-04-01T19:40:10.467656+00:00",
+      "completed_at": "2026-04-01T19:40:12.876240+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2.4
+    },
+    {
+      "queue_id": "V3-EXQ-196",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-018 hippocampal rollout + viability mapping pair",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "harm_advantage_mean=0.0000  e2_r2_mean=0.7236 | Outcome: FAIL  evidence_direction: weakens  decision: retire_ree_claim | Done. Outcome: FAIL",
+      "started_at": "2026-04-01T19:40:15.524615+00:00",
+      "completed_at": "2026-04-01T19:56:27.763262+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 972.2
     }
   ]
 }
