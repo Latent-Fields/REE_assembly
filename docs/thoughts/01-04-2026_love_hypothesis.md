@@ -1,1 +1,0 @@
-a simple hypothesis. perhaps love is the downstream consequence of the capacity for and actual sharing of joys and sorrows with another. 
