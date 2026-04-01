@@ -25,8 +25,8 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
-  "evidence_direction_note": "EXQ-166 MIXED 4/6 (2026-03-29): architecture is directionally correct but seed instability prevents clean PASS. Seed 42: obs_fwd_r2=0.867 (strong), causal gap present. Seed 123: obs_fwd_r2=0.0 (complete collapse). Root cause: P0 encoder quality variance -- 50 episodes insufficient to produce reliable z_harm representation on some seeds. EXQ-166a queued with 4 seeds and P0 extended to 80 episodes.",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by EXQ-166e PASS; C2 structurally impossible in obs-space (requires z_harm_s latent).",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,

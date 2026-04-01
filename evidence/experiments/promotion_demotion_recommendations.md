@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-01T21:47:26.113652Z`
+Generated: `2026-04-01T22:24:29.990901Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -63,7 +63,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.678, conflict_ratio=0.75, exp_entries=7, lit_entries=3; directions supports=3, weakens=5, mixed=1, unknown=1, conflict_ratio=0.75
+- Why this decision is needed: overall_conf=0.679, conflict_ratio=0.75, exp_entries=7, lit_entries=3; directions supports=3, weakens=5, mixed=1, unknown=1, conflict_ratio=0.75
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -101,7 +101,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-033
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.699, conflict_ratio=0.857, exp_entries=18, lit_entries=2; directions supports=4, weakens=3, mixed=5, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.701, conflict_ratio=0.857, exp_entries=18, lit_entries=2; directions supports=4, weakens=3, mixed=3, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-030b PASS (2026-03-18): SD-003 counterfactual pipeline validated with z_world and E2.world_forward. This confirms the E2-forward-model-as-counterfactual architecture is sound; the same pattern now applies to z_harm_s. EXQ-093 FAIL (bridge_r2=0) and EXQ-094 FAIL (100x regression) confirm that z_world -> z_harm bridge is not the path forward. EXQ-095a FAIL/SLOW_LEARNING (2026-03-27, 900 phase1 e…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -532,7 +532,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-011
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.831, conflict_ratio=0.545, exp_entries=24, lit_entries=5; directions supports=8, weakens=3, mixed=6, unknown=0, conflict_ratio=0.545
+- Why this decision is needed: overall_conf=0.833, conflict_ratio=0.545, exp_entries=24, lit_entries=5; directions supports=8, weakens=3, mixed=4, unknown=0, conflict_ratio=0.545
 - Evidence quality note: EXQ-093 FAIL + EXQ-094 FAIL (2026-03-24): Both confirmed bridge_r2=0 -- SD-010 makes z_world perp z_harm by architectural design, so HarmBridge(z_world -> z_harm) is infeasible (nothing to learn). EXQ-094 confirmed training E3 on bridge noise produced 100x regression in harm_var vs EXQ-088. These experiments collectively demonstrate that the current single-stream z_harm cannot simultaneously serve…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -551,7 +551,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-012
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.73, conflict_ratio=0.857, exp_entries=12, lit_entries=3; directions supports=4, weakens=3, mixed=3, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.729, conflict_ratio=0.857, exp_entries=12, lit_entries=3; directions supports=4, weakens=3, mixed=3, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-085f FAIL 3/4 (2026-03-27): drive_weight=2.0, resource_respawn_on_consume=True, curriculum=100 eps. C1 PASS: z_goal_norm=0.228 > 0.1 -- SD-012 drive modulation successfully seeds z_goal (this IS the SD-012 core claim: drive-scaled benefit enables seeding). C2 FAIL: benefit_ratio=0.28x -- goal-guided performance worse than random. C3 PASS (cal_gap=0.030). SD-012 seeding mechanism works; downstr…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
