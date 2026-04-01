@@ -1125,6 +1125,15 @@ def _write_claim_evidence_matrix(
             )
             continue
 
+        # Warn if multi-claim experiment lacks per-claim direction overrides
+        if (len(run.claim_ids_tested) > 1
+                and not run.evidence_direction_per_claim
+                and run.experiment_purpose == "evidence"):
+            print(f"  WARNING: {run.run_id} tags {len(run.claim_ids_tested)} claims "
+                  f"without evidence_direction_per_claim -- blanket "
+                  f"'{inferred_direction}' applied to all: "
+                  f"{run.claim_ids_tested}")
+
         for claim_id in run.claim_ids_tested:
             # Per-claim direction override: if the manifest declares a specific
             # direction for this claim_id, use it; otherwise fall back to the

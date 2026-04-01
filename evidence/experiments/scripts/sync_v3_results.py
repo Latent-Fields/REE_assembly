@@ -126,6 +126,18 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     evidence_direction = str(data.get("evidence_direction", "unknown"))
     experiment_purpose = str(data.get("experiment_purpose", "evidence"))
 
+    # Per-claim direction overrides for multi-claim experiments
+    raw_per_claim = data.get("evidence_direction_per_claim") or {}
+    evidence_direction_per_claim = {}
+    if isinstance(raw_per_claim, dict):
+        evidence_direction_per_claim = {str(k): str(v) for k, v in raw_per_claim.items()}
+
+    # Warn if multi-claim experiment lacks per-claim directions
+    if len(claim_ids) > 1 and not evidence_direction_per_claim:
+        print(f"  WARNING: multi-claim experiment ({len(claim_ids)} claims) without "
+              f"evidence_direction_per_claim -- blanket '{evidence_direction}' applied to all: "
+              f"{claim_ids}")
+
     manifest = {
         "schema_version": "experiment_pack/v1",
         "architecture_epoch": data.get("architecture_epoch", "ree_hybrid_guardrails_v1"),
@@ -140,6 +152,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         "claim_ids_tested": claim_ids,
         "evidence_class": "simulation",
         "evidence_direction": evidence_direction,
+        "evidence_direction_per_claim": evidence_direction_per_claim if evidence_direction_per_claim else {},
         "experiment_purpose": experiment_purpose,
         "producer_capabilities": {
             "sd005_split_latent": True,

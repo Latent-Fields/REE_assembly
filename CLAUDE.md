@@ -84,8 +84,9 @@ Rebuild the index after. This is a manual process — the pipeline does not dete
 
 **Superseded experiments:** When a lettered iteration (EXQ-047j) corrects a bug that invalidated the predecessor's evidence (EXQ-047i), set `evidence_direction: "superseded"` on the old manifest and add an `evidence_direction_note`. The indexer records these entries in the full log but marks them `scoring_excluded: "superseded"` and excludes them from confidence and conflict scoring. See REE_Working/CLAUDE.md "EXQ Versioning and Supersession Policy" for the full workflow.
 
-**Per-claim direction overrides (implemented 2026-03-28):** Manifests may include an
-`evidence_direction_per_claim` field — a JSON object mapping claim IDs to direction strings:
+**Per-claim direction overrides (MANDATORY for multi-claim experiments, enforced 2026-04-01):**
+Manifests with `len(claim_ids_tested) > 1` MUST include an `evidence_direction_per_claim` field —
+a JSON object mapping each claim ID to its specific direction string:
 ```json
 "evidence_direction_per_claim": {
   "ARC-024": "supports",
@@ -93,9 +94,13 @@ Rebuild the index after. This is a manual process — the pipeline does not dete
 }
 ```
 The indexer applies the per-claim override for each claim in `claim_ids_tested`; claims not listed
-fall back to the run-level `evidence_direction`. Use this when a multi-criteria experiment has
-distinct pass/fail outcomes for different claims. The `evidence_direction` field must still be set
-to a reasonable overall value (the per-claim field supplements it, not replaces it).
+fall back to the run-level `evidence_direction`. Without per-claim overrides, a single FAIL outcome
+incorrectly marks ALL tagged claims as "weakens" even if only some criteria failed.
+
+**Enforcement:** Both `sync_v3_results.py` and `build_experiment_indexes.py` emit a WARNING when
+a multi-claim evidence experiment lacks `evidence_direction_per_claim`. The queue-experiment skill
+requires scripts to output this field when `len(claim_ids) > 1`. The `evidence_direction` field
+must still be set to a reasonable overall summary value (the per-claim field supplements it).
 
 ## claim_ids Accuracy Rule (CRITICAL)
 

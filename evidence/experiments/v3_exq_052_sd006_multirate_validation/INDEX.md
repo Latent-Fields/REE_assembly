@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_052_sd006_multirate_validation
 
-Generated: `2026-04-01T22:24:29.990901Z`
+Generated: `2026-04-01T22:36:14.750803Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
