@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-01T20:32:51.734559Z`
+Generated: `2026-04-01T21:47:26.113652Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -152,7 +152,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-029
 - Conflict types: directional
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.658
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.657
 - Recent entries:
   - `2026-03-22T19:17:16Z` `experimental` `v3_exq_063_arc029_committed_mode_harm_outcomes` direction=`supports` confidence=0.75
   - `2026-03-29T01:01:06Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
@@ -170,7 +170,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-030
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, overall_confidence=0.679
+- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, overall_confidence=0.678
 - Recent entries:
   - `2026-03-30T20:23:16Z` `experimental` `v3_exq_180_resource_prox_gradient_diag` direction=`weakens` confidence=0.75
   - `2026-03-30T21:47:53.266621Z` `experimental` `v3_exq_085m_arc030_benefit_eval_e3` direction=`weakens` confidence=0.75

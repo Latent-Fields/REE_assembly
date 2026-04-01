@@ -124,6 +124,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         # PARTIAL_*, INCONCLUSIVE, etc. -- preserve as-is for human review
         status = raw_upper
     evidence_direction = str(data.get("evidence_direction", "unknown"))
+    experiment_purpose = str(data.get("experiment_purpose", "evidence"))
 
     manifest = {
         "schema_version": "experiment_pack/v1",
@@ -139,6 +140,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         "claim_ids_tested": claim_ids,
         "evidence_class": "simulation",
         "evidence_direction": evidence_direction,
+        "experiment_purpose": experiment_purpose,
         "producer_capabilities": {
             "sd005_split_latent": True,
             "sd004_action_objects": True,

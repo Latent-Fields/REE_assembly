@@ -80,6 +80,7 @@ class RunRecord:
     direction_explicitly_set: bool = False
     architecture_epoch: str = ""
     adapter_signals_path: Path | None = None
+    experiment_purpose: str = "evidence"
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
 
@@ -327,6 +328,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # meaning the direction was a deliberate manual override and should not be
         # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
         direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
+        experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -345,6 +347,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 evidence_direction=evidence_direction,
                 evidence_direction_per_claim=evidence_direction_per_claim,
                 direction_explicitly_set=direction_explicitly_set,
+                experiment_purpose=experiment_purpose,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
             )
@@ -1140,6 +1143,7 @@ def _write_claim_evidence_matrix(
                 "confidence": entry_confidence,
                 "confidence_rationale": entry_confidence_rationale,
                 "failure_signatures": run.failure_signatures,
+                "experiment_purpose": run.experiment_purpose,
             }
             if run.architecture_epoch:
                 entry["architecture_epoch"] = run.architecture_epoch
@@ -1155,6 +1159,9 @@ def _write_claim_evidence_matrix(
                 continue
             if inferred_direction == "superseded":
                 entry["scoring_excluded"] = "superseded"
+                continue
+            if run.experiment_purpose in ("diagnostic", "baseline"):
+                entry["scoring_excluded"] = f"{run.experiment_purpose}_probe"
                 continue
 
             claim_to_entries[claim_id].append(entry)

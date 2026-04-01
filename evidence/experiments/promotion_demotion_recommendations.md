@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-01T20:32:51.734559Z`
+Generated: `2026-04-01T21:47:26.113652Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -14,7 +14,7 @@ Use this as the human-in-the-loop review queue.
 | `ARC-030` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-032` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-033` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `ARC-041` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-057a` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -30,7 +30,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-118` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-135` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-150` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-152` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
+| `MECH-152` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
 | `Q-019` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -63,7 +63,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.679, conflict_ratio=0.75, exp_entries=7, lit_entries=3; directions supports=3, weakens=5, mixed=1, unknown=1, conflict_ratio=0.75
+- Why this decision is needed: overall_conf=0.678, conflict_ratio=0.75, exp_entries=7, lit_entries=3; directions supports=3, weakens=5, mixed=1, unknown=1, conflict_ratio=0.75
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -101,7 +101,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-033
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.7, conflict_ratio=0.857, exp_entries=18, lit_entries=2; directions supports=4, weakens=3, mixed=5, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: overall_conf=0.699, conflict_ratio=0.857, exp_entries=18, lit_entries=2; directions supports=4, weakens=3, mixed=5, unknown=0, conflict_ratio=0.857
 - Evidence quality note: EXQ-030b PASS (2026-03-18): SD-003 counterfactual pipeline validated with z_world and E2.world_forward. This confirms the E2-forward-model-as-counterfactual architecture is sound; the same pattern now applies to z_harm_s. EXQ-093 FAIL (bridge_r2=0) and EXQ-094 FAIL (100x regression) confirm that z_world -> z_harm bridge is not the path forward. EXQ-095a FAIL/SLOW_LEARNING (2026-03-27, 900 phase1 e…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -121,6 +121,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
 - Why this decision is needed: overall_conf=0.547, conflict_ratio=1, exp_entries=1, lit_entries=1; directions supports=1, weakens=1, mixed=0, unknown=0, conflict_ratio=1
+- Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -130,10 +131,11 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-04-01T21:00:00.000000Z`
-- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
-- Last rationale: EXQ-191 FAIL (zero schema transfer, speedup=1.0x). Flagged for /diagnose-errors before retirement decision -- may be insufficient Phase 0 training or wiring issue. Hold at candidate pending diagnosis.
+- Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `user` at `2026-03-31T20:20:00.000000Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: V3-gated claim, no V3 runs yet. Hold.
 
 ### ARC-041
 - Current status: `candidate`
@@ -420,6 +422,7 @@ Use this as the human-in-the-loop review queue.
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
 - Why this decision is needed: overall_conf=0.825, conflict_ratio=0, exp_entries=2, lit_entries=0; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Evidence quality note: >
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):
   - Promote now (faster convergence, risk premature lock-in)
@@ -429,10 +432,7 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-04-01T21:00:00.000000Z`
-- Last selected option: Hold until one additional confirming run (better robustness, slower progress)
-- Last rationale: EXQ-194 MIXED (C1 PASS w_harm r=0.70, C2 FAIL w_goal constant). Harm pathway validated but goal pathway not yet functional. Hold at candidate until w_goal validation from EXQ-194a or follow-up.
+- Decision status: `pending_user`
 
 ### Q-019
 - Current status: `open`
