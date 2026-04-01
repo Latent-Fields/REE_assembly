@@ -1,0 +1,34 @@
+{
+  "status": "MIXED",
+  "metrics": {
+    "r_w_harm": 0.41282776511976543,
+    "r_w_goal": -0.4130019505568505,
+    "final_terrain_loss": 0.03348137441492336,
+    "n_context_A_steps": 2349,
+    "n_context_B_steps": 1303,
+    "crit1_pass": 0,
+    "crit2_pass": 1,
+    "crit3_pass": 1,
+    "seeds_c1_pass": 0,
+    "seeds_c2_pass": 3,
+    "seeds_c3_pass": 2,
+    "n_seeds": 3,
+    "num_hazards": 1,
+    "p0_episodes": 200,
+    "p1_episodes": 100,
+    "p2_episodes": 100
+  },
+  "summary_markdown": "# V3-EXQ-194a -- Direct Terrain Pathway, Phased Training (MECH-152)\n\n**Status:** MIXED\n**Claims:** MECH-152\n**Supersedes:** V3-EXQ-194\n**Seeds:** [42, 7, 11]\n\n## Context\n\nEXQ-194 MIXED: C1 PASS (r_w_harm=0.70) but C2 FAIL (r_w_goal=-0.007). Two fixes: (1) phased training (P0 E1+E2 warmup, P1 frozen-encoder TerrainHead) per 166e lesson; (2) corrected w_goal threshold (< 0.33 not < 0.1) to produce non-trivial goal-high label distribution.\n\n## Design\n\n**Phase 0 (E1+E2 warmup):** 200 episodes x 200 steps. E1 + E2 losses only. No terrain_loss. z_world converges.\n\n**Phase 1 (TerrainHead training):** 100 episodes x 200 steps. E1+E2 frozen. TerrainHead trained on z_world.detach() with terrain_loss. Labels: w_harm=0.8 if haz>0.3 else 0.2; w_goal=0.8 if haz<0.33 else 0.2.\n\n**Phase 2 (collection):** 100 episodes x 200 steps. Random actions. Record terrain_weight and hazard_prox.\n\n## Key Results\n\n| Metric | Value | Threshold |\n|---|---|---|\n| r(w_harm, hazard_prox) | 0.4128 | > 0.5 |\n| r(w_goal, hazard_prox) | -0.4130 | < -0.3 |\n| final terrain_loss | 0.0335 | < 0.05 |\n| n_context_A (total) | 2349 | -- |\n| n_context_B (total) | 1303 | -- |\n\n## Pass Criteria\n\n| Criterion | Result | Seeds passing |\n|---|---|---|\n| C1: r(w_harm, hazard_prox) > 0.5 | FAIL | 0/3 |\n| C2: r(w_goal, hazard_prox) < -0.3 | PASS | 3/3 |\n| C3: terrain_loss < 0.05 | PASS | 2/3 |\n\nPASS rule: all three pass in >= 2/3 seeds -> **MIXED**\n\n## Interpretation\n\nC1 FAIL: r_w_harm=0.4128 <= 0.5 (passed 0/3 seeds). Direct pathway w_harm does not track hazard proximity even on stable z_world.\n\nC2 PASS: r_w_goal=-0.4130 < -0.3 in 3/3 seeds. Direct pathway w_goal inversely tracks hazard -- goal upweighted when safe. Corrected threshold (< 0.33) provides sufficient goal-high label coverage.\n\nC3 PASS: final_terrain_loss=0.0335 < 0.05 in 2/3 seeds. Terrain head converged on stable z_world.\n\n## Per-Seed Results\n\n  seed=42: n_A=774 n_B=329 r_w_harm=0.4682 r_w_goal=-0.4683 terrain_loss=0.0082 w_harm: A=0.719 B=0.711 w_goal: A=0.280 B=0.288 C1=FAIL C2=PASS C3=PASS\n  seed=7: n_A=812 n_B=449 r_w_harm=0.3850 r_w_goal=-0.3862 terrain_loss=0.0688 w_harm: A=0.740 B=0.731 w_goal: A=0.259 B=0.270 C1=FAIL C2=PASS C3=FAIL\n  seed=11: n_A=763 n_B=525 r_w_harm=0.3854 r_w_goal=-0.3845 terrain_loss=0.0234 w_harm: A=0.701 B=0.694 w_goal: A=0.300 B=0.307 C1=FAIL C2=PASS C3=PASS\n",
+  "claim_ids": [
+    "MECH-152"
+  ],
+  "evidence_direction": "inconclusive",
+  "experiment_type": "v3_exq_194a_direct_terrain_phased",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T185253Z",
+  "claim": "MECH-152",
+  "verdict": "MIXED",
+  "run_id": "v3_exq_194a_direct_terrain_phased_20260401T185253Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "supersedes": "v3_exq_194_direct_terrain_pathway"
+}
