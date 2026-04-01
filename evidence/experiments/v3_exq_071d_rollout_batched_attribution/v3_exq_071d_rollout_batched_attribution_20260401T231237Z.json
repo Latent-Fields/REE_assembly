@@ -1,0 +1,41 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "world_forward_r2": 0.9452458024024963,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 4.0,
+    "haz2_batch_attribution_gap": 0.001958593058778676,
+    "haz2_rank_corr": 1.0,
+    "haz2_batch_sig_approach": -0.00012594279826300085,
+    "haz2_seq_sig_approach": -0.00012594317024499835,
+    "haz2_n_approach": 681.0,
+    "haz4_batch_attribution_gap": 0.005163748151319533,
+    "haz4_rank_corr": 1.0,
+    "haz4_batch_sig_approach": 0.0009560960891418754,
+    "haz4_seq_sig_approach": 0.000956095609864761,
+    "haz4_n_approach": 513.0,
+    "haz6_batch_attribution_gap": 0.012480744937223464,
+    "haz6_rank_corr": 1.0,
+    "haz6_batch_sig_approach": 0.0010195345001044562,
+    "haz6_seq_sig_approach": 0.001019533615470876,
+    "haz6_n_approach": 379.0
+  },
+  "summary_markdown": "# V3-EXQ-071d -- Rollout-Batched SD-003 Attribution\n\n**Status:** FAIL\n**Claims:** SD-003, ARC-024, MECH-071\n**Predecessor:** EXQ-030b PASS (sequential attribution baseline)\n**Supersedes:** V3-EXQ-071b\n**Warmup:** 150 eps | **Eval:** 30 eps x 3 distractor levels\n**alpha_world:** 0.9 | **world_forward R2:** 0.9452\n\n## Attribution Results by Distractor Level\n\n| n_hazards | batch_sig_approach | seq_sig_approach | rank_corr | batch_gap | n_approach |\n|---|---|---|---|---|---|\n| 2 | -0.000126 | -0.000126 | 1.0000 | +0.001959 | 681 |\n| 4 | +0.000956 | +0.000956 | 1.0000 | +0.005164 | 513 |\n| 6 | +0.001020 | +0.001020 | 1.0000 | +0.012481 | 379 |\n\n\n## Pass Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: batched attribution_gap > 0 (all levels) | PASS |\n| C2: rank_corr(batched, sequential) > 0.90 (all levels) | PASS |\n| C3: batched causal_sig_approach > 0.005 (all levels) | FAIL |\n| C4: world_forward_r2 > 0.05 | PASS (0.9452) |\n| C5: n_approach >= 20 per level | PASS |\n\nCriteria met: 4/5 -> **FAIL**\n\n## Failure Notes\n\n- C3 FAIL n_hazards=2: batch_sig_approach=-0.000126 <= 0.005\n- C3 FAIL n_hazards=4: batch_sig_approach=0.000956 <= 0.005\n- C3 FAIL n_hazards=6: batch_sig_approach=0.001020 <= 0.005\n",
+  "claim_ids": [
+    "SD-003",
+    "ARC-024",
+    "MECH-071"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_071d_rollout_batched_attribution",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T231237Z",
+  "run_id": "v3_exq_071d_rollout_batched_attribution_20260401T231237Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim": "SD-003",
+  "verdict": "FAIL"
+}

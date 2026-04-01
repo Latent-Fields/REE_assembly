@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-01T22:51:29.685328Z`
+Generated: `2026-04-01T23:08:02.991892Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -65,7 +65,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.679, conflict_ratio=0.75, exp_entries=7, lit_entries=3; directions supports=3, weakens=5, mixed=1, unknown=1, conflict_ratio=0.75
+- Why this decision is needed: overall_conf=0.682, conflict_ratio=0.667, exp_entries=7, lit_entries=3; directions supports=3, weakens=6, mixed=0, unknown=1, conflict_ratio=0.667
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -348,7 +348,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.708, conflict_ratio=0.8, exp_entries=22, lit_entries=3; directions supports=4, weakens=6, mixed=10, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: overall_conf=0.752, conflict_ratio=1, exp_entries=22, lit_entries=3; directions supports=6, weakens=6, mixed=8, unknown=0, conflict_ratio=1
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

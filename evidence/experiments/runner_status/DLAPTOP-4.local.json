@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-01T22:51:42.043071+00:00",
+  "last_updated": "2026-04-01T23:23:41.407179+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-197",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "MECH-104 volatility interrupt discriminative pair",
-    "description": "",
-    "script": "experiments/v3_exq_197_mech104_volatility_interrupt_pair.py",
-    "started_at": "2026-04-01T19:56:30.337893+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 200,
-      "episodes_total": 400,
-      "overall_pct": 50.0
-    },
-    "seconds_elapsed": 10512,
-    "seconds_remaining": 10512,
-    "recent_lines": [
-      "============================================================",
-      "[V3-EXQ-197] Seed 13",
-      "============================================================",
-      "[train seed=13] ep 100/400  running_var=0.000002",
-      "[train seed=13] ep 200/400  running_var=0.000002"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -48,28 +22,6 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-197",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-104 volatility interrupt discriminative pair",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-198",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-011 dual nociceptive stream stability test",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -3767,6 +3719,34 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 972.2
+    },
+    {
+      "queue_id": "V3-EXQ-197",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-104 volatility interrupt discriminative pair",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "s13_active_n_committed_harm: 217.000000 | s13_ablated_n_unexpected_harm: 218.000000",
+      "started_at": "2026-04-01T19:56:30.337893+00:00",
+      "completed_at": "2026-04-01T23:17:35.514743+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_197_mech104_volatility_interrupt_pair/v3_exq_197_mech104_volatility_interrupt_pair_20260401T231734Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12065.1
+    },
+    {
+      "queue_id": "V3-EXQ-198",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-011 dual nociceptive stream stability test",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "seed=7: fwd_r2=0.6825 haz_corr=0.4928 -> PASS | seed=13: fwd_r2=0.6128 haz_corr=0.5790 -> PASS | Final outcome: PASS",
+      "started_at": "2026-04-01T23:17:38.352432+00:00",
+      "completed_at": "2026-04-01T23:23:41.406954+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 363.1
     }
   ]
 }
