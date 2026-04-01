@@ -1,0 +1,60 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_harm_rate_on": 0.0,
+    "mean_harm_rate_off": 0.011489958164856108,
+    "mean_harm_gap": 0.011489958164856108,
+    "mean_residue_on": 17.95141689425123,
+    "mean_residue_off": 18.240215499744423,
+    "mean_residue_gap": 0.2887986054931915,
+    "mean_traj_score_on": 6692.887391482993,
+    "mean_traj_score_off": 7049.180400423138,
+    "mean_traj_gap": -356.2930089401452,
+    "per_seed_harm_gap_min": 0.0062038404726735595,
+    "per_seed_residue_gap_min": 0.01905301256514491,
+    "per_seed_traj_gap_max": 3.8415668441618323,
+    "n_harm_min": 0.0,
+    "score_var_min": 1.477254216067227e-06,
+    "n_seeds": 2.0,
+    "nav_bias": 0.25,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 3.0
+  },
+  "summary_markdown": "# V3-EXQ-190 -- MECH-022 Hypothesis Injection Probe\n\n**Status:** FAIL\n**Claims:** MECH-022\n**Decision:** inconclusive\n**Seeds:** [42, 123]\n**Conditions:** HYPOTHESIS_INJECTION_ON vs HYPOTHESIS_INJECTION_OFF\n**Warmup:** 150 eps x 200 steps  **Eval:** 50 eps x 200 steps\n**Env:** CausalGridWorld size=10, 5 hazards, 5 resources nav_bias=0.25\n\n## Design\n\nMECH-022 asserts hippocampal systems inject hypotheses gated by the control plane. This experiment compares INJECTION_ON (full HippocampalModule CEM proposals) against INJECTION_OFF (random trajectory proposals, same E3 evaluation) across 2 matched seeds. Key test: does terrain-guided hypothesis injection produce measurably better trajectories and lower harm?\n\n## Pre-Registered Thresholds\n\nC1: per-seed harm_gap (OFF-ON) >= 0.005 (both seeds)\nC2: per-seed residue_gap (OFF-ON) >= 0 (both seeds, directional)\nC3: per-seed traj_gap (ON-OFF) < 0 (both seeds, lower=better)\nC4: n_harm_min >= 10 both conditions (data quality)\nC5: proposal score_var > 1e-06 in INJECTION_ON (non-degenerate)\n\n## Results\n\n| Condition | harm_rate | mean_residue | mean_traj_score |\n|-----------|-----------|--------------|----------------|\n| INJECTION_ON  | 0.0000 | 17.9514 | 6692.8874 |\n| INJECTION_OFF | 0.0115 | 18.2402 | 7049.1804 |\n\n**per-seed harm_gap (OFF-ON): [0.0062, 0.01678]**\n**per-seed residue_gap (OFF-ON): [0.55854, 0.01905]**\n**per-seed traj_gap (ON-OFF): [-716.42758, 3.84157]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: harm_gap >= 0.005 (both seeds) | PASS | [0.0062, 0.01678] |\n| C2: residue_gap >= 0 (both seeds) | PASS | [0.55854, 0.01905] |\n| C3: traj_gap < 0 (both seeds) | FAIL | [-716.42758, 3.84157] |\n| C4: n_harm_min >= 10 | FAIL | 0 |\n| C5: score_var > 1e-06 (INJECTION_ON) | PASS | [0.00801603, 1.48e-06] |\n\nCriteria met: 3/5 -> **FAIL**\n\n## Interpretation\n\nINCONCLUSIVE: insufficient harm contacts (n_harm_min=0 < 10). Cannot evaluate MECH-022. Increase nav_bias or eval episodes.\n\n## Per-Seed Detail\n\nINJECTION_ON:\n  seed=42: harm_rate=0.0000 residue=18.0443 traj_score=13166.0496 cells=50 score_var=0.008016\n  seed=123: harm_rate=0.0000 residue=17.8586 traj_score=219.7252 cells=51 score_var=0.000001\n\nINJECTION_OFF:\n  seed=42: harm_rate=0.0062 residue=18.6028 traj_score=13882.4771 cells=64\n  seed=123: harm_rate=0.0168 residue=17.8776 traj_score=215.8837 cells=64\n\n## Failure Notes\n\n- C3 FAIL: per-seed traj_gap (ON-OFF) [-716.42758, 3.84157] -- E3 does not rate hippocampal proposals higher than random\n- C4 FAIL: n_harm_min=0 < 10 -- insufficient harm contacts; increase nav_bias or eval episodes\n",
+  "claim_ids": [
+    "MECH-022"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_190_mech022_hypothesis_injection_probe",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T193646Z",
+  "claim": "MECH-022",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_190_mech022_hypothesis_injection_probe_20260401T193646Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_per_seed_harm_gap": 0.005,
+    "C2_per_seed_residue_gap": 0.0,
+    "C3_per_seed_traj_gap": 0.0,
+    "C4_n_harm_min": 10,
+    "C5_score_var_min": 1e-06
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "HYPOTHESIS_INJECTION_ON",
+    "HYPOTHESIS_INJECTION_OFF"
+  ],
+  "dispatch_mode": "targeted_probe",
+  "backlog_id": "EVB-0042",
+  "evidence_class": "targeted_probe",
+  "claim_ids_tested": [
+    "MECH-022"
+  ]
+}

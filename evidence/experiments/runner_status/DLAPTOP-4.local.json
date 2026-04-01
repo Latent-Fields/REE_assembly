@@ -2,15 +2,107 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-01T18:52:54.048961+00:00",
+  "last_updated": "2026-04-01T19:38:55.129692+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-191",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ARC-038 schema-primed rapid assimilation probe",
+    "description": "",
+    "script": "experiments/v3_exq_191_arc038_schema_assimilation_probe.py",
+    "started_at": "2026-04-01T19:36:49.932152+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 100,
+      "episodes_total": 200,
+      "overall_pct": 50.0
+    },
+    "seconds_elapsed": 125,
+    "seconds_remaining": 125,
+    "recent_lines": [
+      "[eval SCHEMA_PRIMED] ep 150/200 harm_rate=0.21302 recent_10_mean=0.11733",
+      "[eval SCHEMA_PRIMED] ep 200/200 harm_rate=0.00271 recent_10_mean=0.16716",
+      "[NAIVE] Evaluating on env_seed_b=200 (no pre-training)...",
+      "[eval NAIVE] ep 50/200 harm_rate=0.26066 recent_10_mean=0.14781",
+      "[eval NAIVE] ep 100/200 harm_rate=0.00286 recent_10_mean=0.12909"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
       "backlog_id": "",
       "claim_id": "",
       "title": "Onboarding smoke test -- EWINPC (Eoin)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-191",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-038 schema-primed rapid assimilation probe",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-192",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-075 hippocampal-VTA novelty loop probe",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-193",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-196",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-018 hippocampal rollout + viability mapping pair",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-197",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-104 volatility interrupt discriminative pair",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-198",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-011 dual nociceptive stream stability test",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -3624,6 +3716,48 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_194a_direct_terrain_phased/v3_exq_194a_direct_terrain_phased_20260401T185253Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 29.4
+    },
+    {
+      "queue_id": "V3-EXQ-184",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-033 kernel chain discriminative pair (chain vs ablated)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "mean_harm_reduction_delta: 0.06054 | Overall outcome: PASS | Done. Outcome: PASS",
+      "started_at": "2026-04-01T18:54:00.239024+00:00",
+      "completed_at": "2026-04-01T18:56:11.819550+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 131.6
+    },
+    {
+      "queue_id": "V3-EXQ-189",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 goal-directed behavior: GOAL_PRESENT vs GOAL_ABSENT",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "gp_harm_rate: 0.18624366043415805 | ga_harm_rate: 0.12567560908089745 | harm_ratio: 1.48193958872539",
+      "started_at": "2026-04-01T18:56:14.316412+00:00",
+      "completed_at": "2026-04-01T18:57:17.425496+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_189_mech112_goal_present_absent/v3_exq_189_mech112_goal_present_absent_20260401T185716Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 63.1
+    },
+    {
+      "queue_id": "V3-EXQ-190",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-022 hippocampal hypothesis injection probe",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "mean_harm_gap: 0.011489958164856108 | per_seed_harm_gap_min: 0.0062038404726735595 | n_harm_min: 0.0",
+      "started_at": "2026-04-01T18:57:20.116471+00:00",
+      "completed_at": "2026-04-01T19:36:47.297038+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_190_mech022_hypothesis_injection_probe/v3_exq_190_mech022_hypothesis_injection_probe_20260401T193646Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2367.2
     }
   ]
 }

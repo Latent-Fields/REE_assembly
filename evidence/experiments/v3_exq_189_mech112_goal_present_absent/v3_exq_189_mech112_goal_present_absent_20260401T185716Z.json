@@ -1,0 +1,79 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "gp_resource_rate": 0.19333333333333336,
+    "gp_mean_resources": 0.23666666666666666,
+    "gp_mean_benefit": 0.0035266017251612248,
+    "gp_harm_rate": 0.18624366043415805,
+    "gp_benefit_eval_auc": 0.5386758016711022,
+    "gp_goal_norm_final": 0.2961593170960744,
+    "ga_resource_rate": 0.17,
+    "ga_mean_resources": 0.21,
+    "ga_mean_benefit": 0.0017021083381731665,
+    "ga_harm_rate": 0.12567560908089745,
+    "resource_lift": 0.023333333333333345,
+    "benefit_ratio": 2.0719020323619617,
+    "harm_ratio": 1.48193958872539,
+    "benefit_weight": 1.0,
+    "goal_weight": 1.0,
+    "n_seeds": 3.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-189 -- MECH-112 Goal Present vs Absent\n\n**Status:** FAIL\n**Claims:** MECH-112\n**Decision:** hybridize\n**Seeds:** [42, 7, 13]\n**Dispatch mode:** discriminative_pair\n\n## Design\n\nTwo-condition discriminative pair: GOAL_PRESENT (z_goal + benefit_eval active) vs GOAL_ABSENT (both ablated). Matched seeds, identical architecture otherwise.\nGOAL_PRESENT eval: harm - benefit - goal_proximity scoring.\nGOAL_ABSENT eval: harm-only scoring.\nWarmup: 50% proximity-greedy navigation to ensure z_goal seeds.\n\n## Results\n\n| Metric | GOAL_PRESENT | GOAL_ABSENT |\n|---|---|---|\n| resource_collection_rate | 0.193 | 0.170 |\n| mean_resources_per_ep | 0.24 | 0.21 |\n| mean_benefit | 0.00353 | 0.00170 |\n| harm_rate | 0.18624 | 0.12568 |\n\n**benefit_eval_auc (GOAL_PRESENT):** 0.5387\n**goal_norm_final (GOAL_PRESENT avg):** 0.2962\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: resource_lift >= 0.03 | FAIL | +0.023 |\n| C2: benefit_ratio >= 1.15x | PASS | 2.07x |\n| C3: harm_ratio <= 1.3x | FAIL | 1.48x |\n| C4: goal_norm >= 0.05 | PASS | 0.2962 |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Per-Seed\n\n  seed=42: gp_res=0.130 ga_res=0.190 gp_ben=0.00492 ga_ben=0.00164 goal_norm=0.3530\n  seed=7: gp_res=0.220 ga_res=0.180 gp_ben=0.00366 ga_ben=0.00255 goal_norm=0.2313\n  seed=13: gp_res=0.230 ga_res=0.140 gp_ben=0.00201 ga_ben=0.00091 goal_norm=0.3042\n\n## Failure Notes\n\n- C1 FAIL: resource_lift=+0.023 < 0.03. GOAL_PRESENT does not collect more resources.\n- C3 FAIL: harm_ratio=1.48x > 1.3x. Goal pursuit causes catastrophic harm regression.\n",
+  "claim_ids": [
+    "MECH-112"
+  ],
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "gp_resource_rate": 0.13,
+      "gp_mean_resources": 0.14,
+      "gp_mean_benefit": 0.004916182726502087,
+      "gp_harm_rate": 0.28558396573007255,
+      "gp_benefit_eval_auc": 0.49181846248842237,
+      "gp_goal_norm_final": 0.35299792885780334,
+      "ga_resource_rate": 0.19,
+      "ga_mean_resources": 0.23,
+      "ga_mean_benefit": 0.0016435028666585316,
+      "ga_harm_rate": 0.12649188408895332
+    },
+    {
+      "seed": 7,
+      "gp_resource_rate": 0.22,
+      "gp_mean_resources": 0.28,
+      "gp_mean_benefit": 0.003657194638542538,
+      "gp_harm_rate": 0.13768283316579732,
+      "gp_benefit_eval_auc": 0.4925100474972598,
+      "gp_goal_norm_final": 0.23131415247917175,
+      "ga_resource_rate": 0.18,
+      "ga_mean_resources": 0.22,
+      "ga_mean_benefit": 0.0025517435627017133,
+      "ga_harm_rate": 0.14514632927610477
+    },
+    {
+      "seed": 13,
+      "gp_resource_rate": 0.23,
+      "gp_mean_resources": 0.29,
+      "gp_mean_benefit": 0.002006427810439049,
+      "gp_harm_rate": 0.1354641824066043,
+      "gp_benefit_eval_auc": 0.6316988950276243,
+      "gp_goal_norm_final": 0.30416586995124817,
+      "ga_resource_rate": 0.14,
+      "ga_mean_resources": 0.18,
+      "ga_mean_benefit": 0.0009110785851592547,
+      "ga_harm_rate": 0.10538861387763421
+    }
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_189_mech112_goal_present_absent",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260401T185716Z",
+  "claim": "MECH-112",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_189_mech112_goal_present_absent_20260401T185716Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

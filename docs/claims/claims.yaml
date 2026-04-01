@@ -4908,6 +4908,15 @@
     Structural issue: benefit signal too sparse during warmup; head cannot learn proximity
     regression without sustained benefit contact. ARC-030 requires a richer benefit signal
     or pre-trained benefit head before E3 integration is testable.
+    Goal-lift battery (2026-04-01): EXQ-183 FAIL 2/4 (BCE shared selector): benefit_eval_auc
+    =0.538 (barely above chance); combined/random=0.73x. benefit_eval_head learns but does not
+    discriminate effectively. EXQ-186 FAIL 1/4 (hybrid benefit+harm): C2 PASS (combined/
+    harm_only=1.55x -- adding benefit DOES improve over harm-only), but C1 FAIL (combined/
+    random=0.25x), C3 FAIL (harm 1.4x worse), C4 FAIL (combined < benefit_only -- harm
+    avoidance is counterproductive). The C2 PASS is a positive signal for ARC-030: the shared
+    selector does produce approach-avoidance integration lift vs pure avoidance. But the
+    absolute performance is far below random baseline, suggesting 1-step greedy action selection
+    on 10x10 grid is fundamentally insufficient. Oracle ceiling test (EXQ-182a) is the gate.
   depends_on:
     - ARC-021
     - MECH-069
@@ -5726,6 +5735,17 @@
     is action-selection integration. Governance: hold -- promotion blocked by consistent C2
     FAIL across all 5 iterations. MECH-112 wanting system requires working navigation
     (C2) not just representation (C1/C3) to validate the claim.
+    Goal-lift battery (2026-04-01): EXQ-185 (direct prox-argmax, bypass z_goal entirely),
+    EXQ-186 (hybrid benefit+harm selector), EXQ-183 (BCE shared selector) -- ALL FAIL.
+    Systematic pattern: every learned 1-step greedy mechanism performs WORSE than random
+    (0.21x, 0.25x, 0.73x respectively). EXQ-186 4-condition decomposition: random=0.862
+    benefit/ep, benefit_only=0.350, combined=0.212, harm_only=0.137. Directed mechanisms
+    increase harm 2-2.3x relative to random while collecting fewer resources. Diagnosis:
+    1-step greedy action selection creates local traps near hazards; random walk's advantage
+    is exploration breadth on 10x10 grid with 4 respawning resources. CRITICAL GATE:
+    EXQ-182a (oracle ceiling) queued -- if perfect-information 1-step greedy also fails,
+    the env config is near-optimal for random walk and no learned mechanism can beat it
+    without multi-step planning (SD-004 hippocampal navigation).
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -7631,6 +7651,15 @@
     resource features. C2 FAIL: benefit_ratio=0.420. Representation is learnable; action
     integration is the remaining gap. SD-015 encoder design is valid but insufficient alone
     -- E2Resource lookahead or E3 trajectory scoring must be fixed to complete the claim.
+    Goal-lift battery (2026-04-01): EXQ-185 FAIL 3/4 (direct prox-argmax, bypasses z_goal):
+    prox_r2=0.921 (C3 PASS), rfm_loss=0.006 (C4 PASS), rfm_prox_disc=0.054 (C2 PASS) --
+    representation and forward model are excellent. C1 FAIL: benefit_ratio=0.212 (goal-present
+    5x WORSE than random). The representation works; 1-step greedy action selection on 10x10
+    grid creates local traps (directed agents increase harm 2.3x). SD-015 encoder claim is
+    validated at the representation level. The gap is NOT in z_resource encoding but in
+    planning horizon: 1-step lookahead is fundamentally insufficient for grid-scale navigation.
+    Oracle ceiling test (EXQ-182a) will determine if this is an env config issue or requires
+    SD-004 hippocampal multi-step planning.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
