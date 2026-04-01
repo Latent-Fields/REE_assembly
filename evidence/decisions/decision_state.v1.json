@@ -99,6 +99,24 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-03-29T21:15:46.898963Z"
     },
+    "ARC-038": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "V3-gated claim, no V3 runs yet. Hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
+    "ARC-041": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=1.0 with only 2 experimental entries. Insufficient evidence to resolve.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -387,6 +405,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.399734Z"
     },
+    "MECH-112": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=0.889 with greedy navigation confound identified. Resolution experiments needed to isolate z_goal behavioral signal.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
     "MECH-116": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -413,6 +440,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Hold at candidate -- EXQ-104b diagnostic required before evidence update",
       "timestamp_utc": "2026-03-28T17:30:00Z"
+    },
+    "MECH-150": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=1.0, only 2 experimental entries, empty evidence quality note. Needs dedicated experiments.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
     },
     "Q-006": {
       "actor": "user",
@@ -558,6 +594,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.260169Z"
     },
+    "SD-012": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: seeding mechanism works (C1 PASS) but downstream utilization fails (C2 FAIL). SD-012 core claim partially validated; resolution experiments needed for goal-to-behavior pathway.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -568,7 +613,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-03-31T20:17:33.028843Z",
+  "generated_at_utc": "2026-04-01T19:13:14.012757Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -22,12 +22,13 @@
     "MECH-153",
     "ARC-042"
   ],
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_187_mech153_supervised_context_labeling",
   "fatal_error_count": 0,
   "run_timestamp": "20260401T031741Z",
   "claim": "MECH-153",
   "verdict": "FAIL",
   "run_id": "v3_exq_187_mech153_supervised_context_labeling_20260401T031741Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "Superseded by V3-EXQ-187a. Bug: context_memory.write() never called during training -- memory slots stayed at randn*0.01 initialization, making attention output constant regardless of z_world query. Supervised terrain_loss converged to mean(targets) but could not differentiate contexts."
 }
