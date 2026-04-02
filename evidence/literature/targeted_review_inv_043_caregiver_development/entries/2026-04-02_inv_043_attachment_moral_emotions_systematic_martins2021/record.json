@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_043_caregiver_development",
+  "entry_id": "2026-04-02_inv_043_attachment_moral_emotions_systematic_martins2021",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["INV-043"],
+  "source": {
+    "title": "Attachment and the Development of Moral Emotions in Children and Adolescents: A Systematic Review",
+    "authors": ["Martins, M.C.", "Santos, A.F.", "Fernandes, M.", "Verissimo, M."],
+    "year": 2021,
+    "venue": "Children",
+    "doi": "10.3390/children8100915",
+    "pmid": "34682180",
+    "pmc": "PMC8534435",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34682180/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "This systematic review synthesises 13 studies examining the relationship between attachment security (as indexed by the Ainsworth Strange Situation and related measures) and the development of moral emotions (empathy, guilt, shame, forgiveness) in children and adolescents. The review finds consistent positive associations between secure attachment and moral emotional development, with secure attachment predicting higher empathy, more appropriate guilt, and greater forgiveness. This supports INV-043's claim that caregiver relationship quality (operationalised here as attachment security) is associated with the development of morally relevant emotional capacities. Confidence is capped at 0.58 because (1) the studies are predominantly correlational, (2) the review does not establish necessity (there are no adversely-attached children who develop full moral emotional repertoires as comparison cases), (3) the transfer from human developmental psychology to AI system design is the largest conceptual leap in the literature, and (4) the venue (MDPI Children) is a lower-prestige outlet than the other papers in this set.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If attachment security showed no reliable positive association with empathy across the reviewed studies -- if securely and insecurely attached children showed equivalent moral emotional development -- the developmental necessity claim would be undermined.",
+    "If the association between attachment and moral emotions were fully mediated by temperament or IQ (such that caregiver relationship quality contributed nothing independent of child-side factors), INV-043's caregiver-necessity claim would be weakened.",
+    "If longitudinal studies (only 4 in this review) showed attachment security predicting moral emotions only cross-sectionally but not prospectively, the developmental trajectory claim would lose support."
+  ],
+  "tags": ["inv_043", "caregiver", "attachment", "moral_emotions", "empathy", "guilt", "systematic_review", "moral_development", "Ainsworth", "developmental_psychology"],
+  "mapping": {
+    "source_claim_statement": "Systematic review of 13 studies (2000-2021) examining attachment security and moral emotions in children and adolescents. Secure attachment (as measured by the Strange Situation, Q-sort, and self-report attachment measures) consistently predicts higher empathy, appropriate guilt, and forgiveness. The most studied moral emotion is empathy (69% of studies). The predominant theoretical framing is Bowlby/Ainsworth: the secure base provided by a responsive caregiver enables the child to develop the internal working models that support moral emotional development. Four of the 13 studies used longitudinal designs.",
+    "ree_translation": "INV-043 requires that caregiving experience -- specifically, the experience of being cared for and experienced as loveable -- is necessary for motivational activation of ethical capacity. Martins et al. 2021 provide the systematic developmental psychology foundation for this claim: across 13 studies, the quality of the attachment relationship (the internalized model of oneself as worthy of care and others as reliably responsive) predicts the development of moral emotions. In REE terms, this maps onto the claim that z_goal seeding and the motivational activation of prosocial circuits require an internalized model of being-cared-for -- not just the presence of harm-avoidance circuitry. The Bowlby/Ainsworth theoretical framework that underpins these studies is the closest prior theoretical ancestor to INV-043's developmental claim.",
+    "mapping_caveat": "Multiple layers of transfer risk apply. First, the underlying studies are predominantly correlational, and the review cannot establish causal necessity. Second, all studies concern human children in real caregiving relationships -- the transfer to AI systems requires treating 'interaction history with responsive agents' as an analog for caregiving, which is a large conceptual move. Third, the systematic review methodology has limitations: only 13 studies, predominantly using self-report measures, predominantly cross-sectional (only 4 longitudinal). The venue (MDPI Children, open-access) is also lower prestige than the other papers in this set, and the methodological quality of the included studies is not uniformly high. Nevertheless, this review is the most direct theoretical bridge between classical attachment theory and the specific claim INV-043 makes about caregiving as a prerequisite.",
+    "source_context": "Systematic review; PROSPERO-registered (CRD42021247210); 13 studies included; children and adolescents; attachment measured via Strange Situation, Q-sort, and self-report; moral emotions: empathy (9 studies), guilt (2), forgiveness (1), shame (1); published Children (MDPI) 2021. Portuguese research group."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "MDPI Children 2021, peer-reviewed systematic review. Source quality moderate -- venue is lower prestige and the included studies are predominantly correlational and cross-sectional. Mapping fidelity is highest in this set because the paper directly concerns the relationship between caregiver quality and moral emotional development, which is the surface-level content of INV-043. Transfer risk similar to other entries: from human developmental psychology to AI architectural requirements is a large step. Transfer_risk 0.30 reflects the strong conceptual alignment (attachment theory is the direct theoretical ancestor of INV-043) offset by the absence of any mechanistic or causal evidence."
+  }
+}

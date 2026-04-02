@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_154_156_e1_manifold",
+  "entry_id": "2013-05-02_mech_156_theta_sequences_planning_pfeiffer2013",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["MECH-156"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Pfeiffer BE", "Foster DJ"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Landmark empirical paper. Direct electrophysiological recording in rats demonstrating that theta-cycle-compressed place-cell sequences sweep forward from current position to remembered goal, predicting immediate future behaviour in novel start-goal combinations. Mechanistic link from theta oscillation to sequential trajectory representation is explicit and strongly supported by the data. Transfer risk: rodent place cells are the substrate, and whether equivalent theta-compressed sequences exist across abstract conceptual dimensions in E1 remains undemonstrated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sequences occurred specifically before and during navigation, not during idle rest — suggesting they are prospective planning signals, not mere replay.",
+    "Sequences were biased toward goal location even for novel start-goal combinations, ruling out simple route replay and implicating generative traversal of the associative manifold.",
+    "Sequence events were confined within individual theta cycles (~125 ms), consistent with theta as the temporal compression mechanism."
+  ],
+  "tags": ["mech_156", "theta_sequences", "theta_oscillations", "place_cells", "sequential_traversal", "planning", "hippocampus", "e1_manifold"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation, rat hippocampus generates brief theta-cycle-compressed sequences encoding spatial trajectories from current location to remembered goal, even for novel start-goal combinations, predicting immediate future movement.",
+    "ree_translation": "MECH-156 asserts that theta oscillations implement sequential traversal across indexed E1 representations. The Pfeiffer & Foster data are the canonical demonstration: within each theta cycle, place cells activate in a compressed sequence that constitutes a prospective sweep through the associative manifold. The rat is not replaying a stored route — it is generating a novel trajectory by traversing the indexed map. This is exactly the substrate MECH-156 points to: theta as the clock that serialises associative lookups into ordered sequences suitable for planning.",
+    "mapping_caveat": "The substrate is rodent CA1 place cells in two-dimensional spatial navigation. MECH-156 makes a broader claim about traversal across E1's abstract indexed representations (not limited to space). Whether the theta-sweep mechanism generalises from spatial to non-spatial associative manifolds requires separate evidence (e.g., the Behrens 2018 review provides theoretical grounding). The translation is plausible but the direct demonstration of non-spatial theta sequences of this quality does not yet exist in the empirical record.",
+    "source_context": "Rodent (rat), CA1 hippocampus, two-dimensional open arena, goal-directed navigation with multiple known goal locations, tetrode recordings, LFP theta reference"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality near ceiling: Nature publication, landmark finding, widely replicated in direction if not exact detail. Mapping fidelity high because the mechanistic claim (theta cycle = unit of sequential traversal) maps directly onto MECH-156. Transfer risk moderate: spatial-to-abstract generalisation is the main gap, partially addressed by grid-cell/abstract-space literature but not yet demonstrated for theta sequences specifically."
+  }
+}

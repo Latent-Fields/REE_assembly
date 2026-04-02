@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_154_156_e1_manifold",
+  "entry_id": "2011-07-31_mech_154_generalized_associative_parietal_fitzgerald2011",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["MECH-154"],
+  "source": {
+    "title": "Generalized associative representations in parietal cortex",
+    "authors": ["Fitzgerald JK", "Freedman DJ", "Assad JA"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2878"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Primate single-unit study demonstrating that individual LIP neurons encode learned arbitrary associations in a task-generalised manner: the same neuron represents a shape-pair association and a direction-pair association across two separate tasks. This is strong evidence that parietal cortex (LIP) operates as an addressable associative substrate where arbitrary items can be indexed and retrieved across tasks, supporting MECH-154. Confidence moderated because LIP is primarily studied in visuomotor and attentional contexts -- the claim that it implements the full associative manifold geometry described in MECH-154 is an extension beyond what the paper directly demonstrates. Additionally, the paper uses macaque, and the MECH-154 claim references posterior parietal association areas more broadly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Individual LIP neurons encoded shape-pair associations in a shape task and, in a separate session with the same neuron, encoded direction-pair associations in a motion task -- the same cell carried two different arbitrary learned associations.",
+    "Association encoding was stable across the delay period of each trial, consistent with active maintenance and addressable retrieval rather than transient sensory activation.",
+    "Selectivity for associations (pair identity) was independent of the specific features (shape identity or direction identity), indicating abstraction over input format -- a property expected of an indexing substrate."
+  ],
+  "tags": ["mech_154", "parietal_cortex", "LIP", "associative_memory", "addressable_manifold", "e1_manifold", "primate_electrophysiology", "generalized_associations"],
+  "mapping": {
+    "source_claim_statement": "Individual neurons in macaque lateral intraparietal area (LIP) encode generalized learned associations across different task contexts: the same LIP neuron can represent an arbitrary shape-pair association and an arbitrary motion-direction-pair association, indicating that LIP operates as a task-general associative representation rather than a domain-specific buffer.",
+    "ree_translation": "MECH-154 claims that E1 operates as an addressable associative manifold -- not merely a representation space but an indexed substrate supporting retrieval, traversal, and sequential planning, implemented in parietal cortex. Fitzgerald et al. 2011 provides single-unit evidence that individual LIP neurons carry arbitrary learned associations in a generalised, task-independent way. This is consistent with parietal cortex functioning as an indexing substrate: neurons do not encode specific sensory features but instead encode relational identity (which pair this is), abstracted from the input format. The MECH-154 claim that E1's geometry supports retrieval and traversal is strengthened by evidence that parietal neurons maintain association-specific activity across delays and across task contexts -- properties required of any addressable index.",
+    "mapping_caveat": "LIP is primarily a visuospatial-motor structure (attention, saccade planning, spatial working memory). Its role as a general associative indexing substrate in the sense required by MECH-154 -- supporting planning, sequence generation, and cross-domain traversal -- is an extrapolation from the pair-association result. The paper demonstrates generalised association encoding, not manifold geometry or traversal. The posterior parietal cortex is a large, heterogeneous region; LIP is one subfield with a well-studied role in orienting, and the parietal association areas implicated in MECH-154 (superior parietal lobule, angular gyrus) have different functional profiles.",
+    "source_context": "Macaque (rhesus), lateral intraparietal area (LIP), single-unit electrophysiology, delayed paired-associate task with shapes and motion directions"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high: Nature Neuroscience, primate single-unit, clean dissociation design. Mapping fidelity moderate: the result supports generalized associative coding in parietal cortex but does not directly demonstrate manifold geometry, traversal, or the full indexing function MECH-154 describes. Transfer risk moderate-to-high: LIP to posterior parietal association areas is a significant step, and macaque LIP to human angular gyrus or SPL is a further step."
+  }
+}

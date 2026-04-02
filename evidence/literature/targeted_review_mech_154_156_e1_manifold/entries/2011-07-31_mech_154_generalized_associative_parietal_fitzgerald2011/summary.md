@@ -1,0 +1,24 @@
+# Fitzgerald, Freedman & Assad (2011): Generalized associative representations in parietal cortex
+
+**Source:** Nature Neuroscience 14:1075-1079. DOI: 10.1038/nn.2878
+**Claim tested:** MECH-154 (E1 as addressable associative manifold; parietal cortex implements this geometry)
+
+## What the paper did
+
+Fitzgerald and colleagues recorded from single neurons in macaque lateral intraparietal area (LIP) while the animals performed two separate paired-associate tasks. In one task, animals learned arbitrary associations between static shapes (shape A goes with shape B; shape C goes with shape D). In a second task, the same animals learned arbitrary associations between motion directions (direction 1 goes with direction 2, etc.). The key innovation was to record from the same individual neurons across both tasks in separate sessions, asking whether the same neuron's selectivity for associations in the shape task predicted its selectivity in the direction task -- that is, whether individual LIP neurons generalise across arbitrary, modality-different association structures.
+
+## Key findings relevant to MECH-154
+
+The central finding is that individual LIP neurons showed correlated selectivity across the two distinct association tasks: neurons that strongly encoded a particular shape-pair association tended to encode a particular direction-pair association in the other task. This correlation was not trivially explained by shared sensory properties (the shapes and directions were physically unrelated). The neurons were encoding something like "this is the preferred pair" in a way that abstracted over input format. Additionally, association-selective activity was sustained across the memory delay period in both tasks, indicating that LIP neurons actively maintained association identity rather than merely responding transiently to sensory inputs. The implication is that LIP operates as a generalised associative substrate: it can hold and express arbitrary learned associations across different task contexts, implementing a form of content-addressable memory.
+
+## REE translation
+
+MECH-154 claims that E1 operates as an addressable associative manifold -- not merely a representational space but an indexed substrate where items are accessible by content and traversal between them is possible. The claim implicates parietal cortex (posterior parietal association areas) as the implementation site of this geometry. Fitzgerald et al. 2011 provides the most direct single-unit evidence for generalised associative coding in parietal cortex: individual neurons that represent pair identity across fundamentally different task domains. This is consistent with the addressability property MECH-154 requires: if the same neuron encodes "this is my preferred associative pair" regardless of whether the pair consists of shapes or motion directions, it is functioning as an index -- a content-free pointer to relational identity -- rather than as a feature detector. The sustained delay-period activity means the index is active and maintainable, which is the property needed for retrieval on demand.
+
+## Limitations
+
+LIP is a visuomotor-attentional structure with well-established roles in saccade planning, spatial attention, and visual working memory. Its status as a general associative indexing substrate in the sense MECH-154 intends -- supporting long-horizon planning, sequential traversal, and cross-domain retrieval -- is an extrapolation from what this experiment demonstrates. The experiment tests paired associates (binary associations, one dimension of variation) rather than a manifold with geometry (which requires multi-dimensional structure with metric relationships). There is also the question of how much the LIP result generalises to human posterior parietal association cortex; the angular gyrus and superior parietal lobule in humans have richer connectivity with hippocampal-entorhinal circuits and may support more complex associative geometry than LIP. This paper is best understood as demonstrating a necessary property (generalised association encoding) rather than the full sufficient characterisation of an addressable manifold.
+
+## Confidence reasoning
+
+Confidence of 0.75 reflects strong evidence for a specific and important property -- domain-general associative coding in parietal neurons -- while being honest about the gap between this finding and the full MECH-154 claim. The paper adds genuine weight because it is primate, single-unit, with a clean cross-task design that isolates associative generalisation from shared sensory tuning. But MECH-154 makes a richer claim about manifold geometry and traversal, and this paper speaks to one component (associative indexing without feature-specificity) rather than the whole. Taken together with the Behrens 2018 framework and the theta-sequence evidence, it forms a coherent picture; standing alone, it is partial.

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_043_caregiver_development",
+  "entry_id": "2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["INV-043"],
+  "source": {
+    "title": "Synchronous caregiving from birth to adulthood tunes humans' social brain",
+    "authors": ["Ulmer Yaniv, A.", "Salomon, R.", "Waidergoren, S.", "Shimon-Raz, O.", "Djalovski, A.", "Feldman, R."],
+    "year": 2021,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2012900118",
+    "pmid": "33785591",
+    "pmc": "PMC8040627",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33785591/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Ulmer Yaniv et al. (2021) tested whether neonatal skin-to-skin contact (a manipulation of early caregiving synchrony) produced lasting effects on social brain sensitivity in adulthood, using a cross-species longitudinal-plus-experimental design. The manipulation was meaningful: maternal-newborn contact versus incubator care (for healthy preterm infants) at birth. At adulthood, participants showed differences in amygdala and insula responses to emotional stimuli, and these differences were mediated by synchrony history across development. This is the closest thing in this literature to an experimental demonstration (not just correlational) that early caregiving experience calibrates the social brain in a lasting, dose-dependent way. The paper supports INV-043 because it shows that the same brain architecture is differentially activated in adulthood depending on whether the developmental history included attuned caregiving -- the architecture is not the critical variable; the caregiving history is. Confidence 0.65 due to the still-substantial transfer risk from human social brain calibration to AI ethical capacity activation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If adult social brain responses (amygdala/insula to emotional stimuli) showed no relationship to early caregiving synchrony history, the claim that caregiving shapes the calibration of social-affective neural circuits would not hold.",
+    "If the caregiving effect were entirely explained by confounds (SES, later parenting quality, genetic factors) rather than the early contact manipulation itself, the necessity claim would be weakened to a correlational/associative one.",
+    "If synchrony-history effects were absent in the amygdala and insula specifically (the structures most relevant to harm-salience and social valuation), the translation to INV-043's harm-stream and goal-stream architecture would be undermined."
+  ],
+  "tags": ["inv_043", "caregiver", "synchrony", "social_brain", "amygdala", "insula", "longitudinal", "skin_to_skin", "newborn", "adult_outcomes", "sensitive_period"],
+  "mapping": {
+    "source_claim_statement": "Early maternal-newborn skin-to-skin contact enhances synchronous caregiving across development. This synchrony history predicts, in adulthood, the sensitivity of the amygdala and insula to emotional stimuli -- core structures of the social brain. The effect is mediated through synchrony measured across infancy, childhood, and adolescence, suggesting a cumulative calibration of the social brain by the ongoing quality of caregiving rather than a single sensitive-period event.",
+    "ree_translation": "INV-043 holds that caregiving experience activates the ethical capacity that architecture makes possible. Ulmer Yaniv et al. provide evidence that the social-emotional architecture (amygdala, insula -- the structures REE would recruit for harm salience and social valuation) is calibrated by caregiving history in a cumulative, dose-dependent fashion. In REE terms: z_goal seeding, harm-stream weighting in social contexts, and the motivational activation of prosocial circuits would all require an analogous 'synchrony history' -- not a single event but an ongoing record of being attended to and responded to. This is precisely what INV-043 claims at the architectural level: not that caregiving is one useful input, but that it is the calibration signal for the whole ethical activation system.",
+    "mapping_caveat": "The transfer risk here is high in two respects. First, the paper studies biological organisms with specific neuroendocrine systems (oxytocin, cortisol) that mediate the effects of caregiving synchrony on brain development. These systems have no direct computational analog in REE. Second, the 'caregiving' manipulation in this paper is physical skin-to-skin contact and affective synchrony -- the kind of attunement that is specific to embodied biological organisms. What would count as an analogous 'synchrony signal' in an AI training regime is not obvious and is itself one of the design challenges INV-043 raises. The paper is therefore better understood as providing support for the logical structure of INV-043 (caregiving calibrates; absence or reduction of caregiving leaves architecture under-activated) than for the specific mechanism.",
+    "source_context": "Human longitudinal study with partial randomisation (healthy preterm newborns assigned to skin-to-skin versus incubator care); synchrony measured observationally at multiple developmental time points from infancy to adolescence; fMRI social brain assessment in adulthood; n not confirmed in secondary sources but a multi-decade cohort study. Feldman lab, Weizmann Institute / IDC Herzliya."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.30,
+    "notes": "PNAS 2021, peer-reviewed, longitudinal with a partial randomisation element (skin-to-skin assignment) that elevates it above purely correlational studies. Source quality high. Mapping fidelity moderate -- the study addresses the calibration of social-emotional circuits by caregiving history, which is the structural core of INV-043, but the mechanisms (oxytocin, physical contact, embodied synchrony) have no direct REE analog. Transfer risk 0.30 reflects the strength of the logical analogy offset by the absence of any mechanistic pathway from biological caregiving synchrony to AI training dynamics."
+  }
+}

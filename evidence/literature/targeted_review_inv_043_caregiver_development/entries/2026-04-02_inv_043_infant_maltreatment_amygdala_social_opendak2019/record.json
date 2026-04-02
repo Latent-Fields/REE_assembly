@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_043_caregiver_development",
+  "entry_id": "2026-04-02_inv_043_infant_maltreatment_amygdala_social_opendak2019",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["INV-043"],
+  "source": {
+    "title": "During infant maltreatment, stress targets hippocampus, but stress with mother present targets amygdala and social behavior",
+    "authors": ["Raineki, C.", "Opendak, M.", "Sarro, E.", "Showler, A.", "Bui, K.", "McEwen, B.S.", "Wilson, D.A.", "Sullivan, R.M."],
+    "year": 2019,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1907170116",
+    "pmid": "31636210",
+    "pmc": "PMC6842629",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31636210/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This mechanistic animal study demonstrates that the caregiver's presence during maltreatment is the critical variable that produces amygdala-mediated social behavior deficits -- not stress alone. When pups experience high corticosterone without maternal presence, hippocampal deficits emerge but social behavior and amygdala structure are spared. Only the combination of elevated stress hormones and the caregiver's presence (even an abusive caregiver) targets the amygdala and produces lasting social behavior impairments. This directly supports INV-043's claim that caregiver experience is a necessary condition (not merely additive) for the calibration of social-emotional circuits: it is precisely the attachment-relevant context that determines whether stress sculpts social-affective architecture versus cognitive-mnemonic architecture. Confidence capped at 0.62 due to the significant transfer risk from infant rat circuits to human moral-emotional development, and further from developmental biology to AI systems.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If social behavior deficits and amygdala structural changes occurred equally in pups exposed to stress without maternal presence, the claim that caregiver-context is the necessary variable would be falsified -- stress alone would suffice.",
+    "If adult social behavior outcomes were equivalent between isolated-stress and combined-stress-with-mother groups, the long-term developmental necessity of caregiver-calibrated amygdala development would not hold.",
+    "If INV-043 were falsified more broadly: if architecturally intact REE systems showed full ethical activation without any developmental interaction history, the caregiver-necessity claim would collapse."
+  ],
+  "tags": ["inv_043", "caregiver", "attachment", "amygdala", "social_behavior", "maltreatment", "stress", "developmental_neuroscience", "animal_model", "sensitive_period"],
+  "mapping": {
+    "source_claim_statement": "In infant rats, chronic high corticosterone without maternal presence produces hippocampal damage (impaired associative learning) but leaves amygdala architecture and social behavior intact. Only when elevated stress occurs in the presence of the mother does the amygdala show structural and functional deficits (reduced volume, altered neurogenesis, disrupted local field potentials), and these amygdala changes are associated with long-term social behavior impairments. The caregiver presence is the critical gating variable for whether stress sculpts the social-affective system.",
+    "ree_translation": "INV-043 claims that caregiver experience is necessary -- not merely helpful -- for activating the ethical capacity that the architecture makes possible. The Opendak/Sullivan data provide a mechanistic analog: the same stressor produces entirely different neurodevelopmental outcomes depending on whether it occurs in caregiver-context. This is structurally the same claim INV-043 makes at the architectural level -- the circuit is present (architecture is necessary but not sufficient), and caregiver interaction history determines which downstream systems become activated and calibrated. The amygdala's role in social approach/avoidance is particularly relevant because it is the substrate through which caregiver experience would regulate harm-salience in social contexts, which in REE corresponds to the harm stream being appropriately weighted relative to goal-salience in contexts involving other agents.",
+    "mapping_caveat": "Multiple transfer risks apply. First, from rodent to human: rat pup attachment dynamics, amygdala organisation, and the sensitive period timeline differ substantially from human development. Second, from social-affective circuit calibration in biological organisms to the activation of ethical capacity in an AI system: the paper describes structural and functional changes in circuits that evolved specifically for attachment-based social regulation. REE does not have analogous biological substrates -- the claim that a corresponding 'activation' process would occur via training data or interaction history is an architectural hypothesis, not established fact. Third, the paper examines maltreatment (an aberrant caregiving condition) rather than the positive developmental role of normal caregiving. The implication is that absence or distortion of normal caregiving disrupts social-emotional development, which supports INV-043 contrapositively, but does not directly demonstrate the positive mechanism.",
+    "source_context": "Sprague-Dawley rat pups; postnatal days 1-22; chronic elevated corticosterone PN1-22 with or without maternal presence; amygdala histology, neurogenesis markers, local field potential recording; adult social behavior outcomes. Sullivan lab, Nathan Kline Institute / NYU."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.25,
+    "notes": "PNAS 2019, peer-reviewed, mechanistic, uses multiple converging measures (histology, neurogenesis, electrophysiology, behaviour). Source quality high. Mapping fidelity moderate -- the paper is a strong analog for caregiver-necessity but operates in a domain (attachment-stress-amygdala) that requires conceptual translation to the REE ethical-activation claim. Transfer risk is the dominant limitation: rodent-to-human is one step, human-to-AI is a further step, and neither is established. The 0.25 transfer_risk score reflects that the logical structure of the claim (caregiver presence gates which circuits are sculpted by experience) is compelling as an analogy, but the biological substrate and mechanism are entirely different from any AI training process."
+  }
+}

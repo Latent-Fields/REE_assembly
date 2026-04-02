@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_154_156_e1_manifold",
+  "entry_id": "2016-06-17_mech_155_gridlike_conceptual_knowledge_constantinescu2016",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["MECH-155"],
+  "source": {
+    "title": "Organizing conceptual knowledge in humans with a gridlike code",
+    "authors": ["Constantinescu AO", "O'Reilly JX", "Behrens TEJ"],
+    "year": 2016,
+    "venue": "Science",
+    "doi": "10.1126/science.aaf0941"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Primary empirical paper in humans using fMRI demonstrating that navigation through a two-dimensional conceptual space (bird morphology varying along neck and leg dimensions) activates entorhinal cortex with a hexagonal grid-like signal identical in geometry to spatial navigation. Direct empirical support for MECH-155: this is the demonstration that the spatial indexing mechanism has been co-opted for abstract conceptual domains. Confidence moderated by the indirect nature of fMRI (BOLD signal, not single-unit activity), by the specific 2D morphological space used (one particular abstract domain, not proven to generalise to all abstract domains), and by subsequent replication debates in the grid-cell fMRI literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Entorhinal cortex showed hexagonally symmetric (60-degree modulated) BOLD signal when participants navigated a 2D conceptual space defined by bird-neck and bird-leg length -- the same signature used to identify grid cells in human spatial fMRI.",
+    "Activation pattern was specific to navigating conceptual dimensions, not merely viewing bird images.",
+    "Medial prefrontal cortex co-activated with entorhinal cortex during conceptual navigation, consistent with orbitofrontal-entorhinal loop for abstract value/relational coding."
+  ],
+  "tags": ["mech_155", "grid_cells", "entorhinal_cortex", "abstract_space", "conceptual_knowledge", "general_indexing", "human_fmri", "e1_manifold"],
+  "mapping": {
+    "source_claim_statement": "Human entorhinal cortex organises two-dimensional conceptual knowledge using a hexagonal grid-like code identical in geometry to the spatial grid-cell code, indicating that the entorhinal grid system is not spatially specialised but functions as a general relational indexing mechanism.",
+    "ree_translation": "MECH-155 requires that the hippocampal-parietal spatial navigation system represents a general-purpose associative indexing mechanism co-opted for abstract domains. Constantinescu et al. 2016 is the strongest primary empirical paper supporting this: it demonstrates, in humans, that entorhinal grid-like geometry exists for a non-spatial conceptual dimension. For the REE architecture, this means E1's indexed manifold geometry -- the property that enables retrieval and traversal -- is not an accident of spatial task design but reflects how the entorhinal-hippocampal system encodes any structured relational space. The specific abstract domain tested (bird morphology) is artificial, but the hexagonal geometry of the encoding signal is the critical shared feature.",
+    "mapping_caveat": "The abstract dimension tested is perceptually grounded (visual morphology), not fully symbolic. The grid-cell fMRI literature has faced replication challenges, and the relationship between the BOLD hexagonal modulation and actual single-unit grid-cell firing is not directly established in humans. The finding has been replicated in direction (e.g., social hierarchy studies) but the mechanism remains inferential from BOLD. Transfer to REE's E1 domain (which is multimodal, trained, not purely perceptual) requires additional warrant.",
+    "source_context": "Human participants, fMRI, conceptual navigation in 2D bird-morphology space (neck length x leg length), entorhinal cortex and ventromedial prefrontal cortex ROIs"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: Science publication, influential finding, independently cited as foundational in cognitive map literature. Mapping fidelity high: claim directly tested is MECH-155. Transfer risk moderate: fMRI-to-mechanism gap, one abstract domain tested, replication debate in grid-cell fMRI literature. Net confidence reflects a genuinely important finding that is not yet mechanistically resolved."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_154_156_e1_manifold",
+  "entry_id": "2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018",
+  "timestamp_utc": "2026-04-02T12:00:00Z",
+  "claim_ids_tested": ["MECH-155", "MECH-154"],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior",
+    "authors": ["Behrens TEJ", "Muller TH", "Whittington JCR", "Mark S", "Baram AB", "Stachenfeld KL", "Kurth-Nelson Z"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "High-quality theoretical review synthesising substantial empirical literature. The central thesis -- that spatial cognitive maps are an instance of general-purpose relational coding applicable to any structured knowledge domain -- directly supports MECH-155. The paper provides convergent evidence from spatial navigation, reward learning, social cognition, and transitive inference. Confidence is appropriately moderated because it is a review paper rather than primary empirical data, and because the claim that spatial indexing is not a special-purpose module but the general substrate remains a theoretical position rather than a proven circuit mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Entorhinal grid cells encode abstract two-dimensional task spaces with hexagonal geometry identical to spatial navigation (Constantinescu et al. 2016 is cited as primary evidence).",
+    "Hippocampal place-field-like representations emerge for non-spatial dimensions (reward magnitude, social hierarchy, sensory feature space) across rodent, primate, and human data.",
+    "Flexible transfer and inference (transitive inference, shortcut finding) in non-spatial tasks depend on hippocampal-entorhinal integrity, consistent with the general-indexing account.",
+    "Successor Representation framework provides a theoretical bridge: grid cells approximate the eigenvectors of the SR, which is a general associative structure, not spatially specialised."
+  ],
+  "tags": ["mech_155", "mech_154", "cognitive_map", "hippocampus", "entorhinal_cortex", "abstract_space", "general_indexing", "associative_manifold", "e1_manifold", "review"],
+  "mapping": {
+    "source_claim_statement": "Cognitive maps encoding relationships between entities in the world support flexible behaviour; map-like representations observed in spatial navigation are an instance of general coding mechanisms capable of organising knowledge of all kinds, including abstract, non-spatial domains.",
+    "ree_translation": "MECH-155 claims that the hippocampal-parietal spatial navigation system is a general-purpose associative indexing mechanism co-opted for abstract cognitive domains. Behrens et al. 2018 is the canonical theoretical articulation of this position, providing the conceptual framework and synthesising the evidence. For the REE architecture, this means E1's manifold geometry is not a contingent feature of spatial memory but reflects a deeper principle: the hippocampal-entorhinal system indexes structured relational knowledge, and the spatial case is simply the domain in which this was first demonstrated. MECH-154 is supported by extension: the parietal association cortex, as part of the broader hippocampal-parietal network described in this review, implements addressable geometry over whatever knowledge domain is encoded.",
+    "mapping_caveat": "The review synthesises evidence across species and modalities, but many of the non-spatial demonstrations are indirect (fMRI BOLD, lesion effects, transfer performance) rather than single-unit recordings of the kind available for spatial place cells. The theoretical claims (SR eigenspectrum = grid cells, etc.) remain models rather than confirmed mechanisms. The strength of the mapping is conceptual rather than mechanistic.",
+    "source_context": "Cross-species review (rodent, primate, human); spatial navigation, reward learning, social cognition, transitive inference; fMRI, electrophysiology, lesion, and computational modelling evidence synthesised"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Source quality high: Neuron review by leading figures, 100+ pages of synthesis, influential theoretical framework. Mapping fidelity high: the paper's central thesis is essentially the claim MECH-155 makes. Transfer risk low because the paper explicitly frames spatial coding as a special case of general indexing -- this is not an extrapolation from the paper, it is the paper's argument."
+  }
+}
