@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-02T18:10:54.659702+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-04-02T19:31:12.488523+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-199",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-025 Action-Doing Mode with BreathOscillator uncommitted windows",
+    "description": "",
+    "script": "experiments/v3_exq_199_mech025_doing_mode_breath.py",
+    "started_at": "2026-04-02T19:27:42.126445+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 200,
+      "episodes_total": 500,
+      "overall_pct": 40.0
+    },
+    "seconds_elapsed": 210,
+    "seconds_remaining": 316,
+    "recent_lines": [
+      "seed=42  warmup=500  eval=50  alpha_world=0.9",
+      "breath_period=50  sweep_amplitude=0.3  sweep_duration=10",
+      "nav_bias=0.45  size=6  n_hazards=4",
+      "[train] ep 100/500  harm=613  e3_ticks=81",
+      "[train] ep 200/500  harm=1231  e3_ticks=158"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -22,6 +48,61 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-199",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-025 Action-Doing Mode with BreathOscillator uncommitted windows",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-200",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-007 z_beta volatility pathway (rv->z_beta via volatility_signal_dim=1)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-201",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-029 DMN/reflective mode probe with BreathOscillator",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-202",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-026 Ready vigilance with BreathOscillator uncommitted windows",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-203",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-057a Completion gate with BreathOscillator uncommitted windows",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",

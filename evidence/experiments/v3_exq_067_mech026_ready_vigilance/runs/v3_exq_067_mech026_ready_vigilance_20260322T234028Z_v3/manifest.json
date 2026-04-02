@@ -24,6 +24,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "unknown",
+  "scoring_excluded": "substrate_limitation",
   "evidence_direction_note": "Design-inconclusive: uncommitted_threat_steps=0, uncommitted_neutral_steps=0. Agent is permanently committed post-training (running_variance ~2e-6 << commit_threshold). Readiness gap cannot be measured without any uncommitted steps. C3 (uncommitted_threat_steps >= 20) is structurally impossible given current substrate. Does not constitute evidence for or against MECH-026. Fix direction: pre-convergence eval, forced threshold reset, or awaiting wanting/liking/go-no-go additions that may naturally produce uncommitted-mode windows.",
   "producer_capabilities": {
     "sd005_split_latent": true,

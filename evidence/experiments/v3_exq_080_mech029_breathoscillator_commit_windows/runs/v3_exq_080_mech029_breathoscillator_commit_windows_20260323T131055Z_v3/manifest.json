@@ -23,7 +23,9 @@
     "MECH-029"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "unknown",
+  "scoring_excluded": "substrate_limitation",
+  "evidence_direction_note": "Substrate-limited: committed_rate=0.000 in both sweep and inter conditions despite running_variance > threshold. E3 harm head collapsed (harm_pred_std=0.00004). The breath-oscillator proxy does not faithfully generate uncommitted windows in this substrate. May require full ARC-023 + SD-006 heartbeat substrate. Not evidence for or against MECH-029.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,

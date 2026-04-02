@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-02T18:10:48.595803Z`
+Generated: `2026-04-02T18:35:07.853891Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -18,7 +18,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-033` | directional, source_disagreement, mixed_evidence | 4 | 4 | 1 | `v3_exq_166d_sd003_harm_decoder_discrimination_20260330T194416Z_v3` | 20 |
 | `ARC-038` | directional, source_disagreement | 1 | 1 | 1 | `v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z_v3` | 2 |
 | `ARC-041` | directional | 3 | 1 | 0.5 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 5 |
-| `MECH-025` | directional, source_disagreement, mixed_evidence | 2 | 2 | 1 | `2026-04-02_mech_025_agency_prediction_error_wen2020` | 7 |
 | `MECH-033` | directional, mixed_evidence | 13 | 2 | 0.267 | `v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3` | 16 |
 | `MECH-071` | directional, mixed_evidence | 23 | 13 | 0.722 | `20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3` | 54 |
 | `MECH-072` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_mech_072_stress_memory_decontextualization_schwabe2024` | 7 |
@@ -154,7 +153,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-029
 - Conflict types: directional
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.657
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.656
 - Recent entries:
   - `2026-03-22T19:17:16Z` `experimental` `v3_exq_063_arc029_committed_mode_harm_outcomes` direction=`supports` confidence=0.75
   - `2026-03-29T01:01:06Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
@@ -257,26 +256,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Lateral vs medial OFC dissociation is not cleanly mapped onto E2-action vs E3-valuation -- the biological pathways are more intertwined.` (1)
   - `The paper finds little evidence for a chosen-value or chosen-value-difference code during choice -- challenging the assumption that vmPFC computes explicit value comparisons.` (1)
   - `The cognitive map metaphor suggests vmPFC organizes options spatially rather than through discrete pathways, which is structurally different from ARC-041's dual-output architecture.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### MECH-025
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, overall_confidence=0.676
-- Recent entries:
-  - `2026-03-19T23:36:41Z` `experimental` `claim_probe_mech_025` direction=`mixed` confidence=0.5
-  - `2026-03-19T23:36:41Z` `experimental` `v3_exq_050_mech025_doing_mode_probe` direction=`mixed` confidence=0.5
-  - `2026-03-21T01:35:39Z` `experimental` `v3_exq_050b_mech025_doing_mode_relative_threshold` direction=`mixed` confidence=0.5
-  - `2026-04-02T12:30:00Z` `literature` `targeted_review_connectome_mech_025` direction=`supports` confidence=0.72
-  - `2026-04-02T12:35:00Z` `literature` `targeted_review_connectome_mech_025` direction=`supports` confidence=0.65
-- Recurring failure signatures:
-  - `v2_verdict_fail:action_doing_mode_probe` (2)
-  - `The active inference framework treats precision as a property of beliefs about policies, not a dedicated action-mode regime -- it is continuous, not a discrete mode switch.` (1)
-  - `Responsibility is not explicitly modeled -- agency in this framework is about self-attribution of action outcomes, not moral responsibility.` (1)
-  - `The paper studies subjective sense of agency in humans, not computational control regimes -- the link to 'action mode' as an architectural feature requires a mapping leap.` (1)
-  - `Both agency mechanisms (prediction error + regularity) operate continuously, not as a discrete mode switch.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -490,7 +469,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-104
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=1, conflict_ratio=0.222, overall_confidence=0.883
+- Evidence breakdown: supports=8, weakens=1, conflict_ratio=0.222, overall_confidence=0.882
 - Recent entries:
   - `2026-03-29T03:17:02Z` `experimental` `v3_exq_126_mech104_surprise_gate_pair` direction=`supports` confidence=0.75
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.82

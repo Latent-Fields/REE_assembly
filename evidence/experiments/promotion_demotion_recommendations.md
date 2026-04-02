@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-02T18:10:48.595803Z`
+Generated: `2026-04-02T18:35:07.853891Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -16,7 +16,6 @@ Use this as the human-in-the-loop review queue.
 | `ARC-033` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `ARC-041` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-025` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-057a` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-091` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -159,30 +158,10 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Hold at candidate: conflict_ratio=1.0 with only 2 experimental entries. Insufficient evidence to resolve.
 
-### MECH-025
-- Current status: `candidate`
-- Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.586, conflict_ratio=1, exp_entries=5, lit_entries=2; directions supports=2, weakens=2, mixed=3, unknown=0, conflict_ratio=1
-- Evidence quality note: V3 gate cleared (2026-03-28): SD-004 (action objects), SD-005 (z_self/z_world split), and ARC-016 (dynamic precision) now implemented in ree-v3. V3 action-doing mode experiments can now proceed. V2 experiment EXQ-026 (action_doing_mode_probe, EVB-0025) FAIL -- 1 run (2026-03-08). Proximate failure: action_precision_lift = 0.0 across all seeds/conditions — E3 precision hardcoded, no dynamic channel…
-- Recommendation: `hold_candidate_resolve_conflict`
-- Options (pros/cons):
-  - Keep candidate and run conflict-resolution experiments (most balanced)
-  - Promote despite conflict (speed, high lock-in risk)
-  - Demote to legacy (conservative, may discard useful partial mechanism)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-03-16T18:20:19.361130Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: User confirmed hold. Action-doing mode probe FAIL (EXQ-026): V2 substrate lacks the multi-rate loop and heartbeat architecture required to instantiate distinct action-doing mode.
-
 ### MECH-057a
 - Current status: `candidate`
 - Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: overall_conf=0.784, conflict_ratio=0, exp_entries=2, lit_entries=2; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.784, conflict_ratio=0, exp_entries=2, lit_entries=2; directions supports=3, weakens=0, mixed=0, unknown=1, conflict_ratio=0
 - Evidence quality note: Prior 10 synthetic runs (ree-v2/ree-experiments-lab, archived 2026-02-26) are invalid. Genuine ree-v1-minimal experiment completed 2026-02-26 (EVB-0042, control_completion_requirement): FAIL (informative baseline — effect direction correct, magnitude sub-threshold). FULL last-Q harm 0.879 | NO_ATTRIBUTION 0.896 (+1.9%) | NO_GATING 0.919 (+4.5%). Degradation threshold 1.1 (10%): neither ablation me…
 - Recommendation: `promote_to_provisional`
 - Options (pros/cons):

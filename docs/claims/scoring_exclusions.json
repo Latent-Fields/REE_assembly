@@ -68,6 +68,77 @@
     }
   ],
 
+  "MECH-025": [
+    {
+      "run_id": "20260308T132031_action_doing_mode_probe_v2",
+      "reason": "Substrate-limited: V2 substrate had hardcoded precision (not dynamic), SD-003 counterfactual attribution unavailable. Cannot test action-doing mode without these prerequisites."
+    },
+    {
+      "run_id": "20260316T100752_action_doing_mode_probe_v2",
+      "reason": "Substrate-limited: V2 substrate had hardcoded precision (not dynamic), SD-003 counterfactual attribution unavailable. Same limitation as 20260308 run."
+    },
+    {
+      "run_id": "20260319T233641Z_v3_exq_050_mech025_doing_mode_probe_v3",
+      "reason": "Substrate-limited: agent permanently committed (0 uncommitted steps). Cannot compare doing-mode vs exploration-mode signatures without uncommitted windows. Permanent commitment is a substrate design limitation."
+    },
+    {
+      "run_id": "v3_exq_050_mech025_doing_mode_probe_20260319T233641Z_v3",
+      "reason": "Substrate-limited: duplicate index entry for EXQ-050. Same permanent commitment issue (0 uncommitted steps)."
+    },
+    {
+      "run_id": "v3_exq_050b_mech025_doing_mode_relative_threshold_20260321T013539Z_v3",
+      "reason": "Substrate-limited: only 8 uncommitted steps (below C2 threshold of 10). Relative threshold calibration insufficient to break permanent commitment. Insufficient samples for interpretable causal signature comparison."
+    }
+  ],
+
+  "Q-007": [
+    {
+      "run_id": "20260315T150155_valence_regime_correlation_v2",
+      "reason": "Substrate-limited: V2 substrate had no rv->z_beta pathway. Valence-regime correlation untestable. Same architectural gap as all V3 Q-007 experiments."
+    },
+    {
+      "run_id": "20260320T032058Z_v3_exq_051_q007_valence_precision_v3",
+      "reason": "Substrate-limited: no rv->z_beta pathway exists in current substrate. Reward-volatility signal cannot reach z_beta control channels. Cannot test dimensional affect -> z_beta regimes without this pathway."
+    },
+    {
+      "run_id": "v3_exq_051_q007_valence_precision_20260320T032058Z_v3",
+      "reason": "Substrate-limited: duplicate index entry for EXQ-051. Same missing rv->z_beta pathway."
+    },
+    {
+      "run_id": "v3_exq_051c_q007_zbeta_volatility_injection_20260328T195315Z_v3",
+      "reason": "Substrate-limited: r(rv, z_beta)=0.000 -- no rv->z_beta pathway exists. Volatility injection reaches reward but cannot propagate to z_beta control channels."
+    },
+    {
+      "run_id": "v3_exq_051c_q007_zbeta_volatility_injection_20260330T180814Z_v3",
+      "reason": "Substrate-limited: same missing rv->z_beta pathway as EXQ-051c run 1."
+    }
+  ],
+
+  "MECH-029": [
+    {
+      "run_id": "v3_exq_065_mech029_default_mode_probe_20260323T023328Z_v3",
+      "reason": "Substrate-limited: agent permanently committed (running_variance ~7.5e-5 << commit_threshold). Zero uncommitted steps -- C1/C2/C3 untestable. Substrate design limitation, not signal about MECH-029."
+    },
+    {
+      "run_id": "v3_exq_080_mech029_breathoscillator_commit_windows_20260323T131055Z_v3",
+      "reason": "Substrate-limited: committed_rate=0.000 in both conditions despite running_variance > threshold. E3 harm head collapsed (harm_pred_std=0.00004). Breath-oscillator proxy does not faithfully generate uncommitted windows. May require full ARC-023 + SD-006 substrate."
+    }
+  ],
+
+  "MECH-026": [
+    {
+      "run_id": "v3_exq_067_mech026_ready_vigilance_20260322T234028Z_v3",
+      "reason": "Substrate-limited: agent permanently committed (running_variance ~2e-6 << commit_threshold). Zero uncommitted steps -- readiness gap unmeasurable. Substrate design limitation, not signal about MECH-026."
+    }
+  ],
+
+  "MECH-057a": [
+    {
+      "run_id": "v3_exq_139_mech057a_action_loop_gate_pair_20260329T032833Z_v3",
+      "reason": "Substrate-limited: n_seq=0 in GATE_ON condition -- no committed sequences generated as actual sequences. Results identical between conditions (harm_rate 0.7244 vs 0.7244). Manual running_variance proxy insufficient. May require full ARC-023 + SD-006 substrate."
+    }
+  ],
+
   "SD-009": [
     {
       "run_id": "20260318T083631Z_v3_exq_020_event_contrastive_v3",

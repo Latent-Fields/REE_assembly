@@ -25,7 +25,9 @@
     "MECH-025"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "unknown",
+  "scoring_excluded": "substrate_limitation",
+  "evidence_direction_note": "Substrate-limited: V2 substrate had hardcoded precision (not dynamic), SD-003 counterfactual attribution unavailable. Cannot test MECH-025 action-doing mode without dynamic precision modulation or causal self-attribution. Not evidence for or against the claim.",
   "failure_signatures": [
     "v2_verdict_fail:action_doing_mode_probe"
   ],
