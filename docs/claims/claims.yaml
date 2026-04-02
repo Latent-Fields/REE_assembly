@@ -1373,7 +1373,7 @@
     - ARC-015
     - ARC-021
     - INV-012
-    - ARC-043
+    - ARC-044
   location: docs/architecture/modes_of_cognition.md#mech-025
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -1391,7 +1391,7 @@
     ready mode needs an arousal regulator that finds optimal sensitivity, not a binary switch.
     MECH-093 (z_beta modulates E3 heartbeat frequency) may be the implementation mechanism:
     heartbeat rate IS the arousal parameter, expressed as temporal sampling frequency rather
-    than gain scalar. See MECH-156 for the specific arousal regulator claim.
+    than gain scalar. See MECH-161 for the specific arousal regulator claim.
     MISSING CONSTRAINT -- FATIGUE (2026-04-02): Biological vigilance degrades over time as
     right PFC activation wanes (the vigilance decrement). REE's computational precision
     parameter has no fatigue and no metabolic cost. This is a missing constraint. Whether
@@ -1399,13 +1399,13 @@
     finite-resource systems) or merely a biological limitation (REE can simply maintain
     steady precision) is an open question. Biology suggests the decrement is associated
     with attentional lapses that serve an information-gathering function (exploring vs
-    exploiting attention allocation). ARC-043 may subsume this.
+    exploiting attention allocation). ARC-044 may subsume this.
   depends_on:
     - ARC-016
     - ARC-005
     - MECH-093
-    - MECH-156
-    - ARC-043
+    - MECH-161
+    - ARC-044
   location: docs/architecture/modes_of_cognition.md#mech-026
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -8539,7 +8539,7 @@
     more precise (lower variability), not just louder. This means MECH-152 and ARC-016
     may be the same mechanism at different levels of description -- ARC-016 is the
     temporal gain (recent prediction error variance), MECH-152 is the contextual gain
-    (sensory cue association). Both are subsumed by ARC-043 (context-dependent
+    (sensory cue association). Both are subsumed by ARC-044 (context-dependent
     neuromodulatory gain). Should be tested together: does w_harm modulation
     improve E3 harm evaluation precision (lower variability) or just scale magnitude?
     Biological: vmPFC lesion produces flat w_harm = w_goal regardless of sensory
@@ -8593,12 +8593,12 @@
     terrain_weight pathway (MECH-152, vmPFC analog) should have different update
     rates, not simultaneous output from a single retrieval step. This may share
     an underlying reason with the E1/E2 developmental training differential vs E3
-    (ARC-042 staged development). See MECH-155 for the specific rate asymmetry claim.
+    (ARC-042 staged development). See MECH-160 for the specific rate asymmetry claim.
   depends_on:
     - MECH-150
     - MECH-151
     - MECH-152
-    - MECH-155
+    - MECH-160
     - ARC-035
     - ARC-001
     - ARC-002
@@ -9079,3 +9079,207 @@
   location: docs/architecture/social.md#mech-159
   source:
     - docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md
+
+# ---- Claims registered 2026-04-02 from literature pull batch discussion ----
+
+- id: MECH-025b
+  title: "High-precision action mode carries responsibility attribution: the precision level at which an action was committed determines the degree of ethical accountability assigned to its consequences."
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.action_doing_responsibility_linkage
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-025
+    - ARC-016
+    - INV-012
+    - SD-003
+  notes: >
+    Decomposed from MECH-025 (2026-04-02). The original MECH-025 combined precision
+    modulation (supported by Friston 2013 active inference, Wen & Haggard 2020 agency
+    prediction error) with responsibility linkage. Literature supports precision
+    modulation of motor control as a mechanistic claim, but the responsibility
+    linkage -- where high precision IMPLIES ethical accountability -- is a philosophical
+    bridge, not a neuroscience finding. Friston's framework is domain-general; it does
+    not distinguish "precise because risky" from "precise because difficult." The
+    responsibility attribution requires SD-003 (self-attribution via counterfactual E2)
+    in addition to precision modulation.
+    This is a claim about the RELATIONSHIP between precision and ethical accountability,
+    not about either mechanism in isolation. It asserts: actions committed at higher
+    precision carry higher residue weight because the agent was in a state where it could
+    have done otherwise with finer discrimination. Low-precision actions (reflexive,
+    unconsidered) carry lower accountability -- the agent's discrimination capacity was
+    not engaged. This maps onto the philosophical distinction between negligence and
+    deliberate action.
+    Registered 2026-04-02 from MECH-025 decomposition during literature pull discussion.
+  evidence: []
+
+- id: MECH-160
+  title: "The E2 action_bias pathway (MECH-151, OFC analog) and E3 terrain_weight pathway (MECH-152, vmPFC analog) have different update rates: action_bias updates rapidly (single-trial, OFC-like) while terrain_weight integrates over longer timescales (vmPFC-like)."
+  claim_type: mechanism_hypothesis
+  subject: e1_e3.ofc_vmpfc_rate_asymmetry
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-041
+    - MECH-151
+    - MECH-152
+    - ARC-042
+    - ARC-044
+  notes: >
+    Registered 2026-04-02 from literature pull discussion. Rudebeck & Murray 2024
+    confirm that OFC updates rapidly (single-trial reversal learning) while vmPFC
+    integrates over longer timescales. ARC-041 currently treats the E2 action_bias
+    and E3 terrain_weight as simultaneous outputs from a single retrieval step.
+    This claim asserts they should have different update rates, matching the OFC/vmPFC
+    temporal distinction.
+    Implementation options: (1) separate learning rates for cue_action_proj vs
+    cue_terrain_proj; (2) different EMA decay constants for action_bias vs terrain_weight;
+    (3) action_bias updates every step while terrain_weight updates every N steps.
+    This may share an underlying reason with the E1/E2 developmental training differential
+    relative to E3 (ARC-042 staged development): faster subsystems must establish their
+    representations before slower subsystems can build on them.
+    Biological: OFC reversal learning in 1-3 trials (Rudebeck et al. 2013); vmPFC value
+    updating over 10-50 trials (Noonan et al. 2010). Ratio ~3-15x. In REE terms, this
+    suggests cue_action_proj learning rate should be 3-15x higher than cue_terrain_proj.
+  evidence: []
+
+- id: MECH-161
+  title: "Ready vigilance (MECH-026) requires an arousal regulator that maintains an optimal sensitivity level on the LC-NE inverted-U curve, implemented via MECH-093 heartbeat frequency modulation rather than a binary high/low precision switch."
+  claim_type: mechanism_hypothesis
+  subject: cognitive_modes.vigilance_arousal_regulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - MECH-026
+    - MECH-093
+    - ARC-016
+    - ARC-044
+  notes: >
+    Registered 2026-04-02 from literature pull discussion. Langner & Eickhoff 2013
+    meta-analysis and Oken et al. 2006 establish that the LC-NE system operates on
+    an inverted-U curve: too little norepinephrine and signals are missed; too much and
+    the system becomes hypervigilant (false alarms, distractible). Optimal vigilance
+    sits at the peak.
+    MECH-026 currently implies setting precision high for ready vigilance. This claim
+    asserts that optimal vigilance requires a SPECIFIC precision level, not maximum,
+    and that MECH-093's heartbeat frequency modulation (z_beta -> E3 update rate) is
+    the implementation mechanism. The heartbeat rate IS the arousal parameter, expressed
+    as a temporal sampling frequency: too fast = hypervigilant (sampling noise, wasting
+    computation); too slow = missed signals (under-sampling threats).
+    The arousal regulator must find the peak of the inverted-U. In REE, this could be
+    implemented as a z_beta-gated controller that adjusts heartbeat rate based on the
+    derivative of E3 harm_eval information gain: if increasing the rate produces
+    diminishing returns, the system is past the peak.
+    MISSING CONSTRAINT -- FATIGUE: Biological vigilance degrades over time (the vigilance
+    decrement, Langner & Eickhoff 2013). REE's computational precision has no metabolic
+    cost. Whether fatigue is informationally relevant (attentional lapses serve an
+    explore-vs-exploit function) or merely a biological limitation is an open question.
+    Biology suggests checking whether any LC-NE fatigue dynamics translate to software.
+    If not, design blind and test.
+  evidence: []
+
+- id: MECH-162
+  title: "z_resource (SD-015, object-identity encoding) and z_world (spatial-contextual encoding) separate at the feedforward representation stage but must re-converge at the hippocampal planning stage for goal-directed navigation."
+  claim_type: mechanism_hypothesis
+  subject: goal_representation.resource_world_convergence
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - SD-015
+    - SD-005
+    - ARC-007
+    - SD-004
+  notes: >
+    Registered 2026-04-02 from literature pull discussion. DiCarlo & Cox 2007 and
+    Rolls 2021 support separating object identity from spatial context at the
+    feedforward encoding stage (ventral/dorsal split). But Whittington et al. 2022
+    (Tolman-Eichenbaum model) shows that cognitive maps FUSE object identity with
+    spatial structure through a shared relational manifold. The architectural question
+    is whether z_resource feeds into the hippocampal planning module alongside z_world,
+    enabling the planner to reason about "where resources are likely to be" given
+    current spatial context.
+    Current REE architecture treats z_resource and z_world as independent streams.
+    This claim asserts they must converge for planning: the hippocampal module needs
+    both "what to seek" (z_resource) and "where things are" (z_world) to generate
+    goal-directed trajectory candidates.
+    The different permutations of having z_resource alone, z_world alone, and both
+    fused -- and the differences in when they are fused vs separated, and how they
+    might feed forward, back, or laterally -- are unresolved and need systematic
+    experimental testing. See Q-030.
+    Biological: ventral stream (IT cortex) encodes object identity; dorsal stream
+    (parietal cortex) encodes spatial layout; hippocampus receives both and constructs
+    a unified cognitive map (Eichenbaum 2000, Whittington et al. 2022). The separation
+    is a representation-level choice; the convergence is a planning-level requirement.
+  evidence: []
+
+- id: Q-030
+  title: "What are the optimal permutations of z_resource and z_world separation, fusion, and information flow direction (feedforward, feedback, lateral) across REE's processing stages?"
+  claim_type: open_question
+  subject: goal_representation.resource_world_permutations
+  polarity: open
+  status: open
+  depends_on:
+    - SD-015
+    - SD-005
+    - MECH-162
+    - ARC-007
+  notes: >
+    Registered 2026-04-02 from literature pull discussion. SD-015 establishes
+    z_resource as a separate encoder. MECH-162 claims z_resource and z_world must
+    re-converge at the hippocampal planning stage. But the design space is larger:
+    (1) At encoding: fully separate (current) vs partially shared vs joint encoder?
+    (2) At E2 prediction: does E2 operate on z_world alone, z_resource alone, or both?
+    (3) At hippocampal planning: fused input or parallel streams?
+    (4) At E3 evaluation: separate harm (z_world) vs benefit (z_resource) channels,
+        or joint evaluation?
+    (5) Feedback: does hippocampal planning output update z_resource (goal refinement)
+        or z_world (spatial prediction), or both?
+    (6) Lateral: do z_resource and z_world share information at matching spatial
+        locations (e.g., "resource at position X" binding)?
+    These permutations interact with SD-004 (action objects as map backbone) and
+    SD-005 (z_self/z_world split). Systematic experimental testing required.
+
+- id: ARC-044
+  title: "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC)."
+  claim_type: architectural_commitment
+  subject: architecture.neuromodulatory_gain_unifier
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - MECH-152
+    - MECH-026
+    - MECH-093
+    - MECH-161
+    - ARC-041
+  notes: >
+    Registered 2026-04-02 from cross-cutting theme identified during literature pull
+    batch. Several lit-pull discussions converged on the same architectural question:
+    the relationship between precision, gain control, and arousal.
+    The literature consistently points to a two-layer gain architecture:
+    (1) Global arousal signal (LC-NE): sets the overall sensitivity/precision level.
+        Modulates all cortical processing simultaneously. Inverted-U curve.
+    (2) Context-specific gain signal (vmPFC/OFC via ARC-041 cue-weighting circuit):
+        modulates precision PER evaluation channel based on sensory context.
+    REE currently fragments this into multiple independent mechanisms:
+    - ARC-016: temporal gain (running_variance -> commit threshold)
+    - MECH-152: contextual gain (cue_context -> [w_harm, w_goal])
+    - MECH-026: arousal gain (vigilance sensitivity level)
+    - MECH-093: temporal-rate gain (z_beta -> heartbeat frequency)
+    ARC-044 asserts these are all implementations of the same neuromodulatory
+    architecture and should compose coherently. Effective precision at any evaluation
+    channel = f(global_arousal, contextual_gain, temporal_precision, heartbeat_rate).
+    The gain control literature (Kanashiro et al. 2017) shows that gain modulation
+    also controls signal-to-noise ratio, not just magnitude -- high gain makes
+    evaluation more precise (lower variability), not just louder.
+    This claim ties together the control plane loose ends identified during the
+    literature review and provides a framework for testing them jointly.
+    Experimental implications: a single experiment varying both context (hazard vs
+    resource-proximate) and temporal state (stable vs volatile) should show
+    multiplicative interaction between MECH-152 and ARC-016. If they are truly
+    facets of one mechanism, the interaction should be multiplicative; if independent,
+    additive.
+  evidence: []
