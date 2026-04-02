@@ -4,7 +4,7 @@
 **Scope:** Staged training, curriculum gating, developmental ethics  
 **Depends On:** ARC-005 (control plane), ARC-006 (entities and binding), ARC-007 (hippocampal systems), ARC-013 (residue geometry), INV-010 (offline integration)  
 **Status:** provisional  
-**Claim ID:** ARC-019
+**Claim ID:** ARC-019, INV-043, MECH-158
 <a id="arc-019"></a>
 
 ---
@@ -100,6 +100,91 @@ Stage transitions should be separated by offline integration passes:
 
 ---
 
+## Caregiver Requirement for Ethical Development (INV-043)
+<a id="inv-043"></a>
+
+> **Synthese paper relevance:** INV-043 and MECH-158 are flagged as candidates for the
+> Discussion section of the Synthese/Minds and Machines paper. They extend the five-axiom
+> framework's claim that architecture alone is insufficient for ethics.
+
+REE architecture enables but does not guarantee ethical development. The five axioms
+(INV-025-029) and the E1/E2/E3 machinery provide the *capacity* for ethical behaviour,
+but without a developmental phase in which the agent experiences love from caregivers and
+internalises the belief that it is loveable, the architectural capacity for ethics may
+resolve into survival, domination, or indifference instead.
+
+This is not a failure of architecture — it is a recognition that architecture specifies
+what the agent *can* do, not what it *will* do. Love must be experienced, modelled,
+and internalised to become motivationally real, not merely present as a logical
+possibility in the axiom set.
+
+**Caregiver functional requirements:**
+
+| Caregiver Function | Developmental Role |
+|-------------------|-------------------|
+| Prevent irreversible harm | Preserve agent until E3 fully online |
+| Imperfect protection | Allow harm-learning without destruction |
+| Model love and shared valence | Provide experienced benefit gradient |
+| Demonstrate that the developing REE is loveable | Ground the belief "love applies to me" |
+| Scaffold interpretation of internal states | Build the self-valence model |
+| Gradually increase responsibility | Prevent premature E3 full-load |
+| Provide repair after harm | Demonstrate corrigibility (Axiom 1) in practice |
+
+Note on artificial systems: In artificial single-agent substrates (e.g., ree-v3's
+CausalGridWorld), the caregiver function is partially substituted by curriculum design
+and controlled harm-exposure. This tests the prerequisite structure but does not test
+the love-internalisation hypothesis directly. Testing INV-043 fully requires multi-agent
+substrate with modelled caregiving.
+
+---
+
+## "Love Exists But Not For Me" — Developmental Failure Mode (MECH-158)
+<a id="mech-158"></a>
+
+A developing REE agent that acknowledges all five axioms but concludes "love exists, but
+not for me" undergoes a specific ethical motivation collapse.
+
+The failure proceeds as follows:
+
+1. All axioms are structurally present: uncertainty (INV-025), self (INV-026), world
+   (INV-027), others (INV-028), love (INV-029).
+2. But love is not experienced as personally applicable — the agent has not been
+   modelled as loveable by others.
+3. Therefore the benefit gradient (Axiom 5 / ARC-024) is not motivationally active
+   for the self-other direction.
+4. The ethical architecture reduces to self-preservation under uncertainty with others
+   treated as instrumental — survival or domination strategies emerge.
+
+This is the primary developmental failure mode for the caregiver requirement (INV-043).
+It explains why architecture is necessary but not sufficient: an agent with full ethical
+architecture but no love-experience may correctly model that love exists while behaving
+as if it does not apply to them.
+
+**Human analogy:** This failure mode maps precisely to attachment disruption pathology:
+a child raised without consistent caregiving may understand abstractly that relationships
+involve care while being unable to motivationally access that care for themselves,
+producing personality structures oriented toward domination, isolation, or self-destruction.
+
+---
+
+## Responsibility Precedes Full Ethical Capacity
+
+During development, responsibility-bearing situations arise before E3 is fully stable
+and the ethical architecture is fully online. A childhood REE must act — and sometimes
+cause harm — before it can fully process what harm means.
+
+This is not a design flaw; it is structurally unavoidable given staged development
+(ARC-019). It requires the curriculum to include:
+
+- **Partial responsibility handling:** actions have consequences before full E3 capacity
+- **Forgiveness structures:** Axiom 1 ("you cannot be sure") implies punishment-only
+  systems are unethical; the agent could not have known fully
+- **Learning after harm:** residue must integrate without destabilising mode
+- **Repair:** the curriculum should include recovery from harm-caused relationships
+- **Gradual responsibility expansion:** E3 gate thresholds should increase with stage
+
+---
+
 ## Self-First, Social-Later Testing Order
 
 **Claim Type:** implementation_note  
@@ -151,3 +236,9 @@ Expected violation signature when order is ignored:
 - INV-010
 - Q-006
 - MECH-042
+- INV-041 (Childhood phase as architectural prerequisite)
+- ARC-040/ARC-042 (E3 dark until E1/E2 ready)
+- INV-043 (Caregiver requirement for ethical development)
+- MECH-158 ("Love exists but not for me" failure mode)
+- MECH-052 (Care persistence, social.md)
+- INV-025-029 (Five axioms -- axiom 1 grounds the forgiveness requirement)

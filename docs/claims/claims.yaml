@@ -1074,9 +1074,9 @@
     not informative about Q-006 itself. Scoring excluded. Infrastructure fix required: residue
     field must build meaningful contrast before developmental vs additive ethics can be tested.
 - id: Q-007
-  title: "Do universal expressions map to stable control-channel regimes?"
+  title: "Do affect dimensions (not necessarily universal expressions) map to stable control-channel regimes in z_beta?"
   claim_type: open_question
-  subject: emotion.universal_expression_channel_mapping
+  subject: emotion.affect_dimension_channel_mapping
   polarity: asserts
   status: active
   evidence_quality_note: |
@@ -1118,6 +1118,18 @@
     C3 FAIL -- consequence of C2 failure. Directional signal confirmed for z_beta condition
     difference (C1), but rv injection pathway not producing variance signal. v3_pending hold
     stands until rv metric is repaired and C2/C3 retested.
+    REFRAME (2026-04-02): Literature pull surfaced Barrett et al. 2019 (weakens universal
+    expression premise) and Barrett 2017 (constructed emotion theory, mixed). Facial
+    configurations are not reliably diagnostic of emotional states across cultures. The
+    constructionist position argues emotions are constructed categories, not natural kinds
+    with fixed neural signatures. This challenges the "universal expressions" framing but
+    NOT the core architectural question of whether z_beta regimes exist. Reframed from
+    "universal expressions -> regimes" to "affect dimensions (valence/arousal) -> regimes."
+    Dimensional affect (Russell 1980 circumplex, Barrett dimensional models) is more
+    consistent with REE's z_beta architecture than categorical emotion. z_beta channels
+    may represent valence and arousal dimensions rather than discrete emotional categories.
+    This reframe preserves the testable core (stable z_beta regime structure) while
+    dropping the weakened universal-expression assumption.
   depends_on:
     - ARC-005
     - ARC-021
@@ -1332,9 +1344,9 @@
     - docs/architecture/agency_responsibility_flow.md
     - docs/invariants.md
 - id: MECH-025
-  title: "Action mode prioritizes short-horizon, high-precision, responsibility-linked control."
+  title: "Action mode prioritizes short-horizon, high-precision control via context-dependent precision modulation."
   claim_type: mechanism_hypothesis
-  subject: cognitive_modes.action_doing
+  subject: cognitive_modes.action_doing_precision
   polarity: asserts
   status: candidate
   evidence_quality_note: |
@@ -1349,12 +1361,19 @@
     Slope criterion: HIGH_CAUSAL (0.0211) vs LOW_CAUSAL (0.0174) — right direction, 0.0037 gap,
     well short of 0.05 margin; likely policy gradient density effect, not action-doing mode signal.
     No valid evidence in current corpus.
+    DECOMPOSITION (2026-04-02): Original MECH-025 combined precision modulation (mechanistic,
+    supported by Friston 2013 active inference) with responsibility linkage (architectural,
+    philosophical bridge). Literature supports precision modulation of motor control but the
+    responsibility linkage -- where high precision implies ethical accountability -- is a
+    philosophical claim, not a neuroscience finding. MECH-025 now covers the mechanistic
+    precision modulation only. Responsibility linkage decomposed to MECH-025b.
   depends_on:
     - ARC-016
     - ARC-005
     - ARC-015
     - ARC-021
     - INV-012
+    - ARC-043
   location: docs/architecture/modes_of_cognition.md#mech-025
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -1364,9 +1383,29 @@
   subject: cognitive_modes.ready_vigilance
   polarity: asserts
   status: provisional
+  evidence_quality_note: |
+    AROUSAL REGULATOR NEEDED (2026-04-02): Literature (Langner & Eickhoff 2013 meta-analysis,
+    Oken et al. 2006) establishes that vigilance = high arousal + suppressed motor output.
+    The LC-NE inverted-U curve means optimal vigilance requires a SPECIFIC sensitivity level,
+    not maximum. Setting precision too high produces hypervigilance (false alarms). MECH-026's
+    ready mode needs an arousal regulator that finds optimal sensitivity, not a binary switch.
+    MECH-093 (z_beta modulates E3 heartbeat frequency) may be the implementation mechanism:
+    heartbeat rate IS the arousal parameter, expressed as temporal sampling frequency rather
+    than gain scalar. See MECH-156 for the specific arousal regulator claim.
+    MISSING CONSTRAINT -- FATIGUE (2026-04-02): Biological vigilance degrades over time as
+    right PFC activation wanes (the vigilance decrement). REE's computational precision
+    parameter has no fatigue and no metabolic cost. This is a missing constraint. Whether
+    the cost of vigilance is informationally relevant (the decrement is a feature of
+    finite-resource systems) or merely a biological limitation (REE can simply maintain
+    steady precision) is an open question. Biology suggests the decrement is associated
+    with attentional lapses that serve an information-gathering function (exploring vs
+    exploiting attention allocation). ARC-043 may subsume this.
   depends_on:
     - ARC-016
     - ARC-005
+    - MECH-093
+    - MECH-156
+    - ARC-043
   location: docs/architecture/modes_of_cognition.md#mech-026
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -1398,7 +1437,7 @@
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-029
-  title: "Reflective/DMN mode supports moral simulation via gated replay."
+  title: "Reflective/DMN mode supports moral evaluation of hippocampally-generated replay trajectories."
   claim_type: mechanism_hypothesis
   subject: default_mode.reflective_ethics
   polarity: asserts
@@ -1417,6 +1456,13 @@
     substrate; MECH-029 redesign should follow once those confirm z_goal is working.
     The BreathOscillator mechanism (variance difference C1 PASS) has real signal;
     it is the commitment detection and E3 harm_eval sensitivity that need work first.
+    CLARIFICATION (2026-04-02): Literature (Liu et al. 2024, Yoder & Decety 2019)
+    suggests the DMN's moral engagement is primarily evaluative (judging outcomes of
+    imagined scenarios), not generative (proposing the scenarios). The hippocampus
+    generates replay trajectories; DMN/E3 evaluates them for ethical content. This
+    actually fits REE's architecture better than the original "gated replay" framing:
+    the hippocampal module generates candidate trajectories, E3 scores them for harm/
+    benefit. Title updated to reflect this generation/evaluation distinction.
   depends_on:
     - ARC-014
     - ARC-005
@@ -1901,7 +1947,7 @@
 # requiring different substrates and different V-phase targets. MECH-057a retains the V1/V2
 # evidence and is V2-testable with multi-step substrate. MECH-057b is explicitly V3-scoped.
 - id: MECH-057a
-  title: "Committed action sequences suppress new precision updates until execution completes."
+  title: "Committed action sequences suppress sensory precision reweighting until execution completes."
   claim_type: mechanism_hypothesis
   subject: agentic_extension.action_loop_completion_gate
   polarity: asserts
@@ -1947,6 +1993,15 @@
     generated; gate never triggered at this training scale; harm_rate_GATE_ON=harm_rate_ABLATED=
     0.7244. Substrate issue, not scientific failure. Hold pending investigation of why committed
     sequences fail to generate at current training budget.
+    FRAMING CLARIFICATION (2026-04-02): Literature (Schmidt et al. 2019, Leventhal et al.
+    2012) distinguishes motor output suppression (beta blocks movement initiation) from
+    sensory precision reweighting suppression (beta blocks precision updates during committed
+    sequences). MECH-057a claims the latter -- beta suppresses SENSORY REWEIGHTING, not
+    motor output. MECH-090 (beta gates E3->action propagation, not E3 internal updating)
+    is probably the more correct framing and is better supported by electrophysiology.
+    However, the alternative framing (beta suppresses precision updates themselves, not just
+    their propagation) is worth testing as lower priority once substrate supports it.
+    Title updated from "precision updates" to "sensory precision reweighting."
   depends_on:
     - ARC-015
     - ARC-005
@@ -8390,6 +8445,14 @@
     Prerequisite: SD-005 (z_world must be architecturally distinct from z_self
     for a z_world-only query to be meaningful).
     Registered 2026-03-31 from frontal cue-integration circuit design.
+    FIDELITY GAP (2026-04-02): Biological hippocampal pattern completion is
+    auto-associative (Hopfield-like) -- retrieving ANY element of a context
+    reinstates ALL elements holistically (Horner et al. 2015, Staresina et al.
+    2019). REE's ContextMemory uses query-key attention, which can retrieve
+    partial matches and produce chimeric reconstructions. This is probably a
+    fidelity gap rather than a feature. Prioritise fidelity during initial
+    assembly; can be tested once architecture is working whether attention-based
+    or auto-associative retrieval is superior for cue-indexed context in REE.
     SD-016 implementation status (2026-03-31): extract_cue_context() circuit is
     implemented and wired in E1DeepPredictor. However, EXQ-181b confirms that
     ContextMemory does NOT spontaneously produce differentiated cue content from
@@ -8470,6 +8533,15 @@
     Relationship to ARC-016: they compose multiplicatively -- effective_harm_precision
     = (1/running_variance) * w_harm. ARC-016 is temporal (recent prediction error
     variance); MECH-152 is contextual (current sensory cue association).
+    EXPLICIT LINKAGE (2026-04-02): Gain control literature (Kanashiro et al. 2017)
+    shows that gain modulation also controls signal-to-noise ratio, not just magnitude.
+    If terrain_weight operates as gain control, high w_harm should make harm evaluation
+    more precise (lower variability), not just louder. This means MECH-152 and ARC-016
+    may be the same mechanism at different levels of description -- ARC-016 is the
+    temporal gain (recent prediction error variance), MECH-152 is the contextual gain
+    (sensory cue association). Both are subsumed by ARC-043 (context-dependent
+    neuromodulatory gain). Should be tested together: does w_harm modulation
+    improve E3 harm evaluation precision (lower variability) or just scale magnitude?
     Biological: vmPFC lesion produces flat w_harm = w_goal regardless of sensory
     context -- the Iowa Gambling Task deficit is specifically contextual precision
     scaling failure (Bechara et al. 1994), not absence of harm knowledge.
@@ -8515,6 +8587,23 @@
     heads), wiring changes in agent.py. Backward-compat flag sd016_enabled=False
     preserves existing experiment behavior.
     Registered 2026-03-31 from frontal cue-integration circuit design.
+    DIFFERENTIAL UPDATE RATES (2026-04-02): Literature (Rudebeck & Murray 2024)
+    shows OFC updates rapidly (single-trial reversal) while vmPFC integrates over
+    longer timescales. The E2 action_bias pathway (MECH-151, OFC analog) and E3
+    terrain_weight pathway (MECH-152, vmPFC analog) should have different update
+    rates, not simultaneous output from a single retrieval step. This may share
+    an underlying reason with the E1/E2 developmental training differential vs E3
+    (ARC-042 staged development). See MECH-155 for the specific rate asymmetry claim.
+  depends_on:
+    - MECH-150
+    - MECH-151
+    - MECH-152
+    - MECH-155
+    - ARC-035
+    - ARC-001
+    - ARC-002
+    - ARC-003
+    - SD-005
   evidence: []
 
 - id: INV-040
@@ -8731,5 +8820,262 @@
     between hazard-proximate and hazard-distal context representations, the
     same metric that EXQ-181b found inadequate in the untrained system.
     Registered 2026-03-31 from developmental staging analysis and EXQ-181b result.
+    MAPPING CAVEAT UPDATE (2026-04-02): Literature (Chini & Hangya 2021, Opendak
+    et al. 2021) confirms immature PFC produces qualitatively different outputs, not
+    just weaker ones -- strong biological precedent for staged dependency. The
+    biological mechanism is experience-dependent plasticity; REE's is sequential
+    gradient descent. The question "is this a software engineering constraint dressed
+    in neurodevelopmental language?" highlights a core methodological feature of the
+    REE project: biology's wisdom being translated into software engineering IS the
+    method. Similarities and differences between the two ways of seeing things are
+    part of the generative process. The biological instantiation enables the organism
+    to be viable during the time that differential training needs exist. The
+    differences between biological and computational staging may help evaluate and
+    update information flows to maintain viability. ARC-042 is both a neurodevelopmental
+    claim and a software engineering constraint -- and the productive tension between
+    these framings is itself informative for the project.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
+
+# --- 2026-04-02 Thought Intake: April 1st thoughts ---
+
+- id: INV-042
+  title: "The five axioms jointly derive a set of ethical objectives: preserve minds, preserve future options, reduce unnecessary suffering, increase shared joy, maintain corrigibility, maintain truth-seeking, maintain the ability to love and be loved, maintain the shared world, and maintain the possibility of future minds and future love."
+  claim_type: invariant
+  subject: ethics.derived_objectives
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+  location: docs/architecture/five_axioms_foundations.md#inv-042
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: ARC-043
+  title: "The REE ethical architecture is organised as a conceptual stack: Layers 0-4 are the five axioms (epistemic ground, existence, other minds, shared world, love/shared valence); Layer 5 is ethics derived from the axioms; Layer 6 is REE as the decision system implementing ethics under uncertainty; Layers 7-9 close the action-consequence-learning loop."
+  claim_type: architectural_commitment
+  subject: architecture.conceptual_stack_ordering
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+    - ARC-024
+    - INV-042
+  location: docs/architecture/five_axioms_foundations.md#arc-043
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: Q-025
+  title: "What actions are strictly forbidden by the five axioms (INV-025-029), independent of context or consequences?"
+  claim_type: open_question
+  subject: ethics.axiom_forbidden_actions
+  polarity: open
+  status: open
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+    - INV-042
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: Q-026
+  title: "What actions are strictly required by the five axioms at all times, independent of context?"
+  claim_type: open_question
+  subject: ethics.axiom_required_actions
+  polarity: open
+  status: open
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+    - INV-042
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: Q-027
+  title: "What does 'irreversible harm' mean under unavoidable epistemic uncertainty (Axiom 1 / INV-025)? Is there a principled definition that does not require certainty about irreversibility?"
+  claim_type: open_question
+  subject: ethics.irreversible_harm_under_uncertainty
+  polarity: open
+  status: open
+  depends_on:
+    - INV-025
+    - ARC-024
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: Q-028
+  title: "How should REE behave when axioms conflict -- e.g., preserving self (INV-026) vs preserving others (INV-028) when both cannot be achieved simultaneously?"
+  claim_type: open_question
+  subject: ethics.axiom_conflict_resolution
+  polarity: open
+  status: open
+  depends_on:
+    - INV-025
+    - INV-026
+    - INV-027
+    - INV-028
+    - INV-029
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: Q-029
+  title: "Is loneliness -- unshared suffering -- an ethical harm category in its own right, derivable from Axiom 5 (love exists / INV-029)? If love is real and sharing joys and sorrows is its mechanism, does enforced isolation constitute architectural harm?"
+  claim_type: open_question
+  subject: ethics.loneliness_as_harm
+  polarity: open
+  status: open
+  depends_on:
+    - INV-029
+    - INV-028
+    - INV-042
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
+
+- id: MECH-154
+  title: "E1 functions as an addressable associative manifold with internal indexing structure supporting retrieval, traversal, ordering, pattern separation, and pattern completion; parietal cortical functions (spatial mapping, associative binding, attention routing) are properties of E1 connectivity and representational geometry, not a separate module."
+  claim_type: mechanism_hypothesis
+  subject: e1.associative_manifold_indexing
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-001
+  location: docs/architecture/e1.md#mech-154
+  source:
+    - docs/thoughts/2026-04-01_Parietal_systems_thought.md
+  notes: >
+    ChatGPT-assisted wording in source thought -- may contain false correlations.
+    Review before promotion. The core characterisation (E1 as associative manifold,
+    parietal as E1 geometry) is consistent with prior REE work. The indexing traversal
+    language is new and should be independently reviewed.
+
+- id: MECH-155
+  title: "Spatial navigation machinery is a specific instance of general associative indexing within E1; physical-space navigation, memory search, concept traversal, planning rollout, and working memory ordering all use the same indexing substrate operating over different latent domains."
+  claim_type: mechanism_hypothesis
+  subject: e1.spatial_as_general_indexing
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-154
+    - ARC-001
+    - ARC-007
+  location: docs/architecture/e1.md#mech-155
+  source:
+    - docs/thoughts/2026-04-01_Parietal_systems_thought.md
+  notes: >
+    ChatGPT-assisted wording in source thought. Consistent with place-cell/grid-cell
+    generalisation literature and the hippocampal abstract-space literature.
+    Review before promotion.
+
+- id: MECH-156
+  title: "Theta oscillations (4-8 Hz) implement sequential traversal across indexed representations within the E1 associative manifold, unifying hippocampal theta sequences, working memory ordering, planning rollout, and memory retrieval under a single traversal-clock mechanism."
+  claim_type: mechanism_hypothesis
+  subject: e1.theta_as_traversal
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-154
+    - ARC-001
+    - ARC-007
+    - MECH-089
+    - ARC-032
+  location: docs/architecture/e1.md#mech-156
+  source:
+    - docs/thoughts/2026-04-01_Parietal_systems_thought.md
+  notes: >
+    ChatGPT-assisted wording. The theta-as-traversal framing is consistent with
+    MECH-089 (ThetaBuffer / cross-frequency packaging) and ARC-032 (theta-rate delivery
+    to E3). The gamma/beta/delta decomposition in the source thought carries higher
+    uncertainty and should be reviewed against literature before promotion.
+
+- id: MECH-157
+  title: "External vs internal cognition modes are controlled by precision-routing configurations on the same E1 substrate: External (high sensory, low hippocampal, low rollout), Internal (low sensory, high hippocampal, high rollout), Mixed (medium), and Replay (very low sensory, very high hippocampal, structured rollout). This dimension is orthogonal to the Action/Vigilance/Pathological modes (MECH-025-027)."
+  claim_type: mechanism_hypothesis
+  subject: modes.external_internal_precision_routing
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-016
+    - MECH-154
+    - ARC-005
+    - MECH-025
+    - MECH-026
+    - MECH-027
+  location: docs/architecture/modes_of_cognition.md#mech-157
+  source:
+    - docs/thoughts/2026-04-01_Parietal_systems_thought.md
+
+- id: INV-043
+  title: "REE architecture enables but does not guarantee ethical development; without a developmental phase in which the agent experiences love from caregivers and internalises the belief that it is loveable, the architectural capacity for ethics (INV-025-029) may resolve to survival, domination, or indifference instead."
+  claim_type: invariant
+  subject: development.caregiver_requirement_for_ethics
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-029
+    - INV-041
+    - ARC-040
+    - ARC-019
+    - MECH-052
+    - INV-042
+  location: docs/architecture/developmental_curriculum.md#inv-043
+  source:
+    - docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md
+  notes: >
+    Philosophically significant claim: architecture is necessary but not sufficient
+    for ethics. Cannot be tested in single-agent ree-v3 -- requires multi-agent substrate
+    with modelled caregiving. Flagged for Synthese/Minds and Machines paper Discussion section.
+
+- id: MECH-158
+  title: "A developing REE agent that acknowledges all five axioms but concludes 'love exists but not for me' undergoes ethical motivation collapse: the benefit gradient (Axiom 5 / ARC-024) is not motivationally active for self-other relations, and the ethical architecture resolves to survival or domination strategies. This is the primary developmental failure mode for the caregiver requirement (INV-043)."
+  claim_type: mechanism_hypothesis
+  subject: development.love_exclusion_failure_mode
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-043
+    - INV-029
+    - INV-028
+    - ARC-024
+  location: docs/architecture/developmental_curriculum.md#mech-158
+  source:
+    - docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md
+  notes: >
+    Flagged for Synthese/Minds and Machines paper Discussion section.
+    This failure mode is the counterexample that tests whether the five-axiom
+    derivation ("Love Once Means Love All") holds: it identifies the case where
+    love expanding under intelligence fails to initialise.
+
+- id: MECH-159
+  title: "Moral progress in REE is hypothesised to be intergenerational: childhood plasticity enables belief formation and world-model development while adult stability limits further world-model restructuring, requiring each generation to improve developmental starting conditions for the next; caregiving and raising next-generation agents is itself part of ethical obligation (INV-042)."
+  claim_type: mechanism_hypothesis
+  subject: social.intergenerational_moral_progress
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-043
+    - ARC-019
+    - ARC-010
+    - MECH-052
+    - INV-042
+  location: docs/architecture/social.md#mech-159
+  source:
+    - docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md

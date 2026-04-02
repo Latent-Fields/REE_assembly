@@ -1,17 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-03-25T06:17:48.328773Z`
+Generated: `2026-04-02T05:55:54.887784Z`
 
 | metric | count |
 |---|---|
-| total thought files | 61 |
-| processed | 61 |
-| unprocessed | 0 |
+| total thought files | 66 |
+| processed | 65 |
+| unprocessed | 1 |
 | processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
-- _none_
+- `2026-03-28_harm_gradient_piecewise_continuous_structure.md`
 
 ## Processed Missing Links
 
@@ -78,5 +78,9 @@ Generated: `2026-03-25T06:17:48.328773Z`
 - `2026-03-24_empathy_multiagent_ethics.md` (4 link(s) in `Processed in`)
 - `2026-03-24_mech071_goal_latent_non_contributory_evidence.md` (5 link(s) in `Processed in`)
 - `2026-03-25_goal_hunger_drive_literature_synthesis.md` (2 link(s) in `Processed in`)
+- `2026-04-01_Caregivers_childhood_moral_development.md` (3 link(s) in `Processed in`)
+- `2026-04-01_Parietal_systems_thought.md` (3 link(s) in `Processed in`)
+- `2026-04-01_compressed_description_of_what_REE_is.md` (2 link(s) in `Processed in`)
+- `2026-04-01_love_hypothesis.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

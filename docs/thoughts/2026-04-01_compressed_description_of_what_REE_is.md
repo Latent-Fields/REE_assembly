@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/five_axioms_foundations.md` (INV-042, ARC-043, Q-025--Q-029)
+- `docs/claims/claims.yaml` (INV-042, ARC-043, Q-025--Q-029)
+
+---
+
 this may be a meta-thought which may affect more than claims for REE but also understanding of what and why REE exists and may highlight systems and implementations that are vitally important to the project. It may help decide what i want the message to be when describing the project and core front facing ideas needed. 
 ChatGPT conversation shaped and expanded core distilled thoughts that had developed over many many previous conversations and life experience and core beleifs etc. 
 

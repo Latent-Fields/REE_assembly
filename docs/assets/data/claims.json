@@ -251,6 +251,12 @@
     "title": "E3's ethical selection machinery is architecturally present from initialisation but functionally dark until E1 and E2 substrate development is complete; REE requires staged developmental phases before ethical selection can operate on real signal.",
     "type": "architectural_commitment"
   },
+  "ARC-043": {
+    "status": "candidate",
+    "subject": "architecture.conceptual_stack_ordering",
+    "title": "The REE ethical architecture is organised as a conceptual stack: Layers 0-4 are the five axioms (epistemic ground, existence, other minds, shared world, love/shared valence); Layer 5 is ethics derived from the axioms; Layer 6 is REE as the decision system implementing ethics under uncertainty; Layers 7-9 close the action-consequence-learning loop.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -647,6 +653,18 @@
     "title": "The childhood phase of REE instantiation -- committed behaviour with constrained affordances -- is the necessary developmental regime that populates E1 ContextMemory with the content ARC-041 (SD-016) requires; this phase is not merely a safety feature but an architectural prerequisite for E3 ethical selection to operate on real signal.",
     "type": "invariant"
   },
+  "INV-042": {
+    "status": "candidate",
+    "subject": "ethics.derived_objectives",
+    "title": "The five axioms jointly derive a set of ethical objectives: preserve minds, preserve future options, reduce unnecessary suffering, increase shared joy, maintain corrigibility, maintain truth-seeking, maintain the ability to love and be loved, maintain the shared world, and maintain the possibility of future minds and future love.",
+    "type": "invariant"
+  },
+  "INV-043": {
+    "status": "candidate",
+    "subject": "development.caregiver_requirement_for_ethics",
+    "title": "REE architecture enables but does not guarantee ethical development; without a developmental phase in which the agent experiences love from caregivers and internalises the belief that it is loveable, the architectural capacity for ethics (INV-025-029) may resolve to survival, domination, or indifference instead.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -787,8 +805,8 @@
   },
   "MECH-025": {
     "status": "candidate",
-    "subject": "cognitive_modes.action_doing",
-    "title": "Action mode prioritizes short-horizon, high-precision, responsibility-linked control.",
+    "subject": "cognitive_modes.action_doing_precision",
+    "title": "Action mode prioritizes short-horizon, high-precision control via context-dependent precision modulation.",
     "type": "mechanism_hypothesis"
   },
   "MECH-026": {
@@ -812,7 +830,7 @@
   "MECH-029": {
     "status": "provisional",
     "subject": "default_mode.reflective_ethics",
-    "title": "Reflective/DMN mode supports moral simulation via gated replay.",
+    "title": "Reflective/DMN mode supports moral evaluation of hippocampally-generated replay trajectories.",
     "type": "mechanism_hypothesis"
   },
   "MECH-030": {
@@ -980,7 +998,7 @@
   "MECH-057a": {
     "status": "candidate",
     "subject": "agentic_extension.action_loop_completion_gate",
-    "title": "Committed action sequences suppress new precision updates until execution completes.",
+    "title": "Committed action sequences suppress sensory precision reweighting until execution completes.",
     "type": "mechanism_hypothesis"
   },
   "MECH-057b": {
@@ -1565,6 +1583,42 @@
     "title": "E1 ContextMemory requires a supervised context-labeling training objective -- not unsupervised experience alone -- to produce differentiated cue-indexed representations; without this objective, hazard-proximate and hazard-distal context vectors remain near-identical (cosine_sim approximately 1.0), leaving the MECH-150 retrieval pathway functionally silent.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-154": {
+    "status": "candidate",
+    "subject": "e1.associative_manifold_indexing",
+    "title": "E1 functions as an addressable associative manifold with internal indexing structure supporting retrieval, traversal, ordering, pattern separation, and pattern completion; parietal cortical functions (spatial mapping, associative binding, attention routing) are properties of E1 connectivity and representational geometry, not a separate module.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-155": {
+    "status": "candidate",
+    "subject": "e1.spatial_as_general_indexing",
+    "title": "Spatial navigation machinery is a specific instance of general associative indexing within E1; physical-space navigation, memory search, concept traversal, planning rollout, and working memory ordering all use the same indexing substrate operating over different latent domains.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-156": {
+    "status": "candidate",
+    "subject": "e1.theta_as_traversal",
+    "title": "Theta oscillations (4-8 Hz) implement sequential traversal across indexed representations within the E1 associative manifold, unifying hippocampal theta sequences, working memory ordering, planning rollout, and memory retrieval under a single traversal-clock mechanism.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-157": {
+    "status": "candidate",
+    "subject": "modes.external_internal_precision_routing",
+    "title": "External vs internal cognition modes are controlled by precision-routing configurations on the same E1 substrate: External (high sensory, low hippocampal, low rollout), Internal (low sensory, high hippocampal, high rollout), Mixed (medium), and Replay (very low sensory, very high hippocampal, structured rollout). This dimension is orthogonal to the Action/Vigilance/Pathological modes (MECH-025-027).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-158": {
+    "status": "candidate",
+    "subject": "development.love_exclusion_failure_mode",
+    "title": "A developing REE agent that acknowledges all five axioms but concludes 'love exists but not for me' undergoes ethical motivation collapse: the benefit gradient (Axiom 5 / ARC-024) is not motivationally active for self-other relations, and the ethical architecture resolves to survival or domination strategies. This is the primary developmental failure mode for the caregiver requirement (INV-043).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-159": {
+    "status": "candidate",
+    "subject": "social.intergenerational_moral_progress",
+    "title": "Moral progress in REE is hypothesised to be intergenerational: childhood plasticity enables belief formation and world-model development while adult stability limits further world-model restructuring, requiring each generation to improve developmental starting conditions for the next; caregiving and raising next-generation agents is itself part of ethical obligation (INV-042).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1603,8 +1657,8 @@
   },
   "Q-007": {
     "status": "active",
-    "subject": "emotion.universal_expression_channel_mapping",
-    "title": "Do universal expressions map to stable control-channel regimes?",
+    "subject": "emotion.affect_dimension_channel_mapping",
+    "title": "Do affect dimensions (not necessarily universal expressions) map to stable control-channel regimes in z_beta?",
     "type": "open_question"
   },
   "Q-008": {
@@ -1707,6 +1761,36 @@
     "status": "open",
     "subject": "ethics.trajectory_integral_representation",
     "title": "What is the correct formal representation for 'threshold/feedback processes bounded by {x...x_n} reliably reaching emergent state q' -- and are descriptive, prescriptive, and diagnostic variants all needed or does one subsume the others?",
+    "type": "open_question"
+  },
+  "Q-025": {
+    "status": "open",
+    "subject": "ethics.axiom_forbidden_actions",
+    "title": "What actions are strictly forbidden by the five axioms (INV-025-029), independent of context or consequences?",
+    "type": "open_question"
+  },
+  "Q-026": {
+    "status": "open",
+    "subject": "ethics.axiom_required_actions",
+    "title": "What actions are strictly required by the five axioms at all times, independent of context?",
+    "type": "open_question"
+  },
+  "Q-027": {
+    "status": "open",
+    "subject": "ethics.irreversible_harm_under_uncertainty",
+    "title": "What does 'irreversible harm' mean under unavoidable epistemic uncertainty (Axiom 1 / INV-025)? Is there a principled definition that does not require certainty about irreversibility?",
+    "type": "open_question"
+  },
+  "Q-028": {
+    "status": "open",
+    "subject": "ethics.axiom_conflict_resolution",
+    "title": "How should REE behave when axioms conflict -- e.g., preserving self (INV-026) vs preserving others (INV-028) when both cannot be achieved simultaneously?",
+    "type": "open_question"
+  },
+  "Q-029": {
+    "status": "open",
+    "subject": "ethics.loneliness_as_harm",
+    "title": "Is loneliness -- unshared suffering -- an ethical harm category in its own right, derivable from Axiom 5 (love exists / INV-029)? If love is real and sharing joys and sorrows is its mechanism, does enforced isolation constitute architectural harm?",
     "type": "open_question"
   },
   "SD-001": {

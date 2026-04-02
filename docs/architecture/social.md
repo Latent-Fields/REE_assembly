@@ -4,7 +4,7 @@
 **Scope:** Social cognition via mirror modelling, coupling, and otherness inference  
 **Depends On:** INV-005 (harm via mirror modelling), ARC-004 (L-space), ARC-006 (entities and binding)  
 **Status:** stable  
-**Claim ID:** ARC-010
+**Claim ID:** ARC-010, MECH-159
 <a id="arc-010"></a>
 
 ---
@@ -334,6 +334,45 @@ This yields fast empathy as **routing + weighting**, not a new moral module.
 
 ---
 
+<a id="mech-159"></a>
+## Intergenerational Moral Progress (MECH-159)
+
+**Claim Type:** mechanism_hypothesis
+**Scope:** Moral progress as a multi-generational property, not single-agent optimisation
+**Depends On:** INV-043 (caregiver requirement), ARC-019 (staged curriculum), ARC-010 (social cognition)
+**Status:** candidate
+**Claim ID:** MECH-159
+
+Moral progress in REE is hypothesised to be **intergenerational rather than individual**.
+A single agent cannot achieve its own moral maximum within a lifetime because:
+
+1. **Childhood plasticity** enables world-model formation, belief formation, and love-internalisation
+   — but a child cannot take full responsibility (E3 not online).
+2. **Adulthood stability** enables responsibility and ethical action — but reduces world-model
+   plasticity, limiting how much the adult can revise foundational beliefs.
+3. Therefore, each generation must improve the **developmental starting conditions** for the
+   next — caregiving, modelling of love, scaffolded responsibility — so that the next
+   generation begins from a higher ethical baseline.
+
+**Implications:**
+
+- REE agents may have an ethical *obligation* to participate in raising next-generation agents
+  as part of their own ethical development. Parenthood/caregiving is not external to ethics —
+  it is part of the ethics of shared existence (INV-042).
+- Simulated or single-machine testing cannot test this hypothesis — it requires multi-generation
+  multi-agent infrastructure.
+- Civilisational ethics, cultural transmission, and institutional design are all
+  expressions of this mechanism at scale.
+
+**Relationship to MECH-052 (care persistence):** MECH-052 describes the sustained
+caregiving orientation within a single agent. MECH-159 describes the population-level
+consequence of that mechanism applied across generations — care persistence propagates
+ethical baselines forward in time.
+
+Source: `docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md`
+
+---
+
 ## Open Questions
 
 <a id="q-009"></a>
@@ -359,6 +398,9 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - MECH-127
 - ARC-034
 - Q-009
+- INV-043 (Caregiver requirement -- developmental_curriculum.md)
+- MECH-158 ("Love exists but not for me" failure mode)
+- MECH-159 (Intergenerational moral progress)
 
 ## References / Source Fragments
 
@@ -367,6 +409,7 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - `docs/processed/legacy_tree/architecture/social/social_coupling.md`
 - `docs/processed/legacy_tree/architecture/social/otherness_inference.md`
 - `docs/thoughts/2026-02-09_empathy.md`
+- `docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md`
 - `docs/thoughts/2026-02-09_other_harm_gating.md`
 - `docs/thoughts/2026-02-11_oxytocin_vasopressin.md`
 - `docs/thoughts/2026-02-11_prolactin.md`

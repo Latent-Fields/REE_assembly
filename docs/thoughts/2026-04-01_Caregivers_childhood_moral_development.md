@@ -1,5 +1,14 @@
 
 
+Status: processed
+
+Processed in:
+- `docs/architecture/developmental_curriculum.md` (INV-043, MECH-158)
+- `docs/architecture/social.md` (MECH-159)
+- `docs/claims/claims.yaml` (INV-043, MECH-158, MECH-159)
+
+---
+
 THOUGHT INTAKE — Caregivers, Childhood Phase, and Moral Development in REE
 
 Status

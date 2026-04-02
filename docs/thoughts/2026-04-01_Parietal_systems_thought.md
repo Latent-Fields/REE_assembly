@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/e1.md` (MECH-154, MECH-155, MECH-156)
+- `docs/architecture/modes_of_cognition.md` (MECH-157)
+- `docs/claims/claims.yaml` (MECH-154, MECH-155, MECH-156, MECH-157)
+
+---
+
 # THOUGHT INTAKE — Control-Plane Mode Switching, Parietal Mediation, and Spatial Ordering in Theta Chunking
 
 ## Source (Verbatim User Input)

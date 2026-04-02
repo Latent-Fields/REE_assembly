@@ -4,7 +4,7 @@
 **Scope:** Control-plane regimes that shape cognitive modes  
 **Depends On:** ARC-005 (control plane)  
 **Status:** provisional  
-**Claim ID:** ARC-016
+**Claim ID:** ARC-016, MECH-157
 <a id="arc-016"></a>
 
 ---
@@ -101,6 +101,46 @@ Source: `docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md`
 
 ---
 
+<a id="mech-157"></a>
+## External/Internal Precision-Routing Table (MECH-157)
+
+The MECH-025 through MECH-028 modes (Action/Vigilance/Pathological) describe one
+dimension of mode space — oriented around readiness, responsibility, and pathology.
+An orthogonal dimension describes the **degree of external vs internal coupling**:
+
+| Mode | Sensory Gain | Hippocampal Drive | Rollout | Primary Function |
+|------|-------------|------------------|---------|-----------------|
+| External | High | Low | Low | Perceptual grounding in current environment |
+| Internal | Low | High | High | Simulation, imagination, planning |
+| Mixed | Medium | Medium | Medium | Grounded planning; working memory |
+| Replay | Very Low | Very High | Structured | Offline learning, consolidation |
+
+These are not separate systems — they are precision-routing configurations applied to
+the same E1 associative substrate (MECH-154). The same deep world model supports
+both perceptual coupling (External) and generative imagination (Internal); what
+differs is the balance of sensory precision vs hippocampal drive.
+
+**Relationship to MECH-025-028:** These two mode dimensions cross each other:
+- Action mode (MECH-025) is typically External or Mixed
+- Ready Vigilance (MECH-026) is External
+- Replay corresponds to a maintenance/quiescent sub-mode of the system
+- Pathological modes (MECH-027) can involve being stuck in one pole of the
+  External/Internal axis (hypervigilance = locked External; rumination = locked Internal)
+
+**Developmental prerequisite:** The External mode must be trained before Internal
+mode can be productive. Rollout on an untrained E1 manifold produces unstable
+simulation (hallucination, confabulation analogues). This is the developmental ordering
+captured in ARC-042 and INV-041.
+
+**Control-plane implementation:** Switching between External and Internal coupling is
+a control-plane operation (precision routing on alpha_S, tau_E2, and hippocampal drive
+gain), not a local circuit property. This is an architectural commitment: mode switching
+is not passive or emergent — it requires explicit control.
+
+Source: `docs/thoughts/2026-04-01_Parietal_systems_thought.md`
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -115,7 +155,12 @@ None noted in preserved sources.
 - ARC-005
 - ARC-015
 - INV-012
+- MECH-154 (E1 as associative manifold — substrate for mode switching)
+- MECH-157 (External/Internal precision-routing table)
+- ARC-042 (E3 dark until E1/E2 substrate ready -- developmental prerequisite)
+- INV-041 (Childhood phase as architectural prerequisite)
 
 ## References / Source Fragments
 
 - `docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md`
+- `docs/thoughts/2026-04-01_Parietal_systems_thought.md`

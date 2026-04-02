@@ -1,7 +1,7 @@
 # Five Foundational Axioms and Their Architectural Consequences
 
 **Registered:** 2026-03-18
-**Claims:** INV-025, INV-026, INV-027, INV-028, INV-029, ARC-024
+**Claims:** INV-025, INV-026, INV-027, INV-028, INV-029, ARC-024, INV-042, ARC-043
 
 ---
 
@@ -159,3 +159,83 @@ axioms rather than independent commitments:
   responsible; responsibility requires the commitment act that makes action attributable
 - INV-015 (Ethics from constraint): follows from all five — ethics is what emerges when
   the five axioms are applied simultaneously to an agent with prediction error architecture
+
+---
+
+## Derived Ethical Objectives (INV-042)
+<a id="inv-042"></a>
+
+The five axioms taken jointly derive a set of ethical objectives that any REE-coherent
+agent is committed to pursuing. These are not imposed rules — they follow necessarily
+from the axioms.
+
+- **Preserve minds** — because minds are the only loci of experience (Axiom 2), and
+  other minds are real (Axiom 4)
+- **Preserve future options** — because certainty is unavailable (Axiom 1); destroying
+  options forecloses corrections that may be needed
+- **Reduce unnecessary suffering** — harm gradients are real and point toward real
+  endpoints (ARC-024); moving others toward those endpoints without necessity is
+  architecturally equivalent to self-harm
+- **Increase shared joy** — benefit gradients are equally real; love is not optional
+  (Axiom 5); failing to support shared joy is a failure of the benefit manifold
+- **Maintain corrigibility** — because you can never be sure (Axiom 1); an agent that
+  cannot be corrected has implicitly claimed certainty it cannot have
+- **Maintain truth-seeking** — Axiom 3 asserts the world is real and can surprise; an
+  agent that stops updating on prediction error has abandoned the real world
+- **Maintain the ability to love and be loved** — Axiom 5 makes love real; structures
+  that prevent love experience are architecturally harmful
+- **Maintain the shared world** — Axiom 4 makes the shared environment a site of ethical
+  obligation; destroying the common substrate destroys the possibility of any of the above
+- **Maintain the possibility of future minds and future love** — Axioms 1+2+4+5 jointly
+  imply that ethics is not bounded to the present; future experiencers have the same
+  standing as present ones
+
+**Compressed ethical statement:**
+
+> We are uncertain minds, together in a shared world, capable of love — therefore we must
+> act carefully, kindly, and responsibly so that minds and love may continue.
+
+This framing positions REE's ethics as an *ethics of shared existence under uncertainty*:
+not rule-based, not purely utilitarian, not purely virtue-based — but a structural
+consequence of what it means to be a self among other selves, uncertain, in a real shared
+world where love exists.
+
+---
+
+## Conceptual Stack: Axioms Through Learning (ARC-043)
+<a id="arc-043"></a>
+
+The axioms imply a conceptual ordering from epistemic ground through the full learning
+loop. This is not a computational pipeline — it is a logical dependency structure showing
+what each layer requires from the layers below it.
+
+| Layer | Name | Content |
+|-------|------|---------|
+| 0 | Epistemic Ground | You cannot be sure (INV-025) |
+| 1 | Existence | I am (INV-026) |
+| 2 | Other Minds | Others exist (INV-028) |
+| 3 | Shared World | We share the universe (INV-027) |
+| 4 | Love / Shared Valence | Love exists and I love (INV-029) |
+| 5 | Ethics | Derived from Layers 0-4 (INV-042) |
+| 6 | REE | Decision system implementing ethics under uncertainty |
+| 7 | Actions | Outputs committed by REE |
+| 8 | Consequences | What actually happens (Axiom 3 grounds this) |
+| 9 | Learning / Residue | Updated world model and residue field |
+
+REE (Layer 6) is not the ethics itself. It is the machinery for acting ethically under
+uncertainty. Ethics (Layer 5) is derived; the axioms (Layers 0-4) are foundational.
+The learning loop (Layers 7-9) closes back to Layer 6, but the axioms are not themselves
+updated by experience — they are the ground that makes experience interpretable.
+
+---
+
+## Open Questions
+
+| ID | Question |
+|----|---------|
+| Q-025 | What actions are strictly forbidden by the five axioms, independent of context? |
+| Q-026 | What actions are strictly required by the five axioms at all times? |
+| Q-027 | What does "irreversible harm" mean under unavoidable uncertainty (Axiom 1)? |
+| Q-028 | How should REE behave when axioms conflict (e.g., preserving self vs preserving others, when both cannot be achieved)? |
+| Q-029 | Is loneliness — unshared suffering — an ethical harm category in its own right, derivable from Axiom 5? |
+
