@@ -2666,18 +2666,17 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.482, lit_conf=0.871",
+      "confidence_rationale": "exp=5 entry(s), lit=5 entry(s), exp_conf=0.482, lit_conf=0.88",
       "direction_counts": {
         "mixed": 4,
-        "supports": 5,
+        "supports": 4,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 11,
+      "entries_total": 10,
       "evidence_class_counts": {
         "exp:simulation": 5,
         "lit:basal_ganglia_action_release": 1,
-        "lit:behavioral_human": 1,
         "lit:computational_model": 1,
         "lit:goal_directed_dmn_control_coupling": 1,
         "lit:sensorimotor_commitment_dynamics": 1,
@@ -2692,12 +2691,29 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "2026-04-02_mech_025_agency_prediction_error_wen2020",
-      "latest_timestamp_utc": "2026-04-02T12:35:00Z",
-      "literature_confidence": 0.871,
-      "overall_confidence": 0.676,
+      "latest_run_id": "2026-04-02_mech_025_anatomy_of_choice_friston2013",
+      "latest_timestamp_utc": "2026-04-02T12:30:00Z",
+      "literature_confidence": 0.88,
+      "overall_confidence": 0.681,
       "pass_runs": 0,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-025",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "experiment_purpose": "evidence",
+          "experiment_type": "claim_probe_mech_025",
+          "failure_signatures": [
+            "v2_verdict_fail:action_doing_mode_probe"
+          ],
+          "run_id": "20260316T100752_action_doing_mode_probe_v2",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-03-16T10:07:52.444539+00:00"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-025",
@@ -2759,12 +2775,46 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-02T12:30:00Z"
-        },
+        }
+      ],
+      "runs_total": 10,
+      "source_counts": {
+        "experimental": 5,
+        "literature": 5
+      }
+    },
+    "MECH-025b": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.675",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_025_agency_prediction_error_wen2020",
+      "latest_timestamp_utc": "2026-04-02T12:35:00Z",
+      "literature_confidence": 0.675,
+      "overall_confidence": 0.675,
+      "pass_runs": 0,
+      "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-025",
+          "claim_id": "MECH-025b",
           "confidence": 0.65,
-          "confidence_rationale": "Wen & Haggard demonstrate that sense of agency has two components: prediction-error-based (comparator model) and regularity-based. The comparator mechanism directly parallels REE's SD-003 self-attribution via prediction error comparison. Supports MECH-025's responsibility-linked control aspect. Confidence moderated by indirect mapping -- the paper studies subjective agency experience, not a computational control mode.",
+          "confidence_rationale": "Wen & Haggard demonstrate that sense of agency has two components: prediction-error-based (comparator model) and regularity-based. The comparator mechanism directly parallels REE's SD-003 self-attribution via prediction error comparison. Supports MECH-025b's responsibility-linked control claim (decomposed from MECH-025, 2026-04-02). Confidence moderated by indirect mapping -- the paper studies subjective agency experience, not a computational control mode.",
           "evidence_class": "lit:behavioral_human",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_connectome_mech_025",
@@ -2778,10 +2828,10 @@
           "timestamp_utc": "2026-04-02T12:35:00Z"
         }
       ],
-      "runs_total": 11,
+      "runs_total": 1,
       "source_counts": {
-        "experimental": 5,
-        "literature": 6
+        "experimental": 0,
+        "literature": 1
       }
     },
     "MECH-026": {
@@ -8529,12 +8579,12 @@
       }
     },
     "Q-007": {
-      "confidence_rationale": "exp=5 entry(s), lit=3 entry(s), exp_conf=0.498, lit_conf=0.75",
+      "confidence_rationale": "exp=5 entry(s), lit=3 entry(s), exp_conf=0.498, lit_conf=0.763",
       "direction_counts": {
-        "mixed": 5,
-        "supports": 0,
+        "mixed": 4,
+        "supports": 2,
         "unknown": 1,
-        "weakens": 2
+        "weakens": 1
       },
       "entries_total": 8,
       "evidence_class_counts": {
@@ -8554,8 +8604,8 @@
       },
       "latest_run_id": "2026-04-02_q_007_constructed_emotion_theory_barrett2017",
       "latest_timestamp_utc": "2026-04-02T12:50:00Z",
-      "literature_confidence": 0.75,
-      "overall_confidence": 0.624,
+      "literature_confidence": 0.763,
+      "overall_confidence": 0.631,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8606,10 +8656,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "Q-007",
-          "confidence": 0.7,
-          "confidence_rationale": "This major review challenges the assumption that facial expressions map reliably to discrete emotional states. If expressions are not stable signatures of discrete emotions, then Q-007's question (whether universal expressions map to stable control-channel regimes) may rest on a false premise. However, the paper addresses facial expression universality, not neural control channels directly.",
+          "confidence": 0.72,
+          "confidence_rationale": "Q-007 reframed 2026-04-02 from 'universal expressions -> regimes' to 'affect dimensions -> regimes.' Under the dimensional reframe, Barrett et al.'s finding that expressions are not reliable signatures of discrete emotions SUPPORTS the shift to dimensional affect (valence/arousal) as the basis for z_beta regime structure. The paper's evidence against categorical emotion mapping is evidence FOR dimensional representation. Confidence increased slightly: the paper now directly supports rather than challenges the reframed question.",
           "evidence_class": "lit:meta_analysis",
-          "evidence_direction": "weakens",
+          "evidence_direction": "supports",
           "experiment_type": "targeted_review_q_007",
           "failure_signatures": [
             "Facial muscle configurations show only modest correspondence to reported emotional states -- one-to-many and many-to-one mappings are common.",
@@ -8623,10 +8673,10 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "Q-007",
-          "confidence": 0.68,
-          "confidence_rationale": "Barrett's theory of constructed emotion proposes that emotions are constructed from domain-general ingredients (core affect, conceptualization) rather than being discrete natural kinds. This challenges Q-007's framing of discrete regimes but supports the active inference / precision-weighting framework that REE uses. The theory predicts dimensional rather than categorical internal states -- but REE's z_beta is already dimensional.",
+          "confidence": 0.74,
+          "confidence_rationale": "Q-007 reframed 2026-04-02 from 'universal expressions -> regimes' to 'affect dimensions -> regimes.' Barrett's TCE now directly supports the reframed claim: core affect (valence + arousal) is real and dimensional, which aligns with z_beta's continuous representation. The active inference framework in TCE matches REE's precision-weighting architecture. TCE predicts continuous gradients rather than sharp attractors in z_beta -- this is a specific, testable prediction under the reframed Q-007. Confidence increased: TCE is now aligned with rather than in tension with the claim.",
           "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "mixed",
+          "evidence_direction": "supports",
           "experiment_type": "targeted_review_q_007",
           "failure_signatures": [
             "Constructed emotion theory predicts no stable, universal emotion categories -- challenging the idea that z_beta would have discrete attractor regimes corresponding to basic emotions.",
@@ -47348,9 +47398,9 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
-      "claim_id": "MECH-025",
+      "claim_id": "MECH-025b",
       "confidence": 0.65,
-      "confidence_rationale": "Wen & Haggard demonstrate that sense of agency has two components: prediction-error-based (comparator model) and regularity-based. The comparator mechanism directly parallels REE's SD-003 self-attribution via prediction error comparison. Supports MECH-025's responsibility-linked control aspect. Confidence moderated by indirect mapping -- the paper studies subjective agency experience, not a computational control mode.",
+      "confidence_rationale": "Wen & Haggard demonstrate that sense of agency has two components: prediction-error-based (comparator model) and regularity-based. The comparator mechanism directly parallels REE's SD-003 self-attribution via prediction error comparison. Supports MECH-025b's responsibility-linked control claim (decomposed from MECH-025, 2026-04-02). Confidence moderated by indirect mapping -- the paper studies subjective agency experience, not a computational control mode.",
       "evidence_class": "lit:behavioral_human",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_connectome_mech_025",
@@ -47366,10 +47416,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "Q-007",
-      "confidence": 0.7,
-      "confidence_rationale": "This major review challenges the assumption that facial expressions map reliably to discrete emotional states. If expressions are not stable signatures of discrete emotions, then Q-007's question (whether universal expressions map to stable control-channel regimes) may rest on a false premise. However, the paper addresses facial expression universality, not neural control channels directly.",
+      "confidence": 0.72,
+      "confidence_rationale": "Q-007 reframed 2026-04-02 from 'universal expressions -> regimes' to 'affect dimensions -> regimes.' Under the dimensional reframe, Barrett et al.'s finding that expressions are not reliable signatures of discrete emotions SUPPORTS the shift to dimensional affect (valence/arousal) as the basis for z_beta regime structure. The paper's evidence against categorical emotion mapping is evidence FOR dimensional representation. Confidence increased slightly: the paper now directly supports rather than challenges the reframed question.",
       "evidence_class": "lit:meta_analysis",
-      "evidence_direction": "weakens",
+      "evidence_direction": "supports",
       "experiment_type": "targeted_review_q_007",
       "failure_signatures": [
         "Facial muscle configurations show only modest correspondence to reported emotional states -- one-to-many and many-to-one mappings are common.",
@@ -47383,10 +47433,10 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "Q-007",
-      "confidence": 0.68,
-      "confidence_rationale": "Barrett's theory of constructed emotion proposes that emotions are constructed from domain-general ingredients (core affect, conceptualization) rather than being discrete natural kinds. This challenges Q-007's framing of discrete regimes but supports the active inference / precision-weighting framework that REE uses. The theory predicts dimensional rather than categorical internal states -- but REE's z_beta is already dimensional.",
+      "confidence": 0.74,
+      "confidence_rationale": "Q-007 reframed 2026-04-02 from 'universal expressions -> regimes' to 'affect dimensions -> regimes.' Barrett's TCE now directly supports the reframed claim: core affect (valence + arousal) is real and dimensional, which aligns with z_beta's continuous representation. The active inference framework in TCE matches REE's precision-weighting architecture. TCE predicts continuous gradients rather than sharp attractors in z_beta -- this is a specific, testable prediction under the reframed Q-007. Confidence increased: TCE is now aligned with rather than in tension with the claim.",
       "evidence_class": "lit:theoretical_review",
-      "evidence_direction": "mixed",
+      "evidence_direction": "supports",
       "experiment_type": "targeted_review_q_007",
       "failure_signatures": [
         "Constructed emotion theory predicts no stable, universal emotion categories -- challenging the idea that z_beta would have discrete attractor regimes corresponding to basic emotions.",
@@ -47636,7 +47686,7 @@
       "timestamp_utc": "2026-04-02T15:05:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-02T18:13:15.211956Z",
+  "generated_at_utc": "2026-04-02T18:19:56.154021Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

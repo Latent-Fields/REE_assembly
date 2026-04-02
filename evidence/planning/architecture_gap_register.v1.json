@@ -1,7 +1,7 @@
 {
   "criteria_version": "planning_criteria/v1",
   "evidence_scope": "current_epoch_applicable,epoch=ree_hybrid_guardrails_v1",
-  "generated_at_utc": "2026-04-02T18:10:48.595803Z",
+  "generated_at_utc": "2026-04-02T18:19:56.154021Z",
   "items": [
     {
       "adjudication_policy": {
@@ -42,7 +42,7 @@
       "conflict_ratio": 1.0,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -118,7 +118,7 @@
       "conflict_ratio": 1.0,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -256,82 +256,6 @@
       },
       "anti_lock_in_review_required": false,
       "atomic_split_recommended": false,
-      "claim_id": "MECH-025",
-      "claim_type": "mechanism_hypothesis",
-      "confidence_split": {
-        "delta_lit_minus_exp": 0.26,
-        "experimental_confidence": 0.482,
-        "literature_confidence": 0.742
-      },
-      "conflict_ratio": 1.0,
-      "consider_new_structure": false,
-      "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
-      "decision_required_outcomes": [
-        "retain_ree",
-        "hybridize",
-        "retire_ree_claim"
-      ],
-      "escalate_architecture_decision": false,
-      "evidence_stage": {},
-      "external_precedence_candidate": false,
-      "gap_id": "AGR-0004",
-      "latest_decision": {
-        "decision_status": "applied",
-        "recommendation": "hold_pending_v3_substrate",
-        "timestamp_utc": "2026-03-16T18:20:19.361130Z"
-      },
-      "literature_direction_counts": {
-        "mixed": 0,
-        "supports": 2,
-        "unknown": 0,
-        "weakens": 0
-      },
-      "literature_non_support_ratio": 0.0,
-      "mandatory_decision_checkpoint": true,
-      "overall_confidence": 0.586,
-      "recent_targeted_batches": 4,
-      "recommendation": "mandatory_decision_checkpoint",
-      "recurring_failure_signatures": [],
-      "saturation_guard_engaged": false,
-      "saturation_signal_details": {},
-      "source_counts": {
-        "experimental": 5,
-        "literature": 2
-      },
-      "trigger_signals": [
-        "high_conflict_ratio"
-      ]
-    },
-    {
-      "adjudication_policy": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_gate_enabled": true,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "default_conflict_outcome": "retain_ree",
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "anti_lock_in_review_required": false,
-      "atomic_split_recommended": false,
       "claim_id": "MECH-091",
       "claim_type": "mechanism_hypothesis",
       "confidence_split": {
@@ -347,7 +271,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0005",
+      "gap_id": "AGR-0004",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -419,7 +343,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0006",
+      "gap_id": "AGR-0005",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -486,7 +410,7 @@
       "conflict_ratio": 1.0,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -495,7 +419,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0007",
+      "gap_id": "AGR-0006",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -562,7 +486,7 @@
       "conflict_ratio": 0.923,
       "consider_new_structure": false,
       "current_status": "provisional",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -571,7 +495,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0008",
+      "gap_id": "AGR-0007",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_pending_v3_substrate",
@@ -638,7 +562,7 @@
       "conflict_ratio": 0.889,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -647,7 +571,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0009",
+      "gap_id": "AGR-0008",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -714,7 +638,7 @@
       "conflict_ratio": 0.889,
       "consider_new_structure": false,
       "current_status": "active",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -723,7 +647,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0010",
+      "gap_id": "AGR-0009",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -790,7 +714,7 @@
       "conflict_ratio": 0.87,
       "consider_new_structure": false,
       "current_status": "provisional",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -799,7 +723,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0011",
+      "gap_id": "AGR-0010",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "demote_to_candidate",
@@ -866,7 +790,7 @@
       "conflict_ratio": 0.857,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -875,7 +799,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0012",
+      "gap_id": "AGR-0011",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -942,7 +866,7 @@
       "conflict_ratio": 0.857,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -951,7 +875,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0013",
+      "gap_id": "AGR-0012",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -1018,7 +942,7 @@
       "conflict_ratio": 0.857,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -1027,7 +951,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0014",
+      "gap_id": "AGR-0013",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -1094,7 +1018,7 @@
       "conflict_ratio": 0.857,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -1103,7 +1027,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0015",
+      "gap_id": "AGR-0014",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -1170,7 +1094,7 @@
       "conflict_ratio": 0.815,
       "consider_new_structure": false,
       "current_status": "implemented",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -1179,7 +1103,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0016",
+      "gap_id": "AGR-0015",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1246,7 +1170,7 @@
       "conflict_ratio": 0.8,
       "consider_new_structure": false,
       "current_status": "candidate",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -1255,7 +1179,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0017",
+      "gap_id": "AGR-0016",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_candidate_resolve_conflict",
@@ -1322,7 +1246,7 @@
       "conflict_ratio": 0.8,
       "consider_new_structure": false,
       "current_status": "active",
-      "decision_deadline_utc": "2026-04-05T18:10:48.595803Z",
+      "decision_deadline_utc": "2026-04-05T18:19:56.154021Z",
       "decision_required_outcomes": [
         "retain_ree",
         "hybridize",
@@ -1331,7 +1255,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0018",
+      "gap_id": "AGR-0017",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1403,7 +1327,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0019",
+      "gap_id": "AGR-0018",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1475,7 +1399,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0020",
+      "gap_id": "AGR-0019",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "hold_pending_v3_substrate",
@@ -1547,7 +1471,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0021",
+      "gap_id": "AGR-0020",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "promote_to_provisional",
@@ -1619,7 +1543,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0022",
+      "gap_id": "AGR-0021",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1691,7 +1615,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0023",
+      "gap_id": "AGR-0022",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1763,7 +1687,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0024",
+      "gap_id": "AGR-0023",
       "latest_decision": {
         "decision_status": "none",
         "recommendation": "",
@@ -1835,7 +1759,7 @@
       "escalate_architecture_decision": false,
       "evidence_stage": {},
       "external_precedence_candidate": false,
-      "gap_id": "AGR-0025",
+      "gap_id": "AGR-0024",
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "retain_open_question_with_prototype_first",
@@ -1857,78 +1781,6 @@
       "saturation_signal_details": {},
       "source_counts": {
         "experimental": 1,
-        "literature": 2
-      },
-      "trigger_signals": [
-        "literature_non_support_pressure"
-      ]
-    },
-    {
-      "adjudication_policy": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_gate_enabled": true,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "default_conflict_outcome": "retain_ree",
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "anti_lock_in_review_required": false,
-      "atomic_split_recommended": false,
-      "claim_id": "Q-007",
-      "claim_type": "open_question",
-      "confidence_split": {
-        "delta_lit_minus_exp": 0.247,
-        "experimental_confidence": 0.498,
-        "literature_confidence": 0.745
-      },
-      "conflict_ratio": 0.0,
-      "consider_new_structure": false,
-      "current_status": "active",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "escalate_architecture_decision": false,
-      "evidence_stage": {},
-      "external_precedence_candidate": false,
-      "gap_id": "AGR-0026",
-      "latest_decision": {
-        "decision_status": "applied",
-        "recommendation": "hold_pending_v3_substrate",
-        "timestamp_utc": "2026-03-16T18:20:19.361155Z"
-      },
-      "literature_direction_counts": {
-        "mixed": 1,
-        "supports": 0,
-        "unknown": 0,
-        "weakens": 1
-      },
-      "literature_non_support_ratio": 1.0,
-      "mandatory_decision_checkpoint": false,
-      "overall_confidence": 0.597,
-      "recent_targeted_batches": 4,
-      "recommendation": "monitor_and_collect_targeted_evidence",
-      "recurring_failure_signatures": [],
-      "saturation_guard_engaged": false,
-      "saturation_signal_details": {},
-      "source_counts": {
-        "experimental": 5,
         "literature": 2
       },
       "trigger_signals": [

@@ -4,11 +4,11 @@
 
 Barrett, Adolphs, Marsella, Martinez, and Pollak conduct a comprehensive review of the evidence for and against the assumption that specific facial muscle configurations are reliable, universal indicators of discrete emotional states. They evaluate evidence across expression production, perception, and cross-cultural contexts, concluding that the common view is not well supported. Facial movements show high variability across individuals, contexts, and cultures, with one-to-many and many-to-one mappings between configurations and emotional states being the norm rather than the exception.
 
-## Relevance to Q-007
+## Relevance to Q-007 (reframed 2026-04-02)
 
-Q-007 asks: "Do universal expressions map to stable control-channel regimes?" The premise of this question assumes that universal emotional expressions exist and can serve as observable signatures of internal computational states (z_beta control channels). Barrett et al. challenge this premise directly: if the expressions themselves are not reliably universal, then using them as evidence for (or against) internal regime stability is problematic.
+Q-007 was reframed from "Do universal expressions map to stable control-channel regimes?" to "Do affect dimensions (valence/arousal) map to stable control-channel regimes in z_beta?" Under the original framing, Barrett et al. weakened the claim by challenging the universality of expressions. Under the reframed Q-007, this paper now *supports* the claim: by demonstrating that discrete categorical emotions are unreliable, Barrett et al. provide evidence that dimensional affect (valence x arousal -- what they call "core affect") is the more appropriate basis for z_beta regime structure. This is precisely what the reframed Q-007 proposes.
 
-This matters for REE because Q-007 was designed to test whether z_beta valence dimension correlates with E3 precision regimes — effectively asking whether discrete affective states correspond to discrete computational control modes. If the constructionist account is correct, the answer may be that internal states are better described as dimensional (valence x arousal) rather than categorical regimes.
+This matters for REE because z_beta is a continuous latent space. The constructionist account predicts that z_beta regimes, if they exist, should be organized along dimensional axes (valence, arousal) rather than as discrete attractor basins corresponding to "anger," "fear," etc.
 
 ## The deeper question this raises
 
@@ -18,4 +18,4 @@ This is precisely the kind of question that distinguishes REE from purely behavi
 
 ## Confidence reasoning
 
-Extremely high source quality. Weakening direction is warranted because the paper challenges Q-007's framing premise. Confidence is moderated by the indirect mapping: expressions are not the same as internal control channels.
+Extremely high source quality. Under the reframed Q-007 (dimensional affect -> regimes), this paper supports rather than weakens the claim: the evidence against categorical emotions is evidence for dimensional affect as the appropriate basis for z_beta. Confidence moderated by the indirect mapping: expressions are not the same as internal control channels, but the dimensional-vs-categorical distinction carries over.
