@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085d_mech071_goal_persist
 
-Generated: `2026-04-02T21:09:34.904198Z`
+Generated: `2026-04-02T21:42:34.628082Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

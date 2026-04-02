@@ -279,6 +279,17 @@
       "status": "proposed",
       "added_utc": "2026-03-25",
       "notes": "Survey literature for any existing treatment of world-novelty vs agent-policy-novelty distinction. If absent, this gap is itself a potential contribution -- document in lit review."
+    },
+    {
+      "proposal_id": "EXP-0094",
+      "claim_id": "ARC-016",
+      "proposal_type": "implementation",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "objective": "Replace hardcoded commitment_threshold=0.40 with k*warmup_baseline_variance (k=2) per EXQ-018b findings. Requires: (1) measuring baseline_variance during warmup episodes, (2) setting commitment_threshold = 2 * baseline_variance after warmup completes. Converts ARC-016 from manually-calibrated to self-calibrating as operating regime changes.",
+      "status": "proposed",
+      "added_utc": "2026-04-02",
+      "notes": "Small implementation: ~3 lines in agent.py. Wait until more V3 experiments have run to establish reliable baseline_variance estimates before implementing."
     }
   ]
 }

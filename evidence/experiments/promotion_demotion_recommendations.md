@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-04-02T21:09:34.904198Z`
+Generated: `2026-04-02T21:42:34.628082Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -147,7 +147,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.68, conflict_ratio=0.5, exp_entries=3, lit_entries=2; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.54, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -421,7 +421,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-118
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.751, conflict_ratio=0.4, exp_entries=4, lit_entries=3; directions supports=4, weakens=1, mixed=2, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: overall_conf=0.716, conflict_ratio=0.667, exp_entries=4, lit_entries=3; directions supports=4, weakens=2, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL. First experimental entry. EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed -- stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation. Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat ~20.6-20.8 across R1/R2…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -440,7 +440,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-119
 - Current status: `provisional`
 - Decision needed: Promotion review: provisional -> stable
-- Why this decision is needed: overall_conf=0.857, conflict_ratio=0, exp_entries=4, lit_entries=3; directions supports=5, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Why this decision is needed: overall_conf=0.857, conflict_ratio=0, exp_entries=4, lit_entries=3; directions supports=6, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: EXQ-144 PASS (2026-03-29, 5/5): coherent-unfamiliar discriminative pair. All 5 criteria met. evidence_direction=supports. 0 conflict ratio; conf=0.81 with 2 experiment entries (both supports) and 3 literature entries. Clean promotion to provisional per governance decision 2026-03-29. EXQ-084d MIXED (per-claim override, 2026-03-30): stability dissociation confirmed (C2/C4 PASS -- both noise and nov…
 - Recommendation: `promote_to_stable`
 - Options (pros/cons):
@@ -474,7 +474,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: overall_conf=0.683, conflict_ratio=0.5, exp_entries=3, lit_entries=2; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: overall_conf=0.543, conflict_ratio=0.667, exp_entries=3, lit_entries=2; directions supports=2, weakens=1, mixed=1, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

@@ -161,9 +161,23 @@ RULES = {
         "ARC-033": "weakens", "SD-011": "weakens", "SD-003": "weakens",
     },
 
-    # EXQ-145 second run (inconclusive): phase 1 gate failure, no criteria ran
+    # EXQ-071d: same SD-003 family as 071 - SD-003 fails, ARC-024 partial, MECH-071 partial
+    "v3_exq_071d_rollout_batched_attribution": {
+        "__status_filter__": "FAIL",
+        "SD-003": "weakens", "ARC-024": "supports", "MECH-071": "supports",
+    },
+
+    # EXQ-084d: Hopfield dissociation - MECH-119 passes (temporal context), MECH-118 fails, Q-022 mixed
+    "v3_exq_084d_q022_deff_hopfield_dissociation": {
+        "__status_filter__": "FAIL",
+        "Q-022": "mixed", "MECH-118": "weakens", "MECH-119": "supports",
+    },
+
+    # EXQ-145 second run (inconclusive): phase 1 gate failure, no criteria ran.
+    # Use "mixed" (standard value) instead of "unknown" so per_claim dict is non-empty.
+    # direction_explicitly_set=True via evidence_direction_note preserves scoring context.
     "v3_exq_145_sd008_sd007_sd003_integration": {
-        "SD-008": "unknown", "SD-007": "unknown", "SD-003": "unknown",
+        "SD-008": "mixed", "SD-007": "mixed", "SD-003": "mixed",
     },
 
     # claim_probe_arc_024: 4/5 pass but core C4 failed
