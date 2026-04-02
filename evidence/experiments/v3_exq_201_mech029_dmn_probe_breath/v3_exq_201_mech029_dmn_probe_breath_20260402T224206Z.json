@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "agg_committed_step_count": 300.0,
+    "agg_uncommitted_step_count": 0.0,
+    "agg_committed_z_world_var": 0.0005396008200477809,
+    "agg_uncommitted_z_world_var": 0.0,
+    "z_world_var_ratio": 0.0,
+    "agg_harm_eval_std_committed": 0.0652663679793477,
+    "agg_harm_eval_std_uncommitted": 0.0,
+    "agg_harm_pred_std": 0.0652663679793477,
+    "agg_fatal_errors": 0.0,
+    "breath_period": 50.0,
+    "sweep_amplitude": 0.3,
+    "sweep_duration": 10.0,
+    "e3_steps_per_tick": 5.0,
+    "nav_bias": 0.45,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-201 -- MECH-029: DMN/Reflective Mode Probe (BreathOscillator)\n\n**Status:** FAIL\n**Claims:** MECH-029\n**Supersedes:** V3-EXQ-080\n**Seeds:** [42, 123]  |  **Train:** 500 eps  |  **Eval:** 50 eps  |  **Steps/ep:** 200\n**Config:** alpha_world=0.9, nav_bias=0.45, use_event_classifier=True\n**BreathOscillator:** period=50, sweep_amp=0.3, sweep_dur=10, e3_rate=5\n**Env:** CausalGridWorldV2 size=6, n_hazards=4, use_proxy_fields=True\n\n## Design Rationale\n\nThe BreathOscillator (MECH-108) creates periodic uncommitted windows by reducing the\neffective commit_threshold during sweep phases. During these windows, E3 is more likely\nto be uncommitted (running_variance > effective_threshold). MECH-029 predicts that\nuncommitted/reflective mode shows higher z_world variability and more diverse E3 harm\nevaluations than committed execution mode.\n\n## Per-Seed Results\n\n| Seed | Committed Steps | Uncommitted Steps | z_world_var_C | z_world_var_U | harm_std_C | harm_std_U | harm_pred_std | Fatal |\n|------|----------------|-------------------|---------------|---------------|------------|------------|---------------|-------|\n| 42 | 300 | 0 | 0.000955 | 0.000000 | 0.121934 | 0.000000 | 0.1219 | 0 |\n| 123 | 10000 | 0 | 0.000124 | 0.000000 | 0.008599 | 0.000000 | 0.0086 | 0 |\n\n\n## Aggregate (mean across seeds)\n\n| Metric | Committed | Uncommitted |\n|--------|-----------|-------------|\n| z_world_var | 0.000540 | 0.000000 |\n| harm_eval_std | 0.065266 | 0.000000 |\n\n**z_world_var_ratio** (uncommitted/committed) = 0.0000\n\n## PASS Criteria (need 4/5)\n\n| Criterion | Threshold | Result | Value |\n|-----------|-----------|--------|-------|\n| C1: min(uncommitted_steps) >= 50 | 50 | FAIL | 0 |\n| C2: mean(harm_pred_std) > 0.01 | 0.01 | PASS | 0.065266 |\n| C3: uncommitted_z_var > committed*1.05 | 1.05x | FAIL | 0.000000 vs 0.000567 |\n| C4: harm_std_uncommitted > harm_std_committed | > | FAIL | 0.000000 vs 0.065266 |\n| C5: no fatal errors | 0 | PASS | 0 |\n\nCriteria met: 2/5 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: min(uncommitted_step_count)=0 < 50\n- C3 FAIL: uncommitted_z_world_var=0.000000 <= committed*1.05=0.000567\n- C4 FAIL: harm_eval_std_uncommitted=0.000000 <= harm_eval_std_committed=0.065266\n",
+  "claim_ids": [
+    "MECH-029"
+  ],
+  "supersedes": "V3-EXQ-080",
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_201_mech029_dmn_probe_breath",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260402T224206Z",
+  "claim": "MECH-029",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_201_mech029_dmn_probe_breath_20260402T224206Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
