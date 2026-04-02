@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "policy_entropy_off": -9.989999933397892e-10,
+    "policy_entropy_on": -9.989999933397892e-10,
+    "entropy_gap": 0.0,
+    "novel_cell_visits_off": 52.0,
+    "novel_cell_visits_on": 52.0,
+    "cell_gap": 0.0,
+    "harm_rate_off": 0.0,
+    "harm_rate_on": 0.0,
+    "harm_delta": 0.0,
+    "novelty_ema_at_eval": 6.936712917496151e-05,
+    "mean_e1_error_off": 6.248549102601828e-05,
+    "mean_e1_error_on": 6.248549102601828e-05,
+    "novelty_bonus_weight": 0.1,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-073b -- MECH-111 Novelty Signal\n\n**Status:** FAIL\n**Claims:** MECH-111\n**Seed:** 42  **Warmup:** 150  **Eval:** 50\n**novelty_bonus_weight:** 0.1\n\n## Results\n\n| Metric | NoveltyOFF | NoveltyON | Delta |\n|---|---|---|---|\n| policy_entropy | -0.0000 | -0.0000 | +0.0000 |\n| novel_cell_visits | 52 | 52 | +0 |\n| harm_rate | 0.0000 | 0.0000 | +0.0000 |\n| novelty_ema_at_eval | -- | 0.000069 | -- |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: entropy gap >= 0.10 | FAIL |\n| C2: cell coverage gap >= 3 | FAIL |\n| C3: harm delta <= 0.02 | PASS |\n| C4: novelty_ema > 0 | PASS |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Interpretation\n\nMECH-111 PARTIAL: Some exploratory signal present but below threshold. Novelty weight or training duration may need adjustment.\n\n## Failure Notes\n\n- C1 FAIL: entropy gap=0.0000 < 0.10\n- C2 FAIL: cell coverage gap=0 < 3\n",
+  "claim_ids": [
+    "MECH-111"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_073b_mech111_novelty_signal",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260402T021831Z",
+  "claim": "MECH-111",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

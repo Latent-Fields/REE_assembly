@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "d_eff_baseline_nomaint": 23.847686948679915,
+    "d_eff_post_nomaint": 23.840926789943083,
+    "d_eff_ratio_nomaint": 0.9997165276971566,
+    "d_eff_baseline_maint": 23.847686948679915,
+    "d_eff_post_maint": 23.840926789943083,
+    "d_eff_ratio_maint": 0.9997165276971566,
+    "d_eff_gap": 0.0,
+    "e2_loss_nomaint": 5.242052298410411e-08,
+    "e2_loss_maint": 5.242052298410411e-08,
+    "noise_sigma": 2.0,
+    "maintenance_weight": 0.1,
+    "d_eff_target": 1.5,
+    "crit1_pass": 1.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 2.0
+  },
+  "summary_markdown": "# V3-EXQ-075d -- MECH-113 Self-Maintenance (z_self D_eff)\n\n**Status:** FAIL\n**Claims:** MECH-113\n**Seed:** 42  **Warmup:** 200  **Eval:** 30\n**maintenance_weight:** 0.1  **d_eff_target:** 1.5\n**noise_sigma:** 2.0\n\n## Results\n\n| Metric | NoMaintenance | Maintenance |\n|---|---|---|\n| D_eff baseline (pre-perturb) | 23.8477 | 23.8477 |\n| D_eff post-perturbation | 23.8409 | 23.8409 |\n| D_eff ratio (post/baseline) | 1.00x | 1.00x |\n| E2 loss post-perturb | 0.00000 | 0.00000 |\n\n**D_eff gap (nomaint - maint) post-perturb: 0.0000**\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: maint D_eff ratio <= 1.5x | PASS |\n| C2: nomaint D_eff ratio >= 2.0x | FAIL |\n| C3: gap >= 0.5 * nomaint_post | FAIL |\n| C4: e2_loss not degraded | PASS |\n\nCriteria met: 2/4 -> **FAIL**\n\n## Interpretation\n\nMECH-113 PARTIAL: Some homeostatic signal present but below threshold. Perturbation may be too weak, or maintenance weight needs adjustment.\n\n## Failure Notes\n\n- C2 FAIL: nomaint D_eff post/baseline=1.00x < 2.0x\n- C3 FAIL: gap=0.0000 < 0.5 * nomaint_post=11.9205\n",
+  "claim_ids": [
+    "MECH-113"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_075d_mech113_self_maintenance",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260402T032357Z",
+  "claim": "MECH-113",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_075d_mech113_self_maintenance_20260402T032357Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
