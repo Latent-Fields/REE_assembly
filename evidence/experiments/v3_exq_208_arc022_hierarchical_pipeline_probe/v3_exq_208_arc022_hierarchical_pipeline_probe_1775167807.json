@@ -1,0 +1,117 @@
+{
+  "run_id": "v3_exq_208_arc022_hierarchical_pipeline_probe_1775167807_v3",
+  "experiment_type": "v3_exq_208_arc022_hierarchical_pipeline_probe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-022"
+  ],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "timestamp": 1775167807,
+  "dry_run": true,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 3,
+  "eval_episodes": 2,
+  "steps_per_episode": 20,
+  "max_rsa_points": 300,
+  "thresh_gradient": 0.02,
+  "mean_rsa_obs_L1": 0.7120209785163832,
+  "mean_rsa_obs_L2": 0.015727601526698675,
+  "mean_rsa_obs_L3": 0.1646456396238154,
+  "mean_rsa_harm_L1": 0.021165708036417607,
+  "mean_rsa_harm_L2": 0.0934035329226736,
+  "mean_rsa_harm_L3": -0.02058550408673917,
+  "abstraction_gradient": 0.5473753388925678,
+  "goal_relevance_gradient": -0.04175121212315678,
+  "hierarchical_linearity_r2": 0.5598692910061671,
+  "goal_relevance_by_layer": [
+    0.021165708036417607,
+    0.0934035329226736,
+    -0.02058550408673917
+  ],
+  "c1_e2_more_abstract_pass": true,
+  "c2_e1_more_abstract_pass": true,
+  "c3_abstraction_gradient_pass": true,
+  "c4_goal_relevance_gradient_pass": false,
+  "c1_count": 3,
+  "c2_count": 3,
+  "c3_count": 3,
+  "c4_count": 1,
+  "n_seeds": 3,
+  "seed_results": [
+    {
+      "seed": 42,
+      "n_collected": 40,
+      "n_rsa_points": 40,
+      "rsa_obs_L1": 0.6528486176897828,
+      "rsa_obs_L2": -0.08692263819277506,
+      "rsa_obs_L3": 0.15099192875323342,
+      "rsa_harm_L1": 0.1161907791534073,
+      "rsa_harm_L2": -0.1462648942299632,
+      "rsa_harm_L3": 0.023965143320040353,
+      "abstraction_gradient": 0.5018566889365493,
+      "goal_relevance_by_layer": [
+        0.1161907791534073,
+        -0.1462648942299632,
+        0.023965143320040353
+      ],
+      "goal_relevance_gradient": -0.09222563583336695,
+      "hierarchical_linearity_r2": 0.44148553502059656,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": false
+    },
+    {
+      "seed": 7,
+      "n_collected": 39,
+      "n_rsa_points": 39,
+      "rsa_obs_L1": 0.8504978073001906,
+      "rsa_obs_L2": 0.06728841088324702,
+      "rsa_obs_L3": 0.20051811362635594,
+      "rsa_harm_L1": -0.11178536699887245,
+      "rsa_harm_L2": 0.3280948124046436,
+      "rsa_harm_L3": -0.07274808446605864,
+      "abstraction_gradient": 0.6499796936738347,
+      "goal_relevance_by_layer": [
+        -0.11178536699887245,
+        0.3280948124046436,
+        -0.07274808446605864
+      ],
+      "goal_relevance_gradient": 0.03903728253281381,
+      "hierarchical_linearity_r2": 0.6014482874011866,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": true
+    },
+    {
+      "seed": 123,
+      "n_collected": 40,
+      "n_rsa_points": 40,
+      "rsa_obs_L1": 0.6327165105591763,
+      "rsa_obs_L2": 0.06681703188962405,
+      "rsa_obs_L3": 0.14242687649185687,
+      "rsa_harm_L1": 0.059091711954717976,
+      "rsa_harm_L2": 0.09838068059334037,
+      "rsa_harm_L3": -0.012973571114199221,
+      "abstraction_gradient": 0.49028963406731946,
+      "goal_relevance_by_layer": [
+        0.059091711954717976,
+        0.09838068059334037,
+        -0.012973571114199221
+      ],
+      "goal_relevance_gradient": -0.0720652830689172,
+      "hierarchical_linearity_r2": 0.6366740505967181,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": false
+    }
+  ]
+}

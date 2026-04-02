@@ -1,0 +1,143 @@
+{
+  "run_id": "v3_exq_211_mech153_arc042_supervised_labeling_1775168828_v3",
+  "experiment_type": "v3_exq_211_mech153_arc042_supervised_labeling",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-153",
+    "ARC-042"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-153": "weakens",
+    "ARC-042": "weakens"
+  },
+  "timestamp": 1775168828,
+  "dry_run": true,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 3,
+  "eval_episodes": 3,
+  "steps_per_episode": 20,
+  "thresh_cosim_sup": 0.9,
+  "ctx_a_thresh": 0.7,
+  "ctx_b_thresh": 0.33,
+  "mean_cosim_supervised": 1.0000000035978729,
+  "mean_cosim_unsupervised": 0.9999335050391908,
+  "supervised_vs_unsupervised_delta": -6.649855868223753e-05,
+  "context_cosine_similarity": 1.0000000035978729,
+  "context_discrimination_accuracy": 0.0,
+  "e3_harm_eval_diff_supervised": 6.984472274781013e-05,
+  "e3_harm_eval_diff_unsupervised": 6.984472274781013e-05,
+  "c1_cosim_reduced_pass": false,
+  "c2_cosim_absolute_pass": false,
+  "c3_e3_sensitivity_pass": false,
+  "c4_sanity_pass": false,
+  "c1_count": 0,
+  "c2_count": 0,
+  "c3_count": 0,
+  "c4_count": 1,
+  "n_seeds": 3,
+  "seed_metrics": [
+    {
+      "seed": 42,
+      "cosim_supervised": 1.0,
+      "cosim_unsupervised": 1.0,
+      "supervised_vs_unsupervised_delta": 0.0,
+      "e3_harm_diff_supervised": 0.0,
+      "e3_harm_diff_unsupervised": 0.0,
+      "c1": false,
+      "c2": false,
+      "c3": false,
+      "c4": false
+    },
+    {
+      "seed": 7,
+      "cosim_supervised": 1.0,
+      "cosim_unsupervised": 1.0,
+      "supervised_vs_unsupervised_delta": 0.0,
+      "e3_harm_diff_supervised": 0.0,
+      "e3_harm_diff_unsupervised": 0.0,
+      "c1": false,
+      "c2": false,
+      "c3": false,
+      "c4": false
+    },
+    {
+      "seed": 123,
+      "cosim_supervised": 1.0000000107936189,
+      "cosim_unsupervised": 0.9998005151175722,
+      "supervised_vs_unsupervised_delta": -0.0001994956760467126,
+      "e3_harm_diff_supervised": 0.0002095341682434304,
+      "e3_harm_diff_unsupervised": 0.0002095341682434304,
+      "c1": false,
+      "c2": false,
+      "c3": false,
+      "c4": true
+    }
+  ],
+  "all_condition_results": [
+    {
+      "seed": 42,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 0,
+      "n_context_B": 23,
+      "context_cosine": 1.0,
+      "e3_harm_eval_diff": 0.0,
+      "c4_sanity": false
+    },
+    {
+      "seed": 42,
+      "condition": "SUPERVISED",
+      "n_context_A": 0,
+      "n_context_B": 23,
+      "context_cosine": 1.0,
+      "e3_harm_eval_diff": 0.0,
+      "c4_sanity": false
+    },
+    {
+      "seed": 7,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 15,
+      "n_context_B": 0,
+      "context_cosine": 1.0,
+      "e3_harm_eval_diff": 0.0,
+      "c4_sanity": false
+    },
+    {
+      "seed": 7,
+      "condition": "SUPERVISED",
+      "n_context_A": 15,
+      "n_context_B": 0,
+      "context_cosine": 1.0,
+      "e3_harm_eval_diff": 0.0,
+      "c4_sanity": false
+    },
+    {
+      "seed": 123,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 20,
+      "n_context_B": 10,
+      "context_cosine": 0.9998005151175722,
+      "mean_harm_A": 0.516559237241745,
+      "mean_harm_B": 0.5163497030735016,
+      "e3_harm_eval_diff": 0.0002095341682434304,
+      "c4_sanity": true
+    },
+    {
+      "seed": 123,
+      "condition": "SUPERVISED",
+      "n_context_A": 20,
+      "n_context_B": 10,
+      "context_cosine": 1.0000000107936189,
+      "mean_harm_A": 0.516559237241745,
+      "mean_harm_B": 0.5163497030735016,
+      "e3_harm_eval_diff": 0.0002095341682434304,
+      "c4_sanity": true
+    }
+  ]
+}

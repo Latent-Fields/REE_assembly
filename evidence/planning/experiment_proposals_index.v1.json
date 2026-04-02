@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-02T21:42:34.628082Z",
+  "generated_at_utc": "2026-04-02T22:39:46.490211Z",
   "items": [
     {
       "backlog_id": "EVB-0001",
@@ -789,11 +789,13 @@
       "backlog_id": "EVB-0044",
       "claim_id": "MECH-104",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-204",
+      "executed_queue_id": "V3-EXQ-204",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-104 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0044",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_126_mech104_surprise_gate_pair",
       "target_repo": "ree-v3",
       "why_now": [
@@ -984,11 +986,13 @@
       "backlog_id": "EVB-0055",
       "claim_id": "ARC-022",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-208",
+      "executed_queue_id": "V3-EXQ-208",
       "objective": "Reduce uncertainty for ARC-022 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0055",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_022",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1035,11 +1039,13 @@
       "backlog_id": "EVB-0058",
       "claim_id": "MECH-156",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-210",
+      "executed_queue_id": "V3-EXQ-210",
       "objective": "Reduce uncertainty for MECH-156 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0058",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_156",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1194,11 +1200,13 @@
       "backlog_id": "EVB-0068",
       "claim_id": "MECH-070",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-212",
+      "executed_queue_id": "V3-EXQ-212",
       "objective": "Reduce uncertainty for MECH-070 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0069",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_132_mech070_e2_motor_model_pair",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1477,8 +1485,8 @@
     {
       "claim_id": "MECH-128",
       "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-147",
-      "executed_queue_id": "V3-EXQ-147",
+      "executed_by": "V3-EXQ-147a",
+      "executed_queue_id": "V3-EXQ-147a",
       "objective": "Validate that E1 LSTM goal-conditioning (MECH-128) actually shapes E1's predictive distribution. PASS: E1 prediction error is significantly lower for goal-relevant state transitions than goal-irrelevant ones when z_goal_latent is provided vs withheld (interaction term), demonstrating that goal context modulates prediction rather than being a dormant input.",
       "priority": "low",
       "proposal_id": "EXP-0088",
@@ -1489,11 +1497,13 @@
     {
       "claim_id": "SD-003",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-205",
+      "executed_queue_id": "V3-EXQ-205",
       "objective": "Reconfirm the post-SD-011 SD-003 attribution result in its current form: can the trained z_harm_s counterfactual attribution path cleanly beat an explicit ablation or scramble control across matched seeds?",
       "priority": "high",
       "proposal_id": "EXP-0089",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -1575,8 +1585,8 @@
       "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 55,
-  "n_proposed_exp": 21,
+  "n_executed": 60,
+  "n_proposed_exp": 16,
   "n_proposed_lit": 25,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_197_mech104_volatility_interrupt_pair
 
-Generated: `2026-04-02T21:42:34.628082Z`
+Generated: `2026-04-02T22:39:46.490211Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -2,32 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-02T21:42:59.603295+00:00",
+  "last_updated": "2026-04-02T22:40:28.358290+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-200",
+    "queue_id": "V3-EXQ-201",
     "backlog_id": "",
     "claim_id": "",
-    "title": "Q-007 z_beta volatility pathway (rv->z_beta via volatility_signal_dim=1)",
+    "title": "MECH-029 DMN/reflective mode probe with BreathOscillator",
     "description": "",
-    "script": "experiments/v3_exq_200_q007_zbeta_volatility_pathway.py",
-    "started_at": "2026-04-02T20:48:38.486324+00:00",
+    "script": "experiments/v3_exq_201_mech029_dmn_probe_breath.py",
+    "started_at": "2026-04-02T22:19:50.869874+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 130,
-      "overall_pct": 0.0
+      "episodes_done": 500,
+      "episodes_total": 500,
+      "overall_pct": 100.0
     },
-    "seconds_elapsed": 3261,
-    "seconds_remaining": 1040,
+    "seconds_elapsed": 1237,
+    "seconds_remaining": 0,
     "recent_lines": [
-      "Post-switch z_beta (volatile env): 0.4044",
-      "C3 delta=-0.0004 (threshold 0.02) -> FAIL",
-      "--- Seed 123 ---",
-      "[Phase 1] Training (500 eps each)...",
-      "ep 100: stable rv=0.0064 z_b=0.3497 | volatile rv=0.0063 z_b=0.4889"
+      "[train/seed=123] ep 300/500  harm=3110  running_var=0.000038",
+      "[train/seed=123] ep 400/500  harm=4158  running_var=0.000037",
+      "[train/seed=123] ep 500/500  harm=5211  running_var=0.000035",
+      "[post-train/seed=123] running_var=0.0000 harm_count=5211",
+      "[V3-EXQ-201] Eval seed=123 (50 eps)..."
     ],
     "ree_version": "v3"
   },
@@ -55,24 +55,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-200",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Q-007 z_beta volatility pathway (rv->z_beta via volatility_signal_dim=1)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-201",
       "backlog_id": "",
       "claim_id": "",
       "title": "MECH-029 DMN/reflective mode probe with BreathOscillator",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -3929,6 +3918,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_199_mech025_doing_mode_breath/v3_exq_199_mech025_doing_mode_breath_20260402T204835Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4853.6
+    },
+    {
+      "queue_id": "V3-EXQ-200",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-007 z_beta volatility pathway (rv->z_beta via volatility_signal_dim=1)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "",
+      "started_at": "2026-04-02T20:48:38.486324+00:00",
+      "completed_at": "2026-04-02T22:19:48.596705+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_200_q007_zbeta_volatility_pathway/v3_exq_200_q007_zbeta_volatility_pathway_20260402T221947Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 5470.1
     }
   ]
 }

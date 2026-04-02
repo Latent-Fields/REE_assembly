@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-04-02T21:42:34.628082Z`
+Generated: `2026-04-02T22:39:46.490211Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -17,12 +17,12 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0008` | `MECH-093` | `candidate` | 0.889 | 0 | 0.027 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0009` | `MECH-095` | `active` | 0.889 | 0 | 0.313 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0010` | `SD-015` | `candidate` | 0.889 | 0 | 0.229 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0011` | `ARC-032` | `candidate` | 0.857 | 0 | 0.363 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0011` | `ARC-032` | `candidate` | 0.857 | 0 | 0.364 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0012` | `MECH-099` | `candidate` | 0.857 | 0 | 0.369 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0013` | `MECH-116` | `candidate` | 0.857 | 0 | 0.35 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0013` | `MECH-116` | `candidate` | 0.857 | 0 | 0.351 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0014` | `SD-012` | `candidate` | 0.857 | 0 | 0.224 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0015` | `SD-005` | `implemented` | 0.815 | 0.333 | 0.152 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0016` | `ARC-024` | `provisional` | 0.8 | 0 | 0.067 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0016` | `ARC-024` | `provisional` | 0.8 | 0 | 0.068 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0017` | `MECH-098` | `candidate` | 0.8 | 0 | 0.223 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0018` | `Q-003` | `active` | 0.8 | 0 | 0.442 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0019` | `MECH-089` | `active` | 0.714 | 0 | 0.091 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
