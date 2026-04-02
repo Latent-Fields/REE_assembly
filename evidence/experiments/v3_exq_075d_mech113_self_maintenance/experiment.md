@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_075d_mech113_self_maintenance_20260402T032357Z_v3` at `2026-04-02T03:23:57Z` signatures: none
 - `v3_exq_075d_mech113_self_maintenance_20260328T155739Z_v3` at `2026-03-28T15:57:39Z` signatures: none
 
 Recurring signatures:

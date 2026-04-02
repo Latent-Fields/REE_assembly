@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_072b_q021_behavioral_flatness_20260402T012059Z_v3` at `2026-04-02T01:20:59Z` signatures: none
 - `v3_exq_072b_q021_behavioral_flatness_20260328T135541Z_v3` at `2026-03-28T13:55:41Z` signatures: none
 
 Recurring signatures:

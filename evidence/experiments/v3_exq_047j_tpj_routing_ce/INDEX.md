@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_047j_tpj_routing_ce
 
-Generated: `2026-04-02T20:59:26.528514Z`
+Generated: `2026-04-02T21:09:34.904198Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
