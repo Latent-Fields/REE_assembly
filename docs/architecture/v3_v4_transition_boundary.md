@@ -1,4 +1,4 @@
-<!-- TRANSITION_BOUNDARY_VERSION: 2026-03-23.1 -->
+<!-- TRANSITION_BOUNDARY_VERSION: 2026-04-02.1 -->
 # V3 / V4 Architecture Transition Boundary
 
 ## Overview
@@ -53,6 +53,7 @@ These must be validated in V3 before V4 consolidation is implementable:
 | Balanced harm/goal salience | MECH-124 prereq | EXQ-074b outcome | pending |
 | z_beta natural setpoint measured | MECH-093 | ongoing telemetry | partial |
 | Go/NoGo competitive commit | ARC-030 | EXQ-077 (planned) | planned |
+| **HippocampalModule multi-step planning** | **MECH-163 VTA/planned system** | **TBD — goal-seeded trajectory generation** | **V3 full completion gate** |
 
 ---
 
@@ -74,6 +75,21 @@ V4 also adds:
 - Dynamic setpoint modulation (all items in table above become driven by sleep phase state)
 - Bidirectional ThetaBuffer (MECH-122)
 - Sleep phase controller (new module, analogous to mode_manager but for offline cycle)
+
+**V4 social extension dependency on V3 hippocampal planning (2026-04-02):**
+
+V4's social extension -- sharing joys and sorrows (INV-029 benefit gradient), multi-agent
+welfare planning -- requires multi-step trajectory planning over *another agent's*
+benefit/harm gradient. The habit system (SNc/model-free, MECH-163) can approach its own
+resources but cannot plan paths that affect another agent's z_harm_a accumulation or
+benefit_exposure trajectory over time. Only the VTA/hippocampal system (MECH-163) supports
+this: HippocampalModule generates multi-step proposals; E3 evaluates trajectories that
+account for shared gradient fields.
+
+Consequence: validating the VTA/hippocampal system in V3 is a prerequisite for V4 social
+extension, not merely a V4 feature that can be designed later. V3 full completion gate
+(row above: "HippocampalModule multi-step planning") must be passed before V4 entry.
+See roadmap.md "Two-tier V3 completion" and MECH-163.
 
 ---
 

@@ -146,7 +146,30 @@ REE should support a narrow, defensible claim:
 - **Governance state is clean.** Review tracking, claim status, and experiment indexing must
   remain aligned enough for the evidence story to be legible to an external reader.
 
-**Explicit non-blockers for V3 completion**
+**Two-tier V3 completion (2026-04-02 clarification)**
+
+V3 completion has two levels with distinct gates:
+
+*V3 first-paper gate* (sufficient for Paper 1 claim):
+- Habit-system goal-directed behavior demonstrated: SD-012 activates approach drive;
+  EXQ-182a oracle confirms the environment is near-optimal for habit-level policy;
+  goal-lift experiment (EXQ-074e successor) shows GOAL_PRESENT > GOAL_ABSENT behavioral
+  lift with ARC-030 harm/goal competition in one selector.
+
+*V3 full completion gate* (required before V4 entry):
+- **HippocampalModule multi-step trajectory planning validated.** This is a V4
+  prerequisite, not merely a V4 feature. V4's social extension ("sharing joys and
+  sorrows", INV-029 benefit gradient) requires planning trajectories that affect
+  another agent's z_harm_a accumulation and benefit_exposure over time. One-step
+  greedy cannot reach this: it can approach its own resources but cannot plan paths
+  that sustain another's joy or reduce another's sorrow over multi-step trajectories.
+  The VTA/hippocampal system (MECH-163) must be validated in V3 to provide the
+  planning substrate that V4 social cognition will depend on.
+- All V3 first-paper gates passed.
+
+See MECH-163 (dual goal-directed systems: habit vs hippocampally-planned).
+
+**Explicit non-blockers for V3 *first-paper* completion**
 
 - Sleep/offline consolidation mechanisms.
 - Integrated self/other social modelling.
@@ -154,10 +177,11 @@ REE should support a narrow, defensible claim:
 - nth-order multi-agent ethics tests.
 - Full computational-psychiatry coverage.
 
-**Deferred to V4/V5 / later papers**
+**Deferred to V4/V5 / later papers** *(requires V3 full completion gates first)*
 
 - Sleep-like consolidation as a load-bearing mechanism.
-- Social coupling and other-modelling inside core substrate.
+- Social coupling and other-modelling inside core substrate — **specifically requires
+  hippocampal multi-step planning (MECH-163 VTA/planned system) from V3 full gate**.
 - Structured communication between agents.
 - Emergent ethical behavior in multi-agent settings.
 - Stronger psychiatric modelling beyond single-agent perturbation analogs.

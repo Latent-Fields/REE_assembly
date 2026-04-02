@@ -9283,3 +9283,54 @@
     facets of one mechanism, the interaction should be multiplicative; if independent,
     additive.
   evidence: []
+
+- id: MECH-163
+  title: "Two distinct goal-directed systems operate in parallel: a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in familiar contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) required for novel contexts, long-horizon benefit accumulation, and prosocial planning."
+  claim_type: mechanism_hypothesis
+  subject: goal_directed.dual_system_architecture
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  depends_on:
+    - ARC-007
+    - ARC-021
+    - MECH-112
+    - SD-012
+    - INV-029
+  notes: >
+    Registered 2026-04-02 from architectural discussion about V3/V4 boundary.
+    Matches the SNc/VTA dopaminergic dual split and the model-free/model-based
+    distinction in computational psychiatry (Balleine & O'Doherty 2010; Daw et
+    al. 2005; Dayan & Daw 2008).
+
+    Habit system (SNc -> dorsal striatum): caches S-R associations from cumulative
+    reward experience. Sufficient for resource approach in environments where the
+    agent has practiced sufficiently. Does NOT require an internal model or
+    multi-step rollout. SD-012 (drive-scaled benefit amplitude) activates the
+    approach drive in this system.
+
+    VTA/hippocampal system (VTA -> nucleus accumbens + PFC, hippocampal rollout):
+    uses HippocampalModule trajectory generation to predict multi-step reward
+    consequences. Required for: (1) novel contexts where habit has not formed;
+    (2) long-horizon benefit accumulation (sustained joy is a trajectory property,
+    not a single contact event); (3) prosocial planning -- "sharing joys and
+    sorrows" (INV-029 benefit gradient) requires planning trajectories that affect
+    ANOTHER agent's z_harm_a accumulation and benefit_exposure over time, which is
+    structurally inaccessible to 1-step greedy.
+
+    V3/V4 boundary implication: the habit system demonstrates that goal
+    representations are real (SD-012 + EXQ-182a satisfies V3 first-paper gate).
+    V3 FULL completion requires the VTA/hippocampal system validated, because V4's
+    social extension has no planning substrate without it. One-step greedy cannot
+    predict or navigate toward states that sustain another agent's joy or reduce
+    another's sorrow over time.
+
+    In REE terms:
+    - Habit: E3 trajectory scoring using cached benefit/harm evaluation on
+      value-flat HippocampalModule proposals (ARC-007 strict).
+    - VTA/hippocampal: z_goal gradient shapes which trajectories HippocampalModule
+      proposes; E3 evaluates multi-step rollouts rather than post-hoc scoring
+      random candidates.
+    Both systems share HippocampalModule; distinction is in whether proposal
+    generation is value-flat or goal-seeded.
+  evidence: []
