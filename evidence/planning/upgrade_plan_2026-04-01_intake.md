@@ -396,13 +396,13 @@ A single architecture planning document (1-2 pages) would capture these question
 
 | ID | Status | Assigned | Completed |
 |----|--------|----------|-----------|
-| UPG-001 | pending | — | — |
-| UPG-002 | pending | — | — |
-| UPG-003 | pending | — | — |
-| UPG-004 | pending | — | — |
+| UPG-001 | **done** | upg-batch-a-2026-04-02 | 2026-04-02 |
+| UPG-002 | **done** | upg-batch-a-2026-04-02 | 2026-04-02 |
+| UPG-003 | **done** | upg-batch-a-2026-04-02 | 2026-04-02 |
+| UPG-004 | **done** | upg-batch-a-2026-04-02 | 2026-04-02 |
 | UPG-005 | pending | — | — |
-| UPG-006 | pending | — | — |
-| UPG-007 | pending | — | — |
+| UPG-006 | **in-progress** | upg-batch-a-2026-04-02 | — |
+| UPG-007 | **in-progress** | upg-batch-a-2026-04-02 | — |
 | UPG-008 | pending | — | — |
 | UPG-009 | pending | — | — |
 | UPG-010 | pending | — | — |

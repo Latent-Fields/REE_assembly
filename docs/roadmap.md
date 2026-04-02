@@ -29,6 +29,12 @@
   attributable, harm-avoiding, goal-directed agency in a waking single-agent substrate.
 - **Deferred to V4/V5:** consolidation/sleep mechanisms, integrated self/other modelling,
   structured communication, and emergent ethical behavior in multi-agent settings.
+  *(Note 2026-04-02:* The V4 deferral of social work reflects a precise architectural
+  constraint: INV-043 establishes that testing whether ethical capacity is
+  *developmentally activated* — not merely architecturally present — requires a
+  multi-agent substrate with modelled caregiving. V3 tests the machinery (ARC-043
+  Layer 6); INV-043 testing requires Layers 2-4 to be exercised socially.
+  See `docs/architecture/developmental_curriculum.md#inv-043`.*)*
 
 ---
 
@@ -155,6 +161,18 @@ REE should support a narrow, defensible claim:
 - Structured communication between agents.
 - Emergent ethical behavior in multi-agent settings.
 - Stronger psychiatric modelling beyond single-agent perturbation analogs.
+- **INV-043 (caregiver requirement)** — requires multi-agent substrate with modelled
+  caregiving. V3 cannot test whether ethical capacity is *motivationally activated*
+  (vs merely architecturally present). This is a first-class V4 research question.
+- **MECH-158 (love-exclusion failure mode)** — requires developmental multi-agent
+  substrate to test whether absence of love-experience collapses ethical motivation.
+- **MECH-159 (intergenerational moral progress)** — requires multi-generation agent
+  infrastructure. V5 scope or later.
+
+*The distinction between V3 and V4 is not only scope but epistemological level:
+V3 tests whether the machinery works. V4 tests whether the machinery develops correctly.
+The ARC-043 stack makes this precise: V3 exercises Layers 6-9; V4 must exercise Layers
+2-5 dynamically, with caregiving, developmental phases, and social residue.*
 
 ---
 

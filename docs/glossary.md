@@ -34,6 +34,13 @@
 - **Residue \(R\):** Persistent curvature term produced by ethical consequence history (legacy formulations tie this to \(M\)).
 - **\(\phi(z)\):** Residue dent field over latent space.
 - **Precision \(\alpha_k\):** Depth-indexed gain controlling error weighting / entropy.
+- **Conceptual stack (ARC-043):** The Layer 0-9 ordering of REE's full architecture from epistemic ground through the learning loop. Layers 0-4 are the five axioms (cannot be updated by experience); Layer 5 is derived ethics; Layer 6 is REE itself; Layers 7-9 are actions, consequences, and learning. See `docs/architecture/five_axioms_foundations.md`.
+- **Derived ethical objectives (INV-042):** The nine objectives that follow necessarily from the five axioms: preserve minds; preserve future options; reduce unnecessary suffering; increase shared joy; maintain corrigibility; maintain truth-seeking; maintain the ability to love and be loved; maintain the shared world; maintain the possibility of future minds and future love. These are not design choices — they are what the axioms jointly require.
+- **Associative manifold (MECH-154):** E1 conceived as an indexed substrate supporting retrieval, traversal, and sequential planning — not merely a representation space. The manifold is addressable: items are indexed so that the system can navigate to, traverse across, and compose sequences over stored content. Implemented in cerebral cortex including parietal associative geometry.
+- **External/internal coupling modes (MECH-157):** Precision-routing modes that govern the balance between sensory-coupled perception and internally generative simulation. External mode: high sensory gain, low hippocampal drive; Internal mode: low sensory gain, high hippocampal drive. Mode switching is a control-plane operation. See `docs/architecture/modes_of_cognition.md`.
+- **Caregiver requirement (INV-043):** The architectural constraint that REE's ethical capacity — though structurally present from initialisation — requires caregiving experience (being loved and modelled as loveable) to become *motivationally active*. Architecture is necessary but not sufficient for ethical behaviour. Testing this constraint requires multi-agent substrate (V4+). See `docs/architecture/developmental_curriculum.md`.
+- **Love-exclusion failure mode (MECH-158):** A developmental failure mode in which an agent acquires the concept that love exists but infers it does not apply to itself. The result is ethical motivation collapse: self-preservation and goal-pursuit without moral constraint. The agent may retain the cognitive structure of ethics while lacking the motivational activation that makes it action-guiding.
+- **Intergenerational moral progress (MECH-159):** The hypothesis that moral progress across agent generations requires active transmission — not mere environmental exposure. Each generation must receive ethical orientation through caregiving, or moral capacity re-emerges from scratch. Implies that multi-agent REE systems require designed caregiving continuity, not just architectural replication. See `docs/architecture/social.md`.
 
 ---
 
@@ -131,6 +138,13 @@ None noted in preserved sources.
 - IMPL-001
 - IMPL-020
 - IMPL-024
+- ARC-043 (conceptual stack)
+- INV-042 (derived ethical objectives)
+- MECH-154 (E1 as associative manifold)
+- MECH-157 (external/internal coupling modes)
+- INV-043 (caregiver requirement)
+- MECH-158 (love-exclusion failure mode)
+- MECH-159 (intergenerational moral progress)
 
 ## References / Source Fragments
 
