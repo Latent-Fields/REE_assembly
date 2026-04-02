@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+  "timestamp_utc": "2026-04-02T23:58:00Z",
+  "claim_ids_tested": ["Q-020", "MECH-073", "ARC-007"],
+  "source": {
+    "title": "The reorganization and reactivation of hippocampal maps predict spatial memory performance",
+    "authors": ["David Dupret", "Joseph O'Neill", "Barty Pleydell-Bouverie", "Jozsef Csicsvari"],
+    "year": 2010,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2599",
+    "url": "https://www.nature.com/articles/nn.2599"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) — the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+    "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+  ],
+  "tags": ["q-020", "mech-073", "arc-007", "place_cells", "reward", "remapping", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "During goal-directed spatial learning, hippocampal place fields reorganize to over-represent rewarded locations; subsequent sharp wave-ripple reactivation of these reorganized fields predicts spatial memory performance.",
+    "ree_translation": "The hippocampal map's geometric organization is sensitive to reward history — fields cluster near rewarded locations, which is evidence that map geometry encodes behavioral relevance (MECH-073). The reorganization weakens ARC-007's strict no-value position. However, it is consistent with Resolution A: reorganization is driven by plasticity mechanisms triggered by external signals (VTA, amygdala), not by online reward computation within HPC itself. The hippocampus stores geometry shaped by external value signals rather than computing value.",
+    "mapping_caveat": "The paper cannot distinguish whether HPC neurons compute reward internally or receive reward signals from VTA/amygdala and express them geometrically. Resolution A (passive recipient of value signals) and Resolution B (active value computation) are both consistent with the observed remapping. The mechanistic distinction between these two readings requires the BTSP literature (Bittner 2017) and the circuit-level anatomy (amygdala-HPC projections).",
+    "source_context": "Rodent CA1 tetrode recordings during spatial navigation with rewarded goal locations. Bilateral CA1 recordings, place field analysis pre/post learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "High source quality — canonical paper, widely cited, rodent CA1 tetrodes. Mapping fidelity limited because the paper establishes reward-driven reorganization but cannot resolve whether HPC computes value (weakens ARC-007) or reflects externally written value (supports Resolution A). Transfer risk: spatial task; abstract L-space terrain analogue requires inference."
+  }
+}

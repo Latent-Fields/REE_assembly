@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004",
+  "timestamp_utc": "2026-04-02T23:55:00Z",
+  "claim_ids_tested": ["MECH-074", "MECH-073"],
+  "source": {
+    "title": "Interaction between the amygdala and the medial temporal lobe memory system predicts better memory for emotional events",
+    "authors": ["Florin Dolcos", "Kevin S. LaBar", "Roberto Cabeza"],
+    "year": 2004,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(04)00289-2",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0896627304002892"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "fMRI evidence for BLA-MTL functional connectivity predicting emotional memory enhancement in humans. Strong journal (Neuron), human sample with clear behavioral outcome measure. Mapping fidelity to MECH-074 is direct: the amygdala-MTL connectivity at encoding is the neural substrate of MECH-074's write-strength modulation. Transfer risk is low (human data) but fMRI connectivity is indirect compared to direct recording.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "fMRI connectivity cannot distinguish whether amygdala drives MTL (write-strength modulation, consistent with MECH-074) or whether both are driven in parallel by a common arousal signal — the directionality of the interaction is not resolved.",
+    "The enhancement effect could reflect post-encoding consolidation rather than online encoding modulation — temporal resolution of fMRI cannot separate these."
+  ],
+  "tags": ["mech_074", "mech_073", "amygdala", "hippocampus", "emotional_memory", "fmri", "consolidation"],
+  "mapping": {
+    "source_claim_statement": "During encoding, functional connectivity between the amygdala and the MTL memory system (hippocampus, entorhinal cortex) is greater for emotional than neutral stimuli. The magnitude of this amygdala-MTL connectivity during encoding predicts subsequent memory performance for emotional events. The enhancement is greatest for stimuli rated as most arousing.",
+    "ree_translation": "MECH-074 claims the amygdala serves as a write head that modulates encoding depth in the hippocampal viability map. Dolcos et al. provide the human fMRI evidence that amygdala-HPC functional coupling at encoding predicts emotional memory enhancement — the coupling is the biological mechanism of write-depth modulation. The arousal-dependence (most arousing = strongest coupling = best memory) confirms that emotional salience, not just emotional valence, drives the write-strength signal. In REE terms: high-harm and high-benefit events both activate the amygdala write head because both have high arousal, though their valence tags differ.",
+    "mapping_caveat": "fMRI connectivity is correlational and cannot establish amygdala causality. The paper does not distinguish BLA from central amygdala or other subregions. The MTL region of interest includes hippocampus, perirhinal, and entorhinal cortex — hippocampal-specific effects cannot be isolated. The BTSP mechanism (Bittner 2017) provides the cellular complement, but the link from fMRI coupling to plateau potential induction remains inferential.",
+    "source_context": "Event-related fMRI; healthy human participants encoding emotional and neutral pictures from International Affective Picture System; free recall 1-year follow-up in subsequent study."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Human fMRI data is a strength (no species transfer). Source quality high for 2004 standard. Mapping fidelity good — amygdala-HPC coupling at encoding is exactly MECH-074's write-strength mechanism. Transfer risk low given human data."
+  }
+}

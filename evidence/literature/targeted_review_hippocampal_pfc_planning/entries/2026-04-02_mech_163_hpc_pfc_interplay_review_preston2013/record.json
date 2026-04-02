@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_pfc_planning",
+  "entry_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+  "timestamp_utc": "2026-04-02T23:55:00Z",
+  "claim_ids_tested": ["MECH-163", "ARC-035"],
+  "source": {
+    "title": "Interplay of Hippocampus and Prefrontal Cortex in Memory",
+    "authors": ["Alison R. Preston", "Howard Eichenbaum"],
+    "year": 2013,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2013.05.041",
+    "url": "https://www.cell.com/current-biology/fulltext/S0960-9822(13)00636-2"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review does not directly address multi-step planning or lookahead — its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+  ],
+  "tags": ["mech_163", "arc_035", "hippocampus", "prefrontal_cortex", "memory", "schema", "consolidation"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus and prefrontal cortex have complementary roles: hippocampus rapidly encodes and reactivates episodic memories with pattern-separated representations; PFC slowly builds schematic knowledge through consolidation, and uses this schema knowledge to guide hippocampal encoding and retrieval via top-down projection. PFC does not store episodic content but provides goal/schema context that modulates what hippocampus encodes and retrieves.",
+    "ree_translation": "For MECH-163 (multi-step planning via HPC-PFC loop), Preston & Eichenbaum's framework provides the division of labor: HPC constructs the trajectory (sequential rollout in theta), PFC provides the goal context that biases which trajectory is retrieved and selected. For ARC-035 (vmPFC loads content into HPC nodes), the review's PFC→HPC top-down projection during retrieval is the anatomical substrate: vmPFC goal representations seed hippocampal trajectory activation with value/goal tagging without performing the trajectory computation itself.",
+    "mapping_caveat": "The review is primarily about declarative memory and schema-based consolidation, not about real-time planning and sequential decision-making. The extension to MECH-163's online planning circuit requires the assumption that the encoding/retrieval HPC-PFC machinery is also used for prospective simulation — this is supported by other papers in the evidence set (Johnson & Redish, Benchenane) but not by Preston/Eichenbaum directly.",
+    "source_context": "Review article in Current Biology; synthesizes human fMRI, rodent electrophysiology, and computational modelling literature circa 2010-2013."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "High-quality review from field leaders. Mapping fidelity moderate — the review focuses on encoding/retrieval, not planning; inference to MECH-163/ARC-035 is plausible but indirect. Transfer risk low for the HPC-PFC division of labor claim which replicates across species."
+  }
+}

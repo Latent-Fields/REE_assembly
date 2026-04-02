@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_074",
+  "entry_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+  "timestamp_utc": "2026-04-02T23:59:00Z",
+  "claim_ids_tested": ["MECH-074", "MECH-073"],
+  "source": {
+    "title": "The amygdala modulates the consolidation of memories of emotionally arousing experiences",
+    "authors": ["James L. McGaugh"],
+    "year": 2004,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.27.070203.144157",
+    "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.neuro.27.070203.144157"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical Annual Review paper by the leading amygdala-memory researcher. Strong source quality, broad convergent evidence from animal and human studies. Mapping fidelity high for MECH-074: the review precisely characterises BLA as a modulator of hippocampal consolidation (not a memory store), which maps directly onto MECH-074's 'amygdala as write head' specification. Transfer risk low: cross-species evidence including human studies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Amygdala lesions prevent emotional arousal from enhancing memory consolidation but do not prevent all memory formation.",
+    "The amygdala modulates memory in other brain regions (hippocampus, striatum, cortex) rather than being the primary locus of memory storage."
+  ],
+  "tags": ["mech-074", "mech-073", "amygdala", "hippocampus", "consolidation", "BLA", "norepinephrine", "memory_modulation"],
+  "mapping": {
+    "source_claim_statement": "The basolateral amygdala (BLA) modulates the consolidation of long-term memories of emotionally arousing experiences by influencing memory processes in other brain regions, including the hippocampus. This modulation is mediated by norepinephrine, cortisol, and direct BLA projections. Emotional arousal activates the amygdala, which then enhances memory consolidation in downstream structures proportional to arousal intensity.",
+    "ree_translation": "MECH-074 characterises the amygdala analogue as a write head for hippocampal map geometry. McGaugh 2004 provides the canonical grounding: BLA does not store memories, it determines how strongly they are consolidated in HPC. In REE terms, high-arousal events (high harm salience, unexpected reward) trigger BLA→HPC write-strength modulation — stronger consolidation = deeper attractor basin in the viability map, consistent with MECH-073 (reward/harm creates geometric warping). The NE/cortisol pathway is the biological implementation of MECH-074's 'modulating encoding (write strength)' role. The temporal specificity of consolidation modulation (BLA effects are maximal during the hours after encoding) maps onto REE's post-commitment viability map update window.",
+    "mapping_caveat": "McGaugh's review predates the BTSP mechanism (Bittner 2017) and does not specify the synaptic plasticity mechanism by which BLA modulates HPC consolidation at the cellular level. The NE/cortisol account is at the systems level. The specific claim that BLA triggers plateau potentials in CA1 dendrites (the mechanistic prediction from combining McGaugh + Bittner) requires separate circuit anatomy evidence.",
+    "source_context": "Annual Review of Neuroscience — cross-species review spanning rodent pharmacology (NE, cortisol, opioid antagonists), human neuroimaging, and patient studies with amygdala lesions. Covers encoding, consolidation, and retrieval modulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.18,
+    "notes": "Canonical review from field leader. Cross-species evidence including human. Mapping fidelity high — BLA as write-strength modulator of HPC consolidation is directly what MECH-074 claims. Transfer risk low: emotional memory modulation is well-conserved across species."
+  }
+}

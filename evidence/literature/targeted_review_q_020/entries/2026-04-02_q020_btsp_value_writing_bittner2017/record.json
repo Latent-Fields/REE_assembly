@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+  "timestamp_utc": "2026-04-02T23:58:00Z",
+  "claim_ids_tested": ["Q-020", "MECH-073", "ARC-007", "MECH-074"],
+  "source": {
+    "title": "Behavioral time scale synaptic plasticity underlies CA1 place fields",
+    "authors": ["Katie C. Bittner", "Aaron D. Milstein", "Christine Grienberger", "Sandro Romani", "Jeffrey C. Magee"],
+    "year": 2017,
+    "venue": "Science",
+    "doi": "10.1126/science.aan3846",
+    "url": "https://www.science.org/doi/10.1126/science.aan3846"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.76,
+  "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+    "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+  ],
+  "tags": ["q-020", "mech-073", "arc-007", "mech-074", "BTSP", "synaptic_plasticity", "CA1", "place_fields", "value_writing"],
+  "mapping": {
+    "source_claim_statement": "Place field formation in CA1 is driven by behavioral time scale synaptic plasticity (BTSP): calcium plateau potentials (triggered by inputs arriving seconds later) potentiate preceding synaptic inputs over a seconds-long asymmetric time window, creating place fields in a single trial without Hebbian coincidence.",
+    "ree_translation": "BTSP is the mechanism by which external value signals are written into hippocampal geometry. The plateau potentials that trigger BTSP are driven by external inputs (entorhinal cortex, amygdala, VTA projections conveying salience/reward signals) rather than computed within CA1. This supports Resolution A for Q-020: hippocampal map geometry is shaped by external value-carrying signals (written via BTSP), not computed by hippocampal neurons themselves. ARC-007's 'no value computation' survives: HPC stores geometry reflecting external value signals but does not evaluate or compute value. BTSP is also relevant to MECH-074 (amygdala as write head): the plateau potential events that trigger BTSP are precisely the architectural substrate through which a BLA write head would inscribe value into hippocampal geometry.",
+    "mapping_caveat": "BTSP was demonstrated for spatial place fields in head-fixed mice (CA1 recordings). Whether the same mechanism operates for abstract non-spatial value representations (e.g. Knudsen & Wallis 2021 abstract value space) requires inference. The identity of the external trigger for plateau potentials in naturalistic conditions (which upstream circuits provide the plateau-triggering input?) remains incompletely characterised, though amygdala and entorhinal inputs are plausible candidates.",
+    "source_context": "Head-fixed mouse, in vivo CA1 dendritic recordings (patch clamp at soma with dendritic access), combined with in vitro slice validation of the asymmetric potentiation window. Single-trial place field formation protocol."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Landmark Science paper with rigorous mechanistic validation. Mapping fidelity good but not perfect — the REE architectural implication (BTSP as write mechanism for external value signals) is an inference from the mechanism to the circuit, not directly tested in the paper. Transfer risk: head-fixed VR mouse, spatial place fields; abstract value encoding requires further inference."
+  }
+}

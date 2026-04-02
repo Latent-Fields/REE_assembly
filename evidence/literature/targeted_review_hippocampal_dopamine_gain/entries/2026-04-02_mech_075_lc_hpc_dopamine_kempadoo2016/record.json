@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_dopamine_gain",
+  "entry_id": "2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016",
+  "timestamp_utc": "2026-04-02T23:55:00Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Dopamine release from the locus coeruleus to the dorsal hippocampus promotes spatial learning and memory",
+    "authors": ["Kimberly A. Kempadoo", "Eugene V. Mosharov", "Se Joon Choi", "David Sulzer", "Eric R. Kandel"],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1616515114",
+    "url": "https://www.pnas.org/content/early/2016/12/06/1616515114.full"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Rigorous optogenetic + neurochemical study establishing LC as the primary source of dopamine in dorsal hippocampus. The finding directly complicates MECH-075's framing of BG/VTA as the dopamine gain source for hippocampal attractors: for dorsal HPC (spatial/planning navigation), the relevant catecholaminergic input is from LC, not VTA. Evidence is mixed — it supports dopaminergic/catecholaminergic gain modulation in HPC but challenges the VTA-centric framing of MECH-075.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VTA dopaminergic axons are sparse in dorsal hippocampus — the premise that VTA/BG dopamine directly modulates dorsal HPC attractor dynamics is contradicted by this anatomical finding.",
+    "The functional role (spatial learning and memory enhancement) is shown for LC-mediated dopamine but the attractor-depth mechanism (MECH-075's core claim) is not directly tested."
+  ],
+  "tags": ["mech_075", "dopamine", "locus_coeruleus", "hippocampus", "spatial_learning", "norepinephrine"],
+  "mapping": {
+    "source_claim_statement": "Photostimulation of locus coeruleus axons in dorsal hippocampus releases dopamine and enhances spatial object recognition and memory. VTA dopamine axons are sparse in dorsal hippocampus. LC neurons co-release dopamine and norepinephrine, with dopamine release from LC axons being the functional signal for dorsal HPC memory enhancement.",
+    "ree_translation": "MECH-075 claims BG dopaminergic signals set gain/threshold on hippocampal attractor basins, modulating trajectory retrieval probability. Kempadoo et al. establish that for dorsal hippocampus (the spatial/planning substrate of E3's viability map), the dopaminergic gain input comes primarily from locus coeruleus, not VTA/BG. This requires a reframing of MECH-075: the 'gain' control on dorsal HPC attractors is LC-mediated (via co-released DA/NE) and responds to arousal/novelty signals routed through LC, not solely BG-mediated reinforcement signals routed through VTA. VTA dopamine may set gain in ventral HPC (motivation/affect), while LC sets gain in dorsal HPC (spatial/planning precision).",
+    "mapping_caveat": "MECH-075 may need subdivision: dorsal HPC attractor gain = LC-mediated; ventral HPC attractor gain = VTA-mediated. Kempadoo only studies dorsal HPC; whether VTA does modulate ventral HPC (as Lisman & Grace 2005 implies) is addressed separately. The attractor-depth gain mechanism is inferred from spatial learning enhancement, not directly from attractor dynamics measurement.",
+    "source_context": "Optogenetic activation of LC axons in dorsal hippocampus of mice; HPLC neurochemistry for dopamine quantification; novel object location and recognition behavioral tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Kandel lab, PNAS, rigorous optogenetics). Mapping fidelity moderate-low — the paper challenges the MECH-075 VTA framing rather than directly supporting it; supports the broader catecholaminergic gain modulation principle but with different anatomy than assumed. Transfer risk moderate: mouse study, human HPC catecholaminergic innervation has same LC-dominant pattern in dorsal HPC."
+  }
+}

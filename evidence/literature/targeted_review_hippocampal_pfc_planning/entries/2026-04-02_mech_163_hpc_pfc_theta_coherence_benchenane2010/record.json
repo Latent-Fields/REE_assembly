@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_pfc_planning",
+  "entry_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+  "timestamp_utc": "2026-04-02T23:59:00Z",
+  "claim_ids_tested": ["MECH-163", "ARC-018"],
+  "source": {
+    "title": "Coherent theta oscillations and reorganization of spike timing in the hippocampal-prefrontal network upon learning",
+    "authors": ["Karim Benchenane", "Adrien Peyrache", "Mehdi Khamassi", "Patrick L. Tierney", "Yves Gioanni", "Francesco P. Battaglia", "Sidney I. Wiener"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.05.013",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(10)00381-8"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
+    "The coherence effect is strongest after rule acquisition — it marks learned rather than novel decisions."
+  ],
+  "tags": ["mech-163", "arc-018", "hippocampus", "prefrontal", "theta_coherence", "planning", "decision_point", "dopamine"],
+  "mapping": {
+    "source_claim_statement": "HPC-mPFC theta coherence peaks at maze choice points, most strongly after task rule acquisition. During high-coherence episodes, mPFC pyramidal neurons reorganise their theta phase, synchronous cell assemblies emerge, and these assemblies are preferentially replayed during subsequent slow-wave sleep. Dopamine modulates coherence magnitude.",
+    "ree_translation": "MECH-163 requires multi-step hippocampal planning signals to communicate with prefrontal commitment circuitry. Benchenane et al. show the biological mechanism: theta coherence couples HPC and mPFC specifically at commitment boundaries (choice points), and this coupling is strongest when the task is learned (when trajectories are policy-relevant). In REE terms, this is the coupling between hippocampal trajectory proposals (ARC-018 rollout) and E3 commitment circuitry. The theta coherence peak at choice points = the commitment boundary event in which hippocampal proposals are broadcast to the prefrontal decision stage. The selective SWR replay of high-coherence assemblies confirms that the trajectory proposals evaluated at commitment boundaries are the ones preferentially consolidated. The dopamine modulation connects to MECH-075 (BG dopaminergic gain): VTA dopamine gates the strength of this HPC-PFC coupling.",
+    "mapping_caveat": "The paper is rodent, Y-maze spatial rule learning. The mapping from spatial choice points to REE's abstract commitment boundaries requires inference. MECH-163's multi-step planning claim requires more than a coupling at a single choice point — the multi-step trajectory structure of the planning signal is not resolved at the cellular level in this paper. The mPFC in rodents is not a straightforward analogue to human PFC — the homology is approximate.",
+    "source_context": "Rat simultaneous HPC-mPFC tetrode recording during Y-maze rule reversal learning. LFP coherence analysis, spike-phase coupling, cross-structure assembly analysis, post-task sleep recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.38,
+    "notes": "Strong electrophysiology. Mapping fidelity good for commitment-boundary coupling but incomplete for multi-step trajectory structure. Rodent mPFC-human PFC homology adds transfer risk. Dopamine-coherence coupling provides useful link to MECH-075."
+  }
+}

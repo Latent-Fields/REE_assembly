@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_event_segmentation",
+  "entry_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+  "timestamp_utc": "2026-04-02T23:59:00Z",
+  "claim_ids_tested": ["ARC-007", "MECH-022"],
+  "source": {
+    "title": "Discovering Event Structure in Continuous Narrative Perception and Memory",
+    "authors": ["Christopher Baldassano", "Janice Chen", "Asieh Zadbood", "Jonathan W. Pillow", "Uri Hasson", "Kenneth A. Norman"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.06.041",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(17)30593-7"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal event boundary activity is specifically predictive of later recall — boundaries without hippocampal engagement are not well-retained.",
+    "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+  ],
+  "tags": ["arc-007", "mech-022", "event_segmentation", "hippocampus", "boundaries", "episodic_memory", "recall"],
+  "mapping": {
+    "source_claim_statement": "The brain segments continuous experience into discrete events at multiple nested timescales. Hippocampal activity peaks at event boundaries and the magnitude of this boundary response predicts pattern reinstatement during free recall, linking hippocampal event boundary encoding to episodic memory formation.",
+    "ree_translation": "ARC-007 specifies that hippocampal trajectory traces are segmented into events at points of action commitment, prediction error spikes, and contextual shifts. Baldassano et al. provide direct neural evidence that the hippocampus marks boundaries in continuous experience — not just spatial transitions, but narrative context transitions — and that these boundaries are the fundamental units of episodic storage and retrieval. The link from boundary activity to recall confirms that event boundaries are the segmentation units that ARC-007's trajectory trace architecture requires. The hierarchical segmentation (short at sensory level, long at contextual/hippocampal level) is consistent with ARC-007's multi-timescale episodic structure. For MECH-022, the hippocampal boundary activity is a hypothesis injection event: at each boundary, the hippocampus transitions its active representation, injecting a new episode-framing hypothesis into the predictive system.",
+    "mapping_caveat": "The paper uses passive narrative viewing (BBC Sherlock episode), not active goal-directed behavior with commitment decisions. ARC-007's segmentation is specified at action commitment points — the mapping to narrative event boundaries requires the assumption that commitment points are a subset of event boundaries generally. The hierarchical multi-timescale finding has not been directly replicated in active navigation or planning contexts.",
+    "source_context": "Human fMRI (3T), naturalistic paradigm (video narrative), HMM-based event segmentation model applied to multi-region BOLD signal, separate encoding and recall sessions."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "High source quality. Mapping fidelity good but not perfect: passive narrative vs. active committed decision-making. Transfer risk elevated because the paper's events are perceptual/narrative transitions, while ARC-007's events are action-commitment transitions. The mapping is principled (commitment = a type of event boundary) but not directly tested."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_remapping",
+  "entry_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+  "timestamp_utc": "2026-04-02T23:59:00Z",
+  "claim_ids_tested": ["MECH-077", "MECH-076"],
+  "source": {
+    "title": "Independent codes for spatial and episodic memory in hippocampal neuronal ensembles",
+    "authors": ["Stefan Leutgeb", "Jill K. Leutgeb", "M.-B. Moser", "Edvard I. Moser"],
+    "year": 2005,
+    "venue": "Science",
+    "doi": "10.1126/science.1114037",
+    "url": "https://www.science.org/doi/10.1126/science.1114037"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (Science, Moser lab, well-replicated). Strong mapping fidelity for MECH-076 and MECH-077: the rate-remapping vs. global-remapping distinction directly maps onto REE's two modes of hippocampal geometry change (local deformation by residue accumulation = rate remapping; therapeutic context change = global remapping). Transfer risk moderate: spatial navigation, rodent CA3/CA1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Two separable remapping modes exist: rate remapping (field locations stable, rates change) vs. global remapping (field locations change entirely).",
+    "Rate remapping occurs for context changes within a familiar place; global remapping for place changes."
+  ],
+  "tags": ["mech-077", "mech-076", "remapping", "hippocampus", "rate_remapping", "global_remapping", "pattern_separation"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal neuronal ensembles exhibit two independent remapping modes: rate remapping (firing rates of cells change but field locations are preserved, occurring when context within a place changes) and global remapping (field locations change entirely, occurring when place itself changes). These modes are separable and encode independent aspects of episodic memory.",
+    "ree_translation": "The rate-remapping / global-remapping distinction maps directly onto REE's two modes of hippocampal geometry change. MECH-076 (residue as structural map deformation) corresponds to rate remapping: accumulated harm/benefit exposure changes the 'rate' (analogous to firing rate weight / attractor depth) of nodes in the viability map without changing their topological arrangement. MECH-077 (therapeutic remapping = therapeutic context change) requires global remapping: therapeutic intervention must provide a sufficiently novel context signal to trigger full reorganization of the hippocampal map rather than mere rate adjustment. This predicts a threshold phenomenon: small context changes produce rate remapping (residue modification within existing geometry) while large context changes (EMDR, context-reinstatement therapy, major life transition) produce global remapping (genuine geometric restructuring). The distinction is clinically significant: if therapy only achieves rate remapping, the traumatic trajectory nodes persist in the same topological relationship — they are just re-weighted.",
+    "mapping_caveat": "The paper uses physical environments and place codes; the mapping to abstract z_world action-consequence geometry requires inference. Rate remapping and global remapping are defined for spatial contexts — their analogues in abstract state-space navigation have not been directly studied. The threshold between the two modes (what makes a context change 'global' vs. 'local') is not well-specified in the biological literature and may not translate directly.",
+    "source_context": "Rodent CA3/CA1 tetrode recordings; within-day context manipulations (same room, different visual cues = rate remapping; different rooms = global remapping). Moser lab, Bergen."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "High source quality. Mapping to REE's residue geometry is conceptually strong but requires spatial→abstract inference. Rate/global distinction provides useful diagnostic prediction for therapy (MECH-077): threshold effect between context-within-map modification and full map reorganization."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_020",
+  "entry_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+  "timestamp_utc": "2026-04-02T23:58:00Z",
+  "claim_ids_tested": ["Q-020", "MECH-073", "ARC-007"],
+  "source": {
+    "title": "A Dedicated Population for Reward Coding in the Hippocampus",
+    "authors": ["Jeffrey L. Gauthier", "David W. Tank"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.06.008",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(18)30476-8"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.79,
+  "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments — this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+    "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+  ],
+  "tags": ["q-020", "mech-073", "arc-007", "reward_cells", "CA1", "subiculum", "dedicated_population"],
+  "mapping": {
+    "source_claim_statement": "A small population of CA1 and subiculum cells consistently responds near reward zones across virtual environments with shifting reward contingencies, distinct from place-coding cells that remap across environments.",
+    "ree_translation": "The existence of a dedicated, stable reward-selective cell population inside hippocampal circuitry is the strongest empirical challenge to ARC-007's 'no value computation' constraint. If a distinct CA1/subiculum subpopulation persistently encodes reward proximity regardless of spatial context, the hippocampus is performing something that functionally resembles value computation. Resolution A can still hold if these cells are a persistent relay channel receiving sustained input from amygdala/VTA rather than computing reward de novo — their stability across environments is consistent with receiving a stable anatomical projection that brands them as reward channels. But the computational distinction between 'relay of external value signal' and 'value computation' is thin here and requires explicit architectural specification. This paper raises the stakes of Q-020: a dedicated reward channel inside hippocampal anatomy is hard to square with strict value-neutrality.",
+    "mapping_caveat": "The paper cannot distinguish whether reward-selective cells perform reward computation or act as a stable anatomical relay for subcortical value signals. Resolution A (relay, not computation) requires additional circuit anatomy showing persistent BLA or VTA input that brands these specific cells. The paper also uses a virtual reality paradigm with head-fixed mice — transfer to freely-navigating animals and to abstract non-spatial domains requires inference.",
+    "source_context": "Head-fixed mouse, virtual reality linear track with shifting reward locations, large-scale CA1 and subiculum recordings (>500 cells), shifting reward contingency design to dissociate place from reward coding."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Top-tier venue, large-scale recordings, well-controlled design (shifting reward contingency is a rigorous dissociation). Mapping fidelity high because this paper directly tests whether a hippocampal subpopulation is dedicated to reward coding — it is. Transfer risk relatively low because the result (stable reward cells amid remapping place cells) generalises across environments by design."
+  }
+}

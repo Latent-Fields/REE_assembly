@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_remapping",
+  "entry_id": "2026-04-02_mech_077_dorsal_ventral_gradient_fanselow2010",
+  "timestamp_utc": "2026-04-02T23:55:00Z",
+  "claim_ids_tested": ["MECH-077", "MECH-076"],
+  "source": {
+    "title": "Are the Dorsal and Ventral Hippocampus Functionally Distinct Structures?",
+    "authors": ["Michael S. Fanselow", "Hong-Wei Dong"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.11.031",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0896627309009477"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "High-quality authoritative review from major labs (Fanselow: PTSD/fear conditioning; Dong: anatomical mapping). The three-compartment model (dorsal cognitive, intermediate, ventral affective) is now a standard framework. Moderate mapping fidelity: MECH-077 claims therapeutic change corresponds to remapping, and Fanselow/Dong constrains *where* that remapping must occur — ventral/intermediate HPC for emotional/trauma content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review demonstrates a gradient rather than sharp boundary — the dorsal-ventral distinction is not binary, complicating a clean claim that MECH-077 remapping occurs exclusively in ventral HPC.",
+    "The anatomical and functional evidence is mostly from rodents; human hippocampal long-axis organization (anterior/posterior rather than ventral/dorsal) requires re-labeling."
+  ],
+  "tags": ["mech_077", "mech_076", "dorsal_ventral", "hippocampus", "remapping", "fear", "emotion"],
+  "mapping": {
+    "source_claim_statement": "Behavioral, anatomical, and gene expression evidence supports a tripartite segmentation of hippocampus: dorsal (cognitive, spatial navigation, precise contextual discrimination), ventral (stress, emotion, affect, motivational integration), and intermediate (transitional, both functions). Connectivity gradients reflect this: dorsal connects to sensory/motor cortex; ventral connects to amygdala, hypothalamus, and prefrontal cortex.",
+    "ree_translation": "MECH-077 claims therapeutic change corresponds to hippocampal remapping of harm-associated trajectories. The Fanselow/Dong framework constrains where this must occur anatomically: harm-trajectory representations and their residue field (MECH-076) are predominantly encoded in ventral (and intermediate) hippocampus, not dorsal. Therapeutic global remapping events (MECH-077) should therefore involve reorganization of ventral HPC assemblies. Dorsal HPC handles the geometric/spatial substrate; ventral handles the affective weight of trajectories.",
+    "mapping_caveat": "Human hippocampal long-axis corresponds to anterior (ventral rodent function) and posterior (dorsal rodent function) — literature requires this re-labeling. The tripartite model is based largely on lesion and anatomical connectivity, not direct comparison of remapping dynamics across the axis. Whether therapeutic change actually drives hippocampal axis-specific remapping has not been tested directly.",
+    "source_context": "Comprehensive review: rodent behavioral lesion studies, tract-tracing anatomical data, gene expression atlases (Allen Brain Atlas). Covers rat and mouse, with human comparisons noted."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative review; high citation count and replicated framework. Mapping fidelity moderate — Fanselow/Dong constrains anatomy but does not directly test remapping dynamics in therapeutic or harm contexts. Transfer risk moderate due to dorsal/ventral vs. posterior/anterior re-labeling needed for human translation."
+  }
+}

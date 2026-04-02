@@ -290,6 +290,12 @@
     in ree-v3. V3 path-memory experiments can proceed.
     EXQ-114 PASS (2026-03-28, 4/4): MAP_NAV harm_rate=0.006 vs MAP_ABLATED=0.765.
     99.2% harm reduction. 2/2 seeds consistent. Strong V3 confirmation of ARC-007.
+    Q-020 resolved (2026-04-02): The "no value computation" constraint is compatible with
+    hippocampal geometry being value-shaped. The constraint specifies only that the computation
+    of value (RPE, utility) occurs in BG/amygdala/PFC, not in hippocampus. Hippocampus stores
+    the geometrically encoded result via BTSP-mediated write operations (Bittner 2017, Science).
+    MECH-073 and ARC-007 are co-true under Resolution A. Literature: Dupret 2010, Gauthier 2018,
+    Bittner 2017, Teyler & Rudy 2007.
   depends_on:
     - ARC-004
     - ARC-003
@@ -3573,6 +3579,12 @@
     value comparison. Extends MECH-043 (dopamine-like precision-weighting) with attractor-
     basin threshold framing specific to the hippocampal planning context. Supports three-loop
     architecture of ARC-021 with a mechanism for how each loop's gate operates.
+    ANATOMICAL SUBDIVISION NOTE (2026-04-02, Kempadoo et al. 2016 PNAS): VTA dopamine axons
+    are sparse in dorsal hippocampus. Dopamine in dorsal HPC (spatial/planning substrate, E3
+    viability map) comes primarily from locus coeruleus (LC) via DA/NE co-release, responding
+    to novelty and arousal. VTA dopamine primarily targets ventral HPC (motivational/affective).
+    MECH-075 bifurcates by HPC axis: dorsal=LC-mediated arousal gain; ventral=VTA-mediated
+    RPE/reinforcement gain.
 - id: MECH-076
   title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
@@ -3678,7 +3690,19 @@
   claim_type: open_question
   subject: hippocampal.arc007_valence_constraint_survival
   polarity: open
-  status: open
+  status: resolved
+  resolution: resolution_a
+  resolution_note: |
+    RESOLVED 2026-04-02 via literature synthesis. Resolution A adopted: ARC-007 and MECH-073
+    are co-true. Hippocampus embodies value-shaped geometry written by external systems (BLA via
+    BTSP plateau potentials; VTA dopamine; LC catecholamines) but does not compute value itself.
+    The "no value computation" constraint specifies that hippocampus does not evaluate RPE,
+    utility, or outcomes -- it stores the geometrically encoded result of computations performed
+    externally. Key papers: Bittner 2017 (BTSP mechanism -- external write triggers), Teyler &
+    Rudy 2007 (indexing theory -- HPC as pure relational binder), McGaugh 2004 + Dolcos 2004
+    (BLA modulates write depth). Gauthier 2018 dedicated reward cells reinterpreted as stable
+    BLA-tagged anatomical relay stations, not value-computing units.
+    See hippocampal_literature_synthesis_2026.md Section 1 for full ruling.
   conflict_note: |
     Pivotal adjudication question for NC-01 through NC-09 cluster integration into canonical
     REE. Two resolution paths:
@@ -3688,7 +3712,7 @@
     (B) Reject MECH-073; treat NC-01/NC-02 as external neuroscience model that inspires but
     does not enter canonical architecture. ARC-022, MECH-073 demoted to rejected. MECH-074
     through MECH-080 survive independently (most do not require MECH-073 to be valid).
-    Note: MECH-074 through MECH-080 have partial independence from MECH-073 — see individual
+    Note: MECH-074 through MECH-080 have partial independence from MECH-073 -- see individual
     conflict notes. Q-019 resolution evidence may inform this question.
     EXQ-159 SUPERSEDED (2026-03-29): implementation gap -- policy trained only with entropy
     bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk

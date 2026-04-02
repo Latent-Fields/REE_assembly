@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_022",
+  "entry_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
+  "timestamp_utc": "2026-04-02T23:55:00Z",
+  "claim_ids_tested": ["MECH-092", "ARC-007"],
+  "source": {
+    "title": "Awake replay of remote experiences in the hippocampus",
+    "authors": ["Mattias P. Karlsson", "Loren M. Frank"],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2344",
+    "url": "https://www.nature.com/articles/nn.2344"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical empirical demonstration with ensemble recordings in rats. High source quality. Mapping to MECH-092 is direct: awake quiescent SWR replay of remote environments is precisely the mechanism MECH-092 specifies. Transfer risk: rodent, and the 'remote' in MECH-092 refers to temporally/episodically remote trajectories, which maps cleanly to spatially remote environments here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remote replay was more common when rats had recently been in motion than during extended quiescence — suggesting the trigger is recent movement offset, not pure quiescence; this adds a nuance to MECH-092's 'quiescent heartbeat cycle' framing.",
+    "Local replay (current environment) was also frequent — remote replay was not dominant, only comparable."
+  ],
+  "tags": ["mech_092", "arc_007", "swr_replay", "awake_replay", "quiescence", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "During brief pauses in waking behavior, CA1 ensembles frequently replay sequences from spatially remote past environments, not only from the current environment. Remote awake replay is as common as local replay and is more likely after recent movement.",
+    "ree_translation": "MECH-092 claims that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation. The Karlsson finding confirms that SWR replay during awake quiescence is not restricted to the current context — it preferentially accesses stored trajectory representations from other times and places. This is the substrate for MECH-092's consolidation function: the hippocampus uses rest periods to replay and integrate trajectories that are not currently active in the environment.",
+    "mapping_caveat": "MECH-092 specifies that replay carries a hypothesis tag (MECH-094) and does not produce residue — the Karlsson paper does not speak to this tagging mechanism. The link between awake quiescent replay and specific consolidation benefits (as opposed to retrieval) is inferential from this paper alone; Joo & Frank 2018 provides the review-level synthesis.",
+    "source_context": "Tetrode recordings from CA1 in freely moving rats; two-environment Y-maze paradigm; Bayesian position reconstruction from ensemble activity during rest intervals."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "High-quality empirical paper, rigorous Bayesian reconstruction methodology, strong journal. Mapping fidelity high — awake quiescent replay maps directly to MECH-092's specification. Transfer risk low: rat-human hippocampal SWR homology is well-established."
+  }
+}

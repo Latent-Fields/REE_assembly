@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_v3_hippocampal_rollout",
+  "entry_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+  "timestamp_utc": "2026-04-02T23:59:00Z",
+  "claim_ids_tested": ["ARC-018", "MECH-033"],
+  "source": {
+    "title": "Neural ensembles in CA3 transiently encode paths forward of the animal at a decision point",
+    "authors": ["Adam Johnson", "A. David Redish"],
+    "year": 2007,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3761-07.2007",
+    "url": "https://www.jneurosci.org/content/27/45/12176"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CA3 neural ensembles transiently encode positions ahead of the animal at decision points — the encoded position sweeps down each arm of the maze before commitment.",
+    "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+  ],
+  "tags": ["arc-018", "mech-033", "theta_sequences", "VTE", "decision_point", "prospective_encoding", "CA3"],
+  "mapping": {
+    "source_claim_statement": "At T-maze decision points, CA3 neural ensemble activity transiently represents positions ahead of the animal's current location, sweeping forward down each possible arm of the maze in a pattern consistent with vicarious trial and error (VTE) behavior. The forward sweeps precede commitment and represent future trajectories rather than past or current locations.",
+    "ree_translation": "ARC-018 claims hippocampus performs counterfactual trajectory construction at commitment boundaries. Johnson & Redish provide the canonical cellular evidence for this: CA3 sweeps through prospective trajectory representations at exactly the moment when E3 is deciding (the commitment boundary). The theta-compressed forward sweep is the neural implementation of the rollout that ARC-018 posits. For MECH-033, the E2 kernel → hippocampal rollout handoff is evidenced here at the level of CA3 dynamics: the trajectory chaining happens in CA3 during theta cycles, constrained by the available action paths. The CA3 autoassociative circuit chains trajectory states forward during theta, seeded by E2-equivalent transition kernels from entorhinal cortex.",
+    "mapping_caveat": "The paper shows spatial trajectory sweeps in a simple T-maze. ARC-018 requires generalisation to abstract z_world action-consequence space — the spatial→abstract mapping is inferential. MECH-033 requires the kernel-seeding mechanism to specifically use E2 action-consequence objects; the paper shows trajectory chaining in CA3 but does not characterise the input structure (EC inputs = E2 kernels is a theoretical mapping, not directly observed). Rodent data; primate/human generalization supported by separate literature.",
+    "source_context": "Rodent CA3 tetrode recordings during T-maze navigation with reward at both arms. Bayesian position reconstruction from ensemble firing reveals prospective position encoding during VTE pauses at choice points."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "Strong cellular evidence from CA3 tetrodes. Mapping fidelity good for ARC-018 (trajectory lookahead at commitment boundary) but moderate for MECH-033 (requires E2 action-consequence kernel interpretation of EC inputs). Transfer risk: spatial maze to abstract z_world."
+  }
+}

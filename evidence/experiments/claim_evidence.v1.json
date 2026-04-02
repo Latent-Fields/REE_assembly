@@ -196,20 +196,21 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=9 entry(s), exp_conf=0.714, lit_conf=0.891",
+      "confidence_rationale": "exp=9 entry(s), lit=15 entry(s), exp_conf=0.714, lit_conf=0.829",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 12,
+        "mixed": 2,
+        "supports": 15,
         "unknown": 0,
-        "weakens": 5
+        "weakens": 7
       },
-      "entries_total": 18,
+      "entries_total": 24,
       "evidence_class_counts": {
         "exp:simulation": 9,
         "lit:computational_model": 2,
-        "lit:electrophysiology_single_unit": 1,
+        "lit:electrophysiology_single_unit": 5,
+        "lit:fmri_connectivity": 1,
         "lit:neuroscience_experiment": 1,
-        "lit:theoretical_review": 5
+        "lit:theoretical_review": 6
       },
       "experimental_confidence": 0.714,
       "fail_runs": 5,
@@ -220,99 +221,102 @@
         "unknown": 0,
         "weakens": 5
       },
-      "latest_run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
-      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
-      "literature_confidence": 0.891,
-      "overall_confidence": 0.802,
+      "latest_run_id": "2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.829,
+      "overall_confidence": 0.771,
       "pass_runs": 4,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
-          "confidence": 0.78,
-          "confidence_rationale": "This paper provides direct electrophysiological evidence that hippocampal theta sequences (time-compressed path representations) are dynamically modulated by the animal's current goal location and the value structure of the task. Look-ahead distance scales with goal distance, predicts the animal's destination on single trials, and varies moment-by-moment with behavioural context. This strongly supports ARC-007: hippocampal sequences are not passively replaying geometry but are actively shaped by goal/value topology. The paper is novel in-vivo electrophysiology in rats performing a genuine value-guided decision task. Confidence is slightly below the Stachenfeld paper because the direct connection to 'harm salience terrain' requires interpretive translation \u2014 the paper demonstrates goal-sensitivity of sequences, not explicit residue/harm-field organisation.",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
           "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_arc_007",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_arc_007_theta_sequences_goals_wikenheiser2015",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+            "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+          ],
+          "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
+          "timestamp_utc": "2026-04-02T23:58:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
-          "confidence": 0.82,
-          "confidence_rationale": "Foundational theoretical paper establishing why two learning systems are computationally necessary. The argument is formal: a single system that learns new episodes rapidly would suffer catastrophic interference with existing structured knowledge, so a fast-binding hippocampal store and a slow-integrating neocortical store are jointly required. This directly licenses REE's architectural separation of HippocampalModule from E1/E2/E3, and specifically grounds ARC-007 (paths stored in hippocampal system) and SD-004 (action objects as hippocampal map backbone rather than raw sensory features). Very high source quality. Mapping fidelity high because the argument is about architectural necessity, not a specific mechanism. Transfer risk low: the CLS argument is domain-general and applies directly to REE's learning problem.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "confidence": 0.79,
+          "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
           "failure_signatures": [
-            "The original CLS theory assumed neocortex learns exclusively slowly via interleaved replay -- subsequent work showed neocortex can learn rapidly for schema-consistent information (Tse et al. 2007), weakening the sharp boundary between fast and slow systems.",
-            "CLS predicts that hippocampal memories must be gradually transferred to neocortex -- if this transfer does not occur (e.g., due to insufficient replay), the architecture breaks. REE lacks an explicit transfer mechanism."
+            "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+            "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
           ],
-          "run_id": "2026-03-30_arc_007_sd_004_cls_theory_mcclelland1995",
+          "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
+          "timestamp_utc": "2026-04-02T23:58:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
-          "confidence": 0.83,
-          "confidence_rationale": "The most directly applicable paper for REE's architectural decisions. Kumaran et al. update CLS theory to address AI systems, broadening the role of hippocampal replay to include goal-dependent weighting of experience statistics -- this is precisely the mechanism REE needs (replay weighted by harm/goal salience, not uniform). They also show recurrent hippocampal activation can support generalization (not just storage), grounding ARC-018's rollout-viability mapping. The paper explicitly bridges neuroscience and deep RL, authored by Google DeepMind researchers who understand both. Very high relevance to SD-004 (structured hippocampal store enabling long-horizon planning) and ARC-007 (indexed path storage with goal-weighted replay).",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "confidence": 0.74,
+          "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
           "failure_signatures": [
-            "The updated CLS theory accepts rapid neocortical learning for schema-consistent information, which complicates the clean separation between hippocampal (fast) and neocortical (slow) stores -- REE's hard module boundaries may be too rigid.",
-            "Goal-dependent replay weighting is proposed but the mechanism for communicating goal states to the hippocampal replay selection process is underspecified -- MECH-022's control-plane gate is REE's answer to this gap, but the biological evidence is thin."
+            "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+            "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
           ],
-          "run_id": "2026-03-30_arc_007_sd_004_cls_updated_kumaran2016",
+          "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-007",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_event_segmentation",
+          "failure_signatures": [
+            "Hippocampal event boundary activity is specifically predictive of later recall \u2014 boundaries without hippocampal engagement are not well-retained.",
+            "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+          ],
+          "run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-007",
           "confidence": 0.8,
-          "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
+          "confidence_rationale": "Canonical theoretical grounding for ARC-007's architectural characterisation of hippocampus as indexer rather than value-computer. The indexing theory explicitly assigns hippocampus a structural-index role, providing direct architectural justification for ARC-007's no-value-computation constraint. Confidence reflects strong theoretical alignment with moderate empirical grounding (indexing theory is influential but not uniformly accepted as a complete account).",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
+          "experiment_type": "targeted_review_connectome_arc_007",
           "failure_signatures": [
-            "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
-            "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
+            "Indexing theory assigns hippocampus a pure structural-index role: stores sparse indices to cortical patterns, not values or evaluations.",
+            "Pattern completion from partial cue reactivates neocortical episode pattern \u2014 hippocampus serves retrieval, not evaluation."
           ],
-          "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
+          "run_id": "2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-007",
-          "confidence": 0.87,
-          "confidence_rationale": "Major theoretical review in Neuron by the Behrens group (UCL/Oxford), synthesizing spatial and non-spatial evidence for abstract cognitive maps. High venue, highly cited, co-authored with DeepMind (Stachenfeld, Kurth-Nelson), explicitly bridges neuroscience and AI. Directly relevant to ARC-007's scope question: does hippocampal path memory apply only to physical space, or to abstract relational domains? Behrens et al. argue compellingly for the latter, citing evidence from social space, auditory frequency space, and logical relationship structures. Strong support for extending ARC-007 to z_world as an abstract relational manifold beyond spatial navigation.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [
-            "The review remains largely theoretical for non-spatial cognitive maps; direct neural recordings of 'abstract place cells' in humans are sparse compared to the spatial evidence base.",
-            "The successor representation framing proposed by Stachenfeld et al. (2017) as the hippocampal cognitive map model does not natively handle harm/valence -- integrating ethical residue into an SR-based map requires additional machinery not discussed."
-          ],
-          "run_id": "2026-03-30_hippo_cognitive_map_behrens2018",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
+          "timestamp_utc": "2026-04-02T23:59:00Z"
         }
       ],
-      "runs_total": 18,
+      "runs_total": 24,
       "source_counts": {
         "experimental": 9,
-        "literature": 9
+        "literature": 15
       }
     },
     "ARC-016": {
@@ -437,7 +441,7 @@
       }
     },
     "ARC-017": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.52, lit_conf=0.824",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.519, lit_conf=0.824",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -450,7 +454,7 @@
         "lit:connectome_analysis": 1,
         "lit:review_vestibular_anatomy": 1
       },
-      "experimental_confidence": 0.52,
+      "experimental_confidence": 0.519,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -462,7 +466,7 @@
       "latest_run_id": "v3_exq_135_arc017_reality_coherence_pair_20260329T032442Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:24:42Z",
       "literature_confidence": 0.824,
-      "overall_confidence": 0.672,
+      "overall_confidence": 0.671,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -531,20 +535,21 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=7 entry(s), lit=16 entry(s), exp_conf=0.741, lit_conf=0.858",
+      "confidence_rationale": "exp=7 entry(s), lit=18 entry(s), exp_conf=0.741, lit_conf=0.863",
       "direction_counts": {
         "mixed": 0,
-        "supports": 18,
+        "supports": 20,
         "unknown": 1,
         "weakens": 4
       },
-      "entries_total": 23,
+      "entries_total": 25,
       "evidence_class_counts": {
         "exp:simulation": 7,
         "lit:behavioral_human": 1,
         "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
-        "lit:electrophysiology_single_unit": 4,
+        "lit:electrophysiology_lfp": 1,
+        "lit:electrophysiology_single_unit": 5,
         "lit:neuroscience_experiment": 3,
         "lit:theoretical_review": 3
       },
@@ -557,46 +562,12 @@
         "unknown": 1,
         "weakens": 3
       },
-      "latest_run_id": "v3_exq_196_arc018_rollout_viability_pair_20260401T195627Z_v3",
-      "latest_timestamp_utc": "2026-04-01T20:32:50.569864Z",
-      "literature_confidence": 0.858,
-      "overall_confidence": 0.799,
+      "latest_run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.863,
+      "overall_confidence": 0.802,
       "pass_runs": 5,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-018",
-          "confidence": 0.79,
-          "confidence_rationale": "The closest computational analogue to REE's architecture: Lengyel & Dayan argue that hippocampal episodic memory provides a third control system (episodic RL) beyond model-free and model-based RL, particularly valuable in early learning and complex environments. This is the Dyna architecture applied to episodic memory -- exactly what MECH-033 (E2 kernels seeding hippocampal rollouts) implements. The paper provides a normative justification for why the hippocampal rollout system (ARC-018) is computationally worthwhile despite the cost of storing and retrieving episodes. Source quality is high for a conference paper. Mapping fidelity is very high -- this paper is essentially a normative theory of REE's hippocampal architecture.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
-          "failure_signatures": [
-            "The episodic control system in Lengyel & Dayan stores raw action-observation pairs -- it lacks the compressed action-object representation of SD-004, which limits planning horizon. REE's reliance on action-object E2 kernels is a necessary extension beyond what the paper formalises.",
-            "The paper does not address how episodic control interacts with harm terrain or goal representations -- the harm-salience weighting central to REE is not present in the Dyna/episodic framework as formalised here."
-          ],
-          "run_id": "2026-03-30_arc_018_mech_033_hippocampal_dyna_lengyel2008",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-018",
-          "confidence": 0.8,
-          "confidence_rationale": "Highly accessible modern synthesis of episodic RL and meta-RL from a deep learning perspective. The paper makes the argument that hippocampal replay supports episodic RL (fast, one-shot learning) while the neocortex/striatum supports slow incremental RL, and that the combination explains flexible intelligent behavior. This directly grounds REE's hybrid architecture: E1/E3 slow-learning layers + HippocampalModule fast-binding episodic store. The meta-RL framing is also relevant: the LSTM-based controller (analogous to REE's E3) develops an internal RL algorithm through slow training that can rapidly adapt via hippocampal inputs. Authored by leading DeepMind researchers who have implemented analogues computationally. High confidence with moderate mapping caveat around meta-RL framing.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_subfield_architecture",
-          "failure_signatures": [
-            "The meta-RL component of the paper proposes that an LSTM (slow-trained) develops its own RL algorithm in its activations -- this requires the LSTM to be trained across many tasks. REE's E3 is not trained across diverse tasks in the same way, so the meta-RL benefit may not transfer.",
-            "Episodic RL in the paper stores observations directly from the environment -- compressed latent storage (as in REE's z_world) is assumed to work comparably but this is not demonstrated."
-          ],
-          "run_id": "2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-018",
@@ -645,16 +616,50 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-01T20:32:50.569864Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-018",
+          "confidence": 0.82,
+          "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "CA3 neural ensembles transiently encode positions ahead of the animal at decision points \u2014 the encoded position sweeps down each arm of the maze before commitment.",
+            "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+          ],
+          "run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-018",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "failure_signatures": [
+            "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
+            "The coherence effect is strongest after rule acquisition \u2014 it marks learned rather than novel decisions."
+          ],
+          "run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
         }
       ],
-      "runs_total": 23,
+      "runs_total": 25,
       "source_counts": {
         "experimental": 7,
-        "literature": 16
+        "literature": 18
       }
     },
     "ARC-021": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.775, lit_conf=0.816",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.775, lit_conf=0.815",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -678,8 +683,8 @@
       },
       "latest_run_id": "2026-03-29_arc_021_bg_loops_learning_hazy2007",
       "latest_timestamp_utc": "2026-03-29T14:10:00Z",
-      "literature_confidence": 0.816,
-      "overall_confidence": 0.8,
+      "literature_confidence": 0.815,
+      "overall_confidence": 0.799,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -822,7 +827,7 @@
       }
     },
     "ARC-023": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.465, lit_conf=0.705",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.464, lit_conf=0.705",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -834,7 +839,7 @@
         "exp:simulation": 1,
         "lit:connectome_circuit_study": 1
       },
-      "experimental_confidence": 0.465,
+      "experimental_confidence": 0.464,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -1634,7 +1639,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=7 entry(s), lit=2 entry(s), exp_conf=0.67, lit_conf=0.716",
+      "confidence_rationale": "exp=7 entry(s), lit=2 entry(s), exp_conf=0.669, lit_conf=0.716",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -1646,7 +1651,7 @@
         "exp:simulation": 7,
         "lit:fmri_connectivity": 2
       },
-      "experimental_confidence": 0.67,
+      "experimental_confidence": 0.669,
       "fail_runs": 5,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -1745,6 +1750,56 @@
       "source_counts": {
         "experimental": 7,
         "literature": 2
+      }
+    },
+    "ARC-035": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.72",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+      "latest_timestamp_utc": "2026-04-02T23:55:00Z",
+      "literature_confidence": 0.72,
+      "overall_confidence": 0.72,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-035",
+          "confidence": 0.74,
+          "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "failure_signatures": [
+            "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+          ],
+          "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "ARC-036": {
@@ -2093,7 +2148,7 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.738",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.737",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -2116,8 +2171,8 @@
       },
       "latest_run_id": "2026-04-02_arc_042_mpfc_circuit_maturation_emotional_2021",
       "latest_timestamp_utc": "2026-04-02T14:30:00Z",
-      "literature_confidence": 0.738,
-      "overall_confidence": 0.738,
+      "literature_confidence": 0.737,
+      "overall_confidence": 0.737,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2546,18 +2601,19 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.478, lit_conf=0.884",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.478, lit_conf=0.884",
       "direction_counts": {
         "mixed": 1,
-        "supports": 4,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 5,
+      "entries_total": 6,
       "evidence_class_counts": {
         "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 3,
-        "lit:electrophysiology_lfp": 1
+        "lit:electrophysiology_lfp": 1,
+        "lit:fmri_connectivity": 1
       },
       "experimental_confidence": 0.478,
       "fail_runs": 1,
@@ -2568,29 +2624,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_190_mech022_hypothesis_injection_probe_20260401T193646Z_v3",
-      "latest_timestamp_utc": "2026-04-01T19:36:46Z",
+      "latest_run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
       "literature_confidence": 0.884,
       "overall_confidence": 0.782,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-022",
-          "confidence": 0.82,
-          "confidence_rationale": "Highly cited foundational Neuron review proposing the hippocampal-VTA loop as a gate for long-term memory entry. Directly relevant to MECH-022 (hippocampal hypothesis injection) and MECH-075 (BG dopaminergic gain setting on hippocampal attractors). The loop architecture -- hippocampal novelty signal gates VTA dopamine release which enhances hippocampal LTP -- provides a concrete biological precedent for how surprise/novelty in the hippocampus modulates what gets written into long-term memory. Strong mechanistic specificity, well-replicated (subsequent optogenetics work confirmed the pathway). Transfer risk is moderate: the REE analog is novelty-triggered update-weighting for E1/E3, not literal LTP magnitude.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [
-            "The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.",
-            "Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement."
-          ],
-          "run_id": "2026-03-30_hippo_vta_loop_lisman2005",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-022",
@@ -2657,12 +2696,29 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-01T19:36:46Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-022",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_event_segmentation",
+          "failure_signatures": [
+            "Hippocampal event boundary activity is specifically predictive of later recall \u2014 boundaries without hippocampal engagement are not well-retained.",
+            "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+          ],
+          "run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 1,
-        "literature": 4
+        "literature": 5
       }
     },
     "MECH-025": {
@@ -3150,19 +3206,19 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=9 entry(s), lit=13 entry(s), exp_conf=0.873, lit_conf=0.836",
+      "confidence_rationale": "exp=9 entry(s), lit=14 entry(s), exp_conf=0.873, lit_conf=0.842",
       "direction_counts": {
         "mixed": 1,
-        "supports": 18,
+        "supports": 19,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 22,
+      "entries_total": 23,
       "evidence_class_counts": {
         "exp:simulation": 9,
         "lit:computational_model": 2,
         "lit:computational_neuroscience_model": 3,
-        "lit:electrophysiology_single_unit": 4,
+        "lit:electrophysiology_single_unit": 5,
         "lit:neuroscience_experiment": 3,
         "lit:theoretical_review": 1
       },
@@ -3175,27 +3231,12 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3",
-      "latest_timestamp_utc": "2026-04-01T20:32:50.560861Z",
-      "literature_confidence": 0.836,
-      "overall_confidence": 0.854,
+      "latest_run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.842,
+      "overall_confidence": 0.857,
       "pass_runs": 7,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_171_mech033_kernel_chain_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_171_mech033_kernel_chain_pair_20260330T070404Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-03-30T16:58:09.659901Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-033",
@@ -3261,12 +3302,29 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-01T20:32:50.560861Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-033",
+          "confidence": 0.82,
+          "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_v3_hippocampal_rollout",
+          "failure_signatures": [
+            "CA3 neural ensembles transiently encode positions ahead of the animal at decision points \u2014 the encoded position sweeps down each arm of the maze before commitment.",
+            "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+          ],
+          "run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
         }
       ],
-      "runs_total": 22,
+      "runs_total": 23,
       "source_counts": {
         "experimental": 9,
-        "literature": 13
+        "literature": 14
       }
     },
     "MECH-040": {
@@ -4244,7 +4302,7 @@
       }
     },
     "MECH-061": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.734, lit_conf=0.74",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.733, lit_conf=0.74",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -4257,7 +4315,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.734,
+      "experimental_confidence": 0.733,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4490,7 +4548,7 @@
       }
     },
     "MECH-069": {
-      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.93, lit_conf=0.798",
+      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.929, lit_conf=0.798",
       "direction_counts": {
         "mixed": 6,
         "supports": 4,
@@ -4503,7 +4561,7 @@
         "lit:connectome_analysis": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.93,
+      "experimental_confidence": 0.929,
       "fail_runs": 6,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -4601,7 +4659,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.47, lit_conf=0.72",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.469, lit_conf=0.72",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -4613,7 +4671,7 @@
         "exp:simulation": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.47,
+      "experimental_confidence": 0.469,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4898,17 +4956,19 @@
         "literature": 2
       }
     },
-    "MECH-075": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.759",
+    "MECH-073": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.689",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 1,
+        "mixed": 1,
+        "supports": 2,
         "unknown": 0,
-        "weakens": 0
+        "weakens": 2
       },
-      "entries_total": 1,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 3,
+        "lit:fmri_connectivity": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -4919,10 +4979,217 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-30_hippo_vta_loop_lisman2005",
-      "latest_timestamp_utc": "2026-03-30T23:50:00Z",
-      "literature_confidence": 0.759,
-      "overall_confidence": 0.759,
+      "latest_run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.689,
+      "overall_confidence": 0.689,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-073",
+          "confidence": 0.78,
+          "confidence_rationale": "fMRI evidence for BLA-MTL functional connectivity predicting emotional memory enhancement in humans. Strong journal (Neuron), human sample with clear behavioral outcome measure. Mapping fidelity to MECH-074 is direct: the amygdala-MTL connectivity at encoding is the neural substrate of MECH-074's write-strength modulation. Transfer risk is low (human data) but fMRI connectivity is indirect compared to direct recording.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_074",
+          "failure_signatures": [
+            "fMRI connectivity cannot distinguish whether amygdala drives MTL (write-strength modulation, consistent with MECH-074) or whether both are driven in parallel by a common arousal signal \u2014 the directionality of the interaction is not resolved.",
+            "The enhancement effect could reflect post-encoding consolidation rather than online encoding modulation \u2014 temporal resolution of fMRI cannot separate these."
+          ],
+          "run_id": "2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-073",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+            "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+          ],
+          "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-073",
+          "confidence": 0.79,
+          "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+            "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+          ],
+          "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-073",
+          "confidence": 0.74,
+          "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+            "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+          ],
+          "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-073",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical Annual Review paper by the leading amygdala-memory researcher. Strong source quality, broad convergent evidence from animal and human studies. Mapping fidelity high for MECH-074: the review precisely characterises BLA as a modulator of hippocampal consolidation (not a memory store), which maps directly onto MECH-074's 'amygdala as write head' specification. Transfer risk low: cross-species evidence including human studies.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_074",
+          "failure_signatures": [
+            "Amygdala lesions prevent emotional arousal from enhancing memory consolidation but do not prevent all memory formation.",
+            "The amygdala modulates memory in other brain regions (hippocampus, striatum, cortex) rather than being the primary locus of memory storage."
+          ],
+          "run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
+    "MECH-074": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.843",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 1,
+        "lit:fmri_connectivity": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.843,
+      "overall_confidence": 0.843,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-074",
+          "confidence": 0.78,
+          "confidence_rationale": "fMRI evidence for BLA-MTL functional connectivity predicting emotional memory enhancement in humans. Strong journal (Neuron), human sample with clear behavioral outcome measure. Mapping fidelity to MECH-074 is direct: the amygdala-MTL connectivity at encoding is the neural substrate of MECH-074's write-strength modulation. Transfer risk is low (human data) but fMRI connectivity is indirect compared to direct recording.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_074",
+          "failure_signatures": [
+            "fMRI connectivity cannot distinguish whether amygdala drives MTL (write-strength modulation, consistent with MECH-074) or whether both are driven in parallel by a common arousal signal \u2014 the directionality of the interaction is not resolved.",
+            "The enhancement effect could reflect post-encoding consolidation rather than online encoding modulation \u2014 temporal resolution of fMRI cannot separate these."
+          ],
+          "run_id": "2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-074",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+            "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+          ],
+          "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-074",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical Annual Review paper by the leading amygdala-memory researcher. Strong source quality, broad convergent evidence from animal and human studies. Mapping fidelity high for MECH-074: the review precisely characterises BLA as a modulator of hippocampal consolidation (not a memory store), which maps directly onto MECH-074's 'amygdala as write head' specification. Transfer risk low: cross-species evidence including human studies.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_074",
+          "failure_signatures": [
+            "Amygdala lesions prevent emotional arousal from enhancing memory consolidation but do not prevent all memory formation.",
+            "The amygdala modulates memory in other brain regions (hippocampus, striatum, cortex) rather than being the primary locus of memory storage."
+          ],
+          "run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-075": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.782",
+      "direction_counts": {
+        "mixed": 1,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016",
+      "latest_timestamp_utc": "2026-04-02T23:55:00Z",
+      "literature_confidence": 0.782,
+      "overall_confidence": 0.782,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4941,12 +5208,167 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-30T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-075",
+          "confidence": 0.71,
+          "confidence_rationale": "Rigorous optogenetic + neurochemical study establishing LC as the primary source of dopamine in dorsal hippocampus. The finding directly complicates MECH-075's framing of BG/VTA as the dopamine gain source for hippocampal attractors: for dorsal HPC (spatial/planning navigation), the relevant catecholaminergic input is from LC, not VTA. Evidence is mixed \u2014 it supports dopaminergic/catecholaminergic gain modulation in HPC but challenges the VTA-centric framing of MECH-075.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_hippocampal_dopamine_gain",
+          "failure_signatures": [
+            "VTA dopaminergic axons are sparse in dorsal hippocampus \u2014 the premise that VTA/BG dopamine directly modulates dorsal HPC attractor dynamics is contradicted by this anatomical finding.",
+            "The functional role (spatial learning and memory enhancement) is shown for LC-mediated dopamine but the attractor-depth mechanism (MECH-075's core claim) is not directly tested."
+          ],
+          "run_id": "2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 2
+      }
+    },
+    "MECH-076": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.782",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.782,
+      "overall_confidence": 0.782,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-076",
+          "confidence": 0.75,
+          "confidence_rationale": "High-quality authoritative review from major labs (Fanselow: PTSD/fear conditioning; Dong: anatomical mapping). The three-compartment model (dorsal cognitive, intermediate, ventral affective) is now a standard framework. Moderate mapping fidelity: MECH-077 claims therapeutic change corresponds to remapping, and Fanselow/Dong constrains *where* that remapping must occur \u2014 ventral/intermediate HPC for emotional/trauma content.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_remapping",
+          "failure_signatures": [
+            "The review demonstrates a gradient rather than sharp boundary \u2014 the dorsal-ventral distinction is not binary, complicating a clean claim that MECH-077 remapping occurs exclusively in ventral HPC.",
+            "The anatomical and functional evidence is mostly from rodents; human hippocampal long-axis organization (anterior/posterior rather than ventral/dorsal) requires re-labeling."
+          ],
+          "run_id": "2026-04-02_mech_077_dorsal_ventral_gradient_fanselow2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-076",
+          "confidence": 0.78,
+          "confidence_rationale": "High source quality (Science, Moser lab, well-replicated). Strong mapping fidelity for MECH-076 and MECH-077: the rate-remapping vs. global-remapping distinction directly maps onto REE's two modes of hippocampal geometry change (local deformation by residue accumulation = rate remapping; therapeutic context change = global remapping). Transfer risk moderate: spatial navigation, rodent CA3/CA1.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_remapping",
+          "failure_signatures": [
+            "Two separable remapping modes exist: rate remapping (field locations stable, rates change) vs. global remapping (field locations change entirely).",
+            "Rate remapping occurs for context changes within a familiar place; global remapping for place changes."
+          ],
+          "run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
+    "MECH-077": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.782",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.782,
+      "overall_confidence": 0.782,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-077",
+          "confidence": 0.75,
+          "confidence_rationale": "High-quality authoritative review from major labs (Fanselow: PTSD/fear conditioning; Dong: anatomical mapping). The three-compartment model (dorsal cognitive, intermediate, ventral affective) is now a standard framework. Moderate mapping fidelity: MECH-077 claims therapeutic change corresponds to remapping, and Fanselow/Dong constrains *where* that remapping must occur \u2014 ventral/intermediate HPC for emotional/trauma content.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_remapping",
+          "failure_signatures": [
+            "The review demonstrates a gradient rather than sharp boundary \u2014 the dorsal-ventral distinction is not binary, complicating a clean claim that MECH-077 remapping occurs exclusively in ventral HPC.",
+            "The anatomical and functional evidence is mostly from rodents; human hippocampal long-axis organization (anterior/posterior rather than ventral/dorsal) requires re-labeling."
+          ],
+          "run_id": "2026-04-02_mech_077_dorsal_ventral_gradient_fanselow2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-077",
+          "confidence": 0.78,
+          "confidence_rationale": "High source quality (Science, Moser lab, well-replicated). Strong mapping fidelity for MECH-076 and MECH-077: the rate-remapping vs. global-remapping distinction directly maps onto REE's two modes of hippocampal geometry change (local deformation by residue accumulation = rate remapping; therapeutic context change = global remapping). Transfer risk moderate: spatial navigation, rodent CA3/CA1.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_remapping",
+          "failure_signatures": [
+            "Two separable remapping modes exist: rate remapping (field locations stable, rates change) vs. global remapping (field locations change entirely).",
+            "Rate remapping occurs for context changes within a familiar place; global remapping for place changes."
+          ],
+          "run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
       }
     },
     "MECH-089": {
@@ -5170,7 +5592,7 @@
       }
     },
     "MECH-091": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.315, lit_conf=0.685",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.314, lit_conf=0.685",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -5182,7 +5604,7 @@
         "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.315,
+      "experimental_confidence": 0.314,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5234,19 +5656,20 @@
       }
     },
     "MECH-092": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.315, lit_conf=0.77",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.314, lit_conf=0.817",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
         "exp:simulation": 1,
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.315,
+      "experimental_confidence": 0.314,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5255,10 +5678,10 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_136_mech092_quiescent_replay_pair_20260329T032531Z_v3",
-      "latest_timestamp_utc": "2026-03-29T03:25:31Z",
-      "literature_confidence": 0.77,
-      "overall_confidence": 0.542,
+      "latest_run_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
+      "latest_timestamp_utc": "2026-04-02T23:55:00Z",
+      "literature_confidence": 0.817,
+      "overall_confidence": 0.649,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5289,12 +5712,29 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-03-29T03:25:31Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.82,
+          "confidence_rationale": "Canonical empirical demonstration with ensemble recordings in rats. High source quality. Mapping to MECH-092 is direct: awake quiescent SWR replay of remote environments is precisely the mechanism MECH-092 specifies. Transfer risk: rodent, and the 'remote' in MECH-092 refers to temporally/episodically remote trajectories, which maps cleanly to spatially remote environments here.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_022",
+          "failure_signatures": [
+            "Remote replay was more common when rats had recently been in motion than during extended quiescence \u2014 suggesting the trigger is recent movement offset, not pure quiescence; this adds a nuance to MECH-092's 'quiescent heartbeat cycle' framing.",
+            "Local replay (current environment) was also frequent \u2014 remote replay was not dominant, only comparable."
+          ],
+          "run_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 1,
-        "literature": 1
+        "literature": 2
       }
     },
     "MECH-093": {
@@ -5408,7 +5848,7 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.315, lit_conf=0.807",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.314, lit_conf=0.807",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -5422,7 +5862,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.315,
+      "experimental_confidence": 0.314,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5624,7 +6064,7 @@
       }
     },
     "MECH-096": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.465, lit_conf=0.816",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.464, lit_conf=0.816",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -5637,7 +6077,7 @@
         "lit:connectome_analysis": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.465,
+      "experimental_confidence": 0.464,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5703,7 +6143,7 @@
       }
     },
     "MECH-097": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.465, lit_conf=0.706",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.464, lit_conf=0.706",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -5715,7 +6155,7 @@
         "exp:simulation": 1,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.465,
+      "experimental_confidence": 0.464,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5727,7 +6167,7 @@
       "latest_run_id": "v3_exq_137_mech097_pps_commit_locus_pair_20260329T032622Z_v3",
       "latest_timestamp_utc": "2026-03-29T03:26:22Z",
       "literature_confidence": 0.706,
-      "overall_confidence": 0.586,
+      "overall_confidence": 0.585,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -7083,7 +7523,7 @@
       }
     },
     "MECH-118": {
-      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.626, lit_conf=0.821",
+      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.626, lit_conf=0.82",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -7108,8 +7548,8 @@
       },
       "latest_run_id": "v3_exq_084d_q022_deff_hopfield_dissociation_20260329T215126Z_v3",
       "latest_timestamp_utc": "2026-03-29T21:51:26Z",
-      "literature_confidence": 0.821,
-      "overall_confidence": 0.724,
+      "literature_confidence": 0.82,
+      "overall_confidence": 0.723,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7318,7 +7758,7 @@
       }
     },
     "MECH-128": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.316, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.315, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -7329,7 +7769,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.316,
+      "experimental_confidence": 0.315,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7341,7 +7781,7 @@
       "latest_run_id": "v3_exq_147_mech128_e1_goal_conditioning_pair_20260329T130313Z_v3",
       "latest_timestamp_utc": "2026-03-29T13:03:13Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.316,
+      "overall_confidence": 0.315,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7880,6 +8320,74 @@
         "literature": 1
       }
     },
+    "MECH-163": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.775",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 1,
+        "lit:electrophysiology_lfp": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
+      "literature_confidence": 0.775,
+      "overall_confidence": 0.775,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.74,
+          "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "failure_signatures": [
+            "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+          ],
+          "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:55:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
+          "evidence_class": "lit:electrophysiology_lfp",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_hippocampal_pfc_planning",
+          "failure_signatures": [
+            "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
+            "The coherence effect is strongest after rule acquisition \u2014 it marks learned rather than novel decisions."
+          ],
+          "run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:59:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
     "MECH-900": {
       "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.707",
       "direction_counts": {
@@ -8037,7 +8545,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.402, lit_conf=0.83",
+      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.401, lit_conf=0.83",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -8051,7 +8559,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.402,
+      "experimental_confidence": 0.401,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -8063,7 +8571,7 @@
       "latest_run_id": "v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3",
       "latest_timestamp_utc": "2026-03-30T16:58:09.642455Z",
       "literature_confidence": 0.83,
-      "overall_confidence": 0.616,
+      "overall_confidence": 0.615,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8146,7 +8654,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.366, lit_conf=0.82",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.365, lit_conf=0.82",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -8160,7 +8668,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.366,
+      "experimental_confidence": 0.365,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -8454,7 +8962,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.471, lit_conf=0.746",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.471, lit_conf=0.745",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -8479,8 +8987,8 @@
       },
       "latest_run_id": "v3_exq_151_q006_ethics_developmental_20260329T131721Z_v3",
       "latest_timestamp_utc": "2026-03-29T20:19:28.593733Z",
-      "literature_confidence": 0.746,
-      "overall_confidence": 0.677,
+      "literature_confidence": 0.745,
+      "overall_confidence": 0.676,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -9682,16 +10190,16 @@
       }
     },
     "Q-020": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.674",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.79",
       "direction_counts": {
-        "mixed": 0,
+        "mixed": 1,
         "supports": 1,
         "unknown": 0,
-        "weakens": 2
+        "weakens": 4
       },
-      "entries_total": 3,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "lit:electrophysiology_single_unit": 3
+        "lit:electrophysiology_single_unit": 6
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -9702,26 +10210,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-29_q020_value_free_map_duvelle2019",
-      "latest_timestamp_utc": "2026-03-29T15:00:00Z",
-      "literature_confidence": 0.674,
-      "overall_confidence": 0.674,
+      "latest_run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+      "latest_timestamp_utc": "2026-04-02T23:58:00Z",
+      "literature_confidence": 0.79,
+      "overall_confidence": 0.79,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "Q-020",
-          "confidence": 0.78,
-          "confidence_rationale": "High-quality single-unit recording in primates (Cell, 2021). Shows directly that hippocampal neurons tile an abstract value space with place-like fields -- value encoding is not merely tagging but genuine map-structured representation. This is the strongest existing evidence that hippocampal cognitive maps extend to value geometry, directly supporting MECH-073 and challenging the ARC-007 framing that the hippocampal module is value-computation-free.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_q_020",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_q020_abstract_value_map_knudsen2021",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T15:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "Q-020",
@@ -9749,12 +10243,63 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T15:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.76,
+          "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+            "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+          ],
+          "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.79,
+          "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+            "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+          ],
+          "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-020",
+          "confidence": 0.74,
+          "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "weakens",
+          "experiment_type": "targeted_review_q_020",
+          "failure_signatures": [
+            "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+            "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+          ],
+          "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-02T23:58:00Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 3
+        "literature": 6
       }
     },
     "Q-021": {
@@ -9960,7 +10505,7 @@
       }
     },
     "Q-023": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.811",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.81",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -9982,8 +10527,8 @@
       },
       "latest_run_id": "2026-03-29_q023_stochastic_stability_young1993",
       "latest_timestamp_utc": "2026-03-29T15:00:00Z",
-      "literature_confidence": 0.811,
-      "overall_confidence": 0.811,
+      "literature_confidence": 0.81,
+      "overall_confidence": 0.81,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10224,7 +10769,7 @@
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.734, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.733, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -10235,7 +10780,7 @@
       "evidence_class_counts": {
         "exp:simulation": 1
       },
-      "experimental_confidence": 0.734,
+      "experimental_confidence": 0.733,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10247,7 +10792,7 @@
       "latest_run_id": "20260315T044440_causal_grid_world_baseline_v2",
       "latest_timestamp_utc": "2026-03-15T04:44:40.670153+00:00",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.734,
+      "overall_confidence": 0.733,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -10507,7 +11052,7 @@
       }
     },
     "SD-006": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.894, lit_conf=0.791",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.893, lit_conf=0.791",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -10519,7 +11064,7 @@
         "exp:simulation": 4,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.894,
+      "experimental_confidence": 0.893,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -10531,7 +11076,7 @@
       "latest_run_id": "2026-03-29_sd_006_theta_gamma_neural_code_lisman2013",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.791,
-      "overall_confidence": 0.853,
+      "overall_confidence": 0.852,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -11037,7 +11582,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.745, lit_conf=0.932",
+      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.744, lit_conf=0.932",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -11052,7 +11597,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.745,
+      "experimental_confidence": 0.744,
       "fail_runs": 4,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -11064,7 +11609,7 @@
       "latest_run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
       "latest_timestamp_utc": "2026-04-01T23:01:27.718899Z",
       "literature_confidence": 0.932,
-      "overall_confidence": 0.839,
+      "overall_confidence": 0.838,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -11146,7 +11691,7 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.841",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.84",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -11170,8 +11715,8 @@
       },
       "latest_run_id": "2026-03-29_sd_012_homeostatic_rl_keramati2014",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
-      "literature_confidence": 0.841,
-      "overall_confidence": 0.841,
+      "literature_confidence": 0.84,
+      "overall_confidence": 0.84,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -47633,9 +48178,517 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-02T15:05:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical empirical demonstration with ensemble recordings in rats. High source quality. Mapping to MECH-092 is direct: awake quiescent SWR replay of remote environments is precisely the mechanism MECH-092 specifies. Transfer risk: rodent, and the 'remote' in MECH-092 refers to temporally/episodically remote trajectories, which maps cleanly to spatially remote environments here.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_022",
+      "failure_signatures": [
+        "Remote replay was more common when rats had recently been in motion than during extended quiescence \u2014 suggesting the trigger is recent movement offset, not pure quiescence; this adds a nuance to MECH-092's 'quiescent heartbeat cycle' framing.",
+        "Local replay (current environment) was also frequent \u2014 remote replay was not dominant, only comparable."
+      ],
+      "run_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-035",
+      "confidence": 0.74,
+      "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_pfc_planning",
+      "failure_signatures": [
+        "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+      ],
+      "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-073",
+      "confidence": 0.78,
+      "confidence_rationale": "fMRI evidence for BLA-MTL functional connectivity predicting emotional memory enhancement in humans. Strong journal (Neuron), human sample with clear behavioral outcome measure. Mapping fidelity to MECH-074 is direct: the amygdala-MTL connectivity at encoding is the neural substrate of MECH-074's write-strength modulation. Transfer risk is low (human data) but fMRI connectivity is indirect compared to direct recording.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_074",
+      "failure_signatures": [
+        "fMRI connectivity cannot distinguish whether amygdala drives MTL (write-strength modulation, consistent with MECH-074) or whether both are driven in parallel by a common arousal signal \u2014 the directionality of the interaction is not resolved.",
+        "The enhancement effect could reflect post-encoding consolidation rather than online encoding modulation \u2014 temporal resolution of fMRI cannot separate these."
+      ],
+      "run_id": "2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-074",
+      "confidence": 0.78,
+      "confidence_rationale": "fMRI evidence for BLA-MTL functional connectivity predicting emotional memory enhancement in humans. Strong journal (Neuron), human sample with clear behavioral outcome measure. Mapping fidelity to MECH-074 is direct: the amygdala-MTL connectivity at encoding is the neural substrate of MECH-074's write-strength modulation. Transfer risk is low (human data) but fMRI connectivity is indirect compared to direct recording.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_074",
+      "failure_signatures": [
+        "fMRI connectivity cannot distinguish whether amygdala drives MTL (write-strength modulation, consistent with MECH-074) or whether both are driven in parallel by a common arousal signal \u2014 the directionality of the interaction is not resolved.",
+        "The enhancement effect could reflect post-encoding consolidation rather than online encoding modulation \u2014 temporal resolution of fMRI cannot separate these."
+      ],
+      "run_id": "2026-04-02_mech_074_amygdala_mtl_fmri_dolcos2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-075",
+      "confidence": 0.71,
+      "confidence_rationale": "Rigorous optogenetic + neurochemical study establishing LC as the primary source of dopamine in dorsal hippocampus. The finding directly complicates MECH-075's framing of BG/VTA as the dopamine gain source for hippocampal attractors: for dorsal HPC (spatial/planning navigation), the relevant catecholaminergic input is from LC, not VTA. Evidence is mixed \u2014 it supports dopaminergic/catecholaminergic gain modulation in HPC but challenges the VTA-centric framing of MECH-075.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_hippocampal_dopamine_gain",
+      "failure_signatures": [
+        "VTA dopaminergic axons are sparse in dorsal hippocampus \u2014 the premise that VTA/BG dopamine directly modulates dorsal HPC attractor dynamics is contradicted by this anatomical finding.",
+        "The functional role (spatial learning and memory enhancement) is shown for LC-mediated dopamine but the attractor-depth mechanism (MECH-075's core claim) is not directly tested."
+      ],
+      "run_id": "2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-076",
+      "confidence": 0.75,
+      "confidence_rationale": "High-quality authoritative review from major labs (Fanselow: PTSD/fear conditioning; Dong: anatomical mapping). The three-compartment model (dorsal cognitive, intermediate, ventral affective) is now a standard framework. Moderate mapping fidelity: MECH-077 claims therapeutic change corresponds to remapping, and Fanselow/Dong constrains *where* that remapping must occur \u2014 ventral/intermediate HPC for emotional/trauma content.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_remapping",
+      "failure_signatures": [
+        "The review demonstrates a gradient rather than sharp boundary \u2014 the dorsal-ventral distinction is not binary, complicating a clean claim that MECH-077 remapping occurs exclusively in ventral HPC.",
+        "The anatomical and functional evidence is mostly from rodents; human hippocampal long-axis organization (anterior/posterior rather than ventral/dorsal) requires re-labeling."
+      ],
+      "run_id": "2026-04-02_mech_077_dorsal_ventral_gradient_fanselow2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-077",
+      "confidence": 0.75,
+      "confidence_rationale": "High-quality authoritative review from major labs (Fanselow: PTSD/fear conditioning; Dong: anatomical mapping). The three-compartment model (dorsal cognitive, intermediate, ventral affective) is now a standard framework. Moderate mapping fidelity: MECH-077 claims therapeutic change corresponds to remapping, and Fanselow/Dong constrains *where* that remapping must occur \u2014 ventral/intermediate HPC for emotional/trauma content.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_remapping",
+      "failure_signatures": [
+        "The review demonstrates a gradient rather than sharp boundary \u2014 the dorsal-ventral distinction is not binary, complicating a clean claim that MECH-077 remapping occurs exclusively in ventral HPC.",
+        "The anatomical and functional evidence is mostly from rodents; human hippocampal long-axis organization (anterior/posterior rather than ventral/dorsal) requires re-labeling."
+      ],
+      "run_id": "2026-04-02_mech_077_dorsal_ventral_gradient_fanselow2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical empirical demonstration with ensemble recordings in rats. High source quality. Mapping to MECH-092 is direct: awake quiescent SWR replay of remote environments is precisely the mechanism MECH-092 specifies. Transfer risk: rodent, and the 'remote' in MECH-092 refers to temporally/episodically remote trajectories, which maps cleanly to spatially remote environments here.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_022",
+      "failure_signatures": [
+        "Remote replay was more common when rats had recently been in motion than during extended quiescence \u2014 suggesting the trigger is recent movement offset, not pure quiescence; this adds a nuance to MECH-092's 'quiescent heartbeat cycle' framing.",
+        "Local replay (current environment) was also frequent \u2014 remote replay was not dominant, only comparable."
+      ],
+      "run_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.74,
+      "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_pfc_planning",
+      "failure_signatures": [
+        "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
+      ],
+      "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:55:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+        "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+      ],
+      "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.79,
+      "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+        "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+      ],
+      "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.74,
+      "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+        "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+      ],
+      "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-073",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+        "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+      ],
+      "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-073",
+      "confidence": 0.79,
+      "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+        "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+      ],
+      "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-073",
+      "confidence": 0.74,
+      "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+        "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+      ],
+      "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-074",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+        "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+      ],
+      "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Science, in vivo CA1 dendritic recordings combined with slice validation). Evidence direction is mixed because BTSP simultaneously supports MECH-073 (value gets written into hippocampal geometry) and supports Resolution A for Q-020 (the writing is done by external calcium plateau triggers, not by HPC computing value). The key architectural implication: hippocampal place field geometry is written by external events, supporting ARC-007's passive-geometry reading while showing the geometry is not value-neutral.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "CA1 place fields can be formed in a single trial by behavioral-timescale synaptic potentiation of inputs that were not coincident with postsynaptic firing.",
+        "Calcium plateau potentials (driven by external inputs, not by local computation) act as the write event that potentiates preceding inputs over seconds-long windows."
+      ],
+      "run_id": "2026-04-02_q020_btsp_value_writing_bittner2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.79,
+      "confidence_rationale": "High source quality (Neuron, large-scale virtual reality recordings, head-fixed mouse with shifting reward contingencies). Strong mapping fidelity for MECH-073: a dedicated stable population of CA1/subiculum cells encodes reward proximity across environments \u2014 this is the most direct evidence that hippocampal circuitry contains a value-coding channel, directly challenging ARC-007 'no value computation.' Transfer risk is moderate: virtual reality head-fixed mouse, but the reward-selective population was stable across environment remapping which strengthens generalizability.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "A small, stable population of CA1/subiculum cells fires selectively near reward zones across different virtual environments, even when place cell remapping is complete.",
+        "Reward-selective cells form a distinct channel separable from place-coding cells, suggesting a dedicated hippocampal subpopulation for value-zone encoding."
+      ],
+      "run_id": "2026-04-02_q020_dedicated_reward_population_gauthier2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-020",
+      "confidence": 0.74,
+      "confidence_rationale": "High source quality (Nature Neuroscience, rodent tetrode, well-replicated). Moderate mapping fidelity: the paper shows reward-driven reorganization of hippocampal place fields, which directly evidences MECH-073 (valence intrinsic to map geometry) and weakens ARC-007's strict no-value position. However, the reorganization mechanism is consistent with Resolution A (external signals writing into HPC geometry via plasticity) \u2014 the paper does not isolate whether HPC computes reward or receives it. Transfer risk is moderate: spatial navigation task, rodent CA1.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "weakens",
+      "experiment_type": "targeted_review_q_020",
+      "failure_signatures": [
+        "Place field remapping toward goal locations occurs during reward learning, showing hippocampal geometry is not value-neutral.",
+        "SWR reactivation of remapped fields during post-learning rest predicts subsequent spatial memory, linking map reorganization to consolidated value-shaped geometry."
+      ],
+      "run_id": "2026-04-02_q020_reward_map_reorganization_dupret2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:58:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.8,
+      "confidence_rationale": "Canonical theoretical grounding for ARC-007's architectural characterisation of hippocampus as indexer rather than value-computer. The indexing theory explicitly assigns hippocampus a structural-index role, providing direct architectural justification for ARC-007's no-value-computation constraint. Confidence reflects strong theoretical alignment with moderate empirical grounding (indexing theory is influential but not uniformly accepted as a complete account).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_007",
+      "failure_signatures": [
+        "Indexing theory assigns hippocampus a pure structural-index role: stores sparse indices to cortical patterns, not values or evaluations.",
+        "Pattern completion from partial cue reactivates neocortical episode pattern \u2014 hippocampus serves retrieval, not evaluation."
+      ],
+      "run_id": "2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-007",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_event_segmentation",
+      "failure_signatures": [
+        "Hippocampal event boundary activity is specifically predictive of later recall \u2014 boundaries without hippocampal engagement are not well-retained.",
+        "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+      ],
+      "run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_pfc_planning",
+      "failure_signatures": [
+        "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
+        "The coherence effect is strongest after rule acquisition \u2014 it marks learned rather than novel decisions."
+      ],
+      "run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-018",
+      "confidence": 0.82,
+      "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "CA3 neural ensembles transiently encode positions ahead of the animal at decision points \u2014 the encoded position sweeps down each arm of the maze before commitment.",
+        "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+      ],
+      "run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-022",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Neuron, sophisticated HMM analysis of naturalistic fMRI). Strong mapping fidelity for ARC-007's event segmentation specification: the paper directly shows hippocampal activity marking event boundaries in continuous experience, with the degree of hippocampal boundary activity predicting subsequent recall. Transfer risk moderate: narrative perception (continuous video) vs REE's action-based trajectory commitment points.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_event_segmentation",
+      "failure_signatures": [
+        "Hippocampal event boundary activity is specifically predictive of later recall \u2014 boundaries without hippocampal engagement are not well-retained.",
+        "Event structure is hierarchical (short sensory to long contextual), with hippocampus tracking the longer contextual level."
+      ],
+      "run_id": "2026-04-02_arc_007_event_structure_segmentation_baldassano2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-033",
+      "confidence": 0.82,
+      "confidence_rationale": "High source quality (Journal of Neuroscience, in vivo rodent tetrodes, well-replicated finding). Strong mapping fidelity for ARC-018 prospective rollout: CA3 ensembles sweep forward through possible trajectories at choice points, which is the neural implementation of ARC-018's counterfactual rollout function. Mapping fidelity for MECH-033 is moderate: the data show trajectory-forward sweeps in CA3 but do not characterise E2-equivalent action-consequence structures. Transfer risk moderate: spatial navigation task, rodent CA3.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_v3_hippocampal_rollout",
+      "failure_signatures": [
+        "CA3 neural ensembles transiently encode positions ahead of the animal at decision points \u2014 the encoded position sweeps down each arm of the maze before commitment.",
+        "Prospective encoding is transient and occurs specifically at choice points, not during continuous running."
+      ],
+      "run_id": "2026-04-02_arc_018_vte_lookahead_johnson2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-073",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical Annual Review paper by the leading amygdala-memory researcher. Strong source quality, broad convergent evidence from animal and human studies. Mapping fidelity high for MECH-074: the review precisely characterises BLA as a modulator of hippocampal consolidation (not a memory store), which maps directly onto MECH-074's 'amygdala as write head' specification. Transfer risk low: cross-species evidence including human studies.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_074",
+      "failure_signatures": [
+        "Amygdala lesions prevent emotional arousal from enhancing memory consolidation but do not prevent all memory formation.",
+        "The amygdala modulates memory in other brain regions (hippocampus, striatum, cortex) rather than being the primary locus of memory storage."
+      ],
+      "run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-074",
+      "confidence": 0.82,
+      "confidence_rationale": "Canonical Annual Review paper by the leading amygdala-memory researcher. Strong source quality, broad convergent evidence from animal and human studies. Mapping fidelity high for MECH-074: the review precisely characterises BLA as a modulator of hippocampal consolidation (not a memory store), which maps directly onto MECH-074's 'amygdala as write head' specification. Transfer risk low: cross-species evidence including human studies.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_074",
+      "failure_signatures": [
+        "Amygdala lesions prevent emotional arousal from enhancing memory consolidation but do not prevent all memory formation.",
+        "The amygdala modulates memory in other brain regions (hippocampus, striatum, cortex) rather than being the primary locus of memory storage."
+      ],
+      "run_id": "2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-076",
+      "confidence": 0.78,
+      "confidence_rationale": "High source quality (Science, Moser lab, well-replicated). Strong mapping fidelity for MECH-076 and MECH-077: the rate-remapping vs. global-remapping distinction directly maps onto REE's two modes of hippocampal geometry change (local deformation by residue accumulation = rate remapping; therapeutic context change = global remapping). Transfer risk moderate: spatial navigation, rodent CA3/CA1.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_remapping",
+      "failure_signatures": [
+        "Two separable remapping modes exist: rate remapping (field locations stable, rates change) vs. global remapping (field locations change entirely).",
+        "Rate remapping occurs for context changes within a familiar place; global remapping for place changes."
+      ],
+      "run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-077",
+      "confidence": 0.78,
+      "confidence_rationale": "High source quality (Science, Moser lab, well-replicated). Strong mapping fidelity for MECH-076 and MECH-077: the rate-remapping vs. global-remapping distinction directly maps onto REE's two modes of hippocampal geometry change (local deformation by residue accumulation = rate remapping; therapeutic context change = global remapping). Transfer risk moderate: spatial navigation, rodent CA3/CA1.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_remapping",
+      "failure_signatures": [
+        "Two separable remapping modes exist: rate remapping (field locations stable, rates change) vs. global remapping (field locations change entirely).",
+        "Rate remapping occurs for context changes within a familiar place; global remapping for place changes."
+      ],
+      "run_id": "2026-04-02_mech_077_rate_global_remapping_leutgeb2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.76,
+      "confidence_rationale": "High source quality (Neuron, simultaneous HPC-PFC recordings). Strong mapping fidelity for MECH-163: the paper directly demonstrates that HPC-PFC theta coherence peaks at choice points (commitment boundary analogue) after learning, and that the resulting cell assemblies are selectively replayed during sleep. Transfer risk moderate: rodent Y-maze spatial rule learning.",
+      "evidence_class": "lit:electrophysiology_lfp",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_hippocampal_pfc_planning",
+      "failure_signatures": [
+        "HPC-PFC theta coherence peaks at choice points specifically, not during continuous running between choice points.",
+        "The coherence effect is strongest after rule acquisition \u2014 it marks learned rather than novel decisions."
+      ],
+      "run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-02T23:59:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-02T18:35:07.853891Z",
+  "generated_at_utc": "2026-04-02T20:59:26.528514Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
