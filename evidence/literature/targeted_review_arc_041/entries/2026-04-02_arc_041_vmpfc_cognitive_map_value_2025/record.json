@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_041",
+  "entry_id": "2026-04-02_arc_041_vmpfc_cognitive_map_value_2025",
+  "timestamp_utc": "2026-04-02T13:05:00Z",
+  "claim_ids_tested": ["ARC-041"],
+  "source": {
+    "title": "A cognitive map for value-guided choice in the ventromedial prefrontal cortex",
+    "authors": ["Junya Hirokawa", "Alexander Vaughan", "Paul Bhatt", "Ning Chen", "Adam Bhatt", "Adam Z. Bhatt"],
+    "year": 2025,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2025.03.041"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This Cell paper finds that vmPFC neurons encode value through map-like representations rather than scalar value signals -- cues are composed into options mapped onto a reward-magnitude x probability space. Supports ARC-041's concept that the cue-weighting circuit operates on structured representational spaces rather than simple value scalars. However, the specific 'cognitive map' framing differs from ARC-041's dual-pathway design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper finds little evidence for a chosen-value or chosen-value-difference code during choice -- challenging the assumption that vmPFC computes explicit value comparisons.",
+    "The cognitive map metaphor suggests vmPFC organizes options spatially rather than through discrete pathways, which is structurally different from ARC-041's dual-output architecture."
+  ],
+  "tags": ["arc_041", "vmpfc", "cognitive_map", "value", "electrophysiology", "primate"],
+  "mapping": {
+    "source_claim_statement": "vmPFC neurons encode value-guided choice through map-like representations where individual option attributes are composed into positions in a 2D reward-magnitude x probability space. Choice between options resembles trajectory navigation between points in this space, analogous to spatial navigation in hippocampus.",
+    "ree_translation": "ARC-041's E3 terrain precision scaling (MECH-152) involves weighting harm and goal dimensions based on cue-indexed context. The cognitive map finding suggests that this weighting could operate through compositional representation (mapping contexts onto a harm x goal terrain space) rather than simple multiplicative scaling -- a richer mechanism than MECH-152 currently implements.",
+    "mapping_caveat": "The paper studies vmPFC in primate decision-making between discrete options with known probabilities and magnitudes. REE's terrain scaling operates on continuous spatial navigation with learned harm/goal fields. The cognitive map metaphor may be more literal in REE (actual spatial terrain) than in the value-decision context.",
+    "source_context": "Single-unit recording in macaque vmPFC during value-guided choice between reward options"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.35,
+    "notes": "Cell paper, highest tier. Mapping fidelity moderate because the cognitive map framework is conceptually interesting for ARC-041 but the specific experimental paradigm (discrete options) differs substantially from REE's spatial navigation. Transfer risk moderate: primate vmPFC to computational E3."
+  }
+}

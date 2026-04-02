@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-02_sd_015_cognitive_map_building_whittington2022",
+  "timestamp_utc": "2026-04-02T12:20:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "How to build a cognitive map: insights from models of the hippocampal formation",
+    "authors": ["James C. R. Whittington", "David McCaffary", "Jacob J. W. Bakermans", "Timothy E. J. Behrens"],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-022-01153-y"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This review describes how hippocampal cognitive maps compose spatial and object representations from separate streams, with landmark cells binding what and where. Supports SD-015's claim that object identity must be encoded separately from spatial context for goal-directed navigation. Confidence moderated by the review being about biological hippocampus rather than computational agent architectures.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal landmark cells bind object identity WITH spatial location (conjunctive coding), suggesting the brain may not keep what/where fully separate at the navigation level.",
+    "The review notes that 65.8% of hippocampal units show conjunctive space-landmark coding, while only 6.4% are pure landmark cells -- the majority are mixed, not separated."
+  ],
+  "tags": ["sd_015", "cognitive_map", "hippocampus", "landmark_cells", "what_where", "goal_navigation", "compositional_memory"],
+  "mapping": {
+    "source_claim_statement": "The hippocampal formation builds cognitive maps by composing representations from separate streams: spatial structure (grid cells, place cells) and sensory/object identity (landmark cells). Goal-directed navigation uses these maps by computing goal vectors relative to compositional landmark-place representations.",
+    "ree_translation": "SD-015's separation of z_resource (object identity) from z_world (spatial scene) parallels the compositional architecture described in this review. The dedicated ResourceEncoder extracts the 'what-to-seek' signal that E3's trajectory scoring needs, analogous to how hippocampal landmark cells encode object identity for goal-directed navigation planning.",
+    "mapping_caveat": "The review shows that hippocampal representations are predominantly conjunctive (binding what and where), not purely separated. This suggests that while separate input streams are needed (supporting SD-015), the downstream navigation system may need to re-bind them. REE's E3 trajectory scorer likely needs both z_resource and z_world jointly, not z_resource alone.",
+    "source_context": "Review of computational models of hippocampal formation, covering Tolman-Eichenbaum Machine, Clone-Structured Causal Graphs, and successor representation models"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Nature Neuroscience review by leading group (Behrens lab). Mapping fidelity moderate: the paper addresses cognitive map construction for navigation (directly relevant) but the specific finding about conjunctive coding partially complicates SD-015's clean separation claim. Transfer risk moderate: biological hippocampal models vs REE's E3 trajectory scoring."
+  }
+}

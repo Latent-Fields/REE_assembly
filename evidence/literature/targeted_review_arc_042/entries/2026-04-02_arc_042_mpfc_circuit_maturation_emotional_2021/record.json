@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_042",
+  "entry_id": "2026-04-02_arc_042_mpfc_circuit_maturation_emotional_2021",
+  "timestamp_utc": "2026-04-02T14:30:00Z",
+  "claim_ids_tested": ["ARC-042"],
+  "source": {
+    "title": "Linking mPFC circuit maturation to the developmental regulation of emotional memory and cognitive flexibility",
+    "authors": ["Claire W. Opendak", "Kaitlin Sullivan", "Regina M. Sullivan"],
+    "year": 2021,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.64567"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Opendak et al. demonstrate that mPFC circuit maturation directly regulates the developmental emergence of emotional memory and cognitive flexibility. Immature mPFC circuits produce qualitatively different behavioral patterns than mature ones. Supports ARC-042's claim that ethical selection requires substrate maturation -- the biological data shows that immature PFC produces different (not just weaker) cognitive outputs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper studies rodent mPFC development, not primate vmPFC/OFC ethical evaluation. The cognitive functions studied (emotional memory, fear conditioning flexibility) are simpler than ethical selection.",
+    "mPFC maturation in rodents occurs over weeks, while REE's training phases span episodes -- the developmental timescales are not analogous."
+  ],
+  "tags": ["arc_042", "mpfc", "circuit_maturation", "emotional_memory", "cognitive_flexibility", "developmental_regulation"],
+  "mapping": {
+    "source_claim_statement": "mPFC circuit maturation directly regulates the developmental onset of emotional memory expression and cognitive flexibility. During critical developmental windows, experiences interact with developing mPFC circuits to produce age-appropriate behavioral responses. Immature mPFC circuits produce qualitatively different patterns of emotional regulation.",
+    "ree_translation": "ARC-042 claims E3 ethical selection is functionally dark until substrates mature. This paper demonstrates the biological principle: immature PFC circuits don't just produce weaker versions of mature outputs -- they produce qualitatively different outputs. For REE, this means that running E3 ethical selection before E1/E2 substrates are trained won't just produce weak ethical selection; it may produce systematically wrong selection (amplifying noise rather than signal).",
+    "mapping_caveat": "Rodent mPFC and primate vmPFC serve different functions, and the developmental timelines are vastly different. The principle (immature circuits produce different outputs) transfers but the specific cognitive functions (rodent fear conditioning flexibility vs REE ethical selection) are not analogous. Transfer risk from rodent emotional learning to computational ethical selection is substantial.",
+    "source_context": "Rodent neurodevelopmental studies of mPFC, fear conditioning paradigms, circuit maturation across postnatal development"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.40,
+    "notes": "eLife paper, well-designed developmental study. Mapping fidelity moderate-low because the cognitive functions differ substantially. Transfer risk substantial: rodent fear conditioning to computational ethical selection."
+  }
+}

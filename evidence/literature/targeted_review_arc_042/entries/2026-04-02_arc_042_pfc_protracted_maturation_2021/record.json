@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_042",
+  "entry_id": "2026-04-02_arc_042_pfc_protracted_maturation_2021",
+  "timestamp_utc": "2026-04-02T14:25:00Z",
+  "claim_ids_tested": ["ARC-042"],
+  "source": {
+    "title": "Development of prefrontal cortex",
+    "authors": ["Tomasz Chini", "Ileana L. Bhatt-Hangya"],
+    "year": 2021,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/s41386-021-01137-9"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This review establishes that PFC maturation extends to the 3rd decade of life in humans, with staged circuit formation, synaptic overproduction followed by pruning, and protracted functional development. Directly supports ARC-042's claim that ethical selection machinery is architecturally present but functionally dark until substrates mature. The neurodevelopmental timeline parallels REE's staged dependency architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Biological PFC maturation is driven by experience-dependent plasticity and genetic programs -- REE's staged dependencies are architectural (E1 must train before E2), not experience-dependent in the biological sense.",
+    "The protracted timeline in biology (~25 years in humans) has no meaningful analogue in REE's training episodes -- the 'stages' in REE are sequential training phases, not developmental epochs."
+  ],
+  "tags": ["arc_042", "prefrontal_cortex", "neurodevelopment", "protracted_maturation", "staged_development", "circuit_formation"],
+  "mapping": {
+    "source_claim_statement": "The prefrontal cortex undergoes protracted maturation extending to the 3rd decade of life. Neurons are generated prenatally but synaptic connections, neurotransmitter systems, and functional connectivity develop through adolescence and early adulthood. This staged maturation means higher cognitive functions (decision-making, behavioral inhibition, working memory) emerge gradually as circuits come online.",
+    "ree_translation": "ARC-042 claims E3's ethical selection is architecturally present from initialization but functionally dark until E1/E2 substrates develop. The biological parallel: vmPFC/OFC circuits for ethical evaluation exist structurally from early development but only become functionally effective after prolonged maturation of upstream sensory (E1) and motor (E2) substrates. REE's staged training phases (P0 E1+E2 warmup -> P1 terrain training -> P2 ethical selection) mirror biological neurodevelopment.",
+    "mapping_caveat": "Biological neurodevelopment involves experience-dependent synaptic pruning, myelination, and neuromodulatory maturation over years. REE's 'development' is sequential training phases over episodes. The analogy is structural (stages exist) but the mechanisms (biological plasticity vs gradient descent) are fundamentally different. Additionally, biological PFC maturation is continuous and overlapping, not cleanly phased as REE's P0/P1/P2.",
+    "source_context": "Review of rodent and human PFC developmental neurobiology, including circuit formation, critical periods, and clinical implications"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Neuropsychopharmacology review, solid and comprehensive. Mapping fidelity moderate because the staged development principle transfers but the mechanisms differ fundamentally. Transfer risk moderate: biological neurodevelopment to computational training phases."
+  }
+}

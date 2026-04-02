@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_150",
+  "entry_id": "2026-04-02_mech_150_holistic_pattern_completion_horner2015",
+  "timestamp_utc": "2026-04-02T13:15:00Z",
+  "claim_ids_tested": ["MECH-150"],
+  "source": {
+    "title": "Evidence for holistic episodic recollection via hippocampal pattern completion",
+    "authors": ["Aidan J. Horner", "James A. Bisby", "Daniel Bush", "Wen-Jing Lin", "Neil Burgess"],
+    "year": 2015,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms8462"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Horner et al. demonstrate that hippocampal pattern completion reinstates all elements of an episodic event from a partial cue, with reinstatement of incidental elements correlating with hippocampal activity. This supports MECH-150's claim that ContextMemory queried with a partial cue (z_world) produces a rich associative context. However, the mapping from hippocampal episodic memory to E1's ContextMemory is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows holistic reinstatement of all event elements -- MECH-150 specifically queries with z_world ALONE (not the full state), which is a more constrained operation than the biological pattern completion described.",
+    "Hippocampal pattern completion requires prior encoding of the full event -- MECH-150's ContextMemory requires supervised training (EXQ-181b finding), consistent with this requirement but with a different learning mechanism."
+  ],
+  "tags": ["mech_150", "hippocampus", "pattern_completion", "episodic_memory", "cue_indexed", "context_reinstatement"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus binds diverse elements of an event during encoding. At retrieval, presenting a partial cue triggers pattern completion that reinstates all event elements, including those incidental to the current task. The degree of reinstatement correlates with hippocampal BOLD activity.",
+    "ree_translation": "MECH-150 claims E1's ContextMemory, when queried with z_world alone, produces cue-indexed association context that selectively activates stored associations. This parallels hippocampal pattern completion: z_world serves as the partial cue, and ContextMemory outputs the reinstated associative context (which stored associations are most relevant to the current sensory scene).",
+    "mapping_caveat": "Hippocampal pattern completion is a content-addressable retrieval mechanism operating on bound episodic traces. E1's ContextMemory is a trained neural network module with separate world_query_proj. The biological mechanism involves recurrent dynamics in CA3; MECH-150 uses a feedforward projection. The principle transfers (partial cue -> rich context) but the mechanism differs fundamentally.",
+    "source_context": "Human fMRI study of episodic memory retrieval, UCL cognitive neuroscience"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Nature Communications, well-designed fMRI study. Mapping fidelity moderate because hippocampal pattern completion and E1 ContextMemory share the principle but not the mechanism. Transfer risk moderate: human episodic memory to computational ContextMemory module."
+  }
+}

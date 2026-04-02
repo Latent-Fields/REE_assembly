@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_150",
+  "entry_id": "2026-04-02_mech_150_coordinated_reinstatement_staresina2019",
+  "timestamp_utc": "2026-04-02T13:20:00Z",
+  "claim_ids_tested": ["MECH-150"],
+  "source": {
+    "title": "Coordinated representational reinstatement in the human hippocampus and lateral temporal cortex during episodic memory retrieval",
+    "authors": ["Bernhard P. Staresina", "Tobias Reber", "Johannes Niediek", "Jan Bostr\u00f6m", "Christian E. Elger", "Florian Mormann"],
+    "year": 2019,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-019-09569-0"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Staresina et al. demonstrate a temporal cascade: hippocampal pattern completion (~500ms) precedes cortical reinstatement of item information in lateral temporal cortex. This supports MECH-150's architecture where ContextMemory (hippocampal analogue) produces a cue-indexed context that then influences downstream processing (E2/E3). The temporal ordering establishes the causal direction MECH-150 assumes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The temporal cascade (500ms hippocampal -> cortical reinstatement) operates on a timescale far slower than REE's per-step inference. MECH-150 assumes context retrieval is instantaneous within a forward pass.",
+    "The study uses item-context associations (object-scene pairs), which is simpler than the multi-dimensional cue context MECH-150 is designed to produce."
+  ],
+  "tags": ["mech_150", "hippocampus", "pattern_completion", "reinstatement", "temporal_cascade", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "During episodic memory retrieval, hippocampal pattern completion of item-context associations occurs at ~500ms post-cue, followed by reinstatement of item information in lateral temporal cortex. This temporal ordering establishes the hippocampus as initiating retrieval, with cortical reinstatement as a downstream consequence.",
+    "ree_translation": "MECH-150's ContextMemory produces cue-indexed associations that then feed downstream to E2 (action biasing, MECH-151) and E3 (terrain scaling, MECH-152). The temporal cascade described here supports this causal architecture: context retrieval (ContextMemory) precedes and drives downstream processing (E2/E3 influence), not the reverse.",
+    "mapping_caveat": "The biological temporal cascade involves oscillatory dynamics (high gamma associated with pattern completion) and operates over hundreds of milliseconds. REE's ContextMemory is a feedforward computation within a single inference step. The temporal ordering principle maps well; the dynamic mechanism does not.",
+    "source_context": "Intracranial recordings in epilepsy patients during episodic memory retrieval, hippocampal and lateral temporal cortex"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Nature Communications, intracranial recordings (rare and valuable data). Mapping fidelity moderate: the temporal cascade principle maps well onto MECH-150's architecture but the temporal dynamics themselves do not. Transfer risk moderate: intracranial human data provides excellent biological grounding but REE's implementation is feedforward."
+  }
+}

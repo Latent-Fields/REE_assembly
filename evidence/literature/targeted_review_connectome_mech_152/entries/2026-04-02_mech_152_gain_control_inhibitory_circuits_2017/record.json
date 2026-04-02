@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_152",
+  "entry_id": "2026-04-02_mech_152_gain_control_inhibitory_circuits_2017",
+  "timestamp_utc": "2026-04-02T14:10:00Z",
+  "claim_ids_tested": ["MECH-152"],
+  "source": {
+    "title": "Attentional modulation of neuronal variability in circuit models of cortex",
+    "authors": ["Tatjana Kanashiro", "Gabriel Koch Ocker", "Brent Doiron", "Alex Bhatt", "Krešimir Josić"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.23978"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Kanashiro et al. show that top-down attentional signals modulate neural gain through inhibitory circuits, affecting both response magnitude and variability. This supports MECH-152's multiplicative gain control principle (terrain_weight scales E3 scoring channels). However, the paper addresses visual attention, not harm/goal terrain weighting.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper models attention as gain control on sensory responses, not contextual modulation of harm/goal evaluation channels.",
+    "Gain control in the model operates through inhibitory circuits (SOM/PV interneurons), while MECH-152 uses a simple trained linear projection -- the computational mechanisms are very different."
+  ],
+  "tags": ["mech_152", "gain_control", "attention", "precision_weighting", "inhibitory_circuits", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Top-down attentional signals modulate neural gain through inhibitory circuits, primarily affecting inhibitory neurons. This produces both increased stimulus response gain and decreased noise correlations -- diverse correlates of attention arise from a single biophysical mechanism.",
+    "ree_translation": "MECH-152's terrain_weight signal [w_harm, w_goal] operates as a multiplicative gain control on E3's harm and goal scoring channels. The gain control principle described here -- top-down modulation scaling the response of downstream processing channels -- is the general computational mechanism MECH-152 implements in a specialized context (harm/goal terrain evaluation).",
+    "mapping_caveat": "The paper addresses visual attentional gain control, not value/terrain-based modulation. The inhibitory circuit mechanism (SOM/PV interneuron interactions) has no direct analogue in MECH-152's linear projection architecture. The mapping is at the functional level (gain control principle), not the mechanistic level.",
+    "source_context": "Computational neuroscience model of cortical circuits with excitatory and inhibitory populations, validated against V4 attention data"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "eLife paper with solid computational methodology. Mapping fidelity low-moderate because the principle (gain control) is relevant but the specific domain (visual attention) and mechanism (inhibitory circuits) are distant from MECH-152. Transfer risk moderate."
+  }
+}

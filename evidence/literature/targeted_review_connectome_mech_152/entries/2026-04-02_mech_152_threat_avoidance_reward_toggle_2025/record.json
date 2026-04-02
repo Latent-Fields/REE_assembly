@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_152",
+  "entry_id": "2026-04-02_mech_152_threat_avoidance_reward_toggle_2025",
+  "timestamp_utc": "2026-04-02T14:05:00Z",
+  "claim_ids_tested": ["MECH-152"],
+  "source": {
+    "title": "Intersect between brain mechanisms of conditioned threat, active avoidance, and reward",
+    "authors": ["Floris Klumpers", "Karin Roelofs"],
+    "year": 2025,
+    "venue": "Communications Psychology",
+    "doi": "10.1038/s44271-025-00197-7"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Klumpers & Roelofs describe a neural toggle-switch model for transitioning between threat avoidance and reward approach, with the balance depending on cost-reward evaluation in vmPFC/OFC. This supports MECH-152's claim that context modulates the relative weighting of harm vs goal channels. However, the toggle model is more categorical than MECH-152's continuous terrain_weight.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The toggle-switch model implies discrete fear/approach states, while MECH-152 proposes continuous modulation of [w_harm, w_goal] weights.",
+    "The paper focuses on conditioned threat and active avoidance learning -- REE's terrain weighting operates on learned spatial harm/goal fields, not Pavlovian conditioning."
+  ],
+  "tags": ["mech_152", "threat_avoidance", "reward_approach", "toggle_switch", "vmpfc", "contextual_modulation"],
+  "mapping": {
+    "source_claim_statement": "Brain mechanisms for conditioned threat, active avoidance, and reward approach intersect through a neural toggle switch that enables fear-to-anxiety transitions and approach-vs-avoidance decisions. vmPFC/OFC evaluates costs and rewards to determine the balance, with amygdala driving threat responses and NAcc driving approach.",
+    "ree_translation": "MECH-152 claims that cue-indexed context from E1 projects to terrain_weight [w_harm, w_goal] that scales E3's harm and goal scoring. This parallels the biological toggle: context determines whether the system emphasizes harm avoidance (w_harm > w_goal) or goal approach (w_goal > w_harm). The vmPFC/OFC cost-reward evaluation maps onto E1's ContextMemory providing the contextual signal.",
+    "mapping_caveat": "The biological toggle switch operates through amygdala-vmPFC-NAcc circuits with Pavlovian conditioning. MECH-152 operates through trained linear projections from ContextMemory. The biological mechanism is subcortical and emotional; MECH-152 is computational and cortical-analogue. The principle (context modulates harm/goal balance) transfers; the mechanism does not.",
+    "source_context": "Review of human and animal neuroimaging/lesion studies on threat-reward interactions"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Nature Communications Psychology, solid review. Mapping fidelity moderate: the toggle-switch concept maps onto MECH-152's weighting but the categorical vs continuous distinction and the subcortical vs cortical mechanism differ. Transfer risk moderate."
+  }
+}

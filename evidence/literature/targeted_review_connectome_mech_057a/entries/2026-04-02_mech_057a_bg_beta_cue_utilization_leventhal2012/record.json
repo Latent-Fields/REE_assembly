@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057a",
+  "entry_id": "2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012",
+  "timestamp_utc": "2026-04-02T13:55:00Z",
+  "claim_ids_tested": ["MECH-057a"],
+  "source": {
+    "title": "Basal Ganglia Beta Oscillations Accompany Cue Utilization",
+    "authors": ["Daniel K. Leventhal", "Gregory J. Gage", "Robert Schmidt", "Jeffrey R. Pettibone", "Alaina C. Case", "Joshua D. Berke"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.01.032"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Leventhal et al. show that basal ganglia beta oscillations reflect a post-decision stabilized state that reduces interference from alternatives. Beta power increases after cue utilization, not rigidly tied to movement suppression. This supports MECH-057a by showing beta reflects commitment to a chosen action plan, not just movement inhibition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Beta was enhanced after cue utilization but not necessarily during extended committed sequences -- the post-decision beta burst may be transient rather than sustained.",
+    "The study used single cue-response trials, not multi-step action sequences."
+  ],
+  "tags": ["mech_057a", "beta_oscillations", "basal_ganglia", "cue_utilization", "motor_commitment", "decision_stabilization"],
+  "mapping": {
+    "source_claim_statement": "Basal ganglia beta oscillations increase after cues are used to determine motor output, reflecting a post-decision stabilized state of cortical-BG networks that reduces interference from alternative potential actions. Beta phase resets rapidly in response to salient cues.",
+    "ree_translation": "MECH-057a's claim that committed sequences suppress updates maps onto Leventhal et al.'s finding: beta reflects commitment stabilization, not just motor suppression. After the agent commits to an action (cue utilization), elevated beta in the BG-cortical loop reduces interference from new inputs — equivalent to suppressing precision updates during committed execution.",
+    "mapping_caveat": "The study examines single cue-response trials in rats, not multi-step action sequences. The transient nature of post-cue beta bursts may not extend to sustained suppression across a committed sequence. MECH-057a requires sustained suppression, not just a transient post-commitment stabilization.",
+    "source_context": "Rat electrophysiology, simultaneous cortical and basal ganglia LFP recordings during cue-guided behavior"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "Neuron paper, excellent methodology (simultaneous multi-site recordings). Mapping fidelity moderate because the commitment stabilization concept is directly relevant but the temporal scale differs. Transfer risk moderate: rat BG to REE computational model."
+  }
+}

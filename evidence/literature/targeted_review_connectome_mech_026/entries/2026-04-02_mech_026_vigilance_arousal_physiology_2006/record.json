@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_026",
+  "entry_id": "2026-04-02_mech_026_vigilance_arousal_physiology_2006",
+  "timestamp_utc": "2026-04-02T15:05:00Z",
+  "claim_ids_tested": ["MECH-026"],
+  "source": {
+    "title": "Vigilance, alertness, or sustained attention: physiological basis and measurement",
+    "authors": ["Barry S. Oken", "Mari C. Salinsky", "S. M. Elsas"],
+    "year": 2006,
+    "venue": "Clinical Neurophysiology",
+    "doi": "10.1016/j.clinph.2006.01.017"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Oken et al. review the physiological substrates of vigilance and arousal, establishing that vigilance requires active cortical maintenance via ascending reticular activating system, LC-NE projections, and thalamocortical loops. The dissociation between arousal (internal state) and behavioral output (motor quiescence) supports MECH-026. Confidence moderated by the clinical/EEG focus and the indirect mapping to REE's computational architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review focuses on clinical measurement of vigilance (EEG, pupillometry, autonomic markers) rather than computational mechanisms. REE has no analogue to these physiological signals.",
+    "Arousal is treated as a unitary dimension (high-low), whereas REE's sensitivity may need to be channel-specific (harm sensitivity vs goal sensitivity can diverge)."
+  ],
+  "tags": ["mech_026", "vigilance", "arousal", "lc_norepinephrine", "thalamocortical", "sustained_attention", "physiology"],
+  "mapping": {
+    "source_claim_statement": "Vigilance and sustained attention depend on ascending reticular activating system projections through the thalamus to cortex, modulated by the locus coeruleus-norepinephrine system. Arousal and behavioral output are dissociable: an organism can be in a state of high cortical arousal (ready to detect and respond) while producing minimal motor output. This dissociation is fundamental to vigilance -- it is active readiness, not passive inactivity.",
+    "ree_translation": "MECH-026 posits that ready vigilance is a distinct mode where high sensitivity coexists with behavioral restraint. The physiological evidence shows this is a real, distinct neural state -- not merely the absence of action but an actively maintained configuration. In REE, this translates to E3 maintaining high precision weights (elevated sensitivity) while the action selection pathway is suppressed. The LC-NE modulation of arousal suggests that REE's sensitivity parameter may need an arousal-like modulator rather than being a fixed setpoint.",
+    "mapping_caveat": "The review treats arousal as a physiological continuum measured by EEG, pupil diameter, and autonomic markers. REE has no physiological substrate -- 'arousal' maps to a precision parameter that has no metabolic cost, no fatigue dynamics, and no autonomic correlates. The rich physiology of biological vigilance is collapsed to a single scalar in REE.",
+    "source_context": "Clinical neurophysiology review covering EEG correlates of arousal/vigilance, autonomic measurement, sleep-wake continuum, and clinical disorders of vigilance"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.40,
+    "notes": "Clinical Neurophysiology review, solid clinical/physiological perspective. Mapping fidelity moderate-low: the arousal/restraint dissociation transfers but the physiological specifics (EEG, autonomic) have no REE analogue. Transfer risk moderate: clinical physiology to computational precision parameter."
+  }
+}

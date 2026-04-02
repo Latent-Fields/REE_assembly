@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_029",
+  "entry_id": "2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019",
+  "timestamp_utc": "2026-04-02T13:40:00Z",
+  "claim_ids_tested": ["MECH-029"],
+  "source": {
+    "title": "The neuroscience of morality and social decision-making",
+    "authors": ["Keith J. Yoder", "Jean Decety"],
+    "year": 2019,
+    "venue": "Psychology, Crime and Law",
+    "doi": "10.1080/1068316X.2018.1557182"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Yoder & Decety review the distributed neural networks underlying moral judgment and social decision-making, including systems for reward learning, valuation, mental state understanding, and salience processing. Supports MECH-029 by establishing that moral cognition recruits DMN regions (mPFC, precuneus) and simulation-related circuits. However, the review emphasizes competitive cognitive-emotional dual-process models rather than gated replay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review emphasizes dual-process models (cognitive control vs emotion) for moral judgment -- this framing differs from MECH-029's gated-replay mechanism.",
+    "Moral cognition appears to be domain-general rather than requiring dedicated circuits, which may challenge the idea of a specific 'moral simulation mode.'"
+  ],
+  "tags": ["mech_029", "moral_cognition", "dmn", "social_decision_making", "dual_process", "neuroscience"],
+  "mapping": {
+    "source_claim_statement": "Moral judgment and social decision-making recruit distributed neural networks including systems for reward learning/valuation, mental state understanding (theory of mind, relying heavily on DMN regions), and salience processing. These processes interact competitively during moral dilemmas.",
+    "ree_translation": "MECH-029's reflective/DMN mode for moral simulation maps onto the theory-of-mind and simulation networks described in this review. The DMN's role in mental state understanding and prospective simulation is the biological substrate for REE's moral simulation via trajectory replay through the viability map.",
+    "mapping_caveat": "The review frames moral cognition as domain-general, recruiting standard cognitive and emotional processing. MECH-029 proposes a more specific mechanism (gated replay) that is not directly addressed. The 'mode' concept in MECH-029 may impose more architectural specificity than the distributed, competitive processing the neuroscience describes.",
+    "source_context": "Review of neuroimaging studies on moral judgment, social decision-making, psychopathy, and individual differences in empathy"
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Solid review but not in a top-tier neuroscience journal. Mapping fidelity moderate because the review supports DMN involvement in moral cognition but not the specific gated-replay mechanism. Transfer risk low-moderate."
+  }
+}

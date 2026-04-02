@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-04-02_mech_025_agency_prediction_error_wen2020",
+  "timestamp_utc": "2026-04-02T12:35:00Z",
+  "claim_ids_tested": ["MECH-025"],
+  "source": {
+    "title": "Prediction error and regularity detection underlie two dissociable mechanisms for computing the sense of agency",
+    "authors": ["Wen Wen", "Patrick Haggard"],
+    "year": 2020,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2019.104074"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Wen & Haggard demonstrate that sense of agency has two components: prediction-error-based (comparator model) and regularity-based. The comparator mechanism directly parallels REE's SD-003 self-attribution via prediction error comparison. Supports MECH-025's responsibility-linked control aspect. Confidence moderated by indirect mapping -- the paper studies subjective agency experience, not a computational control mode.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper studies subjective sense of agency in humans, not computational control regimes -- the link to 'action mode' as an architectural feature requires a mapping leap.",
+    "Both agency mechanisms (prediction error + regularity) operate continuously, not as a discrete mode switch."
+  ],
+  "tags": ["mech_025", "sense_of_agency", "prediction_error", "comparator_model", "self_attribution", "motor_control"],
+  "mapping": {
+    "source_claim_statement": "Sense of agency is computed by two dissociable mechanisms: (1) a comparator that matches predicted and actual sensory outcomes (prediction error), and (2) a regularity detector that identifies statistical regularities between actions and outcomes. These operate independently and combine to determine whether the agent perceives itself as the cause of an event.",
+    "ree_translation": "MECH-025's responsibility-linked control requires the agent to attribute causal agency to itself. The comparator mechanism described here is the biological analogue of REE's SD-003: E2(z_t, a_actual) - E2(z_t, a_cf) computes the agent's causal signature by comparing actual vs counterfactual predictions. When this comparison yields high self-attribution, the agent enters action-doing mode with elevated precision.",
+    "mapping_caveat": "The paper measures subjective sense of agency via behavioral tasks (intentional binding, agency ratings). REE implements self-attribution computationally via E2 counterfactual comparison. The mapping assumes that the computational mechanism underlying subjective agency experience is functionally analogous to REE's E2 counterfactual -- a reasonable but unproven assumption.",
+    "source_context": "Human behavioral experiments on sense of agency, intentional binding paradigm, UCL cognitive neuroscience"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Well-designed human behavioral study in a respected journal. Mapping fidelity moderate because the paper addresses subjective agency rather than computational control architecture. Transfer risk moderate: the comparator mechanism concept transfers well but the specific experimental operationalization (intentional binding) is far from REE's implementation."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-02_sd_015_invariant_object_spatial_rolls2021",
+  "timestamp_utc": "2026-04-02T12:15:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "Learning Invariant Object and Spatial View Representations in the Brain Using Slow Unsupervised Learning",
+    "authors": ["Edmund T. Rolls"],
+    "year": 2021,
+    "venue": "Frontiers in Computational Neuroscience",
+    "doi": "10.3389/fncom.2021.686239"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Rolls' VisNet model demonstrates computationally that separate invariant object and spatial representations can be learned through the same slow-learning principle but in different cortical streams. Directly supports the architectural separation SD-015 proposes. Confidence moderated by VisNet being a specific computational hypothesis rather than established neural architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VisNet relies on temporal continuity (slow feature analysis) for invariance learning -- REE's ResourceEncoder uses supervised or BCE training, a fundamentally different learning signal.",
+    "Rolls' spatial view cells are allocentric and hippocampal -- REE's z_world is egocentric grid observation, a different coordinate frame."
+  ],
+  "tags": ["sd_015", "visnet", "slow_learning", "object_invariance", "spatial_view_cells", "ventral_dorsal_separation"],
+  "mapping": {
+    "source_claim_statement": "The brain learns position-invariant object representations in the ventral visual stream (IT cortex) and allocentric spatial view representations in the parietal/posterior cingulate cortex using the same slow unsupervised learning principle, but these two types of representation are learned in architecturally separate streams that feed the hippocampus for memory and navigation.",
+    "ree_translation": "SD-015 proposes an analogous architectural separation: z_resource (object-type features, invariant to location) is learned by a dedicated ResourceEncoder separate from z_world (full scene encoding including spatial layout). Both feed into the E3 trajectory scoring system, paralleling how ventral object and dorsal spatial representations both converge on hippocampus.",
+    "mapping_caveat": "Rolls' model concerns biological learning of invariant representations from raw visual input via temporal continuity. REE's ResourceEncoder is a 2-layer MLP trained on structured grid observations. The architectural principle (separate streams for what vs where) transfers; the learning mechanism does not.",
+    "source_context": "Computational neuroscience model (VisNet) of primate visual cortex, validated against IT cortex and parietal cortex neurophysiology"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Rolls is a major figure in this area and VisNet has substantial validation. Mapping fidelity good because the paper explicitly addresses the what/where separation for navigation. Transfer risk moderate -- the architectural principle is strong but the learning mechanism differs."
+  }
+}

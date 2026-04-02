@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_015",
+  "entry_id": "2026-04-02_sd_015_object_untangling_dicarlo2007",
+  "timestamp_utc": "2026-04-02T12:10:00Z",
+  "claim_ids_tested": ["SD-015"],
+  "source": {
+    "title": "Untangling invariant object recognition",
+    "authors": ["James J. DiCarlo", "David D. Cox"],
+    "year": 2007,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2007.06.010"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The canonical paper on ventral stream manifold untangling directly grounds SD-015's claim that object identity features must be extracted separately from spatial context. High source quality and strong conceptual mapping, but the paper addresses visual object recognition broadly rather than the specific resource-encoder-for-navigation use case in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper focuses on recognition (classification) rather than goal-directed navigation -- the untangled representation was not tested for downstream approach behavior.",
+    "IT cortex representations retain some residual position sensitivity that only approaches full invariance at the population level, not single neurons."
+  ],
+  "tags": ["sd_015", "ventral_stream", "object_invariance", "manifold_untangling", "inferotemporal_cortex"],
+  "mapping": {
+    "source_claim_statement": "The primate ventral visual stream progressively untangles object identity manifolds in IT cortex, producing population-level representations that are invariant to position, scale, and pose transformations.",
+    "ree_translation": "SD-015's ResourceEncoder parallels the ventral stream function: extracting object-type features (resource identity, magnitude) invariant to spatial location from the observation, analogous to IT cortex untangling object identity from retinal position.",
+    "mapping_caveat": "DiCarlo & Cox address biological visual processing with high-dimensional natural images. REE's ResourceEncoder operates on a structured grid observation (resource_field_view channel) -- a far simpler input space. The computational challenge of manifold untangling is dramatically reduced in REE's setting, making the biological analogy motivational rather than mechanistically necessary.",
+    "source_context": "Primate visual neuroscience, inferotemporal cortex electrophysiology, computational models of ventral stream"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Extremely high-quality canonical review (>3000 citations). Mapping fidelity moderate because REE's grid world resource encoding is a simplified analogue of biological object recognition. Transfer risk moderate: the principle (separate identity from location) transfers well, but the computational difficulty does not."
+  }
+}

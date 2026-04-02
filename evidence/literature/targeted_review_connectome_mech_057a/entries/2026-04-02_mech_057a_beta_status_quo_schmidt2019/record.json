@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_057a",
+  "entry_id": "2026-04-02_mech_057a_beta_status_quo_schmidt2019",
+  "timestamp_utc": "2026-04-02T13:50:00Z",
+  "claim_ids_tested": ["MECH-057a"],
+  "source": {
+    "title": "Beta Oscillations in Working Memory, Executive Control of Movement and Thought, and Sensorimotor Function",
+    "authors": ["Robert Schmidt", "Jonas Herrojo Ruiz", "Roger C. Kilavik", "Mikael Lundqvist", "Philip A. Starr", "Amber R. Aron"],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1163-19.2019"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This review establishes that beta oscillations serve as a 'status quo' maintenance signal: elevated beta during posture hold and post-movement periods suppresses alternative motor plans, while beta desynchronization permits movement initiation. Directly supports MECH-057a's claim that committed sequences suppress precision updates. High-quality review with strong mechanistic detail.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes that beta's role extends beyond simple suppression -- it also reflects working memory maintenance, content reactivation, and top-down predictions. MECH-057a's framing as pure precision suppression may be too narrow.",
+    "Beta suppression during movement may reflect preparation rather than precision updating -- the timing is pre-movement, not post-commitment."
+  ],
+  "tags": ["mech_057a", "beta_oscillations", "motor_control", "status_quo", "precision_suppression", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "Beta oscillations in sensorimotor cortex maintain the current motor state and suppress alternative actions. Elevated beta during posture hold and post-movement periods reflects 'status quo' maintenance. Beta desynchronization before movement permits action initiation. This framework extends to cognitive domains: beta may maintain working memory content and suppress interference.",
+    "ree_translation": "MECH-057a claims that committed action sequences suppress precision updates until execution completes. The beta status-quo hypothesis provides the neural mechanism: elevated beta during committed execution suppresses new sensory/precision inputs (analogous to E3 precision updates), while completion events (beta desynchronization, PMBR) re-open the update channel. MECH-090's beta-gate proposal implements this computationally.",
+    "mapping_caveat": "The review discusses beta in the context of individual movements and posture, not multi-step action sequences per se. MECH-057a addresses committed multi-step sequences, which involves a longer timescale of suppression. Whether beta maintains its suppressive role across an extended action sequence (rather than just during a single movement) is less well established.",
+    "source_context": "Review of beta oscillation literature across sensorimotor, cognitive, and clinical domains in humans and primates"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "J Neuroscience review, comprehensive and well-cited. Mapping fidelity moderate-good because the status-quo hypothesis aligns closely with MECH-057a but the temporal scale (single movement vs multi-step sequence) differs. Transfer risk low."
+  }
+}

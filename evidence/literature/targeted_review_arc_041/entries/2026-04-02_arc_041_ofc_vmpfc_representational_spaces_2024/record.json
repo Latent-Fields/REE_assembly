@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_041",
+  "entry_id": "2026-04-02_arc_041_ofc_vmpfc_representational_spaces_2024",
+  "timestamp_utc": "2026-04-02T13:00:00Z",
+  "claim_ids_tested": ["ARC-041"],
+  "source": {
+    "title": "Representational spaces in orbitofrontal and ventromedial prefrontal cortex: task states, values, and beyond",
+    "authors": ["Peter H. Rudebeck", "Elisabeth A. Murray"],
+    "year": 2024,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2024.10.003"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This review establishes that OFC/vmPFC encode task states and values in representational spaces, with dissociable contributions from lateral OFC (credit assignment) and medial OFC/vmPFC (value-guided choice). Supports ARC-041's dual-output architecture where E1 retrieval feeds both E2 action biasing and E3 terrain precision scaling, paralleling lateral OFC -> action and medial OFC/vmPFC -> valuation pathways.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review suggests OFC represents task states more broadly than simple value -- ARC-041's framing as 'cue-weighting circuit' may be narrower than the biological reality.",
+    "Lateral vs medial OFC dissociation is not cleanly mapped onto E2-action vs E3-valuation -- the biological pathways are more intertwined."
+  ],
+  "tags": ["arc_041", "ofc", "vmpfc", "value", "task_state", "credit_assignment", "dual_output"],
+  "mapping": {
+    "source_claim_statement": "OFC and vmPFC encode rich representational spaces including task states, expected outcomes, and values. Lateral OFC supports credit assignment linking specific stimuli to outcomes, while medial OFC/vmPFC supports value-guided choice and evaluation. Both regions integrate sensory information with stored knowledge for decision-making.",
+    "ree_translation": "ARC-041 proposes a frontal cue-weighting circuit where E1 ContextMemory retrieval feeds dual pathways: E2 action biasing (MECH-151, analogous to lateral OFC credit assignment / action selection) and E3 terrain precision scaling (MECH-152, analogous to medial OFC/vmPFC valuation). The review supports this dual-output architecture and the role of cue-indexed retrieval in driving both pathways.",
+    "mapping_caveat": "The biological dissociation between lateral and medial OFC is graded, not sharp. Many studies find overlapping functions. ARC-041's clean dual-pathway architecture may impose more structure than the biology warrants. Additionally, OFC functions extend well beyond cue-weighting to include outcome monitoring, error detection, and reversal learning -- ARC-041 captures only one aspect.",
+    "source_context": "Primate neurophysiology and neuroimaging of OFC/vmPFC, cross-species (macaque and human) evidence"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "High-quality review in a top neuroscience journal. Mapping fidelity moderate because ARC-041 simplifies the OFC/vmPFC functional landscape. Transfer risk low-moderate: primate OFC is well-characterized and the architectural principles are widely applicable."
+  }
+}

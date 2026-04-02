@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_025",
+  "entry_id": "2026-04-02_mech_025_anatomy_of_choice_friston2013",
+  "timestamp_utc": "2026-04-02T12:30:00Z",
+  "claim_ids_tested": ["MECH-025"],
+  "source": {
+    "title": "The anatomy of choice: active inference and agency",
+    "authors": ["Karl Friston", "Philipp Schwartenbeck", "Thomas FitzGerald", "Michael Moutoussis", "Timothy Behrens", "Raymond J. Dolan"],
+    "year": 2013,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2013.00598"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Friston et al. show that agency and action selection emerge from precision-weighted inference under active inference. Policy precision increases when goals are attainable, mapping onto MECH-025's claim that action mode uses high precision for control. However, the paper does not specifically address short-horizon vs long-horizon or responsibility-linked aspects.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The active inference framework treats precision as a property of beliefs about policies, not a dedicated action-mode regime -- it is continuous, not a discrete mode switch.",
+    "Responsibility is not explicitly modeled -- agency in this framework is about self-attribution of action outcomes, not moral responsibility."
+  ],
+  "tags": ["mech_025", "active_inference", "agency", "precision", "policy_selection", "action_mode"],
+  "mapping": {
+    "source_claim_statement": "In active inference, agency arises from prior beliefs about action policies. The precision (inverse temperature) of beliefs about policies has a unique Bayes-optimal solution: attainable goals are afforded higher precision, such that confident action selection concentrates probability on policies that minimize expected free energy.",
+    "ree_translation": "MECH-025's action-doing mode -- high-precision, short-horizon control during causally efficacious action -- maps onto the active inference regime where policy precision is elevated because the agent's causal influence on outcomes is high (goals are attainable through action). REE's E3 dynamic precision parameter plays the role of Friston's policy precision.",
+    "mapping_caveat": "Active inference treats precision as a continuous, context-dependent variable -- there is no discrete 'action mode' vs 'other modes'. MECH-025 proposes a more categorical mode distinction. Also, active inference's precision applies to policy selection globally, not specifically to short-horizon control. The short-horizon aspect of MECH-025 is not addressed by this paper.",
+    "source_context": "Computational neuroscience / variational Bayes, simulated decision-making under active inference"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.25,
+    "notes": "Influential paper from the Friston lab in a reputable journal. Mapping fidelity moderate because the paper supports the precision-action link but not the mode-specific or responsibility-linked aspects of MECH-025. Low transfer risk since the computational framework is broadly applicable."
+  }
+}

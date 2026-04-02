@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_007",
+  "entry_id": "2026-04-02_q_007_constructed_emotion_theory_barrett2017",
+  "timestamp_utc": "2026-04-02T12:50:00Z",
+  "claim_ids_tested": ["Q-007"],
+  "source": {
+    "title": "The theory of constructed emotion: an active inference account of interoception and categorization",
+    "authors": ["Lisa Feldman Barrett"],
+    "year": 2017,
+    "venue": "Social Cognitive and Affective Neuroscience",
+    "doi": "10.1093/scan/nsw154"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Barrett's theory of constructed emotion proposes that emotions are constructed from domain-general ingredients (core affect, conceptualization) rather than being discrete natural kinds. This challenges Q-007's framing of discrete regimes but supports the active inference / precision-weighting framework that REE uses. The theory predicts dimensional rather than categorical internal states -- but REE's z_beta is already dimensional.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Constructed emotion theory predicts no stable, universal emotion categories -- challenging the idea that z_beta would have discrete attractor regimes corresponding to basic emotions.",
+    "If emotions are constructed ad hoc from interoceptive prediction and conceptual knowledge, the 'control-channel regime' concept may be too static for the phenomenon."
+  ],
+  "tags": ["q_007", "constructed_emotion", "active_inference", "interoception", "conceptualization", "affective_neuroscience"],
+  "mapping": {
+    "source_claim_statement": "Emotions are not discrete natural kinds with dedicated neural circuits. Instead, they are constructed from domain-general ingredients: interoceptive predictions (core affect: valence and arousal), sensory predictions, and conceptual categorization. The brain uses active inference to construct emotional experiences, with precision-weighted prediction errors driving belief updating.",
+    "ree_translation": "Q-007 asks whether stable control-channel regimes exist in z_beta. Barrett's TCE predicts the answer is nuanced: core affect (valence, arousal) is real and dimensional (supporting z_beta's continuous representation), but discrete regime boundaries are constructed rather than given. For REE, this suggests z_beta may show continuous gradients rather than sharp attractors. The active inference framing aligns with REE's precision-weighting architecture.",
+    "mapping_caveat": "Barrett's theory is about biological human emotion, not computational agent architecture. REE's z_beta is a designed latent space that could be given discrete structure by architectural choice even if biological emotions lack such structure. The theory constrains biological plausibility but not computational design freedom.",
+    "source_context": "Theoretical neuroscience / affective science, active inference framework applied to emotion"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Highly influential theory from a leading researcher. Mapping fidelity moderate because the theory addresses biological emotion construction; REE's z_beta is a computational construct that need not mirror biological emotion. The active inference alignment increases relevance."
+  }
+}
