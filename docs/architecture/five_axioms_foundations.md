@@ -200,6 +200,21 @@ not rule-based, not purely utilitarian, not purely virtue-based — but a struct
 consequence of what it means to be a self among other selves, uncertain, in a real shared
 world where love exists.
 
+**Note on unavoidability:** These objectives are directional commitments, not achievable
+endpoints. Acting in a world shared with others necessarily causes harm — resources are
+competed for, futures are foreclosed by any action taken, and causal consequences extend
+beyond what any finite agent can fully trace. "Preserve minds" and "preserve future
+options" are asymptotic directions under this constraint, not targets that can be
+reached. The qualifier *unnecessary* in "reduce unnecessary suffering" carries the
+full ethical weight: some suffering is unavoidable, and its unavoidability does not make
+it a neutral fact — it makes it a moral cost that must be acknowledged and carried
+forward.
+
+REE's answer to unavoidable harm is not paralysis or denial but **moral continuity**:
+residue accumulates even for correct choices, not as punishment for failure but as honest
+accounting for what acting in a shared world costs. The objectives above set the
+direction; moral residue is how the agent keeps the running account.
+
 ---
 
 ## Conceptual Stack: Axioms Through Learning (ARC-043)

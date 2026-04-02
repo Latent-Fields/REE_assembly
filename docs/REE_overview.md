@@ -64,6 +64,8 @@ REE's distinguishing requirement is **moral continuity**:
 - Even "correct" choices generate **moral residue** — persistent geometric cost that shapes future policy selection.
 - Ethics is not a rule-set added on top. It is a structural consequence of what the axioms jointly require of any agent that acts in a shared world.
 
+The reason residue is architecturally necessary — not just a design choice — is that **irreversible harm to others is unavoidable in any real system**. Acting in a shared world necessarily forecloses futures, competes for resources, and produces causal consequences that extend beyond what any finite agent can fully trace or undo. The ethical demand is therefore not zero harm (which is unachievable) but minimised unnecessary harm plus honest accounting of the harm that does occur. Moral residue is that accounting: it accumulates, shapes future policy, and cannot be discharged by claiming the choice was correct.
+
 The three functional constraints that follow from the axioms (Layers 1-3 → Layer 6):
 
 1. **Rapid prediction** — because you cannot be sure (INV-025), the system must predict provisionally and update on error.
