@@ -13,6 +13,24 @@ REE is not a moral rule engine. It does not assume ethical cost can be eliminate
 
 ---
 
+## Latest result — 2026-04-03
+
+**EXQ-223 PASS: Minimal mind confirmed.** The E1+E2+hippocampus core — associative world
+model, fast transition predictor, hippocampal trajectory proposal, and primitive go/no-go
+selection — is sufficient for stable navigation, harm avoidance, and resource acquisition
+without deliberative machinery. 3/3 criteria met across 3 independent seeds:
+harm_ratio 0.29–0.39, REE reward ~4.5× random baseline.
+
+This is the first experimental confirmation that the REE core loop, at the complexity level
+of an early vertebrate nervous system, constitutes a minimal functional mind. The ablation
+configuration corresponds closely to what is known of zebrafish larval circuitry — the
+best-characterised vertebrate at this level of organisation, whose entire ~100,000-neuron
+CNS can be imaged during free behaviour.
+
+→ [EXQ-223 entry in changelog](changelog.md#2026-04-03-exq-223-pass--minimal-mind-hypothesis-confirmed)
+
+---
+
 ## Where to start
 
 | Document | What it covers |

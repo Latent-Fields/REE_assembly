@@ -7,6 +7,85 @@
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-04-03: EXQ-223 PASS — Minimal Mind Hypothesis Confirmed
+
+### The milestone
+
+EXQ-223 (Minimal Vertebrate Cognition Ablation) passed 3/3 criteria. The REE core loop —
+E1 (associative world model) + E2 (fast transition model) + HippocampalModule (trajectory
+proposal) + multinomial go/no-go selection + raw harm/reward signals — is sufficient to
+produce stable, harm-avoiding, resource-seeking behaviour on a 10×10 gridworld with
+environmental drift, without commitment architecture, goal evaluation, or motivational
+valence circuits.
+
+This is the first experimental confirmation that the E1+E2+hippocampus triad, configured
+at approximately early-vertebrate complexity, constitutes a minimal functional mind: a
+system that navigates its world, avoids harm, and acquires resources through gradient
+following alone.
+
+### Criteria
+
+| Criterion | Result |
+|-----------|--------|
+| C1: REE harm ratio < 0.65 | PASS — seed 0: 0.293, seed 1: 0.394, seed 2: 0.315 |
+| C2: REE reward > 2× random | PASS — REE takes ~4.5× as much reward as random |
+| C3: Positive learning signal across seeds | PASS — 3/3 seeds |
+
+### What was ablated
+
+The configuration strips deliberative machinery entirely:
+- `commitment_threshold = −1.0`: agent is always in the uncommitted state
+- `z_goal_enabled = False`: no goal representation or goal-directed drive
+- `benefit_eval_enabled = False`: no prospective benefit evaluation
+
+What remains: the slow LSTM world model (E1), the fast transition predictor (E2), the
+hippocampal trajectory proposal mechanism, and the primitive go/no-go gate — and nothing
+else. The result shows this is enough.
+
+### Closest biological analogs
+
+The configuration corresponds architecturally to the level of organisation seen in well-
+characterised simple nervous systems:
+
+- **Zebrafish larva (5–7 dpf)** — best vertebrate match. Whole-brain calcium imaging
+  (Ahrens lab, Janelia Research Campus) records the entire ~100,000-neuron CNS during free
+  behaviour. Has lateral pallium (hippocampal precursor), cerebellum (E2-like forward
+  model), habenula (harm/aversion), optic tectum + reticulospinal system (go/no-go
+  command neurons). No mature prefrontal cortex → no commitment architecture.
+- **Ciona intestinalis larva (177 neurons, complete connectome)** — most minimal mapped
+  chordate. Ryan et al. (2016, Science) produced the full wiring diagram. Sensory vesicle,
+  anterior ganglion (proto-pallium), motor ganglion (go/no-go), tail musculature. The
+  evolutionary ground state of chordate nervous system organisation.
+- **C. elegans (302 neurons, complete connectome)** — most completely characterised
+  nervous system. AVA/AVB command interneurons (go/no-go), ASH nociceptors (harm signal),
+  interneuron layer (associative context, E1-analog). No hippocampal precursor, but the
+  functional circuit pattern is present.
+- **Lamprey** — most basal living vertebrate with identifiable pallium (hippocampal
+  precursor), primitive basal ganglia, and reticulospinal command neurons. Grillner lab
+  (Karolinska) has detailed circuit maps of the locomotor CPG and BG-like selection
+  circuitry.
+
+The zebrafish larva is the closest match at the level of circuit complexity. EXQ-223
+confirms that the REE substrate, at this level of configuration, produces the same class
+of gradient-following behaviour these organisms show in their ecological niche.
+
+### What EXQ-223 is not
+
+This experiment does not test deliberative, goal-directed, or commitment-gated behaviour.
+Those require SD-011/SD-012 substrates and the approach/goal experiments (EXQ-074e,
+EXQ-076e, ARC-030). EXQ-223 establishes that the foundation is sound before those
+additions are layered on.
+
+### Episode visualiser
+
+A companion episode log format was added to the experiment script. Future runs emit
+`{experiment_type}_{ts}_episode_log.json` alongside the standard metrics output.
+`episode_viewer.html` in `REE_assembly/` plays back an organism's life on the gridworld
+with per-step mode annotation (avoid / approach / explore / neutral) and internal state
+timelines (z_harm_norm, z_beta, z_world change rate). Linked from the explorer.
+
+---
+
 ## 2026-03-06: V2 Substrate Debt Resolution — SD-001, SD-002, SD-003
 
 ### Overview
