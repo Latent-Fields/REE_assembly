@@ -3,8 +3,8 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_198_sd011_dual_stream_stability",
   "run_id": "v3_exq_198_sd011_dual_stream_stability_20260401T232341Z_v3",
-  "status": "UNKNOWN",
-  "timestamp_utc": "",
+  "status": "PASS",
+  "timestamp_utc": "2026-04-01T23:23:41Z",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -23,8 +23,11 @@
     "SD-011"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-011": "supports"
+  },
+  "evidence_direction_note": "Manifest status=UNKNOWN was an old template artifact. metrics.json shows PASS: dissociation_advantage=1.243, decision=retain_ree, all 3 seeds pass C1+C4. Corrected 2026-04-03 governance review.",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

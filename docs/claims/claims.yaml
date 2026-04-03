@@ -1373,6 +1373,11 @@
     responsibility linkage -- where high precision implies ethical accountability -- is a
     philosophical claim, not a neuroscience finding. MECH-025 now covers the mechanistic
     precision modulation only. Responsibility linkage decomposed to MECH-025b.
+    EXQ-199 DIAGNOSTIC (2026-04-02, governance 2026-04-03): committed_step_count=0 both seeds.
+    BreathOscillator creates uncommitted windows but agent never enters committed state during
+    evaluation -- cannot measure doing-mode causal signal without committed steps. Classified
+    as substrate limitation (not evidence against MECH-025). evidence_direction=mixed in
+    manifest but excluded from evidence scoring for this reason.
   depends_on:
     - ARC-016
     - ARC-005
@@ -3526,6 +3531,11 @@
   subject: hippocampal.intrinsic_map_valence
   polarity: asserts
   status: candidate
+  evidence_quality_note: >
+    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.689,
+    conflict_ratio=1, 0 exp entries, 5 lit entries. Literature-only conflict: 2 supports,
+    2 weakens, 1 mixed across lit entries. No experimental evidence yet. Conflict with
+    ARC-007 noted below. Hold at candidate pending experimental discrimination.
   conflict_with:
     - ARC-007
   conflict_note: |
@@ -4621,7 +4631,14 @@
   claim_type: mechanism_hypothesis
   subject: encoder.event_contrastive_supervision
   polarity: asserts
-  status: provisional
+  status: stable
+  status_note: |
+    Promoted provisional -> stable 2026-04-03.
+    Evidence: conf=0.817, conflict_ratio=0, 4 exp all supports, 3 lit entries.
+    EXQ-020 PASS (2026-03-20): selectivity_margin=0.882, event_classification_acc=0.692.
+    EXQ-023 PASS (2026-03-22): combined SD-008+SD-009, event_selectivity_margin=0.084.
+    EXQ-176/177 PASS confirming contrastive auxiliary loss is required for z_world discrimination.
+    No conflicting experimental evidence. Stable mechanism; z_world encoder design is locked.
   implementation_phase: v3
   depends_on:
     - SD-005
@@ -4746,6 +4763,11 @@
     EXQ-062b PASS 5/5 confirms spike selectivity (fewer spikes than always-spike condition,
     higher per-spike impact: 10.7 vs 6.7 uncommitted steps/spike).
     Both routes independently confirmed. Literature triangulation pending (LIT-0092, LIT-0093).
+    Updated 2026-04-03: two additional definitive PASSes.
+    EXQ-197 PASS 6/6 (2026-04-01): matched-seed discriminative pair, 3 seeds [42,7,13].
+    discriminative_delta=0.0506-0.0509 all seeds; ABLATED produces 0.0 (perfect discrimination).
+    EXQ-204 PASS 4/4 (2026-04-03): surprise gate pair, 3 seeds. harm_spike_rv~1.6-1.9e-6
+    on unexpected harm; 0 on non-harm; 0 in ABLATED condition. Strongest evidence to date.
   claim_level: mechanistic
   functional_restatement: >
     When actual harm substantially exceeds predicted harm (prediction error surprise),
@@ -5375,12 +5397,13 @@
   claim_type: design_decision
   subject: encoder.event_contrastive_supervision
   polarity: asserts
-  status: candidate
+  status: provisional
   status_note: >
-    z_world encoder requires event-type cross-entropy auxiliary loss during
-    training (MECH-100). Reconstruction and E1-prediction losses are invariant
-    to harm-relevance; only supervised event discrimination forces z_world to
-    represent hazard-vs-empty distinctions. See EXQ-020.
+    Promoted candidate -> provisional 2026-04-03.
+    Evidence: conf=0.768, conflict_ratio=0, 2 exp supports, 2 lit entries.
+    EXQ-020 PASS (2026-03-20): event_classification_acc=0.692, selectivity_margin=0.882.
+    MECH-100 (same claim, mechanism register) promoted to stable this session.
+    SD-009 provisional: design decision validated, implementation confirmed in ree-v3 substrate.
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
@@ -5462,6 +5485,11 @@
     2003, 2009) interoception and insular cortex homeostatic map; Rainville et al. (1997,
     Science) gold-standard dissociation: hypnotic modulation of unpleasantness modulates
     ACC but not S1 -- affective and sensory-discriminative components are independent.
+    EXQ-198 PASS (2026-04-01): dual stream stability. dissociation_advantage=1.243,
+    decision=retain_ree. harm_fwd_r2=0.677 (dual) vs 0.555 (fused). All seeds pass C1+C4.
+    Manifest had status=UNKNOWN (old template) but metrics.json shows clear positive result.
+    evidence_direction corrected to "supports". Confirms dual-stream separation is functionally
+    advantageous over fused z_harm.
     Keltner et al. (2006) predictability suppresses sensory (S1) activity, not affective
     (ACC) -- forward model cancellation applies to z_harm_s but not z_harm_a.
     EXQ-100 FAIL 2/4 (2026-03-27): First integration of AffectiveHarmEncoder (z_harm_a).
@@ -6038,19 +6066,29 @@
   claim_type: mechanism_hypothesis
   subject: self_maintenance.coherent_unfamiliar_pathology
   polarity: asserts
-  status: provisional
+  status: stable
+  status_note: |
+    Promoted provisional -> stable 2026-04-03.
+    Evidence: conf=0.857, conflict_ratio=0, 6 supports + 1 mixed, 3 lit entries.
+    EXQ-144 PASS (2026-03-29, 5/5) confirmed core dissociation.
+    EXQ-084d per-claim override (2026-03-30 + 2026-04-02 runs): MECH-119=mixed. Stability
+    dissociation confirmed (C2/C4 PASS) but d_eff prediction partially fails.
+    The stability prediction (coherent-unfamiliar -> low stability) is robustly validated.
+    The d_eff prediction requires further disambiguation. Stable on stability arm.
   implementation_phase: v3
   evidence_quality_note: |
     EXQ-144 PASS (2026-03-29, 5/5): coherent-unfamiliar discriminative pair. All 5 criteria met.
     evidence_direction=supports. 0 conflict ratio; conf=0.81 with 2 experiment entries (both
     supports) and 3 literature entries. Clean promotion to provisional per governance decision
     2026-03-29.
-    EXQ-084d MIXED (per-claim override, 2026-03-30): stability dissociation confirmed (C2/C4
-    PASS -- both noise and novelty collapse stability from 0.950 to 0.063/0.026). However R3
-    (novelty/structured perturbation) produces d_eff=22.6 -- HIGHER than R2 noise (20.8) and R1
-    normal (20.6). MECH-119 predicts coherent-unfamiliar regime has LOW d_eff + low stability.
-    The low-stability prediction is confirmed; the low-d_eff prediction is not. R3 novelty
-    increases dimensionality rather than compressing to a coherent subspace.
+    EXQ-084d MIXED (per-claim override, 2026-03-30 + 2026-04-02 replication): stability
+    dissociation confirmed (C2/C4 PASS -- both noise and novelty collapse stability from
+    0.950 to 0.063/0.026). However R3 (novelty/structured perturbation) produces d_eff=22.6
+    -- HIGHER than R2 noise (20.8) and R1 normal (20.6). MECH-119 predicts coherent-unfamiliar
+    regime has LOW d_eff + low stability. The low-stability prediction is confirmed; the
+    low-d_eff prediction is not. R3 novelty increases dimensionality rather than compressing
+    to a coherent subspace. Promoted to stable on stability arm; d_eff arm requires further
+    disambiguation (see Q-022).
   depends_on:
     - MECH-113
     - MECH-118
@@ -7737,8 +7775,14 @@
     grid creates local traps (directed agents increase harm 2.3x). SD-015 encoder claim is
     validated at the representation level. The gap is NOT in z_resource encoding but in
     planning horizon: 1-step lookahead is fundamentally insufficient for grid-scale navigation.
-    Oracle ceiling test (EXQ-182a) will determine if this is an env config issue or requires
-    SD-004 hippocampal multi-step planning.
+    EXQ-182a PASS (2026-04-01, oracle ceiling): handcrafted oracle goal cue (1/(1+manhattan_dist))
+    achieves 11.14x benefit ratio (threshold 1.3x). Confirms action selection mechanism CAN use
+    a perfect goal signal effectively. Bottleneck is z_goal learning quality, not action selection
+    wiring. SD-015 encoder representation claim is validated; SD-004 hippocampal multi-step
+    planning is the remaining unresolved gap for navigation in grid-scale environments.
+    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.703,
+    conflict_ratio=0.889. EXQ-182a PASS adds a support entry. Resolution requires ARC-030
+    and z_goal-to-behavior pathway to be validated.
 
 - id: MECH-135
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
@@ -7916,6 +7960,11 @@
     However, experiment flagged for /diagnose-errors before governance decision: possible
     insufficient Phase 0 training or schema-transfer wiring issue. Hold at candidate
     pending diagnosis. (governance 2026-04-01)
+    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.546,
+    conflict_ratio=1, 1 exp entry. Prior decision label changed from V3-gate to conflict
+    resolution. Rationale: prior V3 substrate hold was premature label -- claim has
+    implementation_phase=v3 but conflict_ratio=1 is the primary blocker. EXQ-191
+    /diagnose-errors must complete before next governance review.
   evidence: []
 
 - id: ARC-039
@@ -8535,7 +8584,13 @@
   claim_type: mechanism_hypothesis
   subject: e1_e3.cue_indexed_terrain_precision_modulation
   polarity: asserts
-  status: candidate
+  status: provisional
+  status_note: |
+    Promoted candidate -> provisional 2026-04-03.
+    Evidence: conf=0.773, conflict_ratio=0, 2 exp supports, 2 lit entries.
+    EXQ-194a PASS (2026-04-01): direct terrain pathway with phased training.
+    0 conflicting experiments. Note: evidence_quality_note was empty at promotion -- 2 experiments
+    is a thin base; evidence_quality_note should be updated when additional experiments run.
   implementation_phase: v3
   depends_on:
     - MECH-150
@@ -8728,6 +8783,13 @@
     Registered 2026-03-31 from EXQ-181b result and developmental staging analysis.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
+  evidence_quality_note: >
+    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.55,
+    conflict_ratio=0.667, 2 exp entries, 2 lit entries.
+    EXQ-187a FAIL (2026-04-01): supervised terrain loss completely failed to differentiate
+    contexts (cosine_sim=1.0, same as EXQ-181b baseline). Flagged for /diagnose-errors in
+    a separate session -- evidence_direction="does_not_support" is non-standard and needs
+    root-cause analysis before weighting. Hold at candidate; conflict resolution required.
 
 - id: MECH-153
   title: "E1 ContextMemory requires a supervised context-labeling training objective -- not unsupervised experience alone -- to produce differentiated cue-indexed representations; without this objective, hazard-proximate and hazard-distal context vectors remain near-identical (cosine_sim approximately 1.0), leaving the MECH-150 retrieval pathway functionally silent."
@@ -9358,3 +9420,7 @@
     Both systems share HippocampalModule; distinction is in whether proposal
     generation is value-flat or goal-seeded.
   evidence: []
+  evidence_quality_note: >
+    Governance 2026-04-03: hold_pending_v3_substrate applied. implementation_phase=v3,
+    2 supports from lit entries, 0 exp entries. No V3 substrate experiments yet. Standard
+    V3-pending gate: hold until V3 experiments demonstrate dual-system discrimination.

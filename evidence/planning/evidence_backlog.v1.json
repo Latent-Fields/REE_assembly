@@ -1,7 +1,7 @@
 {
   "criteria_version": "planning_criteria/v1",
   "evidence_scope": "current_epoch_applicable,epoch=ree_hybrid_guardrails_v1",
-  "generated_at_utc": "2026-04-02T22:39:46.490211Z",
+  "generated_at_utc": "2026-04-03T04:06:27.566436Z",
   "items": [
     {
       "adjudication_context": {
@@ -20,7 +20,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -52,7 +52,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-31T20:20:00.000000Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -69,7 +69,7 @@
         },
         "conflict_ratio": 1.0,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -103,7 +103,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -126,44 +126,45 @@
         }
       },
       "backlog_id": "EVB-0002",
-      "claim_id": "ARC-033",
+      "claim_id": "ARC-042",
       "evidence_needed": [
         "experimental"
       ],
       "latest_decision": {
-        "decision_status": "applied",
-        "recommendation": "hold_candidate_resolve_conflict",
-        "timestamp_utc": "2026-03-29T21:16:41.222068Z"
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
         "directional_conflict_alert",
+        "low_overall_confidence",
         "mandatory_decision_checkpoint"
       ],
       "recommendation": "mandatory_decision_checkpoint",
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.057,
-          "experimental_confidence": 0.659,
-          "literature_confidence": 0.716
+          "delta_lit_minus_exp": 0.325,
+          "experimental_confidence": 0.412,
+          "literature_confidence": 0.737
         },
         "conflict_ratio": 1.0,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
           "retire_ree_claim"
         ],
-        "entries_total": 20,
+        "entries_total": 5,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.682,
-        "recent_targeted_batches": 9,
+        "overall_confidence": 0.542,
+        "recent_targeted_batches": 3,
         "source_counts": {
-          "experimental": 18,
+          "experimental": 3,
           "literature": 2
         }
       },
@@ -186,7 +187,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -218,7 +219,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-29T21:16:41.111675Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -236,7 +237,7 @@
         },
         "conflict_ratio": 1.0,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -270,7 +271,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -293,6 +294,90 @@
         }
       },
       "backlog_id": "EVB-0004",
+      "claim_id": "MECH-128",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "mandatory_decision_checkpoint",
+        "missing_literature_evidence"
+      ],
+      "recommendation": "mandatory_decision_checkpoint",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": -0.6,
+          "experimental_confidence": 0.6,
+          "literature_confidence": 0.0
+        },
+        "conflict_ratio": 1.0,
+        "current_status": "candidate",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
+        "decision_required_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "entries_total": 2,
+        "mandatory_decision_checkpoint": true,
+        "overall_confidence": 0.6,
+        "recent_targeted_batches": 2,
+        "source_counts": {
+          "experimental": 2,
+          "literature": 0
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
+        "decision_required_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": true,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0005",
       "claim_id": "ARC-016",
       "evidence_needed": [
         "experimental"
@@ -302,7 +387,7 @@
         "recommendation": "hold_pending_v3_substrate",
         "timestamp_utc": "2026-03-16T18:20:19.361120Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -319,7 +404,7 @@
         },
         "conflict_ratio": 0.923,
         "current_status": "provisional",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -353,7 +438,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -375,7 +460,90 @@
           ]
         }
       },
-      "backlog_id": "EVB-0005",
+      "backlog_id": "EVB-0006",
+      "claim_id": "ARC-033",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-03-29T21:16:41.222068Z"
+      },
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "mandatory_decision_checkpoint"
+      ],
+      "recommendation": "mandatory_decision_checkpoint",
+      "signals": {
+        "claim_type": "architectural_commitment",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.012,
+          "experimental_confidence": 0.704,
+          "literature_confidence": 0.716
+        },
+        "conflict_ratio": 0.889,
+        "current_status": "candidate",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
+        "decision_required_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "entries_total": 21,
+        "mandatory_decision_checkpoint": true,
+        "overall_confidence": 0.709,
+        "recent_targeted_batches": 10,
+        "source_counts": {
+          "experimental": 19,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
+        "decision_required_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": true,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0007",
       "claim_id": "SD-015",
       "evidence_needed": [
         "experimental"
@@ -385,7 +553,7 @@
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -396,13 +564,13 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.229,
+          "delta_lit_minus_exp": 0.228,
           "experimental_confidence": 0.588,
-          "literature_confidence": 0.817
+          "literature_confidence": 0.816
         },
         "conflict_ratio": 0.889,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -410,7 +578,7 @@
         ],
         "entries_total": 14,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.703,
+        "overall_confidence": 0.702,
         "recent_targeted_batches": 10,
         "source_counts": {
           "experimental": 11,
@@ -436,7 +604,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -458,7 +626,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0006",
+      "backlog_id": "EVB-0008",
       "claim_id": "MECH-095",
       "evidence_needed": [
         "experimental"
@@ -468,7 +636,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-24T15:33:11.358559Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -479,13 +647,13 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.313,
-          "experimental_confidence": 0.593,
+          "delta_lit_minus_exp": 0.314,
+          "experimental_confidence": 0.592,
           "literature_confidence": 0.906
         },
         "conflict_ratio": 0.889,
         "current_status": "active",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -519,7 +687,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -541,7 +709,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0007",
+      "backlog_id": "EVB-0009",
       "claim_id": "MECH-093",
       "evidence_needed": [
         "experimental"
@@ -551,7 +719,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-19T19:52:00Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -562,13 +730,13 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.027,
-          "experimental_confidence": 0.678,
+          "delta_lit_minus_exp": 0.028,
+          "experimental_confidence": 0.677,
           "literature_confidence": 0.705
         },
         "conflict_ratio": 0.889,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -576,7 +744,7 @@
         ],
         "entries_total": 11,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.685,
+        "overall_confidence": 0.684,
         "recent_targeted_batches": 9,
         "source_counts": {
           "experimental": 10,
@@ -602,7 +770,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -624,7 +792,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0008",
+      "backlog_id": "EVB-0010",
       "claim_id": "SD-012",
       "evidence_needed": [
         "experimental"
@@ -634,7 +802,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-31T20:20:00.000000Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -651,7 +819,7 @@
         },
         "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -685,7 +853,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -707,7 +875,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0009",
+      "backlog_id": "EVB-0011",
       "claim_id": "MECH-099",
       "evidence_needed": [
         "experimental"
@@ -717,7 +885,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-19T19:52:00Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -728,13 +896,13 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.369,
-          "experimental_confidence": 0.503,
+          "delta_lit_minus_exp": 0.37,
+          "experimental_confidence": 0.502,
           "literature_confidence": 0.872
         },
         "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -742,7 +910,7 @@
         ],
         "entries_total": 9,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.688,
+        "overall_confidence": 0.687,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 6,
@@ -768,7 +936,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -790,7 +958,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0010",
+      "backlog_id": "EVB-0012",
       "claim_id": "ARC-032",
       "evidence_needed": [
         "experimental"
@@ -800,7 +968,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-29T21:16:41.185592Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -817,7 +985,7 @@
         },
         "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -851,7 +1019,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -873,7 +1041,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0011",
+      "backlog_id": "EVB-0013",
       "claim_id": "MECH-116",
       "evidence_needed": [
         "experimental"
@@ -883,7 +1051,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-29T21:16:41.432666Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -900,7 +1068,7 @@
         },
         "conflict_ratio": 0.857,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -934,7 +1102,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -956,7 +1124,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0012",
+      "backlog_id": "EVB-0014",
       "claim_id": "SD-005",
       "evidence_needed": [
         "experimental"
@@ -966,7 +1134,7 @@
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -977,13 +1145,13 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.152,
-          "experimental_confidence": 0.67,
+          "delta_lit_minus_exp": 0.153,
+          "experimental_confidence": 0.669,
           "literature_confidence": 0.822
         },
         "conflict_ratio": 0.815,
         "current_status": "implemented",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -991,7 +1159,7 @@
         ],
         "entries_total": 33,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.746,
+        "overall_confidence": 0.745,
         "recent_targeted_batches": 22,
         "source_counts": {
           "experimental": 30,
@@ -1017,7 +1185,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1039,7 +1207,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0013",
+      "backlog_id": "EVB-0015",
       "claim_id": "ARC-024",
       "evidence_needed": [
         "experimental"
@@ -1049,7 +1217,7 @@
         "recommendation": "demote_to_candidate",
         "timestamp_utc": "2026-03-19T20:35:00Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -1066,7 +1234,7 @@
         },
         "conflict_ratio": 0.8,
         "current_status": "provisional",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1100,7 +1268,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1122,7 +1290,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0014",
+      "backlog_id": "EVB-0016",
       "claim_id": "MECH-098",
       "evidence_needed": [
         "experimental"
@@ -1132,7 +1300,7 @@
         "recommendation": "hold_candidate_resolve_conflict",
         "timestamp_utc": "2026-03-19T19:52:00Z"
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -1143,13 +1311,13 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.223,
-          "experimental_confidence": 0.639,
+          "delta_lit_minus_exp": 0.224,
+          "experimental_confidence": 0.638,
           "literature_confidence": 0.862
         },
         "conflict_ratio": 0.8,
         "current_status": "candidate",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1157,7 +1325,7 @@
         ],
         "entries_total": 27,
         "mandatory_decision_checkpoint": true,
-        "overall_confidence": 0.751,
+        "overall_confidence": 0.75,
         "recent_targeted_batches": 18,
         "source_counts": {
           "experimental": 24,
@@ -1183,7 +1351,7 @@
             "retire_ree_claim"
           ]
         },
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1205,7 +1373,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0015",
+      "backlog_id": "EVB-0017",
       "claim_id": "Q-003",
       "evidence_needed": [
         "experimental"
@@ -1215,7 +1383,7 @@
         "recommendation": "",
         "timestamp_utc": ""
       },
-      "next_action": "Decision checkpoint required by 2026-04-05T22:39:46.490211Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
+      "next_action": "Decision checkpoint required by 2026-04-06T04:06:27.566436Z: choose one outcome retain_ree|hybridize|adopt_jepa_structure|retire_ree_claim and pause routine reruns until the decision is recorded.",
       "priority": "high",
       "reasons": [
         "active_conflict",
@@ -1232,7 +1400,7 @@
         },
         "conflict_ratio": 0.8,
         "current_status": "active",
-        "decision_deadline_utc": "2026-04-05T22:39:46.490211Z",
+        "decision_deadline_utc": "2026-04-06T04:06:27.566436Z",
         "decision_required_outcomes": [
           "retain_ree",
           "hybridize",
@@ -1284,7 +1452,78 @@
           ]
         }
       },
-      "backlog_id": "EVB-0016",
+      "backlog_id": "EVB-0018",
+      "claim_id": "MECH-075",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.429,
+          "experimental_confidence": 0.353,
+          "literature_confidence": 0.782
+        },
+        "conflict_ratio": 1.0,
+        "current_status": "candidate",
+        "entries_total": 4,
+        "overall_confidence": 0.568,
+        "recent_targeted_batches": 1,
+        "source_counts": {
+          "experimental": 2,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0019",
       "claim_id": "ARC-038",
       "evidence_needed": [
         "experimental"
@@ -1306,14 +1545,14 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.446,
-          "experimental_confidence": 0.323,
+          "delta_lit_minus_exp": 0.447,
+          "experimental_confidence": 0.322,
           "literature_confidence": 0.769
         },
         "conflict_ratio": 1.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.546,
+        "overall_confidence": 0.545,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -1357,7 +1596,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0017",
+      "backlog_id": "EVB-0020",
       "claim_id": "MECH-091",
       "evidence_needed": [
         "experimental"
@@ -1430,7 +1669,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0018",
+      "backlog_id": "EVB-0021",
       "claim_id": "MECH-089",
       "evidence_needed": [
         "experimental"
@@ -1450,14 +1689,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.091,
+          "delta_lit_minus_exp": 0.09,
           "experimental_confidence": 0.753,
-          "literature_confidence": 0.844
+          "literature_confidence": 0.843
         },
         "conflict_ratio": 0.714,
         "current_status": "active",
         "entries_total": 18,
-        "overall_confidence": 0.799,
+        "overall_confidence": 0.798,
         "recent_targeted_batches": 11,
         "source_counts": {
           "experimental": 15,
@@ -1501,7 +1740,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0019",
+      "backlog_id": "EVB-0022",
       "claim_id": "SD-004",
       "evidence_needed": [
         "experimental"
@@ -1521,8 +1760,8 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.228,
-          "experimental_confidence": 0.671,
+          "delta_lit_minus_exp": 0.229,
+          "experimental_confidence": 0.67,
           "literature_confidence": 0.899
         },
         "conflict_ratio": 0.714,
@@ -1572,7 +1811,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0020",
+      "backlog_id": "EVB-0023",
       "claim_id": "SD-007",
       "evidence_needed": [
         "experimental"
@@ -1643,7 +1882,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0021",
+      "backlog_id": "EVB-0024",
       "claim_id": "MECH-071",
       "evidence_needed": [
         "experimental"
@@ -1663,9 +1902,9 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.1,
+          "delta_lit_minus_exp": 0.099,
           "experimental_confidence": 0.788,
-          "literature_confidence": 0.888
+          "literature_confidence": 0.887
         },
         "conflict_ratio": 0.684,
         "current_status": "provisional",
@@ -1714,7 +1953,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0022",
+      "backlog_id": "EVB-0025",
       "claim_id": "ARC-007",
       "evidence_needed": [
         "experimental"
@@ -1734,14 +1973,14 @@
       "signals": {
         "claim_type": "architectural_commitment",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.115,
-          "experimental_confidence": 0.709,
+          "delta_lit_minus_exp": 0.116,
+          "experimental_confidence": 0.708,
           "literature_confidence": 0.824
         },
         "conflict_ratio": 0.667,
         "current_status": "active",
         "entries_total": 26,
-        "overall_confidence": 0.767,
+        "overall_confidence": 0.766,
         "recent_targeted_batches": 11,
         "source_counts": {
           "experimental": 12,
@@ -1785,7 +2024,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0023",
+      "backlog_id": "EVB-0026",
       "claim_id": "MECH-090",
       "evidence_needed": [
         "experimental"
@@ -1805,14 +2044,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.141,
+          "delta_lit_minus_exp": -0.142,
           "experimental_confidence": 0.81,
-          "literature_confidence": 0.669
+          "literature_confidence": 0.668
         },
         "conflict_ratio": 0.667,
         "current_status": "active",
         "entries_total": 22,
-        "overall_confidence": 0.74,
+        "overall_confidence": 0.739,
         "recent_targeted_batches": 15,
         "source_counts": {
           "experimental": 19,
@@ -1856,7 +2095,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0024",
+      "backlog_id": "EVB-0027",
       "claim_id": "ARC-030",
       "evidence_needed": [
         "experimental"
@@ -1927,7 +2166,78 @@
           ]
         }
       },
-      "backlog_id": "EVB-0025",
+      "backlog_id": "EVB-0028",
+      "claim_id": "Q-007",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_pending_v3_substrate",
+        "timestamp_utc": "2026-03-16T18:20:19.361155Z"
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "open_question",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.266,
+          "experimental_confidence": 0.499,
+          "literature_confidence": 0.765
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "active",
+        "entries_total": 8,
+        "overall_confidence": 0.605,
+        "recent_targeted_batches": 5,
+        "source_counts": {
+          "experimental": 6,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0029",
       "claim_id": "MECH-072",
       "evidence_needed": [
         "experimental"
@@ -1947,8 +2257,8 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.218,
-          "experimental_confidence": 0.476,
+          "delta_lit_minus_exp": 0.219,
+          "experimental_confidence": 0.475,
           "literature_confidence": 0.694
         },
         "conflict_ratio": 0.667,
@@ -1998,7 +2308,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0026",
+      "backlog_id": "EVB-0030",
       "claim_id": "MECH-118",
       "evidence_needed": [
         "experimental"
@@ -2069,7 +2379,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0027",
+      "backlog_id": "EVB-0031",
       "claim_id": "ARC-041",
       "evidence_needed": [
         "experimental"
@@ -2141,34 +2451,35 @@
           ]
         }
       },
-      "backlog_id": "EVB-0028",
-      "claim_id": "MECH-111",
+      "backlog_id": "EVB-0032",
+      "claim_id": "MECH-029",
       "evidence_needed": [
         "experimental"
       ],
       "latest_decision": {
-        "decision_status": "applied",
-        "recommendation": "hold_candidate_resolve_conflict",
-        "timestamp_utc": "2026-03-29T21:16:41.399734Z"
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
       },
       "next_action": "Run targeted experimental probe.",
       "priority": "high",
       "reasons": [
         "active_conflict",
-        "directional_conflict_alert"
+        "directional_conflict_alert",
+        "low_overall_confidence"
       ],
       "recommendation": "collect_targeted_evidence",
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.367,
-          "experimental_confidence": 0.407,
-          "literature_confidence": 0.774
+          "delta_lit_minus_exp": 0.333,
+          "experimental_confidence": 0.404,
+          "literature_confidence": 0.737
         },
         "conflict_ratio": 0.667,
-        "current_status": "candidate",
+        "current_status": "provisional",
         "entries_total": 5,
-        "overall_confidence": 0.554,
+        "overall_confidence": 0.537,
         "recent_targeted_batches": 3,
         "source_counts": {
           "experimental": 3,
@@ -2212,7 +2523,78 @@
           ]
         }
       },
-      "backlog_id": "EVB-0029",
+      "backlog_id": "EVB-0033",
+      "claim_id": "MECH-111",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "applied",
+        "recommendation": "hold_candidate_resolve_conflict",
+        "timestamp_utc": "2026-03-29T21:16:41.399734Z"
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.368,
+          "experimental_confidence": 0.406,
+          "literature_confidence": 0.774
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "candidate",
+        "entries_total": 5,
+        "overall_confidence": 0.553,
+        "recent_targeted_batches": 3,
+        "source_counts": {
+          "experimental": 3,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0034",
       "claim_id": "MECH-150",
       "evidence_needed": [
         "experimental"
@@ -2284,8 +2666,8 @@
           ]
         }
       },
-      "backlog_id": "EVB-0030",
-      "claim_id": "ARC-042",
+      "backlog_id": "EVB-0035",
+      "claim_id": "MECH-026",
       "evidence_needed": [
         "experimental"
       ],
@@ -2302,16 +2684,16 @@
       ],
       "recommendation": "collect_targeted_evidence",
       "signals": {
-        "claim_type": "architectural_commitment",
+        "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.374,
-          "experimental_confidence": 0.363,
-          "literature_confidence": 0.737
+          "delta_lit_minus_exp": 0.382,
+          "experimental_confidence": 0.36,
+          "literature_confidence": 0.742
         },
         "conflict_ratio": 0.667,
-        "current_status": "candidate",
+        "current_status": "provisional",
         "entries_total": 4,
-        "overall_confidence": 0.55,
+        "overall_confidence": 0.551,
         "recent_targeted_batches": 2,
         "source_counts": {
           "experimental": 2,
@@ -2355,7 +2737,150 @@
           ]
         }
       },
-      "backlog_id": "EVB-0031",
+      "backlog_id": "EVB-0036",
+      "claim_id": "MECH-070",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_overall_confidence"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.317,
+          "experimental_confidence": 0.403,
+          "literature_confidence": 0.72
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "candidate",
+        "entries_total": 4,
+        "overall_confidence": 0.482,
+        "recent_targeted_batches": 2,
+        "source_counts": {
+          "experimental": 3,
+          "literature": 1
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0037",
+      "claim_id": "MECH-155",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "mechanism_hypothesis",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.452,
+          "experimental_confidence": 0.353,
+          "literature_confidence": 0.805
+        },
+        "conflict_ratio": 0.667,
+        "current_status": "candidate",
+        "entries_total": 4,
+        "overall_confidence": 0.579,
+        "recent_targeted_batches": 1,
+        "source_counts": {
+          "experimental": 2,
+          "literature": 2
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0038",
       "claim_id": "Q-001",
       "evidence_needed": [
         "experimental"
@@ -2375,8 +2900,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.477,
-          "experimental_confidence": 0.315,
+          "delta_lit_minus_exp": 0.478,
+          "experimental_confidence": 0.314,
           "literature_confidence": 0.792
         },
         "conflict_ratio": 0.667,
@@ -2426,7 +2951,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0032",
+      "backlog_id": "EVB-0039",
       "claim_id": "MECH-092",
       "evidence_needed": [
         "experimental"
@@ -2498,7 +3023,78 @@
           ]
         }
       },
-      "backlog_id": "EVB-0033",
+      "backlog_id": "EVB-0040",
+      "claim_id": "SD-003",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "high",
+      "reasons": [
+        "active_conflict",
+        "directional_conflict_alert"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "design_decision",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.217,
+          "experimental_confidence": 0.64,
+          "literature_confidence": 0.857
+        },
+        "conflict_ratio": 0.645,
+        "current_status": "validated",
+        "entries_total": 93,
+        "overall_confidence": 0.748,
+        "recent_targeted_batches": 18,
+        "source_counts": {
+          "experimental": 89,
+          "literature": 4
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0041",
       "claim_id": "MECH-102",
       "evidence_needed": [
         "experimental"
@@ -2518,14 +3114,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.22,
-          "experimental_confidence": 0.6,
+          "delta_lit_minus_exp": 0.221,
+          "experimental_confidence": 0.599,
           "literature_confidence": 0.82
         },
         "conflict_ratio": 0.625,
         "current_status": "active",
         "entries_total": 28,
-        "overall_confidence": 0.71,
+        "overall_confidence": 0.709,
         "recent_targeted_batches": 15,
         "source_counts": {
           "experimental": 24,
@@ -2569,78 +3165,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0034",
-      "claim_id": "SD-003",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "high",
-      "reasons": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "design_decision",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.225,
-          "experimental_confidence": 0.632,
-          "literature_confidence": 0.857
-        },
-        "conflict_ratio": 0.623,
-        "current_status": "validated",
-        "entries_total": 92,
-        "overall_confidence": 0.744,
-        "recent_targeted_batches": 18,
-        "source_counts": {
-          "experimental": 88,
-          "literature": 4
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0035",
+      "backlog_id": "EVB-0042",
       "claim_id": "SD-011",
       "evidence_needed": [
         "experimental"
@@ -2660,14 +3185,14 @@
       "signals": {
         "claim_type": "design_decision",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.196,
-          "experimental_confidence": 0.736,
+          "delta_lit_minus_exp": 0.199,
+          "experimental_confidence": 0.733,
           "literature_confidence": 0.932
         },
         "conflict_ratio": 0.615,
         "current_status": "candidate",
         "entries_total": 30,
-        "overall_confidence": 0.834,
+        "overall_confidence": 0.833,
         "recent_targeted_batches": 13,
         "source_counts": {
           "experimental": 25,
@@ -2711,7 +3236,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0036",
+      "backlog_id": "EVB-0043",
       "claim_id": "Q-002",
       "evidence_needed": [
         "experimental"
@@ -2782,7 +3307,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0037",
+      "backlog_id": "EVB-0044",
       "claim_id": "MECH-094",
       "evidence_needed": [
         "experimental"
@@ -2853,7 +3378,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0038",
+      "backlog_id": "EVB-0045",
       "claim_id": "ARC-029",
       "evidence_needed": [
         "experimental"
@@ -2924,7 +3449,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0039",
+      "backlog_id": "EVB-0046",
       "claim_id": "MECH-135",
       "evidence_needed": [
         "experimental"
@@ -2995,7 +3520,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0040",
+      "backlog_id": "EVB-0047",
       "claim_id": "Q-020",
       "evidence_needed": [
         "experimental"
@@ -3015,14 +3540,14 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.314,
-          "experimental_confidence": 0.476,
+          "delta_lit_minus_exp": 0.315,
+          "experimental_confidence": 0.475,
           "literature_confidence": 0.79
         },
         "conflict_ratio": 0.4,
         "current_status": "resolved",
         "entries_total": 7,
-        "overall_confidence": 0.712,
+        "overall_confidence": 0.711,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -3066,7 +3591,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0041",
+      "backlog_id": "EVB-0048",
       "claim_id": "ARC-018",
       "evidence_needed": [
         "experimental"
@@ -3136,7 +3661,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0042",
+      "backlog_id": "EVB-0049",
       "claim_id": "SD-010",
       "evidence_needed": [
         "experimental"
@@ -3206,7 +3731,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0043",
+      "backlog_id": "EVB-0050",
       "claim_id": "MECH-033",
       "evidence_needed": [
         "experimental"
@@ -3225,14 +3750,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.005,
-          "experimental_confidence": 0.873,
+          "delta_lit_minus_exp": 0.006,
+          "experimental_confidence": 0.872,
           "literature_confidence": 0.878
         },
         "conflict_ratio": 0.25,
         "current_status": "active",
         "entries_total": 17,
-        "overall_confidence": 0.876,
+        "overall_confidence": 0.875,
         "recent_targeted_batches": 6,
         "source_counts": {
           "experimental": 9,
@@ -3276,7 +3801,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0044",
+      "backlog_id": "EVB-0051",
       "claim_id": "MECH-104",
       "evidence_needed": [
         "experimental"
@@ -3295,17 +3820,17 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.006,
-          "experimental_confidence": 0.892,
-          "literature_confidence": 0.898
+          "delta_lit_minus_exp": -0.008,
+          "experimental_confidence": 0.905,
+          "literature_confidence": 0.897
         },
-        "conflict_ratio": 0.2,
+        "conflict_ratio": 0.182,
         "current_status": "active",
-        "entries_total": 12,
-        "overall_confidence": 0.895,
-        "recent_targeted_batches": 8,
+        "entries_total": 13,
+        "overall_confidence": 0.901,
+        "recent_targeted_batches": 9,
         "source_counts": {
-          "experimental": 8,
+          "experimental": 9,
           "literature": 4
         }
       },
@@ -3346,7 +3871,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0045",
+      "backlog_id": "EVB-0052",
       "claim_id": "MECH-073",
       "evidence_needed": [
         "experimental"
@@ -3419,78 +3944,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0046",
-      "claim_id": "INV-043",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "invariant",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.816,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.816
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 4,
-        "overall_confidence": 0.816,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 4
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0047",
+      "backlog_id": "EVB-0053",
       "claim_id": "MECH-074",
       "evidence_needed": [
         "experimental"
@@ -3561,7 +4015,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0048",
+      "backlog_id": "EVB-0054",
       "claim_id": "ARC-039",
       "evidence_needed": [
         "experimental"
@@ -3632,78 +4086,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0049",
-      "claim_id": "MECH-075",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.782,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.782
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 2,
-        "overall_confidence": 0.782,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 2
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0050",
+      "backlog_id": "EVB-0055",
       "claim_id": "MECH-076",
       "evidence_needed": [
         "experimental"
@@ -3774,7 +4157,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0051",
+      "backlog_id": "EVB-0056",
       "claim_id": "MECH-077",
       "evidence_needed": [
         "experimental"
@@ -3845,7 +4228,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0052",
+      "backlog_id": "EVB-0057",
       "claim_id": "MECH-154",
       "evidence_needed": [
         "experimental"
@@ -3916,78 +4299,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0053",
-      "claim_id": "MECH-155",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.805,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.805
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 2,
-        "overall_confidence": 0.805,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 2
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0054",
+      "backlog_id": "EVB-0058",
       "claim_id": "MECH-163",
       "evidence_needed": [
         "experimental"
@@ -4058,78 +4370,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0055",
-      "claim_id": "ARC-022",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "architectural_commitment",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.784,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.784
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 1,
-        "overall_confidence": 0.784,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 1
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0056",
+      "backlog_id": "EVB-0059",
       "claim_id": "ARC-035",
       "evidence_needed": [
         "experimental"
@@ -4200,7 +4441,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0057",
+      "backlog_id": "EVB-0060",
       "claim_id": "MECH-025b",
       "evidence_needed": [
         "experimental"
@@ -4271,78 +4512,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0058",
-      "claim_id": "MECH-156",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.79,
-          "experimental_confidence": 0.0,
-          "literature_confidence": 0.79
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 1,
-        "overall_confidence": 0.79,
-        "source_counts": {
-          "experimental": 0,
-          "literature": 1
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0059",
+      "backlog_id": "EVB-0061",
       "claim_id": "MECH-153",
       "evidence_needed": [
         "literature"
@@ -4362,17 +4532,17 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.363,
-          "experimental_confidence": 0.363,
+          "delta_lit_minus_exp": -0.412,
+          "experimental_confidence": 0.412,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
-        "entries_total": 2,
-        "overall_confidence": 0.363,
-        "recent_targeted_batches": 2,
+        "entries_total": 3,
+        "overall_confidence": 0.412,
+        "recent_targeted_batches": 3,
         "source_counts": {
-          "experimental": 2,
+          "experimental": 3,
           "literature": 0
         }
       },
@@ -4413,7 +4583,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0060",
+      "backlog_id": "EVB-0062",
       "claim_id": "MECH-057",
       "evidence_needed": [
         "literature"
@@ -4434,8 +4604,8 @@
       "signals": {
         "claim_type": "unknown",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.284,
-          "experimental_confidence": 0.284,
+          "delta_lit_minus_exp": -0.283,
+          "experimental_confidence": 0.283,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
@@ -4462,7 +4632,7 @@
           "suppress_mandatory_decision": true,
           "suppress_structure_signals": true
         },
-        "overall_confidence": 0.284,
+        "overall_confidence": 0.283,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -4507,7 +4677,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0061",
+      "backlog_id": "EVB-0063",
       "claim_id": "MECH-059",
       "evidence_needed": [
         "literature"
@@ -4526,14 +4696,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.733,
-          "experimental_confidence": 0.733,
+          "delta_lit_minus_exp": -0.732,
+          "experimental_confidence": 0.732,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "active",
         "entries_total": 1,
-        "overall_confidence": 0.733,
+        "overall_confidence": 0.732,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -4577,7 +4747,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0062",
+      "backlog_id": "EVB-0064",
       "claim_id": "MECH-060",
       "evidence_needed": [
         "literature"
@@ -4597,14 +4767,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": -0.733,
-          "experimental_confidence": 0.733,
+          "delta_lit_minus_exp": -0.732,
+          "experimental_confidence": 0.732,
           "literature_confidence": 0.0
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 1,
-        "overall_confidence": 0.733,
+        "overall_confidence": 0.732,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -4648,7 +4818,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0063",
+      "backlog_id": "EVB-0065",
       "claim_id": "MECH-061",
       "evidence_needed": [
         "literature"
@@ -4718,80 +4888,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0064",
-      "claim_id": "MECH-128",
-      "evidence_needed": [
-        "experimental",
-        "literature"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run paired experiment + literature cycle before status change.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication",
-        "low_overall_confidence",
-        "missing_literature_evidence"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": -0.315,
-          "experimental_confidence": 0.315,
-          "literature_confidence": 0.0
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 1,
-        "overall_confidence": 0.315,
-        "recent_targeted_batches": 1,
-        "source_counts": {
-          "experimental": 1,
-          "literature": 0
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0065",
+      "backlog_id": "EVB-0066",
       "claim_id": "SD-003-prereq",
       "evidence_needed": [
         "literature"
@@ -4861,7 +4958,77 @@
           ]
         }
       },
-      "backlog_id": "EVB-0066",
+      "backlog_id": "EVB-0067",
+      "claim_id": "INV-043",
+      "evidence_needed": [
+        "experimental"
+      ],
+      "latest_decision": {
+        "decision_status": "none",
+        "recommendation": "",
+        "timestamp_utc": ""
+      },
+      "next_action": "Run targeted experimental probe.",
+      "priority": "medium",
+      "reasons": [
+        "insufficient_experimental_replication"
+      ],
+      "recommendation": "collect_targeted_evidence",
+      "signals": {
+        "claim_type": "invariant",
+        "confidence_split": {
+          "delta_lit_minus_exp": 0.041,
+          "experimental_confidence": 0.775,
+          "literature_confidence": 0.816
+        },
+        "conflict_ratio": 0.0,
+        "current_status": "candidate",
+        "entries_total": 5,
+        "overall_confidence": 0.806,
+        "recent_targeted_batches": 1,
+        "source_counts": {
+          "experimental": 1,
+          "literature": 4
+        }
+      },
+      "status": "open"
+    },
+    {
+      "adjudication_context": {
+        "allowed_conflict_outcomes": [
+          "retain_ree",
+          "hybridize",
+          "retire_ree_claim"
+        ],
+        "anti_lock_in_review_required": false,
+        "atomic_split_recommended": false,
+        "cascade_policy": {
+          "dependency_reopen_status": "candidate",
+          "enabled": true,
+          "require_followup_proposals": true,
+          "trigger_outcomes": [
+            "retire_ree_claim"
+          ]
+        },
+        "decision_deadline_utc": "",
+        "decision_required_outcomes": [],
+        "default_conflict_outcome": "retain_ree",
+        "escalate_architecture_decision": false,
+        "external_precedence_candidate": false,
+        "mandatory_decision_checkpoint": false,
+        "saturation_guard_engaged": false,
+        "saturation_signal_details": {},
+        "temporary_override_mode": {
+          "enabled": true,
+          "mode_id": "jepa_internal_proxy_override",
+          "requirements": [
+            "explicit_proxy_provenance",
+            "calibration_metrics_present",
+            "rollback_trigger_documented"
+          ]
+        }
+      },
+      "backlog_id": "EVB-0068",
       "claim_id": "Q-012",
       "evidence_needed": [
         "experimental"
@@ -4880,8 +5047,8 @@
       "signals": {
         "claim_type": "open_question",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.323,
-          "experimental_confidence": 0.471,
+          "delta_lit_minus_exp": 0.324,
+          "experimental_confidence": 0.47,
           "literature_confidence": 0.794
         },
         "conflict_ratio": 0.0,
@@ -4931,7 +5098,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0067",
+      "backlog_id": "EVB-0069",
       "claim_id": "MECH-056",
       "evidence_needed": [
         "literature"
@@ -4950,84 +5117,14 @@
       "signals": {
         "claim_type": "mechanism_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.037,
-          "experimental_confidence": 0.733,
+          "delta_lit_minus_exp": 0.038,
+          "experimental_confidence": 0.732,
           "literature_confidence": 0.77
         },
         "conflict_ratio": 0.0,
         "current_status": "provisional",
         "entries_total": 2,
-        "overall_confidence": 0.752,
-        "recent_targeted_batches": 1,
-        "source_counts": {
-          "experimental": 1,
-          "literature": 1
-        }
-      },
-      "status": "open"
-    },
-    {
-      "adjudication_context": {
-        "allowed_conflict_outcomes": [
-          "retain_ree",
-          "hybridize",
-          "retire_ree_claim"
-        ],
-        "anti_lock_in_review_required": false,
-        "atomic_split_recommended": false,
-        "cascade_policy": {
-          "dependency_reopen_status": "candidate",
-          "enabled": true,
-          "require_followup_proposals": true,
-          "trigger_outcomes": [
-            "retire_ree_claim"
-          ]
-        },
-        "decision_deadline_utc": "",
-        "decision_required_outcomes": [],
-        "default_conflict_outcome": "retain_ree",
-        "escalate_architecture_decision": false,
-        "external_precedence_candidate": false,
-        "mandatory_decision_checkpoint": false,
-        "saturation_guard_engaged": false,
-        "saturation_signal_details": {},
-        "temporary_override_mode": {
-          "enabled": true,
-          "mode_id": "jepa_internal_proxy_override",
-          "requirements": [
-            "explicit_proxy_provenance",
-            "calibration_metrics_present",
-            "rollback_trigger_documented"
-          ]
-        }
-      },
-      "backlog_id": "EVB-0068",
-      "claim_id": "MECH-070",
-      "evidence_needed": [
-        "experimental"
-      ],
-      "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
-      },
-      "next_action": "Run targeted experimental probe.",
-      "priority": "medium",
-      "reasons": [
-        "insufficient_experimental_replication"
-      ],
-      "recommendation": "collect_targeted_evidence",
-      "signals": {
-        "claim_type": "mechanism_hypothesis",
-        "confidence_split": {
-          "delta_lit_minus_exp": 0.251,
-          "experimental_confidence": 0.469,
-          "literature_confidence": 0.72
-        },
-        "conflict_ratio": 0.0,
-        "current_status": "candidate",
-        "entries_total": 2,
-        "overall_confidence": 0.595,
+        "overall_confidence": 0.751,
         "recent_targeted_batches": 1,
         "source_counts": {
           "experimental": 1,
@@ -5094,7 +5191,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0069",
+      "backlog_id": "EVB-0070",
       "claim_id": "Q-025",
       "evidence_needed": [
         "experimental",
@@ -5158,7 +5255,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0070",
+      "backlog_id": "EVB-0071",
       "claim_id": "Q-026",
       "evidence_needed": [
         "experimental",
@@ -5222,7 +5319,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0071",
+      "backlog_id": "EVB-0072",
       "claim_id": "Q-027",
       "evidence_needed": [
         "experimental",
@@ -5286,7 +5383,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0072",
+      "backlog_id": "EVB-0073",
       "claim_id": "Q-028",
       "evidence_needed": [
         "experimental",
@@ -5350,7 +5447,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0073",
+      "backlog_id": "EVB-0074",
       "claim_id": "Q-029",
       "evidence_needed": [
         "experimental",
@@ -5414,7 +5511,7 @@
           ]
         }
       },
-      "backlog_id": "EVB-0074",
+      "backlog_id": "EVB-0075",
       "claim_id": "Q-030",
       "evidence_needed": [
         "experimental",

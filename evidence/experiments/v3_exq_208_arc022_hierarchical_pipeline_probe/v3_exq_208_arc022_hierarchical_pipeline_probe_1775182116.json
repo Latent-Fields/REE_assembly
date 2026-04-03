@@ -1,0 +1,117 @@
+{
+  "run_id": "v3_exq_208_arc022_hierarchical_pipeline_probe_1775182116_v3",
+  "experiment_type": "v3_exq_208_arc022_hierarchical_pipeline_probe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-022"
+  ],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "timestamp": 1775182116,
+  "dry_run": false,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 100,
+  "eval_episodes": 10,
+  "steps_per_episode": 200,
+  "max_rsa_points": 300,
+  "thresh_gradient": 0.02,
+  "mean_rsa_obs_L1": 0.7045339482910622,
+  "mean_rsa_obs_L2": 0.00556149253789633,
+  "mean_rsa_obs_L3": 0.14822999745949636,
+  "mean_rsa_harm_L1": 0.08853370336120375,
+  "mean_rsa_harm_L2": 0.040527744709808855,
+  "mean_rsa_harm_L3": 0.016801342571741786,
+  "abstraction_gradient": 0.5563039508315658,
+  "goal_relevance_gradient": -0.07173236078946196,
+  "hierarchical_linearity_r2": 0.5687550144090711,
+  "goal_relevance_by_layer": [
+    0.08853370336120375,
+    0.040527744709808855,
+    0.016801342571741786
+  ],
+  "c1_e2_more_abstract_pass": true,
+  "c2_e1_more_abstract_pass": true,
+  "c3_abstraction_gradient_pass": true,
+  "c4_goal_relevance_gradient_pass": false,
+  "c1_count": 3,
+  "c2_count": 3,
+  "c3_count": 3,
+  "c4_count": 0,
+  "n_seeds": 3,
+  "seed_results": [
+    {
+      "seed": 42,
+      "n_collected": 244,
+      "n_rsa_points": 244,
+      "rsa_obs_L1": 0.6870280503207128,
+      "rsa_obs_L2": 0.035730556325157564,
+      "rsa_obs_L3": 0.15698545651696977,
+      "rsa_harm_L1": 0.18408178539554837,
+      "rsa_harm_L2": 0.0328898703192267,
+      "rsa_harm_L3": 0.06358951855595821,
+      "abstraction_gradient": 0.530042593803743,
+      "goal_relevance_by_layer": [
+        0.18408178539554837,
+        0.0328898703192267,
+        0.06358951855595821
+      ],
+      "goal_relevance_gradient": -0.12049226683959016,
+      "hierarchical_linearity_r2": 0.5854354811260818,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": false
+    },
+    {
+      "seed": 7,
+      "n_collected": 272,
+      "n_rsa_points": 272,
+      "rsa_obs_L1": 0.6516273736293867,
+      "rsa_obs_L2": -0.010226970283204375,
+      "rsa_obs_L3": 0.11630130876443302,
+      "rsa_harm_L1": 0.0037276728895553205,
+      "rsa_harm_L2": 0.018920104424960636,
+      "rsa_harm_L3": -0.02323329603920659,
+      "abstraction_gradient": 0.5353260648649537,
+      "goal_relevance_by_layer": [
+        0.0037276728895553205,
+        0.018920104424960636,
+        -0.02323329603920659
+      ],
+      "goal_relevance_gradient": -0.02696096892876191,
+      "hierarchical_linearity_r2": 0.5803955268395026,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": false
+    },
+    {
+      "seed": 123,
+      "n_collected": 249,
+      "n_rsa_points": 249,
+      "rsa_obs_L1": 0.7749464209230873,
+      "rsa_obs_L2": -0.008819108428264196,
+      "rsa_obs_L3": 0.17140322709708633,
+      "rsa_harm_L1": 0.07779165179850756,
+      "rsa_harm_L2": 0.06977325938523922,
+      "rsa_harm_L3": 0.010047805198473744,
+      "abstraction_gradient": 0.603543193826001,
+      "goal_relevance_by_layer": [
+        0.07779165179850756,
+        0.06977325938523922,
+        0.010047805198473744
+      ],
+      "goal_relevance_gradient": -0.06774384660003381,
+      "hierarchical_linearity_r2": 0.5404340352616286,
+      "c1_e2_more_abstract": true,
+      "c2_e1_more_abstract": true,
+      "c3_abstraction_gradient": true,
+      "c4_goal_relevance_gradient": false
+    }
+  ]
+}

@@ -9,6 +9,33 @@
 
 ---
 
+## Status Snapshot (2026-04-03)
+
+- **SD-011 and SD-012 both implemented.** SD-011 (dual nociceptive streams: z_harm_s +
+  z_harm_a) validated at EXQ-178b PASS (2026-03-30). SD-012 (homeostatic drive modulation)
+  implemented 2026-04-02: drive_weight default raised from 0.0 to 2.0, enabling
+  effective_benefit = benefit_exposure * (1.0 + drive_weight * drive_level). Step 3.1
+  substrate debt now substantially resolved (SD-008/009/010/011/012 all done).
+- **~198 experiments run.** EXQ-001 through EXQ-212+ series. 51 PASS, 123 FAIL, 22 ERROR
+  as of 2026-04-03. Breadth of FAIL reflects aggressive experimentation on a developing
+  substrate -- each FAIL cluster was analyzed and resolved before the next iteration.
+- **Breath oscillator and z_beta pathway wired (2026-04-02).** BreathOscillator integrated
+  into core commitment decision (MECH-108). rv -> z_beta volatility pathway wired for Q-007.
+  14 substrate-limited experiments marked scoring_excluded. EXQ-199--203 queued to re-run
+  MECH-025/Q-007/MECH-029/MECH-026/MECH-057a on corrected substrate.
+- **ARC-033 ResidualHarmForward promoted to ree_core (2026-04-02).** E2_harm_s forward model
+  now in `ree_core/latent/stack.py`, enabling EXQ-195 (SD-003 z_harm_s counterfactual).
+  EXQ-195 queued; this is the critical SD-003 re-validation step on the new harm pipeline.
+- **Governance cycle active.** 36 experiments pending review (2026-04-03). PASS cluster
+  includes SD-011 validation (EXQ-178b), terrain work (SD-015), and several MECH-1xx claims;
+  FAIL cluster being classified (evidence vs diagnostic). Governance session in progress.
+- **Current bottleneck: first-paper gate experiments.** SD-011/012 substrates cleared; next
+  priority is EXQ-074e (MECH-112/117 wanting/liking), EXQ-076e (MECH-116 E1 goal
+  conditioning), EXQ-195 (SD-003 z_harm_s counterfactual), and EXQ-182a (oracle ceiling
+  for habit-system goal lift).
+
+---
+
 ## Status Snapshot (2026-03-31)
 
 - **V3 first-paper gate clarified.** `ree-v3` completion for the first paper is now
@@ -477,20 +504,24 @@ Added from V1 learning:
 
 ## Immediate Work Queue (This Cycle)
 
-**Current step: 3.1 — Substrate Debt Resolution (SD-011/012 phase)**
+**Current step: 3.1 -> 3.2 transition — First-Paper Gate Experiments**
 
-1. **Implement SD-011** (dual nociceptive streams): split z_harm into z_harm_s + z_harm_a;
-   add HarmEncoderA, E2_harm_s forward model; update LatentState and E3Selector.
-   Design doc: `docs/architecture/sd_011_dual_nociceptive_streams.md`.
-2. **Redesign SD-003 counterfactual** for z_harm_s pipeline (post SD-011):
-   `causal_sig = E3.harm_eval(z_harm_s_actual) - E3.harm_eval(E2_harm_s(z_harm_s, a_cf))`.
-   Do NOT use HarmBridge — bridge_r2=0 is architectural.
-3. **Implement SD-012** (homeostatic drive): wire drive_level into GoalState.update() with
-   drive-scaled benefit amplitude. Design doc: `docs/architecture/sd_012_homeostatic_drive.md`.
-4. **Re-run blocked experiments** (EXQ-093/094 successors + EXQ-085 successors) after
-   SD-011/012 implementation.
-5. **Await EXQ-074b and EXQ-076b results** (currently queued); review MECH-124 diagnostic
-   (z_goal salience vs harm salience as V4 risk indicator).
+SD-008/009/010/011/012 all implemented. Breath oscillator and rv->z_beta wired.
+ARC-033 ResidualHarmForward in ree_core. Step 3.1 exit criteria approaching.
+
+1. **EXQ-074e** (MECH-112/117 wanting/liking dissociation; supersedes EXQ-074d): tests
+   z_goal_latent vs benefit_eval_head. MECH-124 diagnostic: z_goal salience vs harm salience
+   as V4 risk indicator (consolidation-mediated option-space contraction).
+2. **EXQ-076e** (MECH-116/ARC-032 E1 LSTM goal conditioning; supersedes EXQ-076c):
+   frontal working memory for goal representation over multi-step episodes.
+3. **EXQ-195** (SD-003 z_harm_s counterfactual, post-SD-011): critical re-validation of
+   SD-003 using ResidualHarmForward (ARC-033). Pipeline:
+   `z_harm_s_cf = E2_harm_s(z_harm_s, a_cf)`. Do NOT use HarmBridge (bridge_r2=0).
+4. **EXQ-182a** (oracle ceiling for habit-system goal lift): confirms environment is
+   near-optimal for habit-level policy; prerequisite for interpreting goal-lift results.
+5. **EXQ-199--203** (breath oscillator series): MECH-025/Q-007/MECH-029/MECH-026/MECH-057a
+   re-run on corrected substrate with BreathOscillator and rv->z_beta wired.
+6. **Governance cycle** (active): review 36 pending experiments, apply claim decisions.
 
 ---
 

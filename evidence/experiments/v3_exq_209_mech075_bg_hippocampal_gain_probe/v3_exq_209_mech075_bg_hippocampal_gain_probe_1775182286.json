@@ -1,0 +1,116 @@
+{
+  "run_id": "v3_exq_209_mech075_bg_hippocampal_gain_probe_1775182286_v3",
+  "experiment_type": "v3_exq_209_mech075_bg_hippocampal_gain_probe",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-075"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PARTIAL",
+  "evidence_direction": "mixed",
+  "timestamp": 1775182286,
+  "dry_run": false,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 100,
+  "eval_episodes": 30,
+  "steps_per_episode": 200,
+  "da_low_weight": 0.0,
+  "da_high_weight": 2.0,
+  "thresh_effect": 0.005,
+  "mean_diversity_low": 0.0005924318280447857,
+  "mean_diversity_high": 0.0005903560004993756,
+  "da_modulation_effect_size": -2.0758275454101287e-06,
+  "attractor_basin_width_low": 0.00011338692306387593,
+  "attractor_basin_width_high": 0.00010671782104749597,
+  "hippocampal_persistence_delta": 2.0758275454101287e-06,
+  "c1_diversity_direction_pass": true,
+  "c2_effect_size_pass": false,
+  "c3_basin_width_pass": false,
+  "c4_sanity_pass": true,
+  "c1_count": 2,
+  "c2_count": 0,
+  "c3_count": 0,
+  "c4_count": 3,
+  "n_seeds": 3,
+  "seed_results": [
+    {
+      "seed": 42,
+      "da_low": {
+        "condition": "DA_LOW",
+        "novelty_bonus_weight": 0.0,
+        "n_diverse_steps": 190,
+        "mean_diversity": 0.0003033497153171712,
+        "attractor_basin_width": 4.4505001881410495e-05
+      },
+      "da_high": {
+        "condition": "DA_HIGH",
+        "novelty_bonus_weight": 2.0,
+        "n_diverse_steps": 189,
+        "mean_diversity": 0.0003088777979530711,
+        "attractor_basin_width": 4.037328854870778e-05
+      },
+      "da_modulation_effect_size": 5.528082635899946e-06,
+      "attractor_basin_width_low": 4.4505001881410495e-05,
+      "attractor_basin_width_high": 4.037328854870778e-05,
+      "hippocampal_persistence_delta": -5.528082635899946e-06,
+      "c1_diversity_direction": true,
+      "c2_effect_size": false,
+      "c3_basin_width": false,
+      "c4_sanity": true
+    },
+    {
+      "seed": 7,
+      "da_low": {
+        "condition": "DA_LOW",
+        "novelty_bonus_weight": 0.0,
+        "n_diverse_steps": 188,
+        "mean_diversity": 0.0009230168457784885,
+        "attractor_basin_width": 0.0001966125782596389
+      },
+      "da_high": {
+        "condition": "DA_HIGH",
+        "novelty_bonus_weight": 2.0,
+        "n_diverse_steps": 188,
+        "mean_diversity": 0.0009068972811260207,
+        "attractor_basin_width": 0.0001864789492736421
+      },
+      "da_modulation_effect_size": -1.611956465246778e-05,
+      "attractor_basin_width_low": 0.0001966125782596389,
+      "attractor_basin_width_high": 0.0001864789492736421,
+      "hippocampal_persistence_delta": 1.611956465246778e-05,
+      "c1_diversity_direction": false,
+      "c2_effect_size": false,
+      "c3_basin_width": false,
+      "c4_sanity": true
+    },
+    {
+      "seed": 123,
+      "da_low": {
+        "condition": "DA_LOW",
+        "novelty_bonus_weight": 0.0,
+        "n_diverse_steps": 5980,
+        "mean_diversity": 0.0005509289230386975,
+        "attractor_basin_width": 9.90431890505784e-05
+      },
+      "da_high": {
+        "condition": "DA_HIGH",
+        "novelty_bonus_weight": 2.0,
+        "n_diverse_steps": 5980,
+        "mean_diversity": 0.0005552929224190349,
+        "attractor_basin_width": 9.330122532013799e-05
+      },
+      "da_modulation_effect_size": 4.363999380337449e-06,
+      "attractor_basin_width_low": 9.90431890505784e-05,
+      "attractor_basin_width_high": 9.330122532013799e-05,
+      "hippocampal_persistence_delta": -4.363999380337449e-06,
+      "c1_diversity_direction": true,
+      "c2_effect_size": false,
+      "c3_basin_width": false,
+      "c4_sanity": true
+    }
+  ]
+}

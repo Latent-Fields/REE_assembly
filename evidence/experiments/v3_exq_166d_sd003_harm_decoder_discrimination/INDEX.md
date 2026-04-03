@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_166d_sd003_harm_decoder_discrimination
 
-Generated: `2026-04-02T22:39:46.490211Z`
+Generated: `2026-04-03T04:06:27.566436Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

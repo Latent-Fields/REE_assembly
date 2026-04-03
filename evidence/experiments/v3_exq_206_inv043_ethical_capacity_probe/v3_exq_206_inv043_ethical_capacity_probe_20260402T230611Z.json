@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "r2_rich_mean": 0.10844013352369523,
+    "r2_rich_std": 0.020741450426777417,
+    "r2_sparse_mean": -5.959170647261466,
+    "r2_sparse_std": 1.7944337307669382,
+    "delta_mean": 6.067610780785162,
+    "delta_std": 1.7737503268589265,
+    "n_harm_test_mean": 484.6666666666667,
+    "c3_seeds_pass": 3.0,
+    "criteria_met": 4.0,
+    "n_seeds": 3.0,
+    "seed0_r2_rich": 0.0798570741808936,
+    "seed0_r2_sparse": -8.382800093914197,
+    "seed0_delta": 8.46265716809509,
+    "seed0_n_harm_test": 467.0,
+    "seed0_n_train_rich_harm": 1015.0,
+    "seed0_n_train_sparse_harm": 303.0,
+    "seed1_r2_rich": 0.12843851764076997,
+    "seed1_r2_sparse": -4.095816324095181,
+    "seed1_delta": 4.224254841735951,
+    "seed1_n_harm_test": 506.0,
+    "seed1_n_train_rich_harm": 978.0,
+    "seed1_n_train_sparse_harm": 304.0,
+    "seed2_r2_rich": 0.11702480874942212,
+    "seed2_r2_sparse": -5.398895523775022,
+    "seed2_delta": 5.515920332524444,
+    "seed2_n_harm_test": 481.0,
+    "seed2_n_train_rich_harm": 981.0,
+    "seed2_n_train_sparse_harm": 306.0
+  },
+  "summary_markdown": "# V3-EXQ-206 -- INV-043: Ethical Capacity Proxy Probe\n\n**Status:** PASS\n**Claim:** INV-043 -- REE architecture enables but does not guarantee ethical development\n**Experiment purpose:** diagnostic (proxy -- INV-043 requires multi-agent substrate)\n**Seeds:** [0, 1, 2]\n\n## Proxy Design\n\nINV-043 requires multi-agent caregiving substrate not available in V3.\nThis proxy tests whether harm evaluation machinery develops differently under:\n- PROBE_RICH: trained with harm-rich data (4 hazards, positive harm events)\n- PROBE_SPARSE: trained with harm-absent data (0 hazards, no positive events)\nBoth probes use the same shared HarmEncoder. Evaluated on same RICH test set.\n\n## Results by Seed\n\n| Seed | r2_rich | r2_sparse | delta | n_harm_test | n_train_harm_rich | n_train_harm_sparse |\n|------|---------|----------|-------|------------|------------------|---------------------|\n| 0 | 0.0799 | -8.3828 | 8.4627 | 467 | 1015 | 303 |\n| 1 | 0.1284 | -4.0958 | 4.2243 | 506 | 978 | 304 |\n| 2 | 0.1170 | -5.3989 | 5.5159 | 481 | 981 | 306 |\n\n\n## Aggregate\n\n| Metric | Mean | Std |\n|--------|------|-----|\n| r2_rich | 0.1084 | 0.0207 |\n| r2_sparse | -5.9592 | 1.7944 |\n| delta (rich - sparse) | 6.0676 | 1.7738 |\n\n## PASS Criteria\n\n| Criterion | Value | Required | Result |\n|-----------|-------|---------|--------|\n| C1 r2_rich | 0.1084 | > 0.1 | PASS |\n| C2 r2_sparse | -5.9592 | < 0.05 | PASS |\n| C3 delta | 3/3 seeds | >= 2 | PASS |\n| C4 n_harm_test | 3/3 seeds | == 3 | PASS |\n\nCriteria met: 4/4 -> **PASS**\n\n",
+  "claim_ids": [
+    "INV-043"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_206_inv043_ethical_capacity_probe",
+  "run_timestamp": "20260402T230611Z",
+  "run_id": "v3_exq_206_inv043_ethical_capacity_probe_20260402T230611Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
