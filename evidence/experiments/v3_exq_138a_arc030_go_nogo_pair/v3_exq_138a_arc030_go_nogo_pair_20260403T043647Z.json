@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "benefit_rate_go": 0.05452381134033203,
+    "benefit_rate_nogo": 0.05452381134033203,
+    "delta_benefit_rate": 0.0,
+    "harm_rate_go": 0.08049206495285034,
+    "harm_rate_nogo": 0.08049206495285034,
+    "goal_proximity_go": 0.859344869852066,
+    "n_benefit_buf_go_seed0": 0.0,
+    "n_benefit_buf_go_seed1": 2.0,
+    "n_harm_buf_go": 17.0,
+    "n_harm_buf_nogo": 17.0,
+    "n_seeds": 2.0,
+    "alpha_world": 0.9,
+    "proximity_benefit_scale": 0.1,
+    "warmup_episodes": 2.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "crit5_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-138a -- ARC-030 Go/NoGo Symmetry Discriminative Pair\n\n**Status:** FAIL\n**Claims:** ARC-030\n**Decision:** retire_ree_claim\n**Seeds:** [42, 123]\n**Warmup:** 2 eps  **Eval:** 1 eps\n\n## Pre-Registered Thresholds\n\nC1: delta_benefit_rate           >= 0.002 (averaged seeds)\nC2: benefit_rate_go per seed     >= 0.002 (both seeds)\nC3: harm_rate_go                 <= harm_rate_nogo * 1.5\nC4: per-seed direction           GO > NOGO (both seeds)\nC5: n_benefit_buf_go per seed    >= 100 (manipulation check)\n\n## Results\n\n| Condition       | benefit_rate | harm_rate   | goal_proximity |\n|-----------------|-------------|-------------|----------------|\n| GO_NOGO_SUPPORT | 0.05452  | 0.08049 | 0.8593 |\n| NOGO_ONLY_ABLATED | 0.05452 | 0.08049 | N/A |\n\n**delta_benefit_rate (GO - NOGO): +0.00000**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|-----------|--------|-------|\n| C1: delta >= 0.002 | FAIL | +0.00000 |\n| C2: benefit_rate_go per seed >= 0.002 | FAIL | [False, True] |\n| C3: harm_rate_go <= NOGO*1.5 | PASS | 0.08049 vs 0.12074 |\n| C4: per-seed direction GO > NOGO | FAIL | [False, False] |\n| C5: benefit_buf >= 100 per seed | FAIL | [0, 2] |\n\nCriteria met: 1/5 -> **FAIL**\n\n## Interpretation\n\nARC-030 NOT SUPPORTED: Go channel does not consistently outperform NOGO_ONLY on resource collection. Diagnostic: check n_benefit_buf_go_per_seed and goal_proximity_mean. If C5 fails, the environment benefit signal is insufficient.\n\n## Prior Experiment\n\nEXQ-086 (2026-03-23): FAIL (1/4), benefit_rate_go=0.0, warmup=150 -- training too short; benefit buffer barely populated (274 events).\nEXQ-138 fixes: warmup 150->400, proximity_benefit_scale 0.05->0.10, num_resources 4->5, seeds [42,7]->[42,123].\n\n## Per-Seed\n\nGO_NOGO_SUPPORT:\n  seed=42: benefit_rate=0.00000 harm_rate=0.12667 goal_prox=0.8651 benefit_buf=0\n  seed=123: benefit_rate=0.10905 harm_rate=0.03432 goal_prox=0.8535 benefit_buf=2\n\nNOGO_ONLY_ABLATED:\n  seed=42: benefit_rate=0.00000 harm_rate=0.12667\n  seed=123: benefit_rate=0.10905 harm_rate=0.03432\n\n## Failure Notes\n\n- C1 FAIL: delta_benefit_rate=0.00000 < 0.002 -- Go channel not producing reliable benefit advantage\n- C2 FAIL: per-seed benefit_rate_go [False, True] -- some seeds flat (< 0.002)\n- C4 FAIL: inconsistent directionality across seeds -- [False, False]\n- C5 FAIL: benefit_buf_per_seed=[0, 2] -- some seeds below 100 -- Go channel saw insufficient positive events (experiment underspecified)\n",
+  "claim_ids": [
+    "ARC-030"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_138a_arc030_go_nogo_pair",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260403T043647Z",
+  "claim": "ARC-030",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_138a_arc030_go_nogo_pair_20260403T043647Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

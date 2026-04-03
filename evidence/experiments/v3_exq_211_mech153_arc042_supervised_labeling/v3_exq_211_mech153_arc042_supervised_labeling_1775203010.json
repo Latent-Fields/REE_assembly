@@ -1,0 +1,151 @@
+{
+  "run_id": "v3_exq_211_mech153_arc042_supervised_labeling_1775203010_v3",
+  "experiment_type": "v3_exq_211_mech153_arc042_supervised_labeling",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-153",
+    "ARC-042"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PARTIAL",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-153": "mixed",
+    "ARC-042": "weakens"
+  },
+  "timestamp": 1775203010,
+  "dry_run": false,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 200,
+  "eval_episodes": 50,
+  "steps_per_episode": 200,
+  "thresh_cosim_sup": 0.9,
+  "ctx_a_thresh": 0.7,
+  "ctx_b_thresh": 0.33,
+  "mean_cosim_supervised": 0.9969096880831526,
+  "mean_cosim_unsupervised": 0.9998674037960269,
+  "supervised_vs_unsupervised_delta": 0.002957715712874398,
+  "context_cosine_similarity": 0.9969096880831526,
+  "context_discrimination_accuracy": 0.0,
+  "e3_harm_eval_diff_supervised": 0.00018694098870001655,
+  "e3_harm_eval_diff_unsupervised": 0.00018694098870001655,
+  "c1_cosim_reduced_pass": true,
+  "c2_cosim_absolute_pass": false,
+  "c3_e3_sensitivity_pass": false,
+  "c4_sanity_pass": true,
+  "c1_count": 3,
+  "c2_count": 0,
+  "c3_count": 0,
+  "c4_count": 3,
+  "n_seeds": 3,
+  "seed_metrics": [
+    {
+      "seed": 42,
+      "cosim_supervised": 0.9912508441678128,
+      "cosim_unsupervised": 0.9996586564027935,
+      "supervised_vs_unsupervised_delta": 0.00840781223498066,
+      "e3_harm_diff_supervised": 0.00024704017208443396,
+      "e3_harm_diff_unsupervised": 0.00024704017208443396,
+      "c1": true,
+      "c2": false,
+      "c3": false,
+      "c4": true
+    },
+    {
+      "seed": 7,
+      "cosim_supervised": 0.9999589242111465,
+      "cosim_unsupervised": 0.9999781880559585,
+      "supervised_vs_unsupervised_delta": 1.9263844811989728e-05,
+      "e3_harm_diff_supervised": 4.3271834668900944e-05,
+      "e3_harm_diff_unsupervised": 4.3271834668900944e-05,
+      "c1": true,
+      "c2": false,
+      "c3": false,
+      "c4": true
+    },
+    {
+      "seed": 123,
+      "cosim_supervised": 0.9995192958704984,
+      "cosim_unsupervised": 0.9999653669293289,
+      "supervised_vs_unsupervised_delta": 0.0004460710588305439,
+      "e3_harm_diff_supervised": 0.00027051095934671476,
+      "e3_harm_diff_unsupervised": 0.00027051095934671476,
+      "c1": true,
+      "c2": false,
+      "c3": false,
+      "c4": true
+    }
+  ],
+  "all_condition_results": [
+    {
+      "seed": 42,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 321,
+      "n_context_B": 191,
+      "context_cosine": 0.9996586564027935,
+      "mean_harm_A": 0.5308683943525653,
+      "mean_harm_B": 0.5306213541804808,
+      "e3_harm_eval_diff": 0.00024704017208443396,
+      "c4_sanity": true
+    },
+    {
+      "seed": 42,
+      "condition": "SUPERVISED",
+      "n_context_A": 321,
+      "n_context_B": 191,
+      "context_cosine": 0.9912508441678128,
+      "mean_harm_A": 0.5308683943525653,
+      "mean_harm_B": 0.5306213541804808,
+      "e3_harm_eval_diff": 0.00024704017208443396,
+      "c4_sanity": true
+    },
+    {
+      "seed": 7,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 409,
+      "n_context_B": 282,
+      "context_cosine": 0.9999781880559585,
+      "mean_harm_A": 0.534269301261762,
+      "mean_harm_B": 0.5343125730964309,
+      "e3_harm_eval_diff": 4.3271834668900944e-05,
+      "c4_sanity": true
+    },
+    {
+      "seed": 7,
+      "condition": "SUPERVISED",
+      "n_context_A": 409,
+      "n_context_B": 282,
+      "context_cosine": 0.9999589242111465,
+      "mean_harm_A": 0.534269301261762,
+      "mean_harm_B": 0.5343125730964309,
+      "e3_harm_eval_diff": 4.3271834668900944e-05,
+      "c4_sanity": true
+    },
+    {
+      "seed": 123,
+      "condition": "UNSUPERVISED",
+      "n_context_A": 311,
+      "n_context_B": 196,
+      "context_cosine": 0.9999653669293289,
+      "mean_harm_A": 0.5164790373906445,
+      "mean_harm_B": 0.5162085264312978,
+      "e3_harm_eval_diff": 0.00027051095934671476,
+      "c4_sanity": true
+    },
+    {
+      "seed": 123,
+      "condition": "SUPERVISED",
+      "n_context_A": 311,
+      "n_context_B": 196,
+      "context_cosine": 0.9995192958704984,
+      "mean_harm_A": 0.5164790373906445,
+      "mean_harm_B": 0.5162085264312978,
+      "e3_harm_eval_diff": 0.00027051095934671476,
+      "c4_sanity": true
+    }
+  ]
+}

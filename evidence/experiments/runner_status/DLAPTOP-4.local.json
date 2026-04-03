@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-03T04:14:21.098910+00:00",
+  "last_updated": "2026-04-03T07:58:38.055299+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-147a",
-    "backlog_id": "",
-    "claim_id": "MECH-128",
-    "title": "MECH-128 E1 goal conditioning pair (SD-012 fix: drive_weight=2.0)",
-    "description": "",
-    "script": "experiments/v3_exq_147a_mech128_e1_goal_conditioning_pair.py",
-    "started_at": "2026-04-03T02:50:58.542222+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 200,
-      "episodes_total": 400,
-      "overall_pct": 50.0
-    },
-    "seconds_elapsed": 5003,
-    "seconds_remaining": 5003,
-    "recent_lines": [
-      "[train] GOAL_ABLATED seed=42 ep 400/400 harm=1.324 benefit=0.000",
-      "[GOAL_ABLATED] seed=42 n_goal=1514 n_neutral=393 n_total=2984 err_goal=0.00058 err_neutral=0.00061 err_all=0.00058 goal_norm=0.3415",
-      "[EXQ-147a] GOAL_CONDITIONED seed=7 goal_conditioned=True e1_goal_dim=32 drive_weight=2.0 warmup=400 eval=120",
-      "[train] GOAL_CONDITIONED seed=7 ep 100/400 harm=0.100 benefit=0.000",
-      "[train] GOAL_CONDITIONED seed=7 ep 200/400 harm=0.000 benefit=0.000"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -48,39 +22,6 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-147a",
-      "backlog_id": "",
-      "claim_id": "MECH-128",
-      "title": "MECH-128 E1 goal conditioning pair (SD-012 fix: drive_weight=2.0)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-211",
-      "backlog_id": "",
-      "claim_id": "MECH-153",
-      "title": "MECH-153/ARC-042 supervised context labeling (ContextMemory discrimination)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-212",
-      "backlog_id": "EVB-0068",
-      "claim_id": "MECH-070",
-      "title": "MECH-070 E2 vs E1 rollout horizon comparison (action-conditioned vs action-free)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -4072,6 +4013,48 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 163.7
+    },
+    {
+      "queue_id": "V3-EXQ-147a",
+      "backlog_id": "",
+      "claim_id": "MECH-128",
+      "title": "MECH-128 E1 goal conditioning pair (SD-012 fix: drive_weight=2.0)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[train] GOAL_ABLATED seed=123 ep 200/400 harm=0.076 benefit=0.000 | [train] GOAL_ABLATED seed=123 ep 300/400 harm=0.023 benefit=0.000 | [train] GOAL_ABLATED seed=123 ep 400/400 harm=0.050 benefit=0.000",
+      "started_at": "2026-04-03T02:50:58.542222+00:00",
+      "completed_at": "2026-04-03T07:56:46.051106+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 18347.4
+    },
+    {
+      "queue_id": "V3-EXQ-211",
+      "backlog_id": "",
+      "claim_id": "MECH-153",
+      "title": "MECH-153/ARC-042 supervised context labeling (ContextMemory discrimination)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-211] seed=42 cosim_sup=0.9913 cosim_unsup=0.9997 harm_diff_sup=0.0002 harm_diff_unsup=0.0002 C1=True C2=False C3=False C4=True | [EXQ-211] seed=7 cosim_sup=1.0000 cosim_unsup=1.0000 harm_diff_sup=0.0000 harm_diff_unsup=0.0000 C1=True C2=False C3=False C4=True | [EXQ-211] seed=123 cosim_sup=0.9995 cosim_unsup=1.0000 harm_diff_sup=0.0003 harm_diff_unsup=0.0003 C1=True C2=False C3=False C4=True",
+      "started_at": "2026-04-03T07:56:49.073949+00:00",
+      "completed_at": "2026-04-03T07:57:39.476969+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 50.4
+    },
+    {
+      "queue_id": "V3-EXQ-212",
+      "backlog_id": "EVB-0068",
+      "claim_id": "MECH-070",
+      "title": "MECH-070 E2 vs E1 rollout horizon comparison (action-conditioned vs action-free)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-212] RESULT: FAIL r2_e1_h1=-43.1651 r2_e2_h1=-19.0598 r2_e1_h10=-382.7906 r2_e2_h10=-19511.6100 slope_e1=-24.8154 slope_e2=-4051.1790 C1=True C2=False C3=False C4=True",
+      "started_at": "2026-04-03T07:57:42.235470+00:00",
+      "completed_at": "2026-04-03T07:58:38.055104+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 55.8
     }
   ]
 }
