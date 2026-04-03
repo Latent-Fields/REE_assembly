@@ -1478,6 +1478,14 @@
     substrate; MECH-029 redesign should follow once those confirm z_goal is working.
     The BreathOscillator mechanism (variance difference C1 PASS) has real signal;
     it is the commitment detection and E3 harm_eval sensitivity that need work first.
+    EXQ-201 FAIL (2026-04-02): improved BreathOscillator (period=50, amp=0.3, 500 warmup
+    eps) -- uncommitted_steps=0 for both seeds [42, 123] throughout all 50 eval eps x
+    200 steps. Same substrate limitation as EXQ-065/080: agent cannot enter uncommitted
+    mode under any BreathOscillator configuration tested. evidence_direction corrected
+    to unknown (scoring_excluded: substrate_limitation). This is not evidence against
+    MECH-029 -- the claim requires a substrate capable of generating uncommitted-mode
+    windows, which the current V3 architecture cannot produce. All three experiments
+    are substrate-limited and non-informative about the claim.
     CLARIFICATION (2026-04-02): Literature (Liu et al. 2024, Yoder & Decety 2019)
     suggests the DMN's moral engagement is primarily evaluative (judging outcomes of
     imagined scenarios), not generative (proposing the scenarios). The hippocampus
@@ -3533,7 +3541,7 @@
   claim_type: architectural_commitment
   subject: architecture.hierarchical_effect_object_pipeline
   polarity: asserts
-  status: candidate
+  status: provisional
   conflict_with:
     - ARC-007
     - ARC-014

@@ -23,7 +23,9 @@
     "ARC-029"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
+  "scoring_excluded": "inadequate_training_budget",
+  "evidence_direction_note": "Artifact run: only 3 warmup episodes and 2 eval episodes x 20 steps -- insufficient training budget for any meaningful scientific inference. The authoritative EXQ-125 run is 20260329T010106Z (seeds [42, 123], 400 warmup eps, 50 eval eps x 200 steps). This run should not weight evidence for or against ARC-029. Corrected from mixed on 2026-04-03 governance review.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

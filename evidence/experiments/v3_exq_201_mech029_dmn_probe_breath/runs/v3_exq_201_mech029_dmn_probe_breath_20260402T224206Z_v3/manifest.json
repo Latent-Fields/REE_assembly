@@ -23,7 +23,9 @@
     "MECH-029"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "unknown",
+  "scoring_excluded": "substrate_limitation",
+  "evidence_direction_note": "Substrate-limited: uncommitted_steps=0 for both seeds [42, 123] throughout all eval steps despite BreathOscillator (period=50, amp=0.3, 500 warmup eps). Same limitation as EXQ-065 and EXQ-080 -- the V3 substrate cannot generate uncommitted-mode windows under any tested BreathOscillator configuration. Not evidence for or against MECH-029. Corrected from weakens on 2026-04-03 governance review.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
