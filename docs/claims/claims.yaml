@@ -3632,6 +3632,12 @@
     to novelty and arousal. VTA dopamine primarily targets ventral HPC (motivational/affective).
     MECH-075 bifurcates by HPC axis: dorsal=LC-mediated arousal gain; ventral=VTA-mediated
     RPE/reinforcement gain.
+  anatomical_note: "LC (locus coeruleus), not VTA, is primary catecholamine source in dorsal
+    HPC (spatial/planning terrain). Dorsal HPC gain: LC-mediated (novelty/arousal, DA/NE
+    co-release, Kempadoo et al. 2016). Ventral HPC gain: VTA-mediated (reward prediction
+    error, RPE signal). MECH-075 survives but requires axis-specific implementation: dorsal
+    terrain encoding-depth modulation via LC arousal signal; ventral valence weighting via
+    VTA RPE."
   evidence_quality_note: |
     EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL.
     Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4.
@@ -3645,6 +3651,11 @@
     PASS (harm_delta=0 both conditions -- harm not worsened). Consistent null result across
     two independent runs. Hold at candidate; not falsified -- the novelty signal magnitude
     is the bottleneck, not the claim's core mechanism.
+    Mixed/null evidence partially reflects dorsal/ventral axis split (Kempadoo et al. 2016):
+    EXQ-192a probed VTA-like novelty gain on dorsal HPC terrain, but dorsal HPC gain is
+    LC-mediated, not VTA-mediated. The FAIL is consistent with targeting the wrong
+    catecholamine source for dorsal terrain. This is not a falsification of MECH-075
+    core mechanism -- it is a mis-targeting of anatomical substrate. See anatomical_note.
 - id: MECH-076
   title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
