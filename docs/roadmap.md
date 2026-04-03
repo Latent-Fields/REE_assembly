@@ -19,11 +19,16 @@
   ablation strips the deliberative architecture entirely: commitment_threshold=−1.0 (always
   uncommitted), z_goal disabled, benefit_eval disabled. What remains is the predictive
   associative core alone — and it works. This is the first experimental confirmation that
-  the E1+E2+hippocampus triad constitutes a minimal functional mind: a system that navigates,
-  avoids harm, and acquires resources without deliberation. Architecturally equivalent to
-  an early vertebrate nervous system (zebrafish larva analog: hippocampal precursor,
-  cerebellum-like E2, BG-like go/no-go, no prefrontal commitment circuitry). Episode
-  visualiser (`episode_viewer.html`) added to the explorer for trajectory playback.
+  the E1+E2+hippocampus triad constitutes a minimal functional mind. **The circuit topology
+  is a named-structure match to the zebrafish larva (5–7 dpf)**: dorsal pallium (E1) →
+  cerebellum (E2) → lateral pallium (hippocampal module) → optic tectum + reticulospinal
+  neurons (go/no-go) → lateral habenula (harm signal). The larva has no mature prefrontal
+  cortex — no commitment architecture — matching the ablation exactly. It is the only
+  vertebrate whose entire ~100,000-neuron CNS has been functionally imaged during free
+  behaviour (Ahrens et al., 2013, *Nature Methods*; Portugues et al., 2014, *Neuron*).
+  This match was derived from functional-architecture arguments, not from biology.
+  Episode visualiser (`episode_viewer.html`) added to the explorer for trajectory playback.
+  Full circuit table and references: see changelog 2026-04-03.
 - **SD-011 and SD-012 both implemented.** SD-011 (dual nociceptive streams: z_harm_s +
   z_harm_a) validated at EXQ-178b PASS (2026-03-30). SD-012 (homeostatic drive modulation)
   implemented 2026-04-02: drive_weight default raised from 0.0 to 2.0, enabling

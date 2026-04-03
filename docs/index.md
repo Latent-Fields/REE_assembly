@@ -15,19 +15,24 @@ REE is not a moral rule engine. It does not assume ethical cost can be eliminate
 
 ## Latest result — 2026-04-03
 
-**EXQ-223 PASS: Minimal mind confirmed.** The E1+E2+hippocampus core — associative world
-model, fast transition predictor, hippocampal trajectory proposal, and primitive go/no-go
-selection — is sufficient for stable navigation, harm avoidance, and resource acquisition
-without deliberative machinery. 3/3 criteria met across 3 independent seeds:
-harm_ratio 0.29–0.39, REE reward ~4.5× random baseline.
+**EXQ-223 PASS: Minimal mind confirmed.**
 
-This is the first experimental confirmation that the REE core loop, at the complexity level
-of an early vertebrate nervous system, constitutes a minimal functional mind. The ablation
-configuration corresponds closely to what is known of zebrafish larval circuitry — the
-best-characterised vertebrate at this level of organisation, whose entire ~100,000-neuron
-CNS can be imaged during free behaviour.
+The REE core loop — E1 (associative world model) + E2 (fast transition predictor) +
+HippocampalModule (trajectory proposal) + go/no-go selection + raw harm/reward signals —
+produces stable navigation, harm avoidance, and resource acquisition without deliberation,
+goal evaluation, or commitment machinery. 3/3 criteria met across 3 independent seeds
+(harm_ratio 0.29–0.39; REE reward ~4.5× random).
 
-→ [EXQ-223 entry in changelog](changelog.md#2026-04-03-exq-223-pass--minimal-mind-hypothesis-confirmed)
+**The circuit topology of EXQ-223 matches the zebrafish larva (5–7 dpf) at the level of
+named structures.** Dorsal pallium (E1) → cerebellum (E2) → lateral pallium (hippocampal
+module) → optic tectum + reticulospinal neurons (go/no-go) → lateral habenula (harm
+signal). The larva has no mature prefrontal cortex — no commitment architecture — which
+is exactly what the ablation removes. This is the only vertebrate for which the entire
+~100,000-neuron CNS has been functionally imaged during behaviour (Ahrens et al., 2013,
+*Nature Methods*). The match was derived from functional-architecture arguments; it was not
+built to fit the biology.
+
+→ [Full analysis with circuit table and references](changelog.md#2026-04-03-exq-223-pass--minimal-mind-hypothesis-confirmed)
 
 ---
 
