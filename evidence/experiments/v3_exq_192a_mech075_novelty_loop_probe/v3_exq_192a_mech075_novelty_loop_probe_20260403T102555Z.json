@@ -1,0 +1,61 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "mean_cells_on": 49.0,
+    "mean_cells_off": 49.0,
+    "mean_cell_gap": 0.0,
+    "mean_hazards_on": 32.0,
+    "mean_hazards_off": 32.0,
+    "mean_hazard_gap": 0.0,
+    "mean_harm_rate_on": 0.0,
+    "mean_harm_rate_off": 0.0,
+    "mean_harm_delta": 0.0,
+    "mean_novelty_signal_on": 6.4382770435702e-05,
+    "mean_novelty_signal_off": 6.4382770435702e-05,
+    "mean_cem_scale_on": 1.0001287994472912,
+    "per_seed_cell_gap_min": 0.0,
+    "per_seed_hazard_gap_min": 0.0,
+    "per_seed_harm_delta_max": 0.0,
+    "novelty_signal_min": 5.63296321980005e-05,
+    "n_seeds": 2.0,
+    "novelty_gain": 2.0,
+    "nav_bias": 0.25,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 0.0,
+    "criteria_met": 1.0
+  },
+  "summary_markdown": "# V3-EXQ-192a -- MECH-075 Hippocampal-VTA Novelty Loop Probe\n\n**Status:** FAIL\n**Claims:** MECH-075\n**Decision:** inconclusive\n**Seeds:** [42, 123]\n**Conditions:** NOVELTY_LOOP_ON vs NOVELTY_LOOP_OFF\n**Warmup:** 200 eps x 200 steps  **Eval:** 50 eps x 200 steps\n**Env:** CausalGridWorld size=10, 5 hazards, 5 resources nav_bias=0.25\n**novelty_gain:** 2.0\n\n## Design\n\nMECH-075 asserts that BG perform dopaminergic gain/threshold setting on hippocampal attractor dynamics (Lisman & Grace 2005 novelty loop). The experiment tests whether z_world mismatch detection (hippocampal novelty) driving CEM proposal noise scaling (VTA-like dopaminergic modulation) improves exploration efficiency. NOVELTY_LOOP_ON scales CEM noise by (1 + gain * novelty_ema); NOVELTY_LOOP_OFF uses fixed noise. The manipulation targets the PROPOSAL distribution, not trajectory scoring (distinct from MECH-111).\n\n## Pre-Registered Thresholds\n\nC1: per-seed unique_cells_gap (ON-OFF) >= 3 (all seeds)\nC2: per-seed hazard_discovery_gap (ON-OFF) >= 1 (all seeds)\nC3: per-seed harm_delta (ON-OFF) <= 0.02 (all seeds)\nC4: mean_novelty_signal_ON > 0.0001 (all seeds)\n\n## Results\n\n| Condition | cells | hazards_found | harm_rate | novelty | cem_scale |\n|-----------|-------|---------------|-----------|---------|----------|\n| NOVELTY_LOOP_ON  | 49.0 | 32.0 | 0.0000 | 0.000064 | 1.000 |\n| NOVELTY_LOOP_OFF | 49.0 | 32.0 | 0.0000 | 0.000064 | 1.000 |\n\n**per-seed cell_gap: [0, 0]**\n**per-seed hazard_gap: [0, 0]**\n**per-seed harm_delta: [0.0, 0.0]**\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: cell_gap >= 3 (all seeds) | FAIL | [0, 0] |\n| C2: hazard_gap >= 1 (all seeds) | FAIL | [0, 0] |\n| C3: harm_delta <= 0.02 (all seeds) | PASS | [0.0, 0.0] |\n| C4: novelty_signal > 0.0001 (all seeds) | FAIL | [5.63e-05, 7.24e-05] |\n\nCriteria met: 1/4 -> **FAIL**\n\n## Interpretation\n\nMECH-075 NOT SUPPORTED: novelty loop does not produce measurable exploration improvement. E1 world-prediction error may be too uniform across z_world states, or CEM noise scaling has no effect on trajectory diversity at this gain level. Criteria: C1=False C2=False C3=True C4=False.\n\n## Per-Seed Detail\n\nNOVELTY_LOOP_ON:\n  seed=42: cells=53 hazards=31 resources=35 harm_rate=0.0000 novelty=0.000056 cem_scale=1.000\n  seed=123: cells=45 hazards=33 resources=26 harm_rate=0.0000 novelty=0.000072 cem_scale=1.000\n\nNOVELTY_LOOP_OFF:\n  seed=42: cells=53 hazards=31 resources=35 harm_rate=0.0000 novelty=0.000056\n  seed=123: cells=45 hazards=33 resources=26 harm_rate=0.0000 novelty=0.000072\n\n## Failure Notes\n\n- C1 FAIL: per-seed cell_gap [0, 0] < 3 -- novelty loop does not increase spatial coverage\n- C2 FAIL: per-seed hazard_gap [0, 0] < 1 -- novelty loop does not improve hazard discovery\n- C4 FAIL: mean_novelty_signal <= 0.0001 in seeds [42, 123] -- E1 world-prediction mismatch not producing novelty signal\n",
+  "claim_ids": [
+    "MECH-075"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_192a_mech075_novelty_loop_probe",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260403T102555Z",
+  "claim": "MECH-075",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_192a_mech075_novelty_loop_probe_20260403T102555Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "registered_thresholds": {
+    "C1_per_seed_cell_gap": 3,
+    "C2_per_seed_hazard_gap": 1,
+    "C3_per_seed_harm_delta": 0.02,
+    "C4_novelty_signal_min": 0.0001
+  },
+  "seeds": [
+    42,
+    123
+  ],
+  "conditions": [
+    "NOVELTY_LOOP_ON",
+    "NOVELTY_LOOP_OFF"
+  ],
+  "dispatch_mode": "targeted_probe",
+  "backlog_id": "EVB-0046",
+  "evidence_class": "targeted_probe",
+  "claim_ids_tested": [
+    "MECH-075"
+  ]
+}
