@@ -1,0 +1,46 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "avg_harm_gap_stable": -0.012222682610154152,
+    "avg_harm_gap_volatile": -0.013010081589221952,
+    "avg_gap_ratio": -1.064421126211169,
+    "total_fatal_errors": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 1.0,
+    "criteria_met": 5.0,
+    "n_seeds": 1.0
+  },
+  "per_seed_data": [
+    {
+      "seed": 42,
+      "harm_active_stable": -0.006503933593630791,
+      "harm_ablated_stable": 0.0057187490165233595,
+      "harm_active_volatile": -0.0065813492238521575,
+      "harm_ablated_volatile": 0.006428732365369795,
+      "harm_gap_stable": -0.012222682610154152,
+      "harm_gap_volatile": -0.013010081589221952,
+      "gap_ratio": -1.064421126211169,
+      "n_committed_active_stable": 40,
+      "n_uncommitted_active_stable": 0,
+      "n_committed_ablated_stable": 0,
+      "train_variance": 0.05270041016031885,
+      "commit_threshold": 0.4
+    }
+  ],
+  "summary_markdown": "# V3-EXQ-125 -- ARC-029: Committed vs Ablated Mode Harm Outcomes (Matched-Seed Pair)\n\n**Status:** FAIL\n**Claims:** ARC-029\n**Seeds:** [42]  |  **Warmup:** 3 eps  |  **Eval:** 2 eps x 20 steps\n**Design:** 2x2 [COMMITTED_MODE_ON / COMMITTED_MODE_ABLATED] x [stable (drift=0.0) / volatile (drift=0.4, interval=3)]\n\n## Design Rationale\n\nARC-029 predicts that the BG beta commitment gate (MECH-090) reduces harm in stable\nenvironments by holding the agent to a well-evaluated trajectory, and that this\nadvantage narrows or reverses in volatile environments (where the committed trajectory\nquickly becomes invalid as the layout changes).\n\nGate ablation: force `agent.e3._running_variance = commit_threshold + 0.1` and\n`agent.e3._committed_trajectory = None` before each SELECT step. Same trained weights;\nonly the commitment gate is disabled.\n\nPre-registered thresholds: MIN_HARM_GAP_STABLE=0.0001,\nVOLATILITY_MODULATION_RATIO=0.9.\n\nStrengthens EXQ-063 (PASS 5/5, conf=0.774) with canonical seeds [42, 123].\n\n## Per-Seed Results\n\n| Seed | Act-Stab | Abl-Stab | Gap-Stab | Act-Vol | Abl-Vol | Gap-Vol | GapRatio |\n|---|---|---|---|---|---|---|---|\n| 42 | -0.00650 | 0.00572 | -0.01222 | -0.00658 | 0.00643 | -0.01301 | -1.064 |\n\n## Aggregated (avg across seeds)\n\n| Metric | Value |\n|---|---|\n| avg_harm_gap_stable | -0.01222 |\n| avg_harm_gap_volatile | -0.01301 |\n| avg_gap_ratio (volatile/stable) | -1.064 |\n\n## PASS Criteria (ALL seeds)\n\n| Criterion | Threshold | Result |\n|---|---|---|\n| C1: harm_gap_stable >= 0.0001 (both seeds) | 0.0001 | FAIL |\n| C2: gap_volatile < gap_stable (both seeds) | strict inequality | PASS |\n| C3: gap_ratio <= 0.9 (both seeds) | 0.9 | PASS |\n| C4: committed steps > uncommitted in ON condition | majority | PASS |\n| C5: zero committed steps in ABLATED condition | 0 | PASS |\n| C6: no fatal errors | 0 | PASS |\n\nCriteria met: 5/6 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL seed=42: harm_gap_stable=-0.01222 < MIN=0.0001 (committed did not outperform ablated)\n",
+  "claim_ids": [
+    "ARC-029"
+  ],
+  "evidence_direction": "mixed",
+  "experiment_type": "v3_exq_125_arc029_committed_mode_pair",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260403T201459Z",
+  "claim": "ARC-029",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_125_arc029_committed_mode_pair_20260403T201459Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

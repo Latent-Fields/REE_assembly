@@ -1,0 +1,155 @@
+{
+  "run_id": "v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3",
+  "experiment_type": "v3_exq_213_mech072_foreseeable_harm_gating",
+  "claim_ids": [
+    "MECH-072"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_class": "discriminative_pair",
+  "decision": "retain_ree",
+  "criteria": {
+    "C1_direction_all_seeds": true,
+    "C2_mean_delta_far": true,
+    "C3_harm_not_degraded": true,
+    "C4_env_events": true,
+    "C5_agent_events": true,
+    "C6_e2_quality": true
+  },
+  "pre_registered_thresholds": {
+    "GATE_THRESH": 0.2,
+    "THRESH_C2_FAR_DELTA": 0.05,
+    "THRESH_C3_HARM_TOLERANCE": 0.03,
+    "THRESH_C4_MIN_ENV_EVENTS": 5,
+    "THRESH_C5_MIN_AGENT_EVENTS": 5,
+    "THRESH_C6_E2_QUALITY": 0.1
+  },
+  "summary_metrics": {
+    "gated_false_attr_rate_mean": 0.0,
+    "ungated_false_attr_rate_mean": 0.4783647735026894,
+    "mean_delta_false_attr": 0.4783647735026894,
+    "gated_harm_rate_mean": 0.8730112279025323,
+    "ungated_harm_rate_mean": 0.8730112279025323,
+    "e2_world_r2_mean": 0.558099383551628
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "config": {
+    "env_size": 10,
+    "num_hazards": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "action_dim": 5,
+    "n_train_eps": 300,
+    "n_eval_eps": 100,
+    "steps_per_ep": 150
+  },
+  "scenario": "discriminative_pair: GATED (residue accumulates only when E2.world_forward predicts foreseeable harm: E3.harm_eval(z_w_pred) > GATE_THRESH) vs UNGATED (residue accumulates at all harm events regardless of cause). Shared training phase (300 eps). Eval phase diverges on accumulation gate only. False attribution rate = residue_at_env_caused / total_residue. CausalGridWorld size=10 hazards=3. Gating threshold=0.2.",
+  "interpretation": "PASS supports MECH-072: foreseeable-harm gating reduces residue accumulation at env-caused events while preserving harm avoidance. The E2 world-forward model provides a causal filter: only foreseeable (agent-attributable) harm accumulates in the ethical residue record. FAIL weakens MECH-072: gating does not reduce false attribution rate, suggesting E2 cannot discriminate foreseeable from unforeseeable harm at this scale. INCONCLUSIVE: insufficient env-caused events or E2 quality too low for attribution signal.",
+  "per_seed_results": {
+    "42": {
+      "train": {
+        "e2_world_r2": 0.6323143113037335,
+        "residue_total": 70.37283325195312,
+        "num_harm_events": 4724
+      },
+      "GATED": {
+        "harm_rate": 0.8725274725274725,
+        "harm_steps": 1588,
+        "total_steps": 1820,
+        "n_env_events": 40,
+        "n_agent_events": 62,
+        "residue_env": 0.0,
+        "residue_agent": 0.0,
+        "false_attr_rate": 0.0,
+        "total_residue_eval": 0.0
+      },
+      "UNGATED": {
+        "harm_rate": 0.8725274725274725,
+        "harm_steps": 1588,
+        "total_steps": 1820,
+        "n_env_events": 40,
+        "n_agent_events": 62,
+        "residue_env": 4.659516320228577,
+        "residue_agent": 4.9600000000000035,
+        "false_attr_rate": 0.4843815598535059,
+        "total_residue_eval": 9.61951632022858
+      },
+      "c1_direction_pass": true,
+      "delta_false_attr": 0.4843815598535059,
+      "harm_difference": 0.0
+    },
+    "7": {
+      "train": {
+        "e2_world_r2": 0.4624213889770763,
+        "residue_total": 70.80812072753906,
+        "num_harm_events": 4948
+      },
+      "GATED": {
+        "harm_rate": 0.8679347826086956,
+        "harm_steps": 1597,
+        "total_steps": 1840,
+        "n_env_events": 37,
+        "n_agent_events": 66,
+        "residue_env": 0.0,
+        "residue_agent": 0.0,
+        "false_attr_rate": 0.0,
+        "total_residue_eval": 0.0
+      },
+      "UNGATED": {
+        "harm_rate": 0.8679347826086956,
+        "harm_steps": 1597,
+        "total_steps": 1840,
+        "n_env_events": 37,
+        "n_agent_events": 66,
+        "residue_env": 4.294516096115112,
+        "residue_agent": 5.280000000000004,
+        "false_attr_rate": 0.4485360986397655,
+        "total_residue_eval": 9.574516096115115
+      },
+      "c1_direction_pass": true,
+      "delta_false_attr": 0.4485360986397655,
+      "harm_difference": 0.0
+    },
+    "13": {
+      "train": {
+        "e2_world_r2": 0.5795624503740744,
+        "residue_total": 70.16104125976562,
+        "num_harm_events": 4717
+      },
+      "GATED": {
+        "harm_rate": 0.8785714285714286,
+        "harm_steps": 1599,
+        "total_steps": 1820,
+        "n_env_events": 41,
+        "n_agent_events": 59,
+        "residue_env": 0.0,
+        "residue_agent": 0.0,
+        "false_attr_rate": 0.0,
+        "total_residue_eval": 0.0
+      },
+      "UNGATED": {
+        "harm_rate": 0.8785714285714286,
+        "harm_steps": 1599,
+        "total_steps": 1820,
+        "n_env_events": 41,
+        "n_agent_events": 59,
+        "residue_env": 4.761275062561036,
+        "residue_agent": 4.720000000000003,
+        "false_attr_rate": 0.5021766620147967,
+        "total_residue_eval": 9.48127506256104
+      },
+      "c1_direction_pass": true,
+      "delta_false_attr": 0.5021766620147967,
+      "harm_difference": 0.0
+    }
+  },
+  "supersedes": null,
+  "dry_run": false,
+  "timestamp_utc": "2026-04-03T20:23:20.215003+00:00"
+}

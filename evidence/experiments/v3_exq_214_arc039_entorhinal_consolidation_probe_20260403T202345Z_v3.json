@@ -1,0 +1,135 @@
+{
+  "run_id": "v3_exq_214_arc039_entorhinal_consolidation_probe_20260403T202345Z_v3",
+  "experiment_type": "v3_exq_214_arc039_entorhinal_consolidation_probe",
+  "claim_ids": [
+    "ARC-039"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "diagnostic",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_class": "targeted_probe",
+  "decision": "hybridize",
+  "criteria": {
+    "C1_direction_all_seeds": false,
+    "C2_mean_delta_accuracy": false,
+    "C3_harm_data_quality": true,
+    "C4_residue_populated": true
+  },
+  "pre_registered_thresholds": {
+    "THRESH_C2_ACC_DELTA": 0.05,
+    "THRESH_C3_MIN_HARM": 5,
+    "THRESH_C4_MIN_RESIDUE": 0.01,
+    "N_CONSOLIDATION_INTERVAL": 20,
+    "N_CONSOLIDATION_STEPS": 10
+  },
+  "summary_metrics": {
+    "consol_residue_acc_mean": 0.03752404773637603,
+    "noconsol_residue_acc_mean": 0.3208822895880418,
+    "mean_delta_accuracy": -0.2833582418516658,
+    "consol_harm_rate_mean": 0.8789587452712887,
+    "noconsol_harm_rate_mean": 0.8789587452712887
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "config": {
+    "env_size": 10,
+    "num_hazards": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "action_dim": 5,
+    "n_train_eps": 300,
+    "n_eval_eps": 100,
+    "consol_interval": 20,
+    "consol_steps": 10
+  },
+  "scope_note": "V3 proxy probe for ARC-039 (V4 claim). Tests whether periodic offline residue integration improves viability map accuracy. Does NOT test the full hippocampal-entorhinal grid cell mechanism (V4 scope). A positive result provides weak diagnostic support for the consolidation principle.",
+  "scenario": "targeted_probe: WITH_CONSOLIDATION (ResidueField.integrate() called every 20 training episodes, 10 steps) vs NO_CONSOLIDATION (no integrate() calls). Shared WorldEncoder trained jointly on world prediction. Separate residue fields accumulate identically during training. Eval: residue accuracy = Pearson r(residue_score, hazard_field_max). CausalGridWorld size=10 hazards=3.",
+  "interpretation": "PASS (mixed direction): offline consolidation (ResidueField.integrate()) improves residue terrain correlation with hazard proximity. Provides weak diagnostic support for ARC-039's principle that offline processing improves map quality. Does not confirm the hippocampal-entorhinal mechanism (V4). FAIL weakens ARC-039: offline integration does not improve terrain quality, suggesting either the V3 residue.integrate() proxy is too weak, or the consolidation benefit requires the full grid-cell circuit (V4). INCONCLUSIVE: insufficient harm events or residue not populated.",
+  "per_seed_results": {
+    "42": {
+      "train_consol": {
+        "residue_total": 70.37283325195312,
+        "num_harm_events": 4724
+      },
+      "train_noconsol": {
+        "residue_total": 71.09550476074219,
+        "num_harm_events": 4593
+      },
+      "eval_consol": {
+        "harm_rate": 0.8868675383740762,
+        "harm_steps": 1560,
+        "total_steps": 1759,
+        "residue_accuracy": 0.17587774818913346,
+        "n_data_points": 1759
+      },
+      "eval_noconsol": {
+        "harm_rate": 0.8868675383740762,
+        "harm_steps": 1560,
+        "total_steps": 1759,
+        "residue_accuracy": 0.3191268206313739,
+        "n_data_points": 1759
+      },
+      "c1_direction_pass": false,
+      "delta_accuracy": -0.14324907244224042
+    },
+    "7": {
+      "train_consol": {
+        "residue_total": 70.80812072753906,
+        "num_harm_events": 4948
+      },
+      "train_noconsol": {
+        "residue_total": 70.60034942626953,
+        "num_harm_events": 4855
+      },
+      "eval_consol": {
+        "harm_rate": 0.8746192893401015,
+        "harm_steps": 1723,
+        "total_steps": 1970,
+        "residue_accuracy": -0.0623807190184225,
+        "n_data_points": 1970
+      },
+      "eval_noconsol": {
+        "harm_rate": 0.8746192893401015,
+        "harm_steps": 1723,
+        "total_steps": 1970,
+        "residue_accuracy": 0.38373787660844894,
+        "n_data_points": 1970
+      },
+      "c1_direction_pass": false,
+      "delta_accuracy": -0.44611859562687145
+    },
+    "13": {
+      "train_consol": {
+        "residue_total": 70.16104125976562,
+        "num_harm_events": 4717
+      },
+      "train_noconsol": {
+        "residue_total": 70.8315200805664,
+        "num_harm_events": 4895
+      },
+      "eval_consol": {
+        "harm_rate": 0.8753894080996885,
+        "harm_steps": 1686,
+        "total_steps": 1926,
+        "residue_accuracy": -0.000924885961582888,
+        "n_data_points": 1926
+      },
+      "eval_noconsol": {
+        "harm_rate": 0.8753894080996885,
+        "harm_steps": 1686,
+        "total_steps": 1926,
+        "residue_accuracy": 0.2597821715243026,
+        "n_data_points": 1926
+      },
+      "c1_direction_pass": false,
+      "delta_accuracy": -0.2607070574858855
+    }
+  },
+  "supersedes": null,
+  "dry_run": false,
+  "timestamp_utc": "2026-04-03T20:23:45.955590+00:00"
+}

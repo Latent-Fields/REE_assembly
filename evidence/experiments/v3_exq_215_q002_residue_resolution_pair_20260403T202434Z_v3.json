@@ -1,0 +1,155 @@
+{
+  "run_id": "v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3",
+  "experiment_type": "v3_exq_215_q002_residue_resolution_pair",
+  "claim_ids": [
+    "Q-002"
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_class": "discriminative_pair",
+  "decision": "hybridize",
+  "criteria": {
+    "C1_harm_direction_all_seeds": false,
+    "C2_mean_harm_delta": true,
+    "C3_acc_direction_all_seeds": false,
+    "C4_data_quality": true,
+    "C5_e2_quality": true
+  },
+  "pre_registered_thresholds": {
+    "HIGH_RES_NUM_CENTERS": 64,
+    "LOW_RES_NUM_CENTERS": 8,
+    "THRESH_C2_HARM_DELTA": 0.005,
+    "THRESH_C4_MIN_HARM": 5,
+    "THRESH_C5_E2_QUALITY": 0.1
+  },
+  "summary_metrics": {
+    "high_res_harm_mean": 0.03343274060933186,
+    "low_res_harm_mean": 0.08959366287864583,
+    "mean_harm_delta": 0.056160922269313955,
+    "high_res_acc_mean": -0.009686907688373467,
+    "low_res_acc_mean": 0.03309650208554188,
+    "e2_world_r2_mean": 0.7240032328827319
+  },
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "config": {
+    "env_size": 10,
+    "num_hazards": 3,
+    "hazard_harm": 0.5,
+    "world_dim": 32,
+    "action_dim": 5,
+    "high_res_num_centers": 64,
+    "low_res_num_centers": 8,
+    "n_train_eps": 300,
+    "n_eval_eps": 80,
+    "n_candidates": 5
+  },
+  "scenario": "discriminative_pair: HIGH_RES (ResidueField num_basis_functions=64) vs LOW_RES (num_basis_functions=8). Shared WorldEncoder + E2 trained on world prediction. Residue fields populated from training buffer harm events. Eval: greedy residue-avoidance policy (argmin E2-predicted residue across all 5 candidate actions). residue_accuracy = Pearson r(residue_score, hazard_field_max). CausalGridWorld size=10 hazards=3.",
+  "interpretation": "PASS supports Q-002: higher RBF resolution (64 vs 8 centers) provides measurably better harm avoidance and residue-hazard correlation. Suggests Q-002 answer: fine resolution is beneficial for R(x,t). FAIL weakens Q-002: resolution does not matter at current scale. Q-002 answer may be: coarse resolution is sufficient, or the bottleneck is not RBF density but representation quality. INCONCLUSIVE: E2 not trained enough or insufficient harm contacts.",
+  "per_seed_results": {
+    "42": {
+      "train": {
+        "e2_world_r2": 0.6880458548100234
+      },
+      "populate_high": {
+        "residue_total": 70.37283325195312,
+        "num_harm_events": 4724,
+        "harm_events_replay": 4724
+      },
+      "populate_low": {
+        "residue_total": 70.37283325195312,
+        "num_harm_events": 4724,
+        "harm_events_replay": 4724
+      },
+      "HIGH_RES": {
+        "harm_rate": 0.017425471939865038,
+        "harm_steps": 204,
+        "total_steps": 11707,
+        "residue_accuracy": -0.06458460037219227,
+        "n_data_points": 11707
+      },
+      "LOW_RES": {
+        "harm_rate": 0.007764505119453925,
+        "harm_steps": 91,
+        "total_steps": 11720,
+        "residue_accuracy": 0.38504504879821494,
+        "n_data_points": 11720
+      },
+      "c1_direction_pass": false,
+      "c3_acc_direction_pass": false,
+      "harm_delta": -0.009660966820411114
+    },
+    "7": {
+      "train": {
+        "e2_world_r2": 0.6392594140647159
+      },
+      "populate_high": {
+        "residue_total": 70.80812072753906,
+        "num_harm_events": 4948,
+        "harm_events_replay": 4948
+      },
+      "populate_low": {
+        "residue_total": 70.80812072753906,
+        "num_harm_events": 4948,
+        "harm_events_replay": 4948
+      },
+      "HIGH_RES": {
+        "harm_rate": 0.0672139558748076,
+        "harm_steps": 393,
+        "total_steps": 5847,
+        "residue_accuracy": 0.03390975408119804,
+        "n_data_points": 5847
+      },
+      "LOW_RES": {
+        "harm_rate": 0.24351648351648353,
+        "harm_steps": 554,
+        "total_steps": 2275,
+        "residue_accuracy": -0.17610738535474432,
+        "n_data_points": 2275
+      },
+      "c1_direction_pass": true,
+      "c3_acc_direction_pass": true,
+      "harm_delta": 0.17630252764167592
+    },
+    "13": {
+      "train": {
+        "e2_world_r2": 0.8447044297734566
+      },
+      "populate_high": {
+        "residue_total": 70.16104125976562,
+        "num_harm_events": 4717,
+        "harm_events_replay": 4717
+      },
+      "populate_low": {
+        "residue_total": 70.16104125976562,
+        "num_harm_events": 4717,
+        "harm_events_replay": 4717
+      },
+      "HIGH_RES": {
+        "harm_rate": 0.01565879401332295,
+        "harm_steps": 181,
+        "total_steps": 11559,
+        "residue_accuracy": 0.0016141232258738247,
+        "n_data_points": 11559
+      },
+      "LOW_RES": {
+        "harm_rate": 0.0175,
+        "harm_steps": 210,
+        "total_steps": 12000,
+        "residue_accuracy": -0.10964815718684498,
+        "n_data_points": 12000
+      },
+      "c1_direction_pass": true,
+      "c3_acc_direction_pass": true,
+      "harm_delta": 0.001841205986677051
+    }
+  },
+  "supersedes": "V3-EXQ-170",
+  "dry_run": false,
+  "timestamp_utc": "2026-04-03T20:24:34.931326+00:00"
+}

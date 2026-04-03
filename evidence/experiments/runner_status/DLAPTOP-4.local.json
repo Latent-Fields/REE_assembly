@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 82367,
   "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-03T10:25:56.286228+00:00",
+  "last_updated": "2026-04-03T20:52:06.847536+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-125",
+    "backlog_id": "",
+    "claim_id": "ARC-029",
+    "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
+    "description": "",
+    "script": "experiments/v3_exq_125_arc029_committed_mode_pair.py",
+    "started_at": "2026-04-03T20:24:38.286403+00:00",
+    "progress": {
+      "run_label": "starting...",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 100,
+      "episodes_total": 400,
+      "overall_pct": 25.0
+    },
+    "seconds_elapsed": 1649,
+    "seconds_remaining": 4946,
+    "recent_lines": [
+      "alpha_world=0.9",
+      "============================================================",
+      "[V3-EXQ-125] Seed 42",
+      "============================================================",
+      "[train seed=42] ep 100/400  running_var=0.000001"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -25,6 +51,17 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-125",
+      "backlog_id": "",
+      "claim_id": "ARC-029",
+      "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
+      "description": "",
+      "estimated_minutes": 155.0,
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4083,6 +4120,48 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_192a_mech075_novelty_loop_probe/v3_exq_192a_mech075_novelty_loop_probe_20260403T102555Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4884.9
+    },
+    {
+      "queue_id": "V3-EXQ-213",
+      "backlog_id": "EVB-0029",
+      "claim_id": "MECH-072",
+      "title": "MECH-072 foreseeable-harm gating discriminative pair (gated vs ungated residue)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-213] outcome=PASS evidence_direction=supports | [EXQ-213] Result written to: /Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3.json | [EXQ-213] Done. outcome=PASS",
+      "started_at": "2026-04-03T20:23:05.143826+00:00",
+      "completed_at": "2026-04-03T20:23:20.799725+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 15.7
+    },
+    {
+      "queue_id": "V3-EXQ-214",
+      "backlog_id": "EVB-0054",
+      "claim_id": "ARC-039",
+      "title": "ARC-039 entorhinal consolidation probe (with_consolidation vs no_consolidation)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-214] Criteria: {'C1_direction_all_seeds': False, 'C2_mean_delta_accuracy': False, 'C3_harm_data_quality': True, 'C4_residue_populated': True} | [EXQ-214] outcome=FAIL evidence_direction=weakens | [EXQ-214] Done. outcome=FAIL",
+      "started_at": "2026-04-03T20:23:23.485176+00:00",
+      "completed_at": "2026-04-03T20:23:46.437344+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_214_arc039_entorhinal_consolidation_probe_20260403T202345Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 23.0
+    },
+    {
+      "queue_id": "V3-EXQ-215",
+      "backlog_id": "EVB-0043",
+      "claim_id": "Q-002",
+      "title": "Q-002 residue field resolution pair (high_res=64 vs low_res=8 RBF centers)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[EXQ-215] mean_harm_delta=0.0562 e2_r2_mean=0.7240 | [EXQ-215] outcome=FAIL evidence_direction=weakens | [EXQ-215] Done. outcome=FAIL",
+      "started_at": "2026-04-03T20:23:48.712041+00:00",
+      "completed_at": "2026-04-03T20:24:35.617422+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 46.9
     }
   ]
 }

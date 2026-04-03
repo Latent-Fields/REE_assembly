@@ -457,6 +457,17 @@
     V3 scale finding: coarse resolution adequate, fine counterproductive. Does not rule out fine
     resolution at higher task complexity or after SD-005/higher-dim z_world. Evidence direction:
     weakens (fine-resolution hypothesis at V3 scale).
+    EXQ-215 FAIL 2/5 (2026-04-03): Residue resolution discriminative pair FAIL. HIGH_RES
+    (64 RBF centers) vs LOW_RES (8 centers). C1 FAIL (per-seed harm direction inconsistent
+    across seeds). C2 PASS (mean_harm_delta=0.056: high_res_harm=0.033 vs low_res_harm=0.090
+    -- high-res has LOWER harm, C2 passes threshold). C3 FAIL (residue_accuracy: high_res=-0.010
+    vs low_res=0.033 -- low-res BETTER at hazard correlation). C4/C5 PASS.
+    Surprising: high-res outperforms on harm avoidance (C2) but underperforms on residue
+    accuracy (C3 reverse). Confirms Q-002 complexity: fine resolution improves harm avoidance
+    but degrades residue-hazard mapping quality. The question remains open but evidence tilts
+    toward: fine resolution better for harm avoidance behavior, coarse better for terrain map
+    quality. Consistent with EXQ-170 finding (coarse adequate). Evidence direction: weakens
+    fine-resolution-is-universally-better hypothesis.
 - id: Q-003
   title: "Should R(x,t) be scalar or vector?"
   claim_type: open_question
@@ -3376,6 +3387,16 @@
     and EXQ-103/104/105 for experimental validation.
     EXQ-132 FAIL (2026-03-29): E2 motor model pair FAIL. First experimental entry for this
     specific claim. Training budget likely insufficient to discriminate E2 motor model horizon.
+    EXQ-212 FAIL 2/4 (2026-04-03): E2 motor model discriminative pair FAIL. C1 PASS (E2
+    degrades faster than E1 at h=1: E2_r2_h1=-19 vs E1_r2_h1=-43 -- E2 actually better at
+    single step). C4 PASS (n_windows=6986). C2 FAIL: E2_slope=-4051 vs E1_slope=-24.8 (E2
+    degrades MUCH faster than E1 across horizons -- opposite direction required for C2; C2
+    requires slope_e2 > slope_e1 confirming longer-horizon planning, but both R2 values are
+    deeply negative indicating neither model can predict multi-step at V3 scale). C3 FAIL
+    (r2_e2_h10=-19511 << threshold -1000 -- E2 completely fails at h=10). The MECH-070 claim
+    that E2 has a longer planning horizon than E1 is not supported: E2 degrades much more
+    steeply than E1. This may reflect that E2 is still primarily a 1-step transition model
+    at V3 training budget. Hold at candidate. Second weakening entry.
 - id: MECH-071
   title: "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions."
   claim_type: mechanism_hypothesis
@@ -3492,6 +3513,14 @@
     gate). v3_pending restored. Hold at candidate until SD-005 + SD-010 implemented.
     Literature pulls for the discriminator gate design and biological evidence for
     causation-attribution gating mechanisms needed -- see evidence backlog.
+    EXQ-213 PASS 6/6 (2026-04-03): Foreseeable-harm gating discriminative pair PASS. Clean
+    PASS on all 6 criteria across 3 seeds. false_attr_rate gated=0.0 vs ungated=0.478 (48%
+    reduction). harm_rate preserved (0.873 in both). e2_world_r2=0.558 (above C6 threshold).
+    V3 proxy test: E2.world_forward predicts foreseeable harm; GATED accumulates residue only
+    when E2 harm_eval(z_w_pred) > 0.2. This confirms the gating mechanism works at V3 scale
+    using the existing E2 world model (not E2_harm_s -- using SD-010 z_harm pathway).
+    Significant positive evidence for MECH-072 core claim. v3_pending kept: E2_harm_s (SD-011,
+    ARC-033) is still needed for the full discriminator-gate design, but the V3 proxy is valid.
   notes: >
     Gating residue accumulation on E2 harm foreseeability (predict_harm > threshold)
     reduces false attribution rate (residue at env-caused events / total residue)
@@ -3595,6 +3624,19 @@
     to novelty and arousal. VTA dopamine primarily targets ventral HPC (motivational/affective).
     MECH-075 bifurcates by HPC axis: dorsal=LC-mediated arousal gain; ventral=VTA-mediated
     RPE/reinforcement gain.
+  evidence_quality_note: |
+    EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL.
+    Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4.
+    mean_novelty_signal_on = 6.4e-05 (threshold C4 > 1e-04: FAIL). cell_gap=0, hazard_gap=0
+    across both conditions -- NOVELTY_LOOP_ON identical to NOVELTY_LOOP_OFF. Root cause:
+    novelty_gain=2.0 but novelty signal itself is below detection threshold; CEM noise
+    scaling has no measurable effect when the novelty_ema is too small. The manipulation
+    requires the novelty signal to exceed 1e-04 before behavioral differentiation is visible.
+    Substrate limitation: E1 world-prediction error may be too uniform across z_world states
+    at V3 training scale, or the CEM noise scaling (novelty_gain=2.0) is insufficient. C3
+    PASS (harm_delta=0 both conditions -- harm not worsened). Consistent null result across
+    two independent runs. Hold at candidate; not falsified -- the novelty signal magnitude
+    is the bottleneck, not the claim's core mechanism.
 - id: MECH-076
   title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
@@ -4961,6 +5003,14 @@
   evidence_quality_note: |
     EXQ-125 FAIL (2026-03-29): committed mode discriminative pair FAIL. Adding weakening
     evidence. Prior EXQ-063 PASS remains valid. Mixed evidence building.
+    EXQ-125 re-run FAIL 5/6 (2026-04-03): C1 FAIL -- harm_gap_stable = -0.01222 (threshold
+    >= 0.0001). Committed mode WORSE than ablated in stable env (committed harm_rate higher).
+    C2-C6 all PASS (gap_ratio=1.064, committed steps present, zero committed steps in ablated,
+    no fatal errors). This is the opposite pattern from EXQ-063 (harm_gap_stable=+0.00041).
+    Mixed evidence now: one PASS (EXQ-063) and two FAILs (EXQ-125 x2 runs). The committed
+    mode may produce idiosyncratic harm differences that depend on random seed and training
+    state rather than a systematic architectural advantage. ARC-029's core prediction (committed
+    < ablated in stable) is not consistently confirmed. Hold at provisional; more seeds needed.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -5018,6 +5068,14 @@
     selector does produce approach-avoidance integration lift vs pure avoidance. But the
     absolute performance is far below random baseline, suggesting 1-step greedy action selection
     on 10x10 grid is fundamentally insufficient. Oracle ceiling test (EXQ-182a) is the gate.
+    EXQ-138a FAIL 2/5 x2 runs (2026-04-03): Go/NoGo symmetry discriminative pair FAIL.
+    Run 1 (T04:36): criteria_met=2/5. Run 2 (T09:04): criteria_met=2/5.
+    delta_benefit_rate=+0.00002 (threshold needs >=0.002). benefit_rate_go~=0.00039 (needs >=
+    0.002). C3 PASS (harm preserved). C5 PASS (benefit_buf_go >= 100 confirmed). The Go channel
+    is wired and benefit events are recorded (n_benefit_buf_go ~750/seed) but rate is
+    ~100x below threshold. Consistent result across both runs: Go sub-channel does not produce
+    measurable behavioral lift in benefit acquisition at V3 scale with current training
+    budget (warmup=400 eps). Weakening evidence for ARC-030 at this scale.
   depends_on:
     - ARC-021
     - MECH-069
@@ -7256,6 +7314,16 @@
     experimental entry. Failure likely reflects training budget / substrate depth rather than
     fundamental claim failure -- z_goal conditioning requires substantial training to show
     discriminative effect in trajectory quality.
+    EXQ-147a PARTIAL/mixed (2026-04-03): E1 goal conditioning pair with SD-012 drive_weight=2.0.
+    C1 FAIL (interaction=~0: no measurable goal-E1 interaction term). C2 PASS 3/3
+    (goal_norm_conditioned=0.403 > 0.01). C3 PASS 3/3 (neutral specificity confirmed). C4 PASS
+    3/3 (goal_norm > 0.01 threshold). The z_goal latent is active and specific to goal states
+    (C2/C3/C4) but fails to show interaction with E1 prediction error (C1). Goal conditioning
+    exists as a representation but is not yet shaping E1 trajectory generation in a discriminative
+    way. Mixed evidence: goal representation established, behavioral coupling not yet achieved.
+    Hold at candidate; tracking improvement from EXQ-147 (complete FAIL) to PARTIAL PASS.
+
+
   depends_on:
     - MECH-112
     - ARC-003
@@ -8000,6 +8068,18 @@
     across long training runs without this consolidation pathway -- this is an
     acceptable V3 limitation.
     Registered 2026-03-29 from ARC-018 lit pull (Olafsdottir et al. 2017).
+  evidence_quality_note: |
+    EXQ-214 FAIL/diagnostic (2026-04-03): Entorhinal consolidation probe FAIL.
+    experiment_purpose=diagnostic. V3 proxy: ResidueField.integrate() every 20 episodes
+    vs no consolidation. mean_delta_accuracy=-0.283 (consolidation WORSE than no
+    consolidation). consol_residue_acc=0.038 vs noconsol_residue_acc=0.321. The integrate()
+    call actively degrades residue-hazard correlation. C3/C4 PASS (data quality adequate).
+    Diagnostic finding: ResidueField.integrate() as currently implemented is not a useful
+    proxy for offline entorhinal consolidation -- it may be averaging/corrupting residue
+    rather than consolidating it. This probe does not falsify ARC-039 (V4 scope with full
+    hippocampal-entorhinal grid circuit). The V3 integrate() proxy is too crude to test
+    the claim. Hold at candidate (V4 scope maintained). Evidence_direction=diagnostic
+    (not to be weighted against ARC-039 as standard weakening evidence).
   evidence: []
 
 # ============================================================
@@ -8790,6 +8870,14 @@
     contexts (cosine_sim=1.0, same as EXQ-181b baseline). Flagged for /diagnose-errors in
     a separate session -- evidence_direction="does_not_support" is non-standard and needs
     root-cause analysis before weighting. Hold at candidate; conflict resolution required.
+    EXQ-211 PARTIAL (2026-04-03, per-claim=weakens): ARC-042 specific component FAIL.
+    E3 harm_eval_diff identical in supervised vs unsupervised conditions (0.000187 both).
+    E3's ethical selection machinery does not differentiate contexts at this training level --
+    consistent with ARC-042 staged developmental prediction (E3 requires Phase 1+2 substrate
+    before ethical selection is discriminating). However this is expected behavior per ARC-042
+    itself, not a refutation. The weakening evidence for ARC-042 reflects that the claim
+    requires richer prerequisite training before the staged gate produces measurable E3 signal.
+    Hold at candidate.
 
 - id: MECH-153
   title: "E1 ContextMemory requires a supervised context-labeling training objective -- not unsupervised experience alone -- to produce differentiated cue-indexed representations; without this objective, hazard-proximate and hazard-distal context vectors remain near-identical (cosine_sim approximately 1.0), leaving the MECH-150 retrieval pathway functionally silent."
@@ -8844,6 +8932,14 @@
     marked superseded). EXQ-181b supersedes EXQ-181 as the valid diagnostic.
     Pre-experimental prerequisite identified -- MECH-150 evaluation blocked until
     supervised context-labeling training is implemented and validated.
+    EXQ-211 PARTIAL/mixed (2026-04-03): supervised labeling discriminative pair PARTIAL.
+    cosim_supervised=0.997 (C1 PASS: reduced vs unsupervised=0.9999, delta=0.003). But
+    C2 FAIL (cosim still 0.997 >> absolute threshold 0.9). C3 FAIL (E3 harm sensitivity
+    identical in supervised vs unsupervised conditions). Supervised training marginally
+    reduces cosim but not enough for full discrimination (still near-degenerate).
+    Consistent with MECH-153 claim: supervised labeling helps but requires more training
+    signal or stronger supervision. Mixed evidence -- direction confirmed but magnitude
+    insufficient. Hold at candidate.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
 
