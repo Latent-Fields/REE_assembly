@@ -6766,7 +6766,23 @@
     residue field decay rate (currently static per-step), z_delta recalibration
     magnitude (currently none), SNR pruning threshold (currently absent).
     V3 must measure these setpoints under normal operation to calibrate V4 dynamics.
-    Registered 2026-03-23. V4 scope.
+    Functional outcome (added 2026-04-04, grounded in Hagewoud 2010 + Suppermpool 2024):
+    The primary functional output of MECH-120 is behavioral strategy diversity
+    preservation, not merely SNR restoration. Without SHY-equivalent downscaling,
+    Hebbian winner-take-all dynamics during waking produce monostrategy convergence
+    even in benign environments (no harm conditioning, no MECH-124 pathway) -- the
+    dominant action trajectory monopolises the synapse budget, and the flexible
+    map-based alternative becomes inaccessible. This is the neutral-environment
+    Hebbian lock-in variant, distinct from MECH-124 (harm-trace-driven contraction).
+    Empirical grounding: Hagewoud et al. 2010 (Sleep) showed that sleep deprivation
+    shifts learning from hippocampal spatial strategy to rigid striatal response
+    strategy in mice, with reversal learning deficit confirming reduced flexibility.
+    Suppermpool et al. 2024 (Nature) confirmed single-neuron SHY operation in
+    zebrafish with sleep-pressure gating. Prediction for REE: a minimal mind without
+    a sleep substrate will show monostrategy convergence under extended training.
+    This is the currently observed signature in V3 (no sleep substrate) and is
+    predicted by MECH-120 absence, not by any other mechanism.
+    Registered 2026-03-23. V4 scope. Functional outcome note added 2026-04-04.
 
 - id: MECH-121
   title: "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation."
@@ -9677,3 +9693,60 @@
     Registered 2026-04-04. No experiments yet -- V4 implementation_phase.
     Candidate status reflects architectural derivation from Axiom V + INV-005 +
     MECH-163. Awaits V4 social extension substrate.
+
+- id: MECH-165
+  title: "Offline replay (MECH-121) must sample trajectory-diverse content -- including non-dominant and counterfactual paths -- to maintain multi-strategy viability; consolidation of only the dominant trajectory produces monostrategy in E1's world model even when SHY (MECH-120) is intact."
+  claim_type: mechanism_hypothesis
+  subject: sleep.replay_diversity_behavioral_strategy
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - MECH-120
+    - MECH-121
+    - MECH-092
+    - ARC-007
+  location: docs/architecture/sleep/offline_phases.md#mech-165
+  source:
+    - evidence/literature/targeted_review_zebrafish_sleep_behavioral_diversity/entries/2026-04-04_mech121_mech092_forward_reverse_replay_shin2019/summary.md
+    - evidence/literature/targeted_review_zebrafish_sleep_behavioral_diversity/entries/2026-04-04_mech120_arc011_strategy_shift_hagewoud2010/summary.md
+  notes: >
+    MECH-120 (SHY) prevents Hebbian monopoly at the synaptic weight level.
+    MECH-165 is the complementary content-level constraint: even with MECH-120
+    intact, if replay content is dominated by the single most-travelled trajectory,
+    consolidation will strengthen that trajectory preferentially in E1's world
+    model, reproducing monostrategy at the representational level.
+    The mechanism has two requirements:
+    (1) Reverse replay (retrospective): replay of non-dominant and error
+    trajectories (paths not taken, paths that failed) must be included alongside
+    forward replay of the dominant trajectory. Reverse replay provides the
+    counterfactual evaluation that prevents E1 from modelling only what was done
+    and never what was possible. Grounded in Shin et al. 2019 (Neuron): reverse
+    replay represents past paths, supports retrospective evaluation, and provides
+    the learning signal for path discrimination. Forward replay alone would
+    consolidate only the anticipated dominant path, leaving alternatives invisible
+    in E1's world model.
+    (2) Replay scheduling balance: harm traces must not dominate replay content
+    at the expense of goal traces (MECH-124 prerequisite), AND dominant-strategy
+    traces must not dominate at the expense of alternative-strategy traces.
+    The second requirement is the MECH-165 contribution: a balanced scheduler
+    must reserve replay bandwidth for non-dominant viable paths, not just for
+    harm vs goal balance.
+    Relationship to MECH-120: the two mechanisms are complementary and both
+    required for behavioral strategy diversity. MECH-120 flattens the attractor
+    at the weight level (prevents dominant synapses from monopolising). MECH-165
+    repopulates the world model with diverse path content during consolidation
+    (prevents E1 from modelling only the dominant trajectory). A system with
+    MECH-120 but not MECH-165 would have flattened weights but a world model that
+    only anticipates one trajectory -- recovery of flexibility would be slow.
+    A system with MECH-165 but not MECH-120 would consolidate diverse paths into
+    E1 but those paths would be inaccessible at action time because the dominant
+    attractor still monopolises action selection.
+    V3 implication: MECH-092's quiescent replay must eventually be extended to
+    support both forward and reverse sequence generation. Currently the
+    HippocampalModule generates forward CEM trajectories; a reverse-replay mode
+    (sequence completion backward from outcome) is a V4 requirement for MECH-165.
+    Empirical grounding: Shin 2019 (Neuron) -- reverse/forward replay dissociation
+    and learning trajectory. Hagewoud 2010 (Sleep) -- monostrategy convergence
+    when sleep absent, providing indirect support.
+    Registered 2026-04-05. V4 scope.
