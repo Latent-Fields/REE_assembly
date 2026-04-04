@@ -10076,3 +10076,267 @@
     order of schema vs attribution) or corrupt the weight landscape (replay
     before homeostasis). The ordering is a constraint on the implementation,
     not a design choice. See offline_phases.md for the rewiring table.
+
+# ---- Claims registered 2026-04-05: dementia as attribution pipeline failure ----
+
+- id: INV-046
+  title: "Dementia is computationally a progressive failure of contextual attribution rather than primarily a memory storage failure: episodic memory loss is downstream of progressive collapse of the offline consolidation pipeline that maintains the context attribution scaffold."
+  claim_type: invariant
+  subject: dementia.attribution_pipeline_failure_reframe
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-045
+    - INV-044
+    - MECH-166
+    - SD-017
+  notes: >
+    Registered 2026-04-05. The conventional framing of dementia as memory
+    storage failure mislocates the primary lesion. The offline consolidation
+    pipeline (SWS-analog schema installation, REM-analog slot-filling,
+    MECH-120 homeostasis, MECH-123 precision recalibration) is the
+    infrastructure that makes contextual attribution possible. Progressive
+    collapse of this pipeline produces progressive failure of contextual
+    attribution -- which manifests as the clinical syndrome of dementia.
+    Memory loss is not the primary failure; it is the observable consequence
+    of the agent losing the ability to attribute the meaning of its experiences
+    to the correct context slots.
+    Relationship to existing claims: MECH-124 describes consolidation-mediated
+    option-space contraction (Walker PTSD analog -- imbalanced replay produces
+    over-consolidation of harm traces). INV-046 describes a distinct failure
+    mode: insufficient consolidation cycles producing progressive dissolution
+    of the context scaffold itself. PTSD over-consolidates; dementia under-
+    consolidates. The failure mode, direction, and symptom profile are different.
+    Derivation: follows directly from the REE attribution pipeline. An agent
+    whose offline phases degrade progressively will first lose precision in
+    contextual attributions (Phase 4 failure), then lose new episodic slot-
+    filling (Phase 2-3 failure), then lose the context slots themselves (Phase
+    1-2 failure), then lose global contextual orientation (Phase 0 equivalent).
+    This is not an analogy to dementia -- it is what the computational account
+    predicts would happen to any agent with progressively degrading offline
+    consolidation cycles.
+
+- id: INV-047
+  title: "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile."
+  claim_type: invariant
+  subject: dementia.staged_decline_phase_dependency_prediction
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-046
+    - INV-045
+    - MECH-168
+  notes: >
+    Registered 2026-04-05. The glymphatic clearance hypothesis (amyloid
+    accumulation without sleep; Xie/Nedergaard 2013) predicts substrate
+    damage that should be diffuse across the consolidation pipeline, not
+    staged. But the clinical presentation of Alzheimer's is highly staged:
+    new episodic learning fails before remote memory; contextual identity
+    (who is this person, what does this place mean) fails before procedural
+    skill; global orientation fails last. Diffuse damage cannot explain
+    this profile.
+    The attribution pipeline dependency ordering predicts exactly this staging:
+    Phase 4 (precision recalibration, MECH-123) is the most downstream and
+    most vulnerable -- its failure is the earliest detectable symptom (the
+    "something feels off" prodrome of MCI, reduced confidence in attributions
+    before overt memory failure). Phase 2-3 (slot-filling, MECH-121) failure
+    produces the classic amnesic profile: intact remote schemas, absent new
+    consolidation. Phase 1-2 (slot-formation, MECH-120) failure destabilises
+    existing schemas -- middle-stage loss of contextual identity. Phase 0
+    equivalent failure produces global contextual collapse.
+    This is a specific, falsifiable prediction: the temporal ordering of
+    symptom emergence should map onto the reverse of the phase dependency
+    graph, not onto the spatial distribution of amyloid/tau pathology.
+    Neuroanatomical note: hippocampal neurodegeneration (early in Alzheimer's)
+    selectively impairs the hip->cx information direction (SWS-analog, schema
+    installation) before disrupting the cx->hip direction (waking encoding),
+    predicting that schema formation fails before schema retrieval -- consistent
+    with the amnesic profile of early Alzheimer's (new learning fails before
+    remote memory access).
+
+- id: MECH-168
+  title: "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last."
+  claim_type: mechanism_hypothesis
+  subject: dementia.consolidation_pipeline_staged_failure
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-046
+    - INV-047
+    - INV-045
+    - MECH-120
+    - MECH-121
+    - MECH-123
+    - SD-017
+  notes: >
+    Registered 2026-04-05. The mechanism: each phase of the offline
+    consolidation pipeline depends on the phases upstream of it. When the
+    pipeline degrades progressively (via sleep deprivation, neurodegeneration,
+    or disrupted sleep architecture), the most downstream phases fail first
+    because they are furthest from the biological substrate and depend on the
+    most intact upstream machinery.
+    Phase 4 (MECH-123 precision recalibration) fails first because it
+    requires the full pipeline to have run -- any degradation in earlier
+    phases propagates to imprecise precision calibration. Clinical correlate:
+    early MCI, reduced confidence in attributions, increased uncertainty about
+    whether current experience matches prior context, the subjective sense of
+    unreliability before overt memory failure.
+    Phase 2-3 (MECH-121 slot-filling) fails next. New episodic experiences
+    stop consolidating into existing context schemas. Recent events, new
+    faces, and new environments fail to attach to the correct context slots.
+    Remote memories (consolidated before pipeline degradation) remain
+    accessible. Clinical correlate: classic early Alzheimer's amnesic profile.
+    Phase 1-2 (MECH-120 + MECH-121 slot-formation) fails last. The existing
+    schema structure begins to destabilise -- not just failure to add new
+    content, but erosion of the context attractors themselves. Who is this
+    person? What does this place mean? The agent loses the slots, not just
+    their contents. Clinical correlate: middle-stage Alzheimer's, loss of
+    contextual identity.
+    Global collapse: with no stable context scaffold remaining, attribution
+    is impossible. The agent is oriented to nothing. Clinical correlate:
+    late-stage dementia.
+    Distinction from MECH-124 (PTSD failure mode): MECH-124 is
+    consolidation-mediated option-space contraction via imbalanced replay --
+    too much consolidation of harm traces, too little of alternative paths.
+    MECH-168 is insufficient consolidation cycles producing progressive
+    dissolution of the context scaffold. PTSD consolidates the wrong content;
+    dementia fails to consolidate at all.
+
+- id: MECH-169
+  title: "The glymphatic clearance hypothesis (amyloid-beta accumulation via insufficient sleep-phase clearance) and the attribution pipeline account (consolidation failure via disrupted offline phases) are mechanistically complementary accounts of sleep-deprivation-induced dementia: the former explains why structural substrate damage accumulates; the latter explains why cognitive symptoms are staged and context-specific rather than diffuse and uniform."
+  claim_type: mechanism_hypothesis
+  subject: dementia.glymphatic_attribution_complementarity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-046
+    - INV-047
+    - MECH-168
+  notes: >
+    Registered 2026-04-05. The glymphatic hypothesis (Xie et al. 2013,
+    Science: glymphatic system clears metabolic waste including amyloid-beta
+    predominantly during sleep; sleep deprivation leads to amyloid accumulation)
+    is well-supported and explains the substrate damage pathway. MECH-169 does
+    not challenge it -- it extends it.
+    The glymphatic account leaves two things unexplained: (1) why the cognitive
+    symptom profile is staged rather than uniform given that amyloid accumulates
+    diffusely; (2) why the specific profile is contextual-attribution failure
+    rather than, say, motor or sensory failure. MECH-168/INV-047 provide the
+    explanation: the attribution pipeline has a dependency ordering that produces
+    staged failure even under diffuse substrate damage, because downstream phases
+    fail before upstream phases.
+    The two accounts are therefore complementary:
+    - Glymphatic: explains structural damage accumulation (why sleep deprivation
+      causes Alzheimer's risk at the substrate level)
+    - Attribution pipeline: explains symptom profile shape (why the cognitive
+      decline is staged, contextual, and follows the reverse of the phase
+      dependency ordering)
+    A complete mechanistic account of sleep deprivation-induced dementia requires
+    both. The glymphatic account without the attribution pipeline account cannot
+    predict the clinical phenotype. The attribution pipeline account without the
+    glymphatic account cannot explain why sleep deprivation specifically (rather
+    than other forms of neural disruption) is the primary risk factor.
+
+- id: MECH-170
+  title: "Sleep architecture restoration in early MCI should produce dissociated cognitive improvement: slot-filling (episodic attribution, MECH-121 analog) should improve before slot-formation (contextual semantic, MECH-120 analog), because the pipeline rebuilds in dependency order. This distinguishes the attribution account from accounts predicting uniform memory improvement with sleep restoration."
+  claim_type: mechanism_hypothesis
+  subject: dementia.sleep_restoration_dissociated_recovery_prediction
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-168
+    - INV-047
+    - MECH-120
+    - MECH-121
+  notes: >
+    Registered 2026-04-05. Testable prediction: if the attribution pipeline
+    account is correct, sleep architecture restoration in early MCI patients
+    should not produce uniform improvement across memory domains. The pipeline
+    rebuilds in dependency order: Phase 4 (precision) restores first, then
+    Phase 2-3 (slot-filling/episodic), then Phase 1-2 (slot-formation/semantic).
+    Therefore the predicted sequence of improvement with sleep intervention is:
+    (1) improved confidence and precision in contextual attributions (early,
+    subtle, may require sensitive testing); (2) improved new episodic memory
+    consolidation (formation of new slot-filling associations); (3) improved
+    contextual semantic memory (only if intervention is sustained long enough
+    for schema rebuilding).
+    This dissociation distinguishes the attribution account from:
+    - General memory consolidation accounts, which predict proportional
+      improvement across all memory types
+    - Glymphatic accounts, which predict improvement proportional to
+      reduced amyloid load (uniform across domains)
+    Clinical operationalisation: prospective sleep intervention study in
+    early MCI, measuring episodic (new word pairs, face-name) vs semantic
+    (contextual categorisation, situation identity) memory at intervals.
+    Attribution account predicts episodic recovery precedes semantic recovery.
+    The prediction is specific enough to be falsifiable within a single
+    randomised controlled trial.
+
+- id: MECH-171
+  title: "Progressive neurodegeneration creates a vicious cycle through sleep disruption: early attribution pipeline failure disrupts sleep architecture, which accelerates consolidation pipeline failure, which accelerates attribution failure. This predicts disproportionate disease-modifying effect of early sleep intervention, because it breaks the cycle before the schema scaffold collapses."
+  claim_type: mechanism_hypothesis
+  subject: dementia.sleep_disruption_vicious_cycle
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-168
+    - INV-046
+  notes: >
+    Registered 2026-04-05. The vicious cycle operates in both directions:
+    Forward: sleep deprivation -> consolidation failure -> attribution failure
+    -> behavioural disorientation -> increased arousal/anxiety -> further
+    sleep disruption.
+    Reverse: early neurodegeneration (hippocampal volume loss) disrupts the
+    hip->cx information pathway (SWS-analog direction) -> schema installation
+    fails -> REM-analog slot-filling operates against an unstable prior ->
+    precision recalibration is less effective -> waking behaviour is less
+    well-calibrated -> increased cognitive effort and arousal -> further
+    sleep disruption.
+    The vicious cycle predicts: (1) sleep disruption should be both a risk
+    factor for and an early symptom of Alzheimer's (consistent with Lucey
+    et al. 2017, JAMA Neurology: sleep disruption precedes amyloid deposition
+    by years); (2) the cycle amplifies -- early mild disruption becomes
+    severe disruption as the attribution scaffold degrades; (3) early
+    intervention (before schema scaffold collapse) has disproportionately
+    large effect relative to late intervention, because breaking the cycle
+    early prevents amplification.
+    Clinical implication: this suggests a critical window for sleep
+    intervention in MCI/pre-dementia that is much earlier than current
+    therapeutic targeting. Once the schema scaffold has destabilised
+    (middle-stage), sleep restoration alone cannot rebuild it -- the slots
+    that would be filled by recovered REM-analog function no longer exist.
+
+- id: MECH-172
+  title: "Preservation of habit and procedural memory in early Alzheimer's disease, while episodic and contextual memory fail, is architecturally predicted by the separation of the model-free habit system (MECH-163 D1/D2, SNc) from the contextual attribution system (E3 hippocampal, requiring offline consolidation phases): the habit system does not require offline consolidation to function, so its relative preservation under early consolidation pipeline failure is not incidental but follows from the architectural separation."
+  claim_type: mechanism_hypothesis
+  subject: dementia.habit_system_sparing_architectural_prediction
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-046
+    - MECH-168
+    - MECH-163
+    - SD-017
+  notes: >
+    Registered 2026-04-05. Clinical observation: patients with early to
+    middle-stage Alzheimer's disease typically retain procedural and habit
+    memory (riding a bicycle, playing a musical instrument, daily routines)
+    long after episodic and contextual memory has substantially failed. This
+    is conventionally attributed to anatomical sparing of the basal ganglia
+    and striatum relative to hippocampal/entorhinal neurodegeneration.
+    The attribution account provides a deeper computational explanation: the
+    two systems have different consolidation requirements. The model-free
+    habit system (MECH-163 D1/D2, analogous to SNc-striatal loops) learns
+    via online reinforcement and does not require offline consolidation phases
+    to maintain its representations -- the weights are updated during waking
+    and do not depend on hippocampus-to-cortex schema installation.
+    The contextual attribution system (E3 hippocampal, residue field) requires
+    offline consolidation to maintain differentiated context representations.
+    When the consolidation pipeline degrades, the habit system continues to
+    function while the attribution system fails -- producing exactly the
+    selective sparing observed clinically.
+    This is a double dissociation that confirms the architectural separation:
+    (1) attribution system fails while habit system is spared (early AD);
+    (2) in pure habit system disorders (Huntington's, striatal lesions),
+    procedural memory fails while episodic memory is relatively spared.
+    The REE account predicts both dissociations from first principles.

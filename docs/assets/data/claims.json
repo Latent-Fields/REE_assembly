@@ -689,6 +689,18 @@
     "title": "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode.",
     "type": "invariant"
   },
+  "INV-046": {
+    "status": "candidate",
+    "subject": "dementia.attribution_pipeline_failure_reframe",
+    "title": "Dementia is computationally a progressive failure of contextual attribution rather than primarily a memory storage failure: episodic memory loss is downstream of progressive collapse of the offline consolidation pipeline that maintains the context attribution scaffold.",
+    "type": "invariant"
+  },
+  "INV-047": {
+    "status": "candidate",
+    "subject": "dementia.staged_decline_phase_dependency_prediction",
+    "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -1695,6 +1707,36 @@
     "status": "candidate",
     "subject": "homeostatic_accumulation.computational_motif",
     "title": "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-168": {
+    "status": "candidate",
+    "subject": "dementia.consolidation_pipeline_staged_failure",
+    "title": "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-169": {
+    "status": "candidate",
+    "subject": "dementia.glymphatic_attribution_complementarity",
+    "title": "The glymphatic clearance hypothesis (amyloid-beta accumulation via insufficient sleep-phase clearance) and the attribution pipeline account (consolidation failure via disrupted offline phases) are mechanistically complementary accounts of sleep-deprivation-induced dementia: the former explains why structural substrate damage accumulates; the latter explains why cognitive symptoms are staged and context-specific rather than diffuse and uniform.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-170": {
+    "status": "candidate",
+    "subject": "dementia.sleep_restoration_dissociated_recovery_prediction",
+    "title": "Sleep architecture restoration in early MCI should produce dissociated cognitive improvement: slot-filling (episodic attribution, MECH-121 analog) should improve before slot-formation (contextual semantic, MECH-120 analog), because the pipeline rebuilds in dependency order. This distinguishes the attribution account from accounts predicting uniform memory improvement with sleep restoration.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-171": {
+    "status": "candidate",
+    "subject": "dementia.sleep_disruption_vicious_cycle",
+    "title": "Progressive neurodegeneration creates a vicious cycle through sleep disruption: early attribution pipeline failure disrupts sleep architecture, which accelerates consolidation pipeline failure, which accelerates attribution failure. This predicts disproportionate disease-modifying effect of early sleep intervention, because it breaks the cycle before the schema scaffold collapses.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-172": {
+    "status": "candidate",
+    "subject": "dementia.habit_system_sparing_architectural_prediction",
+    "title": "Preservation of habit and procedural memory in early Alzheimer's disease, while episodic and contextual memory fail, is architecturally predicted by the separation of the model-free habit system (MECH-163 D1/D2, SNc) from the contextual attribution system (E3 hippocampal, requiring offline consolidation phases): the habit system does not require offline consolidation to function, so its relative preservation under early consolidation pipeline failure is not incidental but follows from the architectural separation.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
