@@ -5109,6 +5109,16 @@
     ~100x below threshold. Consistent result across both runs: Go sub-channel does not produce
     measurable behavioral lift in benefit acquisition at V3 scale with current training
     budget (warmup=400 eps). Weakening evidence for ARC-030 at this scale.
+    EXQ-226 PASS 2/2 criteria (2026-04-04): FIRST PASS for ARC-030. COMBINED (harm+goal CEM)
+    vs HARM_ONLY: benefit_ratio=1.319 (>= 1.2 threshold), harm_ratio=0.762 (<= 1.3 ceiling),
+    avg_goal_norm=0.360 (precondition met). Key caveat: aggregate PASS driven by seed 13 where
+    HARM_ONLY collapsed (0 resources, 29.5% harm); COMBINED rescued it (0.12 resources, 14.2%
+    harm). Seeds 42 and 7 show COMBINED roughly equivalent to HARM_ONLY. The result supports
+    ARC-030's structural prediction -- behavioral collapse under pure NoGo is a stochastic
+    attractor, and the Go channel prevents it -- but the effect is intermittent, not universal.
+    Critical design finding: fixed-weight CEM scoring (not a learned benefit_eval head) was
+    what finally worked. All 5+ prior failures were head-learning failures, not architecture
+    failures. V4 implementation of approach-avoidance should start from CEM scoring.
   depends_on:
     - ARC-021
     - MECH-069
@@ -5954,6 +5964,16 @@
     grid performance (10x10, SD-004 planning) remains to be tested.
     EXQ-074e superseded (2026-04-04): same design confound as 074d (uniform greedy).
     074f FAILs 1-3 superseded: exploration iterations before final criteria/navigation design.
+    EXQ-225 FAIL non_contributory (2026-04-04): goal-lift redesign (GOAL_PROXIMATE vs
+    GOAL_AGNOSTIC CEM scoring). resource_lift=-0.013 (COMBINED slightly worse). z_goal seeding
+    confirmed (avg_goal_norm=0.383). This FAIL is not evidence against MECH-112 wanting
+    architecture. It is an action-selection bottleneck: on a 10x10 grid with 4 respawning
+    resources, 1-step greedy CEM consistently underperforms random walk (same pattern as
+    EXQ-183/185/186 battery). The wanting signal is present and active; the mechanism that
+    fails is translation of wanting into resource lift without multi-step planning (SD-004).
+    Wanting representation (EXQ-074f PASS) and wanting/liking dissociation are validated;
+    wanting -> resource collection requires hippocampal navigation. evidence_direction
+    corrected to non_contributory in manifest.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
