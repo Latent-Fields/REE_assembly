@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-05_mech163_uncertainty_competition_daw2005",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control",
+    "authors": ["Nathaniel D. Daw", "Yael Niv", "Peter Dayan"],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1560",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16286932/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Daw, Niv and Dayan 2005 provide the normative computational account of why both systems are necessary. They show that neither model-based (prefrontal/goal-directed) nor model-free (dorsolateral striatum/habitual) control is universally superior: model-based control is more accurate in novel contexts but computationally expensive; model-free control is cheap but relies on cached values that become inaccurate in new environments. Their Bayesian arbitration framework predicts that both systems must coexist, each deployed according to its relative uncertainty, and that the brain maintains a weighted combination. This directly grounds MECH-163's necessity claim: neither system alone is sufficient for the full range of behaviours required for ethical agency. Confidence is slightly attenuated because the paper is theoretical and does not directly test harm/benefit evaluation or hippocampal planning horizons.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a computational theory paper -- predictions are not directly tested with neural or behavioural data in this paper itself.",
+    "The arbitration mechanism is framed around uncertainty/accuracy trade-offs, not around ethical or harm-attribution contexts specifically.",
+    "The model-based system is attributed to prefrontal cortex; hippocampal contributions to long-horizon planning are not addressed."
+  ],
+  "tags": [
+    "mech_163",
+    "model-based",
+    "model-free",
+    "uncertainty",
+    "Bayesian-arbitration",
+    "prefrontal",
+    "dorsolateral-striatum",
+    "dual-system",
+    "computational",
+    "necessity",
+    "co-existence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Model-based (prefrontal) and model-free (dorsolateral striatal) systems for behavioral control differ in their accuracy/cost trade-off: model-based is more accurate in novel/changing environments but computationally expensive; model-free is cheap but inaccurate when cached values no longer reflect current contingencies. The brain arbitrates between them according to their relative uncertainty, deploying each when it should be most accurate. Neither alone is sufficient.",
+    "ree_translation": "MECH-163's necessity claim -- that both the habit system (model-free) and the hippocampally-planned system (model-based) are required for ethical agency -- is grounded in exactly this trade-off. The habit system handles familiar resource approach efficiently (low uncertainty, low cost). The E3 hippocampal system handles novel contexts, long-horizon harm/benefit evaluation, and contextual attribution where the habit system's cached values are unreliable (high uncertainty). Daw et al.'s framework explains why the habit system alone is insufficient for ethical agency: in novel harm contexts, its cached values are wrong and it has no mechanism to detect the error.",
+    "mapping_caveat": "The REE framing of 'necessity for ethical agency' (specifically harm attribution across contexts) is a specific application of the general uncertainty-based co-existence argument. The paper does not address ethics, harm, or prosocial planning. The hippocampal specificity of the REE model-based system extends beyond what Daw et al. model. This is a theoretical bridge paper, not a direct test of MECH-163.",
+    "source_context": "Computational theory paper with analytical derivations and illustrative simulations. Nature Neuroscience 2005 -- high-impact venue. Forms the theoretical backbone for a generation of dual-system RL literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.77,
+    "transfer_risk": 0.25,
+    "notes": "Nature Neuroscience, Daw/Niv/Dayan -- foundational computational paper with very high quality and influence. Mapping fidelity is good for the necessity/co-existence argument; moderate for the specific harm-attribution and hippocampal dimensions of MECH-163. Transfer risk is moderate because the paper is a pure computational model -- neural substrate predictions are theoretical, and the ethical agency framing is entirely an REE extension."
+  }
+}

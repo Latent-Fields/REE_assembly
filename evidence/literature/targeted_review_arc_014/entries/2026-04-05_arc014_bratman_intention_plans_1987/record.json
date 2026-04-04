@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_014",
+  "entry_id": "2026-04-05_arc014_bratman_intention_plans_1987",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["ARC-014"],
+  "source": {
+    "title": "Intention, Plans, and Practical Reason",
+    "authors": ["Michael E. Bratman"],
+    "year": 1987,
+    "venue": "Harvard University Press",
+    "url": "https://philpapers.org/rec/BRAIPA"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Bratman 1987 is the foundational philosophical account of commitment as a distinct mental state category. His central argument is that intentions cannot be reduced to beliefs and desires -- they are 'prior intentions' that stabilise future-directed planning by generating conduct-controlling pro-attitudes that resist reconsideration. This directly grounds ARC-014's commitment architecture: the pre-commit/post-commit boundary exists because committed intentions must be treated as stable rather than continuously re-evaluated, otherwise planning becomes computationally incoherent. Bratman's 'Commitment Revisited' chapter makes explicit that once an intention is formed it functions as a constraint on further deliberation, not a re-evaluated option -- this is the philosophical basis for the categorical (not graded) character of ARC-014's commitment boundary. Confidence is moderate-high: mapping fidelity to ARC-014's architectural necessity claim is good; transfer risk is moderate because Bratman is analysing human practical reasoning, not neural architecture, and the commitment-channel separation (pre-commit simulation vs. post-commit realised outcome) is an REE implementation that Bratman's framework supports but does not directly specify.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bratman's framework is normative philosophy of action -- it does not make predictions about neural implementation or information-flow architecture.",
+    "Bratman treats commitment stability as a matter of rational norms, not architectural necessity -- the move from 'rationally appropriate' to 'architecturally necessary' is an REE inference.",
+    "The pre-commit/post-commit channel separation (distinct error signals, residue write-gating) is not addressed in Bratman's framework, which operates at the level of intentional states, not computational channels."
+  ],
+  "tags": [
+    "arc_014",
+    "commitment",
+    "intention",
+    "prior-intention",
+    "practical-reasoning",
+    "planning",
+    "precommitment",
+    "philosophy",
+    "action-theory",
+    "categorical-commitment",
+    "stability",
+    "Bratman"
+  ],
+  "mapping": {
+    "source_claim_statement": "Intentions are conduct-controlling pro-attitudes that, once formed, resist reconsideration and serve as inputs and constraints on further practical reasoning. They constitute partial plans that require completion but should not be continuously re-evaluated from scratch. The function of intentions is to stabilise multi-step action coordination across time -- a system that re-evaluates every prior intention at each decision point loses the computational benefits of planning.",
+    "ree_translation": "ARC-014's commitment architecture instantiates Bratman's planning theory: committed actions move from the pre-commit simulation channel (where trajectories are hypothetical and evaluation is ongoing) to the post-commit realised-outcome channel (where consequences must be attributed offline because the action is no longer re-evaluable). The categorical character of the boundary -- not a precision parameter but a route switch -- corresponds to Bratman's argument that intentions cannot be reduced to graded desires. The architectural necessity of offline attribution passes (MECH-029, MECH-092) follows directly from Bratman's claim that committed actions become constraints on further reasoning rather than continuing options.",
+    "mapping_caveat": "Bratman's framework operates at the level of folk psychology and practical rationality. The architectural claim (ARC-014) that there must be physically distinct pre-commit and post-commit channels with different write access to phi(z) is an REE engineering inference from Bratman's philosophical argument, not directly derivable from it. The mapping is conceptually strong but the transfer from normative philosophy to implementation architecture involves an additional design step.",
+    "source_context": "Harvard University Press monograph. Foundational text in analytic philosophy of action. Directly addresses future-directed intention, commitment, and planning. Widely cited in AI planning theory and cognitive science."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.35,
+    "notes": "Bratman 1987 is a canonical monograph -- very high source quality. Mapping fidelity is good for the categorical character and planning-constraint function of commitment. Transfer risk is moderate: the move from philosophical argument about rational norms to architectural implementation claims requires non-trivial inference. The commitment-channel separation is an REE addition not derivable from Bratman alone."
+  }
+}

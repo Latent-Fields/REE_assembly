@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-05_mech163_corticostriatal_balleine_odoherty_2010",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Human and Rodent Homologies in Action Control: Corticostriatal Determinants of Goal-Directed and Habitual Action",
+    "authors": ["Bernard W. Balleine", "John P. O'Doherty"],
+    "year": 2010,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2009.131",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19776734/"
+  },
+  "evidence_class": "empirical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Balleine and O'Doherty 2010 directly establish the corticostriatal anatomy of goal-directed versus habitual action across rodent and human homologies. The key finding is a double dissociation: dorsomedial striatum (and prelimbic/medial PFC) is necessary for goal-directed action (sensitive to outcome devaluation and contingency degradation); dorsolateral striatum (and lateral PFC/posterior putamen in humans) is necessary for habitual action (insensitive to these manipulations). This is the closest empirical grounding for MECH-163's claim that the habit system (dorsal/lateral striatum) cannot attribute harm across contexts. The devaluation insensitivity of the habitual system is precisely the architectural limitation MECH-163 identifies: S-R caching does not update with new outcome information until the cache is re-trained, which prevents contextual harm attribution. Confidence is high but not maximal because the human imaging literature is limited to healthy adults in laboratory tasks; the specific link to harm/benefit evaluation (vs. reward devaluation) and hippocampal multi-step trajectory generation remains inferential.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The double dissociation is shown for outcome devaluation sensitivity, not specifically for harm attribution across novel contexts -- the mapping to contextual harm attribution requires an interpretive step.",
+    "The model-based (goal-directed) system in Balleine/O'Doherty is mediated primarily by dorsomedial striatum + mPFC; the hippocampal contribution to multi-step planning is implicit rather than directly demonstrated.",
+    "Human imaging evidence in 2010 was limited to simple instrumental conditioning paradigms; complex multi-step harm/benefit trajectories are not studied."
+  ],
+  "tags": [
+    "mech_163",
+    "goal-directed",
+    "habitual",
+    "corticostriatal",
+    "dorsomedial-striatum",
+    "dorsolateral-striatum",
+    "prefrontal",
+    "outcome-devaluation",
+    "contingency-degradation",
+    "rodent",
+    "human",
+    "double-dissociation",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Goal-directed action depends on dorsomedial striatum and medial prefrontal cortex (prelimbic in rodents, anterior caudate/mPFC in humans); it is sensitive to outcome devaluation and contingency degradation, implying an action-outcome model. Habitual action depends on dorsolateral striatum (posterior lateral putamen in humans); it is insensitive to these manipulations, implying cached S-R associations that do not update with new outcome information.",
+    "ree_translation": "MECH-163's habit system (SNc/dorsal-lateral striatum, model-free) maps directly onto Balleine/O'Doherty's habitual system. The devaluation insensitivity of the habitual system is the neurobiological instantiation of MECH-163's architectural limitation: the habit system cannot attribute harm across novel contexts because its cached S-R associations do not update with new outcome-contingency information until retraining. The REE E3 hippocampal planned system maps onto the goal-directed system (dorsomedial striatum + mPFC) with the hippocampal contribution being the additional component needed for multi-step trajectory evaluation over longer planning horizons than PFC alone supports.",
+    "mapping_caveat": "Balleine/O'Doherty study simple instrumental conditioning and devaluation paradigms -- not multi-step planning or harm/benefit evaluation across novel contexts. The extension from outcome devaluation insensitivity to contextual harm attribution inability is conceptually valid but not directly tested in this review. The hippocampal contribution to the goal-directed arm is assumed by MECH-163 but not foregrounded by Balleine/O'Doherty.",
+    "source_context": "Review of rodent lesion + human fMRI + human devaluation behavioural studies. Cross-species homology is the central contribution. Neuropsychopharmacology 2010, highly cited."
+  },
+  "confidence_components": {
+    "source_quality": 0.91,
+    "mapping_fidelity": 0.81,
+    "transfer_risk": 0.22,
+    "notes": "High-quality review in a leading pharmacology/neuroscience journal with strong empirical grounding across species. Mapping fidelity is high for the corticostriatal dual dissociation and the devaluation-insensitivity as an architectural limitation of the habit system. Transfer risk is low: the core claim translates directly; the harm-attribution extension and hippocampal specificity are REE additions not contradicted by the source."
+  }
+}

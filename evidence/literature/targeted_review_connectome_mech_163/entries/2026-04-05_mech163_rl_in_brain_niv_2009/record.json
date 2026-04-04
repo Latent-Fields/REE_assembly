@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-05_mech163_rl_in_brain_niv_2009",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Reinforcement learning in the brain",
+    "authors": ["Yael Niv"],
+    "year": 2009,
+    "venue": "Journal of Mathematical Psychology",
+    "doi": "10.1016/j.jmp.2008.12.005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/"
+  },
+  "evidence_class": "computational_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Niv 2009 is the canonical review linking model-free reinforcement learning (temporal difference, TD) to dopaminergic prediction error signals in the striatum (SNc/VTA -> striatum axis) and model-based planning to prefrontal-hippocampal circuitry. The paper rigorously grounds the distinction between cached value learning (TD/model-free, habit) and model-based planning in neural substrates. It provides the computational scaffolding for MECH-163's dual-system claim. Confidence is moderate-high because the review focuses primarily on the model-free/TD side of the architecture with the model-based planning arm less developed; the specific E3 hippocampal multi-step harm evaluation is not addressed. The paper predates the clearer dorsomedial/dorsolateral striatum dissociation literature (Balleine & O'Doherty 2010) and does not foreground the hippocampal contribution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Niv 2009 primarily reviews the TD/model-free arm; model-based planning is discussed but less developed relative to subsequent literature.",
+    "The hippocampal contribution to multi-step trajectory planning is not the focus of this review; hippocampus appears primarily in the context of episodic memory rather than action planning.",
+    "The paper does not address harm attribution or ethical/prosocial planning dimensions of MECH-163."
+  ],
+  "tags": [
+    "mech_163",
+    "reinforcement-learning",
+    "temporal-difference",
+    "dopamine",
+    "prediction-error",
+    "model-free",
+    "model-based",
+    "striatum",
+    "prefrontal",
+    "SNc",
+    "VTA",
+    "review",
+    "computational"
+  ],
+  "mapping": {
+    "source_claim_statement": "Temporal difference (TD) prediction errors, signalled by phasic dopamine neurons in SNc/VTA projecting to striatum, implement model-free reinforcement learning in the brain. The brain also contains model-based systems involving prefrontal cortex that can plan over an internal model of the environment. These two systems co-exist and interact.",
+    "ree_translation": "MECH-163 maps directly onto this architecture. The SNc -> dorsal striatum dopamine axis implements the REE habit system (model-free S-R caching). The VTA -> ventral striatum + prefrontal/hippocampal system implements the planned system (model-based). Niv 2009's TD framing is the computational basis for the habit system's inability to attribute harm across novel contexts: TD systems learn cached values without access to the transition model, making contextual harm attribution (which requires simulating counterfactual trajectories) inaccessible to them. The REE E3 hippocampal system's multi-step trajectory evaluation corresponds to the model-based planning arm Niv describes.",
+    "mapping_caveat": "Niv 2009 provides the computational grounding for the model-free arm of MECH-163 far more precisely than the model-based arm. The specific claim that model-based planning requires hippocampal trajectory generation (not just PFC) requires reading Niv in conjunction with hippocampal planning literature (e.g., Balleine & O'Doherty 2010, Dolan & Dayan 2013). The harm-attribution dimension of MECH-163 is an REE-specific framing not present in Niv.",
+    "source_context": "Comprehensive review across rodent electrophysiology, human fMRI, and computational modelling. Journal of Mathematical Psychology -- focused on formal/computational framing rather than clinical application."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.22,
+    "notes": "Niv 2009 is a highly cited, technically rigorous review in a leading computational journal. Source quality is very high. Mapping fidelity is good for the model-free/TD side and the dual-system co-existence claim, but the model-based/hippocampal side is underdeveloped relative to what MECH-163 requires. Transfer risk is low-moderate: the computational claim translates cleanly; the specific hippocampal harm-attribution extension is an REE addition."
+  }
+}

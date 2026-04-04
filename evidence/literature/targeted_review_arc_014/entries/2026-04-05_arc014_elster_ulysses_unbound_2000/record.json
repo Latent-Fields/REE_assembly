@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_014",
+  "entry_id": "2026-04-05_arc014_elster_ulysses_unbound_2000",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["ARC-014"],
+  "source": {
+    "title": "Ulysses Unbound: Studies in Rationality, Precommitment, and Constraints",
+    "authors": ["Jon Elster"],
+    "year": 2000,
+    "venue": "Cambridge University Press",
+    "url": "https://philpapers.org/rec/ELSUUS-2"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Elster's Ulysses Unbound (and its predecessor Ulysses and the Sirens, 1979) develops the theoretical account of precommitment as a rational strategy: an agent binds themselves in advance to prevent future irrational reconsideration. This maps onto ARC-014's pre/post-commit boundary: the commitment architecture creates an asymmetry where actions, once committed, are not available for re-simulation -- they have crossed from the domain of options into the domain of enacted consequences. Elster's account of why precommitment is sometimes necessary (weakness of will, time-inconsistency, strategic self-binding) provides the functional motivation for why a sharp pre/post-commit boundary is architecturally superior to continuous re-evaluation. The Ulysses metaphor is precise: committed actions cannot be 'unsimulated' just as Ulysses cannot un-hear the Sirens once the ship has passed -- consequence attribution must happen offline precisely because the action is no longer a hypothesis. Confidence is moderate: Elster's framework is descriptive of human precommitment strategies, not a neural or computational architecture, and ARC-014's offline attribution necessity is an engineering inference from the philosophical structure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Elster addresses voluntary self-binding strategies; ARC-014 concerns an architectural necessity imposed by the structure of action execution, not a voluntary strategic choice.",
+    "Elster's analysis focuses on inter-temporal consistency and weakness of will -- the relevance to ethical residue attribution (phi(z) write access) requires a non-obvious translation.",
+    "The commitment boundary in Elster is permeable and voluntary (one can choose to un-commit); ARC-014's boundary is architectural and categorical -- this is a structural disanalogy."
+  ],
+  "tags": [
+    "arc_014",
+    "precommitment",
+    "self-binding",
+    "irreversibility",
+    "Ulysses",
+    "commitment-architecture",
+    "time-inconsistency",
+    "rational-constraints",
+    "philosophy",
+    "decision-theory",
+    "offline-attribution"
+  ],
+  "mapping": {
+    "source_claim_statement": "Precommitment is a rational strategy for an agent who anticipates that future versions of themselves will make suboptimal choices under passion, weakness of will, or time-inconsistency. By binding themselves in advance, the agent removes the option of reconsidering the committed action. The removal of the option is what makes the commitment effective -- maintaining optionality defeats the purpose of precommitment. Elster generalises this: constraints on future options are sometimes constitutive of rational agency, not limitations on it.",
+    "ree_translation": "ARC-014's architectural necessity argument parallels Elster's generalisation: the pre/post-commit boundary is not a limitation on the agent's power but a constitutive feature of genuine commitment. Committed actions cannot be re-simulated precisely because they are no longer options -- they are enacted consequences requiring offline attribution (phi(z) write). If post-commit actions remained in the simulation channel, the commitment boundary would be nominal rather than architectural. Elster's framework provides the theoretical grounding for why removing the option of re-simulation (routing to post-commit channel, suppressing phi(z) during pre-commit) is architecturally necessary rather than arbitrary design choice.",
+    "mapping_caveat": "Elster's analysis is about voluntary, strategic self-binding in humans. ARC-014 claims an architectural necessity that applies regardless of the agent's preferences or strategic choices -- it is a structural property of the system. The move from 'voluntary self-binding is sometimes rational' to 'categorical commitment boundary is architecturally necessary' requires the additional premise that agents acting in real environments with irreversible consequences must have this feature. This is a REE architectural argument that Elster supports but does not itself make.",
+    "source_context": "Cambridge University Press monograph extending Ulysses and the Sirens (1979). Covers self-binding, constitutional precommitment, and creativity constraints. Influential in decision theory, political philosophy, and behavioural economics."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Elster is a canonical figure in decision theory/political philosophy -- high source quality. Mapping fidelity is moderate: the Ulysses analogy is illuminating and the irreversibility argument directly supports ARC-014's framing, but the voluntary/strategic character of Elster's precommitment differs structurally from ARC-014's architectural necessity. Transfer risk is moderate-high given this structural disanalogy and the large distance from Elster's domain (political/economic self-binding) to REE architectural claims."
+  }
+}

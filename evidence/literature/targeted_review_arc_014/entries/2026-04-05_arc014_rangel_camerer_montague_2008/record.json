@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_014",
+  "entry_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["ARC-014"],
+  "source": {
+    "title": "A framework for studying the neurobiology of value-based decision making",
+    "authors": ["Antonio Rangel", "Colin Camerer", "P. Read Montague"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2357",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/"
+  },
+  "evidence_class": "empirical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Rangel, Camerer and Montague 2008 propose a five-process framework for value-based decision making: (1) represent the decision problem, (2) assign values to options, (3) select an action, (4) evaluate the outcome after implementation, (5) update processes for future decisions. This framework explicitly posits a structural discontinuity between the selection phase (process 3) and the outcome evaluation phase (process 4): outcome evaluation occurs after action implementation and measures the 'desirability of outcomes that have been received'. This sequential, post-hoc structure provides neuroscientific support for ARC-014's pre/post-commit boundary. The evaluation-after-implementation structure is architecturally identical to REE's post-commit offline attribution: consequences are evaluated in a phase that is structurally distinct from and sequential to selection. The paper directly implies that a system that evaluated outcomes before action completion would be confusing prospective planning with retrospective attribution -- the separation is necessary for coherent learning. Confidence is moderate: the mapping to the specific ARC-014 claims about commitment architecture and phi(z) write access requires interpretation; the paper provides supporting structure rather than direct evidence for the categorical boundary.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rangel et al. frame the five-process model descriptively; they do not argue for architectural necessity of the pre/post boundary in the sense ARC-014 requires.",
+    "Outcome evaluation (process 4) in Rangel et al. is about learning signal computation, not about ethical residue accumulation -- the phi(z) attribution function is an REE extension.",
+    "The framework is agnostic about whether the selection-to-evaluation boundary is categorical or graded; ARC-014 claims a categorical route switch."
+  ],
+  "tags": [
+    "arc_014",
+    "value-based-decision-making",
+    "outcome-evaluation",
+    "post-action",
+    "pre-action",
+    "commitment",
+    "neuroeconomics",
+    "sequential-processing",
+    "Nature-Reviews-Neuroscience",
+    "framework",
+    "attribution",
+    "learning-update"
+  ],
+  "mapping": {
+    "source_claim_statement": "Value-based decision making comprises five sequential processes: representation of the decision problem, valuation of options, action selection, outcome evaluation after implementation, and learning updates for future decisions. Outcome evaluation is structurally distinct from and follows action selection -- it measures the desirability of outcomes that have been received, not outcomes that are being considered.",
+    "ree_translation": "ARC-014's pre/post-commit boundary instantiates exactly the process 3 / process 4 transition in Rangel et al.'s framework. Pre-commit corresponds to processes 1-3 (representation, valuation, selection); post-commit corresponds to process 4 (outcome evaluation after implementation). The architectural necessity of offline attribution passes in REE (MECH-029, MECH-092) mirrors the structural necessity of the outcome evaluation phase in Rangel et al.: a system that merged outcome evaluation with option selection would conflate the values of hypothetical options with the attribution of realised consequences. Rangel et al.'s framework provides neuroscientific grounding for the claim that the pre/post separation is not arbitrary but follows from the distinct computational roles of prospective option evaluation and retrospective outcome attribution.",
+    "mapping_caveat": "Rangel et al.'s five-process model describes a general framework for value-based decision making; it does not specifically address ethical residue accumulation (phi(z)), commitment irreversibility, or the hypothesis-tag mechanism that gates phi(z) writes in REE. The mapping supports ARC-014's architectural structure but does not provide direct evidence for the categorical (vs. graded) character of the boundary or for the specific pre-commit/post-commit channel wiring in REE.",
+    "source_context": "Nature Reviews Neuroscience 2008. Highly cited foundational review in neuroeconomics. Integrates human fMRI, rodent electrophysiology, single-unit recording, and computational modeling. Widely used as a teaching framework for the field."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.63,
+    "transfer_risk": 0.35,
+    "notes": "Nature Reviews Neuroscience, Rangel/Camerer/Montague -- one of the most cited reviews in neuroeconomics. Source quality is excellent. Mapping fidelity is moderate: the five-process framework supports the pre/post structural separation but does not provide direct evidence for ARC-014's categorical boundary, phi(z) write-gating, or architectural necessity claim. Transfer risk is moderate: the framework is descriptive of human decision-making and was not designed as a computational architecture spec."
+  }
+}

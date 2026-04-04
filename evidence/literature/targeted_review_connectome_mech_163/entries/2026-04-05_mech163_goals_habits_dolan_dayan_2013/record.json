@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-04-05_mech163_goals_habits_dolan_dayan_2013",
+  "timestamp_utc": "2026-04-05T18:00:00Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Goals and Habits in the Brain",
+    "authors": ["Ray J. Dolan", "Peter Dayan"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24139036/"
+  },
+  "evidence_class": "empirical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the primary targeted review for MECH-163. Dolan and Dayan provide a computational account of goal-directed vs habitual control framed explicitly as two anatomically dissociated systems: the model-free/habit system tied to dorsolateral striatum (under dopaminergic modulation from SNc/nigrostriatal pathway) and the model-based/goal-directed system requiring prefrontal-hippocampal circuitry for action-outcome representations. They show that these systems operate in parallel and that psychopathological imbalance (addiction, OCD, anxiety) arises from skewed competition between them. The mapping to MECH-163 is direct. Confidence is not maximal because the paper's model-based system is framed primarily around prefrontal cortex rather than foregrounding the hippocampal contribution, and MECH-163's specific framing of the hippocampally-planned system (E3 hippocampal) as generating multi-step harm/benefit trajectories goes beyond what Dolan/Dayan directly test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not demonstrate empirically that the model-based system requires hippocampal trajectory generation specifically -- it attributes model-based computation primarily to prefrontal cortex.",
+    "The paper does not directly address harm attribution across contexts; the goal-directed system is framed around outcome value rather than harm/benefit dissociation.",
+    "Whether the model-based system is 'necessary' for harm attribution is argued computationally but not tested with lesion or ablation evidence in this review."
+  ],
+  "tags": [
+    "mech_163",
+    "goal-directed",
+    "habitual",
+    "model-free",
+    "model-based",
+    "dual-system",
+    "basal-ganglia",
+    "prefrontal",
+    "dopamine",
+    "SNc",
+    "VTA",
+    "striatum",
+    "review",
+    "psychopathology"
+  ],
+  "mapping": {
+    "source_claim_statement": "Goal-directed and habitual control are dissociated systems supported by different neural substrates: habitual control by dopamine-dependent stimulus-response learning in dorsolateral striatum (model-free); goal-directed control by action-outcome representations requiring prefrontal involvement (model-based). Psychopathology (addiction, OCD) reflects imbalance between these systems, with excessive habit dominance or goal-directed rigidity.",
+    "ree_translation": "MECH-163 instantiates exactly this dissociation. The REE habit system (SNc/dorsal-striatum, model-free) handles approach to familiar resources via cached S-R associations. The REE planned system (VTA/hippocampus + E3) handles novel contexts, long-horizon benefit and harm evaluation, and contextual attribution. Dolan/Dayan's framing that one system cannot compensate for the other directly supports MECH-163's claim that both are necessary: the habit system cannot attribute harm across contexts (no world model), and the planned system cannot efficiently handle well-practiced routine approach (too computationally expensive). The psychopathology angle maps onto REE's ethical failure modes where habit dominance produces context-blind harm.",
+    "mapping_caveat": "The REE E3 hippocampal system is more hippocampus-centric than Dolan/Dayan's model-based system (which is primarily PFC-framed). The harm/benefit trajectory evaluation specific to MECH-163 is a REE extension not directly studied in this review. Map fidelity is high for the dual-system architecture and necessity claim; moderate for the specific hippocampal and harm-attribution components.",
+    "source_context": "Review paper synthesising human imaging, patient studies (OCD, addiction), rodent behavioural (devaluation, contingency degradation), and computational evidence. Broad across modalities, species, and task types."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "Neuron review by Dolan and Dayan -- two of the most senior figures in the field; very high source quality. Mapping fidelity is high for the dual-system architecture but attenuated for the hippocampal specificity and harm-attribution components which MECH-163 adds. Transfer risk is low because the paper directly addresses the circuit architecture MECH-163 instantiates."
+  }
+}

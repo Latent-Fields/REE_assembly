@@ -373,6 +373,95 @@
         "literature": 1
       }
     },
+    "ARC-014": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.798",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:empirical_review": 1,
+        "lit:theoretical_review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
+      "latest_timestamp_utc": "2026-04-05T18:00:00Z",
+      "literature_confidence": 0.798,
+      "overall_confidence": 0.798,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-014",
+          "confidence": 0.74,
+          "confidence_rationale": "Bratman 1987 is the foundational philosophical account of commitment as a distinct mental state category. His central argument is that intentions cannot be reduced to beliefs and desires -- they are 'prior intentions' that stabilise future-directed planning by generating conduct-controlling pro-attitudes that resist reconsideration. This directly grounds ARC-014's commitment architecture: the pre-commit/post-commit boundary exists because committed intentions must be treated as stable rather than continuously re-evaluated, otherwise planning becomes computationally incoherent. Bratman's 'Commitment Revisited' chapter makes explicit that once an intention is formed it functions as a constraint on further deliberation, not a re-evaluated option -- this is the philosophical basis for the categorical (not graded) character of ARC-014's commitment boundary. Confidence is moderate-high: mapping fidelity to ARC-014's architectural necessity claim is good; transfer risk is moderate because Bratman is analysing human practical reasoning, not neural architecture, and the commitment-channel separation (pre-commit simulation vs. post-commit realised outcome) is an REE implementation that Bratman's framework supports but does not directly specify.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_014",
+          "failure_signatures": [
+            "Bratman's framework is normative philosophy of action -- it does not make predictions about neural implementation or information-flow architecture.",
+            "Bratman treats commitment stability as a matter of rational norms, not architectural necessity -- the move from 'rationally appropriate' to 'architecturally necessary' is an REE inference.",
+            "The pre-commit/post-commit channel separation (distinct error signals, residue write-gating) is not addressed in Bratman's framework, which operates at the level of intentional states, not computational channels."
+          ],
+          "run_id": "2026-04-05_arc014_bratman_intention_plans_1987",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-014",
+          "confidence": 0.7,
+          "confidence_rationale": "Elster's Ulysses Unbound (and its predecessor Ulysses and the Sirens, 1979) develops the theoretical account of precommitment as a rational strategy: an agent binds themselves in advance to prevent future irrational reconsideration. This maps onto ARC-014's pre/post-commit boundary: the commitment architecture creates an asymmetry where actions, once committed, are not available for re-simulation -- they have crossed from the domain of options into the domain of enacted consequences. Elster's account of why precommitment is sometimes necessary (weakness of will, time-inconsistency, strategic self-binding) provides the functional motivation for why a sharp pre/post-commit boundary is architecturally superior to continuous re-evaluation. The Ulysses metaphor is precise: committed actions cannot be 'unsimulated' just as Ulysses cannot un-hear the Sirens once the ship has passed -- consequence attribution must happen offline precisely because the action is no longer a hypothesis. Confidence is moderate: Elster's framework is descriptive of human precommitment strategies, not a neural or computational architecture, and ARC-014's offline attribution necessity is an engineering inference from the philosophical structure.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_014",
+          "failure_signatures": [
+            "Elster addresses voluntary self-binding strategies; ARC-014 concerns an architectural necessity imposed by the structure of action execution, not a voluntary strategic choice.",
+            "Elster's analysis focuses on inter-temporal consistency and weakness of will -- the relevance to ethical residue attribution (phi(z) write access) requires a non-obvious translation.",
+            "The commitment boundary in Elster is permeable and voluntary (one can choose to un-commit); ARC-014's boundary is architectural and categorical -- this is a structural disanalogy."
+          ],
+          "run_id": "2026-04-05_arc014_elster_ulysses_unbound_2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-014",
+          "confidence": 0.65,
+          "confidence_rationale": "Rangel, Camerer and Montague 2008 propose a five-process framework for value-based decision making: (1) represent the decision problem, (2) assign values to options, (3) select an action, (4) evaluate the outcome after implementation, (5) update processes for future decisions. This framework explicitly posits a structural discontinuity between the selection phase (process 3) and the outcome evaluation phase (process 4): outcome evaluation occurs after action implementation and measures the 'desirability of outcomes that have been received'. This sequential, post-hoc structure provides neuroscientific support for ARC-014's pre/post-commit boundary. The evaluation-after-implementation structure is architecturally identical to REE's post-commit offline attribution: consequences are evaluated in a phase that is structurally distinct from and sequential to selection. The paper directly implies that a system that evaluated outcomes before action completion would be confusing prospective planning with retrospective attribution -- the separation is necessary for coherent learning. Confidence is moderate: the mapping to the specific ARC-014 claims about commitment architecture and phi(z) write access requires interpretation; the paper provides supporting structure rather than direct evidence for the categorical boundary.",
+          "evidence_class": "lit:empirical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_014",
+          "failure_signatures": [
+            "Rangel et al. frame the five-process model descriptively; they do not argue for architectural necessity of the pre/post boundary in the sense ARC-014 requires.",
+            "Outcome evaluation (process 4) in Rangel et al. is about learning signal computation, not about ethical residue accumulation -- the phi(z) attribution function is an REE extension.",
+            "The framework is agnostic about whether the selection-to-evaluation boundary is categorical or graded; ARC-014 claims a categorical route switch."
+          ],
+          "run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
     "ARC-016": {
       "confidence_rationale": "exp=23 entry(s), lit=6 entry(s), exp_conf=0.718, lit_conf=0.878",
       "direction_counts": {
@@ -5155,7 +5244,7 @@
       }
     },
     "MECH-069": {
-      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.925, lit_conf=0.798",
+      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.925, lit_conf=0.797",
       "direction_counts": {
         "mixed": 6,
         "supports": 4,
@@ -5179,7 +5268,7 @@
       },
       "latest_run_id": "v3_exq_047b_sd005_sd010_joint_20260321T191558Z_v3",
       "latest_timestamp_utc": "2026-03-21T19:15:58Z",
-      "literature_confidence": 0.798,
+      "literature_confidence": 0.797,
       "overall_confidence": 0.874,
       "pass_runs": 2,
       "recent_entries": [
@@ -9842,17 +9931,20 @@
       }
     },
     "MECH-163": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.774",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.896",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 6,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 6,
       "evidence_class_counts": {
+        "lit:computational_model": 1,
+        "lit:computational_review": 1,
         "lit:connectome_mechanistic_review": 1,
-        "lit:electrophysiology_lfp": 1
+        "lit:electrophysiology_lfp": 1,
+        "lit:empirical_review": 2
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -9863,28 +9955,12 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010",
-      "latest_timestamp_utc": "2026-04-02T23:59:00Z",
-      "literature_confidence": 0.774,
-      "overall_confidence": 0.774,
+      "latest_run_id": "2026-04-05_mech163_uncertainty_competition_daw2005",
+      "latest_timestamp_utc": "2026-04-05T18:00:00Z",
+      "literature_confidence": 0.896,
+      "overall_confidence": 0.896,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-163",
-          "confidence": 0.74,
-          "confidence_rationale": "Authoritative review by two of the field's leading memory researchers. Relevant to MECH-163 (multi-step planning via HPC-PFC coupling) and ARC-035 (vmPFC content interface to hippocampal nodes). The review synthesizes the division of labor: HPC for encoding and replay, PFC for goal-directed retrieval, schema application, and top-down gating. This division is the anatomical foundation for ARC-035's claim that vmPFC loads content (goals, values) into hippocampal trajectory nodes rather than computing trajectories itself.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_hippocampal_pfc_planning",
-          "failure_signatures": [
-            "The review does not directly address multi-step planning or lookahead \u2014 its focus is on encoding/retrieval interplay, not sequential decision-making. The link to MECH-163's planning specification requires inference."
-          ],
-          "run_id": "2026-04-02_mech_163_hpc_pfc_interplay_review_preston2013",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:55:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-163",
@@ -9901,12 +9977,84 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-02T23:59:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.83,
+          "confidence_rationale": "Balleine and O'Doherty 2010 directly establish the corticostriatal anatomy of goal-directed versus habitual action across rodent and human homologies. The key finding is a double dissociation: dorsomedial striatum (and prelimbic/medial PFC) is necessary for goal-directed action (sensitive to outcome devaluation and contingency degradation); dorsolateral striatum (and lateral PFC/posterior putamen in humans) is necessary for habitual action (insensitive to these manipulations). This is the closest empirical grounding for MECH-163's claim that the habit system (dorsal/lateral striatum) cannot attribute harm across contexts. The devaluation insensitivity of the habitual system is precisely the architectural limitation MECH-163 identifies: S-R caching does not update with new outcome information until the cache is re-trained, which prevents contextual harm attribution. Confidence is high but not maximal because the human imaging literature is limited to healthy adults in laboratory tasks; the specific link to harm/benefit evaluation (vs. reward devaluation) and hippocampal multi-step trajectory generation remains inferential.",
+          "evidence_class": "lit:empirical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_163",
+          "failure_signatures": [
+            "The double dissociation is shown for outcome devaluation sensitivity, not specifically for harm attribution across novel contexts -- the mapping to contextual harm attribution requires an interpretive step.",
+            "The model-based (goal-directed) system in Balleine/O'Doherty is mediated primarily by dorsomedial striatum + mPFC; the hippocampal contribution to multi-step planning is implicit rather than directly demonstrated.",
+            "Human imaging evidence in 2010 was limited to simple instrumental conditioning paradigms; complex multi-step harm/benefit trajectories are not studied."
+          ],
+          "run_id": "2026-04-05_mech163_corticostriatal_balleine_odoherty_2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.85,
+          "confidence_rationale": "This is the primary targeted review for MECH-163. Dolan and Dayan provide a computational account of goal-directed vs habitual control framed explicitly as two anatomically dissociated systems: the model-free/habit system tied to dorsolateral striatum (under dopaminergic modulation from SNc/nigrostriatal pathway) and the model-based/goal-directed system requiring prefrontal-hippocampal circuitry for action-outcome representations. They show that these systems operate in parallel and that psychopathological imbalance (addiction, OCD, anxiety) arises from skewed competition between them. The mapping to MECH-163 is direct. Confidence is not maximal because the paper's model-based system is framed primarily around prefrontal cortex rather than foregrounding the hippocampal contribution, and MECH-163's specific framing of the hippocampally-planned system (E3 hippocampal) as generating multi-step harm/benefit trajectories goes beyond what Dolan/Dayan directly test.",
+          "evidence_class": "lit:empirical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_163",
+          "failure_signatures": [
+            "The paper does not demonstrate empirically that the model-based system requires hippocampal trajectory generation specifically -- it attributes model-based computation primarily to prefrontal cortex.",
+            "The paper does not directly address harm attribution across contexts; the goal-directed system is framed around outcome value rather than harm/benefit dissociation.",
+            "Whether the model-based system is 'necessary' for harm attribution is argued computationally but not tested with lesion or ablation evidence in this review."
+          ],
+          "run_id": "2026-04-05_mech163_goals_habits_dolan_dayan_2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.78,
+          "confidence_rationale": "Niv 2009 is the canonical review linking model-free reinforcement learning (temporal difference, TD) to dopaminergic prediction error signals in the striatum (SNc/VTA -> striatum axis) and model-based planning to prefrontal-hippocampal circuitry. The paper rigorously grounds the distinction between cached value learning (TD/model-free, habit) and model-based planning in neural substrates. It provides the computational scaffolding for MECH-163's dual-system claim. Confidence is moderate-high because the review focuses primarily on the model-free/TD side of the architecture with the model-based planning arm less developed; the specific E3 hippocampal multi-step harm evaluation is not addressed. The paper predates the clearer dorsomedial/dorsolateral striatum dissociation literature (Balleine & O'Doherty 2010) and does not foreground the hippocampal contribution.",
+          "evidence_class": "lit:computational_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_163",
+          "failure_signatures": [
+            "Niv 2009 primarily reviews the TD/model-free arm; model-based planning is discussed but less developed relative to subsequent literature.",
+            "The hippocampal contribution to multi-step trajectory planning is not the focus of this review; hippocampus appears primarily in the context of episodic memory rather than action planning.",
+            "The paper does not address harm attribution or ethical/prosocial planning dimensions of MECH-163."
+          ],
+          "run_id": "2026-04-05_mech163_rl_in_brain_niv_2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-163",
+          "confidence": 0.79,
+          "confidence_rationale": "Daw, Niv and Dayan 2005 provide the normative computational account of why both systems are necessary. They show that neither model-based (prefrontal/goal-directed) nor model-free (dorsolateral striatum/habitual) control is universally superior: model-based control is more accurate in novel contexts but computationally expensive; model-free control is cheap but relies on cached values that become inaccurate in new environments. Their Bayesian arbitration framework predicts that both systems must coexist, each deployed according to its relative uncertainty, and that the brain maintains a weighted combination. This directly grounds MECH-163's necessity claim: neither system alone is sufficient for the full range of behaviours required for ethical agency. Confidence is slightly attenuated because the paper is theoretical and does not directly test harm/benefit evaluation or hippocampal planning horizons.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_163",
+          "failure_signatures": [
+            "This is a computational theory paper -- predictions are not directly tested with neural or behavioural data in this paper itself.",
+            "The arbitration mechanism is framed around uncertainty/accuracy trade-offs, not around ethical or harm-attribution contexts specifically.",
+            "The model-based system is attributed to prefrontal cortex; hippocampal contributions to long-horizon planning are not addressed."
+          ],
+          "run_id": "2026-04-05_mech163_uncertainty_competition_daw2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T18:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 6
       }
     },
     "MECH-900": {
@@ -53572,9 +53720,135 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-05T16:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-014",
+      "confidence": 0.74,
+      "confidence_rationale": "Bratman 1987 is the foundational philosophical account of commitment as a distinct mental state category. His central argument is that intentions cannot be reduced to beliefs and desires -- they are 'prior intentions' that stabilise future-directed planning by generating conduct-controlling pro-attitudes that resist reconsideration. This directly grounds ARC-014's commitment architecture: the pre-commit/post-commit boundary exists because committed intentions must be treated as stable rather than continuously re-evaluated, otherwise planning becomes computationally incoherent. Bratman's 'Commitment Revisited' chapter makes explicit that once an intention is formed it functions as a constraint on further deliberation, not a re-evaluated option -- this is the philosophical basis for the categorical (not graded) character of ARC-014's commitment boundary. Confidence is moderate-high: mapping fidelity to ARC-014's architectural necessity claim is good; transfer risk is moderate because Bratman is analysing human practical reasoning, not neural architecture, and the commitment-channel separation (pre-commit simulation vs. post-commit realised outcome) is an REE implementation that Bratman's framework supports but does not directly specify.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_014",
+      "failure_signatures": [
+        "Bratman's framework is normative philosophy of action -- it does not make predictions about neural implementation or information-flow architecture.",
+        "Bratman treats commitment stability as a matter of rational norms, not architectural necessity -- the move from 'rationally appropriate' to 'architecturally necessary' is an REE inference.",
+        "The pre-commit/post-commit channel separation (distinct error signals, residue write-gating) is not addressed in Bratman's framework, which operates at the level of intentional states, not computational channels."
+      ],
+      "run_id": "2026-04-05_arc014_bratman_intention_plans_1987",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-014",
+      "confidence": 0.7,
+      "confidence_rationale": "Elster's Ulysses Unbound (and its predecessor Ulysses and the Sirens, 1979) develops the theoretical account of precommitment as a rational strategy: an agent binds themselves in advance to prevent future irrational reconsideration. This maps onto ARC-014's pre/post-commit boundary: the commitment architecture creates an asymmetry where actions, once committed, are not available for re-simulation -- they have crossed from the domain of options into the domain of enacted consequences. Elster's account of why precommitment is sometimes necessary (weakness of will, time-inconsistency, strategic self-binding) provides the functional motivation for why a sharp pre/post-commit boundary is architecturally superior to continuous re-evaluation. The Ulysses metaphor is precise: committed actions cannot be 'unsimulated' just as Ulysses cannot un-hear the Sirens once the ship has passed -- consequence attribution must happen offline precisely because the action is no longer a hypothesis. Confidence is moderate: Elster's framework is descriptive of human precommitment strategies, not a neural or computational architecture, and ARC-014's offline attribution necessity is an engineering inference from the philosophical structure.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_014",
+      "failure_signatures": [
+        "Elster addresses voluntary self-binding strategies; ARC-014 concerns an architectural necessity imposed by the structure of action execution, not a voluntary strategic choice.",
+        "Elster's analysis focuses on inter-temporal consistency and weakness of will -- the relevance to ethical residue attribution (phi(z) write access) requires a non-obvious translation.",
+        "The commitment boundary in Elster is permeable and voluntary (one can choose to un-commit); ARC-014's boundary is architectural and categorical -- this is a structural disanalogy."
+      ],
+      "run_id": "2026-04-05_arc014_elster_ulysses_unbound_2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-014",
+      "confidence": 0.65,
+      "confidence_rationale": "Rangel, Camerer and Montague 2008 propose a five-process framework for value-based decision making: (1) represent the decision problem, (2) assign values to options, (3) select an action, (4) evaluate the outcome after implementation, (5) update processes for future decisions. This framework explicitly posits a structural discontinuity between the selection phase (process 3) and the outcome evaluation phase (process 4): outcome evaluation occurs after action implementation and measures the 'desirability of outcomes that have been received'. This sequential, post-hoc structure provides neuroscientific support for ARC-014's pre/post-commit boundary. The evaluation-after-implementation structure is architecturally identical to REE's post-commit offline attribution: consequences are evaluated in a phase that is structurally distinct from and sequential to selection. The paper directly implies that a system that evaluated outcomes before action completion would be confusing prospective planning with retrospective attribution -- the separation is necessary for coherent learning. Confidence is moderate: the mapping to the specific ARC-014 claims about commitment architecture and phi(z) write access requires interpretation; the paper provides supporting structure rather than direct evidence for the categorical boundary.",
+      "evidence_class": "lit:empirical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_014",
+      "failure_signatures": [
+        "Rangel et al. frame the five-process model descriptively; they do not argue for architectural necessity of the pre/post boundary in the sense ARC-014 requires.",
+        "Outcome evaluation (process 4) in Rangel et al. is about learning signal computation, not about ethical residue accumulation -- the phi(z) attribution function is an REE extension.",
+        "The framework is agnostic about whether the selection-to-evaluation boundary is categorical or graded; ARC-014 claims a categorical route switch."
+      ],
+      "run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.83,
+      "confidence_rationale": "Balleine and O'Doherty 2010 directly establish the corticostriatal anatomy of goal-directed versus habitual action across rodent and human homologies. The key finding is a double dissociation: dorsomedial striatum (and prelimbic/medial PFC) is necessary for goal-directed action (sensitive to outcome devaluation and contingency degradation); dorsolateral striatum (and lateral PFC/posterior putamen in humans) is necessary for habitual action (insensitive to these manipulations). This is the closest empirical grounding for MECH-163's claim that the habit system (dorsal/lateral striatum) cannot attribute harm across contexts. The devaluation insensitivity of the habitual system is precisely the architectural limitation MECH-163 identifies: S-R caching does not update with new outcome information until the cache is re-trained, which prevents contextual harm attribution. Confidence is high but not maximal because the human imaging literature is limited to healthy adults in laboratory tasks; the specific link to harm/benefit evaluation (vs. reward devaluation) and hippocampal multi-step trajectory generation remains inferential.",
+      "evidence_class": "lit:empirical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_163",
+      "failure_signatures": [
+        "The double dissociation is shown for outcome devaluation sensitivity, not specifically for harm attribution across novel contexts -- the mapping to contextual harm attribution requires an interpretive step.",
+        "The model-based (goal-directed) system in Balleine/O'Doherty is mediated primarily by dorsomedial striatum + mPFC; the hippocampal contribution to multi-step planning is implicit rather than directly demonstrated.",
+        "Human imaging evidence in 2010 was limited to simple instrumental conditioning paradigms; complex multi-step harm/benefit trajectories are not studied."
+      ],
+      "run_id": "2026-04-05_mech163_corticostriatal_balleine_odoherty_2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.85,
+      "confidence_rationale": "This is the primary targeted review for MECH-163. Dolan and Dayan provide a computational account of goal-directed vs habitual control framed explicitly as two anatomically dissociated systems: the model-free/habit system tied to dorsolateral striatum (under dopaminergic modulation from SNc/nigrostriatal pathway) and the model-based/goal-directed system requiring prefrontal-hippocampal circuitry for action-outcome representations. They show that these systems operate in parallel and that psychopathological imbalance (addiction, OCD, anxiety) arises from skewed competition between them. The mapping to MECH-163 is direct. Confidence is not maximal because the paper's model-based system is framed primarily around prefrontal cortex rather than foregrounding the hippocampal contribution, and MECH-163's specific framing of the hippocampally-planned system (E3 hippocampal) as generating multi-step harm/benefit trajectories goes beyond what Dolan/Dayan directly test.",
+      "evidence_class": "lit:empirical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_163",
+      "failure_signatures": [
+        "The paper does not demonstrate empirically that the model-based system requires hippocampal trajectory generation specifically -- it attributes model-based computation primarily to prefrontal cortex.",
+        "The paper does not directly address harm attribution across contexts; the goal-directed system is framed around outcome value rather than harm/benefit dissociation.",
+        "Whether the model-based system is 'necessary' for harm attribution is argued computationally but not tested with lesion or ablation evidence in this review."
+      ],
+      "run_id": "2026-04-05_mech163_goals_habits_dolan_dayan_2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.78,
+      "confidence_rationale": "Niv 2009 is the canonical review linking model-free reinforcement learning (temporal difference, TD) to dopaminergic prediction error signals in the striatum (SNc/VTA -> striatum axis) and model-based planning to prefrontal-hippocampal circuitry. The paper rigorously grounds the distinction between cached value learning (TD/model-free, habit) and model-based planning in neural substrates. It provides the computational scaffolding for MECH-163's dual-system claim. Confidence is moderate-high because the review focuses primarily on the model-free/TD side of the architecture with the model-based planning arm less developed; the specific E3 hippocampal multi-step harm evaluation is not addressed. The paper predates the clearer dorsomedial/dorsolateral striatum dissociation literature (Balleine & O'Doherty 2010) and does not foreground the hippocampal contribution.",
+      "evidence_class": "lit:computational_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_163",
+      "failure_signatures": [
+        "Niv 2009 primarily reviews the TD/model-free arm; model-based planning is discussed but less developed relative to subsequent literature.",
+        "The hippocampal contribution to multi-step trajectory planning is not the focus of this review; hippocampus appears primarily in the context of episodic memory rather than action planning.",
+        "The paper does not address harm attribution or ethical/prosocial planning dimensions of MECH-163."
+      ],
+      "run_id": "2026-04-05_mech163_rl_in_brain_niv_2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-163",
+      "confidence": 0.79,
+      "confidence_rationale": "Daw, Niv and Dayan 2005 provide the normative computational account of why both systems are necessary. They show that neither model-based (prefrontal/goal-directed) nor model-free (dorsolateral striatum/habitual) control is universally superior: model-based control is more accurate in novel contexts but computationally expensive; model-free control is cheap but relies on cached values that become inaccurate in new environments. Their Bayesian arbitration framework predicts that both systems must coexist, each deployed according to its relative uncertainty, and that the brain maintains a weighted combination. This directly grounds MECH-163's necessity claim: neither system alone is sufficient for the full range of behaviours required for ethical agency. Confidence is slightly attenuated because the paper is theoretical and does not directly test harm/benefit evaluation or hippocampal planning horizons.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_163",
+      "failure_signatures": [
+        "This is a computational theory paper -- predictions are not directly tested with neural or behavioural data in this paper itself.",
+        "The arbitration mechanism is framed around uncertainty/accuracy trade-offs, not around ethical or harm-attribution contexts specifically.",
+        "The model-based system is attributed to prefrontal cortex; hippocampal contributions to long-horizon planning are not addressed."
+      ],
+      "run_id": "2026-04-05_mech163_uncertainty_competition_daw2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T18:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T22:29:42.825239Z",
+  "generated_at_utc": "2026-04-04T22:43:29.243742Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
