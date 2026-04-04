@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+  "timestamp_utc": "2026-04-05T22:30:00Z",
+  "claim_ids_tested": ["MECH-176", "MECH-177"],
+  "source": {
+    "title": "Polysomnographic assessment of suvorexant in patients with probable Alzheimer's disease dementia and insomnia: a randomized trial",
+    "authors": ["Herring WJ", "Ceesay P", "Snyder E", "Bliwise D", "Budd K", "Hutzelmann J", "Stevens J", "Lines C", "Michelson D"],
+    "year": 2020,
+    "venue": "Alzheimer's & Dementia",
+    "doi": "10.1002/alz.12035",
+    "pmid": "31944580"
+  },
+  "evidence_class": "rct_human",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "4-week RCT (n=285) of suvorexant 10-20mg vs placebo in patients with mild-to-moderate probable Alzheimer's disease and comorbid insomnia. Primary endpoint PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01) and WASO also significantly improved. This is the only published RCT of an orexin antagonist in an established AD+insomnia population with objective PSG measurement. Directly supports MECH-176 (architecture-preserving mechanism effective in AD population) and provides the most direct available evidence for MECH-177 (pharmacological sleep improvement in established AD is feasible; stage-gating hypothesis needs MCI data). Confidence moderate-high: AD population with PSG, published in major dementia journal, but 4 weeks is short for disease-modification assessment and established AD (not early MCI) was studied. Industry sponsorship (Merck).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The trial tested established Alzheimer's disease (MMSE 12-26, mild-to-moderate dementia), not early MCI. MECH-177 predicts the largest effects in early MCI, before schema scaffold destabilisation -- this trial tests the post-scaffold phase where MECH-177 predicts smaller effects.",
+    "4-week duration is insufficient to assess disease-modifying effects; MECH-177's pipeline protection claim requires months-to-years of follow-up for cognitive outcome assessment.",
+    "No cognitive endpoints reported as primary outcomes -- the trial was powered and designed as a sleep efficacy study, not a disease-modification trial. MECH-177 requires a future trial with cognitive decline as primary endpoint.",
+    "No detailed REM% or SWS% stage data reported in publicly available abstract -- the PSG analysis may be focused on WASO and TST rather than detailed architecture. This limits direct confirmation of MECH-176's architecture-preservation mechanism in this specific AD population."
+  ],
+  "tags": ["mech176", "mech177", "suvorexant", "orexin_antagonist", "alzheimer", "dementia", "rct", "polysomnography", "sleep_architecture", "disease_modifying"],
+  "mapping": {
+    "source_claim_statement": "Suvorexant 10-20mg vs placebo in mild-to-moderate probable AD with insomnia (n=285, 4 weeks). PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01). WASO also significantly improved. Treatment was well tolerated.",
+    "ree_translation": "MECH-176 predicts orexin antagonists preserve sleep architecture by removing wake-promoting drive without compressing phase machinery, and this should be effective even in the context of AD-related sleep disruption. The significant TST and WASO improvements in this population demonstrate that orexin antagonism is efficacious in the AD+insomnia context -- the wake-promoting orexin signal remains a targetable mechanism even when AD-related sleep disruption is present. MECH-177 predicts disease-modifying effects via pipeline protection; this study demonstrates the feasibility component (orexin antagonists can improve sleep in AD patients) but cannot test the disease-modification hypothesis at 4 weeks in established AD.",
+    "mapping_caveat": "This trial tests MECH-176's 'effective in AD population' component but cannot directly test the architecture-preservation mechanism (no detailed REM%/SWS% data in abstract) or the MECH-177 disease-modification prediction (wrong stage, too short, wrong primary endpoint). The trial confirms feasibility and tolerability, which is a necessary but not sufficient condition for MECH-177.",
+    "source_context": "RCT in mild-to-moderate probable Alzheimer's disease with comorbid insomnia; Alzheimer's & Dementia 2020; Merck industry sponsorship; PSG at baseline and weeks 1 and 4; primary endpoint PSG TST change; n=285."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.25,
+    "notes": "High source quality: RCT in target population (AD), objective PSG measurement, published in top dementia journal. Good mapping fidelity: directly tests MECH-176 mechanism in AD population. Lower transfer risk: this IS the target population (AD+insomnia), though MECH-177 specifically requires early MCI not established AD."
+  }
+}

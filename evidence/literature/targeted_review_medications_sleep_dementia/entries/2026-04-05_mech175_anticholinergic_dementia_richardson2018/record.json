@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+  "timestamp_utc": "2026-04-05T22:30:00Z",
+  "claim_ids_tested": ["MECH-175", "INV-048"],
+  "source": {
+    "title": "Anticholinergic drugs and risk of dementia: case-control study",
+    "authors": ["Richardson K", "Fox C", "Maidment I", "Steel N", "Loke YK", "Arthur A", "Myint PK", "Grossi CM", "Mattishent K", "Bennett K", "Campbell NL", "Boustani M", "Robinson L", "Brayne C", "Matthews FE", "Savva GM"],
+    "year": 2018,
+    "venue": "BMJ",
+    "doi": "10.1136/bmj.k1315",
+    "pmid": "29695481"
+  },
+  "evidence_class": "epidemiological",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Large case-control study (40,770 dementia cases, 283,933 controls) from UK general practices (Clinical Practice Research Datalink) with drug exposure measured 4-20 years before diagnosis. Found adjusted OR of 1.11 (95% CI 1.08-1.14) for any anticholinergic drug, with class-specific differences: antidepressants, urological drugs, and antiparkinson drugs showed increased dementia risk; gastrointestinal anticholinergics did not. The long latency (15-20 years before diagnosis) and class specificity support MECH-175's dual-pathway account. Confidence moderate-high: very large sample, long exposure window, published in BMJ. Limitations: observational design (indication bias: older adults prescribed anticholinergics may have higher baseline dementia risk for independent reasons); class specificity could reflect indication confounding (antidepressant use = depression = dementia risk factor).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Indication bias is a serious concern: patients prescribed antidepressants (which have high anticholinergic burden in some classes) may have depression, which is itself a dementia risk factor, making it impossible to isolate the anticholinergic-specific pathway.",
+    "The study does not distinguish the nocturnal REM suppression pathway (MECH-175 Pathway 1) from the diurnal cholinergic deficit pathway (MECH-175 Pathway 2) -- it cannot test which mechanism mediates the observed association.",
+    "Gastrointestinal anticholinergics (e.g. hyoscine) showed no increased risk despite high anticholinergic burden, which could suggest either: (a) poor CNS penetration limits the nocturnal effect, or (b) indication confounding is driving the positive associations for other drug classes rather than the anticholinergic mechanism itself."
+  ],
+  "tags": ["mech175", "inv048", "anticholinergic", "dementia_risk", "epidemiology", "case_control", "antidepressants", "urological_drugs", "bmj"],
+  "mapping": {
+    "source_claim_statement": "35% of dementia cases vs 30% of controls received anticholinergic drugs with definite activity. Adjusted OR 1.11 (1.08-1.14) for any anticholinergic drug. Class differences: antidepressants and urological drugs associated with increased dementia risk; gastrointestinal drugs not. Long latency (exposure 15-20 years before diagnosis) persists.",
+    "ree_translation": "MECH-175 predicts anticholinergic burden confers dementia risk via two independent pathways: Pathway 1 (nocturnal REM suppression degrading MECH-123 Phase 4 precision recalibration) and Pathway 2 (diurnal cholinergic deficit mimicking NBM lesion, disrupting waking contextual attribution via basal forebrain cholinergic projection to cortex). The long latency finding (15-20 years before diagnosis) directly supports the mechanism being causal and cumulative, not merely a prodrome marker. The class specificity (antidepressants > GI anticholinergics) is consistent with CNS-penetrating agents having greater pipeline access, though the GI exception could also reflect indication confounding.",
+    "mapping_caveat": "This study provides epidemiological support for the anticholinergic-dementia association but cannot distinguish the two MECH-175 pathways (nocturnal vs diurnal). It also cannot rule out indication confounding as an alternative explanation for the class-specific findings. The long latency (15-20 years) is consistent with cumulative pipeline disruption but is also consistent with many other causal models. MECH-175 requires the dual-pathway mechanism to be correct for the association to be mechanistically explained -- the epidemiology is consistent but not pathway-specific.",
+    "source_context": "UK Clinical Practice Research Datalink case-control study; 40,770 dementia cases; drug exposure 4-20 years before diagnosis; published BMJ 2018."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Excellent source quality: very large sample, major journal, long exposure window. Moderate mapping fidelity: consistent with MECH-175 but cannot distinguish pathways or rule out indication confounding. Lower transfer risk than other entries because the population (older adults, long-term medication use) matches MECH-175's target context well."
+  }
+}

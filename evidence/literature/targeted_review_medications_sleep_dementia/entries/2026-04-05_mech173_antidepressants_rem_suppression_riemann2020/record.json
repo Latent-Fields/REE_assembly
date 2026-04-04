@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_medications_sleep_dementia",
+  "entry_id": "2026-04-05_mech173_antidepressants_rem_suppression_riemann2020",
+  "timestamp_utc": "2026-04-05T22:30:00Z",
+  "claim_ids_tested": ["MECH-173", "INV-048"],
+  "source": {
+    "title": "Sleep, insomnia, and depression",
+    "authors": ["Riemann D", "Krone LB", "Wulff K", "Nissen C"],
+    "year": 2020,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/s41386-019-0411-y",
+    "pmid": "31071719"
+  },
+  "evidence_class": "review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Comprehensive narrative and meta-analytic review of polysomnographic studies of antidepressants and sleep. Explicitly states 'almost all antidepressant agents suppress REM sleep' and documents 'a time-and-dose-response relationship between total REM sleep suppression and therapeutic response.' This directly supports MECH-173's claim that REM-suppressing medications impair precision recalibration (MECH-123), and supports INV-048's pharmacological-equivalence principle by demonstrating that multiple pharmacological classes suppress REM by distinct but convergent mechanisms. Moderate-high confidence because this is a major review by leading sleep-depression researchers (Riemann is a field leader) in a top pharmacology journal (45:74-89), though the mapping from REM suppression to attribution pipeline disruption is REE-specific and not tested in the source.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not directly test the attribution pipeline account of REM suppression -- it frames REM suppression in terms of antidepressant mechanism of action and depression remission, not cognitive precision recalibration.",
+    "The dose-response claim (more REM suppression = better antidepressant effect) runs counter to MECH-173's concern that REM suppression is harmful to long-term attribution: if REM suppression is therapeutically beneficial short-term, the pipeline-disruption account must distinguish acute therapeutic use from chronic accumulation.",
+    "The review covers sleep in depression specifically; MECH-173 predicts effects in non-depressed individuals (MCI prodrome) where the same REM suppression occurs without the depression context."
+  ],
+  "tags": ["mech173", "inv048", "rem_suppression", "antidepressants", "ssri", "tca", "maoi", "polysomnography", "review", "precision_recalibration"],
+  "mapping": {
+    "source_claim_statement": "Almost all antidepressant agents suppress REM sleep. A time-and-dose-response relationship between total REM sleep suppression and therapeutic response to treatment seemed apparent. This applies across drug classes: MAOIs, TCAs, SSRIs, SNRIs, and most atypical antidepressants.",
+    "ree_translation": "MECH-173 identifies REM sleep as the substrate of MECH-123 precision recalibration (Phase 4 of INV-045). The cross-class convergence documented here -- that agents acting via 5-HT, NE, ACh, and MAO all converge on REM suppression -- directly supports INV-048's pipeline-mechanism equivalence principle: the relevant variable is phase fidelity, not the molecular target. Any agent suppressing REM, regardless of primary mechanism, disrupts Phase 4.",
+    "mapping_caveat": "The therapeutic dose-response relationship (more REM suppression during acute depression treatment correlating with better antidepressant response) presents an interpretive challenge for MECH-173. REE account must hold that acute REM suppression may be 'safe' in a resilient brain with intact preceding pipeline phases, while chronic suppression in an aging/compromised brain (MECH-168 context) produces cumulative phase-4 deficit. The paper does not test this chronic vs acute distinction and does not study cognitively at-risk populations.",
+    "source_context": "Comprehensive review of PSG studies in depression; Neuropsychopharmacology 2020; senior authorship by Dieter Riemann (Freiburg), leading sleep-depression researcher."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "High source quality: major review, authoritative authors, top journal. Good mapping fidelity for the cross-class REM suppression claim supporting INV-048. Transfer risk elevated: depressed patients not MCI population; acute vs chronic use distinction not addressed."
+  }
+}

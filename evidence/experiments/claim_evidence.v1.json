@@ -463,7 +463,7 @@
       }
     },
     "ARC-016": {
-      "confidence_rationale": "exp=23 entry(s), lit=6 entry(s), exp_conf=0.718, lit_conf=0.878",
+      "confidence_rationale": "exp=23 entry(s), lit=6 entry(s), exp_conf=0.717, lit_conf=0.878",
       "direction_counts": {
         "mixed": 4,
         "supports": 14,
@@ -480,7 +480,7 @@
         "lit:metastate_hierarchical_dynamics": 1,
         "lit:network_switching_salience_control": 1
       },
-      "experimental_confidence": 0.718,
+      "experimental_confidence": 0.717,
       "fail_runs": 14,
       "genuine_exp_count": 23,
       "genuine_exp_direction_counts": {
@@ -492,7 +492,7 @@
       "latest_run_id": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3",
       "latest_timestamp_utc": "2026-04-01T23:01:27.658562Z",
       "literature_confidence": 0.878,
-      "overall_confidence": 0.798,
+      "overall_confidence": 0.797,
       "pass_runs": 9,
       "recent_entries": [
         {
@@ -3433,16 +3433,18 @@
       }
     },
     "INV-048": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.762",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.876",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "lit:behavioral_human": 2
+        "lit:behavioral_human": 2,
+        "lit:epidemiological": 1,
+        "lit:review": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -3453,10 +3455,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
-      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
-      "literature_confidence": 0.762,
-      "overall_confidence": 0.762,
+      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+      "latest_timestamp_utc": "2026-04-05T22:30:00Z",
+      "literature_confidence": 0.876,
+      "overall_confidence": 0.876,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3494,12 +3496,48 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-048",
+          "confidence": 0.8,
+          "confidence_rationale": "Comprehensive narrative and meta-analytic review of polysomnographic studies of antidepressants and sleep. Explicitly states 'almost all antidepressant agents suppress REM sleep' and documents 'a time-and-dose-response relationship between total REM sleep suppression and therapeutic response.' This directly supports MECH-173's claim that REM-suppressing medications impair precision recalibration (MECH-123), and supports INV-048's pharmacological-equivalence principle by demonstrating that multiple pharmacological classes suppress REM by distinct but convergent mechanisms. Moderate-high confidence because this is a major review by leading sleep-depression researchers (Riemann is a field leader) in a top pharmacology journal (45:74-89), though the mapping from REM suppression to attribution pipeline disruption is REE-specific and not tested in the source.",
+          "evidence_class": "lit:review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The paper does not directly test the attribution pipeline account of REM suppression -- it frames REM suppression in terms of antidepressant mechanism of action and depression remission, not cognitive precision recalibration.",
+            "The dose-response claim (more REM suppression = better antidepressant effect) runs counter to MECH-173's concern that REM suppression is harmful to long-term attribution: if REM suppression is therapeutically beneficial short-term, the pipeline-disruption account must distinguish acute therapeutic use from chronic accumulation.",
+            "The review covers sleep in depression specifically; MECH-173 predicts effects in non-depressed individuals (MCI prodrome) where the same REM suppression occurs without the depression context."
+          ],
+          "run_id": "2026-04-05_mech173_antidepressants_rem_suppression_riemann2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-048",
+          "confidence": 0.76,
+          "confidence_rationale": "Large case-control study (40,770 dementia cases, 283,933 controls) from UK general practices (Clinical Practice Research Datalink) with drug exposure measured 4-20 years before diagnosis. Found adjusted OR of 1.11 (95% CI 1.08-1.14) for any anticholinergic drug, with class-specific differences: antidepressants, urological drugs, and antiparkinson drugs showed increased dementia risk; gastrointestinal anticholinergics did not. The long latency (15-20 years before diagnosis) and class specificity support MECH-175's dual-pathway account. Confidence moderate-high: very large sample, long exposure window, published in BMJ. Limitations: observational design (indication bias: older adults prescribed anticholinergics may have higher baseline dementia risk for independent reasons); class specificity could reflect indication confounding (antidepressant use = depression = dementia risk factor).",
+          "evidence_class": "lit:epidemiological",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "Indication bias is a serious concern: patients prescribed antidepressants (which have high anticholinergic burden in some classes) may have depression, which is itself a dementia risk factor, making it impossible to isolate the anticholinergic-specific pathway.",
+            "The study does not distinguish the nocturnal REM suppression pathway (MECH-175 Pathway 1) from the diurnal cholinergic deficit pathway (MECH-175 Pathway 2) -- it cannot test which mechanism mediates the observed association.",
+            "Gastrointestinal anticholinergics (e.g. hyoscine) showed no increased risk despite high anticholinergic burden, which could suggest either: (a) poor CNS penetration limits the nocturnal effect, or (b) indication confounding is driving the positive associations for other drug classes rather than the anticholinergic mechanism itself."
+          ],
+          "run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 4
       }
     },
     "MECH-022": {
@@ -5909,7 +5947,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.953, lit_conf=0.693",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.952, lit_conf=0.693",
       "direction_counts": {
         "mixed": 4,
         "supports": 3,
@@ -5922,7 +5960,7 @@
         "lit:behavioral_animal": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.953,
+      "experimental_confidence": 0.952,
       "fail_runs": 4,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -5934,7 +5972,7 @@
       "latest_run_id": "v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3",
       "latest_timestamp_utc": "2026-04-03T20:23:20Z",
       "literature_confidence": 0.693,
-      "overall_confidence": 0.849,
+      "overall_confidence": 0.848,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -8824,7 +8862,7 @@
       }
     },
     "MECH-118": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.608, lit_conf=0.82",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.607, lit_conf=0.82",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -8838,7 +8876,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.608,
+      "experimental_confidence": 0.607,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -8850,7 +8888,7 @@
       "latest_run_id": "v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3",
       "latest_timestamp_utc": "2026-04-02T03:33:13Z",
       "literature_confidence": 0.82,
-      "overall_confidence": 0.714,
+      "overall_confidence": 0.713,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8942,7 +8980,7 @@
       }
     },
     "MECH-119": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.903, lit_conf=0.807",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.902, lit_conf=0.807",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -8955,7 +8993,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.903,
+      "experimental_confidence": 0.902,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -10815,6 +10853,76 @@
         "literature": 1
       }
     },
+    "MECH-173": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.785",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:review": 2
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech173_antidepressants_sleep_review_wichniak2017",
+      "latest_timestamp_utc": "2026-04-05T22:30:00Z",
+      "literature_confidence": 0.785,
+      "overall_confidence": 0.785,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-173",
+          "confidence": 0.8,
+          "confidence_rationale": "Comprehensive narrative and meta-analytic review of polysomnographic studies of antidepressants and sleep. Explicitly states 'almost all antidepressant agents suppress REM sleep' and documents 'a time-and-dose-response relationship between total REM sleep suppression and therapeutic response.' This directly supports MECH-173's claim that REM-suppressing medications impair precision recalibration (MECH-123), and supports INV-048's pharmacological-equivalence principle by demonstrating that multiple pharmacological classes suppress REM by distinct but convergent mechanisms. Moderate-high confidence because this is a major review by leading sleep-depression researchers (Riemann is a field leader) in a top pharmacology journal (45:74-89), though the mapping from REM suppression to attribution pipeline disruption is REE-specific and not tested in the source.",
+          "evidence_class": "lit:review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The paper does not directly test the attribution pipeline account of REM suppression -- it frames REM suppression in terms of antidepressant mechanism of action and depression remission, not cognitive precision recalibration.",
+            "The dose-response claim (more REM suppression = better antidepressant effect) runs counter to MECH-173's concern that REM suppression is harmful to long-term attribution: if REM suppression is therapeutically beneficial short-term, the pipeline-disruption account must distinguish acute therapeutic use from chronic accumulation.",
+            "The review covers sleep in depression specifically; MECH-173 predicts effects in non-depressed individuals (MCI prodrome) where the same REM suppression occurs without the depression context."
+          ],
+          "run_id": "2026-04-05_mech173_antidepressants_rem_suppression_riemann2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-173",
+          "confidence": 0.74,
+          "confidence_rationale": "Clinical pharmacology review systematically covering how each antidepressant class affects sleep architecture including REM. Covers drug-class-specific REM suppression profiles: TCAs (most potent REM suppressors via anticholinergic + serotonergic mechanisms), MAOIs (near-complete REM suppression at therapeutic doses), SSRIs (moderate REM suppression via 5-HT2 activation), SNRIs (similar to SSRIs, venlafaxine more REM-suppressing than duloxetine), and mirtazapine/trazodone (relatively REM-sparing). This directly maps onto MECH-173's prediction that REM-suppressing medications selectively impair Phase 4 precision recalibration. Confidence moderate-high: solid clinical review, but primarily oriented toward managing depression sleep symptoms rather than testing the pipeline-disruption account.",
+          "evidence_class": "lit:review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The paper does not frame REM suppression as an attribution pipeline concern -- it frames it clinically as a sleep side effect profile to be managed.",
+            "No quantitative PSG data in the review -- relies on qualitative synthesis of published PSG studies rather than pooled effect sizes.",
+            "Does not distinguish acute therapeutic use from chronic use in cognitively at-risk populations, which is the key distinction MECH-173 requires."
+          ],
+          "run_id": "2026-04-05_mech173_antidepressants_sleep_review_wichniak2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
     "MECH-174": {
       "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.755",
       "direction_counts": {
@@ -10886,16 +10994,17 @@
       }
     },
     "MECH-175": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.787",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.835",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "lit:behavioral_human": 2
+        "lit:behavioral_human": 2,
+        "lit:epidemiological": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -10906,10 +11015,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_gray2015",
-      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
-      "literature_confidence": 0.787,
-      "overall_confidence": 0.787,
+      "latest_run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+      "latest_timestamp_utc": "2026-04-05T22:30:00Z",
+      "literature_confidence": 0.835,
+      "overall_confidence": 0.835,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10947,25 +11056,44 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-175",
+          "confidence": 0.76,
+          "confidence_rationale": "Large case-control study (40,770 dementia cases, 283,933 controls) from UK general practices (Clinical Practice Research Datalink) with drug exposure measured 4-20 years before diagnosis. Found adjusted OR of 1.11 (95% CI 1.08-1.14) for any anticholinergic drug, with class-specific differences: antidepressants, urological drugs, and antiparkinson drugs showed increased dementia risk; gastrointestinal anticholinergics did not. The long latency (15-20 years before diagnosis) and class specificity support MECH-175's dual-pathway account. Confidence moderate-high: very large sample, long exposure window, published in BMJ. Limitations: observational design (indication bias: older adults prescribed anticholinergics may have higher baseline dementia risk for independent reasons); class specificity could reflect indication confounding (antidepressant use = depression = dementia risk factor).",
+          "evidence_class": "lit:epidemiological",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "Indication bias is a serious concern: patients prescribed antidepressants (which have high anticholinergic burden in some classes) may have depression, which is itself a dementia risk factor, making it impossible to isolate the anticholinergic-specific pathway.",
+            "The study does not distinguish the nocturnal REM suppression pathway (MECH-175 Pathway 1) from the diurnal cholinergic deficit pathway (MECH-175 Pathway 2) -- it cannot test which mechanism mediates the observed association.",
+            "Gastrointestinal anticholinergics (e.g. hyoscine) showed no increased risk despite high anticholinergic burden, which could suggest either: (a) poor CNS penetration limits the nocturnal effect, or (b) indication confounding is driving the positive associations for other drug classes rather than the anticholinergic mechanism itself."
+          ],
+          "run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 3
       }
     },
     "MECH-176": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.74",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.792",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
-        "lit:behavioral_human": 1
+        "lit:behavioral_human": 1,
+        "lit:rct_human": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -10976,10 +11104,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech176_suvorexant_psg_snyder2016",
-      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
-      "literature_confidence": 0.74,
-      "overall_confidence": 0.74,
+      "latest_run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+      "latest_timestamp_utc": "2026-04-05T22:30:00Z",
+      "literature_confidence": 0.792,
+      "overall_confidence": 0.792,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -11000,25 +11128,45 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-176",
+          "confidence": 0.79,
+          "confidence_rationale": "4-week RCT (n=285) of suvorexant 10-20mg vs placebo in patients with mild-to-moderate probable Alzheimer's disease and comorbid insomnia. Primary endpoint PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01) and WASO also significantly improved. This is the only published RCT of an orexin antagonist in an established AD+insomnia population with objective PSG measurement. Directly supports MECH-176 (architecture-preserving mechanism effective in AD population) and provides the most direct available evidence for MECH-177 (pharmacological sleep improvement in established AD is feasible; stage-gating hypothesis needs MCI data). Confidence moderate-high: AD population with PSG, published in major dementia journal, but 4 weeks is short for disease-modification assessment and established AD (not early MCI) was studied. Industry sponsorship (Merck).",
+          "evidence_class": "lit:rct_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The trial tested established Alzheimer's disease (MMSE 12-26, mild-to-moderate dementia), not early MCI. MECH-177 predicts the largest effects in early MCI, before schema scaffold destabilisation -- this trial tests the post-scaffold phase where MECH-177 predicts smaller effects.",
+            "4-week duration is insufficient to assess disease-modifying effects; MECH-177's pipeline protection claim requires months-to-years of follow-up for cognitive outcome assessment.",
+            "No cognitive endpoints reported as primary outcomes -- the trial was powered and designed as a sleep efficacy study, not a disease-modification trial. MECH-177 requires a future trial with cognitive decline as primary endpoint.",
+            "No detailed REM% or SWS% stage data reported in publicly available abstract -- the PSG analysis may be focused on WASO and TST rather than detailed architecture. This limits direct confirmation of MECH-176's architecture-preservation mechanism in this specific AD population."
+          ],
+          "run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 2
       }
     },
     "MECH-177": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.61",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.777",
       "direction_counts": {
         "mixed": 1,
-        "supports": 0,
+        "supports": 1,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
-        "lit:meta_analysis": 1
+        "lit:meta_analysis": 1,
+        "lit:rct_human": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -11029,10 +11177,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-05_mech177_pharmacotherapy_dementia_mccleery2020",
-      "latest_timestamp_utc": "2026-04-05T20:30:00Z",
-      "literature_confidence": 0.61,
-      "overall_confidence": 0.61,
+      "latest_run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+      "latest_timestamp_utc": "2026-04-05T22:30:00Z",
+      "literature_confidence": 0.777,
+      "overall_confidence": 0.777,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -11053,12 +11201,31 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-05T20:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-177",
+          "confidence": 0.79,
+          "confidence_rationale": "4-week RCT (n=285) of suvorexant 10-20mg vs placebo in patients with mild-to-moderate probable Alzheimer's disease and comorbid insomnia. Primary endpoint PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01) and WASO also significantly improved. This is the only published RCT of an orexin antagonist in an established AD+insomnia population with objective PSG measurement. Directly supports MECH-176 (architecture-preserving mechanism effective in AD population) and provides the most direct available evidence for MECH-177 (pharmacological sleep improvement in established AD is feasible; stage-gating hypothesis needs MCI data). Confidence moderate-high: AD population with PSG, published in major dementia journal, but 4 weeks is short for disease-modification assessment and established AD (not early MCI) was studied. Industry sponsorship (Merck).",
+          "evidence_class": "lit:rct_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_medications_sleep_dementia",
+          "failure_signatures": [
+            "The trial tested established Alzheimer's disease (MMSE 12-26, mild-to-moderate dementia), not early MCI. MECH-177 predicts the largest effects in early MCI, before schema scaffold destabilisation -- this trial tests the post-scaffold phase where MECH-177 predicts smaller effects.",
+            "4-week duration is insufficient to assess disease-modifying effects; MECH-177's pipeline protection claim requires months-to-years of follow-up for cognitive outcome assessment.",
+            "No cognitive endpoints reported as primary outcomes -- the trial was powered and designed as a sleep efficacy study, not a disease-modification trial. MECH-177 requires a future trial with cognitive decline as primary endpoint.",
+            "No detailed REM% or SWS% stage data reported in publicly available abstract -- the PSG analysis may be focused on WASO and TST rather than detailed architecture. This limits direct confirmation of MECH-176's architecture-preservation mechanism in this specific AD population."
+          ],
+          "run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T22:30:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 2
       }
     },
     "MECH-900": {
@@ -12996,7 +13163,7 @@
       }
     },
     "Q-021": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.524, lit_conf=0.807",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.523, lit_conf=0.807",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -13009,7 +13176,7 @@
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.524,
+      "experimental_confidence": 0.523,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -13021,7 +13188,7 @@
       "latest_run_id": "v3_exq_072b_q021_behavioral_flatness_20260402T012059Z_v3",
       "latest_timestamp_utc": "2026-04-02T01:20:59Z",
       "literature_confidence": 0.807,
-      "overall_confidence": 0.694,
+      "overall_confidence": 0.693,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -55394,6 +55561,134 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-048",
+      "confidence": 0.8,
+      "confidence_rationale": "Comprehensive narrative and meta-analytic review of polysomnographic studies of antidepressants and sleep. Explicitly states 'almost all antidepressant agents suppress REM sleep' and documents 'a time-and-dose-response relationship between total REM sleep suppression and therapeutic response.' This directly supports MECH-173's claim that REM-suppressing medications impair precision recalibration (MECH-123), and supports INV-048's pharmacological-equivalence principle by demonstrating that multiple pharmacological classes suppress REM by distinct but convergent mechanisms. Moderate-high confidence because this is a major review by leading sleep-depression researchers (Riemann is a field leader) in a top pharmacology journal (45:74-89), though the mapping from REM suppression to attribution pipeline disruption is REE-specific and not tested in the source.",
+      "evidence_class": "lit:review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The paper does not directly test the attribution pipeline account of REM suppression -- it frames REM suppression in terms of antidepressant mechanism of action and depression remission, not cognitive precision recalibration.",
+        "The dose-response claim (more REM suppression = better antidepressant effect) runs counter to MECH-173's concern that REM suppression is harmful to long-term attribution: if REM suppression is therapeutically beneficial short-term, the pipeline-disruption account must distinguish acute therapeutic use from chronic accumulation.",
+        "The review covers sleep in depression specifically; MECH-173 predicts effects in non-depressed individuals (MCI prodrome) where the same REM suppression occurs without the depression context."
+      ],
+      "run_id": "2026-04-05_mech173_antidepressants_rem_suppression_riemann2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-048",
+      "confidence": 0.76,
+      "confidence_rationale": "Large case-control study (40,770 dementia cases, 283,933 controls) from UK general practices (Clinical Practice Research Datalink) with drug exposure measured 4-20 years before diagnosis. Found adjusted OR of 1.11 (95% CI 1.08-1.14) for any anticholinergic drug, with class-specific differences: antidepressants, urological drugs, and antiparkinson drugs showed increased dementia risk; gastrointestinal anticholinergics did not. The long latency (15-20 years before diagnosis) and class specificity support MECH-175's dual-pathway account. Confidence moderate-high: very large sample, long exposure window, published in BMJ. Limitations: observational design (indication bias: older adults prescribed anticholinergics may have higher baseline dementia risk for independent reasons); class specificity could reflect indication confounding (antidepressant use = depression = dementia risk factor).",
+      "evidence_class": "lit:epidemiological",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "Indication bias is a serious concern: patients prescribed antidepressants (which have high anticholinergic burden in some classes) may have depression, which is itself a dementia risk factor, making it impossible to isolate the anticholinergic-specific pathway.",
+        "The study does not distinguish the nocturnal REM suppression pathway (MECH-175 Pathway 1) from the diurnal cholinergic deficit pathway (MECH-175 Pathway 2) -- it cannot test which mechanism mediates the observed association.",
+        "Gastrointestinal anticholinergics (e.g. hyoscine) showed no increased risk despite high anticholinergic burden, which could suggest either: (a) poor CNS penetration limits the nocturnal effect, or (b) indication confounding is driving the positive associations for other drug classes rather than the anticholinergic mechanism itself."
+      ],
+      "run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-173",
+      "confidence": 0.8,
+      "confidence_rationale": "Comprehensive narrative and meta-analytic review of polysomnographic studies of antidepressants and sleep. Explicitly states 'almost all antidepressant agents suppress REM sleep' and documents 'a time-and-dose-response relationship between total REM sleep suppression and therapeutic response.' This directly supports MECH-173's claim that REM-suppressing medications impair precision recalibration (MECH-123), and supports INV-048's pharmacological-equivalence principle by demonstrating that multiple pharmacological classes suppress REM by distinct but convergent mechanisms. Moderate-high confidence because this is a major review by leading sleep-depression researchers (Riemann is a field leader) in a top pharmacology journal (45:74-89), though the mapping from REM suppression to attribution pipeline disruption is REE-specific and not tested in the source.",
+      "evidence_class": "lit:review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The paper does not directly test the attribution pipeline account of REM suppression -- it frames REM suppression in terms of antidepressant mechanism of action and depression remission, not cognitive precision recalibration.",
+        "The dose-response claim (more REM suppression = better antidepressant effect) runs counter to MECH-173's concern that REM suppression is harmful to long-term attribution: if REM suppression is therapeutically beneficial short-term, the pipeline-disruption account must distinguish acute therapeutic use from chronic accumulation.",
+        "The review covers sleep in depression specifically; MECH-173 predicts effects in non-depressed individuals (MCI prodrome) where the same REM suppression occurs without the depression context."
+      ],
+      "run_id": "2026-04-05_mech173_antidepressants_rem_suppression_riemann2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-173",
+      "confidence": 0.74,
+      "confidence_rationale": "Clinical pharmacology review systematically covering how each antidepressant class affects sleep architecture including REM. Covers drug-class-specific REM suppression profiles: TCAs (most potent REM suppressors via anticholinergic + serotonergic mechanisms), MAOIs (near-complete REM suppression at therapeutic doses), SSRIs (moderate REM suppression via 5-HT2 activation), SNRIs (similar to SSRIs, venlafaxine more REM-suppressing than duloxetine), and mirtazapine/trazodone (relatively REM-sparing). This directly maps onto MECH-173's prediction that REM-suppressing medications selectively impair Phase 4 precision recalibration. Confidence moderate-high: solid clinical review, but primarily oriented toward managing depression sleep symptoms rather than testing the pipeline-disruption account.",
+      "evidence_class": "lit:review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The paper does not frame REM suppression as an attribution pipeline concern -- it frames it clinically as a sleep side effect profile to be managed.",
+        "No quantitative PSG data in the review -- relies on qualitative synthesis of published PSG studies rather than pooled effect sizes.",
+        "Does not distinguish acute therapeutic use from chronic use in cognitively at-risk populations, which is the key distinction MECH-173 requires."
+      ],
+      "run_id": "2026-04-05_mech173_antidepressants_sleep_review_wichniak2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-175",
+      "confidence": 0.76,
+      "confidence_rationale": "Large case-control study (40,770 dementia cases, 283,933 controls) from UK general practices (Clinical Practice Research Datalink) with drug exposure measured 4-20 years before diagnosis. Found adjusted OR of 1.11 (95% CI 1.08-1.14) for any anticholinergic drug, with class-specific differences: antidepressants, urological drugs, and antiparkinson drugs showed increased dementia risk; gastrointestinal anticholinergics did not. The long latency (15-20 years before diagnosis) and class specificity support MECH-175's dual-pathway account. Confidence moderate-high: very large sample, long exposure window, published in BMJ. Limitations: observational design (indication bias: older adults prescribed anticholinergics may have higher baseline dementia risk for independent reasons); class specificity could reflect indication confounding (antidepressant use = depression = dementia risk factor).",
+      "evidence_class": "lit:epidemiological",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "Indication bias is a serious concern: patients prescribed antidepressants (which have high anticholinergic burden in some classes) may have depression, which is itself a dementia risk factor, making it impossible to isolate the anticholinergic-specific pathway.",
+        "The study does not distinguish the nocturnal REM suppression pathway (MECH-175 Pathway 1) from the diurnal cholinergic deficit pathway (MECH-175 Pathway 2) -- it cannot test which mechanism mediates the observed association.",
+        "Gastrointestinal anticholinergics (e.g. hyoscine) showed no increased risk despite high anticholinergic burden, which could suggest either: (a) poor CNS penetration limits the nocturnal effect, or (b) indication confounding is driving the positive associations for other drug classes rather than the anticholinergic mechanism itself."
+      ],
+      "run_id": "2026-04-05_mech175_anticholinergic_dementia_richardson2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-176",
+      "confidence": 0.79,
+      "confidence_rationale": "4-week RCT (n=285) of suvorexant 10-20mg vs placebo in patients with mild-to-moderate probable Alzheimer's disease and comorbid insomnia. Primary endpoint PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01) and WASO also significantly improved. This is the only published RCT of an orexin antagonist in an established AD+insomnia population with objective PSG measurement. Directly supports MECH-176 (architecture-preserving mechanism effective in AD population) and provides the most direct available evidence for MECH-177 (pharmacological sleep improvement in established AD is feasible; stage-gating hypothesis needs MCI data). Confidence moderate-high: AD population with PSG, published in major dementia journal, but 4 weeks is short for disease-modification assessment and established AD (not early MCI) was studied. Industry sponsorship (Merck).",
+      "evidence_class": "lit:rct_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The trial tested established Alzheimer's disease (MMSE 12-26, mild-to-moderate dementia), not early MCI. MECH-177 predicts the largest effects in early MCI, before schema scaffold destabilisation -- this trial tests the post-scaffold phase where MECH-177 predicts smaller effects.",
+        "4-week duration is insufficient to assess disease-modifying effects; MECH-177's pipeline protection claim requires months-to-years of follow-up for cognitive outcome assessment.",
+        "No cognitive endpoints reported as primary outcomes -- the trial was powered and designed as a sleep efficacy study, not a disease-modification trial. MECH-177 requires a future trial with cognitive decline as primary endpoint.",
+        "No detailed REM% or SWS% stage data reported in publicly available abstract -- the PSG analysis may be focused on WASO and TST rather than detailed architecture. This limits direct confirmation of MECH-176's architecture-preservation mechanism in this specific AD population."
+      ],
+      "run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-177",
+      "confidence": 0.79,
+      "confidence_rationale": "4-week RCT (n=285) of suvorexant 10-20mg vs placebo in patients with mild-to-moderate probable Alzheimer's disease and comorbid insomnia. Primary endpoint PSG-derived TST improved by 28 minutes (95% CI 11-45, p<0.01) and WASO also significantly improved. This is the only published RCT of an orexin antagonist in an established AD+insomnia population with objective PSG measurement. Directly supports MECH-176 (architecture-preserving mechanism effective in AD population) and provides the most direct available evidence for MECH-177 (pharmacological sleep improvement in established AD is feasible; stage-gating hypothesis needs MCI data). Confidence moderate-high: AD population with PSG, published in major dementia journal, but 4 weeks is short for disease-modification assessment and established AD (not early MCI) was studied. Industry sponsorship (Merck).",
+      "evidence_class": "lit:rct_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_medications_sleep_dementia",
+      "failure_signatures": [
+        "The trial tested established Alzheimer's disease (MMSE 12-26, mild-to-moderate dementia), not early MCI. MECH-177 predicts the largest effects in early MCI, before schema scaffold destabilisation -- this trial tests the post-scaffold phase where MECH-177 predicts smaller effects.",
+        "4-week duration is insufficient to assess disease-modifying effects; MECH-177's pipeline protection claim requires months-to-years of follow-up for cognitive outcome assessment.",
+        "No cognitive endpoints reported as primary outcomes -- the trial was powered and designed as a sleep efficacy study, not a disease-modification trial. MECH-177 requires a future trial with cognitive decline as primary endpoint.",
+        "No detailed REM% or SWS% stage data reported in publicly available abstract -- the PSG analysis may be focused on WASO and TST rather than detailed architecture. This limits direct confirmation of MECH-176's architecture-preservation mechanism in this specific AD population."
+      ],
+      "run_id": "2026-04-05_mech176_suvorexant_alzheimer_herring2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T22:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "INV-046",
       "confidence": 0.74,
       "confidence_rationale": "Clinical study using a standardised autobiographical memory instrument (E-AGI) across MCI, early AD, and moderate AD groups (same instrument across all groups enables direct comparison). Key findings: episodic autobiographical memory (richness of detail) impaired already in MCI; semantic autobiographical memory spared until moderate stages -- direct dissociation across disease stages. This is the most direct published demonstration of the staging pattern predicted by INV-047 (staged decline follows reverse pipeline dependency) and supports INV-046 (dementia is primarily a contextual attribution failure, since episodic-contextual retrieval fails before semantic knowledge). Confidence limited by single-centre study, moderate sample sizes, and the E-AGI instrument.",
@@ -55609,7 +55904,7 @@
       "timestamp_utc": "2026-04-06T00:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T23:21:48.701557Z",
+  "generated_at_utc": "2026-04-04T23:35:59.101128Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
