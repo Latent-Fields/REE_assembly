@@ -1,11 +1,144 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-03-22T17:42:29.464809+00:00",
-  "last_updated": "2026-03-24T14:20:29.701052+00:00",
-  "idle": true,
+  "runner_pid": 9980,
+  "runner_started_at": "2026-04-04T15:51:24.151184+00:00",
+  "last_updated": "2026-04-04T21:27:30.701343+00:00",
+  "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-ONBOARD-smoke-EWINPC",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Onboarding smoke test -- EWINPC (Eoin)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-230",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-075 Novelty Loop Diagnostic (GATED vs ABLATED)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-231",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-106 BG Hysteresis First Experiment (PERSISTENT vs REACTIVE)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-231a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-106 BG Hysteresis Redesign (valence-modulated threshold vs no-bias ablation)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-232",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-026 Approach/Contact Slope Conflict Resolution (peak-checkpoint analysis)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-233",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-012 z_goal Seeding Causal Validation (drive_weight=2.0 vs 0.0)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-234",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-117 Wanting/Liking Dissociation Replication (seeds [1,2,3])",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-235",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112 / ARC-030: Clean Learned-Goal Gate (Paper Gate)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-236",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-018 Rollout Fidelity Gate (ROLLOUT_k5 vs GREEDY_k1, E2-quality-stratified)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-237a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-163: Dual Goal-Directed Systems Discrimination (2x2: SIMPLE/LONG_HORIZON x HABIT/PLANNED)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-223a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Toroidal Minimal Vertebrate Cognition Ablation -- no-wall replication of EXQ-223",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-125a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-029 committed-mode harm redesign (8 hazards, 5 seeds, majority rule)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "V3-EXQ-047d",
@@ -104,6 +237,62 @@
       "output_file": "C:\\Users\\Daniel\\REE_assembly\\evidence\\experiments\\v3_scale_benchmark\\v3_scale_benchmark_20260323T145635Z.json",
       "completed_by": "Daniel-PC",
       "actual_secs": 1283.7
+    },
+    {
+      "queue_id": "V3-EXQ-223",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Minimal Vertebrate Cognition Ablation -- E1+E2+hippocampus core loop",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed2_ree_mean_harm: 0.35983632600307464 | seed2_rand_mean_harm: 1.1422754665613175 | seed2_harm_ratio: 0.31501711849447184",
+      "started_at": "2026-04-04T15:51:26.051638+00:00",
+      "completed_at": "2026-04-04T20:00:32.871851+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_223_minimal_vertebrate_ablation\\v3_exq_223_minimal_vertebrate_ablation_20260404T200030Z.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 14946.8
+    },
+    {
+      "queue_id": "V3-EXQ-195",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-003 Full Latent Counterfactual Attribution on z_harm_s (post-SD-011)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C1 FAIL: attribution_gap_mean=-0.043224 <= 0 | Result written to: C:\\Users\\Daniel\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_195_sd003_zharms_full_counterfactual\\v3_exq_195_sd003_zharms_full_counterfactual_20260404T200504Z.json | Status: FAIL",
+      "started_at": "2026-04-04T20:00:36.326244+00:00",
+      "completed_at": "2026-04-04T20:05:04.610396+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_195_sd003_zharms_full_counterfactual\\v3_exq_195_sd003_zharms_full_counterfactual_20260404T200504Z.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 268.3
+    },
+    {
+      "queue_id": "V3-EXQ-184",
+      "backlog_id": "EVB-0050",
+      "claim_id": "MECH-033",
+      "title": "MECH-033 E2 kernel chain pair (chain vs no-chain, 3-seed replication)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "mean_harm_reduction_delta: 0.06055 | Overall outcome: PASS | Done. Outcome: PASS",
+      "started_at": "2026-04-04T20:05:06.712658+00:00",
+      "completed_at": "2026-04-04T20:15:03.061281+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_184_mech033_kernel_chain_pair_20260404T201502Z_v3.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 596.3
+    },
+    {
+      "queue_id": "V3-EXQ-196",
+      "backlog_id": "EVB-0048",
+      "claim_id": "ARC-018",
+      "title": "ARC-018 rollout viability pair (viability_mapped vs viability_ablated)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "harm_advantage_mean=0.0000  e2_r2_mean=0.6975 | Outcome: FAIL  evidence_direction: weakens  decision: retire_ree_claim | Done. Outcome: FAIL",
+      "started_at": "2026-04-04T20:15:03.700233+00:00",
+      "completed_at": "2026-04-04T21:27:30.700280+00:00",
+      "output_file": "C:\\Users\\Daniel\\REE_Working\\REE_assembly\\evidence\\experiments\\v3_exq_196_arc018_rollout_viability_pair_20260404T212730Z_v3.json",
+      "completed_by": "Daniel-PC",
+      "actual_secs": 4347.0
     }
   ]
 }
