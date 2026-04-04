@@ -10020,3 +10020,59 @@
     Bayesian contextual inference to be architecturally coherent."
     Mechanistic instantiation: MECH-166 (slot-formation/filling temporal separation),
     SD-017 (SWS-analog + REM-analog design decision), ARC-045 (bidirectional flow).
+
+- id: INV-045
+  title: "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode."
+  claim_type: invariant
+  subject: sleep.phase_ordering_computational_necessity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - INV-044
+    - SD-017
+    - MECH-120
+    - MECH-121
+    - MECH-122
+    - MECH-123
+  notes: >
+    Registered 2026-04-05. The V4 sub-phase sequence is:
+    (0) sensory gating, (1) SHY normalisation, (2) NREM schema replay,
+    (3) spindle coordination, (4) REM precision recalibration.
+    Each phase is in this position because of what must be true before it
+    can run:
+    Phase 0 must be first: new input corrupts in-progress consolidation
+    because schemas shift during installation. Nothing downstream can run
+    while perception is live. Rewiring: input gate on E1 latent stack;
+    ThetaBuffer paused for new observations.
+    Phase 1 (MECH-120) must precede replay: replaying into a weight
+    landscape still dominated by recent high-salience experiences would
+    reinforce the dominant trace rather than consolidate diverse content.
+    Homeostasis must flatten attractors before replay repopulates them.
+    Rewiring: normalisation pass over E1/E2/E3 weights decaying toward
+    mean; dominant attractor suppression.
+    Phase 2 (MECH-121 + MECH-165) must precede REM: INV-044 applies --
+    you cannot fill context slots that do not yet exist. Schema installation
+    must produce stable context attractors before causal attribution replay
+    can assign evidence to them. Replay diversity (MECH-165) must be in
+    this phase because diverse path content must enter the schema, not just
+    the dominant trajectory. Rewiring: hippocampus-to-cortex directed
+    replay with balanced scheduler (forward + reverse + non-dominant
+    paths); ContextMemory templates updated.
+    Phase 3 (MECH-122) packages E1 state for bidirectional consolidation.
+    ThetaBuffer has been waking-only in V3; it must become bidirectional
+    to allow E1 updates to be consolidated into E3 in the reverse direction.
+    Rewiring: ThetaBuffer gains a reverse-direction mode; theta-packaged
+    E1 updates transferred to hippocampus for long-horizon integration.
+    Phase 4 (MECH-123) must be last: resetting precision priors before
+    replay (phases 2-3) would change how that evidence is weighted during
+    replay -- the prior recalibration must follow, not precede, the content
+    consolidation passes. Rewiring: z_beta suppressed (aminergic suppression
+    analog); E1 runs unconstrained (no harm gate, unconstrained simulation);
+    commitment_threshold and precision_ema_alpha recalibrated from the
+    episode's natural range.
+    V4 engineering implication: this invariant means the V4 sleep phase
+    controller is not arbitrary in its sequencing. A controller that ran
+    phases in a different order would either fail to consolidate (wrong
+    order of schema vs attribution) or corrupt the weight landscape (replay
+    before homeostasis). The ordering is a constraint on the implementation,
+    not a design choice. See offline_phases.md for the rewiring table.
