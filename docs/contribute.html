@@ -175,12 +175,21 @@ layout: null
   <div class="step">
     <div class="step-num">1</div>
     <div class="step-body">
-      <p>Clone both repos into the <strong>same folder</strong>. No account needed &mdash; both repos are public.</p>
-      <div class="code-block" style="margin-top:0.5rem">git clone https://github.com/Latent-Fields/REE_assembly.git
+      <!-- Windows -->
+      <div id="step1-windows">
+        <p>Install <a href="https://www.python.org/downloads/" style="color:var(--accent)" target="_blank">Python 3.12</a> and <a href="https://git-scm.com/download/win" style="color:var(--accent)" target="_blank">Git</a> if not already installed. Then clone:</p>
+        <div class="code-block" style="margin-top:0.5rem">git clone https://github.com/Latent-Fields/REE_assembly.git<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note" style="margin-top:0.4rem">Both repos are public &mdash; no account needed to clone. You can browse experiment scripts at <a href="https://github.com/Latent-Fields/ree-v3/tree/main/experiments" style="color:var(--accent)" target="_blank">ree-v3/experiments/</a></div>
+      </div>
+      <!-- Linux / Mac -->
+      <div id="step1-other" style="display:none">
+        <p>Clone both repos into the <strong>same folder</strong>. No account needed &mdash; both repos are public.</p>
+        <div class="code-block" style="margin-top:0.5rem">git clone https://github.com/Latent-Fields/REE_assembly.git
 git clone https://github.com/Latent-Fields/ree-v3.git<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-      <div class="cmd-note" style="margin-top:0.5rem">
-        Browse the experiment scripts first if you like:
-        <a href="https://github.com/Latent-Fields/ree-v3/tree/main/experiments" style="color:var(--accent)" target="_blank">ree-v3/experiments/</a>
+        <div class="cmd-note" style="margin-top:0.5rem">
+          Browse the experiment scripts first if you like:
+          <a href="https://github.com/Latent-Fields/ree-v3/tree/main/experiments" style="color:var(--accent)" target="_blank">ree-v3/experiments/</a>
+        </div>
       </div>
     </div>
   </div>
@@ -192,21 +201,12 @@ git clone https://github.com/Latent-Fields/ree-v3.git<button class="copy-btn" on
 
       <!-- Windows -->
       <div id="step3-windows">
-        <p>Start the runner &mdash; choose how you prefer:</p>
-        <div class="two-col">
-          <div>
-            <div class="two-col-label">Terminal (PowerShell)</div>
-            <div class="code-block">cd REE_assembly\docker
-docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-          </div>
-          <div>
-            <div class="two-col-label">File Explorer</div>
-            <div class="file-option">Double-click<br><code>REE_assembly\docker\start-ree.bat</code></div>
-          </div>
-        </div>
-        <div class="cmd-note" style="margin-top:0.6rem">
-          Requires <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop</a>
-          with WSL2 backend. For GPU: NVIDIA drivers &ge;527.41 (Docker handles the rest automatically).
+        <p>Run the setup script &mdash; it installs PyTorch, configures git, registers your machine, and prints the runner command:</p>
+        <div class="code-block" style="margin-top:0.5rem">cd REE_assembly
+py -3.12 setup_contributor.py<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note" style="margin-top:0.5rem">
+          The script guides you through each step interactively. Takes ~5 minutes (mostly PyTorch download).
+          Prefer Docker instead? See <em>Alternative Setups</em> below.
         </div>
         <div class="chips-row" id="compute-chips-windows" style="display:none">
           <div class="compute-chip"><div class="clabel">Estimated per 10 hrs</div><div class="cvalue" id="chip-kwh-w">—</div></div>
@@ -261,6 +261,11 @@ docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</butt
           You should see runner status <strong>Running</strong> and the current experiment name.
           That's it &mdash; experiments run in the background, results push to GitHub automatically.
         </div>
+      </div>
+
+      <div id="step4-windows-baremetal" style="display:none">
+        <p>The script prints the exact runner command at the end. Run it from inside <code>ree-v3/</code>. That's it &mdash; experiments run in the background and results push to GitHub automatically.</p>
+        <div class="cmd-note" style="margin-top:0.4rem">Stop: <code>Ctrl+C</code> in the runner terminal.</div>
       </div>
 
       <div id="step4-mac" style="display:none">
@@ -475,13 +480,19 @@ docker compose -f docker-compose.cpu.yml up -d<button class="copy-btn" onclick="
       </div>
     </details>
     <details class="mc">
-      <summary><strong>Windows &mdash; bare-metal PowerShell</strong> (no Docker)</summary>
+      <summary><strong>Windows &mdash; Docker</strong> (isolated container, no Python install needed)</summary>
       <div class="cb">
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">Install Python 3.12 from <a href="https://www.python.org" style="color:var(--accent)">python.org</a> and Git from <a href="https://git-scm.com/download/win" style="color:var(--accent)">git-scm.com</a>. Then:</p>
-        <div class="code-block">py -3.12 -m pip install torch numpy scipy --index-url https://download.pytorch.org/whl/cu124<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-        <div class="code-block" style="margin-top:0.5rem"># From ree-v3\
-$proc = Start-Process "py" -ArgumentList "-3.12 experiment_runner.py --auto-sync --loop --machine my-machine-name" -PassThru -NoNewWindow
-$proc.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.75rem">
+          Requires <a href="https://www.docker.com/products/docker-desktop/" style="color:var(--accent)" target="_blank">Docker Desktop</a> with WSL2 backend.
+          For GPU: NVIDIA drivers &ge;527.41 (Docker handles the rest automatically).
+        </p>
+        <div class="code-block">cd REE_assembly\docker
+docker build -t ree-runner:gpu -f Dockerfile .
+docker compose up -d<button class="copy-btn" onclick="copyCode(this)">copy</button></div>
+        <div class="cmd-note" style="margin-top:0.4rem">
+          Or double-click <code>REE_assembly\docker\start-ree.bat</code> &mdash; it generates an SSH key if needed and walks you through adding it to GitHub.
+          Explorer at <a href="http://localhost:8000/explorer" style="color:var(--accent)">localhost:8000/explorer</a>.
+        </div>
       </div>
     </details>
     <details class="mc">
@@ -587,9 +598,17 @@ function switchPlatform(platform) {
     const s3 = document.getElementById('step3-' + p);
     if (s3) s3.style.display = p === platform ? '' : 'none';
   });
+  // Step 1: Windows shows its own block, others share one
+  const s1w = document.getElementById('step1-windows');
+  const s1o = document.getElementById('step1-other');
+  if (s1w) s1w.style.display = platform === 'windows' ? '' : 'none';
+  if (s1o) s1o.style.display = platform !== 'windows' ? '' : 'none';
+  // Step 3 completion block
   const d4d = document.getElementById('step4-docker');
+  const d4w = document.getElementById('step4-windows-baremetal');
   const d4m = document.getElementById('step4-mac');
-  if (d4d) d4d.style.display = platform !== 'mac' ? '' : 'none';
+  if (d4d) d4d.style.display = platform === 'linux' ? '' : 'none';
+  if (d4w) d4w.style.display = platform === 'windows' ? '' : 'none';
   if (d4m) d4m.style.display = platform === 'mac' ? '' : 'none';
   switchDiagTab('diag-' + platform);
   // Fill compute chips
