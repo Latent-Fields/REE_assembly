@@ -1,0 +1,109 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "novelty_mag_seed0": 8.164139208998126e-05,
+    "novelty_mag_seed1": 0.00012363167752462814,
+    "novelty_mag_seed2": 5.2926054884326604e-05,
+    "explore_gap_seed0": 0.0,
+    "explore_gap_seed1": 0.0,
+    "explore_gap_seed2": -0.005400000000000009,
+    "c1_pass": 0.0,
+    "c2_pass": 0.0,
+    "criteria_met": 0.0,
+    "diagnostic_finding": "substrate_limitation",
+    "seed0_novelty_gated_novelty_signal_magnitude": 8.164139208998126e-05,
+    "seed0_novelty_gated_cem_noise_scale_mean": 1.00016328278418,
+    "seed0_novelty_gated_cem_noise_scale_variance": 1.268145731944078e-09,
+    "seed0_novelty_gated_mean_exploration_rate": 0.01,
+    "seed0_novelty_ablated_novelty_signal_magnitude": 0.0,
+    "seed0_novelty_ablated_cem_noise_scale_mean": 1.0,
+    "seed0_novelty_ablated_cem_noise_scale_variance": 0.0,
+    "seed0_novelty_ablated_mean_exploration_rate": 0.01,
+    "seed1_novelty_gated_novelty_signal_magnitude": 0.00012363167752462814,
+    "seed1_novelty_gated_cem_noise_scale_mean": 1.0002472633550494,
+    "seed1_novelty_gated_cem_noise_scale_variance": 5.464380567279604e-09,
+    "seed1_novelty_gated_mean_exploration_rate": 0.01,
+    "seed1_novelty_ablated_novelty_signal_magnitude": 0.0,
+    "seed1_novelty_ablated_cem_noise_scale_mean": 1.0,
+    "seed1_novelty_ablated_cem_noise_scale_variance": 0.0,
+    "seed1_novelty_ablated_mean_exploration_rate": 0.01,
+    "seed2_novelty_gated_novelty_signal_magnitude": 5.2926054884326604e-05,
+    "seed2_novelty_gated_cem_noise_scale_mean": 1.0001058521097685,
+    "seed2_novelty_gated_cem_noise_scale_variance": 2.311488822113673e-09,
+    "seed2_novelty_gated_mean_exploration_rate": 0.0356,
+    "seed2_novelty_ablated_novelty_signal_magnitude": 0.0,
+    "seed2_novelty_ablated_cem_noise_scale_mean": 1.0,
+    "seed2_novelty_ablated_cem_noise_scale_variance": 0.0,
+    "seed2_novelty_ablated_mean_exploration_rate": 0.04100000000000001
+  },
+  "summary_markdown": "# V3-EXQ-230 -- MECH-075 Novelty Loop Diagnostic\n\n**Status:** FAIL  **Diagnostic finding:** substrate_limitation\n**Claims:** MECH-075  **Purpose:** diagnostic\n\n## Context\n\nEXQ-192a FAIL (shape bug fixed, still FAIL). EXQ-209 weakens. This diagnostic tests whether the novelty signal is active and whether hippocampal gain variance differs between conditions.\n\n## Conditions\n\n- NOVELTY_GATED: novelty_ema from E1 MSE scales CEM noise (gain=2.0)\n- NOVELTY_ABLATED: novelty_ema held at 0.0, fixed CEM noise\n\n## Results by Seed\n\n| Seed | Novelty mag | Explore gap | C1 | C2 |\n|------|------------|------------|----|----|\n| 42 | 0.00008 | +0.0000 | FAIL | FAIL |\n| 7 | 0.00012 | +0.0000 | FAIL | FAIL |\n| 123 | 0.00005 | -0.0054 | FAIL | FAIL |\n\n## PASS Criteria\n\n| Criterion | Threshold | Result |\n|---|---|---|\n| C1: novelty_signal_mag > 0.01 (>= 2/3 seeds) | 0.01 | FAIL |\n| C2: exploration_gap >= 0.1 (>= 2/3 seeds) | 0.1 | FAIL |\n\n## Diagnostic Finding\n\nsubstrate_limitation\n\n## Interpretation\n\nNovelty signal magnitude < 0.01 in all seeds. E1 world-prediction error is not producing a detectable novelty signal. The LC-VTA novelty loop is structurally disconnected from hippocampal gain modulation in current V3 substrate. MECH-075 mechanism not measurable at current architectural stage.\n",
+  "claim_ids": [
+    "MECH-075"
+  ],
+  "evidence_direction": "diagnostic",
+  "experiment_type": "v3_exq_230_mech075_novelty_diagnostic",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "conditions": {
+        "NOVELTY_GATED": {
+          "condition": "NOVELTY_GATED",
+          "novelty_signal_magnitude": 8.164139208998126e-05,
+          "cem_noise_scale_mean": 1.00016328278418,
+          "cem_noise_scale_variance": 1.268145731944078e-09,
+          "mean_exploration_rate": 0.01
+        },
+        "NOVELTY_ABLATED": {
+          "condition": "NOVELTY_ABLATED",
+          "novelty_signal_magnitude": 0.0,
+          "cem_noise_scale_mean": 1.0,
+          "cem_noise_scale_variance": 0.0,
+          "mean_exploration_rate": 0.01
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "conditions": {
+        "NOVELTY_GATED": {
+          "condition": "NOVELTY_GATED",
+          "novelty_signal_magnitude": 0.00012363167752462814,
+          "cem_noise_scale_mean": 1.0002472633550494,
+          "cem_noise_scale_variance": 5.464380567279604e-09,
+          "mean_exploration_rate": 0.01
+        },
+        "NOVELTY_ABLATED": {
+          "condition": "NOVELTY_ABLATED",
+          "novelty_signal_magnitude": 0.0,
+          "cem_noise_scale_mean": 1.0,
+          "cem_noise_scale_variance": 0.0,
+          "mean_exploration_rate": 0.01
+        }
+      }
+    },
+    {
+      "seed": 123,
+      "conditions": {
+        "NOVELTY_GATED": {
+          "condition": "NOVELTY_GATED",
+          "novelty_signal_magnitude": 5.2926054884326604e-05,
+          "cem_noise_scale_mean": 1.0001058521097685,
+          "cem_noise_scale_variance": 2.311488822113673e-09,
+          "mean_exploration_rate": 0.0356
+        },
+        "NOVELTY_ABLATED": {
+          "condition": "NOVELTY_ABLATED",
+          "novelty_signal_magnitude": 0.0,
+          "cem_noise_scale_mean": 1.0,
+          "cem_noise_scale_variance": 0.0,
+          "mean_exploration_rate": 0.04100000000000001
+        }
+      }
+    }
+  ],
+  "diagnostic_finding": "substrate_limitation",
+  "run_timestamp": "20260404T162303Z",
+  "run_id": "v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

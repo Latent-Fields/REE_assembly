@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-04T16:57:24.047781Z`
+Generated: `2026-04-04T17:27:47.392080Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -12,9 +12,9 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-018` | directional | 15 | 3 | 0.333 | `2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010` | 19 |
 | `ARC-024` | directional, mixed_evidence | 15 | 10 | 0.8 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 35 |
 | `ARC-026` | directional, source_disagreement, mixed_evidence | 2 | 2 | 1 | `v3_exq_232_arc026_approach_contact_resolution_20260404T040458Z_v3` | 9 |
-| `ARC-029` | directional, source_disagreement | 3 | 2 | 0.8 | `v3_exq_125_arc029_committed_mode_pair_20260404T022448Z_v3` | 6 |
+| `ARC-029` | directional, source_disagreement | 3 | 3 | 1 | `v3_exq_227_arc029_discrepancy_diagnostic_1775296904_v3` | 7 |
 | `ARC-030` | directional, source_disagreement, mixed_evidence | 6 | 8 | 0.857 | `2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012` | 16 |
-| `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z_v3` | 9 |
+| `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_228_mech116_arc032_theta_bypass_ablation_1775299018_v3` | 10 |
 | `ARC-033` | directional, source_disagreement, mixed_evidence | 8 | 4 | 0.667 | `2026-04-04_arc_033_predictive_coding_pain_song2021` | 24 |
 | `ARC-038` | directional, source_disagreement | 1 | 1 | 1 | `v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z_v3` | 2 |
 | `ARC-041` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 5 |
@@ -24,7 +24,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-071` | directional, mixed_evidence | 25 | 13 | 0.684 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 56 |
 | `MECH-072` | directional, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_213_mech072_foreseeable_harm_gating_20260403T202320Z_v3` | 8 |
 | `MECH-073` | directional, mixed_evidence | 2 | 2 | 1 | `2026-04-02_mech_074_amygdala_consolidation_mcgaugh2004` | 5 |
-| `MECH-075` | directional, source_disagreement, mixed_evidence | 1 | 2 | 0.667 | `v3_exq_230_mech075_novelty_diagnostic_20260404T033537Z_v3` | 7 |
+| `MECH-075` | directional, source_disagreement, mixed_evidence | 1 | 3 | 0.5 | `v3_exq_230_mech075_novelty_diagnostic_20260404T162303Z_v3` | 8 |
 | `MECH-089` | directional, mixed_evidence | 9 | 5 | 0.714 | `v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3` | 18 |
 | `MECH-090` | directional, mixed_evidence | 8 | 4 | 0.667 | `20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3` | 22 |
 | `MECH-091` | directional, source_disagreement | 1 | 1 | 1 | `v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3` | 2 |
@@ -38,10 +38,10 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-104` | directional, mixed_evidence | 10 | 1 | 0.182 | `v3_exq_204_mech104_surprise_gate_pair_20260403T020540Z_v3` | 13 |
 | `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3` | 5 |
 | `MECH-112` | directional, mixed_evidence | 13 | 6 | 0.632 | `v3_exq_225_mech112_goal_lift_redesign_1775274103_v3` | 37 |
-| `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z_v3` | 9 |
+| `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_228_mech116_arc032_theta_bypass_ablation_1775299018_v3` | 10 |
 | `MECH-118` | directional, source_disagreement, mixed_evidence | 4 | 2 | 0.667 | `v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3` | 7 |
 | `MECH-124` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-04_mech_124_threat_goal_salience_competition_kim2019` | 5 |
-| `MECH-128` | directional, mixed_evidence | 6 | 1 | 0.286 | `2026-04-04_mech_128_pfc_wm_goal_hippocampal_prediction_koene2003` | 8 |
+| `MECH-128` | directional, source_disagreement, mixed_evidence | 6 | 2 | 0.5 | `v3_exq_229_mech128_e1_goal_conditioning_pair_1775299023_v3` | 9 |
 | `MECH-135` | directional, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3` | 16 |
 | `MECH-150` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_mech_150_coordinated_reinstatement_staresina2019` | 5 |
 | `MECH-153` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `2026-04-04_mech_153_supervised_vs_unsupervised_discrimination_loewenstein2021` | 9 |
@@ -163,13 +163,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-029
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.659
+- Evidence breakdown: supports=3, weakens=3, conflict_ratio=1, overall_confidence=0.659
 - Recent entries:
-  - `2026-03-29T01:01:06Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.64
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.66
   - `2026-04-03T20:14:59Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`unknown` confidence=0.45
   - `2026-04-04T02:24:48Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
+  - `2026-04-04T10:01:44Z` `experimental` `v3_exq_227_arc029_discrepancy_diagnostic` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `OFC lesion patients still make decisions and incur outcomes -- they do not become unable to operate. The deficit is specifically in regret-learning and regret anticipation, not in general decision capacity. This means the committed/uncommitted distinction is specifically about the evaluative and learning circuit, not about execution capacity. ARC-029's claim about distinct harm outcomes would need to specify whether it is about the execution or the evaluation channel.` (1)
   - `The paper is a clinical case series with small N -- a typical limitation for lesion studies. The specific OFC lesion locations vary across patients. The generalisation from OFC lesion patients to a computational architecture requires strong assumptions about modularity.` (1)
@@ -204,11 +204,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, source_disagreement
 - Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.672
 - Recent entries:
-  - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.8
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.72
   - `2026-04-04T00:14:32Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`superseded` confidence=0.55
   - `2026-04-04T02:26:47Z` `experimental` `v3_exq_076f_mech116_arc032_e1_goal_conditioning` direction=`unknown` confidence=0.45
+  - `2026-04-04T10:36:58Z` `experimental` `v3_exq_228_mech116_arc032_theta_bypass_ablation` direction=`unknown` confidence=0.45
 - Recurring failure signatures:
   - `If mPFC-hippocampal theta coherence during navigation reflects hippocampal movement signaling rather than frontal goal representation, the ARC-032 framing would be inverted` (1)
   - `If theta appears during any locomotion regardless of goal-directedness, the goal-context specificity of the packaging claim would be undermined` (1)
@@ -388,13 +388,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-075
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=2, conflict_ratio=0.667, overall_confidence=0.615
+- Evidence breakdown: supports=1, weakens=3, conflict_ratio=0.5, overall_confidence=0.618
 - Recent entries:
-  - `2026-04-03T03:49:33.791264Z` `experimental` `v3_exq_209_mech075_bg_hippocampal_gain_probe` direction=`weakens` confidence=0.55
   - `2026-04-03T03:49:33.792121Z` `experimental` `v3_exq_209_mech075_bg_hippocampal_gain_probe` direction=`mixed` confidence=0.5
   - `2026-04-03T04:39:14Z` `experimental` `v3_exq_192a_mech075_novelty_loop_probe` direction=`mixed` confidence=0.5
   - `2026-04-03T10:25:55Z` `experimental` `v3_exq_192a_mech075_novelty_loop_probe` direction=`weakens` confidence=0.75
   - `2026-04-04T03:35:37Z` `experimental` `v3_exq_230_mech075_novelty_diagnostic` direction=`unknown` confidence=0.45
+  - `2026-04-04T16:23:03Z` `experimental` `v3_exq_230_mech075_novelty_diagnostic` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `The loop architecture requires a functional CA3 comparison signal (stored representation compared to incoming input); CA3 lesions disrupt the novelty signal propagation, suggesting the mechanism depends on prior learning to function.` (1)
   - `Dopamine release in hippocampus enhances LTP but does not specify which synapses; the selectivity of memory enhancement depends on coincidence of dopamine release with active synapses during the encoding window, creating a narrow temporal requirement.` (1)
@@ -617,11 +617,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, source_disagreement
 - Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.666
 - Recent entries:
-  - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.72
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.82
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.65
   - `2026-04-04T00:14:32Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`superseded` confidence=0.55
   - `2026-04-04T02:26:47Z` `experimental` `v3_exq_076f_mech116_arc032_e1_goal_conditioning` direction=`unknown` confidence=0.45
+  - `2026-04-04T10:36:58Z` `experimental` `v3_exq_228_mech116_arc032_theta_bypass_ablation` direction=`unknown` confidence=0.45
 - Recurring failure signatures:
   - `If prefrontal cooling disrupted motor execution rather than memory maintenance, the delay-period function would be artifactual` (1)
   - `If the deficit was due to attentional disruption rather than working memory, the maintenance analogy to LSTM recurrence would not follow` (1)
@@ -674,14 +674,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### MECH-128
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=6, weakens=1, conflict_ratio=0.286, overall_confidence=0.737
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=6, weakens=2, conflict_ratio=0.5, overall_confidence=0.727
 - Recent entries:
-  - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.7
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.65
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.72
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.6
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.68
+  - `2026-04-04T10:37:03Z` `experimental` `v3_exq_229_mech128_e1_goal_conditioning_pair` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `FiLM operates on CNN intermediate features, not on LSTM hidden states; the temporal recurrence dynamics central to MECH-128 are not addressed.` (1)
   - `The conditioning information in FiLM (a question encoded by an RNN) is sentence-level context, not a continuously updated latent goal state; MECH-128 requires step-wise injection at each LSTM recurrence, which FiLM does not demonstrate.` (1)

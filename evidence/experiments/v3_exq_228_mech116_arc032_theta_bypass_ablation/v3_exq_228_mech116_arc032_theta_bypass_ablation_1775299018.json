@@ -8,12 +8,13 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "THETA_BYPASS_ENABLED and THETA_BYPASS_DISABLED conditions are byte-for-byte identical across all 3 seeds (mean_err_goal, mean_err_neutral, n_goal_steps, goal_norm all equal to 15+ decimal places). The theta-bypass flag did not alter the computation -- the ablation is not operational. This is a failed ablation, not a null result. Cannot be used as evidence for or against MECH-116 or ARC-032. Flagged for /diagnose-errors.",
   "evidence_direction_per_claim": {
-    "MECH-116": "does_not_support",
-    "ARC-032": "does_not_support"
+    "MECH-116": "non_contributory",
+    "ARC-032": "non_contributory"
   },
-  "decision": "retire_ree_claim",
+  "decision": "diagnose_errors",
   "timestamp": 1775299018,
   "seeds": [
     42,

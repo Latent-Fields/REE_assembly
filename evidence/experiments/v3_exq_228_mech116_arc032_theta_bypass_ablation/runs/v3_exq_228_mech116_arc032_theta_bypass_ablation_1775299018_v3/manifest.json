@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_228_mech116_arc032_theta_bypass_ablation",
+  "run_id": "v3_exq_228_mech116_arc032_theta_bypass_ablation_1775299018_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-04-04T10:36:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-116",
+    "ARC-032"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "THETA_BYPASS_ENABLED and THETA_BYPASS_DISABLED conditions are byte-for-byte identical across all 3 seeds. The theta-bypass ablation did not alter the computation -- the ablation flag is not operational. This is a failed ablation, not a null result. Cannot be used as evidence for or against MECH-116 or ARC-032. Flagged for /diagnose-errors. (2026-04-05, governance-2026-04-05-a)",
+  "evidence_direction_per_claim": {
+    "MECH-116": "non_contributory",
+    "ARC-032": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

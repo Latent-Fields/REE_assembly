@@ -2430,6 +2430,14 @@
     EXQ-152 FAIL/mixed (2026-03-29): REE_FULL vs PREDICTIVE_ONLY delta_harm=0; informative null
     at current training scale. Significant training budget expected to be required before
     meaningful differences emerge between full REE and predictive-only baselines.
+    EXQ-193 FAIL/mixed (2026-04-04): REE_FULL vs PREDICTIVE_ONLY vs NO_LEARNING (3 conditions).
+    C1 PASS 3/3: REE_FULL outperforms PREDICTIVE_ONLY by 7.5 harm units (11.96 vs 19.47);
+    PREDICTIVE_ONLY harm INCREASES over training while REE_FULL improves -- strong directional
+    signal that control constraints matter. C2 FAIL: REE_FULL does not beat NO_LEARNING floor
+    in all seeds (2/3 pass). evidence_direction=mixed. The C1 PASS is the primary Q-012 signal:
+    pure predictive (no control constraints) destabilises over time while REE does not. This is
+    the first experiment showing a genuine positive REE-vs-predictive gap at current training
+    scale. Consistent with retain_ree adjudication.
   depends_on:
     - MECH-057
     - ARC-015
@@ -7417,7 +7425,13 @@
     exists as a representation but is not yet shaping E1 trajectory generation in a discriminative
     way. Mixed evidence: goal representation established, behavioral coupling not yet achieved.
     Hold at candidate; tracking improvement from EXQ-147 (complete FAIL) to PARTIAL PASS.
-
+    EXQ-229 FAIL/does_not_support (2026-04-04): 3rd experiment, same pattern. C1 FAIL 0/3
+    seeds (mean_interaction=3.5e-6, threshold 5e-3). C2 PASS 2/3 (goal direction correct in
+    seeds 42, 7; seed 123 reversed). C3 PASS 3/3. C4 PASS 3/3. Three consistent C1 FAILs:
+    z_goal is active and specific but E1 prediction error does not interact with goal conditioning
+    at current substrate depth. SD-005 (self/world latent split) is a stated dependency and is
+    not yet implemented -- goal conditioning acts on conflated z_gamma rather than z_self/z_world
+    separation. Hold pending SD-005; evidence accumulating but not sufficient for retirement.
 
   depends_on:
     - MECH-112

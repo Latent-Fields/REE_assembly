@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_058c_sd010_sd003_attribution_fixed
 
-Generated: `2026-04-04T16:57:24.047781Z`
+Generated: `2026-04-04T17:27:47.392080Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
