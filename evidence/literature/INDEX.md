@@ -1,12 +1,12 @@
 # Literature Evidence Index
 
-Generated: `2026-04-04T07:53:33.468075Z`
+Generated: `2026-04-04T08:20:32.722606Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
-| `targeted_review_arc_022` | [`2026-04-04_arc_022_thick_hierarchical_world_models_gumbsch2024`](targeted_review_arc_022/entries/2026-04-04_arc_022_thick_hierarchical_world_models_gumbsch2024/record.json) | 5 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_thick_hierarchical_world_models_gumbsch2024/summary.md) |
+| `targeted_review_arc_022` | [`2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/record.json) | 6 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/summary.md) |
 | `targeted_review_arc_024` | [`2026-03-28_arc_024_threat_proximity_gradient_mobbs2007`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/record.json) | 3 | [`summary`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/summary.md) |
 | `targeted_review_arc_025` | [`2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018`](targeted_review_arc_025/entries/2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018/record.json) | 2 | [`summary`](targeted_review_arc_025/entries/2026-03-29_arc_025_hierarchical_active_inference_pezzulo2018/summary.md) |
 | `targeted_review_arc_026` | [`2026-03-29_arc_026_long_horizon_care_bratman1987`](targeted_review_arc_026/entries/2026-03-29_arc_026_long_horizon_care_bratman1987/record.json) | 2 | [`summary`](targeted_review_arc_026/entries/2026-03-29_arc_026_long_horizon_care_bratman1987/summary.md) |
