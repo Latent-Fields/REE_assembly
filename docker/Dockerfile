@@ -47,9 +47,9 @@ ENV PYTHONUNBUFFERED=1
 RUN mkdir -p /workspace
 WORKDIR /workspace
 
-# Entrypoint script
+# Entrypoint script (sed strips Windows \r in case of CRLF checkout)
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 # serve.py binds to 0.0.0.0:8000 already
 EXPOSE 8000
