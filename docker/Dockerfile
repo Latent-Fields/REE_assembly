@@ -27,15 +27,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Make python3.11 the default python3
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
-    && update-alternatives --install /usr/bin/python python3 /usr/bin/python3.11 1
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 
 # Python deps -- PyTorch with CUDA 12.1
-RUN pip3 install --no-cache-dir \
+RUN python3 -m pip install --no-cache-dir \
         torch==2.1.0+cu121 \
         torchvision==0.16.0+cu121 \
         --extra-index-url https://download.pytorch.org/whl/cu121
 
-RUN pip3 install --no-cache-dir \
+RUN python3 -m pip install --no-cache-dir \
         numpy>=1.24.0 \
         "dataclasses-json>=0.6.0"
 
