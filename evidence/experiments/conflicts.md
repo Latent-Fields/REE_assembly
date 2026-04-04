@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-04-04T00:10:30.327253Z`
+Generated: `2026-04-04T03:04:20.369061Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -12,9 +12,9 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-018` | directional | 15 | 3 | 0.333 | `2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010` | 19 |
 | `ARC-024` | directional, mixed_evidence | 15 | 10 | 0.8 | `v3_exq_071d_rollout_batched_attribution_20260401T232311Z_v3` | 35 |
 | `ARC-026` | directional, source_disagreement | 2 | 2 | 1 | `2026-03-29_arc_026_long_horizon_care_bratman1987` | 4 |
-| `ARC-029` | directional | 3 | 1 | 0.5 | `v3_exq_125_arc029_committed_mode_pair_20260403T201459Z_v3` | 5 |
+| `ARC-029` | directional, source_disagreement | 3 | 2 | 0.8 | `v3_exq_125_arc029_committed_mode_pair_20260404T022448Z_v3` | 6 |
 | `ARC-030` | directional, source_disagreement, mixed_evidence | 5 | 8 | 0.769 | `2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012` | 15 |
-| `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_arc_032_theta_goal_navigation_review_colgin2016` | 7 |
+| `ARC-032` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z_v3` | 9 |
 | `ARC-033` | directional, source_disagreement, mixed_evidence | 8 | 4 | 0.667 | `2026-04-04_arc_033_predictive_coding_pain_song2021` | 24 |
 | `ARC-038` | directional, source_disagreement | 1 | 1 | 1 | `v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z_v3` | 2 |
 | `ARC-041` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 5 |
@@ -37,9 +37,10 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-102` | directional, source_disagreement, mixed_evidence | 5 | 11 | 0.625 | `2026-03-29_mech_102_just_war_last_resort_aloyo2015` | 28 |
 | `MECH-104` | directional, mixed_evidence | 10 | 1 | 0.182 | `v3_exq_204_mech104_surprise_gate_pair_20260403T020540Z_v3` | 13 |
 | `MECH-111` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `v3_exq_073b_mech111_novelty_signal_20260402T021831Z_v3` | 5 |
-| `MECH-112` | directional, source_disagreement, mixed_evidence | 9 | 6 | 0.8 | `2026-04-04_mech_112_ofc_goal_value_tremblay1999` | 28 |
-| `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `2026-03-29_mech_116_lstm_working_memory_review_baddeley2003` | 7 |
+| `MECH-112` | directional, source_disagreement, mixed_evidence | 11 | 6 | 0.706 | `v3_exq_074f_mech112_117_wanting_liking_20260404T022609Z_v3` | 34 |
+| `MECH-116` | directional, source_disagreement | 3 | 4 | 0.857 | `v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z_v3` | 9 |
 | `MECH-118` | directional, source_disagreement, mixed_evidence | 4 | 2 | 0.667 | `v3_exq_084d_q022_deff_hopfield_dissociation_20260402T033313Z_v3` | 7 |
+| `MECH-124` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-04-04_mech_124_threat_goal_salience_competition_kim2019` | 5 |
 | `MECH-128` | directional, mixed_evidence | 1 | 1 | 1 | `v3_exq_147a_mech128_e1_goal_conditioning_pair_1775184659_v3` | 3 |
 | `MECH-135` | directional, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3` | 16 |
 | `MECH-150` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-04-02_mech_150_coordinated_reinstatement_staresina2019` | 5 |
@@ -159,14 +160,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### ARC-029
-- Conflict types: directional
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.674
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, overall_confidence=0.66
 - Recent entries:
-  - `2026-03-22T19:17:16Z` `experimental` `v3_exq_063_arc029_committed_mode_harm_outcomes` direction=`supports` confidence=0.75
   - `2026-03-29T01:01:06Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.64
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.66
   - `2026-04-03T20:14:59Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`unknown` confidence=0.45
+  - `2026-04-04T02:24:48Z` `experimental` `v3_exq_125_arc029_committed_mode_pair` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `OFC lesion patients still make decisions and incur outcomes -- they do not become unable to operate. The deficit is specifically in regret-learning and regret anticipation, not in general decision capacity. This means the committed/uncommitted distinction is specifically about the evaluative and learning circuit, not about execution capacity. ARC-029's claim about distinct harm outcomes would need to specify whether it is about the execution or the evaluation channel.` (1)
   - `The paper is a clinical case series with small N -- a typical limitation for lesion studies. The specific OFC lesion locations vary across patients. The generalisation from OFC lesion patients to a computational architecture requires strong assumptions about modularity.` (1)
@@ -199,13 +200,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-032
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.644
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.673
 - Recent entries:
-  - `2026-03-27T14:30:27Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
-  - `2026-03-28T18:12:53Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.8
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_arc_032` direction=`supports` confidence=0.72
+  - `2026-04-04T00:14:32Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`superseded` confidence=0.55
+  - `2026-04-04T02:26:47Z` `experimental` `v3_exq_076f_mech116_arc032_e1_goal_conditioning` direction=`unknown` confidence=0.45
 - Recurring failure signatures:
   - `If mPFC-hippocampal theta coherence during navigation reflects hippocampal movement signaling rather than frontal goal representation, the ARC-032 framing would be inverted` (1)
   - `If theta appears during any locomotion regardless of goal-directedness, the goal-context specificity of the packaging claim would be undermined` (1)
@@ -345,7 +346,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-072
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.851
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, overall_confidence=0.85
 - Recent entries:
   - `2026-03-20T18:05:45Z` `experimental` `claim_probe_mech_072` direction=`mixed` confidence=0.5
   - `2026-03-20T18:05:45Z` `experimental` `v3_exq_054_mech072_world_delta_gating` direction=`mixed` confidence=0.5
@@ -587,13 +588,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-112
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=9, weakens=6, conflict_ratio=0.8, overall_confidence=0.85
+- Evidence breakdown: supports=11, weakens=6, conflict_ratio=0.706, overall_confidence=0.886
 - Recent entries:
-  - `2026-04-01T22:16:58.620178Z` `experimental` `v3_exq_085m_arc030_benefit_eval_e3` direction=`weakens` confidence=0.75
-  - `2026-04-01T22:16:59.831488Z` `experimental` `v3_exq_085m_arc030_benefit_eval_e3` direction=`weakens` confidence=0.75
+  - `2026-04-04T00:23:24Z` `experimental` `v3_exq_074f_mech112_117_wanting_liking` direction=`supports` confidence=0.75
   - `2026-04-04T02:00:00Z` `literature` `targeted_review_connectome_mech_112` direction=`supports` confidence=0.83
   - `2026-04-04T02:00:00Z` `literature` `targeted_review_connectome_mech_112` direction=`supports` confidence=0.8
   - `2026-04-04T02:00:00Z` `literature` `targeted_review_connectome_mech_112` direction=`supports` confidence=0.82
+  - `2026-04-04T02:26:09Z` `experimental` `v3_exq_074f_mech112_117_wanting_liking` direction=`supports` confidence=0.75
 - Recurring failure signatures:
   - `If MECH-112's z_goal representation is unnecessary and agents can generate approach behavior from benefit_eval_head (liking) signals alone, then the schizophrenia dissociation documented here would predict that schizophrenia patients (intact liking, absent wanting) should show normal goal-directed behavior -- which they do not.` (1)
   - `If prefrontal goal maintenance is not required for behavior to remain goal-directed under delay, the prefrontal-striatal model would not predict the specific deficits in avolition versus anhedonia.` (1)
@@ -607,13 +608,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-116
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.637
+- Evidence breakdown: supports=3, weakens=4, conflict_ratio=0.857, overall_confidence=0.666
 - Recent entries:
-  - `2026-03-27T14:30:27Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
-  - `2026-03-28T18:12:53Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`weakens` confidence=0.75
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.72
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.82
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_116` direction=`supports` confidence=0.65
+  - `2026-04-04T00:14:32Z` `experimental` `v3_exq_076e_mech116_arc032_e1_goal_conditioning` direction=`superseded` confidence=0.55
+  - `2026-04-04T02:26:47Z` `experimental` `v3_exq_076f_mech116_arc032_e1_goal_conditioning` direction=`unknown` confidence=0.45
 - Recurring failure signatures:
   - `If prefrontal cooling disrupted motor execution rather than memory maintenance, the delay-period function would be artifactual` (1)
   - `If the deficit was due to attentional disruption rather than working memory, the maintenance analogy to LSTM recurrence would not follow` (1)
@@ -640,6 +641,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `If patient KN's spared familiarity is explained by residual hippocampal function rather than perirhinal-independent processing, the double dissociation evidence weakens.` (1)
   - `If the REE HopfieldMemory retrieval mechanism is not analogous to perirhinal match-strength computation (but instead implements a retrieval-like process requiring z_self context), the familiarity analog would be misassigned.` (1)
   - `If the temporal dissociation between perirhinal and hippocampal signals is an artifact of signal propagation delays rather than distinct computational processes, the timing difference would not imply informational independence.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-124
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, overall_confidence=0.891
+- Recent entries:
+  - `2026-04-04T02:44:17.923992Z` `experimental` `v3_exq_224_mech124_zgoal_salience_diag` direction=`weakens` confidence=0.75
+  - `2026-04-04T10:00:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.82
+  - `2026-04-04T10:05:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.84
+  - `2026-04-04T10:10:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.76
+  - `2026-04-04T10:15:00Z` `literature` `targeted_review_mech_124` direction=`supports` confidence=0.71
+- Recurring failure signatures:
+  - `Sleep disruption after trauma preferentially impairs extinction memory consolidation, leaving fear traces relatively intact -- producing an asymmetric imbalance.` (1)
+  - `REM fragmentation during the critical post-trauma window impedes normal fear-extinction consolidation, perpetuating fear trace dominance.` (1)
+  - `Individuals with PTSD show deficient recall of extinction memories relative to healthy controls, consistent with failed consolidation of safety/extinction content.` (1)
+  - `Positive feedback loops between stress physiology, REM disruption, and fear trace entrenchment create a self-amplifying cycle.` (1)
+  - `In PTSD, REM sleep fails to decouple emotional content from autonomic reactivity, so nightmare replay re-consolidates rather than recalibrates the fear trace.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -840,7 +861,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-005
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=11, weakens=16, conflict_ratio=0.815, overall_confidence=0.756
+- Evidence breakdown: supports=11, weakens=16, conflict_ratio=0.815, overall_confidence=0.755
 - Recent entries:
   - `2026-03-24T20:23:13Z` `experimental` `v3_exq_047j_tpj_routing_ce` direction=`mixed` confidence=0.5
   - `2026-03-25T02:15:58Z` `experimental` `v3_exq_047k_tpj_routing_larger_n` direction=`supports` confidence=0.75

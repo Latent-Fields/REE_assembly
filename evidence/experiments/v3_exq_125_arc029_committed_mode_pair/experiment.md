@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_125_arc029_committed_mode_pair_20260404T022448Z_v3` at `2026-04-04T02:24:48Z` signatures: none
 - `v3_exq_125_arc029_committed_mode_pair_20260403T201459Z_v3` at `2026-04-03T20:14:59Z` signatures: none
 - `v3_exq_125_arc029_committed_mode_pair_20260329T010106Z_v3` at `2026-03-29T01:01:06Z` signatures: none
 

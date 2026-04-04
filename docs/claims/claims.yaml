@@ -5030,6 +5030,12 @@
     mode may produce idiosyncratic harm differences that depend on random seed and training
     state rather than a systematic architectural advantage. ARC-029's core prediction (committed
     < ablated in stable) is not consistently confirmed. Hold at provisional; more seeds needed.
+    EXQ-125 FAIL 3/6 (2026-04-04, seeds=[42,123]): seed 42 shows committed mode WORSE in
+    stable (harm_gap_stable=-0.000091 < threshold); seed 123 shows it better (+0.000234).
+    avg_harm_gap_stable=0.000071 (barely above zero, avg_gap_ratio=1.943). 3rd FAIL across
+    EXQ-125 runs vs 1 PASS (EXQ-063). Diagnosis flagged: systematic difference between EXQ-063
+    and EXQ-125 designs unknown (seed set, warmup length, env config). /diagnose-errors
+    requested before any status change. Maintain provisional pending diagnosis.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -5930,6 +5936,16 @@
     EXQ-182a (oracle ceiling) queued -- if perfect-information 1-step greedy also fails,
     the env config is near-optimal for random walk and no learned mechanism can beat it
     without multi-step planning (SD-004 hippocampal navigation).
+    EXQ-074f PASS 4/4 (2026-04-04): FIRST full PASS for MECH-112 wanting system with
+    correct navigation design. wanting l1_fraction=0.96 (agent persistently approaches
+    L1 post-relocation); liking l1_fraction=0.43; resource_rate=0.148 (floor PASS >= 0.05).
+    C4 dissociation confirmed (delta=0.53 > 0.10). Prior design confound resolved: wanting
+    condition uses spatial greedy toward L1; nogo/liking use standard action selection.
+    Single seed only (42); prior 085 series FAIL history means multi-seed replication still
+    needed before promotion. Navigation integration works at small scale (6x6 grid); larger
+    grid performance (10x10, SD-004 planning) remains to be tested.
+    EXQ-074e superseded (2026-04-04): same design confound as 074d (uniform greedy).
+    074f FAILs 1-3 superseded: exploration iterations before final criteria/navigation design.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -6342,13 +6358,25 @@
     post-removal window (goal removal at step 7000+ in 15000-step run); (b) lower threshold
     to 10% of peak; (c) direct exponential decay rate fitting instead of halflife threshold.
     New EXP proposals queued (2026-03-29) for all three options.
+    EXQ-076e superseded by 076f (2026-04-04): 076e had E1Config.goal_dim never set by
+    from_dims() -> goal_input_proj=None in both conditions -> E1 was goal-agnostic in both.
+    EXQ-076f FAIL 0/3, non_contributory (2026-04-04): bug fixed (goal_dim=32, goal_input_proj
+    active in conditioned arm). Results near-identical: conditioned peak_goal_norm=0.3793 vs
+    unconditioned=0.3806 (0.3% difference); goal_norm_at_r1000=0.0024 vs 0.0025 (both
+    essentially zero). Zero measurable difference in goal persistence.
+    Test design issue (2026-04-04, user decision): the experiment measures z_goal_norm
+    persistence directly. MECH-116 predicts improved E1 prediction quality on goal-directed
+    trajectory segments, not z_goal decay rate. z_goal has a separate decay_goal exponential
+    decay parameter independent of E1 conditioning. Correct test: compare E1 prediction
+    error on goal vs neutral trajectory segments. Redesign required; 076f classified
+    non_contributory (does not test the claim's stated mechanism).
 
 - id: MECH-117
   title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
   claim_type: mechanism_hypothesis
   subject: wanting.liking_trajectory_dissociation
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   depends_on:
     - MECH-112
@@ -6387,6 +6415,18 @@
     EXQ-085g FAIL 3/4 (2026-03-29): wanting-liking dissociation not yet testable because
     z_goal not pointing to resources (goal_resource_r=0.066). Gated on SD-015 z_resource
     separation.
+    EXQ-074f PASS 4/4 (2026-04-04): first full behavioral dissociation PASS. wanting
+    l1_fraction=0.96 vs liking l1_fraction=0.43 (delta=0.53 > 0.10 threshold). Liking
+    redirects to L2 in 2 steps; wanting persists toward L1 post-relocation. Consistent
+    with Berridge (1996) incentive salience / Culbreth et al. (2023) profiles. Single
+    seed (42); duplicate run confirms data but not independent replication.
+  status_note: |
+    Promoted candidate -> provisional 2026-04-04.
+    Evidence: first full wanting/liking behavioral dissociation PASS (EXQ-074f PASS 4/4,
+    seed=42). C1 floor PASS (wanting resource_rate=0.148 >= 0.05), C2 liking fast redirect
+    (2 steps <= 15), C3 wanting l1_fraction=0.96 >= 0.25, C4 dissociation (wanting-liking
+    delta=0.53 > 0.10). Prior 10 mixed entries confirmed partial signals; 074f is first
+    complete PASS. Single seed -- multi-seed replication desirable before active promotion.
 
 - id: ARC-032
   title: "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation."
@@ -6428,6 +6468,9 @@
     no theta-bypass ablation condition was included. ARC-032 remains untested as a
     standalone architectural claim. Design a separate ablation experiment isolating the
     theta channel (E1 output -> E3 direct vs. E1 output -> ThetaBuffer -> E3).
+    EXQ-076f non_contributory (2026-04-04): EXQ-076 series (076d/e/f) tests E1 goal
+    conditioning via z_goal persistence metrics -- does not isolate the theta-bypass
+    pathway. ARC-032 remains untested as a standalone claim. No evidence_direction change.
 
 - id: ARC-033
   title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
@@ -6913,6 +6956,17 @@
     system will amplify this imbalance. EXQ-074b and EXQ-076 provide early evidence
     on whether z_goal can achieve competitive salience with harm traces.
     Registered 2026-03-23. V4 scope.
+  evidence_quality_note: |
+    EXQ-224 DIAGNOSTIC (2026-04-04): z_goal salience vs harm salience probe. BASELINE
+    condition (z_goal_enabled=True, drive_weight=2.0), 3 seeds x 300 episodes.
+    Mean final ratio (z_goal_norm / harm_salience) = 0.312 (goal ~31% of harm salience,
+    harm dominates ~3:1). FLAG_2_ratio_declining=True (mean ratio slope=-0.0034; ratio
+    declining over training in 2/3 seeds). risk_detected=True. V4 risk condition confirmed:
+    in the current V3 substrate, harm salience systematically exceeds goal salience; if
+    offline consolidation is harm-dominated in V4, the MECH-124 loop predicts progressive
+    option contraction. Diagnostic only -- does not test the consolidation mechanism itself
+    (no sleep in V3). Evidence_direction not changed; governance decision remains
+    hold_candidate_resolve_conflict (requires V4 sleep architecture experiment).
 
 - id: MECH-125
   title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."

@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_074e_mech112_117_wanting_liking_20260404T001251Z_v3` at `2026-04-04T00:12:51Z` signatures: none
 - `v3_exq_074e_mech112_117_wanting_liking_20260328T181216Z_v3` at `2026-03-28T18:12:16Z` signatures: none
 - `v3_exq_074e_mech112_117_wanting_liking_20260327T070014Z_v3` at `2026-03-27T07:00:14Z` signatures: none
 

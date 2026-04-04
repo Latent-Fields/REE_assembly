@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 43051,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T00:28:00.558322+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-125",
-    "backlog_id": "",
-    "claim_id": "ARC-029",
-    "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
-    "description": "",
-    "script": "experiments/v3_exq_125_arc029_committed_mode_pair.py",
-    "started_at": "2026-04-03T23:00:59.201333+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 400,
-      "episodes_total": 400,
-      "overall_pct": 100.0
-    },
-    "seconds_elapsed": 5221,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "[train seed=42] ep 200/400  running_var=0.000002",
-      "[train seed=42] ep 300/400  running_var=0.000003",
-      "[train seed=42] ep 400/400  running_var=0.000001",
-      "Post-train running_variance=0.000001  commit_threshold=0.4000  committed=True",
-      "-- seed42_stable_COMMITTED_MODE_ON --"
-    ],
-    "ree_version": "v3"
-  },
+  "last_updated": "2026-04-04T03:06:26.342789+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -51,17 +25,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-125",
-      "backlog_id": "",
-      "claim_id": "ARC-029",
-      "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
-      "description": "",
-      "estimated_minutes": 155.0,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -4176,6 +4139,62 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_223_minimal_vertebrate_ablation/v3_exq_223_minimal_vertebrate_ablation_20260403T230055Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4789.2
+    },
+    {
+      "queue_id": "V3-EXQ-125",
+      "backlog_id": "",
+      "claim_id": "ARC-029",
+      "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | avg_harm_gap_stable: 0.00007 | avg_harm_gap_volatile: 0.00024",
+      "started_at": "2026-04-03T23:00:59.201333+00:00",
+      "completed_at": "2026-04-04T02:24:49.364455+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_125_arc029_committed_mode_pair/v3_exq_125_arc029_committed_mode_pair_20260404T022448Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12230.1
+    },
+    {
+      "queue_id": "V3-EXQ-074f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-112/117 Wanting vs Liking Dissociation -- spatial incentive salience fix",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "harm_rate_nogo: 0.6113333333333333 | harm_rate_liking: 0.5353333333333333 | harm_rate_wanting: 0.7156666666666667",
+      "started_at": "2026-04-04T02:25:54.047990+00:00",
+      "completed_at": "2026-04-04T02:26:10.440370+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_074f_mech112_117_wanting_liking/v3_exq_074f_mech112_117_wanting_liking_20260404T022609Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 16.4
+    },
+    {
+      "queue_id": "V3-EXQ-076f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-116/ARC-032 E1 LSTM Goal Conditioning -- frontal working memory persistence",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | harm_rate_unconditioned: 0.6875 | harm_rate_conditioned: 0.6875",
+      "started_at": "2026-04-04T02:26:12.852972+00:00",
+      "completed_at": "2026-04-04T02:26:47.967529+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_076f_mech116_arc032_e1_goal_conditioning/v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 35.1
+    },
+    {
+      "queue_id": "V3-EXQ-224",
+      "backlog_id": "",
+      "claim_id": "MECH-124",
+      "title": "MECH-124 z_goal salience vs harm salience -- V4 risk diagnostic",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | z_goal is not maintaining competitive salience with harm. | Status: FAIL",
+      "started_at": "2026-04-04T02:26:50.527925+00:00",
+      "completed_at": "2026-04-04T02:28:58.701457+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_224_mech124_zgoal_salience_diag/v3_exq_224_mech124_zgoal_salience_diag_20260404T022857Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 128.2
     }
   ]
 }
