@@ -95,6 +95,33 @@ SD-017 is the minimal infrastructure that makes MECH-092 useful: without schema 
 
 ---
 
+## Bayesian Reasoning Framework (INV-044)
+
+SD-017 is not merely a training convenience -- it implements the architectural prerequisites for approximate Bayesian contextual inference.
+
+**Prior construction (SWS-analog = slot-formation):** The SWS-analog pass builds P(context) -- the prior over context types. Before this pass, the system has no stable schema of which contextual distinctions are structurally relevant. The hippocampus-to-cortex propagation installs context attractors: compressed representations abstracted from the full episodic record.
+
+**Posterior inference (REM-analog = slot-filling):** The REM-analog pass performs P(context | evidence) -- posterior inference given the installed prior. With context attractors stable, trajectory evidence can be attributed to the correct slot. Without the prior, the posterior is undefined -- all evidence competes for globally undifferentiated representations.
+
+**Why co-computing fails (INV-044):** An online system attempting both functions simultaneously never constructs a stable prior. Every new episode shifts the schema, preventing attribution from converging. The result is cosine_sim -> 1.0 regardless of training duration -- exactly the MECH-153 failure mode documented by Law et al. 2016.
+
+**Bidirectional flow as generative/recognition duality (ARC-045):**
+- Hip->Cx direction (SWS-analog): generative model installation -- hippocampus proposes structure, neocortex stabilises as attractors
+- Cx->Hip direction (REM-analog): recognition pass -- prediction error signals update the posterior
+
+This maps onto the generative/recognition duality of hierarchical Bayesian models (predictive coding, Friston 2005-2010) without requiring explicit probability distributions.
+
+**What this is NOT:**
+- Not formal Bayesian inference (no explicit P(context) distribution)
+- Not approximate message passing or belief propagation
+- Not Bayesian parameter estimation
+
+It is structural isomorphism with approximate Bayesian contextual inference: the information geometry required for context-sensitive attribution to emerge. SD-017 moves ree-v3 from purely discriminative/reactive (observe -> respond) to a system that maintains and updates a structured generative model of context.
+
+**Homeostatic accumulators as empirical Bayes (MECH-167):** The slow EMA accumulators (z_harm_a, drive_level) implement empirical Bayes over need states. The accumulated baseline is the running prior; deviations are precision-weighted signals. INV-044 applies: the accumulator must converge before deviations are interpretable.
+
+---
+
 ## V3 Build Order Impact
 
 SD-017 must be implemented before the following V3 goals become achievable:

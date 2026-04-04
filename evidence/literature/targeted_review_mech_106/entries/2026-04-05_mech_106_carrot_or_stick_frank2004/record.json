@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_106",
+  "entry_id": "2026-04-05_mech_106_carrot_or_stick_frank2004",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-106"],
+  "source": {
+    "title": "By carrot or by stick: cognitive reinforcement learning in parkinsonism",
+    "authors": ["Michael J. Frank", "Lauren C. Seeberger", "Randall C. O'Reilly"],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1102941",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15528409/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the key empirical paper demonstrating that Go (approach/commit) and NoGo (avoid/de-commit) learning are dopamine-dependent and dissociable in opposite directions. The double dissociation in Parkinson's patients -- off-medication patients show better punishment avoidance (NoGo learning intact, Go impaired); on-medication patients show better reward approach (Go learning enhanced, NoGo suppressed) -- directly proves the D1/D2 asymmetry at a behavioural level. This is strong evidence for the mechanism MECH-106 requires. Confidence slightly below Frank 2005 because this paper establishes the learning asymmetry (which action to select next time), not the within-episode threshold dynamics MECH-106 needs for commitment persistence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper demonstrates between-trial learning asymmetry, not within-episode commitment hysteresis -- the two are related but distinct constructs.",
+    "Parkinson's patients are an indirect probe of dopamine function; medication effects confound tonic vs. phasic DA and involve peripheral and non-striatal targets.",
+    "The task uses forced-choice stimulus-response, not action commitment sequences -- the mapping to commitment entry/exit dynamics requires inferential extrapolation."
+  ],
+  "tags": [
+    "mech_106",
+    "dopamine",
+    "Go-NoGo",
+    "D1",
+    "D2",
+    "reinforcement-learning",
+    "reward-punishment-asymmetry",
+    "Parkinson",
+    "behavioral-evidence",
+    "commitment-threshold",
+    "valence-asymmetry"
+  ],
+  "mapping": {
+    "source_claim_statement": "Parkinson's patients off dopaminergic medication are better at learning from negative outcomes (NoGo learning -- punishment-driven avoidance) than from positive outcomes (Go learning -- reward-driven approach). On-medication patients show the reverse. This double dissociation, predicted by the Frank 2005 computational model, confirms that dopamine modulates Go and NoGo learning through separate, oppositely valenced pathways.",
+    "ree_translation": "MECH-106's asymmetric commitment threshold maps onto Go/NoGo asymmetry. Positive outcomes lower the commit threshold -- functionally equivalent to strengthening Go learning toward entry into committed states. Negative outcomes raise the commit threshold and reduce the threshold for de-commitment -- equivalent to strengthening NoGo learning that halts or prevents re-entry into commitment. The Parkinson's dissociation confirms that these two directions of threshold change are genuinely mediated by different biological systems (D1 vs D2 pathways), and that one can be selectively impaired without the other. This provides direct behavioural support for MECH-106's core claim of asymmetric modulation.",
+    "mapping_caveat": "The task measures selection of the next action from a learned value table, not persistence in or exit from a committed action sequence. MECH-106 concerns the threshold for entering and maintaining a committed mode, which is an ongoing state rather than a discrete choice. The behavioural task does not have an 'in-commitment' state where exit can be measured -- it is all discrete trials. The relevance to MECH-106 is strong but requires treating Go/NoGo threshold asymmetry as a proxy for commit/de-commit threshold asymmetry, which is theoretically motivated but empirically untested.",
+    "source_context": "Behavioural experiment with Parkinson's disease patients on and off dopaminergic medication. Two cognitive procedural learning tasks using probabilistic reinforcement feedback. Human participants. Published in Science."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Science publication with high citation count. Parkinson's patient double dissociation is methodologically strong evidence for dopamine-dependent Go/NoGo asymmetry. Mapping fidelity slightly below Frank 2005 because this paper measures discrete action selection, not commitment-mode entry/exit. Transfer risk low-moderate: human data, directly relevant mechanism, clear valence asymmetry."
+  }
+}

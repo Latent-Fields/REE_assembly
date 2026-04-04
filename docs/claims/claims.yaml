@@ -9906,6 +9906,13 @@
     duration. EXQ-239 (MECH-153) approximates this via the supervised signal proxy
     -- the lambda=0.5 supervised pass is a weak stand-in for the SWS-direction
     schema-installation pass that SD-017 will properly implement.
+    Bayesian framing (INV-044): the hip->cx (SWS) direction is the generative model
+    installation pass -- hippocampus proposes structure, neocortex stabilises as
+    attractors. The cx->hip (REM) direction is the recognition pass -- prediction
+    error signals update the posterior. This bidirectional duality is structurally
+    isomorphic to the generative/recognition architecture of hierarchical Bayesian
+    models (predictive coding, Friston 2005-2010), implemented via information
+    direction switching rather than explicit probability distributions.
 
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
@@ -9918,6 +9925,7 @@
     - SD-017
     - ARC-045
     - MECH-092
+    - INV-044
   notes: >
     Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife):
     context discrimination at inference time is bounded by the quality of the
@@ -9970,3 +9978,45 @@
     ACC-type convergence, distinct downstream gate -- instantiating the same motif
     without information sharing. This is a framework prediction, not just a
     description of the existing two accumulators.
+    Empirical Bayes framing (INV-044): the slow EMA accumulators instantiate
+    empirical Bayes over need states. The accumulated baseline is the running prior
+    expectation -- P(harm_level) or P(drive_level). Deviations from baseline are
+    precision-weighted signals: a harm event surprising relative to the prior carries
+    more weight than one that confirms expectation. INV-044's prior-before-posterior
+    requirement applies: a newly initialised accumulator with no history is a flat
+    prior -- deviations are maximally uninformative until the prior has converged.
+
+- id: INV-044
+  title: "Approximate Bayesian contextual inference is architecturally impossible to co-compute with online encoding: prior construction (schema formation -- which context distinctions are structurally relevant) must precede posterior inference (attribution -- which evidence belongs to which context slot); a system attempting both online produces a degenerate prior that makes attribution uninformative regardless of training duration."
+  claim_type: invariant
+  subject: cognition.bayesian_prior_before_posterior_necessity
+  polarity: asserts
+  status: candidate
+  notes: >
+    Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife
+    doi:10.7554/eLife.55665): context discrimination accuracy at inference time is
+    mathematically bounded by the quality of the learned hidden-state prior. The
+    prior must be learned before posterior inference can be informative. This is
+    not a heuristic -- a flat or degenerate prior makes the posterior unresponsive
+    to evidence; no amount of additional evidence can compensate for a missing
+    prior structure.
+    In REE terms: slot-formation (SWS-analog pass) builds the prior -- the schema
+    of which context distinctions are structurally relevant. Slot-filling (REM-analog
+    pass) performs the posterior -- which evidence belongs to which context slot.
+    An agent attempting both online accumulates evidence against a flat prior and
+    produces globally undifferentiated representations (cosine_sim -> 1.0), exactly
+    as Law et al. 2016 and the MECH-153 failure mode document.
+    Predictive coding connection (ARC-045): the SWS-direction (hip->cx) propagation
+    is the generative model installation pass; the REM-direction carries the
+    prediction error that updates the posterior. This is structurally the architecture
+    of hierarchical Bayesian models (Friston 2005-2010) implemented through
+    information direction switching, not explicit probability distributions.
+    Empirical Bayes extension (MECH-167): homeostatic accumulators (z_harm_a,
+    drive_level) instantiate the same principle at the need-state level. The slow
+    EMA baseline is the prior; deviations are likelihood-weighted signals. The
+    accumulator must have converged before deviation signals are interpretable.
+    This invariant is what makes SD-017 a V3 necessity rather than a V4 optimisation:
+    not "sleep phases would help" but "sleep phases are required for approximate
+    Bayesian contextual inference to be architecturally coherent."
+    Mechanistic instantiation: MECH-166 (slot-formation/filling temporal separation),
+    SD-017 (SWS-analog + REM-analog design decision), ARC-045 (bidirectional flow).

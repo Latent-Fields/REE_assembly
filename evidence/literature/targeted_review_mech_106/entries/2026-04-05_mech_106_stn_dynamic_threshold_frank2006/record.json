@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_106",
+  "entry_id": "2026-04-05_mech_106_stn_dynamic_threshold_frank2006",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-106"],
+  "source": {
+    "title": "Hold your horses: a dynamic computational role for the subthalamic nucleus in decision making",
+    "authors": ["Michael J. Frank"],
+    "year": 2006,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2006.03.006",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16945502/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Frank 2006 introduces the subthalamic nucleus as a dynamic response threshold modulator in the BG. When cortical response conflict is high, the hyperdirect pathway (cortex -> STN -> GPi) raises a global threshold, delaying and modulating response execution. This is a different mechanism from the D1/D2 asymmetry of Frank 2005 -- it operates on the commitment threshold from the conflict side rather than the outcome-valence side. It is relevant to MECH-106 because it demonstrates that the BG implements dynamic, context-sensitive threshold adjustment that is not fixed but varies with the current decision state. The paper provides indirect support for MECH-106's hysteresis claim by establishing that the BG already implements the class of dynamic threshold modulation MECH-106 requires. Confidence lower than the other Frank papers because the STN mechanism is conflict-driven, not valence-driven, so the mapping to outcome-based hysteresis is less direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The STN 'hold your horses' mechanism is driven by cortical response conflict, not by outcome valence -- the connection to MECH-106's valence-asymmetric hysteresis requires treating both as instances of the same general class of dynamic threshold adjustment.",
+    "The model predicts STN lesions reduce commitment thresholds (consistent with impulsivity in STN DBS patients), but does not address how the threshold resets or persists after an outcome.",
+    "Oscillatory BG activity in the simulated parkinsonian state is emergent from the model, not confirmed by STN recording in the specific context of outcome-valence processing."
+  ],
+  "tags": [
+    "mech_106",
+    "STN",
+    "subthalamic-nucleus",
+    "commitment-threshold",
+    "dynamic-threshold",
+    "basal-ganglia",
+    "hyperdirect-pathway",
+    "response-conflict",
+    "decision-making",
+    "neurocomputational",
+    "threshold-dynamics"
+  ],
+  "mapping": {
+    "source_claim_statement": "The subthalamic nucleus, via the hyperdirect pathway (cortex -> STN -> GPi), raises a global response threshold when cortical conflict is detected -- preventing premature commitment to a response when multiple competing options are active. STN activity increases the net suppression in the BG output, delaying facilitation until conflict is resolved. This is the 'hold your horses' function: the threshold for committing to a response is dynamically elevated by the competition state, not fixed.",
+    "ree_translation": "MECH-106 requires that the commit threshold be dynamically adjustable by outcome valence. Frank 2006 establishes that the BG already operates with a dynamically adjustable commit threshold -- the mechanism is not novel to MECH-106, only the driver changes (conflict for Frank 2006 vs. outcome valence for MECH-106). The STN's hyperdirect pathway implements a fast, globally-acting threshold elevation that can interrupt ongoing action sequences. For MECH-106, the analogous mechanism for de-commitment after a negative outcome may involve a similar global threshold elevation triggered by the harm/error signal rather than by conflict. This makes Frank 2006 relevant as a proof-of-concept that the BG architecture supports exactly the kind of dynamic threshold modulation MECH-106 requires, even if the specific driver is different.",
+    "mapping_caveat": "The STN mechanism is conflict-driven and fast (hundreds of milliseconds), while MECH-106 requires a valence-driven hysteresis that persists across multiple steps (potentially seconds to minutes). These operate at different timescales and through different pathways (hyperdirect for STN; direct/indirect for D1/D2 valence effects). The two mechanisms may interact but are not the same mechanism. Frank 2006 supports the general principle that BG commit thresholds are dynamic, not the specific claim that outcome valence produces asymmetric hysteresis.",
+    "source_context": "Neural network computational model extending Frank 2005 to include the STN. Validated against response selection speed-accuracy tradeoffs and Parkinson tremor oscillations. Model predictions matched STN-DBS patient data available at the time. No new human behavioral experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.38,
+    "notes": "Neural Networks journal, Frank lab -- good computational source. Mapping fidelity reduced significantly because the STN mechanism is conflict-driven, not valence-driven: the paper supports dynamic threshold adjustment as a BG capability but does not provide evidence for the specific valence-asymmetric form MECH-106 claims. Transfer risk moderate: the model is rodent-parameterised from rat/monkey data; the STN role in human commitment dynamics may differ."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_106",
+  "entry_id": "2026-04-05_mech_106_dynamic_dopamine_frank2005",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-106"],
+  "source": {
+    "title": "Dynamic dopamine modulation in the basal ganglia: a neurocomputational account of cognitive deficits in medicated and nonmedicated Parkinsonism",
+    "authors": ["Michael J. Frank"],
+    "year": 2005,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/0898929052880093",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15701239/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the core computational paper that defines the mechanistic architecture MECH-106 instantiates. Frank's BG model explicitly implements asymmetric D1/D2 modulation: phasic DA bursts potentiate D1 MSNs in the direct pathway (lowering the threshold for Go/facilitation), while DA dips relieve inhibition on D2 MSNs in the indirect pathway (raising the NoGo/suppression signal). The model is biologically grounded, validated against Parkinson's patient data, and is the foundational architecture Frank 2004 tests behaviourally. Confidence is high but not maximal because the paper models action selection thresholds in the sense of response facilitation/suppression, not commitment to ongoing action sequences -- the REE translation to commitment entry/exit hysteresis requires an interpretive step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model addresses response selection thresholds, not commitment persistence -- the mapping to ongoing commitment hysteresis requires inference beyond the paper's stated scope.",
+    "D1 potentiation lowers facilitation threshold but the model does not directly operationalise a 'commit threshold' that would prevent or enforce exit from an ongoing committed sequence.",
+    "Simulated DA dynamics are phasic and immediate; whether sustained D1 potentiation after a positive outcome produces hysteresis lasting across multiple subsequent trials is not tested in the model."
+  ],
+  "tags": [
+    "mech_106",
+    "dopamine",
+    "D1",
+    "D2",
+    "direct-pathway",
+    "indirect-pathway",
+    "commitment-threshold",
+    "basal-ganglia",
+    "neurocomputational",
+    "Go-NoGo",
+    "valence-asymmetry"
+  ],
+  "mapping": {
+    "source_claim_statement": "Phasic dopamine bursts during positive outcomes potentiate D1 receptors on striatal MSNs in the direct pathway, lowering the threshold for cortico-striatal facilitation (Go). Phasic dopamine dips during negative outcomes relieve tonic DA inhibition on D2 MSNs in the indirect pathway, increasing NoGo signal strength and raising the suppression threshold. This produces asymmetric learning: rewards drive future approach facilitation; punishments drive future suppression.",
+    "ree_translation": "MECH-106 maps this directly onto the commitment threshold: D1 potentiation after positive outcomes (low harm, successful trajectory completion) lowers the commit threshold -- easier to enter commitment next time. D2 relief after negative outcomes (harm contact, large prediction error) raises the commit threshold -- harder to enter, and easier to trigger de-commitment from an active committed state. The model's direct/indirect pathway asymmetry is the biological substrate for MECH-106's hysteretic asymmetry.",
+    "mapping_caveat": "Frank's model addresses selection thresholds for discrete action choices, not threshold dynamics for entering or exiting a sustained committed mode. The REE commitment state is an ongoing mode (not a single selection event), so the hysteresis property -- where the threshold for exit from commitment differs from the threshold for entry -- requires inferring sustained D1/D2 state changes beyond what the model's phasic DA framework directly predicts. This is a legitimate extension but is not directly tested.",
+    "source_context": "Neural network computational model of the BG validated against probabilistic classification and reversal learning in Parkinson's patients (on and off dopaminergic medication). Human patients. No direct experimental commitment manipulation -- model-level validation only."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Journal of Cognitive Neuroscience, Frank lab, high citation count -- top-tier source. Mapping fidelity is good because the mechanism being modelled is precisely the D1/D2 asymmetry MECH-106 invokes. Transfer risk is moderate-low: the main translation gap is from discrete response selection to sustained commitment state dynamics. This is a well-motivated theoretical extension but is not empirically tested in the source."
+  }
+}

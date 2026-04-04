@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_106",
+  "entry_id": "2026-04-05_mech_106_beta_dopamine_gate_jenkinson2011",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-106"],
+  "source": {
+    "title": "New insights into the relationship between dopamine, beta oscillations and motor function",
+    "authors": ["Ned Jenkinson", "Peter Brown"],
+    "year": 2011,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2011.09.003",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22018805/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Jenkinson and Brown provide an important mechanistic link in the MECH-106 chain: beta oscillations in motor cortex/BG are modulated by net dopamine levels, and beta activity encodes the probability that a new voluntary action will be needed. This connects dopaminergic outcome-valence modulation to a gating mechanism that directly controls action commitment timing. The paper is an opinion/theoretical review, not primary empirical data, which limits confidence. The mechanism it proposes (dopamine-level -> beta power -> action readiness) is well-supported by existing data it synthesises, but the causal chain from outcome valence through DA dynamics to beta-gated commitment has not been tested in a single experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is an opinion/theoretical review paper, not a primary empirical study -- the proposed mechanism is inferred from converging evidence rather than directly tested.",
+    "The paper focuses on net dopamine levels modulating beta tone, not on phasic dopamine bursts or dips specifically -- the connection to outcome-valence asymmetry is indirect.",
+    "Beta oscillations as an action threshold gate is a functional hypothesis; direct evidence that beta amplitude specifically gates commitment entry/exit rather than any motor action is limited.",
+    "The causal direction (dopamine -> beta -> action readiness, vs. action-preparation -> DA change) is not resolved by the paper."
+  ],
+  "tags": [
+    "mech_106",
+    "beta-oscillations",
+    "dopamine",
+    "action-threshold",
+    "basal-ganglia",
+    "motor-gate",
+    "commitment-gate",
+    "MECH-090",
+    "valence-asymmetry",
+    "Parkinson"
+  ],
+  "mapping": {
+    "source_claim_statement": "Beta-frequency synchronised oscillations in the motor cortex and BG provide a measure of the likelihood that a new voluntary action will be needed. Net dopamine levels modulate beta amplitude: higher net DA suppresses beta (lowering the action threshold, facilitating movement); lower net DA elevates beta (raising the action threshold, suppressing movement). The modulation is predictive -- beta changes prospectively prepare the system for forthcoming action demands based on current dopaminergic state.",
+    "ree_translation": "MECH-106 needs a mechanism by which dopaminergic outcome-valence modulation produces a durable, graded change in the commit threshold across subsequent steps, not just a single-trial learning update. Jenkinson and Brown's account supplies this: net DA level determines beta tone, which determines how easily the commit boundary is crossed. A positive outcome raises net DA (phasic burst, and potentially sustained tonic elevation), suppressing beta and keeping the commit threshold low. A negative outcome lowers net DA (phasic dip, with possible tonic suppression), elevating beta and raising the commit threshold. This is the mechanism by which MECH-106's hysteresis persists across multiple decision steps rather than resetting immediately. The connection to MECH-090 (beta gate in REE) is direct: MECH-090 is the implementation of this beta-gating principle.",
+    "mapping_caveat": "Jenkinson and Brown's account is framed in terms of net tonic DA modulating beta baseline, not phasic DA producing asymmetric threshold changes. The REE claim requires the phasic DA burst/dip (Frank 2004, 2005) to be the driver of net DA level change, which then modulates beta. This chaining of mechanisms is theoretically coherent but is assembled from separate literatures rather than being directly tested as a unified pathway. Additionally, the beta-as-gate account is for motor action initiation, not for sustained commitment mode maintenance -- the extension to a commit/de-commit boundary requires inferring that the same beta gating applies at a higher temporal scale.",
+    "source_context": "Opinion article in Trends in Neurosciences synthesising human motor cortex and BG electrophysiology, Parkinson's disease data, and beta oscillation recordings. No new primary data. Peter Brown lab at Oxford, one of the leading groups on BG oscillations."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Trends in Neurosciences, Brown lab -- high-quality theoretical source. Mapping fidelity reduced because the paper's account of beta-dopamine coupling does not directly address phasic valence-dependent asymmetry or commitment hysteresis. Transfer risk elevated: the paper covers tonic beta modulation in Parkinson's motor contexts; applying this to commitment-mode entry/exit in a forward model-based agent involves multiple inference steps."
+  }
+}

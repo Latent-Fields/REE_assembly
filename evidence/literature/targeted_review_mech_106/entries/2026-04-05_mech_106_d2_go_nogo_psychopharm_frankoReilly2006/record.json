@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_106",
+  "entry_id": "2026-04-05_mech_106_d2_go_nogo_psychopharm_frankoReilly2006",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-106"],
+  "source": {
+    "title": "A mechanistic account of striatal dopamine function in human cognition: psychopharmacological studies with cabergoline and haloperidol",
+    "authors": ["Michael J. Frank", "Randall C. O'Reilly"],
+    "year": 2006,
+    "venue": "Behavioral Neuroscience",
+    "doi": "10.1037/0735-7044.120.3.497",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16768602/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This paper directly tests the D1/D2 asymmetry account using selective pharmacological agents in healthy controls -- cabergoline (D2 agonist) and haloperidol (D2 antagonist) -- rather than relying on the indirect Parkinson's model. The selective D2 manipulation isolates the indirect pathway's contribution to Go/NoGo asymmetry. Cabergoline impairs Go learning from positive reinforcement (consistent with presynaptic D2 suppression reducing DA burst amplitude); haloperidol enhances it (consistent with blocking the D2 autoreceptor brake). The parallel effects on working memory and attentional tasks support the generalisation of D2-mediated gating beyond simple motor selection. Confidence good but not maximal: the cabergoline/haloperidol dissection is primarily presynaptic D2 autoreceptor effects, and the paper does not directly address commitment mode persistence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cabergoline and haloperidol primarily act on presynaptic D2 autoreceptors at the low doses used, not on postsynaptic D2 MSNs in the indirect pathway -- the mechanistic interpretation requires this distinction, which the paper addresses but cannot fully resolve pharmacologically.",
+    "The study uses a probabilistic reinforcement learning task (discrete choice), not a commitment sequence paradigm -- the mapping to commitment hysteresis is inferential.",
+    "Healthy adults, not Parkinson's -- the effect size of D2 manipulation on Go/NoGo asymmetry is smaller and harder to measure cleanly than in dopamine-depleted patients."
+  ],
+  "tags": [
+    "mech_106",
+    "dopamine",
+    "D2",
+    "cabergoline",
+    "haloperidol",
+    "Go-NoGo",
+    "reinforcement-learning",
+    "commitment-threshold",
+    "pharmacology",
+    "human-behavioral",
+    "indirect-pathway",
+    "valence-asymmetry"
+  ],
+  "mapping": {
+    "source_claim_statement": "In healthy adults, D2 agonism (cabergoline, presynaptic) impairs Go learning from positive reinforcement, consistent with reduced phasic DA signalling suppressing D1-mediated direct pathway potentiation. D2 antagonism (haloperidol, presynaptic) enhances Go learning, consistent with unblocking phasic DA release and restoring D1 potentiation. These effects extend to working memory and attention tasks, supporting a unified account of dopaminergic modulation of BG-gated cognitive processes.",
+    "ree_translation": "Frank and O'Reilly 2006 provides causal evidence in healthy humans for the pharmacological selectivity of the D1/D2 asymmetry underlying MECH-106. The manipulation of presynaptic D2 tone directly modulates the Go learning signal -- the same signal MECH-106 maps to commit threshold lowering after positive outcomes. If blocking D2 autoreceptors (haloperidol) augments Go learning, then negative outcomes that reduce net DA (by reducing D1 activation and increasing D2 MSN activity) would be expected to impair approach commitment -- exactly the D2-mediated threshold raising MECH-106 predicts. The extension to working memory and attentional gating tasks provides additional support for the generality of this dopaminergic threshold modulation beyond motor selection.",
+    "mapping_caveat": "This paper's pharmacological dissection is at the presynaptic D2 autoreceptor level, which modulates DA release rather than directly activating postsynaptic D2 MSNs in the indirect pathway. The MECH-106 mechanism as described invokes postsynaptic D2 pathway activation (D2 relief by DA dips, Frank 2005). The two mechanisms are related but not identical: presynaptic D2 modulation affects DA availability; postsynaptic D2 MSN activity directly drives NoGo signalling. The paper's data is consistent with the MECH-106 account but tests a slightly upstream step in the causal chain.",
+    "source_context": "Psychopharmacological study in healthy young adults (university students). D2 agonist cabergoline and D2 antagonist haloperidol administered in counterbalanced design. Probabilistic reinforcement learning task plus working memory and attentional tasks. Human behavioral data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.26,
+    "notes": "Behavioral Neuroscience, Frank and O'Reilly -- solid source. Healthy adult human data is more generalisable than Parkinson's patient data; D2-selective agents provide cleaner mechanistic isolation than levodopa. Mapping fidelity reduced because presynaptic D2 autoreceptor effects are one step upstream from the direct D2 indirect pathway MSN mechanism MECH-106 invokes. Transfer risk low: human data, direct pharmacological intervention, same cognitive learning domain."
+  }
+}
