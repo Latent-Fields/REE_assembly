@@ -83,12 +83,13 @@
       "random_mean_harm_rate": 0.2647794586313835
     }
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_191_arc038_schema_assimilation_probe",
   "fatal_error_count": 0,
   "run_timestamp": "20260401T194007Z",
   "claim": "ARC-038",
   "verdict": "FAIL",
   "run_id": "v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "Corrected from 'weakens' (2026-04-05, cowork-2026-04-05-a/diag_191). Two disqualifying confounds: (1) target_harm_rate=0.002 unreachable in any condition (all hit 200-episode budget ceiling); (2) experiment tested weight-transfer speedup not the waking-consolidation MODE ARC-038 specifies -- that mechanism is not implemented in V3 substrate. Non_contributory: experiment cannot test the claim as designed."
 }

@@ -27,10 +27,10 @@
     "MECH-112"
   ],
   "evidence_direction_per_claim": {
-    "SD-012": "weakens",
-    "MECH-112": "weakens"
+    "SD-012": "non_contributory",
+    "MECH-112": "non_contributory"
   },
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_233_sd012_zgoal_seeding_validation",
   "fatal_error_count": 0,
   "seed_results": [
@@ -172,5 +172,6 @@
   ],
   "run_timestamp": "20260404T034148Z",
   "run_id": "v3_exq_233_sd012_zgoal_seeding_validation_20260404T034148Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "Corrected from 'weakens' (2026-04-05, cowork-2026-04-05-a/diag_233). Both conditions produced z_goal_norm=0 due to proximity_benefit_scale=0.03 (default) generating benefit_exposure~0.025 < threshold 0.1. Neither condition seeds z_goal at this env scale. EXQ-233 is a design error, not a test of SD-012 causal role. EXQ-238 corrects with proximity_benefit_scale=0.18."
 }

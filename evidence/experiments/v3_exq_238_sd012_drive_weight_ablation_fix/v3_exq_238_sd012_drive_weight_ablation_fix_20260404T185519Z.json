@@ -1,0 +1,177 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "c1_pass": 0.0,
+    "c2_pass": 0.0,
+    "c3_pass": 0.0,
+    "criteria_met": 0.0,
+    "goal_norm_active_seed0": 0.07456692267864287,
+    "goal_norm_ablated_seed0": 0.07176146181689187,
+    "benefit_goal_corr_seed0": 0.4982264599866235,
+    "benefit_rate_active_seed0": 0.043746409642172385,
+    "norm_diff_seed0": 0.0028054608617509996,
+    "goal_norm_active_seed1": 0.15545922558754682,
+    "goal_norm_ablated_seed1": 0.14628747420119387,
+    "benefit_goal_corr_seed1": -0.7662338111267257,
+    "benefit_rate_active_seed1": 0.05165233306054558,
+    "norm_diff_seed1": 0.009171751386352955,
+    "goal_norm_active_seed2": 0.14169793454930185,
+    "goal_norm_ablated_seed2": 0.13048015056177972,
+    "benefit_goal_corr_seed2": -0.9611187101826583,
+    "benefit_rate_active_seed2": 0.035866559203714135,
+    "norm_diff_seed2": 0.011217783987522129
+  },
+  "summary_markdown": "# V3-EXQ-238 -- SD-012 Drive Weight Ablation Fix\n\n**Status:** FAIL  **Criteria met:** 0/3\n**Claims:** SD-012, MECH-112  **Purpose:** evidence\n\n**Supersedes:** V3-EXQ-233 (design error: proximity_benefit_scale=0.03)\n\n## Context\n\nEXQ-233 failed because proximity_benefit_scale=0.03 (default) produced benefit_exposure~0.025/step, below benefit_threshold=0.1 in both conditions. This experiment uses proximity_benefit_scale=0.18 (from EXQ-189) and energy_decay=0.005 to ensure sufficient benefit_exposure for the drive modulation to produce a measurable difference between conditions.\n\n## Conditions\n\n- SD012_ACTIVE: drive_weight=2.0 (SD-012 on)\n- SD012_ABLATED: drive_weight=0.0 (ablation baseline)\n\n## Results by Seed\n\n| Seed | goal_norm_active | goal_norm_ablated | corr | C1 | C2 | C3 |\n|------|-----------------|------------------|------|----|----|---|\n| 42 | 0.0746 | 0.0718 | 0.4982 | FAIL | FAIL | PASS |\n| 7 | 0.1555 | 0.1463 | -0.7662 | PASS | FAIL | FAIL |\n| 13 | 0.1417 | 0.1305 | -0.9611 | PASS | FAIL | FAIL |\n\n## Interpretation\n\nSD-012 NOT CONFIRMED: Causal role of drive_weight not established. Check benefit_exposure rates and energy/drive_level wiring.\n\n## Failure Notes\n\n- C1 FAIL: mean_z_goal_norm ACTIVE < 0.1: [0.0746, 0.1555, 0.1417]\n- C2 FAIL: mean_z_goal_norm ABLATED >= 0.05: [0.0718, 0.1463, 0.1305]\n- C3 FAIL: benefit_goal_corr ACTIVE < 0.2: [0.4982, -0.7662, -0.9611]\n",
+  "claim_ids": [
+    "SD-012",
+    "MECH-112"
+  ],
+  "evidence_direction_per_claim": {
+    "SD-012": "weakens",
+    "MECH-112": "weakens"
+  },
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
+  "supersedes": "v3_exq_233_sd012_zgoal_seeding_validation",
+  "fatal_error_count": 0,
+  "seed_results": [
+    {
+      "seed": 42,
+      "SD012_ACTIVE": {
+        "condition": "SD012_ACTIVE",
+        "drive_weight": 2.0,
+        "mean_z_goal_norm": 0.07456692267864287,
+        "mean_benefit_rate": 0.043746409642172385,
+        "benefit_goal_corr": 0.4982264599866235,
+        "ep_goal_norm_means": [
+          0.013698969036340714,
+          0.05505489529325412,
+          0.05222646053880453,
+          0.08194786496460438,
+          0.16990642356021063
+        ],
+        "ep_benefit_rates": [
+          0.04683203175663948,
+          0.01977777796295973,
+          0.0,
+          0.08271396383643151,
+          0.06940827465483121
+        ]
+      },
+      "SD012_ABLATED": {
+        "condition": "SD012_ABLATED",
+        "drive_weight": 0.0,
+        "mean_z_goal_norm": 0.07176146181689187,
+        "mean_benefit_rate": 0.043746409642172385,
+        "benefit_goal_corr": 0.4915902345054681,
+        "ep_goal_norm_means": [
+          0.013698969036340714,
+          0.05505489529325412,
+          0.05222646053880453,
+          0.08000029660761357,
+          0.1578266876084464
+        ],
+        "ep_benefit_rates": [
+          0.04683203175663948,
+          0.01977777796295973,
+          0.0,
+          0.08271396383643151,
+          0.06940827465483121
+        ]
+      }
+    },
+    {
+      "seed": 7,
+      "SD012_ACTIVE": {
+        "condition": "SD012_ACTIVE",
+        "drive_weight": 2.0,
+        "mean_z_goal_norm": 0.15545922558754682,
+        "mean_benefit_rate": 0.05165233306054558,
+        "benefit_goal_corr": -0.7662338111267257,
+        "ep_goal_norm_means": [
+          0.017545088194310665,
+          0.1258172944188118,
+          0.1700986735522747,
+          0.23753631114959717,
+          0.2262987606227398
+        ],
+        "ep_benefit_rates": [
+          0.07105611618608236,
+          0.05857940800487995,
+          0.061747807823121545,
+          0.016860947545085634,
+          0.05001738574355841
+        ]
+      },
+      "SD012_ABLATED": {
+        "condition": "SD012_ABLATED",
+        "drive_weight": 0.0,
+        "mean_z_goal_norm": 0.14628747420119387,
+        "mean_benefit_rate": 0.05165233306054558,
+        "benefit_goal_corr": -0.7798688658473456,
+        "ep_goal_norm_means": [
+          0.017545088194310665,
+          0.11386590637266636,
+          0.1553260564804077,
+          0.22742848311151778,
+          0.21727183684706688
+        ],
+        "ep_benefit_rates": [
+          0.07105611618608236,
+          0.05857940800487995,
+          0.061747807823121545,
+          0.016860947545085634,
+          0.05001738574355841
+        ]
+      }
+    },
+    {
+      "seed": 13,
+      "SD012_ACTIVE": {
+        "condition": "SD012_ACTIVE",
+        "drive_weight": 2.0,
+        "mean_z_goal_norm": 0.14169793454930185,
+        "mean_benefit_rate": 0.035866559203714135,
+        "benefit_goal_corr": -0.9611187101826583,
+        "ep_goal_norm_means": [
+          0.07939826240763068,
+          0.17041090726852418,
+          0.15505724251270295,
+          0.1565679207444191,
+          0.14705533981323243
+        ],
+        "ep_benefit_rates": [
+          0.08411396574229002,
+          0.018894714768975973,
+          0.03269300553947687,
+          0.011384378001093865,
+          0.03224673196673393
+        ]
+      },
+      "SD012_ABLATED": {
+        "condition": "SD012_ABLATED",
+        "drive_weight": 0.0,
+        "mean_z_goal_norm": 0.13048015056177972,
+        "mean_benefit_rate": 0.035866559203714135,
+        "benefit_goal_corr": -0.9675213712925715,
+        "ep_goal_norm_means": [
+          0.07687529539689422,
+          0.15452677085995675,
+          0.14072277620434762,
+          0.1442243531346321,
+          0.136051557213068
+        ],
+        "ep_benefit_rates": [
+          0.08411396574229002,
+          0.018894714768975973,
+          0.03269300553947687,
+          0.011384378001093865,
+          0.03224673196673393
+        ]
+      }
+    }
+  ],
+  "run_timestamp": "20260404T185519Z",
+  "run_id": "v3_exq_238_20260404T185519Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

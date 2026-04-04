@@ -5044,6 +5044,15 @@
     EXQ-125 runs vs 1 PASS (EXQ-063). Diagnosis flagged: systematic difference between EXQ-063
     and EXQ-125 designs unknown (seed set, warmup length, env config). /diagnose-errors
     requested before any status change. Maintain provisional pending diagnosis.
+    EXQ-227 DIAGNOSTIC non_contributory (2026-04-05, cowork-2026-04-05-a): attempted to
+    reproduce EXQ-063 exact conditions (seeds [0,1]). SET A harm_gap_stable=-3.26e-05
+    (gap sign inverted, fails bare>0 criterion). EXQ-063 PASS does not reproduce under
+    current substrate. Root cause: SD-010/011/012 substrate changes reduced harm rates
+    ~100x, making any committed-gate signal undetectable at original env parameters
+    (num_hazards=4, hazard_harm=0.02). This confirms the EXQ-063 vs EXQ-125 discrepancy
+    is substrate drift, not seed-dependence. EXQ-125a redesign (num_hazards=8,
+    hazard_harm=0.05, 5 seeds, harm_obs passed to sense()) is the correct follow-up.
+    /diagnose-errors complete.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -5974,6 +5983,10 @@
     Wanting representation (EXQ-074f PASS) and wanting/liking dissociation are validated;
     wanting -> resource collection requires hippocampal navigation. evidence_direction
     corrected to non_contributory in manifest.
+    EXQ-233 did not provide evidence for MECH-112: z_goal seeding never fired in either
+    condition due to sub-threshold benefit_exposure (proximity_benefit_scale=0.03 default,
+    benefit_exposure~0.025 < threshold 0.1). EXQ-238 with corrected env params will provide
+    the clean causal ablation.
 
 - id: MECH-113
   title: "The agent requires a self-maintenance error signal monitoring internal latent coherence, independent of external harm signals."
@@ -7802,6 +7815,13 @@
     085h-085l. SD-012 seeding mechanism is validated; the behavioral lift it is intended
     to enable is not yet demonstrated. Governance: hold -- core seeding claim is supported
     but navigation outcome criterion (which is the point of the claim) remains unmet.
+    EXQ-233 FAIL non_contributory (2026-04-05, cowork-2026-04-05-a): both conditions
+    (drive_weight=2.0 and 0.0) produced identical z_goal_norm~0 because
+    proximity_benefit_scale was not set (default 0.03), yielding benefit_exposure~0.025/step
+    -- below benefit_threshold=0.1 even with full drive amplification
+    (effective_benefit=0.025*3=0.075). Both conditions fail to seed. Not a test of SD-012
+    causal role. EXQ-189 validity confirmed (used proximity_benefit_scale=0.18). EXQ-238
+    will rerun with corrected env params (proximity_benefit_scale=0.18, matching EXQ-189).
 
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
@@ -8160,8 +8180,17 @@
     Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.546,
     conflict_ratio=1, 1 exp entry. Prior decision label changed from V3-gate to conflict
     resolution. Rationale: prior V3 substrate hold was premature label -- claim has
-    implementation_phase=v3 but conflict_ratio=1 is the primary blocker. EXQ-191
-    /diagnose-errors must complete before next governance review.
+    implementation_phase=v3 but conflict_ratio=1 is the primary blocker.
+    EXQ-191 /diagnose-errors complete (2026-04-05, cowork-2026-04-05-a): FAIL is
+    non_contributory. Two disqualifying confounds: (1) target_harm_rate=0.002 unreachable --
+    all conditions (primed, naive, random) hit the 200-episode budget ceiling, making C1 and
+    C3 structurally impossible to pass; (2) experiment tested generic weight-transfer speedup,
+    not the waking-consolidation MODE (no z_goal, map-geometry update from recent trajectory)
+    that ARC-038 actually specifies -- that mechanism is not implemented in current V3
+    substrate (depends on ARC-018 + MECH-092, neither instantiated). evidence_direction
+    corrected to non_contributory on manifest. Governance unblocked: claim remains
+    candidate/v3. Redesign requires: implement consolidation-mode replay, lower target
+    harm rate to ~0.05-0.10, contrast consolidation-enabled vs ablated.
   evidence: []
 
 - id: ARC-039
@@ -9007,6 +9036,12 @@
     itself, not a refutation. The weakening evidence for ARC-042 reflects that the claim
     requires richer prerequisite training before the staged gate produces measurable E3 signal.
     Hold at candidate.
+    EXQ-187a DIAGNOSIS (2026-04-05, cowork-2026-04-05-a): evidence_direction corrected from
+    non-standard "does_not_support" to non_contributory for ARC-042 / inconclusive for
+    MECH-153. EXQ-187a IS the bug-fix for EXQ-187 (context_memory.write() correctly applied).
+    Cosine_sim=1.0 is expected by ARC-042's own staged-developmental logic -- Phase 1 gate
+    (supervised ContextMemory) not crossed, so undifferentiated representations are predicted
+    by the claim, not a refutation. Non_contributory for ARC-042 (expected behavior per claim).
 
 - id: MECH-153
   title: "E1 ContextMemory requires a supervised context-labeling training objective -- not unsupervised experience alone -- to produce differentiated cue-indexed representations; without this objective, hazard-proximate and hazard-distal context vectors remain near-identical (cosine_sim approximately 1.0), leaving the MECH-150 retrieval pathway functionally silent."
@@ -9069,6 +9104,13 @@
     Consistent with MECH-153 claim: supervised labeling helps but requires more training
     signal or stronger supervision. Mixed evidence -- direction confirmed but magnitude
     insufficient. Hold at candidate.
+    EXQ-187a DIAGNOSIS (2026-04-05, cowork-2026-04-05-a): evidence_direction corrected from
+    non-standard "does_not_support" to inconclusive. The fix (context_memory.write()) was
+    correctly applied; cosine_sim=1.0 reflects insufficient training signal (150 episodes,
+    lambda=0.1) rather than a code failure. MECH-153 claims supervision is NECESSARY; this
+    experiment found a specific supervised config INSUFFICIENT -- insufficient supervision
+    failing to differentiate is inconclusive for the necessity claim (does not prove
+    supervision is unnecessary, nor sufficient). See EXQ-211 for partial replication.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
 

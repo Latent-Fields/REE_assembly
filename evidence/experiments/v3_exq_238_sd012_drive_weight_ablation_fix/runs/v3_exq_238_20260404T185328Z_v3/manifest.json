@@ -1,10 +1,10 @@
 {
   "schema_version": "experiment_pack/v1",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_233_sd012_zgoal_seeding_validation",
-  "run_id": "v3_exq_233_sd012_zgoal_seeding_validation_20260404T034148Z_v3",
+  "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
+  "run_id": "v3_exq_238_20260404T185328Z_v3",
   "status": "FAIL",
-  "timestamp_utc": "2026-04-04T03:41:48Z",
+  "timestamp_utc": "2026-04-04T18:53:28Z",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -24,12 +24,12 @@
     "MECH-112"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "unknown",
   "evidence_direction_per_claim": {
-    "SD-012": "non_contributory",
-    "MECH-112": "non_contributory"
+    "SD-012": "weakens",
+    "MECH-112": "weakens"
   },
-  "experiment_purpose": "diagnostic",
+  "experiment_purpose": "smoke_test",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -45,5 +45,5 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Corrected 2026-04-05 (cowork-2026-04-05-a/diag_233). Both conditions (drive_weight=2.0 and 0.0) produced identical z_goal_norm~0 because proximity_benefit_scale=0.03 (default) generated benefit_exposure~0.025/step, below benefit_threshold=0.1. EXQ-233 is a design error, not a test of SD-012 causal role. EXQ-238 corrects with proximity_benefit_scale=0.18."
+  "evidence_direction_note": "Dry-run / smoke test output from cowork-2026-04-05-a Wave 3 agent script validation. Not a real experiment run. Actual run to be performed by the experiment runner via queue entry V3-EXQ-238."
 }

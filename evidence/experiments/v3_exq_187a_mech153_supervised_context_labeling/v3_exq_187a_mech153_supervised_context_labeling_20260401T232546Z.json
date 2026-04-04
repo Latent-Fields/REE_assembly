@@ -22,12 +22,17 @@
     "MECH-153",
     "ARC-042"
   ],
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "inconclusive",
   "experiment_type": "v3_exq_187a_mech153_supervised_context_labeling",
   "fatal_error_count": 0,
   "run_timestamp": "20260401T232546Z",
   "claim": "MECH-153",
   "verdict": "FAIL",
   "run_id": "v3_exq_187a_mech153_supervised_context_labeling_20260401T232546Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_per_claim": {
+    "ARC-042": "non_contributory",
+    "MECH-153": "inconclusive"
+  },
+  "evidence_direction_note": "Corrected from non-standard 'does_not_support' (2026-04-05, cowork-2026-04-05-a/diag_187a). EXQ-187a IS the bug-fix for EXQ-187 (context_memory.write() correctly applied). Cosine_sim=1.0 is a valid scientific result: 150 warmup eps at lambda=0.1 is insufficient supervised signal to drive context differentiation. Not a code failure. ARC-042: non_contributory (expected behavior per staged-development logic). MECH-153: inconclusive (insufficient training config does not refute that supervision is necessary)."
 }
