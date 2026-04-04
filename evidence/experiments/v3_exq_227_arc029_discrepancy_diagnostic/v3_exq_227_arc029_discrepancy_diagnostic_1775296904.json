@@ -1,0 +1,217 @@
+{
+  "run_id": "v3_exq_227_arc029_discrepancy_diagnostic_1775296904_v3",
+  "experiment_type": "v3_exq_227_arc029_discrepancy_diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-029"
+  ],
+  "experiment_purpose": "diagnostic",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "timestamp": 1775296904,
+  "discrepancy_diagnosis": "baseline_drift: EXQ-063 conditions no longer reproduce PASS -- architecture or env has changed",
+  "note": "EXQ-063 conditions do NOT reproduce -- possible version/state drift.",
+  "set_a_label": "SET_A_EXQ063",
+  "set_a_seeds": [
+    0,
+    1
+  ],
+  "set_a_harm_gap_stable": -3.2579806208610424e-05,
+  "set_a_harm_gap_volatile": 0.00019714438473648747,
+  "set_a_reproduces": false,
+  "set_a_gap_positive": false,
+  "set_a_gate_active": true,
+  "set_b_label": "SET_B_EXQ125",
+  "set_b_seeds": [
+    42,
+    123
+  ],
+  "set_b_harm_gap_stable": 7.133659225702291e-05,
+  "set_b_harm_gap_volatile": 0.00024018384277820588,
+  "set_b_passes_125": false,
+  "set_b_gap_ok": false,
+  "set_b_ratio_ok": false,
+  "exq063_min_gap": 0.0,
+  "exq125_min_gap": 0.0001,
+  "exq125_modulation": 0.9,
+  "set_a_per_seed": [
+    {
+      "stable_gate_active": {
+        "mean_harm_per_step": -0.0008020175871253014,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "stable_gate_ablated": {
+        "mean_harm_per_step": -0.0006145671254396439,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "volatile_gate_active": {
+        "mean_harm_per_step": -0.0007045740393400193,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "volatile_gate_ablated": {
+        "mean_harm_per_step": -0.0006852547308206559,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "train": {
+        "final_running_variance": 8.57693939758285e-07,
+        "commit_threshold": 0.4,
+        "committed": true,
+        "variance_history": [
+          1.3092081066935161e-06,
+          1.6731212372924097e-06,
+          1.5071047657144115e-06,
+          1.1512175348795825e-06,
+          1.33765174730468e-06,
+          1.2907223385776158e-06,
+          1.5860392410713599e-06,
+          1.0352792603824182e-06,
+          1.4420096741416322e-06,
+          8.57693939758285e-07
+        ]
+      },
+      "seed": 0
+    },
+    {
+      "stable_gate_active": {
+        "mean_harm_per_step": -0.0006823437770009041,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "stable_gate_ablated": {
+        "mean_harm_per_step": -0.0008046346262693407,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "volatile_gate_active": {
+        "mean_harm_per_step": -0.0010205583757162096,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "volatile_gate_ablated": {
+        "mean_harm_per_step": -0.001434166453708548,
+        "n_committed": 0,
+        "n_uncommitted": 9871,
+        "fatal_errors": 0
+      },
+      "train": {
+        "final_running_variance": 1.082719921826198e-06,
+        "commit_threshold": 0.4,
+        "committed": true,
+        "variance_history": [
+          1.157720209696802e-06,
+          1.228248855357038e-06,
+          1.025083922898968e-06,
+          8.426520229217347e-07,
+          1.0674454614902305e-06,
+          9.767310093898127e-07,
+          1.2511564364284946e-06,
+          1.1592329311147422e-06,
+          1.088770806171158e-06,
+          1.082719921826198e-06
+        ]
+      },
+      "seed": 1
+    }
+  ],
+  "set_b_per_seed": [
+    {
+      "stable_gate_active": {
+        "mean_harm_per_step": -0.0009015604451298714,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "stable_gate_ablated": {
+        "mean_harm_per_step": -0.0008105960310101511,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "volatile_gate_active": {
+        "mean_harm_per_step": -0.0007476299014687539,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "volatile_gate_ablated": {
+        "mean_harm_per_step": -0.001020314189374447,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "train": {
+        "final_running_variance": 9.716779550746752e-07,
+        "commit_threshold": 0.4,
+        "committed": true,
+        "variance_history": [
+          2.0514589340051145e-06,
+          1.7020590261362675e-06,
+          1.6292819016087798e-06,
+          1.4380275474981283e-06,
+          1.0213356360825135e-06,
+          1.3139747979869314e-06,
+          1.1439348999223944e-06,
+          9.587955681329764e-07,
+          1.1966236993830427e-06,
+          9.716779550746752e-07
+        ]
+      },
+      "seed": 42
+    },
+    {
+      "stable_gate_active": {
+        "mean_harm_per_step": -0.000812500028192997,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "stable_gate_ablated": {
+        "mean_harm_per_step": -0.0010461376268267632,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "volatile_gate_active": {
+        "mean_harm_per_step": -0.0005796891608834267,
+        "n_committed": 10000,
+        "n_uncommitted": 0,
+        "fatal_errors": 0
+      },
+      "volatile_gate_ablated": {
+        "mean_harm_per_step": -0.0007873725585341455,
+        "n_committed": 0,
+        "n_uncommitted": 10000,
+        "fatal_errors": 0
+      },
+      "train": {
+        "final_running_variance": 6.743725294255795e-07,
+        "commit_threshold": 0.4,
+        "committed": true,
+        "variance_history": [
+          1.3398313306187256e-06,
+          1.2288031748769326e-06,
+          1.3150727890799427e-06,
+          1.0203277172841512e-06,
+          8.859046851534749e-07,
+          1.0161270541966825e-06,
+          7.42572495070026e-07,
+          8.454157777375747e-07,
+          7.388384065226702e-07,
+          6.743725294255795e-07
+        ]
+      },
+      "seed": 123
+    }
+  ]
+}

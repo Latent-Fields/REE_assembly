@@ -1,0 +1,145 @@
+{
+  "run_id": "v3_exq_228_mech116_arc032_theta_bypass_ablation_1775299018_v3",
+  "experiment_type": "v3_exq_228_mech116_arc032_theta_bypass_ablation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-116",
+    "ARC-032"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "MECH-116": "does_not_support",
+    "ARC-032": "does_not_support"
+  },
+  "decision": "retire_ree_claim",
+  "timestamp": 1775299018,
+  "seeds": [
+    42,
+    7,
+    13
+  ],
+  "warmup_episodes": 300,
+  "eval_episodes": 300,
+  "steps_per_episode": 200,
+  "world_dim": 32,
+  "drive_weight": 2.0,
+  "thresh_goal_margin": 0.02,
+  "thresh_interaction": 0.01,
+  "thresh_goal_norm": 0.05,
+  "goal_zone_radius": 3,
+  "neutral_radius": 4,
+  "mean_goal_margin": 0.0,
+  "mean_interaction": 0.0,
+  "mean_goal_norm_enabled": 0.43477702140808105,
+  "c_mech116_pass": false,
+  "c_arc032_pass": false,
+  "c_mech116_count": 0,
+  "c_arc032_count": 0,
+  "precond_ok": true,
+  "n_seeds": 3,
+  "seed_metrics": [
+    {
+      "seed": 42,
+      "goal_margin": 0.0,
+      "interaction": 0.0,
+      "err_goal_en": 0.0001984274842131603,
+      "err_goal_dis": 0.0001984274842131603,
+      "err_neut_en": 0.0001946800691075623,
+      "err_neut_dis": 0.0001946800691075623,
+      "goal_norm_en": 0.47446754574775696,
+      "c_mech116": false,
+      "c_arc032": false,
+      "precond_ok": true
+    },
+    {
+      "seed": 7,
+      "goal_margin": 0.0,
+      "interaction": 0.0,
+      "err_goal_en": 0.00013358395407945593,
+      "err_goal_dis": 0.00013358395407945593,
+      "err_neut_en": 0.00013197022317204958,
+      "err_neut_dis": 0.00013197022317204958,
+      "goal_norm_en": 0.42602068185806274,
+      "c_mech116": false,
+      "c_arc032": false,
+      "precond_ok": true
+    },
+    {
+      "seed": 13,
+      "goal_margin": 0.0,
+      "interaction": 0.0,
+      "err_goal_en": 0.0001738357347073007,
+      "err_goal_dis": 0.0001738357347073007,
+      "err_neut_en": 0.00017297018970024742,
+      "err_neut_dis": 0.00017297018970024742,
+      "goal_norm_en": 0.40384283661842346,
+      "c_mech116": false,
+      "c_arc032": false,
+      "precond_ok": true
+    }
+  ],
+  "all_condition_results": [
+    {
+      "seed": 42,
+      "condition": "THETA_BYPASS_ENABLED",
+      "mean_err_goal": 0.0001984274842131603,
+      "mean_err_neutral": 0.0001946800691075623,
+      "n_goal_steps": 3958,
+      "n_neutral_steps": 850,
+      "goal_norm": 0.47446754574775696,
+      "precond_ok": true
+    },
+    {
+      "seed": 42,
+      "condition": "THETA_BYPASS_DISABLED",
+      "mean_err_goal": 0.0001984274842131603,
+      "mean_err_neutral": 0.0001946800691075623,
+      "n_goal_steps": 3958,
+      "n_neutral_steps": 850,
+      "goal_norm": 0.47446754574775696,
+      "precond_ok": true
+    },
+    {
+      "seed": 7,
+      "condition": "THETA_BYPASS_ENABLED",
+      "mean_err_goal": 0.00013358395407945593,
+      "mean_err_neutral": 0.00013197022317204958,
+      "n_goal_steps": 4417,
+      "n_neutral_steps": 842,
+      "goal_norm": 0.42602068185806274,
+      "precond_ok": true
+    },
+    {
+      "seed": 7,
+      "condition": "THETA_BYPASS_DISABLED",
+      "mean_err_goal": 0.00013358395407945593,
+      "mean_err_neutral": 0.00013197022317204958,
+      "n_goal_steps": 4417,
+      "n_neutral_steps": 842,
+      "goal_norm": 0.42602068185806274,
+      "precond_ok": true
+    },
+    {
+      "seed": 13,
+      "condition": "THETA_BYPASS_ENABLED",
+      "mean_err_goal": 0.0001738357347073007,
+      "mean_err_neutral": 0.00017297018970024742,
+      "n_goal_steps": 4373,
+      "n_neutral_steps": 940,
+      "goal_norm": 0.40384283661842346,
+      "precond_ok": true
+    },
+    {
+      "seed": 13,
+      "condition": "THETA_BYPASS_DISABLED",
+      "mean_err_goal": 0.0001738357347073007,
+      "mean_err_neutral": 0.00017297018970024742,
+      "n_goal_steps": 4373,
+      "n_neutral_steps": 940,
+      "goal_norm": 0.40384283661842346,
+      "precond_ok": true
+    }
+  ]
+}

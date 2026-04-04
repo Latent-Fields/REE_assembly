@@ -1,0 +1,152 @@
+{
+  "run_id": "v3_exq_229_mech128_e1_goal_conditioning_pair_1775299023_v3",
+  "experiment_type": "v3_exq_229_mech128_e1_goal_conditioning_pair",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-128"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "decision": "retire_ree_claim",
+  "timestamp": 1775299023,
+  "dry_run": false,
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "warmup_episodes": 400,
+  "eval_episodes": 100,
+  "steps_per_episode": 200,
+  "world_dim": 32,
+  "drive_weight": 2.0,
+  "thresh_interaction": 0.005,
+  "thresh_neutral_diff": 0.03,
+  "thresh_goal_norm": 0.05,
+  "mean_interaction": 3.544456306961157e-06,
+  "mean_goal_norm_conditioned": 0.40547558665275574,
+  "mean_err_goal_conditioned": 0.0003376314127423302,
+  "mean_err_goal_ablated": 0.0003758108436750851,
+  "c1_interaction_pass": false,
+  "c2_goal_direction_pass": true,
+  "c3_neutral_specificity_pass": true,
+  "c4_goal_norm_pass": true,
+  "c1_count": 0,
+  "c2_count": 2,
+  "c3_count": 3,
+  "c4_count": 3,
+  "n_seeds": 3,
+  "seed_metrics": [
+    {
+      "seed": 42,
+      "interaction": 1.2397144847756982e-06,
+      "neutral_diff": 3.812794620829097e-05,
+      "err_goal_cond": 0.000538429268591859,
+      "err_goal_abl": 0.0005753175003153743,
+      "err_neut_cond": 0.0005545175089296783,
+      "err_neut_abl": 0.0005926454551379692,
+      "goal_norm_cond": 0.3468914330005646,
+      "c1": false,
+      "c2": true,
+      "c3": true,
+      "c4": true
+    },
+    {
+      "seed": 7,
+      "interaction": 4.038912145889952e-06,
+      "neutral_diff": 0.00010038789929125741,
+      "err_goal_cond": 0.00024960161276381274,
+      "err_goal_abl": 0.0003459505999091802,
+      "err_neut_cond": 0.00024652506491773453,
+      "err_neut_abl": 0.00034691296420899195,
+      "goal_norm_cond": 0.4473636746406555,
+      "c1": false,
+      "c2": true,
+      "c3": true,
+      "c4": true
+    },
+    {
+      "seed": 123,
+      "interaction": 5.354742290217821e-06,
+      "neutral_diff": 1.3344183780400037e-05,
+      "err_goal_cond": 0.00022486335687131866,
+      "err_goal_abl": 0.0002061644308007008,
+      "err_neut_cond": 0.0002423147444780035,
+      "err_neut_abl": 0.00022897056069760347,
+      "goal_norm_cond": 0.4221716523170471,
+      "c1": false,
+      "c2": false,
+      "c3": true,
+      "c4": true
+    }
+  ],
+  "all_condition_results": [
+    {
+      "seed": 42,
+      "condition": "GOAL_CONDITIONED",
+      "goal_conditioned": true,
+      "mean_err_goal": 0.000538429268591859,
+      "mean_err_neutral": 0.0005545175089296783,
+      "goal_zone_steps": 1432,
+      "neutral_steps": 261,
+      "total_steps": 2589,
+      "goal_norm": 0.3468914330005646
+    },
+    {
+      "seed": 42,
+      "condition": "GOAL_ABLATED",
+      "goal_conditioned": false,
+      "mean_err_goal": 0.0005753175003153743,
+      "mean_err_neutral": 0.0005926454551379692,
+      "goal_zone_steps": 1432,
+      "neutral_steps": 261,
+      "total_steps": 2589,
+      "goal_norm": 0.34649795293807983
+    },
+    {
+      "seed": 7,
+      "condition": "GOAL_CONDITIONED",
+      "goal_conditioned": true,
+      "mean_err_goal": 0.00024960161276381274,
+      "mean_err_neutral": 0.00024652506491773453,
+      "goal_zone_steps": 1474,
+      "neutral_steps": 301,
+      "total_steps": 2671,
+      "goal_norm": 0.4473636746406555
+    },
+    {
+      "seed": 7,
+      "condition": "GOAL_ABLATED",
+      "goal_conditioned": false,
+      "mean_err_goal": 0.0003459505999091802,
+      "mean_err_neutral": 0.00034691296420899195,
+      "goal_zone_steps": 1325,
+      "neutral_steps": 308,
+      "total_steps": 2640,
+      "goal_norm": 0.4169788360595703
+    },
+    {
+      "seed": 123,
+      "condition": "GOAL_CONDITIONED",
+      "goal_conditioned": true,
+      "mean_err_goal": 0.00022486335687131866,
+      "mean_err_neutral": 0.0002423147444780035,
+      "goal_zone_steps": 1607,
+      "neutral_steps": 222,
+      "total_steps": 2617,
+      "goal_norm": 0.4221716523170471
+    },
+    {
+      "seed": 123,
+      "condition": "GOAL_ABLATED",
+      "goal_conditioned": false,
+      "mean_err_goal": 0.0002061644308007008,
+      "mean_err_neutral": 0.00022897056069760347,
+      "goal_zone_steps": 1607,
+      "neutral_steps": 222,
+      "total_steps": 2617,
+      "goal_norm": 0.4256403148174286
+    }
+  ]
+}

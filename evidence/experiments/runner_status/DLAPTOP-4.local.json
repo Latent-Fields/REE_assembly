@@ -2,35 +2,9 @@
   "schema_version": "v1",
   "runner_pid": 43051,
   "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
-  "last_updated": "2026-04-04T09:00:51.036419+00:00",
+  "last_updated": "2026-04-04T15:13:38.085147+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-227",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "ARC-029 discrepancy diagnostic (EXQ-063 vs EXQ-125 conditions reproduced)",
-    "description": "",
-    "script": "experiments/v3_exq_227_arc029_discrepancy_diagnostic.py",
-    "started_at": "2026-04-04T03:45:27.339149+00:00",
-    "progress": {
-      "run_label": "starting...",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 100,
-      "episodes_total": 400,
-      "overall_pct": 25.0
-    },
-    "seconds_elapsed": 18924,
-    "seconds_remaining": 56771,
-    "recent_lines": [
-      "============================================================",
-      "[V3-EXQ-227] SET_B_EXQ125 Seed 123",
-      "============================================================",
-      "[training] SET_B_EXQ125 seed=123 warmup=400",
-      "[train] ep 100/400 running_var=0.000001 committed=True"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
       "queue_id": "V3-ONBOARD-smoke-EWINPC",
@@ -48,39 +22,6 @@
       "backlog_id": "",
       "claim_id": "",
       "title": "Q-012 control constraint necessity (REE_FULL vs PREDICTIVE_ONLY)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-227",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-029 discrepancy diagnostic (EXQ-063 vs EXQ-125 conditions reproduced)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-228",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-116 / ARC-032 theta-bypass ablation (theta_buffer zeroed vs enabled)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-229",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-128 E1 goal-conditioning pair (GOAL_CONDITIONED vs GOAL_ABLATED)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "pending",
@@ -4282,6 +4223,48 @@
       "output_file": "",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 216.7
+    },
+    {
+      "queue_id": "V3-EXQ-227",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-029 discrepancy diagnostic (EXQ-063 vs EXQ-125 conditions reproduced)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "discrepancy_diagnosis: baseline_drift: EXQ-063 conditions no longer reproduce PASS -- architecture or env has changed | -> FAIL | Status: FAIL",
+      "started_at": "2026-04-04T03:45:27.339149+00:00",
+      "completed_at": "2026-04-04T10:01:45.654501+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 22578.2
+    },
+    {
+      "queue_id": "V3-EXQ-228",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-116 / ARC-032 theta-bypass ablation (theta_buffer zeroed vs enabled)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[THETA_BYPASS_DISABLED] seed=13 n_goal=4373 n_neutral=940 err_goal=0.00017 err_neutral=0.00017 goal_norm=0.4038 precond_ok=True | [V3-EXQ-228] RESULT: FAIL C_MECH116=False (0/3) C_ARC032=False (0/3) precond_ok=True | Status: FAIL",
+      "started_at": "2026-04-04T10:01:48.247870+00:00",
+      "completed_at": "2026-04-04T10:36:59.072869+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2110.8
+    },
+    {
+      "queue_id": "V3-EXQ-229",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-128 E1 goal-conditioning pair (GOAL_CONDITIONED vs GOAL_ABLATED)",
+      "description": "",
+      "result": "UNKNOWN",
+      "result_summary": "[train] GOAL_ABLATED seed=123 ep 300/400 harm=0.058 benefit=0.000 goal_norm=0.3970 | [train] GOAL_ABLATED seed=123 ep 400/400 harm=0.000 benefit=0.000 goal_norm=0.4026 | [EXQ-229] RESULT: FAIL interaction=0.00000 goal_norm=0.4055 C1=False C2=True C3=True C4=True",
+      "started_at": "2026-04-04T10:37:01.568228+00:00",
+      "completed_at": "2026-04-04T15:13:38.081396+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 16596.4
     }
   ]
 }

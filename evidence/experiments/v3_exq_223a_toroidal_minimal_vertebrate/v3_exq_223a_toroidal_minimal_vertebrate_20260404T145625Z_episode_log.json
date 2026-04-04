@@ -1,0 +1,2250 @@
+{
+  "experiment_type": "v3_exq_223a_toroidal_minimal_vertebrate",
+  "env_config": {
+    "size": 10,
+    "num_hazards": 3,
+    "num_resources": 5,
+    "hazard_harm": 0.05,
+    "env_drift_interval": 5,
+    "env_drift_prob": 0.1,
+    "proximity_harm_scale": 0.1,
+    "proximity_benefit_scale": 0.05,
+    "proximity_approach_threshold": 0.2,
+    "hazard_field_decay": 0.5,
+    "toroidal": true
+  },
+  "phase": "eval_ree",
+  "toroidal": true,
+  "seeds": [
+    {
+      "seed": 0,
+      "episodes": [
+        {
+          "ep": 0,
+          "initial_hazards": [
+            [
+              2,
+              0
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "initial_resources": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "steps": [
+            {
+              "t": 0,
+              "pos": [
+                6,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.10151515007019044,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.40109363198280334,
+              "z_beta_val": -0.00145557033829391,
+              "world_change_norm": 0.0,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.8984848499298096,
+              "energy": 0.99,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 1,
+              "pos": [
+                5,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.08857142925262451,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.662681519985199,
+              "z_beta_val": -0.00251670996658504,
+              "world_change_norm": 0.42332297563552856,
+              "mode": "explore",
+              "transition_type": "hazard_approach",
+              "health": 0.8099134206771851,
+              "energy": 0.98,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 2,
+              "pos": [
+                4,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.08055555820465088,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7019528150558472,
+              "z_beta_val": -0.003289228305220604,
+              "world_change_norm": 0.05262906476855278,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.7293578624725342,
+              "energy": 0.97,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 3,
+              "pos": [
+                3,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.07579364776611329,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7090237736701965,
+              "z_beta_val": -0.003829324385151267,
+              "world_change_norm": 0.02862333506345749,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.6535642147064209,
+              "energy": 0.96,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 4,
+              "pos": [
+                2,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.0735714316368103,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7010496854782104,
+              "z_beta_val": -0.004196550697088242,
+              "world_change_norm": 0.02312161587178707,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.5799927830696106,
+              "energy": 0.95,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 5,
+              "pos": [
+                1,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.06540403962135315,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6979668140411377,
+              "z_beta_val": -0.0044888583943247795,
+              "world_change_norm": 0.02507147379219532,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.5145887434482574,
+              "energy": 0.94,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 6,
+              "pos": [
+                0,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.05888888835906983,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7025173306465149,
+              "z_beta_val": -0.004708167631179094,
+              "world_change_norm": 0.026321448385715485,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.45569985508918764,
+              "energy": 0.9299999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 7,
+              "pos": [
+                9,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.12095239162445069,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7035792469978333,
+              "z_beta_val": -0.004855762235820293,
+              "world_change_norm": 0.03839480131864548,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.33474746346473694,
+              "energy": 0.9199999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 8,
+              "pos": [
+                8,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.21538461446762086,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7051036357879639,
+              "z_beta_val": -0.004947194829583168,
+              "world_change_norm": 0.04279417544603348,
+              "mode": "neutral",
+              "transition_type": "env_caused_hazard",
+              "health": 0.11936284899711608,
+              "energy": 0.9099999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 9,
+              "pos": [
+                7,
+                5
+              ],
+              "action": 0,
+              "harm_signal": -0.12333333492279053,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7027086019515991,
+              "z_beta_val": -0.004993786104023457,
+              "world_change_norm": 0.03385315090417862,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.0,
+              "energy": 0.8999999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "ep": 1,
+          "initial_hazards": [
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "initial_resources": [
+            [
+              5,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "steps": [
+            {
+              "t": 0,
+              "pos": [
+                8,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.08333333730697633,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.3983519673347473,
+              "z_beta_val": -0.001476417062804103,
+              "world_change_norm": 0.0,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.9166666626930237,
+              "energy": 0.99,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 1,
+              "pos": [
+                7,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.09079365730285645,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6612623333930969,
+              "z_beta_val": -0.002566548530012369,
+              "world_change_norm": 0.4332599341869354,
+              "mode": "explore",
+              "transition_type": "hazard_approach",
+              "health": 0.8258730053901672,
+              "energy": 0.98,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 2,
+              "pos": [
+                6,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.08666666746139527,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6999222040176392,
+              "z_beta_val": -0.0033322700764983892,
+              "world_change_norm": 0.047344908118247986,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.7392063379287719,
+              "energy": 0.97,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 3,
+              "pos": [
+                5,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.086753249168396,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.700502336025238,
+              "z_beta_val": -0.0038697095587849617,
+              "world_change_norm": 0.02762952633202076,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.6524530887603759,
+              "energy": 0.96,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 4,
+              "pos": [
+                4,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.09166666865348816,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7057079076766968,
+              "z_beta_val": -0.004268846474587917,
+              "world_change_norm": 0.035798970609903336,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.5607864201068877,
+              "energy": 0.95,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 5,
+              "pos": [
+                3,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.07760683894157411,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7059166431427002,
+              "z_beta_val": -0.004545303992927074,
+              "world_change_norm": 0.021422479301691055,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.4831795811653136,
+              "energy": 0.94,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 6,
+              "pos": [
+                2,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.06761904954910279,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7046663761138916,
+              "z_beta_val": -0.004736636765301228,
+              "world_change_norm": 0.026551226153969765,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.4155605316162108,
+              "energy": 0.9299999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 7,
+              "pos": [
+                1,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.06008658409118653,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.701922595500946,
+              "z_beta_val": -0.004889606032520533,
+              "world_change_norm": 0.025667166337370872,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.35547394752502426,
+              "energy": 0.9199999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 8,
+              "pos": [
+                0,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.05416666865348816,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7096388936042786,
+              "z_beta_val": -0.005002148915082216,
+              "world_change_norm": 0.02947011962532997,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.3013072788715361,
+              "energy": 0.9099999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 9,
+              "pos": [
+                9,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.07301587462425232,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7048199772834778,
+              "z_beta_val": -0.005077603738754988,
+              "world_change_norm": 0.019781988114118576,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.22829140424728375,
+              "energy": 0.8999999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 10,
+              "pos": [
+                8,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.08333333730697633,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6994276642799377,
+              "z_beta_val": -0.005090128630399704,
+              "world_change_norm": 0.022286321967840195,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.14495806694030744,
+              "energy": 0.8899999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 11,
+              "pos": [
+                7,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.09079365730285645,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7017834186553955,
+              "z_beta_val": -0.005111737176775932,
+              "world_change_norm": 0.026303784921765327,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.05416440963745099,
+              "energy": 0.8799999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 12,
+              "pos": [
+                6,
+                9
+              ],
+              "action": 0,
+              "harm_signal": -0.08666666746139527,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7043501734733582,
+              "z_beta_val": -0.005127966403961182,
+              "world_change_norm": 0.015120506286621094,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.0,
+              "energy": 0.8699999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  7,
+                  6
+                ],
+                [
+                  8,
+                  3
+                ],
+                [
+                  4,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  7,
+                  5
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  3,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "ep": 2,
+          "initial_hazards": [
+            [
+              3,
+              5
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              7,
+              7
+            ]
+          ],
+          "initial_resources": [
+            [
+              3,
+              3
+            ],
+            [
+              0,
+              9
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "steps": [
+            {
+              "t": 0,
+              "pos": [
+                8,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.06746032238006593,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.39940401911735535,
+              "z_beta_val": -0.0014802104560658336,
+              "world_change_norm": 0.0,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.9325396776199341,
+              "energy": 0.99,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  3
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 1,
+              "pos": [
+                7,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.07651515007019044,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6648823618888855,
+              "z_beta_val": -0.002533043036237359,
+              "world_change_norm": 0.4277955889701843,
+              "mode": "explore",
+              "transition_type": "hazard_approach",
+              "health": 0.8560245275497436,
+              "energy": 0.98,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  3
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 2,
+              "pos": [
+                6,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.07714285850524903,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6965901255607605,
+              "z_beta_val": -0.0032770822290331125,
+              "world_change_norm": 0.04494783282279968,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.7788816690444945,
+              "energy": 0.97,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  3
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 3,
+              "pos": [
+                5,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.08055555820465088,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6930220127105713,
+              "z_beta_val": -0.003832288086414337,
+              "world_change_norm": 0.04593754559755325,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.6983261108398436,
+              "energy": 0.96,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  3
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 4,
+              "pos": [
+                4,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.08722221851348877,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7022056579589844,
+              "z_beta_val": -0.004205716773867607,
+              "world_change_norm": 0.05712132900953293,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.6111038923263549,
+              "energy": 0.95,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  3,
+                  3
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 5,
+              "pos": [
+                3,
+                3
+              ],
+              "action": 0,
+              "harm_signal": 0.4257575750350952,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7085878849029541,
+              "z_beta_val": -0.0044966391287744045,
+              "world_change_norm": 0.08462075144052505,
+              "mode": "approach",
+              "transition_type": "resource",
+              "health": 0.7611038923263549,
+              "energy": 0.99,
+              "harm_event": false,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 6,
+              "pos": [
+                2,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.09151515364646912,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7095007300376892,
+              "z_beta_val": -0.004662810824811459,
+              "world_change_norm": 0.05507068708539009,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.6695887386798858,
+              "energy": 0.98,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 7,
+              "pos": [
+                1,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.0785714328289032,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7042635083198547,
+              "z_beta_val": -0.0047957273200154305,
+              "world_change_norm": 0.043980732560157776,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.5910173058509826,
+              "energy": 0.97,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 8,
+              "pos": [
+                0,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.06895604133605958,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7042507529258728,
+              "z_beta_val": -0.004917751997709274,
+              "world_change_norm": 0.04602321237325668,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.522061264514923,
+              "energy": 0.96,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 9,
+              "pos": [
+                9,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.060384619235992434,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7073239684104919,
+              "z_beta_val": -0.005005372688174248,
+              "world_change_norm": 0.027707286179065704,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.46167664527893054,
+              "energy": 0.95,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 10,
+              "pos": [
+                8,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.06746032238006593,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7067798376083374,
+              "z_beta_val": -0.005031546577811241,
+              "world_change_norm": 0.01099766418337822,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.3942163228988646,
+              "energy": 0.94,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 11,
+              "pos": [
+                7,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.07651515007019044,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7060481309890747,
+              "z_beta_val": -0.005056406371295452,
+              "world_change_norm": 0.0066182659938931465,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.31770117282867416,
+              "energy": 0.9299999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 12,
+              "pos": [
+                6,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.07714285850524903,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7017171382904053,
+              "z_beta_val": -0.005073581822216511,
+              "world_change_norm": 0.020795730873942375,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.24055831432342512,
+              "energy": 0.9199999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 13,
+              "pos": [
+                5,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.08055555820465088,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.6945126056671143,
+              "z_beta_val": -0.005123787559568882,
+              "world_change_norm": 0.04975631460547447,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.16000275611877424,
+              "energy": 0.9099999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 14,
+              "pos": [
+                4,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.08722221851348877,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7010371088981628,
+              "z_beta_val": -0.005142485722899437,
+              "world_change_norm": 0.0470861941576004,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.07278053760528547,
+              "energy": 0.8999999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            },
+            {
+              "t": 15,
+              "pos": [
+                3,
+                3
+              ],
+              "action": 0,
+              "harm_signal": -0.09857142567634583,
+              "z_harm_norm": 0.0,
+              "z_world_norm": 0.7085504531860352,
+              "z_beta_val": -0.0051644635386765,
+              "world_change_norm": 0.06543947756290436,
+              "mode": "neutral",
+              "transition_type": "hazard_approach",
+              "health": 0.0,
+              "energy": 0.8899999999999999,
+              "harm_event": true,
+              "n_cands": 32,
+              "hazards": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  7,
+                  7
+                ]
+              ],
+              "resources": [
+                [
+                  0,
+                  9
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "run_id": "v3_exq_223a_toroidal_minimal_vertebrate_20260404T145625Z_v3"
+}

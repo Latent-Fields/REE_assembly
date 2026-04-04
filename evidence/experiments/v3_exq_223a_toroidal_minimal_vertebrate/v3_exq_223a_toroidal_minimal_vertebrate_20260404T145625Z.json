@@ -1,0 +1,30 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "c1_seeds_pass": 1.0,
+    "c2_seeds_pass": 1.0,
+    "c3_seeds_pass": 1.0,
+    "c4_seeds_pass": 0.0,
+    "criteria_met": 0.0,
+    "n_seeds": 1.0,
+    "majority_threshold": 2.0,
+    "seed0_warmup_first25_reward": -0.9756484746932983,
+    "seed0_warmup_last25_reward": -0.9756484746932983,
+    "seed0_warmup_improvement": 0.0,
+    "seed0_warmup_final_rv": 0.07306984270891678,
+    "seed0_ree_mean_reward": -0.9288353522618612,
+    "seed0_ree_mean_harm": 1.0707545439402264,
+    "seed0_ree_mean_n_cands": 32.0,
+    "seed0_rand_mean_reward": -0.9662400603294374,
+    "seed0_rand_mean_harm": 1.1018100460370384,
+    "seed0_harm_ratio": 0.971814105154957
+  },
+  "summary_markdown": "# V3-EXQ-223a -- Toroidal Minimal Vertebrate Cognition Ablation\n\n**Status:** FAIL\n**Purpose:** Hypothesis generation -- does minimal mind survive without walls to exploit?\n**Toroidal:** no walls; movement and hazard drift wrap at grid edges\n**Ablation:** commitment_threshold=-1.0 (always uncommitted, no argmin, no BetaGate hold)\n             z_goal_enabled=False, benefit_eval_enabled=False, goal_weight=0.0\n**Warmup:** 100 eps | **Eval:** 50 eps | **Seeds:** [0]\n\n## Scientific Question\n\nEXQ-223 passed via wall-hugging: agent moved in one direction to a wall\ncorner and stayed there. This provides free hazard avoidance because\njellyfish drift only within the interior. The minimal mind may have no\ngenuine gradient-following beyond exploiting this boundary effect.\n\nWith toroidal wrapping, walls are removed. If PASS: the minimal loop has\ngenuine spatial gradient-following beyond wall refuge. If FAIL: EXQ-223\nresult was entirely boundary-dependent.\n\nSecondary question: does the agent develop a spatial preference (row/column\nhalf of grid), indicating z_world encodes more than the immediate 5x5 view?\n\n## Pre-registered Thresholds\n\n| Criterion | Threshold | Seed requirement |\n|-----------|-----------|-----------------|\n| C1: ree_reward > rand_reward | > 0.0 | >= 2/1 seeds |\n| C2: harm_ratio (ree/rand) | < 1.0 | >= 2/1 seeds |\n| C3: n_cands per e3 tick (info) | >= 2 | informational |\n| C4: warmup improvement delta | > 0.0 | >= 2/1 seeds |\n\n## Results by Seed\n\n| Seed | W-first25 | W-last25 | W-delta | REE reward | rand reward | REE harm | rand harm | harm ratio | n_cands |\n|------|-----------|----------|---------|------------|------------|---------|----------|-----------|---------|\n| 0 | -0.9756 | -0.9756 | 0.0000 | -0.9288 | -0.9662 | 1.0708 | 1.1018 | 0.9718 | 32.0 |\n\n## PASS Criteria\n\n| Criterion | Seeds passing | Required | Result |\n|-----------|--------------|---------|--------|\n| C1 ree > rand reward | 1/1 | >=2 | FAIL |\n| C2 harm ratio < 1.0 | 1/1 | >=2 | FAIL |\n| C3 n_cands >= 2 (info) | 1/1 | informational | info |\n| C4 warmup improvement > 0 | 0/1 | >=2 | FAIL |\n\nCriteria met (C1+C2+C4): 0/3 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: ree>rand in 1/1 seeds (need 2); ree=['-0.9288'] rand=['-0.9662']\n- C2 FAIL: harm_ratio < 1.0 in 1/1 seeds (need 2); ratios=['0.9718']\n- C4 FAIL: warmup improvement > 0 in 0/1 seeds (need 2); deltas=['0.0000']\n",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_223a_toroidal_minimal_vertebrate",
+  "run_timestamp": "20260404T145625Z",
+  "run_id": "v3_exq_223a_toroidal_minimal_vertebrate_20260404T145625Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
