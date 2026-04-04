@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_124",
+  "entry_id": "2026-04-04_mech_124_sleep_extinction_imbalance_paceschott2023",
+  "timestamp_utc": "2026-04-04T10:00:00Z",
+  "claim_ids_tested": ["MECH-124"],
+  "source": {
+    "title": "The influence of sleep on fear extinction in trauma-related disorders",
+    "authors": ["Edward F. Pace-Schott", "Jeehye Seo", "Ryan Bottary"],
+    "year": 2023,
+    "venue": "Neurobiology of Stress",
+    "doi": "10.1016/j.ynstr.2022.100500",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9761387/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality review in a specialist venue with direct mechanistic relevance to MECH-124. The paper's core argument -- that sleep disruption in PTSD selectively impairs extinction consolidation while leaving fear traces intact -- is the biological substrate for the MECH-124 failure mode: a consolidation system that sees imbalanced input (harm-trace dominant) produces imbalanced output (fear amplified, extinction/goal traces weakened). Mapping fidelity is strong because the mechanism described (REM fragmentation -> failed extinction consolidation -> chronic fear trace dominance) maps cleanly onto the REE loop. Transfer risk is moderate because the paper concerns clinical PTSD in humans whereas REE instantiates the mechanism computationally.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep disruption after trauma preferentially impairs extinction memory consolidation, leaving fear traces relatively intact -- producing an asymmetric imbalance.",
+    "REM fragmentation during the critical post-trauma window impedes normal fear-extinction consolidation, perpetuating fear trace dominance.",
+    "Individuals with PTSD show deficient recall of extinction memories relative to healthy controls, consistent with failed consolidation of safety/extinction content.",
+    "Positive feedback loops between stress physiology, REM disruption, and fear trace entrenchment create a self-amplifying cycle."
+  ],
+  "tags": [
+    "mech124",
+    "sleep-extinction",
+    "PTSD",
+    "consolidation-imbalance",
+    "fear-trace",
+    "extinction-failure",
+    "REM-fragmentation",
+    "option-contraction",
+    "self-amplifying-loop"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep disruption may contribute to the etiology of PTSD by interfering with consolidation of fear-extinction memories. REM fragmentation after trauma prevents consolidation of safety learning, leaving fear traces dominant. This produces a self-amplifying cycle: unextinguished fear -> hyperarousal -> worse sleep -> worse extinction consolidation -> stronger fear.",
+    "ree_translation": "MECH-124 proposes that if harm-trace salience dominates offline replay content, consolidation selectively amplifies harm predictions, progressively contracting the option space. Pace-Schott et al. provide the clinical ground truth: the mechanism is real, operating in humans, and is self-amplifying. The PTSD extinction-failure model is the biological analog of the MECH-124 loop: when consolidation input is harm-dominated, consolidation output strengthens harm relative to extinction/goal traces, not through any bug but through the normal operation of salience-weighted consolidation. For REE: if the residue field is harm-dominant at the onset of the offline phase (MECH-121), z_goal representations will receive proportionally less consolidation support, accelerating goal trace decay. The MECH-094 hypothesis tag is the proposed circuit-level intervention: protecting goal-directed traces from being outcompeted during replay scheduling.",
+    "mapping_caveat": "MECH-124 is V4 scope -- REE does not yet implement a sleep/offline phase. The clinical PTSD mechanism involves HPA axis dysregulation, hippocampal volume effects, and multifactor REM disruption that do not map one-to-one onto REE design variables. The key translation is structural (imbalanced consolidation input -> imbalanced output) rather than mechanistic detail-for-detail. The paper also focuses on the aftermath of acute trauma, whereas MECH-124 describes a gradual drift during normal operation.",
+    "source_context": "Narrative review of human and animal PTSD literature, focusing on the interaction between REM sleep physiology and fear-extinction consolidation. Clinical and pre-clinical studies reviewed."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Strong source quality: peer-reviewed specialist review, PMC-indexed, covers both clinical and pre-clinical evidence. Mapping fidelity high: the imbalanced consolidation mechanism is structurally identical to MECH-124's proposed loop. Transfer risk moderate: clinical PTSD involves factors absent in REE (HPA dysregulation, discrete trauma event), but the core dynamic (salience-weighted consolidation -> asymmetric strengthening) is domain-general."
+  }
+}

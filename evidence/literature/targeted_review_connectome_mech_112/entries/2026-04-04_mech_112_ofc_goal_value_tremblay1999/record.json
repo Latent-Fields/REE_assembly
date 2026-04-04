@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-04-04_mech_112_ofc_goal_value_tremblay1999",
+  "timestamp_utc": "2026-04-04T02:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Relative reward preference in primate orbitofrontal cortex.",
+    "authors": ["Tremblay, L.", "Schultz, W."],
+    "year": 1999,
+    "venue": "Nature",
+    "doi": "10.1038/19525",
+    "pmid": "10227292",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10227292/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Tremblay and Schultz provide direct single-unit evidence from primate OFC that neurons encode the motivational value of anticipated outcomes -- increasing activity during reward prediction and expectation intervals, discriminating between different rewards, and tracking the animal's current preference rather than physical stimulus properties. This is a direct neural demonstration that the brain maintains a prospective goal-value signal in a dedicated cortical region prior to action execution. For MECH-112 the key finding is that these OFC neurons fire during the expectation phase (delay between cue and outcome), not just at reward receipt -- they encode wanting as a sustained forward-looking representation, not merely a hedonic response on contact. The single-unit methodology in non-human primates is high quality. Confidence docked from 0.85 to 0.82 because OFC in primates corresponds architecturally to the limbic-affective prefrontal loop in REE's three-loop model (not directly E3 or z_goal), so the translation requires one intermediate mapping step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If goal value in REE could be computed at reward delivery alone (hedonic signal) without a persistent anticipatory representation, then the OFC neurons' sustained delay-period firing described here would be architecturally unnecessary.",
+    "If z_goal in E3 could be replaced by a moment-to-moment benefit_eval_head signal without loss of approach behavior, the finding that OFC activity encodes relative preference in the absence of any reward delivery would not be reproduced."
+  ],
+  "tags": ["mech_112", "orbitofrontal_cortex", "goal_value", "reward_anticipation", "prospective_coding", "wanting", "approach_motivation"],
+  "mapping": {
+    "source_claim_statement": "Neurons in primate orbitofrontal cortex increase activity in response to reward-predicting stimuli, during expectation of reward, and after reward receipt. Critically, neurons discriminate between rewards in a preference-relative manner that mirrors the animal's choice behavior -- encoding motivational value rather than physical reward properties. Activity is distributed across expectation and receipt phases, with the expectation-phase activity providing a prospective representation of reward value before any outcome has occurred.",
+    "ree_translation": "MECH-112 claims that E3 requires a structured latent goal representation (z_goal positive attractor) distinct from harm avoidance and distinct from a terminal liking signal. Tremblay and Schultz provide the neural existence proof: OFC cells sustain goal-value information across the delay between cue and outcome, encoding what the agent is working toward before it arrives. This is exactly the forward-looking, persistent wanting representation MECH-112 requires. In REE terms, z_goal must encode the motivational pull toward a valued future state -- not merely spike at benefit_exposure contact -- just as OFC activity persists through the expectation period rather than appearing only at reward delivery. The preference-relativity finding also maps to REE's need for a goal representation that updates based on current salience and context, not a fixed valuation table.",
+    "mapping_caveat": "OFC in primates is part of the orbitomedial prefrontal cortex that Rusu & Pennartz 2019 identify as a goal-landscape coder; it is not straightforwardly E3 or the hippocampal module in REE. The translation from primate OFC to REE's E3 goal-attractor circuit requires treating OFC as the biological analog of the limbic-affective prefrontal-ventral striatal loop, which sets the goal context for downstream action selection. The delay task used here involves well-trained stereotyped behavior; it does not capture multi-step subgoal sequencing.",
+    "source_context": "Single-unit electrophysiology; Macaca monkeys; spatial delayed response task; food and liquid rewards; well-trained animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Nature, landmark single-unit study from Schultz lab. Source quality very high -- primate electrophysiology, rigorous controls for stimulus vs. reward properties. Mapping fidelity good: the persistence of value coding through delay period directly supports the prospective wanting aspect of MECH-112. Transfer risk low for the architectural principle (persistent goal-value representation required); moderate if REE-specific mechanism (E3 attractor dynamics) is the focus."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-04-04_arc_033_insula_dissociation_geuter2017",
+  "timestamp_utc": "2026-04-04T00:30:00Z",
+  "claim_ids_tested": ["ARC-033"],
+  "source": {
+    "title": "Functional dissociation of stimulus intensity encoding and predictive coding of pain in the insula.",
+    "authors": ["Geuter S", "Boll S", "Eippert F", "Buchel C"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.24770",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28524817/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the most direct available neuroscientific evidence for ARC-033's core claim. The study demonstrates a clean functional dissociation within the insula: posterior insula encodes pain stimulus intensity in a forward, stimulus-proportional manner (the sensory-discriminative channel), while anterior insula encodes prediction errors. This maps tightly onto z_harm_s as the intensity-encoding, action-predictable channel that E2_harm_s operates on. The posterior insula intensity-coding result directly evidences that the sensory-discriminative harm stream encodes structured, graded information -- the precondition for a forward model to be learnable. Confidence is 0.78 rather than higher because (a) the paper does not test action-dependent prediction of harm intensity (only expectancy-based), and (b) the REE E2_harm_s operates on a learned latent representation, not raw insula signals -- the biological substrate and the REE substrate share computational structure but differ in implementation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If anterior insula prediction errors reflect domain-general surprise rather than harm-specific prediction errors, the dissociation would not specifically license a dedicated harm forward model -- E2_harm_s might be an instance of a general prediction architecture, weakening the claim that it must be separate from E2.world_forward.",
+    "The experiment manipulates expectations through external cues, not through the agent's own action choices. Action-conditional harm prediction (the specific requirement for E2_harm_s in SD-003) is not demonstrated."
+  ],
+  "tags": ["arc_033", "insula", "pain", "predictive_coding", "intensity_encoding", "sensory_discriminative", "fmri", "prediction_error"],
+  "mapping": {
+    "source_claim_statement": "Using fMRI during a probabilistic heat pain paradigm, posterior insula and parietal operculum encoded pain stimulus intensity (proportional to temperature), while anterior insula activity conformed to a predictive coding model -- reflecting the combination of pain expectations and prediction errors. Prediction errors contributed approximately twice as strongly as predictions to the anterior insula signal.",
+    "ree_translation": "ARC-033 requires that z_harm_s (the sensory-discriminative harm stream, encoding harm proximity and intensity) is a learnable, structured channel for E2_harm_s. The posterior insula intensity-encoding result is the biological instantiation of this channel: it provides a clean, graded representation of nociceptive input intensity that is separable from the affective-evaluative prediction-error signal in anterior insula. E2_harm_s is the forward model that predicts how the z_harm_s channel changes under different actions -- the biological analogy is how the posterior insula signal would change if the agent moved toward versus away from a heat source. The dissociation also explains why ARC-033 requires a dedicated harm stream model rather than relying on E2.world_forward: the intensity-encoding (predictable) channel is architecturally separate from the prediction-error channel in the brain.",
+    "mapping_caveat": "The study demonstrates cue-based expectancy modulation, not action-dependent forward model prediction. The SD-003 counterfactual pipeline requires E2_harm_s to predict z_harm_s_next given action a_cf -- a motor forward model over the harm stream -- which is a stronger computational claim than expectancy-based prediction-error signaling. The biological evidence supports the existence and separability of the intensity-encoding stream, but does not directly demonstrate that this stream supports action-conditional forward modeling in the sense ARC-033 requires.",
+    "source_context": "Human fMRI study using calibrated heat pain stimuli (thermal nociception). Probabilistic cue design. Published in eLife (Buchel lab, Hamburg). Multiple physiological measures (skin conductance, pupil dilation) converge with fMRI."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality (eLife, Buchel lab, multi-measure convergence). Mapping fidelity is good but not maximal -- the paper evidences stream separability and intensity encoding, not action-conditional predictability. Transfer risk is low since this is human pain fMRI, directly in the target domain."
+  }
+}

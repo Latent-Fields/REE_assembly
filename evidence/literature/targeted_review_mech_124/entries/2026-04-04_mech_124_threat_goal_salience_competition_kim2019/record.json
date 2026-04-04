@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_124",
+  "entry_id": "2026-04-04_mech_124_threat_goal_salience_competition_kim2019",
+  "timestamp_utc": "2026-04-04T10:15:00Z",
+  "claim_ids_tested": ["MECH-124"],
+  "source": {
+    "title": "Threat reduces value-driven but not salience-driven attentional capture",
+    "authors": ["Andy Jeesu Kim", "Brian A. Anderson"],
+    "year": 2019,
+    "venue": "Emotion",
+    "doi": "10.1037/emo0000599",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30855162/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Peer-reviewed empirical paper in APA's Emotion journal with direct experimental evidence that threat processing selectively suppresses value-based (goal-directed) attentional capture while leaving perceptual salience capture intact. This is precisely the online analog of the MECH-124 offline dynamic: threat salience competes with and suppresses goal/reward salience at the level of attentional priority. Confidence reduced because this is a waking attentional study, not an offline consolidation study -- the mapping to MECH-124's sleep-phase consolidation loop requires a transfer from online attention to offline replay scheduling. The finding is consistent with MECH-124 but is not direct evidence for consolidation-phase effects.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Threat suppresses value-based attentional capture but not perceptual salience capture -- this is a selective suppression, not a general shutdown.",
+    "The competitive relationship between threat and value processing is limited to the attentional domain in this paper; whether similar competition applies to replay scheduling or consolidation priority is not established.",
+    "The paper uses a laboratory threat-of-shock paradigm which produces acute threat states; chronic harm-trace dominance in a trained agent may follow different dynamics."
+  ],
+  "tags": [
+    "mech124",
+    "threat-salience",
+    "goal-salience",
+    "attentional-competition",
+    "value-driven-capture",
+    "threat-suppression",
+    "approach-avoidance"
+  ],
+  "mapping": {
+    "source_claim_statement": "Under threat (potential electric shock), attentional capture by previously reward-associated stimuli (value-driven capture) is substantially suppressed, while capture by physically salient stimuli (salience-driven capture) is unaffected or increased. The authors conclude: 'threat selectively interferes with value-based but not salience-based attentional priority, consistent with a competitive relationship between value-based and threat-based information processing.'",
+    "ree_translation": "MECH-124 proposes that harm salience dominance contracts option space by reducing goal representation. Kim & Anderson provide the most direct behavioural evidence that threat processing does not simply co-exist with goal/value processing -- it competes with and suppresses it. In REE terms, this is an online analog: when z_harm is high, z_goal-directed attention/selection is suppressed even if z_goal representations are present and nominally functional. The transfer to MECH-124 requires extending this observation to the offline phase: if threat processing suppresses value-based priority during waking, it is plausible that harm-dominant residue content suppresses goal-trace scheduling during offline replay. The paper is thus indirect evidence for the precondition of MECH-124 -- harm salience and goal salience compete rather than being orthogonal -- rather than evidence for the consolidation loop itself.",
+    "mapping_caveat": "This is a waking attentional study, not an offline consolidation study. The mapping to MECH-124 requires two extrapolation steps: (1) from online attention to offline replay priority, and (2) from acute laboratory threat to chronic harm-trace dominance accumulated over training. Neither step is validated by this paper. The dual competition framework it invokes (Pessoa 2009) provides theoretical grounding for the transfer but does not resolve it empirically.",
+    "source_context": "Controlled human behavioural study with eye-tracking and response-time measures. Threat manipulation: potential electric shock. Reward learning phase followed by threat condition. APA Emotion journal. Multiple experiments replicating the core finding."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Solid empirical paper with multiple experiments and replication of core finding. Source quality good but not top-tier venue. Mapping fidelity moderate: the paper establishes threat-goal competition online, and MECH-124 concerns offline consolidation -- an important gap. Transfer risk highest of the four entries: acute laboratory threat to chronic computational harm-trace dominance requires substantial extrapolation."
+  }
+}

@@ -426,7 +426,11 @@ def scan_evidence_runs() -> dict:
         for exp_dir in sorted(ev_dir.iterdir()):
             if not exp_dir.is_dir():
                 continue
-            files = sorted(exp_dir.glob("*.json"))
+            # Exclude companion episode log files from run count
+            files = sorted(
+                f for f in exp_dir.glob("*.json")
+                if not f.name.endswith("_episode_log.json")
+            )
             if not files:
                 continue
             latest = {}
@@ -434,12 +438,21 @@ def scan_evidence_runs() -> dict:
                 latest = json.loads(files[-1].read_text())
             except Exception:
                 pass
+            # Check for companion episode log alongside the latest result
+            episode_log_url = None
+            episode_log_file = exp_dir / f"{files[-1].stem}_episode_log.json"
+            if episode_log_file.exists():
+                try:
+                    episode_log_url = str(episode_log_file.relative_to(SERVE_DIR))
+                except ValueError:
+                    pass
             result[exp_dir.name] = {
                 "run_count": len(files),
                 "latest_verdict": latest.get("verdict"),
                 "latest_timestamp": latest.get("run_timestamp"),
                 "claim_id": latest.get("claim"),
                 "substrate": ver,
+                "episode_log_url": episode_log_url,
             }
     return result
 

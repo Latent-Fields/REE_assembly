@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=15 entry(s), exp_conf=0.712, lit_conf=0.829",
+      "confidence_rationale": "exp=9 entry(s), lit=15 entry(s), exp_conf=0.711, lit_conf=0.829",
       "direction_counts": {
         "mixed": 2,
         "supports": 15,
@@ -212,7 +212,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:theoretical_review": 6
       },
-      "experimental_confidence": 0.712,
+      "experimental_confidence": 0.711,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -224,7 +224,7 @@
       "latest_run_id": "2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007",
       "latest_timestamp_utc": "2026-04-02T23:59:00Z",
       "literature_confidence": 0.829,
-      "overall_confidence": 0.771,
+      "overall_confidence": 0.77,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -891,7 +891,7 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.746, lit_conf=0.825",
+      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.745, lit_conf=0.825",
       "direction_counts": {
         "mixed": 10,
         "supports": 14,
@@ -904,7 +904,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.746,
+      "experimental_confidence": 0.745,
       "fail_runs": 24,
       "genuine_exp_count": 31,
       "genuine_exp_direction_counts": {
@@ -1112,7 +1112,7 @@
       }
     },
     "ARC-026": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.29, lit_conf=0.734",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.29, lit_conf=0.733",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -1135,8 +1135,8 @@
       },
       "latest_run_id": "2026-03-29_arc_026_long_horizon_care_bratman1987",
       "latest_timestamp_utc": "2026-03-29T14:45:00Z",
-      "literature_confidence": 0.734,
-      "overall_confidence": 0.586,
+      "literature_confidence": 0.733,
+      "overall_confidence": 0.585,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -1196,7 +1196,7 @@
       }
     },
     "ARC-027": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.908, lit_conf=0.863",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.908, lit_conf=0.862",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1220,8 +1220,8 @@
       },
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-01T22:50:47.540314Z",
-      "literature_confidence": 0.863,
-      "overall_confidence": 0.886,
+      "literature_confidence": 0.862,
+      "overall_confidence": 0.885,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -1421,17 +1421,19 @@
       }
     },
     "ARC-030": {
-      "confidence_rationale": "exp=7 entry(s), lit=3 entry(s), exp_conf=0.516, lit_conf=0.842",
+      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.516, lit_conf=0.889",
       "direction_counts": {
         "mixed": 1,
-        "supports": 3,
+        "supports": 5,
         "unknown": 1,
         "weakens": 5
       },
-      "entries_total": 10,
+      "entries_total": 12,
       "evidence_class_counts": {
         "exp:simulation": 7,
         "lit:behavioral_animal": 1,
+        "lit:behavioral_human": 1,
+        "lit:computational_model": 1,
         "lit:fmri_connectivity": 1,
         "lit:theoretical_review": 1
       },
@@ -1444,42 +1446,12 @@
         "unknown": 1,
         "weakens": 5
       },
-      "latest_run_id": "v3_exq_138a_arc030_go_nogo_pair_20260403T090427Z_v3",
-      "latest_timestamp_utc": "2026-04-03T09:04:27Z",
-      "literature_confidence": 0.842,
-      "overall_confidence": 0.679,
+      "latest_run_id": "2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012",
+      "latest_timestamp_utc": "2026-04-04T10:15:00Z",
+      "literature_confidence": 0.889,
+      "overall_confidence": 0.703,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-030",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_183_arc030_shared_selector_payoff",
-          "failure_signatures": [],
-          "run_id": "v3_exq_183_arc030_shared_selector_payoff_20260331T210757Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-31T21:07:57Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-030",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_186_hybrid_benefit_harm_selector",
-          "failure_signatures": [],
-          "run_id": "v3_exq_186_hybrid_benefit_harm_selector_20260401T030039Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T03:00:39Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-030",
@@ -1524,12 +1496,48 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-03T09:04:27Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-030",
+          "confidence": 0.82,
+          "confidence_rationale": "This is the foundational Science paper that established the Go/NoGo computational model of basal ganglia reinforcement learning. The study tested Parkinson's disease patients on and off dopamine medication on probabilistic reinforcement learning tasks. Patients on medication (elevated dopamine) showed improved positive-outcome learning (Go pathway dominant) and impaired negative-outcome learning; patients off medication showed the reverse. A neurocomputational model explained the dissociation: D1-MSN Go cells learn from positive RPEs (dopamine bursts) while D2-MSN NoGo cells learn from negative RPEs (dopamine dips). The two pathways are not merely parallel -- they are opponent, and their balance determines whether action selection is biased toward approach or avoidance. The paper directly instantiates ARC-030's core claim that symmetric Go and NoGo sub-channels are necessary: disrupting either direction (by over-activating dopamine medication, or by dopamine depletion) produces systematic behavioral bias, confirming that the balance point is load-bearing. Confidence is 0.82 rather than higher because the paradigm uses simple 2-choice probabilistic RL, not the multi-step trajectory planning that ARC-030's E3 context requires.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_030",
+          "failure_signatures": [
+            "Dopamine medication in Parkinson's disease both elevates tonic dopamine AND suppresses phasic dip responses -- the on-medication impairment in negative learning may reflect blunted negative RPE signaling rather than a pure Go/NoGo imbalance. The interpretation requires multiple modeling assumptions.",
+            "The task is a 2-choice RL task, not a multi-step planning or approach-avoidance conflict task. The extension to REE's E3-level trajectory evaluation requires an assumption that the same Go/NoGo balance principle scales to multi-step deliberation.",
+            "Parkinson's patients differ from healthy controls in many ways beyond dopamine levels -- age, motor impairment, medication side effects. The causal attribution to the Go/NoGo balance specifically relies on the computational model fitting rather than direct pathway measurement."
+          ],
+          "run_id": "2026-04-04_arc_030_go_nogo_carrot_stick_frank2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-030",
+          "confidence": 0.71,
+          "confidence_rationale": "This study provides behavioral evidence that pure Pavlovian avoidance (NoGo inhibition without a compensatory Go drive) pathologically prunes a decision tree. Healthy humans reflexively curtail evaluation of decision sequences upon encountering losses, even when doing so costs them better long-term outcomes. The pruning is Pavlovian -- automatic, inflexible, loss-triggered -- and subjects with higher subclinical depressive symptoms show stronger pruning. This is a direct behavioral demonstration of the ARC-030 prediction: without a Go counterweight, pure avoidance dominates planning and produces suboptimal, approach-suppressed behavior. The clinical correlation (depression as over-pruning, i.e. over-weighting avoidance relative to approach) instantiates Q-021's claim about behavioral flatness under pure-avoidance architectures. Confidence is 0.71 rather than higher because the mapping involves a theoretical bridging step: the paper's 'Pavlovian pruning' is a behavioral phenomenon in humans using a tree-search task, not a direct measurement of BG Go/NoGo pathway balance. The connection to ARC-030 requires interpreting the pruning mechanism as an expression of NoGo dominance, which is theoretically well-motivated but not directly measured.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_030",
+          "failure_signatures": [
+            "The paper does not directly measure Go/NoGo pathway activity or D1/D2 receptor function -- the connection to the biological BG substrate underpinning ARC-030 is theoretical. The pruning mechanism could involve serotonergic Pavlovian inhibition (as the authors suggest) rather than purely dopaminergic Go/NoGo imbalance.",
+            "Pruning after large losses may be computationally rational in many environments -- the study shows it is 'reflexive' and sometimes counterproductive but does not rule out that under natural constraints it is adaptive. ARC-030's claim that pure-NoGo produces behavioral flatness requires the absence of approach drives, not merely the presence of avoidance reflexes.",
+            "The depressive symptom correlation is sub-clinical and cross-sectional -- it demonstrates an association between avoidance-dominant behavior and mood disturbance, not a causal claim that pure-NoGo architecture causes behavioral flatness."
+          ],
+          "run_id": "2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:15:00Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 12,
       "source_counts": {
         "experimental": 7,
-        "literature": 3
+        "literature": 5
       }
     },
     "ARC-032": {
@@ -1650,19 +1658,21 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.713, lit_conf=0.716",
+      "confidence_rationale": "exp=8 entry(s), lit=5 entry(s), exp_conf=0.712, lit_conf=0.842",
       "direction_counts": {
         "mixed": 1,
-        "supports": 5,
+        "supports": 8,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 10,
+      "entries_total": 13,
       "evidence_class_counts": {
         "exp:simulation": 8,
-        "lit:fmri_connectivity": 2
+        "lit:computational_model": 1,
+        "lit:fmri_connectivity": 3,
+        "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.713,
+      "experimental_confidence": 0.712,
       "fail_runs": 5,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -1671,59 +1681,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "v3_exq_205_sd003_harm_attribution_pair_20260402T230715Z_v3",
-      "latest_timestamp_utc": "2026-04-02T23:07:15Z",
-      "literature_confidence": 0.716,
-      "overall_confidence": 0.714,
+      "latest_run_id": "2026-04-04_arc_033_predictive_coding_pain_song2021",
+      "latest_timestamp_utc": "2026-04-04T00:30:00Z",
+      "literature_confidence": 0.842,
+      "overall_confidence": 0.777,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.62,
-          "confidence_rationale": "Provides clean experimental evidence that S1 encodes stimulus intensity (the discriminative-predictive dimension) but not pleasantness (the affective dimension). Relevant to ARC-033 because E2_harm_s is a forward model for the sensory-discriminative channel (intensity/proximity), and the cleanness of this channel -- its relative freedom from affective contamination -- determines how learnable E2_harm_s will be. If S1 mixing with affective signals were the norm, E2_harm_s would be harder to learn. The rTMS arm causally confirms S1's role. Confidence capped at 0.62 because the paper addresses touch pleasantness not harm nociception, and the link to forward model learnability is indirect.",
-          "evidence_class": "lit:fmri_connectivity",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_033",
-          "failure_signatures": [
-            "The study uses affective touch (C-tactile fibers, innocuous), not nociceptive harm stimuli. Extending to harm/nociception requires an additional inference step.",
-            "rTMS over S1 reduced sensory discrimination but did not eliminate it entirely, suggesting partial rather than complete channel separation."
-          ],
-          "run_id": "2026-03-29_arc_033_sensory_attenuation_case2016",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_195_sd003_zharms_full_counterfactual",
-          "failure_signatures": [],
-          "run_id": "v3_exq_195_sd003_zharms_full_counterfactual_20260401T031452Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T03:14:52Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_166e_sd003_harm_delta_predictor",
-          "failure_signatures": [],
-          "run_id": "v3_exq_166e_sd003_harm_delta_predictor_20260330T195516Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-01T23:01:27.714072Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-033",
@@ -1753,12 +1716,63 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-02T23:07:15Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.65,
+          "confidence_rationale": "This is a theoretical review paper proposing active inference as the computational framework for distributed pain circuits, with hierarchically organized traveling waves coordinating bottom-up nociceptive signals and top-down predictions. The review consolidates evidence from multiple studies showing that the cingulate-insula hub architecture supports hierarchical prediction-error computation. This is relevant to ARC-033 because it provides the theoretical framework under which E2_harm_s is not just biologically plausible but architecturally expected -- a dedicated forward model within the harm stream is precisely what hierarchical predictive coding requires at the sensory-discriminative level. Confidence is 0.65 because this is a review/theoretical paper without novel empirical data, and active inference is a theoretical framework whose specific implementation in pain circuits remains contested.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_033",
+          "failure_signatures": [
+            "The paper acknowledges that it is 'still unknown whether the distributed pain network is completely decentralized or requires networkwide coordination' -- if pain processing is largely decentralized (each region processing independently), the hierarchical prediction structure that licenses E2_harm_s may not be present in the form required.",
+            "The review proposes traveling waves as the implementation mechanism for hierarchical predictive coding -- a specific oscillatory implementation that has no direct analogue in the ANN REE substrate. If the hierarchical structure is critically dependent on oscillatory implementation rather than being substrate-independent, the transfer to E2_harm_s as a learned MLP would be invalid."
+          ],
+          "run_id": "2026-04-04_arc_033_hierarchical_pain_circuits_chen2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.78,
+          "confidence_rationale": "This is the most direct available neuroscientific evidence for ARC-033's core claim. The study demonstrates a clean functional dissociation within the insula: posterior insula encodes pain stimulus intensity in a forward, stimulus-proportional manner (the sensory-discriminative channel), while anterior insula encodes prediction errors. This maps tightly onto z_harm_s as the intensity-encoding, action-predictable channel that E2_harm_s operates on. The posterior insula intensity-coding result directly evidences that the sensory-discriminative harm stream encodes structured, graded information -- the precondition for a forward model to be learnable. Confidence is 0.78 rather than higher because (a) the paper does not test action-dependent prediction of harm intensity (only expectancy-based), and (b) the REE E2_harm_s operates on a learned latent representation, not raw insula signals -- the biological substrate and the REE substrate share computational structure but differ in implementation.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_033",
+          "failure_signatures": [
+            "If anterior insula prediction errors reflect domain-general surprise rather than harm-specific prediction errors, the dissociation would not specifically license a dedicated harm forward model -- E2_harm_s might be an instance of a general prediction architecture, weakening the claim that it must be separate from E2.world_forward.",
+            "The experiment manipulates expectations through external cues, not through the agent's own action choices. Action-conditional harm prediction (the specific requirement for E2_harm_s in SD-003) is not demonstrated."
+          ],
+          "run_id": "2026-04-04_arc_033_insula_dissociation_geuter2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.72,
+          "confidence_rationale": "This paper directly builds predictive coding models for pain that parallel the REE architecture in critical ways: it treats the sensory-discriminative and affective-emotional channels as computationally separate streams (S1 and ACC respectively), builds bidirectional prediction-error hierarchies within each, and validates the model against LFP recordings in both naive and chronic-pain rats. The S1 vs ACC split is the biological precedent for z_harm_s vs z_harm_a. The paper's phenomenological predictive coding model proposes that S1 generates forward predictions of nociceptive input -- the biological equivalent of E2_harm_s. Confidence is 0.72 because (a) the model is fitted to rat LFP data, not to human action-in-world settings; (b) the paper does not address action-conditional (motor) forward modeling, only sensory-sensory prediction hierarchy; (c) the computational model is phenomenological rather than mechanistic.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_033",
+          "failure_signatures": [
+            "The predictive coding model in the paper is bidirectional (S1 predicts ACC activity and vice versa), with no clear separation between a forward model and an evaluative model -- if the S1/ACC predictive relationship is fundamentally symmetric and shared, the REE claim of a one-directional E2_harm_s -> E3 pipeline would be an oversimplification.",
+            "The paper's chronic pain results show that the predictive coding dynamics change substantially in chronic pain states, suggesting the forward model is not a fixed structure but is reconfigured by injury. This is a caveat for the learnability claim -- in a novel environment, E2_harm_s would need to learn from scratch without the benefit of prior sensory history."
+          ],
+          "run_id": "2026-04-04_arc_033_predictive_coding_pain_song2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T00:30:00Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 13,
       "source_counts": {
         "experimental": 8,
-        "literature": 2
+        "literature": 5
       }
     },
     "ARC-035": {
@@ -1812,7 +1826,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.521, lit_conf=0.915",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.52, lit_conf=0.915",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -1826,7 +1840,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.521,
+      "experimental_confidence": 0.52,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2379,7 +2393,7 @@
       }
     },
     "INV-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.444, lit_conf=0.804",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.444, lit_conf=0.803",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -2402,8 +2416,8 @@
       },
       "latest_run_id": "2026-03-29_inv_029_robust_concern_view_love_sep",
       "latest_timestamp_utc": "2026-03-29T14:55:00Z",
-      "literature_confidence": 0.804,
-      "overall_confidence": 0.714,
+      "literature_confidence": 0.803,
+      "overall_confidence": 0.713,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2777,7 +2791,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.478, lit_conf=0.88",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.477, lit_conf=0.88",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2793,7 +2807,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.478,
+      "experimental_confidence": 0.477,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -2805,7 +2819,7 @@
       "latest_run_id": "v3_exq_199_mech025_doing_mode_breath_20260402T204835Z_v3",
       "latest_timestamp_utc": "2026-04-02T20:48:35Z",
       "literature_confidence": 0.88,
-      "overall_confidence": 0.78,
+      "overall_confidence": 0.779,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3512,7 +3526,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.449, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.448, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -3525,7 +3539,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.449,
+      "experimental_confidence": 0.448,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3744,7 +3758,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=10 entry(s), exp_conf=0.731, lit_conf=0.873",
+      "confidence_rationale": "exp=1 entry(s), lit=10 entry(s), exp_conf=0.73, lit_conf=0.873",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -3762,7 +3776,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.731,
+      "experimental_confidence": 0.73,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3855,7 +3869,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.282, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.281, lit_conf=0.836",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -3868,7 +3882,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.282,
+      "experimental_confidence": 0.281,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3880,7 +3894,7 @@
       "latest_run_id": "20260315T094933_attribution_completion_gating_v2",
       "latest_timestamp_utc": "2026-03-15T09:49:33.165765+00:00",
       "literature_confidence": 0.836,
-      "overall_confidence": 0.698,
+      "overall_confidence": 0.697,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5286,7 +5300,7 @@
       }
     },
     "MECH-075": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.457, lit_conf=0.782",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.456, lit_conf=0.782",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -5299,7 +5313,7 @@
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_single_unit": 1
       },
-      "experimental_confidence": 0.457,
+      "experimental_confidence": 0.456,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -5311,7 +5325,7 @@
       "latest_run_id": "v3_exq_192a_mech075_novelty_loop_probe_20260403T102555Z_v3",
       "latest_timestamp_utc": "2026-04-03T10:25:55Z",
       "literature_confidence": 0.782,
-      "overall_confidence": 0.587,
+      "overall_confidence": 0.586,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -5537,7 +5551,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.756, lit_conf=0.843",
+      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.755, lit_conf=0.843",
       "direction_counts": {
         "mixed": 3,
         "supports": 8,
@@ -5550,7 +5564,7 @@
         "lit:connectome_circuit_study": 1,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.756,
+      "experimental_confidence": 0.755,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -5647,7 +5661,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.81, lit_conf=0.668",
+      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.809, lit_conf=0.668",
       "direction_counts": {
         "mixed": 7,
         "supports": 8,
@@ -5659,7 +5673,7 @@
         "exp:simulation": 16,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.81,
+      "experimental_confidence": 0.809,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -5903,7 +5917,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.678, lit_conf=0.705",
+      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.677, lit_conf=0.705",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -5915,7 +5929,7 @@
         "exp:simulation": 9,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.678,
+      "experimental_confidence": 0.677,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -5927,7 +5941,7 @@
       "latest_run_id": "v3_exq_116_mech093_heartbeat_multiseed_20260328T211756Z_v3",
       "latest_timestamp_utc": "2026-03-28T21:17:56Z",
       "literature_confidence": 0.705,
-      "overall_confidence": 0.685,
+      "overall_confidence": 0.684,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -6116,7 +6130,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.591, lit_conf=0.905",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.59, lit_conf=0.905",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -6131,7 +6145,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.591,
+      "experimental_confidence": 0.59,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -6143,7 +6157,7 @@
       "latest_run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:09:39Z",
       "literature_confidence": 0.905,
-      "overall_confidence": 0.748,
+      "overall_confidence": 0.747,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -6484,7 +6498,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.501, lit_conf=0.872",
+      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.5, lit_conf=0.872",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -6497,7 +6511,7 @@
         "lit:connectome_analysis": 2,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.501,
+      "experimental_confidence": 0.5,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -6595,7 +6609,7 @@
       }
     },
     "MECH-100": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.874, lit_conf=0.757",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.873, lit_conf=0.757",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -6609,7 +6623,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.874,
+      "experimental_confidence": 0.873,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -6621,7 +6635,7 @@
       "latest_run_id": "2026-03-29_mech_100_ventral_stream_categorical_murray2004",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.757,
-      "overall_confidence": 0.816,
+      "overall_confidence": 0.815,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6713,7 +6727,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.797, lit_conf=0.827",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.796, lit_conf=0.827",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -6727,7 +6741,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.797,
+      "experimental_confidence": 0.796,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -6831,7 +6845,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.598, lit_conf=0.82",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.597, lit_conf=0.82",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -6844,7 +6858,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.598,
+      "experimental_confidence": 0.597,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -6856,7 +6870,7 @@
       "latest_run_id": "2026-03-29_mech_102_just_war_last_resort_aloyo2015",
       "latest_timestamp_utc": "2026-03-29T13:30:00Z",
       "literature_confidence": 0.82,
-      "overall_confidence": 0.709,
+      "overall_confidence": 0.708,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -7243,20 +7257,21 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=8 entry(s), lit=3 entry(s), exp_conf=0.8, lit_conf=0.844",
+      "confidence_rationale": "exp=8 entry(s), lit=6 entry(s), exp_conf=0.799, lit_conf=0.902",
       "direction_counts": {
         "mixed": 5,
-        "supports": 5,
+        "supports": 8,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 11,
+      "entries_total": 14,
       "evidence_class_counts": {
         "exp:simulation": 8,
-        "lit:connectome_mechanistic_review": 2,
+        "lit:connectome_mechanistic_review": 3,
+        "lit:electrophysiology_single_unit": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.8,
+      "experimental_confidence": 0.799,
       "fail_runs": 8,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -7265,59 +7280,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_189_mech112_goal_present_absent_20260401T185716Z_v3",
-      "latest_timestamp_utc": "2026-04-01T18:57:16Z",
-      "literature_confidence": 0.844,
-      "overall_confidence": 0.822,
+      "latest_run_id": "2026-04-04_mech_112_ofc_goal_value_tremblay1999",
+      "latest_timestamp_utc": "2026-04-04T02:00:00Z",
+      "literature_confidence": 0.902,
+      "overall_confidence": 0.85,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.8,
-          "confidence_rationale": "This 2016 review consolidates two decades of wanting/liking dissociation research and demonstrates the robustness of the dissociation across species, conditions, and pathological states (addiction). The key addition over the 1996 paper is the demonstration that wanting can become sensitised and escalate beyond liking -- states are possible where wanting is very high and liking is very low or absent. This confirms that the two signals are not merely different labels for the same gradient, but genuinely independent computational processes. For MECH-112, this strengthens the argument that z_goal (wanting) must be a separately maintained latent, because if it were merely a transformation of benefit_eval_head (liking), the dissociation could not be reproduced. Confidence 0.80 because this is a review integrating many sources rather than a single novel experiment.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_112",
-          "failure_signatures": [
-            "If a single latent variable could produce both wanting-like (prospective, persistent approach) and liking-like (consummatory spike) behavior through different read-out modes, MECH-112's claim for a distinct z_goal representation would be architecturally unnecessary.",
-            "If sensitisation-like dynamics (wanting escalating beyond liking) are not architecturally possible in REE, the pathological cases (addiction, compulsive approach) documented in this paper would be reproduced incorrectly."
-          ],
-          "run_id": "2026-03-29_mech_112_wanting_liking_addiction_berridge2016",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_183_arc030_shared_selector_payoff",
-          "failure_signatures": [],
-          "run_id": "v3_exq_183_arc030_shared_selector_payoff_20260331T210757Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-31T21:07:57Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-112",
-          "confidence": 0.55,
-          "confidence_rationale": "direction/status mismatch",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_185_direct_prox_argmax",
-          "failure_signatures": [],
-          "run_id": "v3_exq_185_direct_prox_argmax_20260401T025836Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T02:58:36Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-112",
@@ -7347,12 +7315,64 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-01T18:57:16Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.83,
+          "confidence_rationale": "Rusu and Pennartz provide an architectural synthesis directly relevant to MECH-112's claims about E3 goal representation. Their central proposal is that goal-directed behavior is organized in a three-level cortico-BG hierarchy: (1) limbic-affective loop (orbitomedial PFC + ventral striatum) sets goal context; (2) dorsomedial PFC + striatum selects actions within that context; (3) sensorimotor loop executes. Critically, the limbic-affective loop is the biological seat of what REE calls z_goal -- it encodes the goal landscape (task space of behaviorally relevant variables), not moment-to-moment reward prediction errors. The hippocampus generates SWR replay that consolidates goal-context representations into the frontal corticothalamic circuit. This is the exact circuit architecture that MECH-112 depends upon. Confidence 0.83 because this is a review/synthesis paper, not primary electrophysiology, but the synthesis is authoritative and the Pennartz lab has primary electrophysiology supporting many of its claims.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If goal-directed behavior does not require a dedicated limbic-affective loop separate from the action-selection loop, the hierarchical organization Rusu and Pennartz propose would be incorrect and MECH-112's claim for a distinct z_goal representation would lose its primary biological grounding.",
+            "If hippocampal SWR replay does not transfer goal-context representations into the frontal system (i.e., replay is purely sensory/spatial rather than goal-shaped), the consolidation argument for MECH-112's goal attractor in hippocampal terrain would be weakened.",
+            "If the orbitomedial PFC encodes only outcome values (model-free) rather than a goal landscape (model-based), the goal-context function attributed to the limbic-affective loop would need to be relocated to another circuit."
+          ],
+          "run_id": "2026-04-04_mech_112_hierarchical_bg_loops_rusu2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T02:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.8,
+          "confidence_rationale": "Gobbo et al. provide direct calcium imaging evidence that hippocampal CA1 neurons prospectively encode the goal location before the animal begins moving -- population activity in the startbox predicts the day's changing goal on correct trials but not on error trials. This is a direct empirical demonstration that the hippocampus maintains a prospective goal representation, not just a retrospective location memory. For MECH-112, this confirms that the hippocampal terrain (the residue field in REE) does not merely record where harm occurred but also encodes where the agent is moving toward -- providing positive-attractor structure. The goal representation is dynamic (changes daily) and linked to successful navigation (absent on error trials). Confidence 0.80 rather than higher because the paper is rodent CA1 calcium imaging, and the task involves spatial goals that map only partially to REE's abstract goal attractor in z_world space.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If hippocampal prospective goal coding were absent (i.e., CA1 only codes current location, not upcoming destination), the positive-attractor terrain in REE's residue field would lack its primary neural grounding.",
+            "If prospective goal encoding were present only post-movement (not in the startbox before navigation begins), this would suggest goal representation is reactive rather than prospective -- undermining MECH-112's claim that z_goal is a persistent forward-looking attractor."
+          ],
+          "run_id": "2026-04-04_mech_112_hpc_prospective_goal_gobbo2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T02:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-112",
+          "confidence": 0.82,
+          "confidence_rationale": "Tremblay and Schultz provide direct single-unit evidence from primate OFC that neurons encode the motivational value of anticipated outcomes -- increasing activity during reward prediction and expectation intervals, discriminating between different rewards, and tracking the animal's current preference rather than physical stimulus properties. This is a direct neural demonstration that the brain maintains a prospective goal-value signal in a dedicated cortical region prior to action execution. For MECH-112 the key finding is that these OFC neurons fire during the expectation phase (delay between cue and outcome), not just at reward receipt -- they encode wanting as a sustained forward-looking representation, not merely a hedonic response on contact. The single-unit methodology in non-human primates is high quality. Confidence docked from 0.85 to 0.82 because OFC in primates corresponds architecturally to the limbic-affective prefrontal loop in REE's three-loop model (not directly E3 or z_goal), so the translation requires one intermediate mapping step.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_112",
+          "failure_signatures": [
+            "If goal value in REE could be computed at reward delivery alone (hedonic signal) without a persistent anticipatory representation, then the OFC neurons' sustained delay-period firing described here would be architecturally unnecessary.",
+            "If z_goal in E3 could be replaced by a moment-to-moment benefit_eval_head signal without loss of approach behavior, the finding that OFC activity encodes relative preference in the absence of any reward delivery would not be reproduced."
+          ],
+          "run_id": "2026-04-04_mech_112_ofc_goal_value_tremblay1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T02:00:00Z"
         }
       ],
-      "runs_total": 11,
+      "runs_total": 14,
       "source_counts": {
         "experimental": 8,
-        "literature": 3
+        "literature": 6
       }
     },
     "MECH-113": {
@@ -7938,8 +7958,116 @@
         "literature": 3
       }
     },
+    "MECH-124": {
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.891",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 4,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 4,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:connectome_mechanistic_review": 3
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-04_mech_124_threat_goal_salience_competition_kim2019",
+      "latest_timestamp_utc": "2026-04-04T10:15:00Z",
+      "literature_confidence": 0.891,
+      "overall_confidence": 0.891,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-124",
+          "confidence": 0.82,
+          "confidence_rationale": "High-quality review in a specialist venue with direct mechanistic relevance to MECH-124. The paper's core argument -- that sleep disruption in PTSD selectively impairs extinction consolidation while leaving fear traces intact -- is the biological substrate for the MECH-124 failure mode: a consolidation system that sees imbalanced input (harm-trace dominant) produces imbalanced output (fear amplified, extinction/goal traces weakened). Mapping fidelity is strong because the mechanism described (REM fragmentation -> failed extinction consolidation -> chronic fear trace dominance) maps cleanly onto the REE loop. Transfer risk is moderate because the paper concerns clinical PTSD in humans whereas REE instantiates the mechanism computationally.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_124",
+          "failure_signatures": [
+            "Sleep disruption after trauma preferentially impairs extinction memory consolidation, leaving fear traces relatively intact -- producing an asymmetric imbalance.",
+            "REM fragmentation during the critical post-trauma window impedes normal fear-extinction consolidation, perpetuating fear trace dominance.",
+            "Individuals with PTSD show deficient recall of extinction memories relative to healthy controls, consistent with failed consolidation of safety/extinction content.",
+            "Positive feedback loops between stress physiology, REM disruption, and fear trace entrenchment create a self-amplifying cycle."
+          ],
+          "run_id": "2026-04-04_mech_124_sleep_extinction_imbalance_paceschott2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-124",
+          "confidence": 0.84,
+          "confidence_rationale": "High-prestige venue (Psychological Bulletin), authored by Walker, a leading sleep-memory researcher. The SFSR model directly addresses the mechanism underlying MECH-124: REM sleep strengthens emotional memory content while normally decoupling it from autonomic reactivity. When this decoupling fails (PTSD analog), the same consolidation process that normally serves regulation instead amplifies and entrenches the harm trace. The positive direction is warranted because the paper establishes the two-phase mechanism MECH-124 depends on: (1) salience-weighted strengthening during consolidation and (2) a protective decoupling step that can fail. Both phases are directly relevant to MECH-124 architecture.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_124",
+          "failure_signatures": [
+            "In PTSD, REM sleep fails to decouple emotional content from autonomic reactivity, so nightmare replay re-consolidates rather than recalibrates the fear trace.",
+            "The SFSR model predicts that when decoupling fails, REM sleep strengthening of emotional content operates unchecked, amplifying fear memory with each successive REM cycle.",
+            "The magnitude of emotional memory enhancement positively correlates with REM sleep amount, meaning more sleep can mean more amplification when the protective mechanism is absent."
+          ],
+          "run_id": "2026-04-04_mech_124_rem_emotional_sfsr_vanderhelm2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:05:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-124",
+          "confidence": 0.76,
+          "confidence_rationale": "High-prestige source (Nature Reviews Neuroscience, Loren Frank lab), strong mechanistic grounding in the SWR replay literature directly relevant to MECH-121 (the replay mechanism MECH-124 depends on). The paper establishes that SWR replay content is biased by reward magnitude and novelty -- not uniformly random -- providing the mechanistic basis for MECH-124's prediction that harm-dominant residues will produce harm-biased replay. Confidence slightly reduced because the paper is primarily about reward-biased replay, not harm/threat-biased replay; the mapping to MECH-124 requires inferring that harm salience produces analogous biasing to reward magnitude.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_124",
+          "failure_signatures": [
+            "SWR replay content is modulated by reward magnitude and novelty but the specific role of threat/aversive salience in biasing replay content is not directly established by this paper.",
+            "Reactivation during sleep SWRs is more variable than faithful replay, reducing confidence that harm-dominant residues would deterministically dominate replay content.",
+            "SWR rates are elevated after novel rewarding experiences, but the analogous elevation after aversive/harm experiences is not confirmed with equal evidence."
+          ],
+          "run_id": "2026-04-04_mech_124_swr_replay_content_joo2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-124",
+          "confidence": 0.71,
+          "confidence_rationale": "Peer-reviewed empirical paper in APA's Emotion journal with direct experimental evidence that threat processing selectively suppresses value-based (goal-directed) attentional capture while leaving perceptual salience capture intact. This is precisely the online analog of the MECH-124 offline dynamic: threat salience competes with and suppresses goal/reward salience at the level of attentional priority. Confidence reduced because this is a waking attentional study, not an offline consolidation study -- the mapping to MECH-124's sleep-phase consolidation loop requires a transfer from online attention to offline replay scheduling. The finding is consistent with MECH-124 but is not direct evidence for consolidation-phase effects.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_124",
+          "failure_signatures": [
+            "Threat suppresses value-based attentional capture but not perceptual salience capture -- this is a selective suppression, not a general shutdown.",
+            "The competitive relationship between threat and value processing is limited to the attentional domain in this paper; whether similar competition applies to replay scheduling or consolidation priority is not established.",
+            "The paper uses a laboratory threat-of-shock paradigm which produces acute threat states; chronic harm-trace dominance in a trained agent may follow different dynamics."
+          ],
+          "run_id": "2026-04-04_mech_124_threat_goal_salience_competition_kim2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-04T10:15:00Z"
+        }
+      ],
+      "runs_total": 4,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 4
+      }
+    },
     "MECH-128": {
-      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.642, lit_conf=0",
+      "confidence_rationale": "exp=3 entry(s), lit=0 entry(s), exp_conf=0.641, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -7950,7 +8078,7 @@
       "evidence_class_counts": {
         "exp:simulation": 3
       },
-      "experimental_confidence": 0.642,
+      "experimental_confidence": 0.641,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -7962,7 +8090,7 @@
       "latest_run_id": "v3_exq_147a_mech128_e1_goal_conditioning_pair_1775184659_v3",
       "latest_timestamp_utc": "2026-04-03T21:24:19Z",
       "literature_confidence": 0.0,
-      "overall_confidence": 0.642,
+      "overall_confidence": 0.641,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -8788,7 +8916,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.313, lit_conf=0.809",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.312, lit_conf=0.808",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -8802,7 +8930,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.313,
+      "experimental_confidence": 0.312,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -8813,8 +8941,8 @@
       },
       "latest_run_id": "2026-03-29_q001_gamma_vip_coherence_veit2022",
       "latest_timestamp_utc": "2026-03-29T15:00:00Z",
-      "literature_confidence": 0.809,
-      "overall_confidence": 0.685,
+      "literature_confidence": 0.808,
+      "overall_confidence": 0.684,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8897,7 +9025,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.463, lit_conf=0.83",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.462, lit_conf=0.83",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -8911,7 +9039,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.463,
+      "experimental_confidence": 0.462,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -9116,7 +9244,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.469, lit_conf=0.812",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.468, lit_conf=0.812",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -9130,7 +9258,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.469,
+      "experimental_confidence": 0.468,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -9648,7 +9776,7 @@
       }
     },
     "Q-011": {
-      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.84",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.839",
       "direction_counts": {
         "mixed": 0,
         "supports": 0,
@@ -9671,8 +9799,8 @@
       },
       "latest_run_id": "2026-02-15_q011_lit-0026_completion",
       "latest_timestamp_utc": "2026-02-15T16:06:00Z",
-      "literature_confidence": 0.84,
-      "overall_confidence": 0.84,
+      "literature_confidence": 0.839,
+      "overall_confidence": 0.839,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9735,7 +9863,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.469, lit_conf=0.864",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.468, lit_conf=0.863",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -9749,7 +9877,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.469,
+      "experimental_confidence": 0.468,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -9760,8 +9888,8 @@
       },
       "latest_run_id": "v3_exq_152_q012_control_constraints_20260329T132030Z_v3",
       "latest_timestamp_utc": "2026-03-29T19:05:28.600006Z",
-      "literature_confidence": 0.864,
-      "overall_confidence": 0.765,
+      "literature_confidence": 0.863,
+      "overall_confidence": 0.764,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -9841,7 +9969,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.764, lit_conf=0.837",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.763, lit_conf=0.837",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -9855,7 +9983,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.764,
+      "experimental_confidence": 0.763,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10141,7 +10269,7 @@
       }
     },
     "Q-016": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.866",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.865",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -10167,8 +10295,8 @@
       },
       "latest_run_id": "2026-03-29_q016_proactive_reactive_inhibition_zhang2019",
       "latest_timestamp_utc": "2026-03-29T15:00:00Z",
-      "literature_confidence": 0.866,
-      "overall_confidence": 0.866,
+      "literature_confidence": 0.865,
+      "overall_confidence": 0.865,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -10247,7 +10375,7 @@
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.466, lit_conf=0.875",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.466, lit_conf=0.874",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -10277,8 +10405,8 @@
       },
       "latest_run_id": "v3_exq_157_q017_control_axis_minimal_subset_20260330T065453Z_v3",
       "latest_timestamp_utc": "2026-03-30T18:15:19.137727Z",
-      "literature_confidence": 0.875,
-      "overall_confidence": 0.773,
+      "literature_confidence": 0.874,
+      "overall_confidence": 0.772,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -10359,7 +10487,7 @@
       }
     },
     "Q-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.764, lit_conf=0.804",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.764, lit_conf=0.803",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -10383,8 +10511,8 @@
       },
       "latest_run_id": "v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3",
       "latest_timestamp_utc": "2026-03-29T20:23:15.429664Z",
-      "literature_confidence": 0.804,
-      "overall_confidence": 0.794,
+      "literature_confidence": 0.803,
+      "overall_confidence": 0.793,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -11981,7 +12109,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=8 entry(s), lit=5 entry(s), exp_conf=0.775, lit_conf=0.931",
+      "confidence_rationale": "exp=8 entry(s), lit=5 entry(s), exp_conf=0.774, lit_conf=0.931",
       "direction_counts": {
         "mixed": 1,
         "supports": 9,
@@ -11996,7 +12124,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.775,
+      "experimental_confidence": 0.774,
       "fail_runs": 4,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -12178,7 +12306,7 @@
       }
     },
     "SD-015": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.596, lit_conf=0.816",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.595, lit_conf=0.816",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -12191,7 +12319,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.596,
+      "experimental_confidence": 0.595,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -49885,9 +50013,221 @@
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-04-03T21:37:43Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.65,
+      "confidence_rationale": "This is a theoretical review paper proposing active inference as the computational framework for distributed pain circuits, with hierarchically organized traveling waves coordinating bottom-up nociceptive signals and top-down predictions. The review consolidates evidence from multiple studies showing that the cingulate-insula hub architecture supports hierarchical prediction-error computation. This is relevant to ARC-033 because it provides the theoretical framework under which E2_harm_s is not just biologically plausible but architecturally expected -- a dedicated forward model within the harm stream is precisely what hierarchical predictive coding requires at the sensory-discriminative level. Confidence is 0.65 because this is a review/theoretical paper without novel empirical data, and active inference is a theoretical framework whose specific implementation in pain circuits remains contested.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_033",
+      "failure_signatures": [
+        "The paper acknowledges that it is 'still unknown whether the distributed pain network is completely decentralized or requires networkwide coordination' -- if pain processing is largely decentralized (each region processing independently), the hierarchical prediction structure that licenses E2_harm_s may not be present in the form required.",
+        "The review proposes traveling waves as the implementation mechanism for hierarchical predictive coding -- a specific oscillatory implementation that has no direct analogue in the ANN REE substrate. If the hierarchical structure is critically dependent on oscillatory implementation rather than being substrate-independent, the transfer to E2_harm_s as a learned MLP would be invalid."
+      ],
+      "run_id": "2026-04-04_arc_033_hierarchical_pain_circuits_chen2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.78,
+      "confidence_rationale": "This is the most direct available neuroscientific evidence for ARC-033's core claim. The study demonstrates a clean functional dissociation within the insula: posterior insula encodes pain stimulus intensity in a forward, stimulus-proportional manner (the sensory-discriminative channel), while anterior insula encodes prediction errors. This maps tightly onto z_harm_s as the intensity-encoding, action-predictable channel that E2_harm_s operates on. The posterior insula intensity-coding result directly evidences that the sensory-discriminative harm stream encodes structured, graded information -- the precondition for a forward model to be learnable. Confidence is 0.78 rather than higher because (a) the paper does not test action-dependent prediction of harm intensity (only expectancy-based), and (b) the REE E2_harm_s operates on a learned latent representation, not raw insula signals -- the biological substrate and the REE substrate share computational structure but differ in implementation.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_033",
+      "failure_signatures": [
+        "If anterior insula prediction errors reflect domain-general surprise rather than harm-specific prediction errors, the dissociation would not specifically license a dedicated harm forward model -- E2_harm_s might be an instance of a general prediction architecture, weakening the claim that it must be separate from E2.world_forward.",
+        "The experiment manipulates expectations through external cues, not through the agent's own action choices. Action-conditional harm prediction (the specific requirement for E2_harm_s in SD-003) is not demonstrated."
+      ],
+      "run_id": "2026-04-04_arc_033_insula_dissociation_geuter2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.72,
+      "confidence_rationale": "This paper directly builds predictive coding models for pain that parallel the REE architecture in critical ways: it treats the sensory-discriminative and affective-emotional channels as computationally separate streams (S1 and ACC respectively), builds bidirectional prediction-error hierarchies within each, and validates the model against LFP recordings in both naive and chronic-pain rats. The S1 vs ACC split is the biological precedent for z_harm_s vs z_harm_a. The paper's phenomenological predictive coding model proposes that S1 generates forward predictions of nociceptive input -- the biological equivalent of E2_harm_s. Confidence is 0.72 because (a) the model is fitted to rat LFP data, not to human action-in-world settings; (b) the paper does not address action-conditional (motor) forward modeling, only sensory-sensory prediction hierarchy; (c) the computational model is phenomenological rather than mechanistic.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_033",
+      "failure_signatures": [
+        "The predictive coding model in the paper is bidirectional (S1 predicts ACC activity and vice versa), with no clear separation between a forward model and an evaluative model -- if the S1/ACC predictive relationship is fundamentally symmetric and shared, the REE claim of a one-directional E2_harm_s -> E3 pipeline would be an oversimplification.",
+        "The paper's chronic pain results show that the predictive coding dynamics change substantially in chronic pain states, suggesting the forward model is not a fixed structure but is reconfigured by injury. This is a caveat for the learnability claim -- in a novel environment, E2_harm_s would need to learn from scratch without the benefit of prior sensory history."
+      ],
+      "run_id": "2026-04-04_arc_033_predictive_coding_pain_song2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T00:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.83,
+      "confidence_rationale": "Rusu and Pennartz provide an architectural synthesis directly relevant to MECH-112's claims about E3 goal representation. Their central proposal is that goal-directed behavior is organized in a three-level cortico-BG hierarchy: (1) limbic-affective loop (orbitomedial PFC + ventral striatum) sets goal context; (2) dorsomedial PFC + striatum selects actions within that context; (3) sensorimotor loop executes. Critically, the limbic-affective loop is the biological seat of what REE calls z_goal -- it encodes the goal landscape (task space of behaviorally relevant variables), not moment-to-moment reward prediction errors. The hippocampus generates SWR replay that consolidates goal-context representations into the frontal corticothalamic circuit. This is the exact circuit architecture that MECH-112 depends upon. Confidence 0.83 because this is a review/synthesis paper, not primary electrophysiology, but the synthesis is authoritative and the Pennartz lab has primary electrophysiology supporting many of its claims.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If goal-directed behavior does not require a dedicated limbic-affective loop separate from the action-selection loop, the hierarchical organization Rusu and Pennartz propose would be incorrect and MECH-112's claim for a distinct z_goal representation would lose its primary biological grounding.",
+        "If hippocampal SWR replay does not transfer goal-context representations into the frontal system (i.e., replay is purely sensory/spatial rather than goal-shaped), the consolidation argument for MECH-112's goal attractor in hippocampal terrain would be weakened.",
+        "If the orbitomedial PFC encodes only outcome values (model-free) rather than a goal landscape (model-based), the goal-context function attributed to the limbic-affective loop would need to be relocated to another circuit."
+      ],
+      "run_id": "2026-04-04_mech_112_hierarchical_bg_loops_rusu2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T02:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.8,
+      "confidence_rationale": "Gobbo et al. provide direct calcium imaging evidence that hippocampal CA1 neurons prospectively encode the goal location before the animal begins moving -- population activity in the startbox predicts the day's changing goal on correct trials but not on error trials. This is a direct empirical demonstration that the hippocampus maintains a prospective goal representation, not just a retrospective location memory. For MECH-112, this confirms that the hippocampal terrain (the residue field in REE) does not merely record where harm occurred but also encodes where the agent is moving toward -- providing positive-attractor structure. The goal representation is dynamic (changes daily) and linked to successful navigation (absent on error trials). Confidence 0.80 rather than higher because the paper is rodent CA1 calcium imaging, and the task involves spatial goals that map only partially to REE's abstract goal attractor in z_world space.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If hippocampal prospective goal coding were absent (i.e., CA1 only codes current location, not upcoming destination), the positive-attractor terrain in REE's residue field would lack its primary neural grounding.",
+        "If prospective goal encoding were present only post-movement (not in the startbox before navigation begins), this would suggest goal representation is reactive rather than prospective -- undermining MECH-112's claim that z_goal is a persistent forward-looking attractor."
+      ],
+      "run_id": "2026-04-04_mech_112_hpc_prospective_goal_gobbo2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T02:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-112",
+      "confidence": 0.82,
+      "confidence_rationale": "Tremblay and Schultz provide direct single-unit evidence from primate OFC that neurons encode the motivational value of anticipated outcomes -- increasing activity during reward prediction and expectation intervals, discriminating between different rewards, and tracking the animal's current preference rather than physical stimulus properties. This is a direct neural demonstration that the brain maintains a prospective goal-value signal in a dedicated cortical region prior to action execution. For MECH-112 the key finding is that these OFC neurons fire during the expectation phase (delay between cue and outcome), not just at reward receipt -- they encode wanting as a sustained forward-looking representation, not merely a hedonic response on contact. The single-unit methodology in non-human primates is high quality. Confidence docked from 0.85 to 0.82 because OFC in primates corresponds architecturally to the limbic-affective prefrontal loop in REE's three-loop model (not directly E3 or z_goal), so the translation requires one intermediate mapping step.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_112",
+      "failure_signatures": [
+        "If goal value in REE could be computed at reward delivery alone (hedonic signal) without a persistent anticipatory representation, then the OFC neurons' sustained delay-period firing described here would be architecturally unnecessary.",
+        "If z_goal in E3 could be replaced by a moment-to-moment benefit_eval_head signal without loss of approach behavior, the finding that OFC activity encodes relative preference in the absence of any reward delivery would not be reproduced."
+      ],
+      "run_id": "2026-04-04_mech_112_ofc_goal_value_tremblay1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T02:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-030",
+      "confidence": 0.82,
+      "confidence_rationale": "This is the foundational Science paper that established the Go/NoGo computational model of basal ganglia reinforcement learning. The study tested Parkinson's disease patients on and off dopamine medication on probabilistic reinforcement learning tasks. Patients on medication (elevated dopamine) showed improved positive-outcome learning (Go pathway dominant) and impaired negative-outcome learning; patients off medication showed the reverse. A neurocomputational model explained the dissociation: D1-MSN Go cells learn from positive RPEs (dopamine bursts) while D2-MSN NoGo cells learn from negative RPEs (dopamine dips). The two pathways are not merely parallel -- they are opponent, and their balance determines whether action selection is biased toward approach or avoidance. The paper directly instantiates ARC-030's core claim that symmetric Go and NoGo sub-channels are necessary: disrupting either direction (by over-activating dopamine medication, or by dopamine depletion) produces systematic behavioral bias, confirming that the balance point is load-bearing. Confidence is 0.82 rather than higher because the paradigm uses simple 2-choice probabilistic RL, not the multi-step trajectory planning that ARC-030's E3 context requires.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_030",
+      "failure_signatures": [
+        "Dopamine medication in Parkinson's disease both elevates tonic dopamine AND suppresses phasic dip responses -- the on-medication impairment in negative learning may reflect blunted negative RPE signaling rather than a pure Go/NoGo imbalance. The interpretation requires multiple modeling assumptions.",
+        "The task is a 2-choice RL task, not a multi-step planning or approach-avoidance conflict task. The extension to REE's E3-level trajectory evaluation requires an assumption that the same Go/NoGo balance principle scales to multi-step deliberation.",
+        "Parkinson's patients differ from healthy controls in many ways beyond dopamine levels -- age, motor impairment, medication side effects. The causal attribution to the Go/NoGo balance specifically relies on the computational model fitting rather than direct pathway measurement."
+      ],
+      "run_id": "2026-04-04_arc_030_go_nogo_carrot_stick_frank2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-124",
+      "confidence": 0.82,
+      "confidence_rationale": "High-quality review in a specialist venue with direct mechanistic relevance to MECH-124. The paper's core argument -- that sleep disruption in PTSD selectively impairs extinction consolidation while leaving fear traces intact -- is the biological substrate for the MECH-124 failure mode: a consolidation system that sees imbalanced input (harm-trace dominant) produces imbalanced output (fear amplified, extinction/goal traces weakened). Mapping fidelity is strong because the mechanism described (REM fragmentation -> failed extinction consolidation -> chronic fear trace dominance) maps cleanly onto the REE loop. Transfer risk is moderate because the paper concerns clinical PTSD in humans whereas REE instantiates the mechanism computationally.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_124",
+      "failure_signatures": [
+        "Sleep disruption after trauma preferentially impairs extinction memory consolidation, leaving fear traces relatively intact -- producing an asymmetric imbalance.",
+        "REM fragmentation during the critical post-trauma window impedes normal fear-extinction consolidation, perpetuating fear trace dominance.",
+        "Individuals with PTSD show deficient recall of extinction memories relative to healthy controls, consistent with failed consolidation of safety/extinction content.",
+        "Positive feedback loops between stress physiology, REM disruption, and fear trace entrenchment create a self-amplifying cycle."
+      ],
+      "run_id": "2026-04-04_mech_124_sleep_extinction_imbalance_paceschott2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-124",
+      "confidence": 0.84,
+      "confidence_rationale": "High-prestige venue (Psychological Bulletin), authored by Walker, a leading sleep-memory researcher. The SFSR model directly addresses the mechanism underlying MECH-124: REM sleep strengthens emotional memory content while normally decoupling it from autonomic reactivity. When this decoupling fails (PTSD analog), the same consolidation process that normally serves regulation instead amplifies and entrenches the harm trace. The positive direction is warranted because the paper establishes the two-phase mechanism MECH-124 depends on: (1) salience-weighted strengthening during consolidation and (2) a protective decoupling step that can fail. Both phases are directly relevant to MECH-124 architecture.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_124",
+      "failure_signatures": [
+        "In PTSD, REM sleep fails to decouple emotional content from autonomic reactivity, so nightmare replay re-consolidates rather than recalibrates the fear trace.",
+        "The SFSR model predicts that when decoupling fails, REM sleep strengthening of emotional content operates unchecked, amplifying fear memory with each successive REM cycle.",
+        "The magnitude of emotional memory enhancement positively correlates with REM sleep amount, meaning more sleep can mean more amplification when the protective mechanism is absent."
+      ],
+      "run_id": "2026-04-04_mech_124_rem_emotional_sfsr_vanderhelm2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:05:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-124",
+      "confidence": 0.76,
+      "confidence_rationale": "High-prestige source (Nature Reviews Neuroscience, Loren Frank lab), strong mechanistic grounding in the SWR replay literature directly relevant to MECH-121 (the replay mechanism MECH-124 depends on). The paper establishes that SWR replay content is biased by reward magnitude and novelty -- not uniformly random -- providing the mechanistic basis for MECH-124's prediction that harm-dominant residues will produce harm-biased replay. Confidence slightly reduced because the paper is primarily about reward-biased replay, not harm/threat-biased replay; the mapping to MECH-124 requires inferring that harm salience produces analogous biasing to reward magnitude.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_124",
+      "failure_signatures": [
+        "SWR replay content is modulated by reward magnitude and novelty but the specific role of threat/aversive salience in biasing replay content is not directly established by this paper.",
+        "Reactivation during sleep SWRs is more variable than faithful replay, reducing confidence that harm-dominant residues would deterministically dominate replay content.",
+        "SWR rates are elevated after novel rewarding experiences, but the analogous elevation after aversive/harm experiences is not confirmed with equal evidence."
+      ],
+      "run_id": "2026-04-04_mech_124_swr_replay_content_joo2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-030",
+      "confidence": 0.71,
+      "confidence_rationale": "This study provides behavioral evidence that pure Pavlovian avoidance (NoGo inhibition without a compensatory Go drive) pathologically prunes a decision tree. Healthy humans reflexively curtail evaluation of decision sequences upon encountering losses, even when doing so costs them better long-term outcomes. The pruning is Pavlovian -- automatic, inflexible, loss-triggered -- and subjects with higher subclinical depressive symptoms show stronger pruning. This is a direct behavioral demonstration of the ARC-030 prediction: without a Go counterweight, pure avoidance dominates planning and produces suboptimal, approach-suppressed behavior. The clinical correlation (depression as over-pruning, i.e. over-weighting avoidance relative to approach) instantiates Q-021's claim about behavioral flatness under pure-avoidance architectures. Confidence is 0.71 rather than higher because the mapping involves a theoretical bridging step: the paper's 'Pavlovian pruning' is a behavioral phenomenon in humans using a tree-search task, not a direct measurement of BG Go/NoGo pathway balance. The connection to ARC-030 requires interpreting the pruning mechanism as an expression of NoGo dominance, which is theoretically well-motivated but not directly measured.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_030",
+      "failure_signatures": [
+        "The paper does not directly measure Go/NoGo pathway activity or D1/D2 receptor function -- the connection to the biological BG substrate underpinning ARC-030 is theoretical. The pruning mechanism could involve serotonergic Pavlovian inhibition (as the authors suggest) rather than purely dopaminergic Go/NoGo imbalance.",
+        "Pruning after large losses may be computationally rational in many environments -- the study shows it is 'reflexive' and sometimes counterproductive but does not rule out that under natural constraints it is adaptive. ARC-030's claim that pure-NoGo produces behavioral flatness requires the absence of approach drives, not merely the presence of avoidance reflexes.",
+        "The depressive symptom correlation is sub-clinical and cross-sectional -- it demonstrates an association between avoidance-dominant behavior and mood disturbance, not a causal claim that pure-NoGo architecture causes behavioral flatness."
+      ],
+      "run_id": "2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:15:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-124",
+      "confidence": 0.71,
+      "confidence_rationale": "Peer-reviewed empirical paper in APA's Emotion journal with direct experimental evidence that threat processing selectively suppresses value-based (goal-directed) attentional capture while leaving perceptual salience capture intact. This is precisely the online analog of the MECH-124 offline dynamic: threat salience competes with and suppresses goal/reward salience at the level of attentional priority. Confidence reduced because this is a waking attentional study, not an offline consolidation study -- the mapping to MECH-124's sleep-phase consolidation loop requires a transfer from online attention to offline replay scheduling. The finding is consistent with MECH-124 but is not direct evidence for consolidation-phase effects.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_124",
+      "failure_signatures": [
+        "Threat suppresses value-based attentional capture but not perceptual salience capture -- this is a selective suppression, not a general shutdown.",
+        "The competitive relationship between threat and value processing is limited to the attentional domain in this paper; whether similar competition applies to replay scheduling or consolidation priority is not established.",
+        "The paper uses a laboratory threat-of-shock paradigm which produces acute threat states; chronic harm-trace dominance in a trained agent may follow different dynamics."
+      ],
+      "run_id": "2026-04-04_mech_124_threat_goal_salience_competition_kim2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-04T10:15:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-03T21:20:11.488249Z",
+  "generated_at_utc": "2026-04-04T00:10:30.327253Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

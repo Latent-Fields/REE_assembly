@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_030",
+  "entry_id": "2026-04-04_arc_030_go_nogo_carrot_stick_frank2004",
+  "timestamp_utc": "2026-04-04T10:00:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "By carrot or by stick: cognitive reinforcement learning in parkinsonism",
+    "authors": ["Frank, Michael J.", "Seeberger, Lauren C.", "O'Reilly, Randall C."],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1102941",
+    "pmid": "15528409",
+    "volume": "306",
+    "pages": "1940-1943",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15528409/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the foundational Science paper that established the Go/NoGo computational model of basal ganglia reinforcement learning. The study tested Parkinson's disease patients on and off dopamine medication on probabilistic reinforcement learning tasks. Patients on medication (elevated dopamine) showed improved positive-outcome learning (Go pathway dominant) and impaired negative-outcome learning; patients off medication showed the reverse. A neurocomputational model explained the dissociation: D1-MSN Go cells learn from positive RPEs (dopamine bursts) while D2-MSN NoGo cells learn from negative RPEs (dopamine dips). The two pathways are not merely parallel -- they are opponent, and their balance determines whether action selection is biased toward approach or avoidance. The paper directly instantiates ARC-030's core claim that symmetric Go and NoGo sub-channels are necessary: disrupting either direction (by over-activating dopamine medication, or by dopamine depletion) produces systematic behavioral bias, confirming that the balance point is load-bearing. Confidence is 0.82 rather than higher because the paradigm uses simple 2-choice probabilistic RL, not the multi-step trajectory planning that ARC-030's E3 context requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dopamine medication in Parkinson's disease both elevates tonic dopamine AND suppresses phasic dip responses -- the on-medication impairment in negative learning may reflect blunted negative RPE signaling rather than a pure Go/NoGo imbalance. The interpretation requires multiple modeling assumptions.",
+    "The task is a 2-choice RL task, not a multi-step planning or approach-avoidance conflict task. The extension to REE's E3-level trajectory evaluation requires an assumption that the same Go/NoGo balance principle scales to multi-step deliberation.",
+    "Parkinson's patients differ from healthy controls in many ways beyond dopamine levels -- age, motor impairment, medication side effects. The causal attribution to the Go/NoGo balance specifically relies on the computational model fitting rather than direct pathway measurement."
+  ],
+  "tags": ["arc_030", "go_nogo", "basal_ganglia", "dopamine", "d1_d2", "reinforcement_learning", "parkinson", "approach_avoidance", "computational_model", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Dopamine differentially modulates two opponent pathways in the striatum: the direct (Go) pathway, where D1-MSN synapses are potentiated by dopamine bursts encoding positive RPEs, supports approach/execution of rewarded actions; the indirect (NoGo) pathway, where D2-MSN synapses are potentiated by dopamine dips encoding negative RPEs, supports avoidance of punished actions. Elevating dopamine biases toward Go (approach dominance); depleting dopamine biases toward NoGo (avoidance dominance). Normal behavior requires the balance of these opponent pathways.",
+    "ree_translation": "ARC-030 claims that each BG-like loop in REE requires symmetric Go (goal-approach, MECH-112) and NoGo (harm-avoidance, SD-010) sub-channels. Frank et al. provide the canonical computational and empirical grounding for this symmetry requirement: the Go and NoGo pathways are opponent, not independent, and disrupting either direction produces systematic behavioral bias. In REE terms, the commit threshold (ARC-016, MECH-106) is the balance point of Go and NoGo evaluation of the same hippocampal trajectory proposals. A REE agent trained only on harm avoidance signals (pure NoGo) would correspond to the dopamine-depleted Parkinson's patient -- approach learning disabled, avoidance learning dominant, resulting in quiescence as the optimal policy.",
+    "mapping_caveat": "Frank et al.'s model operates at the level of a single striatal loop with 2-choice action selection, not the multi-loop, trajectory-level planning of REE's E3. The principle of Go/NoGo symmetry is well-supported, but whether the specific balance mechanism (dopamine RPE dips/bursts modulating D1/D2 MSN plasticity) maps onto REE's harm/goal signal weighting in E3 requires additional theoretical work. The clinical population (Parkinson's) introduces confounders beyond dopamine levels.",
+    "source_context": "Human behavioral study with Parkinson's disease patients on and off dopaminergic medication; probabilistic reinforcement learning task (weather prediction variant); plus neurocomputational model of cortico-basal ganglia-thalamo-cortical circuit"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.22,
+    "notes": "Exceptional source quality: Science publication, canonical paper in the field, highly replicated, forms the basis of the Go/NoGo model family that directly motivates ARC-030. Mapping fidelity is high: the Go/NoGo opponent pathway architecture is the direct biological inspiration for ARC-030's symmetric sub-channel claim. Transfer risk is relatively low because the principle of needing both Go and NoGo pathways for behavioral balance is substrate-independent; the main transfer risk is the gap between 2-choice RL and multi-step trajectory planning."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_124",
+  "entry_id": "2026-04-04_mech_124_rem_emotional_sfsr_vanderhelm2009",
+  "timestamp_utc": "2026-04-04T10:05:00Z",
+  "claim_ids_tested": ["MECH-124"],
+  "source": {
+    "title": "Overnight Therapy? The Role of Sleep in Emotional Brain Processing",
+    "authors": ["Els van der Helm", "Matthew P. Walker"],
+    "year": 2009,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0016570",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2890316/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "High-prestige venue (Psychological Bulletin), authored by Walker, a leading sleep-memory researcher. The SFSR model directly addresses the mechanism underlying MECH-124: REM sleep strengthens emotional memory content while normally decoupling it from autonomic reactivity. When this decoupling fails (PTSD analog), the same consolidation process that normally serves regulation instead amplifies and entrenches the harm trace. The positive direction is warranted because the paper establishes the two-phase mechanism MECH-124 depends on: (1) salience-weighted strengthening during consolidation and (2) a protective decoupling step that can fail. Both phases are directly relevant to MECH-124 architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In PTSD, REM sleep fails to decouple emotional content from autonomic reactivity, so nightmare replay re-consolidates rather than recalibrates the fear trace.",
+    "The SFSR model predicts that when decoupling fails, REM sleep strengthening of emotional content operates unchecked, amplifying fear memory with each successive REM cycle.",
+    "The magnitude of emotional memory enhancement positively correlates with REM sleep amount, meaning more sleep can mean more amplification when the protective mechanism is absent."
+  ],
+  "tags": [
+    "mech124",
+    "REM-sleep",
+    "SFSR",
+    "emotional-memory",
+    "fear-amplification",
+    "decoupling-failure",
+    "PTSD",
+    "Walker",
+    "consolidation-dynamics"
+  ],
+  "mapping": {
+    "source_claim_statement": "REM sleep strengthens the content of emotionally arousing memories while normally reducing their associated autonomic reactivity -- the Sleep to Forget and Sleep to Remember (SFSR) model. In PTSD, the decoupling step fails: nightmares during REM re-consolidate fear traces without reducing their emotional intensity, resulting in a self-amplifying loop where more REM sleep means more fear trace strengthening without relief.",
+    "ree_translation": "The SFSR model provides the two-level architecture MECH-124 requires. Level 1: consolidation selectively amplifies salient content (whatever dominates replay) -- this is the strengthening step, and it is how MECH-124's loop amplifies harm predictions even without a bug in the system. Level 2: a protective mechanism (autonomic decoupling in biological systems; MECH-094 hypothesis tag in REE) prevents the strengthened trace from dominating behavior. If Level 2 fails or is absent, Level 1 continues amplifying the dominant trace unchecked. For REE V4, this maps as: MECH-121 SWR replay is Level 1 (strengthens whatever is salient); MECH-094 tag is proposed as Level 2 (protects against harm-trace over-amplification). The SFSR failure case is the MECH-124 failure case. PTSD is the biological instance where Level 2 is broken, producing progressive option-space contraction through each night's REM cycles.",
+    "mapping_caveat": "The SFSR model is proposed for emotional memory broadly; its application to goal vs. harm salience competition is a translation step, not directly tested by the paper. The biological decoupling mechanism (REM noradrenergic withdrawal, amygdala-hippocampal theta synchrony) is entirely different in implementation from the proposed MECH-094 hypothesis tag. The functional analogy (a protective gate that can fail) is sound but does not validate the specific REE implementation. Walker & van der Helm focus on episodic emotional memories; REE operates on latent representations in z_harm and z_goal, which are distributed rather than episodic.",
+    "source_context": "Theoretical review and empirical meta-synthesis in Psychological Bulletin. Draws on neuroimaging, sleep stage studies, lesion work, and clinical literature to propose the SFSR model of REM sleep function in emotional memory regulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "Psychological Bulletin is a top-tier review venue; Walker is a leading researcher in this area. Source quality very high. Mapping fidelity strong for the two-level mechanism but the specific goal-vs-harm competition aspect requires a translation step. Transfer risk relatively low because the SFSR model is proposed as a general principle of emotional memory processing, not limited to clinical populations."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "metrics": {
+    "resource_rate_nogo": 0.25133333333333335,
+    "resource_rate_liking": 0.37066666666666664,
+    "resource_rate_wanting": 0.14833333333333334,
+    "harm_rate_nogo": 0.6113333333333333,
+    "harm_rate_liking": 0.5353333333333333,
+    "harm_rate_wanting": 0.7156666666666667,
+    "liking_l2_redirect_steps": 2.0,
+    "wanting_l1_directed_fraction": 0.96,
+    "liking_l1_directed_fraction": 0.43,
+    "l1_fraction_dissociation": 0.53,
+    "wanting_goal_norm_final": 0.09301970154047012,
+    "wanting_goal_proximity_final": 0.9102362394332886,
+    "wanting_goal_active": 1.0,
+    "crit1_pass": 1.0,
+    "crit2_pass": 1.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-074f -- MECH-117 Wanting/Liking Dissociation\n\n**Status:** PASS\n**Claims:** MECH-112, MECH-117\n**Seed:** 42  **Steps:** 3000  **Relocation:** step 1500\n**Fix from 074e:** wanting/liking conditions now use model-based action selection (z_goal proximity / benefit_eval via E2.world_forward) POST-relocation only (step 1500+). Pre-relocation: greedy-to-resource throughout to keep z_goal refreshed.\n\n## Conditions\n\n- nogo: benefit_eval_enabled=False, z_goal_enabled=False (greedy+random throughout)\n- liking: benefit_eval_enabled=True, z_goal_enabled=False (model-based benefit_eval scoring after warmup)\n- wanting: benefit_eval_enabled=False, z_goal_enabled=True (model-based z_goal proximity scoring after warmup)\n\n## Results\n\n| Metric | nogo | liking | wanting |\n|---|---|---|---|\n| resource_visit_rate | 0.2513 | 0.3707 | 0.1483 |\n| harm_rate | 0.6113 | 0.5353 | 0.7157 |\n| l2_redirect_steps | -- | 2 | -- |\n| l1_directed_fraction | -- | 0.430 | 0.960 |\n| goal_norm_final | -- | -- | 0.0930 |\n\n## PASS Criteria\n\n| Criterion | Result |\n|---|---|\n| C1: wanting resource_rate >= 0.05 (floor) | PASS |\n| C2: liking l2_redirect <= 15 steps | PASS |\n| C3: wanting l1_fraction >= 0.25 | PASS |\n| C4: liking l1_fraction <= wanting l1_fraction - 0.10 (dissociation) | PASS |\n\nCriteria met: 4/4 -> **PASS**\n\n## Interpretation\n\nMECH-117 SUPPORTED: wanting (z_goal_latent) and liking (benefit_eval_head) are functionally dissociable. Wanting produces persistent L1-directed approach after relocation; liking rapidly redirects to L2. Consistent with Berridge (1996) incentive salience / Culbreth et al. (2023) profiles.\n\n",
+  "claim_ids": [
+    "MECH-112",
+    "MECH-117"
+  ],
+  "evidence_direction": "supports",
+  "experiment_type": "v3_exq_074f_mech112_117_wanting_liking",
+  "fatal_error_count": 0,
+  "condition_results": {
+    "nogo": {
+      "condition": "nogo",
+      "resource_visit_rate": 0.25133333333333335,
+      "harm_rate": 0.6113333333333333,
+      "l1_directed_fraction": 0.355,
+      "liking_l2_redirect_steps": 7,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 754,
+      "n_harm_events": 1834,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 71
+    },
+    "liking": {
+      "condition": "liking",
+      "resource_visit_rate": 0.37066666666666664,
+      "harm_rate": 0.5353333333333333,
+      "l1_directed_fraction": 0.43,
+      "liking_l2_redirect_steps": 2,
+      "goal_norm_final": 0.0,
+      "goal_proximity_final": 0.0,
+      "goal_active": false,
+      "n_resource_visits": 1112,
+      "n_harm_events": 1606,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 86
+    },
+    "wanting": {
+      "condition": "wanting",
+      "resource_visit_rate": 0.14833333333333334,
+      "harm_rate": 0.7156666666666667,
+      "l1_directed_fraction": 0.96,
+      "liking_l2_redirect_steps": 200,
+      "goal_norm_final": 0.09301970154047012,
+      "goal_proximity_final": 0.9102362394332886,
+      "goal_active": true,
+      "n_resource_visits": 445,
+      "n_harm_events": 2147,
+      "total_steps": 3000,
+      "post_reloc_steps": 200,
+      "l1_directed_steps": 192
+    }
+  },
+  "run_timestamp": "20260404T002324Z",
+  "claim": "MECH-112",
+  "verdict": "PASS",
+  "run_id": "v3_exq_074f_mech112_117_wanting_liking_20260404T002324Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

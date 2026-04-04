@@ -36,6 +36,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-03-16T18:20:19.361124Z"
     },
+    "ARC-022": {
+      "actor": "user",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Promote to provisional: conf=0.81, zero conflicts, 3 supports. Clean case. ARC-007/ARC-014 conflict noted in claim but does not block provisional status -- conflict resolution is tracked in conflict_note and depends_on.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote now (faster convergence, risk premature lock-in)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
     "ARC-023": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -101,12 +110,21 @@
     },
     "ARC-038": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "V3-gated claim, no V3 runs yet. Hold.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+      "rationale": "Hold at candidate: conflict_ratio=1.0 with only 1 experimental entry. Prior v3-substrate hold superseded by new conflict resolution recommendation. Dedicated experiments needed.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
+    "ARC-039": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: insufficient evidence to resolve. EXQ-214 was non_contributory (ResidueField.integrate() probe too crude). Dedicated discriminative experiment needed.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
     },
     "ARC-041": {
       "actor": "user",
@@ -116,6 +134,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
+    "ARC-042": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=0.8, EXQ-211 shows cosim only marginally reduced (weakening evidence). Dedicated conflict-resolution experiments needed.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
     },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
@@ -270,6 +297,15 @@
       "selected_option": "Promote to stable",
       "timestamp_utc": "2026-03-19T19:52:00Z"
     },
+    "MECH-070": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: EXQ-212 adds further weakening evidence. 3 of 4 experiments are FAIL/mixed. E1/E2 co-evolution (MECH-135) must be resolved before MECH-070 claim scope can be properly tested.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
     "MECH-071": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -287,6 +323,24 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-03-16T18:20:19.361139Z"
+    },
+    "MECH-073": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=1.0 with zero experimental entries. Lit-only evidence is 2:2 conflicted. Dedicated experiment needed to resolve direction.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
+    "MECH-075": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: EXQ-192a substrate null (novelty_signal 6e-5 below threshold). Evidence record shows mixed/null results. Conflict resolution experiments needed.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
     },
     "MECH-089": {
       "actor": "user",
@@ -432,6 +486,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-29T21:16:41.465228Z"
     },
+    "MECH-128": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: EXQ-147a shows goal seeding works (C2/C3/C4 PASS) but E1 coupling absent (C1 FAIL). Training budget or z_goal substrate depth insufficient. Hold pending resolution.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
     "MECH-135": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -449,6 +512,24 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
+    },
+    "MECH-155": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: conflict_ratio=0.667 with only 2 experimental entries. Insufficient evidence to resolve. Dedicated experiments needed.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
+    "MECH-163": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: implementation_phase=v3 with no V3 runs yet. Lit-only confidence (0.695) is not sufficient to promote without experimental validation.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
     },
     "Q-006": {
       "actor": "user",
@@ -603,6 +684,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
     },
+    "SD-015": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Hold at candidate: 11 experiments with conflict_ratio=0.889. SD-015 seeding mechanism partially validated (proximity regression) but behavior integration fails consistently. EXP-0091 will test handcrafted resource_indicator; hold until that resolves.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -613,7 +703,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-04-03T20:37:18.882860Z",
+  "generated_at_utc": "2026-04-04T00:10:30.327253Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

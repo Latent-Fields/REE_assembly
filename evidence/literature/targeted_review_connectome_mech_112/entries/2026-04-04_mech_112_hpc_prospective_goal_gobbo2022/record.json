@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-04-04_mech_112_hpc_prospective_goal_gobbo2022",
+  "timestamp_utc": "2026-04-04T02:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Neuronal signature of spatial decision-making during navigation by freely moving rats by using calcium imaging.",
+    "authors": ["Gobbo, F.", "Mitchell-Heggs, R.", "Tse, D.", "Al Omrani, M.", "Spooner, P.A.", "Schultz, S.R.", "Morris, R.G.M."],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2212152119",
+    "pmid": "36279456",
+    "pmc": "PMC9636941",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36279456/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Gobbo et al. provide direct calcium imaging evidence that hippocampal CA1 neurons prospectively encode the goal location before the animal begins moving -- population activity in the startbox predicts the day's changing goal on correct trials but not on error trials. This is a direct empirical demonstration that the hippocampus maintains a prospective goal representation, not just a retrospective location memory. For MECH-112, this confirms that the hippocampal terrain (the residue field in REE) does not merely record where harm occurred but also encodes where the agent is moving toward -- providing positive-attractor structure. The goal representation is dynamic (changes daily) and linked to successful navigation (absent on error trials). Confidence 0.80 rather than higher because the paper is rodent CA1 calcium imaging, and the task involves spatial goals that map only partially to REE's abstract goal attractor in z_world space.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal prospective goal coding were absent (i.e., CA1 only codes current location, not upcoming destination), the positive-attractor terrain in REE's residue field would lack its primary neural grounding.",
+    "If prospective goal encoding were present only post-movement (not in the startbox before navigation begins), this would suggest goal representation is reactive rather than prospective -- undermining MECH-112's claim that z_goal is a persistent forward-looking attractor."
+  ],
+  "tags": ["mech_112", "hippocampus", "ca1", "goal_representation", "prospective_coding", "spatial_navigation", "calcium_imaging", "wanting", "approach_motivation"],
+  "mapping": {
+    "source_claim_statement": "CA1 hippocampal population activity in the startbox (before the animal enters the arena) rises steadily and is predictive of the day's daily-changing goal location on correct trials but not on error trials. Single-cell and population measures both show prospective coding of the upcoming navigational goal. The signal is not merely spatial familiarity -- it specifically encodes the particular goal location that will be sought, changing daily as the rewarded location changes.",
+    "ree_translation": "MECH-112 claims that E3 requires a structured latent goal representation distinct from harm avoidance -- a positive attractor that provides terrain to navigate toward in the hippocampal planner. Gobbo et al. provide direct evidence for exactly this: CA1 neurons generate a prospective goal signal before navigation begins, encoding where the agent is committed to going. In REE terms, this is the biological instantiation of z_goal seeding the hippocampal terrain ahead of action selection -- the residue field has positive attractor structure pointing toward the goal. The failure signature is also directly useful: when the goal representation is absent or degraded (error trials), navigation fails -- just as the prediction from MECH-112 is that without z_goal, E3's trajectory proposals have no positive terrain to navigate toward and degenerate toward quiescence or random walk.",
+    "mapping_caveat": "The task uses spatial goals (locations in a physical arena) whereas REE's z_goal is an abstract motivational representation in latent space. The spatial-to-abstract translation requires care -- goal representations in REE do not have the precise geometric structure of hippocampal place fields. Also, the daily-changing goal is rewarded by the experimenter, so the task does not test intrinsically generated goal representations. The Morris lab context is important: the task (recency task building on schema literature) is designed for episodic memory research, which limits direct generalization to ongoing motivated approach drive.",
+    "source_context": "Calcium imaging (1000+ cells/animal); freely moving rats; CA1 hippocampus; spatial recency goal task with daily goal rotation; 5 rats; n=1000 cells per animal."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.32,
+    "notes": "PNAS, 2022, large-scale calcium imaging from Morris lab (author of the Morris water maze paradigm). Source quality high. Mapping fidelity good for the prospective goal-coding claim specifically, but moderate for the full MECH-112 claim which also requires persistence across training and integration with harm avoidance. Transfer risk moderate because spatial-to-abstract goal translation is non-trivial."
+  }
+}

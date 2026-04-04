@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_112",
+  "entry_id": "2026-04-04_mech_112_hierarchical_bg_loops_rusu2019",
+  "timestamp_utc": "2026-04-04T02:00:00Z",
+  "claim_ids_tested": ["MECH-112"],
+  "source": {
+    "title": "Learning, memory and consolidation mechanisms for behavioral control in hierarchically organized cortico-basal ganglia systems.",
+    "authors": ["Rusu, S.I.", "Pennartz, C.M.A."],
+    "year": 2019,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.23167",
+    "pmid": "31617622",
+    "pmc": "PMC6972576",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31617622/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Rusu and Pennartz provide an architectural synthesis directly relevant to MECH-112's claims about E3 goal representation. Their central proposal is that goal-directed behavior is organized in a three-level cortico-BG hierarchy: (1) limbic-affective loop (orbitomedial PFC + ventral striatum) sets goal context; (2) dorsomedial PFC + striatum selects actions within that context; (3) sensorimotor loop executes. Critically, the limbic-affective loop is the biological seat of what REE calls z_goal -- it encodes the goal landscape (task space of behaviorally relevant variables), not moment-to-moment reward prediction errors. The hippocampus generates SWR replay that consolidates goal-context representations into the frontal corticothalamic circuit. This is the exact circuit architecture that MECH-112 depends upon. Confidence 0.83 because this is a review/synthesis paper, not primary electrophysiology, but the synthesis is authoritative and the Pennartz lab has primary electrophysiology supporting many of its claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If goal-directed behavior does not require a dedicated limbic-affective loop separate from the action-selection loop, the hierarchical organization Rusu and Pennartz propose would be incorrect and MECH-112's claim for a distinct z_goal representation would lose its primary biological grounding.",
+    "If hippocampal SWR replay does not transfer goal-context representations into the frontal system (i.e., replay is purely sensory/spatial rather than goal-shaped), the consolidation argument for MECH-112's goal attractor in hippocampal terrain would be weakened.",
+    "If the orbitomedial PFC encodes only outcome values (model-free) rather than a goal landscape (model-based), the goal-context function attributed to the limbic-affective loop would need to be relocated to another circuit."
+  ],
+  "tags": ["mech_112", "basal_ganglia", "hippocampus", "goal_directed", "limbic_affective_loop", "hierarchical_loops", "consolidation", "replay", "prefrontal_striatal"],
+  "mapping": {
+    "source_claim_statement": "Goal-directed behavior is hierarchically organized in cortico-BG loops where a limbic-affective prefrontal-ventral striatal loop controls action selection in a dorsomedial prefrontal-striatal loop, which regulates a sensorimotor-dorsolateral striatal circuit. The orbitomedial PFC codes the goal landscape (task space of behaviorally relevant variables). The hippocampus generates SWR replay that consolidates world state representations and goal context into the frontal system. Dopamine's role extends beyond reward prediction error to signaling unexpected sensory changes (reactivity signal).",
+    "ree_translation": "MECH-112 claims E3 requires a structured latent goal representation (z_goal positive attractor) distinct from harm avoidance. Rusu and Pennartz provide the canonical architectural model for this: the limbic-affective loop (orbitomedial PFC + ventral striatum) encodes the goal landscape -- what the agent is trying to achieve and within what context. This is the biological origin of z_goal in REE: not a moment-to-moment value readout but a landscape of what the agent is oriented toward, which sets the context for the action-selection loop. The hippocampal SWR replay consolidating goal context maps to MECH-092 and the hippocampal terrain in REE -- goal attractors in z_world space are not only specified online but consolidated during quiescent replay into a stable goal gradient that persists across episodes. The three-loop hierarchy also directly supports ARC-030: the limbic-affective loop (z_goal, Go-drive) must co-exist with the nociceptive stream (SD-010, NoGo-drive) as dual inputs to the action-selection loop.",
+    "mapping_caveat": "Rusu and Pennartz's review integrates many studies from different species and paradigms; not all claims have equally strong primary evidence. The distinction between model-based and goal-directed learning in this paper is finer than REE's current implementation -- REE conflates some of these in its current V3 design. The hippocampal SWR replay mechanism is proposed as goal-context consolidating but the primary evidence for goal-shaped (vs. purely spatial) replay is contested in the broader literature.",
+    "source_context": "Integrative review; Hippocampus journal (Wiley/Pennartz lab); synthesizes rodent and primate behavioral, lesion, electrophysiology, and computational studies; 2019."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Hippocampus journal, authoritative synthesis from Pennartz lab which has primary single-unit data supporting the framework. Mapping fidelity is very strong -- the three-loop architecture and goal-landscape coding are directly mapped to REE claims. Transfer risk low because this is a systems-level architectural claim and REE is designed to implement the same architectural principles."
+  }
+}

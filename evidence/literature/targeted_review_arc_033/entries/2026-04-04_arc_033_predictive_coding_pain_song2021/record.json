@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-04-04_arc_033_predictive_coding_pain_song2021",
+  "timestamp_utc": "2026-04-04T00:30:00Z",
+  "claim_ids_tested": ["ARC-033"],
+  "source": {
+    "title": "Predictive coding models for pain perception.",
+    "authors": ["Song Y", "Yao M", "Kemprecos H", "Byrne A", "Xiao Z", "Zhang Q", "Singh A", "Wang J", "Chen ZS"],
+    "year": 2021,
+    "venue": "Journal of Computational Neuroscience",
+    "doi": "10.1007/s10827-021-00780-x",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33595765/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This paper directly builds predictive coding models for pain that parallel the REE architecture in critical ways: it treats the sensory-discriminative and affective-emotional channels as computationally separate streams (S1 and ACC respectively), builds bidirectional prediction-error hierarchies within each, and validates the model against LFP recordings in both naive and chronic-pain rats. The S1 vs ACC split is the biological precedent for z_harm_s vs z_harm_a. The paper's phenomenological predictive coding model proposes that S1 generates forward predictions of nociceptive input -- the biological equivalent of E2_harm_s. Confidence is 0.72 because (a) the model is fitted to rat LFP data, not to human action-in-world settings; (b) the paper does not address action-conditional (motor) forward modeling, only sensory-sensory prediction hierarchy; (c) the computational model is phenomenological rather than mechanistic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The predictive coding model in the paper is bidirectional (S1 predicts ACC activity and vice versa), with no clear separation between a forward model and an evaluative model -- if the S1/ACC predictive relationship is fundamentally symmetric and shared, the REE claim of a one-directional E2_harm_s -> E3 pipeline would be an oversimplification.",
+    "The paper's chronic pain results show that the predictive coding dynamics change substantially in chronic pain states, suggesting the forward model is not a fixed structure but is reconfigured by injury. This is a caveat for the learnability claim -- in a novel environment, E2_harm_s would need to learn from scratch without the benefit of prior sensory history."
+  ],
+  "tags": ["arc_033", "predictive_coding", "pain", "s1", "acc", "sensory_discriminative", "affective", "computational_model", "rat"],
+  "mapping": {
+    "source_claim_statement": "A phenomenological predictive coding model was developed for pain in which the primary somatosensory cortex (S1) encodes the sensory-discriminative dimension and the anterior cingulate cortex (ACC) encodes the affective-emotional dimension. LFP recordings from freely behaving rats validated that S1 and ACC show distinct oscillatory dynamics during pain, consistent with separate predictive coding hierarchies. The model replicates key phenomena including uncertainty of expectation, placebo/nocebo effects, and chronic pain signatures.",
+    "ree_translation": "ARC-033 requires E2_harm_s to be a forward model for z_harm_s (the sensory-discriminative harm stream). Song et al. provide direct computational evidence that the sensory-discriminative pain channel (S1) operates as a predictive hierarchy -- generating predictions about incoming nociceptive input and computing prediction errors. This is exactly the computational architecture that makes E2_harm_s feasible: z_harm_s carries prediction-error-structured signal that a forward model can learn to anticipate. The paper's treatment of S1 as a separate predictive hierarchy from ACC (affective) mirrors the z_harm_s / z_harm_a stream separation in SD-011, and the S1 predictive model provides biological precedent for E2_harm_s operating specifically within this stream.",
+    "mapping_caveat": "The paper builds S1/ACC predictive models for sensory-to-sensory prediction (how prior pain states predict current pain activation), not for action-to-harm prediction. E2_harm_s in ARC-033 must be an action-conditional forward model -- predicting how z_harm_s changes as a function of action a. The paper provides architectural precedent for predictive structure within z_harm_s but does not demonstrate that this structure is action-conditional. The rat LFP context and freely behaving paradigm are the most ecologically close to the REE setup, which is a transfer advantage.",
+    "source_context": "Rat LFP recordings from S1 and ACC in freely behaving animals during nociceptive episodes. Both naive and chronic pain (spared nerve injury) conditions. Computational models fit to data. Published in Journal of Computational Neuroscience (NYU Wang/Chen lab)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality (J Comput Neurosci, empirical LFP validation). Mapping fidelity is moderate -- the S1/ACC split maps well to z_harm_s/z_harm_a but the computational model is sensory-sensory, not action-conditional. Transfer risk is moderate (rat to human/REE) but mitigated by the freely-behaving design."
+  }
+}

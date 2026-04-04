@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_030",
+  "entry_id": "2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012",
+  "timestamp_utc": "2026-04-04T10:15:00Z",
+  "claim_ids_tested": ["ARC-030"],
+  "source": {
+    "title": "Bonsai trees in your head: how the Pavlovian system sculpts goal-directed choices by pruning decision trees",
+    "authors": ["Huys, Quentin J.M.", "Eshel, Neir", "O'Nions, Elizabeth", "Sheridan, Luke", "Dayan, Peter", "Roiser, Jonathan P."],
+    "year": 2012,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1002410",
+    "pmid": "22412360",
+    "volume": "8",
+    "pages": "e1002410",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3297555/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "This study provides behavioral evidence that pure Pavlovian avoidance (NoGo inhibition without a compensatory Go drive) pathologically prunes a decision tree. Healthy humans reflexively curtail evaluation of decision sequences upon encountering losses, even when doing so costs them better long-term outcomes. The pruning is Pavlovian -- automatic, inflexible, loss-triggered -- and subjects with higher subclinical depressive symptoms show stronger pruning. This is a direct behavioral demonstration of the ARC-030 prediction: without a Go counterweight, pure avoidance dominates planning and produces suboptimal, approach-suppressed behavior. The clinical correlation (depression as over-pruning, i.e. over-weighting avoidance relative to approach) instantiates Q-021's claim about behavioral flatness under pure-avoidance architectures. Confidence is 0.71 rather than higher because the mapping involves a theoretical bridging step: the paper's 'Pavlovian pruning' is a behavioral phenomenon in humans using a tree-search task, not a direct measurement of BG Go/NoGo pathway balance. The connection to ARC-030 requires interpreting the pruning mechanism as an expression of NoGo dominance, which is theoretically well-motivated but not directly measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not directly measure Go/NoGo pathway activity or D1/D2 receptor function -- the connection to the biological BG substrate underpinning ARC-030 is theoretical. The pruning mechanism could involve serotonergic Pavlovian inhibition (as the authors suggest) rather than purely dopaminergic Go/NoGo imbalance.",
+    "Pruning after large losses may be computationally rational in many environments -- the study shows it is 'reflexive' and sometimes counterproductive but does not rule out that under natural constraints it is adaptive. ARC-030's claim that pure-NoGo produces behavioral flatness requires the absence of approach drives, not merely the presence of avoidance reflexes.",
+    "The depressive symptom correlation is sub-clinical and cross-sectional -- it demonstrates an association between avoidance-dominant behavior and mood disturbance, not a causal claim that pure-NoGo architecture causes behavioral flatness."
+  ],
+  "tags": ["arc_030", "avoidance", "behavioral_flatness", "depression", "pavlovian", "decision_tree", "go_nogo", "approach_avoidance_balance", "computational_model", "human"],
+  "mapping": {
+    "source_claim_statement": "Human subjects reflexively prune decision trees by abandoning evaluation of sequences containing large losses, even when continuation would yield better outcomes. This Pavlovian behavioral inhibition operates automatically, without deliberate choice, and its strength correlates with sub-clinical depressive symptoms. The Pavlovian system acts as a 'crutch' that short-circuits goal-directed evaluation when losses are detected -- an avoidance reflex that overrides approach planning.",
+    "ree_translation": "ARC-030 claims that symmetric Go and NoGo sub-channels are necessary for balanced motivated behavior; removing Go (approach) leaves only NoGo avoidance, which produces behavioral flatness. Huys et al. demonstrate the behavioral consequence of NoGo dominance in a decision-tree context: when the Pavlovian inhibition system (NoGo analog) operates without adequate counterweight from goal-directed approach evaluation, it pathologically prunes the search tree -- the agent stops evaluating paths that contain losses, even profitable ones. The REE analog is: an E3 that evaluates only harm proximity (NoGo / SD-010) without goal attractors (Go / MECH-112) will prune all trajectories passing through harm-adjacent states, including trajectories that would eventually reach high-value goals. The result is quiescence or minimal-action behavior -- exactly Q-021's behavioral flatness prediction. The sub-clinical depression correlation provides an epidemiological anchor: over-avoidance is not a purely theoretical pathology but a measurable disposition present in the normal population and elevated in mood disorders.",
+    "mapping_caveat": "The 'Pavlovian pruning' in this study is a tree-search inhibition phenomenon potentially mediated by serotonin rather than dopamine, and at a planning/deliberation level rather than at the action-selection level of the BG Go/NoGo model. ARC-030 is specifically about BG direct/indirect pathway balance, whereas Huys et al.'s mechanism may operate at the PFC-BG interface (goal-directed vs Pavlovian system interaction). The mapping requires treating Pavlovian inhibition as a functional analog of NoGo dominance, which is theoretically sound but involves a level-shift. The study uses a sequential decision tree paradigm (not a navigation task), and REE's hippocampal trajectory planning is geometrically richer than a binary tree search.",
+    "source_context": "Human behavioral study with healthy adults; sequential decision-making task with monetary outcomes requiring tree-search evaluation; computational modeling using a Bayesian pruning model; sub-clinical depression correlation via BDI-SF; computational model by Huys and Dayan"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality: PLoS Computational Biology, peer-reviewed, well-cited, combines behavioral data with principled computational modeling. Mapping fidelity is moderate: the paper demonstrates NoGo-dominant behavior producing suboptimal approach-suppressed policies, which is directly relevant to ARC-030's prediction, but does not directly measure Go/NoGo BG pathway activity. Transfer risk is moderate: the Pavlovian pruning mechanism may not be the same biological mechanism as D1/D2 striatal competition, though functionally they produce the same outcome (approach suppression under avoidance dominance)."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_195_sd003_zharms_full_counterfactual
 
-Generated: `2026-04-03T20:37:18.882860Z`
+Generated: `2026-04-04T00:10:30.327253Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

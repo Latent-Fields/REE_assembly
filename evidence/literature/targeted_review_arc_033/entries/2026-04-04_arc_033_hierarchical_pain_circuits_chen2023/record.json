@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-04-04_arc_033_hierarchical_pain_circuits_chen2023",
+  "timestamp_utc": "2026-04-04T00:30:00Z",
+  "claim_ids_tested": ["ARC-033"],
+  "source": {
+    "title": "Hierarchical predictive coding in distributed pain circuits.",
+    "authors": ["Chen ZS"],
+    "year": 2023,
+    "venue": "Frontiers in Neural Circuits",
+    "doi": "10.3389/fncir.2023.1073537",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36937818/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This is a theoretical review paper proposing active inference as the computational framework for distributed pain circuits, with hierarchically organized traveling waves coordinating bottom-up nociceptive signals and top-down predictions. The review consolidates evidence from multiple studies showing that the cingulate-insula hub architecture supports hierarchical prediction-error computation. This is relevant to ARC-033 because it provides the theoretical framework under which E2_harm_s is not just biologically plausible but architecturally expected -- a dedicated forward model within the harm stream is precisely what hierarchical predictive coding requires at the sensory-discriminative level. Confidence is 0.65 because this is a review/theoretical paper without novel empirical data, and active inference is a theoretical framework whose specific implementation in pain circuits remains contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper acknowledges that it is 'still unknown whether the distributed pain network is completely decentralized or requires networkwide coordination' -- if pain processing is largely decentralized (each region processing independently), the hierarchical prediction structure that licenses E2_harm_s may not be present in the form required.",
+    "The review proposes traveling waves as the implementation mechanism for hierarchical predictive coding -- a specific oscillatory implementation that has no direct analogue in the ANN REE substrate. If the hierarchical structure is critically dependent on oscillatory implementation rather than being substrate-independent, the transfer to E2_harm_s as a learned MLP would be invalid."
+  ],
+  "tags": ["arc_033", "predictive_coding", "active_inference", "pain", "hierarchical", "cingulate_insula", "distributed_circuits", "review"],
+  "mapping": {
+    "source_claim_statement": "Nociceptive processing in distributed brain circuits (cingulate-insula hub, spinothalamic inputs) follows hierarchical predictive coding principles. The cingulate cortex and insula cortex serve as major integration hubs. The anterior insula cortex responds to unsigned intensity prediction errors (modality-unspecific aversive surprise), while dorsal posterior insula encodes modality-specific signed intensity prediction errors. Active inference provides the generalized algorithm; hierarchically organized traveling waves of neural oscillations implement the bottom-up/top-down integration.",
+    "ree_translation": "ARC-033 requires a forward model specifically for the sensory-discriminative harm stream. This review provides the theoretical architecture within which that requirement makes sense: in hierarchical predictive coding, each level of the processing hierarchy needs a generative model (forward model) that predicts the activity at the level below. For z_harm_s (posterior insula / dorsal PIC level), the forward model is what E2_harm_s implements -- predicting how z_harm_s changes under different actions. The review's description of AIC as encoding prediction errors and dorsal PIC as encoding intensity directly maps onto the computational roles of E3 (reads prediction errors) and E2_harm_s (models the intensity stream). The review also supports the ARC-033 architectural decision that the harm stream forward model must be separate from E2.world_forward -- because the pain hierarchy is anatomically distinct from the sensorimotor prediction hierarchy.",
+    "mapping_caveat": "As a theoretical review, the paper synthesizes existing evidence into a framework rather than providing direct empirical tests. The active inference framing carries additional theoretical commitments (free energy minimization, precision-weighted prediction errors) that REE does not fully adopt. The hierarchical structure described is for sensory processing, and the extension to motor-conditional forward modeling (E2_harm_s predicting z_harm_s given action choice) requires additional assumptions beyond what the review establishes.",
+    "source_context": "Mini-review synthesizing human and animal studies on pain processing. Published in Frontiers in Neural Circuits (Chen lab, NYU). Provides framework context for the Song et al. 2021 computational models."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Moderate source quality (Frontiers, single-author review, no novel data). Mapping fidelity is moderate -- the framework maps well but lacks the specificity of an empirical result. Transfer risk is low since the review directly addresses the pain domain and human circuits."
+  }
+}

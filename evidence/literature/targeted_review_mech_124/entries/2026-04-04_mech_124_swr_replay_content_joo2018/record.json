@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_124",
+  "entry_id": "2026-04-04_mech_124_swr_replay_content_joo2018",
+  "timestamp_utc": "2026-04-04T10:10:00Z",
+  "claim_ids_tested": ["MECH-124"],
+  "source": {
+    "title": "The hippocampal sharp wave-ripple in memory retrieval for immediate use and consolidation",
+    "authors": ["Hannah R. Joo", "Loren M. Frank"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-018-0077-1",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30356103/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "High-prestige source (Nature Reviews Neuroscience, Loren Frank lab), strong mechanistic grounding in the SWR replay literature directly relevant to MECH-121 (the replay mechanism MECH-124 depends on). The paper establishes that SWR replay content is biased by reward magnitude and novelty -- not uniformly random -- providing the mechanistic basis for MECH-124's prediction that harm-dominant residues will produce harm-biased replay. Confidence slightly reduced because the paper is primarily about reward-biased replay, not harm/threat-biased replay; the mapping to MECH-124 requires inferring that harm salience produces analogous biasing to reward magnitude.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SWR replay content is modulated by reward magnitude and novelty but the specific role of threat/aversive salience in biasing replay content is not directly established by this paper.",
+    "Reactivation during sleep SWRs is more variable than faithful replay, reducing confidence that harm-dominant residues would deterministically dominate replay content.",
+    "SWR rates are elevated after novel rewarding experiences, but the analogous elevation after aversive/harm experiences is not confirmed with equal evidence."
+  ],
+  "tags": [
+    "mech124",
+    "SWR",
+    "hippocampal-replay",
+    "replay-content",
+    "salience-weighted",
+    "reward-bias",
+    "offline-consolidation",
+    "mech121"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal SWR replay is not a faithful re-run of all experience: content is biased by reward magnitude (higher reward -> more reverse replay events), novelty (SWRs increase after novel experiences), and current behavioral state. SWRs occur preferentially after reward receipt, particularly in unfamiliar locations, and their content reflects the relative salience of recent experiences rather than a uniform sample.",
+    "ree_translation": "MECH-121 (SWR replay) is the mechanism by which MECH-124's consolidation loop operates. Joo & Frank establish that SWR replay is salience-weighted, not uniform. For MECH-124, the key inference is: if z_harm salience is high in the residue field (harm events are recent, frequent, or intense), harm traces will be disproportionately represented in SWR replay during the offline phase. Normal consolidation then strengthens what is replayed most. The harm amplification MECH-124 predicts is therefore not a bug but the predictable output of combining salience-weighted replay with salience-weighted consolidation. The paper also establishes that reward magnitude modulates reverse-replay specifically, which maps onto the concern that goal-directed traces (which depend on reward/benefit salience) may be under-represented in replay if z_goal salience is low -- the precondition for MECH-124 that EXQ-074b and EXQ-076b are designed to probe.",
+    "mapping_caveat": "Joo & Frank's paper is primarily about reward-biased replay, not harm/threat replay. The inference that aversive salience biases replay content analogously to reward salience is reasonable but not directly tested in this paper. The literature on aversive replay in SWRs is less developed than for reward replay. Additionally, the paper is largely rodent data; generalisation to the kind of latent-space SWR-equivalent in REE (MECH-121) requires an additional abstraction step.",
+    "source_context": "Comprehensive mechanistic review of hippocampal sharp wave-ripple biology in Nature Reviews Neuroscience. Covers SWR physiology, replay content analysis from rodent electrophysiology, awake vs. sleep replay, and functional roles in memory retrieval and consolidation. Primarily rodent data."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Nature Reviews Neuroscience and Loren Frank are among the highest-quality sources for this topic. Mapping fidelity reduced because the paper focuses on reward-modulated replay rather than harm/threat-modulated replay -- the MECH-124 inference requires an extrapolation. Transfer risk moderate-high: rodent electrophysiology to REE latent space SWR-equivalent is a substantial abstraction."
+  }
+}

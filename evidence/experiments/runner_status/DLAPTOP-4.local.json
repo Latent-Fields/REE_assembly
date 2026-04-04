@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 82367,
-  "runner_started_at": "2026-03-29T20:34:44.342268+00:00",
-  "last_updated": "2026-04-03T20:52:06.847536+00:00",
+  "runner_pid": 43051,
+  "runner_started_at": "2026-04-03T21:41:05.758761+00:00",
+  "last_updated": "2026-04-04T00:28:00.558322+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-125",
@@ -11,23 +11,23 @@
     "title": "ARC-029 committed vs ablated mode harm pair (stable + volatile envs)",
     "description": "",
     "script": "experiments/v3_exq_125_arc029_committed_mode_pair.py",
-    "started_at": "2026-04-03T20:24:38.286403+00:00",
+    "started_at": "2026-04-03T23:00:59.201333+00:00",
     "progress": {
       "run_label": "starting...",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 100,
+      "episodes_done": 400,
       "episodes_total": 400,
-      "overall_pct": 25.0
+      "overall_pct": 100.0
     },
-    "seconds_elapsed": 1649,
-    "seconds_remaining": 4946,
+    "seconds_elapsed": 5221,
+    "seconds_remaining": 0,
     "recent_lines": [
-      "alpha_world=0.9",
-      "============================================================",
-      "[V3-EXQ-125] Seed 42",
-      "============================================================",
-      "[train seed=42] ep 100/400  running_var=0.000001"
+      "[train seed=42] ep 200/400  running_var=0.000002",
+      "[train seed=42] ep 300/400  running_var=0.000003",
+      "[train seed=42] ep 400/400  running_var=0.000001",
+      "Post-train running_variance=0.000001  commit_threshold=0.4000  committed=True",
+      "-- seed42_stable_COMMITTED_MODE_ON --"
     ],
     "ree_version": "v3"
   },
@@ -4162,6 +4162,20 @@
       "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 46.9
+    },
+    {
+      "queue_id": "V3-EXQ-223",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Minimal Vertebrate Cognition Ablation -- core E1/E2/hippocampus loop",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "seed2_ree_mean_harm: 0.35983632600307464 | seed2_rand_mean_harm: 1.1422754665613175 | seed2_harm_ratio: 0.31501711849447184",
+      "started_at": "2026-04-03T21:41:07.380687+00:00",
+      "completed_at": "2026-04-03T23:00:56.619483+00:00",
+      "output_file": "/Users/dgolden/Documents/GitHub/REE_Working/REE_assembly/evidence/experiments/v3_exq_223_minimal_vertebrate_ablation/v3_exq_223_minimal_vertebrate_ablation_20260403T230055Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4789.2
     }
   ]
 }

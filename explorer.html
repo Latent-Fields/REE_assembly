@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-03-30.1 -->
+<!-- EXPLORER_VERSION: 2026-04-03.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8183,6 +8183,9 @@ END CONFLICT RESOLUTION`;
       const evidenceOnlyNote = c.evidence_only
         ? `<div class="exp-timing" style="margin-top:4px;color:var(--muted)">Evidence on disk</div>`
         : '';
+      const viewerLink = c.episode_log_url
+        ? `<div style="margin-top:5px"><a href="/episode_viewer.html?log=${encodeURIComponent(c.episode_log_url)}" target="_blank" style="font-size:11px;color:#60a5fa;text-decoration:none">&#9654; View episode playback</a></div>`
+        : '';
       const completedByStr = c.completed_by ? ` &mdash; run by <strong>${escapeHtml(c.completed_by)}</strong>` : '';
       const completedLine = !c.evidence_only && c.completed_at
         ? `<div class="exp-timing" style="margin-top:6px">Completed ${c.completed_at.replace('T', ' ').replace('Z', ' UTC')}${completedByStr}</div>`
@@ -8215,6 +8218,7 @@ END CONFLICT RESOLUTION`;
           ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
           ${evidenceOnlyNote}
           ${completedLine}
+          ${viewerLink}
         </div>`;
     }
 
@@ -8372,7 +8376,7 @@ END CONFLICT RESOLUTION`;
         const completedAnnotated = completed.map(c => {
           const scriptName = (c.output_file || '').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
           const ev = evidenceByScript[scriptName] || evidenceByClaimId[c.claim_id] || null;
-          return { ...c, script_name: scriptName, total_run_count: ev ? ev.run_count : null };
+          return { ...c, script_name: scriptName, total_run_count: ev ? ev.run_count : null, episode_log_url: ev ? (ev.episode_log_url || null) : null };
         });
 
         // Add evidence-on-disk items not tracked in runner_status completed
@@ -8399,6 +8403,7 @@ END CONFLICT RESOLUTION`;
               ree_version: ev.substrate || 'unknown',
               script_name: scriptName,
               evidence_only: true,
+              episode_log_url: ev.episode_log_url || null,
             };
           });
 
