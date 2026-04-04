@@ -897,6 +897,23 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(_build_timeline_events()).encode()
             self._json_response(body)
             return
+        if path == "/api/fishtank/logs":
+            logs = []
+            exp_root = SERVE_DIR / "evidence" / "experiments"
+            if exp_root.exists():
+                for log_file in sorted(exp_root.glob("**/*_episode_log.json"), reverse=True):
+                    rel = log_file.relative_to(SERVE_DIR)
+                    parts = rel.parts  # ('evidence', 'experiments', '<exp_dir>', '<filename>')
+                    exp_name = parts[2] if len(parts) >= 3 else str(rel.parent)
+                    stem = log_file.stem.replace("_episode_log", "")
+                    logs.append({
+                        "experiment": exp_name,
+                        "run": stem,
+                        "path": str(rel).replace("\\", "/"),
+                    })
+            body = json.dumps({"logs": logs}).encode()
+            self._json_response(body)
+            return
         if path == "/api/review/tracker":
             data = load_review_tracker()
             # Derive experiment dir names from reviewed_run_ids so that previously

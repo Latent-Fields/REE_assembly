@@ -1,0 +1,1393 @@
+<!-- FISHTANK_VIZ_VERSION: 2026-04-05.1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REE Fishtank</title>
+  <style>
+    :root {
+      --bg:     #070e1e;
+      --panel:  #0b1527;
+      --border: #1e3a5f;
+      --text:   #e2e8f0;
+      --muted:  #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Loading / Picker ── */
+    #loading, #picker {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 14px;
+      background: var(--bg);
+      z-index: 10;
+    }
+    #picker { display: none; }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: #60a5fa;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pickTitle { font-size: 22px; color: #60a5fa; font-weight: 700; }
+    .pickSub   { font-size: 13px; color: var(--muted); max-width: 380px; text-align: center; line-height: 1.5; }
+    .pickBtn {
+      background: #1d4ed8; border: none; color: white;
+      padding: 10px 26px; border-radius: 6px; cursor: pointer;
+      font-size: 13px; font-family: inherit; transition: background 0.15s;
+    }
+    .pickBtn:hover { background: #2563eb; }
+    .pickHint { font-size: 11px; color: var(--muted); max-width: 400px; text-align: center; line-height: 1.6; }
+    #pickErr  { color: #f87171; font-size: 11px; max-width: 440px; text-align: center; display: none; }
+
+    /* ── App shell ── */
+    #app { display: none; flex-direction: column; height: 100vh; }
+
+    /* ── Header ── */
+    #header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 14px;
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0;
+    }
+    #header h1 { font-size: 13px; font-weight: 700; color: #60a5fa; letter-spacing: 0.03em; }
+    #runInfo   { font-size: 11px; color: var(--muted); flex: 1; }
+    .phaseBadge {
+      font-size: 10px; padding: 2px 7px; border-radius: 3px;
+      background: #1e3a5f; color: #93c5fd;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    #loadBtn {
+      background: var(--border); border: 1px solid #2d5282; color: var(--text);
+      padding: 3px 10px; cursor: pointer; border-radius: 4px;
+      font-size: 11px; font-family: inherit;
+    }
+    #loadBtn:hover { background: #1e3a5f; }
+
+    /* ── Main row ── */
+    #main { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+
+    /* ── Tank ── */
+    #tankWrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 12px; min-width: 0;
+    }
+    #tank {
+      border-radius: 4px;
+      box-shadow:
+        0 0 0 1px rgba(147,210,255,0.12),
+        0 0 24px rgba(96,165,250,0.12),
+        0 0 60px rgba(96,165,250,0.05);
+    }
+
+    /* ── Info panel ── */
+    #infoPanel {
+      width: 220px; flex-shrink: 0;
+      background: var(--panel);
+      border-left: 1px solid var(--border);
+      padding: 12px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .iLabel {
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px;
+    }
+    .navRow { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .navBtn {
+      background: var(--border); border: 1px solid #2d5282; color: var(--text);
+      padding: 2px 7px; cursor: pointer; font-size: 11px; border-radius: 3px;
+      font-family: inherit;
+    }
+    .navBtn:hover  { background: #1e3a5f; }
+    .navBtn.active { background: #1d4ed8; border-color: #3b82f6; color: #bfdbfe; }
+    .epDisplay     { font-size: 11px; color: var(--muted); }
+
+    /* Mode badge */
+    .modeBadge {
+      display: inline-block; padding: 3px 10px; border-radius: 4px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    }
+    .mode-avoid    { background: #7f1d1d; color: #fca5a5; }
+    .mode-approach { background: #14532d; color: #86efac; }
+    .mode-explore  { background: #78350f; color: #fcd34d; }
+    .mode-neutral  { background: #1e3a5f; color: #93c5fd; }
+
+    /* Bars */
+    .barRow { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .barIcon  { font-size: 12px; width: 16px; text-align: center; }
+    .barOuter {
+      flex: 1; height: 8px; background: #060d1c;
+      border-radius: 4px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .barInner { height: 100%; border-radius: 4px; transition: width 0.25s, background-color 0.25s; }
+    .barPct { font-size: 10px; color: var(--muted); min-width: 30px; text-align: right; }
+
+    /* Metrics */
+    .mRow { display: flex; justify-content: space-between; padding: 1px 0; }
+    .mKey { color: var(--muted); }
+    .mVal {
+      font-weight: 600; font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+    }
+    .mVal.harm    { color: #f87171; }
+    .mVal.benefit { color: #86efac; }
+
+    /* Event tag */
+    #eventTag { font-size: 10px; color: #fcd34d; margin-top: 3px; min-height: 14px; }
+
+    /* ── Controls ── */
+    #controls {
+      background: var(--panel); border-top: 1px solid var(--border);
+      padding: 6px 14px; display: flex; align-items: center; gap: 8px;
+      flex-shrink: 0;
+    }
+    .ctrlBtn {
+      background: var(--border); border: 1px solid #2d5282; color: var(--text);
+      padding: 4px 10px; cursor: pointer; border-radius: 4px;
+      font-size: 14px; line-height: 1; font-family: inherit;
+    }
+    .ctrlBtn:hover { background: #1e3a5f; }
+    #btnPlay.playing { border-color: #22c55e; color: #22c55e; }
+    #stepDisplay { font-size: 11px; color: var(--muted); min-width: 80px; }
+    #scrubber { flex: 1; accent-color: #3b82f6; }
+    .speedBtn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 2px 6px; cursor: pointer; border-radius: 3px;
+      font-size: 11px; font-family: inherit;
+    }
+    .speedBtn:hover  { border-color: #2d5282; color: var(--text); }
+    .speedBtn.active { border-color: #3b82f6; color: #93c5fd; }
+
+    /* ── Timeline ── */
+    #timelineWrap {
+      height: 58px; background: var(--panel); border-top: 1px solid var(--border);
+      padding: 4px 14px; flex-shrink: 0;
+    }
+    #tlLegend {
+      display: flex; gap: 12px; font-size: 10px; color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .tlDot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      margin-right: 3px; vertical-align: middle;
+    }
+    #timelineSvg { display: block; width: 100%; }
+
+    /* ── Run browser (picker + overlay) ── */
+    .runList {
+      max-height: 220px; overflow-y: auto;
+      border: 1px solid var(--border); border-radius: 6px;
+      width: 480px; margin-top: 6px;
+    }
+    .runItem {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 12px; border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .runItem:last-child { border-bottom: none; }
+    .runItem:hover { background: #0d1e3a; }
+    .runExp {
+      font-size: 11px; color: #93c5fd; font-weight: 600; flex: 1;
+      min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .runTs  { font-size: 10px; color: var(--muted); white-space: nowrap; }
+    .runWatch {
+      font-size: 10px; background: #1d4ed8; border: none; color: white;
+      padding: 2px 8px; border-radius: 3px; cursor: pointer; font-family: inherit;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .runWatch:hover { background: #2563eb; }
+    #browseOverlay {
+      display: none; position: fixed; inset: 0; z-index: 20;
+      background: rgba(0,0,0,0.65);
+      align-items: flex-start; justify-content: center; padding-top: 60px;
+    }
+    #browseOverlay.open { display: flex; }
+    #browsePanel {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px; width: 540px; max-width: 92vw;
+    }
+    #browsePanel h2 {
+      font-size: 13px; color: #60a5fa; margin-bottom: 10px;
+      font-weight: 700; display: flex; align-items: center; gap: 6px;
+    }
+    #browseClose {
+      margin-left: auto; background: none; border: none; color: var(--muted);
+      font-size: 18px; cursor: pointer; line-height: 1; padding: 0 2px;
+    }
+    #browseClose:hover { color: var(--text); }
+    #browsePanel .runList { width: 100%; }
+    #browseBtn {
+      background: var(--border); border: 1px solid #2d5282; color: var(--text);
+      padding: 3px 10px; cursor: pointer; border-radius: 4px;
+      font-size: 11px; font-family: inherit;
+    }
+    #browseBtn:hover { background: #1e3a5f; }
+  </style>
+</head>
+<body>
+
+<!-- ── Loading ── -->
+<div id="loading">
+  <div class="spinner"></div>
+  <div style="color:#64748b;font-size:13px">Loading episode log&hellip;</div>
+</div>
+
+<!-- ── File picker (shown when no ?log= param) ── -->
+<div id="picker">
+  <div class="pickTitle">REE Fishtank</div>
+  <div class="pickSub">Replay the zebrafish minimal mind navigating its world</div>
+  <div id="pickErr"></div>
+  <div id="runBrowserPicker" style="display:none">
+    <div class="pickHint" style="margin-bottom:6px">Available runs:</div>
+    <div class="runList" id="runListPicker"></div>
+  </div>
+  <button class="pickBtn" id="pickOpenBtn">Open Episode Log (JSON)</button>
+  <input type="file" id="fileInputPicker" accept=".json" style="display:none">
+  <div class="pickHint" id="pickHint">
+    Or add <code style="color:#93c5fd">?log=evidence/experiments/&hellip;/&hellip;_episode_log.json</code> to the URL.
+  </div>
+</div>
+
+<!-- ── Browse overlay (in-app run switcher) ── -->
+<div id="browseOverlay">
+  <div id="browsePanel">
+    <h2>&#x1F41F; Available Runs <button id="browseClose">&times;</button></h2>
+    <div class="runList" id="runListApp"></div>
+    <div id="browseHint" style="font-size:10px;color:var(--muted);margin-top:8px"></div>
+  </div>
+</div>
+
+<!-- ── App ── -->
+<div id="app">
+  <div id="header">
+    <h1>&#x1F41F;&nbsp;REE Fishtank</h1>
+    <span id="runInfo">—</span>
+    <span id="phaseBadgeWrap"></span>
+    <button id="browseBtn">Browse</button>
+    <button id="loadBtn">Load Log</button>
+    <input type="file" id="fileInputApp" accept=".json" style="display:none">
+  </div>
+
+  <div id="main">
+    <div id="tankWrap">
+      <canvas id="tank"></canvas>
+    </div>
+
+    <div id="infoPanel">
+      <div>
+        <div class="iLabel">Seed</div>
+        <div class="navRow" id="seedBtns"></div>
+      </div>
+      <div>
+        <div class="iLabel">Episode</div>
+        <div class="navRow">
+          <button class="navBtn" id="epPrev">&#9664;</button>
+          <span class="epDisplay" id="epDisplay">1 / ?</span>
+          <button class="navBtn" id="epNext">&#9654;</button>
+        </div>
+      </div>
+      <div>
+        <div class="iLabel">Behaviour</div>
+        <div id="modeBadgeWrap"><span class="modeBadge mode-neutral">DRIFTING</span></div>
+        <div id="eventTag"></div>
+      </div>
+      <div>
+        <div class="iLabel">Vitals</div>
+        <div class="barRow">
+          <span class="barIcon">&#x1F41F;</span>
+          <div class="barOuter"><div class="barInner" id="healthBar" style="width:100%;background:#22c55e"></div></div>
+          <span class="barPct" id="healthPct">100%</span>
+        </div>
+        <div class="barRow">
+          <span class="barIcon">&#x26A1;</span>
+          <div class="barOuter"><div class="barInner" id="energyBar" style="width:100%;background:#60a5fa"></div></div>
+          <span class="barPct" id="energyPct">100%</span>
+        </div>
+      </div>
+      <div>
+        <div class="iLabel">Internal State</div>
+        <div class="mRow"><span class="mKey">z_harm</span>  <span class="mVal" id="vZharm">—</span></div>
+        <div class="mRow"><span class="mKey">z_beta</span>  <span class="mVal" id="vZbeta">—</span></div>
+        <div class="mRow"><span class="mKey">novelty</span> <span class="mVal" id="vNov">—</span></div>
+        <div class="mRow"><span class="mKey">z_world</span> <span class="mVal" id="vZworld">—</span></div>
+      </div>
+      <div>
+        <div class="iLabel">Episode</div>
+        <div class="mRow"><span class="mKey">step</span>     <span class="mVal" id="vStep">—</span></div>
+        <div class="mRow"><span class="mKey">cum harm</span> <span class="mVal harm" id="vCumHarm">—</span></div>
+        <div class="mRow"><span class="mKey">signal</span>   <span class="mVal" id="vSignal">—</span></div>
+        <div class="mRow"><span class="mKey">n_cands</span>  <span class="mVal" id="vCands">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button class="ctrlBtn" id="btnFirst" title="First step">&#8676;</button>
+    <button class="ctrlBtn" id="btnBack"  title="Step back">&#9664;</button>
+    <button class="ctrlBtn" id="btnPlay"  title="Play/Pause">&#9654;</button>
+    <button class="ctrlBtn" id="btnFwd"   title="Step forward">&#9654;&#9654;</button>
+    <button class="ctrlBtn" id="btnLast"  title="Last step">&#8677;</button>
+    <span id="stepDisplay">0 / 0</span>
+    <input type="range" id="scrubber" min="0" value="0" step="1">
+    <span style="font-size:11px;color:var(--muted)">Speed:</span>
+    <button class="speedBtn" data-ms="400">0.5x</button>
+    <button class="speedBtn active" data-ms="150">1x</button>
+    <button class="speedBtn" data-ms="60">2x</button>
+    <button class="speedBtn" data-ms="20">5x</button>
+    <button class="speedBtn" data-ms="8">10x</button>
+  </div>
+
+  <div id="timelineWrap">
+    <div id="tlLegend">
+      <span><span class="tlDot" style="background:#ef4444"></span>harm signal</span>
+      <span><span class="tlDot" style="background:#22c55e"></span>health</span>
+      <span><span class="tlDot" style="background:#60a5fa"></span>z_beta</span>
+    </div>
+    <svg id="timelineSvg" height="36"></svg>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+//  Constants
+// ══════════════════════════════════════════════════════════════
+const CELL = 50;
+
+const MODE_LABELS = {
+  avoid:    'EVADING',
+  approach: 'FEEDING',
+  explore:  'EXPLORING',
+  neutral:  'DRIFTING'
+};
+
+const EVENT_LABELS = {
+  env_caused_hazard:   'jellyfish sting!',
+  agent_caused_hazard: 'swam into hazard!',
+  resource:            'food pellet collected!',
+  hazard_approach:     'danger nearby',
+  benefit_approach:    'food nearby',
+  sequence_complete:   'path complete!',
+  waypoint:            'waypoint reached'
+};
+
+// Seaweed specs as fraction of canvas width
+const SEAWEED_SPECS = [
+  { xFrac: 0.03, segments: 5, phase: 0.0 },
+  { xFrac: 0.09, segments: 4, phase: 1.2 },
+  { xFrac: 0.91, segments: 6, phase: 0.7 },
+  { xFrac: 0.97, segments: 4, phase: 2.1 }
+];
+
+// ══════════════════════════════════════════════════════════════
+//  State
+// ══════════════════════════════════════════════════════════════
+let logData    = null;
+let seedIdx    = 0;
+let episodeIdx = 0;
+let stepIdx    = 0;
+let playing    = false;
+let intervalMs = 150;
+let timer      = null;
+
+// Animation
+let animT         = 0;
+let lastRafTime   = 0;
+let prevPos       = [0, 0];
+let curPos        = [0, 0];
+let lerpT         = 1.0;
+let lerpStartTime = 0;
+let facingRight   = true;
+let currentMode      = 'neutral';
+let currentHealth    = 1.0;
+let currentEnergy    = 1.0;
+let currentHazards   = [];
+let currentResources = [];
+
+// Particles
+let bubbles  = [];
+let sparkles = [];
+
+// ══════════════════════════════════════════════════════════════
+//  Accessors
+// ══════════════════════════════════════════════════════════════
+const curSeed  = () => logData.seeds[seedIdx];
+const curEps   = () => curSeed().episodes;
+const curEp    = () => curEps()[episodeIdx];
+const curSteps = () => curEp().steps;
+const curStep  = () => curSteps()[stepIdx];
+
+function gridSize() {
+  return (logData && logData.env_config && logData.env_config.size) || 10;
+}
+
+function isToroidal() {
+  return !!(logData && (logData.toroidal || (logData.env_config && logData.env_config.toroidal)));
+}
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+// Lerp between two grid coordinates taking the shortest path on a torus.
+// Returns a fractional canvas coordinate (in grid-cell units).
+function toroidalLerpCoord(a, b, t, sz) {
+  let diff = b - a;
+  // Wrap: take shortest path
+  if (diff >  sz / 2) diff -= sz;
+  if (diff < -sz / 2) diff += sz;
+  return a + diff * t;
+}
+
+// For a single entity coordinate, generate up to 3 canvas x (or y) positions
+// so that entities near an edge draw ghost copies on the opposite side.
+function toroidalPositions(coord, sz) {
+  const positions = [coord];
+  if (coord < 1.5)      positions.push(coord + sz);
+  if (coord > sz - 1.5) positions.push(coord - sz);
+  return positions;
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Particles
+// ══════════════════════════════════════════════════════════════
+function emitBubbles(x, y, count) {
+  for (let i = 0; i < count; i++) {
+    bubbles.push({
+      x:  x + (Math.random() - 0.5) * 14,
+      y:  y + (Math.random() - 0.5) * 8,
+      vy: 0.35 + Math.random() * 0.3,
+      vx: (Math.random() - 0.5) * 0.25,
+      alpha: 0.3 + Math.random() * 0.25,
+      r: 1.5 + Math.random() * 2
+    });
+  }
+  if (bubbles.length > 70) bubbles = bubbles.slice(-70);
+}
+
+function emitSparkle(x, y) {
+  for (let i = 0; i < 10; i++) {
+    const angle = (i / 10) * Math.PI * 2 + Math.random() * 0.4;
+    const speed = 1.5 + Math.random() * 2.5;
+    sparkles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      alpha: 1.0,
+      size: 2 + Math.random() * 2.5,
+      warm: Math.random() < 0.5
+    });
+  }
+}
+
+function updateParticles() {
+  bubbles = bubbles.filter(b => b.alpha > 0.01);
+  for (const b of bubbles) {
+    b.y -= b.vy; b.x += b.vx; b.alpha -= 0.0035;
+  }
+  sparkles = sparkles.filter(s => s.alpha > 0.01);
+  for (const s of sparkles) {
+    s.x += s.vx; s.y += s.vy;
+    s.vx *= 0.95; s.vy *= 0.95;
+    s.alpha -= 0.032;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Background
+// ══════════════════════════════════════════════════════════════
+function drawBackground(ctx, W, H, t) {
+  // Water gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0,   '#0c1445');
+  grad.addColorStop(0.65, '#1a3a5c');
+  grad.addColorStop(1,   '#1f4a6e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Caustic shimmer (soft moving diagonal streaks)
+  ctx.save();
+  ctx.globalAlpha = 0.022;
+  const numStreaks = 6;
+  for (let i = 0; i < numStreaks; i++) {
+    const xOff = ((t * 22 + i * (W / numStreaks + 20)) % (W + 120)) - 60;
+    ctx.beginPath();
+    ctx.moveTo(xOff, 0);
+    ctx.lineTo(xOff + 35, H);
+    ctx.strokeStyle = '#93c5fd';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // Faint grid lines
+  const sz = gridSize();
+  ctx.strokeStyle = 'rgba(255,255,255,0.038)';
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i <= sz; i++) {
+    ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(W, i * CELL); ctx.stroke();
+  }
+
+  // Sandy strip
+  const sandGrad = ctx.createLinearGradient(0, H - 24, 0, H);
+  sandGrad.addColorStop(0, 'rgba(175,135,55,0)');
+  sandGrad.addColorStop(0.35, 'rgba(175,135,55,0.7)');
+  sandGrad.addColorStop(1, '#b8904a');
+  ctx.fillStyle = sandGrad;
+  ctx.fillRect(0, H - 24, W, 24);
+
+  // Small rocks at the bottom
+  const rocks = [
+    { xf: 0.14, r: 7 }, { xf: 0.20, r: 5 },
+    { xf: 0.78, r: 8 }, { xf: 0.85, r: 6 },
+    { xf: 0.50, r: 5 }, { xf: 0.55, r: 4 }
+  ];
+  for (const rk of rocks) {
+    const rx = rk.xf * W, ry = H - 3;
+    ctx.beginPath();
+    ctx.ellipse(rx, ry, rk.r, rk.r * 0.55, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#6b5c3e';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(rx - rk.r * 0.3, ry - rk.r * 0.25, rk.r * 0.35, rk.r * 0.18, -0.3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.13)';
+    ctx.fill();
+  }
+
+  // Seaweed
+  for (const sw of SEAWEED_SPECS) {
+    drawSeaweed(ctx, sw.xFrac * W, H + 4, t, sw.segments, sw.phase);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Seaweed
+// ══════════════════════════════════════════════════════════════
+function drawSeaweed(ctx, baseX, baseY, t, segments, phase) {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(34,197,94,0.48)';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(baseX, baseY);
+  let x = baseX, y = baseY;
+  for (let i = 0; i < segments; i++) {
+    const sway = Math.sin(t * 0.85 + phase + i * 0.72) * 6;
+    const xNext = x + sway;
+    const yNext = y - 14;
+    ctx.quadraticCurveTo(x + sway * 0.5 - 3, y - 7, xNext, yNext);
+    x = xNext; y = yNext;
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Jellyfish
+// ══════════════════════════════════════════════════════════════
+function drawJellyfish(ctx, hx, hy, jIndex, t) {
+  const phase = jIndex * 2.1;
+  const bob   = Math.sin(t * 1.2 + phase) * 3;
+  const cx    = hx * CELL + CELL / 2;
+  const cy    = hy * CELL + CELL / 2 + bob;
+
+  // Proximity glow
+  const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, CELL * 1.9);
+  grd.addColorStop(0,   'rgba(139,92,246,0.22)');
+  grd.addColorStop(0.5, 'rgba(139,92,246,0.07)');
+  grd.addColorStop(1,   'rgba(139,92,246,0)');
+  ctx.fillStyle = grd;
+  ctx.beginPath();
+  ctx.arc(cx, cy, CELL * 1.9, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Bell
+  const bellR = 14 + Math.sin(t * 2.2 + phase) * 2;
+
+  const bellGrd = ctx.createRadialGradient(cx, cy - bellR * 0.35, 2, cx, cy, bellR);
+  bellGrd.addColorStop(0, 'rgba(224,210,255,0.92)');
+  bellGrd.addColorStop(1, 'rgba(139,92,246,0.8)');
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, bellR, Math.PI, 0);
+  ctx.quadraticCurveTo(cx + bellR, cy + 7, cx, cy + 5);
+  ctx.quadraticCurveTo(cx - bellR, cy + 7, cx - bellR, cy);
+  ctx.closePath();
+  ctx.fillStyle = bellGrd;
+  ctx.fill();
+
+  // Bell highlight arc
+  ctx.beginPath();
+  ctx.arc(cx - 4, cy - 7, 5, Math.PI + 0.45, Math.PI * 2 - 0.45);
+  ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+  ctx.lineWidth = 1.8;
+  ctx.stroke();
+
+  // Tentacles
+  ctx.lineWidth = 1.5;
+  for (let i = 0; i < 5; i++) {
+    const tx0  = cx - 10 + i * 5;
+    const wOff = i * 0.9;
+    ctx.beginPath();
+    ctx.moveTo(tx0, cy + 5);
+    let py = cy + 5;
+    for (let seg = 0; seg < 7; seg++) {
+      py += 4;
+      const px = tx0 + Math.sin(t * 1.6 + wOff + seg * 0.6) * 4.5;
+      ctx.lineTo(px, py);
+    }
+    const a = i === 0 || i === 4 ? 0.35 : 0.55;
+    ctx.strokeStyle = `rgba(139,92,246,${a})`;
+    ctx.stroke();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Food Pellet
+// ══════════════════════════════════════════════════════════════
+function drawPellet(ctx, rx, ry, pIndex, t) {
+  const phase = pIndex * 1.4;
+  const bob   = Math.sin(t * 2.1 + phase) * 2.5;
+  const cx    = rx * CELL + CELL / 2;
+  const cy    = ry * CELL + CELL / 2 + bob;
+
+  // Glow
+  const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 22);
+  grd.addColorStop(0, 'rgba(249,115,22,0.32)');
+  grd.addColorStop(1, 'rgba(249,115,22,0)');
+  ctx.fillStyle = grd;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Body
+  const pg = ctx.createRadialGradient(cx - 2, cy - 2, 1, cx, cy, 7);
+  pg.addColorStop(0, '#fbbf24');
+  pg.addColorStop(1, '#ea580c');
+  ctx.beginPath();
+  ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+  ctx.fillStyle = pg;
+  ctx.fill();
+
+  // Specular
+  ctx.beginPath();
+  ctx.arc(cx - 2.5, cy - 2.5, 2.5, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,240,200,0.72)';
+  ctx.fill();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Zebrafish
+// ══════════════════════════════════════════════════════════════
+function drawFish(ctx, cx, cy, faceRight, mode, health, t) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  if (!faceRight) ctx.scale(-1, 1);
+
+  const waggleSpeed = mode === 'avoid' ? 13 : mode === 'approach' ? 9 : 6;
+  const waggleAmp   = mode === 'avoid' ? 0.38 : 0.22;
+  const waggle = Math.sin(t * waggleSpeed) * waggleAmp;
+
+  const modeColor = {
+    avoid:    '#ef4444',
+    approach: '#22c55e',
+    explore:  '#f59e0b',
+    neutral:  '#60a5fa'
+  }[mode] || '#60a5fa';
+
+  const faded = health < 0.3;
+
+  // Aura glow (mode indicator)
+  if (mode !== 'neutral') {
+    const ag = ctx.createRadialGradient(0, 0, 6, 0, 0, 27);
+    ag.addColorStop(0, modeColor + '44');
+    ag.addColorStop(1, modeColor + '00');
+    ctx.fillStyle = ag;
+    ctx.beginPath();
+    ctx.arc(0, 0, 27, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.globalAlpha = faded ? 0.5 : 1.0;
+
+  // Tail fin
+  ctx.save();
+  ctx.rotate(waggle * 1.5);
+  ctx.beginPath();
+  ctx.moveTo(-13, 0);
+  ctx.lineTo(-25, -11);
+  ctx.lineTo(-27, 0);
+  ctx.lineTo(-25, 11);
+  ctx.closePath();
+  ctx.fillStyle = modeColor;
+  ctx.globalAlpha = faded ? 0.35 : 0.82;
+  ctx.fill();
+  ctx.restore();
+
+  // Body
+  ctx.globalAlpha = faded ? 0.5 : 1.0;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 16, 9, 0, 0, Math.PI * 2);
+  ctx.fillStyle = modeColor;
+  ctx.fill();
+
+  // Zebra stripes — clipped to body
+  ctx.save();
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 16, 9, 0, 0, Math.PI * 2);
+  ctx.clip();
+  ctx.fillStyle = 'rgba(8,15,40,0.30)';
+  ctx.fillRect(-16, -7, 32, 3.5);
+  ctx.fillRect(-16, 1.5, 32, 3.5);
+  ctx.restore();
+
+  // Dorsal fin
+  ctx.globalAlpha = faded ? 0.38 : 0.82;
+  ctx.beginPath();
+  ctx.moveTo(-2, -9);
+  ctx.quadraticCurveTo(4, -17, 9, -9);
+  ctx.closePath();
+  ctx.fillStyle = modeColor;
+  ctx.fill();
+
+  // Pectoral fin
+  ctx.globalAlpha = faded ? 0.32 : 0.52;
+  ctx.beginPath();
+  ctx.ellipse(4, 5.5, 5.5, 2.5, 0.5, 0, Math.PI * 2);
+  ctx.fillStyle = modeColor;
+  ctx.fill();
+
+  // Eye white
+  ctx.globalAlpha = 1.0;
+  ctx.beginPath();
+  ctx.arc(9, -2, 4, 0, Math.PI * 2);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+
+  // Pupil
+  ctx.beginPath();
+  ctx.arc(10, -2, 2.5, 0, Math.PI * 2);
+  ctx.fillStyle = mode === 'avoid' ? '#450a0a' : '#0f172a';
+  ctx.fill();
+
+  // Specular dot
+  ctx.beginPath();
+  ctx.arc(11, -3, 1, 0, Math.PI * 2);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+
+  // Mouth (open when feeding)
+  if (mode === 'approach') {
+    ctx.beginPath();
+    ctx.arc(16, 1, 3, -0.65, 0.65);
+    ctx.strokeStyle = 'rgba(8,15,40,0.55)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 1.0;
+  ctx.restore();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Particles
+// ══════════════════════════════════════════════════════════════
+function drawBubbles(ctx) {
+  for (const b of bubbles) {
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(147,210,255,${(b.alpha * 0.75).toFixed(2)})`;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.28, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${(b.alpha * 0.45).toFixed(2)})`;
+    ctx.fill();
+  }
+}
+
+function drawSparkles(ctx) {
+  for (const s of sparkles) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+    const hex = Math.round(s.alpha * 255).toString(16).padStart(2, '0');
+    ctx.fillStyle = (s.warm ? '#fcd34d' : '#fb923c') + hex;
+    ctx.fill();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Drawing: Glass overlay
+// ══════════════════════════════════════════════════════════════
+function drawGlass(ctx, W, H) {
+  // Outer border
+  ctx.strokeStyle = 'rgba(147,210,255,0.18)';
+  ctx.lineWidth = 2.5;
+  ctx.strokeRect(1.25, 1.25, W - 2.5, H - 2.5);
+
+  // Top edge gleam
+  const tg = ctx.createLinearGradient(0, 0, 0, 9);
+  tg.addColorStop(0, 'rgba(147,210,255,0.45)');
+  tg.addColorStop(1, 'rgba(147,210,255,0)');
+  ctx.fillStyle = tg;
+  ctx.fillRect(0, 0, W, 9);
+
+  // Left edge gleam
+  const lg = ctx.createLinearGradient(0, 0, 6, 0);
+  lg.addColorStop(0, 'rgba(147,210,255,0.22)');
+  lg.addColorStop(1, 'rgba(147,210,255,0)');
+  ctx.fillStyle = lg;
+  ctx.fillRect(0, 0, 6, H);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Main render loop (requestAnimationFrame)
+// ══════════════════════════════════════════════════════════════
+function renderFrame(now) {
+  if (!logData) { requestAnimationFrame(renderFrame); return; }
+
+  const dt = Math.min((now - lastRafTime) / 1000, 0.1);
+  lastRafTime = now;
+  animT += dt;
+
+  updateParticles();
+
+  if (lerpT < 1.0) {
+    lerpT = Math.min(1.0, (now - lerpStartTime) / Math.max(intervalMs, 50));
+  }
+
+  const canvas = document.getElementById('tank');
+  const ctx    = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const sz = gridSize();
+  const torus = isToroidal();
+
+  // Fish position — use toroidal shortest-path lerp when wrapping
+  const fishGX = torus
+    ? toroidalLerpCoord(prevPos[0], curPos[0], lerpT, sz)
+    : lerp(prevPos[0], curPos[0], lerpT);
+  const fishGY = torus
+    ? toroidalLerpCoord(prevPos[1], curPos[1], lerpT, sz)
+    : lerp(prevPos[1], curPos[1], lerpT);
+  // Wrap fish canvas coordinate into [0, sz) so it reappears on opposite edge
+  const fishGXw = ((fishGX % sz) + sz) % sz;
+  const fishGYw = ((fishGY % sz) + sz) % sz;
+  const fishX = fishGXw * CELL + CELL / 2;
+  const fishY = fishGYw * CELL + CELL / 2;
+
+  drawBackground(ctx, W, H, animT);
+
+  for (let i = 0; i < currentHazards.length; i++) {
+    const [hx, hy] = currentHazards[i];
+    if (torus) {
+      // Draw ghost copies near edges so entities wrap visually
+      for (const gx of toroidalPositions(hx, sz)) {
+        for (const gy of toroidalPositions(hy, sz)) {
+          drawJellyfish(ctx, gx, gy, i, animT);
+        }
+      }
+    } else {
+      drawJellyfish(ctx, hx, hy, i, animT);
+    }
+  }
+
+  for (let i = 0; i < currentResources.length; i++) {
+    const [rx, ry] = currentResources[i];
+    if (torus) {
+      for (const gx of toroidalPositions(rx, sz)) {
+        for (const gy of toroidalPositions(ry, sz)) {
+          drawPellet(ctx, gx, gy, i, animT);
+        }
+      }
+    } else {
+      drawPellet(ctx, rx, ry, i, animT);
+    }
+  }
+
+  drawSparkles(ctx);
+  drawBubbles(ctx);
+  // Draw fish; in toroidal mode also draw ghost on opposite edge if near boundary
+  if (torus) {
+    for (const gx of toroidalPositions(fishGXw, sz)) {
+      for (const gy of toroidalPositions(fishGYw, sz)) {
+        drawFish(ctx, gx * CELL + CELL / 2, gy * CELL + CELL / 2,
+                 facingRight, currentMode, currentHealth, animT);
+      }
+    }
+  } else {
+    drawFish(ctx, fishX, fishY, facingRight, currentMode, currentHealth, animT);
+  }
+  drawGlass(ctx, W, H);
+
+  requestAnimationFrame(renderFrame);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Step navigation
+// ══════════════════════════════════════════════════════════════
+function goToStep(n) {
+  const prevIdx = stepIdx;
+  stepIdx = Math.max(0, Math.min(n, curSteps().length - 1));
+
+  const step     = curStep();
+  const prevStep = (prevIdx >= 0 && prevIdx < curSteps().length)
+    ? curSteps()[prevIdx] : step;
+
+  prevPos = [...prevStep.pos];
+  curPos  = [...step.pos];
+  lerpStartTime = performance.now();
+  lerpT = 0;
+
+  // Facing direction — use shortest-path delta for toroidal grids
+  let dx = curPos[0] - prevPos[0];
+  if (isToroidal()) {
+    const sz = gridSize();
+    if (dx >  sz / 2) dx -= sz;
+    if (dx < -sz / 2) dx += sz;
+  }
+  if      (dx > 0) facingRight = true;
+  else if (dx < 0) facingRight = false;
+
+  currentMode      = step.mode || 'neutral';
+  currentHealth    = step.health != null ? step.health : 1.0;
+  currentEnergy    = step.energy != null ? step.energy : 1.0;
+  currentHazards   = step.hazards   || [];
+  currentResources = step.resources || [];
+
+  emitBubbles(curPos[0] * CELL + CELL / 2, curPos[1] * CELL + CELL / 2, 2);
+
+  if (step.transition_type === 'resource') {
+    emitSparkle(curPos[0] * CELL + CELL / 2, curPos[1] * CELL + CELL / 2);
+  }
+
+  updateInfo();
+  updatePlayhead();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Info panel
+// ══════════════════════════════════════════════════════════════
+function updateInfo() {
+  const s     = curStep();
+  const steps = curSteps();
+  const mode  = s.mode || 'neutral';
+
+  document.getElementById('modeBadgeWrap').innerHTML =
+    `<span class="modeBadge mode-${mode}">${MODE_LABELS[mode] || mode.toUpperCase()}</span>`;
+
+  const evtLabel = EVENT_LABELS[s.transition_type] || '';
+  document.getElementById('eventTag').textContent = evtLabel ? '\u25b8 ' + evtLabel : '';
+
+  const hp  = s.health != null ? s.health : 1.0;
+  const hpP = Math.round(hp * 100);
+  const hBar = document.getElementById('healthBar');
+  hBar.style.width      = hpP + '%';
+  hBar.style.background = hp > 0.6 ? '#22c55e' : hp > 0.3 ? '#f59e0b' : '#ef4444';
+  document.getElementById('healthPct').textContent = hpP + '%';
+
+  const en = s.energy != null ? s.energy : 1.0;
+  document.getElementById('energyBar').style.width = Math.round(en * 100) + '%';
+  document.getElementById('energyPct').textContent = Math.round(en * 100) + '%';
+
+  const fmt = v => typeof v === 'number' ? v.toFixed(3) : '—';
+  document.getElementById('vZharm').textContent  = fmt(s.z_harm_norm);
+  document.getElementById('vZbeta').textContent  = fmt(s.z_beta_val);
+  document.getElementById('vNov').textContent    = fmt(s.world_change_norm);
+  document.getElementById('vZworld').textContent = fmt(s.z_world_norm);
+
+  document.getElementById('vStep').textContent =
+    `${stepIdx + 1} / ${steps.length}`;
+
+  const cumHarm = steps.slice(0, stepIdx + 1)
+    .reduce((a, x) => a + (x.harm_event ? Math.abs(x.harm_signal || 0) : 0), 0);
+  document.getElementById('vCumHarm').textContent = cumHarm.toFixed(3);
+
+  const sig  = s.harm_signal || 0;
+  const vSig = document.getElementById('vSignal');
+  vSig.textContent = sig >= 0 ? `+${sig.toFixed(3)}` : sig.toFixed(3);
+  vSig.className   = 'mVal ' + (sig > 0.01 ? 'benefit' : sig < -0.001 ? 'harm' : '');
+
+  document.getElementById('vCands').textContent =
+    s.n_cands !== undefined ? s.n_cands : '—';
+
+  document.getElementById('epDisplay').textContent =
+    `${episodeIdx + 1} / ${curEps().length}`;
+
+  const sc  = document.getElementById('scrubber');
+  sc.max    = steps.length - 1;
+  sc.value  = stepIdx;
+  document.getElementById('stepDisplay').textContent =
+    `step ${stepIdx + 1} / ${steps.length}`;
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Timeline
+// ══════════════════════════════════════════════════════════════
+function buildTimeline() {
+  const steps = curSteps();
+  const svg   = document.getElementById('timelineSvg');
+  const W     = svg.parentElement.clientWidth - 28;
+  if (W <= 0) return;
+  svg.setAttribute('width', W);
+
+  const H     = 36;
+  const ROW_H = 10;
+  const ns    = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+
+  const series = [
+    { key: 'harm_signal', color: '#ef4444', row: 0 },
+    { key: 'health',      color: '#22c55e', row: 1 },
+    { key: 'z_beta_val',  color: '#60a5fa', row: 2 },
+  ];
+
+  for (const { key, color, row } of series) {
+    const vals  = steps.map(s => (s[key] != null ? s[key] : 0));
+    const minV  = Math.min(...vals);
+    const maxV  = Math.max(...vals);
+    const range = (maxV - minV) || 1;
+    const yOff  = row * (ROW_H + 2) + 1;
+    const n     = vals.length;
+
+    const bg = document.createElementNS(ns, 'rect');
+    bg.setAttribute('x', 0); bg.setAttribute('y', yOff);
+    bg.setAttribute('width', W); bg.setAttribute('height', ROW_H);
+    bg.setAttribute('fill', 'rgba(255,255,255,0.025)');
+    svg.appendChild(bg);
+
+    if (n < 2) continue;
+    const pts = vals.map((v, i) => {
+      const x = (i / (n - 1)) * W;
+      const y = yOff + ROW_H - ((v - minV) / range) * (ROW_H - 2) - 1;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    });
+
+    const poly = document.createElementNS(ns, 'polyline');
+    poly.setAttribute('points', pts.join(' '));
+    poly.setAttribute('fill', 'none');
+    poly.setAttribute('stroke', color);
+    poly.setAttribute('stroke-width', '1.2');
+    poly.setAttribute('opacity', '0.85');
+    svg.appendChild(poly);
+  }
+
+  const ph = document.createElementNS(ns, 'line');
+  ph.setAttribute('id', 'playhead');
+  ph.setAttribute('y1', 0); ph.setAttribute('y2', H);
+  ph.setAttribute('stroke', 'rgba(255,255,255,0.5)');
+  ph.setAttribute('stroke-width', '1');
+  svg.appendChild(ph);
+}
+
+function updatePlayhead() {
+  const steps = curSteps();
+  const ph    = document.getElementById('playhead');
+  if (!ph) return;
+  const W = parseFloat(document.getElementById('timelineSvg').getAttribute('width')) || 0;
+  const x = steps.length > 1 ? (stepIdx / (steps.length - 1)) * W : 0;
+  ph.setAttribute('x1', x); ph.setAttribute('x2', x);
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Seed buttons
+// ══════════════════════════════════════════════════════════════
+function buildSeedBtns() {
+  const wrap = document.getElementById('seedBtns');
+  wrap.innerHTML = '';
+  logData.seeds.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className   = 'navBtn' + (i === seedIdx ? ' active' : '');
+    btn.textContent = `seed ${s.seed}`;
+    btn.onclick     = () => { seedIdx = i; episodeIdx = 0; stepIdx = 0; fullRefresh(); };
+    wrap.appendChild(btn);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Full refresh (new seed / episode)
+// ══════════════════════════════════════════════════════════════
+function fullRefresh() {
+  const sz     = gridSize();
+  const canvas = document.getElementById('tank');
+  canvas.width  = sz * CELL;
+  canvas.height = sz * CELL;
+
+  bubbles  = [];
+  sparkles = [];
+
+  const step = curStep();
+  prevPos = [...step.pos];
+  curPos  = [...step.pos];
+  lerpT   = 1.0;
+  currentMode      = step.mode || 'neutral';
+  currentHealth    = step.health != null ? step.health : 1.0;
+  currentEnergy    = step.energy != null ? step.energy : 1.0;
+  currentHazards   = step.hazards   || [];
+  currentResources = step.resources || [];
+
+  buildSeedBtns();
+  buildTimeline();
+  updateInfo();
+  updatePlayhead();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Playback
+// ══════════════════════════════════════════════════════════════
+function startPlay() {
+  if (timer) clearInterval(timer);
+  playing = true;
+  const btn = document.getElementById('btnPlay');
+  btn.classList.add('playing');
+  btn.textContent = '\u23F8';
+  timer = setInterval(() => {
+    if (stepIdx >= curSteps().length - 1) {
+      if (episodeIdx < curEps().length - 1) {
+        episodeIdx++; stepIdx = 0;
+        buildTimeline(); fullRefresh();
+      } else {
+        stopPlay();
+      }
+      return;
+    }
+    goToStep(stepIdx + 1);
+  }, intervalMs);
+}
+
+function stopPlay() {
+  if (timer) { clearInterval(timer); timer = null; }
+  playing = false;
+  const btn = document.getElementById('btnPlay');
+  btn.classList.remove('playing');
+  btn.textContent = '\u25B6';
+}
+
+function togglePlay() { if (playing) stopPlay(); else startPlay(); }
+
+// ══════════════════════════════════════════════════════════════
+//  Data loading
+// ══════════════════════════════════════════════════════════════
+function loadData(data) {
+  if (!data.seeds || !data.seeds.length) {
+    showPickerError('Episode log has no seed data.');
+    return;
+  }
+
+  logData    = data;
+  seedIdx    = 0;
+  episodeIdx = 0;
+  stepIdx    = 0;
+  playing    = false;
+  if (timer) { clearInterval(timer); timer = null; }
+
+  document.getElementById('runInfo').textContent =
+    (data.run_id || 'unknown run') + (data.phase ? ' \u00b7 ' + data.phase : '');
+  document.title = 'REE Fishtank \u2014 ' + (data.run_id || 'episode');
+
+  const pb = document.getElementById('phaseBadgeWrap');
+  const torTag = (data.toroidal || (data.env_config && data.env_config.toroidal))
+    ? `<span class="phaseBadge" style="background:#1e3a5f;color:#c4b5fd;margin-left:4px">TOROIDAL</span>` : '';
+  pb.innerHTML = (data.phase ? `<span class="phaseBadge">${data.phase}</span>` : '') + torTag;
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('picker').style.display  = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+
+  fullRefresh();
+}
+
+function showPickerError(msg) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('picker').style.display  = 'flex';
+  const el = document.getElementById('pickErr');
+  el.textContent    = msg;
+  el.style.display  = 'block';
+}
+
+function wireFileInput(id) {
+  const inp = document.getElementById(id);
+  if (!inp) return;
+  inp.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    e.target.value = '';  // reset so same file can be re-loaded
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        loadData(JSON.parse(ev.target.result));
+      } catch (err) {
+        showPickerError('Failed to parse JSON: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Run browser helpers
+// ══════════════════════════════════════════════════════════════
+async function fetchRunList() {
+  try {
+    const resp = await fetch('/api/fishtank/logs');
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return data.logs || [];
+  } catch { return null; }
+}
+
+function formatRunTs(run) {
+  const m = run.match(/_(\d{8}T\d{6}Z?)$/);
+  if (!m) return '';
+  const ts = m[1];
+  return ts.slice(0,4) + '-' + ts.slice(4,6) + '-' + ts.slice(6,8)
+       + ' ' + ts.slice(9,11) + ':' + ts.slice(11,13) + 'Z';
+}
+
+function buildRunList(logs, container, onSelect) {
+  container.innerHTML = '';
+  if (!logs || logs.length === 0) {
+    container.innerHTML = '<div style="padding:10px;color:var(--muted);font-size:11px">No episode logs found.</div>';
+    return;
+  }
+  for (const log of logs) {
+    const item = document.createElement('div');
+    item.className = 'runItem';
+    const ts = formatRunTs(log.run);
+    item.innerHTML =
+      `<div class="runExp" title="${log.experiment}">${log.experiment}</div>` +
+      (ts ? `<div class="runTs">${ts}</div>` : '') +
+      `<button class="runWatch">Watch</button>`;
+    item.querySelector('.runWatch').onclick = () => onSelect(log.path);
+    container.appendChild(item);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Init
+// ══════════════════════════════════════════════════════════════
+async function init() {
+  // Wire file inputs
+  wireFileInput('fileInputPicker');
+  wireFileInput('fileInputApp');
+
+  document.getElementById('pickOpenBtn').onclick = () =>
+    document.getElementById('fileInputPicker').click();
+  document.getElementById('loadBtn').onclick = () =>
+    document.getElementById('fileInputApp').click();
+
+  // Browse overlay wiring
+  document.getElementById('browseBtn').onclick = () =>
+    document.getElementById('browseOverlay').classList.add('open');
+  document.getElementById('browseClose').onclick = () =>
+    document.getElementById('browseOverlay').classList.remove('open');
+  document.getElementById('browseOverlay').onclick = e => {
+    if (e.target === document.getElementById('browseOverlay'))
+      document.getElementById('browseOverlay').classList.remove('open');
+  };
+
+  // Fetch available runs and populate both browsers
+  const runs = await fetchRunList();
+  if (runs !== null) {
+    // Picker browser
+    document.getElementById('runBrowserPicker').style.display = 'block';
+    buildRunList(runs, document.getElementById('runListPicker'), path => {
+      window.location.href = '/fishtank_viz.html?log=' + encodeURIComponent(path);
+    });
+    // In-app browse overlay
+    buildRunList(runs, document.getElementById('runListApp'), path => {
+      document.getElementById('browseOverlay').classList.remove('open');
+      fetch('/' + path).then(r => r.json()).then(data => loadData(data))
+        .catch(err => alert('Load failed: ' + err.message));
+    });
+    if (runs.length === 0)
+      document.getElementById('browseHint').textContent = 'No episode logs found in evidence/experiments/.';
+  } else {
+    document.getElementById('browseBtn').style.display = 'none';
+  }
+
+  // Playback controls
+  document.getElementById('epPrev').onclick = () => {
+    if (episodeIdx > 0) { episodeIdx--; stepIdx = 0; buildTimeline(); fullRefresh(); }
+  };
+  document.getElementById('epNext').onclick = () => {
+    if (episodeIdx < curEps().length - 1) { episodeIdx++; stepIdx = 0; buildTimeline(); fullRefresh(); }
+  };
+  document.getElementById('btnFirst').onclick = () => { stopPlay(); goToStep(0); };
+  document.getElementById('btnBack').onclick  = () => { stopPlay(); goToStep(stepIdx - 1); };
+  document.getElementById('btnPlay').onclick  = togglePlay;
+  document.getElementById('btnFwd').onclick   = () => { stopPlay(); goToStep(stepIdx + 1); };
+  document.getElementById('btnLast').onclick  = () => { stopPlay(); goToStep(curSteps().length - 1); };
+
+  document.getElementById('scrubber').oninput = e => {
+    stopPlay();
+    goToStep(parseInt(e.target.value, 10));
+  };
+
+  document.querySelectorAll('.speedBtn').forEach(btn => {
+    btn.onclick = () => {
+      intervalMs = parseInt(btn.dataset.ms, 10);
+      document.querySelectorAll('.speedBtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (playing) { stopPlay(); startPlay(); }
+    };
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (!logData) return;
+    if      (e.key === ' ')          { e.preventDefault(); togglePlay(); }
+    else if (e.key === 'ArrowRight') { stopPlay(); goToStep(stepIdx + 1); }
+    else if (e.key === 'ArrowLeft')  { stopPlay(); goToStep(stepIdx - 1); }
+    else if (e.key === 'ArrowUp')    {
+      if (episodeIdx < curEps().length - 1) { episodeIdx++; stepIdx = 0; buildTimeline(); fullRefresh(); }
+    }
+    else if (e.key === 'ArrowDown') {
+      if (episodeIdx > 0) { episodeIdx--; stepIdx = 0; buildTimeline(); fullRefresh(); }
+    }
+  });
+
+  // Start rAF loop (runs even before data is loaded; renderFrame guards on logData)
+  requestAnimationFrame(renderFrame);
+
+  // Try URL ?log= parameter
+  const params  = new URLSearchParams(window.location.search);
+  const logPath = params.get('log');
+
+  if (logPath) {
+    const url = logPath.startsWith('/') ? logPath : '/' + logPath;
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+      const data = await resp.json();
+      loadData(data);
+    } catch (err) {
+      showPickerError(
+        `Could not load: ${logPath}\n${err.message}\n\nOpen the file manually below.`
+      );
+    }
+  } else {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('picker').style.display  = 'flex';
+  }
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
