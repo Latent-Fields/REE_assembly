@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_045_sleep_phase_ordering",
+  "entry_id": "2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023",
+  "timestamp_utc": "2026-04-05T15:10:00Z",
+  "claim_ids_tested": ["INV-045"],
+  "source": {
+    "title": "Computational role of sleep in memory reorganization",
+    "authors": ["Kensuke Yoshida", "Taro Toyoizumi"],
+    "year": 2023,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2023.102799",
+    "url": "https://arxiv.org/abs/2304.02873"
+  },
+  "evidence_class": "computational_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "This recent computational review explicitly frames NREM and REM as having distinct and complementary computational roles -- NREM selectively consolidates memory (slow-wave up/down state gating determines what survives), REM reorganises representations (dream-driven development of new neuronal representations). This taxonomy supports the mechanistic basis of INV-045 Phases 2 and 4. However, the paper does not argue that the NREM-before-REM ordering is derivable from first principles or computationally necessary. The ordering is treated as an observed biological fact. The gap between 'these phases do different things' and 'the sequence is a necessity' is precisely the gap INV-045 claims to fill, and no reviewed paper (including this one) makes that derivation.",
+  "summary_path": "summary.md",
+  "tags": [
+    "computational-review", "NREM", "REM", "consolidation", "reorganization", "slow-wave", "dreaming", "Yoshida", "Toyoizumi", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Non-rapid eye movement (NREM) sleep selectively consolidates memory via slow-wave up-state/down-state gating: up-states during slow oscillations promote sequential firing and replay, while down-states provide competitive suppression that prevents replay of weak memories in the presence of stronger ones. Rapid eye movement (REM) sleep reorganises memory representations through dreaming, which develops new neuronal representations not directly encoded during waking.",
+    "ree_translation": "INV-045 claims that the NREM-then-REM sequence is derivable from the logical dependencies between the failure modes each phase addresses. Yoshida and Toyoizumi provide the most current computational account of what each phase does, but treat the ordering as a given. From a REE perspective: if NREM's function is consolidation-with-selection (Phase 2) and REM's function is reorganisation-via-dreaming (Phase 4 precision recalibration), then running REM first would attempt to reorganise representations that haven't yet been consolidated or selected -- the representations wouldn't yet reflect what was learned. This dependency is implicit in Yoshida and Toyoizumi's account but is never stated as a derivation. The paper is the strongest recent evidence that the two phases perform computationally distinct and sequentially dependent operations, even if it stops short of the necessity claim.",
+    "mapping_caveat": "This is a review paper; the computational models it surveys vary in their treatment of REM. The paper explicitly notes that the role of REM in models is less well-developed than NREM. The 'reorganisation' framing of REM is broader than INV-045's specific 'precision recalibration' claim and may not map cleanly. The selection-by-down-states mechanism maps onto MECH-165 (replay diversity) but is not the same argument.",
+    "source_context": "Current Opinion in Neurobiology, 2023. Computational review; covers both biological data and theoretical models. Rodent and human data reviewed. arXiv preprint also available."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality (COpNB, 2023). Mapping fidelity moderate: maps onto INV-045's phase mechanisms but not onto the ordering-necessity claim. Transfer risk moderate: computational models reviewed are mostly rate-coding neural network models, somewhat removed from REE's latent-space architecture."
+  }
+}

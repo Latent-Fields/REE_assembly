@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_045_sleep_phase_ordering",
+  "entry_id": "2026-04-05_inv045_tononi_cirelli_shy_nrem_price_plasticity_2014",
+  "timestamp_utc": "2026-04-05T15:10:00Z",
+  "claim_ids_tested": ["INV-045"],
+  "source": {
+    "title": "Sleep and the Price of Plasticity: From Synaptic and Cellular Homeostasis to Memory Consolidation and Integration",
+    "authors": ["Giulio Tononi", "Chiara Cirelli"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.12.025",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3921176/"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) as the core function of slow-wave sleep, directly relevant to INV-045 Phase 1 (SHY normalisation before replay). The logic of SHY -- synaptic downscaling clears the noise floor and restores signal-to-noise before further consolidation -- partially implies that homeostasis must precede replay. However, the paper explicitly acknowledges that the REM-SHY relationship is unresolved and does not derive the NREM-before-REM ordering from first principles. The authors ask 'how REM may or may not fit' rather than answering it. SHY provides the mechanistic basis for Phase 1 but does not establish the ordering as a necessity.",
+  "summary_path": "summary.md",
+  "tags": [
+    "synaptic-homeostasis", "SHY", "NREM", "slow-wave-sleep", "downscaling", "signal-to-noise", "Tononi", "Cirelli", "memory-consolidation", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "During waking, learning strengthens synaptic connections throughout the brain, increasing energy demands and decreasing signal-to-noise. During NREM sleep, spontaneous activity renormalises net synaptic strength, restoring cellular homeostasis. REM sleep's relationship to SHY is unresolved; the authors ask whether NREM/REM alternation serves a particular function but do not answer this question within the SHY framework.",
+    "ree_translation": "INV-045 Phase 1 (SHY normalisation before replay) is precisely what Tononi and Cirelli describe: synaptic downscaling during NREM is a prerequisite for effective replay, because saturated synapses cannot undergo further potentiation. This provides the functional rationale for why Phase 1 must precede Phase 2 (NREM schema replay). However, INV-045 also claims that the entire NREM-then-REM sequence is derivable as an engineering necessity -- this stronger claim is not supported by SHY. Tononi and Cirelli are agnostic about REM, acknowledging it as an open question. The paper supports the mechanistic basis of Phases 1-2 but does not address the NREM-to-REM transition or Phases 3-4.",
+    "mapping_caveat": "SHY is primarily a NREM theory; the paper's engagement with REM is limited and explicitly uncertain. INV-045 requires that both the NREM sub-sequence and the NREM-to-REM transition be derivable from failure-mode dependencies -- SHY only addresses the first. Additionally, SHY downscaling is described at the synaptic level, while INV-045 operates at the architectural/computational level; translation requires an intermediate step.",
+    "source_context": "Major theoretical review in Neuron. Human and rodent data surveyed. The definitive SHY statement paper. High citation count (>3000)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.25,
+    "notes": "Extremely high source quality -- canonical SHY paper. Mapping fidelity moderate: maps well onto Phase 1 mechanism, poorly onto ordering necessity. Transfer risk low: SHY is a general mammalian principle directly applicable to REE's offline phases."
+  }
+}

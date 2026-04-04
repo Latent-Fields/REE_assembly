@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-04T20:51:17.545075Z`
+Generated: `2026-04-04T21:35:49.342541Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -74,6 +74,7 @@ Generated: `2026-04-04T20:51:17.545075Z`
 | `targeted_review_inv_029` | [`2026-03-29_inv_029_robust_concern_view_love_sep`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/record.json) | 2 | [`summary`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/summary.md) |
 | `targeted_review_inv_034` | [`2026-03-29_inv_034_goal_representations_schizophrenia_barch2010`](targeted_review_inv_034/entries/2026-03-29_inv_034_goal_representations_schizophrenia_barch2010/record.json) | 2 | [`summary`](targeted_review_inv_034/entries/2026-03-29_inv_034_goal_representations_schizophrenia_barch2010/summary.md) |
 | `targeted_review_inv_043_caregiver_development` | [`2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021`](targeted_review_inv_043_caregiver_development/entries/2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021/record.json) | 4 | [`summary`](targeted_review_inv_043_caregiver_development/entries/2026-04-02_inv_043_synchronous_caregiving_social_brain_feldman2021/summary.md) |
+| `targeted_review_inv_045_sleep_phase_ordering` | [`2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023`](targeted_review_inv_045_sleep_phase_ordering/entries/2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023/record.json) | 6 | [`summary`](targeted_review_inv_045_sleep_phase_ordering/entries/2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023/summary.md) |
 | `targeted_review_mech_054` | [`2026-02-15_mech054_lhb_negative_reward_signal_nature2007`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/record.json) | 1 | [`summary`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/summary.md) |
 | `targeted_review_mech_057` | [`2026-04-04_mech_057_bg_sequence_parsing_jin2014`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/record.json) | 8 | [`summary`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/summary.md) |
 | `targeted_review_mech_058` | [`2026-02-15_mech058_lit-0017_completion`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/record.json) | 4 | [`summary`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/summary.md) |

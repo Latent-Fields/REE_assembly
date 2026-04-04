@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_045_sleep_phase_ordering",
+  "entry_id": "2026-04-05_inv045_walker_vanderhelm_rem_overnight_therapy_2009",
+  "timestamp_utc": "2026-04-05T15:10:00Z",
+  "claim_ids_tested": ["INV-045"],
+  "source": {
+    "title": "Overnight Therapy? The Role of Sleep in Emotional Brain Processing",
+    "authors": ["Els van der Helm", "Matthew P. Walker"],
+    "year": 2009,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0016570",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2890316/"
+  },
+  "evidence_class": "review_empirical",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for REM sleep as the locus of affective recalibration -- specifically, that REM's low-noradrenaline, high-acetylcholine neurochemistry allows emotional memory to be consolidated informationally while the affective charge is reduced (the SFSR hypothesis: Sleep to Forget and Sleep to Remember). This directly supports INV-045 Phase 4 (REM precision recalibration): the mechanism by which prior weighting of affectively loaded memories is reset during REM. However, the paper does not address why this step must be last in the sequence, nor does it consider NREM's preparatory role for REM's affective processing. Like the other papers found, it establishes the mechanism of Phase 4 without deriving the ordering.",
+  "summary_path": "summary.md",
+  "tags": [
+    "REM", "emotional-memory", "precision-recalibration", "affect", "noradrenaline", "acetylcholine", "SFSR", "Walker", "van-der-Helm", "overnight-therapy", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "REM sleep creates a neurochemical environment (low noradrenaline, high acetylcholine) that allows emotional memories to be reactivated and consolidated while their affective charge (autonomic arousal) is simultaneously depotentiated. The SFSR hypothesis proposes that REM sleep enables emotional information to be retained while the emotional tone is weakened, preventing chronic stress and anxiety from unresolved affective memory.",
+    "ree_translation": "INV-045 Phase 4 (REM precision recalibration) is the phase that resets prior weighting -- specifically the affective/harm weighting that REE uses to modulate action selection. Walker and van der Helm's SFSR mechanism is the biological implementation of this recalibration: REM depotentiates affect-weighted memories while retaining the informational content, which in REE terms corresponds to updating z_beta (affective latent) without corrupting the z_world / hippocampal schema. This is the correct function for Phase 4 and it must be last because: if precision recalibration ran before NREM schema replay (Phases 2-3), the weighting being recalibrated would not yet reflect consolidated schemas. The Walker-van der Helm paper does not make this 'must be last' argument -- it treats REM as the phase performing this function, full stop, without deriving why it must follow NREM.",
+    "mapping_caveat": "Walker and van der Helm's framework is about human emotional memory (fear, PTSD, anxiety) and does not directly address non-emotional memory consolidation or schema formation. The precision-recalibration function of Phase 4 in INV-045 is broader than affective recalibration -- it covers prior updating generally. The SFSR mechanism maps well onto the affective component but may not cover the full scope of Phase 4.",
+    "source_context": "Psychological Bulletin, 2009. Review of human and rodent experimental data. Walker lab. PMID 19702380. High-citation paper (>700 citations). Covers neuroimaging, pharmacology, and behavioural studies of REM sleep and emotional memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Psychological Bulletin, Walker lab). Mapping fidelity moderate: maps well onto Phase 4 mechanism but not onto ordering necessity. Transfer risk moderate: human emotional memory to REE's broader precision-recalibration requires bridging; also, REM in REE is not solely affective."
+  }
+}

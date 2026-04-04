@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_045_sleep_phase_ordering",
+  "entry_id": "2026-04-05_inv045_friston_hobson_rem_model_optimization_2014",
+  "timestamp_utc": "2026-04-05T15:10:00Z",
+  "claim_ids_tested": ["INV-045"],
+  "source": {
+    "title": "Virtual reality and consciousness inference in dreaming",
+    "authors": ["J. Allan Hobson", "Charles C.-H. Hong", "Karl J. Friston"],
+    "year": 2014,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2014.01133",
+    "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.01133/full"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "The paper provides strong theoretical grounding for REM sleep as a model-optimization phase (free energy minimisation, model complexity reduction) -- directly relevant to INV-045's claim that REM precision recalibration is Phase 4. However, the paper does not address the ordering question: it does not argue that REM model optimization must follow NREM homeostasis as a computational necessity. It treats REM as the primary focus and largely ignores NREM's preparatory role. The free-energy framing partially supports the INV-045 mechanisms but makes no derivation-of-ordering argument.",
+  "summary_path": "summary.md",
+  "tags": [
+    "free-energy-principle", "predictive-coding", "REM", "model-optimization", "Friston", "dreaming", "active-inference", "sleep-phases", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain's generative or predictive model requires maintenance to account for sensory input during waking, and this maintenance rests upon minimizing model complexity, which is equivalent to minimizing variational free energy in the absence of sensory input (i.e., during REM sleep dreaming). REM sleep serves to minimize model complexity while maximizing statistical and thermodynamic efficiency.",
+    "ree_translation": "INV-045 places REM (Phase 4: precision recalibration) as the final sub-phase because resetting priors before earlier phases would corrupt weighting. Hobson, Hong and Friston provide the theoretical basis for WHY REM performs precision recalibration: in free-energy terms, REM minimises model complexity by pruning or reweighting the generative model offline. This is consistent with Phase 4's function in INV-045. However, the paper does not argue that this complexity-reduction step is computationally impossible before NREM replay -- it does not derive the ordering. The INV-045 ordering argument (recalibration last because the weighting must reflect consolidated memories, which only exist after NREM replay) is implied by the paper's logic but never stated.",
+    "mapping_caveat": "Hobson, Hong and Friston focus on REM dreaming as a window into model optimization; they do not address NREM phases at all. The paper cannot be read as deriving the NREM-before-REM sequence from first principles -- it provides mechanistic substance for one phase (Phase 4) without addressing why that phase must be last. The free-energy framing is fully compatible with INV-045 but does not confirm it.",
+    "source_context": "Theoretical/review paper. Human-focused. Framing is explicitly active inference / free energy principle. No experimental data -- conceptual integration of predictive coding, dreaming, and consciousness."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "High-quality theoretical source (Friston, Frontiers in Psychology). Mapping fidelity moderate: the free-energy account of REM maps cleanly onto INV-045 Phase 4 mechanism, but the paper is silent on ordering necessity, so the mapping is partial. Transfer risk low-to-moderate: the paper addresses mammalian sleep and generative models, well within REE's theoretical scope."
+  }
+}

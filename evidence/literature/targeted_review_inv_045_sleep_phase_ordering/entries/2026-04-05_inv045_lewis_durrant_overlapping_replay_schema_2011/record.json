@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_045_sleep_phase_ordering",
+  "entry_id": "2026-04-05_inv045_lewis_durrant_overlapping_replay_schema_2011",
+  "timestamp_utc": "2026-04-05T15:10:00Z",
+  "claim_ids_tested": ["INV-045"],
+  "source": {
+    "title": "Overlapping memory replay during sleep builds cognitive schemata",
+    "authors": ["Penelope A. Lewis", "Simon J. Durrant"],
+    "year": 2011,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2011.06.004",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21764357/"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Lewis and Durrant provide the clearest account of how NREM and REM sleep interact in schema formation: NREM replay drives Hebbian abstraction of shared elements across overlapping episodes; REM then integrates these cortical representations with older knowledge. The sequential framing (NREM creates abstract cortical representations; REM integrates them) implies that REM integration depends on the NREM abstractions existing first. This is structurally consistent with INV-045's Phase 2-then-Phase 3/4 ordering. However, the paper does not make the derivation-from-necessity argument -- it presents the sequence as a functional description rather than arguing that the reverse order would fail computationally. It is the closest paper found to making the ordering constraint explicit, but it stops short.",
+  "summary_path": "summary.md",
+  "tags": [
+    "schema-formation", "NREM", "REM", "replay", "overlapping-memories", "Hebbian", "abstraction", "hippocampus", "neocortex", "sequential", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "During NREM sleep, the overlapping replay of related memories selectively strengthens shared elements via Hebbian learning, generating abstracted schema representations in neocortex. During subsequent REM, these cortical representations are replayed concurrently with older cortical representations, allowing integration of new schema into existing knowledge. Repeated NREM-REM cycles progressively increase abstraction.",
+    "ree_translation": "Lewis and Durrant's NREM-then-REM schema-formation sequence maps directly onto INV-045 Phases 2-3: Phase 2 (NREM schema + MECH-165 diversity) creates the hippocampal-to-cortical abstraction that is the prerequisite input for Phase 3 (ThetaBuffer bidirectionality / spindle coordination). In their model, REM integration requires that NREM-derived abstract representations already exist in neocortex -- if REM ran first, there would be nothing to integrate new schema into, because the Hebbian abstraction step would not have occurred. This is the closest the published literature comes to deriving the ordering: the functional dependency is described, though not stated as a computational proof. The paper's mechanism also supports MECH-165 (replay diversity) by showing that it is overlapping across diverse episodes, not only the dominant episode, that drives schema formation.",
+    "mapping_caveat": "Lewis and Durrant describe the sequence as it occurs biologically and offer a functional account; they do not present a formal proof that REM-before-NREM would fail. The 'derivation from necessity' that INV-045 claims is stronger than what this paper establishes. Additionally, the paper was written before the SHY-SHY/CLS integration debate was resolved, so the relationship between synaptic downscaling (Phase 1) and the replay it enables (Phase 2) is not addressed.",
+    "source_context": "Theory/review paper in Trends in Cognitive Sciences. Human-focused. Reviewed against backdrop of CLS and SHY frameworks. High citation count."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality (TiCS, well-cited). Mapping fidelity moderate-good: the NREM-REM sequential mechanism maps well onto INV-045 Phases 2-3 and implies ordering dependency, but does not establish it as a necessity. Transfer risk moderate: schema formation in human declarative memory maps onto REE's viability-map consolidation but requires conceptual bridging."
+  }
+}
