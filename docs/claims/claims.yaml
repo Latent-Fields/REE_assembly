@@ -5078,6 +5078,18 @@
     harm_ablated in stable env; gap narrows or reverses in volatile env. This
     would confirm that commitment is not universally good but context-dependent --
     the correct functional prediction of ARC-016's control-plane framing.
+    ENVIRONMENT REGIME NOTE (2026-04-05, from Humphries 2012 lit-pull): dopamine
+    shifts BG output between exploitation (stable env) and exploration (volatile env).
+    EXQ-125a uses num_hazards=8 -- this may be in the volatile regime where
+    exploration (uncommitted mode) is dopaminergically optimal. If so, committed mode
+    should show no advantage or active disadvantage in an 8-hazard environment,
+    which would constitute a FAIL not of the claim but of the experimental regime.
+    Consideration for follow-up: explicitly test the stable/volatile axis by varying
+    hazard density (e.g. 2-3 hazards = stable/exploitative, 6-8 = volatile/exploratory)
+    and predict that committed mode advantage is strongest at low hazard density.
+    The Humphries framework predicts the interaction: commitment_advantage = f(stability),
+    so the correct test is the stability x commitment interaction, not just the
+    main effect. EXQ-125a tests only the high-hazard condition.
 
 - id: ARC-030
   title: "The three BG-like loops require symmetric Go (approach) and NoGo (avoidance) sub-channels; pure NoGo architecture produces behavioral flatness."

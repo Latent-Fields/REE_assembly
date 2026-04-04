@@ -263,6 +263,12 @@
     "title": "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC).",
     "type": "architectural_commitment"
   },
+  "ARC-045": {
+    "status": "candidate",
+    "subject": "hippocampus.bidirectional_information_flow",
+    "title": "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding.",
+    "type": "architectural_commitment"
+  },
   "IMPL-001": {
     "status": "active",
     "subject": "repo.glossary",
@@ -1667,6 +1673,18 @@
     "title": "Offline replay (MECH-121) must sample trajectory-diverse content -- including non-dominant and counterfactual paths -- to maintain multi-strategy viability; consolidation of only the dominant trajectory produces monostrategy in E1's world model even when SHY (MECH-120) is intact.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-166": {
+    "status": "candidate",
+    "subject": "hippocampus.slot_formation_filling_temporal_separation",
+    "title": "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-167": {
+    "status": "candidate",
+    "subject": "homeostatic_accumulation.computational_motif",
+    "title": "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -1935,6 +1953,12 @@
     "status": "candidate",
     "subject": "goal_representation.z_resource_encoder",
     "title": "Goal-directed navigation requires a dedicated z_resource encoder that captures object-type features invariant to spatial location, separate from z_world.",
+    "type": "design_decision"
+  },
+  "SD-017": {
+    "status": "candidate",
+    "subject": "sleep_phase.minimal_sleep_infrastructure_v3",
+    "title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated.",
     "type": "design_decision"
   }
 }
