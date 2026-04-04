@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_022",
+  "entry_id": "2026-04-04_arc_022_thick_hierarchical_world_models_gumbsch2024",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["ARC-022"],
+  "source": {
+    "title": "Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics",
+    "authors": ["Christian Gumbsch", "Noor Sajid", "Georg Martius", "Martin V Butz"],
+    "year": 2024,
+    "venue": "ICLR 2024 (International Conference on Learning Representations)",
+    "doi": null,
+    "url": "https://openreview.net/forum?id=TjCDNssXKU",
+    "arxiv_id": null,
+    "note": "Published as conference paper at ICLR 2024. Code: https://github.com/CognitiveModeling/THICK"
+  },
+  "evidence_class": "theoretical_computational",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "THICK (Temporal Hierarchies from Invariant Context Kernels) is the strongest computational existence proof for ARC-022's typed-object pipeline principle: the lower level generates invariant contexts (typed state objects) sparsely in time, and the higher level exclusively predicts situations involving changes in these context objects. This is structurally identical to ARC-022's claim that each layer operates on the output type of the layer below without re-instantiating lower-level computation. The model learns categorical, interpretable temporal abstractions at the higher level while preserving precise low-level predictions -- directly supporting ARC-022's claim that abstraction hierarchy explains why E2 operates on z_gamma rather than raw sensory streams. Confidence penalised for being a purely computational model (no biological substrate testing) and for framing the hierarchy as two levels rather than the five-stage pipeline ARC-022 specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "THICK demonstrates a two-level hierarchy (low-level prediction + high-level context); ARC-022 specifies a five-stage pipeline. Whether the THICK principle generalises to five levels with heterogeneous computation at each stage is not shown.",
+    "THICK's higher level predicts context changes -- it does not generate goal/avoid valuations or trajectory proposals. The Goal/Avoid and Hippocampus stages of ARC-022's pipeline are not instantiated.",
+    "The model is a reinforcement learning planning tool, not a model of biological neural circuitry. Its correspondence to E1->E2->DMN->Goal/Avoid->Hippocampus anatomy requires biological transfer."
+  ],
+  "tags": ["arc_022", "hierarchical_world_model", "temporal_abstraction", "typed_objects", "discrete_latent", "context_kernels", "reinforcement_learning", "model_based_planning"],
+  "mapping": {
+    "source_claim_statement": "THICK learns a world model hierarchy where the lower level updates parts of its latent state sparsely in time (forming invariant contexts), while the higher level exclusively predicts situations involving changes in these low-level latent states. The higher level learns categorical, interpretable temporal abstractions; the lower level maintains precise low-level predictions. Each level operates on the output type of the level below.",
+    "ree_translation": "THICK is a direct computational instantiation of ARC-022's typed-object pipeline principle. The lower level's invariant contexts are the typed output objects that the higher level consumes natively -- analogous to E1 producing sensory prediction objects that E2 operates on. The sparsity constraint that determines when the lower level updates (and therefore when the higher level predicts) implements the temporal abstraction hierarchy that ARC-022 claims explains E2's operation on z_gamma rather than raw sensory streams. The discrete categorical higher-level representations parallel the 'trajectory bundles' and 'narrative simulations' that ARC-022 assigns to the DMN-regime layer.",
+    "mapping_caveat": "THICK's hierarchy is fundamentally a temporal prediction hierarchy for model-based RL. ARC-022's pipeline additionally specifies valence and goal structures (Goal/Avoid layer, hippocampal map) that go beyond prediction into evaluation and navigation. THICK provides grounding for the lower portion of the pipeline (E1->E2->DMN-like narrative simulation) but does not address the Goal/Avoid->Hippocampus terminus.",
+    "source_context": "ML/RL paper from Max Planck Institute (MPI-IS) Autonomous Learning group and University of Tubingen. Evaluated on Crafter, NetHack, and robotics benchmarks. ICLR 2024 conference paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "ICLR is top-tier ML venue; MPI-IS is a leading robotics/AI lab. Source quality high for computational work. Mapping fidelity high: the typed-object pipeline principle is directly instantiated. Transfer risk moderate: computational model without biological substrate validation. The five-level vs. two-level gap is the main mapping limitation."
+  }
+}

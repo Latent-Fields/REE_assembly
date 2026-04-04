@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-04-04_sd_003_motor_intention_agency_timm2014",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "Motor intention determines sensory attenuation of brain responses to self-initiated sounds.",
+    "authors": ["Timm, J.", "SanMiguel, I.", "Keil, J.", "Schroger, E.", "Schonwiesner, M."],
+    "year": 2014,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_00552",
+    "url": "https://doi.org/10.1162/jocn_a_00552"
+  },
+  "evidence_class": "empirical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This paper provides direct empirical support for the claim that the forward model operates on intended action (efference copy of motor intention), not on executed movement. Using TMS to trigger involuntary finger movements -- physically identical to voluntary button presses but without motor intention -- the authors show that sensory attenuation (the N1-P2 reduction) occurs only for voluntary, intentional actions. Involuntary TMS-triggered movements produced no attenuation despite identical sensory consequences. This is precisely the distinction SD-003 requires: causal_sig = E2(z_t, a_actual) - E2(z_t, a_cf) is meaningful only if E2's input represents the agent's intended action, not merely the observed state transition. If E2 were simply a state-to-next-state predictor without action-input, it could not distinguish intentional from non-intentional movements -- and this paper shows the brain does make that distinction, and does so before motor cortex activation. Confidence is moderated because the sensory attenuation mechanism (pre-action prediction cancellation) is not the same as SD-003's post-hoc counterfactual difference; the paper evidences the single-pass comparator operating prospectively, while SD-003's causal_sig is computed retrospectively by comparing two forward model evaluations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper demonstrates that without motor intention -- without an efference copy of the intended command -- the forward model produces no sensory prediction and thus no attenuation. For SD-003, this translates to: if the action input a_actual to E2 does not faithfully represent the agent's causal intent (e.g., because a_actual is a noisy or misrepresented action label), E2(z_t, a_actual) will not correctly represent what the agent intended to cause, and causal_sig will be wrong in the direction of underattributing self-caused harm.",
+    "The prospective vs. retrospective distinction matters: the brain attenuates sensory consequences *before* the action completes, using a prediction generated from motor intention. SD-003 computes causal_sig *after* observing z_harm_s_next. This temporal asymmetry means SD-003 cannot use the prospective cancellation mechanism directly; instead it relies on the forward model being accurate enough post-hoc that E2(z_t, a_cf) correctly represents what would have happened. If E2 is poorly calibrated for rare counterfactual actions (actions that were never actually taken), causal_sig will be biased."
+  ],
+  "tags": ["sd_003", "forward_model", "motor_intention", "efference_copy", "sensory_attenuation", "sense_of_agency", "voluntary_vs_involuntary", "action_input"],
+  "mapping": {
+    "source_claim_statement": "The forward model that generates sensory predictions operates on motor intention (the efference copy of the planned command), not on executed movement per se. Sensory attenuation -- the reduction in auditory brain response N1-P2 to self-initiated sounds -- requires a prior motor intention and its corresponding forward model prediction. Involuntary movements triggered by TMS produce no attenuation despite identical sensory consequences, because no motor plan was available to the forward model.",
+    "ree_translation": "SD-003 uses E2 as the forward model computing E2(z_t, a_actual) and E2(z_t, a_cf). This paper provides empirical grounding that the critical input to the forward model is the agent's intended action (a_actual as the agent's chosen action), not merely the resulting state transition. The causal_sig is meaningful precisely because it reflects what the agent intended to do vs. what it could have done -- not just what happened. The paper also confirms that the forward model operates before execution, giving biological precedent for the architecture in which action intent is a distinct input to E2 rather than being absorbed into the state representation z_t.",
+    "mapping_caveat": "This paper studies prospective sensory attenuation (prediction-cancellation before sensory return), whereas SD-003 computes causal_sig retrospectively from observed z_harm_s_next. The mechanism is related but not identical: the paper supports the action-input architecture of E2 and the distinction between intentional and non-intentional causation, but does not directly validate the counterfactual subtraction SD-003 performs. Additionally, the domain is auditory sensorimotor (voluntary button press -> sound), not harm-stream attribution in a navigation environment. Transfer of the principle across domains is theoretically motivated but not empirically established.",
+    "source_context": "Human EEG experiment with TMS manipulation. Participants performed voluntary button presses (with motor intention) and received TMS-triggered involuntary finger movements (without motor intention), both producing identical sounds. Auditory ERP (N1-P2 complex) was measured to index sensory attenuation. Journal of Cognitive Neuroscience 2014, vol. 26(7):1481-9. Published by PubMed (PMID 24392902, DOI 10.1162/jocn_a_00552)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Source quality is good: Journal of Cognitive Neuroscience, well-controlled TMS-EEG design, clear manipulation of intentionality. Mapping fidelity is moderate: the core point that forward model input is action-intent is directly relevant to SD-003, but the prospective-vs-retrospective distinction limits direct applicability. Transfer risk is moderate: the mechanism is sensorimotor-auditory, SD-003 operates on harm latent stream in a navigation task; domain differences are non-trivial."
+  }
+}

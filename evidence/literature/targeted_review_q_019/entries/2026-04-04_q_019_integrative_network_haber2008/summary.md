@@ -1,0 +1,15 @@
+# Summary: Haber & Calzavara 2008 — Cortico-BG Integrative Network
+
+**Source:** Haber SN, Calzavara R. "The cortico-basal ganglia integrative network: the role of the thalamus." *Brain Research Bulletin*, 2008, 78(2-3):69-74. DOI: [10.1016/j.brainresbull.2008.09.013](https://doi.org/10.1016/j.brainresbull.2008.09.013)
+
+**Evidence direction for Q-019:** mixed (supports both distinctness and convergence; identifies specific integration mechanisms)
+
+---
+
+Haber and Calzavara write from a position of accepting the parallel/segregated framework as foundational while documenting the anatomical machinery through which integration between circuits actually occurs. This is not a paper about rejecting the three-gate model; it is a paper about how the three gates talk to each other, and where in the anatomy that conversation happens.
+
+Two mechanisms of integration are described in detail. The first is the striato-nigro-striatal spiral. SNc neurons in the ventral midbrain receive input from the ventral striatum and project back to progressively more dorsal striatal regions. This creates a gradient from ventral (limbic/motivational) to dorsal (motor), mediated by dopaminergic modulation, that allows affective and reward signals to influence cognitive and motor striatal domains without requiring a direct corticostriatal cross-projection. The spiral is a non-reciprocal, hierarchically ascending pathway: information flows limbic-to-motor but not equally in the reverse direction. For REE this is important: harm and goal signals from the limbic loop can modulate motor loop execution through this dopaminergic gradient, which corresponds architecturally to how harm residue is supposed to up-regulate salience during trajectory evaluation. It is a cross-loop influence that operates via neuromodulation rather than direct fast synaptic convergence.
+
+The second mechanism is convergence hotspots. In both the striatum and the thalamus, terminal fields from different functional cortical regions occasionally overlap in defined patches. Projections from motivational and motor cortex co-terminate in specific striatal zones; thalamic regions that are primarily part of one circuit send non-reciprocal projections to cortical areas outside that circuit, whose outputs feed back to the striatum. These hotspots are the anatomical substrate of what the REE model would call interface effects: they are where the loops are not fully segregated, and where cross-loop integration is anatomically licensed.
+
+What this paper does not do is argue for single-gate convergence. The dominant architecture remains topographically organised and parallel. But the message for Q-019 is that the three-gate and single-gate framings may be a false dichotomy: the anatomy supports distinct loops as the primary organisation and specific convergence mechanisms as secondary pathways. The REE three-gate model is anatomically defensible if it also models these convergence routes, particularly the dopaminergic spiral from the limbic gate into the sensorimotor domain.

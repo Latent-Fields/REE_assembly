@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-04-04_mech_061_bg_urgency_commitment_thura2017",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-061"],
+  "source": {
+    "title": "The Basal Ganglia Do Not Select Reach Targets but Control the Urgency of Commitment",
+    "authors": [
+      "David Thura",
+      "Paul Cisek"
+    ],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.07.039",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28823728/",
+    "pmid": "28823728"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Direct macaque electrophysiology establishing that the basal ganglia (specifically GPi output) do not encode which action to execute but instead provide a time-varying urgency signal that controls when deliberation ends and commitment begins. This dissociates deliberation-phase error signals (cortical) from post-commitment action signals (controlled by BG urgency modulation), mapping onto MECH-061's claim that a boundary token reclassifies error routing. Confidence discounted because the paper characterises a graded urgency ramp rather than a discrete boundary token per se; the REE claim requires an additional abstraction step from urgency dynamics to a discrete reclassification event.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The BG urgency signal is graded and continuous, not a discrete threshold event; MECH-061 posits a discrete commit-boundary token, so the mapping requires an additional discretization step.",
+    "The study focusses on motor commitment (reaching decisions), not on error-routing or learning-signal reclassification after commitment; the inference that urgency maps onto error reclassification is not directly tested.",
+    "Results are from macaque motor cortex / GPi during a forced-choice reaching task -- generalization to higher-level cognitive commitment and multi-timescale error attribution in REE is not guaranteed."
+  ],
+  "tags": [
+    "basal_ganglia",
+    "urgency_signal",
+    "commitment",
+    "action_initiation",
+    "GPi",
+    "motor_decision",
+    "pre_post_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "During deliberation, target-selection signals are present in premotor and primary motor cortex but are weak and delayed in the basal ganglia (GPi). Instead, GPi activity tracks a growing urgency signal that modulates cortical activity gain and controls the timing of commitment -- the moment at which deliberation gives way to execution. GPi does not pick the target but dictates when the system stops weighing evidence and commits.",
+    "ree_translation": "The Thura & Cisek finding is structurally isomorphic to MECH-061: there is a functional separator between the deliberation phase (pre-commit, where error signals are counterfactual / predictive) and the execution phase (post-commit, where error signals are realized outcomes). The BG urgency ramp functions as a rising prior for commitment, and GPi output constitutes something close to the boundary token in MECH-061's architecture -- its crossing initiates the reclassification of what errors mean. In REE terms, the moment GPi urgency triggers commitment is when pre-commit E2 simulation errors are replaced by post-commit realized-harm errors as the learning target.",
+    "mapping_caveat": "Thura & Cisek describe a graded escalating signal, not a discrete token. MECH-061 requires a discrete reclassification event to route error channels. The relationship between continuous urgency dynamics and discrete channel switching is not established in this paper; REE must supply the discretization logic. Additionally, the paper is limited to motor commitment in macaque, and REE's commit boundary operates over ethical/harm-attribution decisions that involve qualitatively richer deliberation.",
+    "source_context": "Macaque electrophysiology during a reach-decision task with two potential targets. Neural recordings from dorsal premotor cortex, primary motor cortex, and globus pallidus internus (GPi). Urgency varied experimentally via deadline blocks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "High-prestige empirical paper in Neuron with direct BG recordings. Mapping fidelity moderate: the urgency-to-commitment characterisation is strongly relevant but does not directly address error reclassification or routing. Transfer risk moderate-high: motor reaching in macaque to generalized commitment boundary in REE's cognitive/ethical action space."
+  }
+}

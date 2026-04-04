@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-04-04_mech060_active_inference_motor_adams2013",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "Predictions not commands: active inference in the motor system",
+    "authors": [
+      "Rick A. Adams",
+      "Stewart Shipp",
+      "Karl J. Friston"
+    ],
+    "year": 2013,
+    "venue": "Brain Structure and Function",
+    "volume": "218",
+    "issue": "3",
+    "pages": "611-643",
+    "doi": "10.1007/s00429-012-0475-5",
+    "pmid": "23129312",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23129312/"
+  },
+  "evidence_class": "neuroscience_theory",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Adams, Shipp and Friston (2013) develop the active inference motor framework in which the motor cortex issues descending proprioceptive predictions rather than direct motor commands. The key dual-stream structure is: a top-down prediction stream (what the world should look like given intended action, analogous to pre-commit simulation) and an ascending prediction-error stream that carries realized sensory mismatch back up (analogous to post-commit realized error). This maps onto MECH-060's dual-channel architecture: the generative model's forward pass corresponds to the pre-commit simulation channel, while the ascending prediction error is the post-commit realized-error channel. The precision-weighting mechanism (which modulates how much weight the motor system places on predicted vs. realized sensory feedback) is a close functional analogue to write-boundary enforcement: high motor-level precision attenuates the ascending error signal -- in effect, the pre-commit channel dominates during committed action sequences and post-commit feedback is down-weighted until completion. Confidence at 0.68 because the framing is motor/sensory rather than ethical harm attribution, and the paper does not address contamination consequences when the two channels are conflated.",
+  "confidence_components": {
+    "relevance": 0.80,
+    "mechanistic_specificity": 0.75,
+    "write_boundary_coverage": 0.50,
+    "replication_status": 0.90
+  },
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "lit_gap:ethical_attribution_not_addressed",
+    "lit_gap:contamination_consequences_not_tested",
+    "scope_mismatch:motor_control_not_harm_evaluation"
+  ],
+  "tags": [
+    "active-inference",
+    "motor-cortex",
+    "proprioceptive-prediction",
+    "prediction-error",
+    "precision-weighting",
+    "generative-model",
+    "dual-channel",
+    "pre-action-simulation",
+    "post-action-error",
+    "friston",
+    "hierarchical-predictive-coding"
+  ]
+}

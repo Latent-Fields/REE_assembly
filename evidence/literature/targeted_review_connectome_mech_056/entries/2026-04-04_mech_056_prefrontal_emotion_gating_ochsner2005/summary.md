@@ -1,0 +1,13 @@
+# Ochsner and Gross 2005 -- The cognitive control of emotion
+
+**Source:** Trends in Cognitive Sciences 9(6):242-249 (2005). DOI: 10.1016/j.tics.2005.03.010. PMID: 15866151.
+
+---
+
+Ochsner and Gross wrote a paper that has become the foundational reference for thinking about how prefrontal cortex regulates amygdala responding. The architecture they propose is a top-down gating model: prefrontal and cingulate control systems modulate emotional responses generated in subcortical structures, particularly the amygdala. Functional imaging studies at the time reliably showed that as prefrontal engagement increases during emotion regulation attempts, amygdala activity decreases. The inference was of a real-time inhibitory pathway from cortex to amygdala.
+
+What makes this paper relevant to MECH-056 is the general architecture it establishes: there is a layer of cortical control that sits above the harm-generative system and modulates what reaches behaviour, without requiring the full perceptual processing pipeline to be rerun. The attentional control strategy -- directing what you attend to rather than reinterpreting what you attend to -- is the cleaner analogy: you redirect your behavioural trajectory (select different stimuli, different routes) without altering your underlying representation of the feared stimulus itself.
+
+The tension, however, is real and should not be papered over. The other strategy Ochsner and Gross describe is cognitive reappraisal: deliberately changing the meaning attributed to an emotional stimulus. This is, almost by definition, representational modification. If a person learns to reinterpret a spider as harmless rather than threatening, their internal model of the spider has changed. This runs directly counter to MECH-056's requirement that harm signals constrain trajectory selection *before* distorting core world-model representations. Reappraisal as a regulatory strategy is interesting precisely because it works by modifying representation, which is what MECH-056 says should not happen first.
+
+The honest reading of this paper for MECH-056 purposes is that it establishes the existence and plausibility of the top-down architecture -- prefrontal gating of affect-driven action -- but it simultaneously points to the conditions under which that architecture fails, or is bypassed: when the regulatory strategy is reappraisal rather than attentional steering, the world model itself gets written to. The Jercog 2021 and Diehl 2020 results are more specifically targeted because they show the functional dissociation between harm-state encoding and action selection at a circuit level; Ochsner 2005 provides the broader theoretical frame within which those dissociations make sense.

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_022",
+  "entry_id": "2026-04-04_arc_022_ofc_cognitive_map_state_space_schuck2016",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["ARC-022"],
+  "source": {
+    "title": "Human Orbitofrontal Cortex Represents a Cognitive Map of State Space",
+    "authors": ["Nicolas W Schuck", "Ming Bo Cai", "Robert C Wilson", "Yael Niv"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.019",
+    "pmid": "27657452",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27657452/"
+  },
+  "evidence_class": "empirical_human_neuroimaging",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides empirical grounding for the Goal/Avoid layer of ARC-022's pipeline: orbitofrontal cortex encodes abstract task-state objects -- a cognitive map of state space that is not directly observable from sensory input. This supports ARC-022's claim that the Goal/Avoid systems (E3 + control-plane valence channels) operate on abstracted state objects rather than raw sensory or low-level transition outputs. The OFC's state-map is a typed object: it encodes which state-in-task-space the agent occupies, providing the valenced possibility-space that ARC-022 assigns to the Goal/Avoid layer. Behavioural error correlates with decoding accuracy, confirming the functional role of this abstract representation. Confidence penalised because the study concerns OFC as Goal/Avoid analogue, not the full E1->E2->DMN->Goal/Avoid->Hippocampus chain; the pipeline structure above and below OFC is not examined.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study focuses on OFC as a state-map encoder during a 16-state decision task; it does not establish that OFC receives typed trajectory-bundle inputs from a DMN-regime layer, or that it sends typed possibility-space outputs to a hippocampal map layer.",
+    "The OFC state map here is a cognitive/task-state map, not a valenced goal/avoid space per se -- the valence structure is implicit in task design rather than explicitly tested as a Goal/Avoid pipeline layer.",
+    "The study supports OFC's role in abstract state representation but cannot adjudicate whether this is a pipeline stage (ARC-022) or an independent computation that interfaces with other regions."
+  ],
+  "tags": ["arc_022", "orbitofrontal_cortex", "state_space", "cognitive_map", "goal_representation", "abstract_state", "planning", "decision_making"],
+  "mapping": {
+    "source_claim_statement": "OFC activity patterns encode a cognitive map of abstract task states that are unobservable from sensory input. Decoding accuracy correlates with task performance and individual behavioral errors. Neural pattern similarity between consecutive states predicts behavioral accuracy during state transitions.",
+    "ree_translation": "The OFC cognitive-state map is the empirical correlate of ARC-022's Goal/Avoid layer: the system that encodes which part of the valenced possibility space the agent currently occupies, operating on abstractions rather than raw sensory input. This is consistent with ARC-022's claim that the Goal/Avoid layer consumes narrative simulations (from the DMN-regime layer) and produces a valenced possibility space -- OFC appears to be the anatomical seat of this abstract state encoding. The correlation between OFC decoding accuracy and behavioral error directly links abstract-state representation to planning performance, consistent with ARC-022's functional role for this layer.",
+    "mapping_caveat": "The OFC state map here encodes current task state during decision-making, not a multi-step valenced possibility space generated from trajectory bundles. The connection to DMN-regime trajectory simulation (the layer above, in ARC-022) is inferred, not tested. The hippocampus (the layer below, in ARC-022) is not characterised in this study.",
+    "source_context": "Human fMRI with pattern classification; 16-state Markov decision task where states are unobservable from sensory input. Princeton Niv lab -- central to the cognitive map in frontal cortex literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.25,
+    "notes": "Neuron top-tier venue; Niv lab is one of the most influential in computational psychiatry and cognitive map literature. Source quality high. Mapping fidelity moderate: the OFC state-map grounding for the Goal/Avoid layer is solid, but the pipeline context (what feeds into OFC, what OFC feeds into) is not examined. Transfer risk low: human fMRI directly relevant to the claimed anatomical layer."
+  }
+}

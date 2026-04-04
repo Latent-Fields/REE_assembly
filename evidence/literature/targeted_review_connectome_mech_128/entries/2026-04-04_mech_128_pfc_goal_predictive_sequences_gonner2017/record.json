@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_128",
+  "entry_id": "2026-04-04_mech_128_pfc_goal_predictive_sequences_gonner2017",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-128"],
+  "source": {
+    "title": "Predictive Place-Cell Sequences for Goal-Finding Emerge from Goal Memory and the Cognitive Map: A Computational Model",
+    "authors": ["Lorenz Gonner", "Julien Vitay", "Fred H. Hamker"],
+    "year": 2017,
+    "venue": "Frontiers in Computational Neuroscience",
+    "doi": "10.3389/fncom.2017.00084",
+    "url": "https://www.frontiersin.org/journals/computational-neuroscience/articles/10.3389/fncom.2017.00084/full"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The paper provides a direct computational existence proof that injecting goal context (via prefrontal working memory signals) into hippocampal CA3 dynamics biases predictive place-cell sequences toward goal-relevant trajectories -- exactly the functional claim MECH-128 makes for E1. The mapping is high-fidelity at the functional level: goal memory modulates the recurrent attractor network and reshapes trajectory generation. Transfer risk is moderate because the substrate is rate-coded hippocampal CA3, not an LSTM; the gating mechanism (cortical attractor modulation via reward-potentiated synapses) differs architecturally from LSTM hidden-state concatenation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model uses a continuous attractor network (CA3), not an LSTM; transfer to LSTM hidden-state concatenation requires an additional architectural assumption.",
+    "Goal conditioning is mediated by Hebbian/reward-potentiated cortico-hippocampal synapses, not by direct concatenation of a goal latent to the recurrent cell -- the REE mechanism is more direct.",
+    "Sequences emerge during stationary periods (analogous to replay/planning offline) and may not generalise to online E1 prediction at each recurrent step."
+  ],
+  "tags": ["mech_128", "goal_conditioning", "predictive_sequences", "place_cells", "hippocampus", "prefrontal", "working_memory", "trajectory_planning"],
+  "mapping": {
+    "source_claim_statement": "Injecting goal memory signals (cortical context representations) into hippocampal CA3 continuous-attractor dynamics produces predictive place-cell sequences that are systematically biased toward learned goal locations, without requiring virtual movement signals.",
+    "ree_translation": "E1's LSTM hidden state plays the role of the CA3 recurrent network in this model. Providing z_goal_latent to E1 at each recurrent step is the LSTM analogue of the goal-memory input that biases CA3 attractor dynamics. Both mechanisms produce the same functional outcome: predictive trajectories are no longer goal-agnostic -- they are shaped by where the system is trying to go.",
+    "mapping_caveat": "The biological substrate (continuous attractor, rate-coded CA3) is architecturally different from an LSTM. The biological goal signal is learned implicitly through reward-potentiated synapses, whereas MECH-128 proposes explicit concatenation or gating of z_goal_latent. The computational principle (goal context biases recurrent dynamics toward goal-relevant trajectories) is conserved, but the implementation pathway is not directly transferable.",
+    "source_context": "Computational model of rat hippocampal navigation; place cells; continuous attractor network; spatial goal-finding task"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.38,
+    "notes": "Frontiers journal, computational modeling, peer-reviewed. Strong functional mapping -- the paper is essentially a computational demonstration of MECH-128's core claim. Transfer risk comes from CA3 vs LSTM substrate difference and from online vs offline sequence generation."
+  }
+}

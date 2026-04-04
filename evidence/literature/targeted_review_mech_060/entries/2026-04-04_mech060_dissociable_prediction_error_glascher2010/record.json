@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-04-04_mech060_dissociable_prediction_error_glascher2010",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "States versus Rewards: Dissociable Neural Prediction Error Signals Underlying Model-Based and Model-Free Reinforcement Learning",
+    "authors": [
+      "Jan Glascher",
+      "Nathaniel D. Daw",
+      "Peter Dayan",
+      "John P. O'Doherty"
+    ],
+    "year": 2010,
+    "venue": "Neuron",
+    "volume": "66",
+    "pages": "585-595",
+    "doi": "10.1016/j.neuron.2010.04.016",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20510862/"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Demonstrates anatomically and computationally dissociable prediction error channels: a state prediction error (SPE) in intraparietal sulcus and lateral PFC (model-based, prospective/simulational) and a reward prediction error (RPE) in ventral striatum (model-free, realized outcome). This two-channel architecture directly parallels REE's pre-commit simulation channel vs post-commit realized-error channel. The write-boundary enforcement claim requires the signals to stay architecturally separated; this paper shows the brain maintains that separation neuroanatomically. Confidence moderate rather than high because the paper does not address 'write-boundary enforcement' or contamination consequences if channels are blended -- it establishes dissociability but not the pathological consequences of mixing.",
+  "confidence_components": {
+    "relevance": 0.85,
+    "mechanistic_specificity": 0.70,
+    "write_boundary_coverage": 0.40,
+    "replication_status": 0.90
+  },
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "lit_gap:write_boundary_enforcement_not_tested",
+    "lit_gap:contamination_consequences_not_addressed"
+  ],
+  "tags": [
+    "model-based",
+    "model-free",
+    "state-prediction-error",
+    "reward-prediction-error",
+    "dissociable-channels",
+    "striatum",
+    "prefrontal-cortex",
+    "fmri"
+  ]
+}

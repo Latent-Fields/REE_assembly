@@ -1,0 +1,29 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "entry_id": "2026-04-04_mech_059_canonical_microcircuits_Bastos2012",
+  "literature_type": "targeted_review_mech_059",
+  "claim_ids_tested": ["MECH-059"],
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "citation": {
+    "authors": ["Bastos, Andre M.", "Usrey, W. Martin", "Adams, Rick A.", "Mangun, George R.", "Fries, Pascal", "Friston, Karl J."],
+    "title": "Canonical microcircuits for predictive coding",
+    "journal": "Neuron",
+    "year": 2012,
+    "volume": "76",
+    "issue": "4",
+    "pages": "695-711",
+    "doi": "10.1016/j.neuron.2012.10.038",
+    "pmid": "23177956",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3777738/"
+  },
+  "relevance_to_claim": "Provides the canonical neuroanatomical and physiological evidence that precision weighting and prediction error are implemented in distinct cortical mechanisms. Prediction errors are encoded in superficial pyramidal cells (layers 2/3) and in the activity of granular layer populations; precision weighting is implemented via synaptic gain modulation controlled by specific GABAergic inhibitory interneurons (targeting distal dendrites) and neuromodulatory systems. These mechanisms have different layer distributions, different temporal dynamics (prediction errors carried by high-frequency feedforward connections; precision modulation at slower timescales), and different cellular substrates. The paper explicitly notes 'precision of the feedforward prediction error' is placed against superficial pyramidal cells as a gain parameter controlling 'postsynaptic sensitivity or gain to (intrinsic and top-down) pre-synaptic inputs.'",
+  "evidence_direction": "supports",
+  "evidence_strength": "strong",
+  "evidence_type": "empirical_review_with_computational_mapping",
+  "key_quotes": [
+    "We have placed the precision of the feedforward prediction error against the superficial pyramidal cells. This quantity controls the postsynaptic sensitivity or gain to (intrinsic and top-down) pre-synaptic inputs.",
+    "There is a specific type of GABAergic neuron that appears to control distal dendritic excitability, gating top down excitatory signals differentially during behavior.",
+    "Feedforward connections originate predominately from superficial layers and feedback connections from deep layers, suggesting that feedforward connections use relatively high frequencies, compared to feedback connections."
+  ],
+  "notes": "The layer-specific implementation described here corresponds to a functional separation that would be catastrophically disrupted if precision were derived from prediction error magnitude. Specifically: superficial pyramidal cells (prediction error units) receive precision weighting from inhibitory interneurons that themselves receive input from attentional and neuromodulatory systems — not from the error signal itself. The temporal dynamics argument is particularly relevant to REE: prediction errors operate at gamma frequencies (fast, feedforward), while precision modulation operates at lower frequencies with a neuromodulatory timescale. REE's equivalent is the z_beta channel tracking uncertainty across episodes rather than within individual prediction steps."
+}

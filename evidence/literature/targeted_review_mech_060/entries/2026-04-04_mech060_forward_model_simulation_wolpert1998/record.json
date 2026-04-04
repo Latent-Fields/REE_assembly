@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-04-04_mech060_forward_model_simulation_wolpert1998",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "Internal models in the cerebellum",
+    "authors": [
+      "Daniel M. Wolpert",
+      "R. Chris Miall",
+      "Mitsuo Kawato"
+    ],
+    "year": 1998,
+    "venue": "Trends in Cognitive Sciences",
+    "volume": "2",
+    "issue": "9",
+    "pages": "338-347",
+    "doi": "10.1016/S1364-6613(98)01221-2",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21227230/"
+  },
+  "evidence_class": "neuroscience_theory",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "The forward model framework is the canonical theoretical ancestor of REE's pre-commit simulation channel. Wolpert et al. formalize the distinction between forward models (which predict the sensory consequences of a motor command before feedback arrives -- the simulation channel) and inverse models (which compute the motor command from desired state). The forward model's predicted outcome is used to cancel reafference, while the true sensory feedback arriving post-movement is the realized error. This temporal and computational separation between simulated-consequence and actual-outcome is precisely MECH-060's pre-commit vs post-commit channel structure. The cerebellar substrate separating these computations provides strong biological precedent. Confidence is high at 0.75 because the theoretical framing directly instantiates the dual-channel concept, but the mapping is indirect -- the paper does not address write-boundary enforcement or responsibility attribution.",
+  "confidence_components": {
+    "relevance": 0.90,
+    "mechanistic_specificity": 0.80,
+    "write_boundary_coverage": 0.35,
+    "replication_status": 0.95
+  },
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "lit_gap:responsibility_attribution_not_addressed",
+    "lit_gap:write_boundary_enforcement_not_tested"
+  ],
+  "tags": [
+    "forward-model",
+    "internal-model",
+    "cerebellum",
+    "efference-copy",
+    "simulation",
+    "sensory-consequences",
+    "motor-control",
+    "pre-action-prediction"
+  ]
+}

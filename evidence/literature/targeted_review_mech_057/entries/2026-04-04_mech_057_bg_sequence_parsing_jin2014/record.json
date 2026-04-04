@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_057",
+  "entry_id": "2026-04-04_mech_057_bg_sequence_parsing_jin2014",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-057a"],
+  "source": {
+    "title": "Basal ganglia subcircuits distinctively encode the parsing and concatenation of action sequences",
+    "authors": [
+      "Xin Jin",
+      "Fatuel Tecuapetla",
+      "Rui M. Costa"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "pmid": "24464039",
+    "pmc": "PMC3955116",
+    "doi": "10.1038/nn.3632",
+    "citation": "Nature Neuroscience, 2014, vol. 17, issue 3, pp. 423-430"
+  },
+  "evidence_class": "empirical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_components": {
+    "mechanistic_alignment": 0.65,
+    "species_and_substrate": 0.70,
+    "directness_of_test": 0.60,
+    "replication_status": 0.75
+  },
+  "confidence_rationale": "Jin et al. recorded BG direct (dSPN) and indirect (iSPN) pathway neurons in mice executing learned action sequences. Neurons with activity encoding the start and stop of sequences (parsing) were distinct from neurons with sustained activity or inhibition throughout the entire sequence (concatenation). Crucially, direct and indirect pathways behaved differently during sequence performance -- not just at onset/offset. This provides cellular-level evidence for the BG sequence-level gating structure that MECH-057a requires: the gate is not simply open/closed at action start, but encodes and protects a sequence-level commitment state throughout execution. The indirect pathway's differentiated mid-sequence activity is consistent with suppression of competing inputs during committed execution. Confidence is moderate because the paper does not directly measure sensory precision reweighting or beta oscillations -- it characterises the circuit substrate rather than testing the precision-suppression mechanism.",
+  "failure_signatures": [
+    "dSPN and iSPN showed identical sustained activity during sequence execution -- would suggest no differentiated gate, weakening sequence-level commitment framing",
+    "Sequence chunking was attributable to cortex rather than BG -- would undercut the circuit substrate claim"
+  ],
+  "tags": [
+    "basal_ganglia",
+    "action_sequence",
+    "direct_pathway",
+    "indirect_pathway",
+    "sequence_chunking",
+    "sequence_completion",
+    "commitment_boundary",
+    "dSPN",
+    "iSPN",
+    "MECH-057a"
+  ],
+  "summary_path": "summary.md"
+}

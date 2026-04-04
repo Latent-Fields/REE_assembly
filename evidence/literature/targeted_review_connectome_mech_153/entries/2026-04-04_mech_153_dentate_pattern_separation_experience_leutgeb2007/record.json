@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-04_mech_153_dentate_pattern_separation_experience_leutgeb2007",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "Pattern Separation in the Dentate Gyrus and CA3 of the Hippocampus",
+    "authors": ["Leutgeb, Jill K.", "Leutgeb, Stefan", "Moser, May-Britt", "Moser, Edvard I."],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135801",
+    "pmid": "17303747",
+    "pmc": null
+  },
+  "evidence_class": "connectome_mechanistic_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Leutgeb et al. 2007 provide the foundational empirical demonstration that hippocampal pattern separation -- the production of orthogonal representations for similar inputs -- is experience-dependent and not automatic from sensory statistics alone. The dentate gyrus granule cells progressively orthogonalise their representations as animals are re-exposed to morphed environments across sessions, and the degree of separation is graded by the degree of environmental difference and accumulated experience. This implies that context differentiation is not an immediate property of the hippocampal circuit applied to any novel input; it is a learned property that develops with repeated paired exposure to the contexts. The relevance to MECH-153 is indirect but meaningful: if pattern separation in the biological hippocampus requires experience-dependent plasticity tuned by re-exposure, then the analogous ContextMemory encoding in E1 should not be expected to spontaneously produce orthogonal context representations from prediction-error training alone, without a gradient signal that specifically targets the context-discriminating dimension. The confidence is moderated because Leutgeb does not directly address supervised vs unsupervised training regimes -- the paper describes naturally occurring hippocampal plasticity in vivo, not a controlled comparison of training objectives.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Leutgeb's pattern separation occurs in a biological hippocampus with rich modulatory input (dopamine, acetylcholine, norepinephrine) that provides outcome-relevant signals through diffuse neuromodulatory pathways. The biological system is not purely unsupervised even during exploration -- novelty signals, reward delivery, and stress responses all modulate hippocampal plasticity. The claim that experience-dependent pattern separation occurs without supervised signals in biology does not straightforwardly support the MECH-153 requirement for an explicit supervised objective in the artificial system.",
+    "Leutgeb's morphed environments share a global spatial layout but differ in shape. The contexts in MECH-153 experiments (hazard-proximate vs hazard-distal regions of the same CausalGridWorld) share more features and differ only in hazard proximity -- a more demanding discrimination problem than shape morphing. The generalizability of Leutgeb's pattern separation findings to the MECH-153 discrimination problem is not directly established."
+  ],
+  "tags": ["mech_153", "dentate_gyrus", "CA3", "pattern_separation", "hippocampus", "experience_dependent", "context_discrimination", "biological_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Dentate gyrus granule cells perform graded pattern separation of similar environments: low population correlation for similar environments, with progressive orthogonalisation developing across exposure sessions. CA3 recruits entirely new cell populations for sufficiently different environments. Pattern separation is not automatic but is experience-dependent, improving with repeated exposure to the context pair.",
+    "ree_translation": "E1 ContextMemory is the computational analog of the hippocampal encoding layer that Leutgeb's DG data characterise. The experience-dependence of pattern separation in DG corresponds to the training-objective dependence in ContextMemory: just as DG pattern separation requires repeated exposure with the plasticity signals that drive orthogonalisation, ContextMemory requires the supervised context-labeling gradient to drive representation orthogonalisation. The cosine_sim=0.9999 result in EXQ-181b corresponds to a DG that has been exposed to both environments but has not received the plasticity signal that drives separation -- equivalent to a system with rich sensory input but without the outcome-contingent learning signal that would cause the population code to differentiate. Leutgeb's progressive orthogonalisation finding also predicts the EXQ-211 result: partial reduction in cosine_sim when the supervised signal is present (delta=0.003) is consistent with early-stage supervised learning where the gradient has begun to shape the representation but insufficient training has occurred for full separation.",
+    "mapping_caveat": "DG pattern separation in vivo is not a purely unsupervised process -- neuromodulatory signals during exploration provide outcome-relevant information that is absent from the purely world-model-trained E1. The biological finding that pattern separation is experience-dependent does not cleanly separate into supervised vs unsupervised components in the way MECH-153 requires. The mapping treats outcome-contingent neuromodulation in DG as the biological analog of the supervised context-labeling gradient -- a reasonable but not rigorous equivalence.",
+    "source_context": "Rat in vivo tetrode recordings in hippocampal DG and CA3 while animals explored environments with progressively morphed shapes (square to circle); multi-session design"
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.57,
+    "transfer_risk": 0.50,
+    "notes": "Science -- premier empirical journal, foundational paper in hippocampal memory field. Mapping fidelity is lower than other entries: the paper provides strong evidence that hippocampal pattern separation is experience-dependent and not automatic, but does not directly test the supervised vs unsupervised distinction that MECH-153 requires. Transfer risk is moderate-high: the biological system has diffuse neuromodulatory supervision that is absent from the artificial LSTM training regime, making the clean supervised/unsupervised framing imperfect."
+  }
+}

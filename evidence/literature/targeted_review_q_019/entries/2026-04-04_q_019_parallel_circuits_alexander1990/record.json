@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-04_q_019_parallel_circuits_alexander1990",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Functional architecture of basal ganglia circuits: neural substrates of parallel processing.",
+    "authors": [
+      "Alexander GE",
+      "Crutcher MD"
+    ],
+    "year": 1990,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/0166-2236(90)90107-l",
+    "pmid": "1695401"
+  },
+  "evidence_class": "lit:review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "The founding review establishing that BG are organised as several structurally and functionally distinct circuits, each linking a different region of frontal cortex through BG to thalamus and back. The authors move explicitly away from earlier serial-convergence models toward parallel functional architecture. While the paper uses the motor circuit as the principal example, it explicitly generalises: the same parallel principle is held to apply within each circuit. This is the primary source for three-gate distinctness. Confidence capped at 0.85 because the full evidence for non-motor circuits remained incomplete at this date and relied on comparisons across animals rather than within-subject tracing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "parallel_circuits",
+    "corticostriatal",
+    "thalamocortical",
+    "frontal_cortex",
+    "functional_architecture",
+    "segregation",
+    "review",
+    "primate"
+  ],
+  "mapping": {
+    "source_claim_statement": "BG are organised into several structurally and functionally distinct circuits that link cortex, basal ganglia, and thalamus, with each circuit focused on a different portion of frontal lobe (motor, oculomotor, prefrontal/associative, limbic). Parallel architecture is characteristic both across circuits and within each individual circuit.",
+    "ree_translation": "Directly supports the three-gate model. The motor circuit corresponds to the REE action commitment loop (putamen/VLo/SMA); the prefrontal/associative circuit to the thought loop (caudate/MD thalamus/DLPFC); the limbic circuit to the sensorium/harm-goal loop (ventral striatum/MD/OFC-ACC). The parallel architecture means these loops are anatomically segregated at every relay station, not converging to a single gate.",
+    "mapping_caveat": "1990 paper; within-subject anatomical continuity had only been demonstrated for the motor circuit. The segregated circuits hypothesis for non-motor loops was inferential at this date. Later tract-tracing and human neuroimaging substantially confirmed the architecture, but convergence zones were identified subsequently (Haber 2008, 2016). The paper explicitly acknowledges incompleteness and calls for double-label tracing.",
+    "source_context": "Trends in Neurosciences, 1990. Highly cited review (>2000 citations). Sets the foundational parallel-circuits framework that remains the dominant anatomical model."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.20,
+    "notes": "Highest-impact review in this area. Mapping fidelity is high: the three-loop partition maps directly onto REE gates. Transfer risk is low: this is foundational primate/human neuroanatomy, not a species-specific result."
+  }
+}

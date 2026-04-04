@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_128",
+  "entry_id": "2026-04-04_mech_128_film_conditioning_perez2018",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-128"],
+  "source": {
+    "title": "FiLM: Visual Reasoning with a General Conditioning Layer",
+    "authors": ["Ethan Perez", "Florian Strub", "Harm de Vries", "Vincent Dumoulin", "Aaron Courville"],
+    "year": 2018,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "doi": "10.1609/aaai.v32i1.11671",
+    "url": "https://arxiv.org/abs/1709.07871"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "FiLM establishes a general ML mechanism -- feature-wise affine modulation of a neural network's intermediate activations by a conditioning input -- that is the direct computational implementation of what MECH-128 proposes for E1's LSTM hidden state. The paper demonstrates that this conditioning architecture is sufficient to radically alter the prediction/reasoning behavior of a deep network as a function of an arbitrary context input, halving state-of-the-art error on CLEVR. The REE MECH-128 mechanism (z_goal_latent concatenated or gating E1's LSTM at each step) is a specific instance of the FiLM conditioning family. Confidence is moderate rather than high because FiLM is a CNN architecture over visual inputs, not an LSTM over temporal sequences; the conditioning principle transfers but the recurrent dynamics are not addressed by this paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "FiLM operates on CNN intermediate features, not on LSTM hidden states; the temporal recurrence dynamics central to MECH-128 are not addressed.",
+    "The conditioning information in FiLM (a question encoded by an RNN) is sentence-level context, not a continuously updated latent goal state; MECH-128 requires step-wise injection at each LSTM recurrence, which FiLM does not demonstrate.",
+    "CLEVR visual reasoning is a static, query-conditioned task; there is no planning horizon, trajectory generation, or multi-step prediction under goal constraint."
+  ],
+  "tags": ["mech_128", "goal_conditioning", "film", "feature_wise_modulation", "context_conditioning", "deep_learning", "ml_analogue"],
+  "mapping": {
+    "source_claim_statement": "Feature-wise affine transformation of a neural network's intermediate features, conditioned on an arbitrary external input (FiLM), enables the conditioning signal to adaptively and radically alter network behavior for diverse reasoning tasks.",
+    "ree_translation": "MECH-128 proposes that z_goal_latent should modulate E1's LSTM hidden state at each recurrent step -- either via concatenation to the input vector or via a learned affine transformation (scale and shift) of the hidden state. This is the recurrent-LSTM instantiation of the FiLM conditioning principle. The claim is that without this modulation, E1's predictions are goal-agnostic; with it, they are goal-shaped. FiLM demonstrates that such conditioning is architecturally feasible and empirically effective at making a network's computation goal-context-dependent.",
+    "mapping_caveat": "FiLM demonstrates conditioning of feedforward CNN layers, not of LSTM recurrent hidden states. The question of whether step-wise goal conditioning of an LSTM hidden state is as effective as FiLM-style CNN conditioning is not addressed. The RNN that encodes the question in FiLM is a separate module; in MECH-128 the goal is injected into the same recurrent network that generates predictions, creating a tighter coupling that may have stability implications not present in the FiLM architecture.",
+    "source_context": "ML/deep learning; visual question answering; CLEVR benchmark; CNN with conditioning layers; RNN question encoder"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "AAAI 2018, highly cited, robust benchmark results. Source quality is high. Mapping fidelity is moderate -- the FiLM paper directly demonstrates the conditioning principle but not in a recurrent/LSTM temporal-prediction setting. Transfer risk arises from CNN vs LSTM architecture, static vs sequential prediction, and from the difference between sentence-level vs step-wise goal conditioning."
+  }
+}

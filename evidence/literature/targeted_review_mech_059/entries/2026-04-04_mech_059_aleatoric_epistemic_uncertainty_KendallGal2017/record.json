@@ -1,0 +1,26 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "entry_id": "2026-04-04_mech_059_aleatoric_epistemic_uncertainty_KendallGal2017",
+  "literature_type": "targeted_review_mech_059",
+  "claim_ids_tested": ["MECH-059"],
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "citation": {
+    "authors": ["Kendall, Alex", "Gal, Yarin"],
+    "title": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?",
+    "journal": "Advances in Neural Information Processing Systems (NeurIPS)",
+    "year": 2017,
+    "volume": "30",
+    "arXiv": "1703.04977",
+    "url": "https://arxiv.org/abs/1703.04977"
+  },
+  "relevance_to_claim": "Canonical ML paper establishing the computational necessity of distinguishing aleatoric uncertainty (data noise, irreducible), epistemic uncertainty (model uncertainty, reducible with data), and residual prediction error (the loss term). Demonstrates concretely that conflating these quantities in neural network training produces miscalibrated outputs and that separate parameterisation yields improved robustness via learned attenuation of noisy observations. The core argument maps onto MECH-059: a system's confidence channel (epistemic uncertainty over model parameters) must not be derived from or collapsed into the residual prediction error, because they respond to different sources of variance and require different treatments.",
+  "evidence_direction": "supports",
+  "evidence_strength": "moderate",
+  "evidence_type": "computational_empirical",
+  "key_quotes": [
+    "Aleatoric uncertainty captures noise inherent in the observations... uncertainty which cannot be reduced even if more data were to be collected.",
+    "Epistemic uncertainty accounts for uncertainty in the model -- uncertainty which can be explained away given enough data.",
+    "Our explicit uncertainty formulation leads to new loss functions for these tasks, which can be interpreted as learned attenuation. This makes the loss more robust to noisy data."
+  ],
+  "notes": "Moderate rather than strong relevance: this paper operates in the ML domain and does not address neuroscience or predictive coding directly. However, it is the clearest formulation in the deep learning literature of the separation that MECH-059 requires. The 'learned attenuation' result is directly analogous: when uncertainty is parameterised separately from the error signal, high-uncertainty predictions automatically receive lower weighting in the learning update — which is exactly the function MECH-059 assigns to the confidence channel. The paper also makes the temporal asymmetry explicit: epistemic uncertainty decreases as the model accumulates experience (it tracks model knowledge), while aleatoric uncertainty is fixed by the data-generating process. This parallels the MECH-059 claim that the confidence channel must track model-level uncertainty, not observation-level residuals."
+}

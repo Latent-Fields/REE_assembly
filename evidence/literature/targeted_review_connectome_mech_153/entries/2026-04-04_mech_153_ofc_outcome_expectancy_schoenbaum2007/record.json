@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-04_mech_153_ofc_outcome_expectancy_schoenbaum2007",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "Reconciling the Roles of Orbitofrontal Cortex in Reversal Learning and the Encoding of Outcome Expectancies",
+    "authors": ["Schoenbaum, Geoffrey", "Saddoris, Michael P.", "Stalnaker, Thomas A."],
+    "year": 2007,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.30.051606.094479",
+    "pmid": "17698988",
+    "pmc": "PMC2430624"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Schoenbaum et al. 2007 argue that OFC neurons encode outcome expectancies -- predictive cue-value associations -- and that this encoding requires the outcome-labeled training signal provided by cue-outcome pairing experience, not mere exposure to the cues alone. The paper specifically addresses the failure mode where subjects with OFC lesions learn reward-contingency statistics without forming the value-labeled cue-context associations that allow flexible behavior. This maps onto MECH-153: E1 ContextMemory trained on world-model prediction error is exposed to hazard-proximate and hazard-distal state trajectories but receives no cue-value labeling signal (the equivalent of cue-outcome pairing). The claim that outcome expectancy encoding requires an outcome-labeled training signal -- not mere predictive experience -- is exactly MECH-153's supervised-training requirement. Confidence is moderate because OFC is a prefrontal region with learning dynamics different from an LSTM; the single-cell recording evidence describes cue-selective firing, not representational similarity metrics analogous to cosine_sim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OFC is a prefrontal cortical structure with learning timescales and mechanisms (Hebbian synaptic modification, neuromodulatory gating) quite different from LSTM gradient descent. The claim that OFC requires outcome-labeled training translates to MECH-153 only if LSTM gradient-based learning shares the same insufficiency property with respect to unsupervised exposure, which is plausible but not directly demonstrated.",
+    "Schoenbaum's framework addresses cue-value association -- linking a stimulus to its predicted reward outcome. MECH-153 is about hazard-proximity context labeling -- linking an environmental context to its hazard status. The logical structure is parallel but the information content differs: reward expectancy is not the same signal as hazard-proximity label."
+  ],
+  "tags": ["mech_153", "ofc", "vmPFC", "outcome_expectancy", "cue_value_association", "reversal_learning", "supervised_training", "biological_analog"],
+  "mapping": {
+    "source_claim_statement": "OFC neurons encode anticipated outcomes (outcome expectancies) through cue-outcome pairing experience. This encoding requires the outcome-labeled training signal and is not formed through mere cue exposure or prediction error alone. Subjects with OFC lesions retain the sensory representation of cues but cannot update the outcome expectancy association when contingencies reverse, because the value-labeling circuit is disrupted.",
+    "ree_translation": "E1 ContextMemory requires the hazard-field label (hazard-proximate / hazard-distal) as a supervised training signal -- the REE equivalent of Schoenbaum's cue-outcome pairing. Without this signal, the LSTM stores sensory statistics (z_world trajectories) but does not encode the outcome-contingent context identity. The EXQ-181b result (cosine_sim=0.9999 in purely world-model-trained ContextMemory) is the computational analog of Schoenbaum's OFC-lesioned subjects: the trajectory statistics are processed but the value-labeled partition is absent. The supervised context-labeling objective in MECH-153 is functionally equivalent to providing the cue-outcome pairing experience that OFC requires to form outcome expectancy representations.",
+    "mapping_caveat": "OFC is anatomically downstream of hippocampus and amygdala and receives processed context information. MECH-153 proposes supervised labeling at the E1 ContextMemory level, which is more analogous to hippocampal encoding than OFC encoding. Schoenbaum's argument about OFC outcome expectancy is most directly about action-relevant value labeling in prefrontal regions, not hippocampal context storage. The conceptual parallel -- outcome-labeled signal required for value-indexed memory -- holds, but the anatomical and functional mapping is approximate.",
+    "source_context": "Rodent single-cell electrophysiology in odor-guided Go/NoGo task with reversals; also reviewed human and primate OFC lesion literature"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Annual Review of Neuroscience -- highest-tier review with strong empirical grounding in single-cell recordings. Mapping fidelity moderate: the logical structure (outcome labeling required for discriminated context encoding) is directly relevant, but OFC is a different system from E1 ContextMemory/hippocampus. Transfer risk moderate-high: OFC mechanisms (Hebbian synaptic modification, neuromodulatory gating) differ from LSTM gradient descent; the failure mode (intact sensory processing, impaired value labeling) maps onto MECH-153 at the functional level but not the mechanistic level."
+  }
+}

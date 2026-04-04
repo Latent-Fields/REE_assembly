@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-04-04_mech_061_ponr_veto_readiness_schultzekraft2016",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-061"],
+  "source": {
+    "title": "The point of no return in vetoing self-initiated movements",
+    "authors": [
+      "Matthias Schultze-Kraft",
+      "Daniel Birman",
+      "Marco Rusconi",
+      "Carsten Allefeld",
+      "Klaus Görgen",
+      "Sven Dähne",
+      "Benjamin Blankertz",
+      "John-Dylan Haynes"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1513569112",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26668390/",
+    "pmid": "26668390"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "This is one of the most direct human empirical demonstrations that a commit boundary is temporally real and functionally sharp. Schultze-Kraft et al. used an EEG-based BCI to deliver real-time veto signals while participants prepared self-initiated movements, and showed that cancellation of the movement was possible only if the stop signal arrived before approximately 200 ms prior to movement onset -- the 'point of no return'. This is a measured, behaviorally defined boundary in the readiness potential trajectory after which the motor command is irreversible. The finding directly supports MECH-061's core claim that a commit boundary token partitions the action sequence: before the point of no return, the motor plan is revisable (pre-commit error channels can redirect it); after it, errors are realized outcomes rather than predictions. Confidence is discounted because the paper characterises a temporal threshold in the motor domain only; it does not directly examine what happens to error routing or learning signals at or after the boundary, which is the routing half of MECH-061's claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The point of no return is defined behaviorally (can the participant still veto?) and electrophysiologically (RP trajectory), not as a discrete neural broadcast event -- the token metaphor requires an additional abstraction step.",
+    "The study is restricted to self-initiated wrist movements; generalization to higher-order cognitive commitments such as harm-attribution decisions in REE is not demonstrated.",
+    "The paper does not examine post-boundary error processing or learning signal reclassification; the reclassification half of MECH-061 is inferred, not shown."
+  ],
+  "tags": [
+    "point_of_no_return",
+    "readiness_potential",
+    "veto",
+    "commitment_boundary",
+    "action_cancellation",
+    "EEG",
+    "pre_post_boundary",
+    "motor_commitment"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human participants can cancel a self-initiated movement up until approximately 200 ms before movement onset, even after the readiness potential has been rising for hundreds of milliseconds. Beyond this point of no return, the motor command proceeds regardless of any subsequent stop signal. The boundary is not at the onset of preparation (RP onset) but at a specific later moment -- suggesting that commitment is a transition event within a continuous preparatory ramp, not simply the onset of preparation.",
+    "ree_translation": "The point of no return is a human empirical analogue of MECH-061's commit-boundary token. It operationalises the pre/post distinction: actions before the boundary are still governed by pre-commit error signals (the agent can update based on predictive assessment); actions after the boundary are in execution mode, and errors encountered are post-commit realized-outcome errors. The REE architecture postulates that a boundary token actively reclassifies which error channel is operative -- the point of no return data show that this transition is temporally sharp and is embedded in the preparatory neural dynamics (RP), not an all-or-nothing threshold at movement initiation.",
+    "mapping_caveat": "The point of no return is defined relative to overt movement execution, whereas REE's commit boundary may precede overt action by an arbitrarily long interval (for planned, high-stakes decisions). The temporal structure may differ: in REE, commitment gates harm-attribution and counterfactual evaluation, not just movement execution. Additionally, the paper identifies the temporal location of the boundary but does not characterize the neural mechanism implementing the reclassification that MECH-061 posits.",
+    "source_context": "Human participants performed self-initiated button presses while their EEG was monitored in real time by a BCI trained to detect the readiness potential. The BCI delivered visual stop signals at varying latencies relative to the decoded motor preparation state. Behavioural cancellation rates were measured as a function of stop signal timing."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "High-quality PNAS empirical paper from the Haynes lab with direct causal manipulation of motor preparation via BCI. Mapping fidelity moderate: directly demonstrates a temporally sharp commitment boundary in motor control, but does not address error-channel reclassification. Transfer risk moderate: motor commitment in humans to cognitive/harm-attribution commitment in REE."
+  }
+}

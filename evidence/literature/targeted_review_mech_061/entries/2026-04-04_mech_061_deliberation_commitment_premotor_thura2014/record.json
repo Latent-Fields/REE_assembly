@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-04-04_mech_061_deliberation_commitment_premotor_thura2014",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-061"],
+  "source": {
+    "title": "Deliberation and Commitment in the Premotor and Primary Motor Cortex during Dynamic Decision Making",
+    "authors": [
+      "David Thura",
+      "Paul Cisek"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.01.031",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24656257/",
+    "pmid": "24656257"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Thura and Cisek 2014 provide macaque electrophysiology directly characterizing the deliberation-to-commitment transition within premotor and primary motor cortex. During deliberation, PMd and M1 track sensory evidence continuously combined with an urgency signal; approximately 280 ms before movement onset, activity tuned to the selected target reaches a consistent peak in PMd while activity for the unselected target is suppressed in M1. This stereotyped neural event -- a discrete-onset suppression of competing representations and convergence to a fixed pre-execution state -- is structurally what MECH-061 calls the commit-boundary token at the cortical level. The transition is not just a threshold crossing in a single neuron but a coordinated reorganization across areas, which supports MECH-061's claim that the boundary reclassifies the computational role of neural activity. Confidence is discounted because the study reports the commitment event in terms of motor decision dynamics, and does not directly address what happens to error signals or learning updates before versus after this transition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Commitment is operationalised as the pre-movement neural state stabilisation rather than as a discrete broadcast token -- MECH-061 requires a token that actively reclassifies error routing, which is not the same as a threshold-crossing in motor preparation.",
+    "The urgency signal during deliberation is graded and continuous; the transition to commitment is the end of a ramp, not an instantaneous event -- the discretization implied by 'token' is an abstraction on top of the data.",
+    "Results are from a reach-decision task in macaque; the deliberation framework may not generalize to multi-step harm-attribution decisions spanning multiple time-scales in REE."
+  ],
+  "tags": [
+    "premotor_cortex",
+    "primary_motor_cortex",
+    "deliberation",
+    "commitment",
+    "urgency_signal",
+    "pre_commit_deliberation",
+    "motor_decision",
+    "macaque_electrophysiology"
+  ],
+  "mapping": {
+    "source_claim_statement": "During deliberation, dorsal premotor (PMd) and primary motor (M1) cortex do not integrate sensory evidence but instead track it combined with a growing urgency signal. Approximately 280 ms before movement onset, a coordinated neural event occurs: PMd activity for the selected target reaches a stable peak while M1 activity for the non-selected target is suppressed. This event marks commitment -- the moment deliberation ends and execution begins. The transition is not externally cued but internally generated, arising from the interaction of evidence tracking and urgency.",
+    "ree_translation": "The Thura & Cisek 2014 transition event is the cortical-level implementation of what MECH-061 calls a commit-boundary token. Before the transition, error signals are relevant to choosing between options (which target has more evidence) -- these are pre-commit predictive errors driving the deliberation process. After the transition (commitment), the relevant errors are whether the executed action's consequences match expectations -- these are post-commit realized-outcome errors. MECH-061 posits a token that explicitly reclassifies which error channel is operative; the 280 ms transition event is the neural substrate at which this reclassification occurs in the motor system. The paper is complementary to the 2017 BG urgency paper: here the commitment is observed in cortex rather than being driven by GPi urgency modulation.",
+    "mapping_caveat": "The paper establishes a deliberation-to-commitment transition in motor cortex during a forced-choice reaching decision. MECH-061 operates at a different abstraction level -- it is about the architectural token that switches error routing, not just about movement preparation dynamics. Mapping requires accepting that the cortical commitment event gates learning channels, a claim that is architecturally motivated but not tested in this paper.",
+    "source_context": "Macaque monkeys performed a two-choice reaching task in which the strength of sensory evidence for each target changed dynamically within a trial. Neural recordings from dorsal premotor cortex (PMd) and primary motor cortex (M1) were made while monkeys could commit to a choice at any time. Urgency was varied via time-pressure deadline conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.91,
+    "mapping_fidelity": 0.67,
+    "transfer_risk": 0.42,
+    "notes": "High-prestige Neuron paper from Cisek lab with well-controlled macaque electrophysiology. Mapping fidelity moderate-good: the deliberation/commitment transition is directly relevant to MECH-061 and provides a cortical correlate of the commit boundary. Transfer risk moderate: motor commitment to REE cognitive/harm-attribution commitment. Note: this is a distinct paper from Thura & Cisek 2017 (already indexed), which covers the BG urgency signal; this paper covers the cortical commitment event itself."
+  }
+}

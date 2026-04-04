@@ -1,0 +1,29 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "entry_id": "2026-04-04_mech_059_attention_uncertainty_FeldmanFriston2010",
+  "literature_type": "targeted_review_mech_059",
+  "claim_ids_tested": ["MECH-059"],
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "citation": {
+    "authors": ["Feldman, Harriet", "Friston, Karl J."],
+    "title": "Attention, Uncertainty, and Free-Energy",
+    "journal": "Frontiers in Human Neuroscience",
+    "year": 2010,
+    "volume": "4",
+    "pages": "215",
+    "doi": "10.3389/fnhum.2010.00215",
+    "pmid": "21160551",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3001758/"
+  },
+  "relevance_to_claim": "Directly addresses the computational need to estimate precision (uncertainty) as a distinct inferential problem from estimating world states. The paper argues that 'both the prediction error and its precision have to be estimated, given empirical (sensory) data' — precision is not derivable from the error signal alone but must be inferred separately using dedicated computational processes. Proposes synaptic gain modulation as the neural implementation of precision encoding, distinct from error-unit activity. Identifies cholinergic neuromodulation and gamma oscillations as biological mechanisms for this separate channel. This is the clearest existing statement in the literature of the MECH-059 principle.",
+  "evidence_direction": "supports",
+  "evidence_strength": "strong",
+  "evidence_type": "theoretical_with_mechanistic_proposal",
+  "key_quotes": [
+    "Both predictions about the state of the world generating sensory data and the precision of those data have to be optimized.",
+    "Precision is encoded by the post-synaptic gain (responsiveness) of units reporting prediction errors.",
+    "Attention rests on estimating precision and is therefore an integral part of perception.",
+    "When the precision of sensory signals depend on states of the world, optimizing internal models requires simultaneously inferring both world states and their associated precision."
+  ],
+  "notes": "The paper frames precision estimation as the neural basis of attention. The argument structure is: (1) optimal Bayesian inference requires separate estimation of signal content and signal reliability; (2) these are distinct optimisation problems; (3) in the brain, signal content is estimated via prediction error minimisation while signal reliability is estimated via gain modulation; (4) the two mechanisms are implemented in different neural substrates (error-unit firing rate vs. synaptic gain controlled by inhibitory interneurons and neuromodulators). This is the strongest direct support in the neuroscience literature for MECH-059 as an architectural requirement."
+}

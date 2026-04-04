@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-056"
+  ],
+  "source": {
+    "title": "Over the river, through the woods: cognitive maps in the hippocampus and orbitofrontal cortex",
+    "authors": [
+      "Andrew M. Wikenheiser",
+      "Geoffrey Schoenbaum"
+    ],
+    "year": 2016,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn.2016.56",
+    "url": "https://doi.org/10.1038/nrn.2016.56",
+    "pmid": "27256552"
+  },
+  "evidence_class": "connectome_computational_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "The OFC-hippocampus parallel map framework directly instantiates MECH-056: the OFC reads a value/outcome overlay onto the hippocampal spatial map and uses it to bias route selection, while the hippocampal place-cell map itself is not restructured by the value signal. This is the neurobiological prototype of trajectory-first placement -- affective signals steer which trajectory is chosen without rewriting the underlying world-model topology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "hippocampus",
+    "orbitofrontal_cortex",
+    "cognitive_map",
+    "route_planning",
+    "value_signal",
+    "trajectory_selection"
+  ],
+  "mapping": {
+    "source_claim_statement": "The hippocampus encodes a structural map of environmental relationships (spatial and abstract state-space topology); the OFC encodes expected outcomes and values at locations in that map. Interactions between the two systems allow value information to bias route selection (trajectory choice) without requiring the hippocampal map itself to be restructured by affective load.",
+    "ree_translation": "Directly supports MECH-056: residue/harm signals (REE analogue of OFC value overlay) should constrain which trajectory is selected (hippocampal route planning layer) rather than distorting the E1/E2 world-model representations (hippocampal place-field topology). The two layers -- structural map and valence overlay -- are anatomically and functionally separable.",
+    "mapping_caveat": "Review article synthesising rodent and human data; causal dissociation of map-restructuring vs trajectory-gating is indirect. REE must implement the functional separation; it is not automatic.",
+    "source_context": "Theoretical review integrating rodent electrophysiology (place cells, OFC neurons), lesion studies, and human fMRI to propose a division of labour between hippocampal structural maps and OFC value maps in goal-directed navigation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.28,
+    "notes": "High-quality review in a top venue. Mapping fidelity is strong: the OFC-hippocampus dissociation precisely mirrors the REE residue-field / world-model distinction. Transfer risk is moderate because the review is primarily spatial navigation; extension to abstract planning and non-spatial harm residue requires validation."
+  }
+}

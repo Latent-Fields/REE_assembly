@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_057",
+  "entry_id": "2026-04-04_mech_057_beta_precision_weighting_palmer2019",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-057a"],
+  "source": {
+    "title": "Sensorimotor beta power reflects the precision-weighting afforded to sensory prediction errors",
+    "authors": [
+      "Clare E. Palmer",
+      "Ryszard Auksztulewicz",
+      "Sasha Ondobaka",
+      "James M. Kilner"
+    ],
+    "year": 2019,
+    "venue": "NeuroImage",
+    "pmid": "31226494",
+    "doi": "10.1016/j.neuroimage.2019.06.034",
+    "citation": "NeuroImage, 2019, vol. 200, pp. 59-71"
+  },
+  "evidence_class": "empirical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_components": {
+    "mechanistic_alignment": 0.85,
+    "species_and_substrate": 0.72,
+    "directness_of_test": 0.80,
+    "replication_status": 0.70
+  },
+  "confidence_rationale": "This is the most direct empirical support for the core MECH-057a mechanism. Palmer et al. measured EEG beta power during a visuomotor adaptation task with manipulated sensory uncertainty, and found that sensorimotor beta power correlates with inverse uncertainty (precision) afforded to sensory prediction errors -- both prior to and following a movement. The interpretation is explicit: beta oscillations encode relative uncertainty (precision) within the sensorimotor system, not just error magnitude. This is precisely the MECH-057a mechanism -- beta suppresses sensory precision reweighting, not motor output. The paper provides a computational (Bayesian/HGF) link between beta power and the precision parameter that MECH-057a predicts should be suppressed during committed sequences. The MECH-090 / MECH-057a distinction (beta blocks precision propagation vs. motor output) is supported by this result.",
+  "failure_signatures": [
+    "Beta correlated with error magnitude rather than precision -- would support MECH-090 but weaken MECH-057a's specific precision-suppression framing",
+    "The precision effect was found to be post-movement only -- would suggest beta encodes error evaluation not commitment-phase suppression"
+  ],
+  "tags": [
+    "beta_oscillations",
+    "precision_weighting",
+    "sensory_prediction_error",
+    "Bayesian_inference",
+    "sensorimotor_cortex",
+    "EEG",
+    "predictive_coding",
+    "MECH-057a",
+    "MECH-090",
+    "commitment_boundary"
+  ],
+  "summary_path": "summary.md"
+}

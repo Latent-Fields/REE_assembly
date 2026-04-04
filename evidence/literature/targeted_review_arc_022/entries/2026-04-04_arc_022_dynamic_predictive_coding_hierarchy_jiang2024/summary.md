@@ -1,0 +1,16 @@
+# Summary: Dynamic Predictive Coding — Jiang & Rao (2024)
+
+**Claim tested:** ARC-022 (Hierarchical effect-object abstraction pipeline)
+**Evidence direction:** supports
+**Confidence:** 0.75
+
+The question ARC-022 is trying to answer is whether a processing hierarchy can be organised so that each layer genuinely operates on typed output objects from the layer below, rather than re-accessing raw input. Jiang and Rao's dynamic predictive coding (DPC) model offers a rigorous computational demonstration that this is achievable in a cortex-like architecture. Higher levels in their model modulate the temporal dynamics of lower levels through prediction error correction; lower levels encode brief sensory sequences, while higher levels represent longer-timescale dynamics. A three-level extension learns spatial features, then motion dynamics, then higher-order changes in dynamics -- each level operating on the residuals and compressed representations that the level below produces, not on the original input stream.
+
+This maps cleanly onto the E1->E2 junction in ARC-022. E1 produces sensory prediction objects (short-horizon sensory latents and prediction residuals); E2 operates on those latent objects as transition-model inputs, not on raw sensory streams. DPC shows this can emerge from a hierarchical predictive coding objective without requiring explicit object labelling. The model's three-level temporal progression -- spatial, motion, higher-order dynamics -- also parallels the REE progression from sensory reconstruction (E1) through temporally structured self-in-world trajectory prediction (E2) toward more abstract planning structures.
+
+The hippocampal augmentation in the DPC model is worth pausing on. When the authors add an associative memory module approximating hippocampal function, the network gains the ability to retrieve full episodic sequences from a partial cue. The hippocampal module operates on the higher-level outputs, not on raw input -- it is the natural terminus for the already-abstracted sequence representations. This supports ARC-022's pipeline claim that hippocampus receives chained trajectory objects from upstream layers rather than needing to reconstruct them from scratch. There is a caveat: the hippocampal module here is a pure episodic memory store, not a valenced navigable map. The valence structure that ARC-022 invokes (and that MECH-073 controversially proposes is intrinsic to hippocampal geometry) is not present in DPC. This gap is relevant to the adjudication question.
+
+What this paper cannot resolve is the specific E1->E2->DMN->Goal/Avoid->Hippocampus sequence that ARC-022 names. The DPC model is a visual cortex hierarchy (V1/V2/V4 analogues), and mapping its stages to E1, E2, and the DMN-regime requires treating functionally analogous timescale structure as equivalent across domains. That is a reasonable scientific inference, but it is an inference rather than direct evidence. The paper supports the abstract typed-object pipeline principle with good fidelity; it does not directly validate the anatomical pipeline stages that ARC-022 specifies.
+
+---
+*Source:* Jiang LP, Rao RPN (2024). Dynamic predictive coding: A model of hierarchical sequence learning and prediction in the neocortex. *PLoS Comput Biol* 20(2). doi:10.1371/journal.pcbi.1011801

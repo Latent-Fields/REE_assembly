@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_022",
+  "entry_id": "2026-04-04_arc_022_high_level_prediction_low_level_area_schwiedrzik2017",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["ARC-022"],
+  "source": {
+    "title": "High-Level Prediction Signals in a Low-Level Area of the Macaque Face-Processing Hierarchy",
+    "authors": ["Caspar M Schwiedrzik", "Winrich A Freiwald"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.09.007",
+    "pmid": "28957679",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28957679/"
+  },
+  "evidence_class": "empirical_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Provides direct empirical evidence that lower cortical areas receive typed prediction signals from higher areas that carry view-invariant, identity-specific properties -- a signature of typed-object passing across hierarchy levels rather than raw sensory signal passing. This is the physiological correlate of ARC-022's typed-object abstraction principle. However, mapping fidelity is moderate: the face-processing hierarchy (ML -> AL areas) is a specialised visual object domain, and the inference to E1->E2 typed-object passing requires treating low-level prediction-error responses as the functional equivalent of E1 consuming E2-derived objects. The finding that statistical learning enables lower areas to test predictions at higher abstraction levels supports ARC-022's claim that each layer 'operates on the output type of the layer below without re-instantiating lower-level computations'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study is restricted to face processing in macaque inferotemporal cortex -- a highly specialised domain with a well-characterised object hierarchy. Generalisation to action/planning hierarchies requires substantial inference.",
+    "The effect depends on prior statistical learning of face sequences; whether analogous typed-object prediction signals exist in motor/planning hierarchies without extensive sequence training is not shown.",
+    "The study supports feedback prediction signals carrying higher-level object properties but does not directly test the pipeline topology (E1->E2->DMN->Goal->Hippocampus) that ARC-022 specifies."
+  ],
+  "tags": ["arc_022", "predictive_coding", "cortical_hierarchy", "typed_objects", "view_invariance", "prediction_signal", "face_processing", "macaque"],
+  "mapping": {
+    "source_claim_statement": "After statistical learning of face sequences, the low-level face area ML computes deviation of actual from predicted stimuli. The prediction error signals in ML display identity specificity and view invariance characteristic of higher-level areas (AL), not ML's typical tuning. Lower-level areas can test predictions at greater abstraction levels than standard feedforward processing allows.",
+    "ree_translation": "The result instantiates the typed-object principle at the physiological level: higher levels send back typed prediction objects (view-invariant identity representations) that constrain what lower levels compare against. This is precisely what ARC-022 claims: each layer operates on output-type objects from the layer above (in feedback) / below (in feedforward), so the comparison at E1 is not against raw sensory predictions but against E2-typed transition predictions. The view-invariance of the prediction signal is the neuroscientific analogue of z_gamma (unified latent) carrying typed object-level information rather than raw pixel-level information.",
+    "mapping_caveat": "The study concerns visual object identity prediction, not action/motor prediction. The transfer to E1 (sensory-motor prediction) and E2 (transition-model objects) requires treating the face-processing cascade as a canonical example of the general cortical hierarchy principle.",
+    "source_context": "Macaque electrophysiology + fMRI; face-processing cascade as model of general cortical predictive coding architecture"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Neuron is a top-tier venue; Freiwald lab is a leading group on face processing. Source quality high. Mapping fidelity penalised for domain specificity (face/object vs. action/planning). Transfer risk moderate-to-high for applying face-processing results to agency hierarchy."
+  }
+}

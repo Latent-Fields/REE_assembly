@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-04_mech_153_context_dependent_learning_neural_heald2023",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "The computational and neural bases of context-dependent learning",
+    "authors": ["Heald, James B.", "Wolpert, Daniel M.", "Lengyel, Mate"],
+    "year": 2023,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-092322-100402",
+    "pmid": "36972611",
+    "pmc": null
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This Annual Review paper presents the computational framework for context-dependent learning across both biological and artificial systems. Its central finding is that robust context representations require multiple information streams working together: sensory cues, sensory feedback/outcomes, and state-action information. Pure prediction-error or sensory experience alone is insufficient; the Bayesian inference framework the authors propose explicitly requires outcome feedback to infer latent context variables. Hippocampal place cell remapping evidence shows context representation reorganization occurs when 'behavioral policy needed to be different,' implying outcome-dependent rather than experience-dependent reorganization. This is directly relevant to MECH-153: the EXQ-181b failure (context vectors remain near-identical despite varied experience) is predicted by Heald's framework as the expected behavior of a system receiving only sensory input without outcome-labeled context feedback. Confidence moderate because the framework is computational/theoretical and the biological evidence is from motor adaptation and spatial navigation, not a memory encoding system analogous to E1 ContextMemory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's Bayesian framework models context as a latent variable inferred from sensory inputs AND outcomes together. If the agent has rich sensory experience with sufficient outcome variation, Bayesian inference might produce discriminated context representations without explicit supervised labeling. MECH-153 assumes that world-model prediction error is not sufficient -- but in environments with different outcome statistics in different contexts, unsupervised inference might partially succeed.",
+    "The biological evidence comes primarily from motor adaptation studies (force field learning, visuomotor rotation) and hippocampal spatial navigation -- neither directly analogous to the LSTM ContextMemory encoding hazard proximity. The transfer to an explicit context-memory system requires architectural assumptions."
+  ],
+  "tags": ["mech_153", "context_dependent_learning", "bayesian_inference", "latent_context", "outcome_feedback", "hippocampal_remapping", "prefrontal_context"],
+  "mapping": {
+    "source_claim_statement": "Context-dependent learning requires inference over hidden context variables using multiple information sources: sensory inputs, motor outputs, and sensory feedback (outcomes). Unsupervised sensory experience alone is insufficient for robust context discrimination. Prefrontal cortex encodes context probabilities during reversal learning with feedback; hippocampal remapping occurs when behavioral policy needs to change, not merely when environmental statistics change.",
+    "ree_translation": "E1 ContextMemory must infer whether the agent is in a hazard-proximate vs hazard-distal context -- a latent variable that is not directly observable from z_world state alone. Heald's framework predicts that this latent inference requires the outcome-labeled signal (harm contact / goal contact) that the supervised context-labeling objective provides. Without this feedback stream, the LSTM receives only sensory statistics and cannot construct the latent context partition. The EXQ-181b result (cosine_sim=0.9999 under unsupervised E1 training) is the predicted failure mode for a system missing the outcome-feedback channel. The required supervised label (hazard_gradient_view.max() threshold) provides precisely the outcome signal Heald's framework identifies as necessary.",
+    "mapping_caveat": "Heald's framework is designed for motor adaptation contexts where outcome = performance error (did the movement succeed?). MECH-153 involves spatial hazard proximity, where the relevant outcome is harm contact frequency, not movement success. The structural parallel is strong but the specific information content differs. Additionally, Heald's model allows partial context discrimination from sensory statistics alone (imperfect Bayesian inference) -- MECH-153's strong claim is near-complete failure (cosine_sim approximately 1.0), which requires the specific conditions of EXQ-181b.",
+    "source_context": "Computational framework review spanning motor adaptation, reinforcement learning, and hippocampal spatial navigation; cross-species (human and animal) evidence"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Annual Review of Neuroscience -- highest-tier review, well-argued computational framework with strong biological grounding. Mapping fidelity moderate: the framework is directly about context-dependent learning but the biological evidence and computational architecture differ from E1 ContextMemory. Transfer risk moderate: motor adaptation to LSTM context memory is a meaningful abstraction step, though both involve latent context inference."
+  }
+}

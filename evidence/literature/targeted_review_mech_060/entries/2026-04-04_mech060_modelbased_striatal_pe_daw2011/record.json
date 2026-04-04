@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-04-04_mech060_modelbased_striatal_pe_daw2011",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "Model-based influences on humans' choices and striatal prediction errors",
+    "authors": [
+      "Nathaniel D. Daw",
+      "Samuel J. Gershman",
+      "Ben Seymour",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2011,
+    "venue": "Neuron",
+    "volume": "69",
+    "issue": "6",
+    "pages": "1204-1215",
+    "doi": "10.1016/j.neuron.2011.02.027",
+    "pmid": "21435563",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21435563/"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Daw et al. (2011) is the landmark two-step task paper demonstrating that model-based and model-free influences co-exist at the level of both behavior and ventral striatal BOLD signal. Its relevance to MECH-060 is indirect but important: the study tests whether the brain maintains distinct model-based (prospective, simulation-dependent) and model-free (retrospective, outcome-dependent) prediction error signals, which maps onto the pre-commit vs post-commit channel distinction. The finding that ventral striatum carries both model-based and model-free prediction error signals -- rather than purely model-free as previously assumed -- complicates the MECH-060 claim that the two channels must remain responsibility-distinct. If the brain's own architecture mixes the channels at the level of ventral striatum, this is either a counterexample to strict channel separation or evidence that some integration is adaptive. Rated 'mixed' because the paper documents biological channel blending rather than strict separation, which is relevant background but does not directly test whether blending is harmful. The write-boundary enforcement that MECH-060 requires may be a stricter condition than the brain's natural architecture, reflecting an engineering choice rather than a biological necessity.",
+  "confidence_components": {
+    "relevance": 0.75,
+    "mechanistic_specificity": 0.65,
+    "write_boundary_coverage": 0.30,
+    "replication_status": 0.95
+  },
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "lit_gap:channel_blending_documented_not_pathological",
+    "lit_gap:write_boundary_not_tested",
+    "potential_conflict:striatum_mixes_model_based_and_free"
+  ],
+  "tags": [
+    "model-based",
+    "model-free",
+    "striatum",
+    "ventral-striatum",
+    "prediction-error",
+    "two-step-task",
+    "fmri",
+    "decision-making",
+    "mixed-channels",
+    "prefrontal-cortex"
+  ]
+}

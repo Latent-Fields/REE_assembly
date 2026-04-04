@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_128",
+  "entry_id": "2026-04-04_mech_128_pfc_wm_goal_hippocampal_prediction_koene2003",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-128"],
+  "source": {
+    "title": "Modeling goal-directed spatial navigation in the rat based on physiological data from the hippocampal formation",
+    "authors": ["Randal A. Koene", "Anatoli Gorchetchnikov", "Robert C. Cannon", "Michael E. Hasselmo"],
+    "year": 2003,
+    "venue": "Neural Networks",
+    "doi": "10.1016/S0893-6080(03)00106-0",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12850010/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This foundational Hasselmo-lab model explicitly demonstrates that PFC working memory holding goal location provides the conditioning input that drives hippocampal CA1 to generate predictive spiking sequences toward the goal -- the prefrontal goal-in-WM is causally upstream of goal-shaped trajectory generation. The core MECH-128 claim is that a similar circuit must exist in E1: the LSTM working memory substrate must be conditioned on z_goal_latent for trajectories to be goal-shaped. The biological grounding is strong. Transfer risk is elevated by the age of the model (2003), the specific rat navigation context, and the architectural difference (biologically detailed spiking network vs LSTM).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model is from 2003 and pre-dates many architectural refinements; its specific mechanisms may not reflect current understanding of CA3/CA1 circuitry.",
+    "The working memory substrate is explicitly PFC, modelled as a separate module providing goal location input to entorhinal cortex III; this is architecturally more modular than concatenating z_goal into an LSTM.",
+    "The model operates in a spatial navigation domain; generalization to non-spatial predictive trajectories (as E1 generates) is not validated."
+  ],
+  "tags": ["mech_128", "goal_conditioning", "prefrontal_working_memory", "hippocampal_prediction", "place_cells", "navigation", "hasselmo"],
+  "mapping": {
+    "source_claim_statement": "In a biologically detailed model of rat navigation, retrieval of known paths in hippocampal ECIII is elicited by input from PFC working memory representing goal location; CA1 generates predictive spiking in place cells for the next desired location on the shortest path to goal.",
+    "ree_translation": "PFC working memory for goal location = z_goal_latent in REE. The model shows that without the goal-memory input to ECIII, CA1 path prediction is goal-agnostic -- exactly the failure mode MECH-128 is designed to prevent. The mechanistic requirement is the same: the recurrent predictive system (CA1/E1) must receive goal context from a working memory store (PFC/z_goal) to generate goal-shaped trajectories.",
+    "mapping_caveat": "The biological model uses phase-coded theta oscillations and ECIII as an interface layer between PFC and CA1, rather than direct concatenation. The REE implementation collapses this multi-stage pathway into a single injection point (z_goal_latent into the LSTM input or hidden-state bias). The causal logic is preserved; the circuit topology is simplified.",
+    "source_context": "Computational neuroscience; rat hippocampal navigation; biologically constrained model with theta phases, CA3/CA1/ECIII; spatial goal-finding"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Hasselmo lab is authoritative on hippocampal predictive coding. Neural Networks journal, high citation impact. Transfer risk elevated by age, spatial specificity, and multi-stage biological circuit vs single LSTM injection."
+  }
+}

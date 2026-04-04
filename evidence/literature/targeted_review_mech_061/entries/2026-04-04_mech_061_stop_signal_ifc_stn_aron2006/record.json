@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-04-04_mech_061_stop_signal_ifc_stn_aron2006",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-061"],
+  "source": {
+    "title": "Cortical and Subcortical Contributions to Stop Signal Response Inhibition: Role of the Subthalamic Nucleus",
+    "authors": [
+      "Adam R. Aron",
+      "Russell A. Poldrack"
+    ],
+    "year": 2006,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4682-05.2006",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16510720/",
+    "pmid": "16510720"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Aron and Poldrack 2006 provide a mechanistic account of the right inferior frontal cortex (IFC) -- subthalamic nucleus (STN) -- globus pallidus (GP) circuit that enforces commitment boundaries by suppressing competing motor programs. The go pathway (direct, striatal) and the stop pathway (hyperdirect, STN) are shown via fMRI to be simultaneously active during response inhibition, with the STN applying broad excitation to the output nuclei to suppress initiated responses. This circuit defines the biological enforcement mechanism for commitment: once a go command is issued (direct pathway activated), the boundary can still be vetoed by the stop pathway within a temporal window -- but after that window the STN-mediated veto fails to overcome the committed motor command. This is architecturally consistent with MECH-061's boundary token: the boundary token could be understood as the moment at which go-pathway activation exceeds the stop-pathway's ability to suppress, which is when the boundary is crossed. Confidence is discounted because the paper characterizes response inhibition (the ability to stop), not commitment per se (the transition from pre-commit to post-commit mode), and does not address error routing or learning signals after commitment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is about response inhibition (canceling an initiated response) rather than about commitment and error reclassification -- the IFC-STN circuit explains how the boundary is enforced, not how error channels are reclassified at the boundary.",
+    "The stop signal task has an external cue for inhibition; MECH-061's commit boundary is internally generated and may involve different mechanisms.",
+    "The fMRI temporal resolution is insufficient to characterize the exact timing and neural sequence of boundary crossing -- the study identifies the regions but not the precise neural dynamics."
+  ],
+  "tags": [
+    "response_inhibition",
+    "subthalamic_nucleus",
+    "inferior_frontal_cortex",
+    "stop_signal",
+    "basal_ganglia",
+    "commitment_enforcement",
+    "go_nogo",
+    "action_boundary"
+  ],
+  "mapping": {
+    "source_claim_statement": "Suppressing an initiated manual response depends on right inferior frontal cortex (IFC) acting via the subthalamic nucleus (STN). Going activates frontal, striatal, pallidal, and motor cortical regions (direct pathway). Stopping activates right IFC and STN, which provides broad excitation to the globus pallidus (indirect/hyperdirect pathway), suppressing thalamocortical output and reducing motor cortex activation. The interaction of go (direct) and stop (hyperdirect) signals in the substantia nigra determines whether commitment succeeds or is cancelled.",
+    "ree_translation": "The IFC-STN-GP circuit describes the boundary enforcement mechanism that MECH-061's commit-boundary token must interface with. Before the boundary is crossed (pre-commit), both the go pathway and the stop/veto pathway are active -- the system is in deliberation mode and can still route errors to pre-commit channels (can update the decision). After the commitment point is crossed (go pathway dominates), the STN-mediated suppression can no longer cancel the action, and errors become post-commit realized-outcome errors. The boundary token in MECH-061 is the event that marks when the go pathway has gained irreversible dominance -- in this circuit, that is when striatal activation exceeds STN-mediated suppression capacity. The error routing reclassification follows architecturally: pre-commitment errors are processed by the deliberation system (update the decision); post-commitment errors are processed by the outcome-evaluation system (update the policy).",
+    "mapping_caveat": "The IFC-STN circuit is specifically for externally triggered stopping and is most studied in the context of the Stop Signal Task. MECH-061's boundary is internally generated and may operate through different circuitry (e.g., ACC-BG loops for harm-attribution commitment rather than IFC-STN for motor inhibition). The mapping from response inhibition to error routing reclassification is architecturally motivated but not demonstrated in this paper.",
+    "source_context": "Human fMRI study using a Stop Signal Task where participants responded to Go stimuli and inhibited responses to occasional Stop signals. Experiment 1 used standard go/stop design; Experiment 2 manipulated stop signal delay. Right IFC and STN identified as key nodes for stopping. Striatal, pallidal, and motor cortical regions identified as go pathway nodes."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "High-quality Journal of Neuroscience paper from Aron lab, foundational in the response inhibition field. Mapping fidelity lower than other entries because the paper addresses boundary enforcement (can the action be stopped?) rather than error reclassification (what do errors mean after the boundary?). Transfer risk moderate-high: motor response inhibition to REE's cognitive commitment boundary."
+  }
+}

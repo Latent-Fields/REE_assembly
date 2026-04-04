@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_022",
+  "entry_id": "2026-04-04_arc_022_dynamic_predictive_coding_hierarchy_jiang2024",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["ARC-022"],
+  "source": {
+    "title": "Dynamic predictive coding: A model of hierarchical sequence learning and prediction in the neocortex",
+    "authors": ["Linxing Preston Jiang", "Rajesh P N Rao"],
+    "year": 2024,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1011801",
+    "pmid": "38330098",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38330098/"
+  },
+  "evidence_class": "theoretical_computational",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong mapping to ARC-022's core typed-object abstraction claim: the dynamic predictive coding model demonstrates that each cortical level encodes outputs of the level below at greater temporal abstraction, with lower levels handling brief sequences and higher levels operating on longer timescale objects. The three-level extension directly instantiates the E1->E2->higher layer logic of ARC-022. The hippocampal-augmented variant supports the terminus-level (hippocampus) receiving chained sequence representations rather than raw sensory input. Transfer risk: this is a computational/theoretical model, not a direct anatomical connectivity study, so it supports the abstract pipeline logic rather than providing direct neuroanatomical grounding for the specific E1->E2->DMN->Goal/Avoid->Hippocampus sequence. Confidence penalised accordingly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model is a computational proposal, not a direct empirical study of hierarchical typed-object passing between identifiable anatomical regions.",
+    "The three-level hierarchy is sensory (V1-like -> motion -> higher dynamics); the mapping to E1 (motor/sensory prediction), E2 (transition model), DMN-regime, E3, hippocampus requires inference.",
+    "The hippocampal augmentation in the model is an associative memory for episodic retrieval, not a valenced cognitive map or trajectory-proposal system -- only partially overlapping with ARC-022's hippocampus role."
+  ],
+  "tags": ["arc_022", "hierarchical_predictive_coding", "temporal_abstraction", "cortical_hierarchy", "dynamic_predictive_coding", "neocortex", "sequence_learning"],
+  "mapping": {
+    "source_claim_statement": "Higher cortical levels modulate the temporal dynamics of lower levels by correcting their predictions using prediction errors; lower levels encode brief sequences while higher levels represent longer temporal spans. A three-level extension learns progressively more abstract temporal representations: spatial features (L1) -> motion dynamics (L2) -> higher-order dynamics changes (L3). With a hippocampal associative memory module, the network retrieves episodic sequences from cues.",
+    "ree_translation": "The dynamic predictive coding hierarchy directly instantiates ARC-022's typed-object abstraction principle: each layer consumes the prediction-error-corrected output of the layer below, not the raw input. The L1->L2->L3 progression maps functionally to E1 (short-horizon sensory prediction objects) -> E2 (motion/transition objects) -> higher planning layers (chained trajectory objects). The hippocampal memory module operating on the higher-level outputs supports ARC-022's claim that hippocampus receives already-abstracted input rather than re-instantiating lower-level computation.",
+    "mapping_caveat": "The model is framed as a visual cortex hierarchy (V1, V2, V4 analogues), not an agency or action-selection hierarchy. Mapping to E1/E2/E3 requires treating the motion-prediction timescale as functionally equivalent to the motor-sensory prediction role of E2, which is plausible but involves cross-domain inference.",
+    "source_context": "Theoretical/computational paper grounded in predictive coding literature (Rao & Ballard 1999); presents a generative model hierarchy with empirical demonstrations on natural video and flash-lag illusion phenomena"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "PLoS Computational Biology is a solid venue; Rao lab is well-established in predictive coding. Mapping fidelity is good for the abstract hierarchy principle but moderate for the specific E1->E2->DMN->Hippocampus sequence. Transfer risk mainly from sensory-domain framing vs. agency framing."
+  }
+}

@@ -1,0 +1,15 @@
+# Kendall & Gal (2017) — What Uncertainties Do We Need in Bayesian Deep Learning?
+
+**Citation:** Kendall A, Gal Y. What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? *Advances in Neural Information Processing Systems (NeurIPS)*. 2017;30. arXiv:1703.04977.
+
+**Relevance to MECH-059:** Computational corroboration from the ML side. Demonstrates the practical cost of conflating uncertainty with residual error in deep learning.
+
+---
+
+The argument in this paper is clean and worth stating precisely, because it is exactly the argument MECH-059 makes, translated into ML terms. Kendall and Gal identify three conceptually distinct quantities that a neural network produces: (1) aleatoric uncertainty — irreducible noise in the data-generating process, things the model cannot do anything about; (2) epistemic uncertainty — uncertainty in the model's parameters, reducible with more training data; and (3) the raw residual prediction error — the difference between the network's output and the ground truth label. These three things are not the same, and treating them as interchangeable produces worse models.
+
+The failure mode when these are conflated is instructive. A network trained only to minimise raw prediction error treats all mismatches equally: noisy observations (high aleatoric uncertainty) are penalised just as much as mispredictions on clean observations (high epistemic uncertainty), even though these require completely different responses. For noisy observations, the correct response is to reduce the weight of the update; for uncertain-model predictions on clean observations, the correct response is to increase the learning rate. A system with a single undifferentiated signal cannot distinguish these cases.
+
+Kendall and Gal's solution is to parameterise the two uncertainty types separately in the loss function, deriving a heteroscedastic loss where aleatoric uncertainty acts as a learned multiplier on the error term. The result they call 'learned attenuation': when the model has learned that a particular input regime is inherently noisy, it automatically downweights its own prediction errors for that regime. The empirical improvement in semantic segmentation and depth estimation confirms that the separation carries genuine information.
+
+The REE parallel is direct. MECH-059 requires that the confidence channel (tracking model uncertainty about z_world or z_harm parameters — epistemic uncertainty in Kendall and Gal's terms) must not be derived from instantaneous prediction error. A confidence channel derived from PE is just aleatoric noise plus epistemic uncertainty collapsed — usable for neither purpose. The V2 MECH-059 experiment result (|corr| = 0.067 between score dispersion and PE) is the REE empirical analogue of what Kendall and Gal show theoretically: in a correctly implemented system, the confidence channel and the prediction error are orthogonal. This paper provides the cleanest computational argument for why that orthogonality is not a side effect but a requirement.

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-04-04_mech_056_prelimbic_bidirectional_avoidance_diehl2020",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-056"],
+  "source": {
+    "title": "Divergent projections of the prelimbic cortex bidirectionally regulate active avoidance",
+    "authors": [
+      "Maria M Diehl",
+      "Jorge M Iravedra-Garcia",
+      "Jonathan Moran-Sierra",
+      "Gabriel Rojas-Bowe",
+      "Fabiola N Gonzalez-Diaz",
+      "Viviana P Valentin-Valentin",
+      "Gregory J Quirk"
+    ],
+    "year": 2020,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.59281",
+    "url": "https://doi.org/10.7554/eLife.59281",
+    "pmid": "33054975"
+  },
+  "evidence_class": "connectome_causal_perturbation",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The paper demonstrates that prelimbic (PL) PFC implements trajectory-level constraint through divergent output pathways: the PL-BLA projection promotes threat-driven avoidance action selection, while the PL-VS projection promotes approach (suppresses avoidance). Crucially, both pathways originate from the same cortical region -- meaning affective state does not need to corrupt the PL representation itself; instead, downstream pathway weighting determines which trajectory is selected. The optogenetic causal dissociation is rigorous. Confidence is somewhat limited because the study tests a binary approach/avoidance choice, not graded trajectory planning, and because the threat-representation layer (amygdala input to PL) is not independently manipulated to confirm it remains intact.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "prelimbic_cortex",
+    "basolateral_amygdala",
+    "ventral_striatum",
+    "active_avoidance",
+    "action_selection",
+    "divergent_pathways",
+    "trajectory_gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "PL cortex sends divergent projections to BLA and VS that bidirectionally regulate avoidance. Photoactivating PL-VS projections reduces avoidance; photoactivating PL-BLA projections increases avoidance. VS receives opposing inputs from PL and BLA, enabling the animal to make appropriate decisions when facing competing drives.",
+    "ree_translation": "Supports MECH-056 via a specific circuit mechanism: PL cortex reads the threat/harm state (via amygdala input) and routes action selection through pathway gating rather than by rewriting its own internal state. The BLA and VS pathways represent divergent trajectory-selection channels -- one driving harm-avoidance trajectories, one driving reward-approach trajectories. The harm signal constrains trajectory selection (which output pathway wins) without having to distort the cortical representation itself. This is a concrete instantiation of trajectory-first placement: the PL representation is the stable world-model layer; the pathway weighting is the trajectory-constraint layer.",
+    "mapping_caveat": "The paradigm is a two-choice binary decision (avoidance platform vs reward zone), not a multi-step spatial trajectory. The PL representation itself is not independently characterised -- we do not know from this paper whether BLA input to PL changes the cortical representation or only modulates PL output routing. Extension to the REE claim requires the stronger assumption that representations are preserved while routing is modified.",
+    "source_context": "Optogenetic activation and silencing of PL terminal projections in rats during platform-mediated active avoidance. Tone-signalled shock avoidance competes with sucrose reward access. Bidirectional modulation of avoidance expression by circuit-level pathway weighting."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.36,
+    "notes": "High-quality eLife causal circuit study with clean optogenetic dissociation. Mapping fidelity is moderate: the pathway-weighting mechanism supports MECH-056 structurally, but the study does not directly test whether PL representations are preserved under high threat load. Transfer risk reflects the binary-choice paradigm limitation."
+  }
+}

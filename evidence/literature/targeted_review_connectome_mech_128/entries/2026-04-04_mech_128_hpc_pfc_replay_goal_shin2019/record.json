@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_128",
+  "entry_id": "2026-04-04_mech_128_hpc_pfc_replay_goal_shin2019",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-128"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Justin D. Shin", "Wenbo Tang", "Shantanu P. Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31677957/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "This Neuron study shows that coordinated hippocampal-prefrontal awake replay distinguishes correct future goal-directed paths from alternative choices: PFC readout of forward hippocampal replay sequences is specifically aligned with the upcoming decision path to the goal. This provides direct electrophysiological evidence that PFC goal context and hippocampal predictive sequences are co-constructed during planning -- PFC does not merely receive sequences from hippocampus but is part of the circuit that selects goal-relevant sequences. This is relevant to MECH-128's claim that E1's predictive sequence generation cannot be goal-shaped without conditioning on goal context (here: the PFC holds the goal and coordinates with hippocampus to bias forward replay toward the goal). Confidence is moderate because replay occurs during pauses (offline) rather than online at each predictive step, and the paper does not directly address how goal information conditions hippocampal dynamics at the encoding/prediction stage.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay occurs during immobility/pauses between behavioral trajectories, not online during continuous prediction; MECH-128 requires step-wise conditioning during active trajectory generation, not only during offline replay.",
+    "The study shows coordinated PFC-hippocampal replay selection but does not show the mechanism by which PFC goal representation enters hippocampal sequence generation -- it is correlational at the ensemble level.",
+    "Rat spatial alternation task; generalization to non-spatial predictive trajectory generation in abstract latent space (E1 domain) requires inferential steps.",
+    "The goal in this study is a fixed spatial location known from training, not a dynamically updated latent goal representation as z_goal_latent would be in REE."
+  ],
+  "tags": ["mech_128", "goal_conditioning", "hippocampal_replay", "prefrontal_cortex", "goal_directed", "planning", "forward_replay", "decision_making", "single_unit", "rat"],
+  "mapping": {
+    "source_claim_statement": "Coordinated hippocampal-prefrontal awake replay during behavioral pauses distinguishes correct goal-directed future paths from alternative choices; forward replay supports prospective planning with prefrontal readout of memory-guided paths; there is a learning shift from retrospective (reverse replay) to prospective (forward replay) as learning progresses.",
+    "ree_translation": "In REE terms: the hippocampus generates forward predictive sequences (E1 trajectory proposals); PFC holds goal context and coordinates with these sequences to select goal-relevant trajectories for execution (E3 evaluation). MECH-128 claims E1 must receive goal context to generate goal-shaped trajectories in the first place; this paper shows that in biology, the hippocampal predictive system and PFC goal representation are jointly involved in generating future-path representations that are goal-aligned. The coordination observed here -- PFC readout specifically of forward replay for the correct goal path -- is the biological signature of the goal-conditioning coupling MECH-128 formalises.",
+    "mapping_caveat": "The study is about replay during offline pauses, which is closer to E3 planning/evaluation than to E1's online step-wise prediction. The mechanism by which PFC goal context enters hippocampal forward replay generation (vs merely reading it out) is not resolved -- this paper observes the correlation but not the causal direction at the circuit level. MECH-128 specifically claims that goal context must be present in E1's hidden state during sequence generation, which is a stronger claim than this paper directly supports.",
+    "source_context": "Rat SEEG/tetrode recordings; spatial alternation task; hippocampal-prefrontal ensemble recordings; awake sharp-wave ripples; forward and reverse replay; learning and decision making"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.48,
+    "notes": "Neuron paper, Jadhav lab, rigorous simultaneous hippocampal-prefrontal ensemble recording. Source quality is high. Mapping fidelity is moderate: the paper shows goal-aligned coordinated replay, which supports the spirit of MECH-128 but is not a direct test of whether goal context conditions trajectory generation. Transfer risk from offline replay to online prediction, and from spatial goal to abstract latent goal."
+  }
+}

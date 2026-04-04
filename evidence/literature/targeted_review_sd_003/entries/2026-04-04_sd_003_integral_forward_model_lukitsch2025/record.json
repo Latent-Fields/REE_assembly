@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_003",
+  "entry_id": "2026-04-04_sd_003_integral_forward_model_lukitsch2025",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["SD-003"],
+  "source": {
+    "title": "An integral forward model of agency experience in thought and action.",
+    "authors": ["Lukitsch, O."],
+    "year": 2025,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2025.1524904",
+    "url": "https://doi.org/10.3389/fpsyg.2025.1524904"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This paper defends and extends Frith's comparator model under a predictive processing framework, proposing that sense of agency is best understood as 'temporally extensive prediction error cancellation' rather than a moment-of-comparison event. This framing is relevant to SD-003 in two ways. First, it updates the single-pass comparator account (Frith 2000, already in the prior pull) to incorporate precision weighting and hierarchical prediction -- suggesting that the forward model comparator is not a fixed-threshold gate but a precision-weighted process, consistent with how E2_harm_s would need to operate under conditions of varying observation quality. Second, Lukitsch explicitly addresses the extension of the comparator to *thought* as well as action, arguing that the same forward model machinery can operate on simulated as well as executed actions -- which is directly relevant to SD-003's counterfactual evaluation of a_cf (a hypothetical action that was not taken). Confidence is moderated because the paper is a theoretical philosophical review with no empirical results, and because its central argument (that predictive processing unifies the model for thought and bodily action) remains 'empirically an open question' by the author's own admission. The relevance to SD-003 is inferential rather than direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lukitsch notes that five classical arguments were previously used to reject unified forward model accounts of agency-for-thought: the infinite regress problem, unbidden thoughts, hyperreflexivity, and others. While he argues predictive processing addresses each, the counterarguments remain live. For SD-003, the analogous concern is whether E2 -- trained on harm-stream transitions under *executed* actions -- can be meaningfully evaluated on counterfactual actions that were never executed. If counterfactual evaluation requires a qualitatively different process than executed-action forward modelling, SD-003's single E2 architecture may be insufficient and would require separate simulation and execution pathways.",
+    "The paper's reliance on precision weighting as the mechanism that distinguishes agentive from non-agentive experiences implies that the sense-of-agency computation is parametric, not binary. For SD-003, this suggests that causal_sig is not simply 'self-caused vs. not' but a graded attribution that depends on the precision of E2's predictions. If E2_harm_s has low precision (high variance) for counterfactual actions, causal_sig will be noisy and unreliable, even if the mean is correct."
+  ],
+  "tags": ["sd_003", "forward_model", "sense_of_agency", "predictive_processing", "precision_weighting", "comparator_model", "counterfactual_simulation", "thought_vs_action"],
+  "mapping": {
+    "source_claim_statement": "The sense of agency arises from temporally extensive prediction error cancellation driven by a forward model that operates on both bodily action and mental simulation (thought). Under predictive processing, the sense of agency is grounded in successful prediction -- when the forward model's predictions match sensory returns (prediction errors are cancelled), the experience is agentive. Precision weighting modulates the contribution of each predictive level to the overall sense of agency. A unified comparator model is viable if forward models are understood as hierarchically organised prediction error minimisation rather than as single-shot comparators.",
+    "ree_translation": "SD-003 evaluates E2 on both actual actions (a_actual, which were executed) and counterfactual actions (a_cf, which were simulated but not executed). Lukitsch's argument that the same forward model machinery underlies both executed and simulated action provides theoretical support for using a single E2 model for both evaluations -- the same comparator can operate on both real and counterfactual inputs. The precision-weighting framework also maps onto the design concern about E2_harm_s calibration: if E2's predictions for counterfactual actions have lower precision (higher variance) than for actual actions, causal_sig will carry higher uncertainty for rare or exploratory counterfactuals, and attribution quality will degrade for infrequent action types.",
+    "mapping_caveat": "This is a theoretical philosophical review -- there are no empirical results. The central claim (that predictive processing unifies thought and action agency via a common forward model) is explicitly flagged as requiring further empirical validation. The paper addresses phenomenological sense-of-agency (the first-person experience of authorship), whereas SD-003 is a computational attribution mechanism -- the mapping is at the level of functional architecture, not phenomenology. Additionally, Lukitsch's unified account is primarily a repair of the original Frith comparator model, which is already covered in the prior pull (2026-03-28 Frith 2000 entry). This paper extends the account but does not add empirical evidence beyond what Frith 2000 provides.",
+    "source_context": "Theoretical-philosophical review paper in Frontiers in Psychology, 2025. University of Vienna, Faculty of Philosophy and Education. Engages extensively with the predictive processing literature (Clark, Friston, Hohwy) and with classical arguments against unified agency models. PubMed PMID 39917733, DOI 10.3389/fpsyg.2025.1524904."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.32,
+    "notes": "Source quality is moderate: Frontiers in Psychology (open-access, lower tier than Phil Trans or J Neurosci), theoretical with no empirical results, single-author philosophical review. Mapping fidelity is moderate-low: the core insight about unified forward models for executed and simulated action is relevant but the mapping is inferential rather than direct. Transfer risk is moderate: the precision-weighting extension is useful for framing SD-003 calibration concerns, but the phenomenological framing does not map cleanly onto computational attribution."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_022",
+  "entry_id": "2026-04-04_arc_022_dmn_hippocampus_mental_time_travel_karapanagiotidis2017",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["ARC-022"],
+  "source": {
+    "title": "Tracking thoughts: Exploring the neural architecture of mental time travel during mind-wandering",
+    "authors": ["Theodoros Karapanagiotidis", "Boris C Bernhardt", "Elizabeth Jefferies", "Jonathan Smallwood"],
+    "year": 2017,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2016.12.031",
+    "pmid": "27989779",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27989779/"
+  },
+  "evidence_class": "empirical_human_neuroimaging",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "The study supports ARC-022's claim that the DMN and hippocampus are coupled in future-oriented simulation: stronger hippocampal-DMN connectivity predicts greater capacity for mental time travel (imagining distant times and places). This is partial empirical grounding for ARC-022's assertion that the DMN-regime and hippocampus interact in sequence generation and scenario simulation. However, the mapping fidelity is limited: the paper treats DMN and hippocampus as jointly supporting mental time travel without resolving which layer inputs to which, and does not address the typed-object pipeline structure that is ARC-022's core claim. The study is also closer to supporting ARC-014 (DMN as operating mode) than ARC-022 (DMN as pipeline layer), reinforcing the tension that ARC-022's conflict notice identifies. Confidence is moderate-low: the finding is real but addresses only the DMN-hippocampus coupling component, not the full E1->E2->DMN->Goal/Avoid->Hippocampus abstraction chain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study supports DMN-hippocampus coupling during future simulation but does not characterise which layer sends typed input to which -- the directionality and typed-object nature of the pipeline are not tested.",
+    "The mind-wandering context conflates spontaneous future simulation with planned goal-directed simulation; ARC-022 is specifically about goal-directed planning pipelines.",
+    "The ARC-022 conflict (DMN as mode vs. pipeline layer) is not resolved by this study -- DMN-hippocampus coupling is consistent with ARC-014 (DMN operating mode activating hippocampal rollouts) as much as with ARC-022 (DMN as sequential pipeline stage).",
+    "Multimodal imaging study (structural + functional) in a developmental/adolescent-adult sample; individual difference methodology does not allow inference about the mechanistic direction of the pipeline."
+  ],
+  "tags": ["arc_022", "arc_014", "default_mode_network", "hippocampus", "mental_time_travel", "future_simulation", "mind_wandering", "prospection"],
+  "mapping": {
+    "source_claim_statement": "Right hippocampal connectivity with default mode network regions predicts individual capacity for mental time travel during mind-wandering. Hippocampal integration with cortical regions provides the neurocognitive landscape for imagining distant times and places. Increased white-matter anisotropy in temporo-limbic tracts supports this coupling.",
+    "ree_translation": "The hippocampal-DMN coupling established here partially grounds ARC-022's claim that the DMN-regime feeds into hippocampal trajectory generation. Hippocampus is not generating future simulations from raw input; it is coupled with the DMN network, consistent with ARC-022's claim that hippocampus operates on narrative/simulation objects rather than low-level sensory streams. However, the study does not establish that DMN outputs typed objects to hippocampus in a pipeline sense; it may equally support the interpretation that DMN mode-state activates hippocampal replay (consistent with ARC-014).",
+    "mapping_caveat": "This paper partially maps to ARC-022 and partially to ARC-014; it is categorised as mixed evidence because it cannot discriminate between DMN-as-layer (ARC-022) and DMN-as-mode (ARC-014). The conflict at the centre of ARC-022 is not resolved.",
+    "source_context": "fMRI + DTI study of adolescents and adults; individual differences in mind-wandering content (past vs. future vs. other mental). Published as a full empirical study with multivariate functional connectivity analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.45,
+    "notes": "NeuroImage is a solid neuroimaging venue. Mapping fidelity penalised because the study supports DMN-hippocampus coupling but cannot address the typed-object pipeline directionality or resolve the DMN-as-layer vs. DMN-as-mode conflict. Transfer risk moderate: the mind-wandering context is not identical to goal-directed planning."
+  }
+}

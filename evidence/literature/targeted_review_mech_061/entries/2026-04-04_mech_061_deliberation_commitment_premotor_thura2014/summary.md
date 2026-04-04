@@ -1,0 +1,21 @@
+# Summary: Thura & Cisek (2014) — Deliberation and Commitment in Premotor and Motor Cortex
+
+**Source:** Thura D, Cisek P. Deliberation and Commitment in the Premotor and Primary Motor Cortex during Dynamic Decision Making. *Neuron*, 81(6), 1401-1416.
+
+## The Question They Were Asking
+
+If the motor system participates in decision-making from the very beginning — before a choice is finalized — what distinguishes the neural activity during deliberation from the activity that marks commitment? Thura and Cisek recorded simultaneously from dorsal premotor cortex (PMd) and primary motor cortex (M1) in macaques performing a two-choice reaching task in which the sensory evidence for each target changed dynamically within a trial and the animal could commit at any time. The design is specifically intended to expose the internal structure of a decision, not just its outcome.
+
+## What They Found
+
+During deliberation, neither PMd nor M1 integrate sensory evidence in the classic accumulation-to-bound sense. Instead, they track the evolving evidence continuously, combining it with a growing urgency signal that rises over time. This urgency signal is the motor system's implementation of the imperative to act: it accelerates the approach to commitment. The crucial finding is a coordinated neural event approximately 280 milliseconds before movement onset: PMd activity tuned to the selected target reaches a stable, consistent peak (the same regardless of which block or trial conditions preceded it), while M1 activity tuned to the non-selected target is simultaneously suppressed. This double event — convergence of selected-target activity and suppression of competitor activity — is the neural signature of commitment. Before this event, the system is in a revisable deliberative state; after it, the action plan is fixed.
+
+## Why This Matters for MECH-061
+
+The 280 ms transition event is, at the cortical level, the commit-boundary token that MECH-061 postulates. What makes it architecturally important is its character: it is not simply a threshold crossing in a single neuron or area, but a coordinated reorganization across two motor areas simultaneously. PMd converges to a stable pre-execution state; M1 eliminates the competitor. This has the hallmarks of a phase transition in the computational sense — the system's attractor landscape changes, and the new attractor is a committed execution plan rather than a weighted evaluation of alternatives. Errors before this event are deliberative: they can redirect the evolving evidence-tracking process. Errors after this event encounter a system already committed to a plan, and the relevant signal is no longer "which option is better" but "how did the execution go." This is exactly the reclassification that MECH-061 claims the boundary token enforces.
+
+Note that this paper is distinct from Thura & Cisek (2017), which characterizes BG urgency control. The 2014 paper characterizes the commitment event in cortex itself — what it looks like when commitment actually happens in PMd and M1. The 2017 paper explains what paces it (BG urgency). Together they describe a complete picture: BG urgency modulates cortical dynamics, and cortical dynamics produce the commitment event. For MECH-061, the cortical event is the boundary token; the BG urgency signal is the mechanism that determines its timing.
+
+## Honest Uncertainty
+
+The deliberation/commitment distinction Thura and Cisek draw is operationally defined relative to reaching decisions made in seconds. REE's commitment boundary is intended to generalize to decisions made over minutes or hours, involving complex harm-attribution counterfactuals. Whether the same cortical mechanism operates at those timescales is an open question; the prefrontal homologues of PMd may implement deliberation-commitment transitions with a different temporal structure. The more fundamental uncertainty is whether commitment in REE is a single event or a hierarchical cascade of events — the behavioral commitment (choosing to act), the motor commitment (initiating the specific action), and the harm-attribution commitment (accepting responsibility for the consequences) may be distinct. The Thura & Cisek paper speaks most directly to the motor level; the REE architecture's commit boundary operates at the level of harm attribution, one level up.

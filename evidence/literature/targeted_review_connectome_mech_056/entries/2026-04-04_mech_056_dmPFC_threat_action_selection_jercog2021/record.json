@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-04-04_mech_056_dmPFC_threat_action_selection_jercog2021",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-056"],
+  "source": {
+    "title": "Dynamical prefrontal population coding during defensive behaviours",
+    "authors": [
+      "Daniel Jercog",
+      "Natalia Winke",
+      "Kevin Sung",
+      "Orsolya Kardos-Bartl",
+      "Quentin Lefebvre",
+      "Ciaran Murphy-Royal",
+      "Marie Cardoit",
+      "Laurent Juvin",
+      "Anne-Emilie Allain",
+      "Andreas Frick",
+      "Cyril Herry"
+    ],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-03726-6",
+    "url": "https://doi.org/10.1038/s41586-021-03726-6",
+    "pmid": "34262175"
+  },
+  "evidence_class": "connectome_causal_perturbation",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The paper demonstrates a clean empirical dissociation between two distinct dmPFC computations: (1) sustained amygdala-driven threat encoding that does not predict action outcome, and (2) transient pre-action population activity that reliably predicts avoidance vs non-avoidance. This is a direct experimental demonstration of the MECH-056 principle: threat/harm signal first constrains which action trajectory is selected (transient pre-action code), while the sustained threat representation -- analogous to the residue field -- remains a background state that informs but does not determine action selection. Optogenetic causal intervention confirms the necessity of the action-selection stage. Confidence is high given the top-venue causal manipulation design; modest uncertainty arises because the study concerns active avoidance rather than trajectory planning over a spatial map.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "dmPFC",
+    "amygdala",
+    "threat_encoding",
+    "action_selection",
+    "avoidance",
+    "population_dynamics",
+    "dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "dmPFC population activity at stimulus onset encodes sustained threat representations driven by the amygdala, but this does not predict action outcome. Transient dmPFC activity immediately preceding action initiation reliably distinguishes avoided from non-avoided trials. Optogenetic inhibition of prefrontal activity constrained adaptive defensive response selection in a time-dependent manner.",
+    "ree_translation": "Supports MECH-056: the sustained threat representation (amygdala-driven dmPFC state) is analogous to the REE residue field -- a persistent signal encoding the harm landscape. The action-selective transient population code is analogous to trajectory-level constraint: harm signals shape which action is initiated without requiring the underlying threat representation to change. The two computations are temporally and functionally dissociated, exactly as MECH-056 requires.",
+    "mapping_caveat": "The study uses a simple approach-avoidance paradigm (stepping onto a platform), not multi-step trajectory planning over a complex spatial map. The dmPFC 'sustained threat representation' is closer to a valence state than a full world-model representation. Extension to REE's E1/E2 world-model architecture requires care: the claim is that harm signals constrain trajectory selection before distorting representations, and this paper shows the separation is neurobiologically real. It does not show the precise mechanism by which distortion is prevented.",
+    "source_context": "Extracellular recordings, neuronal decoding, pharmacological and optogenetic manipulations in mice performing platform-mediated active avoidance. Amygdala drives sustained dmPFC threat encoding; a separate transient pre-action code mediates action selection."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.32,
+    "notes": "Nature-level causal manipulation study; among the strongest possible evidence type. Mapping fidelity is good but not perfect: the dmPFC sustained-vs-transient code dissociation maps onto residue-vs-action-selection in REE, but the study does not show how distortion is prevented, only that the two functions are separable. Transfer risk reflects the gap between simple avoidance and multi-step trajectory planning."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-04_q_019_integrative_network_haber2008",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "The cortico-basal ganglia integrative network: the role of the thalamus.",
+    "authors": [
+      "Haber SN",
+      "Calzavara R"
+    ],
+    "year": 2008,
+    "venue": "Brain Research Bulletin",
+    "doi": "10.1016/j.brainresbull.2008.09.013",
+    "pmid": "18950692",
+    "pmcid": "PMC4459637"
+  },
+  "evidence_class": "lit:review_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.85,
+  "confidence_rationale": "Haber & Calzavara accept the general topographic parallel organisation but add a crucial qualification: integration between functional territories occurs via two mechanisms. First, non-reciprocal connections between striatum and substantia nigra create a spiral circuit that can shift information from ventral (limbic) to dorsal (motor) striatum across hierarchical levels. Second, 'hot spots' of convergence in the striatum and thalamus receive overlapping terminal fields from different functional cortical regions. This is the primary anatomical evidence for partial convergence between the REE loops. The review maintains that segregation is the dominant organising principle but documents specific anatomical loci where cross-loop integration is anatomically licensed. Rating: mixed, weighted toward supporting the three-gate model as dominant architecture while identifying specific convergence points that must be modelled.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "thalamus",
+    "corticostriatal",
+    "integration",
+    "convergence",
+    "spiral_circuit",
+    "substantia_nigra",
+    "frontal_cortex",
+    "motivation",
+    "cognition",
+    "goal_directed_behavior",
+    "review",
+    "primate",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Frontal cortical-BG-thalamic circuits are topographically organised and generally parallel/segregated. However: (1) the striatum-SNc-striatum spiral (non-reciprocal) transfers information from ventral to dorsal striatum, enabling limbic regions to influence motor output via dopaminergic modulation; (2) hot spots of terminal convergence exist in both striatum and thalamus, where projections from motivational and motor cortical areas overlap; (3) non-reciprocal thalamocortical projections allow one thalamic region to influence cortical areas outside its primary loop, whose outputs then re-enter the striatum.",
+    "ree_translation": "This paper is the most important source on the 'partial convergence' side of Q-019. The spiral circuit is the anatomical basis by which harm/goal signals (limbic loop) can influence motor loop execution: dopaminergic SNc neurons receive from ventral striatum and project to progressively more dorsal striatal regions, creating a limbic-to-motor gradient. For REE, this means the three gates are anatomically distinct but not isolated: the spiral provides a route by which harm residue can up-regulate attention in the motor loop without a direct cross-loop projection. Hot spots of convergence in striatum/thalamus correspond to the REE 'interface zones' where goal-context modulates action selection. The thalamic non-reciprocal pathway provides a second integration mechanism.",
+    "mapping_caveat": "The spiral circuit (Haber 2003) is primarily described in macaques via anterograde tracing; its human homologue is inferred. The hot spots are identified by comparison of separate tracer injections, not within-subject double-label studies. However, human fMRI (Haber 2016) later confirmed the functional relevance of interface zones. The spiral is a compelling mechanism for how REE loops can communicate without collapsing into a single gate.",
+    "source_context": "Brain Research Bulletin, 2008. Review synthesising Haber laboratory tract-tracing data with thalamic connectivity. Primary source for striato-nigro-striatal spiral and thalamic integration hotspots."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (experimental tract-tracing lab). Mapping fidelity good: spiral circuit maps cleanly onto REE inter-loop harm-to-motor gradient. Transfer risk moderate: detailed anatomy from macaques, human extrapolation involved."
+  }
+}

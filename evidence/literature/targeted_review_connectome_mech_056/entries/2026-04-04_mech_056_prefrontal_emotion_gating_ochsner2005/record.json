@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-04-04_mech_056_prefrontal_emotion_gating_ochsner2005",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-056"],
+  "source": {
+    "title": "The cognitive control of emotion",
+    "authors": [
+      "Kevin N Ochsner",
+      "James J Gross"
+    ],
+    "year": 2005,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2005.03.010",
+    "url": "https://doi.org/10.1016/j.tics.2005.03.010",
+    "pmid": "15866151"
+  },
+  "evidence_class": "connectome_review_theoretical",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Ochsner and Gross 2005 establishes the PFC-amygdala top-down regulatory framework that underlies much subsequent neuroscience of emotion-action interaction. It supports the existence of a prefrontal gating layer that modulates emotional responding without requiring the primary sensory representations to change -- which is structurally consistent with MECH-056. However, the paper's main focus is on cognitive reappraisal, which *does* involve changing the representational content of emotional stimuli (reinterpreting their meaning), making it in tension with the stronger MECH-056 requirement that harm signals constrain trajectory selection *without* distorting core world-model representations. The relevance is indirect: the paper establishes the general architecture but does not cleanly support the specific claim that representation integrity is preserved during affective action-gating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "connectome",
+    "prefrontal_cortex",
+    "amygdala",
+    "emotion_regulation",
+    "top_down_gating",
+    "reappraisal",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Emotion regulation depends on interactions between prefrontal/cingulate control systems and subcortical emotion-generative systems. Two main strategies: (1) controlling attention to emotionally evocative stimuli, (2) cognitively changing the meaning (reappraisal). Functional imaging shows prefrontal upregulation correlates with amygdala downregulation.",
+    "ree_translation": "Partially supports MECH-056: the top-down PFC-amygdala framework instantiates a gating architecture where prefrontal control modulates emotional responding without requiring full perceptual reprocessing. Attentional control (strategy 1) is consistent with MECH-056 -- it directs which stimuli enter trajectory planning without distorting the stimuli themselves. Reappraisal (strategy 2) is in tension with MECH-056 -- it explicitly changes representational content to modify emotional response. The paper is best read as establishing the architectural plausibility of top-down affective gating, not as directly supporting representational integrity during action selection.",
+    "mapping_caveat": "The paper predates the precise neuroscientific dissociation between sustained threat encoding and transient action-selection coding (cf. Jercog 2021). The reappraisal emphasis means the paper lends itself more readily to arguments about top-down representational modification than to representational preservation. Use with care: it supports the general architecture but not the specific MECH-056 priority ordering.",
+    "source_context": "Influential review synthesising human fMRI emotion regulation studies. Proposed the dominant PFC-down-amygdala top-down regulation model. Cited >10,000 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.42,
+    "notes": "Very high source quality (foundational review in a top journal). Mapping fidelity is moderate: the top-down gating architecture supports MECH-056 in general, but reappraisal strategies involve representational modification that runs counter to the specific trajectory-first placement requirement. The paper provides background context more than direct support."
+  }
+}

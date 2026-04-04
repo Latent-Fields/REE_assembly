@@ -1,0 +1,17 @@
+# Summary: Su et al. 2024 — Theta Oscillations Support Prefrontal-hippocampal Interactions in Sequential Working Memory
+
+**Entry ID:** 2026-04-04_mech_128_pfc_theta_goal_prediction_wang2024
+**Claim:** MECH-128 (e1.goal_context_conditioning)
+**Evidence direction:** supports | **Confidence:** 0.60
+
+---
+
+The question this paper poses, from a MECH-128 perspective, is whether there is electrophysiological evidence that the human prefrontal cortex actively projects goal-context information into hippocampal sequential processing. Su and colleagues recorded SEEG from twenty epilepsy patients performing a line-ordering task designed to tax sequential working memory, measuring theta oscillations and directed PFC-hippocampal coupling across conditions that varied in how much active goal-directed ordering was required. Their main finding: DLPFC-to-hippocampus theta-band directional influence (Granger causality) was selectively enhanced when participants had to order sequences relative to a goal structure, compared to simple maintenance; and this enhancement correlated with memory precision. Theta phase coherence between DLPFC and hippocampus followed the same pattern.
+
+This is indirect but structurally relevant support for MECH-128. The paper establishes a causal direction -- DLPFC drives hippocampal computation via theta coupling when goal-directed sequential processing is required -- that matches what MECH-128 formalises as z_goal_latent conditioning E1's LSTM. The biological picture is one of goal context being actively routed into the sequential processing system, not merely correlating with it. When the task requires aligning a sequence to a goal structure (ordering lines clockwise) versus passively holding a sequence, PFC's influence on hippocampus increases. This is, at least in structure, the biological analogue of what MECH-128 claims is necessary for E1's trajectory generation to be goal-shaped rather than goal-agnostic.
+
+The caveats are real and worth sitting with. The task is abstract sequential working memory, not spatial trajectory prediction; the assumption that the same coupling mechanism underlies goal-directed trajectory generation in E1's domain requires an inferential step. More importantly, the paper measures communication (theta coupling direction and magnitude) rather than content: it shows that DLPFC drives hippocampal activation more under goal-relevant conditions, but it does not directly show that the content of that drive reshapes what the hippocampus predicts next. MECH-128 is specifically a claim about trajectory content, not just activation level. The theta coupling result is consistent with MECH-128 but does not confirm it.
+
+There is also a patient population concern. Epilepsy patients frequently have atypical hippocampal and prefrontal theta dynamics, and results from this population should be extrapolated to healthy brains with appropriate caution. The within-subject design (each patient is their own control across ordering vs maintenance conditions) partially mitigates this, but the background dynamics may still differ from those in healthy human or rodent brain.
+
+On balance, this paper belongs in the MECH-128 evidence base as a supporting electrophysiological entry showing the correct causal directionality (PFC to hippocampus, goal-context driven) in human sequential working memory. The confidence discount reflects the task distance from trajectory prediction and the indirect nature of the coupling-to-content inference.

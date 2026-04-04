@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_056",
+  "entry_id": "2026-04-04_mech_056_safe_rl_world_model_cost_separation_huang2024",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-056"],
+  "source": {
+    "title": "SafeDreamer: Safe Reinforcement Learning with World Models",
+    "authors": [
+      "Weidong Huang",
+      "Jiaming Ji",
+      "Chunhe Xia",
+      "Borong Zhang",
+      "Yaodong Yang"
+    ],
+    "year": 2024,
+    "venue": "ICLR 2024",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2307.07176",
+    "arxiv_id": "2307.07176"
+  },
+  "evidence_class": "computational_ml_architecture",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "SafeDreamer implements MECH-056 structurally in an ML system: cost/safety signals are added as a separate prediction head (cost decoder) operating on shared RSSM world-model representations, and safety constraints are applied at the trajectory-planning stage (OSRP: Online Safety-Reward Planning) rather than by modifying the representation learning objective. This is a direct computational demonstration that trajectory-level harm constraint and core state representation learning can be functionally decoupled. The OSRP planner filters trajectories based on cost thresholds before returning an action, realising the trajectory-first principle. Confidence is moderate because the paper does not explicitly motivate this separation as a representational integrity principle -- it is an engineering choice -- and the world model still has a cost prediction loss that backpropagates through shared representations, meaning the separation is partial rather than absolute.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "computational",
+    "safe_RL",
+    "world_model",
+    "RSSM",
+    "cost_separation",
+    "trajectory_planning",
+    "Lagrangian",
+    "DreamerV3"
+  ],
+  "mapping": {
+    "source_claim_statement": "SafeDreamer incorporates Lagrangian-based methods into DreamerV3 world model planning. Cost and reward are separate prediction heads on shared RSSM states. The OSRP planner filters candidate trajectories: only trajectories with expected cost below threshold enter the safe action set, from which reward-maximising actions are selected.",
+    "ree_translation": "Supports MECH-056 computationally: safety/harm signals (REE residue) are represented as separate decoder outputs on the shared world-model state, not as modifications to the state encoder itself. Trajectory selection (OSRP planning) applies the safety filter at selection time -- the harm criterion gates which trajectory is chosen, not which state representation is learned. This is a working engineering implementation of the trajectory-first principle, albeit without an explicit commitment to representational integrity as a design goal.",
+    "mapping_caveat": "The cost loss (−β_c ln C_phi(c_t|s_t)) does backpropagate through shared RSSM representations, so separation is architectural (separate heads) rather than gradient-level (stop-gradient). The paper does not test whether representations are corrupted by the cost signal relative to a baseline without it. The MECH-056 claim requires that harm signals not distort core representations; SafeDreamer achieves partial separation by design but does not claim or verify full representational preservation.",
+    "source_context": "ICLR 2024 paper. Built on DreamerV3 (Hafner 2023). Safety-Gymnasium benchmarks. Achieves near-zero-cost performance. OSRP planner maintains a safe action set at each planning step."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.38,
+    "notes": "Strong ICLR venue, solid engineering results. Mapping fidelity is good for the trajectory-selection aspect but partial for the representational preservation aspect -- cost gradients flow through shared representations. Transfer risk moderate: this is an engineering system, not a biological system, but it directly implements the algorithmic pattern MECH-056 describes."
+  }
+}

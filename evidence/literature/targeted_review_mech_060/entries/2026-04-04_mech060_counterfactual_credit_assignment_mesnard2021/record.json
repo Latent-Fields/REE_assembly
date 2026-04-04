@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_060",
+  "entry_id": "2026-04-04_mech060_counterfactual_credit_assignment_mesnard2021",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": [
+    "MECH-060"
+  ],
+  "source": {
+    "title": "Counterfactual Credit Assignment in Model-Free Reinforcement Learning",
+    "authors": [
+      "Thomas Mesnard",
+      "Theophane Weber",
+      "Fabio Viola",
+      "Shantanu Thakoor",
+      "Alaa Saade",
+      "Anna Harutyunyan",
+      "Will Dabney",
+      "Tom Stepleton",
+      "Nicolas Heess",
+      "Marcus Hutter",
+      "Lars Buesing",
+      "Remi Munos"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML)",
+    "volume": "139",
+    "pages": "7654-7664",
+    "doi": "10.48550/arXiv.2011.09464",
+    "url": "https://arxiv.org/abs/2011.09464"
+  },
+  "evidence_class": "ml_computational",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Mesnard et al. (2021) address the credit assignment problem in RL by separating what was imagined (the agent's hindsight-conditional estimate of what would have happened under a counterfactual action) from what was realized (the actual return). The core architecture trains a future-conditional value baseline that estimates the counterfactual return -- functionally equivalent to a pre-commit simulation channel -- while the policy gradient update uses the difference between actual return and this counterfactual baseline as the error signal, which is the realized-error channel. An independence loss enforces that the counterfactual baseline does not mix information that is only available post-action, which is the computational analogue of write-boundary enforcement. This architecture supports MECH-060 because it provides an existence proof that separating imagined-outcome estimation from realized-outcome error is both architecturally tractable and empirically beneficial -- the separation reduces policy gradient variance and improves learning. The paper does not operate in a harm-attribution domain, and the write-boundary here is an optimisation constraint rather than a safety constraint, but the computational structure is directly analogous.",
+  "confidence_components": {
+    "relevance": 0.70,
+    "mechanistic_specificity": 0.75,
+    "write_boundary_coverage": 0.60,
+    "replication_status": 0.80
+  },
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "scope_mismatch:model_free_credit_not_harm_attribution",
+    "lit_gap:safety_constraint_not_optimisation_constraint"
+  ],
+  "tags": [
+    "counterfactual",
+    "credit-assignment",
+    "model-free-rl",
+    "hindsight",
+    "future-conditional-baseline",
+    "policy-gradient",
+    "write-boundary",
+    "channel-separation",
+    "imagined-vs-realized",
+    "icml"
+  ]
+}

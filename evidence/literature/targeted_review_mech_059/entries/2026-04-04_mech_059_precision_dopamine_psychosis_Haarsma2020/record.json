@@ -1,0 +1,29 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "entry_id": "2026-04-04_mech_059_precision_dopamine_psychosis_Haarsma2020",
+  "literature_type": "targeted_review_mech_059",
+  "claim_ids_tested": ["MECH-059"],
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "citation": {
+    "authors": ["Haarsma, Joost", "et al."],
+    "title": "Precision weighting of cortical unsigned prediction error signals benefits learning, is mediated by dopamine, and is impaired in psychosis",
+    "journal": "Molecular Psychiatry",
+    "year": 2021,
+    "volume": "26",
+    "pages": "5808-5818",
+    "doi": "10.1038/s41380-020-0803-8",
+    "pmid": "32576965",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8589669/"
+  },
+  "relevance_to_claim": "Empirical human neuroimaging and pharmacology study directly testing the distinct functional role of precision weighting of prediction errors. Finds that superior frontal cortex encodes unsigned prediction errors scaled by environmental precision — but critically, this precision weighting is dissociable from the prediction error magnitude itself: it is disrupted by dopaminergic manipulation (D2 antagonist sulpiride), impaired in first-episode psychosis, and correlates with individual learning performance and schizotypy scores. The fact that precision weighting can be selectively disrupted while prediction error encoding remains intact is direct evidence that these are functionally separate mechanisms with separate neural substrates and neuromodulatory controls.",
+  "evidence_direction": "supports",
+  "evidence_strength": "strong",
+  "evidence_type": "empirical_human_neuroimaging_pharmacology",
+  "key_quotes": [
+    "fMRI revealed coding of unsigned prediction errors, which signal surprise, relative to their precision in superior frontal cortex.",
+    "Healthy people, but not patients with first-episode psychosis, take into account the precision of the environment when updating beliefs.",
+    "Precision weighting of cortical prediction error signals is a key mechanism through which dopamine modulates inference and contributes to the pathogenesis of psychosis.",
+    "D2 receptor antagonist sulpiride significantly disrupted precision-weighting in the left SFC (F2,56 = 4.025, p = 0.023)."
+  ],
+  "notes": "The double dissociation logic here is important: sulpiride disrupts precision weighting but not raw prediction error encoding; psychosis patients show impaired precision weighting with (presumably) intact error signalling. This pattern would be impossible if precision weighting were simply a function of prediction error magnitude — you could not selectively damage one without the other. This constitutes a natural experiment confirming the architectural separation MECH-059 requires. The clinical relevance (psychosis arising from precision/PE conflation) is also consistent with the REE view that corrupting the confidence channel has system-level consequences far out of proportion to local error changes."
+}

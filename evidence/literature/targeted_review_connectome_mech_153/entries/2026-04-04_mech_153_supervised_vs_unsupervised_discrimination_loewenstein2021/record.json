@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-04_mech_153_supervised_vs_unsupervised_discrimination_loewenstein2021",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "Dissecting the Roles of Supervised and Unsupervised Learning in Perceptual Discrimination Judgments",
+    "authors": ["Loewenstein, Yonatan", "Raviv, Ofri", "Ahissar, Merav"],
+    "year": 2021,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0757-20.2020",
+    "pmid": "33380471",
+    "pmc": "PMC7842757"
+  },
+  "evidence_class": "connectome_mechanistic_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The paper directly dissects the boundary between what unsupervised statistical learning can achieve and what requires supervised feedback signals. Its two-stage model -- unsupervised representation formation followed by supervised binary judgment -- maps onto the MECH-153 failure signature precisely: unsupervised E1 training produces reasonable world-model representations but cannot produce the binary hazard-proximate/hazard-distal discriminative label without a supervised gradient. The finding that contraction bias (unsupervised component) is resistant to feedback manipulation while choice bias (supervised component) responds within 40 trials directly instantiates the MECH-153 claim that unsupervised experience alone is insufficient. The mapping is to a perceptual rather than memory system, which moderates the transfer confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper studies perceptual discrimination in a sensory (auditory) task, not memory system encoding. The unsupervised component Loewenstein identifies is contraction bias in perception -- a running average effect on sensory estimate -- which is not the same failure mode as cosine_sim collapse in a context-memory network. The analogy is structural but not mechanistically direct.",
+    "Their 'supervised' component is an explicit feedback signal from an external source (reward). MECH-153 requires a gradient derived from the hazard-field label, which is internally computed (hazard_gradient_view.max() threshold). Whether internally-labeled supervision has the same efficacy as external feedback is not addressed."
+  ],
+  "tags": ["mech_153", "supervised_learning", "unsupervised_learning", "discrimination", "two_stage_model", "perceptual_learning", "feedback"],
+  "mapping": {
+    "source_claim_statement": "Perceptual discrimination is a hierarchical two-stage process: the first, where stimulus statistics are learned and integrated with representations, is unsupervised and impenetrable to external feedback. The second, where a binary judgment is applied to the combined percept, is learned in a supervised way responsive to feedback within 40 trials.",
+    "ree_translation": "E1 ContextMemory trained on world-model prediction error corresponds to the unsupervised first stage: it learns the statistics of states near and far from hazards but without a gradient signal that forces the binary hazard-proximate/hazard-distal distinction into representational structure. The supervised context-labeling objective required by MECH-153 corresponds to the second stage: a binary judgment gradient applied to the ContextMemory output, analogous to the choice-bias component that responds to explicit feedback. The cosine_sim collapse observed in EXQ-181b (cosine_sim=0.9999) is the first-stage failure mode: representation is well-formed but not discriminative because no supervised signal has shaped it toward the relevant binary partition.",
+    "mapping_caveat": "The biological substrate (auditory cortex, perceptual decision circuits) differs significantly from the LSTM-based ContextMemory module. The unsupervised component in perception reflects sensory history effects; in E1, it reflects LSTM hidden-state dynamics trained on prediction error. The structural parallel holds -- both require a supervising signal for the discriminative step -- but the mechanisms are not homologous.",
+    "source_context": "Human psychophysics; auditory interval discrimination with explicit reward feedback; choice bias and contraction bias analysis"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Journal of Neuroscience empirical paper, well-designed psychophysics with careful dissection of supervised vs unsupervised components. Mapping fidelity is moderate: the two-stage framing maps well onto MECH-153 but the specific mechanisms differ (perceptual statistics vs memory encoding). Transfer risk is moderate-high: auditory perceptual learning to LSTM context-memory encoding is a significant abstraction step."
+  }
+}

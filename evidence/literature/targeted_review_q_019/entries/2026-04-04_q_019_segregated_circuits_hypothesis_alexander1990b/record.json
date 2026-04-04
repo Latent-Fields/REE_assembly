@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-04_q_019_segregated_circuits_hypothesis_alexander1990b",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Basal ganglia-thalamocortical circuits: parallel substrates for motor, oculomotor, 'prefrontal' and 'limbic' functions.",
+    "authors": [
+      "Alexander GE",
+      "Crutcher MD",
+      "DeLong MR"
+    ],
+    "year": 1990,
+    "venue": "Progress in Brain Research",
+    "doi": "10.1016/S0079-6123(08)60678-3",
+    "pmid": "2094891"
+  },
+  "evidence_class": "lit:review_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.80,
+  "confidence_rationale": "This companion review by the same group gives a more detailed and cautious statement of the segregated circuits hypothesis. It articulates the central theme explicitly: structural convergence and functional integration occurs WITHIN each circuit, not BETWEEN circuits. This supports the three-gate model. However, the authors also candidly acknowledge that the hypothesis rests on comparisons between different sets of animals, that only the motor circuit has been demonstrated as a continuous loop in individual subjects, and that the patchy divergent terminal fields within each circuit complicate simple point-to-point topography. The evidence is therefore rated 'mixed': strong support for the existence of functionally distinct loops, tempered by acknowledged incompleteness of direct within-subject anatomical proof for non-motor circuits. The mixed rating reflects epistemic incompleteness, not anatomical contradiction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "segregated_circuits",
+    "parallel_loops",
+    "motor",
+    "oculomotor",
+    "prefrontal",
+    "limbic",
+    "thalamocortical",
+    "review",
+    "primate",
+    "anatomical_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Four parallel BG-thalamocortical circuits are identified: motor (putamen/VLo/SMA-MC), oculomotor (caudate tail/SNr/FEF), prefrontal (caudate body/MD/DLPFC-lateral OFC), and limbic (ventral striatum/MD/OFC-ACC-hippocampus). Integration is argued to occur within, not across, each circuit. Single-cell recordings in behaving animals show strong preservation of functional specificity at each relay, consistent with maintained topographic segregation.",
+    "ree_translation": "The four-circuit partition can be compressed to the REE three-gate model: (1) motor circuit = action commitment loop; (2) prefrontal circuit = thought loop / E3 complex; (3) limbic circuit = sensorium/harm-goal loop; (4) oculomotor circuit is architecturally analogous to the motor loop but domain-specific. The 'integration within not between' principle aligns with REE insistence on incommensurable error signals: the loops must not merge their credit signals. Key caveat: the authors note divergence within relay stations (patchy terminal fields) that permits local within-circuit integration, distinguishing from a pure cable-like topology.",
+    "mapping_caveat": "The four-circuit model predates SD-005 (z_self/z_world latent split). The REE architecture partially reassigns the oculomotor circuit function to the action commitment loop. The admission that non-motor circuit continuity was inferred rather than demonstrated in individual subjects is a genuine limitation; subsequent double-label tracing and human tractography largely confirmed the loops but also revealed interface convergence zones not discussed here.",
+    "source_context": "Progress in Brain Research, 1990. Companion to the Trends Neurosci review. Provides full anatomical details including thalamic relay nuclei for each circuit. Remains the standard reference for the four-circuit parallel model."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "High source quality; same authorship as the Trends review but provides more anatomical detail and candor about evidential limitations. Mapping fidelity high for the three-gate compression. Transfer risk low."
+  }
+}

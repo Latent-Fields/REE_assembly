@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-04_mech_153_supervised_contrastive_label_necessity_khosla2020",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "Supervised Contrastive Learning",
+    "authors": ["Khosla, Prannay", "Teterwak, Piotr", "Wang, Chen", "Sarna, Aaron", "Tian, Yonglong", "Isola, Phillip", "Maschinot, Aaron", "Liu, Ce", "Krishnan, Dilip"],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+    "doi": "10.48550/arXiv.2004.11362",
+    "arxiv_id": "2004.11362",
+    "pmc": null
+  },
+  "evidence_class": "ml_mechanistic_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Khosla et al. 2020 demonstrate that the supervised contrastive loss (SupCon) -- which uses class labels to pull same-class instances together and push different-class instances apart -- produces qualitatively better-differentiated representations than self-supervised contrastive learning (SimCLR, which uses only augmentation-based positives). The key mechanism is that label information causes clustering that is semantically meaningful rather than augmentation-defined: without labels, the contrastive objective learns invariances imposed by the augmentation pipeline, which may or may not align with the downstream discrimination criterion. With labels, the representation is explicitly shaped to separate the categories that matter. This is directly relevant to MECH-153: the world-model prediction-error objective on E1 ContextMemory is an unsupervised signal (no explicit class label), and the EXQ-181b result (cosine_sim=0.9999) is consistent with the SupCon paper's finding that unsupervised contrastive learning fails when the relevant semantic categories are not encoded in the augmentation structure. The hazard-proximate/hazard-distal distinction is not derivable from the augmentation structure (or its analog, z_world trajectory statistics) alone -- it requires the explicit label. Confidence is moderated by the architectural gap: SupCon operates on ResNets with discrete classes, not on LSTMs with continuous context-memory trajectories, and the SupCon failure mode is dimensional collapse or semantic misalignment rather than exact cosine_sim=1.0.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SupCon addresses image classification with discrete, externally-provided class labels. MECH-153's supervised context-labeling requires an internally-derived binary label (hazard_gradient_view.max() threshold). The source of the label differs: in SupCon, labels are given by the dataset; in MECH-153, they must be computed from the environment state. Whether internally-computed continuous-valued labels produce the same gradient quality as discrete external class labels is not addressed.",
+    "SimCLR (the unsupervised baseline in Khosla's comparison) still achieves meaningful differentiation of many categories -- it does not collapse to cosine_sim=1.0 globally. The near-complete collapse observed in EXQ-181b (cosine_sim=0.9999) requires the specific condition that the relevant distinction is not encoded in the self-supervised signal at all. Khosla's framework predicts partial failure without labels, not necessarily total collapse."
+  ],
+  "tags": ["mech_153", "supervised_contrastive_learning", "self_supervised_learning", "label_necessity", "representation_differentiation", "cosine_similarity", "ml_evidence"],
+  "mapping": {
+    "source_claim_statement": "Supervised contrastive learning, which explicitly uses class labels to define positive pairs across instances, produces representations that are better clustered by semantic category than self-supervised contrastive methods that rely on augmentation-defined positives alone. The label information provides a gradient that shapes the embedding space toward the downstream classification criterion; without labels, the representation encodes augmentation invariances that may not align with the target categories.",
+    "ree_translation": "E1 ContextMemory trained on world-model prediction error is in the role of SimCLR: it learns invariances encoded in the training signal (state-transition statistics, prediction error minimisation) but not the hazard-proximity category, which is not derivable from the self-supervised objective alone. The supervised context-labeling objective required by MECH-153 plays the role of SupCon's class labels: it provides the gradient that forces the representation to cluster hazard-proximate contexts together and push them apart from hazard-distal contexts. The cosine_sim=0.9999 result in EXQ-181b is the ML-equivalent of a SimCLR model trained on a task where the relevant class boundary is orthogonal to all augmentation invariances: the representation is well-formed (prediction error is minimised) but the target partition is invisible to the learning signal.",
+    "mapping_caveat": "SupCon is a batch-level loss operating on image encoders with discrete external labels; MECH-153 operates on an LSTM context-memory module with a continuous internally-derived label signal. The specific collapse geometry (cosine_sim=1.0 in MECH-153 vs partial misalignment in SupCon's unsupervised baseline) differs. The conceptual claim -- that supervised labeling of the relevant category is necessary for discriminated representations -- maps directly, but the predicted magnitude of failure under unsupervised training is stronger in the REE case than in standard image classification.",
+    "source_context": "Large-scale image classification (ImageNet, CIFAR-10/100); ResNet encoders with projection heads; comparison of SupCon vs SimCLR vs cross-entropy loss"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "NeurIPS 2020 -- top-tier ML venue, highly influential paper (>10k citations). Mapping fidelity moderate: the principle (label-supervised gradient necessary for category-discriminated representations) maps directly onto MECH-153, but the specific architecture (ResNet vs LSTM), loss formulation (contrastive vs MSE prediction), and label source (external vs internally-derived) differ. Transfer risk moderate: image classification to LSTM context memory is a significant architectural gap, though the gradient-level argument for why unsupervised objectives fail to encode label-defined distinctions is architecture-agnostic."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-04-04_q_019_corticostriatal_circuitry_haber2016",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Corticostriatal circuitry.",
+    "authors": [
+      "Haber SN"
+    ],
+    "year": 2016,
+    "venue": "Dialogues in Clinical Neuroscience",
+    "doi": "10.31887/DCNS.2016.18.1/shaber",
+    "pmid": "27069376",
+    "pmcid": "PMC4826773"
+  },
+  "evidence_class": "lit:review_neuroscience",
+  "evidence_direction": "mixed",
+  "confidence": 0.87,
+  "confidence_rationale": "This is the most recent and comprehensive synthesis of human and primate corticostriatal connectivity data. Haber explicitly accepts topographic/parallel organisation as the primary principle (ventral striatum-reward, caudate-cognition, putamen-motor) while placing equal emphasis on interface zones where the functional territories overlap. The 2016 review is important for Q-019 because it incorporates human neuroimaging (fMRI, diffusion tractography) alongside primate tract-tracing, providing the strongest cross-species support available. The review's central thesis is that segregation and integration are both real: the question is not which is correct but where each operates. For REE this is directly relevant: the three gates are anatomically supported but not hermetically sealed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": [
+    "basal_ganglia",
+    "corticostriatal",
+    "reward",
+    "cognition",
+    "motor_control",
+    "ventral_striatum",
+    "caudate",
+    "putamen",
+    "interface_zones",
+    "functional_integration",
+    "human",
+    "primate",
+    "review",
+    "fMRI",
+    "tractography"
+  ],
+  "mapping": {
+    "source_claim_statement": "Corticostriatal projections are topographically organised: OFC/ACC/vmPFC project to ventral striatum (reward/limbic); DLPFC/ACC project to caudate (cognitive/associative); motor/premotor cortex project to putamen (sensorimotor). These territories are functionally and anatomically distinguishable. However, connections are more complex than strict parallel channels: interactions between functional territories are extensive and occur at interface regions where terminal fields from different cortical areas converge. The article explicitly focuses on the interface as the locus of goal-directed behavior.",
+    "ree_translation": "Directly maps onto REE three-gate partition with modern human neuroimaging support: (1) putamen/sensorimotor loop = action commitment gate; (2) caudate/prefrontal loop = thought loop / E3 complex; (3) ventral striatum/limbic loop = sensorium gate (harm-goal evaluation). The interface zones between limbic and associative (ventral caudate / shell-core transition) and between associative and sensorimotor (caudate body to putamen) are the anatomical correlates of the REE harm residue influence on planning: harm signals in the limbic loop can influence trajectory evaluation in the cognitive loop via the interface region without requiring a single merged gate. The paper supports the claim that three gates exist AND that they communicate at defined interface loci.",
+    "mapping_caveat": "The interface zones are defined by overlapping terminal density gradients, not by discrete anatomical borders; this means the three-gate boundaries are graded rather than crisp. For REE implementation, this implies the commitment thresholds for each gate cannot be treated as fully independent: arousal and harm signals from the limbic domain bleed into the cognitive domain at the interface. This is a design constraint rather than a refutation of the three-gate model.",
+    "source_context": "Dialogues in Clinical Neuroscience, 2016. Open-access review. Synthesises Haber laboratory data with human neuroimaging. Most current overview of the corticostriatal system from a leading anatomist in the field."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.15,
+    "notes": "Highest source quality in this entry set: human + primate data, recent review from primary anatomist. Mapping fidelity high. Transfer risk low -- human neuroimaging confirmation reduces species extrapolation risk."
+  }
+}

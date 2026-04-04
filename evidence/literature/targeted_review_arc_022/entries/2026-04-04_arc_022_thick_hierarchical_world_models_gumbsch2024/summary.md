@@ -1,0 +1,16 @@
+# Summary: THICK Hierarchical World Models — Gumbsch, Sajid, Martius & Butz (2024)
+
+**Claim tested:** ARC-022 (Hierarchical effect-object abstraction pipeline)
+**Evidence direction:** supports
+**Confidence:** 0.72
+
+The typed-object pipeline principle at the core of ARC-022 -- that each layer operates on output-type objects from the layer below without re-instantiating lower-level computation -- is a clean enough idea that one wants to know whether it actually works in practice when you try to build it. THICK (Temporal Hierarchies from Invariant Context Kernels) is the most direct answer in the ML literature: yes, it works, and the emergence of typed abstraction levels is learnable rather than hand-engineered.
+
+THICK's architecture is instructive. The lower level generates an internal latent state that it updates sparsely in time, forming what the authors call invariant contexts -- stable typed objects that only change when something meaningfully new happens. The higher level is trained exclusively on transitions between these contexts, not on the lower-level continuous dynamics. This is typed-object passing in the most literal sense: the higher level never sees the raw signal; it only ever operates on context-change events that the lower level has abstracted and typed. The result is that the higher level learns categorical, interpretable temporal abstractions -- discrete event representations -- while the lower level preserves precise, continuous local predictions.
+
+This maps onto the E1->E2 interface in ARC-022 with high fidelity. E1 produces sensory prediction objects (the local, continuous prediction layer); E2 operates on z_gamma transitions (context-level objects that span multiple E1 timesteps). The THICK sparsity mechanism is functionally equivalent to the separation between E1's per-step prediction and E2's temporally-structured transition model. The claim that this explains why E2 operates on z_gamma rather than raw sensory streams now has a computational existence proof: a system designed this way learns better, generalises better, and plans over longer horizons.
+
+Where THICK falls short of grounding the full ARC-022 pipeline is at the top. The model provides a two-level hierarchy: raw dynamics plus context objects. ARC-022 specifies five layers including the DMN-regime narrative simulation, the Goal/Avoid valenced possibility space, and the hippocampal navigable map. THICK does not have a Goal/Avoid layer; it does not have valence; it does not have a hippocampal navigation structure. The typed-object principle extends upward in principle -- if two levels are learnable, five should be too -- but that extension has not been empirically demonstrated in this architecture. The gap between demonstrating that the E1->E2 analogue works and demonstrating that the full E1->E2->DMN->Goal/Avoid->Hippocampus chain is learnable and functional is substantial. This paper provides grounding for the lower portion and structural plausibility for the principle; it does not validate the full architecture.
+
+---
+*Source:* Gumbsch C, Sajid N, Martius G, Butz MV (2024). Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics. *ICLR 2024*. OpenReview: https://openreview.net/forum?id=TjCDNssXKU

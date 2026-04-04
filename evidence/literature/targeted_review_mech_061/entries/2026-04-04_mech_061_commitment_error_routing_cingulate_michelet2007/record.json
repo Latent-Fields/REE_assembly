@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_061",
+  "entry_id": "2026-04-04_mech_061_commitment_error_routing_cingulate_michelet2007",
+  "timestamp_utc": "2026-04-04T09:00:00Z",
+  "claim_ids_tested": ["MECH-061"],
+  "source": {
+    "title": "Impact of Commitment on Performance Evaluation in the Rostral Cingulate Motor Area",
+    "authors": [
+      "Thomas Michelet",
+      "Bernard Bioulac",
+      "Dominique Guehl",
+      "Ludovic Escola",
+      "Pierre Burbaud"
+    ],
+    "year": 2007,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1883-07.2007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17626209/",
+    "pmid": "17626209"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This paper provides the strongest available empirical evidence for the error-routing half of MECH-061. Michelet et al. recorded from rostral cingulate motor area (CMAr) neurons in macaques performing a Stroop-like task and found that performance-evaluation signals in CMAr were modulated by the subject's task commitment: neurons responded differently to errors versus successes, and the magnitude of this performance-evaluation signal was contingent on commitment state. This is a direct demonstration that commitment gates how the motor/evaluative system processes outcome errors -- prior to commitment, error-evaluation processing is different from post-commitment error processing. This directly maps onto MECH-061's claim that the commit-boundary token reclassifies error routing. The CMAr sits at the interface of the ACC error-monitoring system and the motor system, making it an architecturally appropriate site for commitment-gated error routing. Confidence is high for a single-study empirical result and is the highest of this review set for the error-routing half of MECH-061 specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study shows commitment modulates error-evaluation magnitude, not that it routes errors to distinct channels -- modulation and reclassification are related but not identical claims.",
+    "Task commitment in the macaque Stroop task is an implicit behavioral state (engagement/disengagement), not a discrete neural boundary event; the paper does not identify the neural signal that conveys commitment state to CMAr.",
+    "The commitment manipulation is based on inferred behavioral engagement rather than a controlled trial-level commitment event, limiting causal specificity."
+  ],
+  "tags": [
+    "anterior_cingulate_cortex",
+    "rostral_cingulate_motor_area",
+    "performance_monitoring",
+    "error_evaluation",
+    "commitment",
+    "post_commit_error",
+    "macaque_electrophysiology",
+    "error_routing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rostral cingulate motor area (CMAr) neurons in macaques performing a Stroop-like task respond to both positive and negative performance feedback, with stronger responses to errors than successes. Crucially, the magnitude and pattern of this performance-evaluation activity is contingent on the animal's commitment to the task -- CMAr constitutes a performance-evaluation system that is conditioned by commitment state. Performance monitoring in CMAr is not a fixed, commitment-independent process but is gated by the subject's engagement with and commitment to the ongoing action.",
+    "ree_translation": "The Michelet et al. finding is the most direct empirical support for the error-routing half of MECH-061 in this review set. MECH-061 claims that the commit-boundary token reclassifies pre-commit vs post-commit error routing. Michelet et al. show that the neural site for performance evaluation (CMAr) has commitment-contingent activity: commitment changes what the evaluative system does with errors. In REE terms, the CMAr is in the role of the post-commit harm-evaluation circuit whose activity is gated by the commit-boundary token. Prior to task commitment, outcome errors are processed differently; after commitment, CMAr shifts to a more active performance-evaluation mode. This matches MECH-061's claim that crossing the boundary changes the computational role of error signals.",
+    "mapping_caveat": "The study uses ongoing task engagement as the commitment measure rather than trial-level discrete commitment events. MECH-061 posits a specific moment at which a boundary token switches error routing, while Michelet et al. characterize a tonic state modulation. The mapping is conceptually valid but architecturally indirect. Additionally, the paper does not report what CMAr does during the pre-commitment deliberation phase -- only the committed (engaged) vs. disengaged contrast is characterized.",
+    "source_context": "Macaque monkeys were trained on a Stroop-like colour-word interference task requiring cognitive control. Single-unit recordings from CMAr during task performance. Performance was varied to manipulate outcome valence (error vs. success), and commitment was inferred from behavioral engagement patterns."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.33,
+    "notes": "Solid Journal of Neuroscience empirical paper with direct electrophysiology from a commitment-relevant neural area. Mapping fidelity is the highest in this review set for the error-routing aspect of MECH-061: the paper directly demonstrates that commitment modulates error-evaluation processing. Transfer risk is moderate-low: macaque CMAr to REE's post-commit harm-attribution circuit is a plausible architectural homologue."
+  }
+}
