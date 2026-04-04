@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_017",
+  "entry_id": "2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["SD-017"],
+  "source": {
+    "title": "Hippocampal theta sequences reflect current goals",
+    "authors": ["Andrew M Wikenheiser", "A David Redish"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3909",
+    "pmid": "25559082"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Wikenheiser and Redish show that hippocampal theta sequences (awake planning sequences during locomotion) are modulated by current goal -- sequences project further ahead when animals are farther from their goal and compress near the goal. This establishes that online hippocampal sequence content is goal-sensitive. Relevance to SD-017 is indirect: it establishes that hippocampal trajectory representations encode goal-directed structure during the waking period, which is the input that the offline consolidation pipeline (SD-017) must process. However, the paper does not demonstrate necessity of offline consolidation -- it is about online theta sequences during behaviour, not SWR replay during sleep. This is mixed evidence: it supports the architectural claim that hippocampus encodes goal-relevant sequential structure (required for SD-017's SWS-analog replay to be meaningful), but does not speak to whether offline phases are necessary.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study is about awake theta sequences during navigation, not offline SWR replay during sleep or rest.",
+    "Goal-modulated theta sequences are a waking phenomenon; their necessity for offline consolidation (the core SD-017 claim) is not addressed.",
+    "The study does not test what happens to goal-directed behaviour when offline consolidation is blocked."
+  ],
+  "tags": [
+    "sd017", "hippocampus", "theta-sequences", "goal-directed", "planning", "awake", "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta sequences during locomotion dynamically represent future paths toward the current goal. Sequence length and content are modulated by goal distance -- sequences project further ahead when the animal is further from the goal and compress near it.",
+    "ree_translation": "SD-017 requires that the offline SWS-analog and REM-analog phases process content that was encoded during waking. Wikenheiser and Redish establish that the waking input to be consolidated is already goal-structured: hippocampal representations during active navigation carry goal-relative trajectory content. This means the SWS-analog replay phase in SD-017 is replaying sequences that already encode goal-relevant structure -- not just geometric position. For REE's attribution pipeline: the theta sequences carry goal-approach trajectories into the waking hippocampal buffer; the SWS-analog replay then transfers this structured content to the schema layer. Without the waking goal structure, there would be nothing goal-relevant to consolidate. This paper supports the waking encoding half of the consolidation pipeline that SD-017 depends on.",
+    "mapping_caveat": "Evidence is mixed because this does not address offline necessity. It is compatible with SD-017 but does not provide necessity evidence. The mapping is to the waking side of the input to the offline consolidation pipeline, not to the offline pipeline itself.",
+    "source_context": "Adult rats; T-maze with multiple goal locations; CA1 tetrode recordings during active navigation; theta sequence decoding from population activity; goal-modulation analysis of decoded sequence content and extent."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.30,
+    "notes": "Nature Neuroscience, Redish lab (expert in hippocampal planning). High source quality. Mapping fidelity lower because the study addresses waking encoding rather than offline necessity. The mixed direction reflects this: the paper supports the architecture that SD-017 operates on, but not the necessity claim."
+  }
+}

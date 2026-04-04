@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_099",
+  "entry_id": "2026-04-05_mech099_pfeiffer_foster_2013_prospective_sequences",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["MECH-099"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Brad E Pfeiffer", "David J Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "pmid": "23594744"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Pfeiffer and Foster directly demonstrate that hippocampal place-cell sequences during rest/pause events at a choice point generate prospective trajectory representations that are strongly biased toward current-location-to-goal paths. The sequences are updated dynamically depending on where the animal currently is and where the goal is -- behaviour consistent with a persistent spatial map that is read out in a context-sensitive manner. The goal-directedness of the sequences (novel start-goal combinations are handled) strongly supports the claim that hippocampal spatial representation is not merely metric but goal-modulated, consistent with MECH-099's residue field concept. Source is high quality (Nature). Main gap: the study focuses on future-path planning rather than harm/benefit accumulation specifically; the value dimension (harm/benefit history) is not the primary variable tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper addresses reward/goal location coding, not explicit harm or aversive-value accumulation -- the mapping from goal-approach to harm-avoidance residue is inferential.",
+    "Place-cell sequences here are mostly in a constrained open arena with a single goal; whether the same mechanism generalises to multi-hazard spatial value maps is not directly tested.",
+    "The sequences fire during rest pauses at choice points -- the temporal dynamics of persistent map maintenance between episodes are not characterised."
+  ],
+  "tags": [
+    "mech099", "hippocampus", "place-cells", "prospective-sequences", "goal-navigation", "spatial-map", "context-sensitive", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation in an open arena, the rat hippocampus generates brief place-cell sequences biased to run from the animal's current location toward a known goal. The sequences predict future navigation paths and generalise to novel start-goal combinations.",
+    "ree_translation": "MECH-099 posits a persistent spatial residue field maintained by the E3 hippocampal system that encodes accumulated harm/benefit history and is read out by the hippocampal module to generate context-sensitive trajectories. The Pfeiffer and Foster finding that hippocampal sequences are contextually biased toward goal location -- updated based on current position and target -- directly implements the 'context-sensitive trajectory generation' half of MECH-099. The goal maps onto a high-benefit location in the residue field; the sequence generation from current location toward that goal is the read-out mechanism that MECH-099 describes. The novel start-goal generalisation shows that the map is not just a stored route but a navigable spatial structure -- consistent with the residue field being a persistent map rather than a point-to-point lookup.",
+    "mapping_caveat": "MECH-099 emphasises harm as well as benefit, and the persistence of accumulated history (not just current goal). Pfeiffer and Foster study primarily positive-valence goal approach in a food-reward paradigm. The harm/accumulation aspects of MECH-099 require separate evidential support (see blair_2023 and wikenheiser_schoenbaum_2016 entries).",
+    "source_context": "Adult male rats; open circular arena with moveable goal box containing food reward; multiple electrode tetrode recordings in CA1; sequential Bayesian decoding of population activity during awake immobility events at arena edges."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Nature publication, landmark paper. Mapping fidelity good for the trajectory-from-current-location read-out mechanism but partial for the harm/accumulation dimension. Transfer risk moderate: rodent to REE; food-reward to harm/benefit generalisation."
+  }
+}

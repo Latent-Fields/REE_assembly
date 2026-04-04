@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_017",
+  "entry_id": "2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["SD-017"],
+  "source": {
+    "title": "Sleep deprivation and hippocampal ripple disruption after one-session learning eliminate memory expression the next day",
+    "authors": ["Adrian Aleman-Zapata", "Richard G M Morris", "Lisa Genzel"],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.2123424119",
+    "pmid": "36279444"
+  },
+  "evidence_class": "electrophysiology_causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "Aleman-Zapata, Morris and Genzel design a one-session spatial learning task that produces robust long-term memory, then show that both sleep deprivation (4h) and SWR disruption during the post-learning period separately reduce memory performance to chance level at 24h test. The double dissociation -- sleep deprivation vs SWR disruption producing equivalent necessity -- is the strongest existing evidence that offline SWR replay is the necessary mechanism within sleep, not some other correlate of sleep. The task is specifically designed to require only one-session learning and then test consolidation at 24h, isolating the offline consolidation window. This directly addresses SD-017: both the offline sleep phase AND the SWR content within it are necessary. Source is PNAS, Morris lab (one of the founders of spatial memory consolidation research). High confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The task is spatial navigation (plus-maze goal location); it is not a context-attribution or causal assignment task, so the specific attribution-map convergence that SD-017 requires is not directly tested.",
+    "One-session learning paradigm tests formation of a single spatial memory, not the multi-episode context differentiation central to SD-017's failure mode prediction.",
+    "REM phase is not selectively manipulated -- the study addresses SWS/NREM-associated SWRs, which corresponds to only the SWS-analog half of SD-017."
+  ],
+  "tags": [
+    "sd017", "hippocampus", "SWR", "sleep-deprivation", "necessity", "memory-expression", "causal-intervention", "PNAS", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Both extended sleep deprivation and selective SWR disruption during post-learning sleep reduce spatial memory performance to chance 24h after one-session learning. Intact sleep with intact SWRs is necessary for memory consolidation and subsequent expression.",
+    "ree_translation": "SD-017 states that without offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated. Aleman-Zapata et al. establish the double necessity: the offline sleep window as a whole (sleep deprivation arm), and the SWR replay events within it (SWR disruption arm), are both individually sufficient to eliminate consolidation. This rules out: (a) that sleep duration alone matters, and (b) that some non-SWR aspect of NREM is the mechanism. For REE: V3's SWS-analog phase must produce functional SWR-equivalent replay events to achieve consolidation. A system that has offline periods but lacks SWR-equivalent consolidation events will fail memory expression -- this is the exact failure mode that SD-017 predicts for the undifferentiated-context case.",
+    "mapping_caveat": "The study tests spatial memory consolidation after one learning episode. SD-017's core claim is about convergence of attribution mapping across multiple episodes of context discrimination. Whether the SWR necessity result generalises from one-session spatial learning to multi-episode context attribution is the key open question -- it is plausible but not directly established. EXQ-242 is the V3 experiment designed to test this directly.",
+    "source_context": "Adult male rats; plus-maze with goal location identified in one session; either sleep deprived (gentle handling 4h) or allowed to sleep with/without closed-loop SWR disruption; memory test 24h post-training; SWR detection confirmed by LFP and unit activity signatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.22,
+    "notes": "PNAS, Morris lab. Highest quality source in this literature pull. Double-dissociation design eliminates major confounds. Mapping fidelity good for necessity claim; moderate for the specific attribution-convergence function. Transfer risk low for the necessity mechanism itself; moderate for generalisation to multi-episode context attribution."
+  }
+}

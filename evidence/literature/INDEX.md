@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-04-04T23:03:32.141339Z`
+Generated: `2026-04-05T22:15:00Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -87,6 +87,7 @@ Generated: `2026-04-04T23:03:32.141339Z`
 | `targeted_review_mech_061` | [`2026-04-04_mech_061_stop_signal_ifc_stn_aron2006`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/record.json) | 8 | [`summary`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/summary.md) |
 | `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
 | `targeted_review_mech_063` | [`2026-02-15_q017_lit-0032_completion`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/record.json) | 5 | [`summary`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/summary.md) |
+| `targeted_review_mech_099` | [`2026-04-05_mech099_ormond_2023_aversive_replay_reactivation`](targeted_review_mech_099/entries/2026-04-05_mech099_ormond_2023_aversive_replay_reactivation/record.json) | 4 | [`summary`](targeted_review_mech_099/entries/2026-04-05_mech099_ormond_2023_aversive_replay_reactivation/summary.md) |
 | `targeted_review_mech_102` | [`2026-03-29_mech_102_just_war_last_resort_aloyo2015`](targeted_review_mech_102/entries/2026-03-29_mech_102_just_war_last_resort_aloyo2015/record.json) | 4 | [`summary`](targeted_review_mech_102/entries/2026-03-29_mech_102_just_war_last_resort_aloyo2015/summary.md) |
 | `targeted_review_mech_103_multisensory` | [`2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/record.json) | 3 | [`summary`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/summary.md) |
 | `targeted_review_mech_106` | [`2026-04-05_mech_106_stn_dynamic_threshold_frank2006`](targeted_review_mech_106/entries/2026-04-05_mech_106_stn_dynamic_threshold_frank2006/record.json) | 5 | [`summary`](targeted_review_mech_106/entries/2026-04-05_mech_106_stn_dynamic_threshold_frank2006/summary.md) |
@@ -128,6 +129,7 @@ Generated: `2026-04-04T23:03:32.141339Z`
 | `targeted_review_sd_009` | [`2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020`](targeted_review_sd_009/entries/2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020/record.json) | 2 | [`summary`](targeted_review_sd_009/entries/2026-03-29_sd_009_curl_contrastive_unsupervised_rl_laskin2020/summary.md) |
 | `targeted_review_sd_012` | [`2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017`](targeted_review_sd_012/entries/2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017/record.json) | 5 | [`summary`](targeted_review_sd_012/entries/2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017/summary.md) |
 | `targeted_review_sd_015` | [`2026-04-02_sd_015_cognitive_map_building_whittington2022`](targeted_review_sd_015/entries/2026-04-02_sd_015_cognitive_map_building_whittington2022/record.json) | 3 | [`summary`](targeted_review_sd_015/entries/2026-04-02_sd_015_cognitive_map_building_whittington2022/summary.md) |
+| `targeted_review_sd_017` | [`2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity`](targeted_review_sd_017/entries/2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_aleman_zapata_2022_sleep_ripple_necessity/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-04-05_mech123_rem_precision_recalibration_walker2009`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/record.json) | 5 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-04-05_mech123_rem_precision_recalibration_walker2009/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-04-02_arc_018_vte_lookahead_johnson2007`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/record.json) | 17 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_099",
+  "entry_id": "2026-04-05_mech099_ormond_2023_aversive_replay_reactivation",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["MECH-099"],
+  "source": {
+    "title": "Enhanced Reactivation of Remapping Place Cells during Aversive Learning",
+    "authors": ["Jake Ormond", "Simon A Serka", "Joshua P Johansen"],
+    "year": 2023,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1450-22.2022",
+    "pmid": "36596695"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Ormond, Serka and Johansen recorded CA1 place cells in rats performing a spatial navigation task with aversive stimuli on certain maze arms. They found that task learning induced partial remapping in CA1 and that the remapping cells were preferentially recruited into SWR replay events compared to stable cells. This directly links the spatial harm-encoding process (remapping) to the consolidation mechanism (SWR replay). The multi-arm maze with persistent aversive zones is particularly relevant to MECH-099's concept of a spatial harm map: the aversive zones are spatially fixed across sessions, allowing accumulation of harm-zone representations. Confidence docked for the partial remapping (not all cells remap), and because the study does not track the persistence of harm zone representation over many days.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remapping is partial -- only a subset of cells remap in response to aversive experience, which may imply the hippocampal harm map is less complete than MECH-099 requires.",
+    "The aversive maze arms are stable session-to-session, but the study does not track whether harm accumulation increases the strength of the spatial representation over multiple sessions.",
+    "The study does not demonstrate that the remapped cells drive avoidance behaviour -- the causal link from harm-modified spatial map to navigation decisions is not established."
+  ],
+  "tags": [
+    "mech099", "hippocampus", "place-cells", "aversive", "remapping", "SWR", "replay", "harm-avoidance", "spatial-map", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a spatial task with fixed aversive arms, CA1 place cells partially remap during learning. Remapping cells are preferentially recruited into post-experience SWR replay. The enhanced reactivation of harm-related representations suggests a consolidation-mediated strengthening of harm-location coding.",
+    "ree_translation": "MECH-099 requires that the residue field is written by E3's harm signal and persists across episodes, encoding accumulated harm history. Ormond et al. provide evidence for both the writing mechanism (remapping during aversive experience) and the consolidation link (enhanced SWR replay of remapping cells). The fixed aversive arm structure mirrors the residue field's geography: harm is spatially stable and the hippocampus builds a representation that distinguishes harm from non-harm locations. The SWR replay enhancement directly supports the MECH-099 to MECH-121 pipeline: harm-zone-specific spatial memories are fed preferentially into the consolidation stream, which is how they become persistent. This complementary evidence to Blair et al. (2023) comes from a goal-directed navigation context with ongoing aversive avoidance, making it more ecologically valid for REE's residue-field-guided trajectory generation.",
+    "mapping_caveat": "The study is about active spatial navigation, not extended multi-episode harm accumulation. The partial remapping finding could challenge MECH-099 if interpreted as a noisy signal rather than a selective update mechanism. The relationship between CA1 remapping and the full E3/hippocampal system (which in REE also involves the HippocampalModule and viability map) requires additional architecture inference.",
+    "source_context": "Adult male rats; multi-arm maze with aversive stimuli on designated arms; tetrode recordings in CA1; tracking of stable vs remapping place cells across sessions; SWR event analysis; comparison of reactivation rates by cell class."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.22,
+    "notes": "Journal of Neuroscience, Johansen lab (expert in aversive learning). Good mapping fidelity for both the harm-spatial representation and the SWR consolidation link. Moderate transfer risk from rodent multi-arm maze to REE's grid-world residue field."
+  }
+}

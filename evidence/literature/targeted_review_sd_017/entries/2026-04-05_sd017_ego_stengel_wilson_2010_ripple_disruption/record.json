@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_017",
+  "entry_id": "2026-04-05_sd017_ego_stengel_wilson_2010_ripple_disruption",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["SD-017"],
+  "source": {
+    "title": "Disruption of ripple-associated hippocampal activity during rest impairs spatial learning in the rat",
+    "authors": ["Valerie Ego-Stengel", "Matthew A Wilson"],
+    "year": 2010,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20707",
+    "pmid": "19816984"
+  },
+  "evidence_class": "electrophysiology_causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Ego-Stengel and Wilson independently replicate and extend Girardeau et al. (2009) using a different spatial learning task and disruption approach. They train rats on two spatial navigation tasks with identical procedures; ripple-associated activity during rest is disrupted after one task but not the other (within-animal control). Disruption slows learning on the task with disrupted consolidation relative to the control task in the same animals. This within-animal design strengthens the causal necessity argument. Directly supports SD-017's SWS-analog necessity claim. Source quality is high (Hippocampus journal, MIT Wilson lab). Docked slightly relative to Girardeau because the disruption method (stimulation of hippocampal afferents) is less selective than closed-loop SWR suppression.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The disruption targets ripple-associated activity but also affects non-ripple hippocampal afferent input -- selectivity is lower than closed-loop SWR detection approaches.",
+    "Both tasks are spatial navigation paradigms; the study does not test whether the impairment extends to non-spatial, context-attribution-based learning.",
+    "The within-animal control is strong but the two tasks may differ in intrinsic difficulty, introducing a potential confound."
+  ],
+  "tags": [
+    "sd017", "hippocampus", "SWR", "ripple", "consolidation", "necessity", "causal-intervention", "spatial-learning", "within-animal-control", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Disrupting hippocampal activity associated with ripple events during rest periods after spatial task training slows the rate of subsequent learning for that task, compared to an identical control task in the same animals. Sleep architecture is not significantly changed.",
+    "ree_translation": "SD-017 claims that without offline SWS-analog phases (carrying SWR replay), hippocampal attribution mapping cannot converge. Ego-Stengel and Wilson demonstrate that disrupting the SWR-replay window during rest -- while leaving sleep quantity intact -- specifically impairs hippocampal-dependent learning. This confirms that it is the replay content of offline periods, not merely their occurrence, that is necessary. In REE terms: the SWS-analog phase must deliver genuine hippocampal-to-schema replay (not just idle sleep) for context representations to converge. This eliminates a possible confound where sleep quantity alone drives the SD-017 requirement.",
+    "mapping_caveat": "Like Girardeau (2009), the study tests spatial learning rather than the context-attribution task most relevant to SD-017. The convergence of hippocampal attribution mapping in REE involves causal attribution replay (REM-analog) in addition to schema consolidation (SWS-analog) -- this paper speaks only to the SWS-analog half of SD-017.",
+    "source_context": "Adult rats; two identical spatial maze tasks (laps on a circular track to find fixed goal location); hippocampal tetrode recordings; stimulation of hippocampal afferents triggered during detected ripple events during post-task rest periods; learning rate comparison between stimulated and control tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.25,
+    "notes": "Hippocampus journal, MIT Wilson lab (primary SWR consolidation group). Within-animal control design strengthens causal interpretation. Mapping fidelity moderate: spatial learning consolidation to attribution pipeline convergence requires additional inference. Transfer risk as for Girardeau."
+  }
+}

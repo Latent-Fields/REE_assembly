@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_099",
+  "entry_id": "2026-04-05_mech099_blair_2023_aversive_place_remapping",
+  "timestamp_utc": "2026-04-05T22:10:00Z",
+  "claim_ids_tested": ["MECH-099"],
+  "source": {
+    "title": "Hippocampal place cell remapping occurs with memory storage of aversive experiences",
+    "authors": ["Garrett J Blair", "Changliang Guo", "Shiyun Wang", "Michael S Fanselow", "Peyman Golshani", "Daniel Aharoni", "Hugh T Blair"],
+    "year": 2023,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.80661",
+    "pmid": "37466236"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Blair et al. directly demonstrate that aversive experiences (foot shocks) cause hippocampal place cells to remap their spatial firing fields, and that this remapping occurs specifically when the aversive event is later remembered (not when it is forgotten). Remapping cells are subsequently recruited into SWR replay events to a greater extent than stable cells. This is strong evidence for MECH-099: the hippocampal spatial map is modified by harm encounters, and the modification is selective for encoded (remembered) harm events -- exactly the kind of persistent harm-history accumulation MECH-099 describes. The replay recruitment finding directly links map modification to the consolidation mechanism. Source is eLife, open peer review, high transparency. Docked slightly for the single-session shock paradigm (not extended accumulation over many episodes).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses a single acute shock session -- it does not directly demonstrate gradual accumulation of harm history over multiple encounters.",
+    "Remapping is measured as a population-level phenomenon; it is not clear whether individual place fields encode a quantitative harm level or merely a binary harm/no-harm distinction.",
+    "The replay recruitment of remapping cells supports consolidation but does not directly show that the remapped representation is used to navigate away from the harm location on future trials."
+  ],
+  "tags": [
+    "mech099", "hippocampus", "place-cells", "aversive", "remapping", "harm-memory", "spatial-map", "replay", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Foot shocks in a familiar environment cause CA1 place cells to remap. Remapping is selective for remembered shocks (not forgotten). Remapping cells are preferentially recruited into post-shock SWR replay, suggesting they carry the new harm-location information into the consolidation pipeline.",
+    "ree_translation": "MECH-099 posits that the residue field encodes the history of where harm occurred, maintained by the E3 hippocampal system. Blair et al. provide the most direct existing evidence: the hippocampal spatial map is literally reorganised by harm encounters at specific locations, and this reorganisation is replayed to reinforce it. The selective remapping for remembered vs forgotten shocks confirms that the harm-spatial map is not a passive sensory record but an active memory-gated update -- consistent with MECH-099's claim that E3 writes harm accumulation selectively. The replay recruitment finding is particularly important: it shows the harm-location signal enters the NREM replay consolidation stream (MECH-121), linking the residue field update to the offline consolidation pipeline that SD-017 requires.",
+    "mapping_caveat": "The remapping captures harm location but does not quantitatively encode harm level or benefit. MECH-099 requires accumulation across multiple encounters. The link between remapping and avoidance navigation (using the harm map to guide future behaviour) is not established by this paper alone. The spatial scale of remapping (CA1 in a small chamber) may not generalise to the multi-region hippocampal architecture required for MECH-099's large-scale residue field.",
+    "source_context": "Adult mice; contextual fear conditioning in a familiar environment; miniscope calcium imaging of CA1; place cell tracking before, during, and after shock; memory recall test 24h later; SWR analysis during post-shock rest."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "High source quality (eLife, open peer review). Mapping fidelity high for the harm-location-map aspect and the replay consolidation link. Transfer risk low: mice/rats and the spatial harm-memory paradigm translate well to REE's residue field concept."
+  }
+}
