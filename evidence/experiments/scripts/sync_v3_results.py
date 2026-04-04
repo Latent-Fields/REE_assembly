@@ -103,7 +103,13 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     run_dir.mkdir(parents=True, exist_ok=True)
 
     # Build manifest.json
-    ts_compact = str(data.get("run_timestamp") or "")
+    ts_compact = str(data.get("run_timestamp") or data.get("timestamp_utc") or "")
+    if not ts_compact:
+        # Fall back to unix integer timestamp (legacy scripts use int(time.time()))
+        ts_int = data.get("timestamp")
+        if ts_int and str(ts_int).isdigit():
+            from datetime import datetime as _dt
+            ts_compact = _dt.utcfromtimestamp(int(ts_int)).strftime("%Y%m%dT%H%M%SZ")
     ts_iso = _parse_timestamp(ts_compact)
 
     # Gather claim_ids -- flat JSON may have claim_ids (list) or claim (single string)
@@ -111,8 +117,8 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
     if not claim_ids and data.get("claim"):
         claim_ids = [data["claim"]]
 
-    # Support both "status" (runner-written manifests) and "overall_outcome" (flat JSON scripts)
-    raw_status = data.get("status") or data.get("overall_outcome", "UNKNOWN")
+    # Support "status", "overall_outcome", or "outcome" (flat JSON scripts may use any)
+    raw_status = data.get("status") or data.get("overall_outcome") or data.get("outcome", "UNKNOWN")
     raw_upper = str(raw_status).upper()
     if raw_upper in ("PASS", "FAIL", "UNKNOWN"):
         status = raw_upper
