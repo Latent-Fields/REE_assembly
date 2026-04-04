@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_044",
+  "entry_id": "2026-04-05_inv_044_remapping_hidden_state_inference_sanders2020",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["INV-044"],
+  "source": {
+    "title": "Hippocampal remapping as hidden state inference",
+    "authors": ["Honi Sanders", "Matthew A Wilson", "Samuel J Gershman"],
+    "year": 2020,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.51140",
+    "pmid": "32515352",
+    "url": "https://doi.org/10.7554/eLife.51140"
+  },
+  "evidence_class": "computational_theory_with_empirical_grounding",
+  "evidence_direction": "supports",
+  "confidence": 0.90,
+  "confidence_rationale": "Primary grounding paper for INV-044. Sanders, Wilson & Gershman formalise hippocampal remapping as Bayesian hidden state inference: the animal maintains a posterior over discrete latent contexts and remapping reflects uncertainty about which context is currently active. The paper demonstrates that prior construction (context schema -- which distinctions are structurally relevant) necessarily precedes posterior inference: without a pre-formed prior over context partitions, the agent cannot assign new observations to context slots. The model directly predicts that systems attempting to learn context structure (prior) and perform context attribution (posterior) in a single online pass produce degenerate context representations -- partial remapping corresponds to high posterior uncertainty rather than informative attribution. Published in eLife with strong computational formalism and empirical validation against rodent place cell data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "bayesian_inference", "hidden_state", "context", "remapping", "place_cells", "prior", "posterior", "schema_formation", "attribution", "hippocampus", "computational", "supports"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal remapping is best understood as Bayesian hidden state inference: observations are partitioned according to posterior beliefs about which latent context (hidden state) generated them. Context schema (the prior over which distinctions matter) must be constructed before posterior attribution can yield non-degenerate context representations. Partial remapping reflects high posterior uncertainty, not a distinct biological process.",
+    "ree_translation": "INV-044: This paper directly grounds the claim that prior construction (schema formation -- which context distinctions are structurally relevant) must precede posterior inference (attribution -- which evidence belongs to which context slot). In the hidden state framework, the prior encodes the number and structure of possible contexts; without it, the likelihood of observations is un-normalised and attribution is undefined. A system attempting to do both online -- construct the prior while simultaneously filling slots -- faces the degenerate-prior problem: the prior is uninformative precisely when attribution is attempted, making the posterior flat regardless of training duration. The SWS/REM temporal ordering maps directly: SWS installs the prior (schema, context partition structure) and waking/REM uses that prior to fill slots with causal attribution estimates.",
+    "mapping_caveat": "The paper formalises the Bayesian argument and validates it against remapping data, but does not directly implement a system that attempts simultaneous prior+posterior computation to demonstrate the degeneracy prediction of INV-044. The failure mode is inferred from the formal model, not directly demonstrated in a head-to-head experiment. Transfer from spatial context inference to general causal attribution (REE's use case) extends the scope beyond what the paper directly tests.",
+    "source_context": "Computational modelling with empirical validation. Bayesian nonparametric model applied to rodent CA1 place cell remapping data across multiple context-change protocols."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (eLife, principled Bayesian formalism, multiple empirical datasets). Mapping fidelity excellent -- this is the designated primary grounding paper and its hidden-state inference framework directly formalises the prior-before-posterior necessity claim. Transfer risk low: the Bayesian argument applies to any system performing contextual inference, not just place cells; the spatial context is the example domain, not the limiting domain."
+  }
+}

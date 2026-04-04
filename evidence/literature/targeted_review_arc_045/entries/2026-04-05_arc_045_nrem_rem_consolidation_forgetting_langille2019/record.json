@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_045",
+  "entry_id": "2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["ARC-045"],
+  "source": {
+    "title": "Remembering to Forget: A Dual Role for Sleep Oscillations in Memory Consolidation and Forgetting",
+    "authors": ["Jesse J Langille"],
+    "year": 2019,
+    "venue": "Frontiers in Cellular Neuroscience",
+    "doi": "10.3389/fncel.2019.00071",
+    "pmid": "30930746",
+    "url": "https://doi.org/10.3389/fncel.2019.00071"
+  },
+  "evidence_class": "review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Langille 2019 argues that NREM and REM sleep serve complementary and sequential functions: NREM installs and edits engrams via slow oscillation + spindle + SWR triple-phase locking (hippocampus-to-cortex, installation direction), while REM stabilises and integrates them, and that the cyclical organisation of NREM-REM sleep is the mechanism ensuring bidirectionality. The paper explicitly proposes that the same sleep rhythms that consolidate also adaptively forget, and that NREM/REM cycling is necessary for both. This maps onto ARC-045: the SWS-direction (hippocampus-to-neocortex) installs schema structure; the REM hippocampal theta rhythm serves the waking/REM-direction (neocortex-to-hippocampus, pattern completion, prior-guided slot-filling). The sequential cycling is what enables iterative convergence of attribution mapping across multiple NREM-REM cycles. Confidence moderate because Langille does not directly test whether disrupting one direction impairs attribution mapping, and the review integrates evidence from multiple sources rather than providing primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_045", "nrem", "rem", "sleep_cycling", "consolidation", "forgetting", "hippocampus", "theta", "swr", "triple_phase_locking", "bidirectional", "convergence", "supports"],
+  "mapping": {
+    "source_claim_statement": "NREM sleep consolidates new memories into hippocampus and cortex via triple-phase locking of slow oscillation, spindle, and SWR (hippocampus-to-neocortex installation direction). REM hippocampal theta rhythm stabilises and integrates engrams (neocortex-influenced hippocampal processing direction). The NREM-REM cycling enables sequential lay-down (NREM) and stabilisation/integration (REM) -- a bidirectional process that simultaneously consolidates new and adaptively forgets older memories.",
+    "ree_translation": "ARC-045: The NREM-REM cycling described by Langille is the temporal implementation of the bidirectional hippocampus-neocortex architecture ARC-045 requires. NREM = SWS-direction flow (hippocampus installs attribution estimates into neocortical schema structure); REM = waking/REM-direction flow (neocortical schema influences hippocampal theta-driven processing, filling attribution slots with prior-guided estimation). Attribution mapping convergence across the night requires multiple NREM-REM cycles: each cycle is one iteration of the bidirectional update (NREM installs, REM integrates with neocortical prior). The cyclical architecture prevents either direction from dominating -- the convergence is iterative, not one-shot.",
+    "mapping_caveat": "Langille's model integrates evidence from multiple sources but the specific schema-installation vs. slot-filling distinction within the NREM-REM cycle is an inferential mapping to ARC-045. The paper's primary focus is the consolidation/forgetting duality rather than schema-first, slot-filling-second temporal ordering. The mechanisms proposed for REM stabilisation are less well-evidenced than NREM installation in the primary literature.",
+    "source_context": "Review integrating NREM and REM sleep literature. Proposes cellular mechanisms for sleep-dependent consolidation (calcium kinetics, consolidative signalling cascades) and adaptive forgetting. Frontiers in Cellular Neuroscience 2019."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.22,
+    "notes": "Solid review in Frontiers Cellular Neuroscience. Mapping fidelity good for the bidirectional NREM/REM cycling as implementation of ARC-045's convergence architecture. Transfer risk low-moderate: hippocampal-neocortical dialogue mechanism is general; the schema/attribution distinction within the cycling is the inferential step."
+  }
+}

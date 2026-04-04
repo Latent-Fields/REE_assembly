@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_044",
+  "entry_id": "2026-04-05_inv_044_schema_enables_learning_finnie2018",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["INV-044"],
+  "source": {
+    "title": "Cortico-hippocampal Schemas Enable NMDAR-Independent Fear Conditioning in Rats",
+    "authors": ["Peter S B Finnie", "Karine Gamache", "Maria Protopoulos", "Elizabeth Sinclair", "Andrew G Baker", "Szu-Han Wang", "Karim Nader"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.07.037",
+    "pmid": "30197087",
+    "url": "https://doi.org/10.1016/j.cub.2018.07.037"
+  },
+  "evidence_class": "rodent_behavioral_pharmacology",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Finnie et al. show that NMDAR-independent learning (schema-enabled slot-filling) requires that the first-task memory remain hippocampus-dependent AND requires anterior cingulate cortex (ACC) memory maintenance. When ACC memory is disrupted, NMDAR-independence is abolished -- the schema (prior structure maintained in ACC) is causally necessary for rapid slot-filling on the second task. This is a causal demonstration that the prior structure (schema in cortico-hippocampal circuit) must be maintained before subsequent posterior inference (attribution on a new similar task) can proceed efficiently. The NMDAR-dependency shift is a molecular signature of prior-enabled vs. prior-absent learning. Mapping to INV-044 is moderately strong because it demonstrates causal prior-dependency, but the mechanism is cortico-hippocampal maintenance rather than an offline SWS-analog installation phase.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "schema", "prior", "cortico_hippocampal", "ACC", "NMDAR", "slot_filling", "fear_conditioning", "causal", "rodent", "supports"],
+  "mapping": {
+    "source_claim_statement": "NMDAR-independent learning on a second conditioning task (schema-enabled slot-filling) requires: (1) that the first-task memory remain hippocampus-dependent (prior structure is in hippocampally-accessible form), and (2) that ACC maintains the first-task memory (cortical prior maintenance). Disrupting ACC memory maintenance reinstates NMDAR-dependency -- the prior is gone and slot-filling must start from scratch.",
+    "ree_translation": "INV-044: This paper provides causal evidence that a pre-formed prior structure (first-task schema maintained in cortico-hippocampal circuit) is a prerequisite for efficient posterior inference (second-task slot-filling without NMDAR plasticity). When the prior is disrupted, posterior inference becomes prior-absent (degenerate prior) and requires full plasticity again. This maps directly onto INV-044's claim: prior construction must precede posterior inference; co-computing them in a single online pass prevents the prior from being available in a form that enables efficient slot-filling.",
+    "mapping_caveat": "The paper demonstrates cortico-hippocampal prior maintenance rather than an offline SWS installation phase specifically. The prior here is maintained as a persistent memory trace, not explicitly installed during a sleep phase. The mapping to INV-044's temporal architecture (SWS installs prior, REM fills slots) requires an additional step: that the prior maintenance process is what SWS accomplishes. This is a plausible but indirect connection.",
+    "source_context": "Rat contextual fear conditioning; bilateral hippocampal and ACC pharmacological inactivation; NMDAR antagonist injection; two-conditioning protocol. Current Biology 2018."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality (Current Biology, causal manipulation, clear NMDAR-dependency criterion). Mapping fidelity moderate -- causal prior-dependency demonstrated but not the temporal SWS/sleep-phase installation specifically. Transfer risk moderate: fear conditioning in rats vs. REE causal attribution in V3 substrate."
+  }
+}

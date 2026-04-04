@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_166",
+  "entry_id": "2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["MECH-166"],
+  "source": {
+    "title": "Up and Down States and Memory Consolidation Across Somatosensory, Entorhinal, and Hippocampal Cortices",
+    "authors": ["John J Tukker", "Prateep Beed", "Dietmar Schmitz", "Matthew E Larkum", "Robert N S Sachdev"],
+    "year": 2020,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2020.00022",
+    "pmid": "32457582",
+    "url": "https://doi.org/10.3389/fnsys.2020.00022"
+  },
+  "evidence_class": "review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Tukker et al. review the role of Up/Down states (UDS) in memory consolidation across the cortico-hippocampal axis. Key finding relevant to MECH-166: UDS propagate from neocortex through entorhinal cortex to hippocampus during SWS, coordinating sharp-wave ripple replay. The review establishes that the slow oscillation Up/Down structure temporally organises hippocampal SWR replay into discrete packets, each potentially carrying a distinct memory trace fragment. This temporal organisation is what makes the SWS-analog phase capable of installing structured slot topology (rather than continuous encoding): each slow-oscillation cycle creates a bounded, delineated memory installation event. This supports MECH-166's claim that slot-formation and slot-filling are computationally separated: the UDS mechanism ensures that SWS installs bounded slot-structure packets rather than performing continuous online slot-filling. Confidence moderate because this is a review paper that does not directly test schema abstraction vs. attribution separation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_166", "up_down_states", "slow_oscillation", "hippocampus", "entorhinal", "neocortex", "swr", "memory_consolidation", "temporal_organisation", "supports"],
+  "mapping": {
+    "source_claim_statement": "Up and Down states (UDS) of the slow oscillation propagate from neocortex through entorhinal cortex to hippocampus during SWS, temporally organising hippocampal SWR replay into discrete bounded packets. This UDS structure coordinates the hippocampus-neocortex dialogue across anatomically distinct but interconnected cortices.",
+    "ree_translation": "MECH-166: The UDS mechanism explains why SWS is capable of installing discrete, structured slot-topology packets rather than performing continuous online slot-filling. Each slow-oscillation Up-state creates a bounded window of enhanced cortico-hippocampal connectivity; the Down-state creates a separation boundary. This temporal segmentation is the mechanism by which schema slot-structure is installed in discrete, delineated episodes during the SWS-analog phase. The propagation pathway (neocortex -> entorhinal -> hippocampus -> back to neocortex via SWR) is the bidirectional circuit that enables slot-structure installation; its temporal organisation (UDS) prevents it from blending with online slot-filling. This supports MECH-166's claim that slot-formation occurs in a distinct, offline phase rather than interleaved with online encoding.",
+    "mapping_caveat": "Tukker et al. characterise the UDS mechanism for memory consolidation generally, not specifically for schema vs. slot-filler distinction. The temporal segmentation argument is an architectural inference from the UDS structure. The review focuses on basic memory consolidation; the specific claim that UDS installs slot-topology distinct from slot-filling requires extrapolation.",
+    "source_context": "Review of Up/Down state literature across somatosensory cortex, entorhinal cortex, and hippocampus during sleep and anesthesia. Frontiers in Systems Neuroscience 2020."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Solid review in Frontiers; multi-area coverage adds architectural specificity. Mapping fidelity moderate -- UDS as temporal organiser of consolidation packets is a useful intermediate mechanism but the schema vs. slot-filler separation requires an additional inferential step. Transfer risk low-moderate: UDS mechanism is well-conserved; application to slot-topology installation specifically requires extrapolation."
+  }
+}

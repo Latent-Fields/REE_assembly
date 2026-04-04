@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_045",
+  "entry_id": "2026-04-05_arc_045_hierarchical_generative_model_friston2005",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["ARC-045"],
+  "source": {
+    "title": "A theory of cortical responses",
+    "authors": ["Karl Friston"],
+    "year": 2005,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2005.1622",
+    "pmid": "15937014",
+    "url": "https://doi.org/10.1098/rstb.2005.1622"
+  },
+  "evidence_class": "computational_theory",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Friston 2005 is the foundational paper establishing hierarchical cortical responses as the product of a bidirectional generative-recognition model: forward (bottom-up) connections carry prediction errors (recognition direction -- what evidence does not fit the model), backward (top-down) connections carry predictions (generative direction -- what the model expects to see). The paper explicitly derives that reciprocal, bidirectional connections are a necessary architectural consequence of free-energy minimisation in hierarchical models. This directly grounds ARC-045's claim that bidirectional hippocampus-neocortex flow is architecturally necessary: the generative model (top-down predictions, neocortex -> hippocampus, maps onto schema prior direction) and the recognition model (bottom-up error, hippocampus -> neocortex, maps onto attribution installation direction) are two faces of the same inference process and cannot be collapsed to a single direction without losing the ability to minimise free energy. High mapping fidelity for the architectural necessity argument; confidence limited because the paper focuses on sensory cortex hierarchy, not hippocampal-neocortical consolidation specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_045", "predictive_coding", "hierarchical_generative_model", "recognition_model", "bidirectional", "free_energy", "cortex", "top_down", "bottom_up", "prediction_error", "computational_theory", "supports"],
+  "mapping": {
+    "source_claim_statement": "Cortical responses arise from hierarchical generative models that minimise free energy via reciprocal connections: backward connections carry predictions (generative direction, top-down) and forward connections carry prediction errors (recognition direction, bottom-up). Bidirectional connections are a necessary architectural requirement of free-energy minimisation in hierarchical models. Forward connections are driving; backward connections are both driving and modulatory.",
+    "ree_translation": "ARC-045: Friston 2005 provides the computational theory grounding the bidirectionality claim. The hippocampus-neocortex circuit is a hierarchical Bayesian system in which: (1) SWS-direction (hippocampus to neocortex) = bottom-up prediction error signal -- hippocampal replay carries attribution estimates (prediction errors relative to neocortical schema) that update the neocortical prior; (2) Waking/REM-direction (neocortex to hippocampus) = top-down predictions -- neocortical schema sends down prior expectations that bias hippocampal encoding and replay. Attribution mapping convergence (ARC-045) is the free-energy minimisation process in this hierarchical system: it requires both directions because the generative model (schema) must predict what hippocampus should encode, and the recognition model must carry attribution errors back up to update the schema. Collapse to a single direction prevents free-energy minimisation.",
+    "mapping_caveat": "Friston 2005 addresses sensory cortical hierarchy, not the hippocampal consolidation cycle specifically. The mapping to hippocampus-neocortex SWS/REM bidirectionality requires extrapolating the hierarchical Bayesian framework from perceptual to memory consolidation. The paper does not address sleep phases, offline consolidation, or the schema/attribution distinction specifically. The mapping fidelity is high for the architectural principle but the domain transfer (perceptual -> consolidation) is not trivial.",
+    "source_context": "Theoretical review with simulation illustrations. Hierarchical generative model applied to cortical responses, predictive coding, mismatch negativity, P300, repetition suppression. Philosophical Transactions R Soc B 2005."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Landmark theoretical paper; highest source quality. Mapping fidelity high for bidirectionality architectural necessity; moderate for specific hippocampus-neocortex consolidation application. Transfer risk moderate: perceptual hierarchy -> consolidation hierarchy mapping is principled but not trivial."
+  }
+}

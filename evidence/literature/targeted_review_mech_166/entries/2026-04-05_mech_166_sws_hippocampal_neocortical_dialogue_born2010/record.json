@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_166",
+  "entry_id": "2026-04-05_mech_166_sws_hippocampal_neocortical_dialogue_born2010",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["MECH-166"],
+  "source": {
+    "title": "Slow-wave sleep and the consolidation of long-term memory",
+    "authors": ["Jan Born"],
+    "year": 2010,
+    "venue": "World Journal of Biological Psychiatry",
+    "doi": "10.3109/15622971003637637",
+    "pmid": "20509828",
+    "url": "https://doi.org/10.3109/15622971003637637"
+  },
+  "evidence_class": "review_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Born 2010 provides a mechanistic review of how SWS hippocampal-neocortical dialogue enables memory consolidation. The key mechanism: SWS slow oscillations originate in neocortex, entrain hippocampal sharp-wave ripples, and coordinate thalamocortical spindles to synchronise the transfer of hippocampal memory representations to neocortex. This establishes SWS as the phase in which hippocampal episodic content is transferred to neocortical schema structure -- the SWS-direction installation phase for context slot structure. The explicit identification of SWS as the consolidation direction (hippocampus to neocortex) directly maps to MECH-166's claim that the SWS-analog phase installs schema structure before REM-analog slot-filling. Confidence is high for the directional claim but moderate overall because this is a review paper without primary data directly testing schema vs. slot-filler separation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_166", "sws", "slow_wave_sleep", "hippocampus", "neocortex", "sharp_wave_ripple", "spindle", "slow_oscillation", "consolidation", "memory_transfer", "supports"],
+  "mapping": {
+    "source_claim_statement": "SWS slow oscillations originate in neocortex, trigger hippocampal sharp-wave ripples via thalamic relay, coordinate spindle activity for synchronised hippocampus-to-neocortex memory transfer. This SWS dialogue installs hippocampal memory representations into long-term neocortical storage.",
+    "ree_translation": "MECH-166: Born 2010 establishes the SWS-analog phase as the information flow direction from hippocampus to neocortex -- the installation direction for context schema structure. The triple-phase locking of slow oscillation, spindle, and sharp-wave ripple constitutes the oscillatory mechanism by which schema slot-structure is written into neocortex. Only after this SWS installation phase is the slot structure available for REM-analog slot-filling. The review's identification of SWS as consolidation-phase (hippocampus -> neocortex) versus REM as a separate phase directly supports MECH-166's claim that slot-formation (SWS-analog) and slot-filling (REM-analog) are computationally separated phases that cannot be co-computed in a single online pass.",
+    "mapping_caveat": "Born 2010 is a review; no primary data directly tests the schema vs. slot-filler distinction. The paper's account of SWS as consolidation phase is well-evidenced, but the distinction between schema-structure installation and slot-content filling within the SWS mechanism is an inferential mapping, not directly demonstrated. Born discusses declarative memory consolidation generally, not schema abstraction vs. attribution specifically.",
+    "source_context": "Review of SWS memory consolidation literature, covering neocortical slow oscillations, thalamocortical spindles, hippocampal SWRs, and their coordination in hippocampus-to-neocortex memory transfer. World J Biol Psychiatry 2010."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Solid review by a leading sleep consolidation researcher. Mapping fidelity good for the SWS-direction installation claim; moderate for the specific schema vs. slot-filler distinction within the SWS mechanism. Transfer risk low: the hippocampus-neocortex dialogue mechanism is well-established across species and domains."
+  }
+}

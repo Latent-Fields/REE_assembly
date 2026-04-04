@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_166",
+  "entry_id": "2026-04-05_mech_166_schema_memory_consolidation_tse2007",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["MECH-166"],
+  "source": {
+    "title": "Schemas and memory consolidation",
+    "authors": ["Dorothy Tse", "Rosamund F Langston", "Masaki Kakeyama", "Ingrid Bethus", "Patrick A Spooner", "Emma R Wood", "Menno P Witter", "Richard G M Morris"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135935",
+    "pmid": "17412951",
+    "url": "https://doi.org/10.1126/science.1135935"
+  },
+  "evidence_class": "rodent_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Landmark paper providing direct evidence that a pre-formed schema enables rapid, single-trial memory consolidation and hippocampal independence. Tse et al. showed that rats with a previously established flavor-place schema (after ~3 weeks of learning multiple flavor-place pairs) could consolidate new pairs in a single trial and recall them in a hippocampus-independent manner within 48 hours. Without the schema, multi-trial learning was required and hippocampal dependency persisted for weeks. This directly demonstrates that schema formation (context slot structure) must precede rapid slot-filling: only after the associative structure (slot topology) was consolidated in neocortex could new instances be rapidly assimilated. Maps strongly to MECH-166's claim that slot-structure (schema abstraction) must be consolidated before slot-filling (causal attribution) can yield reliable signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_166", "schema", "memory_consolidation", "hippocampus", "neocortex", "rapid_learning", "slot_structure", "slot_filling", "assimilation", "rodent", "behavioral", "supports"],
+  "mapping": {
+    "source_claim_statement": "Rats with a previously formed neocortical flavor-place schema consolidate new flavor-place associations in a single trial, with rapid hippocampal-independent recall within 48h. Without a schema, consolidation requires multi-trial learning and hippocampal dependency persists for weeks. Schemas are causally necessary for rapid assimilation of new associations.",
+    "ree_translation": "MECH-166: The schema in Tse et al. is the context slot structure -- the associative topology that specifies which types of associations (flavor-place) are relevant and how they relate. This slot structure is consolidated in neocortex during multi-week training (the SWS-analog phase for schema abstraction). New flavor-place pairs are the slot-filler content -- the causal attribution estimates that go into the pre-formed slots. Rapid single-trial assimilation is only possible once the slot structure is in place; without it, the agent must learn both structure and content simultaneously, producing slow, multi-trial, hippocampus-dependent learning (the failure mode MECH-166 predicts when slot-formation and slot-filling are co-attempted). The rapid hippocampal independence of schema-assimilated memories confirms that slot-filling under an established schema uses neocortical machinery (the installed prior), not hippocampal episodic encoding.",
+    "mapping_caveat": "Tse et al. demonstrate the behavioral consequence of schema-first vs. schema-absent learning but do not directly characterise the SWS oscillatory mechanism of schema consolidation. The SWS/REM temporal mapping (SWS installs schema, REM fills slots) is an architectural inference from the temporal ordering of events, not directly measured in this experiment. Transfer from flavor-place association schema to REE context slot attribution extends the generality beyond what the paper directly tests.",
+    "source_context": "Rats trained on hippocampal-dependent paired-associate task (flavor-place associations). Schema built over multiple weeks. New pairs tested at 24h and 7d with hippocampal lesions. Science 2007."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Landmark Science paper with strong behavioral paradigm and causal lesion evidence. Mapping fidelity high -- schema-as-slot-structure / new-pairs-as-slot-fillers correspondence is tight. Transfer risk low: the principle of schema-enabled rapid assimilation is general; spatial flavor-place is the example domain."
+  }
+}

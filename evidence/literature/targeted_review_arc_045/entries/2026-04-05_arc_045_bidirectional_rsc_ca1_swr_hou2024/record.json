@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_045",
+  "entry_id": "2026-04-05_arc_045_bidirectional_rsc_ca1_swr_hou2024",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["ARC-045"],
+  "source": {
+    "title": "Coordinated Interactions between the Hippocampus and Retrosplenial Cortex in Spatial Memory",
+    "authors": ["Ruiqing Hou", "Ziyue Liu", "Zichen Jin", "Dongxue Huang", "Yue Hu", "Wenjie Du", "Danyi Zhu", "Leiting Yang", "Yuanfeng Weng", "Tifei Yuan", "Bin Lu", "Yingwei Wang", "Yong Ping", "Xiao Xiao"],
+    "year": 2024,
+    "venue": "Research (Washington D.C.)",
+    "doi": "10.34133/research.0521",
+    "pmid": "39483173",
+    "url": "https://doi.org/10.34133/research.0521"
+  },
+  "evidence_class": "electrophysiology_rodent",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Hou et al. provide direct electrophysiological evidence of bidirectional information flow between hippocampal CA1 and retrosplenial cortex (RSC) during NREM sleep SWRs. Using GLMs to trace information flow around SWR events: RSC excitatory neurons increase CA1 activity PRIOR to SWRs (RSC -> CA1 direction), while CA1 activates RSC inhibitory neurons AFTER SWRs (CA1 -> RSC direction). This bidirectionality -- RSC drives hippocampal replay initiation (schema/prior influence on what gets replayed) and hippocampus then updates RSC (attribution estimate installation) -- directly maps to ARC-045's claim that bidirectional flow is architecturally necessary for attribution mapping convergence. The RSC-to-CA1 pre-SWR drive is the neocortex-to-hippocampus (recognition/prior) direction; the CA1-to-RSC post-SWR activation is the hippocampus-to-neocortex (generative/installation) direction. Published in Research (Washington D.C.) with simultaneous multi-area recordings and causal direction tracing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_045", "bidirectional", "hippocampus", "retrosplenial_cortex", "CA1", "SWR", "NREM", "sleep", "information_flow", "reactivation", "spatial_memory", "electrophysiology", "supports"],
+  "mapping": {
+    "source_claim_statement": "During NREM sleep following spatial training, RSC excitatory neurons increase CA1 activity prior to SWRs (RSC -> CA1 direction), potentially initiating hippocampal memory replay. CA1 then activates RSC inhibitory neurons after SWRs (CA1 -> RSC direction). The circuit operates bidirectionally around the SWR event.",
+    "ree_translation": "ARC-045: The RSC-CA1-RSC bidirectional circuit provides direct evidence for the two-directional flow ARC-045 requires. The RSC -> CA1 pre-SWR direction is the neocortex-to-hippocampus (recognition model / prior) channel: cortical schema structure biases which hippocampal representations get replayed, ensuring replay is schema-consistent rather than random. The CA1 -> RSC post-SWR direction is the hippocampus-to-neocortex (generative model / installation) channel: attribution estimates computed during SWR replay are installed back into cortex. Attribution mapping convergence requires both directions: the prior shapes what is replayed, and the replay output updates the prior -- this is the iterative convergence loop that ARC-045 claims is architecturally necessary.",
+    "mapping_caveat": "Hou et al. demonstrate bidirectionality in spatial memory context (DSAT task), not in abstract causal attribution specifically. The RSC is a spatial/contextual association cortex; generalisation to arbitrary causal attribution schema requires structural inference. The paper does not manipulate directionality to show that blocking one direction impairs attribution convergence -- the causal necessity of bidirectionality is inferred from the circuit structure, not directly demonstrated.",
+    "source_context": "Freely moving mice; delayed spatial alternation task (DSAT); simultaneous CA1 and RSC recording during sleep following task; GLM-based information flow tracing around SWRs in NREM sleep. Research 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Strong primary data (simultaneous multi-area recording, GLM direction tracing, freely moving mice). Mapping fidelity high -- bidirectionality directly confirmed around SWR events in NREM sleep, with directional asymmetry (RSC excitatory -> pre-SWR; CA1 -> RSC inhibitory -> post-SWR) that maps onto generative/recognition duality. Transfer risk low-moderate: RSC is spatial/contextual, REE uses more abstract causal attribution; the circuit principle is the same."
+  }
+}

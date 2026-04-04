@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_044",
+  "entry_id": "2026-04-05_inv_044_common_event_structure_inference_morton2020",
+  "timestamp_utc": "2026-04-05T21:00:00Z",
+  "claim_ids_tested": ["INV-044"],
+  "source": {
+    "title": "Representations of common event structure in medial temporal lobe and frontoparietal cortex support efficient inference",
+    "authors": ["Neal W Morton", "Margaret L Schlichting", "Alison R Preston"],
+    "year": 2020,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1912338117",
+    "pmid": "33229532",
+    "url": "https://doi.org/10.1073/pnas.1912338117"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Morton et al. show that hippocampal and frontoparietal regions form abstract representations coding cross-triad relational structure with a common geometric structure -- even without explicit reinforcement to do so. Critically, parahippocampal cortex forms hierarchical representations that both reflect cross-triad (structural/schema) relationships and distinguish individual triads (slot-level). This dissociation directly supports the prior-before-posterior necessity: the geometric common structure must exist (schema/prior) before vector-based retrieval (slot-filling/posterior) can yield informative inferences. The pattern completion vs. vector-based retrieval dissociation between hippocampus and parahippocampal/parietal cortex provides a neural substrate for the two-stage architecture INV-044 requires. Published in PNAS with neurocomputational modelling. Confidence is moderate rather than high because the temporal ordering (schema first, then slot-filling) is inferred from the representational structure rather than directly manipulated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["inv_044", "schema", "abstraction", "inference", "hippocampus", "frontoparietal", "common_structure", "slot_filling", "prior", "posterior", "fMRI", "neurocomputational", "supports"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal and frontoparietal regions encode abstract geometric representations of common event structure (schema) across distinct triads. Parahippocampal cortex forms hierarchical representations coding both cross-triad structure (schema) and individual triad identity (slot). Pattern completion (hippocampus) and vector-based retrieval (parahippocampal/parietal) are dissociable processes supporting inference from prior structure.",
+    "ree_translation": "INV-044: The cross-triad common geometric representation is the prior structure that must exist before slot-level retrieval can be efficient. Morton et al. show that common structure forms spontaneously and that it is necessary for inference efficiency (faster AC inference when AB/BC share common structure). This maps onto the schema/prior (cross-triad structure -- which distinctions are relevant) necessarily preceding attribution/slot-filling (triad-specific retrieval -- which evidence belongs to which slot). The parahippocampal hierarchy that encodes both levels simultaneously is the substrate that bridges installed schema to specific attribution -- consistent with INV-044's prediction that these two levels cannot be co-computed in a single online pass (they require sequential construction).",
+    "mapping_caveat": "This paper does not test a system that attempts to co-compute schema and slot-filling simultaneously -- it demonstrates the neural substrate of the two-stage architecture but not the failure mode of collapsing it. The temporal ordering (schema installed before slot-filling becomes efficient) is the interpretive inference, not a direct manipulation. Transfer from spatial/associative inference to causal attribution slots extends beyond the paper's domain.",
+    "source_context": "fMRI study with healthy young adults; paired-associate task with triads sharing common structure; neurocomputational model of vector-based retrieval vs. pattern completion. PNAS 2020."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (PNAS, neurocomputational modelling, clear dissociation). Mapping fidelity good but indirect -- the paper shows neural substrate for two-stage architecture rather than directly testing the failure mode. Transfer risk moderate: human associative inference vs. REE causal attribution."
+  }
+}
