@@ -9539,3 +9539,81 @@
     Governance 2026-04-03: hold_pending_v3_substrate applied. implementation_phase=v3,
     2 supports from lit entries, 0 exp entries. No V3 substrate experiments yet. Standard
     V3-pending gate: hold until V3 experiments demonstrate dual-system discrimination.
+
+- id: MECH-164
+  title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
+    agent-indexed terrain inference with self-like gradient weighting: the system infers
+    what another agent would be inferring about the hippocampal terrain (their goal and
+    harm gradients), weights those inferred gradients with the same motivational force
+    as its own, and thereby produces care -- support for their goal-finding and
+    harm-avoidance -- as a natural consequence of ordinary E3 trajectory selection,
+    without a separate ethics module."
+  claim_type: mechanism_hypothesis
+  subject: love.agent_indexed_terrain_inference
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  depends_on:
+    - INV-001
+    - INV-005
+    - ARC-007
+    - MECH-163
+    - SD-011
+  notes: >
+    Registered 2026-04-04 from philosophical discussion about the mechanistic
+    instantiation of Axiom V (Synthese/Minds+Machines paper).
+
+    The mechanism has three components:
+
+    1. Agent-indexed terrain instantiation: the hippocampal terrain (goal gradient
+    + harm gradient encoded in z_world) must be representable from another agent's
+    perspective -- their goal cues, harm sensitivities, and current context seed a
+    terrain model indexed to them, not to self.
+
+    2. Self-like gradient weighting: the inferred other-agent gradients enter E3
+    trajectory selection with the same motivational weight as the agent's own
+    terrain gradients. This is not a scaled copy or a discounted proxy -- it is
+    structural symmetry in how gradients are weighted.
+
+    3. Care as emergent consequence: if (1) and (2) hold, behaviour that supports
+    another agent's goal-finding and harm-avoidance follows from ordinary E3
+    selection. No separate ethics circuit is required (consistent with INV-001).
+
+    Relationship to existing mechanisms:
+    - INV-005 (harm via mirror modelling) is the negative-side precursor: it
+      establishes that harm to others enters the cost function via the same
+      mechanism as self-harm. MECH-164 generalises this to the full terrain --
+      both harm gradient AND goal gradient -- and makes explicit the indexing
+      requirement (the terrain must be instantiated from the other's perspective,
+      not the self's).
+    - MECH-163 (dual goal-directed systems) provides the planning substrate:
+      the VTA/hippocampal system is required because 1-step greedy cannot
+      predict or navigate toward states that sustain another agent's goal
+      trajectory or reduce their harm accumulation over time.
+
+    Connection to "love once means love all" (Synthese paper Section 5):
+    Under Axiom I (epistemic humility), the agent cannot rule out that its
+    actions reshape another agent's terrain. Under self-like gradient weighting,
+    any inferred reshaping carries full motivational cost. The expansion of moral
+    scope is therefore not merely a consequence of uncertainty about causal chains;
+    it is forced by the architecture of inference itself. The scope of consideration
+    is bounded only by inferrable terrain -- which under increasing intelligence
+    expands without principled stopping point.
+
+    Distinction from harm avoidance:
+    Harm avoidance (SD-011 dual streams) demonstrates that the system can
+    distinguish and respond to harm gradients. MECH-164 requires additionally
+    that goal gradients for another agent are inferred and weighted. The
+    dissociation is non-trivial: harm avoidance is present in V3; agent-indexed
+    goal gradient inference is a V4 prerequisite. Axiom V is not fully
+    instantiated until both sides of another agent's terrain are internalised.
+
+    Implementation note:
+    z_world is already structured as a residue field -- not a fixed self-centred
+    map. Agent-indexing is a matter of whose context seeds the terrain model.
+    The substrate is architecturally compatible; V4 is the implementation target.
+  evidence: []
+  evidence_quality_note: >
+    Registered 2026-04-04. No experiments yet -- V4 implementation_phase.
+    Candidate status reflects architectural derivation from Axiom V + INV-005 +
+    MECH-163. Awaits V4 social extension substrate.
