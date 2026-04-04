@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_029",
+  "entry_id": "2026-04-05_arc_029_action_cancellation_race_schmidt2013",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-029"],
+  "source": {
+    "title": "Canceling actions involves a race between basal ganglia pathways.",
+    "authors": ["Schmidt, Robert", "Leventhal, Daniel K.", "Mallet, Nicolas", "Chen, Fujun", "Berke, Joshua D."],
+    "year": 2013,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3456",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23852117/"
+  },
+  "evidence_class": "electrophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.67,
+  "confidence_rationale": "Schmidt et al. (2013) provide direct neural evidence for a 'point of no return' in action execution: once striatal input to the SNr reaches sufficient magnitude, STN-mediated stop signals can no longer cancel the action. This is highly relevant to ARC-029 because it establishes that committed mode is not just a functional label but a neural state with a specific temporal boundary beyond which actions cannot be halted. The race between STN excitation (Stop) and striatal inhibition (Go) creates a commit point that is empirically measurable in neural activity. For ARC-029, this means: (a) the committed mode is a real neural state, not an abstraction; (b) the committed mode is irreversible by design once the race is won by the Go pathway; (c) actions that pass through the commit gate (STN win arrives before striatal win) should have lower impulsive-error rates than uncommitted actions because the Pause evaluation was able to run. The Nature Neuroscience venue and direct electrophysiology evidence strengthen confidence. Confidence moderated by the fact that harm rate (ARC-029's outcome variable) is not directly measured -- only cancellation success/failure is measured, and the harm consequences of uncanceled vs. canceled actions are not tracked.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures cancellation success/failure in a stop-signal task, not harm rates in a navigation or control environment. The link from 'cancellation failure = committed action executed despite stop signal' to 'committed mode = lower harm in stable environments' requires the additional step that (a) impulsive, uncanceled actions are harmful in proportion to environmental hazard density, and (b) agents operating in committed mode have already passed Pause evaluation. Neither step is directly tested.",
+    "The point-of-no-return architecture is about preventing cancellation of in-flight actions -- it describes why committed actions cannot be stopped. ARC-029's benefit claim is about committed mode reducing reactive exploration errors, not about in-flight action irreversibility. These are related but distinct mechanisms.",
+    "Rat stop-signal task with specifically designed trial structure. The transfer to multi-step trajectory harm in a grid world or similar environment requires substantial generalization."
+  ],
+  "tags": ["arc_029", "arc_016", "beta_gate", "commitment", "point_of_no_return", "basal_ganglia", "action_cancellation", "stn", "striatum"],
+  "mapping": {
+    "source_claim_statement": "Canceling actions requires STN stop-cue information to arrive at SNr before striatal movement-related inhibition creates a point of no return. STN neurons respond to Stop cues regardless of outcome, but SNr responses only occur in successful cancellation trials -- indicating that successful cancellation depends on the relative timing of two BG pathway inputs to SNr.",
+    "ree_translation": "ARC-029 requires that committed and uncommitted modes produce measurably distinct harm outcomes. Schmidt et al. establish the neural race that determines whether an action enters committed mode: if STN (Pause/evaluation) wins, the action can be canceled; if striatum (Go momentum) wins, the action is committed and cannot be stopped. The committed mode is thus not a continuous state but a discrete outcome of this neural race. ARC-029's harm advantage in stable environments reflects that the STN-wins path (evaluation before commitment) screens out high-harm actions, while the striatum-wins path (commitment before evaluation) locks in actions that may encounter hazards. Agents with elevated BetaGate (ARC-016) extend the STN evaluation window, increasing the probability of pre-commitment harm detection.",
+    "mapping_caveat": "The paper shows that the race determines cancellation success for an already-planned action, not that the committed-mode regime as a sustained state reduces harm across a trajectory. The REE BetaGate operates at planning/selection time (before the point of no return), not at in-flight cancellation time. The mapping works if we interpret the race model as showing why commitment gating must occur at selection time -- once committed, harm avoidance can only come from prior evaluation, not reactive cancellation. This is consistent with ARC-029 but the paper does not directly measure harm consequences of committed vs. uncommitted action selection policies.",
+    "source_context": "Primary electrophysiology study in rats performing a stop-signal task with simultaneous multi-structure BG recordings. Nature Neuroscience 2013. PMID 23852117. From Berke lab. Primary data companion to the Schmidt & Berke 2017 review. Highly cited for establishing the neural race model."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.48,
+    "notes": "Very high source quality (Nature Neuroscience, primary electrophysiology, race model directly tested). Mapping fidelity is moderate -- the race model establishes the point-of-no-return that defines the commit boundary, which is the right structural component for ARC-029, but the paper's dependent variable (cancellation success) differs from ARC-029's (harm rate). Transfer risk is moderate -- the task structure is a stop-signal single-trial event, not sustained committed-mode harm accumulation."
+  }
+}

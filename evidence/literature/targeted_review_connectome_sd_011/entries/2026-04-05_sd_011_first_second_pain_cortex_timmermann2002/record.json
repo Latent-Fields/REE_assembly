@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["SD-011", "ARC-033"],
+  "source": {
+    "title": "Cortical representation of first and second pain sensation in humans.",
+    "authors": ["Timmermann L", "Ploner M", "Haucke K", "Schmitz F", "Baltissen R", "Schnitzler A"],
+    "year": 2001,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.182272899",
+    "pmid": "12209003",
+    "citation": "Proc Natl Acad Sci USA. 2001 Sep;99(19):12444-8"
+  },
+  "evidence_class": "empirical_study",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
+    "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
+  ],
+  "tags": ["sd_011", "arc_033", "first_pain", "second_pain", "a_delta", "c_fiber", "meg", "s1", "s2", "acc", "temporal_dissociation", "laser_pain", "experimental"],
+  "mapping": {
+    "source_claim_statement": "Cutaneous laser stimuli of sufficient intensity evoke a double pain response: an initial sharp/pricking sensation (first pain, A-delta mediated, ~200ms latency) and a delayed burning sensation (second pain, C-fiber mediated, ~1000ms latency). MEG recordings showed that first pain evoked early, topographically sharp activations in S1 and S2 bilaterally. Second pain evoked a late, more sustained and spatially diffuse response in S2, insula, and anterior cingulate cortex. The two cortical responses were temporally and spatially separable.",
+    "ree_translation": "This study provides the most direct temporal dissociation evidence for the SD-011 stream separation. The A-delta (first pain) cortical response maps onto z_harm_s: fast (200ms), sharp, somatotopically precise, activating S1/S2 -- the sensory-discriminative cortical substrate. The C-fiber (second pain) cortical response maps onto z_harm_a: slow (1000ms), sustained, diffuse, activating insula and ACC -- the affective-motivational substrate. For ARC-033: the temporal precision and early latency of the A-delta cortical response means that z_harm_s carries event-timed information -- it rises sharply at the moment of harm and decays. This temporal structure is what makes it learnable by a forward model (E2_harm_s): the model needs to predict a sharp event-locked signal, which is much easier than predicting a diffuse, sustained, slowly-integrating signal (z_harm_a). The ~800ms separation between first and second pain cortical peaks gives a concrete measure of the temporal scale difference between the two streams.",
+    "mapping_caveat": "The laser pain paradigm uses brief (ms-duration) cutaneous stimuli to maximally separate first and second pain. In naturalistic harm scenarios (e.g., sustained tissue damage, repeated insult), the A-delta and C-fiber responses overlap and the temporal dissociation is less clean. The REE harm environment involves step-function harm signals from grid world contact, which may be more analogous to the brief laser pulse than to sustained tissue damage -- this could make the forward-modelability of z_harm_s even cleaner in practice than in biology. The MEG source localization (cortical generator estimation from scalp fields) carries inherent spatial uncertainty; the S1 vs. ACC distinction may be less precise than reported.",
+    "source_context": "Human MEG study using cutaneous laser-evoked potentials to study first and second pain. Healthy adults. Published in PNAS (Schnitzler lab, Dusseldorf). Peer-reviewed primary data."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Good source quality (PNAS, primary human MEG data). High mapping fidelity for temporal dissociation: the ~800ms difference between first and second pain cortical peaks is a concrete and directly relevant number for REE's stream separation. Transfer risk is moderate-low: the laser pain paradigm in humans provides a clean A-delta/C-fiber separation, but naturalistic harm in REE's gridworld may not have the same A-delta/C-fiber structure -- harm in gridworld is a scalar reward signal, not cutaneous nociception."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_038",
+  "entry_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-038", "MECH-092"],
+  "source": {
+    "title": "Play it again: reactivation of waking experience and memory",
+    "authors": ["Joseph O'Neill", "Barty Pleydell-Bouverie", "David Dupret", "Jozsef Csicsvari"],
+    "year": 2010,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2010.01.006",
+    "pmid": "20207025",
+    "url": "https://doi.org/10.1016/j.tins.2010.01.006"
+  },
+  "evidence_class": "review_mechanistic",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_038", "mech_092", "swr", "replay", "reactivation", "rest", "waking", "consolidation", "cortical_reinstatement", "review", "supports"],
+  "mapping": {
+    "source_claim_statement": "SWR events in the hippocampus during sleep and waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. The hippocampus organizes this reactivation process across multiple brain regions.",
+    "ree_translation": "ARC-038: The biological parallel is explicit -- SWR-directed reactivation during rest (not just sleep) consolidates map geometry by replaying recent trajectory experience and propagating this to downstream cortical circuits. The hippocampus acting as organizer maps onto the E3 hippocampal module running the replay pass. The cortical reinstatement function maps onto viability map update propagating to downstream planning systems. MECH-092: SWR-mediated replay during quiescent rest states (the 'Micro-DMN') is a functionally distinct offline consolidation mode, separable from active goal-directed operation.",
+    "mapping_caveat": "Review does not sharply distinguish goal-directed prospective sweeps from consolidation replay -- this distinction is implicit rather than explicit. The cortical-reinstatement framing assumes systems consolidation architecture beyond E3, which is not yet implemented in V3. Transfer from full hippocampal-cortical circuit to the E3 module alone incurs architectural simplification.",
+    "source_context": "Review synthesizing rodent and human hippocampal physiology; sleep, rest, and awake quiescence states; SWR-based reactivation and memory consolidation literature up to 2010."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "High-quality review from major group (Csicsvari). Mapping is direct for the waking-rest reactivation function. Uncertainty: review does not explicitly address the goal-directed vs. consolidation distinction central to ARC-038."
+  }
+}

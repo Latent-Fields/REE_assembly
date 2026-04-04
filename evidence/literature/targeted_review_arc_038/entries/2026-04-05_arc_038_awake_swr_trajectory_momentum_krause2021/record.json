@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_038",
+  "entry_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-038", "MECH-092"],
+  "source": {
+    "title": "A large majority of awake hippocampal sharp-wave ripples feature spatial trajectories with momentum",
+    "authors": ["Emma L. Krause", "Jan Drugowitsch"],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.11.014",
+    "pmid": "34863366",
+    "url": "https://doi.org/10.1016/j.neuron.2021.11.014"
+  },
+  "evidence_class": "electrophysiology_rodent",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_038", "mech_092", "swr", "replay", "awake", "quiescence", "trajectory", "momentum", "place_cells", "rodent", "electrophysiology", "supports"],
+  "mapping": {
+    "source_claim_statement": "Almost all awake SWRs in foraging rodents simulate spatial trajectories with momentum (inertia in velocity matching natural movement), in contrast to sleep SWRs which lack such momentum. Prior analyses of navigational planning were biased by heuristic sub-selection of SWR subsets.",
+    "ree_translation": "ARC-038: Waking-quiescence hippocampal replay runs compressed trajectory simulation over recent experience (map-update mode). The momentum property indicates replay is anchored to experienced trajectories, not to future goal states -- supporting the consolidation/map-geometry-update function rather than goal-directed prospective sweep. MECH-092: The near-universal incidence of trajectory-embedded SWRs during awake rest supports the claim that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay, and that this replay has geometric content (trajectory with momentum) appropriate for viability map update.",
+    "mapping_caveat": "Momentum in awake SWRs is distinguishable from sleep replay but this paper does not directly test whether the content is goal-directed or consolidation-oriented in the ARC-038 sense. The distinction between prospective goal-directed sweeps and waking consolidation replay requires additional evidence (e.g., manipulation of goal state). Transfer from rodent foraging to REE V3 substrate architecture is indirect.",
+    "source_context": "Freely foraging rats; Bayesian model comparison of state-space models applied to CA1 place cell sequences during SWRs; comparison of awake rest vs. sleep SWR trajectory properties."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Neuron, principled Bayesian analysis, n corrects for prior heuristic bias). Mapping fidelity good for waking replay with trajectory content; weaker for the consolidation-vs-goal-directed distinction. Transfer risk: rodent foraging does not directly probe goal-state-dependent vs. quiescent-consolidation modes."
+  }
+}

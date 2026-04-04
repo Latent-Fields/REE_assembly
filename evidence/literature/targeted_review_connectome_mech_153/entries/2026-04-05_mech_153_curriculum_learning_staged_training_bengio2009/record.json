@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-153", "ARC-042"],
+  "source": {
+    "title": "Curriculum Learning",
+    "authors": ["Bengio, Yoshua", "Louradour, Jerome", "Collobert, Ronan", "Weston, Jason"],
+    "year": 2009,
+    "venue": "Proceedings of the 26th International Conference on Machine Learning (ICML)",
+    "doi": "10.1145/1553374.1553380",
+    "arxiv_id": null,
+    "pmc": null
+  },
+  "evidence_class": "ml_theoretical_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bengio et al.'s experiments are on feedforward networks and RNNs for NLP/vision. The ContextMemory failure mode (cosine_sim=1.0) is more extreme than typical curriculum-without-curriculum failures in standard classification tasks, which usually produce suboptimal but non-collapsed representations. The total collapse in EXQ-187a suggests an additional issue beyond curriculum ordering: the label gradient itself may be too weak (lambda=0.1) to compete with the prediction-error gradient, which is not addressed by curriculum ordering alone.",
+    "Bengio et al.'s curriculum orders examples by difficulty within a fixed objective. ARC-042's staged training changes the objective itself (Phase 0: prediction error only; Phase 1: prediction + label loss; Phase 2: frozen representation). This is a stronger claim than standard curriculum learning -- it is objective staging, not example staging. Bengio et al.'s theoretical grounding covers example ordering; objective staging requires additional justification (e.g., from multi-task learning or transfer learning literature)."
+  ],
+  "tags": ["mech_153", "arc_042", "curriculum_learning", "staged_training", "representation_learning", "non_convex_optimization", "bootstrapping", "ml_evidence"],
+  "mapping": {
+    "source_claim_statement": "Training on a curriculum (easy-to-hard ordering of examples or tasks) improves both the speed of convergence and the quality of local minima found for non-convex objectives. Curriculum learning can be understood as a continuation method: simpler tasks guide the optimizer away from bad local minima that would trap random-order training. When complex objectives are introduced without prior simpler-task warm-up, the optimization can converge to degenerate solutions.",
+    "ree_translation": "MECH-153's requirement that supervised terrain-type labels must flow gradients through extract_cue_context() before context representations are useful is a curriculum learning claim: the label-supervised objective is the hard task that must be preceded by an easier warm-up (world model prediction in Phase 0). Without Phase 0 bootstrapping, the full joint objective is too complex and may converge to the trivial solution (all context vectors identical, cosine_sim=1.0). ARC-042's Phase 0/1/2 structure is explicitly a curriculum: Phase 0 establishes the easy objective (predict world state transitions), Phase 1 introduces the discriminating objective (separate terrain types), Phase 2 evaluates the frozen representation. Bengio et al. provide the theoretical and empirical grounding that this staged approach is not merely convenient but necessary for non-convex representation learning tasks where the hard objective is not learnable from scratch.",
+    "mapping_caveat": "Bengio et al. demonstrate curriculum benefits in classification and language tasks. The specific REE failure mode (complete representation collapse under lambda=0.1) may require additional explanation beyond curriculum ordering -- the label signal strength may be below the threshold needed to induce differentiation regardless of curriculum structure. ARC-042's Phase 1 gate is not merely about ordering but about the supervised label being the sole differentiating signal during an intensive training phase. This is stronger than what Bengio et al. prove.",
+    "source_context": "NLP tasks (text chunking, language modeling) and shape/object recognition in vision; feedforward and recurrent neural networks; ICML 2009"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.48,
+    "notes": "ICML 2009, ~17,000 citations -- foundational paper, top-tier venue. Mapping fidelity moderate: the curriculum learning principle (staged objective introduction aids non-convex optimization) maps clearly onto both MECH-153 and ARC-042, but the specific failure mode in REE (complete cosine_sim collapse under weak lambda) requires more nuanced explanation than curriculum ordering provides. Transfer risk moderate: the core optimization principle is architecture-agnostic, but demonstration tasks differ significantly from the LSTM context memory setting."
+  }
+}

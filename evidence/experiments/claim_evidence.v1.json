@@ -1462,18 +1462,21 @@
       }
     },
     "ARC-029": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.616, lit_conf=0.723",
+      "confidence_rationale": "exp=4 entry(s), lit=6 entry(s), exp_conf=0.616, lit_conf=0.83",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 7,
         "unknown": 1,
         "weakens": 2
       },
-      "entries_total": 6,
+      "entries_total": 10,
       "evidence_class_counts": {
         "exp:simulation": 4,
         "lit:clinical_case": 1,
-        "lit:fmri_connectivity": 1
+        "lit:computational_model": 1,
+        "lit:electrophysiology_animal": 2,
+        "lit:fmri_connectivity": 1,
+        "lit:review_neurophysiology": 1
       },
       "experimental_confidence": 0.616,
       "fail_runs": 3,
@@ -1484,76 +1487,12 @@
         "unknown": 1,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_125_arc029_committed_mode_pair_20260404T022448Z_v3",
-      "latest_timestamp_utc": "2026-04-04T02:24:48Z",
-      "literature_confidence": 0.723,
-      "overall_confidence": 0.659,
+      "latest_run_id": "2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.83,
+      "overall_confidence": 0.723,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-029",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_125_arc029_committed_mode_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_125_arc029_committed_mode_pair_20260329T010106Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-29T01:01:06Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-029",
-          "confidence": 0.64,
-          "confidence_rationale": "Camille et al. (2004) provides a double dissociation argument: patients with orbitofrontal cortex lesions fail to report regret and fail to anticipate negative consequences of committed choices, while normal subjects do both. This lesion study establishes that post-commitment counterfactual evaluation is an active, dedicated neural computation -- not merely an implicit process -- and that its absence measurably changes decision behavior. When the circuit is removed by lesion, patients make suboptimal choices that normal subjects learn to avoid through accumulated regret. This is structural evidence that committed-mode error processing is distinct from pre-commitment deliberation: the OFC is required for post-commitment evaluation, and agents without it behave differently in measurable ways. ARC-029 claims that committed and uncommitted modes produce measurably distinct harm outcomes; the lesion evidence provides the double-dissociation side of this argument -- that there exists a neural mechanism specifically dedicated to post-commitment outcome evaluation, and its presence or absence changes behavioral outcomes. Confidence moderated by the clinical/computational gap and by the fact that the paper measures choice suboptimality (regret-avoidance failure) rather than harm accumulation directly.",
-          "evidence_class": "lit:clinical_case",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_029",
-          "failure_signatures": [
-            "OFC lesion patients still make decisions and incur outcomes -- they do not become unable to operate. The deficit is specifically in regret-learning and regret anticipation, not in general decision capacity. This means the committed/uncommitted distinction is specifically about the evaluative and learning circuit, not about execution capacity. ARC-029's claim about distinct harm outcomes would need to specify whether it is about the execution or the evaluation channel.",
-            "The paper is a clinical case series with small N -- a typical limitation for lesion studies. The specific OFC lesion locations vary across patients. The generalisation from OFC lesion patients to a computational architecture requires strong assumptions about modularity."
-          ],
-          "run_id": "2026-03-29_arc_029_ofc_regret_lesion_camille2004",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-029",
-          "confidence": 0.66,
-          "confidence_rationale": "Coricelli et al. (2005) demonstrates that committed choices (where the outcome of the unchosen alternative is revealed) produce qualitatively different neural and behavioral responses than unchosen alternatives: specifically, medial OFC and anterior cingulate activate in proportion to the counterfactual gap between what was obtained and what could have been obtained. Subjects became progressively regret-aversive over the experiment, and the same OFC/amygdala circuit that registered experienced regret was active prospectively during decision-making, modifying subsequent choices to avoid regret. This is the neural signature of a committed-mode error routing: post-commitment outcomes (realised consequences of chosen actions) are evaluated against a counterfactual baseline in a way that influences future committed choices differently from pre-commitment deliberation. ARC-029 claims that committed and uncommitted operating modes produce measurably distinct harm outcomes. The Coricelli paper supports the distinct modes claim: committed outcomes activate a neural circuit (OFC/ACC/amygdala regret system) that is not active during pre-decision simulation, and this circuit specifically evaluates irreversible consequences. Confidence moderated by the significant mapping gap: Coricelli studies human subjective regret in a gambling paradigm, while ARC-029 is about observable harm accumulation in an agent control loop.",
-          "evidence_class": "lit:fmri_connectivity",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_029",
-          "failure_signatures": [
-            "The paper studies subjective emotional responses (regret as a felt state) rather than objective harm accumulation differences. ARC-029's claim is specifically about measurably distinct harm outcomes -- a behavioral rather than subjective claim. The Coricelli paper does not measure harm directly and does not compare cumulative harm between committed and uncommitted conditions.",
-            "The gambling paradigm used by Coricelli does not involve the kind of irreversible physical harm that motivates ARC-029's commit boundary. Losing money in a gamble is financially irreversible but qualitatively different from the harm-irreversibility that motivates the pre/post-commit distinction in REE."
-          ],
-          "run_id": "2026-03-29_arc_029_regret_avoidance_ofc_coricelli2005",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-029",
-          "confidence": 0.45,
-          "confidence_rationale": "unknown direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "unknown",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_125_arc029_committed_mode_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_125_arc029_committed_mode_pair_20260403T201459Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-03T20:14:59Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-029",
@@ -1568,12 +1507,85 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-04T02:24:48Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-029",
+          "confidence": 0.67,
+          "confidence_rationale": "Schmidt et al. (2013) provide direct neural evidence for a 'point of no return' in action execution: once striatal input to the SNr reaches sufficient magnitude, STN-mediated stop signals can no longer cancel the action. This is highly relevant to ARC-029 because it establishes that committed mode is not just a functional label but a neural state with a specific temporal boundary beyond which actions cannot be halted. The race between STN excitation (Stop) and striatal inhibition (Go) creates a commit point that is empirically measurable in neural activity. For ARC-029, this means: (a) the committed mode is a real neural state, not an abstraction; (b) the committed mode is irreversible by design once the race is won by the Go pathway; (c) actions that pass through the commit gate (STN win arrives before striatal win) should have lower impulsive-error rates than uncommitted actions because the Pause evaluation was able to run. The Nature Neuroscience venue and direct electrophysiology evidence strengthen confidence. Confidence moderated by the fact that harm rate (ARC-029's outcome variable) is not directly measured -- only cancellation success/failure is measured, and the harm consequences of uncanceled vs. canceled actions are not tracked.",
+          "evidence_class": "lit:electrophysiology_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_029",
+          "failure_signatures": [
+            "The paper measures cancellation success/failure in a stop-signal task, not harm rates in a navigation or control environment. The link from 'cancellation failure = committed action executed despite stop signal' to 'committed mode = lower harm in stable environments' requires the additional step that (a) impulsive, uncanceled actions are harmful in proportion to environmental hazard density, and (b) agents operating in committed mode have already passed Pause evaluation. Neither step is directly tested.",
+            "The point-of-no-return architecture is about preventing cancellation of in-flight actions -- it describes why committed actions cannot be stopped. ARC-029's benefit claim is about committed mode reducing reactive exploration errors, not about in-flight action irreversibility. These are related but distinct mechanisms.",
+            "Rat stop-signal task with specifically designed trial structure. The transfer to multi-step trajectory harm in a grid world or similar environment requires substantial generalization."
+          ],
+          "run_id": "2026-04-05_arc_029_action_cancellation_race_schmidt2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-029",
+          "confidence": 0.74,
+          "confidence_rationale": "Leventhal et al. (2012) is the most directly relevant empirical study for ARC-029. Using multi-electrode recordings across the cortical-BG network in rats, they show that brief beta (~20 Hz) oscillations arise after cue-guided decisions and increase specifically when cues are used to determine motor output -- not during movement suppression per se and not locked to movement. Their central interpretation is that beta oscillations reflect a post-decision stabilized state of cortical-BG networks that reduces interference from alternative potential actions. This is precisely the functional role that ARC-029's committed-mode gate (BetaGate) implements: after commitment, beta elevation should keep the agent in its chosen action mode, suppressing exploratory variance. The paper also provides the pathological analogy -- abnormally strong beta in Parkinson's Disease reflects overstabilization, producing pathological persistence of the current motor state -- which directly predicts the V-shaped benefit curve ARC-029 implies: too little committed-mode beta = harm from reactive exploration; too much = harm from pathological rigidity. Confidence is moderated by the rodent-to-architecture transfer gap and by the fact that harm rate reduction is not directly measured -- the paper measures interference suppression and action-mode stability, not error or harm outcomes.",
+          "evidence_class": "lit:electrophysiology_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_029",
+          "failure_signatures": [
+            "The paper does not directly measure error or harm rates under committed vs. uncommitted conditions. It measures oscillatory power and reaction time, not downstream harm accumulation. The link from 'beta stabilizes the current action mode' to 'harm rate is lower when committed' requires an additional step: that reactive exploration produces harm and committed-mode suppression of that exploration reduces harm. This link is asserted by ARC-029 but not directly tested by Leventhal et al.",
+            "Beta oscillations are task-modulated but transient -- they appear as brief epochs, not sustained elevated states. ARC-029's committed mode is modelled as a sustained operational regime (BetaGate elevation). The Leventhal data supports the transient gating mechanism but does not directly address sustained committed-mode operation across multi-step trajectories.",
+            "The study is in rats performing a serial reaction time task and a deliberate choice task. The environments are designed to be highly stable and cue-reliable. Whether the beta stabilization advantage holds in volatile environments (where ARC-029 predicts the committed-mode benefit should be lower) is not tested in this study."
+          ],
+          "run_id": "2026-04-05_arc_029_beta_stabilized_state_leventhal2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-029",
+          "confidence": 0.6,
+          "confidence_rationale": "Humphries et al. (2012) model the BG output as a probability distribution over actions, and show via computational simulation that tonic striatal dopamine shifts this distribution between exploration-favoring (flat distribution, high entropy) and exploitation-favoring (peaked distribution, low entropy) action selection. This directly addresses ARC-029's 'stable environments' qualifier: the paper explicitly predicts and models that stable environments favor exploitation (committed mode, dopamine-favored peaked distribution), while volatile environments favor exploration (uncommitted mode, low dopamine flat distribution). The computational model provides a mechanism for how the committed/uncommitted mode distinction maps onto environmental volatility via tonic dopamine -- which is the intermediate variable between environment stability and BetaGate elevation in REE's architecture. The exploration policy in low-dopamine states increases behavioral variance, which maps to higher harm rates when hazards are present. Confidence moderated by computational model status (not primary electrophysiology), by the use of a forced two-choice task rather than a harm-producing navigation environment, and by the fact that harm rate is not directly modeled -- only exploration/exploitation ratio is.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_029",
+          "failure_signatures": [
+            "The paper models exploration vs. exploitation as a continuous parameter (tonic dopamine level shifts the BG output distribution), whereas ARC-029 models committed vs. uncommitted as a discrete gate. The mapping requires treating committed mode as the high-exploitation pole of the dopamine spectrum, but ARC-029's BetaGate mechanism is not identical to tonic dopamine.",
+            "The model uses a simplified two-choice task and reinforcement learning framework. Harm as a specific measurable quantity in a hazardous navigation environment is not modeled. The exploration condition produces suboptimal reward accumulation, which is a proxy for harm only if we assume rewards and harms are on the same axis.",
+            "The paper argues that dopamine's apparent effect on learning may actually be mediated by its effect on exploration-exploitation trade-off. This means that some evidence cited for dopamine affecting committed-mode quality may actually reflect dopamine changing the exploration policy rather than changing the committed-mode mechanism itself -- a confound that is relevant to interpreting EXQ-125a results.",
+            "Tonic dopamine is the proposed intermediate variable, but ARC-016/ARC-029's BetaGate is modeled as a beta oscillation gating signal, not directly as a tonic dopamine proxy. The relationship between tonic dopamine level and beta oscillation power is known to be inverse (high dopamine suppresses beta), so the mapping works in direction but through an indirect path."
+          ],
+          "run_id": "2026-04-05_arc_029_dopamine_exploration_exploitation_humphries2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-029",
+          "confidence": 0.65,
+          "confidence_rationale": "Schmidt & Berke (2017) provide a review and model of how distinct BG cell types and pathways implement separable action-control processes: Go (direct pathway striatum), Pause (STN hyperdirect pathway), and Cancel (arkypallidal GPe). The Pause process is specifically relevant to ARC-029: brief beta oscillation epochs in striatum coincide with the Pause phase, creating a temporary hold on the current action stream. This is functionally equivalent to the committed-mode gate raising inhibition before irreversibility. Critically, the paper shows that Pause and Cancel are distinct processes that can be mapped to specific circuitry, supporting ARC-029's core architectural claim that committed and uncommitted modes are implemented by distinct neural mechanisms (not a single dial). The separation of Go/Pause/Cancel maps onto REE's pre-commit (Go), commit-threshold evaluation (Pause), and action execution (committed-mode post-Cancel resumption) phases. Confidence moderated by the review/synthesis nature (not primary data), by the fact that harm rate is not directly addressed, and by the architectural translation gap from stop-signal task behavior to multi-step trajectory harm outcomes.",
+          "evidence_class": "lit:review_neurophysiology",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_029",
+          "failure_signatures": [
+            "The Pause-then-Cancel model is developed for action stopping and inhibition, not for sustained committed-mode operation. The 'committed mode' in ARC-029 is a sustained positive-action regime, not a stopping event. The mapping requires treating the commit threshold as the moment when the Pause/Cancel decision is made and committed mode is the post-decision sustained state -- an indirect mapping.",
+            "The review synthesizes existing data but does not present new primary evidence for the harm-rate consequence of Go vs. Pause states. Error rates in stop-signal tasks are not decomposed into harm-producing vs. non-harm-producing errors.",
+            "The Pause-then-Cancel model emphasizes the stopping pathway; ARC-029's committed mode is about the going pathway being protected. The paper is more directly about uncommitted-mode vulnerability (failure to Pause/Cancel leading to committed errors) than about committed-mode harm reduction."
+          ],
+          "run_id": "2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 10,
       "source_counts": {
         "experimental": 4,
-        "literature": 2
+        "literature": 6
       }
     },
     "ARC-030": {
@@ -1814,19 +1826,20 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=8 entry(s), lit=5 entry(s), exp_conf=0.711, lit_conf=0.842",
+      "confidence_rationale": "exp=8 entry(s), lit=7 entry(s), exp_conf=0.711, lit_conf=0.86",
       "direction_counts": {
         "mixed": 1,
-        "supports": 8,
+        "supports": 10,
         "unknown": 0,
         "weakens": 4
       },
-      "entries_total": 13,
+      "entries_total": 15,
       "evidence_class_counts": {
         "exp:simulation": 8,
         "lit:computational_model": 1,
+        "lit:empirical_study": 1,
         "lit:fmri_connectivity": 3,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "experimental_confidence": 0.711,
       "fail_runs": 5,
@@ -1837,42 +1850,12 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "2026-04-04_arc_033_predictive_coding_pain_song2021",
-      "latest_timestamp_utc": "2026-04-04T00:30:00Z",
-      "literature_confidence": 0.842,
-      "overall_confidence": 0.776,
+      "latest_run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.86,
+      "overall_confidence": 0.785,
       "pass_runs": 3,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "failure_signatures": [],
-          "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-01T23:01:27.718899Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-033",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_205_sd003_harm_attribution_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_205_sd003_harm_attribution_pair_20260402T230715Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-02T23:07:15Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-033",
@@ -1923,12 +1906,46 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-04T00:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.8,
+          "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_033",
+          "failure_signatures": [
+            "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
+            "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
+          ],
+          "run_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-033",
+          "confidence": 0.82,
+          "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
+          "evidence_class": "lit:empirical_study",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
+            "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
+          ],
+          "run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 13,
+      "runs_total": 15,
       "source_counts": {
         "experimental": 8,
-        "literature": 5
+        "literature": 7
       }
     },
     "ARC-035": {
@@ -2091,17 +2108,20 @@
       }
     },
     "ARC-038": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.318, lit_conf=0.769",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.318, lit_conf=0.909",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 5,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 2,
+      "entries_total": 6,
       "evidence_class_counts": {
         "exp:simulation": 1,
-        "lit:behavioral_animal": 1
+        "lit:behavioral_animal": 1,
+        "lit:electrophysiology_rodent": 1,
+        "lit:electrophysiology_rodent_causal": 1,
+        "lit:review_mechanistic": 2
       },
       "experimental_confidence": 0.318,
       "fail_runs": 1,
@@ -2112,29 +2132,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "v3_exq_191_arc038_schema_assimilation_probe_20260401T194007Z_v3",
-      "latest_timestamp_utc": "2026-04-01T19:40:07Z",
-      "literature_confidence": 0.769,
-      "overall_confidence": 0.543,
+      "latest_run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.909,
+      "overall_confidence": 0.761,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-038",
-          "confidence": 0.84,
-          "confidence_rationale": "Landmark Science paper with robust behavioral and lesion evidence in rats. Directly demonstrates that a pre-existing associative schema dramatically accelerates systems consolidation -- new paired-associate traces become hippocampal-independent within 48 hours when a schema exists, vs weeks without. High venue, well-replicated. Transfer risk from rat to REE is moderate: the REE analog is E1 learning rate as a function of existing residue-field map structure, not literal hippocampal-independence timing. The causal claim (schema enables rapid consolidation) is clean.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_v3_hippocampal_rollout",
-          "failure_signatures": [
-            "Rapid schema-mediated consolidation requires that the new information is genuinely assimilable into the existing schema; items that violate schema structure do not consolidate rapidly.",
-            "Hippocampal-independence does not mean the hippocampus becomes inactive -- retrieval can still engage it. The claim is about neocortical consolidation speed, not hippocampal withdrawal."
-          ],
-          "run_id": "2026-03-30_hippo_schema_tse2007",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-30T23:50:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-038",
@@ -2149,12 +2152,68 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-01T19:40:07Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-038",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
+          "evidence_class": "lit:electrophysiology_rodent",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-038",
+          "confidence": 0.78,
+          "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
+          "evidence_class": "lit:review_mechanistic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-038",
+          "confidence": 0.85,
+          "confidence_rationale": "Causal intervention study: selectively disrupting hippocampal activity during ripple events in awake rest periods impaired subsequent spatial learning. Rats that had ripple activity disrupted during rest after task learned the subsequent task significantly more slowly. This is the strongest class of evidence for ARC-038 -- causal necessity of waking-quiescence SWR replay for subsequent map-based performance. The disruption was specific to ripple-associated activity (not overall sleep-wake structure), directly implicating SWR-based waking consolidation. Published in Hippocampus. Main caveat: the rest period included both sleep and quiet wakefulness -- the paper does not fully isolate purely awake SWR disruption.",
+          "evidence_class": "lit:electrophysiology_rodent_causal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_ripple_disruption_awake_egostengel2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-038",
+          "confidence": 0.8,
+          "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
+          "evidence_class": "lit:review_mechanistic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 1,
-        "literature": 1
+        "literature": 5
       }
     },
     "ARC-039": {
@@ -2327,18 +2386,20 @@
       }
     },
     "ARC-042": {
-      "confidence_rationale": "exp=3 entry(s), lit=2 entry(s), exp_conf=0.416, lit_conf=0.737",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.416, lit_conf=0.849",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 5,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 5,
+      "entries_total": 8,
       "evidence_class_counts": {
         "exp:simulation": 3,
         "lit:behavioral_animal": 1,
-        "lit:connectome_mechanistic_review": 1
+        "lit:connectome_mechanistic_review": 1,
+        "lit:ml_theoretical_empirical": 2,
+        "lit:neuroscience_computational": 1
       },
       "experimental_confidence": 0.416,
       "fail_runs": 2,
@@ -2349,61 +2410,12 @@
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "v3_exq_211_mech153_arc042_supervised_labeling_1775203010_v3",
-      "latest_timestamp_utc": "2026-04-03T21:36:50Z",
-      "literature_confidence": 0.737,
-      "overall_confidence": 0.544,
+      "latest_run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+      "latest_timestamp_utc": "2026-04-05T12:00:00Z",
+      "literature_confidence": 0.849,
+      "overall_confidence": 0.632,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-042",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_187a_mech153_supervised_context_labeling",
-          "failure_signatures": [],
-          "run_id": "v3_exq_187a_mech153_supervised_context_labeling_20260401T232546Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-01T23:25:46Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-042",
-          "confidence": 0.7,
-          "confidence_rationale": "This review establishes that PFC maturation extends to the 3rd decade of life in humans, with staged circuit formation, synaptic overproduction followed by pruning, and protracted functional development. Directly supports ARC-042's claim that ethical selection machinery is architecturally present but functionally dark until substrates mature. The neurodevelopmental timeline parallels REE's staged dependency architecture.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_042",
-          "failure_signatures": [
-            "Biological PFC maturation is driven by experience-dependent plasticity and genetic programs -- REE's staged dependencies are architectural (E1 must train before E2), not experience-dependent in the biological sense.",
-            "The protracted timeline in biology (~25 years in humans) has no meaningful analogue in REE's training episodes -- the 'stages' in REE are sequential training phases, not developmental epochs."
-          ],
-          "run_id": "2026-04-02_arc_042_pfc_protracted_maturation_2021",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T14:25:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-042",
-          "confidence": 0.65,
-          "confidence_rationale": "Opendak et al. demonstrate that mPFC circuit maturation directly regulates the developmental emergence of emotional memory and cognitive flexibility. Immature mPFC circuits produce qualitatively different behavioral patterns than mature ones. Supports ARC-042's claim that ethical selection requires substrate maturation -- the biological data shows that immature PFC produces different (not just weaker) cognitive outputs.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_arc_042",
-          "failure_signatures": [
-            "The paper studies rodent mPFC development, not primate vmPFC/OFC ethical evaluation. The cognitive functions studied (emotional memory, fear conditioning flexibility) are simpler than ethical selection.",
-            "mPFC maturation in rodents occurs over weeks, while REE's training phases span episodes -- the developmental timescales are not analogous."
-          ],
-          "run_id": "2026-04-02_arc_042_mpfc_circuit_maturation_emotional_2021",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T14:30:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-042",
@@ -2433,12 +2445,64 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-03T21:36:50Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-042",
+          "confidence": 0.7,
+          "confidence_rationale": "Bengio et al. (2009) provide the foundational ML evidence that staged training strategies (curriculum learning) are necessary for non-convex optimization of complex representation learning objectives. The ARC-042 Phase 0/1/2 structure is a staged training protocol, and Bengio et al.'s framework explains why this staging is not a convenience but a necessity: the full joint objective (world model + supervised context discrimination) is harder than either component alone, and starting with the simpler Phase 0 objective (world model prediction only) guides the representation toward a manifold from which Phase 1 (context discrimination) can be learned. The curriculum learning view predicts that the Phase 1 gate is not merely sequencing but a qualitative boundary: representations learned in Phase 0 are not useful for context-gated evaluation (Phase 2) -- they require Phase 1's supervised objective to acquire discriminating structure. The EXQ-187a result (cosine_sim=1.0 after 150 warmup episodes) is consistent with Bengio et al.'s finding that attempting a hard objective without prior simpler-task grounding leads to degenerate solutions. Confidence at 0.70: the conceptual mapping to ARC-042 is clear, but Bengio et al. demonstrate curriculum benefits for example ordering within a single objective, whereas ARC-042 proposes objective staging (different loss functions in different phases). The additional step from example curriculum to objective staging requires bridging from the transfer learning / multi-task learning literature, which Bengio et al. only touch on tangentially.",
+          "evidence_class": "lit:ml_theoretical_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_042",
+          "failure_signatures": [
+            "Bengio et al.'s curriculum learning orders examples by difficulty within a fixed objective function. ARC-042's Phase 0/1/2 changes the objective function across phases (Phase 0: prediction error only; Phase 1: prediction + supervised label loss; Phase 2: frozen). Example-ordering curriculum and objective-staging are related but distinct strategies. Bengio et al.'s theory does not formally prove that objective staging is necessary, only beneficial.",
+            "Bengio et al. demonstrate curriculum benefits in classification tasks where even random-order training produces partially correct representations. The EXQ-187a collapse to cosine_sim=1.0 suggests a more complete failure than curriculum disorder alone predicts -- the label gradient may be structurally insufficient (lambda=0.1 too weak) regardless of staging order."
+          ],
+          "run_id": "2026-04-05_arc_042_curriculum_learning_staged_representation_bengio2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-042",
+          "confidence": 0.73,
+          "confidence_rationale": "Sanders, Wilson & Gershman (2020) provide a Bayesian computational framework for hippocampal remapping that directly supports the ARC-042 staged developmental account. The paper's core claim is that hippocampal context representations are not raw perceptual encodings of environmental features but are posterior beliefs about hidden states generating the observations. Remapping (a change in which hippocampal map is active) reflects Bayesian inference over hidden states rather than direct response to sensory change. The model uses a Chinese Restaurant Process (CRP) prior over hidden states, parametrized by alpha (the tendency to create new states vs. assign to existing ones). Key relevance to ARC-042: (1) The framework formalizes why an untrained or bootstrapping-phase ContextMemory cannot discriminate contexts -- without a prior over hidden states that has been updated by sufficient experience, the posterior is flat (all contexts appear equally probable) and the system defaults to a single attractor (all contexts map to the same representation). (2) The staged Phase 0/1/2 structure of ARC-042 maps onto the development of the prior: Phase 0 is the bootstrap epoch during which the agent lacks an informative context prior; Phase 1 (supervised training) is the process by which the CRP prior is shaped by labeled experience into a distribution that can discriminate terrain types; Phase 2 uses the trained prior for inference. (3) The paper makes a specific prediction that directly validates ARC-042's Phase 1 gate: the quality of context inference is bounded by the quality of the generative model (prior + likelihood). Before the prior is trained, no amount of evidence at inference time is sufficient to produce discriminating representations. This is the functional analog of the Phase 1 gate in ARC-042: ContextMemory is not useful for context-gated evaluation until Phase 1 has trained the hidden-state prior sufficiently. Confidence at 0.73: the Bayesian framework is rigorous and the mapping is conceptually tight, but the CRP prior is a discrete generative model over a fixed observation space, not a learned LSTM representation; transfer requires interpretation rather than direct mapping.",
+          "evidence_class": "lit:neuroscience_computational",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_042",
+          "failure_signatures": [
+            "The CRP-based model uses a non-parametric Bayesian framework with analytically tractable posteriors. The ContextMemory module uses learned distributed representations (LSTM activations) without an explicit generative model. The inference mechanism in Sanders et al. (Bayesian posterior update) is not the same as the write/retrieve dynamics of a differentiable associative memory.",
+            "Sanders et al. model remapping as a discrete state-transition event (switch hidden state vs. stay in current state). ARC-042's ContextMemory uses continuous context vectors -- the 'remapping' equivalent is a change in the cosine similarity of retrieved vectors, not a discrete state flip.",
+            "The paper focuses on what determines WHEN remapping occurs (the Bayesian decision boundary). ARC-042's Phase 1 addresses HOW discriminating representations are learned, not when switching occurs. These are complementary but distinct questions."
+          ],
+          "run_id": "2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-042",
+          "confidence": 0.71,
+          "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
+          "evidence_class": "lit:ml_theoretical_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_153",
+          "failure_signatures": [
+            "Bengio et al.'s experiments are on feedforward networks and RNNs for NLP/vision. The ContextMemory failure mode (cosine_sim=1.0) is more extreme than typical curriculum-without-curriculum failures in standard classification tasks, which usually produce suboptimal but non-collapsed representations. The total collapse in EXQ-187a suggests an additional issue beyond curriculum ordering: the label gradient itself may be too weak (lambda=0.1) to compete with the prediction-error gradient, which is not addressed by curriculum ordering alone.",
+            "Bengio et al.'s curriculum orders examples by difficulty within a fixed objective. ARC-042's staged training changes the objective itself (Phase 0: prediction error only; Phase 1: prediction + label loss; Phase 2: frozen representation). This is a stronger claim than standard curriculum learning -- it is objective staging, not example staging. Bengio et al.'s theoretical grounding covers example ordering; objective staging requires additional justification (e.g., from multi-task learning or transfer learning literature)."
+          ],
+          "run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 3,
-        "literature": 2
+        "literature": 5
       }
     },
     "IMPL-022": {
@@ -6177,18 +6241,20 @@
       }
     },
     "MECH-092": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.31, lit_conf=0.924",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.31, lit_conf=0.914",
       "direction_counts": {
         "mixed": 0,
-        "supports": 4,
+        "supports": 7,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 5,
+      "entries_total": 8,
       "evidence_class_counts": {
         "exp:simulation": 1,
         "lit:connectome_mechanistic_review": 1,
-        "lit:electrophysiology_single_unit": 3
+        "lit:electrophysiology_rodent": 1,
+        "lit:electrophysiology_single_unit": 3,
+        "lit:review_mechanistic": 2
       },
       "experimental_confidence": 0.31,
       "fail_runs": 1,
@@ -6199,58 +6265,12 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "2026-04-04_mech121_mech092_forward_reverse_replay_shin2019",
-      "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.924,
-      "overall_confidence": 0.771,
+      "latest_run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.914,
+      "overall_confidence": 0.763,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.85,
-          "confidence_rationale": "Canonical, high-quality review with direct evidence for SWR during quiescent offline states, CA3 recurrent dynamics as internal generator, compressed sequence replay, and consolidation function. Directly maps onto MECH-092 (quiescent E3 heartbeat \u2192 hippocampal replay). Strong source; mapping is structurally faithful.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_092",
-          "failure_signatures": [],
-          "run_id": "2026-03-16_mech092_swr_cognitive_biomarker_buzsaki2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-16T12:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_136_mech092_quiescent_replay_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_136_mech092_quiescent_replay_pair_20260329T032531Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-03-29T03:25:31Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-092",
-          "confidence": 0.82,
-          "confidence_rationale": "Canonical empirical demonstration with ensemble recordings in rats. High source quality. Mapping to MECH-092 is direct: awake quiescent SWR replay of remote environments is precisely the mechanism MECH-092 specifies. Transfer risk: rodent, and the 'remote' in MECH-092 refers to temporally/episodically remote trajectories, which maps cleanly to spatially remote environments here.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_022",
-          "failure_signatures": [
-            "Remote replay was more common when rats had recently been in motion than during extended quiescence \u2014 suggesting the trigger is recent movement offset, not pure quiescence; this adds a nuance to MECH-092's 'quiescent heartbeat cycle' framing.",
-            "Local replay (current environment) was also frequent \u2014 remote replay was not dominant, only comparable."
-          ],
-          "run_id": "2026-04-02_mech_092_awake_remote_replay_karlsson2009",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-02T23:55:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-092",
@@ -6286,12 +6306,54 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-04T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.82,
+          "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
+          "evidence_class": "lit:electrophysiology_rodent",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.78,
+          "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
+          "evidence_class": "lit:review_mechanistic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-092",
+          "confidence": 0.8,
+          "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
+          "evidence_class": "lit:review_mechanistic",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_038",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 8,
       "source_counts": {
         "experimental": 1,
-        "literature": 4
+        "literature": 7
       }
     },
     "MECH-093": {
@@ -6987,7 +7049,7 @@
       }
     },
     "MECH-100": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.872, lit_conf=0.757",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.871, lit_conf=0.757",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -7001,7 +7063,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.872,
+      "experimental_confidence": 0.871,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -7013,7 +7075,7 @@
       "latest_run_id": "2026-03-29_mech_100_ventral_stream_categorical_murray2004",
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.757,
-      "overall_confidence": 0.815,
+      "overall_confidence": 0.814,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7105,7 +7167,7 @@
       }
     },
     "MECH-101": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.795, lit_conf=0.827",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.794, lit_conf=0.827",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -7119,7 +7181,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.795,
+      "experimental_confidence": 0.794,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -7765,7 +7827,7 @@
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
+          "experiment_purpose": "smoke_test",
           "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
           "failure_signatures": [],
           "run_id": "v3_exq_238_20260404T185328Z_v3",
@@ -7780,7 +7842,7 @@
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
+          "experiment_purpose": "smoke_test",
           "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
           "failure_signatures": [],
           "run_id": "v3_exq_238_20260404T185519Z_v3",
@@ -9071,19 +9133,21 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.408, lit_conf=0.856",
+      "confidence_rationale": "exp=3 entry(s), lit=7 entry(s), exp_conf=0.408, lit_conf=0.861",
       "direction_counts": {
         "mixed": 1,
-        "supports": 5,
+        "supports": 7,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 8,
+      "entries_total": 10,
       "evidence_class_counts": {
         "exp:simulation": 3,
         "lit:connectome_mechanistic_empirical": 2,
         "lit:connectome_mechanistic_review": 2,
-        "lit:ml_mechanistic_empirical": 1
+        "lit:ml_mechanistic_empirical": 1,
+        "lit:ml_theoretical_empirical": 1,
+        "lit:neuroscience_empirical": 1
       },
       "experimental_confidence": 0.408,
       "fail_runs": 2,
@@ -9094,46 +9158,12 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "2026-04-04_mech_153_supervised_vs_unsupervised_discrimination_loewenstein2021",
-      "latest_timestamp_utc": "2026-04-04T09:00:00Z",
-      "literature_confidence": 0.856,
-      "overall_confidence": 0.632,
+      "latest_run_id": "2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016",
+      "latest_timestamp_utc": "2026-04-05T12:00:00Z",
+      "literature_confidence": 0.861,
+      "overall_confidence": 0.635,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-153",
-          "confidence": 0.7,
-          "confidence_rationale": "This Annual Review paper presents the computational framework for context-dependent learning across both biological and artificial systems. Its central finding is that robust context representations require multiple information streams working together: sensory cues, sensory feedback/outcomes, and state-action information. Pure prediction-error or sensory experience alone is insufficient; the Bayesian inference framework the authors propose explicitly requires outcome feedback to infer latent context variables. Hippocampal place cell remapping evidence shows context representation reorganization occurs when 'behavioral policy needed to be different,' implying outcome-dependent rather than experience-dependent reorganization. This is directly relevant to MECH-153: the EXQ-181b failure (context vectors remain near-identical despite varied experience) is predicted by Heald's framework as the expected behavior of a system receiving only sensory input without outcome-labeled context feedback. Confidence moderate because the framework is computational/theoretical and the biological evidence is from motor adaptation and spatial navigation, not a memory encoding system analogous to E1 ContextMemory.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_153",
-          "failure_signatures": [
-            "The paper's Bayesian framework models context as a latent variable inferred from sensory inputs AND outcomes together. If the agent has rich sensory experience with sufficient outcome variation, Bayesian inference might produce discriminated context representations without explicit supervised labeling. MECH-153 assumes that world-model prediction error is not sufficient -- but in environments with different outcome statistics in different contexts, unsupervised inference might partially succeed.",
-            "The biological evidence comes primarily from motor adaptation studies (force field learning, visuomotor rotation) and hippocampal spatial navigation -- neither directly analogous to the LSTM ContextMemory encoding hazard proximity. The transfer to an explicit context-memory system requires architectural assumptions."
-          ],
-          "run_id": "2026-04-04_mech_153_context_dependent_learning_neural_heald2023",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T09:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-153",
-          "confidence": 0.67,
-          "confidence_rationale": "Leutgeb et al. 2007 provide the foundational empirical demonstration that hippocampal pattern separation -- the production of orthogonal representations for similar inputs -- is experience-dependent and not automatic from sensory statistics alone. The dentate gyrus granule cells progressively orthogonalise their representations as animals are re-exposed to morphed environments across sessions, and the degree of separation is graded by the degree of environmental difference and accumulated experience. This implies that context differentiation is not an immediate property of the hippocampal circuit applied to any novel input; it is a learned property that develops with repeated paired exposure to the contexts. The relevance to MECH-153 is indirect but meaningful: if pattern separation in the biological hippocampus requires experience-dependent plasticity tuned by re-exposure, then the analogous ContextMemory encoding in E1 should not be expected to spontaneously produce orthogonal context representations from prediction-error training alone, without a gradient signal that specifically targets the context-discriminating dimension. The confidence is moderated because Leutgeb does not directly address supervised vs unsupervised training regimes -- the paper describes naturally occurring hippocampal plasticity in vivo, not a controlled comparison of training objectives.",
-          "evidence_class": "lit:connectome_mechanistic_empirical",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_153",
-          "failure_signatures": [
-            "Leutgeb's pattern separation occurs in a biological hippocampus with rich modulatory input (dopamine, acetylcholine, norepinephrine) that provides outcome-relevant signals through diffuse neuromodulatory pathways. The biological system is not purely unsupervised even during exploration -- novelty signals, reward delivery, and stress responses all modulate hippocampal plasticity. The claim that experience-dependent pattern separation occurs without supervised signals in biology does not straightforwardly support the MECH-153 requirement for an explicit supervised objective in the artificial system.",
-            "Leutgeb's morphed environments share a global spatial layout but differ in shape. The contexts in MECH-153 experiments (hazard-proximate vs hazard-distal regions of the same CausalGridWorld) share more features and differ only in hazard proximity -- a more demanding discrimination problem than shape morphing. The generalizability of Leutgeb's pattern separation findings to the MECH-153 discrimination problem is not directly established."
-          ],
-          "run_id": "2026-04-04_mech_153_dentate_pattern_separation_experience_leutgeb2007",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-04T09:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-153",
@@ -9184,12 +9214,47 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-04T09:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-153",
+          "confidence": 0.71,
+          "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
+          "evidence_class": "lit:ml_theoretical_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_153",
+          "failure_signatures": [
+            "Bengio et al.'s experiments are on feedforward networks and RNNs for NLP/vision. The ContextMemory failure mode (cosine_sim=1.0) is more extreme than typical curriculum-without-curriculum failures in standard classification tasks, which usually produce suboptimal but non-collapsed representations. The total collapse in EXQ-187a suggests an additional issue beyond curriculum ordering: the label gradient itself may be too weak (lambda=0.1) to compete with the prediction-error gradient, which is not addressed by curriculum ordering alone.",
+            "Bengio et al.'s curriculum orders examples by difficulty within a fixed objective. ARC-042's staged training changes the objective itself (Phase 0: prediction error only; Phase 1: prediction + label loss; Phase 2: frozen representation). This is a stronger claim than standard curriculum learning -- it is objective staging, not example staging. Bengio et al.'s theoretical grounding covers example ordering; objective staging requires additional justification (e.g., from multi-task learning or transfer learning literature)."
+          ],
+          "run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-153",
+          "confidence": 0.78,
+          "confidence_rationale": "Law et al. (2016) directly address the question of how many exposures are required before hippocampal context representations become stable and discriminating. Rats were exposed to two distinct environments in an ABAB interleaving pattern and recorded across 8 daily sessions. Key finding: on Day 1, CA1 neurons fired normally in each context, but when rats returned to the original context after 15 minutes in the second, many neurons remapped as if encountering a new environment. Representations stabilized by Day 3 with high cross-visit consistency. This establishes an empirical training-signal threshold: ~2-3 sessions of interleaved multi-context experience are required before hippocampal context representations are discriminating and stable. The correspondence to MECH-153 is direct: EXQ-187a used 150 warmup episodes with lambda=0.1, producing cosine_sim=1.0 (undifferentiated). Law et al.'s result explains the mechanism -- without sufficient multi-context interleaving under a signal that distinguishes the contexts, representations cannot stabilize into discriminating attractors. The paper also establishes that the failure mode during early training is not random but specific: representations are contextually correct within a session but non-reidentifiable across sessions -- analogous to the ContextMemory producing locally coherent but globally undifferentiated retrievals. Confidence is high (0.78) because: (a) the study is directly about concurrent context encoding and stabilization timing, (b) it uses real neural recording in dorsal CA1 (the hippocampal subfield most analogous to a context-retrieval module), (c) the ABAB interleaving structure parallels the alternating terrain episodes in the CausalGridWorld. Confidence is moderated because the rat CA1 system uses place-field mechanisms not directly analogous to cosine-similarity-based context retrieval in an LSTM.",
+          "evidence_class": "lit:neuroscience_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_153",
+          "failure_signatures": [
+            "The rat hippocampus uses place-field remapping (spatial maps) as the context representation substrate, not learned associative memory vectors. The stabilization mechanism (reduction in cross-visit remapping) differs architecturally from the cosine-similarity metric used in EXQ-187a. The number of sessions (Days 1-3) provides an order-of-magnitude estimate of required exposure, but the exact episode count does not translate directly.",
+            "The ABAB interleaving in Law et al. provides contrastive signal between contexts -- the animal experiences context switches and the hippocampus must maintain two distinct active maps. EXQ-187a's ContextMemory warmup may not have provided equivalent contrastive signal if episode ordering was randomized rather than interleaved with clear context transitions.",
+            "The study records existing neural hardware (in vivo CA1). The ContextMemory module must learn to differentiate via backpropagation through extract_cue_context(), which has different capacity and gradient dynamics than synaptic plasticity in biological CA1."
+          ],
+          "run_id": "2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
         }
       ],
-      "runs_total": 8,
+      "runs_total": 10,
       "source_counts": {
         "experimental": 3,
-        "literature": 5
+        "literature": 7
       }
     },
     "MECH-154": {
@@ -9675,7 +9740,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.461, lit_conf=0.83",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.46, lit_conf=0.83",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -9689,7 +9754,7 @@
         "lit:electrophysiology_lfp": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.461,
+      "experimental_confidence": 0.46,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -12769,20 +12834,21 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=8 entry(s), lit=5 entry(s), exp_conf=0.773, lit_conf=0.931",
+      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.773, lit_conf=0.927",
       "direction_counts": {
         "mixed": 1,
-        "supports": 9,
+        "supports": 13,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 13,
+      "entries_total": 17,
       "evidence_class_counts": {
         "exp:simulation": 8,
         "lit:connectome_mechanistic_review": 2,
+        "lit:empirical_study": 2,
         "lit:fmri_lesion": 1,
         "lit:meta_analysis": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 3
       },
       "experimental_confidence": 0.773,
       "fail_runs": 4,
@@ -12793,69 +12859,12 @@
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "v3_exq_198_sd011_dual_stream_stability_20260401T232341Z_v3",
-      "latest_timestamp_utc": "2026-04-01T23:23:41Z",
-      "literature_confidence": 0.931,
-      "overall_confidence": 0.852,
+      "latest_run_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.927,
+      "overall_confidence": 0.85,
       "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.88,
-          "confidence_rationale": "Craig's foundational NRN review provides the anatomical substrate for the dual-stream distinction by establishing the lamina I spinothalamic pathway to posterior insula as the dedicated sensory-discriminative interoceptive route, while describing the medial spinothalamic projections to affective-motivational cortex. This paper is the definitive account of the lateral vs. medial STT distinction in primates and humans, and is the most influential articulation of where in the brain the two streams physically separate.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_sd_011_interoception_insula_lateral_medial_craig2002",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.92,
-          "confidence_rationale": "Canonical human PET study using hypnotic modulation to selectively alter pain unpleasantness while holding intensity constant. Demonstrates functional dissociation between ACC (affect) and S1 (intensity/sensory-discriminative), directly instantiating the two-stream split that SD-011 encodes as z_harm_a vs z_harm_s. High source quality (Science, >5000 citations), clean experimental design, direct mapping to claim.",
-          "evidence_class": "lit:fmri_lesion",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_sd_011_pain_affect_cingulate_rainville1997",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.84,
-          "confidence_rationale": "Comprehensive anatomical review of the spinothalamic tract and other ascending nociceptive pathways by two of the leading tract-tracing neuroanatomists of the 20th century. Directly describes the lateral vs. medial spinothalamic tract division, their distinct thalamic targets, and their functional significance for sensory-discriminative vs. affective-motivational pain processing. This is the definitive anatomical foundation for the proposed subcortical stream separation in SD-011.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_sd_011",
-          "failure_signatures": [],
-          "run_id": "2026-03-29_sd_011_spinothalamic_ascending_pathways_willis1997",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T11:05:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-011",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "failure_signatures": [],
-          "run_id": "v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-01T23:01:27.718899Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-011",
@@ -12870,26 +12879,96 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-01T23:23:41Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.8,
+          "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_033",
+          "failure_signatures": [
+            "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
+            "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
+          ],
+          "run_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.82,
+          "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
+          "evidence_class": "lit:empirical_study",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
+            "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
+          ],
+          "run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.86,
+          "confidence_rationale": "Craig's 2003 paper is the clearest published statement that pain (especially C-fiber mediated slow pain) functions as a homeostatic emotion: a motivational signal reflecting deviation from physiological homeostasis, analogous to hunger, thirst, and temperature. This directly supports the z_harm_a component of SD-011 as an accumulated homeostatic deviation signal (C-fiber / paleospinothalamic analog). Craig specifies that lamina I neurons receiving predominantly C-fiber input drive a pathway through VMpo thalamus to posterior insula that generates the homeostatic feeling, and then to ACC that generates the behavioral motivation. The model explicitly dissociates this from the sensory-discriminative pathway through VPL to S1/S2. Confidence is 0.86 rather than higher because: (a) this is a framework review not a new experiment; (b) the mapping between Craig's homeostatic allostasis framing and the specific claim that z_harm_a 'accumulates homeostatic deviation' is inferential rather than experimentally demonstrated.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "Craig's model treats pain as generated by a specific labeled-line system (lamina I -> VMpo -> insula -> ACC), not by distributed C-fiber activity whose integration over time accumulates harm. If the accumulation property is not a feature of the pathway architecture but is instead a secondary consequence of peripheral sensitization, the z_harm_a characterization as a running integral would be architecturally misleading.",
+            "The homeostatic emotion framework explicitly groups pain with temperature, itch, hunger, and thirst as a family of interoceptive emotions. This suggests z_harm_a and the homeostatic/allostatic drive signals in REE (SD-012) may be instantiating the same underlying mechanism from different angles -- potentially a scope conflict rather than independent support."
+          ],
+          "run_id": "2026-04-05_sd_011_pain_homeostatic_emotion_craig2003",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-011",
+          "confidence": 0.88,
+          "confidence_rationale": "This paper provides a critical experimental double dissociation complementing Rainville et al. (1997) (already in the SD-011 evidence set). Rainville 1997 showed that hypnotic modulation of pain unpleasantness changed ACC activity but not S1. Hofbauer 2001 shows the converse: hypnotic modulation of pain intensity changed S1 activity but not ACC. Together these two studies constitute a clean bidirectional dissociation: S1 encodes the sensory-discriminative dimension (z_harm_s equivalent), ACC encodes the affective-motivational dimension (z_harm_a equivalent). This is direct empirical evidence for two separable cortical representations corresponding to the two streams in SD-011. Confidence 0.88 because the study is a clean primary experiment with PET, using validated hypnotic modulation paradigm, in humans. Minor caveats: small N typical of PET era, hypnotic modulation is a somewhat indirect manipulation, and S1 activation in pain is now known to be more complex (encoding both intensity and location).",
+          "evidence_class": "lit:empirical_study",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_sd_011",
+          "failure_signatures": [
+            "If S1 activity also tracks unpleasantness at higher pain intensities or under conditions outside the hypnotic modulation paradigm, the clean sensory-affective dissociation would be incomplete, and z_harm_s/z_harm_a streams would not be as separable as the double dissociation suggests.",
+            "The use of hypnotic suggestion as the manipulation assumes that hypnosis can independently vary sensory intensity vs affective unpleasantness. If hypnotic suggestions inevitably modulate both dimensions simultaneously (with one dimension masked in the ratings), the dissociation would be an artifact of the measurement approach rather than a genuine functional dissociation."
+          ],
+          "run_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 13,
+      "runs_total": 17,
       "source_counts": {
         "experimental": 8,
-        "literature": 5
+        "literature": 9
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.375, lit_conf=0.84",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.375, lit_conf=0.897",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 5,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 5,
+      "entries_total": 7,
       "evidence_class_counts": {
         "exp:simulation": 2,
         "lit:behavioral_animal": 1,
+        "lit:causal_intervention": 1,
+        "lit:circuit_mechanism": 1,
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 1
       },
@@ -12902,46 +12981,12 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "v3_exq_238_20260404T185519Z_v3",
-      "latest_timestamp_utc": "2026-04-04T18:55:19Z",
-      "literature_confidence": 0.84,
-      "overall_confidence": 0.654,
+      "latest_run_id": "2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017",
+      "latest_timestamp_utc": "2026-04-05T00:00:00Z",
+      "literature_confidence": 0.897,
+      "overall_confidence": 0.688,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-012",
-          "confidence": 0.7,
-          "confidence_rationale": "Schultz et al. 1997 demonstrate that dopamine neurons encode temporal difference prediction errors: they respond to unexpected rewards, transfer to predictive cues, and are depressed by expected reward omissions. Critically for SD-012, the paper shows that goal representations require multiple reward-prediction pairings over time -- the prediction error signal is what drives the transfer from reward to cue, and this transfer requires repeated cycles. This supports SD-012's requirement that resources must respawn after consumption (resource_respawn_on_consume=True) to enable repeated drive-reduction cycles: without repeated encounters, the prediction error cannot transfer from contact to approach trajectories, and z_goal cannot form through the trajectory-shaping pathway that SD-012 proposes. Confidence 0.70 rather than higher because the paper's primary contribution is TD learning in dopamine neurons, not drive-state modulation per se -- the connection to SD-012's drive-scaling formula is indirect, mediated by the requirement for repeated reward cycles.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_sd_012",
-          "failure_signatures": [
-            "If z_goal seeded adequately from a single resource contact without repeated encounters, the iterative prediction-error mechanism this paper describes would not be necessary for goal representation formation.",
-            "If the prediction error signal in REE did not transfer from resource contact to approach trajectory over multiple episodes, the SD-012 architecture for z_goal formation via drive-scaled benefit accumulation would fail."
-          ],
-          "run_id": "2026-03-29_sd_012_dopamine_prediction_reward_schultz1997",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-012",
-          "confidence": 0.8,
-          "confidence_rationale": "Balleine and Dickinson 1998 establish that goal-directed action requires two separable learning processes: contingency learning (action-outcome) and incentive learning (acquisition and updating of outcome value as a function of current motivational state). The incentive learning component is critical for SD-012: the insular cortex lesion experiments show that animals can learn that an action produces a food outcome (contingency learning intact) but lose the ability to update the value of that outcome based on changes in drive state (incentive learning impaired). This directly supports SD-012's claim that benefit signals must be scaled by drive state for goal representations to form and update appropriately. Without drive-state modulation of outcome value, the agent can learn stimulus-outcome associations but cannot form goal representations that respond to current needs. Confidence 0.80 because this is rigorous animal behavioral data with pharmacological intervention and outcome devaluation paradigms.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_sd_012",
-          "failure_signatures": [
-            "If insular cortex lesions in devaluation experiments left goal-directed behavior intact (animals still avoided devalued outcomes), the incentive learning mechanism required for drive-state updating would not be necessary, and SD-012's drive-scaling hypothesis would lose its empirical grounding.",
-            "If goal-directed behavior emerged equally under high and low drive in the devaluation paradigm (no drive-state sensitivity of outcome value), the fundamental SD-012 assumption would be contradicted."
-          ],
-          "run_id": "2026-03-29_sd_012_goal_directed_action_balleine1998",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-03-29T14:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-012",
@@ -12966,7 +13011,7 @@
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
+          "experiment_purpose": "smoke_test",
           "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
           "failure_signatures": [],
           "run_id": "v3_exq_238_20260404T185328Z_v3",
@@ -12981,19 +13026,55 @@
           "confidence_rationale": "FAIL with weakening direction",
           "evidence_class": "exp:simulation",
           "evidence_direction": "weakens",
-          "experiment_purpose": "evidence",
+          "experiment_purpose": "smoke_test",
           "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
           "failure_signatures": [],
           "run_id": "v3_exq_238_20260404T185519Z_v3",
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-04-04T18:55:19Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-012",
+          "confidence": 0.8,
+          "confidence_rationale": "Aponte et al. 2011 provides direct causal evidence that hypothalamic hunger-state neurons (AgRP/NPY neurons) are sufficient to drive the full cascade of goal-directed feeding behavior. Using optogenetics, activation of approximately 800 AgRP neurons in fed (sated) mice immediately evoked voracious food-seeking and consumption -- effectively injecting an artificial 'high drive' signal into an otherwise non-driven animal. This directly instantiates the SD-012 claim: a high drive signal (here: forced AgRP neuron activation) enables goal-directed behavior that is otherwise absent under satiety. The converse -- that these same neurons are suppressed under satiety (low drive state) -- is also supported by the experimental design. The result that feeding behavior is selective (food over water, food over non-food objects) and immediate (within minutes, without training) demonstrates that the AgRP drive signal gates a complete goal-directed action program, not merely appetite in the abstract. Confidence is 0.80 because the optogenetic intervention is clean and well-controlled, and the mapping to SD-012's drive_level mechanism is strong. Transfer risk is moderate because the biological substrate (AgRP/NPY hypothalamic neurons) is being mapped to an abstract 'drive_level' scalar parameter in REE.",
+          "evidence_class": "lit:causal_intervention",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_012",
+          "failure_signatures": [
+            "If activation of artificial drive (AgRP stimulation) had produced only non-directed hyperactivity rather than selective goal-directed food seeking, the case for drive gating goal representations would be weakened.",
+            "If goal-directed feeding had occurred equally in sated mice without AgRP stimulation, the drive-gating hypothesis would fail -- need states would not be necessary for goal orchestration.",
+            "If z_goal in REE seeds equally under low drive_level conditions, the SD-012 threshold mechanism would be empirically unnecessary."
+          ],
+          "run_id": "2026-04-05_sd_012_agrp_hunger_goal_orchestration_aponte2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-012",
+          "confidence": 0.82,
+          "confidence_rationale": "Livneh et al. 2017 provides the most direct neural circuit evidence that homeostatic state (hunger vs. satiety) gates the representation of motivationally relevant stimuli at the cortical level. Using two-photon calcium imaging in awake, behaving mice, they show that insular cortex neurons exhibit food-cue-biased responses that are selectively abolished during satiety. Critically, this gating operates via a defined pathway: AgRP (hunger) neurons -> paraventricular thalamus -> basolateral amygdala -> insular cortex. The insular cortex is a known substrate for interoceptive state representation. The selective abolition of food-cue responses under satiety, and their restoration by chemogenetic AgRP activation, directly demonstrates that homeostatic state gates the cortical representation of goal-relevant stimuli -- an analogue to z_goal gating in SD-012. This paper is particularly relevant because it is not just about behavioral output (feeding) but about the *cortical representation of food-related cues* being gated by need state, which maps more directly to z_goal as an internal goal representation. Confidence 0.82 because the circuit mechanism is well characterized, the selective gating is clearly shown, and the mapping to SD-012 z_goal gating is strong. Transfer risk is moderate because the specific insular cortex mechanism is being abstracted to a generic latent-space goal representation.",
+          "evidence_class": "lit:circuit_mechanism",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sd_012",
+          "failure_signatures": [
+            "If food-cue representations in insular cortex had been maintained at satiety (just with weaker behavioral drive), the gating hypothesis would be weakened to modulation rather than suppression.",
+            "If the homeostatic gating pathway could be bypassed independently of drive state (cue representations restored without restoring AgRP activity), the drive-gating claim would be qualified.",
+            "If z_goal in REE can be seeded under low drive_level conditions, SD-012's threshold hypothesis would be empirically unnecessary."
+          ],
+          "run_id": "2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T00:00:00Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 2,
-        "literature": 3
+        "literature": 5
       }
     },
     "SD-015": {
@@ -52274,7 +52355,7 @@
       "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
-      "experiment_purpose": "evidence",
+      "experiment_purpose": "smoke_test",
       "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
       "failure_signatures": [],
       "run_id": "v3_exq_238_20260404T185328Z_v3",
@@ -52289,7 +52370,7 @@
       "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
-      "experiment_purpose": "evidence",
+      "experiment_purpose": "smoke_test",
       "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
       "failure_signatures": [],
       "run_id": "v3_exq_238_20260404T185328Z_v3",
@@ -52304,7 +52385,7 @@
       "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
-      "experiment_purpose": "evidence",
+      "experiment_purpose": "smoke_test",
       "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
       "failure_signatures": [],
       "run_id": "v3_exq_238_20260404T185519Z_v3",
@@ -52319,7 +52400,7 @@
       "confidence_rationale": "FAIL with weakening direction",
       "evidence_class": "exp:simulation",
       "evidence_direction": "weakens",
-      "experiment_purpose": "evidence",
+      "experiment_purpose": "smoke_test",
       "experiment_type": "v3_exq_238_sd012_drive_weight_ablation_fix",
       "failure_signatures": [],
       "run_id": "v3_exq_238_20260404T185519Z_v3",
@@ -52524,9 +52605,405 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-04T23:50:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-029",
+      "confidence": 0.67,
+      "confidence_rationale": "Schmidt et al. (2013) provide direct neural evidence for a 'point of no return' in action execution: once striatal input to the SNr reaches sufficient magnitude, STN-mediated stop signals can no longer cancel the action. This is highly relevant to ARC-029 because it establishes that committed mode is not just a functional label but a neural state with a specific temporal boundary beyond which actions cannot be halted. The race between STN excitation (Stop) and striatal inhibition (Go) creates a commit point that is empirically measurable in neural activity. For ARC-029, this means: (a) the committed mode is a real neural state, not an abstraction; (b) the committed mode is irreversible by design once the race is won by the Go pathway; (c) actions that pass through the commit gate (STN win arrives before striatal win) should have lower impulsive-error rates than uncommitted actions because the Pause evaluation was able to run. The Nature Neuroscience venue and direct electrophysiology evidence strengthen confidence. Confidence moderated by the fact that harm rate (ARC-029's outcome variable) is not directly measured -- only cancellation success/failure is measured, and the harm consequences of uncanceled vs. canceled actions are not tracked.",
+      "evidence_class": "lit:electrophysiology_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_029",
+      "failure_signatures": [
+        "The paper measures cancellation success/failure in a stop-signal task, not harm rates in a navigation or control environment. The link from 'cancellation failure = committed action executed despite stop signal' to 'committed mode = lower harm in stable environments' requires the additional step that (a) impulsive, uncanceled actions are harmful in proportion to environmental hazard density, and (b) agents operating in committed mode have already passed Pause evaluation. Neither step is directly tested.",
+        "The point-of-no-return architecture is about preventing cancellation of in-flight actions -- it describes why committed actions cannot be stopped. ARC-029's benefit claim is about committed mode reducing reactive exploration errors, not about in-flight action irreversibility. These are related but distinct mechanisms.",
+        "Rat stop-signal task with specifically designed trial structure. The transfer to multi-step trajectory harm in a grid world or similar environment requires substantial generalization."
+      ],
+      "run_id": "2026-04-05_arc_029_action_cancellation_race_schmidt2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-029",
+      "confidence": 0.74,
+      "confidence_rationale": "Leventhal et al. (2012) is the most directly relevant empirical study for ARC-029. Using multi-electrode recordings across the cortical-BG network in rats, they show that brief beta (~20 Hz) oscillations arise after cue-guided decisions and increase specifically when cues are used to determine motor output -- not during movement suppression per se and not locked to movement. Their central interpretation is that beta oscillations reflect a post-decision stabilized state of cortical-BG networks that reduces interference from alternative potential actions. This is precisely the functional role that ARC-029's committed-mode gate (BetaGate) implements: after commitment, beta elevation should keep the agent in its chosen action mode, suppressing exploratory variance. The paper also provides the pathological analogy -- abnormally strong beta in Parkinson's Disease reflects overstabilization, producing pathological persistence of the current motor state -- which directly predicts the V-shaped benefit curve ARC-029 implies: too little committed-mode beta = harm from reactive exploration; too much = harm from pathological rigidity. Confidence is moderated by the rodent-to-architecture transfer gap and by the fact that harm rate reduction is not directly measured -- the paper measures interference suppression and action-mode stability, not error or harm outcomes.",
+      "evidence_class": "lit:electrophysiology_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_029",
+      "failure_signatures": [
+        "The paper does not directly measure error or harm rates under committed vs. uncommitted conditions. It measures oscillatory power and reaction time, not downstream harm accumulation. The link from 'beta stabilizes the current action mode' to 'harm rate is lower when committed' requires an additional step: that reactive exploration produces harm and committed-mode suppression of that exploration reduces harm. This link is asserted by ARC-029 but not directly tested by Leventhal et al.",
+        "Beta oscillations are task-modulated but transient -- they appear as brief epochs, not sustained elevated states. ARC-029's committed mode is modelled as a sustained operational regime (BetaGate elevation). The Leventhal data supports the transient gating mechanism but does not directly address sustained committed-mode operation across multi-step trajectories.",
+        "The study is in rats performing a serial reaction time task and a deliberate choice task. The environments are designed to be highly stable and cue-reliable. Whether the beta stabilization advantage holds in volatile environments (where ARC-029 predicts the committed-mode benefit should be lower) is not tested in this study."
+      ],
+      "run_id": "2026-04-05_arc_029_beta_stabilized_state_leventhal2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-029",
+      "confidence": 0.6,
+      "confidence_rationale": "Humphries et al. (2012) model the BG output as a probability distribution over actions, and show via computational simulation that tonic striatal dopamine shifts this distribution between exploration-favoring (flat distribution, high entropy) and exploitation-favoring (peaked distribution, low entropy) action selection. This directly addresses ARC-029's 'stable environments' qualifier: the paper explicitly predicts and models that stable environments favor exploitation (committed mode, dopamine-favored peaked distribution), while volatile environments favor exploration (uncommitted mode, low dopamine flat distribution). The computational model provides a mechanism for how the committed/uncommitted mode distinction maps onto environmental volatility via tonic dopamine -- which is the intermediate variable between environment stability and BetaGate elevation in REE's architecture. The exploration policy in low-dopamine states increases behavioral variance, which maps to higher harm rates when hazards are present. Confidence moderated by computational model status (not primary electrophysiology), by the use of a forced two-choice task rather than a harm-producing navigation environment, and by the fact that harm rate is not directly modeled -- only exploration/exploitation ratio is.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_029",
+      "failure_signatures": [
+        "The paper models exploration vs. exploitation as a continuous parameter (tonic dopamine level shifts the BG output distribution), whereas ARC-029 models committed vs. uncommitted as a discrete gate. The mapping requires treating committed mode as the high-exploitation pole of the dopamine spectrum, but ARC-029's BetaGate mechanism is not identical to tonic dopamine.",
+        "The model uses a simplified two-choice task and reinforcement learning framework. Harm as a specific measurable quantity in a hazardous navigation environment is not modeled. The exploration condition produces suboptimal reward accumulation, which is a proxy for harm only if we assume rewards and harms are on the same axis.",
+        "The paper argues that dopamine's apparent effect on learning may actually be mediated by its effect on exploration-exploitation trade-off. This means that some evidence cited for dopamine affecting committed-mode quality may actually reflect dopamine changing the exploration policy rather than changing the committed-mode mechanism itself -- a confound that is relevant to interpreting EXQ-125a results.",
+        "Tonic dopamine is the proposed intermediate variable, but ARC-016/ARC-029's BetaGate is modeled as a beta oscillation gating signal, not directly as a tonic dopamine proxy. The relationship between tonic dopamine level and beta oscillation power is known to be inverse (high dopamine suppresses beta), so the mapping works in direction but through an indirect path."
+      ],
+      "run_id": "2026-04-05_arc_029_dopamine_exploration_exploitation_humphries2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-029",
+      "confidence": 0.65,
+      "confidence_rationale": "Schmidt & Berke (2017) provide a review and model of how distinct BG cell types and pathways implement separable action-control processes: Go (direct pathway striatum), Pause (STN hyperdirect pathway), and Cancel (arkypallidal GPe). The Pause process is specifically relevant to ARC-029: brief beta oscillation epochs in striatum coincide with the Pause phase, creating a temporary hold on the current action stream. This is functionally equivalent to the committed-mode gate raising inhibition before irreversibility. Critically, the paper shows that Pause and Cancel are distinct processes that can be mapped to specific circuitry, supporting ARC-029's core architectural claim that committed and uncommitted modes are implemented by distinct neural mechanisms (not a single dial). The separation of Go/Pause/Cancel maps onto REE's pre-commit (Go), commit-threshold evaluation (Pause), and action execution (committed-mode post-Cancel resumption) phases. Confidence moderated by the review/synthesis nature (not primary data), by the fact that harm rate is not directly addressed, and by the architectural translation gap from stop-signal task behavior to multi-step trajectory harm outcomes.",
+      "evidence_class": "lit:review_neurophysiology",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_029",
+      "failure_signatures": [
+        "The Pause-then-Cancel model is developed for action stopping and inhibition, not for sustained committed-mode operation. The 'committed mode' in ARC-029 is a sustained positive-action regime, not a stopping event. The mapping requires treating the commit threshold as the moment when the Pause/Cancel decision is made and committed mode is the post-decision sustained state -- an indirect mapping.",
+        "The review synthesizes existing data but does not present new primary evidence for the harm-rate consequence of Go vs. Pause states. Error rates in stop-signal tasks are not decomposed into harm-producing vs. non-harm-producing errors.",
+        "The Pause-then-Cancel model emphasizes the stopping pathway; ARC-029's committed mode is about the going pathway being protected. The paper is more directly about uncommitted-mode vulnerability (failure to Pause/Cancel leading to committed errors) than about committed-mode harm reduction."
+      ],
+      "run_id": "2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.8,
+      "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_033",
+      "failure_signatures": [
+        "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
+        "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
+      ],
+      "run_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-033",
+      "confidence": 0.82,
+      "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
+      "evidence_class": "lit:empirical_study",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
+        "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
+      ],
+      "run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-038",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
+      "evidence_class": "lit:electrophysiology_rodent",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-038",
+      "confidence": 0.78,
+      "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
+      "evidence_class": "lit:review_mechanistic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-038",
+      "confidence": 0.85,
+      "confidence_rationale": "Causal intervention study: selectively disrupting hippocampal activity during ripple events in awake rest periods impaired subsequent spatial learning. Rats that had ripple activity disrupted during rest after task learned the subsequent task significantly more slowly. This is the strongest class of evidence for ARC-038 -- causal necessity of waking-quiescence SWR replay for subsequent map-based performance. The disruption was specific to ripple-associated activity (not overall sleep-wake structure), directly implicating SWR-based waking consolidation. Published in Hippocampus. Main caveat: the rest period included both sleep and quiet wakefulness -- the paper does not fully isolate purely awake SWR disruption.",
+      "evidence_class": "lit:electrophysiology_rodent_causal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_ripple_disruption_awake_egostengel2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-038",
+      "confidence": 0.8,
+      "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
+      "evidence_class": "lit:review_mechanistic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.82,
+      "confidence_rationale": "Direct Bayesian state-space analysis of awake SWRs in foraging rodents shows nearly all SWRs embed spatial trajectories with momentum. Crucially, awake SWRs show momentum (inertia in velocity) mirroring natural movement; sleep SWRs lack momentum. This establishes a mechanistic distinction between awake offline replay (consolidation-oriented, trajectory-following) and sleep replay, and partially addresses the goal-directed vs. consolidation distinction. Strong methodology, published in Neuron. Mapping to ARC-038 is strong for the waking-quiescence replay aspect; moderate for the consolidation-mode vs. goal-directed distinction (momentum does not directly measure goal-directedness).",
+      "evidence_class": "lit:electrophysiology_rodent",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_awake_swr_trajectory_momentum_krause2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.78,
+      "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
+      "evidence_class": "lit:review_mechanistic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-092",
+      "confidence": 0.8,
+      "confidence_rationale": "Authoritative review synthesizing evidence that SWR events during sleep AND waking rest coordinate the reactivation of memory traces and direct their reinstatement in cortical circuits. Key claims: (1) SWR-directed reactivation occurs during both sleep and waking rest; (2) this coordinates brain-wide memory trace reinstatement; (3) the hippocampus organizes the reactivation process. The review addresses both offline states (sleep and rest), directly supporting the waking-consolidation component of ARC-038. Confidence moderate-high for a review: synthesizes multiple rodent and human electrophysiology studies.",
+      "evidence_class": "lit:review_mechanistic",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_038",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_arc_038_swr_reactivation_review_oneill2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.8,
+      "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_033",
+      "failure_signatures": [
+        "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
+        "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
+      ],
+      "run_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.82,
+      "confidence_rationale": "This MEG study provides direct empirical evidence for two temporally and spatially separable cortical pain representations corresponding to the A-delta (first pain) and C-fiber (second pain) streams that SD-011 models as z_harm_s and z_harm_a. Using laser-evoked cutaneous pain, the study disambiguates first pain (A-delta mediated, latency ~200ms, sharp/pricking) from second pain (C-fiber mediated, latency ~1000ms, burning/dull) and maps their cortical generators using MEG. Key finding: first pain activates S1/S2 bilaterally with a sharp temporally defined response; second pain activates a more distributed late cortical network including S2/insula and ACC with a sustained, temporally broader response. This directly instantiates the fast-localizable (z_harm_s) vs. slow-diffuse (z_harm_a) distinction in SD-011, and the temporal precision of the A-delta response relative to the C-fiber response supports ARC-033's claim that E2_harm_s can forward-model z_harm_s but z_harm_a is not similarly forward-predictable.",
+      "evidence_class": "lit:empirical_study",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "If the S1/S2 response to second pain (C-fiber) is of similar magnitude and temporal precision to the first pain response, the claim that z_harm_s is more forward-predictable than z_harm_a would be weakened -- both streams would be similarly temporally constrained.",
+        "If the ACC response is already present for first pain (A-delta) with similar magnitude as for second pain, it would challenge the stream-separation model by showing that the affective dimension is activated by both streams rather than selectively by the C-fiber stream."
+      ],
+      "run_id": "2026-04-05_sd_011_first_second_pain_cortex_timmermann2002",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.86,
+      "confidence_rationale": "Craig's 2003 paper is the clearest published statement that pain (especially C-fiber mediated slow pain) functions as a homeostatic emotion: a motivational signal reflecting deviation from physiological homeostasis, analogous to hunger, thirst, and temperature. This directly supports the z_harm_a component of SD-011 as an accumulated homeostatic deviation signal (C-fiber / paleospinothalamic analog). Craig specifies that lamina I neurons receiving predominantly C-fiber input drive a pathway through VMpo thalamus to posterior insula that generates the homeostatic feeling, and then to ACC that generates the behavioral motivation. The model explicitly dissociates this from the sensory-discriminative pathway through VPL to S1/S2. Confidence is 0.86 rather than higher because: (a) this is a framework review not a new experiment; (b) the mapping between Craig's homeostatic allostasis framing and the specific claim that z_harm_a 'accumulates homeostatic deviation' is inferential rather than experimentally demonstrated.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "Craig's model treats pain as generated by a specific labeled-line system (lamina I -> VMpo -> insula -> ACC), not by distributed C-fiber activity whose integration over time accumulates harm. If the accumulation property is not a feature of the pathway architecture but is instead a secondary consequence of peripheral sensitization, the z_harm_a characterization as a running integral would be architecturally misleading.",
+        "The homeostatic emotion framework explicitly groups pain with temperature, itch, hunger, and thirst as a family of interoceptive emotions. This suggests z_harm_a and the homeostatic/allostatic drive signals in REE (SD-012) may be instantiating the same underlying mechanism from different angles -- potentially a scope conflict rather than independent support."
+      ],
+      "run_id": "2026-04-05_sd_011_pain_homeostatic_emotion_craig2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-011",
+      "confidence": 0.88,
+      "confidence_rationale": "This paper provides a critical experimental double dissociation complementing Rainville et al. (1997) (already in the SD-011 evidence set). Rainville 1997 showed that hypnotic modulation of pain unpleasantness changed ACC activity but not S1. Hofbauer 2001 shows the converse: hypnotic modulation of pain intensity changed S1 activity but not ACC. Together these two studies constitute a clean bidirectional dissociation: S1 encodes the sensory-discriminative dimension (z_harm_s equivalent), ACC encodes the affective-motivational dimension (z_harm_a equivalent). This is direct empirical evidence for two separable cortical representations corresponding to the two streams in SD-011. Confidence 0.88 because the study is a clean primary experiment with PET, using validated hypnotic modulation paradigm, in humans. Minor caveats: small N typical of PET era, hypnotic modulation is a somewhat indirect manipulation, and S1 activation in pain is now known to be more complex (encoding both intensity and location).",
+      "evidence_class": "lit:empirical_study",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_sd_011",
+      "failure_signatures": [
+        "If S1 activity also tracks unpleasantness at higher pain intensities or under conditions outside the hypnotic modulation paradigm, the clean sensory-affective dissociation would be incomplete, and z_harm_s/z_harm_a streams would not be as separable as the double dissociation suggests.",
+        "The use of hypnotic suggestion as the manipulation assumes that hypnosis can independently vary sensory intensity vs affective unpleasantness. If hypnotic suggestions inevitably modulate both dimensions simultaneously (with one dimension masked in the ratings), the dissociation would be an artifact of the measurement approach rather than a genuine functional dissociation."
+      ],
+      "run_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-012",
+      "confidence": 0.8,
+      "confidence_rationale": "Aponte et al. 2011 provides direct causal evidence that hypothalamic hunger-state neurons (AgRP/NPY neurons) are sufficient to drive the full cascade of goal-directed feeding behavior. Using optogenetics, activation of approximately 800 AgRP neurons in fed (sated) mice immediately evoked voracious food-seeking and consumption -- effectively injecting an artificial 'high drive' signal into an otherwise non-driven animal. This directly instantiates the SD-012 claim: a high drive signal (here: forced AgRP neuron activation) enables goal-directed behavior that is otherwise absent under satiety. The converse -- that these same neurons are suppressed under satiety (low drive state) -- is also supported by the experimental design. The result that feeding behavior is selective (food over water, food over non-food objects) and immediate (within minutes, without training) demonstrates that the AgRP drive signal gates a complete goal-directed action program, not merely appetite in the abstract. Confidence is 0.80 because the optogenetic intervention is clean and well-controlled, and the mapping to SD-012's drive_level mechanism is strong. Transfer risk is moderate because the biological substrate (AgRP/NPY hypothalamic neurons) is being mapped to an abstract 'drive_level' scalar parameter in REE.",
+      "evidence_class": "lit:causal_intervention",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_012",
+      "failure_signatures": [
+        "If activation of artificial drive (AgRP stimulation) had produced only non-directed hyperactivity rather than selective goal-directed food seeking, the case for drive gating goal representations would be weakened.",
+        "If goal-directed feeding had occurred equally in sated mice without AgRP stimulation, the drive-gating hypothesis would fail -- need states would not be necessary for goal orchestration.",
+        "If z_goal in REE seeds equally under low drive_level conditions, the SD-012 threshold mechanism would be empirically unnecessary."
+      ],
+      "run_id": "2026-04-05_sd_012_agrp_hunger_goal_orchestration_aponte2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-012",
+      "confidence": 0.82,
+      "confidence_rationale": "Livneh et al. 2017 provides the most direct neural circuit evidence that homeostatic state (hunger vs. satiety) gates the representation of motivationally relevant stimuli at the cortical level. Using two-photon calcium imaging in awake, behaving mice, they show that insular cortex neurons exhibit food-cue-biased responses that are selectively abolished during satiety. Critically, this gating operates via a defined pathway: AgRP (hunger) neurons -> paraventricular thalamus -> basolateral amygdala -> insular cortex. The insular cortex is a known substrate for interoceptive state representation. The selective abolition of food-cue responses under satiety, and their restoration by chemogenetic AgRP activation, directly demonstrates that homeostatic state gates the cortical representation of goal-relevant stimuli -- an analogue to z_goal gating in SD-012. This paper is particularly relevant because it is not just about behavioral output (feeding) but about the *cortical representation of food-related cues* being gated by need state, which maps more directly to z_goal as an internal goal representation. Confidence 0.82 because the circuit mechanism is well characterized, the selective gating is clearly shown, and the mapping to SD-012 z_goal gating is strong. Transfer risk is moderate because the specific insular cortex mechanism is being abstracted to a generic latent-space goal representation.",
+      "evidence_class": "lit:circuit_mechanism",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sd_012",
+      "failure_signatures": [
+        "If food-cue representations in insular cortex had been maintained at satiety (just with weaker behavioral drive), the gating hypothesis would be weakened to modulation rather than suppression.",
+        "If the homeostatic gating pathway could be bypassed independently of drive state (cue representations restored without restoring AgRP activity), the drive-gating claim would be qualified.",
+        "If z_goal in REE can be seeded under low drive_level conditions, SD-012's threshold hypothesis would be empirically unnecessary."
+      ],
+      "run_id": "2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T00:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-042",
+      "confidence": 0.7,
+      "confidence_rationale": "Bengio et al. (2009) provide the foundational ML evidence that staged training strategies (curriculum learning) are necessary for non-convex optimization of complex representation learning objectives. The ARC-042 Phase 0/1/2 structure is a staged training protocol, and Bengio et al.'s framework explains why this staging is not a convenience but a necessity: the full joint objective (world model + supervised context discrimination) is harder than either component alone, and starting with the simpler Phase 0 objective (world model prediction only) guides the representation toward a manifold from which Phase 1 (context discrimination) can be learned. The curriculum learning view predicts that the Phase 1 gate is not merely sequencing but a qualitative boundary: representations learned in Phase 0 are not useful for context-gated evaluation (Phase 2) -- they require Phase 1's supervised objective to acquire discriminating structure. The EXQ-187a result (cosine_sim=1.0 after 150 warmup episodes) is consistent with Bengio et al.'s finding that attempting a hard objective without prior simpler-task grounding leads to degenerate solutions. Confidence at 0.70: the conceptual mapping to ARC-042 is clear, but Bengio et al. demonstrate curriculum benefits for example ordering within a single objective, whereas ARC-042 proposes objective staging (different loss functions in different phases). The additional step from example curriculum to objective staging requires bridging from the transfer learning / multi-task learning literature, which Bengio et al. only touch on tangentially.",
+      "evidence_class": "lit:ml_theoretical_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_042",
+      "failure_signatures": [
+        "Bengio et al.'s curriculum learning orders examples by difficulty within a fixed objective function. ARC-042's Phase 0/1/2 changes the objective function across phases (Phase 0: prediction error only; Phase 1: prediction + supervised label loss; Phase 2: frozen). Example-ordering curriculum and objective-staging are related but distinct strategies. Bengio et al.'s theory does not formally prove that objective staging is necessary, only beneficial.",
+        "Bengio et al. demonstrate curriculum benefits in classification tasks where even random-order training produces partially correct representations. The EXQ-187a collapse to cosine_sim=1.0 suggests a more complete failure than curriculum disorder alone predicts -- the label gradient may be structurally insufficient (lambda=0.1 too weak) regardless of staging order."
+      ],
+      "run_id": "2026-04-05_arc_042_curriculum_learning_staged_representation_bengio2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-042",
+      "confidence": 0.73,
+      "confidence_rationale": "Sanders, Wilson & Gershman (2020) provide a Bayesian computational framework for hippocampal remapping that directly supports the ARC-042 staged developmental account. The paper's core claim is that hippocampal context representations are not raw perceptual encodings of environmental features but are posterior beliefs about hidden states generating the observations. Remapping (a change in which hippocampal map is active) reflects Bayesian inference over hidden states rather than direct response to sensory change. The model uses a Chinese Restaurant Process (CRP) prior over hidden states, parametrized by alpha (the tendency to create new states vs. assign to existing ones). Key relevance to ARC-042: (1) The framework formalizes why an untrained or bootstrapping-phase ContextMemory cannot discriminate contexts -- without a prior over hidden states that has been updated by sufficient experience, the posterior is flat (all contexts appear equally probable) and the system defaults to a single attractor (all contexts map to the same representation). (2) The staged Phase 0/1/2 structure of ARC-042 maps onto the development of the prior: Phase 0 is the bootstrap epoch during which the agent lacks an informative context prior; Phase 1 (supervised training) is the process by which the CRP prior is shaped by labeled experience into a distribution that can discriminate terrain types; Phase 2 uses the trained prior for inference. (3) The paper makes a specific prediction that directly validates ARC-042's Phase 1 gate: the quality of context inference is bounded by the quality of the generative model (prior + likelihood). Before the prior is trained, no amount of evidence at inference time is sufficient to produce discriminating representations. This is the functional analog of the Phase 1 gate in ARC-042: ContextMemory is not useful for context-gated evaluation until Phase 1 has trained the hidden-state prior sufficiently. Confidence at 0.73: the Bayesian framework is rigorous and the mapping is conceptually tight, but the CRP prior is a discrete generative model over a fixed observation space, not a learned LSTM representation; transfer requires interpretation rather than direct mapping.",
+      "evidence_class": "lit:neuroscience_computational",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_042",
+      "failure_signatures": [
+        "The CRP-based model uses a non-parametric Bayesian framework with analytically tractable posteriors. The ContextMemory module uses learned distributed representations (LSTM activations) without an explicit generative model. The inference mechanism in Sanders et al. (Bayesian posterior update) is not the same as the write/retrieve dynamics of a differentiable associative memory.",
+        "Sanders et al. model remapping as a discrete state-transition event (switch hidden state vs. stay in current state). ARC-042's ContextMemory uses continuous context vectors -- the 'remapping' equivalent is a change in the cosine similarity of retrieved vectors, not a discrete state flip.",
+        "The paper focuses on what determines WHEN remapping occurs (the Bayesian decision boundary). ARC-042's Phase 1 addresses HOW discriminating representations are learned, not when switching occurs. These are complementary but distinct questions."
+      ],
+      "run_id": "2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-042",
+      "confidence": 0.71,
+      "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
+      "evidence_class": "lit:ml_theoretical_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_153",
+      "failure_signatures": [
+        "Bengio et al.'s experiments are on feedforward networks and RNNs for NLP/vision. The ContextMemory failure mode (cosine_sim=1.0) is more extreme than typical curriculum-without-curriculum failures in standard classification tasks, which usually produce suboptimal but non-collapsed representations. The total collapse in EXQ-187a suggests an additional issue beyond curriculum ordering: the label gradient itself may be too weak (lambda=0.1) to compete with the prediction-error gradient, which is not addressed by curriculum ordering alone.",
+        "Bengio et al.'s curriculum orders examples by difficulty within a fixed objective. ARC-042's staged training changes the objective itself (Phase 0: prediction error only; Phase 1: prediction + label loss; Phase 2: frozen representation). This is a stronger claim than standard curriculum learning -- it is objective staging, not example staging. Bengio et al.'s theoretical grounding covers example ordering; objective staging requires additional justification (e.g., from multi-task learning or transfer learning literature)."
+      ],
+      "run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-153",
+      "confidence": 0.71,
+      "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
+      "evidence_class": "lit:ml_theoretical_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_153",
+      "failure_signatures": [
+        "Bengio et al.'s experiments are on feedforward networks and RNNs for NLP/vision. The ContextMemory failure mode (cosine_sim=1.0) is more extreme than typical curriculum-without-curriculum failures in standard classification tasks, which usually produce suboptimal but non-collapsed representations. The total collapse in EXQ-187a suggests an additional issue beyond curriculum ordering: the label gradient itself may be too weak (lambda=0.1) to compete with the prediction-error gradient, which is not addressed by curriculum ordering alone.",
+        "Bengio et al.'s curriculum orders examples by difficulty within a fixed objective. ARC-042's staged training changes the objective itself (Phase 0: prediction error only; Phase 1: prediction + label loss; Phase 2: frozen representation). This is a stronger claim than standard curriculum learning -- it is objective staging, not example staging. Bengio et al.'s theoretical grounding covers example ordering; objective staging requires additional justification (e.g., from multi-task learning or transfer learning literature)."
+      ],
+      "run_id": "2026-04-05_mech_153_curriculum_learning_staged_training_bengio2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-153",
+      "confidence": 0.78,
+      "confidence_rationale": "Law et al. (2016) directly address the question of how many exposures are required before hippocampal context representations become stable and discriminating. Rats were exposed to two distinct environments in an ABAB interleaving pattern and recorded across 8 daily sessions. Key finding: on Day 1, CA1 neurons fired normally in each context, but when rats returned to the original context after 15 minutes in the second, many neurons remapped as if encountering a new environment. Representations stabilized by Day 3 with high cross-visit consistency. This establishes an empirical training-signal threshold: ~2-3 sessions of interleaved multi-context experience are required before hippocampal context representations are discriminating and stable. The correspondence to MECH-153 is direct: EXQ-187a used 150 warmup episodes with lambda=0.1, producing cosine_sim=1.0 (undifferentiated). Law et al.'s result explains the mechanism -- without sufficient multi-context interleaving under a signal that distinguishes the contexts, representations cannot stabilize into discriminating attractors. The paper also establishes that the failure mode during early training is not random but specific: representations are contextually correct within a session but non-reidentifiable across sessions -- analogous to the ContextMemory producing locally coherent but globally undifferentiated retrievals. Confidence is high (0.78) because: (a) the study is directly about concurrent context encoding and stabilization timing, (b) it uses real neural recording in dorsal CA1 (the hippocampal subfield most analogous to a context-retrieval module), (c) the ABAB interleaving structure parallels the alternating terrain episodes in the CausalGridWorld. Confidence is moderated because the rat CA1 system uses place-field mechanisms not directly analogous to cosine-similarity-based context retrieval in an LSTM.",
+      "evidence_class": "lit:neuroscience_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_153",
+      "failure_signatures": [
+        "The rat hippocampus uses place-field remapping (spatial maps) as the context representation substrate, not learned associative memory vectors. The stabilization mechanism (reduction in cross-visit remapping) differs architecturally from the cosine-similarity metric used in EXQ-187a. The number of sessions (Days 1-3) provides an order-of-magnitude estimate of required exposure, but the exact episode count does not translate directly.",
+        "The ABAB interleaving in Law et al. provides contrastive signal between contexts -- the animal experiences context switches and the hippocampus must maintain two distinct active maps. EXQ-187a's ContextMemory warmup may not have provided equivalent contrastive signal if episode ordering was randomized rather than interleaved with clear context transitions.",
+        "The study records existing neural hardware (in vivo CA1). The ContextMemory module must learn to differentiate via backpropagation through extract_cue_context(), which has different capacity and gradient dynamics than synaptic plasticity in biological CA1."
+      ],
+      "run_id": "2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T18:57:30.361339Z",
+  "generated_at_utc": "2026-04-04T19:20:56.453425Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

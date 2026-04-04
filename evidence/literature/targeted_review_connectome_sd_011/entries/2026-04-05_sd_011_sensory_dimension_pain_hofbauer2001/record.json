@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_011",
+  "entry_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["SD-011"],
+  "source": {
+    "title": "Cortical representation of the sensory dimension of pain.",
+    "authors": ["Hofbauer RK", "Rainville P", "Duncan GH", "Bushnell MC"],
+    "year": 2001,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.2001.86.1.402",
+    "pmid": "11431520",
+    "citation": "J Neurophysiol. 2001 Jul;86(1):402-11"
+  },
+  "evidence_class": "empirical_study",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This paper provides a critical experimental double dissociation complementing Rainville et al. (1997) (already in the SD-011 evidence set). Rainville 1997 showed that hypnotic modulation of pain unpleasantness changed ACC activity but not S1. Hofbauer 2001 shows the converse: hypnotic modulation of pain intensity changed S1 activity but not ACC. Together these two studies constitute a clean bidirectional dissociation: S1 encodes the sensory-discriminative dimension (z_harm_s equivalent), ACC encodes the affective-motivational dimension (z_harm_a equivalent). This is direct empirical evidence for two separable cortical representations corresponding to the two streams in SD-011. Confidence 0.88 because the study is a clean primary experiment with PET, using validated hypnotic modulation paradigm, in humans. Minor caveats: small N typical of PET era, hypnotic modulation is a somewhat indirect manipulation, and S1 activation in pain is now known to be more complex (encoding both intensity and location).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If S1 activity also tracks unpleasantness at higher pain intensities or under conditions outside the hypnotic modulation paradigm, the clean sensory-affective dissociation would be incomplete, and z_harm_s/z_harm_a streams would not be as separable as the double dissociation suggests.",
+    "The use of hypnotic suggestion as the manipulation assumes that hypnosis can independently vary sensory intensity vs affective unpleasantness. If hypnotic suggestions inevitably modulate both dimensions simultaneously (with one dimension masked in the ratings), the dissociation would be an artifact of the measurement approach rather than a genuine functional dissociation."
+  ],
+  "tags": ["sd_011", "s1", "somatosensory_cortex", "acc", "pain_intensity", "sensory_discriminative", "affective_motivational", "hypnosis", "pet", "double_dissociation", "experimental"],
+  "mapping": {
+    "source_claim_statement": "Using hypnotic suggestion to selectively modulate perceived pain intensity (without changing unpleasantness), PET imaging showed that pain-evoked activity in primary somatosensory cortex (S1) changed significantly with modulation of intensity but not unpleasantness. This is the converse of Rainville et al. (1997), who showed that modulation of unpleasantness changed ACC but not S1. Together, the two studies provide a bidirectional double dissociation: S1 encodes the sensory dimension (intensity, localization), ACC encodes the affective dimension (unpleasantness, motivational urgency).",
+    "ree_translation": "This double dissociation provides direct empirical support for the SD-011 stream separation. S1 is the cortical expression of z_harm_s (the sensory-discriminative stream: fast, localizable, intensity-encoding, neospinothalamic). ACC is the cortical expression of z_harm_a (the affective-motivational stream: unpleasantness, behavioral urgency, paleospinothalamic / homeostatic). The bidirectional dissociation demonstrates that these are not merely two labels for the same response but genuinely separable neural computations. For the REE architecture, this means z_harm_s and z_harm_a can in principle be separated as distinct latents without loss of biological plausibility -- the brain already separates them.",
+    "mapping_caveat": "The S1 / ACC dissociation operates at the cortical level. At the spinal and subcortical level, the two streams are not fully separated -- there is convergence in dorsal horn, parabrachial nucleus, and thalamic relay nuclei. The REE architectural assumption of stream separation thus corresponds to a cortical-level separation, not a peripheral one. The dissociation is also specifically about PET-measured hemodynamic response -- finer-grained temporal dynamics (which matter for forward model predictability in ARC-033) require MEG or EEG, and those studies (see Timmermann 2002 entry) show more complex overlap. The hypnotic paradigm also limits generalizability to normal (non-hypnotic) pain processing.",
+    "source_context": "PET study in healthy humans, hypnotic modulation of perceived pain intensity vs. unpleasantness, using standardized hot water bath thermal pain stimulus. Same lab and paradigm as Rainville 1997. Published in Journal of Neurophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.18,
+    "notes": "Good source quality (J Neurophysiol, peer-reviewed primary study, respected pain neuroimaging lab). Very high mapping fidelity -- the double dissociation with Rainville 1997 is exactly the kind of evidence SD-011 needs. Transfer risk is low because the S1/ACC cortical separation is at the right level of abstraction for REE's architectural claim."
+  }
+}

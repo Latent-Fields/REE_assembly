@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_029",
+  "entry_id": "2026-04-05_arc_029_beta_stabilized_state_leventhal2012",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-029"],
+  "source": {
+    "title": "Basal ganglia beta oscillations accompany cue utilization.",
+    "authors": ["Leventhal, Daniel K.", "Gage, Gregory J.", "Schmidt, Robert", "Pettibone, Jeffrey R.", "Case, Alaina C.", "Berke, Joshua D."],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2011.11.032",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22325204/"
+  },
+  "evidence_class": "electrophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Leventhal et al. (2012) is the most directly relevant empirical study for ARC-029. Using multi-electrode recordings across the cortical-BG network in rats, they show that brief beta (~20 Hz) oscillations arise after cue-guided decisions and increase specifically when cues are used to determine motor output -- not during movement suppression per se and not locked to movement. Their central interpretation is that beta oscillations reflect a post-decision stabilized state of cortical-BG networks that reduces interference from alternative potential actions. This is precisely the functional role that ARC-029's committed-mode gate (BetaGate) implements: after commitment, beta elevation should keep the agent in its chosen action mode, suppressing exploratory variance. The paper also provides the pathological analogy -- abnormally strong beta in Parkinson's Disease reflects overstabilization, producing pathological persistence of the current motor state -- which directly predicts the V-shaped benefit curve ARC-029 implies: too little committed-mode beta = harm from reactive exploration; too much = harm from pathological rigidity. Confidence is moderated by the rodent-to-architecture transfer gap and by the fact that harm rate reduction is not directly measured -- the paper measures interference suppression and action-mode stability, not error or harm outcomes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not directly measure error or harm rates under committed vs. uncommitted conditions. It measures oscillatory power and reaction time, not downstream harm accumulation. The link from 'beta stabilizes the current action mode' to 'harm rate is lower when committed' requires an additional step: that reactive exploration produces harm and committed-mode suppression of that exploration reduces harm. This link is asserted by ARC-029 but not directly tested by Leventhal et al.",
+    "Beta oscillations are task-modulated but transient -- they appear as brief epochs, not sustained elevated states. ARC-029's committed mode is modelled as a sustained operational regime (BetaGate elevation). The Leventhal data supports the transient gating mechanism but does not directly address sustained committed-mode operation across multi-step trajectories.",
+    "The study is in rats performing a serial reaction time task and a deliberate choice task. The environments are designed to be highly stable and cue-reliable. Whether the beta stabilization advantage holds in volatile environments (where ARC-029 predicts the committed-mode benefit should be lower) is not tested in this study."
+  ],
+  "tags": ["arc_029", "arc_016", "beta_gate", "commitment", "beta_oscillations", "basal_ganglia", "post_decision", "action_stabilization", "harm_prevention"],
+  "mapping": {
+    "source_claim_statement": "Beta oscillations in the cortical-BG network reflect a post-decision stabilized state that reduces interference from alternative potential actions. Beta power increases after cue utilization, not during movement suppression per se. Abnormally elevated beta (as in Parkinson's) produces pathological persistence of the current motor state.",
+    "ree_translation": "ARC-029 predicts that committed-mode operation (BetaGate elevated) produces lower harm rates in stable environments because the gate suppresses reactive exploration. Leventhal et al. provide the neural mechanism: beta oscillations are the signal that the BG network has committed to a selected action program and is now actively suppressing interference from alternatives. The V-shaped harm benefit predicted by ARC-029 maps cleanly to the paper's Parkinson's analogy: too little beta = interference-driven errors (uncommitted mode); too much beta = pathological rigidity. The 'stable environment' qualifier in ARC-029 is also supported -- beta stabilization is most adaptive when the environment is predictable and the committed plan is likely to remain valid.",
+    "mapping_caveat": "The paper measures interference suppression and oscillatory power, not harm accumulation. The REE architecture models beta as a gating parameter (BetaGate scalar) rather than as a directly measured oscillation. The causal chain from Leventhal's beta stabilization to ARC-029's harm rate difference requires the intermediate step that suppressed alternative-action interference translates to lower harm -- plausible but not directly shown. Additionally, the paper's beta epochs are transient post-cue events, whereas ARC-029 models a sustained committed regime; the temporal scale of committed-mode operation needs to be considered.",
+    "source_context": "Electrophysiology study in freely moving rats with multi-site local field potential recordings (motor cortex, striatum, STN) during cued choice and serial reaction time tasks. Neuron 2012. PMID 22325204. From Joshua Berke's lab at UCSF -- a leading group on BG oscillations and behavioral modes. Highly cited study establishing the 'post-decision stabilization' interpretation of BG beta."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.42,
+    "notes": "High-quality multi-site electrophysiology in behaving rodents, Neuron journal. Mapping fidelity is good because the proposed mechanism (beta = committed mode suppressing interference) directly matches ARC-029's theoretical construct. Transfer risk is moderate: rodent to architecture, transient oscillation to sustained gating regime, interference suppression to harm rate are all steps that require additional assumptions. The Parkinson's analogy in the paper partially bridges the harm-mode connection."
+  }
+}

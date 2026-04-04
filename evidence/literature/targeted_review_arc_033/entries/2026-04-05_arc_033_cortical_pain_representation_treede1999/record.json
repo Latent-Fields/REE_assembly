@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_033",
+  "entry_id": "2026-04-05_arc_033_cortical_pain_representation_treede1999",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["SD-011", "ARC-033"],
+  "source": {
+    "title": "The cortical representation of pain.",
+    "authors": ["Treede RD", "Kenshalo DR", "Gracely RH", "Jones AK"],
+    "year": 1999,
+    "venue": "Pain",
+    "doi": "10.1016/s0304-3959(98)00184-5",
+    "pmid": "10068155",
+    "citation": "Pain. 1999 Feb;79(2-3):105-11"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This 1999 review in Pain is one of the most cited accounts of cortical pain processing architecture. It synthesises neuroimaging and electrophysiology evidence to argue that pain is processed in at least two distinct cortical subsystems: (1) a lateral pain system (S1, S2, parietal operculum) subserving sensory-discriminative processing (intensity, location, quality); (2) a medial pain system (ACC, medial thalamus, anterior insula) subserving affective-motivational processing (unpleasantness, behavioral drive). This directly corresponds to the z_harm_s (lateral system) / z_harm_a (medial system) dissociation in SD-011, and the lateral system's properties (topographically organized, intensity-encoding, event-locked) are precisely those required for ARC-033's E2_harm_s forward model. Confidence 0.80 because this is a 1999 review (some findings have been revised since), and the lateral/medial system framing is a useful heuristic but is now known to be oversimplified (both systems are active in most painful conditions; the dissociation is relative rather than absolute).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.",
+    "The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified."
+  ],
+  "tags": ["sd_011", "arc_033", "lateral_pain_system", "medial_pain_system", "s1", "s2", "acc", "insula", "sensory_discriminative", "affective_motivational", "cortical_pain", "review"],
+  "mapping": {
+    "source_claim_statement": "Pain is processed in two partially distinct cortical systems: (1) the lateral pain system (S1, S2, parietal operculum) processes the sensory-discriminative dimension -- the where, how strong, and what quality of the noxious stimulus. This system receives input from the lateral spinothalamic tract via VPL thalamus and is topographically organized. (2) The medial pain system (anterior cingulate cortex, medial prefrontal cortex, anterior insula) processes the affective-motivational dimension -- the unpleasantness, behavioral urgency, and emotional significance. This system receives input from the spinoreticular and spinomesencephalic tracts, as well as indirect projections from medial thalamus. The sensory-discriminative component has its own apparatus all the way to the cortical level.",
+    "ree_translation": "The lateral/medial pain system framework maps directly onto SD-011's z_harm_s / z_harm_a stream separation. z_harm_s corresponds to the lateral pain system: topographically organized, intensity-encoding, fast, event-locked -- and therefore forward-predictable by E2_harm_s (ARC-033). z_harm_a corresponds to the medial pain system: diffuse, affectively loaded, motivationally urgent. The review's specific claim that 'the sensory-discriminative component has its own apparatus up to the cortical level' is the key architectural statement supporting SD-011: the two streams are not just phenomenologically distinct but computationally implemented in distinct pathways from spinal cord to cortex. For ARC-033: the lateral pain system's properties (organized, event-locked, intensity-tracking) make it learnable by a forward model in a way that the diffuse medial system is not.",
+    "mapping_caveat": "The lateral/medial system framing is now known to be an oversimplification. Meta-analyses of pain neuroimaging (Apkarian et al. 2005, already in SD-011 evidence set) show that S1 is not consistently activated across pain studies, whereas ACC and insula are more reliably activated. This means the lateral system (particularly S1) may be more state-dependent and context-dependent than the review suggests, which would make z_harm_s a noisier and less consistently forward-predictable signal than ARC-033 requires. The 1999 publication date also precedes several important refinements in pain neuroimaging methodology.",
+    "source_context": "Review paper in Pain (the field's primary journal). Authors include Treede (somatosensory electrophysiology), Kenshalo (S1 pain responses), Gracely (psychophysics), and Jones (pain neuroimaging). Synthesises animal electrophysiology, human psychophysics, and functional neuroimaging."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Good source quality (Pain journal, authoritative multi-author review, highly cited). Good mapping fidelity -- the lateral/medial system distinction maps cleanly onto SD-011 streams. Transfer risk is low (this is a human/animal pain neuroscience review at the appropriate level of abstraction). Main caveat is the 1999 date and the subsequent finding that S1 is less consistently activated than the review suggests."
+  }
+}

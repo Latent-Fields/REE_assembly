@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_038",
+  "entry_id": "2026-04-05_arc_038_ripple_disruption_awake_egostengel2010",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-038"],
+  "source": {
+    "title": "Disruption of ripple-associated hippocampal activity during rest impairs spatial learning in the rat",
+    "authors": ["Valerie Ego-Stengel", "Matthew A. Wilson"],
+    "year": 2010,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.20707",
+    "pmid": "19816984",
+    "pmc": "PMC2801761",
+    "url": "https://doi.org/10.1002/hipo.20707"
+  },
+  "evidence_class": "electrophysiology_rodent_causal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Causal intervention study: selectively disrupting hippocampal activity during ripple events in awake rest periods impaired subsequent spatial learning. Rats that had ripple activity disrupted during rest after task learned the subsequent task significantly more slowly. This is the strongest class of evidence for ARC-038 -- causal necessity of waking-quiescence SWR replay for subsequent map-based performance. The disruption was specific to ripple-associated activity (not overall sleep-wake structure), directly implicating SWR-based waking consolidation. Published in Hippocampus. Main caveat: the rest period included both sleep and quiet wakefulness -- the paper does not fully isolate purely awake SWR disruption.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_038", "swr", "replay", "waking_rest", "causal", "disruption", "spatial_learning", "consolidation", "rodent", "electrophysiology", "supports"],
+  "mapping": {
+    "source_claim_statement": "Disrupting neuronal activity specifically during sharp-wave ripple events in 1-hour post-task rest periods impaired subsequent spatial learning (control task learned faster than stimulated task). The effect was not due to changes in sleep-wake structure.",
+    "ree_translation": "ARC-038: Waking-consolidation replay (SWR events during rest) is causally necessary for updating the navigational map used in subsequent performance. This directly supports the claim that the hippocampal system runs a map-update replay pass during quiescent periods, and that disrupting this pass degrades subsequent goal-directed performance. This is the biological necessity finding that motivates implementing ARC-038 in V3 -- absence of this mechanism should predict impaired map-based planning.",
+    "mapping_caveat": "Rest period included sleep and quiet wakefulness -- study does not isolate purely awake (non-sleep) SWR contribution. However, the broad rest window is consistent with the ARC-038 claim that quiescent periods (including both awake rest and sleep-adjacent) serve consolidation. The distinction between waking consolidation replay and sleep consolidation is a further question not resolved here.",
+    "source_context": "Male Long-Evans rats trained on spatial navigation tasks in a maze; ripple disruption via stimulation of hippocampal afferents; between-session comparison of learning rates."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Strong causal design; spatial learning paradigm directly analogous to hippocampal viability map function in REE. Transfer risk low: same principles apply. Main uncertainty is inability to fully isolate awake vs. sleep SWR contribution within the rest period."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_042",
+  "entry_id": "2026-04-05_arc_042_curriculum_learning_staged_representation_bengio2009",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["ARC-042"],
+  "source": {
+    "title": "Curriculum Learning",
+    "authors": ["Bengio, Yoshua", "Louradour, Jerome", "Collobert, Ronan", "Weston, Jason"],
+    "year": 2009,
+    "venue": "Proceedings of the 26th International Conference on Machine Learning (ICML)",
+    "doi": "10.1145/1553374.1553380",
+    "arxiv_id": null,
+    "pmc": null
+  },
+  "evidence_class": "ml_theoretical_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Bengio et al. (2009) provide the foundational ML evidence that staged training strategies (curriculum learning) are necessary for non-convex optimization of complex representation learning objectives. The ARC-042 Phase 0/1/2 structure is a staged training protocol, and Bengio et al.'s framework explains why this staging is not a convenience but a necessity: the full joint objective (world model + supervised context discrimination) is harder than either component alone, and starting with the simpler Phase 0 objective (world model prediction only) guides the representation toward a manifold from which Phase 1 (context discrimination) can be learned. The curriculum learning view predicts that the Phase 1 gate is not merely sequencing but a qualitative boundary: representations learned in Phase 0 are not useful for context-gated evaluation (Phase 2) -- they require Phase 1's supervised objective to acquire discriminating structure. The EXQ-187a result (cosine_sim=1.0 after 150 warmup episodes) is consistent with Bengio et al.'s finding that attempting a hard objective without prior simpler-task grounding leads to degenerate solutions. Confidence at 0.70: the conceptual mapping to ARC-042 is clear, but Bengio et al. demonstrate curriculum benefits for example ordering within a single objective, whereas ARC-042 proposes objective staging (different loss functions in different phases). The additional step from example curriculum to objective staging requires bridging from the transfer learning / multi-task learning literature, which Bengio et al. only touch on tangentially.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bengio et al.'s curriculum learning orders examples by difficulty within a fixed objective function. ARC-042's Phase 0/1/2 changes the objective function across phases (Phase 0: prediction error only; Phase 1: prediction + supervised label loss; Phase 2: frozen). Example-ordering curriculum and objective-staging are related but distinct strategies. Bengio et al.'s theory does not formally prove that objective staging is necessary, only beneficial.",
+    "Bengio et al. demonstrate curriculum benefits in classification tasks where even random-order training produces partially correct representations. The EXQ-187a collapse to cosine_sim=1.0 suggests a more complete failure than curriculum disorder alone predicts -- the label gradient may be structurally insufficient (lambda=0.1 too weak) regardless of staging order."
+  ],
+  "tags": ["arc_042", "curriculum_learning", "staged_training", "phase_gate", "representation_learning", "non_convex_optimization", "bootstrapping", "ml_evidence"],
+  "mapping": {
+    "source_claim_statement": "Organizing training in a curriculum (easy examples before hard, simpler objectives before complex) improves both convergence speed and final representation quality for non-convex objectives. Curriculum learning acts as a continuation method, guiding optimization away from bad local minima. Attempting to learn complex objectives from random initialization without prior simpler-task warm-up increases risk of convergence to degenerate solutions.",
+    "ree_translation": "ARC-042's Phase 0/1/2 is a curriculum over objectives: Phase 0 (world model only, easy) -> Phase 1 (world model + supervised context discrimination, hard) -> Phase 2 (frozen evaluation). Bengio et al.'s continuation method argument predicts that the Phase 0 -> Phase 1 transition is necessary: without Phase 0 bootstrapping, initializing Phase 1 training from scratch risks exactly the cosine_sim=1.0 outcome seen in EXQ-187a, because the optimization landscape of the joint objective is non-convex and the label signal is insufficient to escape the trivial attractor without prior world-model grounding. The Phase 1 gate in ARC-042 is thus grounded in curriculum learning theory: it is the point at which the prior phase has produced representations capable of supporting the harder discriminating objective.",
+    "mapping_caveat": "Bengio et al. demonstrate example-ordering curriculum, not objective-staging. The ARC-042 claim requires objective staging to be necessary, which is a stronger claim. Additional support is needed from multi-task/transfer learning literature. The mapping is conceptually sound but the formal grounding is incomplete.",
+    "source_context": "NLP and vision tasks; ICML 2009; foundational curriculum learning reference"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "Foundational ICML paper (~17k citations). Mapping fidelity moderate: the curriculum learning principle supports the ARC-042 staged structure, but the specific form (objective staging rather than example ordering) requires interpretive extension. Transfer risk moderate: core optimization principle is general, but the REE-specific failure mode (complete cosine_sim collapse) may require additional explanation."
+  }
+}

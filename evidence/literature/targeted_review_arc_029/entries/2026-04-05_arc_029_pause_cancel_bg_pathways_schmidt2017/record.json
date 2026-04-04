@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_029",
+  "entry_id": "2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-029"],
+  "source": {
+    "title": "A Pause-then-Cancel model of stopping: evidence from basal ganglia neurophysiology.",
+    "authors": ["Schmidt, Robert", "Berke, Joshua D."],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2016.0202",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28242736/"
+  },
+  "evidence_class": "review_neurophysiology",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Schmidt & Berke (2017) provide a review and model of how distinct BG cell types and pathways implement separable action-control processes: Go (direct pathway striatum), Pause (STN hyperdirect pathway), and Cancel (arkypallidal GPe). The Pause process is specifically relevant to ARC-029: brief beta oscillation epochs in striatum coincide with the Pause phase, creating a temporary hold on the current action stream. This is functionally equivalent to the committed-mode gate raising inhibition before irreversibility. Critically, the paper shows that Pause and Cancel are distinct processes that can be mapped to specific circuitry, supporting ARC-029's core architectural claim that committed and uncommitted modes are implemented by distinct neural mechanisms (not a single dial). The separation of Go/Pause/Cancel maps onto REE's pre-commit (Go), commit-threshold evaluation (Pause), and action execution (committed-mode post-Cancel resumption) phases. Confidence moderated by the review/synthesis nature (not primary data), by the fact that harm rate is not directly addressed, and by the architectural translation gap from stop-signal task behavior to multi-step trajectory harm outcomes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Pause-then-Cancel model is developed for action stopping and inhibition, not for sustained committed-mode operation. The 'committed mode' in ARC-029 is a sustained positive-action regime, not a stopping event. The mapping requires treating the commit threshold as the moment when the Pause/Cancel decision is made and committed mode is the post-decision sustained state -- an indirect mapping.",
+    "The review synthesizes existing data but does not present new primary evidence for the harm-rate consequence of Go vs. Pause states. Error rates in stop-signal tasks are not decomposed into harm-producing vs. non-harm-producing errors.",
+    "The Pause-then-Cancel model emphasizes the stopping pathway; ARC-029's committed mode is about the going pathway being protected. The paper is more directly about uncommitted-mode vulnerability (failure to Pause/Cancel leading to committed errors) than about committed-mode harm reduction."
+  ],
+  "tags": ["arc_029", "arc_016", "beta_gate", "commitment", "pause_cancel", "basal_ganglia", "go_nogo", "action_inhibition", "committed_mode"],
+  "mapping": {
+    "source_claim_statement": "Distinct basal ganglia cell types and pathways implement separable Go, Pause, and Cancel processes. Brief beta oscillation epochs in striatum correspond to the Pause process. The Pause-then-Cancel separation optimizes speed-accuracy trade-offs by combining fast non-specific inhibition (Pause) with selective cancellation (Cancel) when needed.",
+    "ree_translation": "ARC-029 requires that committed and uncommitted modes produce measurably distinct harm outcomes. Schmidt & Berke's Pause-then-Cancel model maps onto the commit threshold gate (ARC-016): the Pause phase is the pre-commitment evaluation window during which harm-avoidance circuitry can still cancel the action. Once the window closes (Cancel is not triggered), the action enters committed-mode execution. The distinct BG pathway architecture supports the claim that committed and uncommitted modes are implemented by distinct neural mechanisms, not a continuum. The committed-mode harm advantage in stable environments would arise because the Pause window catches dangerous impulses before commitment; once committed, the Go pathway is protected from interference. Failure to Pause (reduced beta) is the committed-without-evaluation failure mode that increases harm.",
+    "mapping_caveat": "The Pause-then-Cancel framework is about reactive inhibition during a stop-signal task -- a single-trial event. ARC-029's committed vs. uncommitted modes are sustained operational regimes that shape behavior across multiple timesteps. The translation from per-trial Pause/Cancel to sustained operating mode requires the additional assumption that repeated committed trials with successful Pause evaluation produce cumulative harm reduction. The paper does not directly address this temporal scaling. Additionally, the review focuses on the stopping pathway; ARC-029's committed-mode benefit is about the staying-committed pathway.",
+    "source_context": "Review article from Schmidt and Berke, synthesizing BG neurophysiology evidence for action stopping mechanisms. Philosophical Transactions of the Royal Society B, 2017. PMID 28242736. Part of a themed issue on movement suppression. Builds on the same group's primary data (Schmidt et al. 2013, PMID 23852117)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.52,
+    "notes": "Strong review from leading BG researchers in a high-quality venue. Mapping fidelity is moderate -- the Pause-then-Cancel framework is about stopping, and ARC-029 is about sustained committed-mode harm reduction; the connection requires treating the commit threshold as the Pause decision point. Transfer risk is moderate-high because of the per-trial-event vs. sustained-regime mismatch and the stop-signal task vs. multi-step harm environment mismatch."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-04-05_sd_012_homeostatic_gate_cue_response_livneh2017",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "Homeostatic circuits selectively gate food cue responses in insular cortex",
+    "authors": ["Livneh, Y.", "Ramesh, R.N.", "Burgess, C.R.", "Levandowski, K.M.", "Madara, J.C.", "Fenselau, H.", "Goldey, G.J.", "Diaz, V.E.", "Jikomes, N.", "Resch, J.M.", "Lowell, B.B.", "Andermann, M.L."],
+    "year": 2017,
+    "venue": "Nature",
+    "doi": "10.1038/nature22375",
+    "pmid": "28614299",
+    "pmc": "PMC5577930",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28614299/"
+  },
+  "evidence_class": "circuit_mechanism",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Livneh et al. 2017 provides the most direct neural circuit evidence that homeostatic state (hunger vs. satiety) gates the representation of motivationally relevant stimuli at the cortical level. Using two-photon calcium imaging in awake, behaving mice, they show that insular cortex neurons exhibit food-cue-biased responses that are selectively abolished during satiety. Critically, this gating operates via a defined pathway: AgRP (hunger) neurons -> paraventricular thalamus -> basolateral amygdala -> insular cortex. The insular cortex is a known substrate for interoceptive state representation. The selective abolition of food-cue responses under satiety, and their restoration by chemogenetic AgRP activation, directly demonstrates that homeostatic state gates the cortical representation of goal-relevant stimuli -- an analogue to z_goal gating in SD-012. This paper is particularly relevant because it is not just about behavioral output (feeding) but about the *cortical representation of food-related cues* being gated by need state, which maps more directly to z_goal as an internal goal representation. Confidence 0.82 because the circuit mechanism is well characterized, the selective gating is clearly shown, and the mapping to SD-012 z_goal gating is strong. Transfer risk is moderate because the specific insular cortex mechanism is being abstracted to a generic latent-space goal representation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If food-cue representations in insular cortex had been maintained at satiety (just with weaker behavioral drive), the gating hypothesis would be weakened to modulation rather than suppression.",
+    "If the homeostatic gating pathway could be bypassed independently of drive state (cue representations restored without restoring AgRP activity), the drive-gating claim would be qualified.",
+    "If z_goal in REE can be seeded under low drive_level conditions, SD-012's threshold hypothesis would be empirically unnecessary."
+  ],
+  "tags": ["sd_012", "homeostatic_gating", "insular_cortex", "hunger_state", "satiety_suppression", "goal_representation", "cue_responses", "need_state_gating", "z_goal", "circuit_mechanism"],
+  "mapping": {
+    "source_claim_statement": "Insular cortex neurons show food-cue-biased responses during hunger that are selectively abolished during satiety. This gating is mediated by a pathway from hypothalamic AgRP (hunger) neurons via the paraventricular thalamus and basolateral amygdala to insular cortex. Chemogenetic activation of AgRP neurons in sated animals restores hunger-like food-cue response patterns in insular cortex. The result reveals a neural basis for state-specific biased processing of motivationally relevant cues.",
+    "ree_translation": "In REE, SD-012 proposes that z_goal (the internal goal representation) is only seeded when drive_level is high: effective_benefit = raw_benefit * (1.0 + drive_weight * drive_level). The Livneh et al. finding that cortical representations of goal-relevant cues (food cues) are selectively abolished under satiety and restored under hunger is the biological analogue of z_goal gating by drive_level. The insular cortex representations are not just modulated (scaled down) at satiety; they are effectively suppressed (analogous to z_goal failing to seed above threshold). The AgRP -> PVT -> BLA -> insular cortex pathway describes the biological implementation of what SD-012 captures abstractly as the drive_weight * drive_level scaling term: it is a dedicated circuit pathway by which need state amplifies the effective motivational salience of resource-related stimuli. The selective nature of the gating (food cues, not other cues) maps to z_goal being specifically the goal latent vector associated with resource acquisition.",
+    "mapping_caveat": "The Livneh et al. study focuses on sensory cue responses in insular cortex, not on goal representations per se (z_goal in REE is a latent vector in a planning/commitment space, closer to OFC/PFC function than insular cortex). The insular cortex is primarily an interoceptive state area; its food-cue responses reflect current motivational value, not planned action sequences. The circuit is also hunger-specific (food cues), whereas SD-012 is designed as a generic need-state/benefit gating mechanism. The 'gating' in the paper is best characterized as a change in cue salience processing rather than the formation of an explicit goal representation. These distinctions reduce direct mapping fidelity but do not invalidate the core principle that homeostatic state gates cortical representations of motivationally relevant stimuli.",
+    "source_context": "In vivo two-photon calcium imaging with chemogenetic circuit manipulation in mice; Nature (2017); mechanistic circuit study with bidirectional state manipulation (hunger vs. satiety vs. chemogenetic AgRP activation in sated mice); insular cortex imaging via microprism implantation."
+  },
+  "confidence_components": {
+    "source_quality": 0.94,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Nature publication with clean circuit mechanism and bidirectional manipulation. Source quality very high. Mapping fidelity is good but with caveats: insular cortex cue representations vs. z_goal as a planning-space latent vector are at somewhat different levels of abstraction. The core principle maps well -- homeostatic state gates the cortical representation of goal-relevant stimuli -- but the specific implementation details differ. Transfer risk moderate because the paper is hunger-specific and insular cortex-specific, whereas SD-012 is generic."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_038",
+  "entry_id": "2026-04-05_arc_038_mech_092_swr_circuitry_mchugh2023",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["ARC-038", "MECH-092"],
+  "source": {
+    "title": "The expanded circuitry of hippocampal ripples and replay",
+    "authors": ["Hongshen He", "Hefei Guan", "Thomas J. McHugh"],
+    "year": 2023,
+    "venue": "Neuroscience Research",
+    "doi": "10.1016/j.neures.2022.12.010",
+    "pmid": "36572253",
+    "url": "https://doi.org/10.1016/j.neures.2022.12.010"
+  },
+  "evidence_class": "review_mechanistic",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Review establishes that SWR replay during slow-wave sleep AND quiet wakefulness serves memory consolidation and offline processing (planning). CA3 recurrent excitatory dynamics are the primary generator. Newly identifies CA2 region as an additional circuit influence on SWR generation and information content, in a task- and state-dependent manner. This expands the canonical CA3->CA1 model and directly maps onto the E3 hippocampal module needing CA3-equivalent recurrent dynamics. State-dependency (task vs. quiescence) is directly relevant to the ARC-038 waking-consolidation mode. Confidence 0.78: review with newer circuitry claims (CA2 role is emerging, not yet consensus).",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["arc_038", "mech_092", "swr", "replay", "quiescence", "CA3", "CA2", "CA1", "circuitry", "state_dependent", "consolidation", "planning", "review", "supports"],
+  "mapping": {
+    "source_claim_statement": "SWRs during slow-wave sleep and quiet wakefulness organize place cell replay for memory consolidation and offline planning. CA3 recurrent excitatory dynamics generate the canonical SWR; CA2 additionally influences SWR generation and content in task- and state-dependent ways. Interventions disrupting SWRs impair learning.",
+    "ree_translation": "ARC-038: The state-dependent nature of SWR generation (quiet wakefulness triggers distinct replay mode) directly supports the waking-consolidation mode claim. CA3 recurrent dynamics = the recurrent connectivity that should be implemented in the E3 HippocampalModule to enable SWR-equivalent replay. The CA2 state-dependency point suggests the circuit switches modes based on behavioral state (goal-directed vs. quiescent), which is the ARC-038 core claim. MECH-092: Quiescent E3 heartbeat cycles trigger hippocampal replay -- the state-dependency of CA2/CA3-driven SWR generation provides mechanistic grounding for why quiescence specifically enables the consolidation mode.",
+    "mapping_caveat": "CA2's state-dependent role is an emerging finding (2022 review). The distinction between goal-directed forward sweep and quiescent consolidation replay is inferred from state-dependence but not directly demonstrated as a clean switch in this paper. The REE HippocampalModule currently lacks CA3-equivalent recurrent connectivity and CA2-equivalent state-gating.",
+    "source_context": "Review of rodent hippocampal physiology; CA2, CA3, CA1 circuits; SWR generation mechanisms; sleep, quiet wakefulness, and active exploration states; memory consolidation and planning functions."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Good quality review from RIKEN group. CA2 state-dependency claims are emerging. Mapping is good for the state-dependent mode-switch and CA3 recurrent dynamics substrate. Transfer risk: the V3 HippocampalModule does not yet implement CA3-equivalent recurrence."
+  }
+}

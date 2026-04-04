@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_012",
+  "entry_id": "2026-04-05_sd_012_agrp_hunger_goal_orchestration_aponte2011",
+  "timestamp_utc": "2026-04-05T00:00:00Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "AGRP neurons are sufficient to orchestrate feeding behavior rapidly and without training",
+    "authors": ["Aponte, Y.", "Atasoy, D.", "Sternson, S.M."],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2739",
+    "pmid": "21209617",
+    "pmc": "PMC3049940",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21209617/"
+  },
+  "evidence_class": "causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Aponte et al. 2011 provides direct causal evidence that hypothalamic hunger-state neurons (AgRP/NPY neurons) are sufficient to drive the full cascade of goal-directed feeding behavior. Using optogenetics, activation of approximately 800 AgRP neurons in fed (sated) mice immediately evoked voracious food-seeking and consumption -- effectively injecting an artificial 'high drive' signal into an otherwise non-driven animal. This directly instantiates the SD-012 claim: a high drive signal (here: forced AgRP neuron activation) enables goal-directed behavior that is otherwise absent under satiety. The converse -- that these same neurons are suppressed under satiety (low drive state) -- is also supported by the experimental design. The result that feeding behavior is selective (food over water, food over non-food objects) and immediate (within minutes, without training) demonstrates that the AgRP drive signal gates a complete goal-directed action program, not merely appetite in the abstract. Confidence is 0.80 because the optogenetic intervention is clean and well-controlled, and the mapping to SD-012's drive_level mechanism is strong. Transfer risk is moderate because the biological substrate (AgRP/NPY hypothalamic neurons) is being mapped to an abstract 'drive_level' scalar parameter in REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If activation of artificial drive (AgRP stimulation) had produced only non-directed hyperactivity rather than selective goal-directed food seeking, the case for drive gating goal representations would be weakened.",
+    "If goal-directed feeding had occurred equally in sated mice without AgRP stimulation, the drive-gating hypothesis would fail -- need states would not be necessary for goal orchestration.",
+    "If z_goal in REE seeds equally under low drive_level conditions, the SD-012 threshold mechanism would be empirically unnecessary."
+  ],
+  "tags": ["sd_012", "agrp_neurons", "hypothalamus", "hunger_state", "goal_directed", "drive_level", "optogenetics", "need_state_gating"],
+  "mapping": {
+    "source_claim_statement": "Activation of approximately 800 hypothalamic AgRP (agouti-related peptide) neurons in sated mice is sufficient to produce voracious, selective, goal-directed food-seeking and consumption within minutes. This demonstrates that the hunger-signaling pathway (AgRP neurons) is both necessary and sufficient for the full cascade of goal-directed feeding behavior. Under normal satiety (drive ~ 0), these neurons are suppressed and goal-directed food seeking is absent. Under hunger (drive ~ 1), they are active and goal-directed food seeking is fully engaged.",
+    "ree_translation": "In REE, SD-012 proposes that the effective benefit signal is gated by drive_level: effective_benefit = raw_benefit * (1.0 + drive_weight * drive_level). At drive_level near 0 (sated agent, full energy), even resource contacts do not amplify the benefit signal enough to seed z_goal. At drive_level near 1 (depleted agent), the benefit signal is strongly amplified, enabling z_goal to cross the seeding threshold. The Aponte et al. finding that AgRP activation in sated mice immediately restores goal-directed food seeking maps to the SD-012 mechanism as follows: AgRP neuron firing rate is the biological correlate of drive_level. When drive_level is externally forced to 1 (via optogenetic AgRP activation), goal-directed behavior is restored even in an otherwise sated agent. This is the exact operation that SD-012's benefit-scaling term performs: injecting drive state into the benefit computation to gate goal representation formation.",
+    "mapping_caveat": "The biological AgRP mechanism is a dedicated neural circuit for hunger; REE's drive_level is a generic scalar that abstracts over many possible need states (not only hunger). The paper does not test subtraction of goal representations (z_goal suppression under satiety) directly -- it tests induction under simulated hunger. The claim that satiety suppresses goal-directed behavior is inferred from the baseline condition (sated mice do not show spontaneous food-seeking), not from active manipulation. Additionally, the paper tests complete behavioral output (feeding), whereas SD-012 is specifically about z_goal formation (internal representation). The mapping is strong in principle but the measurement level differs.",
+    "source_context": "Optogenetic study in mice; Nature Neuroscience (2011); seminal demonstration of AgRP sufficiency for feeding behavior; used channelrhodopsin-2 expressed specifically in AgRP+ neurons of the hypothalamic arcuate nucleus; activation evoked feeding selectively over drinking and object interaction."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Nature Neuroscience publication, seminal optogenetics paper with clean causal design. Mapping fidelity is good but not perfect: the paper tests behavioral output (food seeking and consumption), whereas SD-012 is about z_goal seeding (internal representation formation). Transfer risk is moderate: the AgRP biological circuit maps conceptually well to drive_level, but AgRP is a specialized hunger circuit whereas REE's drive_level is generic. The core principle -- that need-state neurons gate the full goal-directed behavioral cascade -- translates cleanly."
+  }
+}

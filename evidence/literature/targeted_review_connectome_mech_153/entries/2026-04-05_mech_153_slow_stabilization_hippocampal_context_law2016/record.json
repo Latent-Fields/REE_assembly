@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_153",
+  "entry_id": "2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016",
+  "timestamp_utc": "2026-04-05T12:00:00Z",
+  "claim_ids_tested": ["MECH-153"],
+  "source": {
+    "title": "Slow Stabilization of Concurrently Acquired Hippocampal Context Representations",
+    "authors": ["Law, L. Matthew", "Bulkin, David A.", "Smith, David M."],
+    "year": 2016,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22659",
+    "pmid": "27650572",
+    "pmc": "PMC5138051",
+    "volume": "26",
+    "issue": "12",
+    "pages": "1560-1569"
+  },
+  "evidence_class": "neuroscience_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Law et al. (2016) directly address the question of how many exposures are required before hippocampal context representations become stable and discriminating. Rats were exposed to two distinct environments in an ABAB interleaving pattern and recorded across 8 daily sessions. Key finding: on Day 1, CA1 neurons fired normally in each context, but when rats returned to the original context after 15 minutes in the second, many neurons remapped as if encountering a new environment. Representations stabilized by Day 3 with high cross-visit consistency. This establishes an empirical training-signal threshold: ~2-3 sessions of interleaved multi-context experience are required before hippocampal context representations are discriminating and stable. The correspondence to MECH-153 is direct: EXQ-187a used 150 warmup episodes with lambda=0.1, producing cosine_sim=1.0 (undifferentiated). Law et al.'s result explains the mechanism -- without sufficient multi-context interleaving under a signal that distinguishes the contexts, representations cannot stabilize into discriminating attractors. The paper also establishes that the failure mode during early training is not random but specific: representations are contextually correct within a session but non-reidentifiable across sessions -- analogous to the ContextMemory producing locally coherent but globally undifferentiated retrievals. Confidence is high (0.78) because: (a) the study is directly about concurrent context encoding and stabilization timing, (b) it uses real neural recording in dorsal CA1 (the hippocampal subfield most analogous to a context-retrieval module), (c) the ABAB interleaving structure parallels the alternating terrain episodes in the CausalGridWorld. Confidence is moderated because the rat CA1 system uses place-field mechanisms not directly analogous to cosine-similarity-based context retrieval in an LSTM.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The rat hippocampus uses place-field remapping (spatial maps) as the context representation substrate, not learned associative memory vectors. The stabilization mechanism (reduction in cross-visit remapping) differs architecturally from the cosine-similarity metric used in EXQ-187a. The number of sessions (Days 1-3) provides an order-of-magnitude estimate of required exposure, but the exact episode count does not translate directly.",
+    "The ABAB interleaving in Law et al. provides contrastive signal between contexts -- the animal experiences context switches and the hippocampus must maintain two distinct active maps. EXQ-187a's ContextMemory warmup may not have provided equivalent contrastive signal if episode ordering was randomized rather than interleaved with clear context transitions.",
+    "The study records existing neural hardware (in vivo CA1). The ContextMemory module must learn to differentiate via backpropagation through extract_cue_context(), which has different capacity and gradient dynamics than synaptic plasticity in biological CA1."
+  ],
+  "tags": ["mech_153", "context_memory", "hippocampal_context", "pattern_separation", "stabilization", "training_threshold", "exposure_count", "ca1", "remapping", "concurrent_learning"],
+  "mapping": {
+    "source_claim_statement": "When rats concurrently encode two distinct contexts, hippocampal CA1 place cell representations initially fail to stably discriminate between contexts across visits. Representations are contextually coherent within a visit but remap (lose identity) on re-entry. Across 8 training sessions, representations progressively stabilize: by Day 3, same-context similarity is high and different-context similarity is low. This stabilization requires repeated interleaved exposure to both contexts.",
+    "ree_translation": "The ContextMemory module in MECH-153 faces the exact analog of this stabilization problem. During Phase 0 warmup (150 episodes, lambda=0.1), the context vectors extracted by extract_cue_context() are analogous to Day-1 CA1 representations: locally coherent (they respond to the current context) but globally undiscriminating (cosine_sim=1.0 -- vectors cannot be reidentified across episodes). Law et al. quantify the exposure requirement: 2-3 days of interleaved ABAB multi-context experience is needed before CA1 achieves stable, reidentifiable, discriminating context representations. This is the neuroscientific grounding for the claim that 150 warmup episodes with insufficient supervised label gradient is not enough -- the stabilization process requires both sufficient exposures AND a signal that distinguishes the contexts. MECH-153 argues that the supervised terrain-type label provides this distinguishing gradient; Law et al. argue that the distinguishing signal in the hippocampus is the contrastive experience of switching between contexts with distinct sensory/spatial signatures.",
+    "mapping_caveat": "The biological stabilization mechanism (competitive Hebbian learning across place cells, hippocampal synaptic plasticity timescales measured in days) is not mechanistically identical to LSTM backpropagation with cosine-similarity loss. The Day-3 threshold from rat experiments cannot be directly translated to an episode count for the ContextMemory module. The paper provides qualitative support (multi-exposure requirement, ABAB interleaving benefit) rather than quantitative guidance.",
+    "source_context": "Rats implanted with tetrodes in dorsal CA1; two distinct rooms with different colors and configurations; 8 daily recording sessions; ABAB exposure protocol with 15-minute inter-context intervals"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.38,
+    "notes": "Published in Hippocampus -- the leading specialist journal for hippocampal research; peer-reviewed; in vivo electrophysiology is high-quality evidence. Mapping fidelity is high because the study directly addresses concurrent multi-context stabilization timing, which is precisely the failure mode in EXQ-187a. Transfer risk is moderate-low: the core phenomenon (insufficient exposure -> undiscriminating context representations) maps directly; the mechanism (place fields vs. LSTM activations) differs but does not undermine the phenomenological mapping."
+  }
+}
