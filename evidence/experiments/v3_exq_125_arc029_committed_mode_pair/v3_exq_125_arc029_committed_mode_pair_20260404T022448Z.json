@@ -1,0 +1,61 @@
+{
+  "status": "FAIL",
+  "metrics": {
+    "avg_harm_gap_stable": 7.133659225702291e-05,
+    "avg_harm_gap_volatile": 0.00024018384277820593,
+    "avg_gap_ratio": 1.9433077331795987,
+    "total_fatal_errors": 0.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 0.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 1.0,
+    "criteria_met": 3.0,
+    "n_seeds": 2.0
+  },
+  "per_seed_data": [
+    {
+      "seed": 42,
+      "harm_active_stable": -0.0009015604451298714,
+      "harm_ablated_stable": -0.0008105960310101511,
+      "harm_active_volatile": -0.0007476299014687539,
+      "harm_ablated_volatile": -0.001020314189374447,
+      "harm_gap_stable": -9.09644141197203e-05,
+      "harm_gap_volatile": 0.000272684287905693,
+      "gap_ratio": 2.997702898924926,
+      "n_committed_active_stable": 10000,
+      "n_uncommitted_active_stable": 0,
+      "n_committed_ablated_stable": 0,
+      "train_variance": 9.716779550746752e-07,
+      "commit_threshold": 0.4
+    },
+    {
+      "seed": 123,
+      "harm_active_stable": -0.000812500028192997,
+      "harm_ablated_stable": -0.0010461376268267632,
+      "harm_active_volatile": -0.0005796891608834267,
+      "harm_ablated_volatile": -0.0007873725585341455,
+      "harm_gap_stable": 0.00023363759863376612,
+      "harm_gap_volatile": 0.00020768339765071884,
+      "gap_ratio": 0.8889125674342713,
+      "n_committed_active_stable": 10000,
+      "n_uncommitted_active_stable": 0,
+      "n_committed_ablated_stable": 0,
+      "train_variance": 6.743725294255795e-07,
+      "commit_threshold": 0.4
+    }
+  ],
+  "summary_markdown": "# V3-EXQ-125 -- ARC-029: Committed vs Ablated Mode Harm Outcomes (Matched-Seed Pair)\n\n**Status:** FAIL\n**Claims:** ARC-029\n**Seeds:** [42, 123]  |  **Warmup:** 400 eps  |  **Eval:** 50 eps x 200 steps\n**Design:** 2x2 [COMMITTED_MODE_ON / COMMITTED_MODE_ABLATED] x [stable (drift=0.0) / volatile (drift=0.4, interval=3)]\n\n## Design Rationale\n\nARC-029 predicts that the BG beta commitment gate (MECH-090) reduces harm in stable\nenvironments by holding the agent to a well-evaluated trajectory, and that this\nadvantage narrows or reverses in volatile environments (where the committed trajectory\nquickly becomes invalid as the layout changes).\n\nGate ablation: force `agent.e3._running_variance = commit_threshold + 0.1` and\n`agent.e3._committed_trajectory = None` before each SELECT step. Same trained weights;\nonly the commitment gate is disabled.\n\nPre-registered thresholds: MIN_HARM_GAP_STABLE=0.0001,\nVOLATILITY_MODULATION_RATIO=0.9.\n\nStrengthens EXQ-063 (PASS 5/5, conf=0.774) with canonical seeds [42, 123].\n\n## Per-Seed Results\n\n| Seed | Act-Stab | Abl-Stab | Gap-Stab | Act-Vol | Abl-Vol | Gap-Vol | GapRatio |\n|---|---|---|---|---|---|---|---|\n| 42 | -0.00090 | -0.00081 | -0.00009 | -0.00075 | -0.00102 | 0.00027 | 2.998 |\n| 123 | -0.00081 | -0.00105 | 0.00023 | -0.00058 | -0.00079 | 0.00021 | 0.889 |\n\n## Aggregated (avg across seeds)\n\n| Metric | Value |\n|---|---|\n| avg_harm_gap_stable | 0.00007 |\n| avg_harm_gap_volatile | 0.00024 |\n| avg_gap_ratio (volatile/stable) | 1.943 |\n\n## PASS Criteria (ALL seeds)\n\n| Criterion | Threshold | Result |\n|---|---|---|\n| C1: harm_gap_stable >= 0.0001 (both seeds) | 0.0001 | FAIL |\n| C2: gap_volatile < gap_stable (both seeds) | strict inequality | FAIL |\n| C3: gap_ratio <= 0.9 (both seeds) | 0.9 | FAIL |\n| C4: committed steps > uncommitted in ON condition | majority | PASS |\n| C5: zero committed steps in ABLATED condition | 0 | PASS |\n| C6: no fatal errors | 0 | PASS |\n\nCriteria met: 3/6 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL seed=42: harm_gap_stable=-0.00009 < MIN=0.0001 (committed did not outperform ablated)\n- C2 FAIL seed=42: gap_volatile=0.00027 >= gap_stable=-0.00009 (advantage did not narrow in volatile env)\n- C3 FAIL seed=42: gap_ratio=2.998 > 0.9 (insufficient narrowing)\n",
+  "claim_ids": [
+    "ARC-029"
+  ],
+  "evidence_direction": "weakens",
+  "experiment_type": "v3_exq_125_arc029_committed_mode_pair",
+  "fatal_error_count": 0.0,
+  "run_timestamp": "20260404T022448Z",
+  "claim": "ARC-029",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_125_arc029_committed_mode_pair_20260404T022448Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}
