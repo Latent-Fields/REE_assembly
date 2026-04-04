@@ -36,8 +36,8 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
-      # Set to your GitHub username if different from dgolden
-      - REE_GITHUB_USER=dgolden
+      # GitHub org/user where the repos live
+      - REE_GITHUB_USER=Latent-Fields
       # IMPORTANT: set a short stable name for this machine (e.g. "alice-rtx4090").
       # Used for multi-machine experiment routing and contribution tracking.
       # Runs will be attributed to this name in contributors/contributions.json.
