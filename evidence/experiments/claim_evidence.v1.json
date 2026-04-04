@@ -196,7 +196,7 @@
       }
     },
     "ARC-007": {
-      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.71, lit_conf=0.835",
+      "confidence_rationale": "exp=9 entry(s), lit=16 entry(s), exp_conf=0.709, lit_conf=0.835",
       "direction_counts": {
         "mixed": 2,
         "supports": 16,
@@ -213,7 +213,7 @@
         "lit:neuroscience_experiment": 1,
         "lit:theoretical_review": 6
       },
-      "experimental_confidence": 0.71,
+      "experimental_confidence": 0.709,
       "fail_runs": 5,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -713,7 +713,7 @@
       }
     },
     "ARC-021": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.771, lit_conf=0.815",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.77, lit_conf=0.815",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -726,7 +726,7 @@
         "lit:computational_model": 2,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.771,
+      "experimental_confidence": 0.77,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -1021,7 +1021,7 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.744, lit_conf=0.825",
+      "confidence_rationale": "exp=31 entry(s), lit=3 entry(s), exp_conf=0.743, lit_conf=0.825",
       "direction_counts": {
         "mixed": 10,
         "supports": 14,
@@ -1034,7 +1034,7 @@
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.744,
+      "experimental_confidence": 0.743,
       "fail_runs": 24,
       "genuine_exp_count": 31,
       "genuine_exp_direction_counts": {
@@ -1826,7 +1826,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=8 entry(s), lit=7 entry(s), exp_conf=0.711, lit_conf=0.86",
+      "confidence_rationale": "exp=8 entry(s), lit=7 entry(s), exp_conf=0.71, lit_conf=0.86",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -1841,7 +1841,7 @@
         "lit:fmri_connectivity": 3,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.711,
+      "experimental_confidence": 0.71,
       "fail_runs": 5,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -1999,7 +1999,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.519, lit_conf=0.915",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.518, lit_conf=0.915",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2013,7 +2013,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.519,
+      "experimental_confidence": 0.518,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2025,7 +2025,7 @@
       "latest_run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
       "latest_timestamp_utc": "2026-03-30T16:58:09.645849Z",
       "literature_confidence": 0.915,
-      "overall_confidence": 0.757,
+      "overall_confidence": 0.756,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2977,6 +2977,112 @@
         "literature": 4
       }
     },
+    "INV-045": {
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.662",
+      "direction_counts": {
+        "mixed": 6,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 6,
+      "evidence_class_counts": {
+        "lit:computational_review": 1,
+        "lit:review_empirical": 1,
+        "lit:theoretical_neuroscience": 4
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023",
+      "latest_timestamp_utc": "2026-04-05T15:10:00Z",
+      "literature_confidence": 0.662,
+      "overall_confidence": 0.662,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-045",
+          "confidence": 0.42,
+          "confidence_rationale": "Le Bon addresses the NREM-REM ordering question most directly of all papers found -- the paper is explicitly about why NREM precedes REM and what determines the cycle. However, the answer is a homeostatic/refractory-period mechanism (REM generates a post-REM refractory period that forbids REM reoccurrence until NREM resets the pressure), not a computational-necessity argument derived from failure-mode dependencies. Le Bon's account is descriptive of the observed biological pattern and mechanistic at the circadian/brainstem level, not at the computational/representational level that INV-045 requires. The paper actually highlights that the ordering emerges from pressure-convergence and semi-random timing rather than from a logical dependency structure -- which is somewhat in tension with INV-045's stronger necessity claim.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv045_lebon_asymmetric_nrem_rem_alternation_2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T15:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-045",
+          "confidence": 0.55,
+          "confidence_rationale": "Lewis and Durrant provide the clearest account of how NREM and REM sleep interact in schema formation: NREM replay drives Hebbian abstraction of shared elements across overlapping episodes; REM then integrates these cortical representations with older knowledge. The sequential framing (NREM creates abstract cortical representations; REM integrates them) implies that REM integration depends on the NREM abstractions existing first. This is structurally consistent with INV-045's Phase 2-then-Phase 3/4 ordering. However, the paper does not make the derivation-from-necessity argument -- it presents the sequence as a functional description rather than arguing that the reverse order would fail computationally. It is the closest paper found to making the ordering constraint explicit, but it stops short.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv045_lewis_durrant_overlapping_replay_schema_2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T15:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-045",
+          "confidence": 0.58,
+          "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) as the core function of slow-wave sleep, directly relevant to INV-045 Phase 1 (SHY normalisation before replay). The logic of SHY -- synaptic downscaling clears the noise floor and restores signal-to-noise before further consolidation -- partially implies that homeostasis must precede replay. However, the paper explicitly acknowledges that the REM-SHY relationship is unresolved and does not derive the NREM-before-REM ordering from first principles. The authors ask 'how REM may or may not fit' rather than answering it. SHY provides the mechanistic basis for Phase 1 but does not establish the ordering as a necessity.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv045_tononi_cirelli_shy_nrem_price_plasticity_2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T15:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-045",
+          "confidence": 0.52,
+          "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for REM sleep as the locus of affective recalibration -- specifically, that REM's low-noradrenaline, high-acetylcholine neurochemistry allows emotional memory to be consolidated informationally while the affective charge is reduced (the SFSR hypothesis: Sleep to Forget and Sleep to Remember). This directly supports INV-045 Phase 4 (REM precision recalibration): the mechanism by which prior weighting of affectively loaded memories is reset during REM. However, the paper does not address why this step must be last in the sequence, nor does it consider NREM's preparatory role for REM's affective processing. Like the other papers found, it establishes the mechanism of Phase 4 without deriving the ordering.",
+          "evidence_class": "lit:review_empirical",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv045_walker_vanderhelm_rem_overnight_therapy_2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T15:10:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-045",
+          "confidence": 0.52,
+          "confidence_rationale": "This recent computational review explicitly frames NREM and REM as having distinct and complementary computational roles -- NREM selectively consolidates memory (slow-wave up/down state gating determines what survives), REM reorganises representations (dream-driven development of new neuronal representations). This taxonomy supports the mechanistic basis of INV-045 Phases 2 and 4. However, the paper does not argue that the NREM-before-REM ordering is derivable from first principles or computationally necessary. The ordering is treated as an observed biological fact. The gap between 'these phases do different things' and 'the sequence is a necessity' is precisely the gap INV-045 claims to fill, and no reviewed paper (including this one) makes that derivation.",
+          "evidence_class": "lit:computational_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T15:10:00Z"
+        }
+      ],
+      "runs_total": 6,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 6
+      }
+    },
     "MECH-022": {
       "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.473, lit_conf=0.884",
       "direction_counts": {
@@ -3099,7 +3205,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.476, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.475, lit_conf=0.879",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -3115,7 +3221,7 @@
         "lit:sensorimotor_commitment_dynamics": 1,
         "lit:task_positive_default_mode_competition": 1
       },
-      "experimental_confidence": 0.476,
+      "experimental_confidence": 0.475,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3834,7 +3940,7 @@
       }
     },
     "MECH-047": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.447, lit_conf=0.879",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.446, lit_conf=0.879",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -3847,7 +3953,7 @@
         "lit:connectome_empirical": 2,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.447,
+      "experimental_confidence": 0.446,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4066,7 +4172,7 @@
       }
     },
     "MECH-056": {
-      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.729, lit_conf=0.876",
+      "confidence_rationale": "exp=1 entry(s), lit=15 entry(s), exp_conf=0.728, lit_conf=0.876",
       "direction_counts": {
         "mixed": 2,
         "supports": 14,
@@ -4088,7 +4194,7 @@
         "lit:connectome_task_perturbation": 1,
         "lit:neuroscience_experiment": 2
       },
-      "experimental_confidence": 0.729,
+      "experimental_confidence": 0.728,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4181,7 +4287,7 @@
       }
     },
     "MECH-057": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.28, lit_conf=0.836",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.279, lit_conf=0.836",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -4194,7 +4300,7 @@
         "lit:architectural_position_paper": 1,
         "lit:machine_learning_experiment": 6
       },
-      "experimental_confidence": 0.28,
+      "experimental_confidence": 0.279,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4622,7 +4728,7 @@
       }
     },
     "MECH-060": {
-      "confidence_rationale": "exp=1 entry(s), lit=18 entry(s), exp_conf=0.729, lit_conf=0.853",
+      "confidence_rationale": "exp=1 entry(s), lit=18 entry(s), exp_conf=0.728, lit_conf=0.853",
       "direction_counts": {
         "mixed": 5,
         "supports": 14,
@@ -4643,7 +4749,7 @@
         "lit:neuroscience_review": 1,
         "lit:neuroscience_theory": 2
       },
-      "experimental_confidence": 0.729,
+      "experimental_confidence": 0.728,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -5160,7 +5266,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.457, lit_conf=0.72",
+      "confidence_rationale": "exp=4 entry(s), lit=1 entry(s), exp_conf=0.456, lit_conf=0.72",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -5172,7 +5278,7 @@
         "exp:simulation": 4,
         "lit:connectome_predictive_coding": 1
       },
-      "experimental_confidence": 0.457,
+      "experimental_confidence": 0.456,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -5184,7 +5290,7 @@
       "latest_run_id": "v3_exq_212_mech070_e2_motor_model_pair_1775203063_v3",
       "latest_timestamp_utc": "2026-04-03T21:37:43Z",
       "literature_confidence": 0.72,
-      "overall_confidence": 0.523,
+      "overall_confidence": 0.522,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -5957,7 +6063,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.754, lit_conf=0.843",
+      "confidence_rationale": "exp=12 entry(s), lit=3 entry(s), exp_conf=0.753, lit_conf=0.843",
       "direction_counts": {
         "mixed": 3,
         "supports": 8,
@@ -5970,7 +6076,7 @@
         "lit:connectome_circuit_study": 1,
         "lit:connectome_mechanistic_review": 2
       },
-      "experimental_confidence": 0.754,
+      "experimental_confidence": 0.753,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -5982,7 +6088,7 @@
       "latest_run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:10:59Z",
       "literature_confidence": 0.843,
-      "overall_confidence": 0.799,
+      "overall_confidence": 0.798,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -6067,7 +6173,7 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.808, lit_conf=0.668",
+      "confidence_rationale": "exp=16 entry(s), lit=3 entry(s), exp_conf=0.807, lit_conf=0.668",
       "direction_counts": {
         "mixed": 7,
         "supports": 8,
@@ -6079,7 +6185,7 @@
         "exp:simulation": 16,
         "lit:connectome_mechanistic_review": 3
       },
-      "experimental_confidence": 0.808,
+      "experimental_confidence": 0.807,
       "fail_runs": 10,
       "genuine_exp_count": 16,
       "genuine_exp_direction_counts": {
@@ -6357,7 +6463,7 @@
       }
     },
     "MECH-093": {
-      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.676, lit_conf=0.705",
+      "confidence_rationale": "exp=9 entry(s), lit=1 entry(s), exp_conf=0.675, lit_conf=0.705",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -6369,7 +6475,7 @@
         "exp:simulation": 9,
         "lit:connectome_mechanistic_review": 1
       },
-      "experimental_confidence": 0.676,
+      "experimental_confidence": 0.675,
       "fail_runs": 6,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -6570,7 +6676,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.589, lit_conf=0.905",
+      "confidence_rationale": "exp=9 entry(s), lit=4 entry(s), exp_conf=0.588, lit_conf=0.905",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -6585,7 +6691,7 @@
         "lit:neuroscience_empirical": 1,
         "lit:neuroscience_theory_with_empirical_grounding": 1
       },
-      "experimental_confidence": 0.589,
+      "experimental_confidence": 0.588,
       "fail_runs": 8,
       "genuine_exp_count": 9,
       "genuine_exp_direction_counts": {
@@ -6597,7 +6703,7 @@
       "latest_run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
       "latest_timestamp_utc": "2026-03-28T22:09:39Z",
       "literature_confidence": 0.905,
-      "overall_confidence": 0.747,
+      "overall_confidence": 0.746,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -6938,7 +7044,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.499, lit_conf=0.872",
+      "confidence_rationale": "exp=6 entry(s), lit=3 entry(s), exp_conf=0.498, lit_conf=0.872",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -6951,7 +7057,7 @@
         "lit:connectome_analysis": 2,
         "lit:neuroscience_empirical": 1
       },
-      "experimental_confidence": 0.499,
+      "experimental_confidence": 0.498,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -7285,7 +7391,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.596, lit_conf=0.82",
+      "confidence_rationale": "exp=24 entry(s), lit=4 entry(s), exp_conf=0.595, lit_conf=0.82",
       "direction_counts": {
         "mixed": 12,
         "supports": 5,
@@ -7298,7 +7404,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.596,
+      "experimental_confidence": 0.595,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -7582,18 +7688,21 @@
       }
     },
     "MECH-106": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.479, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.478, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
-        "supports": 0,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:behavioral_human": 2,
+        "lit:computational_model": 2,
+        "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.479,
+      "experimental_confidence": 0.478,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -7602,32 +7711,108 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_231_mech106_bg_hysteresis_20260404T033753Z_v3",
-      "latest_timestamp_utc": "2026-04-04T03:37:53Z",
-      "literature_confidence": 0.0,
-      "overall_confidence": 0.479,
+      "latest_run_id": "2026-04-05_mech_106_stn_dynamic_threshold_frank2006",
+      "latest_timestamp_utc": "2026-04-05T12:00:00Z",
+      "literature_confidence": 0.876,
+      "overall_confidence": 0.776,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-106",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_231_mech106_bg_hysteresis",
-          "failure_signatures": [],
-          "run_id": "v3_exq_231_mech106_bg_hysteresis_20260404T033753Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-04-04T03:37:53Z"
+          "confidence": 0.7,
+          "confidence_rationale": "Jenkinson and Brown provide an important mechanistic link in the MECH-106 chain: beta oscillations in motor cortex/BG are modulated by net dopamine levels, and beta activity encodes the probability that a new voluntary action will be needed. This connects dopaminergic outcome-valence modulation to a gating mechanism that directly controls action commitment timing. The paper is an opinion/theoretical review, not primary empirical data, which limits confidence. The mechanism it proposes (dopamine-level -> beta power -> action readiness) is well-supported by existing data it synthesises, but the causal chain from outcome valence through DA dynamics to beta-gated commitment has not been tested in a single experiment.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_106",
+          "failure_signatures": [
+            "This is an opinion/theoretical review paper, not a primary empirical study -- the proposed mechanism is inferred from converging evidence rather than directly tested.",
+            "The paper focuses on net dopamine levels modulating beta tone, not on phasic dopamine bursts or dips specifically -- the connection to outcome-valence asymmetry is indirect.",
+            "Beta oscillations as an action threshold gate is a functional hypothesis; direct evidence that beta amplitude specifically gates commitment entry/exit rather than any motor action is limited.",
+            "The causal direction (dopamine -> beta -> action readiness, vs. action-preparation -> DA change) is not resolved by the paper."
+          ],
+          "run_id": "2026-04-05_mech_106_beta_dopamine_gate_jenkinson2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-106",
+          "confidence": 0.8,
+          "confidence_rationale": "This is the key empirical paper demonstrating that Go (approach/commit) and NoGo (avoid/de-commit) learning are dopamine-dependent and dissociable in opposite directions. The double dissociation in Parkinson's patients -- off-medication patients show better punishment avoidance (NoGo learning intact, Go impaired); on-medication patients show better reward approach (Go learning enhanced, NoGo suppressed) -- directly proves the D1/D2 asymmetry at a behavioural level. This is strong evidence for the mechanism MECH-106 requires. Confidence slightly below Frank 2005 because this paper establishes the learning asymmetry (which action to select next time), not the within-episode threshold dynamics MECH-106 needs for commitment persistence.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_106",
+          "failure_signatures": [
+            "The paper demonstrates between-trial learning asymmetry, not within-episode commitment hysteresis -- the two are related but distinct constructs.",
+            "Parkinson's patients are an indirect probe of dopamine function; medication effects confound tonic vs. phasic DA and involve peripheral and non-striatal targets.",
+            "The task uses forced-choice stimulus-response, not action commitment sequences -- the mapping to commitment entry/exit dynamics requires inferential extrapolation."
+          ],
+          "run_id": "2026-04-05_mech_106_carrot_or_stick_frank2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-106",
+          "confidence": 0.76,
+          "confidence_rationale": "This paper directly tests the D1/D2 asymmetry account using selective pharmacological agents in healthy controls -- cabergoline (D2 agonist) and haloperidol (D2 antagonist) -- rather than relying on the indirect Parkinson's model. The selective D2 manipulation isolates the indirect pathway's contribution to Go/NoGo asymmetry. Cabergoline impairs Go learning from positive reinforcement (consistent with presynaptic D2 suppression reducing DA burst amplitude); haloperidol enhances it (consistent with blocking the D2 autoreceptor brake). The parallel effects on working memory and attentional tasks support the generalisation of D2-mediated gating beyond simple motor selection. Confidence good but not maximal: the cabergoline/haloperidol dissection is primarily presynaptic D2 autoreceptor effects, and the paper does not directly address commitment mode persistence.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_106",
+          "failure_signatures": [
+            "Cabergoline and haloperidol primarily act on presynaptic D2 autoreceptors at the low doses used, not on postsynaptic D2 MSNs in the indirect pathway -- the mechanistic interpretation requires this distinction, which the paper addresses but cannot fully resolve pharmacologically.",
+            "The study uses a probabilistic reinforcement learning task (discrete choice), not a commitment sequence paradigm -- the mapping to commitment hysteresis is inferential.",
+            "Healthy adults, not Parkinson's -- the effect size of D2 manipulation on Go/NoGo asymmetry is smaller and harder to measure cleanly than in dopamine-depleted patients."
+          ],
+          "run_id": "2026-04-05_mech_106_d2_go_nogo_psychopharm_frankoReilly2006",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-106",
+          "confidence": 0.82,
+          "confidence_rationale": "This is the core computational paper that defines the mechanistic architecture MECH-106 instantiates. Frank's BG model explicitly implements asymmetric D1/D2 modulation: phasic DA bursts potentiate D1 MSNs in the direct pathway (lowering the threshold for Go/facilitation), while DA dips relieve inhibition on D2 MSNs in the indirect pathway (raising the NoGo/suppression signal). The model is biologically grounded, validated against Parkinson's patient data, and is the foundational architecture Frank 2004 tests behaviourally. Confidence is high but not maximal because the paper models action selection thresholds in the sense of response facilitation/suppression, not commitment to ongoing action sequences -- the REE translation to commitment entry/exit hysteresis requires an interpretive step.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_106",
+          "failure_signatures": [
+            "The model addresses response selection thresholds, not commitment persistence -- the mapping to ongoing commitment hysteresis requires inference beyond the paper's stated scope.",
+            "D1 potentiation lowers facilitation threshold but the model does not directly operationalise a 'commit threshold' that would prevent or enforce exit from an ongoing committed sequence.",
+            "Simulated DA dynamics are phasic and immediate; whether sustained D1 potentiation after a positive outcome produces hysteresis lasting across multiple subsequent trials is not tested in the model."
+          ],
+          "run_id": "2026-04-05_mech_106_dynamic_dopamine_frank2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-106",
+          "confidence": 0.68,
+          "confidence_rationale": "Frank 2006 introduces the subthalamic nucleus as a dynamic response threshold modulator in the BG. When cortical response conflict is high, the hyperdirect pathway (cortex -> STN -> GPi) raises a global threshold, delaying and modulating response execution. This is a different mechanism from the D1/D2 asymmetry of Frank 2005 -- it operates on the commitment threshold from the conflict side rather than the outcome-valence side. It is relevant to MECH-106 because it demonstrates that the BG implements dynamic, context-sensitive threshold adjustment that is not fixed but varies with the current decision state. The paper provides indirect support for MECH-106's hysteresis claim by establishing that the BG already implements the class of dynamic threshold modulation MECH-106 requires. Confidence lower than the other Frank papers because the STN mechanism is conflict-driven, not valence-driven, so the mapping to outcome-based hysteresis is less direct.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_106",
+          "failure_signatures": [
+            "The STN 'hold your horses' mechanism is driven by cortical response conflict, not by outcome valence -- the connection to MECH-106's valence-asymmetric hysteresis requires treating both as instances of the same general class of dynamic threshold adjustment.",
+            "The model predicts STN lesions reduce commitment thresholds (consistent with impulsivity in STN DBS patients), but does not address how the threshold resets or persists after an outcome.",
+            "Oscillatory BG activity in the simulated parkinsonian state is emergent from the model, not confirmed by STN recording in the specific context of outcome-valence processing."
+          ],
+          "run_id": "2026-04-05_mech_106_stn_dynamic_threshold_frank2006",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T12:00:00Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 5
       }
     },
     "MECH-111": {
@@ -8441,16 +8626,17 @@
       }
     },
     "MECH-120": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.83",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.873",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "lit:behavioral_animal": 2
+        "lit:behavioral_animal": 2,
+        "lit:theoretical_neuroscience": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -8461,10 +8647,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-04_mech120_inv010_shy_zebrafish_suppermpool2024",
-      "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.83,
-      "overall_confidence": 0.83,
+      "latest_run_id": "2026-04-05_mech120_shy_synaptic_normalisation_tononi2014",
+      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
+      "literature_confidence": 0.873,
+      "overall_confidence": 0.873,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8502,25 +8688,40 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-04T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-120",
+          "confidence": 0.82,
+          "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) directly supporting MECH-120. The mechanism is precisely stated: waking Hebbian plasticity broadly strengthens synapses, saturating learning capacity and reducing signal-to-noise; NREM slow-wave sleep renormalises net synaptic strength via down-states, restoring the weight landscape to a state where diverse new content can be encoded. This is the biological analog of MECH-120's claim that slow-wave sleep prevents dominant high-salience experiences from monopolising the weight landscape. The failure mode described in MECH-120 -- replay into non-normalised weights reinforcing dominant traces -- is directly implied by SHY: the whole point of downscaling is that without it, replay would re-potentiate already-dominant weights. Evidence direction is 'supports' rather than 'strong_supports' because SHY is a theory (very well-evidenced but not conclusively proven at the molecular level), and the paper acknowledges open questions about the relationship between SHY downscaling and selective memory retention.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sleep_phase_mechanisms",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech120_shy_synaptic_normalisation_tononi2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T16:30:00Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 3
       }
     },
     "MECH-121": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.83",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.878",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "lit:electrophysiology_single_unit": 2
+        "lit:electrophysiology_single_unit": 2,
+        "lit:review_empirical": 1
       },
       "experimental_confidence": 0.0,
       "fail_runs": 0,
@@ -8531,10 +8732,10 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-04_mech121_mech092_forward_reverse_replay_shin2019",
-      "latest_timestamp_utc": "2026-04-04T23:50:00Z",
-      "literature_confidence": 0.83,
-      "overall_confidence": 0.83,
+      "latest_run_id": "2026-04-05_mech121_nrem_replay_hippocampus_neocortex_diekelmann2010",
+      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
+      "literature_confidence": 0.878,
+      "overall_confidence": 0.878,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8572,6 +8773,131 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-04T23:50:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-121",
+          "confidence": 0.85,
+          "confidence_rationale": "Diekelmann and Born provide the canonical account of the two-stage memory consolidation model, directly supporting MECH-121. The paper establishes that during SWS/NREM, slow oscillations, spindles, and ripples coordinate the re-activation and redistribution of hippocampus-dependent episodic memories to neocortical storage sites -- the directed hippocampus-to-cortex transfer claimed by MECH-121. The 'system consolidation' function during SWS is well-characterised by a rich empirical literature reviewed here. The dependency on MECH-120 (normalised weights) is implicit in the claim that spindles facilitate plasticity at neocortical sites: if neocortical weights are saturated, spindle-driven potentiation cannot occur. The paper explicitly identifies minimum cholinergic activity during SWS as enabling this transfer (high ACh during waking suppresses the hippocampus-to-cortex route). This is the strongest available review of empirical evidence for MECH-121. Confidence limited slightly by ongoing debate about whether hippocampal 'transfer' or 'indexing' better describes the long-term organisation.",
+          "evidence_class": "lit:review_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sleep_phase_mechanisms",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech121_nrem_replay_hippocampus_neocortex_diekelmann2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T16:30:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "MECH-122": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.75",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:empirical_primary": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech122_spindle_coordination_theta_gamma_staresina2015",
+      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
+      "literature_confidence": 0.75,
+      "overall_confidence": 0.75,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-122",
+          "confidence": 0.8,
+          "confidence_rationale": "Staresina et al. provide direct intracranial human evidence for the hierarchical nesting mechanism that is the biological analog of MECH-122's spindle coordination claim. The paper shows that thalamo-cortical spindles are modulated by the up-state of slow oscillations, and in turn cluster hippocampal ripples at their troughs -- providing fine-tuned temporal frames for hippocampal memory trace transfer to neocortex. This is precisely the 'spindle bursts package hippocampal content for integration' mechanism in MECH-122. The cross-frequency phase-amplitude coupling structure (SO -> spindle -> ripple nesting) is demonstrated directly in human intracranial recordings, not inferred from scalp EEG. The paper supports the specific claim that spindle timing coordinates hippocampal output. The MECH-122 claim that V3 ThetaBuffer is waking-only (unidirectional) and spindle coordination would make it bidirectional requires the additional step of mapping thalamo-cortical spindles onto the ThetaBuffer mechanism, which is an REE-internal design inference not directly tested here.",
+          "evidence_class": "lit:empirical_primary",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sleep_phase_mechanisms",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech122_spindle_coordination_theta_gamma_staresina2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T16:30:00Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
+    "MECH-123": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.767",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:review_empirical": 1,
+        "lit:theoretical_neuroscience": 1
+      },
+      "experimental_confidence": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-04-05_mech123_rem_precision_recalibration_walker2009",
+      "latest_timestamp_utc": "2026-04-05T16:30:00Z",
+      "literature_confidence": 0.767,
+      "overall_confidence": 0.767,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-123",
+          "confidence": 0.75,
+          "confidence_rationale": "Hobson and Friston provide the most direct theoretical support for MECH-123's claim that REM resets precision priors via free energy minimisation (their framework) / predictive coding (REE's framework). The key mechanism: during REM, sensory prediction errors are turned off by reducing the precision of sensory inputs (aminergic suppression = reduced precision on bottom-up signals). This creates a state of unconstrained generative model simulation -- the brain runs its world model without evidence constraints. Crucially, this offline optimisation prunes redundancy and reduces model complexity, which in Bayesian terms is prior updating / model selection. This directly maps onto MECH-123: REM recalibrates precision priors (commitment_threshold, precision_ema_alpha) because the aminergic suppression that defines REM neurochemistry is precisely a precision-weighting mechanism. The ordering constraint is implicit: the generative model being optimised during REM is the one that was loaded (consolidated) during NREM replay. The Hobson-Friston framework is theoretical rather than empirical, limiting confidence, but it is the most precise theoretical mapping to MECH-123 available.",
+          "evidence_class": "lit:theoretical_neuroscience",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sleep_phase_mechanisms",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech123_rem_free_energy_prior_reset_hobson2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T16:30:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-123",
+          "confidence": 0.72,
+          "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for the REM-phase affective recalibration mechanism that is the biological analog of MECH-123. The SFSR (Sleep to Forget and Sleep to Remember) hypothesis -- REM's low-noradrenaline, high-acetylcholine state allows emotional memory content to be consolidated while its affective charge (precision weighting) is depotentiated -- maps onto MECH-123's claim that REM resets precision priors after content consolidation. The failure mode evidence is particularly strong: patients with disrupted REM (PTSD, sleep apnoea) show persistent heightened emotional reactivity, consistent with failed precision recalibration. The constraint that recalibration must follow content consolidation (MECH-121) is supported by the SFSR logic: you cannot depotentiate the affect of a memory until it is stably consolidated. Confidence limited because: (1) SFSR covers emotional/affective precision but MECH-123 covers broader prior updating (commitment_threshold, precision_ema_alpha); (2) Walker-van der Helm do not make the 'must be last' ordering argument explicit.",
+          "evidence_class": "lit:review_empirical",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_sleep_phase_mechanisms",
+          "failure_signatures": [],
+          "run_id": "2026-04-05_mech123_rem_precision_recalibration_walker2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-05T16:30:00Z"
         }
       ],
       "runs_total": 2,
@@ -8815,7 +9141,7 @@
       }
     },
     "MECH-135": {
-      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.833, lit_conf=0.835",
+      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.833, lit_conf=0.834",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -8840,8 +9166,8 @@
       },
       "latest_run_id": "v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3",
       "latest_timestamp_utc": "2026-03-29T21:54:16Z",
-      "literature_confidence": 0.835,
-      "overall_confidence": 0.834,
+      "literature_confidence": 0.834,
+      "overall_confidence": 0.833,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -9631,7 +9957,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.311, lit_conf=0.808",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.31, lit_conf=0.808",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -9645,7 +9971,7 @@
         "lit:electrophysiology_lfp": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.311,
+      "experimental_confidence": 0.31,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -9959,7 +10285,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.467, lit_conf=0.812",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.466, lit_conf=0.812",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -9973,7 +10299,7 @@
         "lit:theoretical_review": 2,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.467,
+      "experimental_confidence": 0.466,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10158,7 +10484,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.467, lit_conf=0.745",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.466, lit_conf=0.745",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -10172,7 +10498,7 @@
         "lit:meta_analysis": 1,
         "lit:theory_mapping_gap": 1
       },
-      "experimental_confidence": 0.467,
+      "experimental_confidence": 0.466,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10578,7 +10904,7 @@
       }
     },
     "Q-012": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.53, lit_conf=0.863",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.529, lit_conf=0.863",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -10592,7 +10918,7 @@
         "lit:computational_model": 2,
         "lit:machine_learning_experiment": 2
       },
-      "experimental_confidence": 0.53,
+      "experimental_confidence": 0.529,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -10604,7 +10930,7 @@
       "latest_run_id": "v3_exq_193_q012_control_constraints_20260404T152932Z_v3",
       "latest_timestamp_utc": "2026-04-04T15:29:32.086395+00:00",
       "literature_confidence": 0.863,
-      "overall_confidence": 0.73,
+      "overall_confidence": 0.729,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -10686,7 +11012,7 @@
       }
     },
     "Q-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.762, lit_conf=0.837",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.761, lit_conf=0.837",
       "direction_counts": {
         "mixed": 3,
         "supports": 1,
@@ -10700,7 +11026,7 @@
         "lit:machine_learning_experiment": 2,
         "lit:theoretical_review": 1
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11092,7 +11418,7 @@
       }
     },
     "Q-017": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.464, lit_conf=0.874",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.463, lit_conf=0.874",
       "direction_counts": {
         "mixed": 1,
         "supports": 10,
@@ -11111,7 +11437,7 @@
         "lit:fmri_connectivity": 2,
         "lit:neuroscience_theory": 1
       },
-      "experimental_confidence": 0.464,
+      "experimental_confidence": 0.463,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11204,7 +11530,7 @@
       }
     },
     "Q-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.762, lit_conf=0.803",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.761, lit_conf=0.803",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -11217,7 +11543,7 @@
         "lit:behavioral_human": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.762,
+      "experimental_confidence": 0.761,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -12534,7 +12860,7 @@
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.946, lit_conf=0.748",
+      "confidence_rationale": "exp=5 entry(s), lit=2 entry(s), exp_conf=0.945, lit_conf=0.748",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -12547,7 +12873,7 @@
         "lit:computational_model": 1,
         "lit:fmri_connectivity": 1
       },
-      "experimental_confidence": 0.946,
+      "experimental_confidence": 0.945,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -12559,7 +12885,7 @@
       "latest_run_id": "v3_exq_177_sd008_integration_test_20260329T215657Z_v3",
       "latest_timestamp_utc": "2026-03-30T18:15:19.144549Z",
       "literature_confidence": 0.748,
-      "overall_confidence": 0.867,
+      "overall_confidence": 0.866,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -12834,7 +13160,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.773, lit_conf=0.927",
+      "confidence_rationale": "exp=8 entry(s), lit=9 entry(s), exp_conf=0.772, lit_conf=0.927",
       "direction_counts": {
         "mixed": 1,
         "supports": 13,
@@ -12850,7 +13176,7 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 3
       },
-      "experimental_confidence": 0.773,
+      "experimental_confidence": 0.772,
       "fail_runs": 4,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -12862,7 +13188,7 @@
       "latest_run_id": "2026-04-05_sd_011_sensory_dimension_pain_hofbauer2001",
       "latest_timestamp_utc": "2026-04-05T00:00:00Z",
       "literature_confidence": 0.927,
-      "overall_confidence": 0.85,
+      "overall_confidence": 0.849,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -13078,7 +13404,7 @@
       }
     },
     "SD-015": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.594, lit_conf=0.816",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.593, lit_conf=0.816",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -13091,7 +13417,7 @@
         "lit:computational_model": 1,
         "lit:theoretical_review": 2
       },
-      "experimental_confidence": 0.594,
+      "experimental_confidence": 0.593,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -52969,6 +53295,97 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-106",
+      "confidence": 0.7,
+      "confidence_rationale": "Jenkinson and Brown provide an important mechanistic link in the MECH-106 chain: beta oscillations in motor cortex/BG are modulated by net dopamine levels, and beta activity encodes the probability that a new voluntary action will be needed. This connects dopaminergic outcome-valence modulation to a gating mechanism that directly controls action commitment timing. The paper is an opinion/theoretical review, not primary empirical data, which limits confidence. The mechanism it proposes (dopamine-level -> beta power -> action readiness) is well-supported by existing data it synthesises, but the causal chain from outcome valence through DA dynamics to beta-gated commitment has not been tested in a single experiment.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_106",
+      "failure_signatures": [
+        "This is an opinion/theoretical review paper, not a primary empirical study -- the proposed mechanism is inferred from converging evidence rather than directly tested.",
+        "The paper focuses on net dopamine levels modulating beta tone, not on phasic dopamine bursts or dips specifically -- the connection to outcome-valence asymmetry is indirect.",
+        "Beta oscillations as an action threshold gate is a functional hypothesis; direct evidence that beta amplitude specifically gates commitment entry/exit rather than any motor action is limited.",
+        "The causal direction (dopamine -> beta -> action readiness, vs. action-preparation -> DA change) is not resolved by the paper."
+      ],
+      "run_id": "2026-04-05_mech_106_beta_dopamine_gate_jenkinson2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-106",
+      "confidence": 0.8,
+      "confidence_rationale": "This is the key empirical paper demonstrating that Go (approach/commit) and NoGo (avoid/de-commit) learning are dopamine-dependent and dissociable in opposite directions. The double dissociation in Parkinson's patients -- off-medication patients show better punishment avoidance (NoGo learning intact, Go impaired); on-medication patients show better reward approach (Go learning enhanced, NoGo suppressed) -- directly proves the D1/D2 asymmetry at a behavioural level. This is strong evidence for the mechanism MECH-106 requires. Confidence slightly below Frank 2005 because this paper establishes the learning asymmetry (which action to select next time), not the within-episode threshold dynamics MECH-106 needs for commitment persistence.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_106",
+      "failure_signatures": [
+        "The paper demonstrates between-trial learning asymmetry, not within-episode commitment hysteresis -- the two are related but distinct constructs.",
+        "Parkinson's patients are an indirect probe of dopamine function; medication effects confound tonic vs. phasic DA and involve peripheral and non-striatal targets.",
+        "The task uses forced-choice stimulus-response, not action commitment sequences -- the mapping to commitment entry/exit dynamics requires inferential extrapolation."
+      ],
+      "run_id": "2026-04-05_mech_106_carrot_or_stick_frank2004",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-106",
+      "confidence": 0.76,
+      "confidence_rationale": "This paper directly tests the D1/D2 asymmetry account using selective pharmacological agents in healthy controls -- cabergoline (D2 agonist) and haloperidol (D2 antagonist) -- rather than relying on the indirect Parkinson's model. The selective D2 manipulation isolates the indirect pathway's contribution to Go/NoGo asymmetry. Cabergoline impairs Go learning from positive reinforcement (consistent with presynaptic D2 suppression reducing DA burst amplitude); haloperidol enhances it (consistent with blocking the D2 autoreceptor brake). The parallel effects on working memory and attentional tasks support the generalisation of D2-mediated gating beyond simple motor selection. Confidence good but not maximal: the cabergoline/haloperidol dissection is primarily presynaptic D2 autoreceptor effects, and the paper does not directly address commitment mode persistence.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_106",
+      "failure_signatures": [
+        "Cabergoline and haloperidol primarily act on presynaptic D2 autoreceptors at the low doses used, not on postsynaptic D2 MSNs in the indirect pathway -- the mechanistic interpretation requires this distinction, which the paper addresses but cannot fully resolve pharmacologically.",
+        "The study uses a probabilistic reinforcement learning task (discrete choice), not a commitment sequence paradigm -- the mapping to commitment hysteresis is inferential.",
+        "Healthy adults, not Parkinson's -- the effect size of D2 manipulation on Go/NoGo asymmetry is smaller and harder to measure cleanly than in dopamine-depleted patients."
+      ],
+      "run_id": "2026-04-05_mech_106_d2_go_nogo_psychopharm_frankoReilly2006",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-106",
+      "confidence": 0.82,
+      "confidence_rationale": "This is the core computational paper that defines the mechanistic architecture MECH-106 instantiates. Frank's BG model explicitly implements asymmetric D1/D2 modulation: phasic DA bursts potentiate D1 MSNs in the direct pathway (lowering the threshold for Go/facilitation), while DA dips relieve inhibition on D2 MSNs in the indirect pathway (raising the NoGo/suppression signal). The model is biologically grounded, validated against Parkinson's patient data, and is the foundational architecture Frank 2004 tests behaviourally. Confidence is high but not maximal because the paper models action selection thresholds in the sense of response facilitation/suppression, not commitment to ongoing action sequences -- the REE translation to commitment entry/exit hysteresis requires an interpretive step.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_106",
+      "failure_signatures": [
+        "The model addresses response selection thresholds, not commitment persistence -- the mapping to ongoing commitment hysteresis requires inference beyond the paper's stated scope.",
+        "D1 potentiation lowers facilitation threshold but the model does not directly operationalise a 'commit threshold' that would prevent or enforce exit from an ongoing committed sequence.",
+        "Simulated DA dynamics are phasic and immediate; whether sustained D1 potentiation after a positive outcome produces hysteresis lasting across multiple subsequent trials is not tested in the model."
+      ],
+      "run_id": "2026-04-05_mech_106_dynamic_dopamine_frank2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-106",
+      "confidence": 0.68,
+      "confidence_rationale": "Frank 2006 introduces the subthalamic nucleus as a dynamic response threshold modulator in the BG. When cortical response conflict is high, the hyperdirect pathway (cortex -> STN -> GPi) raises a global threshold, delaying and modulating response execution. This is a different mechanism from the D1/D2 asymmetry of Frank 2005 -- it operates on the commitment threshold from the conflict side rather than the outcome-valence side. It is relevant to MECH-106 because it demonstrates that the BG implements dynamic, context-sensitive threshold adjustment that is not fixed but varies with the current decision state. The paper provides indirect support for MECH-106's hysteresis claim by establishing that the BG already implements the class of dynamic threshold modulation MECH-106 requires. Confidence lower than the other Frank papers because the STN mechanism is conflict-driven, not valence-driven, so the mapping to outcome-based hysteresis is less direct.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_106",
+      "failure_signatures": [
+        "The STN 'hold your horses' mechanism is driven by cortical response conflict, not by outcome valence -- the connection to MECH-106's valence-asymmetric hysteresis requires treating both as instances of the same general class of dynamic threshold adjustment.",
+        "The model predicts STN lesions reduce commitment thresholds (consistent with impulsivity in STN DBS patients), but does not address how the threshold resets or persists after an outcome.",
+        "Oscillatory BG activity in the simulated parkinsonian state is emergent from the model, not confirmed by STN recording in the specific context of outcome-valence processing."
+      ],
+      "run_id": "2026-04-05_mech_106_stn_dynamic_threshold_frank2006",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-153",
       "confidence": 0.71,
       "confidence_rationale": "Bengio et al. (2009) establish that staged/ordered training -- presenting easy examples before hard ones, or simpler objectives before complex ones -- produces better generalization and faster convergence for non-convex objectives. The paper's core insight is that curriculum learning acts as a continuation method for non-convex optimization: a simpler task defines a loss landscape with fewer bad local minima, and progressive introduction of complexity guides the optimizer toward better solutions than random-order training. This maps onto two REE claims simultaneously. For MECH-153: the failure of ContextMemory under insufficient training signal (cosine_sim=1.0 with lambda=0.1, 150 episodes) is consistent with Bengio et al.'s prediction that starting with the full complex objective without a warm-up phase leads to poor representations. The supervised terrain-label objective is harder to satisfy than the world-model prediction-error objective (it requires separating two categories that are not visible in the self-supervised signal); attempting to learn both simultaneously from scratch under a weak label weight (lambda=0.1) is precisely the curriculum-without-curriculum failure mode. For ARC-042: the Phase 0/1/2 staged structure is a curriculum strategy -- Phase 0 bootstraps a functional world model, Phase 1 introduces the supervised context label as the hard discriminating objective, Phase 2 freezes the learned representation and uses it for evaluation. This matches Bengio et al.'s three-regime framing: easy task first (world model prediction), hard task second (context discrimination), downstream evaluation third. Confidence at 0.71: the paper is highly cited and principled, but its empirical demonstrations are in NLP and vision tasks (shape recognition, language modeling), not LSTM context memory. The architectural gap is significant; the conceptual mapping is strong.",
@@ -53001,9 +53418,163 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-04-05T12:00:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.55,
+      "confidence_rationale": "The paper provides strong theoretical grounding for REM sleep as a model-optimization phase (free energy minimisation, model complexity reduction) -- directly relevant to INV-045's claim that REM precision recalibration is Phase 4. However, the paper does not address the ordering question: it does not argue that REM model optimization must follow NREM homeostasis as a computational necessity. It treats REM as the primary focus and largely ignores NREM's preparatory role. The free-energy framing partially supports the INV-045 mechanisms but makes no derivation-of-ordering argument.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_friston_hobson_rem_model_optimization_2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.42,
+      "confidence_rationale": "Le Bon addresses the NREM-REM ordering question most directly of all papers found -- the paper is explicitly about why NREM precedes REM and what determines the cycle. However, the answer is a homeostatic/refractory-period mechanism (REM generates a post-REM refractory period that forbids REM reoccurrence until NREM resets the pressure), not a computational-necessity argument derived from failure-mode dependencies. Le Bon's account is descriptive of the observed biological pattern and mechanistic at the circadian/brainstem level, not at the computational/representational level that INV-045 requires. The paper actually highlights that the ordering emerges from pressure-convergence and semi-random timing rather than from a logical dependency structure -- which is somewhat in tension with INV-045's stronger necessity claim.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_lebon_asymmetric_nrem_rem_alternation_2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.55,
+      "confidence_rationale": "Lewis and Durrant provide the clearest account of how NREM and REM sleep interact in schema formation: NREM replay drives Hebbian abstraction of shared elements across overlapping episodes; REM then integrates these cortical representations with older knowledge. The sequential framing (NREM creates abstract cortical representations; REM integrates them) implies that REM integration depends on the NREM abstractions existing first. This is structurally consistent with INV-045's Phase 2-then-Phase 3/4 ordering. However, the paper does not make the derivation-from-necessity argument -- it presents the sequence as a functional description rather than arguing that the reverse order would fail computationally. It is the closest paper found to making the ordering constraint explicit, but it stops short.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_lewis_durrant_overlapping_replay_schema_2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.58,
+      "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) as the core function of slow-wave sleep, directly relevant to INV-045 Phase 1 (SHY normalisation before replay). The logic of SHY -- synaptic downscaling clears the noise floor and restores signal-to-noise before further consolidation -- partially implies that homeostasis must precede replay. However, the paper explicitly acknowledges that the REM-SHY relationship is unresolved and does not derive the NREM-before-REM ordering from first principles. The authors ask 'how REM may or may not fit' rather than answering it. SHY provides the mechanistic basis for Phase 1 but does not establish the ordering as a necessity.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_tononi_cirelli_shy_nrem_price_plasticity_2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.52,
+      "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for REM sleep as the locus of affective recalibration -- specifically, that REM's low-noradrenaline, high-acetylcholine neurochemistry allows emotional memory to be consolidated informationally while the affective charge is reduced (the SFSR hypothesis: Sleep to Forget and Sleep to Remember). This directly supports INV-045 Phase 4 (REM precision recalibration): the mechanism by which prior weighting of affectively loaded memories is reset during REM. However, the paper does not address why this step must be last in the sequence, nor does it consider NREM's preparatory role for REM's affective processing. Like the other papers found, it establishes the mechanism of Phase 4 without deriving the ordering.",
+      "evidence_class": "lit:review_empirical",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_walker_vanderhelm_rem_overnight_therapy_2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-045",
+      "confidence": 0.52,
+      "confidence_rationale": "This recent computational review explicitly frames NREM and REM as having distinct and complementary computational roles -- NREM selectively consolidates memory (slow-wave up/down state gating determines what survives), REM reorganises representations (dream-driven development of new neuronal representations). This taxonomy supports the mechanistic basis of INV-045 Phases 2 and 4. However, the paper does not argue that the NREM-before-REM ordering is derivable from first principles or computationally necessary. The ordering is treated as an observed biological fact. The gap between 'these phases do different things' and 'the sequence is a necessity' is precisely the gap INV-045 claims to fill, and no reviewed paper (including this one) makes that derivation.",
+      "evidence_class": "lit:computational_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_inv_045_sleep_phase_ordering",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_inv045_yoshida_toyoizumi_computational_sleep_2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T15:10:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-120",
+      "confidence": 0.82,
+      "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) directly supporting MECH-120. The mechanism is precisely stated: waking Hebbian plasticity broadly strengthens synapses, saturating learning capacity and reducing signal-to-noise; NREM slow-wave sleep renormalises net synaptic strength via down-states, restoring the weight landscape to a state where diverse new content can be encoded. This is the biological analog of MECH-120's claim that slow-wave sleep prevents dominant high-salience experiences from monopolising the weight landscape. The failure mode described in MECH-120 -- replay into non-normalised weights reinforcing dominant traces -- is directly implied by SHY: the whole point of downscaling is that without it, replay would re-potentiate already-dominant weights. Evidence direction is 'supports' rather than 'strong_supports' because SHY is a theory (very well-evidenced but not conclusively proven at the molecular level), and the paper acknowledges open questions about the relationship between SHY downscaling and selective memory retention.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sleep_phase_mechanisms",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech120_shy_synaptic_normalisation_tononi2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T16:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-121",
+      "confidence": 0.85,
+      "confidence_rationale": "Diekelmann and Born provide the canonical account of the two-stage memory consolidation model, directly supporting MECH-121. The paper establishes that during SWS/NREM, slow oscillations, spindles, and ripples coordinate the re-activation and redistribution of hippocampus-dependent episodic memories to neocortical storage sites -- the directed hippocampus-to-cortex transfer claimed by MECH-121. The 'system consolidation' function during SWS is well-characterised by a rich empirical literature reviewed here. The dependency on MECH-120 (normalised weights) is implicit in the claim that spindles facilitate plasticity at neocortical sites: if neocortical weights are saturated, spindle-driven potentiation cannot occur. The paper explicitly identifies minimum cholinergic activity during SWS as enabling this transfer (high ACh during waking suppresses the hippocampus-to-cortex route). This is the strongest available review of empirical evidence for MECH-121. Confidence limited slightly by ongoing debate about whether hippocampal 'transfer' or 'indexing' better describes the long-term organisation.",
+      "evidence_class": "lit:review_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sleep_phase_mechanisms",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech121_nrem_replay_hippocampus_neocortex_diekelmann2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T16:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-122",
+      "confidence": 0.8,
+      "confidence_rationale": "Staresina et al. provide direct intracranial human evidence for the hierarchical nesting mechanism that is the biological analog of MECH-122's spindle coordination claim. The paper shows that thalamo-cortical spindles are modulated by the up-state of slow oscillations, and in turn cluster hippocampal ripples at their troughs -- providing fine-tuned temporal frames for hippocampal memory trace transfer to neocortex. This is precisely the 'spindle bursts package hippocampal content for integration' mechanism in MECH-122. The cross-frequency phase-amplitude coupling structure (SO -> spindle -> ripple nesting) is demonstrated directly in human intracranial recordings, not inferred from scalp EEG. The paper supports the specific claim that spindle timing coordinates hippocampal output. The MECH-122 claim that V3 ThetaBuffer is waking-only (unidirectional) and spindle coordination would make it bidirectional requires the additional step of mapping thalamo-cortical spindles onto the ThetaBuffer mechanism, which is an REE-internal design inference not directly tested here.",
+      "evidence_class": "lit:empirical_primary",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sleep_phase_mechanisms",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech122_spindle_coordination_theta_gamma_staresina2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T16:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-123",
+      "confidence": 0.75,
+      "confidence_rationale": "Hobson and Friston provide the most direct theoretical support for MECH-123's claim that REM resets precision priors via free energy minimisation (their framework) / predictive coding (REE's framework). The key mechanism: during REM, sensory prediction errors are turned off by reducing the precision of sensory inputs (aminergic suppression = reduced precision on bottom-up signals). This creates a state of unconstrained generative model simulation -- the brain runs its world model without evidence constraints. Crucially, this offline optimisation prunes redundancy and reduces model complexity, which in Bayesian terms is prior updating / model selection. This directly maps onto MECH-123: REM recalibrates precision priors (commitment_threshold, precision_ema_alpha) because the aminergic suppression that defines REM neurochemistry is precisely a precision-weighting mechanism. The ordering constraint is implicit: the generative model being optimised during REM is the one that was loaded (consolidated) during NREM replay. The Hobson-Friston framework is theoretical rather than empirical, limiting confidence, but it is the most precise theoretical mapping to MECH-123 available.",
+      "evidence_class": "lit:theoretical_neuroscience",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sleep_phase_mechanisms",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech123_rem_free_energy_prior_reset_hobson2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T16:30:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-123",
+      "confidence": 0.72,
+      "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for the REM-phase affective recalibration mechanism that is the biological analog of MECH-123. The SFSR (Sleep to Forget and Sleep to Remember) hypothesis -- REM's low-noradrenaline, high-acetylcholine state allows emotional memory content to be consolidated while its affective charge (precision weighting) is depotentiated -- maps onto MECH-123's claim that REM resets precision priors after content consolidation. The failure mode evidence is particularly strong: patients with disrupted REM (PTSD, sleep apnoea) show persistent heightened emotional reactivity, consistent with failed precision recalibration. The constraint that recalibration must follow content consolidation (MECH-121) is supported by the SFSR logic: you cannot depotentiate the affect of a memory until it is stably consolidated. Confidence limited because: (1) SFSR covers emotional/affective precision but MECH-123 covers broader prior updating (commitment_threshold, precision_ema_alpha); (2) Walker-van der Helm do not make the 'must be last' ordering argument explicit.",
+      "evidence_class": "lit:review_empirical",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_sleep_phase_mechanisms",
+      "failure_signatures": [],
+      "run_id": "2026-04-05_mech123_rem_precision_recalibration_walker2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-04-05T16:30:00Z"
     }
   ],
-  "generated_at_utc": "2026-04-04T19:20:56.453425Z",
+  "generated_at_utc": "2026-04-04T22:29:42.825239Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

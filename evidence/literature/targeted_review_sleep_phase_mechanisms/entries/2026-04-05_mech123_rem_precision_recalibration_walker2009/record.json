@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-04-05_mech123_rem_precision_recalibration_walker2009",
+  "timestamp_utc": "2026-04-05T16:30:00Z",
+  "claim_ids_tested": ["MECH-123"],
+  "source": {
+    "title": "Overnight Therapy? The Role of Sleep in Emotional Brain Processing",
+    "authors": ["Matthew P. Walker", "Els van der Helm"],
+    "year": 2009,
+    "venue": "Psychological Bulletin",
+    "volume": "135",
+    "issue": "5",
+    "pages": "731-748",
+    "pmid": "19702380",
+    "pmc": "PMC2890316",
+    "doi": "10.1037/a0016570",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2890316/"
+  },
+  "evidence_class": "review_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Walker and van der Helm provide empirical and theoretical support for the REM-phase affective recalibration mechanism that is the biological analog of MECH-123. The SFSR (Sleep to Forget and Sleep to Remember) hypothesis -- REM's low-noradrenaline, high-acetylcholine state allows emotional memory content to be consolidated while its affective charge (precision weighting) is depotentiated -- maps onto MECH-123's claim that REM resets precision priors after content consolidation. The failure mode evidence is particularly strong: patients with disrupted REM (PTSD, sleep apnoea) show persistent heightened emotional reactivity, consistent with failed precision recalibration. The constraint that recalibration must follow content consolidation (MECH-121) is supported by the SFSR logic: you cannot depotentiate the affect of a memory until it is stably consolidated. Confidence limited because: (1) SFSR covers emotional/affective precision but MECH-123 covers broader prior updating (commitment_threshold, precision_ema_alpha); (2) Walker-van der Helm do not make the 'must be last' ordering argument explicit.",
+  "summary_path": "summary.md",
+  "tags": [
+    "REM", "emotional-memory", "precision-recalibration", "affect", "noradrenaline", "acetylcholine",
+    "SFSR", "Walker", "van-der-Helm", "PTSD", "prior-reset", "harm-weighting", "MECH-123"
+  ],
+  "mapping": {
+    "source_claim_statement": "REM sleep provides a neurochemical state (low noradrenaline, elevated acetylcholine, theta oscillations) permitting reactivation of emotional memories with simultaneous depotentiation of their affective tone. SFSR: the informational content of emotional experience is retained (consolidated) while the autonomic/affective charge is reduced. REM disruption produces persistent heightened emotional reactivity. Late-night REM predominance follows early-night NREM consolidation, though the functional dependency is not explicitly derived.",
+    "ree_translation": "MECH-123 claims REM resets precision priors (commitment_threshold, precision_ema_alpha) after content consolidation, and must be last because recalibrating before replay corrupts evidence weighting. The SFSR mechanism is the biological implementation: REM's low-noradrenaline state reduces the precision weighting (affective charge) of previously consolidated memories, updating z_beta and harm_weight parameters without corrupting the episodic content (z_world schemas). In REE terms, commitment_threshold and precision_ema_alpha are effectively 'affective charge' parameters on recently consolidated trajectories -- their recalibration is what SFSR achieves. The ordering constraint is supported by SFSR logic: precision recalibration operates on consolidated memory, so NREM consolidation (MECH-121) must precede REM recalibration. The PTSD failure mode (persistent heightened reactivity when REM is disrupted) maps directly onto MECH-123's failure mode.",
+    "mapping_caveat": "SFSR is primarily about emotional (affective) memory; MECH-123's precision recalibration is broader (includes non-emotional prior updating). The paper treats REM function as affective processing, not as general Bayesian prior revision. The noradrenaline suppression mechanism is specific to affective systems; extension to commitment_threshold and precision_ema_alpha as general precision parameters requires additional bridging. Walker-van der Helm do not argue that REM must be last in the sequence -- only that it performs this function.",
+    "source_context": "Psychological Bulletin, 2009. Major review covering human and rodent studies. Walker lab (Berkeley Sleep and Neuroimaging Laboratory). >700 citations. Covers neuroimaging, pharmacology, and behavioural studies of REM and emotional memory. PMID 19702380."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.32,
+    "notes": "High source quality. Mapping fidelity moderate: maps well onto the affective component of MECH-123 but does not cover the full scope of precision parameter recalibration. Transfer risk moderate: human emotional memory to REE's broader precision architecture requires a bridging step."
+  }
+}

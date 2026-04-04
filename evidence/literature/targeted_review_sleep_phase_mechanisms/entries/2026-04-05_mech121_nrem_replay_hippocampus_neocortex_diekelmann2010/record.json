@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-04-05_mech121_nrem_replay_hippocampus_neocortex_diekelmann2010",
+  "timestamp_utc": "2026-04-05T16:30:00Z",
+  "claim_ids_tested": ["MECH-121"],
+  "source": {
+    "title": "The memory function of sleep",
+    "authors": ["Susanne Diekelmann", "Jan Born"],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience",
+    "volume": "11",
+    "issue": "2",
+    "pages": "114-126",
+    "pmid": "20046194",
+    "doi": "10.1038/nrn2762",
+    "url": "https://doi.org/10.1038/nrn2762"
+  },
+  "evidence_class": "review_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Diekelmann and Born provide the canonical account of the two-stage memory consolidation model, directly supporting MECH-121. The paper establishes that during SWS/NREM, slow oscillations, spindles, and ripples coordinate the re-activation and redistribution of hippocampus-dependent episodic memories to neocortical storage sites -- the directed hippocampus-to-cortex transfer claimed by MECH-121. The 'system consolidation' function during SWS is well-characterised by a rich empirical literature reviewed here. The dependency on MECH-120 (normalised weights) is implicit in the claim that spindles facilitate plasticity at neocortical sites: if neocortical weights are saturated, spindle-driven potentiation cannot occur. The paper explicitly identifies minimum cholinergic activity during SWS as enabling this transfer (high ACh during waking suppresses the hippocampus-to-cortex route). This is the strongest available review of empirical evidence for MECH-121. Confidence limited slightly by ongoing debate about whether hippocampal 'transfer' or 'indexing' better describes the long-term organisation.",
+  "summary_path": "summary.md",
+  "tags": [
+    "NREM", "SWS", "replay", "hippocampus", "neocortex", "system-consolidation",
+    "slow-oscillations", "spindles", "ripples", "two-stage-model", "Diekelmann", "Born", "MECH-121"
+  ],
+  "mapping": {
+    "source_claim_statement": "During SWS at minimum cholinergic activity, slow oscillations coordinate re-activation of newly encoded hippocampal memories; thalamo-cortical spindles provide temporal windows for hippocampal ripple-driven transfer to neocortical sites. This system consolidation redistributes episodic traces from the hippocampal fast-encoder to more permanent cortical storage, integrating with existing schema. During REM sleep, high cholinergic and theta activity supports subsequent synaptic consolidation of these cortically transferred memories.",
+    "ree_translation": "MECH-121 claims hippocampus-to-cortex directed replay during NREM transfers episodic content to neocortical schemas, and requires MECH-120 (normalised weights) to have run first. The Diekelmann-Born two-stage model is the biological template: SWS-ripple-spindle coupling achieves exactly the hippocampus-to-cortex transfer, and the minimum-cholinergic state of SWS is the permissive condition (waking ACh suppresses this route). The dependency on MECH-120 is supported by the logic that spindle-driven plasticity requires available LTP capacity at neocortical synapses -- which is what SHY restores. In REE terms: episodic z_world content encoded during waking is replayed via hippocampal SWR-equivalents during NREM, writing to neocortical schema via spindle-timed windows. The neocortical write requires normalised (post-SHY) weights.",
+    "mapping_caveat": "The paper discusses memory consolidation in terms of episodic (declarative) memory, not the REE-specific notion of 'z_world content' and 'schemas'. The hippocampus-to-cortex transfer is well-established for spatial and declarative memory; extension to REE's viability maps and residue fields requires an intermediate step. The paper does not make explicit that MECH-120 must precede MECH-121 -- this ordering dependency is inferred from the SHY + two-stage model combination, not stated within any single paper.",
+    "source_context": "Nature Reviews Neuroscience, 2010. Canonical two-stage memory consolidation review by the Born lab. >4000 citations. Covers human and rodent studies. The definitive review for the SWS system-consolidation model."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.22,
+    "notes": "Highest-quality source for NREM replay. Mapping fidelity high: the two-stage model directly instantiates MECH-121's mechanism. Transfer risk low-moderate: hippocampal-neocortical replay is well-characterised in rodents and humans; extension to REE requires identifying z_world replay with SWR-ripple events."
+  }
+}

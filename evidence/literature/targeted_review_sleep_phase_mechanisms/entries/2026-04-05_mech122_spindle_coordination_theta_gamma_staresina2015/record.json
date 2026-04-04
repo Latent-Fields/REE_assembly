@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-04-05_mech122_spindle_coordination_theta_gamma_staresina2015",
+  "timestamp_utc": "2026-04-05T16:30:00Z",
+  "claim_ids_tested": ["MECH-122"],
+  "source": {
+    "title": "Hierarchical nesting of slow oscillations, spindles and ripples in the human hippocampus during sleep",
+    "authors": ["Bernhard P. Staresina", "Til Ole Bergmann", "Mathilde Bonnefond", "Roemer van der Meij", "Ole Jensen", "Lorena Deuker", "Christian E. Elger", "Nikolai Axmacher", "Juergen Fell"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "volume": "18",
+    "issue": "11",
+    "pages": "1679-1686",
+    "pmid": "26389842",
+    "pmc": "PMC4625581",
+    "doi": "10.1038/nn.4119",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4625581/"
+  },
+  "evidence_class": "empirical_primary",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Staresina et al. provide direct intracranial human evidence for the hierarchical nesting mechanism that is the biological analog of MECH-122's spindle coordination claim. The paper shows that thalamo-cortical spindles are modulated by the up-state of slow oscillations, and in turn cluster hippocampal ripples at their troughs -- providing fine-tuned temporal frames for hippocampal memory trace transfer to neocortex. This is precisely the 'spindle bursts package hippocampal content for integration' mechanism in MECH-122. The cross-frequency phase-amplitude coupling structure (SO -> spindle -> ripple nesting) is demonstrated directly in human intracranial recordings, not inferred from scalp EEG. The paper supports the specific claim that spindle timing coordinates hippocampal output. The MECH-122 claim that V3 ThetaBuffer is waking-only (unidirectional) and spindle coordination would make it bidirectional requires the additional step of mapping thalamo-cortical spindles onto the ThetaBuffer mechanism, which is an REE-internal design inference not directly tested here.",
+  "summary_path": "summary.md",
+  "tags": [
+    "sleep-spindles", "slow-oscillations", "ripples", "hippocampus", "NREM", "phase-amplitude-coupling",
+    "cross-frequency", "theta-gamma-nesting", "thalamo-cortical", "memory-consolidation",
+    "Staresina", "human-intracranial", "MECH-122"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using direct intracranial EEG from human epilepsy patients during natural sleep, Staresina et al. demonstrate that during NREM sleep: (1) sleep spindles are phase-modulated by the up-states of slow oscillations; (2) spindles in turn cluster hippocampal ripples at spindle troughs. This three-level hierarchy (SO -> spindle -> ripple) provides temporally precise frames for hippocampal memory trace transfer to neocortex. The nesting is observed directly in the human hippocampus, confirming the theoretical prediction from rodent studies.",
+    "ree_translation": "MECH-122 claims thalamo-cortical spindle bursts package E1 updates for hippocampal integration, with the biological analog being sleep spindle theta-gamma nesting. The Staresina et al. finding that spindles cluster hippocampal ripples at their troughs is the direct mechanism: spindle timing gates when hippocampal SWR events (carrying replay content) can drive neocortical plasticity. In REE terms, the ThetaBuffer in waking is unidirectional (E1 -> hippocampus); MECH-122 proposes that during offline phases the spindle-SO-ripple hierarchy implements bidirectional packaging -- neocortical slow oscillations drive spindles that gate hippocampal ripple timing, allowing replay content to be delivered to neocortex in precisely timed bursts. The SO->spindle->ripple nesting shown here is the implementation mechanism of that bidirectional transfer.",
+    "mapping_caveat": "Staresina et al. record from epilepsy patients (potential abnormal oscillatory coupling) though this is standard in human intracranial recording. The paper demonstrates the nesting structure but does not directly test that disrupting spindle-ripple coupling impairs memory transfer. The 'ThetaBuffer bidirectionality' claim in MECH-122 requires treating thalamo-cortical spindles as the offline analog of waking theta -- this mapping is supported by the theta-gamma nesting parallel but is an REE design inference rather than a direct test.",
+    "source_context": "Nature Neuroscience, 2015. Primary empirical paper using human intracranial EEG. Confirmed the SO-spindle-ripple hierarchy predicted from rodent work. The definitive human demonstration of this nesting structure. Used cross-frequency phase-amplitude coupling analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "High source quality (Nature Neuroscience, primary human data). Good mapping fidelity: the SO->spindle->ripple nesting is exactly the mechanism MECH-122 requires. Transfer risk moderate: epilepsy patient cohort, and the mapping of spindles to ThetaBuffer bidirectionality requires an REE-specific design inference."
+  }
+}

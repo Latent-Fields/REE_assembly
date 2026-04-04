@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-04-05_mech123_rem_free_energy_prior_reset_hobson2012",
+  "timestamp_utc": "2026-04-05T16:30:00Z",
+  "claim_ids_tested": ["MECH-123"],
+  "source": {
+    "title": "Waking and dreaming consciousness: neurobiological and functional considerations",
+    "authors": ["J.A. Hobson", "K.J. Friston"],
+    "year": 2012,
+    "venue": "Progress in Neurobiology",
+    "volume": "98",
+    "issue": "1",
+    "pages": "82-98",
+    "pmid": "22609044",
+    "pmc": "PMC3389346",
+    "doi": "10.1016/j.pneurobio.2012.05.003",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3389346/"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Hobson and Friston provide the most direct theoretical support for MECH-123's claim that REM resets precision priors via free energy minimisation (their framework) / predictive coding (REE's framework). The key mechanism: during REM, sensory prediction errors are turned off by reducing the precision of sensory inputs (aminergic suppression = reduced precision on bottom-up signals). This creates a state of unconstrained generative model simulation -- the brain runs its world model without evidence constraints. Crucially, this offline optimisation prunes redundancy and reduces model complexity, which in Bayesian terms is prior updating / model selection. This directly maps onto MECH-123: REM recalibrates precision priors (commitment_threshold, precision_ema_alpha) because the aminergic suppression that defines REM neurochemistry is precisely a precision-weighting mechanism. The ordering constraint is implicit: the generative model being optimised during REM is the one that was loaded (consolidated) during NREM replay. The Hobson-Friston framework is theoretical rather than empirical, limiting confidence, but it is the most precise theoretical mapping to MECH-123 available.",
+  "summary_path": "summary.md",
+  "tags": [
+    "REM", "free-energy", "predictive-coding", "precision", "aminergic-suppression", "prior-reset",
+    "generative-model", "Hobson", "Friston", "dreaming", "model-optimisation", "MECH-123",
+    "protoconsciousness", "PGO-waves"
+  ],
+  "mapping": {
+    "source_claim_statement": "During REM sleep, the virtual reality generator (the brain's generative model) operates offline without environmental sensory input. Aminergic suppression (noradrenaline, serotonin withdrawal) reduces the precision of sensory prediction errors, effectively turning off bottom-up evidence. The generative model then runs as an unconstrained simulation, optimising model structure through free energy minimisation -- pruning redundancy, reducing complexity, and refining prior expectations. PGO waves provide stochastic input that probes the model's internal structure. This is the neurobiological implementation of taking the generative model offline for hyperparameter optimisation.",
+    "ree_translation": "MECH-123 claims REM resets precision priors (commitment_threshold, precision_ema_alpha) after content consolidation. The Hobson-Friston framework provides the most direct theoretical grounding: aminergic suppression during REM is a precision-reduction operation on the sensory channels, creating a state where the model can revise its own hyperparameters (priors) without being anchored by incoming evidence. In REE terms: REM is when commitment_threshold (prior on action commitment) and precision_ema_alpha (prior on prediction error weighting) are updated by running the consolidated model offline. The requirement that REM be last (after NREM consolidation, MECH-121) is implicit: the model being optimised is the post-NREM consolidated model. Running this optimisation before consolidation would recalibrate priors on the pre-consolidation model, corrupting the evidence weighting of newly consolidated schema. The 'sensory surprise turned off' mechanism is precisely the aminergic suppression / precision reset that MECH-123 requires.",
+    "mapping_caveat": "Hobson and Friston's paper is primarily theoretical; empirical evidence for free-energy-minimisation during REM is limited. The framework equates REM optimisation with prior updating but does not distinguish between content-level and precision-parameter-level updates. The specific parameters (commitment_threshold, precision_ema_alpha) are REE constructs with no direct biological equivalent named in the paper. The ordering argument is implied by the framework but not stated as a logical necessity within the paper.",
+    "source_context": "Progress in Neurobiology, 2012. Collaboration between J.A. Hobson (Harvard Sleep Medicine, activation-synthesis originator) and K.J. Friston (UCL, free energy principle). The paper combining protoconsciousness theory with predictive coding / free energy framework. PMID 22609044. PMC open access."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (prestigious venue, canonical authors). Highest mapping fidelity of any paper for MECH-123: the free energy / precision framework maps directly onto REE's Bayesian precision architecture. Low transfer risk because Friston's precision framework is the theoretical foundation REE builds on. Confidence limited by the paper being theoretical (not primary empirical)."
+  }
+}

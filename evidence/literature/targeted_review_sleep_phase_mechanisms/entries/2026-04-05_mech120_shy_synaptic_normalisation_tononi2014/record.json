@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-04-05_mech120_shy_synaptic_normalisation_tononi2014",
+  "timestamp_utc": "2026-04-05T16:30:00Z",
+  "claim_ids_tested": ["MECH-120"],
+  "source": {
+    "title": "Sleep and the Price of Plasticity: From Synaptic and Cellular Homeostasis to Memory Consolidation and Integration",
+    "authors": ["Giulio Tononi", "Chiara Cirelli"],
+    "year": 2014,
+    "venue": "Neuron",
+    "volume": "81",
+    "issue": "1",
+    "pages": "12-34",
+    "pmid": "24411729",
+    "pmc": "PMC3921176",
+    "doi": "10.1016/j.neuron.2013.12.025",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3921176/"
+  },
+  "evidence_class": "theoretical_neuroscience",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Tononi and Cirelli provide the canonical account of NREM synaptic homeostasis (SHY) directly supporting MECH-120. The mechanism is precisely stated: waking Hebbian plasticity broadly strengthens synapses, saturating learning capacity and reducing signal-to-noise; NREM slow-wave sleep renormalises net synaptic strength via down-states, restoring the weight landscape to a state where diverse new content can be encoded. This is the biological analog of MECH-120's claim that slow-wave sleep prevents dominant high-salience experiences from monopolising the weight landscape. The failure mode described in MECH-120 -- replay into non-normalised weights reinforcing dominant traces -- is directly implied by SHY: the whole point of downscaling is that without it, replay would re-potentiate already-dominant weights. Evidence direction is 'supports' rather than 'strong_supports' because SHY is a theory (very well-evidenced but not conclusively proven at the molecular level), and the paper acknowledges open questions about the relationship between SHY downscaling and selective memory retention.",
+  "summary_path": "summary.md",
+  "tags": [
+    "synaptic-homeostasis", "SHY", "NREM", "slow-wave-sleep", "downscaling", "signal-to-noise",
+    "Tononi", "Cirelli", "weight-landscape", "monostrategy", "replay-normalisation", "MECH-120"
+  ],
+  "mapping": {
+    "source_claim_statement": "During waking, Hebbian plasticity strengthens connections broadly, increasing energy costs and saturating signal-to-noise. During NREM slow-wave sleep, spontaneous activity renormalises net synaptic strength via down-states. This offline, comprehensive renormalisation restores cellular homeostasis and creates the conditions for subsequent memory acquisition and consolidation. Without downscaling, runaway potentiation would degrade signal-to-noise and impair learning by saturation.",
+    "ree_translation": "MECH-120 claims that slow-wave sleep performs synaptic weight normalisation preventing dominant high-salience experiences from monopolising the weight landscape. This is precisely SHY: the wake-phase dominant traces (high-salience experiences that drove more Hebbian potentiation) are proportionally downscaled, restoring the relative weighting of diverse content. In REE terms: z_world replay during offline phases must write into normalised weights; if weights are not first renormalised, the high-salience trajectories that already dominate the weight landscape get further reinforced, producing the monostrategy failure mode. SHY provides the biological mechanism for MECH-120's Phase 1 function. The failure mode (replay into non-normalised weights) is SHY's prediction of what happens when downscaling is absent or insufficient.",
+    "mapping_caveat": "SHY primarily describes downscaling of all synapses, while MECH-120 specifically emphasises prevention of dominant-trace monopolisation. These are consistent (dominant traces are those most potentiated, so they benefit most from normalisation) but SHY does not explicitly discuss the monostrategy risk. The molecular mechanisms of selective vs. global downscaling remain debated. SHY is primarily a NREM/SWS theory; it does not address the subsequent replay step (MECH-121) or the ordering constraint between Phases 1 and 2.",
+    "source_context": "Major theoretical review in Neuron, 2014. Human and rodent data surveyed. The definitive SHY statement paper. >3000 citations. Authors hold the canonical position on sleep function in the synaptic homeostasis framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Extremely high source quality -- canonical SHY paper. High mapping fidelity: SHY directly instantiates the MECH-120 mechanism. Low transfer risk: SHY is a general mammalian principle applicable to REE's offline phases. Confidence limited by SHY remaining a hypothesis, and by the gap between 'downscaling' and the specific 'diversity preservation' function MECH-120 emphasises."
+  }
+}
